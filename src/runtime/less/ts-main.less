@@ -1,0 +1,137 @@
+// Mixins ......................................................................
+
+.mixin-toolbar-last(@mult : 1) {
+	.ts-maincontent {
+		bottom: @ts-unit-triple * @mult;
+	}
+	.ts-maincontent {
+		top: @ts-unit-triple * @mult;
+	}
+}
+
+.mixin-misc(@mult: 3) {
+	.ts-maincontent,
+	.ts-main > .ts-note {
+		top: (@ts-unit * @mult);
+	}
+	&.ts-has-topbar-tabs,
+	&.ts-has-tabs {
+		.ts-maincontent,
+		.ts-main > .ts-note {
+			top: (@ts-unit * @mult) + @ts-unit-double;
+		}
+	}
+}
+
+
+// Styles ......................................................................
+
+.ts-main,
+.ts-maincontent,
+body > .ts-panel, {
+	.ts-mixin-maximize();
+}
+.ts-main {
+	z-index: @ts-zindex-main;
+	background-color: @ts-lite-liter;
+	overflow-x: auto;
+	overflow-y: scroll;
+	-webkit-overflow-scrolling: touch;
+}
+.ts-maincontent {
+	> .ts-panel {
+		overflow: visible;
+	}
+}
+
+
+// Adjustment time ............................................................
+
+.ts-tablet {
+	&.ts-has-toolbar-first-ts-macro {
+		.ts-main {
+			top: @ts-unit * 3;
+		}
+	}
+	&.ts-has-toolbar-first-ts-micro {
+		.ts-main {
+			top: @ts-unit * 2;
+		}
+	}
+	&.ts-has-toolbar-last { // TODO(jmo@): micro and macro should maybe go here
+		.ts-main {
+			bottom: @ts-unit-triple;
+		}
+	}
+	&.ts-has-topbar {
+		.ts-main {
+			top: @ts-unit-triple;
+		}
+		&.ts-has-toolbar-first-ts-macro {
+			.ts-main {
+				top: @ts-unit * 6;
+			}
+		}
+		&.ts-has-toolbar-first-ts-micro {
+			.ts-main {
+				top: @ts-unit * 5;
+			}
+		}
+	}
+}
+.ts-mobile-only {
+	&.ts-has-topbar {
+		.mixin-misc(3);
+		&.ts-has-toolbar-first-ts-macro {
+			.mixin-misc(6);
+		}
+		&.ts-has-toolbar-first-ts-micro {
+			.mixin-misc(5);
+		}
+	}
+	&.ts-has-toolbar-last {
+		.mixin-toolbar-last();
+		&.ts-level-2 {
+			.mixin-toolbar-last(2);
+		}
+		&.ts-level-2-5 {
+			.mixin-toolbar-last(2.5);
+		}
+		&.ts-level-3 {
+			.mixin-toolbar-last(3);
+		}
+	}
+}
+.ts-asides-on {
+	.ts-topbar {
+		z-index: 0;
+	}
+}
+
+
+// Drawer adjustments ..........................................................
+
+.ts-tablet {
+	&.ts-has-sidebar-first {
+		.ts-main {
+			left: @ts-width-aside;
+		}
+	}
+	&.ts-has-sidebar-last {
+		.ts-main {
+			right: @ts-width-aside;
+		}
+	}
+}
+
+
+// Spinner in main .............................................................
+
+.ts-spinner-text {
+	margin-top: 65px;
+	position: fixed;
+	z-index: @ts-zindex-spin;
+	width: 100%;
+	text-align: center;
+	font-size: 16px;
+}

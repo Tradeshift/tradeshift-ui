@@ -1,0 +1,11 @@
+[
+	"spirits/chrome/ts.dox.ChromeSpirit.js",
+	"spirits/menu/ts.dox.MenuSpirit.js",
+	"spirits/menu/ts.dox.ItemSpirit.js",
+	"spirits/menu/ts.dox.SubMenuSpirit.js",
+	"spirits/content/ts.dox.PrismSpirit.js",
+	"spirits/content/ts.dox.MarkupSpirit.js",
+	"spirits/content/ts.dox.JavaScriptSpirit.js",
+	"spirits/content/ts.dox.ApiTableSpirit.js",
+	"module.js"
+]

@@ -1,0 +1,24 @@
+<script src="/ext/angular.js"></script>
+<script>
+	window.angular.module('app', [])
+		.controller('DateController', ['$scope', function($scope) {
+			$scope.example = {
+				value: new Date(2013, 9, 22)
+			};
+		}]);
+</script>
+
+<header ts-topbar></header>
+<main ts-main>
+	<article ng-app="app" ng-controller="DateController as dateCtrl">
+		<form ts-form name="myForm">
+			<fieldset>
+				<label>
+					<span>Pick a date in 2013:</span>
+					<input type="date" id="exampleInput" name="input" ng-model="example.value"
+						placeholder="yyyy-MM-dd" required />
+				</label>
+			</fieldset>
+		</form>
+	</article>
+</main>

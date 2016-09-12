@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+
+<script>
+function openAside(target) {
+	document.body.querySelector(target).setAttribute('ts.open', true);
+}
+
+function nukeAside(target) {
+	document.body.removeChild(document.querySelector(target));
+}
+
+function markAside(target) {
+	var aside = ts.ui.get(target);
+	var markerEl;
+	aside.onopened = function() {
+		markerEl = document.createElement('div');
+		var id = target.substr(1) + '-marker';
+		markerEl.setAttribute('id', id);
+		document.body.appendChild(markerEl);
+	};
+	aside.onclosed = function() {
+		document.body.removeChild(markerEl);
+	};
+}
+
+window.addEventListener('load', function() {
+	markAside('#first');
+	markAside('#second');
+	markAside('#third');
+});
+</script>
+
+<header ts-topbar></header>
+
+<main ts-main>
+	<article>
+		<p>
+			<button ts-button class="ts-primary" id="first_opener" onclick="openAside('#first')">
+				<span>Open Aside</span>
+			</button>
+		</p>
+	</article>
+</main>
+
+<aside
+	ts-aside
+	id="first"
+	ts.title="First Aside">
+	<div ts-panel>
+		<p>I am an aside.</p>
+		<menu ts-buttons>
+			<li>
+				<button class="ts-primary" id="second_opener" onclick="openAside('#second')">
+					<span>Open another aside</span>
+				</button>
+			</li>
+			<li>
+				<button class="ts-danger" onclick="nukeAside('#first')">
+					<span>Nuke first aside</span>
+				</button>
+			</li>
+		</menu>
+		<p>The <samp>nuke</samp> button should throw <code>Error</code>.</p>
+	</div>
+</aside>
+
+<aside
+	ts-aside
+	id="second"
+	ts.title="Second Aside">
+	<div ts-panel>
+		<p>I am another aside.</p>
+		<menu ts-buttons>
+			<li>
+				<button class="ts-primary" id="third_opener" onclick="openAside('#third')">
+					<span>Open another aside</span>
+				</button>
+			</li>
+			<li>
+				<button class="ts-danger" onclick="nukeAside('#first')">
+					<span>Nuke first aside</span>
+				</button>
+			</li>
+			<li>
+				<button class="ts-danger" onclick="nukeAside('#second')">
+					<span>Nuke second aside</span>
+				</button>
+			</li>
+		</menu>
+	</div>
+</aside>
+
+<aside
+	ts-aside
+	id="third"
+	ts.title="Third Aside">
+	<div ts-panel>
+		<p>I am the final aside.</p>
+		<menu ts-buttons>
+			<li>
+				<button class="ts-danger" onclick="nukeAside('#first')">
+					<span>Nuke first aside</span>
+				</button>
+			</li>
+			<li>
+				<button class="ts-danger" onclick="nukeAside('#second')">
+					<span>Nuke second aside</span>
+				</button>
+			</li>
+			<li>
+				<button class="ts-danger" onclick="nukeAside('#third')">
+					<span>Nuke third aside</span>
+				</button>
+			</li>
+			<li>
+				<button class="ts-danger" onclick="nukeAside('#first');nukeAside('#third')">
+					<span>Nuke first AND third aside</span>
+				</button>
+			</li>
+		</menu>
+	</div>
+</aside>

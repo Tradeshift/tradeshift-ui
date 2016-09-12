@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>TabBar HTML</title>
+		<script src="tabs.js"></script>
+		<style>
+			.sticky {
+				display: none !important;
+			}
+		</style>
+	</head>
+	<body>
+		<header data-ts="TopBar"></header>
+		<main data-ts="Main">
+			<div data-ts="Panel" data-ts.label="Tabs in Main">
+				<article>
+					<h1>Tabs in Main</h1>
+					<section>
+						<p>If <val>MainContent</val> contains more than one <val>Panel</val>, we will automatically create a TabBar to switch between the panels.</p>
+						<figure data-ts="DoxMarkup">
+							<script>
+								<main data-ts="Main">
+									<div data-ts="MainContent">
+										<div data-ts="Panel" data-ts.label="Tabs in Main">...</div>
+										<div data-ts="Panel" data-ts.label="Tabs in Aside">...</div>
+										<div data-ts="Panel" data-ts.label="Tabs in SideBar">...</div>
+									</div>
+								</main>
+							</script>
+						</figure>
+					</section>
+				</aticle>
+			</div>
+			<div data-ts="Panel" data-ts.label="Tabs in Aside">
+				<article>
+					<h1>Tabs in Aside</h1>
+					<section>
+						<p>If an <val>Aside</val> contains more than one <val>Panel</val>,
+						we will automatically create a TabBar to switch between the panels.</p>
+						<figure data-ts="DoxMarkup">
+							<script>
+								<aside data-ts="Aside">
+									<div data-ts="Panel" data-ts.label="Tab 1">
+										<p>aside content.</p>
+									</div>
+									<div data-ts="Panel" data-ts.label="Tab 2">
+										<p>aside content.</p>
+									</div>
+								</aside>
+							</script>
+						</figure>
+					</section>
+					<p>
+						<button data-ts="Button" onclick="ts.ui.get('#myaside').open()" class="ts-primary">
+							<span>See Example…</span>
+						</button>
+					</p>
+				</acticle>
+			</div>
+			<div data-ts="Panel" data-ts.label="Tabs in SideBar">
+				<article>
+					<h1>Tabs in SideBar</h1>
+					<div data-ts="Note">
+						<i class="ts-icon-todo"></i>
+						<p>TODO: Create this page!</p>
+					</div>
+				</article>
+			</div>
+		</main>
+		<aside data-ts="Aside" id="myaside" data-ts.title="My Aside">
+			<div data-ts="Panel" data-ts.label="tab 1">
+				<p>Bacon ipsum dolor sit pölsesnack, jerky pork belly short loin sausage andouille kevin capicola ham hamburger doner. Shank prosciutto flank kevin ribeye short ribs swine ham pork porchetta spare ribs kielbasa beef ribs. Prosciutto pancetta shank boudin. Corned beef shoulder capicola, turducken prosciutto pork belly sirloin shankle brisket chuck leberkas tail beef. Sirloin meatloaf pastrami beef ribs. Ball tip pastrami landjaeger, brisket Tradeshift strip steak short loin pancetta meatball corned beef tenderloin beef ribs spare ribs. Tradeshift sausage strip steak ham, ribeye pork loin meatball turkey corned beef shoulder. Leberkas jerky sirloin boudin, turducken ham hock pastrami. Doner pig boudin sausage, ball tip leberkas ground round beef jowl kielbasa tongue shankle spare ribs tail shoulder. Fatback pork kielbasa ham, doner pig short loin short ribs pancetta. Pancetta jerky biltong short loin capicola beef. Pork belly strip steak venison brisket shoulder beef filet mignon shank tenderloin tri-tip ground round shankle cow.</p>
+			</div>
+			<div data-ts="Panel" data-ts.label="tab 2">
+				<p>Strip steak flank spare ribs leberkas jowl. Ball tip porchetta flank, sirloin ham hock t-bone salami spare ribs tenderloin capicola jerky kevin shoulder hamburger. Sausage landjaeger Tradeshift fatback, pancetta tenderloin andouille cupim ground round ball tip rump short loin turducken shankle kevin. Corned beef biltong venison ham hock hamburger, pork turducken. Ham short ribs pancetta fatback picanha hamburger, short loin corned beef shankle jowl frankfurter filet mignon doner. Pork chop venison ball tip landjaeger, strip steak doner kevin ribeye pork loin t-bone porchetta sirloin jerky frankfurter tail. Pancetta shank alcatra sirloin swine cow short ribs pork jerky venison flank corned beef prosciutto pig leberkas. Sirloin strip steak meatball, andouille turkey biltong shank beef ribs. Ham turkey spare ribs ground round pig prosciutto. Rump ham hock salami, Tradeshift pölsesnack burger.</p>
+			</div>
+		</aside>
+	</body>
+	<script type="text/javascript">
+		// function open(){
+		// 	var aside = ts.ui.get('#myaside');
+		// 	aside.open();	
+		// }
+	</script>
+</html>

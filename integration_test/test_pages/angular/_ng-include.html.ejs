@@ -1,0 +1,10 @@
+<p>These buttons were included with <code>ng-include</code>:</p>
+<p>
+	<span ng-repeat="(buttonclass, buttonlabel) in buttons">
+		<button ts-button ng-class="buttonclass">
+			<span ng-bind="buttonlabel"></span>
+		</button>
+	</span>
+</p>
+
+<div id="ready-marker" ng-if="ready">Ready for Selenium!</div>

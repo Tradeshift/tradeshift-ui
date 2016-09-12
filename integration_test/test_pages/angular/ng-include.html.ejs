@@ -1,0 +1,22 @@
+<script src="/ext/angular.js"></script>
+
+<header ts-topbar></header>
+<main ts-main>
+	<article ng-app="app" ng-controller="TestController">
+		<div ng-include src="'_ng-include'"></div>
+	</article>
+</main>
+
+<script>
+	(function setup(angular) {
+		angular.module('app', []).controller('TestController', ['$scope', function TestController($scope) {
+			$scope.buttons = {
+				'ts-primary' : 'Primary',
+				'ts-secondary' : 'Secondary',
+				'ts-tertiary' : 'Tertiary'
+			};
+
+			$scope.ready = true;
+		}]);
+	})(window.angular);
+</script>

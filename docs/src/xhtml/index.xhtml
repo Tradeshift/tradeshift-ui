@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html class="ts-loading">
+  <head>
+    <title>Tradeshift UI</title>
+    ${includes}
+  </head>
+  <body data-ts="DoxChrome">
+    <button data-ts="Button" data-ts.type="action-open-menu" class="button-menu-open">
+      <i class="ts-icon-menuswitch"></i>
+    </button>
+    <aside data-ts="SideBar" data-ts.title="KL" data-ts.autoclose="false" class="ts-bg-dark">
+      <div data-ts="Panel">
+        <menu data-ts="DoxMenu">
+          <script type="application/json">
+            ${menujson}
+          </script>
+        </menu>
+      </div>
+    </aside>
+    <main data-ts="Main">
+      <button data-ts="Button" data-ts.type="action-close-menu" class="button-menu-close"></button>
+    </main>
+    <div data-ts="Spinner" data-ts.spinning="true" class="ts-topbarspinner"></div>
+  </body>
+</html>

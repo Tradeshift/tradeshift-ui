@@ -1,0 +1,167 @@
+<!DOCTYPE edbml>
+<script>
+	<?input name="toolbar" type="ts.ui.ToolBarModel"?>
+	<?input name="layout" type="ts.ui.LayoutModel"?>
+	<?function name="renderTabs" src="ts.ui.toolbartabs.edbml"?>
+	
+	var spirit = this;
+	var id = toolbar.$instanceid;
+	var mobilos = layout.isMobilePoint();
+	var topbar = ts.ui.TopBarSpirit.is(spirit);
+	var mytitle = toolbar.title || (topbar ? toolbar.defaultTitle : '');
+	var hasrealtitle = !!toolbar.title;
+	
+	renderLeft(id, mytitle, toolbar.search, toolbar.tabs, toolbar.navigation);
+	renderCenter(id, toolbar.pager);
+	renderRight(id, toolbar.$allbuttons());
+	renderSpinner(topbar && mobilos);
+		
+	function renderLeft(id, title, search, tabs, navigation) {
+		var hasnavigation = navigation && navigation.getLength();
+		if(mobilos || search || tabs.getLength() || hasnavigation || (topbar ? hasrealtitle : title)) {
+			if(tabs.getLength() && mobilos) {
+				renderTabs(spirit, tabs, id, mobilos);
+			}
+			<menu id="${id}-items" class="ts-toolbar-menu ts-left">
+				if(tabs.getLength() && !mobilos) {
+					renderTabs(spirit, tabs, id, mobilos);
+				} else {
+					if(topbar) {
+						renderNav(navigation);
+					} else if(search) {
+						@class = klass('ts-toolbar-search', search);
+						<li id="${id}-search" @class>
+							out.html += search.render();
+						</li>
+					}
+					if(title && !using(search)) {
+						@class = klass('ts-toolbar-title');
+						<li id="${id}-title" @class>
+							if(toolbar.statusbar) {
+								<label>
+									var whitelist = ['strong', 'em', 'strike', 'code'];
+									out.html += ts.ui.Markdown.parse(title, whitelist);
+								</label>
+							} else {
+								<label>${title}</label>
+							}
+						</li>
+					}
+				}
+			</menu>
+		}
+	}
+
+	function renderCenter(id, pager) {
+		if(pager && pager.pages) {
+			<menu id="${id}-extras" class="ts-toolbar-menu ts-center">
+				@class = klass('ts-toolbar-pager', pager);
+				<li id="${id}-pager" @class>
+					out.html += pager.render();
+				</li>
+			</menu>
+		}
+	}
+
+	function renderRight(id, buttons) {
+		if(buttons.length) {
+			<menu id="${id}-buttons" class="ts-toolbar-menu ts-right">
+				if(!toolbar.compact) {
+					toolbar.$allbuttons().forEach(renderbutton);
+				} else if (mobilos && buttons.length > 1) {
+					renderasidebutton(function onclick() {
+						spirit.putaside(toolbar.$allbuttons());
+					});
+				} else {
+					renderbuttons(
+						toolbar.$specialbuttons(),
+						toolbar.$normalbuttons()
+					);
+				}
+			</menu>
+		}
+	}
+
+	// non-mobile buttons (tertiary buttons are the "normals" here)
+	function renderbuttons(specials, normals) {
+		if(normals.length === 1) {
+			specials = normals.concat(specials);
+		} else if(shouldrenderaside(normals)) {
+			renderasidebutton(function onclick() {
+				spirit.putaside(normals);
+			});
+		}
+		specials.forEach(renderbutton);
+	}
+
+	// we have buttons to put into the aside and they're not all disabled?
+	function shouldrenderaside(buttons) {
+		return buttons.length > 1 && !buttons.every(function(button) {
+			return button.disabled;
+		});
+	}
+	
+	// non-mobile single button
+	function renderbutton(button) {
+		var id = button.$instanceid;
+		@class = klass('ts-item', button);
+		<li @class id="${id}-item">
+			out.html += button.render();
+		</li>
+	}
+	
+	// show-more button (to open remaining buttons in ASIDE)
+	function renderasidebutton(action) {
+		@class = "ts-toolbar-item ts-item";
+		<li @class id="${id}-aside">
+			<button data-ts="Button" class="ts-tertiary" +
+				onclick="#{action()}" tabindex="-1">
+				<i class="ts-icon-other"></i>
+			</button>
+		</li>
+	}
+
+	function klass(cname, model) {
+		var flex = model && model.flex;
+		return [
+			'ts-toolbar-item',
+			(cname || ''),
+			(flex ? 'ts-flex' : '')
+		].join (' ');
+	}
+
+	function using(search) {
+		return search && (search.focused || search.value || search.flex);
+	}
+	
+	
+	// SPINNER ...................................................................
+	
+	// in the TopBar, we'll render the Spinner in mobile brakpoint.
+	function renderSpinner(on) {
+		@id = id + '-spinner';
+		@class = 'ts-topbarspinner';
+		if(on) {
+			<div data-ts="Spinner" @id @class data-ts.spinning="true"></div>
+		}
+	}
+
+		
+	// BACK/FORWARD/MENUTOGGLE ...................................................
+
+	// render back and forward buttons
+	function renderNav(navbuttons) {
+		if(navbuttons.getLength() || mobilos) {
+			menubutton(navbuttons).forEach(renderbutton);
+		}
+	}
+
+	// inject the menubutton in mobile
+	// TODO(jmo@): edb.Array.concat should return simple Array!!!!!!!!!!!!!!!!!!!!
+	function menubutton(navbuttons) {
+		var buttons = mobilos ? [toolbar.menubutton] : [];
+		return buttons.concat(gui.Array.from(navbuttons));
+	}
+
+
+</script>

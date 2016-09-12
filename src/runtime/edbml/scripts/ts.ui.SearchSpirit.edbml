@@ -1,0 +1,15 @@
+<!DOCTYPE edbml>
+<script>
+	<?input name="search" type="ts.ui.SearchModel"?>
+	
+	var id = search.$instanceid;
+	@placeholder = search.tip || null;
+	@title = (search.focused ? null : search.tip) || null;
+	@class = 'ts-button-clear' + (search.value ? '' : ' ts-hidden');
+	
+	<input data-ts="Input" data-ts.model="?{search}" id="${id}-input" @title @placeholder/>
+	<button data-ts="Button" @class tabindex="-1" id="${id}-clear">
+		<i class="ts-icon-close"></i>
+	</button>
+
+</script>

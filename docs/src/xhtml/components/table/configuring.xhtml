@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Table Config</title>
+		<script src="tabs.js"></script>
+	</head>
+	<body>
+		<header data-ts="TopBar"></header>
+		<main data-ts="Main">
+			<article>
+				<h1>Configuring the Table</h1>
+				<section>
+					<p>You can make the table <code>configurable</code> by a button in the statusbar.</p>
+					<ul class="splitscreen">
+						<li>
+							<figure data-ts="DoxScript">
+								<script type="runnable">
+									var table = ts.ui.get('#table1');
+									var popup = ts.ui.Notification;
+									table.configurable(function onclick() {
+										popup.success('Go configure!');
+									}).cols(['A', 'B', 'C', 'D']).rows([
+										[1, 4, 7, 10],
+										[2, 5, 8, 11],
+										[3, 6, 9, 12]
+									]);
+								</script>
+							</figure>
+						</li>
+						<li>
+							<div data-ts="Table" id="table1"></div>
+						</li>
+					</ul>
+					<p>The button triggers a callback, but there is otherwise no default UI associated. The <code>ColModel</code> supports a <code>visible</code> property that can be used to hide columns.</p>
+					<figure data-ts="DoxScript">
+						<script type="runnable">
+							var cols = ts.ui.get('#table1').cols();
+							(function hide(index) {
+								cols[index].visible = false;
+								if(index) {
+									setTimeout(function next() {
+										hide(--index);
+									}, 1000);
+								}
+							}(3));
+						</script>
+					</figure>
+					<p>Here's a summary of these things.</p>
+					<div data-ts="DoxApi">
+						<script type="application/json">
+							{
+								name: "ts.ui.TableSpirit",
+								methods: [
+									{
+										name: "configurable",
+										args: ["(function)"],
+										desc: "Make the Table configurable with a callback for that button in the statusbar."
+									}
+								]
+							}
+						</script>
+					</div>
+					<div data-ts="DoxApi">
+						<script type="application/json">
+							{
+								name: "ts.ui.TableColModel",
+								properties: [
+									{
+										name: 'visible',
+										type: 'boolean',
+										desc: 'The columns is visible?'
+									}
+								],
+								methods: [
+									{
+										name: "hide",
+										desc: "Hide the column."
+									},
+									{
+										name: "show",
+										desc: "Show the column."
+									}
+								]
+							}
+						</script>
+					</div>
+				</section>
+			</article>
+		</main>
+	</body>
+</html>

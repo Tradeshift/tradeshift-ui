@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Search</title>
+	</head>
+	<body>
+		<header data-ts="TopBar"></header>
+		<main data-ts="Main">
+			<article>
+				<h1>Search</h1>
+				<section>
+					<div data-ts="Note">
+						<i class="ts-icon-warning"></i>
+						<p>Search is a work in progress. This is a developer preview.</p>
+					</div>
+				</section>
+				<section>
+					<p>You can initialize a Search with <att>data-ts="Search"</att>. The classname <val>ts-inset</val> will add an outline (so that we can see how it behaves on this white background).</p>
+					<figure data-ts="DoxMarkup">
+						<output/>
+						<script>
+							<div data-ts="Search" id="mysearch" class="ts-inset"></div>
+						</script>
+					</figure>
+					<p>The search field expands when the field is focused by the user or whenever there's a non-empty value in the field. You can change the value like this:</p>
+					<figure data-ts="DoxScript">
+						<script type="runnable">
+							var search = ts.ui.get('#mysearch'); // or pass an element
+							search.value = 'Hello world';
+						</script>
+					</figure>
+					<p>The <code>onsearch</code> callback gets invoked when when the user presses <kbd>ENTER</kbd>.</p>
+					<figure data-ts="DoxScript">
+						<script type="runnable">
+							var search = ts.ui.get('#mysearch');
+							search.value = 'Press ENTER here';
+							search.onsearch = function(value) {
+								ts.ui.Notification.success(value || 'Search cleared');
+							};
+						</script>
+					</figure>
+					<p>If defined, the <code>onidle</code> method gets called whenever the user pauses typing.</p>
+					<figure data-ts="DoxScript">
+						<script type="runnable">
+							var search = ts.ui.get('#mysearch');
+							search.value = 'Try it now!';
+							search.onidle = function(value) {
+								ts.ui.Notification.success(value);
+							};
+						</script>
+					</figure>
+					<p>The <code>onidle</code> method may also be called when the field loses focus. The <code>idletime</code> property controls the timeout value, default is <code>500</code> (milliseconds). Here' an overview of the properties and methods of the Search component.</p>
+				<section>
+				<section>
+					<div data-ts="DoxApi">
+						<script type="application/json">
+							{
+								name: "ts.ui.SearchSpirit",
+								properties: [
+									{
+										name: "value",
+										type: "string",
+										desc: "The search field value."
+									},
+									{
+										name: "idletime",
+										type: "number",
+										desc: "Time before the user is considered idle."
+									}
+								],
+								methods: [
+									{
+										name: "onsearch",
+										desc: "Called when the user presses ENTER."
+									},
+									{
+										name: "onidle",
+										desc: "Called when the user pauses typing."
+									},
+									{
+										name: "onfocus",
+										desc: "Called when the search field is focused."
+									},
+									{
+										name: "onblur",
+										desc: "Called when the search field gets blurred."
+									},
+									{
+										name: "focus",
+										desc: "Focus the search field."
+									},
+									{
+										name: "blur",
+										desc: "Blur the search field."
+									}
+								]
+							}
+						</script>
+					</div>
+				</section>
+			</article>
+		</main>
+	</body>
+</html>

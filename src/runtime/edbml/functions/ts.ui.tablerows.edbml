@@ -1,0 +1,118 @@
+<!DOCTYPE edbml>
+<script>
+	<?param name="table" type="ts.ui.TableModel"?>
+	<?param name="rows" type="Array" comment="Visible rows only!"?>
+	<?param name="cols" type="Array" comment="Visible cols only!"?>
+	<?function name="renderCheck" src="ts.ui.tablecheck.edbml"?>
+	<?function name="renderHilt" src="ts.ui.tablehilt.edbml"?>
+	
+	// Note on whitelist: You can use `h` to add H1-H4 header support.
+	// Note on whitelist: `ol` will parse number `1.50` as a list, so was removed
+	
+	var colcount = cols.length;
+	var Markdown = ts.ui.Markdown;
+	var whitelist = ['strong', 'em', 'strike', 'code', 'ul'];
+	if(table.linkable) {
+		whitelist.push('a');
+	}
+	
+	if(cols.length || !table.cols.length) {
+		rows.forEach(renderRow);
+	}
+
+	function renderRow(row) {
+		var selectable = row.selectable === false ? false : true;
+		@class = row.TEMPFIX ? 'TEMPFIX' : '';
+		@class += table.selectable && selectable && row.selected ? 'ts-table-row-selected ts-bg-yellow' : '';
+		@class += table.selectable && !selectable ? 'ts-table-row-unselectable' : '';
+		@class += row.new ? 'ts-table-new-row' : '';
+		<tr data-index="${row.$index}" @class>
+			if (table.numbered) {
+				renderNumber(row);
+			}
+			if(table.selectable) {
+				if(selectable) {
+					var simulated = true;
+					renderCheck(table, row, simulated);
+				} else {
+					renderHilt(table, row);	
+				}
+				
+			}
+			row.cells.forEach(function(cell, i) {
+				if(!colcount || i < colcount) {
+					var col = cols[cell.$index];
+					if(!col || col.visible) {
+						renderCell(col, row, cell);
+					}
+				}
+			});
+		</tr>
+	}
+
+	function renderNumber(row) {
+		<td class="ts-table-addition ts-table-numbered" data-index="${row.$index}">
+			<div class="ts-table-cell">
+				out.html += Markdown.parse(row.$index + 1);
+			</div>
+		</td>
+	}
+	
+	function renderCell(col, row, cell) {
+		var editable = iseditable(col, row, cell);
+		@class = getCellClass(col, row, cell, editable);
+		@id = table.$cellid(row.$index, cell.$index);
+		<td @id @class @note data-index="${cell.$index}">
+			<div class="ts-table-cell">
+				if(table.editable) {
+					<div class="ts-table-line" tabindex="0"></div>
+				}
+				if(editable) {
+					renderEditor(cell.value);
+				}
+				if(ts.ui.Model.is(cell)) {
+					out.html += cell.render();
+				} else {
+					out.html += Markdown.parse(cell.text, whitelist);
+				}
+			</div>
+		</td>
+	}
+
+	function renderEditor(value) {
+		<textarea rows="1" data-ts="TextArea" class="ts-table-input" type="submit">
+			out.html += value;
+		</textarea>
+	}
+
+	function getCellClass(col, row, cell, editable) {
+		var css = [row.type];
+		if(cell.item) { // will render a button or switch or something
+			css.push('ts-has-extra');
+			css.push('ts-has-' + cell.item.toLowerCase());
+		} else {
+			css.push(cell.type);
+			css.push(editable ? 'ts-editable' : '');
+			css.push(cell.valid ? '' : 'ts-table-invalid');
+			if(col) {
+				css = css.concat([col.type, col.wrap ? 'ts-wrap' : '']);
+			}
+		}
+		if(col) {
+			css.push(col.selected ? 'ts-selected' : '');
+		}
+		return css.join(' ').trim();
+	}
+	
+	function iseditable(col, row, cell) {
+		if(table.editable) {
+			if(cell.editable) {
+				return true;
+			} else {
+				return (!col || col.editable !== false) && row.editable !== false;
+			}
+		}
+		return false;
+	}
+	
+</script>

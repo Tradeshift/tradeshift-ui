@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Themes</title>
+		<meta name="robots" content="noindex">
+		<script src="tabs.js"></script>
+		<script src="themes.js"></script>
+		<style>
+			#button-menu li{
+				padding-top: 11px;
+				padding-left: 11px;
+			}
+			#button-menu button {
+				width: 150px;
+			}
+
+			.checkbox-form {
+				padding-top: 11px;
+			}
+			.container {
+				padding: 0 !important;
+			}
+		</style>
+	</head>
+	<body>
+		<header data-ts="TopBar"></header>
+		<main data-ts="Main">
+			<div class="ts-mainframe">
+				<article>
+					<h1>Themes</h1>
+					<section class="desc">
+						<p>You can change the background to get your own themes.</p>
+					</section>
+					<section>
+						<ul class="splitscreen">
+							<li>
+								<form data-ts="Form">
+									<fieldset>
+										<span>Choose themes</span>
+										<label>
+											<input type="radio" name="radio" checked onclick="change(this)" value="ts-bg-dark"/>
+											<span>.ts-bg-dark</span>
+										</label>
+										<label>
+											<input type="radio" name="radio" onclick="change(this)" value="ts-bg-lite"/>
+											<span>.ts-bg-lite</span>
+										</label>
+										<label>
+											<input type="radio" name="radio" onclick="change(this)" value="ts-bg-blue"/>
+											<span>.ts-bg-blue</span>
+										</label>
+										<label>
+											<input type="radio" name="radio" onclick="change(this)" value="ts-bg-red"/>
+											<span>.ts-bg-red</span>
+										</label>
+										<label>
+											<input type="radio" name="radio" onclick="change(this)" value="ts-bg-yellow"/>
+											<span>.ts-bg-yellow</span>
+										</label>
+										<label>
+											<input type="radio" name="radio" onclick="change(this)" value="ts-bg-green"/>
+											<span>.ts-bg-green</span>
+										</label>
+										<label>
+											<input type="radio" name="radio" onclick="change(this)" value="ts-bg-white"/>
+											<span>.ts-bg-white</span>
+										</label>
+										<label>
+											<input type="radio" name="radio" onclick="change(this)" value="ts-bg-purple"/>
+											<span>.ts-bg-purple</span>
+										</label>
+									</fieldset>
+								</form>
+							</li>
+							<li class="container">
+								<menu id="button-menu" class="ts-bg-dark">
+									<li>
+										<button data-ts="Button" class="ts-primary">
+											<span>Primary</span>
+										</button>
+									</li>
+									<li>
+										<button data-ts="Button" class="ts-secondary">
+											<span>Secondary</span>
+										</button>
+									</li>
+									<li>
+										<button data-ts="Button" class="ts-tertiary">
+											<span>Tertiary</span>
+										</button>
+									</li>
+								<form data-ts="Form" class="checkbox-form">
+									<fieldset>
+										<label>
+											<input type="checkbox" onchange="toggle()"/>
+											<span>Disabled</span>
+										</label>
+									</fieldset>
+								</form>
+							</li>
+						</ul>
+					</section>
+				</article>
+			</div>
+		</main>
+	</body>
+</html>

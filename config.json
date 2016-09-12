@@ -1,0 +1,101 @@
+{
+	"//": "S3 bucket",
+	"cdn_base": "http://s3.amazonaws.com/tsresources/",
+
+	"//": "Cloudfront Root",
+	"cdn_live": "//d5wfroyti11sa.cloudfront.net/",
+
+	"//": "Cloudfront Directories",
+	"folder_prod": "prod/client",
+	"folder_dev": "dev/client",
+
+	"//": "CloudFront cutting edge development",
+	"folder_temp": "dev/client/temp",
+
+	"integration_server_port": 3333,
+	"integration_browser_port": 3334,
+
+	"testBrowsers": [
+		{
+			"browserName" : "chrome",
+			"version": "52",
+			"platform": "MAC",
+			"os" : "OS X",
+			"os_version" : "El Capitan"
+		},
+		{
+			"browserName" : "chrome",
+			"version": "52",
+			"platform": "WINDOWS",
+			"os" : "Windows",
+			"os_version" : "7"
+		},
+
+		{
+			"browserName" : "safari",
+			"version": "9.1",
+			"platform": "MAC",
+			"os" : "OS X",
+			"os_version" : "El Capitan"
+		},
+		{
+			"browserName" : "safari",
+			"version": "8.0",
+			"platform": "MAC",
+			"os" : "OS X",
+			"os_version" : "Yosemite"
+		},
+		{
+			"browserName" : "safari",
+			"version": "7.1",
+			"platform": "MAC",
+			"os" : "OS X",
+			"os_version" : "Mavericks"
+		},
+
+		{
+			"browserName" : "firefox",
+			"version": "48",
+			"platform": "WINDOWS",
+			"os" : "Windows",
+			"os_version" : "7"
+		},
+		{
+			"browserName" : "firefox",
+			"version": "48",
+			"platform": "MAC",
+			"os" : "OS X",
+			"os_version" : "El Capitan"
+		},
+
+		{
+			"browserName" : "IE",
+			"version": "9.0",
+			"platform": "WINDOWS",
+			"os" : "Windows",
+			"os_version" : "7"
+		},
+		{
+			"browserName" : "IE",
+			"version": "10.0",
+			"platform": "WINDOWS",
+			"os" : "Windows",
+			"os_version" : "8"
+		},
+		{
+			"browserName" : "IE",
+			"version": "11.0",
+			"platform": "WINDOWS",
+			"os" : "Windows",
+			"os_version" : "8.1"
+		},
+
+		{
+			"browserName" : "Edge",
+			"version": "14.0",
+			"platform": "WINDOWS",
+			"os" : "Windows",
+			"os_version" : "10"
+		}
+	]
+}

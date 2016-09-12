@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html class="ts-loading ts-docs" lang="en-us">
+
+<head>
+    <title>Tradeshift UI</title>
+    <meta name="viewport" content="width=device-width">
+    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-6.0.1.min.js"></script>
+    <script src="/dist/assets/dox.min.js"></script>
+    <script src="/dist/assets/jquery-2.2.4.min.js"></script>
+    <link rel="stylesheet" href="/dist/assets/dox.css"> ${includes}
+</head>
+
+<body data-ts="DoxChrome">
+    <button data-ts="Button" data-ts.type="action-open-menu" class="button-menu-open">
+      <i class="ts-icon-menuswitch"></i>
+    </button>
+    <aside data-ts="SideBar" data-ts.title="KL" data-ts.autoclose="false" class="ts-bg-dark">
+        <div data-ts="Panel">
+            <menu data-ts="DoxMenu">
+                <script type="application/json">
+                    $ {
+                        menujson
+                    }
+                </script>
+            </menu>
+        </div>
+    </aside>
+    <main data-ts="Main">
+        <div data-ts="MainContent"><button data-ts="Button" data-ts.type="action-close-menu" class="button-menu-close"></button></div>
+    </main>
+    <div data-ts="Spinner" data-ts.spinning="true" class="ts-topbarspinner"></div>
+</body>
+
+</html>

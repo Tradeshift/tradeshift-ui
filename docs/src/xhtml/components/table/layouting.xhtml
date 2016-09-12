@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Table Layout</title>
+		<script src="tabs.js"></script>
+	</head>
+	<body>
+		<header data-ts="TopBar"></header>
+		<main data-ts="Main">
+			<article>
+				<h1>Layout the columns</h1>
+				<section>
+					<p>Columns sizes can <code>flex</code> relative to other columns. These last two columns are twice the width of the first column, which is assumed a <code>flex</code> value of <code>1</code>.</p>
+					<ul class="splitscreen">
+						<li>
+							<figure data-ts="DoxScript">
+								<script type="runnable">
+									var table = ts.ui.get('#example4');
+									table.cols([
+										{label: 'Level', type: 'ts-number'},
+										{label: 'Character', flex: 2},
+										{label: 'Alignment', flex: 2},
+									]);
+									table.rows([
+										[21, 'Paladin Knight', 'Lawful Good'],
+										[13, 'Barbarian Queen', 'Neutral Evil'],
+										[11, 'Global Senior Vice President of Sales', 'Chaotic Evil']
+									]);
+								</script>
+							</figure>
+						</li>
+						<li>
+							<div data-ts="Table" id="example4"></div>
+						</li>
+					</ul>
+					<p>If the Table is small, like in the example above, you can still run into truncated text. If this becomes a problem, you can either <code>wrap</code> the column (cells):</p>
+					<ul class="splitscreen">
+						<li>
+							<figure data-ts="DoxScript">
+								<script type="runnable">
+									var table = ts.ui.get('#example5');
+									table.cols([
+										{label: 'Level', type: 'ts-number'},
+										{label: 'Character', flex: 2, wrap: true},
+										{label: 'Alignment', flex: 2},
+									]);
+									table.rows([
+										[21, 'Paladin Knight', 'Lawful Good'],
+										[13, 'Barbarian Queen', 'Neutral Evil'],
+										[11, 'Global Senior Vice President of Sales', 'Chaotic Evil']
+									]);
+								</script>
+							</figure>
+						</li>
+						<li>
+							<div data-ts="Table" id="example5"></div>
+						</li>
+					</ul>
+					<p>&mdash; or you can assign it a <code>minsize</code> in pixels. If you have many columns on a small screen, you'll want to do this in any case (and on all the columns).</p>
+					<ul class="splitscreen">
+						<li>
+							<figure data-ts="DoxScript">
+								<script type="runnable">
+									var table = ts.ui.get('#example6');
+									table.cols([
+										{label: 'Level', type: 'ts-number', minwidth: 60},
+										{label: 'Character', flex: 2, minwidth: 300},
+										{label: 'Alignment', flex: 2, minwidh: 300},
+									]);
+									table.rows([
+										[21, 'Paladin Knight', 'Lawful Good'],
+										[13, 'Barbarian Queen', 'Neutral Evil'],
+										[11, 'Global Senior Vice President of Sales', 'Chaotic Evil']
+									]);
+								</script>
+							</figure>
+						</li>
+						<li>
+							<div data-ts="Table" id="example6"></div>
+						</li>
+					</ul>					
+					<div data-ts="Note">
+						<i class="ts-icon-todo"></i>
+						<p>We have a bug! In this example, the last <code>minwidth</code> isn't working (this becomes apparent if we resize to something very small).</p>
+					</div>
+					<!--
+					<p>
+						The Table also has a 
+						<a data-ts="Button" href="/#components/table/paging.html">Pager</a> 
+						for dealing with large amounts of data.
+					</p>
+					-->
+				</section>
+			</article>
+		</main>
+	</body>
+</html>

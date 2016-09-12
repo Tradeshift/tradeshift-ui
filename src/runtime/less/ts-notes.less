@@ -1,0 +1,73 @@
+.ts-note {
+	position: relative;
+	border-radius: 3px;
+	padding: @ts-unit-half;
+	margin-bottom: @ts-unit;
+	
+	> i {
+		position: absolute;
+		left: @ts-unit-half;
+		top: @ts-unit;
+	}
+
+	> *:last-child {
+		margin-bottom: 0;
+	}
+	
+	> i ~ p {
+		padding-left: @ts-unit-plus;
+	}
+
+	> p {
+		margin-bottom: 0;
+	}
+	
+	.ts-note-buttons {
+		position: absolute;
+		right: 0;
+		top: @ts-unit-half - 1;;
+	}
+
+	.ts-note-close {
+		position: absolute;
+		right: 0;
+		top: 0;
+		width: @ts-unit-double;
+		height: @ts-unit-double;
+	}
+
+	&.ts-has-close p {
+		padding-right: @ts-unit-plus;
+	}
+	
+	&.ts-closing {
+		.ts-mixin-transition('opacity');
+	}
+	
+	&.ts-closed {
+		opacity: 0;
+	}
+	
+	&:after {
+		content: '';
+		display: block;
+		position: absolute;
+		left: 0;
+		bottom: 0;
+		right: 0;
+		width: 100%;
+		height: 0;
+		border-bottom: 1px dotted fade(@ts-yellow-text, 50%);
+	}
+}
+
+.ts-tablet {
+	.ts-main > .ts-note {
+		position: absolute;
+		left: 0;
+		right: 0;
+		top: 0;
+		min-height: @ts-unit-double;
+		z-index: @ts-zindex-main + 1;
+	}
+}

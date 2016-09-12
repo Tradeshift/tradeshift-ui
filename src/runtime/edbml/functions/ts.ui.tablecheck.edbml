@@ -1,0 +1,18 @@
+<!DOCTYPE edbml>
+<script>
+	<?param name="table" type="ts.ui.TableModel"?>
+	<?param name="row" type="ts.ui.TableRowModel"?>
+	<?param name="fixed" type="boolean"?>
+	
+	<td class="ts-table-addition ts-table-checkbox">
+		@id =  table.$instanceid + (fixed ? '-fixed-' : '-floating-') + row.$index;
+		@class = row.selected ? 'ts-icon-checkboxon' : 'ts-icon-checkbox';
+		<div class="ts-table-cell">
+			<button class="ts-table-checkbox-button" @id data-index="${row.$index}" tabindex="-1">
+				<i @class></i>
+			</button>
+		</div>
+	</td>
+
+</script>
+

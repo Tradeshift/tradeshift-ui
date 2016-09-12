@@ -1,0 +1,73 @@
+<!DOCTYPE edbml>
+<script>
+  <?param name="spirit" type="ts.ui.ToolBarSpirit"?>
+  <?param name="tabs" type="ts.ui.TabCollection"?>
+  <?param name="id" type="string"?>
+  <?param name="mobilos" type="boolean"?>
+    
+  (function specialTabs(topbar) {
+    @ts = topbar ? 'ts.ui.TopBarTabsSpirit' : null;
+    @class = 'ts-toolbar-tabs' + (topbar ? ' ts-topbar-tabs' : '');
+    <ul @ts @class id="${id}-tabs">
+      tabs.forEach(rendertab);
+      if(!(topbar && mobilos)) {
+        rendermore();
+      }
+    </ul>
+  }(ts.ui.TopBarSpirit.is(spirit)));
+
+  // render single tab
+  function rendertab(tab) {
+    @href = tab.href || null;
+    @class = 'ts-tab';
+    @class += tab.selected ? ' ts-selected' : '';
+    @class += tab.counter > 0 ? ' ts-counter' : '';
+    @class += tab.selected && tab.closeable ? ' ts-tab-close' : '';
+    <li data-ts="Spirit" @class id="${tab.$instanceid}">
+      <a data-ts="Button" @href onclick="#{tab.select()}" tabindex="-1">
+        if (tab.icon) {
+          <i class="ts-tab-icon ${tab.icon}"></i>
+        }
+        <span class="ts-tab-label">${tab.label}</span>
+        if(tab.selected && tab.closeable) {
+          <span class="ts-close-bg" onclick="#{close(tab)}">
+            <i class="ts-icon-close"></i>
+          </span>
+        }
+        if(tab.counter > 0) {
+          <em>${tab.counter}</em>
+        }
+      </a>
+    </li>
+  }
+
+  // close the tab when click the close icon
+  function close(tab) {
+    var abort = false;
+    if (tab.selected) {
+      if (tab.onclose) {
+        abort = (tab.onclose() === false);
+      }
+      if(!abort) {
+        var index = tabs.indexOf(tab);
+        gui.Array.remove(tabs, index);
+      }
+    }
+  }
+
+  // render more-tab
+  // ts.ui.TopBar.localize("more") TODO(@leo) should be change to toolbar localize
+  function rendermore() {
+    <li data-ts="Spirit" class="ts-tab ts-tab-more" id="${id}-tabs-more">
+      <a data-ts="Button" onclick="#{showmore()}" tabindex="-1">
+        <span>${ts.ui.TopBar.localize("more")}</span>
+      </a>
+    </li>
+  }
+
+  // add more items in the aside
+  function showmore() {
+    spirit.puttabs(tabs.slice().reverse());
+  }
+  
+</script>

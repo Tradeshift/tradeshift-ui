@@ -1,0 +1,28 @@
+<script src="/ext/angular.js"></script>
+<script>
+	window.angular.module('app', [])
+		.controller('DateController', ['$scope', function($scope) {
+			$scope.typeOptions = [
+			    { name: 'Feature', value: 'feature' }, 
+			    { name: 'Bug', value: 'bug' }, 
+			    { name: 'Enhancement', value: 'enhancement' }
+			];
+		}]);
+</script>
+
+<header ts-topbar></header>
+<main ts-main>
+	<article ng-app="app" ng-controller="DateController as dateCtrl">
+		<form ts-form name="myForm">
+			<fieldset>
+				<label>
+					<span>TODO: check this out!</span>
+					<select ts-select 
+						ng-model="typeOptions" 
+						required="required" 
+						ng-options="option.value as option.name for option in typeOptions">
+				</select>
+			</fieldset>
+		</form>
+	</article>
+</main>

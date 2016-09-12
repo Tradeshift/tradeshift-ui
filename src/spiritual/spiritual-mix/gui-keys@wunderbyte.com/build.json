@@ -1,0 +1,7 @@
+[
+	"gui.Key.js",
+	"gui.KeyPlugin.js",
+	"gui.IKeyHandler.js",
+	"gui.KeySpirit.js",
+	"module.js"
+]

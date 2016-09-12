@@ -1,0 +1,516 @@
+// Units .......................................................................
+
+@ts-unit: 22px;
+@ts-unit-half: (@ts-unit / 2);
+@ts-unit-plus: (@ts-unit * 1.5);
+@ts-unit-quarter: (@ts-unit / 4);
+@ts-unit-eighth: (@ts-unit / 8);
+@ts-unit-double: (@ts-unit * 2);
+@ts-unit-triple: (@ts-unit * 3);
+@ts-width-aside: 320px;
+@ts-width-grails: (@ts-width-aside - @ts-unit-double); // used for menu to allow Grails pages to fit in 1280px
+
+
+// Fonts .......................................................................
+
+@ts-fontsize-small: 11px;
+@ts-fontsize-mini: 12px;
+@ts-fontsize: 14px;
+@ts-fontsize-medium: 16px;
+@ts-fontsize-big: 18px;
+@ts-fontsize-xbig: 24px;
+@ts-fontsize-xxbig: 36px;
+@ts-fontsize-icon: 22px;
+@ts-fontweight: 400;
+@ts-fontweight-light: 300;
+@ts-fontweight-bold: 600;
+@ts-fontstack: "Open Sans", "Helvetica Neue", "Lucida Grande", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif;
+@ts-fontstack-mono: "Ubuntu Mono", "Monaco", "Consolas", "Bitstream Vera Sans Mono", monospace;
+@ts-fontstack-icon: "Tradeshifticons", fantasy;
+@ts-radius: 3px;
+
+
+// Z-index .....................................................................
+
+@ts-zindex-main: 0;
+@ts-zindex-topbar: 1000;
+@ts-zindex-aside: 2000;
+@ts-zindex-dialog: 3000;
+@ts-zindex-spin: 4000;
+@ts-zindex-max: 10000;
+@ts-zindex-dialog-cover: @ts-zindex-dialog - 1;
+@ts-zindex-aside-cover: @ts-zindex-aside - 1;
+@ts-zindex-spin-cover: @ts-zindex-spin - 1;
+
+// Colors ......................................................................
+
+// black and white
+@ts-black: rgb(30,30,30);
+@ts-white: rgb(255,255,255);
+
+// dark grey
+@ts-dark-darker: rgb(33,33,33);
+@ts-dark-dark: rgb(43,43,43);
+@ts-dark: rgb(53,53,53);
+@ts-dark-lite: rgb(63,63,63);
+@ts-dark-liter: rgb(73,73,73);
+
+// medium grey
+@ts-medium-darkest: rgb(97,97,97);
+@ts-medium-darker: rgb(107,107,107);
+@ts-medium-dark: rgb(117,117,117);
+@ts-medium: rgb(127,127,127);
+@ts-medium-lite: rgb(137,137,137);
+@ts-medium-liter: rgb(147,147,147);
+@ts-medium-litest: rgb(175,175,175);
+
+// lite grey
+@ts-lite-darker: rgb(205,205,205);
+@ts-lite-dark: rgb(215,215,215);
+@ts-lite: rgb(225,225,225);
+@ts-lite-lite: rgb(235,235,235);
+@ts-lite-liter: rgb(245,245,245);
+
+// green
+@ts-green: rgb(114,177,72);
+@ts-green-dark: rgb(94,157,52);
+@ts-green-darker: rgb(74,137,32);
+@ts-green-lite: rgb(134,197,92);
+@ts-green-text: @ts-white;
+
+// blue
+@ts-blue: rgb(32,160,233);
+@ts-blue-dark: rgb(12,140,213);
+@ts-blue-darker: rgb(0,120,193);
+@ts-blue-lite: rgb(43,180,253);
+@ts-blue-liter: rgb(88,184,239);
+@ts-blue-text: @ts-white;
+
+// pale blue
+@ts-liteblue: rgb(236,247,253);
+@ts-liteblue-dark: rgb(220,241,253);
+
+// pale green
+@ts-litegreen: rgb(178,215,130);
+
+// dark blue
+@ts-darkblue: rgb(24,63,84);
+@ts-dustblue: rgb(54,99,117);
+
+// dark green
+@ts-darkgreen: rgb(24,84,63);
+
+// red
+@ts-red: rgb(191,0,0);
+@ts-red-dark: rgb(171,0,0);
+@ts-red-darker: rgb(151,0,0);
+@ts-red-lite: rgb(231,0,0);
+@ts-red-text: @ts-white;
+
+// dark red
+@ts-darkred: rgb(233,32,32);
+@ts-darkred-lite: rgb(248,229,229);
+@ts-darkred-text: @ts-white;
+
+// yellow
+@ts-yellow: rgb(253,254,213);
+@ts-yellow-dark: rgb(244,242,201);
+@ts-yellow-text: rgb(127,115,72);
+
+// purple
+@ts-purple: rgb(148,52,200);
+@ts-purple-dark: rgb(128,45,173);
+@ts-purple-darker: rgb(108,25,153);
+@ts-purple-lite: rgb(166,58,224);
+@ts-purple-text: @ts-white;
+
+
+// Animations ..................................................................
+
+@ts-transition-now: 0.1s;
+@ts-transition-fast: 0.2s;
+@ts-transition-slow: 0.6s;
+
+// live examples in dropdown on http://matthewlein.com/ceaser/
+@ts-timing-easeinquad: cubic-bezier(0.550, 0.085, 0.680, 0.530);
+@ts-timing-easeincubic: cubic-bezier(0.550, 0.055, 0.675, 0.190);
+@ts-timing-easeinquart: cubic-bezier(0.895, 0.030, 0.685, 0.220);
+@ts-timing-easeinquint: cubic-bezier(0.755, 0.050, 0.855, 0.060);
+@ts-timing-easeinsine: cubic-bezier(0.470, 0.000, 0.745, 0.715);
+@ts-timing-easeinexpo: cubic-bezier(0.950, 0.050, 0.795, 0.035);
+@ts-timing-easeincirc: cubic-bezier(0.600, 0.040, 0.980, 0.335);
+@ts-timing-easeinback: cubic-bezier(0.600, -0.280, 0.735, 0.045);
+@ts-timing-easeoutquad: cubic-bezier(0.250, 0.460, 0.450, 0.940);
+@ts-timing-easeoutcubic: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+@ts-timing-easeoutquart: cubic-bezier(0.165, 0.840, 0.440, 1.000);
+@ts-timing-easeoutquint: cubic-bezier(0.230, 1.000, 0.320, 1.000);
+@ts-timing-easeoutsine: cubic-bezier(0.390, 0.575, 0.565, 1.000);
+@ts-timing-easeoutexpo: cubic-bezier(0.190, 1.000, 0.220, 1.000);
+@ts-timing-easeoutcirc: cubic-bezier(0.075, 0.820, 0.165, 1.000);
+@ts-timing-easeoutback: cubic-bezier(0.175, 0.885, 0.320, 1.275);
+@ts-timing-easeoutquad: cubic-bezier(0.455, 0.030, 0.515, 0.955);
+@ts-timing-easeoutcubic: cubic-bezier(0.645, 0.045, 0.355, 1.000);
+@ts-timing-easeoutquart: cubic-bezier(0.770, 0.000, 0.175, 1.000);
+@ts-timing-easeoutquint: cubic-bezier(0.230, 1.000, 0.320, 1.000);
+@ts-timing-easeoutsine: cubic-bezier(0.445, 0.050, 0.550, 0.950);
+@ts-timing-easeoutexpo: cubic-bezier(1.000, 0.000, 0.000, 1.000);
+@ts-timing-easeoutcirc: cubic-bezier(0.785, 0.135, 0.150, 0.860);
+@ts-timing-easeoutback: cubic-bezier(0.680, -0.550, 0.265, 1.550);
+
+.ts-mixin-vendor(@property, @value) {
+	-webkit-@{property}: @value;
+	-khtml-@{property}: @value;
+	-moz-@{property}: @value;
+	-ms-@{property}: @value;
+		@{property}: @value;
+}
+.ts-mixin-unselectable () {
+	.ts-mixin-vendor(user-select, none);
+}
+.ts-mixin-selectable () {
+	.ts-mixin-vendor(user-select, text);
+}
+.ts-mixin-border-box () {
+	.ts-mixin-vendor(box-sizing, border-box);
+}
+.ts-mixin-content-box () {
+	.ts-mixin-vendor(box-sizing, content-box);
+}
+.ts-mixin-maximize (@top: 0, @right: 0, @bottom: 0, @left: 0) {
+	position: absolute;
+	top: @top;
+	right: @right;
+	bottom: @bottom;
+	left: @left;
+}
+.ts-mixin-fix (@width: auto, @height: auto) {
+	.ts-mixin-fixwidth(@width);
+	.ts-mixin-fixheight(@height);
+}
+.ts-mixin-fixwidth (@width: auto) {
+	width: @width;
+	max-width: @width;
+	min-width: @width;
+}
+.ts-mixin-fixheight (@height: auto) {
+	height: @height;
+	max-height: @height;
+	min-height: @height;
+}
+.ts-mixin-contain () {
+	&:after {
+		content: "";
+		display: block;
+		clear: both;
+	}
+}
+.ts-mixin-label-text () {
+	text-transform: uppercase;
+	font-size: @ts-fontsize-small;
+	font-weight: @ts-fontweight-bold;
+}
+.ts-mixin-rounded ( @tl : @ts-radius, @tr : @ts-radius, @br : @ts-radius, @bl : @ts-radius ) {
+	border-radius: @tl @tr @br @bl;
+}
+.ts-mixin-noround () {
+	border-radius: 0;
+}
+.ts-mixin-rounded-t () {
+	border-radius: @ts-radius @ts-radius 0 0;
+}
+.ts-mixin-rounded-r () {
+	border-radius: 0 @ts-radius @ts-radius 0;
+}
+.ts-mixin-rounded-b () {
+	border-radius: 0 0 @ts-radius @ts-radius;
+}
+.ts-mixin-rounded-l () {
+	border-radius: @ts-radius 0 0 @ts-radius;
+}
+.ts-mixin-rounded-tl () {
+	border-radius: @ts-radius 0 0 0;
+}
+.ts-mixin-rounded-tr () {
+	border-radius: 0 @ts-radius 0 0;
+}
+.ts-mixin-rounded-bl () {
+	border-radius: 0 0 0 @ts-radius;
+}
+.ts-mixin-rounded-br () {
+	border-radius: 0 0 @ts-radius 0;
+}
+.ts-mixin-expand ( @value : @ts-unit-half ) {
+	margin-left: -@value;
+	margin-right: -@value;
+}
+.ts-mixin-reduce ( @value : @ts-unit-half ) {
+	padding-left: @value;
+	padding-right: @value;
+}
+.ts-mixin-reduce-l ( @value : @ts-unit-half ) {
+	padding-left: @value;
+}
+.ts-mixin-reduce-r ( @value : @ts-unit-half ) {
+	padding-right: @value;
+}
+.ts-mixin-liftup ( @value : @ts-unit-half ) {
+	margin-top: -@value;
+}
+
+// Appearance ..................................................................
+.ts-mixin-menuitem(@spanwidth: auto) {
+	padding: @ts-unit-half;
+	text-align: left;
+	display: inline-block;
+	text-decoration: none;
+	.ts-mixin-unselectable();
+	span {
+		width: @spanwidth;
+	}
+	> span,
+	> i {
+		display: table-cell;
+		vertical-align: middle;
+	}
+	> i ~ span,
+	> span ~ i {
+		padding-left: 8px;
+	}
+	> i:only-child {
+		line-height: @ts-unit;
+	}
+	&:hover {
+		text-decoration: none;
+	}
+}
+.ts-mixin-icon(@fontsize: @ts-fontsize-icon) {
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	font-family: @ts-fontstack-icon;
+	font-size: @fontsize;
+	font-weight: @ts-fontweight;
+	font-weight: normal;
+	font-style: normal;
+	text-decoration: none;
+	text-transform: none;
+	font-style: normal;
+	display: inline;
+	line-height: 0;
+	text-align: center;
+}
+
+.ts-mixin-button-text() {
+	-webkit-font-smoothing: antialiased;
+	text-transform: uppercase;
+	letter-spacing: 0.02em;
+	font-weight: 400;
+}
+.ts-mixin-text-ellipsis() {
+	text-overflow: ellipsis;
+	-ms-text-overflow: ellipsis;
+}
+
+// Transitions ..................................................................
+
+.ts-mixin-transition ( @what : all, @length : @ts-transition-fast, @easing : none, @delay : 0s ) {
+	-webkit-transition-property: @what;
+	-moz-transition-property: @what;
+	-ms-transition-property: @what;
+	transition-property: @what;
+	.ts-mixin-transition-duration (@length);
+	.ts-mixin-transition-timing (@easing);
+	-webkit-transition-delay: @delay;
+	-moz-transition-delay: @delay;
+	-ms-transition-delay: @delay;
+	transition-delay: @delay;
+}
+.ts-mixin-transition-transform ( @length : @ts-transition-fast, @easing : none, @delay : 0s ) {
+	.ts-mixin-transition ( none, @length, @easing, @delay );
+	-webkit-transition-property: -webkit-transform;
+	-moz-transition-property: -moz-tranform;
+	-ms-transition-property: -ms-transform;
+	transition-property: transform;
+}
+.ts-mixin-transition-duration (@length: @ts-transition-fast) {
+	-webkit-transition-duration: @length;
+	-moz-transition-duration: @length;
+	-ms-transition-duration: @length;
+	transition-duration: @length;
+}
+.ts-mixin-transition-timing (@easing: ease-in-out) {
+	-webkit-transition-timing-function: @easing;
+	-moz-transition-timing-function: @easing;
+	-ms-transition-timing-function: @easing;
+	transition-timing-function: @easing;
+}
+.ts-mixin-transition-delay (@delay: 0) {
+	-webkit-transition-delay: @delay;
+	-moz-transition-delay: @delay;
+	-ms-transition-delay: @delay;
+	transition-delay: @delay;
+}
+.ts-mixin-transition-colors(@length: @ts-transition-fast, @easing: none) {
+	-webkit-transition-property: color, background-color, border-color;
+	-moz-transition-property: color, background-color, border-color;
+	-ms-transition-property: color, background-color, border-color;
+	transition-property: color, background-color, border-color;
+	.ts-mixin-transition-duration (@length);
+	.ts-mixin-transition-timing (@easing);
+}
+
+// Animations .......................................................................
+
+.ts-mixin-animation (@name, @duration: 300ms, @delay: 0s, @ease: ease) {
+	-webkit-animation: @name @duration @delay @ease;
+	-moz-animation:@name @duration @delay @ease;
+	-ms-animation: @name @duration @delay @ease;
+}
+
+
+// Transformations ..................................................................
+
+.ts-mixin-transform ( @shorthand : none ) {
+	-webkit-transform: @shorthand;
+	-moz-transform: @shorthand;
+	-ms-transform: @shorthand;
+	transform: @shorthand;
+}
+.ts-mixin-scale ( @factor ) {
+	-webkit-transform: scale( @factor );
+	-moz-transform: scale( @factor );
+	-ms-transform: scale( @factor );
+	transform: scale( @factor );
+}
+.ts-mixin-scaleX ( @factor ) {
+	-webkit-transform: scaleX( @factor );
+	-moz-transform: scaleX( @factor );
+	-ms-transform: scaleX( @factor );
+	transform: scaleX( @factor );
+}
+.ts-mixin-scaleY ( @factor ) {
+	-webkit-transform: scaleY( @factor );
+	-moz-transform: scaleY( @factor );
+	-ms-transform: scaleY( @factor );
+	transform: scaleY( @factor );
+}
+.ts-mixin-rotate ( @deg ) {
+	-webkit-transform: rotate( @deg );
+	-moz-transform: rotate( @deg );
+	-ms-transform: rotate( @deg );
+	transform: rotate( @deg );
+}
+.ts-mixin-translate ( @x, @y:0 ) {
+	-webkit-transform: translate( @x, @y );
+	-moz-transform: translate( @x, @y );
+	-ms-transform: translate( @x, @y );
+	transform: translate( @x, @y );
+}
+.ts-mixin-translate3d ( @x, @y: 0, @z: 0 ) {
+	-webkit-transform: translate3d( @x, @y, @z );
+	-moz-transform: translate3d( @x, @y, @z );
+	-ms-transform: translate3d( @x, @y, @z );
+	transform: translate3d( @x, @y, @z );
+}
+.ts-mixin-perspective ( @value: 1000 ) {
+	-webkit-perspective: @value;
+	-moz-perspective: @value;
+	-ms-perspective: @value;
+	perspective: @value;
+}
+.ts-mixin-transform-origin ( @x:center, @y:center  ) {
+	-webkit-transform-origin: @x @y;
+	-moz-transform-origin:@x @y;
+	-ms-transform-origin: @x @y;
+	-o-transform-origin:@x @y;
+}
+// TODO: read this: http://dev.opera.com/articles/css-will-change-property/
+.ts-mixin-maybeoptimze-gpu () { // don't use this - font blur in iOS...
+	-webkit-transform-style: preserve-3d;
+	-webkit-transform: translateZ(0);
+	-moz-transform: translateZ(0);
+	-ms-transform: translateZ(0);
+	transform: translateZ(0);
+	-webkit-backface-visibility: hidden;
+	-webkit-perspective: 1000;
+	-moz-backface-visibility: hidden;
+	-moz-perspective: 1000;
+	-ms-backface-visibility: hidden;
+	-ms-perspective: 1000;
+	backface-visibility: hidden;
+	perspective: 1000;
+}
+
+// Danger zone: Modern browsers only ...........................................
+
+.ts-mixin-flexbox() {
+	display: -webkit-flex;
+	display: flex;
+	-webkit-flex-wrap : nowrap;
+	flex-wrap : nowrap;
+}
+.ts-mixin-flexcol() {
+	.ts-mixin-flexbox();
+	-webkit-flex-direction : column;
+	flex-direction : column;
+	min-height : auto;
+	height: 100%;
+}
+.ts-mixin-flexrow() {
+	.ts-mixin-flexbox();
+	-webkit-flex-direction : row;
+	flex-direction : row;
+	min-width : auto;
+	width: 100%;
+}
+.ts-mixin-flex(@value: 1) {
+	-webkit-flex-grow: @value;
+	-webkit-flex-basis: @value;
+	flex-grow: @value;
+	flex-basis: @value;
+}
+
+// Loading bar mixin(copy from v4)  ............................................
+
+.ts-mixin-progress-bar-gradient (@color1: black, @color2: white) {
+	background-image: -webkit-gradient(linear, 0 0, 100% 100%,
+	color-stop(.25, @color1),
+	color-stop(.25, @color2),
+	color-stop(.5, @color2),
+	color-stop(.5, @color1),
+	color-stop(.75, @color1),
+	color-stop(.75, @color2),
+	to(@color2)
+	);
+
+	background-image: -moz-linear-gradient(-45deg,
+	@color1 25%,
+	@color2 25%,
+	@color2 50%,
+	@color1 50%,
+	@color1 75%,
+	@color2 75%,
+	@color2
+	);
+
+	background-image: linear-gradient(-45deg,
+	@color1 25%,
+	@color2 25%,
+	@color2 50%,
+	@color1 50%,
+	@color1 75%,
+	@color2 75%,
+	@color2
+	);
+}
+
+.ts-mixin-animation (@name, @duration: 1s, @ease, @delay: 0) {
+	-webkit-animation: @name @duration @ease @delay;
+	-moz-animation:    @name @duration @ease @delay;
+	-ms-animation:     @name @duration @ease @delay;
+	animation:         @name @duration @ease @delay;
+}
+
+.ts-mixin-keyframes (@name, @fromRules, @toRules) {
+	@-webkit-keyframes ~'@{name}' { 0% { @fromRules(); } 100% { @toRules(); } }
+	@keyframes ~'@{name}' { 0% { @fromRules(); } 100% { @toRules(); } }
+}

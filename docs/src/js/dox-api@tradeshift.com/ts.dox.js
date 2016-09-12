@@ -1,0 +1,111 @@
+/**
+ * Namespace object.
+ */
+ts.dox = gui.namespace('ts.dox', (function() {
+
+	/**
+	 * This is decidedly *not* the case upon GitHub pages.
+	 */
+	var islocalhost = location.port === '10114';
+
+	/**
+	 * Get magic URL that will instruct the chrome to load next 
+	 * page as a new app. The URL is supposed to look like the 
+	 * URL the user sees in the addressbar except it must start 
+	 * with "go.tradeshift.com" instead of localhost or whatever 
+	 * (please assume here that we're not using #hash navigation).
+	 * @param {string} foldername
+	 * @param {string} filename
+	 * @returns {string}
+	 */
+	function getmagicurl(foldername, filename) {
+		//var realpathname = 'Client-Docs/gh-pages';
+		//var vendoridpath = foldername.replace(realpathname, 'docs');
+		//return '//' + ts.ui.TRADESHIFT_HOME + vendoridpath + filename;
+    foldername = foldername.split('/dist/')[1];
+    return foldername + filename;
+	}
+
+	/**
+	 * If only one tab is visible on GitHub pages, there's no 
+	 * need to show the tabs. The tabs might still be shown 
+	 * on localhost (to reveal test pages and stuff).
+	 * @param {Array} tabs
+	 * @returns {boolean}
+	 */
+	function hasrelevant(tabs) {
+		return tabs.filter(visibletab).length > 1;
+	}
+
+	/**
+	 * @param {Array} tab
+	 * @returns {boolean}
+	 */
+	function visibletab(tab) {
+		if(tab[2] === true) {
+			return islocalhost;
+		}
+		return true;
+	}
+
+	/**
+	 * @param {Array} tab
+	 * @param {string} file
+	 * @param {string} fold
+	 * @param {number} indx
+	 * @param {boolean} hide
+	 */
+	function createtab(tab, file, fold, indx, hide) {
+		var label = tab[0];
+		var href = tab[1];
+		var icon = hide ? 'ts-icon-locked' : null;
+		var magicurl = getmagicurl(fold, href);
+		var selected =  href === file || (indx && href === 'index.html');
+		return new Tab(label, icon, magicurl, selected);
+	}
+
+	/**
+	 * Tab configuration.
+	 * @param {string} label
+	 * @param {string} icon
+	 * @param {string} href
+	 * @param {boolean} selected
+	 */
+	function Tab(label, icon, href, selected) {
+		this.icon = icon;
+		this.label = label;
+		this.selected = selected;
+		this.onselect = function() {
+			if(!selected) {
+        top.location.hash = href;
+        //top.history.replaceState(undefined, undefined, "#" + href);
+			}
+		};
+	}
+
+	return { // Public ...........................................................
+
+		/**
+		 * Toggled by the {ts.dox.ChromeSpirit} when the iframe is loaded.
+		 * @type {boolean}
+		 */
+		booting: true,
+
+		/**
+		 * Show those tabs.
+		 * @param {Array<Array>} tabs
+		 */
+		tabs: function(tabs) {
+			var path = location.pathname;
+			var file = path.substring(path.lastIndexOf('/') + 1);
+			var fold = path.replace(file, '');
+			var indx = file === '';
+			if(hasrelevant(tabs)) {
+				ts.ui.TopBar.tabs(tabs.filter(visibletab).map(function(tab) {
+					return createtab(tab, file, fold, indx, tab[2] === true);
+				}));
+			}
+		}
+	};
+
+}()));

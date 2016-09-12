@@ -1,0 +1,27 @@
+<!DOCTYPE edbml>
+<script>
+	<?param name="button" type="ts.ui.ButtonModel"?>
+	<?param name="isButtonMenu" type="boolean"?>
+	@id = 'button' + button.$instanceid;
+	@title = button.info || null;
+	@class = button.type || '';
+	@name = button.name || '';
+	@value = button.value || '';
+	@autofocus = button.autofocus ? 'autofocus' : null;
+	@tabindex = button.tabindex === 0 ? null : button.tabindex;
+	@disabled = button.disabled ? 'disabled' : null;
+	// the `data-ts` attributes cannot be assigned normally :(
+	$att['data-ts.type'] = button.action || null;
+	$att['data-ts.data'] = button.data || null;
+	$att['data-ts.busy'] = button.busystatus || null;
+	// fiannly render the button
+	<button data-ts="Button" @name @value @title @class @id @tabindex @autofocus @disabled @data-ts.busy @data-ts.type @data-ts.data onclick="#{button.click()}">
+		if (button.label) {
+			<span>${button.label}</span>
+		} else if(isButtonMenu && button.info) {
+			<span>${button.info}</span>
+		} else if (button.icon) {
+			<i class="${button.icon}"></i>
+		}
+	</button>
+</script>

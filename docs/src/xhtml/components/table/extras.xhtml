@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Table Extras</title>
+		<script src="tabs.js"></script>
+		<script>
+		function getbutton(label, name, value) {
+			return {
+				item: 'Button',
+				type: 'ts-secondary ts-micro',
+				label: label,
+				name: name,
+				value: value
+			};
+		}
+		function getswitch(name, value, checked) {
+			return {
+				item: 'Switch',
+				name: name,
+				value: value,
+				checked: checked
+			}
+		}
+		function geticon(type, color) {
+			return {
+				item: 'Icon',
+				type: type,
+				color: color || 'black'
+			}
+		}
+		</script>
+	</head>
+	<body>
+		<header data-ts="TopBar"></header>
+		<main data-ts="Main">
+			<article>
+				<h1>Table extras</h1>
+				<section>
+					<div data-ts="Note">
+						<i class="ts-icon-warning"></i>
+						<p>Table extras are work in progress. This is a developer preview.</p>
+					</div>
+				</section>
+				<section>
+					<p>Table cells can be declared via JSON using <a data-ts="Button" href="/#components/table/building.html">verbose syntax</a>. But we can use a different JSON syntax to declare cells with special content. The Table will generate components based on the value of the <code>item</code> property and this can be either <a href="#button">Button</a>, <a href="#switch">Switch</a> or <a href="#icon">Icon</a>.</p>
+				</section>
+        <section id="button">
+					<h3>Button</h3>
+          <p>This function will return the JSON to generate a Button in the Table.</p>
+					<figure data-ts="DoxScript">
+						<script>
+						function getbutton(label, name, value) {
+							return {
+								item: 'Button',
+								type: 'ts-secondary ts-micro',
+								label: label,
+								name: name,
+								value: value
+							};
+						}
+						</script>
+					</figure>
+					<p>To conserve browser memory in very large Tables, the <code>onclick</code> callback is not supported. But you can intercept the Button click via the <code>name</code> and <code>value</code> property, you just need to assign the <code>onbutton</code> method to the Table.</p>
+          <ul class="splitscreen">
+            <li>
+              <figure data-ts="DoxScript">
+                <script type="runnable">
+								var table = ts.ui.get('#table1');
+								table.rows([
+									['Apple', getbutton('Buy this Apple', 'buy', '#123')],
+									['Orange', getbutton('Buy that Orange', 'buy', '#456')],
+									['Banana', getbutton('Buy the Banana', 'buy', '#789')]
+								]);
+								table.onbutton = function(name, value, rowindex, cellindex) {
+									if(name === 'buy') {
+										ts.ui.Notification.success('Product ' + value + ' ordered!');
+										table.cell(rowindex, cellindex, getbutton('Cancel order'));
+									}
+								};
+                </script>
+              </figure>
+            </li>
+            <li>
+              <div data-ts="Table" id="table1"></div>
+            </li>
+          </ul>
+					<p>The Button <code>value</code> can be anything from strings and numbers and booleans to objects and arrays, if that helps. Just don't assign any functions, because those will be ignored. Here is the configurable properties of the <code>ButtonModel</code>.</p>
+					<div data-ts="DoxApi">
+						<script type="application/json">
+							{
+								name: "ts.ui.ButtonModel",
+								properties: [
+									{
+										name: "label",
+										type: "string",
+										desc: "The buttons label."
+									},
+									{
+										name: "icon",
+										type: "string",
+										desc: 'The button icon (label must be `null` or empty string).'
+									},
+									{
+										name: "info",
+										type: "string",
+										desc: "The button tooltip (hover text)."
+									},
+									{
+										name: "visible",
+										type: "boolean",
+										desc: "Button is visible?"
+									},
+									{
+										name: "disabled",
+										type: "boolean",
+										desc: "Button is disabled?"
+									},
+									{
+										name: "name",
+										type: "string",
+										desc: "The button name. May be shared by mutliple buttons."
+									},
+									{
+										name: "value",
+										type: "any",
+										desc: "The button value. We can assign anything here."
+									}
+								]
+							}
+						</script>
+					</div>
+        </section>
+				<section id="switch">
+					<h3>Switch</h3>
+          <p>This function returns the JSON to generate a Switch.</p>
+					<figure data-ts="DoxScript">
+						<script>
+						function getswitch(name, value, checked) {
+							return {
+								item: 'Switch',
+								name: name,
+								value: value,
+								checked: checked
+							}
+						}
+						</script>
+					</figure>
+					<p>The Switch is the checkbox that looks like some kind of switch.</p>
+					<ul class="splitscreen">
+            <li>
+              <figure data-ts="DoxScript">
+                <script type="runnable">
+								var table = ts.ui.get('#table2');
+								table.rows([
+									['Spam mails', getswitch('toggle', '#123', true)],
+									['Prank calls', getswitch('toggle', '#456', true)],
+									['House visits', getswitch('toggle', '#789', false)]
+								]);
+								table.onswitch = function(name, value, checked, rowindex, cellindex) {
+									if(name === 'toggle') {
+										var status = checked ? 'enabled' : 'disabled';
+										ts.ui.Notification.success('Service ' + value + ' ' + status);
+									}
+								};
+                </script>
+              </figure>
+            </li>
+            <li>
+              <div data-ts="Table" id="table2"></div>
+            </li>
+          </ul>
+					<div data-ts="Note">
+						<i class="ts-icon-todo"></i>
+						<p>TODO: We could need a layout feature to fix the width of the switch column.</p>
+					</div>
+					<p>Here is the configurable properties of the <code>SwitchModel</code>.</p>
+					<div data-ts="DoxApi">
+						<script type="application/json">
+						{
+							name: "ts.ui.SwitchModel",
+							properties: [
+								{
+									name: "name",
+									type: "string",
+									desc: "The switch name. May be shared by mutliple switches."
+								},
+								{
+									name: "value",
+									type: "any",
+									desc: "The switch value. We can assign anything here."
+								},
+								{
+									name: "checked",
+									type: "boolean",
+									desc: "Switch is toggled on?."
+								}
+							]
+						}
+						</script>
+					</div>
+				</section>
+				<section id="icon">
+					<h3>Icon</h3>
+					<p>This function returns the JSON to generate an icon.</p>
+					<figure data-ts="DoxScript">
+						<script>
+						function geticon(type, color = 'black') {
+							return {
+								item: 'Icon',
+								type: type,
+								color: color
+							}
+						}
+						</script>
+					</figure>
+					<p>The <code>type</code> configures the <a data-ts="Button" href="/#components/icons/css.html">icon classname</a> and the optional <code>color</code> property can be one of <code>black</code>, <code>medium</code>, <code>red</code>, <code>green</code>, <code>blue</code> and <code>purple</code>.</p>
+					<ul class="splitscreen">
+            <li>
+              <figure data-ts="DoxScript">
+                <script type="runnable">
+								var table = ts.ui.get('#table3');
+								table.rows([
+									[
+										geticon('ts-icon-sales'),
+										geticon('ts-icon-cancel', 'medium'),
+										geticon('ts-icon-error', 'red'),
+										geticon('ts-icon-accept', 'green'),
+										geticon('ts-icon-info', 'blue'),
+										geticon('ts-icon-favorites', 'purple')
+									]
+								]);
+                </script>
+              </figure>
+            </li>
+            <li>
+              <div data-ts="Table" id="table3"></div>
+            </li>
+          </ul>
+					<p>Here is the configurable properties of the <code>IconModel</code>.</p>
+					<div data-ts="DoxApi">
+						<script type="application/json">
+						{
+							name: "ts.ui.IconModel",
+							properties: [
+								{
+									name: "type",
+									type: "string",
+									desc: "The CSS classname."
+								},
+								{
+									name: "color",
+									type: "string",
+									desc: "The icon color."
+								},
+							]
+						}
+						</script>
+					</div>
+					<div data-ts="Note">
+						<i class="ts-icon-info"></i>
+						<p>This interface may change as we upgrade to SVG icons.</p>
+					</div>
+				</section>
+			</article>
+		</main>
+	</body>
+</html>

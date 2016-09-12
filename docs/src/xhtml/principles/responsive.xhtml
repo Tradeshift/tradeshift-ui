@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Responsive Design</title>
+		<meta name="robots" content="noindex">
+		<script src="tabs.js"></script>
+		<link rel="stylesheet" href="assets/typo.css"/>
+	</head>
+	<body>
+		<header data-ts="TopBar"></header>
+		<main data-ts="Main">
+			<div class="ts-mainframe">
+				<article class="doc-responsive">
+					<h1>Responsive Design</h1>
+					<section class="desc">
+						<p>Here&apos;s the list of classnames that can be used to toggle display based on breakpoint; they work on all elements.</p>
+					</section>
+					<section id="breakpoints">
+						<dl>
+							<dt>show in breakpoint <em>only</em></dt>
+							<dd><code>.ts-show-mobile-only</code></dd>
+							<dd><code>.ts-show-tablet-only</code></dd>
+							<dd><code>.ts-show-desktop-only</code></dd>
+						</dl>
+						<dl>
+							<dt>hide in breakpoint <em>only</em></dt>
+							<dd><code>.ts-hide-mobile-only</code></dd>
+							<dd><code>.ts-hide-tablet-only</code></dd>
+							<dd><code>.ts-hide-desktop-only</code></dd>
+						</dl>
+						<dl>
+							<dt>show in breakpoint <em>and up</em></dt>
+							<dd><code>.ts-show-mobile</code></dd>
+							<dd><code>.ts-show-tablet</code></dd>
+							<dd><code>.ts-show-desktop</code></dd>
+						</dl>
+						<dl>
+							<dt>hide in breakpoint <em>and up</em></dt>
+							<dd><code>.ts-hide-mobile</code></dd>
+							<dd><code>.ts-hide-tablet</code></dd>
+							<dd><code>.ts-hide-desktop</code></dd>
+						</dl>
+					</section>
+					<section>
+						<p>Try resizing the page and see which of the boxes below are shown.</p>
+					</section>
+					<section id="doc-break-demo" data-ts="Spirit">
+						<script type="text/edbml">
+							var clazzNames = [
+								'ts-show-mobile-only',
+								'ts-show-tablet-only',
+								'ts-show-desktop-only',
+								'ts-hide-mobile-only',
+								'ts-hide-tablet-only',
+								'ts-hide-desktop-only',
+								'ts-show-desktop',
+								'ts-show-tablet',
+								'ts-show-mobile',
+								'ts-hide-desktop',
+								'ts-hide-tablet',
+								'ts-hide-mobile'
+							];
+							clazzNames.forEach(function(clazz) {
+								<div class="docs-responsive-demo ${clazz}">
+									<code>${clazz}</code>
+								</div>
+							});
+						</script>
+					</section>
+				</article>
+			</div>
+		</main>
+	</body>
+</html>

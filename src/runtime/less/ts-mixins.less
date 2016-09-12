@@ -1,0 +1,358 @@
+ @import "ts-variables.less";
+
+.ts-mixin-vendor(@property, @value) {
+	-webkit-@{property}: @value;
+	-khtml-@{property}: @value;
+	-moz-@{property}: @value;
+	-ms-@{property}: @value;
+	@{property}: @value;
+}
+.ts-mixin-unselectable () {
+	.ts-mixin-vendor(user-select, none);
+}
+.ts-mixin-selectable () {
+	.ts-mixin-vendor(user-select, text);
+}
+.ts-mixin-border-box () {
+	.ts-mixin-vendor(box-sizing, border-box);
+}
+.ts-mixin-content-box () {
+	.ts-mixin-vendor(box-sizing, content-box);
+}
+.ts-mixin-maximize (@top: 0, @right: 0, @bottom: 0, @left: 0) {
+	position: absolute;
+	top: @top;
+	right: @right;
+	bottom: @bottom;
+	left: @left;
+}
+.ts-mixin-fix (@width: auto, @height: auto) {
+	.ts-mixin-fixwidth(@width);
+	.ts-mixin-fixheight(@height);
+}
+.ts-mixin-fixwidth (@width: auto) {
+	width: @width;
+	max-width: @width;
+	min-width: @width;
+}
+.ts-mixin-fixheight (@height: auto) {
+	height: @height;
+	max-height: @height;
+	min-height: @height;	
+}
+.ts-mixin-contain () {
+	&:after {
+		content: "";
+		display: block;
+		clear: both;
+	}
+}
+.ts-mixin-label-text () {
+	text-transform: uppercase;
+	font-size: @ts-fontsize-small;
+	font-weight: @ts-fontweight-bold;
+}
+.ts-mixin-rounded ( @tl : @ts-radius, @tr : @ts-radius, @br : @ts-radius, @bl : @ts-radius ) {
+	border-radius: @tl @tr @br @bl;
+}
+.ts-mixin-noround () {
+	border-radius: 0;
+}
+.ts-mixin-rounded-t () {
+	border-radius: @ts-radius @ts-radius 0 0;
+}
+.ts-mixin-rounded-r () {
+	border-radius: 0 @ts-radius @ts-radius 0;
+}
+.ts-mixin-rounded-b () {
+	border-radius: 0 0 @ts-radius @ts-radius;
+}
+.ts-mixin-rounded-l () {
+	border-radius: @ts-radius 0 0 @ts-radius;
+}
+.ts-mixin-rounded-tl () {
+	border-radius: @ts-radius 0 0 0;
+}
+.ts-mixin-rounded-tr () {
+	border-radius: 0 @ts-radius 0 0;
+}
+.ts-mixin-rounded-bl () {
+	border-radius: 0 0 0 @ts-radius;
+}
+.ts-mixin-rounded-br () {
+	border-radius: 0 0 @ts-radius 0;
+}
+.ts-mixin-expand ( @value : @ts-unit-half ) {
+	margin-left: -@value;
+	margin-right: -@value;
+}
+.ts-mixin-reduce ( @value : @ts-unit-half ) {
+	padding-left: @value;
+	padding-right: @value;
+}
+.ts-mixin-reduce-l ( @value : @ts-unit-half ) {
+	padding-left: @value;
+}
+.ts-mixin-reduce-r ( @value : @ts-unit-half ) {
+	padding-right: @value;
+}
+.ts-mixin-liftup ( @value : @ts-unit-half ) {
+	margin-top: -@value;
+}
+
+// Appearance ..................................................................
+.ts-mixin-menuitem(@spanwidth: auto) {
+	padding: @ts-unit-half;
+	text-align: left;
+	display: inline-block;
+	text-decoration: none;
+	.ts-mixin-unselectable();
+	span {
+		width: @spanwidth;
+	}
+	> span,
+	> i {
+		display: table-cell;
+		vertical-align: middle;
+	}
+	> i ~ span,
+	> span ~ i {
+		padding-left: 8px;
+	}
+	> i:only-child {
+		line-height: @ts-unit;
+	}
+	&:hover {
+		text-decoration: none;
+	}
+}
+.ts-mixin-icon(@fontsize: @ts-fontsize-icon) {
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	font-family: @ts-fontstack-icon;
+	font-size: @fontsize;
+	font-weight: @ts-fontweight;
+	font-weight: normal;
+	font-style: normal;
+	text-decoration: none;
+	text-transform: none;
+	font-style: normal;
+	display: inline;
+	line-height: 0;
+	text-align: center;
+}
+.ts-mixin-button-text() {
+	-webkit-font-smoothing: antialiased;
+	text-transform: uppercase;
+	letter-spacing: 0.02em;
+	font-weight: @ts-fontweight;
+}
+.ts-mixin-text-ellipsis() {
+	text-overflow: ellipsis;
+	-ms-text-overflow: ellipsis;
+}
+
+// Transitions ..................................................................
+
+.ts-mixin-transition ( @what : all, @length : @ts-transition-fast, @easing : none, @delay : 0s ) {
+	-webkit-transition-property: @what;
+	-moz-transition-property: @what;
+	-ms-transition-property: @what;
+	transition-property: @what;
+	.ts-mixin-transition-duration (@length);
+	.ts-mixin-transition-timing (@easing);
+	-webkit-transition-delay: @delay;
+	-moz-transition-delay: @delay;
+	-ms-transition-delay: @delay;
+	transition-delay: @delay;
+}
+.ts-mixin-transition-transform ( @length : @ts-transition-fast, @easing : none, @delay : 0s ) {
+	.ts-mixin-transition ( none, @length, @easing, @delay );
+	-webkit-transition-property: -webkit-transform;
+	-moz-transition-property: -moz-tranform;
+	-ms-transition-property: -ms-transform;
+	transition-property: transform;
+}
+.ts-mixin-transition-duration (@length: @ts-transition-fast) {
+	-webkit-transition-duration: @length;
+	-moz-transition-duration: @length;
+	-ms-transition-duration: @length;
+	transition-duration: @length;
+}
+.ts-mixin-transition-timing (@easing: ease-in-out) {
+	-webkit-transition-timing-function: @easing;
+	-moz-transition-timing-function: @easing;
+	-ms-transition-timing-function: @easing;
+	transition-timing-function: @easing;
+}
+.ts-mixin-transition-delay (@delay: 0) {
+	-webkit-transition-delay: @delay;
+	-moz-transition-delay: @delay;
+	-ms-transition-delay: @delay;
+	transition-delay: @delay;
+}
+.ts-mixin-transition-colors(@length: @ts-transition-fast, @easing: none) {
+	-webkit-transition-property: color, background-color, border-color;
+	-moz-transition-property: color, background-color, border-color;
+	-ms-transition-property: color, background-color, border-color;
+	transition-property: color, background-color, border-color;
+	.ts-mixin-transition-duration (@length);
+	.ts-mixin-transition-timing (@easing);
+}
+
+// Animations .......................................................................
+
+.ts-mixin-animation (@name, @duration: 300ms, @delay: 0s, @ease: ease) {
+	-webkit-animation: @name @duration @delay @ease;
+	-moz-animation:@name @duration @delay @ease;
+	-ms-animation: @name @duration @delay @ease;
+}
+
+
+// Transformations ..................................................................
+
+.ts-mixin-transform ( @shorthand : none ) {
+	-webkit-transform: @shorthand;
+	-moz-transform: @shorthand;
+	-ms-transform: @shorthand;
+	transform: @shorthand;
+}
+.ts-mixin-scale ( @factor ) {
+	-webkit-transform: scale( @factor );
+	-moz-transform: scale( @factor );
+	-ms-transform: scale( @factor );
+	transform: scale( @factor );
+}
+.ts-mixin-scaleX ( @factor ) {
+	-webkit-transform: scaleX( @factor );
+	-moz-transform: scaleX( @factor );
+	-ms-transform: scaleX( @factor );
+	transform: scaleX( @factor );
+}
+.ts-mixin-scaleY ( @factor ) {
+	-webkit-transform: scaleY( @factor );
+	-moz-transform: scaleY( @factor );
+	-ms-transform: scaleY( @factor );
+	transform: scaleY( @factor );
+}
+.ts-mixin-rotate ( @deg ) {
+	-webkit-transform: rotate( @deg );
+	-moz-transform: rotate( @deg );
+	-ms-transform: rotate( @deg );
+	transform: rotate( @deg );
+}
+.ts-mixin-translate ( @x, @y:0 ) {
+	-webkit-transform: translate( @x, @y );
+	-moz-transform: translate( @x, @y );
+	-ms-transform: translate( @x, @y );
+	transform: translate( @x, @y );
+}
+.ts-mixin-translate3d ( @x, @y: 0, @z: 0 ) {
+	-webkit-transform: translate3d( @x, @y, @z );
+	-moz-transform: translate3d( @x, @y, @z );
+	-ms-transform: translate3d( @x, @y, @z );
+	transform: translate3d( @x, @y, @z );
+}
+.ts-mixin-perspective ( @value: 1000 ) {
+	-webkit-perspective: @value;
+	-moz-perspective: @value;
+	-ms-perspective: @value;
+	perspective: @value;
+}
+.ts-mixin-transform-origin ( @x:center, @y:center  ) {
+	-webkit-transform-origin: @x @y;
+	-moz-transform-origin:@x @y;
+	-ms-transform-origin: @x @y;
+	-o-transform-origin:@x @y;
+}
+// TODO: read this: http://dev.opera.com/articles/css-will-change-property/
+.ts-mixin-maybeoptimze-gpu () { // don't use this - font blur in iOS...
+	-webkit-transform-style: preserve-3d;
+	-webkit-transform: translateZ(0);
+	-moz-transform: translateZ(0);
+	-ms-transform: translateZ(0);
+	transform: translateZ(0);
+	-webkit-backface-visibility: hidden;
+	-webkit-perspective: 1000;
+	-moz-backface-visibility: hidden;
+	-moz-perspective: 1000;
+	-ms-backface-visibility: hidden;
+	-ms-perspective: 1000;
+	backface-visibility: hidden;
+	perspective: 1000;
+}
+
+// Danger zone: Modern browsers only ...........................................
+
+.ts-mixin-flexbox() {
+	display: -webkit-flex;
+	display: flex;
+	-webkit-flex-wrap : nowrap;
+	flex-wrap : nowrap;
+}
+.ts-mixin-flexcol() {
+	.ts-mixin-flexbox();
+	-webkit-flex-direction : column;
+	flex-direction : column;
+	min-height : auto;
+	height: 100%;
+}
+.ts-mixin-flexrow() {
+	.ts-mixin-flexbox();
+	-webkit-flex-direction : row;
+	flex-direction : row;
+	min-width : auto;
+	width: 100%;
+}
+.ts-mixin-flex(@value: 1) {
+	-webkit-flex-grow: @value;
+	-webkit-flex-basis: @value;
+	flex-grow: @value;
+	flex-basis: @value;
+}
+
+// Loading bar mixin(copy from v4)  ............................................
+
+.ts-mixin-progress-bar-gradient (@color1: black, @color2: white) {
+	background-image: -webkit-gradient(linear, 0 0, 100% 100%,
+		color-stop(.25, @color1),
+		color-stop(.25, @color2),
+		color-stop(.5, @color2),
+		color-stop(.5, @color1),
+		color-stop(.75, @color1),
+		color-stop(.75, @color2),
+		to(@color2)
+	);
+
+	background-image: -moz-linear-gradient(-45deg,
+		@color1 25%,
+		@color2 25%,
+		@color2 50%,
+		@color1 50%,
+		@color1 75%,
+		@color2 75%,
+		@color2
+	);
+
+	background-image: linear-gradient(-45deg,
+		@color1 25%,
+		@color2 25%,
+		@color2 50%,
+		@color1 50%,
+		@color1 75%,
+		@color2 75%,
+		@color2
+	);
+}
+
+.ts-mixin-animation (@name, @duration: 1s, @ease, @delay: 0) {
+	-webkit-animation: @name @duration @ease @delay;
+	-moz-animation:    @name @duration @ease @delay;
+	-ms-animation:     @name @duration @ease @delay;
+	animation:         @name @duration @ease @delay;
+}
+
+.ts-mixin-keyframes (@name, @fromRules, @toRules) {
+	@-webkit-keyframes ~'@{name}' { 0% { @fromRules(); } 100% { @toRules(); } }
+	        @keyframes ~'@{name}' { 0% { @fromRules(); } 100% { @toRules(); } }
+}

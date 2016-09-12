@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Page-level Components</title>
+	<script src="tabs.js"></script>
+</head>
+<body>
+<header data-ts="TopBar"></header>
+<main data-ts="Main">
+	<article>
+		<h1>Page-level components</h1>
+		<section class="desc">
+			<p>These components are applied to the entire page, they will insert themselves to the dom and generally don't come with an HTML API.</p>
+		</section>
+		<section>
+			<a data-ts="Button" href="/#components/datepicker/">
+				<h3>DatePicker</h3>
+			</a>
+			<p>A easy way to select dates.</p>
+			<figure data-ts="DoxScript">
+				<script type="runnable">
+					ts.ui.DatePicker({
+						title: "Your Birthday",
+						value: '1984-05-23',
+						min: '1984-01-01',
+						max: '1985-12-24',
+						onselect: function(date) {
+							ts.ui.Notification.success(date + 'selected');
+							this.close();
+						},
+						onclosed: function() {
+							this.dispose();
+						}
+					}).open();
+				</script>
+			</figure>
+		</section>
+		<section>
+			<a data-ts="Button" href="/#components/dialogs/">
+				<h3>Dialog</h3>
+			</a>
+			<p>
+				Get the user's complete attention.
+			</p>
+			<figure data-ts="DoxScript">
+				<script type="runnable">
+					ts.ui.Dialog.confirm(
+						'Show the Warning Dialog?',
+						'Show It',
+						'Nope',
+						{
+						onaccept: function() {
+							ts.ui.Dialog.warning(
+								'Show the Danger Dialog',
+								'Of course',
+								{
+								onaccept: function() {
+									ts.ui.Dialog.danger(
+										'Are you absolutely sure you want to ' +
+										'*permanently* do the thing?',
+										'Do It'
+									);
+								}
+							});
+						},
+					});
+				</script>
+			</figure>
+		</section>
+		<section>
+			<a data-ts="Button" href="/#components/notifications/">
+				<h3>Notification</h3>
+			</a>
+			<p>Quick popups after some action.</p>
+			<figure data-ts="DoxScript">
+				<script type="runnable">
+					ts.ui.Notification.info('Information');
+					ts.ui.Notification.warning('*Warning* Warning *Warning*');
+					ts.ui.Notification.error('**General** Protection **Fault**');
+				</script>
+			</figure>
+		</section>
+		<section>
+			<a data-ts="Button" href="/#components/note/">
+				<h3>Note</h3>
+			</a>
+			<p>A nice way to inform the user about something in general. This is <b>not</b> for status messages!</p>
+			<figure data-ts="DoxScript">
+				<script type="runnable">
+					var pageLevelNoteSingletonModel = ts.ui.Note({
+						icon: 'ts-icon-heart',
+						text: 'This page explains how to use the Note component with some nice examples.',
+						onclose: function() {
+							ts.ui.Notification.success('The Note is gone...');
+						}
+					});
+					// changing the icon to be info instead of a heart
+					pageLevelNoteSingletonModel.icon = 'ts-icon-info';
+				</script>
+			</figure>
+		</section>
+		<section>
+			<a data-ts="Button" href="/#components/usercards/">
+				<h3>UserCard</h3>
+			</a>
+			<p>Show details about a user.</p>
+			<figure data-ts="DoxScript">
+				<script type="runnable">
+					ts.ui.UserCard({
+						id: '6bf17754-f9de-4e31-aa31-bd3ff765b9c2',
+						data: {
+							name: 'Wired Earp',
+							image: '../usercards/assets/wiredearp.png',
+							title: 'EDB Programmer',
+							role: 'Gentleman Spy',
+							email: 'jmo@tradeshift.com',
+							company: 'Tradeshift',
+							companyUrl: 'http://tradeshift.com/'
+						}
+					}).open();
+				</script>
+			</figure>
+		</section>
+	</article>
+</main>
+</body>
+</html>

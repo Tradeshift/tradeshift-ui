@@ -1,0 +1,5 @@
+<!DOCTYPE edbml>
+<script>
+	<?input name="model" type="tst.ModelOne"?>
+	<h1>${model.text}</h1>
+</script>

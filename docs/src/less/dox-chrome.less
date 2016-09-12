@@ -1,0 +1,329 @@
+body { // preloading menu lookalike
+  &:before {
+    content: '';
+    position: absolute;
+    width: @ts-width-aside;
+    height: 100%;
+    background-color: @ts-dark-lite;
+  }
+}
+
+
+// SideBar .....................................................................
+
+.ts-doxchrome {
+  .ts-sidebar,
+  .ts-topbarspinner {
+    visibility: hidden;
+  }
+  .ts-sidebar {
+    .ts-toolbar-title label {
+      -webkit-font-smoothing: antialiased;
+      font-family: Tradeshifticons;
+      font-size: @ts-fontsize-xxbig + 1px;
+      font-weight: normal;
+    }
+    .ts-panel {
+      padding: 0;
+      overflow-y: scroll;
+      background-color: @ts-dark-lite;
+      &::-webkit-scrollbar {
+        width: 5px;
+      }
+      &::-webkit-scrollbar-thumb:vertical {
+        margin: 5px;
+        background-color: @ts-medium-liter;
+        -webkit-border-radius: 5px;
+      }
+      &::-webkit-scrollbar-button:start:decrement,
+      &::-webkit-scrollbar-button:end:increment {
+        height: 5px;
+        display: block;
+      }
+      .ts-menu {
+        margin: 0;
+      }
+    }
+  }
+  &.intropage {
+    .ts-sidebar {
+      > .ts-shadow {
+        display: none;
+      }
+    }
+  }
+  &.ts-menudone {
+    .ts-topbarspinner,
+    .ts-sidebar {
+      visibility: visible;
+    }
+  }
+  .ts-main {
+    overflow-x: hidden;
+    overflow-y: hidden;
+    iframe {
+      width: 100%;
+      height: 100%;
+    }
+  }
+  .button-menu-open,
+  .button-menu-close {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: @ts-zindex-max;
+    display: none;
+  }
+  .button-menu-open {
+    width: @ts-unit-triple;
+    left: auto;
+    i {
+      .ts-mixin-fix(@ts-unit-triple, @ts-unit-triple);
+      background-color: @ts-dark-lite;
+      color: @ts-white;
+      position: absolute;
+      top: 0;
+      left: 0;
+      &:before {
+        top: 50%;
+      }
+    }
+  }
+}
+.ts-engine-webkit {
+  .ts-doxchrome {
+    .ts-sidebar {
+      .ts-toolbar-title label {
+        position: relative;
+        top: 1px;
+      }
+    }
+  }
+}
+
+// Menu ........................................................................
+
+.ts-doxchrome {
+  .ts-menu {
+    h3 {
+      margin: 0;
+      background-color: @ts-dark;
+      padding: @ts-unit-quarter;
+      padding-left: @ts-unit;
+      font-size: @ts-fontsize-small;
+      .ts-mixin-button-text();
+    }
+  	> li {
+      &, &:last-child {
+        > button,
+        > a {
+          padding: @ts-unit @ts-unit-half @ts-unit @ts-unit-plus;
+        }
+      }
+  		> button,
+  		> a {
+  			border-bottom: none;
+  			background-color: @ts-dark-lite;
+        color: @ts-white;
+  			&:hover:not(:disabled),
+  			&:focus {
+  				background-color: @ts-dark-lite !important;
+          &:before {
+            background-color: @ts-blue-dark;
+          }
+  			}
+        > i {
+          top: 33%;
+          left: @ts-unit;
+        }
+  		}
+  		&.ts-checked {
+  			> button,
+  			> a {
+          position: relative;
+          z-index: 3;
+  				&, &:hover {
+  					background-color: @ts-dustblue !important;
+  					color: @ts-white;
+  				}
+          &:before {
+            background-color: @ts-blue-dark;
+          }
+  			}
+  		}
+      &.submenu {
+        > button {
+          position: relative;
+          z-index: 2;
+          &:after {
+            position: absolute;
+            right: @ts-unit;
+            top: 50%;
+            line-height: 0;
+            font-family: 'Tradeshifticons';
+          	font-style: normal;
+          	font-weight: normal;
+            content: '7'; // 7
+          }
+        }
+        > button {
+          &,
+          &:hover:not(:disabled),
+    			&:focus {
+            background-color: @ts-dark-liter !important;
+            &:before {
+              display: none;
+            }
+          }
+        }
+        > .ts-shadow {
+          position: absolute;
+      		height: 3px;
+      		width: 100%;
+      		background-image: linear-gradient(rgba(0,0,0,0.15), transparent);
+          z-index: 1;
+        }
+        menu {
+          width: 100%;
+          display: none;
+        }
+        &.open,
+        &.sliding {
+          menu {
+            display: block;
+          }
+          &.submenu {
+            > button {
+              position: relative;
+              z-index: 2;
+              &:after {
+                content: '9';
+              }
+            }
+          }
+        }
+        &.sliding {
+          position: relative;
+          pointer-events: none;
+          overflow: visible;
+          menu {
+            position: absolute;
+            top: @ts-unit-triple;
+          }
+        }
+      }
+  	}
+  }
+}
+
+// Loading .....................................................................
+
+.ts-doxchrome {
+  .ts-topbarspinner {
+    z-index: @ts-zindex-aside + 1;
+    left: 176px;
+  }
+  .button-menu-open i {
+    transition: opacity @ts-transition-fast;
+  }
+}
+&.ts-loading {
+  .ts-doxchrome {
+    .button-menu-open i {
+      opacity: 0;
+    }
+  }
+}
+/*
+.ts-engine-gecko {
+  .ts-doxchrome {
+    .ts-topbarspinner {
+      top: 0.5px;
+    }
+  }
+}
+*/
+
+
+// Layouts .....................................................................
+
+.ts-doxchrome {
+  .ts-cover {
+    max-width: @ts-width-aside;
+  }
+  &.collapse-some,
+  &.collapse-full {
+    .ts-main {
+      .ts-mixin-transition-transform(@ts-transition-fast, @ts-timing-easeoutquint);
+		}
+    .ts-sidebar {
+      .ts-toolbar-title label {
+        display: none;
+      }
+    }
+  }
+  &.collapse-some {
+    &:before {
+      width: @ts-unit-triple;
+    }
+    .ts-cover {
+      max-width: @ts-unit-triple;
+    }
+		.ts-main {
+			left: @ts-unit-triple;
+		}
+    .button-menu-open {
+      display: block;
+    }
+    .ts-topbarspinner {
+      left: 0;
+    }
+    .ts-menu h3 {
+      transition: opacity @ts-transition-now;
+      transition-timing-function: @ts-timing-easeoutquint;
+      opacity: 0;
+    }
+    &.uncollapse {
+      .ts-main {
+        .ts-mixin-translate3d(@ts-width-aside - @ts-unit-triple, 0, 0);
+  		}
+      .ts-menu h3 {
+        opacity: 1;
+      }
+    }
+  }
+  &.collapse-full {
+    &:before {
+      display: none;
+    }
+    .ts-cover {
+      display: none !important;
+    }
+    .ts-main {
+			left: 0;
+		}
+    .ts-topbarspinner {
+      display: none;
+    }
+    &.uncollapse {
+      .ts-main {
+        .ts-mixin-translate3d(100%, 0, 0);
+  		}
+    }
+  }
+  &.uncollapse {
+    .ts-sidebar {
+      .ts-toolbar-title label {
+        display: block;
+      }
+    }
+    .button-menu-open {
+      display: none;
+    }
+    .button-menu-close {
+      display: block;
+    }
+  }
+}

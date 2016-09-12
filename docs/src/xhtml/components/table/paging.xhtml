@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Table Paging</title>
+		<script src="tabs.js"></script>
+	</head>
+	<body>
+		<header data-ts="TopBar"></header>
+		<main data-ts="Main">
+			<article>
+				<h1>Paging the rows</h1>
+				<section>
+				<p>You can limit the number of visible rows with the <code>max</code> method. If the table contains more rows, a Pager will be created. An equivalent method <code>size</code> also fixes the height of the Table so that the pager (footer) never jump up and down.</p>
+				<ul class="splitscreen">
+					<li>
+						<figure data-ts="DoxScript" class="attention">
+							<script type="runnable">
+								$.getJSON('assets/rowdata.json', function(json) {
+									var table = ts.ui.get('#example9');
+									table.cols([
+										{ label: 'ID', type: 'ts-number' },
+										{ label: 'Name', flex: 2 },
+										{ label: 'Price', type: 'ts-number'}
+									]);
+									table.rows(json).max(5);
+								});
+							</script>
+						</figure>
+					</li>
+					<li>
+						<div data-ts="Table" id="example9"></div>
+					</li>
+				</ul>
+				<p>If you would like to manage paging yourself, because you have a billion products and don't want to fetch them all at once, you can create your own pager.</p>
+				<ul class="splitscreen">
+					<li>
+						<figure data-ts="DoxScript">
+							<script type="runnable">
+								var table = ts.ui.get('#big-data-table');
+								var popup = ts.ui.Notification;
+								table.max(10).cols([
+									{ label: 'ID', type: 'ts-number' },
+									{ label: 'Name', flex: 2 },
+									{ label: 'Price', type: 'ts-number'}
+								]);
+								table.pager({
+									pages: 5,
+									page: 0,
+									onselect: loadpage
+								});
+								function loadpage(index) {
+									var url = 'assets/page-' + index + '.json';
+									$.getJSON(url, function(json) {
+										var n = json.length;
+										popup.success('Loaded ' + n + ' rows');
+										table.rows(json);
+									});
+								}
+								loadpage(0);
+							</script>
+						</figure>
+					</li>
+					<li>
+						<div data-ts="Table" id="big-data-table"></div>
+					</li>
+				</ul>
+				<!-- FIX THIS
+				<p>
+					If you need to reset the pager, for example when 
+					<a data-ts="Button" href="/#components/table/sorting.html">sorting</a>, 
+					the Table, you can control the page index. Note however that <em>it doesn't work!!!</em>.
+				</p>
+				<figure data-ts="DoxScript">
+					<script type="runnable">
+						var table = ts.ui.get('#big-data-table');
+						var pager = table.pager;
+						pager.page = 0;
+					</script>
+				</figure>
+				-->
+			</article>
+		</main>
+	</body>
+</html>

@@ -1,0 +1,8 @@
+[
+	"edb.Synchronizer.js",
+	"edb.ObjectSync.js",
+	"edb.ArraySync.js",
+	"edb.SyncTransmitter.js",
+	"edb.SyncReceiver.js",
+	"module.js"
+]

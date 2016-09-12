@@ -1,0 +1,271 @@
+[
+	{
+		"label": "Search",
+		"icon": "ts-icon-romance-find-love",
+		"path": "search/"
+	},
+	{
+		"label": "Intro",
+		"icon": "ts-icon-interface-information",
+		"path": "intro/"
+	},
+	{
+		"label": "Design",
+		"icon": "ts-icon-pen-brush",
+		"items": [
+			{
+				"label": "Design Guidelines",
+				"icon": "ts-icon-nature-plant-1",
+				"path": "design/guidelines/"
+			},
+			{
+				"label": "Design Patterns",
+				"icon": "ts-icon-programming-jigsaw",
+				"path": "design/patterns/"
+			},
+			{
+				"label": "Visual Style",
+				"icon": "ts-icon-laptop-heart-1",
+				"path": "design/style/",
+				"hidden": true
+			},
+			{
+				"label": "UI Copy",
+				"icon": "ts-icon-spelling-check-1",
+				"path": "design/copy/"
+			}
+		]
+	},
+	{
+		"label": "Get Started",
+		"icon": "ts-icon-space-rocket",
+		"items": [
+			{
+				"label": "Installation",
+				"icon": "ts-icon-cloud-download-2",
+				"path": "getstarted/installation/"
+			},
+			{
+				"label": "Layout",
+				"icon": "ts-icon-window-application-7",
+				"path": "getstarted/layout/"
+			},
+			{
+				"label": "Usage",
+				"icon": "ts-icon-cloud-upload-2",
+				"path": "getstarted/usage/"
+			},
+			{
+				"label": "Basic Rules",
+				"icon": "ts-icon-sign-no-entry",
+				"path": "getstarted/rules/"
+			}
+		]
+	},
+	{
+		"hidden": true,
+		"label": "Principles",
+		"icon": "ts-icon-color-palette",
+		"items": [
+			{
+				"label": "Themes",
+				"icon": "ts-icon-color-palette",
+				"path": "principles/themes.html",
+				"hidden": true
+			},
+			{
+				"label": "Responsive Design",
+				"icon": "ts-icon-devices",
+				"path": "principles/responsive.html",
+				"hidden": true
+			},
+			{
+				"label": "Typography",
+				"icon": "ts-icon-spelling-check-1",
+				"path": "principles/typo.html"
+			},
+			{
+				"label": "Colors",
+				"icon": "ts-icon-paint-palette",
+				"path": "principles/colors.html"
+			}
+		]
+	},
+	{
+		"label": "Components",
+		"icon": "ts-icon-modules-1",
+		"items": [
+			{
+				"label": "Component Overview",
+				"icon": "ts-icon-modules-2",
+				"path": "components/overview/"
+			},
+			{
+				"label": "In-line Components"
+			},
+			{
+				"label": "Button",
+				"icon": "ts-icon-cursor-touch-1",
+				"path": "components/buttons/"
+			},
+			{
+				"label": "CompanyCard",
+				"icon": "ts-icon-credit-card",
+				"path": "components/companycards/"
+			},
+			{
+				"label": "Form & Inputs",
+				"icon": "ts-icon-pencil-fill",
+				"path": "components/forms/"
+			},
+			{
+				"label": "Icons",
+				"icon": "ts-icon-file-images-svg",
+				"path": "components/icons/"
+			},
+			{
+				"label": "Menu",
+				"icon": "ts-icon-navigation-drawer-2",
+				"path": "components/menus/"
+			},
+			{
+				"label": "Note",
+				"icon": "ts-icon-paragraph-normal",
+				"path": "components/notes/"
+			},
+			{
+				"label": "Search",
+				"icon": "ts-icon-romance-find-love",
+				"path": "components/search/"
+			},
+			{
+				"label": "TabBar",
+				"icon": "ts-icon-window-tabs-1",
+				"path": "components/tabbar/"
+			},
+			{
+				"label": "Table",
+				"icon": "ts-icon-grid",
+				"path": "components/table/"
+			},
+			{
+				"label": "Time",
+				"icon": "ts-icon-time-bomb",
+				"path": "components/times/"
+			},
+			{
+				"label": "UserImage",
+				"icon": "ts-icon-user-target",
+				"path": "components/userimages/"
+			},
+			{
+				"label": "Page-level Components"
+			},
+			{
+				"label": "DatePicker",
+				"icon": "ts-icon-calendar-1",
+				"path": "components/datepicker/"
+			},
+			{
+				"label": "Dialog",
+				"icon": "ts-icon-chat-bubble-square-question-mark",
+				"path": "components/dialogs/"
+			},
+			{
+				"label": "Notification",
+				"icon": "ts-icon-chat-bubble-square-alert-2",
+				"path": "components/notifications/"
+			},
+			{
+				"label": "UserCard",
+				"icon": "ts-icon-id-card-3",
+				"path": "components/usercards/"
+			},
+			{
+				"label": "Layout Components"
+			},
+			{
+				"label": "Aside",
+				"icon": "ts-icon-content-view-array",
+				"path": "components/asides/"
+			},
+			{
+				"label": "SideBar",
+				"icon": "ts-icon-window-application-6",
+				"path": "components/sidebars/"
+			},
+			{
+				"label": "Toolbar",
+				"icon": "ts-icon-expand-horizontal-7",
+				"path": "components/toolbars/"
+			},
+			{
+				"label": "TopBar",
+				"icon": "ts-icon-border-top",
+				"path": "components/topbar/"
+			},
+			{
+				"label": "Helper Components"
+			},
+			{
+				"label": "Spinner",
+				"icon": "ts-icon-interface-loading",
+				"path": "components/spinners/"
+			}
+		]
+	},
+	{
+		"label": "Playground",
+		"icon": "ts-icon-video-games-space-invaders-1",
+		"items": [
+			{
+				"label": "Automated Layout",
+				"icon": "ts-icon-window-application-6",
+				"path": "playground/autolayout/"
+			},
+			{
+				"label": "Automagic Focus",
+				"icon": "ts-icon-focus-2",
+				"path": "playground/autofocus/"
+			}
+		]
+	},
+	{
+		"label": "The Lab",
+		"icon": "ts-icon-beaker-science",
+		"items": [
+			{
+				"label": "Pager",
+				"icon": "ts-icon-video-control-fast-forward",
+				"path": "components/pager/"
+			},
+			{
+				"label": "Markdown",
+				"icon": "ts-icon-font-size",
+				"path": "development/markdown/"
+			},
+			{
+				"label": "Root Panels",
+				"icon": "ts-icon-window-tabs-3",
+				"path": "development/rootpanels/"
+			}
+		]
+	},
+	{
+		"label": "Resources",
+		"icon": "ts-icon-file-tasks-add",
+		"hidden": true,
+		"items": [
+			{
+				"label": "GitHub",
+				"icon": "ts-icon-files-coding-1",
+				"path": "https://github.com/Tradeshift/tradeshift-ui"
+			},
+			{
+				"label": "Spiritual",
+				"icon": "ts-icon-file-favorite-heart-1",
+				"path": "http://spiritual.js.org/"
+			}
+		]
+	}
+]

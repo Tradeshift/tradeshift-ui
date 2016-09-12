@@ -1,0 +1,67 @@
+<script>
+function markAside(target) {
+	var aside = ts.ui.get(target);
+	var markerEl;
+	aside.onopened = function() {
+		markerEl = document.createElement('div');
+		var id = target.substr(1) + '-marker';
+		markerEl.setAttribute('id', id);
+		document.body.appendChild(markerEl);
+	};
+	aside.onclosed = function() {
+		document.body.removeChild(markerEl);
+	};
+}
+
+window.addEventListener('load', function() {
+	markAside('#first');
+	markAside('#second');
+});
+</script>
+
+<header ts-topbar></header>
+
+<aside ts-drawer ts.title="Drawer Title" id="drawer1">
+	<div ts-panel>
+		<p>Drawer content</p>
+		<p>
+			<button ts-button class="ts-primary" id="first_opener" onclick="gui.get('#first').toggle()">
+				<span>Open Aside</span>
+			</button>
+		</p>
+	</div>
+	<aside ts-aside ts.title="Nested Aside" id="second">
+		<div ts-panel>
+			<p>Thanks!</p>
+		</div>
+	</aside>
+	<aside ts-aside ts.title="Nested Aside" id="first">
+		<div ts-panel>
+			<p>
+				<button ts-button class="ts-primary" id="second_opener" onclick="gui.get('#second').toggle()">
+					<span>Open Next Aside</span>
+				</button>
+			</p>
+		</div>
+	</aside>
+	<div ts-footer>
+		<p>In MOBILE, this button will close the drawer...</p>
+		<p>
+			<button ts-button class="ts-primary" ts.ontap="gui.get('#drawer1').toggle()">
+				<span>Toggle Drawer</span>
+			</button>
+		</p>
+	</div>
+</aside>
+
+<main ts-main>
+	<article>
+		<h1>Drawers</h1>
+		<p class="note">This button only has (visible) effect in MOBILE only.</p>
+		<p>
+			<button ts-button class="ts-primary" ts.ontap="gui.get('#drawer1').toggle()">
+				<span>Toggle Drawer</span>
+			</button>
+		</p>
+	</article>
+</main>

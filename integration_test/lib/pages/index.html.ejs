@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+	<head>
+		<script src="/dist/ts.js?internal"></script>
+		<script>
+			//ts.ui.ToolBar.title('Test Pages'); // TODO: Support title!
+			ts.ui.TopBar.buttons().push({
+				label: 'About…',
+				type: 'ts-secondary',
+				onclick: function() { // TODO: support href!
+					ts.ui.Notification.info([
+						'The following pages are taken from the /integration_tests/pages directory. ',
+						'If an html.ejs file is added there, it will be detected by this server ',
+						'and added to this list. These pages are used for UI Component Integration ',
+						'Tests, and served by the test helper.'
+					].join(''), 'Respect');
+				}
+			});
+		</script>
+		<style>
+			article {
+				padding: 66px;
+			}
+		</style>
+	</head>
+	<body>
+		<header ts-topbar></header>
+		<main ts-main>
+			<article>
+				<h1>Test Pages</h1>
+				<!--
+					The following pages are taken from the /integration_tests/pages directory.
+					If an html.ejs file is added there, it will be detected by this server
+					and added to this list. These pages are used for UI Component Integration 
+					Tests, and served by the test helper.
+				-->
+				<ul ts-menu>
+				<% pages.forEach(function(page) { %>
+					<li>
+						<a ts-button href="<%= page.href %>">
+							<span><%= page.name %></span>
+							<i class="ts-icon-next"></i>
+						</a>
+					</li>
+				<% }) %>
+				</ul>
+			</article>
+		</main>
+	</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE edbml>
+<script>
+	<?input name="dialog" type="ts.ui.DialogModel"?>
+
+	var mobile = ts.ui.isMobilePoint();
+	var buttons = dialog.buttons;
+
+	if(dialog.icon) {
+		renderIcon(dialog.icon);
+	}
+	if(dialog.items.getLength()) {
+		renderItems(dialog.items);
+	}
+	if(buttons.getLength()) {
+		renderButtons(mobile ? buttons.descending() : buttons);
+	}
+
+	function renderIcon(icon) {
+		<div class="ts-dialog-head">
+			<i class="ts-dialog-icon ${icon}"></i>
+		</div>
+	}
+
+	function renderItems(items) {
+		<div class="ts-dialog-body">
+			out.html += items.map(function(item) {
+				switch(item.item) {
+					case 'text':
+						var markdowntags = dialog.tags;
+						return item.render(markdowntags);
+					default:
+						return item.render(); 
+				}
+			});
+		</div>
+	}
+
+	function renderButtons(buttons) {
+		<div class="ts-dialog-buttons">
+			@class = 'ts-buttons';
+			if(!mobile) {
+				switch(buttons.length) {
+					case 2:
+						@class += ' ts-t-t';
+						break;
+				}
+			}
+			<menu data-ts="Buttons" @class>
+				buttons.forEach(function(button) {
+					<li>
+						out.html += button.render();
+					</li>
+				});
+			</menu>
+		</div>
+	}
+
+</script>

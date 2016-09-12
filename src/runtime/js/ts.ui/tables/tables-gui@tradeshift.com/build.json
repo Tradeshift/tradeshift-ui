@@ -1,0 +1,7 @@
+[
+	"spirits/ts.ui.TableSpirit.js",
+	"plugins/ts.ui.TableQueryPlugin.js",
+	"plugins/ts.ui.TableEditPlugin.js",
+	"plugins/ts.ui.TableLayoutPlugin.js",
+	"module.js"
+]

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en-us" class="ts-docs">
+
+<head>
+    <title>Note</title>
+    <meta name="viewport" content="width=device-width">
+    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-6.0.1.min.js"></script>
+    <script src="/dist/assets/dox.min.js"></script>
+    <script src="/dist/assets/jquery-2.2.4.min.js"></script>
+    <link rel="stylesheet" href="/dist/assets/dox.css">
+    <meta name="robots" content="noindex">
+    <script src="tabs.js"></script>
+</head>
+
+<body>
+    <header data-ts="TopBar"></header>
+    <main data-ts="Main">
+        <div data-ts="MainContent">
+            <article>
+                <h1>Note API</h1>
+                <section class="desc">
+                    <p>It&apos;s possible to change the <code>text</code> and <code>icon</code> of the Note using method calls on the component.</p>
+                </section>
+                <section>
+                    <p>Note on page using API:</p>
+                    <div id="mynote" data-ts="Note"></div>
+                    <figure data-ts="DoxScript" class="runnable" data-ts.code="var%20note%20%3D%20ts.ui.get(&apos;%23mynote&apos;)%3B%0Anote.text(&apos;I%20love%20the%20note%20element!&apos;)%3B%0Anote.icon(&apos;ts-icon-heart&apos;)%3B">
+                        <script type="runnable">
+                            var note = ts.ui.get('#mynote'); note.text('I love the note element!'); note.icon('ts-icon-heart');
+                        </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                        <div class="tabpanels">
+                            <pre class="prism language-javascript">
+<code><span class="token keyword">var</span> note <span class="token operator">=</span> ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#mynote&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+note<span class="token punctuation">.</span><span class="token function">text<span class="token punctuation">(</span></span><span class="token string">&apos;I love the note element!&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+note<span class="token punctuation">.</span><span class="token function">icon<span class="token punctuation">(</span></span><span class="token string">&apos;ts-icon-heart&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
+</pre>
+                        </div>
+                    </figure>
+                </section>
+                <section>
+                    <p>Hiding a Note if the text and icon is empty using API:</p>
+                    <div id="myothernote" data-ts="Note">
+                        <i class="ts-icon-pin"></i>
+                        <p>This is my soon-to-be-hidden Note!</p>
+                    </div>
+                    <figure data-ts="DoxScript" class="runnable" data-ts.code="var%20note%20%3D%20ts.ui.get(&apos;%23myothernote&apos;)%3B%0Anote.text(&apos;&apos;)%3B%0Anote.icon(&apos;&apos;)%3B">
+                        <script type="runnable">
+                            var note = ts.ui.get('#myothernote'); note.text(''); note.icon('');
+                        </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                        <div class="tabpanels">
+                            <pre class="prism language-javascript">
+<code><span class="token keyword">var</span> note <span class="token operator">=</span> ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#myothernote&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+note<span class="token punctuation">.</span><span class="token function">text<span class="token punctuation">(</span></span><span class="token string">&apos;&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+note<span class="token punctuation">.</span><span class="token function">icon<span class="token punctuation">(</span></span><span class="token string">&apos;&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
+</pre>
+                        </div>
+                    </figure>
+                </section>
+            </article>
+        </div>
+    </main>
+</body>
+<html lang="en-us" class="ts-docs">
+
+</html>
+
+</html>

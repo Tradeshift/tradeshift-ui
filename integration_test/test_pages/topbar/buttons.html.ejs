@@ -1,0 +1,37 @@
+<header ts-topbar></header>
+<main ts-main>
+	<article>
+		<h1>TopBar buttons and title</h1>
+	</article>
+</main>
+<script>
+
+	var unsorted = [ // test sorting (primary > secondary > tertiary)
+		{
+			label: "Secondary",
+			type: 'ts-secondary'
+		},
+		{
+			label: "Tertiary 1",
+		},
+		{
+			label: "Primary",
+			type: 'ts-primary'
+		},
+		{
+			label: "Tertiary 2",
+		},
+		{
+			label: "Tertiary 3",
+		}
+	];
+
+	// test the title...
+	ts.ui.TopBar.title('Hello World');
+
+	// make sure not to delete existing "Back to Index" button
+	var buttons = ts.ui.TopBar.buttons();
+	unsorted.forEach(function(json) {
+		buttons.push(json);
+	});
+</script>

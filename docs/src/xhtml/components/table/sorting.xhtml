@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Table Sort</title>
+		<script src="tabs.js"></script>
+	</head>
+	<body>
+		<header data-ts="TopBar"></header>
+		<main data-ts="Main">
+			<article>
+				<h1>Sorting the columns</h1>
+				<section>
+					<p>You can make the Table <code>sortable</code> with a callback that triggers whenever a column is clicked. We ship the Table with a built-in sort mechanism, but you'll still need to call it. The <code>sort</code> method takes a column index and a direction.</p>
+					<ul class="splitscreen">
+						<li>
+							<figure data-ts="DoxScript">
+								<script type="runnable">
+									var table = ts.ui.get('#example6');
+									table.cols(
+										['Animal', {label: 'Price', type: 'ts-number'}]
+									).rows([
+										['Donkey', 700],
+										['Baboon', 1500],
+										['Coyote', 250],
+										['Albatross', 50]
+									]).sortable(function(index, ascending) {
+										table.sort(index, ascending);
+									});
+									table.sort(0, true);
+								</script>
+							</figure>
+						</li>
+						<li>
+							<div data-ts="Table" id="example6"></div>
+						</li>
+					</ul>
+					<p>The <code>index</code> is the column index and the <code>ascending</code> argument alternates whenever the same col is clicked twice. If you manage your own sorting routine, you can control the appearance of the column using <code>selected</code> and <code>ascending</code>.</p>
+					<ul class="splitscreen">
+						<li>
+							<figure data-ts="DoxScript">
+								<script type="runnable">
+									var table = ts.ui.get('#example12');
+									table.cols([
+										{
+											label: 'Example',
+											selected: true,
+											ascending: false
+										}
+									]);
+									setInterval(function() {
+										var col = table.cols()[0];
+										if((col.selected = !col.selected)) {
+											col.ascending = !col.ascending;
+										}
+									}, 1000);
+								</script>
+							</figure>
+						</li>
+						<li>
+							<div data-ts="Table" id="example12"></div>
+						</li>
+					</ul>
+					<p>Importantly note that the cell values must all be declared as <em>numbers</em> in order to sort numerically. You can declare a hidden value while showing a human readable text using verbose syntax:</p>
+					<figure data-ts="DoxScript">
+						<script>
+							table.rows([
+								[
+									{value: 1, text: 'One'},
+									{value: 2, text: 'Two'},
+									{value: 3, text: 'Three'}
+								]
+							]);
+						</script>
+					</figure>
+
+				</section>
+			</article>
+		</main>
+	</body>
+</html>

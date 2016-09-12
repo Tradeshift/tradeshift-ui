@@ -1,0 +1,66 @@
+<!DOCTYPE edbml>
+<script>
+	<?input name="table" type="ts.ui.TableModel"?>
+	<?function name="renderCols" src="ts.ui.tablecols.edbml"?>
+	<?function name="renderRows" src="ts.ui.tablerows.edbml"?>
+	<?function name="renderMenu" src="ts.ui.tablemenu.edbml"?>
+	<?function name="renderGutter" src="ts.ui.tablegutter.edbml"?>
+
+	var guid = table.$instanceid;
+	var cols = table.visibleCols();
+	var rows = table.visibleRows();
+	var css1 = table.selectable ? 'ts-selectable' : '';
+	var css2 = table.isWrapping() ? 'ts-wrapping' : '';
+	var hack = table.tempdirtyflag; // TODO: dirtyflags!
+	var tbar = table.toolbar;
+
+	this._onbeforerender(); // TODO: this as default in {edb.ScriptPlugin}
+
+	<header data-ts="Spirit" id="${guid}-cols" class="ts-table-cols ${css1} ${css2}">
+		<table>
+			<thead>
+				renderCols(table, cols);
+			</thead>
+		</table>
+	</header>
+
+	<div id="${guid}-body" class="ts-table-body">
+		@style = this._scrollfixing ? 'left:-' + this._scroll.x + 'px;' : null;
+		<main data-ts="Spirit" id="${guid}-rows" class="ts-table-rows ${css1} ${css2}">
+			<table @style>
+				<tbody>
+					renderRows(table, rows, cols);
+				</tbody>
+			</table>
+		</main>
+		if(table.selectable) {
+			<aside data-ts="Spirit" id="${guid}-gutter" class="ts-table-gutter">
+				<table>
+					<tbody>
+						renderGutter(table, rows);
+					</tbody>
+				</table>
+			</aside>
+		}
+	</div>
+
+	if(table.selectable && cols.length) {
+		renderMenu(table);
+	}
+
+	if(showfooter(this.$fixedsize, table.maxrows)) {
+		<footer id="${guid}-foot" class="ts-table-foot">
+			out.html += tbar.render();
+		</footer>
+	}
+	
+	function showfooter(size, max) {
+		if(table.configurable || tbar.title !== null) {
+			return true;
+		} else if(tbar.pager){
+			return size || (max && tbar.pager.pages > 1);
+		}
+		return false;
+	}
+
+</script>

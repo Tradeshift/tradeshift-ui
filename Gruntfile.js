@@ -821,7 +821,7 @@ module.exports = function(grunt) {
 		'tsjs:karma',
 		'karma:local',
 		'tsjs:integration',
-		'kommando:local'
+		// 'kommando:local'
 	]);
 
 	grunt.registerTask('test:unit', 'Runs unit tests on local Chrome', [

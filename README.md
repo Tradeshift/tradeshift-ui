@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.com/Tradeshift/tradeshift-ui.svg?token=RshDHtS73Tukd2xSZzeg&branch=master)](https://travis-ci.com/Tradeshift/tradeshift-ui)
+
 Tradeshift UI
 ==============
 

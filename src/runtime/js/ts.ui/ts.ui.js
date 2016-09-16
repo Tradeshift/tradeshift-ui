@@ -110,7 +110,7 @@ ts.ui = gui.namespace('ts.ui', (function using(Client, guiArray, confirmed, chai
 		 * (so perhaps this constant should be renamed).
 		 * @type {string}
 		 */
-		TRADESHIFT_HOME: '/tradeshift-ui/',
+		TRADESHIFT_HOME: '/docs/',
 
 
 		// Units ...................................................................
@@ -266,7 +266,8 @@ ts.ui = gui.namespace('ts.ui', (function using(Client, guiArray, confirmed, chai
 		ACTION_SAFE_LINK: 'ts-action-safe-link',
 		ACTION_SAFE_BUTTON: 'ts-action-safe-button',
 		ACTION_SAFE_FORM: 'ts-action-safe-form',
-		ACTION_PANEL_ENTER: 'ts-action-panel-enter',
+		ACTION_PANEL_ATTACH: 'ts-action-panel-attach',
+		ACTION_PANEL_DETACH: 'ts-action-panel-detach',
 		ACTION_PANEL_SHOW: 'ts-action-panel-show',
 		ACTION_PANEL_HIDE: 'ts-action-panel-hide',
 		ACTION_PAGER_SELECT: 'ts-action-pager-select',
@@ -508,6 +509,47 @@ ts.ui = gui.namespace('ts.ui', (function using(Client, guiArray, confirmed, chai
 				}
 			});
 		},
+		
+		/**
+     * @returns {object}
+     *
+    topbar: function() {
+      return ts.ui.TopBar;
+    },
+	    
+    /** 
+     * Get the TabBar.
+     * @param @optional {function} cb
+     * @returns {ts.ui.TabBarSpirit}
+     *
+    tabbar: confirmed('(function)')(function(cb) {
+      return getbar(function() {
+        return getmain().tabbar();
+      }, cb);
+    }),
+	    
+    /** 
+     * Get the ToolBar.
+     *  @param @optional {function} cb
+     * @returns {ts.ui.ToolBarSpirit}
+     *
+    toolbar: confirmed('(function)')(function(cb) {
+      return getbar(function() {
+        return getmain().toolbar();
+      }, cb);
+    }),
+	    
+    /**
+     * Get the StatusBar.
+     * @param @optional {function} cb
+     * @returns {ts.ui.ToolBarSpirit}
+     *
+    statusbar: confirmed('(function)')(function(cb) {
+      return getbar(function() {
+        return getmain().statusbar();
+      }, cb);
+    }),
+		*/
 
 
 		// Private .................................................................

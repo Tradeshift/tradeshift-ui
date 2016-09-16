@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en-us" class="ts-docs">
+
+<head>
+    <title>Get Started</title>
+    <meta name="viewport" content="width=device-width">
+    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-6.1.0-alpha.0.min.js"></script>
+    <script src="/docs/dist/assets/dox.min.js"></script>
+    <script src="/docs/dist/assets/jquery-2.2.4.min.js"></script>
+    <link rel="stylesheet" href="/docs/dist/assets/dox.css">
+    <script>
+        ts.ui.ready(function nastyhack() {
+            var version = ts.ui.version;
+            var figure = document.querySelector('figure');
+            var markup = figure.innerHTML;
+            figure.innerHTML = markup.replace('${ts.ui.version}', version);
+        });
+    </script>
+</head>
+
+<body>
+    <header data-ts="TopBar"></header>
+    <main data-ts="Main">
+        <div data-ts="MainContent">
+            <article>
+                <h1>Get started</h1>
+                <p data-ts="Spirit">
+                    <script class="gui-script" data-ts.scriptid="edbml.$Z2dVzsb1">
+                        edbml.declare("edbml.$Z2dVzsb1").as(function $edbml(
+                            /**/
+                        ) {
+                            'use strict';
+                            var out = $edbml.$out,
+                                $txt = edbml.safetext;
+                            var version = ts.ui.version;
+                            var v4version = '5.0.1';
+                            // MUST BE UPDATED MANUALLY :/
+                            out.html += '<span>To get UI components up and running on your page, simply include <code>ts.js</code> in an appropriate version. The latest version is <code>' + $txt(version) + '</code>. The current production version used in Tradeshift internal apps (v4) is <code>' + $txt(v4version) + '</code>.';
+                            return out.write();
+                        });
+                    </script>
+                </p>
+                <figure data-ts="DoxMarkup" data-ts.code="%3Cscript%20src%3D%22%2F%2Fd5wfroyti11sa.cloudfront.net%2Fprod%2Fclient%2Fts-%24%7Bts.ui.version%7D.min.js%22%3E%3C%2Fscript%3E">
+                    <input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
+                    <div class="tabpanels">
+                        <pre class="prism language-markup">
+<code><span class="token script"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>//d5wfroyti11sa.cloudfront.net/prod/client/ts-${ts.ui.version}.min.js<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span></span></code>
+</pre>
+                    </div>
+                </figure>
+                <p>UI components are initialized on the <code>DOMContentLoaded</code> event, but this might change some day. To make sure that all the components are initialized before you do something to them, you can wrap you code in a callback like this.</p>
+                <figure data-ts="DoxScript" data-ts.code="ts.ui.ready(function()%20%7B%0A%09var%20component%20%3D%20ts.ui.get(element)%3B%0A%09component.dosomething()%3B%0A%7D)%3B">
+                    <input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
+                    <div class="tabpanels">
+                        <pre class="prism language-javascript">
+<code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token function">ready<span class="token punctuation">(</span></span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	<span class="token keyword">var</span> component <span class="token operator">=</span> ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span>element<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	component<span class="token punctuation">.</span><span class="token function">dosomething<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
+</pre>
+                    </div>
+                </figure>
+                <ul>
+                    <li>Before <code>DOMContentLoaded</code> the callback will be executed later.
+                    </li>
+                    <li>After <code>DOMContentLoaded</code> the callback will execute immedeately.
+                    </li>
+                </ul>
+                <p>You can perhaps make it easier for yourself by kickstarting your app with a <code>ts.ui.ready</code> callback, because then you wont&apos;t have to worry about it later on.</p>
+                <figure data-ts="DoxScript" data-ts.code="ts.ui.ready(function()%20%7B%0A%09boostrap_everything()%3B%0A%7D)%3B">
+                    <input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
+                    <div class="tabpanels">
+                        <pre class="prism language-javascript">
+<code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token function">ready<span class="token punctuation">(</span></span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	<span class="token function">boostrap_everything<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
+</pre>
+                    </div>
+                </figure>
+                <p>Before we begin, you&apos;ll need to mark up your page with the <a data-ts="Button" href="/docs/#getstarted/layout/">basic layout</a>.</p>
+            </article>
+        </div>
+    </main>
+</body>
+
+</html>

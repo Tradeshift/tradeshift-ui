@@ -16,6 +16,14 @@ ts.ui.TabBarSpirit = (function(CLASS_MACRO, CLASS_MICRO) {
 			if (!this.css.contains(CLASS_MACRO)) {
 				this.css.add(CLASS_MICRO);
 			}
+		},
+		
+		/**
+		 * The title would anyway be hidden by the tabs.
+		 * @overwrites {ts.ui.ToolBar#title}
+		 */
+		title: function() {
+			console.error('The TabBar doesn\'t support a title :(');
 		}
 
 	});

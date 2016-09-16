@@ -1,9 +1,10 @@
 /**
  * Spirit of the submenu item.
  * @using {ts.dox.ItemSpirit} ItemSpirit
+ * @using {ts.dox.MenuCoverSpirit} ItemSpirit
  * @using {gui.Client} Client
  */
-ts.dox.SubMenuSpirit = (function using(ItemSpirit, Client) {
+ts.dox.SubMenuSpirit = (function using(ItemSpirit, MenuCoverSpirit, Client) {
   
   return ItemSpirit.extend({
     
@@ -67,15 +68,20 @@ ts.dox.SubMenuSpirit = (function using(ItemSpirit, Client) {
      */
     _tweenstart: function(menu, open) {
       var delta = menu.offsetHeight * (open ? 1 : -1);
-      this.dom.following(ItemSpirit).forEach(function(item) {
+      var other = this.dom.following(ItemSpirit);
+      var cover = this.dom.qdoc('#menucover', MenuCoverSpirit);
+      other.concat([cover]).forEach(function(item, index) {
         item.delta(delta);
       });
+      var last = (other.pop() || this).element;
+      var rect = last.getBoundingClientRect();
+      cover.css.top = rect.bottom;
       this.tween.dispatch('doxmenu', {
-        duration: ts.ui.TRANSITION_NOW,
+        duration: ts.ui.TRANSITION_FAST,
         timing: 'ease-out'
       });
     }
     
   });
   
-}(ts.dox.ItemSpirit, gui.Client));
+}(ts.dox.ItemSpirit, ts.dox.MenuCoverSpirit, gui.Client));

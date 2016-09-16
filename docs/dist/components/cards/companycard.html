@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en-us" class="ts-docs">
+
+<head>
+    <title>CompanyCard</title>
+    <meta name="viewport" content="width=device-width">
+    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-6.1.0-alpha.0.min.js"></script>
+    <script src="/docs/dist/assets/dox.min.js"></script>
+    <script src="/docs/dist/assets/jquery-2.2.4.min.js"></script>
+    <link rel="stylesheet" href="/docs/dist/assets/dox.css">
+    <script src="tabs.js"></script>
+</head>
+
+<body>
+    <header data-ts="TopBar"></header>
+    <main data-ts="Main">
+        <div data-ts="MainContent">
+            <article>
+                <h1>CompanyCard</h1>
+                <section class="desc">
+                    <p>In this first iteration, the CompanyCard is simply a HTML rendering that you can feed with JSON in various ways.</p>
+                </section>
+                <section id="html">
+                    <p>You can initialize a CompanyCard with the attribute <code class="attr-pair"><span>data-ts</span>=&quot;<span>CompanyCard</span>&quot;</code>.</p>
+                    <figure data-ts="DoxMarkup" data-ts.code="%3Cdiv%20data-ts%3D%22CompanyCard%22%20id%3D%22mycard%22%3E%3C%2Fdiv%3E">
+                        <input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
+                        <div class="tabpanels">
+                            <pre class="prism language-markup">
+<code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>CompanyCard<span class="token punctuation">&quot;</span></span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>mycard<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span></code>
+</pre>
+                        </div>
+                    </figure>
+                    <p>Even without any data, the card takes on a cardlike appearance.</p>
+                    <p data-ts="CompanyCard"></p>
+                    <p>If you are using Angular or jQuery, you might like to feed the card through a JavaScript API, as we will see, you can however also embed the data directly in the markup.</p>
+                    <h3><span>Embedded JSON</span></h3>
+                    <p>Server-side devs and UX designers might like to embed the JSON in the HTML. Because this is JSON, you should use double quotes and omit trailing commas.</p>
+                    <div class="splitscreen-container">
+                        <ul class="splitscreen">
+                            <li>
+                                <figure data-ts="DoxMarkup" data-ts.code="%3Cdiv%20data-ts%3D%22CompanyCard%22%3E%0A%09%3Cscript%20type%3D%22application%2Fjson%22%3E%0A%09%09%7B%0A%09%09%09%22id%22%3A%20%226bf17754-f9de-4e31-aa31-bd3ff765b9c2%22%2C%0A%09%09%09%22data%22%3A%20%7B%0A%09%09%09%09%22name%22%3A%20%22Tradeshift%22%2C%0A%09%09%09%09%22logo%22%3A%20%22assets%2Flogo.png%22%2C%0A%09%09%09%09%22size%22%3A%20%22100%E2%80%93249%22%2C%0A%09%09%09%09%22location%22%3A%20%22San%20Francisco%2C%20California%22%2C%0A%09%09%09%09%22industry%22%3A%20%22Software%20%26%20IT%22%2C%0A%09%09%09%09%22connection%22%3A%202%0A%09%09%09%7D%0A%09%09%7D%0A%09%3C%2Fscript%3E%0A%3C%2Fdiv%3E">
+                                    <input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
+                                    <div class="tabpanels">
+                                        <pre class="prism language-markup">
+<code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>CompanyCard<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+	<span class="token script"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>application/json<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+		<span class="token punctuation">{</span>
+			<span class="token string">&quot;id&quot;</span><span class="token punctuation">:</span> <span class="token string">&quot;6bf17754-f9de-4e31-aa31-bd3ff765b9c2&quot;</span><span class="token punctuation">,</span>
+			<span class="token string">&quot;data&quot;</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
+				<span class="token string">&quot;name&quot;</span><span class="token punctuation">:</span> <span class="token string">&quot;Tradeshift&quot;</span><span class="token punctuation">,</span>
+				<span class="token string">&quot;logo&quot;</span><span class="token punctuation">:</span> <span class="token string">&quot;assets/logo.png&quot;</span><span class="token punctuation">,</span>
+				<span class="token string">&quot;size&quot;</span><span class="token punctuation">:</span> <span class="token string">&quot;100&#x2013;249&quot;</span><span class="token punctuation">,</span>
+				<span class="token string">&quot;location&quot;</span><span class="token punctuation">:</span> <span class="token string">&quot;San Francisco, California&quot;</span><span class="token punctuation">,</span>
+				<span class="token string">&quot;industry&quot;</span><span class="token punctuation">:</span> <span class="token string">&quot;Software &amp; IT&quot;</span><span class="token punctuation">,</span>
+				<span class="token string">&quot;connection&quot;</span><span class="token punctuation">:</span> <span class="token number">2</span>
+			<span class="token punctuation">}</span>
+		<span class="token punctuation">}</span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span></code>
+</pre>
+                                    </div>
+                                </figure>
+                            </li>
+                            <li>
+                                <div data-ts="CompanyCard">
+                                    <script type="application/json">
+                                        {
+                                            "id": "6bf17754-f9de-4e31-aa31-bd3ff765b9c2",
+                                            "data": {
+                                                "name": "Tradeshift",
+                                                "logo": "assets/logo.png",
+                                                "size": "100–249",
+                                                "location": "San Francisco, California",
+                                                "industry": "Software & IT",
+                                                "connection": 2
+                                            }
+                                        }
+                                    </script>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <h3><span>Encoded JSON</span></h3>
+                    <p>You can also embed the JSON in an attribute <code class="attr-pair"><span>data-ts.render</span></code>. The JSON string must be encoded in the format returned by method <code>encodeURIComponent(json);</code> Remember to <code>trim()</code>                        the JSON string before you encode it.</p>
+                    <div class="splitscreen-container">
+                        <ul class="splitscreen">
+                            <li>
+                                <figure data-ts="DoxMarkup" data-ts.code="%3Cdiv%20data-ts%3D%22CompanyCard%22%20data-ts.render%3D%22%257B%2522id%2522%253A%25226bf17754-f9de-4e31-aa31-bd3ff765b9c2%2522%252C%2522data%2522%253A%257B%2522name%2522%253A%2522Tradeshift%2522%252C%2522logo%2522%253A%2522assets%252Flogo.png%2522%252C%2522size%2522%253A%2522100%25E2%2580%2593249%2522%252C%2522location%2522%253A%2522San%2520Francisco%252C%2520California%2522%252C%2522industry%2522%253A%2522Software%2520%2526%2520IT%2522%252C%2522connection%2522%253A2%257D%257D%22%3E%3C%2Fdiv%3E">
+                                    <input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
+                                    <div class="tabpanels">
+                                        <pre class="prism language-markup">
+<code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>CompanyCard<span class="token punctuation">&quot;</span></span> <span class="token attr-name">data-ts</span>.<span class="token attr-name">render</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>%7B%22id%22%3A%226bf17754-f9de-4e31-aa31-bd3ff765b9c2%22%2C%22data%22%3A%7B%22name%22%3A%22Tradeshift%22%2C%22logo%22%3A%22assets%2Flogo.png%22%2C%22size%22%3A%22100%E2%80%93249%22%2C%22location%22%3A%22San%20Francisco%2C%20California%22%2C%22industry%22%3A%22Software%20%26%20IT%22%2C%22connection%22%3A2%7D%7D<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span></code>
+</pre>
+                                    </div>
+                                </figure>
+                            </li>
+                            <li>
+                                <div data-ts="CompanyCard" data-ts.render="%7B%22id%22%3A%226bf17754-f9de-4e31-aa31-bd3ff765b9c2%22%2C%22data%22%3A%7B%22name%22%3A%22Tradeshift%22%2C%22logo%22%3A%22assets%2Flogo.png%22%2C%22size%22%3A%22100%E2%80%93249%22%2C%22location%22%3A%22San%20Francisco%2C%20California%22%2C%22industry%22%3A%22Software%20%26%20IT%22%2C%22connection%22%3A2%7D%7D"></div>
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+                <section id="js">
+                    <h3><span>Render programatically</span></h3>
+                    <p>You can grab a hold of the card and instruct it to <code>render()</code> some JSON data.</p>
+                    <div class="splitscreen-container">
+                        <ul class="splitscreen">
+                            <li>
+                                <figure data-ts="DoxScript" class="runnable" data-ts.code="var%20card%20%3D%20ts.ui.get(&apos;%23mycard&apos;)%3B%20%2F%2F%20or%20pass%20an%20element%0Acard.render(%7B%0A%09id%3A%20%226bf17754-f9de-4e31-aa31-bd3ff765b9c2%22%2C%0A%09data%3A%20%7B%0A%09%09name%3A%20%22Tradeshift%22%2C%0A%09%09logo%3A%20%22assets%2Flogo.png%22%2C%0A%09%09size%3A%20&apos;100%E2%80%93249&apos;%2C%0A%09%09location%3A%20%22San%20Francisco%2C%20California%22%2C%0A%09%09industry%3A%20&apos;Software%20%26%20IT&apos;%2C%0A%09%09connection%3A%202%0A%09%7D%0A%7D)%3B">
+                                    <script type="runnable">
+                                        var card = ts.ui.get('#mycard'); // or pass an element card.render({ id: "6bf17754-f9de-4e31-aa31-bd3ff765b9c2", data: { name: "Tradeshift", logo: "assets/logo.png", size: '100–249', location: "San Francisco, California", industry: 'Software & IT', connection:
+                                        2 } });
+                                    </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                                    <div class="tabpanels">
+                                        <pre class="prism language-javascript">
+<code><span class="token keyword">var</span> card <span class="token operator">=</span> ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#mycard&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// or pass an element
+</span>card<span class="token punctuation">.</span><span class="token function">render<span class="token punctuation">(</span></span><span class="token punctuation">{</span>
+	id<span class="token punctuation">:</span> <span class="token string">&quot;6bf17754-f9de-4e31-aa31-bd3ff765b9c2&quot;</span><span class="token punctuation">,</span>
+	data<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+		name<span class="token punctuation">:</span> <span class="token string">&quot;Tradeshift&quot;</span><span class="token punctuation">,</span>
+		logo<span class="token punctuation">:</span> <span class="token string">&quot;assets/logo.png&quot;</span><span class="token punctuation">,</span>
+		size<span class="token punctuation">:</span> <span class="token string">&apos;100&#x2013;249&apos;</span><span class="token punctuation">,</span>
+		location<span class="token punctuation">:</span> <span class="token string">&quot;San Francisco, California&quot;</span><span class="token punctuation">,</span>
+		industry<span class="token punctuation">:</span> <span class="token string">&apos;Software &amp; IT&apos;</span><span class="token punctuation">,</span>
+		connection<span class="token punctuation">:</span> <span class="token number">2</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
+</pre>
+                                    </div>
+                                </figure>
+                            </li>
+                            <li>
+                                <p data-ts="CompanyCard" id="mycard"></p>
+                            </li>
+                        </ul>
+                    </div>
+                    <p>We notice that the connection status is indicated by a number. The number matches an index in the following array, which declares the label and <a data-ts="Button" href="/docs/#components/icons/css.html">icon</a>.</p>
+                    <figure data-ts="DoxScript" data-ts.code="ts.ui.CompanyCard.connectionTypes%20%3D%20%5B%0A%09%5B&apos;Your%20company&apos;%2C%20&apos;ts-icon-network&apos;%5D%2C%0A%09%5B&apos;Request%20sent&apos;%2C%20&apos;ts-icon-network&apos;%5D%2C%0A%09%5B&apos;Connected&apos;%2C%20&apos;ts-icon-network&apos;%5D%2C%0A%09%5B&apos;Registration%20in%20progress&apos;%2C%20&apos;ts-icon-network&apos;%5D%2C%0A%09%5B&apos;In%20your%20Google%20Contacts&apos;%2C%20&apos;ts-icon-network&apos;%5D%2C%0A%09%5B&apos;Via%20email%20only&apos;%2C%20&apos;ts-icon-network&apos;%5D%0A%5D%3B">
+                        <input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
+                        <div class="tabpanels">
+                            <pre class="prism language-javascript">
+<code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>CompanyCard<span class="token punctuation">.</span>connectionTypes <span class="token operator">=</span> <span class="token punctuation">[</span>
+	<span class="token punctuation">[</span><span class="token string">&apos;Your company&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;ts-icon-network&apos;</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+	<span class="token punctuation">[</span><span class="token string">&apos;Request sent&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;ts-icon-network&apos;</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+	<span class="token punctuation">[</span><span class="token string">&apos;Connected&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;ts-icon-network&apos;</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+	<span class="token punctuation">[</span><span class="token string">&apos;Registration in progress&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;ts-icon-network&apos;</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+	<span class="token punctuation">[</span><span class="token string">&apos;In your Google Contacts&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;ts-icon-network&apos;</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+	<span class="token punctuation">[</span><span class="token string">&apos;Via email only&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;ts-icon-network&apos;</span><span class="token punctuation">]</span>
+<span class="token punctuation">]</span><span class="token punctuation">;</span></code>
+</pre>
+                        </div>
+                    </figure>
+                    <p>This array is <em>crowdsourced</em>. You can modify the array in your app, simply by copy-pasting the code above into your initialization script. You can also use numbers (instead of strings) to indicate size and industry.</p>
+                    <figure data-ts="DoxScript" data-ts.code="card.render(%7B%0A%09id%3A%20%226bf17754-f9de-4e31-aa31-bd3ff765b9c2%22%2C%0A%09data%3A%20%7B%0A%09%09name%3A%20&apos;Tradeshift&apos;%2C%0A%09%09size%3A%203%2C%0A%09%09industry%3A%206%2C%0A%09%7D%0A%7D)%3B">
+                        <input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
+                        <div class="tabpanels">
+                            <pre class="prism language-javascript">
+<code>card<span class="token punctuation">.</span><span class="token function">render<span class="token punctuation">(</span></span><span class="token punctuation">{</span>
+	id<span class="token punctuation">:</span> <span class="token string">&quot;6bf17754-f9de-4e31-aa31-bd3ff765b9c2&quot;</span><span class="token punctuation">,</span>
+	data<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+		name<span class="token punctuation">:</span> <span class="token string">&apos;Tradeshift&apos;</span><span class="token punctuation">,</span>
+		size<span class="token punctuation">:</span> <span class="token number">3</span><span class="token punctuation">,</span>
+		industry<span class="token punctuation">:</span> <span class="token number">6</span><span class="token punctuation">,</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
+</pre>
+                        </div>
+                    </figure>
+                    <p>If you provide a number instead of a string, we&apos;ll look it up in these lists.</p>
+                    <figure data-ts="DoxScript" data-ts.code="ts.ui.CompanyCard.companySizes%20%3D%20%5B%0A%09&apos;1&apos;%2C%0A%09&apos;1%E2%80%9310&apos;%2C%0A%09&apos;1%E2%80%93100&apos;%2C%0A%09&apos;100%E2%80%93249&apos;%2C%0A%09&apos;250-500&apos;%2C%0A%09&apos;500-1000&apos;%0A%5D%3B%0A%0Ats.ui.CompanyCard.industryTypes%20%3D%20%5B%0A%09&apos;Airline&apos;%2C%0A%09&apos;Corporation&apos;%2C%0A%09&apos;Educational%20Organization&apos;%2C%0A%09&apos;Government%20Organization&apos;%2C%0A%09&apos;Local%20Business&apos;%2C%0A%09&apos;NGO&apos;%2C%0A%09&apos;Software%20%26%20IT&apos;%2C%0A%09&apos;Performing%20Group&apos;%2C%0A%09&apos;Sports%20Team&apos;%0A%5D%3B">
+                        <input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
+                        <div class="tabpanels">
+                            <pre class="prism language-javascript">
+<code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>CompanyCard<span class="token punctuation">.</span>companySizes <span class="token operator">=</span> <span class="token punctuation">[</span>
+	<span class="token string">&apos;1&apos;</span><span class="token punctuation">,</span>
+	<span class="token string">&apos;1&#x2013;10&apos;</span><span class="token punctuation">,</span>
+	<span class="token string">&apos;1&#x2013;100&apos;</span><span class="token punctuation">,</span>
+	<span class="token string">&apos;100&#x2013;249&apos;</span><span class="token punctuation">,</span>
+	<span class="token string">&apos;250-500&apos;</span><span class="token punctuation">,</span>
+	<span class="token string">&apos;500-1000&apos;</span>
+<span class="token punctuation">]</span><span class="token punctuation">;</span>
+ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>CompanyCard<span class="token punctuation">.</span>industryTypes <span class="token operator">=</span> <span class="token punctuation">[</span>
+	<span class="token string">&apos;Airline&apos;</span><span class="token punctuation">,</span>
+	<span class="token string">&apos;Corporation&apos;</span><span class="token punctuation">,</span>
+	<span class="token string">&apos;Educational Organization&apos;</span><span class="token punctuation">,</span>
+	<span class="token string">&apos;Government Organization&apos;</span><span class="token punctuation">,</span>
+	<span class="token string">&apos;Local Business&apos;</span><span class="token punctuation">,</span>
+	<span class="token string">&apos;NGO&apos;</span><span class="token punctuation">,</span>
+	<span class="token string">&apos;Software &amp; IT&apos;</span><span class="token punctuation">,</span>
+	<span class="token string">&apos;Performing Group&apos;</span><span class="token punctuation">,</span>
+	<span class="token string">&apos;Sports Team&apos;</span>
+<span class="token punctuation">]</span><span class="token punctuation">;</span></code>
+</pre>
+                        </div>
+                    </figure>
+                    <p>You are also welcome to overwrite these arrays in your app. That&apos;s it for now.</p>
+                </section>
+            </article>
+        </div>
+    </main>
+</body>
+
+</html>

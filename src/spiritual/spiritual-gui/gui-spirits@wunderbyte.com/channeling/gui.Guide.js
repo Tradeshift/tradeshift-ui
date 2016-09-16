@@ -243,8 +243,8 @@ gui.Guide = (function using(
 			 * @see {gui.IframeSpirit}
 			 */
 			if (gui.hosted) {
-				var docspirit = gui.get('html');
-				if (docspirit.life.visible === undefined) {
+				var docspirit = gui.get(document.documentElement);
+				if (!docspirit || docspirit.life.visible === undefined) {
 					return;
 				}
 			}

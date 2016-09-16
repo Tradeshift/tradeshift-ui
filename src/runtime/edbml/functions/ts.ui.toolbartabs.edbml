@@ -10,6 +10,9 @@
     @class = 'ts-toolbar-tabs' + (topbar ? ' ts-topbar-tabs' : '');
     <ul @ts @class id="${id}-tabs">
       tabs.forEach(rendertab);
+      if(tabs.newtabbutton) {
+        rendernew(tabs.newtabbutton);
+      }
       if(!(topbar && mobilos)) {
         rendermore();
       }
@@ -58,9 +61,25 @@
   // render more-tab
   // ts.ui.TopBar.localize("more") TODO(@leo) should be change to toolbar localize
   function rendermore() {
-    <li data-ts="Spirit" class="ts-tab ts-tab-more" id="${id}-tabs-more">
-      <a data-ts="Button" onclick="#{showmore()}" tabindex="-1">
-        <span>${ts.ui.TopBar.localize("more")}</span>
+    @id = id + '-tabs-more';
+    @class = 'ts-tab ts-tab-button ts-tab-more';
+    @title = ts.ui.TopBar.localize("more");
+    <li data-ts="Spirit" @class @id>
+      <a data-ts="Button" @title onclick="#{showmore()}" tabindex="-1">
+        <i class="ts-icon-other"></i>
+        <span class="ts-tab-label">&#160;</span>
+      </a>
+    </li>
+  }
+
+  // render new-tab tab
+  function rendernew(newtabbutton) {
+    @id = newtabbutton.$instanceid;
+    @class = 'ts-tab ts-tab-button ts-add-tab';
+    <li data-ts="Spirit" @class @id>
+      <a data-ts="Button" tabindex="-1" onclick="#{newtabbutton.click()}">
+        <i class="ts-icon-add"></i>
+        <span class="ts-tab-label">&#160;</span>
       </a>
     </li>
   }

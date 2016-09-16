@@ -20,7 +20,7 @@ ts.dox.ItemSpirit = (function using() {
      */
     ontween: function(t) {
       this.super.ontween(t);
-      if(t.type === 'doxmenu' && this._delta) {
+      if(t.type === 'doxmenu') {
         if(t.done) {
           this.tween.remove('doxmenu');
           this.sprite.reset();

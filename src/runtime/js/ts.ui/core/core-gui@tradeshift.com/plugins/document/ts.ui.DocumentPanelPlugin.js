@@ -118,7 +118,7 @@ ts.ui.DocumentPanelPlugin = (function using(MapList, GuiArray) {
 		managepanels: function() {
 			classnames.set(this.spirit.$instanceid, []);
       this.spirit.action.add([
-				ts.ui.ACTION_PANEL_ENTER,
+				ts.ui.ACTION_PANEL_ATTACH,
 				ts.ui.ACTION_PANEL_SHOW,
 				ts.ui.ACTION_PANEL_HIDE,
 				ts.ui.ACTION_ROOT_CLASSNAMES
@@ -132,7 +132,7 @@ ts.ui.DocumentPanelPlugin = (function using(MapList, GuiArray) {
     onaction: function(a) {
       var isroot = a.data === true;
       switch(a.type) {
-        case ts.ui.ACTION_PANEL_ENTER:
+        case ts.ui.ACTION_PANEL_ATTACH:
           if(isroot) {
             this._enterpanel(a.target);
           }

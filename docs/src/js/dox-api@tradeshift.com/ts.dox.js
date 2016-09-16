@@ -19,10 +19,9 @@ ts.dox = gui.namespace('ts.dox', (function() {
 	 * @returns {string}
 	 */
 	function getmagicurl(foldername, filename) {
-		//var realpathname = 'Client-Docs/gh-pages';
-		//var vendoridpath = foldername.replace(realpathname, 'docs');
-		//return '//' + ts.ui.TRADESHIFT_HOME + vendoridpath + filename;
-    foldername = foldername.split('/dist/')[1];
+		// redirect from ui.tradeshift.com adds an extra `/` in the foldername :(
+		foldername = foldername.replace(/\/+/g, '/');
+    foldername = foldername.split('/docs/dist/')[1];
     return foldername + filename;
 	}
 

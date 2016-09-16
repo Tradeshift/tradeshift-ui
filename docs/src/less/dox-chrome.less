@@ -1,15 +1,4 @@
-body { // preloading menu lookalike
-  &:before {
-    content: '';
-    position: absolute;
-    width: @ts-width-aside;
-    height: 100%;
-    background-color: @ts-dark-lite;
-  }
-}
-
-
-// SideBar .....................................................................
+// Chrome .....................................................................
 
 .ts-doxchrome {
   .ts-sidebar,
@@ -117,12 +106,10 @@ body { // preloading menu lookalike
     }
   	> li {
       &, &:last-child {
-        > button,
         > a {
           padding: @ts-unit @ts-unit-half @ts-unit @ts-unit-plus;
         }
       }
-  		> button,
   		> a {
   			border-bottom: none;
   			background-color: @ts-dark-lite;
@@ -138,11 +125,8 @@ body { // preloading menu lookalike
           top: 33%;
           left: @ts-unit;
         }
-  		}
-  		&.ts-checked {
-  			> button,
-  			> a {
-          position: relative;
+        &.ts-checked {
+          position: relative; // on toggle ?????????????????????????????????????
           z-index: 3;
   				&, &:hover {
   					background-color: @ts-dustblue !important;
@@ -151,31 +135,16 @@ body { // preloading menu lookalike
           &:before {
             background-color: @ts-blue-dark;
           }
-  			}
+    		}
   		}
       &.submenu {
-        > button {
+        > a {
           position: relative;
           z-index: 2;
-          &:after {
-            position: absolute;
-            right: @ts-unit;
-            top: 50%;
-            line-height: 0;
-            font-family: 'Tradeshifticons';
-          	font-style: normal;
-          	font-weight: normal;
-            content: '7'; // 7
-          }
         }
-        > button {
-          &,
-          &:hover:not(:disabled),
-    			&:focus {
+        > a:not(.ts-checked) {
+          &, &:hover {
             background-color: @ts-dark-liter !important;
-            &:before {
-              display: none;
-            }
           }
         }
         > .ts-shadow {
@@ -194,15 +163,6 @@ body { // preloading menu lookalike
           menu {
             display: block;
           }
-          &.submenu {
-            > button {
-              position: relative;
-              z-index: 2;
-              &:after {
-                content: '9';
-              }
-            }
-          }
         }
         &.sliding {
           position: relative;
@@ -215,6 +175,15 @@ body { // preloading menu lookalike
         }
       }
   	}
+  }
+  #menucover {
+    height: 0;
+    background-color: @ts-dark-lite;
+    top: 0;
+    left: 0;
+    width: @ts-width-aside;
+    z-index: 2000000;
+    position: absolute;
   }
 }
 

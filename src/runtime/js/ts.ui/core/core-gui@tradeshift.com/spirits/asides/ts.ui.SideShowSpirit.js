@@ -539,8 +539,11 @@ ts.ui.SideShowSpirit = (function using(chained, Client, Parser, GuiObject, Color
 		 * @param {string} color Fallback color!
 		 */
 		_extractcolor: function(color) {
+			function fixweirdlooking(c) {
+				return c.match(/ts-bg-lite|ts-bg-white/) ? 'ts-bg-blue' : c;
+			}
 			if(this._ismodelled() && this._model.color) {
-				color = this._model.color;
+				color = fixweirdlooking(this._model.color);
 			} else {
 				GuiObject.each(Colors, function(key, value) {
 					if(this.css.contains(value)) {

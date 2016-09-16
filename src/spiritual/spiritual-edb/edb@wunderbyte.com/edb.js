@@ -26,6 +26,13 @@ window.edb = gui.namespace("edb", (function using(confirmed) {
 		 * @type {object}
 		 */
 		$accessaware: false,
+		
+		/**
+		 * Toggle this to force the next model change to notify observers 
+		 * synchronously. The flag will automatically toggle back to false.
+		 * @type {boolean}
+		 */
+		$criticalchange: false,
 
 		/**
 		 * Broadcasts.

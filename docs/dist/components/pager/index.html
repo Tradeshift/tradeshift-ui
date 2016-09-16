@@ -4,10 +4,10 @@
 <head>
     <title>Pager</title>
     <meta name="viewport" content="width=device-width">
-    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-6.0.1.min.js"></script>
-    <script src="/dist/assets/dox.min.js"></script>
-    <script src="/dist/assets/jquery-2.2.4.min.js"></script>
-    <link rel="stylesheet" href="/dist/assets/dox.css">
+    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-6.1.0-alpha.0.min.js"></script>
+    <script src="/docs/dist/assets/dox.min.js"></script>
+    <script src="/docs/dist/assets/jquery-2.2.4.min.js"></script>
+    <link rel="stylesheet" href="/docs/dist/assets/dox.css">
 </head>
 
 <body>
@@ -16,28 +16,51 @@
         <div data-ts="MainContent">
             <article>
                 <h1>Pager</h1>
-                <section>
-                    <div data-ts="Note">
-                        <i data-ts="Icon" class="ts-icon-programming-bug-1"></i>
-                        <p>The Pager is a work in progress. This is a developer preview. The API, markup or layout of this component might change significantly!</p>
-                    </div>
+                <section class="desc">
+                    <p>Provides a navigation menu with shortcuts for all kinds of paginated data.</p>
                 </section>
-                <figure data-ts="DoxMarkup" data-ts.code="%3Cdiv%20data-ts%3D%22Pager%22%20%0A%09data-ts.pages%3D%228%22%20%0A%09data-ts.page%3D%220%22%20%0A%09data-ts.onselect%3D%22console.log(this.page)%22%3E%0A%3C%2Fdiv%3E">
-                    <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Atrue%2C%22runs%22%3Afalse%2C%22flip%22%3Atrue%7D">
-                    <div class="tabpanels">
-                        <div class="output">
-                            <div data-ts="Pager" data-ts.pages="8" data-ts.page="0" data-ts.onselect="console.log(this.page)">
-                            </div>
-                        </div>
-                        <pre class="prism language-markup">
-<code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Pager<span class="token punctuation">&quot;</span></span> 
+                <section>
+                    <p>Assign <code class="attr-pair"><span>data-ts</span>=&quot;<span>Pager</span>&quot;</code> to a <code class="el">menu</code> or <code class="el">nav</code> to initialize it as a Pager. The component may be configured in HTML, complete
+                        with an inline callback, like in this example.</p>
+                    <figure data-ts="DoxMarkup" data-ts.code="%3Cmenu%20data-ts%3D%22Pager%22%20%0A%09data-ts.pages%3D%228%22%20%0A%09data-ts.page%3D%220%22%20%0A%09data-ts.onselect%3D%22console.log(this.page)%22%3E%0A%3C%2Fmenu%3E">
+                        <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Atrue%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
+                        <div class="tabpanels">
+                            <pre class="prism language-markup">
+<code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>menu</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Pager<span class="token punctuation">&quot;</span></span> 
 	<span class="token attr-name">data-ts</span>.<span class="token attr-name">pages</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>8<span class="token punctuation">&quot;</span></span> 
 	<span class="token attr-name">data-ts</span>.<span class="token attr-name">page</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>0<span class="token punctuation">&quot;</span></span> 
 	<span class="token attr-name">data-ts</span>.<span class="token attr-name">onselect</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>console.log(this.page)<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span></code>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>menu</span><span class="token punctuation">&gt;</span></span></code>
 </pre>
+                            <div class="output">
+                                <menu data-ts="Pager" data-ts.pages="8" data-ts.page="0" data-ts.onselect="console.log(this.page)">
+                                </menu>
+                            </div>
+                        </div>
+                    </figure>
+                    <p>&#x2014; or you can configure it via a JavaScript API, like in this example.</p>
+                    <figure data-ts="DoxScript" class="runnable" data-ts.code="var%20pager%20%3D%20ts.ui.get(&apos;%23mypager&apos;)%3B%20%2F%2F%20or%20pass%20an%20element%0Apager.pages%20%3D%208%3B%0Apager.page%20%3D%200%3B%0Apager.onselect%20%3D%20function(page)%20%7B%0A%09console.log(page)%3B%0A%7D%3B">
+                        <script type="runnable">
+                            var pager = ts.ui.get('#mypager'); // or pass an element pager.pages = 8; pager.page = 0; pager.onselect = function(page) { console.log(page); };
+                        </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                        <div class="tabpanels">
+                            <pre class="prism language-javascript">
+<code><span class="token keyword">var</span> pager <span class="token operator">=</span> ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#mypager&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// or pass an element
+</span>pager<span class="token punctuation">.</span>pages <span class="token operator">=</span> <span class="token number">8</span><span class="token punctuation">;</span>
+pager<span class="token punctuation">.</span>page <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+pager<span class="token punctuation">.</span>onselect <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span>page<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	console<span class="token punctuation">.</span><span class="token function">log<span class="token punctuation">(</span></span>page<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span></code>
+</pre>
+                        </div>
+                    </figure>
+                    <menu data-ts="Pager" id="mypager"></menu>
+                    <p>As you can see, the Pager has no default outline and this will make it easier to embed into other components. Here&apos;s a short summary of the Pagers properties and methods.</p>
+                </section>
+                <section id="pager-api" data-important="THIS GETS INCLUDED INTO OTHER PAGES!">
+                    <div data-ts="DoxApi" data-ts.code="%7B%0A%09name%3A%20%22ts.ui.PagerSpirit%22%2C%0A%09properties%3A%20%5B%0A%09%09%7B%0A%09%09%09name%3A%20%22pages%22%2C%0A%09%09%09type%3A%20%22number%22%2C%0A%09%09%09desc%3A%20%22The%20total%20amount%20of%20pages.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20%22page%22%2C%0A%09%09%09type%3A%20%22number%22%2C%0A%09%09%09desc%3A%20%22The%20current%20page%20index%2C%20zero%20based.%22%0A%09%09%7D%2C%0A%09%5D%2C%0A%09methods%3A%20%5B%0A%09%09%7B%0A%09%09%09name%3A%20%22onselect%22%2C%0A%09%09%09args%3A%20%22number%22%2C%0A%09%09%09desc%3A%20%22Called%20whenever%20a%20page%20is%20selected%3B%20and%20with%20the%20new%20index%20as%20argument.%22%0A%09%09%7D%0A%09%5D%0A%7D">
                     </div>
-                </figure>
+                </section>
             </article>
         </div>
     </main>

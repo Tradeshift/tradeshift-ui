@@ -1,8 +1,13 @@
 [
 	"spirits/ts.ui.BarSpirit.js",
-	"spirits/toolbars/ts.ui.ToolBarSpirit.js",
+	"spirits/toolbar/ts.ui.ToolBarSpirit.js",
 	"spirits/topbar/ts.ui.TopBarSpirit.js",
 	"spirits/topbar/ts.ui.TopBarTabsSpirit.js",
 	"spirits/tabbar/ts.ui.TabBarSpirit.js",
+	"spirits/statusbar/ts.ui.StatusBarSpirit.js",
+	"api/ts.ui.Bar.js",
+	"api/ts.ui.ToolBar.js",
+	"api/ts.ui.TabBar.js",
+	"api/ts.ui.StatusBar.js",
 	"module.js"
 ]

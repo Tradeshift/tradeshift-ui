@@ -7,4 +7,4 @@ When it comes to producing good copy, embedding it into the development process 
 
 
 ------------------------------------------------------------------------
-Continue reading about our UI Copy Guidelines on the [Terminology & Cheat Sheet](//ui.tradeshift.com/#design/copy/terms.html) page.
+Continue reading about our UI Copy Guidelines on the [Terminology & Cheat Sheet](//tradeshift.github.io/docs/#design/copy/terms.html) page.

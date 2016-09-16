@@ -70,7 +70,7 @@ ts.dox.JavaScriptSpirit = ts.dox.PrismSpirit.extend({
 				ts.ui.Notification.error(exception.message);
 			} else {
 				ts.ui.Notification.warning([
-					'Script error! Sometimes a snippet depend on a previous ',
+					'Script error! Sometimes a snippet depends on a previous ',
 					'snippet. If there are other snippets on the page, try ',
 					'running them in a different order.'
 				].join(''), 'Alrighty');

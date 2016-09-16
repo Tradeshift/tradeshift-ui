@@ -24,7 +24,7 @@ ts.dox.MenuSpirit = (function using(isInView, goIntoView) {
 		onrender: function(summary) {
 			this.super.onrender(summary);
       if(this._newselection) {
-        this._revelchecked(this.dom.q('.ts-checked'));
+        this._revealchecked(this.dom.q('.ts-checked'));
         this._newselection = false;
       }
 		},
@@ -33,10 +33,13 @@ ts.dox.MenuSpirit = (function using(isInView, goIntoView) {
      * Select appropriate item by folder path (ignoring any file name).
      * This gets called by the {ts.dox.DoxChromeSpirit} on hashchange.
      * @param {string} path
+     * @returns {gui.Then}
      */
     selectbestitem: function(path) {
       path = folder(path);
+      var then = new gui.Then();
       var that = this;
+      var open = null;
       function folder(full) {
         return full.replace(/[^\/]*$/, '');
       }
@@ -44,9 +47,7 @@ ts.dox.MenuSpirit = (function using(isInView, goIntoView) {
         items.filter(function(item) {
           return !item.hidden;
         }).forEach(function(item) {
-          if(item.items) {
-            loop(item.items, item);
-          } else if(item.path) {
+          if(item.path) {
             var match = folder(item.path) === path;
             var state = item.selected;
             if((item.selected = match)) {
@@ -55,11 +56,45 @@ ts.dox.MenuSpirit = (function using(isInView, goIntoView) {
               }
               if(container) {
                 container.open = true;
+                open = container;
+              } else if(item.items) {
+                if(!item.open) {
+                  that._onsubmenu(item, then);
+                  open = item;
+                }
+              } else {
+                that._onnormal(item, then);
               }
             }
           }
+          if(item.items) {
+            loop(item.items, item);
+          }
         });
       }(this._model.items));
+      this._open = open || this._open;
+      return this._then || then.now();
+    },
+    
+    /**
+     * Handle tween.
+     * @see {ts.dox.SubMenuSpirit}
+     * @param {gui.Tween} t
+     */
+    ontween: function(t) {
+      this.super.ontween(t);
+      if(t.type === 'doxmenu' && t.done) {
+        if(this._next) {
+          this._next.open = true;
+          this._next = null;
+        } else {
+          this.tween.remove(t.type);
+          if(this._then) {
+            this._then.now();
+            this._then = null;
+          }
+        }
+      }
     },
     
     
@@ -69,6 +104,11 @@ ts.dox.MenuSpirit = (function using(isInView, goIntoView) {
      * @type {ts.dox.MenuModel}
      */
     _model: null,
+    
+    /**
+     * @type {gui.Then}
+     */
+    _then: null,
     
     /**
      * Render menu from embedded JSON.
@@ -86,11 +126,43 @@ ts.dox.MenuSpirit = (function using(isInView, goIntoView) {
      * Make sure the selected item can be seen.
      * @param {HTMLLiElement} checked
      */
-    _revelchecked: function(checked) {
+    _revealchecked: function(checked) {
       if(checked && !isInView(checked)) {
         goIntoView(checked);
       }
-    }
+    },
+    
+    /**
+     * @param {ts.dox.ItemModel} item
+     * @param {gui.Then} then
+     */
+    _onsubmenu: function(item, then) {
+      if(this.life.async) {
+        this.tween.add('doxmenu');
+        this._then = then;
+        if(this._open) {
+          this._next = item;
+          this._open.open = false;
+        } else {
+          item.open = true;
+        }
+      } else {
+        item.open = true;
+        then.now();
+      }
+    },
+    
+    _onnormal: function(item, then) {
+      console.log('NORMAL');
+      if(this.life.async && this._open) {
+        this.tween.add('doxmenu');
+        this._open.open = false;
+        this._then = then;
+        this._open = null;
+      } else {
+        then.now();
+      }
+    },
     
   });
 

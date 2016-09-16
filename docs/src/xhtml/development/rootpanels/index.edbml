@@ -52,7 +52,7 @@
 				<div data-ts="Panel" data-ts.label="Panel Two A">
 					<article>
 						<h1>Panel Two A</h1>
-						<p>In this <code class="attr-name">ts-panel</code>, the nested <code class="attr-name">ts-main</code> contains two additional <code class="attr-name">ts-panel</code> elements to autogenerate a <a data-ts="Button" href="/#components/tabbar/panel.html">TabBar</a> (the TabBar is shown at the top of the page).</p>
+						<p>In this <code class="attr-name">ts-panel</code>, the nested <code class="attr-name">ts-main</code> contains two additional <code class="attr-name">ts-panel</code> elements to autogenerate a <a data-ts="Button" href="/docs/#components/tabbar/panel.html">TabBar</a> (the TabBar is shown at the top of the page).</p>
 						<figure data-ts="DoxMarkup">
 							<script>
 								<body>

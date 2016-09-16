@@ -93,6 +93,15 @@ ts.ui.TopBarModel = (function using(chained) {
 			}
 		},
 		
+		/**
+		 * Clear everything.
+		 * @returns {ts.ui.TopBarModel}
+		 */
+		clear: chained(function() {
+			this.navigation.clear();
+			this.super.clear();
+		}),
+		
 		
 		// Private .................................................................
 		
@@ -119,8 +128,8 @@ ts.ui.TopBarModel = (function using(chained) {
 		_updatehascontent: function() {
 			if(!(this.super._updatehascontent())) {
 				this.hascontent = !!(this.navigation.length || this.defaultTitle);
-				return this.hascontent;
 			}
+			return this.hascontent;
 		}
 		
 	});

@@ -211,10 +211,11 @@ ts.dox.ChromeSpirit = (function using(CSSPlugin, Then) {
     _onhashchange: function(hash) {
       if(hash.length > 1) {
         var path = hash.substring(1);
-        this._menu.selectbestitem(path);
-        this.tick.time(function() {
-          this._loadnext(path);
-        }, this._isopenmenu() ? 300 : 0);
+        this._menu.selectbestitem(path).then(function() {
+          this.tick.time(function() {
+            this._loadnext(path);
+          }, this._isopenmenu() ? 300 : 0);
+        }, this);
       }
     },
     

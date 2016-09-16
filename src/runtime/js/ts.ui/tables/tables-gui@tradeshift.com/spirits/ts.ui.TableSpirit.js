@@ -370,10 +370,7 @@ ts.ui.TableSpirit = (function using(Type, Client, guiArray, DOMPlugin, CSSPlugin
 			this.super.onaction(a);
 			switch(a.type) {
 				case ts.ui.ACTION_STATUSBAR_LEVEL:
-					[1, 1.5, 2, 2.5, 3].forEach(function(number) {
-						var string = String(number).replace('.', '-');
-						this.css.shift(number === a.data, 'ts-level-' + string);
-					}, this);
+					this.guilayout.gotoLevel(a.data);
 					this._onafterresize(); // after resize, `onresize` might now be called twice :/
 					a.consume();
 					break;

@@ -35,7 +35,7 @@ ts.dox.PrismSpirit = ts.ui.Spirit.extend({
 		if(config.show) {
 			this._toolbar = this.dom.prepend(ts.ui.ToolBarSpirit.summon());
 			this._toolbar.css.add('ts-micro');
-			this._toolbar.compact(false);
+			this._toolbar.uncompact();
 		}
 	},
 

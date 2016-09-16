@@ -49,8 +49,8 @@ The guidelines for data tables presented on this page do not exclude the possibi
 
 
 > ###### For Developers
-> Read more about the [Table Component](//ui.tradeshift.com/#components/table/).
+> Read more about the [Table Component](//tradeshift.github.io/docs/#components/table/).
 
 ------------------------------------------------------------------------
-Continue reading our Design Patterns on the [Switches](//ui.tradeshift.com/#design/patterns/switches.html) page.
+Continue reading our Design Patterns on the [Switches](//tradeshift.github.io/docs/#design/patterns/switches.html) page.
 

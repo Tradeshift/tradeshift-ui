@@ -56,7 +56,7 @@ edbml.Update = gui.Class.create(Object.prototype, {
 	 * this element will be removed or added or updated and so on.
 	 * The root element (the one whose spirit is assigned the script)
 	 * may be indexed by "$instanceid" if no ID attribute is specified.
-	 * @param @optional {function} cb Pathching https://github.com/Tradeshift/tradeshift-ui/issues/141
+	 * @param @optional {function} cb Pathching https://github.com/Tradeshift/docs/issues/141
 	 * @param @optional {object} thisp
 	 * @returns {Element}
 	 */
@@ -126,7 +126,7 @@ edbml.Update = gui.Class.create(Object.prototype, {
 	 * @return {boolean} False if event was canceled
 	 */
 	_dispatch: function(element, name) {
-		if(element) { // hotfix https://github.com/Tradeshift/tradeshift-ui/issues/141
+		if(element) { // hotfix https://github.com/Tradeshift/docs/issues/141
 			var event = document.createEvent("UIEvents");
 			event.initEvent(name, true, true);
 			return element.dispatchEvent(event);

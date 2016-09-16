@@ -15,6 +15,7 @@ gui.module('forms-gui@tradeshift.com', {
 	channel: [
 
 		// OLD
+		/*
 		['[ts-form]', ts.ui.FormSpirit],
 		['[ts-group]', ts.ui.FieldSetSpirit],
 		['[ts-label]', ts.ui.LabelSpirit],
@@ -29,6 +30,7 @@ gui.module('forms-gui@tradeshift.com', {
 		['[ts-calendar]', ts.ui.CalendarSpirit],
 		['[ts-fakedateinput]', ts.ui.FakeDateInputSpirit],
 		['[ts-fakeselectinput]', ts.ui.FakeSelectInputSpirit],
+		*/
 		
 		// NEW
 		['[data-ts=Form]', ts.ui.FormSpirit],

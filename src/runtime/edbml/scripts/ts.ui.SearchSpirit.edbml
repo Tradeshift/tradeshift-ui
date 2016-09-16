@@ -3,8 +3,8 @@
 	<?input name="search" type="ts.ui.SearchModel"?>
 	
 	var id = search.$instanceid;
-	@placeholder = search.tip || null;
-	@title = (search.focused ? null : search.tip) || null;
+	@placeholder = search.info || null;
+	@title = (search.focused || search.flex ? null : search.info) || null;
 	@class = 'ts-button-clear' + (search.value ? '' : ' ts-hidden');
 	
 	<input data-ts="Input" data-ts.model="?{search}" id="${id}-input" @title @placeholder/>

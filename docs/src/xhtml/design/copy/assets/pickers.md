@@ -30,8 +30,8 @@ The second broad category of copy in the body of pickers are the different types
 
 ### The Buttons
 
-Finally, the last element that appears on pickers are buttons. These buttons are no different than the buttons everywhere else in the product, so the same guidelines should be followed. Read more at the [buttons guidelines](http://ui.tradeshift.com/#design/copy/buttons.html)
+Finally, the last element that appears on pickers are buttons. These buttons are no different than the buttons everywhere else in the product, so the same guidelines should be followed. Read more at the [buttons guidelines](http://tradeshift.github.io/docs/#design/copy/buttons.html)
 
 
 ------------------------------------------------------------------------
-Continue reading about our UI Copy Guidelines on the [Emails](//ui.tradeshift.com/#design/copy/emails.html) page.
+Continue reading about our UI Copy Guidelines on the [Emails](//tradeshift.github.io/docs/#design/copy/emails.html) page.

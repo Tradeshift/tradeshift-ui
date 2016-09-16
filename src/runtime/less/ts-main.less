@@ -58,9 +58,29 @@ body > .ts-panel, {
 			top: @ts-unit * 2;
 		}
 	}
-	&.ts-has-toolbar-last { // TODO(jmo@): micro and macro should maybe go here
+	&.ts-has-toolbar-first-ts-macro.ts-has-toolbar-first-ts-micro {
+		.ts-main {
+			top: @ts-unit * 5;
+		}
+	}
+	.ts-toolbar.ts-micro + .ts-toolbar.ts-micro + .ts-main { // cornercase :/
+		top: @ts-unit * 4;
+	}
+	&.ts-has-toolbar-last {
 		.ts-main {
 			bottom: @ts-unit-triple;
+		}
+		&.ts-level-1-5 .ts-main {
+			bottom: (@ts-unit-triple * 1.5) + @ts-unit-quarter;
+		}
+		&.ts-level-2 .ts-main {
+			bottom: @ts-unit-triple * 2;
+		}
+		&.ts-level-2-5 .ts-main {
+			bottom: @ts-unit-triple * 2.5;
+		}
+		&.ts-level-3 .ts-main {
+			bottom: @ts-unit-triple * 3;
 		}
 	}
 	&.ts-has-topbar {
@@ -77,6 +97,14 @@ body > .ts-panel, {
 				top: @ts-unit * 5;
 			}
 		}
+		&.ts-has-toolbar-first-ts-macro.ts-has-toolbar-first-ts-micro {
+			.ts-main {
+				top: @ts-unit * 8;
+			}
+		}
+		.ts-toolbar.ts-micro + .ts-toolbar.ts-micro + .ts-main { // cornercase :/
+			top: @ts-unit * 7;
+		}
 	}
 }
 .ts-mobile-only {
@@ -87,6 +115,9 @@ body > .ts-panel, {
 		}
 		&.ts-has-toolbar-first-ts-micro {
 			.mixin-misc(5);
+		}
+		&.ts-has-toolbar-first-ts-macro.ts-has-toolbar-first-ts-micro {
+			.mixin-misc(11);
 		}
 	}
 	&.ts-has-toolbar-last {

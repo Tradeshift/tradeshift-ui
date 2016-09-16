@@ -137,6 +137,7 @@ gui.DOMChanger = {
 			case "setAttribute":
 			case "removeAttribute":
 			case "insertAdjecantHTML":
+			case "remove":
 				is = true;
 				break;
 		}

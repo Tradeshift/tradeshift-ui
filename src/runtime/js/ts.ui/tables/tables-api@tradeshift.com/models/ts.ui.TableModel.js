@@ -244,10 +244,11 @@ ts.ui.TableModel = (function using(RowCollection, Type, Model) {
 		pager: ts.ui.PagerModel,
 
 		/**
-		 * Toolbar.
-		 * @type {ts.ui.ToolBarModel}
+		 * StatusBar.
+		 * TODO: Rename the property `statusbar` knowing that the Table will need testing!
+		 * @type {ts.ui.StatusBarModel}
 		 */
-		toolbar: ts.ui.ToolBarModel,
+		toolbar: ts.ui.StatusBarModel,
 
 		/**
 		 * Selection menu is open?
@@ -268,7 +269,6 @@ ts.ui.TableModel = (function using(RowCollection, Type, Model) {
 			this.cols = this.cols || [];
 			this.rows = this.rows || [];
 			this.toolbar = {};
-			this.toolbar.statusbar = true;
 		},
 
 		/**

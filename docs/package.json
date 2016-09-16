@@ -1,36 +1,6 @@
 {
-	"name": "tradeshift-ui-docs",
+  "name": "client-runtime-docs",
   "version": "0.0.0",
-	"private": true,
-  "description": "Documentation for the Tradeshift UI Components Library & Framework",
-  "bugs": {
-    "url": "https://github.com/Tradeshift/tradeshift-ui/issues",
-    "email": "dsp@tradeshift.com"
-  },
-  "author": "Tradeshift UI Team",
-  "contributors": [
-    "Wired Earp <jmo@tradeshift.com> (https://github.com/wiredearp)",
-    "Leo Zhang <lza@tradeshift.com> (https://github.com/zdlm)",
-    "Daniel Spitzer <dsp@tradeshift.com> (https://github.com/sampi)"
-  ],
-  "license": "SEE LICENSE IN LICENSE.md",
-  "homepage": "https://tradeshift.github.io/tradeshift-ui/",
-  "scripts": {
-    "test": "grunt test"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Tradeshift/tradeshift-ui.git"
-  },
-  "keywords": [
-    "ts",
-    "ui",
-    "components",
-    "library"
-  ],
-  "engines": {
-    "node": "4.5.0"
-  },
   "devDependencies": {
     "alce": "^1.2.0",
     "cheerio": "^0.20.0",

@@ -217,11 +217,11 @@ edbml.ScriptPlugin = (function using(chained, confirmed, Type, Tick, guiObject, 
 						keys[id] = {
 							object: type
 						};
-						if (name) {
-							keys[id].properties = {};
-						}
 					}
 					if (name) {
+						if (!keys[id].properties) {
+							keys[id].properties = {};
+						}
 						keys[id].properties[name] = true;
 					}
 					break;

@@ -21,25 +21,29 @@ ts.ui.LayoutPlugin = (function using(GuiArray, DOMPlugin, CSSPlugin, chained) {
 		},
 
 		/**
-		 * Spirit is positoned before Main?
+		 * Spirit is positoned before Main (and not inside an Aside)?
 		 * @returns {boolean}
 		 */
 		beforeMain: function() {
 			var is = false, elm = this.spirit.element;
-			while((!is && (elm = elm.nextElementSibling))) {
-				is = CSSPlugin.contains(elm, 'ts-main');
+			if(!this._isinaside()) {
+				while((!is && (elm = elm.nextElementSibling))) {
+					is = CSSPlugin.contains(elm, 'ts-main');
+				}
 			}
 			return is;
 		},
 
 		/**
-		 * Spirit is positoned after Main?
+		 * Spirit is positoned after Main (and not inside an Aside)?
 		 * @returns {boolean}
 		 */
 		afterMain: function() {
 			var is = false, elm = this.spirit.element;
-			while((!is && (elm = elm.previousElementSibling))) {
-				is = CSSPlugin.contains(elm, 'ts-main');
+			if(!this._isinaside()) {
+				while((!is && (elm = elm.previousElementSibling))) {
+					is = CSSPlugin.contains(elm, 'ts-main');
+				}
 			}
 			return is;
 		},
@@ -55,7 +59,41 @@ ts.ui.LayoutPlugin = (function using(GuiArray, DOMPlugin, CSSPlugin, chained) {
 				classes: GuiArray.make(cnames),
 				enabled: !!on
 			});
-		})
+		}),
+		
+		/**
+		 * Flex everything (because of JavaScript based layout).
+		 * @returns {ts.ui.LayoutPlugin}
+		 */
+		flexGlobal: chained(function() {
+			ts.ui.get(document.documentElement).reflex();
+		}),
+		
+		/**
+		 * Apply classname based on the current height of some 
+		 * descendant StatusBarSpirit. This is known to affect
+		 * TableSpirit, PanelSpirit and DocumentSpirit (and it 
+		 * also runs on the StatusBarSpirit itself).
+		 * @param {number} level
+		 */
+		gotoLevel: function(level) {
+			var css = this.spirit.css;
+			[1, 1.5, 2, 2.5, 3].forEach(function(number) {
+				var string = String(number).replace('.', '-');
+				css.shift(number === level, 'ts-level-' + string);
+			});
+		},
+		
+		 
+		// Private .................................................................
+		
+		/**
+		 * Spirit is inside some kind of Aside?
+		 * @returns {boolean}
+		 */
+		_isinaside: function() {
+			return !!this.spirit.dom.ancestor(ts.ui.SideShowSpirit);
+		}
 
 
 	}, { // Static ...............................................................

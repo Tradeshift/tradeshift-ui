@@ -37,8 +37,9 @@ gui.Then.prototype = {
 	/**
 	 * Callback with optional this-pointer.
 	 * @returns {object}
+	 * @returns {gui.Then}
 	 */
-	now: function() {
+	now: gui.Combo.chained(function() {
 		var c = this._callback;
 		var p = this._pointer;
 		if (c) {
@@ -47,7 +48,7 @@ gui.Then.prototype = {
 		} else {
 			this._now = true;
 		}
-	},
+	}),
 
 
 	// Private ...................................................................

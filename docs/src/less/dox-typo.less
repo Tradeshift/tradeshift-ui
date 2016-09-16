@@ -2,7 +2,6 @@ article {
 	-webkit-hyphens: auto;
 	-moz-hyphens: auto;
 	hyphens: auto;
-
 	em {
 		font-style: italic;
 	}
@@ -10,7 +9,6 @@ article {
 	strong {
 		font-weight: @ts-fontweight;
 	}
-
 	a {
 		text-decoration: underline;
 	}
@@ -25,7 +23,10 @@ article {
 			margin-bottom: 0;
 		}
 	}
-	
+	h2 {
+		margin-top: @ts-unit-triple;
+		margin-bottom: @ts-unit-plus;
+	}
 	h4,
 	h5 {
 		font-weight: @ts-fontweight-light;
@@ -37,7 +38,9 @@ section,
 #markdown {
 	margin-bottom: @ts-unit;
 	&.desc {
+		font-style: italic;
 		margin-bottom: @ts-unit-double;
+		font-weight: 400 !important;
 		&,
 		code {
 			font-size: 16px;

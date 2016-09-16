@@ -4,8 +4,8 @@
  * @using {gui.Object} GuiObject
  * @using {ts.ui.Markdown} Markdown
  */
-ts.dox.ApiTableSpirit = (function using(Type, GuiObject, Markdown) {
-
+ts.dox.ApiTableSpirit = (function using(Type, GuiObject, GuiArray, Markdown) {
+	
 	/**
 	 * Parse strings for markdown content and 
 	 * support at least the `code` syntax....
@@ -61,4 +61,4 @@ ts.dox.ApiTableSpirit = (function using(Type, GuiObject, Markdown) {
 
 	});
 
-}(gui.Type, gui.Object, ts.ui.Markdown));
+}(gui.Type, gui.Object, gui.Array, ts.ui.Markdown));

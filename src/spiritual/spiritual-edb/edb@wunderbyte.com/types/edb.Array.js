@@ -320,8 +320,10 @@ edb.Array.mixin(null, edb.Type.$staticmixins(), {
 		var key = array.$instanceid;
 		var all = this._changes;
 		var set = all[key] || (all[key] = []);
+		var now = edb.$criticalchange;
 		set.push(new edb.ArrayChange(array, index, removed, added));
-		gui.Tick.dispatch(edb.TICK_PUBLISH_CHANGES);
+		gui.Tick.dispatch(edb.TICK_PUBLISH_CHANGES, now ? -1 : 0);
+		edb.$criticalchange = false;
 	},
 
 });

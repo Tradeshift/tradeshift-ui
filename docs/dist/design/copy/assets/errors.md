@@ -52,4 +52,4 @@ We still don’t know the cause of the error, but two things happen here that di
 
 
 ------------------------------------------------------------------------
-Continue reading about our UI Copy Guidelines on the [Buttons](//ui.tradeshift.com/#design/copy/buttons.html) page.
+Continue reading about our UI Copy Guidelines on the [Buttons](//tradeshift.github.io/docs/#design/copy/buttons.html) page.

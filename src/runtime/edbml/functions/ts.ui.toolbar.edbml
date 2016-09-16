@@ -1,6 +1,5 @@
 <!DOCTYPE edbml>
 <script>
 	<?param name="toolbar" type="ts.ui.ToolBarModel"?>
-	@class = toolbar.statusbar ? 'ts-statusbar' : null;
-	<header data-ts="ToolBar" data-ts.model="?{toolbar}" @class></header>
+	<header data-ts="ToolBar" data-ts.model="?{toolbar}"></header>
 </script>

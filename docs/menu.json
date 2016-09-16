@@ -12,12 +12,8 @@
 	{
 		"label": "Design",
 		"icon": "ts-icon-pen-brush",
+		"path": "design/",
 		"items": [
-			{
-				"label": "Design Guidelines",
-				"icon": "ts-icon-nature-plant-1",
-				"path": "design/guidelines/"
-			},
 			{
 				"label": "Design Patterns",
 				"icon": "ts-icon-programming-jigsaw",
@@ -39,12 +35,8 @@
 	{
 		"label": "Get Started",
 		"icon": "ts-icon-space-rocket",
+		"path": "getstarted/",
 		"items": [
-			{
-				"label": "Installation",
-				"icon": "ts-icon-cloud-download-2",
-				"path": "getstarted/installation/"
-			},
 			{
 				"label": "Layout",
 				"icon": "ts-icon-window-application-7",
@@ -94,27 +86,25 @@
 	{
 		"label": "Components",
 		"icon": "ts-icon-modules-1",
+		"path": "components/",
 		"items": [
 			{
-				"label": "Component Overview",
-				"icon": "ts-icon-modules-2",
-				"path": "components/overview/"
+				"label": "Bars",
+				"icon": "ts-icon-expand-horizontal-7",
+				"path": "components/bars/topbar.html"
 			},
 			{
-				"label": "In-line Components"
-			},
-			{
-				"label": "Button",
+				"label": "Buttons",
 				"icon": "ts-icon-cursor-touch-1",
 				"path": "components/buttons/"
 			},
 			{
-				"label": "CompanyCard",
+				"label": "Cards",
 				"icon": "ts-icon-credit-card",
-				"path": "components/companycards/"
+				"path": "components/cards/companycard.html"
 			},
 			{
-				"label": "Form & Inputs",
+				"label": "Forms",
 				"icon": "ts-icon-pencil-fill",
 				"path": "components/forms/"
 			},
@@ -134,14 +124,14 @@
 				"path": "components/notes/"
 			},
 			{
+				"label": "Pager",
+				"icon": "ts-icon-video-control-fast-forward",
+				"path": "components/pager/"
+			},
+			{
 				"label": "Search",
 				"icon": "ts-icon-romance-find-love",
 				"path": "components/search/"
-			},
-			{
-				"label": "TabBar",
-				"icon": "ts-icon-window-tabs-1",
-				"path": "components/tabbar/"
 			},
 			{
 				"label": "Table",
@@ -159,9 +149,6 @@
 				"path": "components/userimages/"
 			},
 			{
-				"label": "Page-level Components"
-			},
-			{
 				"label": "DatePicker",
 				"icon": "ts-icon-calendar-1",
 				"path": "components/datepicker/"
@@ -177,14 +164,6 @@
 				"path": "components/notifications/"
 			},
 			{
-				"label": "UserCard",
-				"icon": "ts-icon-id-card-3",
-				"path": "components/usercards/"
-			},
-			{
-				"label": "Layout Components"
-			},
-			{
 				"label": "Aside",
 				"icon": "ts-icon-content-view-array",
 				"path": "components/asides/"
@@ -195,19 +174,6 @@
 				"path": "components/sidebars/"
 			},
 			{
-				"label": "Toolbar",
-				"icon": "ts-icon-expand-horizontal-7",
-				"path": "components/toolbars/"
-			},
-			{
-				"label": "TopBar",
-				"icon": "ts-icon-border-top",
-				"path": "components/topbar/"
-			},
-			{
-				"label": "Helper Components"
-			},
-			{
 				"label": "Spinner",
 				"icon": "ts-icon-interface-loading",
 				"path": "components/spinners/"
@@ -216,6 +182,7 @@
 	},
 	{
 		"label": "Playground",
+		"hidden": true,
 		"icon": "ts-icon-video-games-space-invaders-1",
 		"items": [
 			{
@@ -232,13 +199,9 @@
 	},
 	{
 		"label": "The Lab",
+		"hidden": true,
 		"icon": "ts-icon-beaker-science",
 		"items": [
-			{
-				"label": "Pager",
-				"icon": "ts-icon-video-control-fast-forward",
-				"path": "components/pager/"
-			},
 			{
 				"label": "Markdown",
 				"icon": "ts-icon-font-size",
@@ -259,7 +222,7 @@
 			{
 				"label": "GitHub",
 				"icon": "ts-icon-files-coding-1",
-				"path": "https://github.com/Tradeshift/tradeshift-ui"
+				"path": "https://github.com/Tradeshift/Client-Runtime"
 			},
 			{
 				"label": "Spiritual",

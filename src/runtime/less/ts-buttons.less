@@ -61,11 +61,13 @@
 	&.ts-ready:before {
 		.ts-mixin-transition(border-color, @ts-transition-now);
 	}
+	/*
 	&.ts-nofocus {
 		&:before {
 			display: none !important;
 		}
 	}
+	*/
 	&:disabled {
 		opacity: 0.4;
 		cursor: not-allowed;
@@ -540,6 +542,7 @@
 [class^=ts-bg] .ts-bg-white, // ouch, expensive :/
 [class^=ts-bg] .ts-bg-lite {
 	.ts-button:not(:disabled) {
+		.mixin-active-lite();
 		&.ts-primary {
 	 		background-color: @ts-green;
 			color: @ts-green-text;
@@ -567,7 +570,6 @@
 				border: none;
 			}
 		}
-		.mixin-active-lite();
 	}
 	.ts-button:disabled { // like tertiary
 		background-color: rgba(0,0,0,0.1);

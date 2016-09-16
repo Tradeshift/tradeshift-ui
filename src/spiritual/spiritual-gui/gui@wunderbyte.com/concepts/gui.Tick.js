@@ -283,23 +283,23 @@
 			var types = map.types;
 			var tick = new gui.Tick(type);
 			time = time || 0;
-			if (!types[type]) { // !!!!!!!!!!!!!!!!!!!!!!!
+			if (!types[type]) {
 				types[type] = true;
-				var that = this,
-					id = null;
+				var that = this;
+				var id = null;
+				var doit = function() {
+					delete types[type];
+					that._doit(tick);
+				};
 				if (!time) {
-					id = setImmediate(function() {
-						delete types[type];
-						that._doit(tick);
-					});
+					id = setImmediate(doit);
+				} else if(time > 0) {
+					id = setTimeout(doit, time);
 				} else {
-					id = setTimeout(function() {
-						delete types[type];
-						that._doit(tick);
-					}, time);
+					doit();
 				}
 			}
-			return tick;
+			return tick; // TODO: shouldn't it return the `id` so that it can cancel?
 		},
 
 		/**

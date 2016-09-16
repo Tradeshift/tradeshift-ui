@@ -1,6 +1,6 @@
 # Buttons
 
-A collection of button styles exist to visually prioritize the possible actions in your application. Styles include the color, size and position of the buttons. Applying these button styles correctly will [help the user focus](http://ui.tradeshift.com/#design/guidelines/principles.html) on the most likely next action.
+A collection of button styles exist to visually prioritize the possible actions in your application. Styles include the color, size and position of the buttons. Applying these button styles correctly will [help the user focus](http://tradeshift.github.io/docs/#design/guidelines/principles.html) on the most likely next action.
 
 By prioritizing the user flows in your application you will know which flows are most likely to be used by the majority of users. One way of making these most likely paths clear to the users is by applying the appropriate button styles. 
 
@@ -9,7 +9,7 @@ Four main button styles exist:
 1. **Primary button:** The most likely action the user will take. On desktop and tablet size interface, this button is almost always positioned in the top right corner of the window or it’s attached at the end of the content in the main content area.
 2. **Secondary button(s):** Functionality that many users will need but without which the application pages would still work. The secondary button(s) are located to the left of the primary button on desktop and tablet size interface.
 3. **Tertiary button(s):** Functionality that isn’t often used by the majority of users should be styled and positioned as tertiary buttons. Example: exporting or deleting a viewed document.
-4. **Kill button:** Functionality that performs a deletion or rejection action. These buttons are visually styled to alert the user and are most often placed in [pickers](http://ui.tradeshift.com/#design/patterns/pickers.html) to confirm an action. *Example: confirming the deletion of a document.*
+4. **Kill button:** Functionality that performs a deletion or rejection action. These buttons are visually styled to alert the user and are most often placed in [pickers](http://tradeshift.github.io/docs/#design/patterns/pickers.html) to confirm an action. *Example: confirming the deletion of a document.*
 
 It’s worth spending some time reviewing functionality such as invoice creation and viewing in Tradeshift to see these principles in action.
 
@@ -32,12 +32,12 @@ Above is a *Kill button* which confirms the action of deleting a document. It’
 > 
 > Buttons should always be written in the first person. Buttons are the user speaking, so they should not say “Go to your profile”, they should say “Go to my profile”
 > 
-> Read more about [in-depth copy guidelines for buttons](http://ui.tradeshift.com/#design/copy/buttons.html)
+> Read more about [in-depth copy guidelines for buttons](http://tradeshift.github.io/docs/#design/copy/buttons.html)
 
 ###### 
 
 > ###### For Developers
-> Read more about [Buttons](//ui.tradeshift.com/#components/buttons/index.html) and [Buttons in the TopBar](//ui.tradeshift.com/#components/topbar/buttons.html).
+> Read more about [Buttons](//tradeshift.github.io/docs/#components/buttons/index.html) and [Buttons in the TopBar](//tradeshift.github.io/docs/#components/topbar/buttons.html).
 
 ------------------------------------------------------------------------
-Continue reading our Design Patterns on the [Option Lists & Pickers](//ui.tradeshift.com/#design/patterns/pickers.html) page.
+Continue reading our Design Patterns on the [Option Lists & Pickers](//tradeshift.github.io/docs/#design/patterns/pickers.html) page.

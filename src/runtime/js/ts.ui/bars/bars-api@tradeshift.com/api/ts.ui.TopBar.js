@@ -305,6 +305,15 @@ ts.ui.TopBar = {
 		hide: api(chained(function() { 
 			topbar.visible = false;
 		})),
+		
+		/**
+		 * Clear the tabs and buttons and title and so on.
+		 * @returns {ts.ui.TopBar}
+		 */
+		clear: api(chained(function() {
+			topbar.clear();
+		})),
+		
 
 		// Privileged ..............................................................
 

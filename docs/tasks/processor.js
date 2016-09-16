@@ -1,5 +1,6 @@
 var cheerio = require('cheerio');
 var path = require('path');
+var fs = require('fs');
 var prism = require('./prism');
 var publisher = require('./publisher');
 var beautify = require('js-beautify').html;
@@ -15,13 +16,14 @@ module.exports = {
 	 * @param {string} common
 	 * @returns {string}
 	 */
-	process: function(html, tags) {
+	process: function(html, tags, source) {
 		var EMPTYLINE = /^\s*[\r\n]/gm;
 		tags = tags.split(',');
 		var $ = cheerio.load(html);
 		$ = localization($);
 		$ = headtags($, tags);
 		$ = headertags($);
+		$ = includetags($, source);
 		$ = splitscreen($);
 		$ = specialtags($);
 		$ = highlite($);
@@ -251,6 +253,125 @@ function headertags($) {
 	return $;
 }
 
+/**
+ * Resolve weird object tags that can pull content from other files. 
+ * just so that we don't copy paste and/or forget to update something.
+ * (Cheerio cannot parse `object[type=text/html]` so we'll match `type`.
+ */
+function includetags($, source) {
+	var includes = [];
+	$('include').each(function(index, include) {
+		include = $(include);
+		var full = include.attr('href') || '';
+		var cuts = full.split('#');
+		var href = cuts[0];
+		var hash = cuts[1];
+		var html = '';
+		if(href && hash) {
+			var file = path.dirname(source) + '/' + href;
+			file = path.normalize(file);
+			if(fs.existsSync(file)) {
+				var pre = preparsers(include, $);
+				var post = postparsers(include, $);
+				html = fetchinclude(file, hash, pre, post);
+			} else {
+				console.log('Human error: "' + file + '" not found!!!');
+				console.log(badinclude(file));
+				html = badinclude(file);
+			}
+			include.replaceWith(html);
+			//console.log('replaced ' + full + ' with some HTML', html.replace(/\n|\s\s+/g, ''));
+		} else {
+			console.log('Human error: hash id expected' );
+		}
+	});
+	return $;
+}
+
+/**
+ * Mount the file in a temporary DOM 
+ * and extract the outerHTML of target.
+ * @param {string} file
+ * @param {string} id
+ * @param {Array<function>} parsers
+ 
+ */
+function fetchinclude(file, id, preparsers, postparsers) {
+	var src = fs.readFileSync(file, {encoding: 'UTF-8'});
+	var $ = cheerio.load(src);
+	var elm = $('#' + id);
+	var clone, html;
+	if(elm[0]) {
+		clone = elm.clone();
+		preparsers.forEach(function(parse) {
+			clone = parse(clone);
+		});
+		html = clone.html();
+		postparsers.forEach(function(parse) {
+			html = parse(html);
+		});
+		return html;
+	} else {
+		console.log('Human error: "#' + id + '" not found in "' + file + '"');
+		return badinclude('#' + id);
+	}
+}
+
+/**
+ * Compile list of functions that will modify the input DOM somehow.
+ * @param {$} include
+ * @param {$} $
+ */
+function preparsers(include, $) {
+	var parsers = [];
+	include.find('replace[id]').each(function(index, replace) {
+		replace = $(replace);
+		parsers.push(function(clone) {
+			var oldelm = clone.find('#' + replace.attr('id'));
+			if(oldelm) {
+				oldelm.replaceWith(replace.html());
+			}
+			return clone;
+		});
+	});
+	return parsers;
+}
+
+/**
+ * Compile list of functions that will modify the final HTML somehow.
+ * @param {$} include
+ * @param {$} $
+ */
+function postparsers(include, $) {
+	var parsers = [];
+	include.find('replace[input][output]').each(function(index, replace) {
+		replace = $(replace);
+		parsers.push(function(html) {
+			var input = replace.attr('input');
+			var output = replace.attr('output');
+			while(html.indexOf(input) >-1) {
+				html = html.replace(input, output);
+			}
+			return html;
+		});
+	});
+	return parsers;
+}
+
+/**
+ * If something went wrong, display wrong doing on the screen.
+ * @param {string} message
+ * @returns {string}
+ */
+function badinclude(message) {
+	return [
+		'<div data-ts="Note">',
+		'  <i class="ts-icon-error"></i>',
+		'  <p><code>' + message + '</code> not found :/</p>',
+		'</div>'
+	].join('\n');
+}
+
 /** 
  * The `.splitscreen` is `display:table` so that `max-width` 
  * doesn't work (according to the spec), so we'll wrap all 
@@ -315,7 +436,7 @@ function spanheader(html) {
 // Stickys .....................................................................
 
 function stickys($) {
-	var newissue = 'https://github.com/Tradeshift/tradeshift-ui/issues/new';
+	var newissue = 'https://github.com/Tradeshift/Client-Runtime/issues/new';
 	$('body').first().append([
 		'<aside data-ts="Note" class="sticky ts-bg-yellow">',
 		'  <p>If you find a bug or need a feature…</p>',

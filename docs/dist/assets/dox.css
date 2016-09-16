@@ -37,6 +37,10 @@ article nav ul {
   padding-left: 16px;
   margin-bottom: 0;
 }
+article h2 {
+  margin-top: 66px;
+  margin-bottom: 33px;
+}
 article h4,
 article h5 {
   font-weight: 300;
@@ -48,7 +52,9 @@ section,
 }
 section.desc,
 #markdown.desc {
+  font-style: italic;
   margin-bottom: 44px;
+  font-weight: 400 !important;
 }
 section.desc,
 #markdown.desc,
@@ -465,6 +471,7 @@ table.api th {
 .doc-intro section.desc {
   margin-bottom: 44px;
   padding-right: 66px;
+  font-style: normal;
 }
 .doc-intro section a {
   color: inherit;
@@ -555,13 +562,6 @@ table.api th {
 }
 .ts-mobile-only .doc-intro .intro-container .intro-img {
   display: none;
-}
-body:before {
-  content: '';
-  position: absolute;
-  width: 320px;
-  height: 100%;
-  background-color: #3f3f3f;
 }
 .ts-doxchrome .ts-sidebar,
 .ts-doxchrome .ts-topbarspinner {
@@ -654,74 +654,46 @@ body:before {
   letter-spacing: 0.02em;
   font-weight: 400;
 }
-.ts-doxchrome .ts-menu > li > button,
-.ts-doxchrome .ts-menu > li:last-child > button,
 .ts-doxchrome .ts-menu > li > a,
 .ts-doxchrome .ts-menu > li:last-child > a {
   padding: 22px 11px 22px 33px;
 }
-.ts-doxchrome .ts-menu > li > button,
 .ts-doxchrome .ts-menu > li > a {
   border-bottom: none;
   background-color: #3f3f3f;
   color: #ffffff;
 }
-.ts-doxchrome .ts-menu > li > button:hover:not(:disabled),
 .ts-doxchrome .ts-menu > li > a:hover:not(:disabled),
-.ts-doxchrome .ts-menu > li > button:focus,
 .ts-doxchrome .ts-menu > li > a:focus {
   background-color: #3f3f3f !important;
 }
-.ts-doxchrome .ts-menu > li > button:hover:not(:disabled):before,
 .ts-doxchrome .ts-menu > li > a:hover:not(:disabled):before,
-.ts-doxchrome .ts-menu > li > button:focus:before,
 .ts-doxchrome .ts-menu > li > a:focus:before {
   background-color: #0c8cd5;
 }
-.ts-doxchrome .ts-menu > li > button > i,
 .ts-doxchrome .ts-menu > li > a > i {
   top: 33%;
   left: 22px;
 }
-.ts-doxchrome .ts-menu > li.ts-checked > button,
-.ts-doxchrome .ts-menu > li.ts-checked > a {
+.ts-doxchrome .ts-menu > li > a.ts-checked {
   position: relative;
   z-index: 3;
 }
-.ts-doxchrome .ts-menu > li.ts-checked > button,
-.ts-doxchrome .ts-menu > li.ts-checked > a,
-.ts-doxchrome .ts-menu > li.ts-checked > button:hover,
-.ts-doxchrome .ts-menu > li.ts-checked > a:hover {
+.ts-doxchrome .ts-menu > li > a.ts-checked,
+.ts-doxchrome .ts-menu > li > a.ts-checked:hover {
   background-color: #366375 !important;
   color: #ffffff;
 }
-.ts-doxchrome .ts-menu > li.ts-checked > button:before,
-.ts-doxchrome .ts-menu > li.ts-checked > a:before {
+.ts-doxchrome .ts-menu > li > a.ts-checked:before {
   background-color: #0c8cd5;
 }
-.ts-doxchrome .ts-menu > li.submenu > button {
+.ts-doxchrome .ts-menu > li.submenu > a {
   position: relative;
   z-index: 2;
 }
-.ts-doxchrome .ts-menu > li.submenu > button:after {
-  position: absolute;
-  right: 22px;
-  top: 50%;
-  line-height: 0;
-  font-family: 'Tradeshifticons';
-  font-style: normal;
-  font-weight: normal;
-  content: '7';
-}
-.ts-doxchrome .ts-menu > li.submenu > button,
-.ts-doxchrome .ts-menu > li.submenu > button:hover:not(:disabled),
-.ts-doxchrome .ts-menu > li.submenu > button:focus {
+.ts-doxchrome .ts-menu > li.submenu > a:not(.ts-checked),
+.ts-doxchrome .ts-menu > li.submenu > a:not(.ts-checked):hover {
   background-color: #494949 !important;
-}
-.ts-doxchrome .ts-menu > li.submenu > button:before,
-.ts-doxchrome .ts-menu > li.submenu > button:hover:not(:disabled):before,
-.ts-doxchrome .ts-menu > li.submenu > button:focus:before {
-  display: none;
 }
 .ts-doxchrome .ts-menu > li.submenu > .ts-shadow {
   position: absolute;
@@ -738,15 +710,6 @@ body:before {
 .ts-doxchrome .ts-menu > li.submenu.sliding menu {
   display: block;
 }
-.ts-doxchrome .ts-menu > li.submenu.open.submenu > button,
-.ts-doxchrome .ts-menu > li.submenu.sliding.submenu > button {
-  position: relative;
-  z-index: 2;
-}
-.ts-doxchrome .ts-menu > li.submenu.open.submenu > button:after,
-.ts-doxchrome .ts-menu > li.submenu.sliding.submenu > button:after {
-  content: '9';
-}
 .ts-doxchrome .ts-menu > li.submenu.sliding {
   position: relative;
   pointer-events: none;
@@ -755,6 +718,15 @@ body:before {
 .ts-doxchrome .ts-menu > li.submenu.sliding menu {
   position: absolute;
   top: 66px;
+}
+.ts-doxchrome #menucover {
+  height: 0;
+  background-color: #3f3f3f;
+  top: 0;
+  left: 0;
+  width: 320px;
+  z-index: 2000000;
+  position: absolute;
 }
 .ts-doxchrome .ts-topbarspinner {
   z-index: 2001;
@@ -868,15 +840,6 @@ article {
   padding: 66px;
   max-width: 704px;
   padding-bottom: 154px;
-  /*
-	+ article {
-		border-top: 1px solid @ts-lite;
-		background-color: @ts-lite-lite;
-		figure .tabs {
-			background-color: @ts-lite;
-		}
-	}
-	*/
 }
 #markdown img {
   max-width: 100%;
@@ -916,6 +879,9 @@ article {
 #markdown blockquote ul,
 #markdown blockquote ol {
   padding: 0 22px 0 44px;
+}
+.dox-dropshadow {
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 .doc-responsive #breakpoints {
   background-color: #f5f5f5;
@@ -1251,4 +1217,9 @@ article {
 /* Section-specific styling ..................................................*/
 html.design.ts-bg-lite .ts-main {
   background-color: #ffffff;
+}
+/* Search style ..................................................*/
+#results li {
+  display: block;
+  padding-bottom: 22px;
 }

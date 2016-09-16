@@ -28,7 +28,7 @@ ts.ui.DocumentSpirit = (function using(Client) {
 				APP_ABORTED,
 				APP_COMPLETE
 			]);
-			this.action.addGlobal([
+			this.action.add(ts.ui.ACTION_STATUSBAR_LEVEL).addGlobal([
 				ts.ui.ACTION_GLOBAL_MODELS_INITIALIZE,
 				ts.ui.ACTION_GLOBAL_LOCATION_CHANGEHASH,
 				ts.ui.ACTION_GLOBAL_LOCATION_HASHCHANGE,
@@ -114,6 +114,12 @@ ts.ui.DocumentSpirit = (function using(Client) {
 				// next app started loading, this app soon to be unloaded
 				case ts.ui.ACTION_GLOBAL_TERMINATE:
 					this.broadcast.dispatch(ts.ui.BROADCAST_TERMINATE);
+					break;
+				// statusbar changed height on window resize
+				case ts.ui.ACTION_STATUSBAR_LEVEL:
+					if(a.target.guilayout.outsideMain()) {
+						this.guilayout.gotoLevel(a.data);
+					}
 					break;
 			}
 		},

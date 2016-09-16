@@ -14,7 +14,7 @@ Shortcuts are only available in tablet size and are stacked vertically along the
 
 ### Contextual menu
 
-The contextual menu ([the area above the main content area](http://ui.tradeshift.com/#design/guidelines/structure.html)) can be customized in a few different ways.
+The contextual menu ([the area above the main content area](http://tradeshift.github.io/docs/#design/guidelines/structure.html)) can be customized in a few different ways.
 
 #### Contextual actions
 
@@ -59,11 +59,11 @@ When the contextual bar doesn’t do anything it can be completely removed. Note
 It’s not recommended to combine the above mentioned contextual bar types. For instance having both tabs and contextual actions simultaneously may work in some situations on desktop. But language variants (longer labels/titles) and fluidity across devices carry the risk of rendering your combined interface unusable for larger segments of users.
 
 ### Pickers as navigation hubs
-[Pickers](http://ui.tradeshift.com/#design/patterns/pickers.html) also provide the opportunity to function as navigation items.
+[Pickers](http://tradeshift.github.io/docs/#design/patterns/pickers.html) also provide the opportunity to function as navigation items.
 
 
 > ###### For Developers
-> Read more about [Components related to Navigation](//ui.tradeshift.com/#components/overview/layout.html).
+> Read more about [Components related to Navigation](//tradeshift.github.io/docs/#components/overview/layout.html).
 
 ------------------------------------------------------------------------
-Continue reading our Design Patterns on the [Basic Inputs](//ui.tradeshift.com/#design/patterns/inputs.html) page.
+Continue reading our Design Patterns on the [Basic Inputs](//tradeshift.github.io/docs/#design/patterns/inputs.html) page.

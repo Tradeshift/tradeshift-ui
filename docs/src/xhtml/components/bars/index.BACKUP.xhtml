@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Bars</title>
+		<script src="tabs.js"></script>
+    <link rel="stylesheet" href="index.less"/>
+    <script>
+      function tab(index) {
+        document.querySelector('#bars').className = 'tab' + index;
+      }
+    </script>
+	</head>
+	<body>
+		<header data-ts="TopBar"></header>
+		<main data-ts="Main">
+			<article>
+				<h1>Bars</h1>
+				<section class="desc">
+					<p>This is an intro page.</p>
+				</section>
+				<section>
+          <figure id="bars" class="tab1">
+            <header id="topbar">
+              <label>TopBar</label>
+              <a class="a1" onclick="tab(1)">One</a>
+              <a class="a2" onclick="tab(2)">Two</a>
+              <a class="a3" onclick="tab(3)">Three</a>
+            </header>
+            <header id="tabbar">
+              <label>Main TabBar</label>
+            </header>
+            <header id="toolbar">
+              <label>Main ToolBar</label>
+            </header>
+            <div id="main">
+              <label>Main<label>
+            </div>
+            <footer id="statusbar">
+              <label>Main StatusBar</label>
+            </footer>
+          </figure>
+				</section>
+        <section>
+					
+          <h3><a data-ts="Button" href="/docs/#components/bars/topbar.html">ts.ui.TopBar</a></h3>
+					<p>Hello world.</p>
+          <figure data-ts="DoxScript">
+            <script type="runnable">
+							ts.ui.TopBar.buttons([
+								{label: 'Button', type: 'ts-primary'},
+								{label: 'Button', type: 'ts-secondary'},
+								{label: 'Button', onclick: function() {
+									console.log('Clicked');
+								}}
+							]);
+            </script>
+          </figure>
+					<!--
+					<figure data-ts="DoxScript">
+            <script type="runnable">
+							ts.ui.TopBar.hide();
+            </script>
+          </figure>
+					<figure data-ts="DoxScript">
+            <script type="runnable">
+							ts.ui.TopBar.show();
+            </script>
+          </figure>
+				-->
+					
+          <h3><a data-ts="Button" href="/docs/#components/bars/tabbar.html">ts.ui.TabBar</a></h3>
+					<p>Hello world.</p>
+          <figure data-ts="DoxScript">
+            <script type="runnable">
+							ts.ui.TabBar.tabs([
+								{label: 'Tab One'},
+								{label: 'Tab Two'},
+								{label: 'Tab Three', onselect: function() {
+									console.log('Selected');
+								}}
+							]);
+            </script>
+          </figure>
+					<!--
+					<figure data-ts="DoxScript">
+            <script type="runnable">
+							ts.ui.TabBar.hide();
+            </script>
+          </figure>
+					<figure data-ts="DoxScript">
+            <script type="runnable">
+							ts.ui.TabBar.show();
+            </script>
+          </figure>
+				-->
+					
+					<h3><a data-ts="Button" href="/docs/#components/bars/toolbar.html">ts.ui.ToolBar</a></h3>
+					<p>Hello world.</p>
+					<figure data-ts="DoxScript">
+						<script type="runnable">
+							ts.ui.ToolBar.buttons([
+								{label: 'Button', type: 'ts-primary'},
+								{label: 'Button', type: 'ts-secondary'},
+								{label: 'Button', onclick: function() {
+									console.log('Clicked');
+								}}
+							]).search({
+								onsearch: function(value) {
+									console.log(value);
+								}
+							});;
+						</script>
+					</figure>
+					<!--
+					<figure data-ts="DoxScript">
+            <script type="runnable">
+							ts.ui.ToolBar.hide();
+            </script>
+          </figure>
+					<figure data-ts="DoxScript">
+            <script type="runnable">
+							ts.ui.ToolBar.show();
+            </script>
+          </figure>
+					-->
+					
+					<h3><a data-ts="Button" href="/docs/#components/bars/statusbar.html">ts.ui.StatusBar</a></h3>
+					<p>Although the StatusBar can display status messages, it's perfectly alright to use it just to show some buttons. In that case, the difference from the Main ToolBar is simply that it positioned below the Main area.</p>
+					<figure data-ts="DoxScript">
+						<script type="runnable">
+							ts.ui.StatusBar.buttons([
+								{label: 'Button', type: 'ts-primary'},
+								{label: 'Button', type: 'ts-secondary'},
+								{label: 'Button', onclick: function() {
+									console.log('Clicked');
+								}}
+							]).message('Hello World');
+						</script>
+					</figure>
+					<!--
+					<figure data-ts="DoxScript">
+            <script type="runnable">
+							ts.ui.StatusBar.hide();
+            </script>
+          </figure>
+					<figure data-ts="DoxScript">
+            <script type="runnable">
+							ts.ui.StatusBar.show();
+            </script>
+          </figure>
+					-->
+        </section>
+				<!--
+				<section>
+					<p>Here's an overview of the methods.</p>
+          <div data-ts="DoxApi">
+						<script type="application/json">
+							{
+								name: "ts.ui",
+								methods: [
+									{
+										name: "topbar",
+										args: ["(function)"],
+										desc: "Get the (TopBar)[/docs/#components/bars/topbar.html]."
+									},
+									{
+										name: "tabbar",
+										args: ["(function)"],
+										desc: "Get the Main (TabBar)[/docs/#components/bars/tabbar.html]."
+									},
+                  {
+										name: "toolbar",
+										args: ["(function)"],
+										desc: "Get the Main (ToolBar)[/docs/#components/bars/toolbar.html]."
+									},
+									,
+                  {
+										name: "statusbar",
+										args: ["(function)"],
+										desc: "Get the Main (StatusBar)[/docs/#components/bars/status.html]."
+									}
+								]
+							}
+						</script>
+        </section>
+			-->
+			</article>
+		</main>
+	</body>
+</html>

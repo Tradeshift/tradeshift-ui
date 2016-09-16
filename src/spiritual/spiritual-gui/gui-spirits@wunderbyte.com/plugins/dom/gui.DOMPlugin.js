@@ -668,7 +668,7 @@ gui.DOMPlugin.mixin(
 		 */
 		parent: function(type) {
 			var result = this.spirit.element.parentNode;
-			if (type) {
+			if (result && type) {
 				var spirit = result.spirit;
 				if (spirit && spirit instanceof type) {
 					result = spirit;
@@ -686,7 +686,7 @@ gui.DOMPlugin.mixin(
 		 */
 		child: function(type) {
 			var result = this.spirit.element.firstElementChild;
-			if (type) {
+			if (result && type) {
 				result = this.children(type)[0] || null;
 			}
 			return result;

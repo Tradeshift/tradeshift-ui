@@ -17,7 +17,7 @@ For huge lists with hundreds or thousands of options, a search element can be en
 > 
 > 1. **Title:** The title should be as descriptive as possible regarding what the goal of the user is. Furthermore, the title should match the copy of the element that triggered the opening of the picker.
 > 2. **Body:** The body can include two different elements: clarification/explanation copy, and value selectors. The selectors should follow the same guidelines as throughout the rest of the product. The clarification/explanation copy should be as clear as possible. No personality, no humor, this is strictly a help text in a complex flow, and its only goal is to clarify the actions expected of the user.
-> 3. **Buttons:** Some pickers will include buttons. When they do, these follow the rules of buttons in the rest of the product. Read more about [buttons](http://ui.tradeshift.com/#design/patterns/buttons.html) (including copy) here, or read the in-depth section on [button copy](http://ui.tradeshift.com/#design/copy/buttons.html)
+> 3. **Buttons:** Some pickers will include buttons. When they do, these follow the rules of buttons in the rest of the product. Read more about [buttons](http://tradeshift.github.io/docs/#design/patterns/buttons.html) (including copy) here, or read the in-depth section on [button copy](http://tradeshift.github.io/docs/#design/copy/buttons.html)
 
 ### Ways of presenting options
 
@@ -60,7 +60,7 @@ The standard select element/dropdown is never used. In cases that is needed, alw
 
 
 > ###### For Developers
-> Read more about the Picker, also know as the [Aside Component](//ui.tradeshift.com/#components/asides/).
+> Read more about the Picker, also know as the [Aside Component](//tradeshift.github.io/docs/#components/asides/).
 
 ------------------------------------------------------------------------
-Continue reading our Design Patterns on the [Tables](//ui.tradeshift.com/#design/patterns/tables.html) page.
+Continue reading our Design Patterns on the [Tables](//tradeshift.github.io/docs/#design/patterns/tables.html) page.

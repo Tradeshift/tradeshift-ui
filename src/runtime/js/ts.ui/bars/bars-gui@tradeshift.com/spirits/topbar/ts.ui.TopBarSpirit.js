@@ -156,9 +156,9 @@ ts.ui.TopBarSpirit = (function(TopBar, Client) {
 		/**
 		 * Handled elsehow...
 		 * @param {boolean} attaching
-		 * @overwrites {ts.ui.ToolBarSpirit#_layoutmain}
+		 * @overwrites {ts.ui.ToolBarSpirit#_layoutinit}
 		 */
-		_layoutmain: function(attaching) {},
+		_layoutinit: function(attaching) {},
 		
 		/**
 		 * Breakpoint changed.
@@ -217,7 +217,7 @@ ts.ui.TopBarSpirit = (function(TopBar, Client) {
 		_shouldshow: function(tbar, breakpoint) {
 			var is = tbar.visible;
 			if(is && breakpoint !== 'mobile') {
-				is = tbar.hascontent;
+				is = tbar.hascontent || tbar.hadcontent;
 			}
 			return is;
 		}

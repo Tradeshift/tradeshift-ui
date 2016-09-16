@@ -1,14 +1,14 @@
 <!DOCTYPE edbml>
 <script>
 	<?param name="button" type="ts.ui.ButtonModel"?>
-	<?param name="isButtonMenu" type="boolean"?>
+	<?param name="isButtonMenu" type="boolean" required="false"?>
 	@id = 'button' + button.$instanceid;
 	@title = button.info || null;
 	@class = button.type || '';
 	@name = button.name || '';
 	@value = button.value || '';
 	@autofocus = button.autofocus ? 'autofocus' : null;
-	@tabindex = button.tabindex === 0 ? null : button.tabindex;
+	@tabindex = button.tabindex === 0 || isButtonMenu ? null : button.tabindex;
 	@disabled = button.disabled ? 'disabled' : null;
 	// the `data-ts` attributes cannot be assigned normally :(
 	$att['data-ts.type'] = button.action || null;

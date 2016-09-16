@@ -4,16 +4,16 @@
 <head>
     <title>Button</title>
     <meta name="viewport" content="width=device-width">
-    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-6.0.1.min.js"></script>
-    <script src="/dist/assets/dox.min.js"></script>
-    <script src="/dist/assets/jquery-2.2.4.min.js"></script>
-    <link rel="stylesheet" href="/dist/assets/dox.css">
+    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-6.1.0-alpha.0.min.js"></script>
+    <script src="/docs/dist/assets/dox.min.js"></script>
+    <script src="/docs/dist/assets/jquery-2.2.4.min.js"></script>
+    <link rel="stylesheet" href="/docs/dist/assets/dox.css">
     <script src="tabs.js"></script>
     <script>
         function spin(selector) {
-            $(selector).attr("ts.busy", true);
+            $(selector).attr("data-ts.busy", true);
             setTimeout(function() {
-                $(selector).attr("ts.busy", false);
+                $(selector).attr("data-ts.busy", false);
             }, 3000);
         }
     </script>
@@ -70,7 +70,7 @@
                         </div>
                     </figure>
                     <h3><span>Button icons</span></h3>
-                    <p>Icons go into a separate <code class="el">i</code> element. You can see a <a data-ts="Button" href="/#components/icons/css.html">list of all icons</a>.</p>
+                    <p>Icons go into a separate <code class="el">i</code> element. You can see a <a data-ts="Button" href="/docs/#components/icons/css.html">list of all icons</a>.</p>
                     <figure data-ts="DoxMarkup" data-ts.code="%3Cbutton%20data-ts%3D%22Button%22%20class%3D%22ts-primary%22%3E%0A%09%3Cspan%20style%3D%22display%3Anone%3B%22%3EButton%20Text%3C%2Fspan%3E%0A%09%3Ci%20class%3D%22ts-icon-arrowright%22%3E%3C%2Fi%3E%0A%3C%2Fbutton%3E">
                         <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Atrue%2C%22runs%22%3Afalse%2C%22flip%22%3Atrue%7D">
                         <div class="tabpanels">
@@ -119,9 +119,11 @@
 </pre>
                         </div>
                     </figure>
-                    <button data-ts="Button" class="ts-primary" id="mybutton" onclick="spin(&apos;#mybutton&apos;)">
-						<span>show spinner</span>
-					</button>
+                    <p>
+                        <button data-ts="Button" class="ts-primary" id="mybutton" onclick="spin(&apos;#mybutton&apos;)">
+							<span>show spinner</span>
+						</button>
+                    </p>
                     <h3><span>Micro Button</span></h3>
                     <p>You can add class <code class="attr-name">ts-micro</code> to get a micro button.</p>
                     <figure data-ts="DoxMarkup" data-ts.code="%3Cbutton%20data-ts%3D%22Button%22%20class%3D%22ts-primary%20ts-micro%22%3E%0A%09%3Cspan%3EPrimary%3C%2Fspan%3E%0A%3C%2Fbutton%3E%0A%3Cbutton%20data-ts%3D%22Button%22%20class%3D%22ts-secondary%20ts-micro%22%3E%0A%09%3Cspan%3ESecondary%3C%2Fspan%3E%0A%3C%2Fbutton%3E%0A%3Cbutton%20data-ts%3D%22Button%22%20class%3D%22ts-tertiary%20ts-micro%22%3E%0A%09%3Cspan%3ETertiary%3C%2Fspan%3E%0A%3C%2Fbutton%3E">
@@ -151,7 +153,7 @@
                     </figure>
                 </section>
                 <section>
-                    <p>You can <a data-ts="Button" href="/#components/buttons/buttons.html">group buttons in menus</a> to unlock advanced layout options.</p>
+                    <p>You can <a data-ts="Button" href="/docs/#components/buttons/buttons.html">group buttons in menus</a> to unlock advanced layout options.</p>
                 </section>
             </article>
         </div>

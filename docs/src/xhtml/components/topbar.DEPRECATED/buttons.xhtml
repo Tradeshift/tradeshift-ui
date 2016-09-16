@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>TopBar.buttons</title>
+		<style>
+			#panel2 {
+				display: none;
+			}
+		</style>
+	</head>
+	<body>
+		<header data-ts="TopBar"></header>
+		<main data-ts="Main">
+			<article>
+				<h1>TopBar.buttons</h1>
+				<section class="desc">
+					<p>Provides contextual actions for apps. See also <a data-ts="Button" href="/docs/#components/topbar/tabs.html">tabs</a>.</p>
+				</section>
+				<section
+					<p>Add buttons to the <code>TopBar</code> with the <code>buttons</code> method. This both sets and gets. If you omit the argument, you'll get the current buttons (jQuery style).</p>
+					<figure data-ts="DoxScript" class="attention">
+						<script type="runnable">
+							ts.ui.TopBar.buttons([
+								{
+									label : "Primary",
+									type : "ts-primary",
+									onclick: function() {
+										ts.ui.Notification.success(this.label);
+									}
+								},
+								{
+									label : "Secondary",
+									type : "ts-secondary"
+								},
+								{
+									label : "Tertiary One"
+								},
+								{
+									label : "Tertiary Two"
+								}	
+							]);
+						</script>
+					</figure>
+					<p>You can use array methods like <code>push</code>, <code>pop</code>, <code>shift</code>, <code>unshift</code>, <code>splice</code>, <code>reverse</code> and so on to manage buttons. Just note that the buttons <code>length</code> is readonly.</p>
+
+					<h3>Button types</h3>
+					<ul>
+						<li>The buttons <code class="attr-name">type</code> property works like the CSS <code class="attr-name">class</code> for a regular Button</li>
+						<li>The TopBar will automatically sort all buttons from primary to tertiary.</li>
+						<li>If there's more than one tertiary button, these will be pushed to an Aside.</li>
+						<li>In the mobile breakpoint, all buttons will be pushed to an Aside.</li>
+					</ul>
+
+					<h3>Button actions</h3>
+					<p>Buttons won't actually do anything unless you define the <code>onclick</code> method. Fortunately, you can always change what happens when a button gets clicked.</p>
+
+					<figure data-ts="DoxScript">
+						<script type="runnable">
+							ts.ui.TopBar.buttons().forEach(function(button, index) {
+								button.label = 'Button ' + (index + 1);
+								button.onclick = function() {
+									ts.ui.Notification.success(this.label);
+								};
+							});
+						</script>
+					</figure>
+
+					<h3>Query buttons</h3>
+					<p>You can locate buttons by index in the <code>buttons</code> collection. But since this isn't likely to match the order in which they appear on screen, it's easier to give the buttons an <code>id</code> and find them using <code>buttons.get()</code>.</p>
+					<figure data-ts="DoxScript">
+						<script type="runnable">
+							var buttons = ts.ui.TopBar.buttons();
+							buttons.push({
+								id: 'example-button',
+								type: 'ts-primary',
+								label: 'Click Me...'
+							});
+							var button = buttons.get('example-button');
+							button.onclick = function() {
+								this.label = 'Thanks!';
+							};
+						</script>
+					</figure>
+
+					<h3>Hide buttons</h3>
+					<p>You can <code>hide()</code> and <code>show()</code> buttons. You can also toggle <code>visible</code>.</p>
+					<figure data-ts="DoxScript">
+						<script type="runnable">
+							ts.ui.TopBar.buttons().forEach(function(button) {
+								if(button.visible) {
+									button.hide();
+								} else {
+									button.show();
+								}
+							});
+						</script>
+					</figure>
+
+					<h3>Disable buttons</h3>					
+					<p>You can <code>disable()</code> and <code>enable()</code> buttons. You can also toggle <code>disabled</code>.</p>
+					<figure data-ts="DoxScript">
+						<script type="runnable">
+							ts.ui.TopBar.buttons().forEach(function(button) {
+								if(button.disabled) {
+									button.enable();
+								} else {
+									button.disable();
+								}
+							});
+						</script>
+					</figure>
+					
+					<h3>Busy buttons</h3>					
+					<p>We can display a temporary progress indicator with the <code>busy</code> and <code>done</code> methods.</p>					
+					<figure data-ts="DoxScript">
+						<script type="runnable">
+							var button = ts.ui.TopBar.buttons()[0];
+							button.busy();
+							setTimeout(function() {
+								button.done();
+							}, 1000);
+						</script>
+					</figure>
+					<p>The <code>busy</code> method supports an optional status message.</p>
+					<figure data-ts="DoxScript">
+						<script type="runnable">
+							var button = ts.ui.TopBar.buttons()[0];
+							button.busy('Making progress');
+							setTimeout(function() {
+								button.done();
+							}, 1000);
+						</script>
+					</figure>
+				</section>
+				<section>
+					<p>The individual <code>Button</code> objects have the following properties.</p>
+					<div data-ts="DoxApi">
+						<script type="application/json">
+							{
+								name: "ts.ui.ButtonModel",
+								properties: [
+									{
+										name: "id",
+										type: "string",
+										desc: "Optional button `id`."
+									},
+									{
+										name: "label",
+										type: "string",
+										desc: "The buttons label."
+									},
+									{
+										name: "icon",
+										type: "string",
+										desc: 'The button icon (label must be `null` or empty).'
+									},
+									{
+										name: "info",
+										type: "string",
+										desc: "The button tooltip (hover text)."
+									},
+									{
+										name: "visible",
+										type: "boolean",
+										desc: "Button is visible?"
+									},
+									{
+										name: "disabled",
+										type: "boolean",
+										desc: "Button is disabled?"
+									}
+								],
+								methods: [
+									{
+										name: "onclick",
+										desc: "Called whenever the button gets clicked."
+									},
+									{
+										name: "busy",
+										args: "(string)",
+										desc: "Mark button busy with optional message."
+									},
+									{
+										name: "done",
+										desc: "Mark the button done (not busy)."
+									},
+									{
+										name: "hide",
+										desc: "Hide the button."
+									},
+									{
+										name: "show",
+										desc: "Show the button."
+									},
+									{
+										name: "disable",
+										desc: "Disable the button."
+									},
+									{
+										name: "enable",
+										desc: "Enable the button."
+									}
+								]
+							}
+						</script>
+					</div>
+				</section>
+			</article>
+		</main>
+	</body>
+</html>

@@ -9,7 +9,7 @@ gui.module('tables-gui@tradeshift.com', {
 	channel: [
 		
 		// OLD
-		['[ts-table]', ts.ui.TableSpirit],
+		//['[ts-table]', ts.ui.TableSpirit],
 		
 		// NEW
 		['[data-ts=Table]', ts.ui.TableSpirit]

@@ -17,6 +17,12 @@ ts.ui.ToolBarModel = (function using(chained) {
 		 * @type {boolean}
 		 */
 		hascontent: false,
+		
+		/**
+		 * Has now or has ever *had* tabs or buttons?
+		 * @type {boolean}
+		 */
+		hadcontent: false,
 
 		/**
 		 * Base background color (which also affects tabs and button color).
@@ -35,17 +41,6 @@ ts.ui.ToolBarModel = (function using(chained) {
 		 * @type {ts.ui.InputModel}
 		 */
 		search: null,
-
-		/**
-		 * @type {ts.ui.PagerModel}
-		 */
-		pager: null,
-
-		/**
-		 * Render as statusbar?
-		 * @type {boolean}
-		 */
-		statusbar: false,
 		
 		/**
 		 * Attempt to economize space by automatically transferring 
@@ -92,15 +87,34 @@ ts.ui.ToolBarModel = (function using(chained) {
 		 * @returns {boolean} True when updated
 		 */
 		onchange: function(changes) {
-			var splice = edb.ArrayChange.TYPE_SPLICE;
-			if(changes.some(function(c) {
-				return c.type === splice || c.name === 'title';
-			})) {
+			var dirty = false;
+			changes.forEach(function(c) {
+				if(c.name !== 'hadcontent') {
+					if(c.name === 'hascontent') {
+						if(c.newValue) {
+							this.hadcontent = true;
+						}
+					} else {
+						dirty = true;
+					}
+				}
+			}, this);
+			if(dirty) {
 				this._updatehascontent();
-				return true;
 			}
-			return false;
 		},
+		
+		/**
+		 * Clear the stuff.
+		 * @returns {ts.ui.ToolBarModel}
+		 */
+		clear: chained(function() {
+			this.tabs.clear();
+			this.buttons.clear();
+			this.search = null;
+			this.title = null;
+			this._updatehascontent();
+		}),
 
 		/**
 		 * Bounce model to HTML.
@@ -136,7 +150,8 @@ ts.ui.ToolBarModel = (function using(chained) {
 			this.hascontent = !!(
 				this.tabs.length || 
 				this.buttons.length || 
-				this.title 
+				this.title ||
+				this.search
 			);
 			return this.hascontent;
 		}

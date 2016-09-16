@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>TopBar</title>
+	</head>
+	<body>
+		<header data-ts="TopBar"></header>
+		<main data-ts="Main">
+			<article>
+				<h1>TopBar</h1>
+				<section class="desc">
+					<p>The TopBar contains <a data-ts="Button" href="/docs/#components/topbar/tabs.html">tabs</a> and <a data-ts="Button" href="/docs/#components/topbar/buttons.html">buttons</a>.</p>
+				</section>
+				<section>
+					
+					<h3>Title</h3>
+					<p>The TopBar appears when you set the title.</p>
+					<figure data-ts="DoxScript" class="attention">
+						<script type="runnable">
+							ts.ui.TopBar.title('Hello World');
+						</script>
+					</figure>
+					
+					<h3>Colors</h3>
+					<p>You can change the general color scheme.</p>
+					<figure data-ts="DoxScript">
+						<script type="runnable">
+							ts.ui.TopBar.green();
+						</script>
+					</figure>
+					<figure data-ts="DoxScript">
+						<script type="runnable">
+							ts.ui.TopBar.blue();
+						</script>
+					</figure>
+					<figure data-ts="DoxScript">
+						<script type="runnable">
+							ts.ui.TopBar.purple();
+						</script>
+					</figure>
+					<figure data-ts="DoxScript">
+						<script type="runnable">
+							ts.ui.TopBar.dark();
+						</script>
+					</figure>
+					
+					<h3>Navigation</h3>
+					<p>You can show Back and Forward buttons with a function callback.</p>
+					<figure data-ts="DoxScript">
+						<script type="runnable">
+							ts.ui.TopBar.showBack(function() {
+									console.log('Back');
+								}).showNext(function() {
+									console.log('Next');
+								});
+						</script>
+					</figure>
+					<p>TYou can also hide them.</p>
+					<figure data-ts="DoxScript">
+						<script type="runnable">
+							ts.ui.TopBar.hideBack().hideNext();
+						</script>
+					</figure>
+
+					<h3>Tabs and buttons</h3>
+					<p>Read on about <a data-ts="Button" href="/docs/#components/topbar/tabs.html">tabs</a> and <a data-ts="Button" href="/docs/#components/topbar/buttons.html">buttons</a>.</p>
+				</section>
+			</article>
+		</main>
+	</body>
+</html>

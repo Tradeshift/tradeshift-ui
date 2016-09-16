@@ -67,6 +67,19 @@ ts.ui.TabModel = (function using(chained) {
 		 * @type {function}
 		 */
 		onclose: null,
+		
+		/**
+		 * Alias {ts.ui.TabModel#closable}.
+		 * @see https://uk.answers.yahoo.com/question/index?qid=20070329061734AAtI9Hc
+		 */
+		closable: {
+			getter: function() {
+				return this.closeable;
+			},
+			setter: function(value) {
+				this.closeable = value;
+			}
+		},
 
 		/**
 		 * We add an observer to ourselves so that we can evaluate the `onselect`

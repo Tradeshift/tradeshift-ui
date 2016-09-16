@@ -80,6 +80,7 @@ ts.ui.ButtonSpirit = (function using(chained, Client, Type, CSSPlugin, ie9) {
 		/**
 		 * By setting the `href` property with JavaScript
 		 * instead of HTML, Neal says we are more secure.
+		 * See also https://dev.to/ben/the-targetblank-vulnerability-by-example
 		 */
 		onconfigure: function() {
 			this.super.onconfigure();
@@ -91,6 +92,7 @@ ts.ui.ButtonSpirit = (function using(chained, Client, Type, CSSPlugin, ie9) {
 			if(this.type === ts.ui.ACTION_SAFE_LINK && this.data) {
 				if(/^http(s?):\/\//.test(this.data)) {
 					this.element.target = '_blank';
+					this.element.rel = "noopener";
 					this.element.href = this.data;
 				}
 			}

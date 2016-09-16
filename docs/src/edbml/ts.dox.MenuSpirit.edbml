@@ -2,7 +2,7 @@
 <script>
   <?input name="menu" type="ts.dox.MenuModel"?>
   
-  renderItems(menu.items);
+  renderItems(menu.items);ts.dox.MenuCoverSpirit
   
   function renderItems(items) {
     items.filter(function(item) {
@@ -11,32 +11,35 @@
   }
   
   function renderItem(item) {
-    @id = item.$instanceid;
-    if(item.path) {
-      @class = item.selected ? 'ts-checked' : null;
-      <li @id @class data-ts="DoxItem">
-        <a href="#${item.path}" tabindex="-1">
-          <i data-ts="Icon" class="${item.icon}"></i>
-          <span>${item.label}</span>
-        </a>
-      </li>
-    } else if(item.items) {
+    @id = 'item-' + item.$instanceid;
+    if(item.items) {
       <li @id class="submenu" data-ts="DoxSubMenu" data-ts.open="${item.open}">
-        <button onclick="#{item.open = !item.open}" tabindex="-1">
-          <i data-ts="Icon" class="${item.icon}"></i>
-          <span>${item.label}</span>
-        </button>
+        renderLink(item);
         <div class="ts-shadow"></div>
         <menu class="ts-menu">
           renderItems(item.items);
         </menu>
       </li>
+    } else if(item.path) {
+      <li @id data-ts="DoxItem">
+        renderLink(item);
+      </li>
     } else if(item.label){
-      <h3>
+      <h3 id="${itemid}">
         <div class="ts-shadow"></div>
         <span>${item.label}</span>
       </h3>
     }
+  }
+  
+  function renderLink(item) {
+    @href = '#' + item.path;
+    @id = 'link-' + item.$instanceid;
+    @class = item.selected ? 'ts-checked' : null;
+    <a @id @class @href tabindex="-1">
+      <i data-ts="Icon" class="${item.icon}"></i>
+      <span>${item.label}</span>
+    </a>
   }
   
 </script>

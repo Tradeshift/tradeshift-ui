@@ -78,7 +78,7 @@ gui.DOMCombos = (function using(
 	 * @param {Node} node
 	 */
 	var detachBefore = before(function(node) {
-		detach(node);
+		detach(node || this);
 	});
 
 	/**
@@ -258,7 +258,15 @@ gui.DOMCombos = (function using(
 		removeChild: function(base) {
 			return (
 				ifEnabled(
-					ifEmbedded(detachBefore(suspending(base)), // detachBefore suspended for flex hotfix!
+					ifEmbedded(detachBefore(suspending(base)),
+					otherwise(base)),
+				otherwise(base))
+			);
+		},
+		remove: function(base) {
+			return (
+				ifEnabled(
+					ifEmbedded(detachBefore(suspending(base)),
 					otherwise(base)),
 				otherwise(base))
 			);

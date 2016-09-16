@@ -4,4 +4,4 @@ Copy is an aspect of UI design that is often left by the wayside, or not given e
 
 
 ------------------------------------------------------------------------
-Continue reading about our UI Copy Guidelines on the [Principles](//ui.tradeshift.com/#design/copy/principles.html) page.
+Continue reading about our UI Copy Guidelines on the [Principles](//tradeshift.github.io/docs/#design/copy/principles.html) page.

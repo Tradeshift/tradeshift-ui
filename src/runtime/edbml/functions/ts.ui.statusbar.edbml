@@ -1,0 +1,5 @@
+<!DOCTYPE edbml>
+<script>
+	<?param name="statusbar" type="ts.ui.StatusBarModel"?>
+	<footer data-ts="StatusBar" data-ts.model="?{statusbar}"></header>
+</script>

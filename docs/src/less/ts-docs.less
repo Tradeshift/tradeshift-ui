@@ -20,15 +20,6 @@ article {
 	padding: (@ts-unit * 3);
 	max-width: @docs-width + (@ts-unit * 3 * 2);
 	padding-bottom: @ts-unit * 7;
-	/*
-	+ article {
-		border-top: 1px solid @ts-lite;
-		background-color: @ts-lite-lite;
-		figure .tabs {
-			background-color: @ts-lite;
-		}
-	}
-	*/
 }
 
 #markdown {
@@ -73,6 +64,10 @@ article {
 			padding: 0 @ts-unit 0 @ts-unit-double;
 		}
 	}
+}
+
+.dox-dropshadow {
+	 box-shadow: 2px 2px 4px rgba(0,0,0,0.5);
 }
 
 .doc-responsive {
@@ -487,5 +482,14 @@ article {
 html.design.ts-bg-lite {
 	.ts-main {
 		background-color: @ts-white;
+	}
+}
+
+/* Search style ..................................................*/
+
+#results {
+	li {
+		display: block;
+		padding-bottom: @ts-unit;
 	}
 }

@@ -12,6 +12,7 @@ gui.module('core-gui@tradeshift.com', {
 		['html', ts.ui.DocumentSpirit],
 
 		// OLD
+		/*
 		['[ts-main]', ts.ui.MainSpirit],
 		['[ts-main-content]', ts.ui.MainContentSpirit],
 		['[ts-iframe]', ts.ui.FrameSpirit],
@@ -28,6 +29,7 @@ gui.module('core-gui@tradeshift.com', {
 		['[ts-note]', ts.ui.NoteSpirit],
 		['[ts-spirit]', ts.ui.Spirit],
 		['[ts-icon]', ts.ui.IconSpirit],
+		*/
 		
 		// NEW
 		['[data-ts=Main]', ts.ui.MainSpirit],

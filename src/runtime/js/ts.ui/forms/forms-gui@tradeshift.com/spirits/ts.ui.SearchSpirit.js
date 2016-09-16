@@ -117,6 +117,19 @@ ts.ui.SearchSpirit = (function using(ButtonSpirit, CSSPlugin, Type, chained) {
 				this._model.idletime = value;
 			}
 		},
+		
+		/**
+		 * Placeholder (when expanded) and title (when collapsed).
+		 * @type {number}
+		 */
+		info: {
+			getter: function() {
+				return this._model.info;
+			},
+			setter: function(value) {
+				this._model.info = value;
+			}
+		},
 
 		/**
 		 * Open for implementation: Called when the user presses ENTER 

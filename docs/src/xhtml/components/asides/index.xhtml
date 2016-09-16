@@ -91,8 +91,8 @@
 						</script>
 					</figure>
 				</section>
-
-				<h3>Show the spinner</h3>
+				
+				<h3>Showing the spinner</h3>
 				<section>
 					<p>The <att>data-ts.busy</att> attribute can be set to show the spinner</p>
 					<figure data-ts="DoxMarkup">
@@ -121,6 +121,24 @@
 						</script>
 					</figure>
 				</section>
+				
+				<h3>Adding some tabs</h3>
+				<section>
+					<p>If an <val>Aside</val> contains more than one <val>Panel</val>,
+					we will automatically create a TabBar to switch between the panels like in <a data-ts="Button" onclick="ts.ui.get('#tabaside').open()">this example</a>.</p>
+					<figure data-ts="DoxMarkup">
+						<script>
+							<aside data-ts="Aside">
+								<div data-ts="Panel" data-ts.label="Tab 1">
+									<p>aside content.</p>
+								</div>
+								<div data-ts="Panel" data-ts.label="Tab 2">
+									<p>aside content.</p>
+								</div>
+							</aside>
+						</script>
+					</figure>
+				</section>
 
 				<h3>Tracking the state</h3>
 				<section>
@@ -128,7 +146,7 @@
 						<code class="attr-name">onopened</code>, 
 						<code class="attr-name">onclose</code> and 
 						<code class="attr-name">onclosed</code>. 
-						You can also do this with <a data-ts="Button" href="/#components/asides/js.html">event listeners</a> if you like.
+						You can also do this with <a data-ts="Button" href="/docs/#components/asides/js.html">event listeners</a> if you like.
 					</p>
 					<figure data-ts="DoxMarkup">
 						<script>
@@ -169,6 +187,15 @@
 				</p>
 				-->
 			</footer>
+		</aside>
+		
+		<aside data-ts="Aside" id="tabaside" data-ts.title="Tabbed Aside">
+			<div data-ts="Panel" data-ts.label="tab 1">
+				<p>Bacon ipsum dolor sit pölsesnack, jerky pork belly short loin sausage andouille kevin capicola ham hamburger doner. Shank prosciutto flank kevin ribeye short ribs swine ham pork porchetta spare ribs kielbasa beef ribs. Prosciutto pancetta shank boudin. Corned beef shoulder capicola, turducken prosciutto pork belly sirloin shankle brisket chuck leberkas tail beef. Sirloin meatloaf pastrami beef ribs. Ball tip pastrami landjaeger, brisket Tradeshift strip steak short loin pancetta meatball corned beef tenderloin beef ribs spare ribs. Tradeshift sausage strip steak ham, ribeye pork loin meatball turkey corned beef shoulder. Leberkas jerky sirloin boudin, turducken ham hock pastrami. Doner pig boudin sausage, ball tip leberkas ground round beef jowl kielbasa tongue shankle spare ribs tail shoulder. Fatback pork kielbasa ham, doner pig short loin short ribs pancetta. Pancetta jerky biltong short loin capicola beef. Pork belly strip steak venison brisket shoulder beef filet mignon shank tenderloin tri-tip ground round shankle cow.</p>
+			</div>
+			<div data-ts="Panel" data-ts.label="tab 2">
+				<p>Strip steak flank spare ribs leberkas jowl. Ball tip porchetta flank, sirloin ham hock t-bone salami spare ribs tenderloin capicola jerky kevin shoulder hamburger. Sausage landjaeger Tradeshift fatback, pancetta tenderloin andouille cupim ground round ball tip rump short loin turducken shankle kevin. Corned beef biltong venison ham hock hamburger, pork turducken. Ham short ribs pancetta fatback picanha hamburger, short loin corned beef shankle jowl frankfurter filet mignon doner. Pork chop venison ball tip landjaeger, strip steak doner kevin ribeye pork loin t-bone porchetta sirloin jerky frankfurter tail. Pancetta shank alcatra sirloin swine cow short ribs pork jerky venison flank corned beef prosciutto pig leberkas. Sirloin strip steak meatball, andouille turkey biltong shank beef ribs. Ham turkey spare ribs ground round pig prosciutto. Rump ham hock salami, Tradeshift pölsesnack burger.</p>
+			</div>
 		</aside>
 
 		<aside data-ts="Aside" id="one" data-ts.open="false" data-ts.title="Aside One" class="ts-bg-red">

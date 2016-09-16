@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en-us" class="ts-docs">
+
+<head>
+    <title>CompanyCard extras</title>
+    <meta name="viewport" content="width=device-width">
+    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-6.1.0-alpha.0.min.js"></script>
+    <script src="/docs/dist/assets/dox.min.js"></script>
+    <script src="/docs/dist/assets/jquery-2.2.4.min.js"></script>
+    <link rel="stylesheet" href="/docs/dist/assets/dox.css">
+    <script src="tabs.js"></script>
+</head>
+
+<body>
+    <header data-ts="TopBar"></header>
+    <main data-ts="Main">
+        <div data-ts="MainContent">
+            <article>
+                <h1>CompanyCard extras</h1>
+                <section class="desc">
+                    <p>These are considered experimental features.</p>
+                </section>
+                <section>
+                    <p>You can feed data to your cards without poking around in the DOM. In your HTML, you must declare your cards with a <code class="attr-pair"><span>data-ts.id</span></code> attribute assigned.</p>
+                    <figure data-ts="DoxMarkup" data-ts.code="%3Cdiv%20data-ts%3D%22CompanyCard%22%20data-ts.id%3D%22fb3f9811-3b0d-47c8-9926-bd1a01c9630c%22%3E%3C%2Fdiv%3E%0A%3Cdiv%20data-ts%3D%22CompanyCard%22%20data-ts.id%3D%220eb79199-63a9-4f5f-a95e-79dbdaf25ae8%22%3E%3C%2Fdiv%3E%0A%3Cdiv%20data-ts%3D%22CompanyCard%22%20data-ts.id%3D%2253566229-7ec0-40b9-bce4-12d61bcbfe41%22%3E%3C%2Fdiv%3E%0A%3Cdiv%20data-ts%3D%22CompanyCard%22%20data-ts.id%3D%226bf17754-f9de-4e31-aa31-bd3ff765b9c2%22%3E%3C%2Fdiv%3E">
+                        <input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
+                        <div class="tabpanels">
+                            <pre class="prism language-markup">
+<code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>CompanyCard<span class="token punctuation">&quot;</span></span> <span class="token attr-name">data-ts</span>.<span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>fb3f9811-3b0d-47c8-9926-bd1a01c9630c<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>CompanyCard<span class="token punctuation">&quot;</span></span> <span class="token attr-name">data-ts</span>.<span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>0eb79199-63a9-4f5f-a95e-79dbdaf25ae8<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>CompanyCard<span class="token punctuation">&quot;</span></span> <span class="token attr-name">data-ts</span>.<span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>53566229-7ec0-40b9-bce4-12d61bcbfe41<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>CompanyCard<span class="token punctuation">&quot;</span></span> <span class="token attr-name">data-ts</span>.<span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>6bf17754-f9de-4e31-aa31-bd3ff765b9c2<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span></code>
+</pre>
+                        </div>
+                    </figure>
+                    <p>You can now (or even before) import the JSON from a <a target="_blank" href="assets/cards.json">demo file</a> and instruct the cards to render.</p>
+                    <figure data-ts="DoxScript" data-ts.code="%24.getJSON(&apos;assets%2Fcards.json&apos;%2C%20function(json)%20%7B%0A%09ts.ui.CompanyCard.render(json)%3B%0A%7D)%3B">
+                        <input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
+                        <div class="tabpanels">
+                            <pre class="prism language-javascript">
+<code>$<span class="token punctuation">.</span><span class="token function">getJSON<span class="token punctuation">(</span></span><span class="token string">&apos;assets/cards.json&apos;</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span>json<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>CompanyCard<span class="token punctuation">.</span><span class="token function">render<span class="token punctuation">(</span></span>json<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
+</pre>
+                        </div>
+                    </figure>
+                    <h3><span>The details view</span></h3>
+                    <p>The card should eventually be able to render its own details view so that it looks the same outside of V4. There&apos;s a lot of infrastructure that needs to happen first, not least with translations in the Runtime, but it could look
+                        like this.</p>
+                    <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.get(&apos;%23mycard&apos;).open()%3B">
+                        <script type="runnable">
+                            ts.ui.get('#mycard').open();
+                        </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                        <div class="tabpanels">
+                            <pre class="prism language-javascript">
+<code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#mycard&apos;</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">open<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
+</pre>
+                        </div>
+                    </figure>
+                    <div style="display:none;">
+                        <div id="mycard" data-ts="CompanyCard" data-ts.render="%7B%22id%22%3A%226bf17754-f9de-4e31-aa31-bd3ff765b9c2%22%2C%22data%22%3A%7B%22name%22%3A%22Tradeshift%22%2C%22logo%22%3A%22assets%2Flogo.png%22%2C%22size%22%3A%22100%E2%80%93249%22%2C%22location%22%3A%22San%20Francisco%2C%20California%22%2C%22industry%22%3A%22Software%20%26%20IT%22%2C%22connection%22%3A2%7D%7D"></div>
+                    </div>
+                </section>
+            </article>
+        </div>
+    </main>
+</body>
+
+</html>

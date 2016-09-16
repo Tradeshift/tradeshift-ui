@@ -140,6 +140,7 @@
 	position: relative;
 	white-space: nowrap;
 	margin: 0;
+	padding: 0;
 	z-index: 2;
 	float: left;
 	font-size: 0;
@@ -147,14 +148,19 @@
 	> * {
 		font-size: @ts-fontsize;
 	}
+	button.ts-button {
+		display: inline;
+		background-color: lime !important;
+	}
+	.ts-tab {
+		padding: 0;
+	}
 	.ts-button {
 		.ts-mixin-menuitem();
 		padding: @ts-unit;
-		//color: @ts-lite-darker;
 		position: relative;
 		margin: 0;
-		//background-color: @ts-dark-liter;
-		//border-right: 1px solid @ts-dark-lite;
+		border-right: 1px solid transparent;
 		em {
 			background-color: @ts-medium-litest;
 			color: @ts-black;
@@ -202,9 +208,7 @@
 		}
 		&.ts-selected {
 			.ts-button {
-				//background-color: @ts-dustblue;
 				cursor: default;
-				//color: @ts-white;
 				em {
 					background-color: @ts-red;
 					color: @ts-white;
@@ -249,12 +253,62 @@
 	}
 }
 
+
+// Tabs buttons (add new, show more ) ..........................................
+
+.ts-toolbar-tabs {
+	li {
+		&.ts-tab-button {
+			overflow: hidden;
+			padding: 0 !important;
+			.ts-button {
+				padding: @ts-unit-quarter !important;
+				border-right: none !important;
+				&:hover {
+					&:after {
+						border-color: transparent;
+					}
+				}
+				.ts-tab-label {
+					max-width: 0;
+				}
+				i {
+					border-radius: 100%;
+					display: inline-block !important;
+					line-height: @ts-unit-plus;
+					.ts-mixin-fix(@ts-unit-plus, @ts-unit-plus);
+					.ts-mixin-transition(border-color, @ts-transition-now);
+					&.ts-icon-other {
+						border-top: 1px solid transparent; // align with buttons
+					}
+				}
+			}
+		}
+	}
+}
+.ts-macro {
+	.ts-toolbar-tabs {
+		li {
+			&.ts-tab-button {
+				.ts-button i {
+					top: @ts-unit-half;
+					&.ts-icon-add {
+						font-size: 18px;
+					}
+				}
+			}
+		}
+	}
+}
+
+
+
 .ts-toolbar {
 	&.ts-bg-dark .ts-toolbar-tabs {
 		.ts-button {
 			color: @ts-lite;
 			background-color: @ts-dark-liter;
-			border-right: 1px solid @ts-dark-lite;
+			border-right-color: @ts-dark-lite;
 		}
 		.ts-selected .ts-button {
 			background-color: @ts-dustblue;
@@ -343,15 +397,19 @@
 
 .ts-toolbar.ts-micro {
 	.ts-mixin-fixheight(@ts-unit-double);
-	.ts-toolbar-title {
-		label {
-			padding: 0;
-			font-size: @ts-fontsize;
-		}
-	}
 	.ts-left {
 		.ts-toolbar-item {
 			padding: @ts-unit-quarter;
+			&.ts-toolbar-title {
+				&:first-child {
+					padding-left: @ts-unit - @ts-unit-quarter;
+				}
+				label {
+					padding-top: @ts-unit-quarter;
+					padding-bottom: @ts-unit-quarter;
+					font-size: @ts-fontsize;
+				}
+			}
 		}
 	}
 	.ts-toolbar-tabs,
@@ -427,6 +485,12 @@
 		top: 100%;
 		background: linear-gradient(0deg, rgba(0,0,0,0), rgba(0,0,0,0.35));
 	}
+	&.ts-micro + .ts-toolbar-first {
+		top: @ts-unit * 2;
+	}
+	&.ts-macro + .ts-toolbar-first {
+		top: @ts-unit * 3;
+	}
 }
 .ts-toolbar-last {
 	top: auto;
@@ -441,6 +505,12 @@
 .ts-has-topbar {
 	.ts-toolbar-first {
 		top: @ts-unit-triple;
+		&.ts-micro + .ts-toolbar-first {
+			top: @ts-unit-triple + @ts-unit * 2;
+		}
+		&.ts-macro + .ts-toolbar-first {
+			top: @ts-unit-triple + @ts-unit * 3;
+		}
 	}
 	.ts-toolbar-last {
 		top: auto;

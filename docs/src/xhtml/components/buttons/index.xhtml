@@ -5,9 +5,9 @@
 		<script src="tabs.js"></script>
 		<script>
 			function spin(selector) {
-				$(selector).attr("ts.busy", true);
+				$(selector).attr("data-ts.busy", true);
 				setTimeout(function() {
-					$(selector).attr("ts.busy", false);
+					$(selector).attr("data-ts.busy", false);
 				}, 3000);
 			}
 		</script>
@@ -47,7 +47,7 @@
 					</figure>
 
 					<h3>Button icons</h3>
-					<p>Icons go into a separate <code class="el">i</code> element. You can see a <a data-ts="Button" href="/#components/icons/css.html">list of all icons</a>.</p>
+					<p>Icons go into a separate <code class="el">i</code> element. You can see a <a data-ts="Button" href="/docs/#components/icons/css.html">list of all icons</a>.</p>
 					<figure data-ts="DoxMarkup">
 						<output/>
 						<script>
@@ -82,10 +82,12 @@
 							</button>
 						</script>
 					</figure>
-					<button data-ts="Button" class="ts-primary" id="mybutton" onclick="spin('#mybutton')">
-						<span>show spinner</span>
-					</button>
-				
+					<p>
+						<button data-ts="Button" class="ts-primary" id="mybutton" onclick="spin('#mybutton')">
+							<span>show spinner</span>
+						</button>
+					</p>
+					
 					<h3>Micro Button</h3>
 					<p>You can add class <code class="attr-name">ts-micro</code> to get a micro button.</p>
 					<figure data-ts="DoxMarkup">
@@ -104,7 +106,7 @@
 					</figure>
 				</section>
 				<section>
-					<p>You can <a data-ts="Button" href="/#components/buttons/buttons.html">group buttons in menus</a> to unlock advanced layout options.</p>
+					<p>You can <a data-ts="Button" href="/docs/#components/buttons/buttons.html">group buttons in menus</a> to unlock advanced layout options.</p>
 				</section>
 			</article>
 		</main>

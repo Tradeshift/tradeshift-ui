@@ -7,7 +7,8 @@
 	var spirit = this;
 	var id = toolbar.$instanceid;
 	var mobilos = layout.isMobilePoint();
-	var topbar = ts.ui.TopBarSpirit.is(spirit);
+	var topbar =  ts.ui.TopBarModel.is(toolbar);
+	var statusbar = ts.ui.StatusBarModel.is(toolbar);
 	var mytitle = toolbar.title || (topbar ? toolbar.defaultTitle : '');
 	var hasrealtitle = !!toolbar.title;
 	
@@ -17,43 +18,43 @@
 	renderSpinner(topbar && mobilos);
 		
 	function renderLeft(id, title, search, tabs, navigation) {
-		var hasnavigation = navigation && navigation.getLength();
-		if(mobilos || search || tabs.getLength() || hasnavigation || (topbar ? hasrealtitle : title)) {
-			if(tabs.getLength() && mobilos) {
+		var hasnavi = !!(topbar && navigation && navigation.getLength());
+		var hastabs = !!tabs.getLength();
+		if(mobilos || search || hastabs || hasnavi || (topbar ? hasrealtitle : title)) {
+			if(mobilos && hastabs) {
 				renderTabs(spirit, tabs, id, mobilos);
 			}
 			<menu id="${id}-items" class="ts-toolbar-menu ts-left">
-				if(tabs.getLength() && !mobilos) {
+				if(topbar) {
+					renderNav(navigation);
+				}
+				if(!mobilos && hastabs && !hasnavi) {
 					renderTabs(spirit, tabs, id, mobilos);
-				} else {
-					if(topbar) {
-						renderNav(navigation);
-					} else if(search) {
-						@class = klass('ts-toolbar-search', search);
-						<li id="${id}-search" @class>
-							out.html += search.render();
-						</li>
-					}
-					if(title && !using(search)) {
-						@class = klass('ts-toolbar-title');
-						<li id="${id}-title" @class>
-							if(toolbar.statusbar) {
-								<label>
-									var whitelist = ['strong', 'em', 'strike', 'code'];
-									out.html += ts.ui.Markdown.parse(title, whitelist);
-								</label>
-							} else {
-								<label>${title}</label>
-							}
-						</li>
-					}
+				} else if(search) {
+					@class = klass('ts-toolbar-search', search);
+					<li id="${id}-search" @class>
+						out.html += search.render();
+					</li>
+				} else if(title && !using(search)) {
+					@class = klass('ts-toolbar-title');
+					<li id="${id}-title" @class>
+						if(statusbar) {
+							<label>
+								var whitelist = ['strong', 'em', 'strike', 'code'];
+								if(toolbar.linkable) whitelist.push('a');
+								out.html += ts.ui.Markdown.parse(title, whitelist);
+							</label>
+						} else {
+							<label>${title}</label>
+						}
+					</li>
 				}
 			</menu>
 		}
 	}
 
 	function renderCenter(id, pager) {
-		if(pager && pager.pages) {
+		if(showPager()) {
 			<menu id="${id}-extras" class="ts-toolbar-menu ts-center">
 				@class = klass('ts-toolbar-pager', pager);
 				<li id="${id}-pager" @class>
@@ -61,6 +62,11 @@
 				</li>
 			</menu>
 		}
+	}
+	
+	function showPager() {
+		var pager = toolbar.pager;
+		return !!(statusbar && pager && pager.pages);
 	}
 
 	function renderRight(id, buttons) {
@@ -84,6 +90,9 @@
 
 	// non-mobile buttons (tertiary buttons are the "normals" here)
 	function renderbuttons(specials, normals) {
+		if(showPager()) {
+			collapsebuttons(specials, normals);
+		}
 		if(normals.length === 1) {
 			specials = normals.concat(specials);
 		} else if(shouldrenderaside(normals)) {
@@ -92,6 +101,13 @@
 			});
 		}
 		specials.forEach(renderbutton);
+	}
+
+	// (this should really be done in the model and not the view)
+	function collapsebuttons(specials, normals) {
+		while(specials.length) {
+			normals.push(specials.shift());
+		}
 	}
 
 	// we have buttons to put into the aside and they're not all disabled?

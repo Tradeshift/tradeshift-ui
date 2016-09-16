@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Main</title>
+    <script src="tabs.js"></script>
+		<script>
+			function buttonsInTabBar() {
+				ts.ui.Main.tabbar().buttons([
+					{label: 'Button One', type: 'ts-primary'},
+					{label: 'Button Two', type: 'ts-secondary'},
+					{label: 'Button Three'}
+				]);
+			}
+			function tabsInToolBar() {
+				ts.ui.Main.toolbar().tabs([
+					{label: 'Tab One'},
+					{label: 'Tab Two'},
+					{label: 'Tab Three'}
+				]);
+			}
+		</script>
+	</head>
+	<body>
+		<header data-ts="TopBar"></header>
+		<main data-ts="Main">
+			<article>
+				<h1>Main</h1>
+				<section class="desc">
+					<p>The <code>ts.ui.Main</code> interface provides an easy way to create and configure tabbed navigation and toolbars for the Main section. These components will stay fixed on the screen whenever the page is scrolling.</p>
+				</section>
+				<h3 id="tabbar">Main.tabbar</h3>
+        <section>
+          <p>We create the TabBar with the <code>tabbar()</code> method. See the full <a data-ts="Button" href="/docs/#components/tabbar/">TabBar documentation</a>.</p>
+          <figure data-ts="DoxScript">
+            <script type="runnable">
+							var tabbar = ts.ui.Main.tabbar();
+							tabbar.tabs([
+								{label: 'Tab One'},
+								{label: 'Tab Two'},
+								{label: 'Tab Three', onselect: function() {
+									console.log('Selected');
+								}}
+							]);
+            </script>
+          </figure>
+          <p>Importantly note that the tabs won't do anything by default when you select them, so you will have to setup a panel switching mechanism using the <code>onselect</code> callback. But it is possible to automate this step using fully <a data-ts="Button" href="/docs/#components/main/html.html">declarative HTML</a>, so please check that out.</p>
+					<p>If the <code>tabbar()</code> method fails, you may have called it before the components are ready. You can defer the initialization by passing a callback function.</p>
+					<figure data-ts="DoxScript">
+            <script>
+							ts.ui.Main.tabbar(function(tabbar) {
+								tabbar.tabs().push({label: 'Ready Now'});
+							});
+            </script>
+          </figure>
+        </section>
+				<h3 id="toolbar">Main.toolbar</h3>
+				<section>
+					<p>We create the ToolBar with the <code>toolbar()</code> method. See the <a data-ts="Button" href="/docs/#components/toolbars/js.html">ToolBar documentation</a>.</p>
+					<figure data-ts="DoxScript">
+						<script type="runnable">
+							var toolbar = ts.ui.Main.toolbar();
+							toolbar.buttons([
+								{label: 'Button One', type: 'ts-primary'},
+								{label: 'Button Two', type: 'ts-secondary'},
+								{label: 'Button Three', onclick: function() {
+									console.log('Clicked');
+								}}
+							]);
+						</script>
+					</figure>
+					<p>You can add <a onclick="buttonsInTabBar()">buttons to the TabBar</a> and <a onclick="tabsInToolBar()">tabs to the ToolBar</a>, so there is rarely any reason to show them both at the same time. If you do need both, you can call <a onclick="ts.ui.Main.toolbar().micro()">micro()</a> to at least make the ToolBar somewhat smaller.</p>
+					<p>If the <code>toolbar()</code> method fails, you may have called it before the components are ready. You can defer the initialization by passing a callback function.</p>
+					<figure data-ts="DoxScript">
+            <script>
+							ts.ui.Main.toolbar(function(toolbar) {
+								toolbar.buttons().push({label: 'Ready Now'});
+							});
+            </script>
+          </figure>
+				</section>
+				<h3 id="statusbar">Main.statusbar</h3>
+				<section>
+					<p>We create the StatusBar with <code>statusbar()</code>. See the full <a data-ts="Button" href="/docs/#components/statusbar/">StatusBar documentation</a>.</p>
+					<figure data-ts="DoxScript">
+						<script type="runnable">
+							var statusbar = ts.ui.Main.statusbar();
+							statusbar.buttons([
+								{label: 'Primary Action', type: 'ts-primary'}
+							]);
+						</script>
+					</figure>
+					<p>If the <code>statusbar()</code> method fails, you may have called it before the components are ready. You can defer the initialization by passing a callback function.</p>
+					<figure data-ts="DoxScript">
+            <script>
+							ts.ui.Main.statusbar(function(statusbar) {
+								statusbar.buttons().push({label: 'Ready Now'});
+							});
+            </script>
+          </figure>
+				</section>
+        <section>
+					<p>Here's an overview of the Main methods.</p>
+          <div data-ts="DoxApi">
+						<script type="application/json">
+							{
+								name: "ts.ui.Main",
+								methods: [
+									{
+										name: "tabbar",
+										args: ["(function)"],
+										desc: "Get the Main (TabBar)[/docs/#components/tabbar/]."
+									},
+                  {
+										name: "toolbar",
+										args: ["(function)"],
+										desc: "Get the Main (ToolBar)[/docs/#components/toolbar/]."
+									},
+									,
+                  {
+										name: "statusbar",
+										args: ["(function)"],
+										desc: "Get the Main (StatusBar)[/docs/#components/statusbar/]."
+									}
+								]
+							}
+						</script>
+        </section>
+			</article>
+		</main>
+	</body>
+</html>

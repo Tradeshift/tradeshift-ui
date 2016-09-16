@@ -9,6 +9,7 @@
 	"api/ts.ui.DatePicker.js",
 	"api/ts.ui.Notification.js",
 	"api/ts.ui.Note.js",
+	"api/ts.ui.Main.js",
 
 	"models/ts.ui.Model.js",
 	"models/ts.ui.Collection.js",

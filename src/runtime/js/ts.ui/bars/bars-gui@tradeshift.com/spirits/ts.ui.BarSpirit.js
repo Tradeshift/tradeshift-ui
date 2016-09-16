@@ -26,6 +26,14 @@ ts.ui.BarSpirit = (function(TopBar, chained, UNIT_DOUBLE, UNIT_TRIPLE) {
 			}
 		},
 		
+		hide: function() {
+			alert('TODO!');
+		},
+		
+		show: function() {
+			alert('TODO!');
+		},
+		
 		
 		// Privileged ..............................................................
 			

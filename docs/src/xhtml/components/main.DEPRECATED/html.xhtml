@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>TabBar HTML</title>
+		<script src="tabs.js"></script>
+		<style>
+			.sticky {
+				display: none !important;
+			}
+		</style>
+	</head>
+	<body>
+		<header data-ts="TopBar"></header>
+		<main data-ts="Main">
+			<div data-ts="Panel" data-ts.label="Panel One">
+				<article>
+					<h1>Panel One</h1>
+					<section>
+						<p>If <val>MainContent</val> contains more than one <val>Panel</val>, we will automatically create a TabBar to switch between the panels. The markup for this page looks something like this:</p>
+						<figure data-ts="DoxMarkup">
+							<script>
+								<main data-ts="Main">
+									<div data-ts="MainContent">
+										<div data-ts="Panel" data-ts.label="Panel One">...</div>
+										<div data-ts="Panel" data-ts.label="Panel Two">...</div>
+										<div data-ts="Panel" data-ts.label="Panel Three">...</div>
+									</div>
+								</main>
+							</script>
+						</figure>
+						<p>We can always add tabs later by appending a new <val>Panel</val> to <val>MainContent</val>.</p>
+						<figure data-ts="DoxScript">
+							<script type="runnable">
+								var panel = $('<div data-ts="Panel" data-ts.label="Bonus panel"></div>');
+								panel.append($('<article><h1>Bonus Panel</h1></article>'));
+								$('.ts-maincontent').append(panel);
+							</script>
+						</figure>
+						
+						<!-- TEST that panels can also be removed ...
+						<figure data-ts="DoxScript">
+							<script type="runnable">
+								$('.ts-panel')[3].remove();
+							</script>
+						</figure>
+						-->
+						
+						<p>The generated tabs can be accessed via <code>ts.ui.Main.tabbar()</code>. We can for example change the tab labels or assign a callback to fire whenever the tab gets selected.</p>
+						
+						<figure data-ts="DoxScript">
+							<script type="runnable">
+								var tabbar = ts.ui.Main.tabbar();
+								tabbar.tabs().forEach(function(tab, index) {
+									tab.label = (index + 1) + '. ' + tab.label;
+									tab.onselect = function() {
+										console.log(this.label + ' selected');
+									}
+								})
+							</script>
+						</figure>
+						
+						<p>We can at any time select a tab (and show it's <val>Panel</val>) by calling <code>tab.select()</code></p>
+						
+						<div data-ts="Note">
+							<i class="ts-icon-info"></i>
+							<p>We can also use this interface to <strong>add new tabs</strong>, note however that this will not generate the associated <val>Panel</val>, so sometimes this feature is not so useful.</p>
+						</div>
+					</section>
+				</aticle>
+			</div>
+			<div data-ts="Panel" data-ts.label="Panel Two">
+				<article>
+					<h1>Panel Two</h1>
+				</acticle>
+			</div>
+			<div data-ts="Panel" data-ts.label="Panel Three">
+				<article>
+					<h1>Panel Three</h1>
+				</article>
+			</div>
+		</main>
+	</body>
+</html>

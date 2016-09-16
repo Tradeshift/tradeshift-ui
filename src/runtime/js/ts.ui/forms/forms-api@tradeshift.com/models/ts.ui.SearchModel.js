@@ -15,12 +15,13 @@ ts.ui.SearchModel = ts.ui.InputModel.extend({
 	 * @type {string}
 	 */
 	type: 'search',
-
+	
 	/**
 	 * Placeholder and title (tooltip) string.
+	 * TODO: Rename this to info (to conform with ButtonModel)
 	 * @type {string}
 	 */
-	tip: null,
+	info: null,
 
 	/**
 	 * Render as "inset" (via classname `ts-inset`)?
@@ -35,6 +36,39 @@ ts.ui.SearchModel = ts.ui.InputModel.extend({
 	 * @param {string} value
 	 */
 	onsearch: null,
+	
+	/**
+	 * Stretch to fill the space? Support 
+	 * for this depends on the use case.
+	 * @type {number} (treated as truthy for now)
+	 */
+	flex: 0,
+	
+	/**
+	 * @deprecated
+	 * @type {string}
+	 */
+	tip: {
+		getter: function() {
+			return this.info;
+		},
+		setter: function(value) {
+			this.info = value;
+		}
+	},
+	
+	/**
+	 * TODO: Completely wipe this this property after some releases.
+	 */
+	onconstruct: function() {
+		this.super.onconstruct();
+		if(this.tip) {
+			this.info = this.tip;
+			console.warn(
+				'SearchModel.tip: Deprecated API is deprecated. Please use `info`'
+			);
+		}
+	},
 
 	/**
 	 * Clear value and invoke appropriate callback.

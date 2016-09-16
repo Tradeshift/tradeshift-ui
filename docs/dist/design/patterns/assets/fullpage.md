@@ -11,4 +11,4 @@ Under normal conditions any app should rarely have the need to take over the ful
 
 
 ------------------------------------------------------------------------
-Continue reading our Design Patterns on the [Emails](//tradeshift.github.io/docs/#design/patterns/emails.html) page.
+Continue reading our Design Patterns on the [Emails](//tradeshift.github.io/#design/patterns/emails.html) page.

@@ -5,9 +5,9 @@
     <title>Bars</title>
     <meta name="viewport" content="width=device-width">
     <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-6.1.0-alpha.0.min.js"></script>
-    <script src="/docs/dist/assets/dox.min.js"></script>
-    <script src="/docs/dist/assets/jquery-2.2.4.min.js"></script>
-    <link rel="stylesheet" href="/docs/dist/assets/dox.css">
+    <script src="/dist/assets/dox.min.js"></script>
+    <script src="/dist/assets/jquery-2.2.4.min.js"></script>
+    <link rel="stylesheet" href="/dist/assets/dox.css">
     <script src="tabs.js"></script>
     <link rel="stylesheet" href="index.css">
     <script>
@@ -50,7 +50,7 @@
                     </figure>
                 </section>
                 <section>
-                    <h3><span><a data-ts="Button" href="/docs/#components/bars/topbar.html">ts.ui.TopBar</a></span></h3>
+                    <h3><span><a data-ts="Button" href="/#components/bars/topbar.html">ts.ui.TopBar</a></span></h3>
                     <p>Hello world.</p>
                     <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.TopBar.buttons(%5B%0A%09%7Blabel%3A%20&apos;Button&apos;%2C%20type%3A%20&apos;ts-primary&apos;%7D%2C%0A%09%7Blabel%3A%20&apos;Button&apos;%2C%20type%3A%20&apos;ts-secondary&apos;%7D%2C%0A%09%7Blabel%3A%20&apos;Button&apos;%2C%20onclick%3A%20function()%20%7B%0A%09%09console.log(&apos;Clicked&apos;)%3B%0A%09%7D%7D%0A%5D)%3B">
                         <script type="runnable">
@@ -80,7 +80,7 @@
             </script>
           </figure>
 				-->
-                    <h3><span><a data-ts="Button" href="/docs/#components/bars/tabbar.html">ts.ui.TabBar</a></span></h3>
+                    <h3><span><a data-ts="Button" href="/#components/bars/tabbar.html">ts.ui.TabBar</a></span></h3>
                     <p>Hello world.</p>
                     <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.TabBar.tabs(%5B%0A%09%7Blabel%3A%20&apos;Tab%20One&apos;%7D%2C%0A%09%7Blabel%3A%20&apos;Tab%20Two&apos;%7D%2C%0A%09%7Blabel%3A%20&apos;Tab%20Three&apos;%2C%20onselect%3A%20function()%20%7B%0A%09%09console.log(&apos;Selected&apos;)%3B%0A%09%7D%7D%0A%5D)%3B">
                         <script type="runnable">
@@ -110,7 +110,7 @@
             </script>
           </figure>
 				-->
-                    <h3><span><a data-ts="Button" href="/docs/#components/bars/toolbar.html">ts.ui.ToolBar</a></span></h3>
+                    <h3><span><a data-ts="Button" href="/#components/bars/toolbar.html">ts.ui.ToolBar</a></span></h3>
                     <p>Hello world.</p>
                     <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.ToolBar.buttons(%5B%0A%09%7Blabel%3A%20&apos;Button&apos;%2C%20type%3A%20&apos;ts-primary&apos;%7D%2C%0A%09%7Blabel%3A%20&apos;Button&apos;%2C%20type%3A%20&apos;ts-secondary&apos;%7D%2C%0A%09%7Blabel%3A%20&apos;Button&apos;%2C%20onclick%3A%20function()%20%7B%0A%09%09console.log(&apos;Clicked&apos;)%3B%0A%09%7D%7D%0A%5D).search(%7B%0A%09onsearch%3A%20function(value)%20%7B%0A%09%09console.log(value)%3B%0A%09%7D%0A%7D)%3B%3B">
                         <script type="runnable">
@@ -144,7 +144,7 @@
             </script>
           </figure>
 					-->
-                    <h3><span><a data-ts="Button" href="/docs/#components/bars/statusbar.html">ts.ui.StatusBar</a></span></h3>
+                    <h3><span><a data-ts="Button" href="/#components/bars/statusbar.html">ts.ui.StatusBar</a></span></h3>
                     <p>Although the StatusBar can display status messages, it&apos;s perfectly alright to use it just to show some buttons. In that case, the difference from the Main ToolBar is simply that it positioned below the Main area.</p>
                     <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.StatusBar.buttons(%5B%0A%09%7Blabel%3A%20&apos;Button&apos;%2C%20type%3A%20&apos;ts-primary&apos;%7D%2C%0A%09%7Blabel%3A%20&apos;Button&apos;%2C%20type%3A%20&apos;ts-secondary&apos;%7D%2C%0A%09%7Blabel%3A%20&apos;Button&apos;%2C%20onclick%3A%20function()%20%7B%0A%09%09console.log(&apos;Clicked&apos;)%3B%0A%09%7D%7D%0A%5D).message(&apos;Hello%20World&apos;)%3B">
                         <script type="runnable">
@@ -186,23 +186,23 @@
 									{
 										name: "topbar",
 										args: ["(function)"],
-										desc: "Get the (TopBar)[/docs/#components/bars/topbar.html]."
+										desc: "Get the (TopBar)[/#components/bars/topbar.html]."
 									},
 									{
 										name: "tabbar",
 										args: ["(function)"],
-										desc: "Get the Main (TabBar)[/docs/#components/bars/tabbar.html]."
+										desc: "Get the Main (TabBar)[/#components/bars/tabbar.html]."
 									},
                   {
 										name: "toolbar",
 										args: ["(function)"],
-										desc: "Get the Main (ToolBar)[/docs/#components/bars/toolbar.html]."
+										desc: "Get the Main (ToolBar)[/#components/bars/toolbar.html]."
 									},
 									,
                   {
 										name: "statusbar",
 										args: ["(function)"],
-										desc: "Get the Main (StatusBar)[/docs/#components/bars/status.html]."
+										desc: "Get the Main (StatusBar)[/#components/bars/status.html]."
 									}
 								]
 							}

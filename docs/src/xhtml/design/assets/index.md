@@ -12,4 +12,4 @@ We do this by:
 
 
 ------------------------------------------------------------------------
-Continue reading our Design Guidelines on the [Principles](//tradeshift.github.io/docs/#design/guidelines/principles.html) page.
+Continue reading our Design Guidelines on the [Principles](//tradeshift.github.io/#design/guidelines/principles.html) page.

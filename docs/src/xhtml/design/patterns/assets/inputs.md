@@ -22,11 +22,11 @@ Illustration depicting these elements (first element has focus):
 
 ### Option selectors
 
-Check documentation for [presenting option lists](http://tradeshift.github.io/docs/#design/patterns/pickers.html) to in Tradeshift’s interface.
+Check documentation for [presenting option lists](http://tradeshift.github.io/#design/patterns/pickers.html) to in Tradeshift’s interface.
 
 
 > ###### For Developers
-> Read more about [Components related to Forms & Inputs](//tradeshift.github.io/docs/#components/forms/).
+> Read more about [Components related to Forms & Inputs](//tradeshift.github.io/#components/forms/).
 
 ------------------------------------------------------------------------
-Continue reading our Design Patterns on the [Buttons](//tradeshift.github.io/docs/#design/patterns/buttons.html) page.
+Continue reading our Design Patterns on the [Buttons](//tradeshift.github.io/#design/patterns/buttons.html) page.

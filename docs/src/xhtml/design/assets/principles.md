@@ -100,4 +100,4 @@ No heuristics in the world can replace end-user testing. Get to know the truth a
 
 
 ------------------------------------------------------------------------
-Continue reading our Design Guidelines on the [UI Structure](//tradeshift.github.io/docs/#design/guidelines/structure.html) page.
+Continue reading our Design Guidelines on the [UI Structure](//tradeshift.github.io/#design/guidelines/structure.html) page.

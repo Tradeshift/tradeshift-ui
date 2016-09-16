@@ -21,7 +21,7 @@ ts.dox = gui.namespace('ts.dox', (function() {
 	function getmagicurl(foldername, filename) {
 		// redirect from ui.tradeshift.com adds an extra `/` in the foldername :(
 		foldername = foldername.replace(/\/+/g, '/');
-    foldername = foldername.split('/docs/dist/')[1];
+    foldername = foldername.split('/dist/')[1];
     return foldername + filename;
 	}
 

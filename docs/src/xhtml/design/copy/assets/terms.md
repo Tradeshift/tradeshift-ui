@@ -37,4 +37,4 @@ These rules will not miraculously help you write amazing copy if writing is just
 
 
 ------------------------------------------------------------------------
-Continue reading about our UI Copy Guidelines on the [Error Messages](//tradeshift.github.io/docs/#design/copy/errors.html) page.
+Continue reading about our UI Copy Guidelines on the [Error Messages](//tradeshift.github.io/#design/copy/errors.html) page.

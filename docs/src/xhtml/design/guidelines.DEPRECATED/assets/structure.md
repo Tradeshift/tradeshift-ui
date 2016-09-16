@@ -24,11 +24,11 @@ Due to the responsive nature of Tradeshift, you should pay careful attention to 
 
 #### Global menu
 
-The *global menu* is the primary way for the user to switch between the main functional areas. Core applications such as *document creation* and *user settings* provide a *[global menu item](http://tradeshift.github.io/docs/#design/patterns/nav.html)* for the user to access these applications directly. The *global menu* is present in all contexts and cannot be disabled. It will, however, expand and collapse based on available screen space.
+The *global menu* is the primary way for the user to switch between the main functional areas. Core applications such as *document creation* and *user settings* provide a *[global menu item](http://tradeshift.github.io/#design/patterns/nav.html)* for the user to access these applications directly. The *global menu* is present in all contexts and cannot be disabled. It will, however, expand and collapse based on available screen space.
 
 #### Contextual menu
 
-The *contextual menu* serves multiple purposes and takes on different appearances. In the examples above, the *contextual menu* contains actions, but other uses of the *contextual menu* – such as tabbed navigation – are possible. [See all different variations.](http://tradeshift.github.io/docs/#design/patterns/nav.html)
+The *contextual menu* serves multiple purposes and takes on different appearances. In the examples above, the *contextual menu* contains actions, but other uses of the *contextual menu* – such as tabbed navigation – are possible. [See all different variations.](http://tradeshift.github.io/#design/patterns/nav.html)
 
 #### Main content area
 
@@ -36,8 +36,8 @@ Here’s where most task solving takes place. Tradeshift applications are design
 
 
 > ###### For Developers
-> Read more about [Components related to Layout](//tradeshift.github.io/docs/#components/overview/layout.html).
+> Read more about [Components related to Layout](//tradeshift.github.io/#components/overview/layout.html).
 
 
 ------------------------------------------------------------------------
-Continue reading our Design Guidelines on the [Keyboard & Gestures](//tradeshift.github.io/docs/#design/guidelines/gestures.html) page.
+Continue reading our Design Guidelines on the [Keyboard & Gestures](//tradeshift.github.io/#design/guidelines/gestures.html) page.

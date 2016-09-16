@@ -10,7 +10,7 @@ var lunrindex,
  */
 //Initialize lunrjs
 function initlunr() {
-	$.getJSON('/docs/dist/lunr.json')
+	$.getJSON('/dist/lunr.json')
 	.done(function(index) {
 			pagesindex = index;
 			lunrindex = lunr(function() {
@@ -90,7 +90,7 @@ function renderResults(query, results) {
         var $result = $('<li>');
         $result.append($('<a>', {
             'data-ts': 'Button',
-            'href': '/docs/#' + result.href,
+            'href': '/#' + result.href,
             'text': result.title
         }));
         $result.append($('<p class="content">').html(getContent(query, result.content.split(' '))));

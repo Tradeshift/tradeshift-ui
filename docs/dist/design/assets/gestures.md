@@ -10,4 +10,4 @@
 
 
 ------------------------------------------------------------------------
-Continue reading our Design Guidelines on the [3rd Party Apps](//tradeshift.github.io/docs/#design/guidelines/3rdparty.html) page.
+Continue reading our Design Guidelines on the [3rd Party Apps](//tradeshift.github.io/#design/guidelines/3rdparty.html) page.

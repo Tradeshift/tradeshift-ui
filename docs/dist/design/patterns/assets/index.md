@@ -4,4 +4,4 @@ The design patterns are recurring solutions to challenges you’ll encounter whe
 
 
 ------------------------------------------------------------------------
-Continue reading our Design Patterns on the [Navigation Items](//tradeshift.github.io/docs/#design/patterns/nav.html) page.
+Continue reading our Design Patterns on the [Navigation Items](//tradeshift.github.io/#design/patterns/nav.html) page.

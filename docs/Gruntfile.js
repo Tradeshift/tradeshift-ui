@@ -29,18 +29,18 @@ module.exports = function(grunt) {
 		localtags: [
       '<meta name="viewport" content="width=device-width"/>',
 			'<script src="//127.0.0.1:10111/dist/ts.min.js"></script>',
-      '<script src="/docs/dist/assets/dox.min.js"></script>',
-      '<script src="/docs/dist/assets/jquery-2.2.4.min.js"></script>',
-      '<link rel="stylesheet" href="/docs/dist/assets/dox.css"/>'
+      '<script src="/dist/assets/dox.min.js"></script>',
+      '<script src="/dist/assets/jquery-2.2.4.min.js"></script>',
+      '<link rel="stylesheet" href="/dist/assets/dox.css"/>'
 		],
     
     // tags to include in HEAD when publishing to GitHub pages (TODO!)
     publictags: [
       '<meta name="viewport" content="width=device-width"/>',
       '<script src="<%=config.runtime_hosting%>/ts-<%=config.runtime_version%>.min.js"></script>',
-      '<script src="/docs/dist/assets/dox.min.js"></script>',
-      '<script src="/docs/dist/assets/jquery-2.2.4.min.js"></script>',
-      '<link rel="stylesheet" href="/docs/dist/assets/dox.css"/>'
+      '<script src="/dist/assets/dox.min.js"></script>',
+      '<script src="/dist/assets/jquery-2.2.4.min.js"></script>',
+      '<link rel="stylesheet" href="/dist/assets/dox.css"/>'
     ],
     
     // nuke previous build
@@ -55,7 +55,7 @@ module.exports = function(grunt) {
         options: {
           keepalive: true,
           port: 10114,
-          base: '../'
+          base: '../docs'
         }
       }
     },

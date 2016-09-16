@@ -5,9 +5,9 @@
     <title>Main</title>
     <meta name="viewport" content="width=device-width">
     <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-6.1.0-alpha.0.min.js"></script>
-    <script src="/docs/dist/assets/dox.min.js"></script>
-    <script src="/docs/dist/assets/jquery-2.2.4.min.js"></script>
-    <link rel="stylesheet" href="/docs/dist/assets/dox.css">
+    <script src="/dist/assets/dox.min.js"></script>
+    <script src="/dist/assets/jquery-2.2.4.min.js"></script>
+    <link rel="stylesheet" href="/dist/assets/dox.css">
     <script src="tabs.js"></script>
     <script>
         function buttonsInTabBar() {
@@ -45,7 +45,7 @@
                 </section>
                 <h3 id="tabbar"><span>Main.tabbar</span></h3>
                 <section>
-                    <p>We create the TabBar with the <code>tabbar()</code> method. See the full <a data-ts="Button" href="/docs/#components/tabbar/">TabBar documentation</a>.</p>
+                    <p>We create the TabBar with the <code>tabbar()</code> method. See the full <a data-ts="Button" href="/#components/tabbar/">TabBar documentation</a>.</p>
                     <figure data-ts="DoxScript" class="runnable" data-ts.code="var%20tabbar%20%3D%20ts.ui.Main.tabbar()%3B%0Atabbar.tabs(%5B%0A%09%7Blabel%3A%20&apos;Tab%20One&apos;%7D%2C%0A%09%7Blabel%3A%20&apos;Tab%20Two&apos;%7D%2C%0A%09%7Blabel%3A%20&apos;Tab%20Three&apos;%2C%20onselect%3A%20function()%20%7B%0A%09%09console.log(&apos;Selected&apos;)%3B%0A%09%7D%7D%0A%5D)%3B">
                         <script type="runnable">
                             var tabbar = ts.ui.Main.tabbar(); tabbar.tabs([ {label: 'Tab One'}, {label: 'Tab Two'}, {label: 'Tab Three', onselect: function() { console.log('Selected'); }} ]);
@@ -64,7 +64,7 @@ tabbar<span class="token punctuation">.</span><span class="token function">tabs<
                         </div>
                     </figure>
                     <p>Importantly note that the tabs won&apos;t do anything by default when you select them, so you will have to setup a panel switching mechanism using the <code>onselect</code> callback. But it is possible to automate this step using fully
-                        <a data-ts="Button" href="/docs/#components/main/html.html">declarative HTML</a>, so please check that out.</p>
+                        <a data-ts="Button" href="/#components/main/html.html">declarative HTML</a>, so please check that out.</p>
                     <p>If the <code>tabbar()</code> method fails, you may have called it before the components are ready. You can defer the initialization by passing a callback function.</p>
                     <figure data-ts="DoxScript" data-ts.code="ts.ui.Main.tabbar(function(tabbar)%20%7B%0A%09tabbar.tabs().push(%7Blabel%3A%20&apos;Ready%20Now&apos;%7D)%3B%0A%7D)%3B">
                         <input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
@@ -79,7 +79,7 @@ tabbar<span class="token punctuation">.</span><span class="token function">tabs<
                 </section>
                 <h3 id="toolbar"><span>Main.toolbar</span></h3>
                 <section>
-                    <p>We create the ToolBar with the <code>toolbar()</code> method. See the <a data-ts="Button" href="/docs/#components/toolbars/js.html">ToolBar documentation</a>.</p>
+                    <p>We create the ToolBar with the <code>toolbar()</code> method. See the <a data-ts="Button" href="/#components/toolbars/js.html">ToolBar documentation</a>.</p>
                     <figure data-ts="DoxScript" class="runnable" data-ts.code="var%20toolbar%20%3D%20ts.ui.Main.toolbar()%3B%0Atoolbar.buttons(%5B%0A%09%7Blabel%3A%20&apos;Button%20One&apos;%2C%20type%3A%20&apos;ts-primary&apos;%7D%2C%0A%09%7Blabel%3A%20&apos;Button%20Two&apos;%2C%20type%3A%20&apos;ts-secondary&apos;%7D%2C%0A%09%7Blabel%3A%20&apos;Button%20Three&apos;%2C%20onclick%3A%20function()%20%7B%0A%09%09console.log(&apos;Clicked&apos;)%3B%0A%09%7D%7D%0A%5D)%3B">
                         <script type="runnable">
                             var toolbar = ts.ui.Main.toolbar(); toolbar.buttons([ {label: 'Button One', type: 'ts-primary'}, {label: 'Button Two', type: 'ts-secondary'}, {label: 'Button Three', onclick: function() { console.log('Clicked'); }} ]);
@@ -112,7 +112,7 @@ toolbar<span class="token punctuation">.</span><span class="token function">butt
                 </section>
                 <h3 id="statusbar"><span>Main.statusbar</span></h3>
                 <section>
-                    <p>We create the StatusBar with <code>statusbar()</code>. See the full <a data-ts="Button" href="/docs/#components/statusbar/">StatusBar documentation</a>.</p>
+                    <p>We create the StatusBar with <code>statusbar()</code>. See the full <a data-ts="Button" href="/#components/statusbar/">StatusBar documentation</a>.</p>
                     <figure data-ts="DoxScript" class="runnable" data-ts.code="var%20statusbar%20%3D%20ts.ui.Main.statusbar()%3B%0Astatusbar.buttons(%5B%0A%09%7Blabel%3A%20&apos;Primary%20Action&apos;%2C%20type%3A%20&apos;ts-primary&apos;%7D%0A%5D)%3B">
                         <script type="runnable">
                             var statusbar = ts.ui.Main.statusbar(); statusbar.buttons([ {label: 'Primary Action', type: 'ts-primary'} ]);
@@ -140,7 +140,7 @@ statusbar<span class="token punctuation">.</span><span class="token function">bu
                 </section>
                 <section>
                     <p>Here&apos;s an overview of the Main methods.</p>
-                    <div data-ts="DoxApi" data-ts.code="%7B%0A%09name%3A%20%22ts.ui.Main%22%2C%0A%09methods%3A%20%5B%0A%09%09%7B%0A%09%09%09name%3A%20%22tabbar%22%2C%0A%09%09%09args%3A%20%5B%22(function)%22%5D%2C%0A%09%09%09desc%3A%20%22Get%20the%20Main%20(TabBar)%5B%2Fdocs%2F%23components%2Ftabbar%2F%5D.%22%0A%09%09%7D%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7B%0A%09%09%09name%3A%20%22toolbar%22%2C%0A%09%09%09args%3A%20%5B%22(function)%22%5D%2C%0A%09%09%09desc%3A%20%22Get%20the%20Main%20(ToolBar)%5B%2Fdocs%2F%23components%2Ftoolbar%2F%5D.%22%0A%09%09%7D%2C%0A%09%09%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7B%0A%09%09%09name%3A%20%22statusbar%22%2C%0A%09%09%09args%3A%20%5B%22(function)%22%5D%2C%0A%09%09%09desc%3A%20%22Get%20the%20Main%20(StatusBar)%5B%2Fdocs%2F%23components%2Fstatusbar%2F%5D.%22%0A%09%09%7D%0A%09%5D%0A%7D">
+                    <div data-ts="DoxApi" data-ts.code="%7B%0A%09name%3A%20%22ts.ui.Main%22%2C%0A%09methods%3A%20%5B%0A%09%09%7B%0A%09%09%09name%3A%20%22tabbar%22%2C%0A%09%09%09args%3A%20%5B%22(function)%22%5D%2C%0A%09%09%09desc%3A%20%22Get%20the%20Main%20(TabBar)%5B%2F%23components%2Ftabbar%2F%5D.%22%0A%09%09%7D%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7B%0A%09%09%09name%3A%20%22toolbar%22%2C%0A%09%09%09args%3A%20%5B%22(function)%22%5D%2C%0A%09%09%09desc%3A%20%22Get%20the%20Main%20(ToolBar)%5B%2F%23components%2Ftoolbar%2F%5D.%22%0A%09%09%7D%2C%0A%09%09%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7B%0A%09%09%09name%3A%20%22statusbar%22%2C%0A%09%09%09args%3A%20%5B%22(function)%22%5D%2C%0A%09%09%09desc%3A%20%22Get%20the%20Main%20(StatusBar)%5B%2F%23components%2Fstatusbar%2F%5D.%22%0A%09%09%7D%0A%09%5D%0A%7D">
                     </div>
                 </section>
             </article>

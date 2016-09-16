@@ -7,7 +7,7 @@ Buttons are some of the most important elements in the UI, and the same is true 
 It is essential that the user can recognize buttons as such. This is in large part made true through visual design – there’s a very limited and well defined set of possibilities for how buttons should look. However, this can also be strengthened by button copy being consistent in terms of how it relates to its context. We achieve this through the following rules:
 
 1. The button that begins the flow must work together with the one that ends it to make the flow a self-contained unit. All actions on Tradeshift that result in flows that require more than one step have two buttons that act as ‘**gates**’ – one to initialize the flow, and one to finalize it. The copy on these two buttons should be written with this in mind. As a general rule, if the opening button contains an action ‘Reject document’, then the same verb should be present in the finalizing button. On the other hand, buttons that do not include an action (for example, ‘Settings’), can have a more generic finalizer, such as ‘Done’.
-2. If a button results in the opening of a new page, or a picker, the title of said page or picker must be consistent with the name of the button. So a button that reads “Reject connection request” should not lead to a picker that reads “select value”. In very specific cases the title of the destination can read differently from the button, but in 99.9% of cases, they should read exactly the same. For more specific information about titles in pickers and their relationship with the buttons that trigger them, see the page on [Menu Pickers](http://tradeshift.github.io/docs/#design/copy/pickers.html).
+2. If a button results in the opening of a new page, or a picker, the title of said page or picker must be consistent with the name of the button. So a button that reads “Reject connection request” should not lead to a picker that reads “select value”. In very specific cases the title of the destination can read differently from the button, but in 99.9% of cases, they should read exactly the same. For more specific information about titles in pickers and their relationship with the buttons that trigger them, see the page on [Menu Pickers](http://tradeshift.github.io/#design/copy/pickers.html).
 
 #### Individually descriptive
 
@@ -15,4 +15,4 @@ Whilst we want buttons to be consistent in how they relate to their context, we 
 
 
 ------------------------------------------------------------------------
-Continue reading about our UI Copy Guidelines on the [Menu Pickers](//tradeshift.github.io/docs/#design/copy/pickers.html) page.
+Continue reading about our UI Copy Guidelines on the [Menu Pickers](//tradeshift.github.io/#design/copy/pickers.html) page.

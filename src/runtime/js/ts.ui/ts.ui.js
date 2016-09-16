@@ -110,7 +110,7 @@ ts.ui = gui.namespace('ts.ui', (function using(Client, guiArray, confirmed, chai
 		 * (so perhaps this constant should be renamed).
 		 * @type {string}
 		 */
-		TRADESHIFT_HOME: '/docs/',
+		TRADESHIFT_HOME: '/',
 
 
 		// Units ...................................................................

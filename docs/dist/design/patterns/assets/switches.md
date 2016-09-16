@@ -10,7 +10,7 @@ When a *single confirmation/check* is required to progress to next step (e.g. â€
 
 
 > ###### For Developers
-> Read more about [Components related to Forms & Inputs](//tradeshift.github.io/docs/#components/forms/).
+> Read more about [Components related to Forms & Inputs](//tradeshift.github.io/#components/forms/).
 
 ------------------------------------------------------------------------
-Continue reading our Design Patterns on the [Full Page Apps](//tradeshift.github.io/docs/#design/patterns/fullpage.html) page.
+Continue reading our Design Patterns on the [Full Page Apps](//tradeshift.github.io/#design/patterns/fullpage.html) page.

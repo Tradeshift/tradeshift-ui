@@ -71,7 +71,7 @@ The copy in the body is where the majority of the information is conveyed. This 
 
 #### Buttons
 
-Currently, Tradeshift emails typically contain a single button, with the main CTA. This button should be descriptive, and tell the user exactly where in the product they will land. In terms of functionality, the button should take the user directly to the task needed – they should not have to find their way once they click the button. Thus, an email informing the user of a new item on their To Do list should have a button leading the user to the item itself, and not to the list as a whole. As for the rest, buttons on emails should follow the same guidelines as buttons in the rest of the product. Read more in the [buttons guidelines](http://tradeshift.github.io/docs/#design/copy/buttons.html).
+Currently, Tradeshift emails typically contain a single button, with the main CTA. This button should be descriptive, and tell the user exactly where in the product they will land. In terms of functionality, the button should take the user directly to the task needed – they should not have to find their way once they click the button. Thus, an email informing the user of a new item on their To Do list should have a button leading the user to the item itself, and not to the list as a whole. As for the rest, buttons on emails should follow the same guidelines as buttons in the rest of the product. Read more in the [buttons guidelines](http://tradeshift.github.io/#design/copy/buttons.html).
 
 ------------------------------------------------------------------------
 This marks the end of our UI Copy Guidelines and the Design documentation in general.

@@ -1,5 +1,8 @@
 var processor = require('./tasks/processor');
 var publisher = require('./tasks/publisher');
+var btunneler = require('./tasks/tuneller.js');
+var bsshooter = require('./tasks/shooter.js');
+var stackconf = require('./browserstack.json');
 var S = require("string");
 
 /**
@@ -24,6 +27,9 @@ module.exports = function(grunt) {
     
     // for grunt template.process()
     config: config,
+
+    // for browserstack screenshots
+    stackconf: stackconf,
     
     // tags to include in HEAD when building for local development 
 		localtags: [
@@ -196,6 +202,26 @@ module.exports = function(grunt) {
 					logConcurrentOutput: true
 				}
 			}
+    },
+
+    tunneler: {
+      options: {
+        key: '<%=stackconf.key%>',
+        hosts: [
+          {
+            name: 'localhost',
+            port: 10114,
+            sslFlag: 0
+          }
+        ]
+      }
+    },
+
+    shooter: {
+      options: {
+        user: '<%=stackconf.username%>',
+        key: '<%=stackconf.key%>'
+      }
     }
     
   });
@@ -260,6 +286,24 @@ module.exports = function(grunt) {
   
   // important: Run this before committing to Git!
   grunt.task.registerTask('dist', xxx('target_public'));
+
+  // main screenshot task
+  grunt.task.registerTask('screenshots', ['tunneler', 'shooter', 'tunneler:stop']);
+
+  // begin screenshots
+  grunt.task.registerTask('tunneler', 'Start BrowserStackTunnel', function() {
+    btunneler.start(grunt, this.options(), this.async());
+  });
+
+  // perform screenshots
+  grunt.task.registerTask('shooter', 'Start photo sesstion', function() {
+    bsshooter.shoot(grunt, this.options(), this.async());
+  });
+
+  // end screenshots
+  grunt.task.registerTask('tunneler:stop', 'Stop BrowserStackTunnel', function() {
+    btunneler.stop(grunt, this.async());
+  });
 
   /**
    * Build task list.

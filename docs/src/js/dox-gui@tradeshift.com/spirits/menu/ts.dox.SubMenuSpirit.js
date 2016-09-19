@@ -77,7 +77,7 @@ ts.dox.SubMenuSpirit = (function using(ItemSpirit, MenuCoverSpirit, Client) {
       var rect = last.getBoundingClientRect();
       cover.css.top = rect.bottom;
       this.tween.dispatch('doxmenu', {
-        duration: ts.ui.TRANSITION_FAST,
+        duration: ts.ui.TRANSITION_NOW,
         timing: 'ease-out'
       });
     }

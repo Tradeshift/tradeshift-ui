@@ -133,11 +133,15 @@ ts.dox.MenuSpirit = (function using(isInView, goIntoView) {
     },
     
     /**
+     * Item with subitems selected.
      * @param {ts.dox.ItemModel} item
      * @param {gui.Then} then
      */
     _onsubmenu: function(item, then) {
-      if(this.life.async) {
+      if(ts.dox.booting) {
+        item.open = true;
+        then.now();
+      } else {
         this.tween.add('doxmenu');
         this._then = then;
         if(this._open) {
@@ -146,15 +150,16 @@ ts.dox.MenuSpirit = (function using(isInView, goIntoView) {
         } else {
           item.open = true;
         }
-      } else {
-        item.open = true;
-        then.now();
       }
     },
     
+    /**
+     * Regular item selected.
+     * @param {ts.dox.ItemModel} item
+     * @param {gui.Then} then
+     */
     _onnormal: function(item, then) {
-      console.log('NORMAL');
-      if(this.life.async && this._open) {
+      if(!ts.dox.booting && this._open) {
         this.tween.add('doxmenu');
         this._open.open = false;
         this._then = then;

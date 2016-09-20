@@ -630,7 +630,7 @@ table.api th {
   height: 66px;
   max-height: 66px;
   min-height: 66px;
-  background-color: #3f3f3f;
+  background-color: #494949;
   color: #ffffff;
   position: absolute;
   top: 0;
@@ -738,15 +738,6 @@ table.api th {
 .ts-loading .ts-doxchrome .button-menu-open i {
   opacity: 0;
 }
-/*
-.ts-engine-gecko {
-  .ts-doxchrome {
-    .ts-topbarspinner {
-      top: 0.5px;
-    }
-  }
-}
-*/
 .ts-doxchrome .ts-cover:not(.ts-dox-blocking) {
   max-width: 320px;
 }

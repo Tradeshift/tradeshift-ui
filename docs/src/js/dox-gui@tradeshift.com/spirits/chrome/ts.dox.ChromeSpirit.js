@@ -215,20 +215,27 @@ ts.dox.ChromeSpirit = (function using(CSSPlugin, Then) {
         ajax.get().then(function(status, data) {
           switch(status) {
             case 200:
-              this._hello(path, data);
+              this._loadpage(path, data);
               break;
             case 404:
               ts.ui.Notification.error('404 Not Found');
               break;
             default:
-              console.log('Unhandled reponse status', status);
+              console.erroe('Unhandled reponse status', status);
               break;
           }
         }, this);
       }
     },
 
-    _hello: function(path, data) {
+    /**
+     * Load page from path.
+     * TODO: We should use the `data` to update the `innerHTML` 
+     * of the existing page instead of loading a while new page.
+     * @param {string} path
+     * @param {string} data
+     */
+    _loadpage: function(path, data) {
       this._blocking(true);
       this._menu.selectbestitem(path).then(function() {
         this.tick.time(function() {

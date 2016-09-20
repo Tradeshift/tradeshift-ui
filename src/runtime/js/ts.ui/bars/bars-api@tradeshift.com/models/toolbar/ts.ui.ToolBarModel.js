@@ -19,7 +19,7 @@ ts.ui.ToolBarModel = (function using(chained) {
 		hascontent: false,
 		
 		/**
-		 * Has now or has ever *had* tabs or buttons?
+		 * Has now or has ever had tabs or buttons and stuf?
 		 * @type {boolean}
 		 */
 		hadcontent: false,
@@ -87,19 +87,14 @@ ts.ui.ToolBarModel = (function using(chained) {
 		 * @returns {boolean} True when updated
 		 */
 		onchange: function(changes) {
-			var dirty = false;
-			changes.forEach(function(c) {
-				if(c.name !== 'hadcontent') {
-					if(c.name === 'hascontent') {
-						if(c.newValue) {
-							this.hadcontent = true;
-						}
-					} else {
-						dirty = true;
-					}
+			var has = 'hadcontent';
+			var had = 'hadcontent';
+			if(changes.some(function(c) {
+				if(!this.hadcontent) {
+					this.hadcontent = (c.name === has && c.newValue);
 				}
-			}, this);
-			if(dirty) {
+				return c.name !== has && c.name !== had;
+			}, this)) {
 				this._updatehascontent();
 			}
 		},

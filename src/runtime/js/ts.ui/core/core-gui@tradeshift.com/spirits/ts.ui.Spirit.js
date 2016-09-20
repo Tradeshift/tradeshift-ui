@@ -199,31 +199,6 @@ ts.ui.Spirit = (function using(Type, GuiArray, confirmed) {
 		 * @type {string}
 		 */
 		$cssnames: null,
-		
-		/**
-		 * Observers for model changes get notified async (so that the properties 
-		 * are allowed to change more than once) but the EDBML renderings are 
-		 * unfortunately also subject to this, so they will sometimes render 
-		 * "late" and the the page content will appear to jump (quite noticeable 
-		 * on page load). This decorates a method to toggle a flag that will force 
-		 * the next model update (in this execution stack) to notify observers 
-		 * synchronously *if* the spirit has not been rendered (via EDBML) before.
-		 * TODO: Perhaps automate this mechanism in Spiritual core at some point.
-		 * @see edb.Object#$onchange
-		 * @see edb.Array#$onchange
-		 * @param {function} base
-		 * @returns {function}
-		 */
-		$critical: function(base) {
-			return function() {
-				if((edb.$criticalchange = !this.life.rendered)) {
-					gui.Tick.next(function in_case_no_model_updates() {
-						edb.$criticalchange = false;
-					});
-				}
-				return base.apply(this, arguments);
-			};
-		},
 
 		/**
 		 * Create method to get or set the model associated to a spirit, 

@@ -42,7 +42,7 @@ ts.ui.MainSpirit = (function using(Type, PANEL_ATTACH, PANEL_DETACH) {
 			onlife: function() {
 				action.call(thisp, bar);
 			}
-		}); 
+		});
 		return bar;
 	}
 	
@@ -249,6 +249,7 @@ ts.ui.MainSpirit = (function using(Type, PANEL_ATTACH, PANEL_DETACH) {
 					tab.dispose();
 				});
 			}
+			bar.$hascontent(); // for the tabbar to render instantly
 		},
 
 		/**

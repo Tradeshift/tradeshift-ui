@@ -73,10 +73,10 @@ ts.ui.TopBarSpirit = (function(TopBar, Client) {
 
 		/**
 		 * Update classes on the HTML element as soon as the rendering is done.
+		 * If the TopBar element for some reason was added late, we'll need to 
+		 * reflex the page so that js-based layouts (as in SideBars) can account 
+		 * for the height of the TopBar.
 		 * @param {TODO} summary
-		 * If the TopBar element for some reason was added late, 
-		 * we'll need to reflex the page so that js-based layouts 
-		 * (as in SideBars) can account for the height of the TopBar.
 		 */
 		onrender: function(summary) {
 			this.super.onrender(summary);

@@ -58,24 +58,21 @@ ts.ui.DatePicker.localize = function(config) {};
 	function toggle(model, open) {
 		var aside, id = model.$instanceid;
 		if(open) {
-			asides[id] = ts.ui.Aside ({
+			asides[id] = (asides[id] || ts.ui.Aside ({
 				title : model.title,
 				items : [model],
 				onclosed : function () {
 					if(gui.Type.isFunction(model.onclosed)) {
 						model.onclosed();
 					}
-					delete asides[id];
 					model.isOpen = false;
 				}
-			}).open();
+			})).open();
 		} else {
 			if((aside = asides[id])) {
 				gui.Tick.time(function() { // allow user to percieve the update...
 					aside.close();
 				}, 100);
-			} else {
-				console.warn('Something is wrong');
 			}
 		}
 		return model;
@@ -117,6 +114,11 @@ ts.ui.DatePicker.localize = function(config) {};
 						break;
 					case 'disposed' : // TODO (jmo@): automate this
 						model.removeObserver(ts.ui.DatePicker);
+						var aside = asides[model.$instanceid];
+						if(aside) {
+							delete asides[model.$instanceid];
+							aside.dispose();
+						}
 						break;
 				}
 			});

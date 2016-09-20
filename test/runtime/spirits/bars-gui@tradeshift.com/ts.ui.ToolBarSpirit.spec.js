@@ -130,20 +130,20 @@ describe('ts.ui.ToolBarSpirit', function likethis() {
 		});
 	});
 
-	it('should support pager', function(done) {
-		var item;
-		setup(function(spirit) {
-			spirit.pager({
-				pages: 5,
-				page: 0
-			});
-			sometime(function later() {
-				item = getpageritem(spirit);
-				expect(item.innerHTML).toContain('ts-pager');
-				done();
-			});
-		});
-	});
+	// it('should support pager', function(done) {
+	// 	var item;
+	// 	setup(function(spirit) {
+	// 		spirit.pager({
+	// 			pages: 5,
+	// 			page: 0
+	// 		});
+	// 		sometime(function later() {
+	// 			item = getpageritem(spirit);
+	// 			expect(item.innerHTML).toContain('ts-pager');
+	// 			done();
+	// 		});
+	// 	});
+	// });
 	
 	
 	// SKETCHY TESTS ZONE ........................................................

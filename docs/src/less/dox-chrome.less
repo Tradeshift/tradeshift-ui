@@ -219,7 +219,7 @@
 // Layouts .....................................................................
 
 .ts-doxchrome {
-  .ts-cover {
+  .ts-cover:not(.ts-dox-blocking) {
     max-width: @ts-width-aside;
   }
   &.collapse-some,
@@ -237,7 +237,7 @@
     &:before {
       width: @ts-unit-triple;
     }
-    .ts-cover {
+    .ts-cover:not(.ts-dox-blocking) {
       max-width: @ts-unit-triple;
     }
 		.ts-main {
@@ -267,7 +267,7 @@
     &:before {
       display: none;
     }
-    .ts-cover {
+    .ts-cover:not(.ts-dox-blocking) {
       display: none !important;
     }
     .ts-main {

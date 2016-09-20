@@ -205,18 +205,36 @@ ts.dox.ChromeSpirit = (function using(CSSPlugin, Then) {
     },
     
     /**
-     * Location hash changed.
+     * Location hash changed. 
      * @param {string} hash
      */
     _onhashchange: function(hash) {
       if(hash.length > 1) {
         var path = hash.substring(1);
-        this._menu.selectbestitem(path).then(function() {
-          this.tick.time(function() {
-            this._loadnext(path);
-          }, this._isopenmenu() ? 300 : 0);
+        var ajax = new gui.Request('dist/' + path).acceptText();
+        ajax.get().then(function(status, data) {
+          switch(status) {
+            case 200:
+              this._hello(path, data);
+              break;
+            case 404:
+              ts.ui.Notification.error('404 Not Found');
+              break;
+            default:
+              console.log('Unhandled reponse status', status);
+              break;
+          }
         }, this);
       }
+    },
+
+    _hello: function(path, data) {
+      this._blocking(true);
+      this._menu.selectbestitem(path).then(function() {
+        this.tick.time(function() {
+          this._loadnext(path, data);
+        }, this._isopenmenu() ? 300 : 0);
+      }, this);
     },
     
     /**
@@ -225,6 +243,7 @@ ts.dox.ChromeSpirit = (function using(CSSPlugin, Then) {
      * operation would not run in sync with the layout, so we'll hotfix it.
      */
     _firstload: function() {
+      this._blocking(false);
       this._openmenu(false);
       this._showloading(false);
       this.tick.time(function hotfix() {
@@ -241,6 +260,7 @@ ts.dox.ChromeSpirit = (function using(CSSPlugin, Then) {
       this.tick.time(function stabilize() {
         this._openmenu(false);
         this._showloading(false);
+        this._blocking(false);
         if(this._oldframe) {
           this._oldframe.dom.remove();
           this._oldframe = null;
@@ -253,20 +273,18 @@ ts.dox.ChromeSpirit = (function using(CSSPlugin, Then) {
      * be creating an unique IFRAME for every page load. 
      * Make sure not to transition while we are loading.
      * @param {string} path
+     * @param {string} data (not used)
      */
-    _loadnext: function(path) {
+    _loadnext: function(path, data) {
       this._showloading(true);
       if(this._isopenmenu()) {
         this._openmenu(false);
         this._thenclosed = new Then(function() {
-          this._loadnext(path);
+          this._loadnext(path, data);
         }, this);
       } else {
-        var href = 'dist/' + path;
-        var oldf = this.dom.qdoc('iframe', ts.ui.FrameSpirit);
-        var newf = ts.ui.FrameSpirit.summon(href);
-        this._main.dom.append(newf);
-        this._oldframe = oldf || null;
+        this._oldframe = this.dom.qdoc('iframe', ts.ui.FrameSpirit) || null;
+        this._main.dom.append(ts.ui.FrameSpirit.summon('dist/' + path));
       }
     },
     
@@ -293,6 +311,20 @@ ts.dox.ChromeSpirit = (function using(CSSPlugin, Then) {
         this.css.remove(full).add(some);
       } else {
         this.css.remove(some).remove(full);
+      }
+    },
+
+    /**
+     * Show (and hide) blocking cover to prevent the user from 
+     * requesting new iframes while the current one is loading.
+     * @param {boolean} block
+     */
+    _blocking: function(block) {
+      var cover = this._cover('ts-dox-blocking');
+      if(block) {
+        cover.show();
+      } else {
+        cover.hide();
       }
     },
     

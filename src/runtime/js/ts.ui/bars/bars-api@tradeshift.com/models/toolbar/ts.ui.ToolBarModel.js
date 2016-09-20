@@ -87,7 +87,7 @@ ts.ui.ToolBarModel = (function using(chained) {
 		 * @returns {boolean} True when updated
 		 */
 		onchange: function(changes) {
-			var has = 'hadcontent';
+			var has = 'hascontent';
 			var had = 'hadcontent';
 			if(changes.some(function(c) {
 				if(!this.hadcontent) {

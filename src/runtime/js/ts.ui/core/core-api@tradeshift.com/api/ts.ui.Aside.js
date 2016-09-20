@@ -102,16 +102,14 @@ ts.ui.Aside.closeAll = function() {
 				var model = c.object;
 				switch (c.name) {
 					case 'isOpen' :
-						toggle(model,c.newValue);
+						toggle(model, c.newValue);
 						break;
 					case 'disposed' :
-						if(!ts.ui.greenfield) {
-							var spirit = gui.get('#' +  model.$instanceid);
-							if(spirit) {
-								gui.Tick.time(function(){ // TODO (jmi@): why otherwise error?
-									spirit.dom.remove();
-								},100);
-							}
+						var spirit = gui.get('#' +  model.$instanceid);
+						if(spirit) {
+							gui.Tick.time(function(){ // TODO (jmi@): why otherwise error?
+								spirit.dom.remove();
+							},100);
 						}
 						break;
 				}
@@ -132,6 +130,7 @@ ts.ui.Aside.closeAll = function() {
 			var model = ts.ui.Aside(json);
 			var spirit = getspirit(model);
 			model.addObserver(ts.ui.Aside);
+			alert('open');
 			spirit.open();
 		})),
 

@@ -10,7 +10,7 @@ describe('ts.ui.toolbartabs.edbml', function likethis() {
 			mobile = false;
 		expect(gethtml(spirit, tabs, id, mobile)).toContain('ts-toolbar-tabs');
 		expect(gethtml(spirit, tabs, id, mobile)).not.toContain('ts.ui.TopBarTabsSpirit');
-		expect(gethtml(spirit, tabs, id, mobile)).toContain('<li data-ts="Spirit" class="ts-tab ts-tab-more"');
+		expect(gethtml(spirit, tabs, id, mobile)).toContain('ts-tab');
 	});
 
 	it('should contain ts-tab', function() {

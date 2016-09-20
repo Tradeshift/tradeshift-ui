@@ -26,13 +26,6 @@ window.edb = gui.namespace("edb", (function using(confirmed) {
 		 * @type {object}
 		 */
 		$accessaware: false,
-		
-		/**
-		 * Toggle this to force the next model change to notify observers 
-		 * synchronously. The flag will automatically toggle back to false.
-		 * @type {boolean}
-		 */
-		$criticalchange: false,
 
 		/**
 		 * Broadcasts.
@@ -59,3 +52,23 @@ window.edb = gui.namespace("edb", (function using(confirmed) {
 	};
 
 }(gui.Arguments.confirmed)));
+
+/**
+ * Toggle this to force the next model change to notify observers 
+ * synchronously. The flag will automatically toggle back to false.
+ *
+(function setup(critical) {
+	Object.defineProperty(edb, '$criticalchange', {
+		get: function() {
+			return critical;
+		},
+		set: function(value) {
+			if((critical = value)) {
+				gui.Tick.next(function() {
+					critical = false;
+				});
+			}
+		}
+	});
+}(false));
+*/

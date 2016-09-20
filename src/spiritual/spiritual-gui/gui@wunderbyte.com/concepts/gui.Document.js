@@ -48,13 +48,12 @@ gui.Document = (function() {
 		 * Setup loads of event listeners.
 		 */
 		onconstruct: function() {
-			var that = this,
-				add = function(target, events, capture) {
+			var that = this, add = function(target, events, capture) {
 					events.split(' ').forEach(function(type) {
 						target.addEventListener(type, that, capture);
 					});
 				};
-			add(document, 'DOMContentLoaded');
+			add(document, 'DOMContentLoaded visibilitychange');
 			add(document, 'click mousedown mouseup', true);
 			add(window, 'load hashchange resize');
 			if (!gui.hosted) {
@@ -93,6 +92,9 @@ gui.Document = (function() {
 					break;
 				case 'hashchange':
 					this._onhashchange();
+					break;
+				case 'visibilitychange':
+					this._onvisibilitychange(!document.hidden);
 					break;
 			}
 		},
@@ -203,6 +205,21 @@ gui.Document = (function() {
 			if (!gui.hosted) {
 				gui.orientation = window.innerWidth > window.innerHeight ? 1 : 0;
 				gui.broadcastGlobal(gui.BROADCAST_ORIENTATIONCHANGE, gui.orientation);
+			}
+		},
+
+		/**
+		 * Reflex all whenever the user comes back from other tab excursions.
+		 * TODO: Figure out if nested iframes can even see this stuff and 
+		 * create something like `reflexGlobal` in case they really can't.
+		 * @param {boolean} hidden
+		 */
+		_onvisibilitychange: function(visible) {
+			if(visible) {
+				var root = gui.get(document.documentElement);
+				if(root) {
+					root.reflex();
+				}
 			}
 		},
 

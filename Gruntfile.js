@@ -35,9 +35,6 @@ module.exports = function(grunt) {
 		'config.local.json'
 	);
 
-	var integrationServerUrl = '//127.0.0.1:' + config.integration_server_port +'/';
-	var integrationBrowserUrl = '//127.0.0.1:' + config.integration_browser_port +'/';
-
 	// Config ....................................................................
 
 	grunt.initConfig({
@@ -113,24 +110,6 @@ module.exports = function(grunt) {
 
 		// setup 'ts.js'
 		tsjs: {
-			integration: {
-				options: {
-					'${runtimecss}': integrationServerUrl + 'dist/ts.min.css',
-					'${langbundle}': integrationServerUrl + 'dist/ts-lang-<LANG>.js'
-				},
-				files: {
-					'temp/ts.js': 'src/runtime/ts.js'
-				}
-			},
-			integrationBrowser: {
-				options: {
-					'${runtimecss}': integrationBrowserUrl + 'dist/ts.min.css',
-					'${langbundle}': integrationBrowserUrl + 'dist/ts-lang-<LANG>.js'
-				},
-				files: {
-					'temp/ts.js': 'src/runtime/ts.js'
-				}
-			},
 			local: {
 				options: {
 					'${runtimecss}': '//127.0.0.1:10111/dist/ts.min.css',
@@ -142,8 +121,8 @@ module.exports = function(grunt) {
 			},
 			karma: {
 				options: {
-					'${runtimecss}': '/base/dist/ts.min.css',
-					'${langbundle}': '/base/dist/ts-lang-<LANG>.js'
+					'${runtimecss}': '/dist/ts.min.css',
+					'${langbundle}': '/dist/ts-lang-<LANG>.js'
 				},
 				files: {
 					'temp/ts.js': 'src/runtime/ts.js'
@@ -450,13 +429,6 @@ module.exports = function(grunt) {
 			}
 		},
 
-		jasmine_node: {
-			options: {
-				forceExit: true,
-			},
-			all: 'integration_test/'
-		},
-
 		gitadd: {
 			screenshots: {
 				files: {
@@ -464,6 +436,7 @@ module.exports = function(grunt) {
 				}
 			}
 		},
+
 		gitcommit: {
 			screenshots: {
 				options: {
@@ -748,17 +721,6 @@ module.exports = function(grunt) {
 		];
 	}
 
-	// Temp ......................................................................
-	grunt.registerTask('it_browser', 'Browse tests', function(){
-		var done = this.async();
-		var PORT = config.integration_browser_port;
-		var server = require('./integration_test/lib/server');
-		server.listen(PORT, function() {
-			grunt.log.write(PORT);
-		});
-	});
-
-
 	// Tasks .....................................................................
 
 	// setup for local develmopment (default)
@@ -791,79 +753,12 @@ module.exports = function(grunt) {
 		'uglify:dev'
 	]);
 
-	grunt.registerTask('ensure-screenshots', [
-		'clean:screenshots',
-		'mkdir:screenshots'
-	]);
-
-	grunt.registerTask('ensure-local-screenshots', [
-		'clean:local-screenshots',
-		'mkdir:local-screenshots'
-	]);
-
-	grunt.registerTask('integration-browser', 'Runs server for manually viewing integration tests. Used for debugging.', [
-		'css',
-		'js',
-		'tsjs:integrationBrowser',
-		'it_browser'
-	]);
-
-	grunt.registerTask('commit-screenshots', 'Commits and pushes screenshots to local chrome', [
-		'gitadd:screenshots',
-		'gitcommit:screenshots',
-		'gitpush:screenshots'
-	]);
-
 	grunt.registerTask('test', 'Runs entire test suite with local Chrome', [
 		'css',
 		'js',
 		'jshint',
 		'tsjs:karma',
-		'karma:local',
-		'tsjs:integration',
-		// 'kommando:local'
-	]);
-
-	grunt.registerTask('test:unit', 'Runs unit tests on local Chrome', [
-		'css',
-		'js',
-		'tsjs:karma',
 		'karma:local'
 	]);
 
-	grunt.registerTask('test:integration', 'Runs integration tests against local Chrome', [
-		'css',
-		'js',
-		'tsjs:integration',
-		'kommando:local'
-	]);
-
-	grunt.registerTask('test:bs', 'Runs unit and integration tests against Browserstack.', [
-		'css',
-		'js',
-		'tsjs:integration',
-		'ensure-local-screenshots',
-		'kommando:browserstack'
-	]);
-
-	grunt.registerTask('ci', 'Runs all tests. Pushes updated screenshots to current branch, if tests pass.', function() {
-		process.env.TRADESHIFT_CI = true;
-		grunt.task.run([
-			'css',
-			'js',
-			'jshint',
-			'tsjs:karma',
-			'ts-karma-crossbrowser',
-			'ensure-screenshots',
-			'tsjs:integration',
-			'kommando:browserstack',
-			'commit-screenshots'
-		]);
-	});
-
-	grunt.registerTask('gzip', 'test', function() {
-		grunt.task.run([
-			'compress'
-		]);
-	});
 };

@@ -172,10 +172,10 @@ edb.Object.mixin(null, edb.Type.$staticmixins(), {
 			var type = edb.ObjectChange.TYPE_UPDATE;
 			var all = this._changes, id = object.$instanceid;
 			var set = all[id] || (all[id] = Object.create(null));
-			var now = edb.$criticalchange;
+			var now = false; //edb.$criticalchange;
 			set [name] = new edb.ObjectChange(object, name, type, oldval, newval);
 			gui.Tick.dispatch(edb.TICK_PUBLISH_CHANGES, (now ? -1 : 0));
-			edb.$criticalchange = false;
+			//edb.$criticalchange = false;
 		}
 	},
 

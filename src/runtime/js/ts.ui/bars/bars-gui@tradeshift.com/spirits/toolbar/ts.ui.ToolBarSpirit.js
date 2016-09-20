@@ -1,7 +1,6 @@
 /**
  * Spirit of the toolbar.
  * @using {gui.Combo.chained} chained
- * @using {ts.ui.Spirit#critical} critical
  * @using {gui.Client} Client
  * @using {gui.Type} Type
  * @using {gui.Array} guiArray
@@ -12,7 +11,7 @@
  * @using {ts.ui.ButtonModel} ButtonModel
  * @using {ts.ui.BACKGROUND_COLORS} bgcolors
  */
-ts.ui.ToolBarSpirit = (function using(chained, confirmed, critical, Client, Type, guiArray, CSSPlugin, DOMPlugin, TextModel, SearchModel, TopBar, ButtonModel, bgcolors) {
+ts.ui.ToolBarSpirit = (function using(chained, confirmed, Client, Type, guiArray, CSSPlugin, DOMPlugin, TextModel, SearchModel, TopBar, ButtonModel, bgcolors) {
 
 	/*
 	 * When rendering as a statusbar, we'll split into multiple rows 
@@ -129,8 +128,7 @@ ts.ui.ToolBarSpirit = (function using(chained, confirmed, critical, Client, Type
 			if(!this.life.hascontent) {
 				changes.forEach(function(c) {
 					if(c.name === 'hascontent' && c.newValue) {
-						this.life.hascontent = true;
-						this.life.dispatch('ts-life-toolbar-hascontent');
+						this.$hascontent();
 					}
 				}, this);
 			}
@@ -255,6 +253,7 @@ ts.ui.ToolBarSpirit = (function using(chained, confirmed, critical, Client, Type
 			chained(function(opt_string) {
 				var model = this.model();
 				if (arguments.length) {
+					this.$hascontent();
 					model.title = opt_string;
 					this.event.add('click');
 				} else {
@@ -272,6 +271,7 @@ ts.ui.ToolBarSpirit = (function using(chained, confirmed, critical, Client, Type
 			chained(function(opt_json) {
 				var model = this.model();
 				if (arguments.length) {
+					this.$hascontent();
 					if (model.search) {
 						model.search.dispose();
 					}
@@ -292,9 +292,10 @@ ts.ui.ToolBarSpirit = (function using(chained, confirmed, critical, Client, Type
 		 * @returns {ts.ui.ButtonCollection|ts.ui.ToolBarSpirit}
 		 */
 		buttons: confirmed('(array)')(
-			critical(chained(function(opt_json) {
+			chained(function(opt_json) {
 				var buttons = this.model().buttons;
 				if (arguments.length) {
+					this.$hascontent();
 					buttons.clear(); // reusing the collection to preserve observers
 					opt_json.forEach(function(json) {
 						buttons.push(json);
@@ -302,7 +303,7 @@ ts.ui.ToolBarSpirit = (function using(chained, confirmed, critical, Client, Type
 				} else {
 					return buttons;
 				}
-			}))
+			})
 		),
 
 		/**
@@ -311,9 +312,10 @@ ts.ui.ToolBarSpirit = (function using(chained, confirmed, critical, Client, Type
 		 * @returns {ts.ui.TabCollection|ts.ui.ToolBarSpirit}
 		 */
 		tabs: confirmed('(array)')(
-			critical(chained(function(opt_json) {
+			chained(function(opt_json) {
 				var tabs = this.model().tabs;
 				if (arguments.length) {
+					this.$hascontent();
 					tabs.clear(); // reusing the collection to preserve observers
 					opt_json.forEach(function(json) {
 						tabs.push(json);
@@ -321,7 +323,7 @@ ts.ui.ToolBarSpirit = (function using(chained, confirmed, critical, Client, Type
 				} else {
 					return tabs;
 				}
-			}))
+			})
 		),
 		
 		/**
@@ -408,6 +410,24 @@ ts.ui.ToolBarSpirit = (function using(chained, confirmed, critical, Client, Type
 		clear: chained(function() {
 			console.log('TODO!');
 		}),
+
+
+		// Privileged ..............................................................
+
+		/**
+		 * EDB model observers are always triggered async and this may cause the 
+		 * (main) toolbars to flicker into existence on page load. When you know 
+		 * that an operation will cause the toolbar to have content, please make 
+		 * sure to call this method manually.
+		 * TODO(jmo@): Some kind of synchronous observer setup to mitigate this.
+		 * @see {ts.ui.ToolBarModel#hascontent}
+		 */
+		$hascontent: function() {
+			if(!this.life.hascontent) {
+				this.life.hascontent = true;
+				this.life.dispatch('ts-life-toolbar-hascontent');
+			}
+		},
 		
 
 		// Private .................................................................
@@ -629,21 +649,21 @@ ts.ui.ToolBarSpirit = (function using(chained, confirmed, critical, Client, Type
 		 * that the More-tab is not rendered in mobile breakpoint.
 		 * @param {Array<ts.ui.TabModel>} tabs
 		*/
-		_calculate: function(tabs) {
-			var moretab = this.dom.q('.ts-tab-more', ts.ui.Spirit);
-			var gonetab = null;
-			if (moretab && tabs && tabs.getLength()){
-				moretab.css.display = '';
-				var avail = this._getavailwidth(22);
-				var width = moretab.box.width;
-				var dofit = this._toggletabs(tabs, width, avail);
-				moretab.css.display = dofit ? 'none' : '';
-				if(!dofit && width < 200) {
-					// make sure the selected tab is always visible
-					if((gonetab = tabs.find(function ishidden(tab) {
-						return tab.selected && !tab.$isontop;
-					}))) {
-						this._arraymove(tabs, gonetab.$instanceid, 1);
+		_calculate: function calculate(tabs) {
+			var moretab, gonetab, avail, width, dofit;
+			if(tabs && tabs.getLength()) {
+				if((moretab = this.dom.q('.ts-tab-more', ts.ui.Spirit))) {
+					moretab.css.display = '';
+					avail = this._getavailwidth(22);
+					width = 44; // width of the more-tab button
+					dofit = this._toggletabs(tabs, width, avail);
+					moretab.css.display = dofit ? 'none' : '';
+					if(!dofit) { // make sure selected tab is visible
+						if((gonetab = tabs.find(function ishidden(tab) {
+							return tab.selected && !tab.$isontop;
+						}))) {
+							this._arraymove(tabs, gonetab.$instanceid, 1);
+						}
 					}
 				}
 			}
@@ -702,7 +722,7 @@ ts.ui.ToolBarSpirit = (function using(chained, confirmed, critical, Client, Type
 			var right = this.dom.q('.ts-right');
 			var center = this.dom.q('.ts-center');
 			return this.box.width - (right ? right.offsetWidth : 0) - (center ? center.offsetWidth : 0) - (buffer || 0);
-		},
+		}
 
 
 	}, { // Static ...............................................................
@@ -724,7 +744,6 @@ ts.ui.ToolBarSpirit = (function using(chained, confirmed, critical, Client, Type
 }(
 	gui.Combo.chained,
 	gui.Arguments.confirmed,
-	ts.ui.Spirit.$critical,
 	gui.Client,
 	gui.Type,
 	gui.Array,

@@ -1,5 +1,5 @@
 var kommando = require('kommando');
-var server = require('../integration_test/lib/server');
+//var server = require('../integration_test/lib/server');
 var xtend = require('node.extend');
 var _ = require('lodash');
 

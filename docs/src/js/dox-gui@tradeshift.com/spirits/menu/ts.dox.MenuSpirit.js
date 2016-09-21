@@ -13,7 +13,6 @@ ts.dox.MenuSpirit = (function using(isInView, goIntoView) {
     onconfigure: function() {
       this.super.onconfigure();
       this.css.add('ts-menu');
-      this.event.add('hashchange', window);
       this._loadmenu(this.dom.q('script'));
     },
     

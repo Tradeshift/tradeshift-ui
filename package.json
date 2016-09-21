@@ -1,7 +1,7 @@
 {
   "name": "tradeshift-ui",
-  "version": "6.0.1",
-	"private": true,
+  "version": "6.1.0-alpha.2",
+  "private": true,
   "description": "The Tradeshift UI Library & Framework",
   "bugs": {
     "url": "https://github.com/Tradeshift/tradeshift-ui/issues",

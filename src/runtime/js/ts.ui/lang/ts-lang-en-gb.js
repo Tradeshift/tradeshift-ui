@@ -2,8 +2,8 @@ if(window.ts && ts.ui && ts.ui.DatePicker) {
 	ts.ui.DatePicker.localize({
 		firstDay: 1,
 		monthNames: [
-			'Januar',
-			'Februar',
+			'January',
+			'February',
 			'March',
 			'April',
 			'May',

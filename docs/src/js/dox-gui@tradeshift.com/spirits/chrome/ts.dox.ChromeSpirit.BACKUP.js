@@ -212,38 +212,81 @@ ts.dox.ChromeSpirit = (function using(CSSPlugin, Then) {
 			if(hash.length > 1) {
 				var path = hash.substring(1);
 				var ajax = new gui.Request('dist/' + path).acceptText();
-				ajax.get().then(function(status, data) {
+				ajax.get().then(function(status, html) {
 					switch(status) {
 						case 200:
-							this._hello(path, data);
+							this._loadpage(path); // TODO: this._injectpage(path, html);
 							break;
 						case 404:
 							ts.ui.Notification.error('404 Not Found');
 							break;
 						default:
-							console.log('Unhandled reponse status', status);
+							console.erroe('Unhandled reponse status', status);
 							break;
 					}
 				}, this);
 			}
 		},
 
-		_hello: function(path, data) {
-			this._blocking(true);
+		/**
+		 * NOT USED YET: If the old page and the new page has the same scripts 
+		 * and styles, it will be possible to load it much much faster via SPA 
+		 * style techniques, but this involves further (serverside?) analysis.
+		 * Note to self: Perhaps one would also need to inject a `base` href...
+		 */
+		_injectpage: function(path, html) {
+			var source, target, iframe = this.dom.qdoc('iframe', ts.ui.FrameSpirit);
 			this._menu.selectbestitem(path).then(function() {
-				this.tick.time(function() {
-					this._loadnext(path, data);
-				}, this._isopenmenu() ? 300 : 0);
+				if(iframe) {
+					target = iframe.contentDocument;
+					source = new DOMParser().parseFromString(html, 'text/html');
+					if(source) {
+						target.body.innerHTML = source.body.innerHTML;
+						this._title(source.title);
+					}
+				}
+				if(!source) {
+					this._loadpage(path, html);
+				}
 			}, this);
 		},
+
+		/**
+		 * Load page from path.
+		 * @param {string} path
+		 * @param {string} html
+		 */
+		_loadpage: function(path) {
+			this.tick.time(function() {
+				this._loadnext(path);
+			}, this._isopenmenu() ? 300 : 0);
+		},
 		
+		/**
+		 * Prevent IFRAME from adding to the browser history 
+		 * be creating an unique IFRAME for every page load. 
+		 * Make sure not to transition while we are loading.
+		 * @param {string} path
+		 */
+		_loadnext: function(path) {
+			this._showloading(true);
+			if(this._isopenmenu()) {
+				this._openmenu(false);
+				this._thenclosed = new Then(function() {
+					this._loadnext(path);
+				}, this);
+			} else {
+				this._oldframe = this.dom.qdoc('iframe', ts.ui.FrameSpirit) || null;
+				this._main.dom.append(ts.ui.FrameSpirit.summon('dist/' + path));
+			}
+		},
+
 		/**
 		 * First page loaded in iframe. When all these scripts have been upladed 
 		 * to the internet and are not found in the browsers cache, the `flex()` 
 		 * operation would not run in sync with the layout, so we'll hotfix it.
 		 */
 		_firstload: function() {
-			this._blocking(false);
 			this._openmenu(false);
 			this._showloading(false);
 			this.tick.time(function hotfix() {
@@ -260,32 +303,11 @@ ts.dox.ChromeSpirit = (function using(CSSPlugin, Then) {
 			this.tick.time(function stabilize() {
 				this._openmenu(false);
 				this._showloading(false);
-				this._blocking(false);
 				if(this._oldframe) {
 					this._oldframe.dom.remove();
 					this._oldframe = null;
 				}
 			}, 50);
-		},
-		
-		/**
-		 * Prevent IFRAME from adding to the browser history 
-		 * be creating an unique IFRAME for every page load. 
-		 * Make sure not to transition while we are loading.
-		 * @param {string} path
-		 * @param {string} data (not used)
-		 */
-		_loadnext: function(path, data) {
-			this._showloading(true);
-			if(this._isopenmenu()) {
-				this._openmenu(false);
-				this._thenclosed = new Then(function() {
-					this._loadnext(path, data);
-				}, this);
-			} else {
-				this._oldframe = this.dom.qdoc('iframe', ts.ui.FrameSpirit) || null;
-				this._main.dom.append(ts.ui.FrameSpirit.summon('dist/' + path));
-			}
 		},
 		
 		/**
@@ -302,7 +324,7 @@ ts.dox.ChromeSpirit = (function using(CSSPlugin, Then) {
 			var full = 'collapse-full';
 			var mobile = width <= BP_TABLET;
 			var tablet = width > BP_TABLET && width < BP_TABLET + SIDEBAR_MACRO;
-			var desktop = !mobile && !tablet;  
+			var desktop = !mobile && !tablet;	
 			this._sbar.isOpen = desktop;
 			this._sbar._closebutton(!desktop);
 			if(mobile) {
@@ -311,20 +333,6 @@ ts.dox.ChromeSpirit = (function using(CSSPlugin, Then) {
 				this.css.remove(full).add(some);
 			} else {
 				this.css.remove(some).remove(full);
-			}
-		},
-
-		/**
-		 * Show (and hide) blocking cover to prevent the user from 
-		 * requesting new iframes while the current one is loading.
-		 * @param {boolean} block
-		 */
-		_blocking: function(block) {
-			var cover = this._cover('ts-dox-blocking');
-			if(block) {
-				cover.show();
-			} else {
-				cover.hide();
 			}
 		},
 		
@@ -360,13 +368,20 @@ ts.dox.ChromeSpirit = (function using(CSSPlugin, Then) {
 		},
 		
 		/**
-		 * This toggles the classname `ts-loading` 
-		 * on the root HTML element in all frames.
-		 * TODO: Support ABORTED if and when we get a 404.
+		 * This broadcast toggles the classname `ts-loading` on the 
+		 * root HTML element in all frames. Also show (and hide) the 
+		 * blocking cover to prevent the user from requesting new 
+		 * iframes while the current one is loading.
 		 * @param {boolean} loading
 		 */
 		_showloading: function(loading) {
 			this.broadcast.dispatchGlobal(loading ? LOADING : COMPLETE);
+			var cover = this._cover('ts-dox-blocking');
+			if(loading) {
+				cover.show();
+			} else {
+				cover.hide();
+			}
 		},
 		
 		/**

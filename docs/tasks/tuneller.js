@@ -3,7 +3,7 @@ var BrowserStackTunnel = require('browserstacktunnel-wrapper');
 var tunnel = null;
 
 module.exports = {
-  start: function(grunt, options, done) {
+  start: function(options, done) {
     tunnel = new BrowserStackTunnel(options);
     tunnel.start(function(error) {
       if(error) {
@@ -15,7 +15,7 @@ module.exports = {
       }
     });
   },
-  stop: function(grunt, done) {
+  stop: function(done) {
     tunnel.stop(function(error) {
       if(error) {
         console.log(error);

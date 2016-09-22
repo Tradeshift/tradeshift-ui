@@ -1,104 +1,136 @@
 var webdriver = require('selenium-webdriver');
 var screenshots = require('./screenshots.js');
+var chalk = require('chalk');
+var path = require('path');
 var fs = require('fs');
 
 module.exports = {
 
-	shoot: function(grunt, options, done) {
+	shoot: function(options, done) {
 
-		//console.log(options.)
+		var sessions = options.browsers.map(function(browser) {
 
-		// Input capabilities
-		var capabilities = {
-		  'browserName': 'firefox', 
-		  'browserstack.local': true,
-		  'browserstack.user': options.user,
-		  'browserstack.key': options.key
-		};
+			return function(callback) {
 
-		var driver = new webdriver.Builder().
-		  usingServer('http://hub-cloud.browserstack.com/wd/hub').
-		  withCapabilities(capabilities).
-		  build();
+				console.log('\n' + browser.toUpperCase());
 
-		//driver.manage().window().setSize(1300, 800);
+				var driver = new webdriver.Builder().
+					  usingServer('http://hub-cloud.browserstack.com/wd/hub').
+					  withCapabilities({
+					  	'browserName': bname(browser),
+						  'version': bvers(browser),
+						  'browserstack.local': true,
+						  'browserstack.user': options.user,
+						  'browserstack.key': options.key
+					  }).build();
 
-		driver.saveScreenshot = function(filename) {
-			return new Promise(function(resolve, reject) {
-				filename = './screenshots/' + filename;
-				driver.takeScreenshot().then(function(data) {
-					fs.writeFile(filename, data.replace(/^data:image\/png;base64,/,''), 'base64', function(err) {
-						if(err) throw err;
-						resolve();
+				/**
+				 * Create function to load a page.
+				 * @param {string} url
+				 * @param {function} action
+				 * @returns {Promise}
+				 */
+				function shoot(url, action) {
+					return function() {
+						driver.get(`http://localhost:10114/dist/${url}`);
+						return new Promise(function(resolve, reject) {
+							console.log('  ' + chalk.cyan(url));
+							driver.wait(function() {
+								var readyroot = webdriver.By.css('html.ts-ready'); // not needed?
+							  return driver.findElements(readyroot);
+							}).then(function() {
+								action(resolve);
+							});
+						});
+					};
+				}
+
+				/**
+				 * Create function to take a screenshot.
+				 * @param {string} filename
+				 * @returns {Promise}
+				 */
+				driver.saveScreenshot = function(filename) {
+					var folder = './screenshots/' + browser.replace(' ', '-');
+					var target = ensurefolder(folder + '/' + filename);
+					return new Promise(function(resolve, reject) {
+						driver.takeScreenshot().then(function(data) {
+							fs.writeFile(target, data.replace(/^data:image\/png;base64,/,''), 'base64', function(err) {
+								if(err) throw err;
+								resolve();
+							});
+						});
 					});
-				});
-			});
-		};
+				};
+
+				/**
+				 * Shoot this session.
+				 * @param {Array<function>} shots
+				 */
+				(function nextshot(shots) {
+					var next = shots.shift();
+					next().then(function() {
+						if(shots.length) { // shoot next screenshot
+							nextshot(shots);
+						} else {
+							callback(done);
+						}
+					});
+				}(screenshots(webdriver, driver, shoot)));
+
+			};
+
+		});
 
 		/**
-		 * @param {Array<function>} shots
+		 * Shoot all sessions.
+		 * @param {function} done
 		 */
-		(function shoot(shots) {
-			var next = shots.shift();
-			next().then(function() {
-				if(shots.length) {
-					shoot(shots);
+		(function nextsession() {
+			var next = sessions.shift();
+			next(function done(done) {
+				if(sessions.length) {
+					nextsession();
 				} else {
 					done();
 				}
 			});
-		}(screenshots(webdriver, driver)));
-
-		/*
-		var driver = new webdriver.Builder().
-		  usingServer('http://hub-cloud.browserstack.com/wd/hub').
-		  withCapabilities(capabilities).
-		  build();
-
-		console.log('Hello Browserstack!');
-
-		webdriver.WebDriver.prototype.saveScreenshot = function(filename) {
-			return driver.takeScreenshot().then(function(data) {
-				fs.writeFile(filename, data.replace(/^data:image\/png;base64,/,''), 'base64', function(err) {
-					if(err) throw err;
-				});
-			});
-		};
-
-		var url = 'http://' + getip() + ':10114/Client-Runtime/dist/intro/';
-		console.log(url);
-		driver.get(url);
-		//driver.findElement(webdriver.By.name('q')).sendKeys('BrowserStack');
-		//driver.findElement(webdriver.By.name('btnG')).click();
-
-		driver.getTitle().then(function(title) {
-		  console.log(title);
-		});
-
-		driver.saveScreenshot('TESTING.png');
-		driver.quit();
-		*/
+		}());
 	}
 
 };
 
 /**
- * Dig up our network IP.
+ * Get browser name without any version number.
+ * @param {string} browser
  * @returns {string}
  */
-function getip() {
-	var result = null;
-	var ifaces = require('os').networkInterfaces();
-	Object.keys(ifaces).forEach(function(dev) {
-		ifaces[dev].every(function(details){
-			if (details.family === 'IPv4') {
-				result = details.address;
-			}
-			return !result;
-		});
-	});
-	if(result === '127.0.0.1') {
-		result = 'localhost'; // otherwise not work offline (?)
-	}
-	return result;
+function bname(browser) {
+	return browser.replace(/[0-9]/g, '').trim();
+}
+
+/**
+ * Get browser version number without any name.
+ * @param {string} browser
+ * @returns {string}
+ */
+function bvers(browser) {
+	var num = browser.match(/\d+/);
+	return num ? num[0] : '';
+}
+
+/**
+ * Create folders as needed.
+ * @param {string} target
+ * @eturns {string}
+ */
+function ensurefolder(target) {
+	path.dirname(target).split('/').reduce((prev, path) => {
+		var next = prev + path + '/';
+		if (!fs.existsSync(next)){
+			fs.mkdirSync(next);
+		}
+		return next;
+	}, '');
+	return target;
 }

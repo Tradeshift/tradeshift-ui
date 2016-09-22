@@ -52,9 +52,8 @@ module.exports = function(grunt) {
 		
 		// nuke previous build
 		clean: {
-			all: [
-				'dist/**'
-			]
+			dist: ['dist/**'],
+			screenshots: ['screenshots/**']
 		},
 		
 		connect: {
@@ -221,7 +220,18 @@ module.exports = function(grunt) {
 		shooter: {
 			options: {
 				user: '<%=stackconf.username%>',
-				key: '<%=stackconf.key%>'
+				key: '<%=stackconf.key%>',
+				browsers: [
+					'firefox',
+					'chrome',
+					'safari',
+					'internet explorer 9',
+					'internet explorer 10',
+					'internet explorer 11',
+					//'android',
+					//'iphone',
+					//'ipad'
+				]
 			}
 		}
 		
@@ -288,21 +298,21 @@ module.exports = function(grunt) {
 	grunt.task.registerTask('dist', xxx('target_public'));
 
 	// main screenshot task
-	grunt.task.registerTask('screenshots', ['tunneler', 'shooter', 'tunneler:stop']);
+	grunt.task.registerTask('screenshots', ['clean:screenshots', 'tunneler', 'shooter', 'tunneler:stop']);
 
 	// begin screenshots
 	grunt.task.registerTask('tunneler', 'Start BrowserStackTunnel', function() {
-		btunneler.start(grunt, this.options(), this.async());
+		btunneler.start(this.options(), this.async());
 	});
 
 	// perform screenshots
 	grunt.task.registerTask('shooter', 'Start photo sesstion', function() {
-		bsshooter.shoot(grunt, this.options(), this.async());
+		bsshooter.shoot(this.options(), this.async());
 	});
 
 	// end screenshots
 	grunt.task.registerTask('tunneler:stop', 'Stop BrowserStackTunnel', function() {
-		btunneler.stop(grunt, this.async());
+		btunneler.stop(this.async());
 	});
 
 	/**
@@ -358,7 +368,7 @@ module.exports = function(grunt) {
 	 */
 	function xxx(tags) {
 		return [
-			'clean',
+			'clean:dist',
 			'guibundles',
 			'edbml:outline',
 			'edbml:' + tags,

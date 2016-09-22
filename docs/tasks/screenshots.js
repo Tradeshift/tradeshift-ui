@@ -1,23 +1,4 @@
-module.exports = function screenshots(webdriver, driver) {
-
-	/**
-	 * @param {string} url
-	 * @param {function} action
-	 */
-	function shoot(url, action) {
-		return function() {
-			driver.get(`http://localhost:10114/dist/${url}`);
-			return new Promise(function(resolve, reject) {
-				console.log(`Shooting ${url}...`);
-				driver.wait(function() {
-					var readyroot = webdriver.By.css('html.ts-ready');
-				  return driver.findElements(readyroot);
-				}).then(function() {
-					action(resolve);
-				});
-			});
-		};
-	}
+module.exports = function screenshots(webdriver, driver, shoot) {
 
 	return [
 

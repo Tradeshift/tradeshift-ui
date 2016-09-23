@@ -3,6 +3,9 @@ browserstack.json
 config.local.json
 aws-keys.json
 
+# Local (dev) screenshots
+docs/screenshots/local/
+
 # Temporary files
 tmp
 temp

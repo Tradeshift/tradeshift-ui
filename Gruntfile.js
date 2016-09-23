@@ -54,26 +54,7 @@ module.exports = function(grunt) {
 				'temp/**',
 				'dist/cdn/**',
 				'public/**',
-			],
-			screenshots: [
-				'screenshots/'
-			],
-			'local-screenshots': [
-				'local-screenshots/'
 			]
-		},
-
-		mkdir: {
-			screenshots: {
-				options: {
-					create: ['screenshots']
-				}
-			},
-			'local-screenshots': {
-				options: {
-					create: ['local-screenshots']
-				}
-			}
 		},
 
 		// setup 'ts.js' for local development
@@ -429,44 +410,23 @@ module.exports = function(grunt) {
 			}
 		},
 
-		gitadd: {
-			screenshots: {
-				files: {
-					src: ["screenshots/*.png"]
-				}
-			}
-		},
+		gitadd: {},
 
-		gitcommit: {
-			screenshots: {
-				options: {
-					message: 'CI Server: Updated screenshots',
-					noStatus: true,
-					allowEmpty: true
-				},
-				files: {
-					src: ["screenshots/*.png"]
-				}
-			}
-		},
-		gitpush: {
-			screenshots: {
-			}
-		},
+		gitcommit: {},
+
+		gitpush: {},
+
 		release: {
 			options: {
 				bump: true, // enable bumping the version
 				silent: false, // display the output of git and other grunt tasks
-				
 				commit: true, // commit changes to git
 				commitMessage: '[bump] v<%= version %>',
 				push: true, // push your commits to git
-				
 				tag: true, // add a new tag based on the release
 				tagName: 'v<%= version %>',
 				tagMessage: 'v<%= version %>',
 				pushTags: true, // push the new tag to git
-				
 				npm: false, // this isn't an npm module
 				afterBump: [
 					'release-deploy' // deploy to S3 after everything is done

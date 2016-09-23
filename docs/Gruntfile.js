@@ -53,7 +53,8 @@ module.exports = function(grunt) {
 		// nuke previous build
 		clean: {
 			dist: ['dist/**'],
-			screenshots: ['screenshots/**']
+			screenshots_local: ['screenshots/local/**'],
+			screenshots_release: ['screenshots/release/**']
 		},
 		
 		connect: {
@@ -222,16 +223,27 @@ module.exports = function(grunt) {
 				user: '<%=stackconf.username%>',
 				key: '<%=stackconf.key%>',
 				browsers: [
-					'firefox',
-					'chrome',
-					'safari',
-					'internet explorer 9',
-					'internet explorer 10',
-					'internet explorer 11',
+					'WIN8: firefox',
+					'WIN8: chrome',
+					'MAC: safari',
+					'WINDOWS: internet explorer 9',
+					'WINDOWS: internet explorer 10',
+					'WIN8: internet explorer 11',
 					//'android',
 					//'iphone',
 					//'ipad'
 				]
+			},
+			local: {
+				options: {
+					folder: 'screenshots/local/',
+					compare: 'screenshots/release/'
+				}
+			},
+			release: {
+				options: {
+					folder: 'screenshots/release/'
+				}
 			}
 		}
 		
@@ -297,8 +309,11 @@ module.exports = function(grunt) {
 	// important: Run this before committing to Git!
 	grunt.task.registerTask('dist', xxx('target_public'));
 
-	// main screenshot task
-	grunt.task.registerTask('screenshots', ['clean:screenshots', 'tunneler', 'shooter', 'tunneler:stop']);
+	// local screenshots (compare current code with the latest release)
+	grunt.task.registerTask('screenshots:local', ['clean:screenshots_local', 'tunneler', 'shooter:local', 'tunneler:stop']);
+
+	// add new screenshot "benchmark" TODO: hook this into the `grunt:release` system
+	grunt.task.registerTask('screenshots:release', ['clean:screenshots_release', 'tunneler', 'shooter:release', 'tunneler:stop']);
 
 	// begin screenshots
 	grunt.task.registerTask('tunneler', 'Start BrowserStackTunnel', function() {
@@ -306,7 +321,7 @@ module.exports = function(grunt) {
 	});
 
 	// perform screenshots
-	grunt.task.registerTask('shooter', 'Start photo sesstion', function() {
+	grunt.task.registerMultiTask('shooter', 'Start screenshot session', function() {
 		bsshooter.shoot(this.options(), this.async());
 	});
 

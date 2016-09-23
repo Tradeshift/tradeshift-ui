@@ -16,6 +16,7 @@
     "grunt-contrib-watch": "^1.0.0",
     "grunt-spiritual-build": "^0.1.18",
     "grunt-spiritual-edbml": "^0.3.0",
+    "image-diff": "^1.6.3",
     "js-beautify": "^1.6.3",
     "load-grunt-tasks": "^3.5.0",
     "node.extend": "^1.1.5",

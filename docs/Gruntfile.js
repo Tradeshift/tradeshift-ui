@@ -3,8 +3,17 @@ var processor = require('./tasks/processor');
 var publisher = require('./tasks/publisher');
 var btunneler = require('./tasks/tuneller.js');
 var bsshooter = require('./tasks/shooter.js');
-var stackconf = require('./browserstack.json');
+var stackconf;
 var S = require("string");
+
+try {
+	stackconf = require('./browserstack.json');
+} catch (err) {
+	stackconf = {
+		username: '',
+		accessKey: ''
+	};
+}
 
 /**
  * @param {Grunt} grunt

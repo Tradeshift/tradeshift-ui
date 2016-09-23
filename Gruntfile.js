@@ -37,11 +37,18 @@ module.exports = function(grunt) {
 
 	// Config ....................................................................
 
+	var awsconfig;
+	try {
+		awsconfig = require('./aws-keys.json');
+	} catch (err) {
+		awsconfig = {};
+	}
+
 	grunt.initConfig({
 
 		config: config,
-		pkg: grunt.file.readJSON("package.json"),
-		aws: grunt.file.readJSON('aws-keys.json'),
+		pkg: grunt.file.readJSON('package.json'),
+		aws: awsconfig,
 
 		// nuke previous build
 		clean: {

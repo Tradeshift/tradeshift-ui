@@ -3,6 +3,7 @@
 	"esnext": true,
 	"globals": {
 		"__dirname": true,
+		"process": true,
 		"kommando": true,
 		"angular": true,
 		"GLOBAL": true,

@@ -11,7 +11,7 @@ addons:
 
 language: node_js
 node_js:
-  - "4.5.0"
+  - "node"
 
 matrix:
   fast_finish: true

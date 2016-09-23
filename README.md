@@ -19,28 +19,29 @@ If you'd like to submit a feature request or report a bug, go to our [issues pag
 1. Install [ChromeDriver](https://code.google.com/p/chromedriver/downloads/list)
   - If you're on a Mac, the easiest way to install is with `homebrew`. Highly suggested.
 1. Install [NodeJS](https://nodejs.org/), either LTS or current.
-1. Install the Grunt Command Line Utility globally
+1. Install the Grunt Command Line Utility globally.
 	- `npm install -g grunt-cli`
-1. Install the dependencies of this project
+1. Install the dependencies of this project.
 	- `npm install`
 
 ### Optional steps to set up the documentation site locally
 
-1. Install the dependencies inside the `docs/` folder
+1. Install the dependencies inside the `docs/` folder.
 	- `cd docs; npm install`
 
 ## Usage (Local Development)
 
-1. Start the `grunt` script in the root of the repository
+1. Start the `grunt` script in the root of the repository.
 	- `grunt`
-1. Use `http://localhost:10111/dist/ts.js` in your app running locally to initialize Tradeshift UI
-1. Whenever you modify the source files, the script will rebuild the distribution files in `dist/` so you're always using the latest version
+1. Use [`http://localhost:10111/dist/ts.js`](`http://localhost:10111/dist/ts.js`) in your app running locally to initialize Tradeshift UI.
+1. Whenever you modify the source files, the script will rebuild the distribution files in `dist/` so you're always using the latest version.
 
 ### Optional steps to run the documentation site locally
 
-1. Start the `grunt` script in the `docs/` folder
+1. Start the `grunt` script in the `docs/` folder.
 	- `cd docs; grunt`
-1. Whenever you modify the source files, the script will rebuild the distribution files in `dist/` so you're always using the latest version
+1. Navigate to [`http://localhost:10114/`](http://localhost:10114/) to view the documentation site locally.
+1. Whenever you modify the source files, the script will rebuild the distribution files in `dist/` so you're always using the latest version.
 
 ## Git Hooks
 

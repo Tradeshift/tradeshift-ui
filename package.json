@@ -14,7 +14,7 @@
     "Daniel Spitzer <dsp@tradeshift.com> (https://github.com/sampi)"
   ],
   "license": "SEE LICENSE IN LICENSE.md",
-  "homepage": "https://tradeshift.github.io/tradeshift-ui/",
+  "homepage": "https://ui.tradeshift.com/",
   "scripts": {
     "test": "grunt test"
   },

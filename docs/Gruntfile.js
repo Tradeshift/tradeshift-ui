@@ -54,9 +54,9 @@ module.exports = function(grunt) {
 		publictags: [
 			'<meta name="viewport" content="width=device-width"/>',
 			'<script src="<%=config.runtime_hosting%>/ts-<%=config.runtime_version%>.min.js"></script>',
-			'<script src="/tradeshift-ui/dist/assets/dox.min.js"></script>',
-			'<script src="/tradeshift-ui/dist/assets/jquery-2.2.4.min.js"></script>',
-			'<link rel="stylesheet" href="/tradeshift-ui/dist/assets/dox.css"/>'
+			'<script src="/dist/assets/dox.min.js"></script>',
+			'<script src="/dist/assets/jquery-2.2.4.min.js"></script>',
+			'<link rel="stylesheet" href="/dist/assets/dox.css"/>'
 		],
 		
 		// nuke previous build

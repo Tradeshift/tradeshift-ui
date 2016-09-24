@@ -9,18 +9,19 @@ module.exports = {
 
 	shoot: function(options, done) {
 
-		var sessions = options.browsers.map(function(browser) {
+		var sessions = options.browsers.map(function(string) {
 
 			return function(callback) {
 
-				console.log('\n' + browser.toUpperCase());
-
+				Out.headline(string);
+				
+				var browser = new Browser(string);
 				var driver = new webdriver.Builder().
 					  usingServer('http://hub-cloud.browserstack.com/wd/hub').
 					  withCapabilities({
-					  	'browserName': bname(browser),
-						  'version': bvers(browser),
-						  'platform': bos(browser),
+					  	'browserName': browser.nickname,
+						  'version': browser.versname,
+						  'platform': browser.platform,
 						  'browserstack.local': true,
 						  'browserstack.user': options.user,
 						  'browserstack.key': options.key
@@ -52,20 +53,18 @@ module.exports = {
 				 * @returns {Promise}
 				 */
 				driver.saveScreenshot = function(filename) {
-					var folder = options.folder + bfull(browser);
-					var target = ensurefolder(safename(folder + '/' + filename));
+					var folder = options.folder + browser.fullname;
+					var target = folder + '/' + File.safename(filename);
 					return new Promise(function(resolve, reject) {
-						write(filename);
+						Out.write(filename);
 						driver.takeScreenshot().then(function(data) {
-							fs.writeFile(target, data.replace(/^data:image\/png;base64,/,''), 'base64', function(err) {
+							fs.writeFile(File.ensurefolder(target), data.replace(/^data:image\/png;base64,/,''), 'base64', function(err) {
 								if(err) {
 									throw err;
-								} else if(options.compare) {
-									var source = target.replace(options.folder, options.compare);
-									compare(target, source, filename, resolve);
+								} else if(options.compare && options.differs) {
+									compare(target, resolve);
 								} else {
-									erase();
-									writeln(filename);
+									Out.erase().writeln(filename);
 									resolve();
 								}
 							});
@@ -73,22 +72,36 @@ module.exports = {
 					});
 				};
 
-				function compare(localsrc, releasesrc, filename, resolve) {
-					diff({
-						actualImage: localsrc,
-						expectedImage: releasesrc,	
-					}, function(err, similar) {
-						erase();
-						if(err) {
-							console.error(err.message);
-						}
-						if(similar) {
-							writeln(filename, 'green');
-						} else {
-							writeln(filename, 'red');
-						}
+				/**
+				 * Compare local screenshot to release screenshot.
+				 * @param {string} target
+				 * @param {function} resolve
+				 */
+				function compare(target, resolve) {
+					var source = target.replace(options.folder, options.compare);
+					var differ = target.replace(options.folder, options.differs);
+					var filenm = path.basename(target);
+					if(fs.existsSync(source)) {
+						diff({
+							actualImage: target,
+							expectedImage: source,
+							diffImage: differ,
+						}, function(err, similar) {
+							Out.erase();
+							if(err) {
+								console.error(err.message);
+							}
+							if(similar) {
+								Out.writeln(filenm, 'green');
+							} else {
+								Out.writeln(filenm, 'red');
+							}
+							resolve();
+						});
+					} else {
+						Out.append(' (new screenshot)');
 						resolve();
-					});
+					}
 				}
 
 				/**
@@ -128,91 +141,101 @@ module.exports = {
 
 };
 
+
+// Scoped ......................................................................
+
 /**
- * Get browser operating system.
- * @param {string} browser
- * @returns {string}
+ * Browser string breakdown.
  */
-function bos(browser) {
-	return browser.split(':')[0].trim();
+class Browser {
+
+	constructor(string) {
+		this.platform = string.split(':')[0].trim();
+		this.fullname = string.split(':')[1].trim();
+		this.nickname = this.fullname.replace(/[0-9]/g, '').trim();
+		this.versname = (this.fullname.match(/\d+/) || [''])[0];
+	}
 }
 
 /**
- * Get browser name without any version number.
- * @param {string} browser
- * @returns {string}
+ * Write stuff to console.
  */
-function bname(browser) {
-	return bfull(browser).replace(/[0-9]/g, '').trim();
+class Out {
+
+	/**
+	 * Write headline.
+	 * @param {string} header
+	 */
+	static headline(header) {
+		console.log('\n' + header.toUpperCase());
+	}
+
+	/**
+	 * Write text in console (no linebreak).
+	 * @param @optional {string} color
+	 * @param {string} text
+	 */
+	static write(text, color) {
+		text = color ? chalk[color](text) : text;
+		process.stdout.write('  ' + text);
+	}
+
+	/**
+	 * Write line in console.
+	 * @param {string} text
+	 * @param @optional {string} color
+	 */
+	static writeln(text, color) {
+		text = color ? chalk[color](text) : text;
+		process.stdout.write('  ' + text + '\n');
+	}
+
+	/**
+	 * Append to existing line, adding linebreak.
+	 * @param @optional {string} color
+	 * @param {string} text
+	 */
+	static appendln(text, color) {
+		text = color ? chalk[color](text) : text;
+		process.stdout.write('  ' + text + '\n');
+	}
+
+	/**
+	 * Erase console output up to latest newline.
+	 */
+	static erase() {
+		process.stdout.write("\r\x1b[K");
+		return this;
+	}
 }
 
 /**
- * Get browser version number without any name.
- * @param {string} browser
- * @returns {string}
+ * File system stuff.
  */
-function bvers(browser) {
-	var num = bfull(browser).match(/\d+/);
-	return num ? num[0] : '';
-}
+class File {
 
-/**
- * Get browser name and version (without OS).
- * @param {string} browser
- * @returns {string}
- */
-function bfull(browser) {
-	return browser.split(':')[1].trim();
-}
+	/**
+	 * Don't use spaces in filename.
+	 * @param {string} filename
+	 * @returns {string}
+	 */
+	static safename(filename) {
+		return filename.replace(/ /g, '-');
+	}
 
-/**
- * Don't use spaces in filename.
- * @param {string} filename
- * @returns {string}
- */
-function safename(filename) {
-	return filename.replace(/ /g, '-');
-}
-
-/**
- * Write text in console (no linebreak).
- * @param @optional {string} color
- * @param {string} text
- */
-function write(text, color) {
-	text = color ? chalk[color](text) : text;
-	process.stdout.write('  ' + text);
-}
-
-/**
- * Write line in console.
- * @param {string} text
- * @param @optional {string} color
- */
-function writeln(text, color) {
-	text = color ? chalk[color](text) : text;
-	process.stdout.write('  ' + text + '\n');
-}
-
-/**
- * Erase console output up to latest newline.
- */
-function erase() {
-	process.stdout.write("\r\x1b[K");
-}
-
-/**
- * Create folders as needed.
- * @param {string} target
- * @eturns {string}
- */
-function ensurefolder(target) {
-	path.dirname(target).split('/').reduce((prev, path) => {
-		var next = prev + path + '/';
-		if (!fs.existsSync(next)){
-			fs.mkdirSync(next);
-		}
-		return next;
-	}, '');
-	return target;
+	/**
+	 * Create folders as needed.
+	 * @param {string} target
+	 * @eturns {string}
+	 */
+	static ensurefolder(target) {
+		path.dirname(target).split('/').reduce((prev, path) => {
+			var next = prev + path + '/';
+			if (!fs.existsSync(next)){
+				fs.mkdirSync(next);
+			}
+			return next;
+		}, '');
+		return target;
+	}
 }

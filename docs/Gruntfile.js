@@ -243,15 +243,16 @@ module.exports = function(grunt) {
 					//'ipad'
 				]
 			},
-			local: {
-				options: {
-					folder: 'screenshots/local/',
-					compare: 'screenshots/release/'
-				}
-			},
 			release: {
 				options: {
 					folder: 'screenshots/release/'
+				}
+			},
+			local: {
+				options: {
+					folder: 'screenshots/local/',
+					compare: 'screenshots/release/',
+					differs: 'screenshots/diffs/'
 				}
 			}
 		}

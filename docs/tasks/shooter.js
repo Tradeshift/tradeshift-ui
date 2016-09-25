@@ -1,23 +1,34 @@
-var webdriver = require('selenium-webdriver');
-var screenshots = require('./screenshots.js');
-var diff = require('image-diff');
-var chalk = require('chalk');
-var path = require('path');
-var fs = require('fs');
+const webdriver = require('selenium-webdriver');
+const screenshots = require('./screenshots.js');
+const diff = require('image-diff');
+const chalk = require('chalk');
+const path = require('path');
+const fs = require('fs');
+
+const stdout = process.stdout;
+const URL_BROWSERCLOUD = 'http://hub-cloud.browserstack.com/wd/hub';
+const URL_SCREENSHOTS = 'http://localhost:10114/dist/screenshots/';
 
 module.exports = {
 
+	/**
+	 * Shoot screenshots.
+	 * @param {Object} options
+	 * @param {function} done
+	 */
 	shoot: function(options, done) {
 
+		var diffs = [];
 		var sessions = options.browsers.map(function(string) {
 
 			return function(callback) {
 
 				Out.headline(string);
-				
+				var currenturl = null;
+
 				var browser = new Browser(string);
 				var driver = new webdriver.Builder().
-					  usingServer('http://hub-cloud.browserstack.com/wd/hub').
+					  usingServer(URL_BROWSERCLOUD).
 					  withCapabilities({
 					  	'browserName': browser.nickname,
 						  'version': browser.versname,
@@ -41,6 +52,7 @@ module.exports = {
 								var readyroot = webdriver.By.css('html.ts-ready'); // not needed?
 							  return driver.findElements(readyroot);
 							}).then(function() {
+								currenturl = url;
 								action(resolve);
 							});
 						});
@@ -53,8 +65,8 @@ module.exports = {
 				 * @returns {Promise}
 				 */
 				driver.saveScreenshot = function(filename) {
-					var folder = options.folder + browser.fullname;
-					var target = folder + '/' + File.safename(filename);
+					var folder = options.folder + browser.sname;
+					var target = File.safename(folder + '/' + filename);
 					return new Promise(function(resolve, reject) {
 						Out.write(filename);
 						driver.takeScreenshot().then(function(data) {
@@ -82,11 +94,14 @@ module.exports = {
 					var differ = target.replace(options.folder, options.differs);
 					var filenm = path.basename(target);
 					if(fs.existsSync(source)) {
-						diff({
+						var setup = {
+							url: currenturl,
+							browser: browser.nickname,
 							actualImage: target,
 							expectedImage: source,
-							diffImage: differ,
-						}, function(err, similar) {
+							diffImage: differ
+						};
+						diff(setup, function(err, similar) {
 							Out.erase();
 							if(err) {
 								console.error(err.message);
@@ -95,11 +110,12 @@ module.exports = {
 								Out.writeln(filenm, 'green');
 							} else {
 								Out.writeln(filenm, 'red');
+								diffs.push(setup);
 							}
 							resolve();
 						});
 					} else {
-						Out.append(' (new screenshot)');
+						Out.appendln('(new screenshot)');
 						resolve();
 					}
 				}
@@ -111,10 +127,10 @@ module.exports = {
 				(function nextshot(shots) {
 					var next = shots.shift();	
 					next().then(function() {
-						if(shots.length) { // shoot next screenshot
+						if(shots.length) {
 							nextshot(shots);
 						} else {
-							callback(done);
+							callback(diffs, done);
 						}
 					});
 				}(screenshots(webdriver, driver, shoot)));
@@ -128,15 +144,49 @@ module.exports = {
 		 * @param {function} done
 		 */
 		(function nextsession() {
-			var next = sessions.shift();
-			next(function done(done) {
+			var json, next = sessions.shift();
+			next(function done(diffs, done) {
 				if(sessions.length) {
 					nextsession();
 				} else {
-					done();
+					json = formatjson(diffs, options);
+					fs.writeFile('screenshots/diffs.json', json, () => {
+						if(options.compare) {
+							Out.report(diffs.length);
+						}
+						done();
+					});
 				}
 			});
 		}());
+
+		/**
+		 * Format JSON for smaller file size.
+		 * @param {Array<Object>} diffs
+		 * @param {Object} options
+		 * @returns {string}
+		 */
+		function formatjson(diffs, options) {
+			var dirty = object => !!object.diffs.length;
+			var space = s => s.replace(/-/g, ' ');
+			var title = s => space(path.basename(s).replace(path.extname(s), ''));
+			return JSON.stringify(options.browsers.map(string => {
+				var browser = new Browser(string);
+				var matches = diff => diff.browser === browser.nickname;
+				return {
+					browser: browser.nicename,
+					diffs: diffs.filter(matches).map(setup => {
+						return [
+							title(setup.actualImage),
+							setup.url,
+							setup.actualImage,
+							setup.expectedImage,
+							setup.diffImage
+						];
+					})
+				};
+			}).filter(dirty), null, '\t');
+		}
 	}
 
 };
@@ -145,15 +195,18 @@ module.exports = {
 // Scoped ......................................................................
 
 /**
- * Browser string breakdown.
+ * Browser string breakdown. Let's keep it short 
+ * in the Gruntfile so it's easy to comment out.
  */
 class Browser {
-
 	constructor(string) {
 		this.platform = string.split(':')[0].trim();
-		this.fullname = string.split(':')[1].trim();
-		this.nickname = this.fullname.replace(/[0-9]/g, '').trim();
-		this.versname = (this.fullname.match(/\d+/) || [''])[0];
+		this.sname = string.split(':')[1].trim();
+		this.nickname = this.sname.replace(/[0-9]/g, '').trim();
+		this.versname = (this.sname.match(/\d+/) || [''])[0];
+		this.nicename = this.sname.replace(/\w*/g, txt => {
+			return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+		});
 	}
 }
 
@@ -172,12 +225,12 @@ class Out {
 
 	/**
 	 * Write text in console (no linebreak).
-	 * @param @optional {string} color
 	 * @param {string} text
+	 * @param @optional {string} color
 	 */
 	static write(text, color) {
 		text = color ? chalk[color](text) : text;
-		process.stdout.write('  ' + text);
+		stdout.write('  ' + text);
 	}
 
 	/**
@@ -187,25 +240,38 @@ class Out {
 	 */
 	static writeln(text, color) {
 		text = color ? chalk[color](text) : text;
-		process.stdout.write('  ' + text + '\n');
+		stdout.write('  ' + text + '\n');
 	}
 
 	/**
 	 * Append to existing line, adding linebreak.
-	 * @param @optional {string} color
 	 * @param {string} text
+	 * @param @optional {string} color
 	 */
 	static appendln(text, color) {
 		text = color ? chalk[color](text) : text;
-		process.stdout.write('  ' + text + '\n');
+		stdout.write('  ' + text + '\n');
 	}
 
 	/**
 	 * Erase console output up to latest newline.
+	 * @returns {Constructor}
 	 */
 	static erase() {
-		process.stdout.write("\r\x1b[K");
+		stdout.write("\r\x1b[K");
 		return this;
+	}
+
+	/**
+	 * Mission briefing.
+	 * @param {number} count
+	 */
+	static report(count) {
+		if(count) {
+			console.log(`\n${count} diffs found: ${chalk.blue(URL_SCREENSHOTS)}`);
+		} else {
+			console.log(`\nNo diffs found. Please work harder.`);
+		}
 	}
 }
 

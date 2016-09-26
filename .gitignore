@@ -5,6 +5,7 @@ aws-keys.json
 
 # Local (dev) screenshots
 docs/screenshots/local/
+docs/screenshots/diffs/
 
 # Temporary files
 tmp

@@ -1,26 +1,38 @@
-var webdriver = require('selenium-webdriver');
-var screenshots = require('./screenshots.js');
-var diff = require('image-diff');
-var chalk = require('chalk');
-var path = require('path');
-var fs = require('fs');
+const webdriver = require('selenium-webdriver');
+const screenshots = require('./screenshots.js');
+const diff = require('image-diff');
+const chalk = require('chalk');
+const path = require('path');
+const fs = require('fs');
+
+const stdout = process.stdout;
+const URL_BROWSERCLOUD = 'http://hub-cloud.browserstack.com/wd/hub';
+const URL_SCREENSHOTS = 'http://localhost:10114/dist/screenshots/';
 
 module.exports = {
 
+	/**
+	 * Shoot screenshots.
+	 * @param {Object} options
+	 * @param {function} done
+	 */
 	shoot: function(options, done) {
 
-		var sessions = options.browsers.map(function(browser) {
+		var diffs = [];
+		var sessions = options.browsers.map(function(string) {
 
 			return function(callback) {
 
-				console.log('\n' + browser.toUpperCase());
+				Out.headline(string);
+				var currenturl = null;
 
+				var browser = new Browser(string);
 				var driver = new webdriver.Builder().
-					  usingServer('http://hub-cloud.browserstack.com/wd/hub').
+					  usingServer(URL_BROWSERCLOUD).
 					  withCapabilities({
-					  	'browserName': bname(browser),
-						  'version': bvers(browser),
-						  'platform': bos(browser),
+					  	'browserName': browser.nickname,
+						  'version': browser.versname,
+						  'platform': browser.platform,
 						  'browserstack.local': true,
 						  'browserstack.user': options.user,
 						  'browserstack.key': options.key
@@ -40,6 +52,7 @@ module.exports = {
 								var readyroot = webdriver.By.css('html.ts-ready'); // not needed?
 							  return driver.findElements(readyroot);
 							}).then(function() {
+								currenturl = url;
 								action(resolve);
 							});
 						});
@@ -52,20 +65,18 @@ module.exports = {
 				 * @returns {Promise}
 				 */
 				driver.saveScreenshot = function(filename) {
-					var folder = options.folder + bfull(browser);
-					var target = ensurefolder(safename(folder + '/' + filename));
+					var folder = options.folder + browser.sname;
+					var target = File.safename(folder + '/' + filename);
 					return new Promise(function(resolve, reject) {
-						write(filename);
+						Out.write(filename);
 						driver.takeScreenshot().then(function(data) {
-							fs.writeFile(target, data.replace(/^data:image\/png;base64,/,''), 'base64', function(err) {
+							fs.writeFile(File.ensurefolder(target), data.replace(/^data:image\/png;base64,/,''), 'base64', function(err) {
 								if(err) {
 									throw err;
-								} else if(options.compare) {
-									var source = target.replace(options.folder, options.compare);
-									compare(target, source, filename, resolve);
+								} else if(options.compare && options.differs) {
+									compare(target, resolve);
 								} else {
-									erase();
-									writeln(filename);
+									Out.erase().writeln(filename);
 									resolve();
 								}
 							});
@@ -73,22 +84,40 @@ module.exports = {
 					});
 				};
 
-				function compare(localsrc, releasesrc, filename, resolve) {
-					diff({
-						actualImage: localsrc,
-						expectedImage: releasesrc,	
-					}, function(err, similar) {
-						erase();
-						if(err) {
-							console.error(err.message);
-						}
-						if(similar) {
-							writeln(filename, 'green');
-						} else {
-							writeln(filename, 'red');
-						}
+				/**
+				 * Compare local screenshot to release screenshot.
+				 * @param {string} target
+				 * @param {function} resolve
+				 */
+				function compare(target, resolve) {
+					var source = target.replace(options.folder, options.compare);
+					var differ = target.replace(options.folder, options.differs);
+					var filenm = path.basename(target);
+					if(fs.existsSync(source)) {
+						var setup = {
+							url: currenturl,
+							browser: browser.nickname,
+							actualImage: target,
+							expectedImage: source,
+							diffImage: differ
+						};
+						diff(setup, function(err, similar) {
+							Out.erase();
+							if(err) {
+								console.error(err.message);
+							}
+							if(similar) {
+								Out.writeln(filenm, 'green');
+							} else {
+								Out.writeln(filenm, 'red');
+								diffs.push(setup);
+							}
+							resolve();
+						});
+					} else {
+						Out.appendln('(new screenshot)');
 						resolve();
-					});
+					}
 				}
 
 				/**
@@ -98,10 +127,10 @@ module.exports = {
 				(function nextshot(shots) {
 					var next = shots.shift();	
 					next().then(function() {
-						if(shots.length) { // shoot next screenshot
+						if(shots.length) {
 							nextshot(shots);
 						} else {
-							callback(done);
+							callback(diffs, done);
 						}
 					});
 				}(screenshots(webdriver, driver, shoot)));
@@ -115,104 +144,164 @@ module.exports = {
 		 * @param {function} done
 		 */
 		(function nextsession() {
-			var next = sessions.shift();
-			next(function done(done) {
+			var json, next = sessions.shift();
+			next(function done(diffs, done) {
 				if(sessions.length) {
 					nextsession();
 				} else {
-					done();
+					json = formatjson(diffs, options);
+					fs.writeFile('screenshots/diffs.json', json, () => {
+						if(options.compare) {
+							Out.report(diffs.length);
+						}
+						done();
+					});
 				}
 			});
 		}());
+
+		/**
+		 * Format JSON for smaller file size.
+		 * @param {Array<Object>} diffs
+		 * @param {Object} options
+		 * @returns {string}
+		 */
+		function formatjson(diffs, options) {
+			var dirty = object => !!object.diffs.length;
+			var space = s => s.replace(/-/g, ' ');
+			var title = s => space(path.basename(s).replace(path.extname(s), ''));
+			return JSON.stringify(options.browsers.map(string => {
+				var browser = new Browser(string);
+				var matches = diff => diff.browser === browser.nickname;
+				return {
+					browser: browser.nicename,
+					diffs: diffs.filter(matches).map(setup => {
+						return [
+							title(setup.actualImage),
+							setup.url,
+							setup.actualImage,
+							setup.expectedImage,
+							setup.diffImage
+						];
+					})
+				};
+			}).filter(dirty), null, '\t');
+		}
 	}
 
 };
 
+
+// Scoped ......................................................................
+
 /**
- * Get browser operating system.
- * @param {string} browser
- * @returns {string}
+ * Browser string breakdown. Let's keep it short 
+ * in the Gruntfile so it's easy to comment out.
  */
-function bos(browser) {
-	return browser.split(':')[0].trim();
+class Browser {
+	constructor(string) {
+		this.platform = string.split(':')[0].trim();
+		this.sname = string.split(':')[1].trim();
+		this.nickname = this.sname.replace(/[0-9]/g, '').trim();
+		this.versname = (this.sname.match(/\d+/) || [''])[0];
+		this.nicename = this.sname.replace(/\w*/g, txt => {
+			return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+		});
+	}
 }
 
 /**
- * Get browser name without any version number.
- * @param {string} browser
- * @returns {string}
+ * Write stuff to console.
  */
-function bname(browser) {
-	return bfull(browser).replace(/[0-9]/g, '').trim();
-}
+class Out {
 
-/**
- * Get browser version number without any name.
- * @param {string} browser
- * @returns {string}
- */
-function bvers(browser) {
-	var num = bfull(browser).match(/\d+/);
-	return num ? num[0] : '';
-}
+	/**
+	 * Write headline.
+	 * @param {string} header
+	 */
+	static headline(header) {
+		console.log('\n' + header.toUpperCase());
+	}
 
-/**
- * Get browser name and version (without OS).
- * @param {string} browser
- * @returns {string}
- */
-function bfull(browser) {
-	return browser.split(':')[1].trim();
-}
+	/**
+	 * Write text in console (no linebreak).
+	 * @param {string} text
+	 * @param @optional {string} color
+	 */
+	static write(text, color) {
+		text = color ? chalk[color](text) : text;
+		stdout.write('  ' + text);
+	}
 
-/**
- * Don't use spaces in filename.
- * @param {string} filename
- * @returns {string}
- */
-function safename(filename) {
-	return filename.replace(/ /g, '-');
-}
+	/**
+	 * Write line in console.
+	 * @param {string} text
+	 * @param @optional {string} color
+	 */
+	static writeln(text, color) {
+		text = color ? chalk[color](text) : text;
+		stdout.write('  ' + text + '\n');
+	}
 
-/**
- * Write text in console (no linebreak).
- * @param @optional {string} color
- * @param {string} text
- */
-function write(text, color) {
-	text = color ? chalk[color](text) : text;
-	process.stdout.write('  ' + text);
-}
+	/**
+	 * Append to existing line, adding linebreak.
+	 * @param {string} text
+	 * @param @optional {string} color
+	 */
+	static appendln(text, color) {
+		text = color ? chalk[color](text) : text;
+		stdout.write('  ' + text + '\n');
+	}
 
-/**
- * Write line in console.
- * @param {string} text
- * @param @optional {string} color
- */
-function writeln(text, color) {
-	text = color ? chalk[color](text) : text;
-	process.stdout.write('  ' + text + '\n');
-}
+	/**
+	 * Erase console output up to latest newline.
+	 * @returns {Constructor}
+	 */
+	static erase() {
+		stdout.write("\r\x1b[K");
+		return this;
+	}
 
-/**
- * Erase console output up to latest newline.
- */
-function erase() {
-	process.stdout.write("\r\x1b[K");
-}
-
-/**
- * Create folders as needed.
- * @param {string} target
- * @eturns {string}
- */
-function ensurefolder(target) {
-	path.dirname(target).split('/').reduce((prev, path) => {
-		var next = prev + path + '/';
-		if (!fs.existsSync(next)){
-			fs.mkdirSync(next);
+	/**
+	 * Mission briefing.
+	 * @param {number} count
+	 */
+	static report(count) {
+		if(count) {
+			console.log(`\n${count} diffs found: ${chalk.blue(URL_SCREENSHOTS)}`);
+		} else {
+			console.log(`\nNo diffs found. Please work harder.`);
 		}
-		return next;
-	}, '');
-	return target;
+	}
+}
+
+/**
+ * File system stuff.
+ */
+class File {
+
+	/**
+	 * Don't use spaces in filename.
+	 * @param {string} filename
+	 * @returns {string}
+	 */
+	static safename(filename) {
+		return filename.replace(/ /g, '-');
+	}
+
+	/**
+	 * Create folders as needed.
+	 * @param {string} target
+	 * @eturns {string}
+	 */
+	static ensurefolder(target) {
+		path.dirname(target).split('/').reduce((prev, path) => {
+			var next = prev + path + '/';
+			if (!fs.existsSync(next)){
+				fs.mkdirSync(next);
+			}
+			return next;
+		}, '');
+		return target;
+	}
 }

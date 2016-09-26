@@ -437,19 +437,14 @@ ts.ui = gui.namespace('ts.ui', (function using(Client, guiArray, confirmed, chai
 		 */
 		load: function(href, opt_target) {
 			var url = new gui.URL(document, href);
-			if(url.href.includes(this.TRADESHIFT_HOME)) {
-				this.ready(function spiritualized() {
-					ts.ui.get('html').action.dispatchGlobal(
-						ts.ui.ACTION_GLOBAL_LOAD, {
-							href: url.href,
-							target: opt_target
-						}
-					);
-				});
-			} else {
-				// TODO(jmo@): Long winded error message
-				throw new SyntaxError('Not a magic URL');
-			}
+			this.ready(function spiritualized() {
+				ts.ui.get('html').action.dispatchGlobal(
+					ts.ui.ACTION_GLOBAL_LOAD, {
+						href: url.href,
+						target: opt_target
+					}
+				);
+			});
 		},
 
 		/**

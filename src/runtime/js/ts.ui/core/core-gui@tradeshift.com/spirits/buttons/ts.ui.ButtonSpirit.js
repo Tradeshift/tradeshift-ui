@@ -137,7 +137,6 @@ ts.ui.ButtonSpirit = (function using(chained, Client, Type, CSSPlugin, ie9) {
 		onevent: function(e) {
 			this.super.onevent(e);
 			var keyboard = false;
-			var is = this._ischromeurl();
 			var busy = this.css.contains(CLASS_LOADING);
 			switch (e.type) {
 				case 'mousedown':
@@ -157,11 +156,8 @@ ts.ui.ButtonSpirit = (function using(chained, Client, Type, CSSPlugin, ie9) {
 				case 'click':
 					if(!busy) {
 						this._depressing = false;
-						this._dispatchaction(is);
+						this._dispatchaction();
 						this._focusclass(true, true);
-						if(is) {
-							e.preventDefault();
-						}
 					}
 					break;
 				case 'dragstart':
@@ -288,20 +284,6 @@ ts.ui.ButtonSpirit = (function using(chained, Client, Type, CSSPlugin, ie9) {
 			return this.element.tabIndex >= 0;
 		},
 
-
-		/**
-		 * Is link with "magic" HREF that instructs the
-		 * (Greenfield) chrome to load a whole new app?
-		 * TODO: Refactor this to not break the real (production) chrome!
-		 * @returns {boolean}
-		 */
-		_ischromeurl: function() {
-			return this._isnavigatable() && (!ts.ui.appframe || (
-				this.element.href.includes(ts.ui.TRADESHIFT_HOME) &&
-				this.element.target !== '_blank'
-			));
-		},
-
 		/**
 		 * Spirit attached to a LINK that leads to somewhere?
 		 * TODO (jmo@): Mount in gui.URL and test for outbound href.
@@ -334,26 +316,9 @@ ts.ui.ButtonSpirit = (function using(chained, Client, Type, CSSPlugin, ie9) {
 
 		/**
 		 * Dispatch configured or default action.
-		 * @param {boolean} navigatechrome True on link that loads a new app.
 		 */
-		_dispatchaction: function(navigatechrome) {
-			var type = this.type;
-			var data = this.data;
-			if (!type) {
-				if (navigatechrome) {
-					this.action.dispatchGlobal(
-							ts.ui.ACTION_GLOBAL_LOAD,
-							data || {
-								href: this.element.href,
-								target: this.element.target
-							}
-					);
-					return;
-				} else {
-					type = ts.ui.ACTION_CLICK;
-				}
-			}
-			this.action.dispatch(type, data);
+		_dispatchaction: function() {
+			this.action.dispatch(this.type || ts.ui.ACTION_CLICK, this.data);
 		},
 		
 		/**

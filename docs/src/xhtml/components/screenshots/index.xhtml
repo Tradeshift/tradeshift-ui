@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Search</title>
+		<script src="index.js"></script>
+		<link rel="stylesheet" href="index.css"/>
+	</head>
+	<body>
+		<header data-ts="TopBar"></header>
+		<aside data-ts="SideBar" id="mysidebar" data-ts.title="Example SideBar">
+			<div data-ts="Panel">
+				<div data-ts="CompanyCard">
+					<script type="application/json">
+						{
+							"id": "6bf17754-f9de-4e31-aa31-bd3ff765b9c2",
+							"data": {
+								"name": "Tradeshift",
+								"logo": "../assets/logo.png",
+								"size": "100–249",
+								"location": "San Francisco, California",
+								"industry": "Software & IT",
+								"connection": 2
+							}
+						}
+					</script>
+				</div>
+				<div data-ts="Table" id="myTable"></div>
+			</div>
+			<div data-ts="Footer">
+				<p>
+					<button data-ts="Button" class="ts-tertiary" onclick="gui.get('mysidebar').toggle()">
+						<span>Toggle SideBar</span>
+					</button>
+				</p>
+			</div>
+		</aside>
+		<main data-ts="Main">
+			
+			<script type="text/edbml">
+				<?input name="layout" type="ts.ui.LayoutModel"?>
+
+				var spirit = this;
+
+				var backgroundcolors = ['ts-bg-blue', 'ts-bg-dark', 'ts-bg-red', 'ts-bg-yellow', 'ts-bg-green', 'ts-bg-white', 'ts-bg-purple'];
+				var buttonlabeltexts = ['Primary', 'Secondary', 'Tertiary', 'Loading'];
+				var buttonclassnames = ['ts-primary', 'ts-secondary', 'ts-tertiary', 'ts-loading'];
+
+				rendercolumns();
+
+				function rendercolumns() {
+					<table>
+						<tbody>
+							<tr>
+								backgroundcolors.forEach(function(classname) {
+									<td class="${classname}">
+										renderbuttons();
+									</td>
+								});
+							</tr>
+						</tbody>
+					</table>
+					<table>
+						<tr>
+							<td>
+								<form data-ts="Form">
+									<fieldset>
+										<label>
+											<span>Text</span>
+											<input type="text" required/>
+										</label>
+									</fieldset>
+								</form>
+							</td>
+							<td>
+								<form data-ts="Form">
+									<fieldset>
+										<span>Date</span>
+											<input type="date" value="2015-01-01" min="2014-01-01" max="2016-01-01"/>
+									</fieldset>
+								</form>
+							</td>
+							<td>
+								<form data-ts="Form">
+									<fieldset>
+										<label>
+											<span>Select</span>
+												<select>
+													<option value="a" selected>One</option>
+													<option value="b">Two</option>
+													<option value="c">Three</option>
+												</select>
+										</label>
+									</fieldset>
+								</form>
+							</td>
+							<td>
+								<form data-ts="Form">
+									<fieldset>
+										<label>
+											<span>Select multiple</span>
+											<select multiple>
+												<option value="a" selected>One</option>
+												<option value="b" selected>Two</option>
+												<option value="c">Three</option>
+												<option value="d">Four</option>
+												<option value="e">Five</option>
+											</select>
+											<button>Cool, apply changes!</button>
+										</label>
+									</fieldset>
+								</form>
+							</td>
+							<td>
+								<form data-ts="Form">
+									<fieldset>
+										<label class="ts-error">
+											<span>Text</span>
+											<input type="text"/>
+										</label>
+									</fieldset>
+								</form>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<form data-ts="Form">
+									<fieldset>
+										<label>
+											<span>Textarea</span>
+											<textarea></textarea>
+										</label>
+									</fieldset>
+								</form>
+							</td>
+							<td>
+								<form data-ts="Form">
+									<fieldset>
+										<span>Choose wisely</span>
+										<label>
+											<input type="radio" name="radio" checked/>
+											<span>Red pill</span>
+										</label>
+										<label>
+											<input type="radio" name="radio"/>
+											<span>Blue pill</span>
+										</label>
+									</fieldset>
+								</form>
+							</td>
+							<td>
+								<form data-ts="Form">
+									<fieldset>
+										<span>Legally Binding Contract</span>
+										<label>
+											<input type="checkbox"/>
+											<span>Yes</span>
+										</label>
+										<label>
+											<input type="checkbox" checked/>
+											<span>No</span>
+										</label>
+									</fieldset>
+								</form>
+							</td>
+							<td>
+								<form data-ts="Form">
+									<fieldset>
+										<span>Settings Page</span>
+										<label>
+											<span>No</span>
+											<input type="checkbox"/>
+										</label>
+										<label>
+											<span>Yes</span>
+											<input type="checkbox" checked/>
+										</label>
+									</fieldset>
+								</form>
+							</td>
+							<td>
+								<form data-ts="Form">
+									<fieldset>
+										<label class="ts-error">
+											<span>Text</span>
+											<input type="text" />
+										</label>
+										<dl class="ts-errors">
+											<dt>Text</dt>
+											<dd>An explanation of the error in question</dd>
+										</dl>
+									</fieldset>
+								</form>
+							</td>
+						</tr>
+					</table>
+					<div data-ts="Note" data-ts.closeable="true">
+						<p>This is the closeable inline Note!</p>
+					</div>
+				}
+
+				function renderbuttons() {
+					var key = gui.KeyMaster.generateKey();
+					<menu class="ts-buttons" id="${key}">
+						buttonclassnames.forEach(function(classname, i) {
+							<li>
+								var busy = classname === 'ts-loading' ? 'Loading' : '';
+								<button data-ts="Button" data-ts.busy="${busy}" class="${classname}">
+									<span>${buttonlabeltexts[i]}</span>
+								</button>
+							</li>
+						});
+					</menu>
+				}
+
+			</script>
+
+		</main>
+		<aside data-ts="Aside" id="myaside" data-ts.title="Aside CSS Check">
+			<div data-ts="Panel">
+				<p>In this section, the form and the menu and the buttons are siblings. Check it.</p>
+				<form data-ts="Form">
+					<fieldset>
+						<label>
+							<span>Textarea</span>
+							<textarea></textarea>
+						</label>
+					</fieldset>
+				</form>
+				<menu data-ts="Menu">
+					<li>
+						<button>
+							<span>Item One</span>
+							<i class="ts-icon-rating"></i>
+						</button>
+					</li>
+					<li>
+						<button>
+							<span>Item Two</span>
+							<i class="ts-icon-rating"></i>
+						</button>
+					</li>
+				</menu>
+				<menu data-ts="Buttons">
+					<li>
+						<button class="ts-primary">
+							<span>Button One</span>
+						</button>
+					</li>
+					<li>
+						<button class="ts-secondary">
+							<span>Button Two</span>
+						</button>
+					</li>
+				</menu>
+				<form data-ts="Form">
+					<p>Down here, the fieldset and the menu and the buttons are contained inside a form. They should still look the same.</p>
+					<fieldset>
+						<label>
+							<span>Textarea</span>
+							<textarea></textarea>
+						</label>
+					</fieldset>
+					<menu data-ts="Menu">
+						<li>
+							<button>
+								<span>Item One</span>
+								<i class="ts-icon-rating"></i>
+							</button>
+						</li>
+						<li>
+							<button>
+								<span>Item Two</span>
+								<i class="ts-icon-rating"></i>
+							</button>
+						</li>
+					</menu>
+					<menu data-ts="Buttons">
+						<li>
+							<button class="ts-primary">
+								<span>Button One</span>
+							</button>
+						</li>
+						<li>
+							<button class="ts-secondary">
+								<span>Button Two</span>
+							</button>
+						</li>
+					</menu>
+				</form>
+			</div>
+		</aside>
+	</body>
+</html>

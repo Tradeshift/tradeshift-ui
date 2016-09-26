@@ -20,6 +20,10 @@ module.exports = function screenshots(webdriver, driver, shoot) {
 
 		shoot('components/bars/statusbar.html', function(done) {
 			driver.saveScreenshot('statusbar.png').then(done);
+		}),
+
+		shoot('components/screenshots/index.html', function(done) {
+			driver.saveScreenshot('components.png').then(done);
 		})
 
 	];

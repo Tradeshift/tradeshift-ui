@@ -8,5 +8,6 @@
 	"spirits/content/ts.dox.MarkupSpirit.js",
 	"spirits/content/ts.dox.JavaScriptSpirit.js",
 	"spirits/content/ts.dox.ApiTableSpirit.js",
+	"spirits/content/ts.dox.LinkSpirit.js",
 	"module.js"
 ]

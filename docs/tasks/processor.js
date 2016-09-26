@@ -28,6 +28,7 @@ module.exports = {
 		$ = specialtags($);
 		$ = highlite($);
 		$ = maincontent($);
+		$ = chromelinks($);
 		$('html').addClass('ts-docs');
 		return publisher.publish(
 			beautify($.html().replace(EMPTYLINE, ''))
@@ -430,6 +431,27 @@ function headertype($, headers) {
  */
 function spanheader(html) {
 	return '<span>' + html + '</span>';
+}
+
+// Chrome inks .................................................................
+
+/**
+ * The HTML output makes it possible to navigate links *without* the chrome 
+ * (and this will also make it possible for some robots to crawl the site). 
+ * At runtime, the {ts.dox.LinkSpirit} will detect if we are running inside 
+ * the chrome and then convert the `href` back to originally authored `/#`.
+ * @param {$} $
+ * returns {$}
+ */
+function chromelinks($) {
+	$('a[data-ts=Button]').each(function(i, a) {
+		var link = $(a);
+		var href = link.attr('href');
+		if(href && href.startsWith('/#')) {
+			link.attr('href', href.replace('/#', '/dist/'));
+		}
+	});
+	return $;
 }
 
 

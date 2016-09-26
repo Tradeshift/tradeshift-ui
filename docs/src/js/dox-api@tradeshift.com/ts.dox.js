@@ -21,8 +21,8 @@ ts.dox = gui.namespace('ts.dox', (function() {
 	function getmagicurl(foldername, filename) {
 		// redirect from ui.tradeshift.com adds an extra `/` in the foldername :(
 		foldername = foldername.replace(/\/+/g, '/');
-    foldername = foldername.split('/dist/')[1];
-    return foldername + filename;
+		foldername = foldername.split('/dist/')[1];
+		return foldername + filename;
 	}
 
 	/**
@@ -59,7 +59,7 @@ ts.dox = gui.namespace('ts.dox', (function() {
 		var href = tab[1];
 		var icon = hide ? 'ts-icon-locked' : null;
 		var magicurl = getmagicurl(fold, href);
-		var selected =  href === file || (indx && href === 'index.html');
+		var selected =	href === file || (indx && href === 'index.html');
 		return new Tab(label, icon, magicurl, selected);
 	}
 
@@ -76,8 +76,11 @@ ts.dox = gui.namespace('ts.dox', (function() {
 		this.selected = selected;
 		this.onselect = function() {
 			if(!selected) {
-        top.location.hash = href;
-        //top.history.replaceState(undefined, undefined, "#" + href);
+				if(gui.hosted) {
+					top.location.hash = href;
+				} else {
+					location.href = '/dist/' + href;
+				}
 			}
 		};
 	}

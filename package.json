@@ -1,6 +1,6 @@
 {
   "name": "tradeshift-ui",
-  "version": "6.1.0-alpha.2",
+  "version": "6.1.0-alpha.3",
   "private": true,
   "description": "The Tradeshift UI Library & Framework",
   "bugs": {
@@ -32,14 +32,10 @@
     "node": "4.5.0"
   },
   "devDependencies": {
-    "Client-Build": "git+ssh://git@github.com:Tradeshift/Client-Build.git#0.1.1",
     "alce": "^1.0.0",
-    "browserstack-webdriver": "^2.41.1",
     "chalk": "~0.5.1",
     "css-parse": "^1.7.0",
     "ejs": "^1.0.0",
-    "express": "^4.10.1",
-    "express-ejs-layouts": "^1.1.0",
     "fs-extra": "^0.13.0",
     "grunt": "~0.4.1",
     "grunt-aws-s3": "^0.12.2",
@@ -67,14 +63,10 @@
     "karma-chrome-launcher": "0.1.12",
     "karma-firefox-launcher": "0.1.6",
     "karma-jasmine": "~0.3.6",
-    "karma-phantomjs-launcher": "~0.2.1",
     "karma-spec-reporter": "0.0.26",
-    "kommando": "git://github.com/uxebu/kommando.git#ef53db528fd78461faa66e2c444edc16e835993c",
     "load-grunt-tasks": "^0.6.0",
     "lodash": "^2.4.1",
     "node.extend": "^1.1.2",
-    "phantomjs": "~1.9.18",
-    "q": "^1.1.2",
-    "wrench": "^1.5.8"
+    "q": "^1.4.1"
   }
 }

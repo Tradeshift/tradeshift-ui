@@ -12,7 +12,6 @@ module.exports = function(grunt) {
 
 	// load grunt tasks
 	require('load-grunt-tasks')(grunt);
-	grunt.loadNpmTasks('Client-Build');
 	grunt.loadNpmTasks('grunt-release-ts');
 
 	// default file encoding
@@ -23,7 +22,6 @@ module.exports = function(grunt) {
 		'tsjs',
 		'tsless',
 		'touchfriendly',
-		'kommando',
 		'check_cdn'
 	].forEach(function (task) {
 		require('./tasks/' + task).init(grunt);

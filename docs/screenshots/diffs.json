@@ -1,1 +1,14 @@
-[]
+[
+	{
+		"browser": "Chrome",
+		"diffs": [
+			[
+				"form",
+				"components/screenshots/form.html",
+				"screenshots/local/chrome/form.png",
+				"screenshots/release/chrome/form.png",
+				"screenshots/diffs/chrome/form.png"
+			]
+		]
+	}
+]

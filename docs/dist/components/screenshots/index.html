@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en-us" class="ts-docs">
+
+<head>
+    <title>Screenshots</title>
+    <meta name="viewport" content="width=device-width">
+    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-6.1.0-alpha.0.min.js"></script>
+    <script src="/dist/assets/dox.min.js"></script>
+    <script src="/dist/assets/jquery-2.2.4.min.js"></script>
+    <link rel="stylesheet" href="/dist/assets/dox.css">
+    <script src="index.js"></script>
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+    <header data-ts="TopBar"></header>
+    <main data-ts="Main">
+        <div data-ts="MainContent">
+            <script class="gui-script" data-ts.scriptid="edbml.$2qrU7B1">
+                edbml.declare("edbml.$2qrU7B1").as(function $edbml(
+                    /**/
+                ) {
+                    'use strict';
+                    var out = $edbml.$out,
+                        $txt = edbml.safetext,
+                        $val = edbml.safeattr,
+                        layout = $edbml.$input(ts.ui.LayoutModel);
+                    var spirit = this;
+                    var backgroundcolors = [
+                        'ts-bg-blue',
+                        'ts-bg-dark',
+                        'ts-bg-red',
+                        'ts-bg-yellow',
+                        'ts-bg-green',
+                        'ts-bg-white',
+                        'ts-bg-purple'
+                    ];
+                    var buttonlabeltexts = [
+                        'Primary',
+                        'Secondary',
+                        'Tertiary',
+                        'Loading',
+                        'Micro'
+                    ];
+                    var buttonclassnames = [
+                        'ts-primary',
+                        'ts-secondary',
+                        'ts-tertiary',
+                        'ts-loading',
+                        'ts-micro'
+                    ];
+                    rendercolumns();
+
+                    function rendercolumns() {
+                        out.html += '<table>' +
+                            '<tbody>' +
+                            '<tr>';
+                        backgroundcolors.forEach(function(classname) {
+                            out.html += '<td class="' + $val(classname) + '">';
+                            renderbuttons();
+                            out.html += '</td>';
+                        });
+                        out.html += '</tr>' +
+                            '</tbody>' +
+                            '</table>' +
+                            '<div data-ts="Note" data-ts.closeable="true">' +
+                            '<p>This is the closeable inline Note!</p>' +
+                            '</div>' +
+                            '<menu data-ts="Menu">' +
+                            '<li>' +
+                            '<button>' +
+                            '<span>I have an icon on my right</span>' +
+                            '<i class="ts-icon-rating"></i>' +
+                            '</button>' +
+                            '</li>' +
+                            '<li>' +
+                            '<button>' +
+                            '<i class="ts-icon-rating"></i>' +
+                            '<span>I have an icon on my left</span>' +
+                            '</button>' +
+                            '</li>' +
+                            '</menu>';
+                    }
+
+                    function renderbuttons() {
+                        var key = gui.KeyMaster.generateKey();
+                        out.html += '<menu class="ts-buttons" id="' + $val(key) + '">';
+                        buttonclassnames.forEach(function(classname, i) {
+                            out.html += '<li>';
+                            var busy = classname === 'ts-loading' ? 'Loading' : '';
+                            out.html += '<button data-ts="Button" data-ts.busy="' + $val(busy) + '" class="' + $val(classname) + '">' +
+                                '<span>' + $txt(buttonlabeltexts[i]) + '</span>' +
+                                '</button>' +
+                                '</li>';
+                        });
+                        out.html += '</menu>';
+                    }
+                    return out.write();
+                }).withInstructions([{
+                    input: {
+                        name: "layout",
+                        type: "ts.ui.LayoutModel"
+                    }
+                }]);
+            </script>
+        </div>
+    </main>
+</body>
+
+</html>

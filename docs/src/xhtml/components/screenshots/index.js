@@ -29,26 +29,16 @@ var initToolBar = function() {
 	]);
 };
 
-var initTable = function() {
-	var table = ts.ui.get('#myTable');
-		table.selectable();
-		table.cols(['One', 'Two', 'Three']);
-		table.rows([
-			{cells: ['A', 'D', 'G']},
-			{cells: ['B', 'E', 'H']},
-			{cells: ['C', 'F', 'I']},
-		]);
-};
-
-var openAside = function() {
-	var aside = ts.ui.get('#myaside');
-	aside.open();
+var initStatusBar = function() {
+	ts.ui.StatusBar.pager({
+		pages: 23,
+		page: 0
+	});
 };
 
 $(document).ready(function() {
     initTopBar();
     initTabBar();
     initToolBar();
-    initTable();
-    // openAside();
+    initStatusBar();
 });

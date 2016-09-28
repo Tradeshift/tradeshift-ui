@@ -2,6 +2,6 @@ var openAside = function() {
 	var aside = ts.ui.get('#myaside');
 	aside.open();
 };
-$(document).ready(function() {
+ts.ui.ready(function() {
     openAside();
 });

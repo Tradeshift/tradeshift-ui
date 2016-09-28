@@ -98,12 +98,14 @@ ts.ui.SideShowSpirit = (function using(chained, Client, Parser, GuiObject, Color
 		},
 		
 		/**
-		 * Backgrund color and dropshadow management was moved to here because 
-		 * it needs to happen after the header (titlebar) has been rendered.
+		 * Color scheme fixed while adding the 
+		 * header. But if no header, fix it now.
 		 */
 		onasync: function() {
 			this.super.onasync();
-			this._fixappearance();
+			if(!this.dom.q('this > .ts-header')) {
+				this._fixappearance();
+			}
 		},
 
 		/**
@@ -387,9 +389,10 @@ ts.ui.SideShowSpirit = (function using(chained, Client, Parser, GuiObject, Color
 			return (
 				this.dom.q('this > .ts-header', ts.ui.ToolBarSpirit) || 
 				this._reflex(function createheader() {
-					return this.dom.prepend(
-						ts.ui.ToolBarSpirit.summon('header', 'ts-header')
-					);
+					var header = ts.ui.ToolBarSpirit.summon('header', 'ts-header');
+					this.dom.prepend(header);
+					this._fixappearance();
+					return header;
 				})
 			);
 		},
@@ -566,7 +569,9 @@ ts.ui.SideShowSpirit = (function using(chained, Client, Parser, GuiObject, Color
 				if((spirit = ts.ui.get(dom.q(selector)))) {
 					if(selector === '.ts-header') {
 						spirit.css.remove('ts-bg-lite').add(color);
-						spirit._model.color = color;
+						if(spirit._ismodelled()) {
+							spirit._model.color = color;
+						}
 					} else {
 						var classname = spirit.css.name();
 						if(!classname.includes('ts-bg')) {

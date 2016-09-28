@@ -25,6 +25,21 @@ ts.ui.SideBarSpirit = (function using(chained, Client, GuiObject, Colors) {
 		isOpen: true,
 
 		/**
+		 * Automatically close the SideBar in mobile breakpoint?
+		 * Note that the SideBar must then be *manually* opened.
+		 * @type {boolean}
+		 */
+		autoclose: {
+			getter: function() {
+				return this._autoclose;
+			},
+			setter: function(autoclose) {
+				this.css.shift(autoclose, 'ts-autoclose');
+				this._autoclose = !!autoclose;
+			}
+		},
+
+		/**
 		 * Setup to consume actions from nested Asides.
 		 */
 		onconfigure: function() {
@@ -138,16 +153,6 @@ ts.ui.SideBarSpirit = (function using(chained, Client, GuiObject, Colors) {
 		ondestruct: function() {
 			this.super.ondestruct();
 			ts.ui.removeBreakPointListener(this);
-		},
-		
-		/**
-		 * Automatically close the SideBar in mobile breakpoint?
-		 * Note that the SideBar must then be *manually* opened.
-		 * @type {boolean}
-		 */
-		autoclose: function(autoclose) {
-			this.css.shift(autoclose, 'ts-autoclose');
-			this._autoclose = !!autoclose;
 		},
 
 

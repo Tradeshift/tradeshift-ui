@@ -169,6 +169,9 @@ ts.ui.TopBarSpirit = (function(TopBar, Client) {
 		},
 
 		/**
+		 * In mobile breakpoint, the TopBar is "floating" and that 
+		 * looks better when we make some room for the scrollbar 
+		 * (at least on platforms where the scrollbar even exists).
 		 * @param {gui.CSSPlugin} css
 		 */
 		_looknormal: function(css) {

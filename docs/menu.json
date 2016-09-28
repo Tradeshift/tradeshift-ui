@@ -89,6 +89,11 @@
 		"path": "components/",
 		"items": [
 			{
+				"label": "Aside",
+				"icon": "ts-icon-content-view-array",
+				"path": "components/asides/"
+			},
+			{
 				"label": "Bars",
 				"icon": "ts-icon-expand-horizontal-7",
 				"path": "components/bars/topbar.html"
@@ -102,6 +107,16 @@
 				"label": "Cards",
 				"icon": "ts-icon-credit-card",
 				"path": "components/cards/companycard.html"
+			},
+			{
+				"label": "DatePicker",
+				"icon": "ts-icon-calendar-1",
+				"path": "components/datepicker/"
+			},
+			{
+				"label": "Dialog",
+				"icon": "ts-icon-chat-bubble-square-question-mark",
+				"path": "components/dialogs/"
 			},
 			{
 				"label": "Forms",
@@ -124,6 +139,11 @@
 				"path": "components/notes/"
 			},
 			{
+				"label": "Notification",
+				"icon": "ts-icon-chat-bubble-square-alert-2",
+				"path": "components/notifications/"
+			},
+			{
 				"label": "Pager",
 				"icon": "ts-icon-video-control-fast-forward",
 				"path": "components/pager/"
@@ -132,6 +152,16 @@
 				"label": "Search",
 				"icon": "ts-icon-romance-find-love",
 				"path": "components/search/"
+			},
+			{
+				"label": "SideBar",
+				"icon": "ts-icon-window-application-6",
+				"path": "components/sidebars/"
+			},
+			{
+				"label": "Spinner",
+				"icon": "ts-icon-interface-loading",
+				"path": "components/spinners/"
 			},
 			{
 				"label": "Table",
@@ -147,36 +177,6 @@
 				"label": "UserImage",
 				"icon": "ts-icon-user-target",
 				"path": "components/userimages/"
-			},
-			{
-				"label": "DatePicker",
-				"icon": "ts-icon-calendar-1",
-				"path": "components/datepicker/"
-			},
-			{
-				"label": "Dialog",
-				"icon": "ts-icon-chat-bubble-square-question-mark",
-				"path": "components/dialogs/"
-			},
-			{
-				"label": "Notification",
-				"icon": "ts-icon-chat-bubble-square-alert-2",
-				"path": "components/notifications/"
-			},
-			{
-				"label": "Aside",
-				"icon": "ts-icon-content-view-array",
-				"path": "components/asides/"
-			},
-			{
-				"label": "SideBar",
-				"icon": "ts-icon-window-application-6",
-				"path": "components/sidebars/"
-			},
-			{
-				"label": "Spinner",
-				"icon": "ts-icon-interface-loading",
-				"path": "components/spinners/"
 			}
 		]
 	},

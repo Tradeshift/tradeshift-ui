@@ -655,6 +655,7 @@ ts.ui.ToolBarSpirit = (function using(chained, confirmed, Client, Type, guiArray
 				if((moretab = this.dom.q('.ts-tab-more', ts.ui.Spirit))) {
 					moretab.css.display = '';
 					avail = this._getavailwidth(22);
+					this._setmaxwidth(avail);
 					width = 44; // width of the more-tab button
 					dofit = this._toggletabs(tabs, width, avail);
 					moretab.css.display = dofit ? 'none' : '';
@@ -667,6 +668,17 @@ ts.ui.ToolBarSpirit = (function using(chained, confirmed, Client, Type, guiArray
 					}
 				}
 			}
+		},
+
+		/**
+		 * Set the max-width, let the tabbar shows at least two tabs
+		 * @param {number} avail
+		*/
+		_setmaxwidth: function(avail) {
+			var maxwidth = (avail - 95) / 2;// 88 means the width of more tab(44), two tabs of padding left and right(2 * 2 * 11) and the buffer(7)
+			this.dom.qall('.ts-tab-label').forEach(function(tab) {
+				tab.style.maxWidth = maxwidth + 'px';
+			});
 		},
 
 		/**

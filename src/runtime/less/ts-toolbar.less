@@ -196,7 +196,6 @@
 			overflow: hidden;
 			text-overflow: ellipsis;
 			white-space: nowrap;
-			max-width: 3 * @ts-unit-triple;
 		}
 	}
 	li {
@@ -260,6 +259,7 @@
 	li {
 		&.ts-tab-button {
 			overflow: hidden;
+			vertical-align: top;
 			padding: 0 !important;
 			max-width: @ts-unit-double;
 			.ts-button {
@@ -426,6 +426,16 @@
 			&:after {
 				display: none;
 			}
+		}
+	}
+	.ts-counter {
+		.ts-button {
+			padding-right: @ts-unit-double;
+		}
+	}
+	.ts-add-tab,.ts-tab-more {
+		.ts-button {
+			.ts-mixin-fixheight(@ts-unit-double);
 		}
 	}
 }

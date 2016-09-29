@@ -17,6 +17,7 @@ var initTabBar = function() {
 		{label: 'Icon TabBar', icon: "ts-icon-todo"},
 		{label: 'Counter TabBar', counter: 1}
 	]);
+	ts.ui.TabBar.tabs().showNew();
 };
 
 var initToolBar = function() {

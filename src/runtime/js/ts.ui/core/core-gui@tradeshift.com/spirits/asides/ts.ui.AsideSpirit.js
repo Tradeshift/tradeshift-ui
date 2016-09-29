@@ -88,14 +88,6 @@ ts.ui.AsideSpirit = (function using(chained, confirmed, Client, LayoutModel, not
 		},
 
 		/**
-		 * Get ready.
-		 */
-		onready: function() {
-			this.super.onready();
-			this._inittabs();
-		},
-
-		/**
 		 * Handle broadcast.
 		 * @param {gui.Broadcast} b
 		 */
@@ -638,36 +630,8 @@ ts.ui.AsideSpirit = (function using(chained, confirmed, Client, LayoutModel, not
 					throw new Error(cry);
 				}
 			}
-		},
-		
-		/**
-		 * If more than one panel next to aside, generate the tabbar automaticly  
-		 * TODO(leo@): Perhaps to watch the panels to add or delete panel in the tabbar
-		 * TODO(jmo@): This can (probably) be moved to the {ts.ui.SideShowSpirit}
-		 */
-		_inittabs: function() {
-			var panels = this.dom.qall('this > .ts-panel', ts.ui.PanelSpirit);
-			if(panels.length > 1) {
-				this.css.add('ts-has-panels');
-				var tabbar = ts.ui.TabBarSpirit.summon().white();
-				this.element.insertBefore(tabbar.element,panels[0].element);
-				panels.forEach(function(panel, index) {
-					tabbar.tabs().push({
-						label: panel.label,
-						selected: index === 0,
-						$onselect: function() {
-							panels.forEach(function(p) {
-								if(p === panel) {
-									p.show();
-								} else {
-									p.hide();
-								}
-							});
-						}
-					});
-				});
-			}
 		}
+
 
 	}, { // Static ...............................................................
 		

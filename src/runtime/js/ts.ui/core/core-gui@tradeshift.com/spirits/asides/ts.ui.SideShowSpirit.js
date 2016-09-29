@@ -8,8 +8,10 @@
  * @using {gui.HTMLParser} Parser
  * @using {gui.Object} GuiObject
  * @using {ts.ui.BACKGROUND_COLORS} Colors
+ * @using {ts.ui.ACTION_PANEL_ATTACH} PANEL_ATTACH
+ * @using {ts.ui.ACTION_PANEL_DETACH} PANEL_DETACH
  */
-ts.ui.SideShowSpirit = (function using(chained, Client, Parser, GuiObject, Colors) {
+ts.ui.SideShowSpirit = (function using(chained, Client, Parser, GuiObject, Colors, PANEL_ATTACH, PANEL_DETACH) {
 
 	// custom dom events (for public consumption)
 	var domevent = {
@@ -18,7 +20,19 @@ ts.ui.SideShowSpirit = (function using(chained, Client, Parser, GuiObject, Color
 		WILLCLOSE: ts.ui.EVENT_ASIDE_WILL_CLOSE,
 		DIDCLOSE: ts.ui.EVENT_ASIDE_DID_CLOSE
 	};
+
+	// when synchronizing the colors, make sure to remove all existing colors...
+	var BGCOLORS = (function(colors) {
+		return Object.keys(colors).map(function(key) {
+			return colors[key];
+		});
+	}(ts.ui.BACKGROUND_COLORS));
 	
+	/**
+	 * Extract `ts-bg-` classname from spirit.
+	 * @param {ts.ui.Spirit} spirit
+	 * @returns {string}
+	 */
 	function getcolor(spirit) {
 		return Object.keys(Colors).map(function(key) {
 			return Colors[key];
@@ -83,6 +97,14 @@ ts.ui.SideShowSpirit = (function using(chained, Client, Parser, GuiObject, Color
 		},
 
 		/**
+		 *
+		 */
+		onconfigure: function() {
+			this.super.onconfigure();
+			this.action.add([PANEL_ATTACH, PANEL_DETACH]);
+		},
+
+		/**
 		 * Setup.
 		 */
 		onenter: function() {
@@ -116,9 +138,7 @@ ts.ui.SideShowSpirit = (function using(chained, Client, Parser, GuiObject, Color
 			this._confirmpanel();
 			this.css.add('ts-sideshow');
 			this._initfooter(window.MutationObserver || window.WebKitMutationObserver);
-			if(this.isOpen) {
-				this.broadcast.add(gui.BROADCAST_RESIZE_END);
-			}
+			this._inittabs();
 		},
 
 		/**
@@ -172,6 +192,22 @@ ts.ui.SideShowSpirit = (function using(chained, Client, Parser, GuiObject, Color
 							ts.ui.get(e.target)
 						);
 					}
+					break;
+			}
+		},
+
+		/**
+		 * We'll need to support that the tabbar auto-updates whenever a panel gets 
+		 * added or removed (like we do in the Main TabBar) but for now, we'll just 
+		 * make sure that these actions (dispatched from the Panel) are contained.
+		 * @param {gui.Action} a
+		 */
+		onaction: function(a) {
+			this.super.onaction(a);
+			switch(a.type) {
+				case PANEL_ATTACH:
+				case PANEL_DETACH:
+					a.consume(); // don't exit the Aside
 					break;
 			}
 		},
@@ -271,6 +307,11 @@ ts.ui.SideShowSpirit = (function using(chained, Client, Parser, GuiObject, Color
 
 
 		// Private .................................................................
+
+		/**
+		 * 
+		 */
+		_theme: null,
 		
 		/**
 		 * Monitor footer updates until we can enable CSS layout again.
@@ -490,21 +531,6 @@ ts.ui.SideShowSpirit = (function using(chained, Client, Parser, GuiObject, Color
 		_close: function(animated) {
 			return this._execute('onclose') !== false;
 		},
-		
-		/**
-		 *
-		 *
-		_willopen: function() {
-			return this._execute('onopen') !== false;
-		},
-		
-		/**
-		 *
-		 *
-		_willclose: function() {
-			return this._execute('onclose') !== false;
-		},
-		*/
 
 		/**
 		 * If you set the attribute ts.busy is true, you will see the spinner in the main
@@ -524,22 +550,78 @@ ts.ui.SideShowSpirit = (function using(chained, Client, Parser, GuiObject, Color
 				this.spin.stop();
 			}
 		},
+
+		/**
+		 * If more than one panel next to aside, generate the tabbar automaticly  
+		 * TODO(leo@): Perhaps to watch the panels to add or delete panel in the tabbar
+		 * TODO(jmo@): This can (probably) be moved to the {ts.ui.SideShowSpirit}
+		 */
+		_inittabs: function() {
+			var panels = this.dom.qall('this > .ts-panel', ts.ui.PanelSpirit);
+			if(panels.length > 1) {
+				if(panels.every(function(panel) {
+					return !!panel.label;
+				})) {
+					this.css.add('ts-has-panels');
+					this._setuptabs(panels, panels[0], this);
+					this._fixappearance();
+				} else {
+					throw new Error('(Multiple) Panels in Aside must have a label');
+				}
+			}
+		},
+
+		/**
+		 * Multiple panels found, setup the tabbar to switch between them.
+		 * @param {Array<ts.ui.PanelSpirit>} panels
+		 * @param {ts.ui.SideBarSpirit} that
+		 */
+		_setuptabs: function(panels, first, that) {
+			var tabbar = first.dom.before(ts.ui.TabBarSpirit.summon());
+			panels.forEach(function(panel, index) {
+				tabbar.tabs().push({
+					label: panel.label,
+					selected: index === 0,
+					$onselect: function() {
+						panels.forEach(function(p) {
+							if(p === panel) {
+								p.show();
+							} else {
+								p.hide();
+							}
+						});
+						that._reflex();
+					}
+				});
+			});
+		},
 		
 		/**
-		 * Manage background colors and dropshadows.
+		 * Manage background colors and dropshadows. Some sketchy setup 
+		 * to ensure that this method may be called multiple times during 
+		 * initialization and still run only once.
 		 */
-		_fixappearance: function() {
-			var mycolor = this._extractcolor('ts-bg-blue');
-			var members = this.constructor.$bgmembers;
-			this._transfercolor(mycolor, members);
-			this._dropshadows(this.dom);
+		_fixappearance: function fix() {
+			if(!fix.implemented) {
+				this._theme = this._theme || this._extractcolor('ts-bg-blue');
+				this.tick.next(function allowmultiple() {
+					this._transfercolor(this._theme, this.constructor.$bgmembers);
+					this._themesupport(this.dom);
+					fix.implemented = true;
+					this.tick.time(function preventrepeats() {
+						fix.implemented = false;
+					});
+				});
+			}
 		},
 		
 		/**
 		 * If spirit was created via a model, return the model color. 
 		 * Otherwise return any bg-color classname found in the HTML 
-		 * (and also remove it, it will soon be applied elsewhere).
+		 * and also *remove it* (it will soon be applied elsewhere) 
+		 * so that (in a future project) we can flip the Aside nicely.
 		 * @param {string} color Fallback color!
+		 * @returns {string}
 		 */
 		_extractcolor: function(color) {
 			function fixweirdlooking(c) {
@@ -566,35 +648,52 @@ ts.ui.SideShowSpirit = (function using(chained, Client, Parser, GuiObject, Color
 		_transfercolor: function(color, selectors) {
 			var spirit, dom = this.dom;
 			selectors.forEach(function(selector) {
-				if((spirit = ts.ui.get(dom.q(selector)))) {
-					if(selector === '.ts-header') {
-						spirit.css.remove('ts-bg-lite').add(color);
-						if(spirit._ismodelled()) {
-							spirit._model.color = color;
-						}
-					} else {
-						var classname = spirit.css.name();
-						if(!classname.includes('ts-bg')) {
-							spirit.css.add(color);
-						}
+				dom.qall(selector, ts.ui.Spirit).filter(function(spirit) {
+					return true;
+				}).forEach(function(spirit) {
+					switch(selector) {
+						case '.ts-header':
+						case '.ts-tabbar':
+							spirit.css.remove(BGCOLORS).add(color);
+							if(spirit._ismodelled()) {
+								spirit._model.color = color;
+							}
+							break;
+						default:
+							var classname = spirit.css.name();
+							if(!classname.includes('ts-bg')) {
+								spirit.css.add(color);
+							}
+							break;
 					}
-				}
+				});
 			});
 		},
 		
 		/**
-		 * Inject the dropshadows that are done with DIVs instead of simple CSS 
-		 * box-shadow because the box-shadows would spill out all over the page in 
-		 * a carefully managed z-index setup where everything is in the same stack.
+		 * Apply color theme extras. The dropshadows are done with DIVs (instead 
+		 * of using CSS box-shadow) to keep them under control without using any  
+		 * kind of z-index, since this would mess up the general page layout.
 		 * @param {gui.DOMPlugin} dom
 		 */
-		_dropshadows: function(dom) {
+		_themesupport: function(dom) {
 			var shade = Parser.parseToNode('<div class="ts-shadow"></div>');
-			var panel = dom.q('.ts-panel', ts.ui.PanelSpirit);
-			var headr = dom.q('.ts-header', ts.ui.ToolBarSpirit);
-			var footr = dom.q('.ts-footer', ts.ui.FooterSpirit);
+			var panel = dom.q('this > .ts-panel', ts.ui.PanelSpirit);
+			var headr = dom.q('this > .ts-header', ts.ui.ToolBarSpirit);
+			var footr = dom.q('this > .ts-footer', ts.ui.FooterSpirit);
+			var tabbs = dom.q('this > .ts-tabbar', ts.ui.TabBarSpirit);
 			var color = getcolor(panel) || 'ts-bg-white';
-			if(headr && getcolor(headr) === color) {
+			dom.qall('.ts-shadow').forEach(function dontduplicate(shadow) {
+				shadow.parentNode.removeChild(shadow);
+			});
+			if(tabbs && getcolor(tabbs) !== color) {
+				tabbs.white();
+			} else if([tabbs, headr].every(function(thing) {
+				return thing && getcolor(thing) === color;
+			})) {
+				panel.dom.before(shade.cloneNode());
+				headr.css.add('ts-inset');
+			} else if(headr && getcolor(headr) === color) {
 				panel.dom.before(shade.cloneNode());
 			}
 			if(footr && getcolor(footr) === color) {
@@ -631,4 +730,12 @@ ts.ui.SideShowSpirit = (function using(chained, Client, Parser, GuiObject, Color
 		
 	});
 
-}(gui.Combo.chained, gui.Client, gui.HTMLParser, gui.Object, ts.ui.BACKGROUND_COLORS));
+}(
+	gui.Combo.chained,
+	gui.Client,
+	gui.HTMLParser,
+	gui.Object,
+	ts.ui.BACKGROUND_COLORS,
+	ts.ui.ACTION_PANEL_ATTACH,
+	ts.ui.ACTION_PANEL_DETACH
+));

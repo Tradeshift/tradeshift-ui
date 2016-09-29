@@ -51,9 +51,7 @@ ts.ui.PanelSpirit = (function using(ACTION_ATTACH, ACTION_DETACH, ACTION_SHOW, A
 		 */
 		onattach: function() {
 			this.super.onattach();
-			if(!this._isaside()) { // TODO: something else in Asides...
-				this.action.dispatch(ACTION_ATTACH, this._isroot());
-			}
+			this.action.dispatch(ACTION_ATTACH, this._isroot());
 		},
 		
 		/**
@@ -61,9 +59,7 @@ ts.ui.PanelSpirit = (function using(ACTION_ATTACH, ACTION_DETACH, ACTION_SHOW, A
 		 */
 		ondetach: function() {
 			this.super.ondetach();
-			if(!this._isaside()) { // TODO: something else in Asides...
-				this.action.dispatch(ACTION_DETACH, this._isroot());
-			}
+			this.action.dispatch(ACTION_DETACH, this._isroot());
 		},
 		
 		/**
@@ -137,14 +133,6 @@ ts.ui.PanelSpirit = (function using(ACTION_ATTACH, ACTION_DETACH, ACTION_SHOW, A
 		 */
 		_isroot: function() {
 			return this.dom.parent() === document.body;
-		},
-		
-		/**
-		 * Is inside an Aside or SideBar?
-		 * @returns {boolean}
-		 */
-		_isaside: function() {
-			return !!this.dom.parent(ts.ui.SideShowSpirit);
 		}
 
 	});

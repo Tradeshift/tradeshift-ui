@@ -28,6 +28,10 @@ module.exports = function screenshots(webdriver, driver, shoot) {
 
 		shoot('components/screenshots/form.html', function(done) {
 			driver.saveScreenshot('form.png').then(done);
+		}),
+
+		shoot('components/screenshots/aside.html', function(done) {
+			driver.saveScreenshot('aside.png').then(done);
 		})
 
 	];

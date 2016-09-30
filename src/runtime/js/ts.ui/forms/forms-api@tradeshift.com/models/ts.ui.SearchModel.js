@@ -54,16 +54,6 @@ ts.ui.SearchModel = ts.ui.InputModel.extend({
 		},
 		setter: function(value) {
 			this.info = value;
-		}
-	},
-	
-	/**
-	 * TODO: Completely wipe this this property after some releases.
-	 */
-	onconstruct: function() {
-		this.super.onconstruct();
-		if(this.tip) {
-			this.info = this.tip;
 			console.warn(
 				'SearchModel.tip: Deprecated API is deprecated. Please use `info`'
 			);

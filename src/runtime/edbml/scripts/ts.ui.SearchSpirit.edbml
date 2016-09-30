@@ -2,8 +2,13 @@
 <script>
 	<?input name="search" type="ts.ui.SearchModel"?>
 	
+	/*
+	 * The placeholder is misplaced in IE10 and invisible in IE9+IE11, so for 
+	 * now we'll just hide it completely and call it progressive enhancement.
+	 */
+	 
 	var id = search.$instanceid;
-	@placeholder = search.info || null;
+	@placeholder = gui.Client.isExplorer ? null : (search.info || null);
 	@title = (search.focused || search.flex ? null : search.info) || null;
 	@class = 'ts-button-clear' + (search.value ? '' : ' ts-hidden');
 	

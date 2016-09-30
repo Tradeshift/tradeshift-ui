@@ -120,14 +120,11 @@ ts.ui.SideShowSpirit = (function using(chained, Client, Parser, GuiObject, Color
 		},
 		
 		/**
-		 * Color scheme fixed while adding the 
-		 * header. But if no header, fix it now.
+		 * Fix the color scheme.
 		 */
 		onasync: function() {
 			this.super.onasync();
-			if(!this.dom.q('this > .ts-header')) {
-				this._fixappearance();
-			}
+			this._fixappearance();
 		},
 
 		/**
@@ -174,6 +171,20 @@ ts.ui.SideShowSpirit = (function using(chained, Client, Parser, GuiObject, Color
 		onflex: function() {
 			this.super.onflex();
 			this._reflex();
+		},
+
+		/**
+		 * Handle tick.
+		 * @param {gui.Tick} t
+		 */
+		ontick: function(t) {
+			this.super.ontick(t);
+			if(t.type === 'ts-sideshow-theme') {
+				this._theme = this._theme || this._extractcolor('ts-bg-blue');
+				this._transfercolor(this._theme, this.constructor.$bgmembers);
+				this._themesupport(this.dom);
+				this.tick.remove(t.type);
+			}
 		},
 
 		/**
@@ -597,22 +608,14 @@ ts.ui.SideShowSpirit = (function using(chained, Client, Parser, GuiObject, Color
 		},
 		
 		/**
-		 * Manage background colors and dropshadows. Some sketchy setup 
-		 * to ensure that this method may be called multiple times during 
-		 * initialization and still run only once.
+		 * Manage background colors and dropshadows. The tick mechanism 
+		 * schedules the operation at the end of the execution stack so 
+		 * that it only runs *once* even if called multiple times over.
+		 * @see {ts.ui.SideShowSpirit#ontick}
 		 */
 		_fixappearance: function fix() {
-			if(!fix.implemented) {
-				this._theme = this._theme || this._extractcolor('ts-bg-blue');
-				this.tick.next(function allowmultiple() {
-					this._transfercolor(this._theme, this.constructor.$bgmembers);
-					this._themesupport(this.dom);
-					fix.implemented = true;
-					this.tick.time(function preventrepeats() {
-						fix.implemented = false;
-					});
-				});
-			}
+			var tick = 'ts-sideshow-theme';
+			this.tick.add(tick).dispatch(tick);
 		},
 		
 		/**

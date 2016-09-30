@@ -9,6 +9,8 @@
 			}
 		</style>
 		<script>
+			// used to test that sidebars can be transferred from MAIN to BODY 
+			// without breaking functionality (since this always happens in V4).
 			$(document).ready(function() {
 				var $element = $('#mysidebar');
 				var $tsMain = $element.closest('[ts-main]');

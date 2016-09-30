@@ -6,9 +6,18 @@
 gui.Action = (function using(confirmed, chained) {
 
 	if(gui.hosted) { // relay actions from parent frame.
+
+		/*
+		 * Under mysterious circumstances, Internet Explorer may evaluate this 
+		 * callback in a phantom lexical scope where `gui` is undefined, so 
+		 * we'll check that that `gui` exsists ang ignore the message otherwise.
+		 * TODO: If this fails, surely it will fix with a `try-catch` statement.
+		 */
 		addEventListener('message', function(e) {
-			if(e.source === parent) {
-				gui.Action.$maybeDescendGlobal(e.data);
+			if(window.gui && gui.Type && gui.Type.isString(e.data)) {
+				if(e.source === parent) {
+					gui.Action.$maybeDescendGlobal(e.data);
+				}
 			}
 		});
 	}

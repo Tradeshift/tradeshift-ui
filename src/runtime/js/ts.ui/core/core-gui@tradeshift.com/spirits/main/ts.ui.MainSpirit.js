@@ -114,7 +114,12 @@ ts.ui.MainSpirit = (function using(Type, PANEL_ATTACH, PANEL_DETACH) {
 					var panel = a.target;
 					var index = panel.dom.ordinal();
 					var added = a.type === PANEL_ATTACH;
-					this._updatetab(panel, index, added);
+					if(panel.label) {
+						this._updatetab(panel, index, added);
+					} else {
+						throw new Error('Panels in Main must have a label');
+					}
+					a.consume();
 					break;
 			}
 		},

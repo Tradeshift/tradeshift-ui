@@ -3,11 +3,12 @@
  * @see @deprecated {ts.ui.DrawerSpirit}
  * @extends {ts.ui.SideShowSpirit}
  * @using {gui.Combo.chained} chained
+ * @using {gui.Type} Type
  * @using {gui.Client} Client
  * @using {gui.Object} GuiObject
  * @using {ts.ui.BACKGROUND_COLORS} Colors
  */
-ts.ui.SideBarSpirit = (function using(chained, Client, GuiObject, Colors) {
+ts.ui.SideBarSpirit = (function using(chained, Type, Client, GuiObject, Colors) {
 
 	// consuming all actions from nested asides
 	var willopen = ts.ui.ACTION_ASIDE_WILL_OPEN,
@@ -34,8 +35,12 @@ ts.ui.SideBarSpirit = (function using(chained, Client, GuiObject, Colors) {
 				return this._autoclose;
 			},
 			setter: function(autoclose) {
-				this.css.shift(autoclose, 'ts-autoclose');
-				this._autoclose = !!autoclose;
+				if(Type.isBoolean(Type.cast(autoclose))) {
+					this.css.shift(autoclose, 'ts-autoclose');
+					this._autoclose = !!autoclose;
+				} else {
+					throw new TypeError('The value of `autoclose` must be boolean.');
+				}
 			}
 		},
 
@@ -91,7 +96,6 @@ ts.ui.SideBarSpirit = (function using(chained, Client, GuiObject, Colors) {
 		onready: function() {
 			this.super.onready();
 			this.input.connect(ts.ui.TopBarModel);
-			this._inittabs();
 			this.tick.time(function() {
 				this._confirmposition();
 			}, 1000);
@@ -264,37 +268,6 @@ ts.ui.SideBarSpirit = (function using(chained, Client, GuiObject, Colors) {
 			}
 		},
 
-		/**
-		 * If more than one panel next to aside, generate the tabbar automaticly  
-		 * TODO(leo@): Perhaps to watch the panels to add or delete panel in the tabbar
-		 * TODO(jmo@): This can (probably) be moved to the {ts.ui.SideShowSpirit}
-		 */
-		_inittabs: function() {
-			var panels = this.dom.qall('this > .ts-panel', ts.ui.PanelSpirit);
-			if(panels.length < 2) {
-				return;
-			}
-			var tabbar = ts.ui.TabBarSpirit.summon();
-			var that = this;
-			this.css.add('ts-has-panels');
-			this.element.insertBefore(tabbar.element,panels[0].element);
-			panels.forEach(function(panel) {
-				tabbar.tabs().push({
-					label: panel.label,
-					onselect: function() {
-						panels.forEach(function(p) {
-							if(p === panel) {
-								p.show();
-							} else {
-								p.hide();
-							}
-						});
-						that._reflex();
-					}
-				});
-			});
-		}
-
 
 	}, { // Xstatic ..............................................................
 		
@@ -304,8 +277,14 @@ ts.ui.SideBarSpirit = (function using(chained, Client, GuiObject, Colors) {
 		 * given a bg-color classname in the HTML).
 		 * @type {Array<string>}
 		 */
-		$bgmembers: ['.ts-header', '.ts-panel', '.ts-footer']
+		$bgmembers: ['.ts-header', '.ts-tabbar', '.ts-panel', '.ts-footer']
 		
 	});
 
-}(gui.Combo.chained, gui.Client, gui.Object, ts.ui.BACKGROUND_COLORS));
+}(
+	gui.Combo.chained,
+	gui.Type,
+	gui.Client,
+	gui.Object,
+	ts.ui.BACKGROUND_COLORS
+));

@@ -5,6 +5,15 @@
 		position: relative;
 	}
 	> .ts-header {
+		&.ts-inset {
+			&:after {
+				content: '';
+				.ts-mixin-maximize();
+				background-image: linear-gradient(rgba(0,0,0,0.2), transparent);
+				height: 2px;
+				top: auto;
+			}
+		}
 		button.ts-tertiary { // probably the closing X
 			border-color: transparent !important;
 		}
@@ -46,7 +55,8 @@
 		z-index: @ts-zindex-main + 2;
 		background-image: linear-gradient(rgba(0,0,0,0.2), transparent);
 	}
-	> .ts-header ~ .ts-shadow {
+	> .ts-tabbar + .ts-shadow {
+		height: 2px;
 	}
 	> .ts-panel ~ .ts-shadow {
 		margin-top: -7px;

@@ -7,109 +7,52 @@
 	<body>
 		<header data-ts="TopBar"></header>
 		<main data-ts="Main">
-			<article>
+			<article>			
+				<h1>Searching the columns</h1>
 				<section>
-					<h1>Searching the columns</h1>
-					<section>
-						<p>You can setup a <code>SearchModel</code> for any column via the <code>search</code> property. We ship the Table with a built-in search mechanism, but you'll still need to call it. The Table <code>search</code> method takes a column index and the string to search for.</p>
-						<ul class="splitscreen">
-							<li>
-								<figure data-ts="DoxScript">
-									<script type="runnable">
-										$.getJSON('assets/rowdata.json', function(json) {
-											var table = ts.ui.get('#example10');
-											table.rows(json).max(4).cols([
-												{ label: 'ID', type: 'ts-number', search: {
-													tip: 'Search product ID',
-													onidle: function(value) {
-														table.search(0, value);
-													}
-												}},
-												{ label: 'Product Name', flex: 1, search: {
-													tip: 'Search product names',
-													onidle: function(value) {
-														table.search(1, value);
-													}
-												}}
-											]);
-										});
-									</script>
-								</figure>
-							</li>
-							<li>
-								<div data-ts="Table" id="example10"></div>
-							</li>
-						</ul>
-						<div data-ts="Note">
-							<i class="ts-icon-info"></i>
-							<p>The search algorithm is extremely primitive and to some degree it always will be, at least until the Table can be loaded separately from other components (because file size).</p>
-						</div>
-						<p>You can focus the search field if you like, either by setting the <code>focused</code> property to <code>true</code> in the JSON or by calling the <code>focus</code> method sometime later on.</p>
-						<figure data-ts="DoxScript">
-							<script type="runnable">
-								var table = ts.ui.get('#example10');
-								table.cols()[1].search.focus();
-							</script>
-						</figure>
-						<p>You can also do some other stuff. Here's an overview of the <code>SearchModel</code>.</p>
-						<table class="api">
-							<caption>
-								<code>ts.ui.SearchModel</code>
-							</caption>
-							<tbody>
-								<tr>
-									<th colspan="3">Instance properties</th>
-								</tr>
-								<tr>
-									<td><code>value</code></td>
-									<td><code>{string}</code></td>
-									<td>The value of the input field.</td>
-								</tr>
-								<tr>
-									<td><code>tip</code></td>
-									<td><code>{string}</code></td>
-									<td>Both the <code>placeholder</code> and the <code>title</code> (tooltip).</td>
-								</tr>
-								<tr>
-									<td><code>idletime</code></td>
-									<td><code>{number}</code></td>
-									<td>Timeout in milliseconds before the user is considered idle.</td>
-								</tr>
-								<tr>
-									<th colspan="3">Instance methods.</th>
-								</tr>
-								<tr>
-									<td><code>onsearch</code></td>
-									<td><code>{void}</code></td>
-									<td>Called when the user presses <kbd>ENTER</kbd>.</td>
-								</tr>
-								<tr>
-									<td><code>onidle</code></td>
-									<td><code>{void}</code></td>
-									<td>Called when the user pauses typing.</td>
-								</tr>
-								<tr>
-									<td><code>onfocus</code></td>
-									<td><code>{void}</code></td>
-									<td>Called when the search field is focused.</td>
-								</tr>
-								<tr>
-									<td><code>onblur</code></td>
-									<td><code>{void}</code></td>
-									<td>Called when the search field gets blurred.</td>
-								</tr>
-								<tr>
-									<td><code>focus</code></td>
-									<td><code>{void}</code></td>
-									<td>Focus the search field.</td>
-								</tr>
-								<tr>
-									<td><code>blur</code></td>
-									<td><code>{void}</code></td>
-									<td>Blur the search field.</td>
-								</tr>
-							</tbody>
-						</table>
+					<p>You can setup a <code>SearchModel</code> for any column via the <code>search</code> property. We ship the Table with a built-in search mechanism, but you'll still need to call it. The Table <code>search</code> method takes a column index and the string to search for.</p>
+					<ul class="splitscreen">
+						<li>
+							<figure data-ts="DoxScript">
+								<script type="runnable">
+									$.getJSON('assets/rowdata.json', function(json) {
+										var table = ts.ui.get('#example10');
+										table.rows(json).max(4).cols([
+											{ label: 'ID', type: 'ts-number', search: {
+												tip: 'Search product ID',
+												onidle: function(value) {
+													table.search(0, value);
+												}
+											}},
+											{ label: 'Product Name', flex: 1, search: {
+												tip: 'Search product names',
+												onidle: function(value) {
+													table.search(1, value);
+												}
+											}}
+										]);
+									});
+								</script>
+							</figure>
+						</li>
+						<li>
+							<div data-ts="Table" id="example10"></div>
+						</li>
+					</ul>
+					<div data-ts="Note">
+						<i class="ts-icon-info"></i>
+						<p>The search algorithm is extremely primitive and to some degree it always will be, at least until the Table can be loaded separately from other components (because file size).</p>
+					</div>
+					<p>You can focus the search field if you like, either by setting the <code>focused</code> property to <code>true</code> in the JSON or by calling the <code>focus</code> method sometime later on.</p>
+					<figure data-ts="DoxScript">
+						<script type="runnable">
+							var table = ts.ui.get('#example10');
+							table.cols()[1].search.focus();
+						</script>
+					</figure>
+				</section>
+				<section>
+					<include href="../bars/toolbar.xhtml#search-api"></include>
 				</section>
 			</article>
 		</main>

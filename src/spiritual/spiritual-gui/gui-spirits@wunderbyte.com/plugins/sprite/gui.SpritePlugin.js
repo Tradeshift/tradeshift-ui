@@ -83,21 +83,41 @@ gui.SpritePlugin = (function() {
 		_pos: null,
 
 		/**
+		 * Default position as assigned by stylesheet (for IE9).
+		 * @type {gui.Position}
+		 */
+		_def: null,
+
+		/**
+		 * Compute default position (in IE9).
+		 * @param {gui.CSSPlugin} css
+		 * @returns {gui.Position}
+		 */
+		_defpos: function(css) {
+			return this._def || (this._def = new gui.Position(
+				parseInt(css.compute('left'), 10),
+				parseInt(css.compute('top'), 10)
+			));
+		},
+
+		/**
 		 * Go ahead.
 		 */
 		_apply: function() {
 			var pos = this._pos;
 			var set = [pos.x, pos.y, pos.z].map(Math.round);
+			var css = this.spirit.css;
 			if(false && set.reduce(total) === 0) {
 				this.reset(); // DISABLED FOR NOW!
 			} else {
 				if (gui.Client.has3D) {
-					this.spirit.css.set("-beta-transform",
+					css.set("-beta-transform",
 						"translate3d(" + set.join("px,") + "px)"
 					);
 				} else {
-					this.spirit.css.left = set[0];
-					this.spirit.css.top = set[1];
+					var def = this._defpos(css);
+					css.left = def.x + set[0];
+					css.top = def.y + set[1];
 				}
 			}
 		}

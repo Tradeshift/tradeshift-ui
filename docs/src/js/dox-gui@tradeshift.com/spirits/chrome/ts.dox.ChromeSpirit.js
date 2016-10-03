@@ -212,10 +212,10 @@ ts.dox.ChromeSpirit = (function using(CSSPlugin, Then) {
 			if(hash.length > 1) {
 				var path = hash.substring(1);
 				var ajax = new gui.Request('dist/' + path).acceptText();
-				ajax.get().then(function(status, data) {
+				ajax.get().then(function preload(status, data) {
 					switch(status) {
 						case 200:
-							this._hello(path, data);
+							this._load4real(path, data);
 							break;
 						case 404:
 							ts.ui.Notification.error('404 Not Found');
@@ -228,7 +228,12 @@ ts.dox.ChromeSpirit = (function using(CSSPlugin, Then) {
 			}
 		},
 
-		_hello: function(path, data) {
+		/** 
+		 * Load the page (now known to exist).
+		 * @param {string} path
+		 * @param {string} date (not used)
+		 */
+		_load4real: function(path, data) {
 			this._blocking(true);
 			this._menu.selectbestitem(path).then(function() {
 				this.tick.time(function() {

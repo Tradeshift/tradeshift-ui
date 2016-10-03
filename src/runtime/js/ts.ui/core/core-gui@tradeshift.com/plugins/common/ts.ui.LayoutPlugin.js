@@ -26,8 +26,9 @@ ts.ui.LayoutPlugin = (function using(GuiArray, DOMPlugin, CSSPlugin, chained) {
 		 */
 		beforeMain: function() {
 			var is = false, elm = this.spirit.element;
-			if(!this._isinaside()) {
+			if(!this._isinaside() && !this._isinmain()) {
 				while((!is && (elm = elm.nextElementSibling))) {
+					console.log(elm, elm.className);
 					is = CSSPlugin.contains(elm, 'ts-main');
 				}
 			}
@@ -40,7 +41,7 @@ ts.ui.LayoutPlugin = (function using(GuiArray, DOMPlugin, CSSPlugin, chained) {
 		 */
 		afterMain: function() {
 			var is = false, elm = this.spirit.element;
-			if(!this._isinaside()) {
+			if(!this._isinaside() && !this._isinmain()) {
 				while((!is && (elm = elm.previousElementSibling))) {
 					is = CSSPlugin.contains(elm, 'ts-main');
 				}
@@ -92,7 +93,15 @@ ts.ui.LayoutPlugin = (function using(GuiArray, DOMPlugin, CSSPlugin, chained) {
 		 * @returns {boolean}
 		 */
 		_isinaside: function() {
-			return !!this.spirit.dom.ancestor(ts.ui.SideShowSpirit);
+			return this.spirit.css.matches('.ts-sideshow *');
+		},
+
+		/**
+		 * Spirit is inside Main?
+		 * @returns {boolean}
+		 */
+		_isinmain: function() {
+			return this.spirit.css.matches('.ts-main *');
 		}
 
 

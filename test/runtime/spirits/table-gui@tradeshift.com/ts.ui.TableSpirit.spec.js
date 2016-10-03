@@ -436,7 +436,7 @@ describe('ts.ui.TableSpirit', function likethis() {
 			setup(function(spirit, dom){
 				spirit.cols(
 					['Animal', {label: 'Price', type: 'ts-number', search: {
-						tip: "Leo"
+						info: "Leo"
 					}}]
 				).rows([
 					['Donkey', 700],

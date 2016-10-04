@@ -521,6 +521,17 @@ ts.ui.SideShowSpirit = (function using(chained, Client, Parser, GuiObject, Color
 				}
 			} else if(butt) {
 				list.remove(butt);
+				 // if `autoclose` was changed sometime *after* initialization, 
+				 // we'll need to remove any header that doesn't have a `title` 
+				 // while accounting for the fact that models are updated async.
+				this.tick.time(function asyncproblem() {
+					if(!tool.life.hascontent) {
+						this.reflex(function removeheader() {
+							tool.dom.remove();
+							this._fixappearance();
+						}, this);
+					}
+				}, 50);
 			}
 		},
 

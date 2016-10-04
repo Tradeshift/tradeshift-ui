@@ -61,13 +61,13 @@
 	&.ts-ready:before {
 		.ts-mixin-transition(border-color, @ts-transition-now);
 	}
-	/*
+	
 	&.ts-nofocus {
 		&:before {
 			display: none !important;
 		}
 	}
-	*/
+												
 	&:disabled {
 		opacity: 0.4;
 		cursor: not-allowed;
@@ -499,7 +499,7 @@
 		&.ts-danger {
 			background-color: @ts-red-dark;
 		}
-		&.ts-tertiary {
+		&.ts-tertiary:not(.ts-nofocus) {
 			background-color: fade(@ts-blue, 10%);
 			border: 1px solid fade(@ts-blue, 50%);
 		}
@@ -584,7 +584,7 @@
 .ts-bg-red,
 .ts-bg-green,
 .ts-bg-purple {
-	.ts-button.ts-active:not(:disabled) {
+	.ts-button.ts-active:not(:disabled):not(.ts-nofocus) {
 		&:active {
 			&.ts-tertiary {
 				background-color: fade(@ts-blue, 10%);

@@ -28,7 +28,6 @@ ts.ui.LayoutPlugin = (function using(GuiArray, DOMPlugin, CSSPlugin, chained) {
 			var is = false, elm = this.spirit.element;
 			if(!this._isinaside() && !this._isinmain()) {
 				while((!is && (elm = elm.nextElementSibling))) {
-					console.log(elm, elm.className);
 					is = CSSPlugin.contains(elm, 'ts-main');
 				}
 			}

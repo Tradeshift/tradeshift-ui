@@ -36,24 +36,6 @@
 	</head>
 	<body>
 		<header data-ts="TopBar"></header>
-		<aside data-ts="SideBar" id="mysidebar">
-			<div data-ts="Panel">
-				<p>SideBar content.</p>
-			</div>
-			<aside data-ts="Aside" data-ts.title="Nested Aside" id="myaside" data-ts.title="Example SideBar">
-				<div data-ts="Panel">
-					<p>Aside content.</p>
-				</div>
-			</aside>
-			<div data-ts="Footer">
-				<p>Footer content. The button below is only relevant in <strong>mobile</strong> view.</p>
-				<p>
-					<button data-ts="Button" class="ts-tertiary" onclick="gui.get('mysidebar').toggle()">
-						<span>Toggle SideBar</span>
-					</button>
-				</p>
-			</div>
-		</aside>
 		<main data-ts="Main">
 			<article>
 				<h1>SideBar</h1>
@@ -75,8 +57,8 @@
 				<p>Also note tht the SideBar <em>must</em> be positioned before or after the <val>Main</val> element:</p>
 				<figure data-ts="DoxMarkup">
 					<script>
-						<aside data-ts="SideBar"> ... </aside>
 						<main data-ts="Main"> ... </main>
+						<aside data-ts="SideBar"> ... </aside>
 					</script>
 				</figure>
 
@@ -149,5 +131,23 @@
 				</div>
 			</article>
 		</main>
+		<aside data-ts="SideBar" id="mysidebar" data-ts.title="Example SideBar">
+			<div data-ts="Panel">
+				<p>SideBar content.</p>
+			</div>
+			<aside data-ts="Aside" data-ts.title="Nested Aside" id="myaside">
+				<div data-ts="Panel">
+					<p>Aside content.</p>
+				</div>
+			</aside>
+			<div data-ts="Footer">
+				<p>Footer content. The button below is only relevant in <strong>mobile</strong> view.</p>
+				<p>
+					<button data-ts="Button" class="ts-tertiary" onclick="gui.get('mysidebar').toggle()">
+						<span>Toggle SideBar</span>
+					</button>
+				</p>
+			</div>
+		</aside>
 	</body>
 </html>

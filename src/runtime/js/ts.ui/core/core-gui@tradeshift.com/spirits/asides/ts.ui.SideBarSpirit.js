@@ -35,11 +35,18 @@ ts.ui.SideBarSpirit = (function using(chained, Type, Client, GuiObject, Colors) 
 				return this._autoclose;
 			},
 			setter: function(autoclose) {
-				if(Type.isBoolean(Type.cast(autoclose))) {
+				if(Type.isBoolean(Type.cast(autoclose))) { // no weird moustache syntax
 					this.css.shift(autoclose, 'ts-autoclose');
 					this._autoclose = !!autoclose;
-				} else {
-					throw new TypeError('The value of `autoclose` must be boolean.');
+					if(this.life.ready) { // changed post init
+						if(this._autoclose) {
+							this._gomobile(true);
+						} else {
+							this._closebutton(false);
+							this.isOpen = true;
+							this.reflex();
+						}
+					}
 				}
 			}
 		},

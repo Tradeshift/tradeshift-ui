@@ -6,9 +6,10 @@
  * @using {gui.CSSPluign} CSSPlugin
  * @using {gui.DOMPlugin} DOMPlugin
  * @using {gui.Position} Position
+ * @using {gui.Client} Client
  * @using {gui.Key} key
  */
-ts.ui.TableEditPlugin = (function(CSSPlugin, DOMPlugin, Position, Key) {
+ts.ui.TableEditPlugin = (function(CSSPlugin, DOMPlugin, Position, Client, Key) {
 
 	var CLASS_CONTAINER = 'ts-table-cell';
 	var CLASS_TEXTAREA = 'ts-table-input';
@@ -400,11 +401,29 @@ ts.ui.TableEditPlugin = (function(CSSPlugin, DOMPlugin, Position, Key) {
 		_sync: function(sync, area, cont, height) {
 			height = (height || area.offsetHeight) - 1;
 			if(sync) {
-				area.style.clip = 'rect(auto,auto,' + height + 'px,auto)';
 				cont.style.minHeight = height + 'px';
+				this._shrink(area, height);
 			} else {
-				area.style.clip = '';
 				cont.style.minHeight = '';
+				this._shrink(area, 0);
+			}
+		},
+
+		/**
+		 * Make the textarea appear smaller than it really is so that it doesn't 
+		 * appear to overlap the bottom cell border. Unfortunately, IE11 and up 
+		 * has a bug where this affects the *actual* height of the textarea :/
+		 * TODO(jmo@): We still need to perform this cosmetic tweak for newer IE!
+		 * @param {HTMLTextAreaElement} area
+		 * @param {number|boolean} height
+		 */
+		_shrink: function(area, height) {
+			if(!Client.isExplorer11 && !Client.isEdge) {
+				if(height) {
+					area.style.clip = 'rect(auto,auto,' + height + 'px,auto)';
+				} else {
+					area.style.clip = '';
+				}
 			}
 		},
 
@@ -500,4 +519,4 @@ ts.ui.TableEditPlugin = (function(CSSPlugin, DOMPlugin, Position, Key) {
 
 	});
 
-}(gui.CSSPlugin, gui.DOMPlugin, gui.Position, gui.Key));
+}(gui.CSSPlugin, gui.DOMPlugin, gui.Position, gui.Client, gui.Key));

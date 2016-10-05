@@ -125,13 +125,11 @@ ts.ui.ToolBarSpirit = (function using(chained, confirmed, Client, Type, guiArray
 		 */
 		onchange: function(changes) {
 			this.super.onchange(changes);
-			if(!this.life.hascontent) {
-				changes.forEach(function(c) {
-					if(c.name === 'hascontent' && c.newValue) {
-						this.$hascontent();
-					}
-				}, this);
-			}
+			changes.forEach(function(c) {
+				if(c.name === 'hascontent') {
+					this.$hascontent(c.newValue);
+				}
+			}, this);
 		},
 		
 		/**
@@ -420,13 +418,14 @@ ts.ui.ToolBarSpirit = (function using(chained, confirmed, Client, Type, guiArray
 		 * that an operation will cause the toolbar to have content, please make 
 		 * sure to call this method manually.
 		 * TODO(jmo@): Some kind of synchronous observer setup to mitigate this.
-		 * @see {ts.ui.ToolBarModel#hascontent}
+		 * @param @optional {boolean} hascontent
+		 * @see {ts.ui.ToolBarModel#hascontent} Defaults to `true`
 		 */
-		$hascontent: function() {
-			if(!this.life.hascontent) {
-				this.life.hascontent = true;
-				this.life.dispatch('ts-life-toolbar-hascontent');
-			}
+		$hascontent: function(has) {
+			this.life.hascontent = (has = arguments.length ? has : true);
+			this.life.dispatch(
+				has ? 'ts-life-toolbar-hascontent' : 'ts-life-toolbar-nocontent'
+			);
 		},
 		
 

@@ -17,23 +17,35 @@
     <script>
         // used to test that sidebars can be transferred from MAIN to BODY 
         // without breaking functionality (since this always happens in V4).
-        $(document).ready(function() {
-            var $element = $('#mysidebar');
-            var $tsMain = $element.closest('[ts-main]');
-            if ($tsMain.length > 0) {
-                $tsMain.before($element);
-            }
-        });
+        if (false) {
+            $(document).ready(function() {
+                var $elem = $('#mysidebar');
+                var $main = $elem.closest('[ts-main]');
+                if ($main.length > 0) {
+                    $main.before($elem);
+                }
+            });
+        }
+        // used to test delayed Angular initialization in Collaboration panel :/
+        // (note that the `title` must also be removed to simulate collaboration)
+        if (false) {
+            $(document).ready(function() {
+                setTimeout(function() {
+                    var $elem = $('#mysidebar');
+                    $elem.attr('data-ts.autoclose', false);
+                }, 1000);
+            });
+        }
     </script>
 </head>
 
 <body>
     <header data-ts="TopBar"></header>
-    <aside data-ts="SideBar" id="mysidebar" data-ts.title="Example SideBar">
+    <aside data-ts="SideBar" id="mysidebar">
         <div data-ts="Panel">
             <p>SideBar content.</p>
         </div>
-        <aside data-ts="Aside" data-ts.title="Nested Aside" id="myaside">
+        <aside data-ts="Aside" data-ts.title="Example SideBar" id="myaside">
             <div data-ts="Panel">
                 <p>Aside content.</p>
             </div>

@@ -32,6 +32,7 @@
 		z-index: @ts-zindex-aside - 1;
 	}
 	.ts-sidebar.ts-autoclose {
+		top: 0;
 		bottom: 0;
 		position: absolute;
 		display: none;
@@ -42,7 +43,6 @@
 			display: block;
 		}
 		&.ts-3d {
-			top: 0;
 			.ts-mixin-transition-transform(@ts-transition-fast, @ts-timing-easeoutquint);
 			.ts-mixin-translate3d(0, 100%);
 			&.ts-open {

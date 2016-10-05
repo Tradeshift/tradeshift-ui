@@ -81,6 +81,20 @@
     }
   }
 }
+.ts-mobile-only {
+	.ts-doxchrome .ts-sidebar.ts-autoclose {
+		&.ts-3d {
+			.ts-mixin-transition-transform(@ts-transition-fast, @ts-timing-easeoutquint);
+			.ts-mixin-translate3d(-100%, 0);
+			&.ts-open {
+				.ts-mixin-translate3d(0, 0);
+			}
+		}
+		&.ts-2d {
+			top: 0;
+		}
+	}
+}
 .ts-engine-webkit {
   .ts-doxchrome {
     .ts-sidebar {

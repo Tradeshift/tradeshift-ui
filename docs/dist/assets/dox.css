@@ -639,6 +639,41 @@ table.api th {
 .ts-doxchrome .button-menu-open i:before {
   top: 50%;
 }
+.ts-mobile-only .ts-doxchrome .ts-sidebar.ts-autoclose.ts-3d {
+  -webkit-transition-property: none;
+  -moz-transition-property: none;
+  -ms-transition-property: none;
+  transition-property: none;
+  -webkit-transition-duration: 0.2s;
+  -moz-transition-duration: 0.2s;
+  -ms-transition-duration: 0.2s;
+  transition-duration: 0.2s;
+  -webkit-transition-timing-function: cubic-bezier(0.23, 1, 0.32, 1);
+  -moz-transition-timing-function: cubic-bezier(0.23, 1, 0.32, 1);
+  -ms-transition-timing-function: cubic-bezier(0.23, 1, 0.32, 1);
+  transition-timing-function: cubic-bezier(0.23, 1, 0.32, 1);
+  -webkit-transition-delay: 0s;
+  -moz-transition-delay: 0s;
+  -ms-transition-delay: 0s;
+  transition-delay: 0s;
+  -webkit-transition-property: -webkit-transform;
+  -moz-transition-property: -moz-tranform;
+  -ms-transition-property: -ms-transform;
+  transition-property: transform;
+  -webkit-transform: translate3d(-100%, 0, 0);
+  -moz-transform: translate3d(-100%, 0, 0);
+  -ms-transform: translate3d(-100%, 0, 0);
+  transform: translate3d(-100%, 0, 0);
+}
+.ts-mobile-only .ts-doxchrome .ts-sidebar.ts-autoclose.ts-3d.ts-open {
+  -webkit-transform: translate3d(0, 0, 0);
+  -moz-transform: translate3d(0, 0, 0);
+  -ms-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+}
+.ts-mobile-only .ts-doxchrome .ts-sidebar.ts-autoclose.ts-2d {
+  top: 0;
+}
 .ts-engine-webkit .ts-doxchrome .ts-sidebar .ts-toolbar-title label {
   position: relative;
   top: 1px;

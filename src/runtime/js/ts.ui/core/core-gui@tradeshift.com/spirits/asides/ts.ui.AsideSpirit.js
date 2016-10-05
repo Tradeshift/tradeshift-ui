@@ -432,6 +432,9 @@ ts.ui.AsideSpirit = (function using(chained, confirmed, Client, LayoutModel, not
 			this.guistatus.busy('opening aside');
 			this._updateworld(willopen);
 			this._register(true);
+			if(this._isSideBarAside()) {
+				this._themesupport(this.dom);
+			}
 			if((index = this._zindex())) {
 				this.css.zIndex = index;
 			}

@@ -50,7 +50,7 @@ ts.ui.SideBarSpirit = (function using(chained, Type, Client, GuiObject, Colors) 
 				}
 			}
 		},
-
+		
 		/**
 		 * Setup to consume actions from nested Asides.
 		 */
@@ -191,7 +191,7 @@ ts.ui.SideBarSpirit = (function using(chained, Type, Client, GuiObject, Colors) 
 		 */
 		_layoutmain: function(attaching) {
 			var layout = this.guilayout;
-			if(!this.dom.ancestor(ts.ui.SideBarSpirit)) {
+			if(!this.dom.ancestor(ts.ui.SideBarSpirit)) { // TODO: shouldn't this be MainSpirit?
 				var root = ts.ui.get(document.documentElement),
 					local1 = 'ts-sidebar-first',
 					local2 = 'ts-sidebar-last',

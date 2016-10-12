@@ -5,10 +5,10 @@ var initTopBar = function() {
 		{label: "Counter Tab", counter: 8},
 		{label: "Closeable Tab", closeable: true}
 	]);
+	ts.ui.TopBar.tabs().showNew();
 	ts.ui.TopBar.buttons([
 		{label : "Primary", type : "ts-primary"}
 	]);
-	ts.ui.TopBar.tabs().showNew();
 };
 
 var initTabBar = function() {
@@ -40,6 +40,6 @@ var initStatusBar = function() {
 $(document).ready(function() {
     initTopBar();
     initTabBar();
-    initToolBar();
+    //initToolBar();
     initStatusBar();
 });

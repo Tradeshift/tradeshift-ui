@@ -22,8 +22,12 @@ module.exports = function screenshots(webdriver, driver, shoot) {
 		// 	driver.saveScreenshot('statusbar.png').then(done);
 		// }),
 
-		shoot('components/screenshots/index.html', function(done) {
-			driver.saveScreenshot('components.png').then(done);
+		shoot('components/screenshots/bars.html', function(done) {
+			driver.saveScreenshot('bars.png').then(done);
+		}),
+
+		shoot('components/screenshots/buttons.html', function(done) {
+			driver.saveScreenshot('buttons.png').then(done);
 		}),
 
 		shoot('components/screenshots/form.html', function(done) {

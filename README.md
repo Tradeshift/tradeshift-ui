@@ -72,4 +72,4 @@ If you would like to contribute to our codebase, just fork the repo and make a P
 
 ## License
 
-Despite this repository being public and freely accessible to anyone, we reserve all rights, as stated in the [LICENSE.md](https://github.com/Tradeshift/tradeshift-ui/blob/master/LICENSE.md)
+We would like you to help contributing and using this library for apps you submit to the Tradeshift App store, or for use in your non-profit projects, but we wouldn't like you to take the code and modify it to sell it or use it in other commercial projects. Check the [LICENSE.md](https://github.com/Tradeshift/tradeshift-ui/blob/master/LICENSE.md) for more details!

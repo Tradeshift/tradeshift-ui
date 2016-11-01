@@ -4,11 +4,12 @@
  * @see {ts.ui.TopBarSpirit}
  * @see {ts.ui.ToolBarSpirit}
  * @using {ts.ui.TopBar} TopBar
+ * @using {gui.Client} Client
  * @using {gui.Combo.chained} chained
  * @using {number} UNIT_DOUBLE
  * @using {number} UNIT_TRIPLE
  */
-ts.ui.BarSpirit = (function(TopBar, chained, UNIT_DOUBLE, UNIT_TRIPLE) {
+ts.ui.BarSpirit = (function(TopBar, Client, chained, UNIT_DOUBLE, UNIT_TRIPLE) {
 
 	return ts.ui.Spirit.extend({
 
@@ -26,10 +27,16 @@ ts.ui.BarSpirit = (function(TopBar, chained, UNIT_DOUBLE, UNIT_TRIPLE) {
 			}
 		},
 		
+		/**
+		 * TODO
+		 */
 		hide: function() {
 			alert('TODO!');
 		},
 		
+		/**
+		 * TODO
+		 */
 		show: function() {
 			alert('TODO!');
 		},
@@ -74,11 +81,14 @@ ts.ui.BarSpirit = (function(TopBar, chained, UNIT_DOUBLE, UNIT_TRIPLE) {
 
 		/**
 		 * Setup stuff in mobule breakpoint (the subclass will decide if and when).
+		 * Note that the floating bar is not floating in IE9 because of certain 
+		 * conflicts with JS positioning versus CSS positioning (IE9 must use 
+		 * `left` and `top` in both cases) but IE9 users are after all not mobile.
 		 * TODO: Make sure to also remove the breakpoint listener when we terminate.
 		 */
 		_initbreakpoint: function() {
 			var main = this.$getmain();
-			if(main) {
+			if(main && Client.has3D) {
 				this.sprite.y = 0;
 				this._onbreakpoint();
 				ts.ui.addBreakPointListener(function(newpoint, oldpoint) {
@@ -136,7 +146,7 @@ ts.ui.BarSpirit = (function(TopBar, chained, UNIT_DOUBLE, UNIT_TRIPLE) {
 
 	});
 
-}(ts.ui.TopBar, gui.Combo.chained, ts.ui.UNIT_DOUBLE, ts.ui.UNIT_TRIPLE));
+}(ts.ui.TopBar, gui.Client, gui.Combo.chained, ts.ui.UNIT_DOUBLE, ts.ui.UNIT_TRIPLE));
 
 /**
  * Generate methods `blue` `green` `purple` and so 

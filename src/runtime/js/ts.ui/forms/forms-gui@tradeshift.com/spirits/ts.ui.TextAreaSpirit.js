@@ -132,8 +132,6 @@ ts.ui.TextAreaSpirit = (function using(Type, Client, unit, tick, time) {
 
 		// Private .................................................................
 
-		_test: false,
-
 		/**
 		 * Setup the model (and unsetup any potential old model).
 		 * @param {ts.ui.InputModel} model
@@ -173,7 +171,7 @@ ts.ui.TextAreaSpirit = (function using(Type, Client, unit, tick, time) {
 			if(Client.isChrome && elm.scrollHeight <= elm.offsetHeight) {
 				this.tick.nextFrame(function() {
 					this.css.display = 'none';
-					elm.offsetHeight;
+					var fix = elm.offsetHeight;
 					this.css.display = '';
 				});
 			}
@@ -199,3 +197,40 @@ ts.ui.TextAreaSpirit = (function using(Type, Client, unit, tick, time) {
 	ts.ui.FieldSpirit.TICK_SYNC,
 	ts.ui.FieldSpirit.TICK_TIME
 ));
+
+
+/*
+ * BACKUP HOTFIX FOR V4 UNTIL NEXT RELEASE .....................................
+ *
+if(gui.Client.isChrome) {
+
+	// abort when scrollbar
+	function hasscrollbar(elem) {
+		return elem.scrollHeight > elem.offsetHeight;
+	}
+
+	// force repaint
+	function forcerepaint(comp, elem) {
+		gui.Tick.nextFrame(function() {
+			comp.css.display = 'none';
+			elem.offsetHeight;
+			comp.css.display = '';
+		});
+	}
+
+	// setup to monitor texareas changing height
+	ts.ui.ready(function() {
+		ts.ui.get('html').action.add(ts.ui.ACTION_CHANGED, {
+			onaction: function(a) {
+				var comp = a.target;
+				var elem = comp.element;
+				if(ts.ui.TextAreaSpirit.is(comp)) {
+					if(!hasscrollbar(elem)) {
+						forcerepaint(comp, elem);
+					}
+				}
+			}
+		})
+	});
+}
+*/

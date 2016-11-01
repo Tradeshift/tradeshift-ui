@@ -8,11 +8,12 @@
  *
  * @extends {ts.ui.TextInputSpirit}
  * @using {gui.Type} Type
+ * @using {gui.Client} Client
  * @using {number} unit
  * @using {string} tick
  * @using {number} time
  */
-ts.ui.TextAreaSpirit = (function using(Type, unit, tick, time) {
+ts.ui.TextAreaSpirit = (function using(Type, Client, unit, tick, time) {
 
 	return ts.ui.TextInputSpirit.extend({
 
@@ -131,6 +132,8 @@ ts.ui.TextAreaSpirit = (function using(Type, unit, tick, time) {
 
 		// Private .................................................................
 
+		_test: false,
+
 		/**
 		 * Setup the model (and unsetup any potential old model).
 		 * @param {ts.ui.InputModel} model
@@ -152,11 +155,27 @@ ts.ui.TextAreaSpirit = (function using(Type, unit, tick, time) {
 			if((target = Math.floor(this.element.scrollHeight / unit) * unit) > 0) {
 				this.css.height = target;
 				if(current !== target) {
+					this._hotfixchrome(this.element);
 					this.action.dispatch(ts.ui.ACTION_CHANGED, {
 						oldheight: current,
 						newheight: target
 					});
 				}
+			}
+		},
+
+		/**
+		 * Force repaint to fix a rendering dysfunction in newer versions 
+		 * of Google Chrome (appears not needed when the scrollbar is shown).
+		 * @param {Element} elm
+		 */
+		_hotfixchrome: function(elm) {
+			if(Client.isChrome && elm.scrollHeight <= elm.offsetHeight) {
+				this.tick.nextFrame(function() {
+					this.css.display = 'none';
+					elm.offsetHeight;
+					this.css.display = '';
+				});
 			}
 		}
 		
@@ -175,6 +194,7 @@ ts.ui.TextAreaSpirit = (function using(Type, unit, tick, time) {
 
 }(
 	gui.Type,
+	gui.Client,
 	ts.ui.UNIT,
 	ts.ui.FieldSpirit.TICK_SYNC,
 	ts.ui.FieldSpirit.TICK_TIME

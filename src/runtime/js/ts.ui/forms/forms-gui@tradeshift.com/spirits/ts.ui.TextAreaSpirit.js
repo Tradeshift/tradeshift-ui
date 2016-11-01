@@ -8,11 +8,12 @@
  *
  * @extends {ts.ui.TextInputSpirit}
  * @using {gui.Type} Type
+ * @using {gui.Client} Client
  * @using {number} unit
  * @using {string} tick
  * @using {number} time
  */
-ts.ui.TextAreaSpirit = (function using(Type, unit, tick, time) {
+ts.ui.TextAreaSpirit = (function using(Type, Client, unit, tick, time) {
 
 	return ts.ui.TextInputSpirit.extend({
 
@@ -152,11 +153,27 @@ ts.ui.TextAreaSpirit = (function using(Type, unit, tick, time) {
 			if((target = Math.floor(this.element.scrollHeight / unit) * unit) > 0) {
 				this.css.height = target;
 				if(current !== target) {
+					this._hotfixchrome(this.element);
 					this.action.dispatch(ts.ui.ACTION_CHANGED, {
 						oldheight: current,
 						newheight: target
 					});
 				}
+			}
+		},
+
+		/**
+		 * Force repaint to fix a rendering dysfunction in newer versions 
+		 * of Google Chrome (appears not needed when the scrollbar is shown).
+		 * @param {Element} elm
+		 */
+		_hotfixchrome: function(elm) {
+			if(Client.isChrome && elm.scrollHeight <= elm.offsetHeight) {
+				this.tick.nextFrame(function() {
+					this.css.display = 'none';
+					var fix = elm.offsetHeight;
+					this.css.display = '';
+				});
 			}
 		}
 		
@@ -175,7 +192,45 @@ ts.ui.TextAreaSpirit = (function using(Type, unit, tick, time) {
 
 }(
 	gui.Type,
+	gui.Client,
 	ts.ui.UNIT,
 	ts.ui.FieldSpirit.TICK_SYNC,
 	ts.ui.FieldSpirit.TICK_TIME
 ));
+
+
+/*
+ * BACKUP HOTFIX FOR V4 UNTIL NEXT RELEASE .....................................
+ *
+if(gui.Client.isChrome) {
+
+	// abort when scrollbar
+	function hasscrollbar(elem) {
+		return elem.scrollHeight > elem.offsetHeight;
+	}
+
+	// force repaint
+	function forcerepaint(comp, elem) {
+		gui.Tick.nextFrame(function() {
+			comp.css.display = 'none';
+			elem.offsetHeight;
+			comp.css.display = '';
+		});
+	}
+
+	// setup to monitor texareas changing height
+	ts.ui.ready(function() {
+		ts.ui.get('html').action.add(ts.ui.ACTION_CHANGED, {
+			onaction: function(a) {
+				var comp = a.target;
+				var elem = comp.element;
+				if(ts.ui.TextAreaSpirit.is(comp)) {
+					if(!hasscrollbar(elem)) {
+						forcerepaint(comp, elem);
+					}
+				}
+			}
+		})
+	});
+}
+*/

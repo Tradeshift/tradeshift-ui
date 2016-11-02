@@ -238,9 +238,11 @@ module.exports = function(grunt) {
 					'WINDOWS: internet explorer 9',
 					'WINDOWS: internet explorer 10',
 					'WIN8: internet explorer 11',
-					//'android',
-					//'iphone',
-					//'ipad'
+					'ANY: edge'
+					// 'ANY: android',
+					// 'ANY: iPhone',
+					// 'ANY: iPad',
+					// 'ANY: opera'
 				]
 			},
 			release: {

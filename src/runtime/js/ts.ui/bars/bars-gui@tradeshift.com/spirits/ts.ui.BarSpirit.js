@@ -117,23 +117,26 @@ ts.ui.BarSpirit = (function(TopBar, Client, chained, UNIT_DOUBLE, UNIT_TRIPLE) {
 		 * @param {number} scroll Main scrollTop
 		 */
 		_slide: function(scroll) {
-			var stop = 0 - this._offsetLimit();
-			var delt = scroll - this._scroll;
-			var down = delt > 0;
-			var doit = false;
-			var next = 0;
-			if(down) {
-				doit = this.sprite.y > stop;
-			} else {
-				doit = this.sprite.y < 0;
+			if(Client.has3D) {
+				var stop = 0 - this._offsetLimit();
+				var delt = scroll - this._scroll;
+				var down = delt > 0;
+				var doit = false;
+				var next = 0;
+				if(down) {
+					doit = this.sprite.y > stop;
+				} else {
+					doit = this.sprite.y < 0;
+				}
+				if(doit) {
+					next = this.sprite.y - delt;
+					next = next < stop ? stop : next;
+					next = next > 0 ? 0 : next;
+					this.sprite.y = next;
+				}
+				this._scroll = scroll;	
 			}
-			if(doit) {
-				next = this.sprite.y - delt;
-				next = next < stop ? stop : next;
-				next = next > 0 ? 0 : next;
-				this.sprite.y = next;
-			}
-			this._scroll = scroll;
+			
 		},
 
 		/**

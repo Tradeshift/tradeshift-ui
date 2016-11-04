@@ -31,11 +31,11 @@ module.exports = {
 					  usingServer(URL_BROWSERCLOUD).
 					  withCapabilities({
 					  	'browserName': browser.nickname,
-						  'version': browser.versname,
-						  'platform': browser.platform,
-						  'browserstack.local': true,
-						  'browserstack.user': options.user,
-						  'browserstack.key': options.key
+						'version': browser.versname,
+						'platform': browser.platform,
+						'browserstack.local': true,
+						'browserstack.user': options.user,
+						'browserstack.key': options.key
 					  }).build();
 
 				/**

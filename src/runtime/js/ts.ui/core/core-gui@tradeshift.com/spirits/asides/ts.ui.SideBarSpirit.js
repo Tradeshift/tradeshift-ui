@@ -40,7 +40,9 @@ ts.ui.SideBarSpirit = (function using(chained, Type, Client, GuiObject, Colors) 
 					this._autoclose = !!autoclose;
 					if(this.life.ready) { // changed post init
 						if(this._autoclose) {
-							this._gomobile(true);
+							if(ts.ui.isMobilePoint()) {
+								this._gomobile(true);
+							}
 						} else {
 							this._closebutton(false);
 							this.isOpen = true;

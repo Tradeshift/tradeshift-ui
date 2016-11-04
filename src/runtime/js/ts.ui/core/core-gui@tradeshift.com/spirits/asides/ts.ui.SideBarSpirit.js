@@ -41,7 +41,7 @@ ts.ui.SideBarSpirit = (function using(chained, Type, Client, GuiObject, Colors) 
 					if(this.life.ready) { // changed post init
 						if(this._autoclose) {
 							if(ts.ui.isMobilePoint()) {
-								this._gomobile(true);
+								this._breakpoint();
 							}
 						} else {
 							this._closebutton(false);
@@ -74,7 +74,7 @@ ts.ui.SideBarSpirit = (function using(chained, Type, Client, GuiObject, Colors) 
 			this._breakpointwatch();
 			this.css.shift(this._autoclose, 'ts-autoclose');
 			if(ts.ui.isMobilePoint()) {
-				this._gomobile(true);
+				this._breakpoint();
 			} else {
 				this._reflex();
 			}
@@ -193,17 +193,16 @@ ts.ui.SideBarSpirit = (function using(chained, Type, Client, GuiObject, Colors) 
 		 */
 		_layoutmain: function(attaching) {
 			var layout = this.guilayout;
-			if(!this.dom.ancestor(ts.ui.SideBarSpirit)) { // TODO: shouldn't this be MainSpirit?
-				var root = ts.ui.get(document.documentElement),
-					local1 = 'ts-sidebar-first',
+			if(layout.outsideMain()) {
+				var local1 = 'ts-sidebar-first',
 					local2 = 'ts-sidebar-last',
 					global1 = 'ts-has-sidebar',
 					global2 = 'ts-has-sidebar-first',
 					global3 = 'ts-has-sidebar-last';
-				if(this.guilayout.beforeMain()) {
+				if(layout.beforeMain()) {
 					this.css.shift(attaching, local1);
 					layout.shiftGlobal(attaching, global2);
-				} else if(this.guilayout.afterMain()) {
+				} else {
 					this.css.shift(attaching, local2);
 					layout.shiftGlobal(attaching, global3);
 				}
@@ -216,25 +215,29 @@ ts.ui.SideBarSpirit = (function using(chained, Type, Client, GuiObject, Colors) 
 		 */
 		_breakpointwatch: function() {
 			ts.ui.addBreakPointListener(function() {
-				this._gomobile(ts.ui.isMobilePoint());
+				this._breakpoint();
 			}.bind(this));
 		},
 
 		/**
-		 * Collapse the SideBar on mobile breakpoint. 
+		 * Collapse the SideBar on mobile breakpoint.
 		 * Setup to avoid CSS transition on collapse.
 		 * @param {boolean} go
 		 */
-		_gomobile: function(go) {
+		_breakpoint: function() {
+			var go = ts.ui.isMobilePoint();
 			if(this._autoclose) {
 				this._closebutton(go);
 				if(go) {
-					this.close();
-					this.isOpen = false;
+					if(this.isOpen) {
+						this.close();
+						this.isOpen = false;
+					}
 				} else {
-					this.isOpen = true;
-					ts.ui.get('html').reflex();
-					//this._reflex(); // TODO: perhaps this is enough?
+					if(!this.isOpen) {
+						this.isOpen = true;
+						this.guilayout.flexGlobal();
+					}
 				}
 			}
 		},

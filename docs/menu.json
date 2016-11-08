@@ -10,29 +10,6 @@
 		"path": "intro/"
 	},
 	{
-		"label": "Design",
-		"icon": "ts-icon-pen-brush",
-		"path": "design/",
-		"items": [
-			{
-				"label": "Design Patterns",
-				"icon": "ts-icon-programming-jigsaw",
-				"path": "design/patterns/"
-			},
-			{
-				"label": "Visual Style",
-				"icon": "ts-icon-laptop-heart-1",
-				"path": "design/style/",
-				"hidden": true
-			},
-			{
-				"label": "UI Copy",
-				"icon": "ts-icon-spelling-check-1",
-				"path": "design/copy/"
-			}
-		]
-	},
-	{
 		"label": "Get Started",
 		"icon": "ts-icon-space-rocket",
 		"path": "getstarted/",
@@ -51,6 +28,29 @@
 				"label": "Basic Rules",
 				"icon": "ts-icon-sign-no-entry",
 				"path": "getstarted/rules/"
+			}
+		]
+	},
+	{
+		"label": "Design",
+		"icon": "ts-icon-pen-brush",
+		"path": "design/",
+		"items": [
+			{
+				"label": "Patterns",
+				"icon": "ts-icon-programming-jigsaw",
+				"path": "design/patterns/"
+			},
+			{
+				"label": "Visual Style",
+				"icon": "ts-icon-laptop-heart-1",
+				"path": "design/style/",
+				"hidden": true
+			},
+			{
+				"label": "Copy",
+				"icon": "ts-icon-spelling-check-1",
+				"path": "design/copy/"
 			}
 		]
 	},
@@ -75,11 +75,6 @@
 				"label": "Typography",
 				"icon": "ts-icon-spelling-check-1",
 				"path": "principles/typo.html"
-			},
-			{
-				"label": "Colors",
-				"icon": "ts-icon-paint-palette",
-				"path": "principles/colors.html"
 			}
 		]
 	},
@@ -181,6 +176,43 @@
 		]
 	},
 	{
+		"label": "Appendix",
+		"path": "appendix/",
+		"icon": "ts-icon-video-games-space-invaders-1",
+		"items": [
+			{
+				"label": "Automated Layout",
+				"icon": "ts-icon-window-application-6",
+				"path": "features/autolayout/"
+			},
+			{
+				"label": "Automagic Focus",
+				"icon": "ts-icon-focus-2",
+				"path": "features/autofocus/"
+			},
+			{
+				"label": "Responsive Design",
+				"icon": "ts-icon-devices",
+				"path": "features/responsive/"
+			}, 
+			{
+				"label": "Colors",
+				"icon": "ts-icon-paint-palette",
+				"path": "features/colors/"
+			},
+			{
+				"label": "Typography",
+				"icon": "ts-icon-spelling-check-1",
+				"path": "features/typo/"
+			},
+			{
+				"label": "Markdown",
+				"icon": "ts-icon-font-size",
+				"path": "development/markdown/"
+			}
+		]
+	},
+	{
 		"label": "Playground",
 		"hidden": true,
 		"icon": "ts-icon-video-games-space-invaders-1",
@@ -202,11 +234,6 @@
 		"hidden": true,
 		"icon": "ts-icon-beaker-science",
 		"items": [
-			{
-				"label": "Markdown",
-				"icon": "ts-icon-font-size",
-				"path": "development/markdown/"
-			},
 			{
 				"label": "Root Panels",
 				"icon": "ts-icon-window-tabs-3",

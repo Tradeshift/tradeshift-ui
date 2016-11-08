@@ -65,7 +65,9 @@ section.desc code,
 section p,
 #markdown p,
 section li,
-#markdown li {
+#markdown li,
+section dl,
+#markdown dl {
   font-weight: 300;
   letter-spacing: 0.25px;
   line-height: 22px;
@@ -1241,9 +1243,13 @@ article {
   padding-left: 22px;
 }
 /* Section-specific styling ..................................................*/
-html.design.ts-bg-lite .ts-main {
-  background-color: #ffffff;
+/*
+html.design.ts-bg-lite {
+	.ts-main {
+		background-color: @ts-white;
+	}
 }
+*/
 /* Search style ..................................................*/
 #results li {
   display: block;

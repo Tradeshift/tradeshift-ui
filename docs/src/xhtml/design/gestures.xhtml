@@ -14,18 +14,41 @@
 <main data-ts="Main">
 	<div data-ts="MainFrame">
 		<article>
-			<output id="markdown"></output>
+			<h1>Keyboard &amp; Gestures</h1>
+			<section>
+				<ul>
+					<li>Keyboard navigation requirements
+						<ul>
+							<li>Align input field/button tab order with arrangement on screen</li>
+							<li>Enter/escape top open close picker</li>
+							<li>Arrow up/down or tab backward/forward to navigate option lists</li>
+						</ul>
+					</li>
+					<li>Everything must work without gestures (apart from scrolling)</li>
+					<li>Cannot depend on hover</li>
+					<li>Tap replaces click</li>
+				</ul>
+			</section>
+
+			<!--
+			<hr/>
+
+			<p>Continue reading our Design Guidelines on the <a href="//tradeshift.github.io/#design/guidelines/3rdparty.html" data-ts="Button"="">3rd Party Apps</a> page.</p>gestures.html:34:17
+			-->
 		</article>
 	</div>
 </main>
 
+<!--
 <script src="assets/markdown.js"></script>
 <script>
 	ts.ui.ready(function() {
 		$.get('assets/gestures.md', function(markdown) {
+			console.log(window.markdown.toHTML(markdown, 'Maruku'));
 			document.querySelector('#markdown').innerHTML = window.markdown.toHTML(markdown, 'Maruku');
 		});
 	});
 </script>
+-->
 </body>
 </html>

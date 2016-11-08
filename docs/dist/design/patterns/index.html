@@ -2,12 +2,13 @@
 <html lang="en-us" class="ts-docs">
 
 <head>
-    <title>Design Patters</title>
+    <title>Navigation Items</title>
     <meta name="viewport" content="width=device-width">
     <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-6.1.1-alpha.2.min.js"></script>
     <script src="/dist/assets/dox.min.js"></script>
     <script src="/dist/assets/jquery-2.2.4.min.js"></script>
     <link rel="stylesheet" href="/dist/assets/dox.css">
+    <link rel="stylesheet" href="../design.css">
     <style>
         .sticky {
             display: none !important;
@@ -20,21 +21,73 @@
     <header data-ts="TopBar"></header>
     <main data-ts="Main">
         <div data-ts="MainContent">
-            <div data-ts="MainFrame">
-                <article>
-                    <output id="markdown"></output>
-                </article>
-            </div>
+            <article>
+                <h1>Navigation Items</h1>
+                <section>
+                    <h3><span>Global Menu Items</span></h3>
+                    <figure>
+                        <img alt="Global menu items with branding" src="assets/img/navigation-global-tablet-branded1.png">
+                    </figure>
+                    <p>Menu items can be inserted anywhere in the global menu to provide direct access to your application. An application icon must be provided as well as a name for your application. A highlight color can be specified for your menu item,
+                        allowing integration of your visual identity in combination with your custom icon.</p>
+                    <h3><span>Shortcuts</span></h3>
+                    <figure>
+                        <img alt="Shortcuts on a tablet" src="assets/img/navigation-global-tablet-shortcuts.png">
+                    </figure>
+                    <p>Shortcuts are only available in tablet size and are stacked vertically along the left side of the screen under the Tradeshift logo mark. The shortcuts are basically global menu items that have been defined to also appear in the shortcut
+                        list. This means that the shortcuts are a subset of the global menu items. Only specify your global menu item as a shortcut if frequent and repeated access to your functionality on mobile devices is necessary.</p>
+                    <h3><span>Contextual menu</span></h3>
+                    <p>The contextual menu (<a href="http://tradeshift.github.io/#design/guidelines/structure.html" data-ts="Button"=""="">the area above the main content area</a>) can be customized in a few different ways.</p>
+                    <figure>
+                        <img alt="Contextual actions" src="assets/img/navigation-contextual-actions.png">
+                        <figcaption>Buttons for contextual actions</figcaption>
+                    </figure>
+                    <p>When using the contextual bar to present actions, these actions must always be highest level actions to what&#x2019;s on the page. I.e. actions that manipulate the entirety of the contents.</p>
+                    <figure>
+                        <img alt="Invoice creation example" src="assets/img/button-styles-01.png">
+                    </figure>
+                    <p>The invoice creation example has document delete, save and send as contextual actions. These actions modify the entirety of what&#x2019;s on the page. More fine-grained controls, such as adding lines, belong to the contents of the
+                        document, and should never appear in the contextual bar as actions. An alternative example [connector app and connections page] is when the page contains a collection of objects. In this case, the contextual action of adding another
+                        object to the collection is allowed as contextual action, as it alters the collection, being the highest level on that kind of page.</p>
+                    <figure>
+                        <img alt="Tabbed navigation" src="assets/img/navigation-contextual-tabbed1.png">
+                        <figcaption>Tabbed navigation</figcaption>
+                    </figure>
+                    <p>The contextual bar can also contain tabs with the purpose of splitting related contents into subsections that can be processed individually in any given order. An example is this documentation.</p>
+                    <figure>
+                        <img alt="Progress tabbed navigation in action" src="assets/img/navigation-contextual-tabbed-progress.png">
+                        <figcaption>Progress-tabbed navigation</figcaption>
+                    </figure>
+                    <p>When a tabbed navigation is preferred but there&#x2019;s a requirement for users to process all tabs in order, the progress-tabbed contextual bar is used. Note that the progress-tabbed navigation leaves ample space for a flow headline,
+                        by keeping the progress tabs below the contextual bar space. Progress-tabbed navigation works well for setup flows where all steps are required, such as a custom registration flow.</p>
+                    <!--
+				<figure>
+					<img alt="Progress tabbed navigation in a custom registration flow" src="assets/img/navigation-tabs-progressive1.gif"/>
+				</figure>
+				-->
+                    <figure>
+                        <img alt="Searching in the TopBar" src="assets/img/navigation-contextual-search1.png">
+                        <figcaption>Filtering and searching</figcaption>
+                    </figure>
+                    <p>For managing complex lists the contextual bar can be completely exchanged with search and filter functionality. This is especially usable for long lists, such as the documents list pages.</p>
+                    <figure>
+                        <img alt="Searching in the Document List" src="assets/img/navigation-context-search.gif">
+                    </figure>
+                    <!--
+				<h3>Hidden</h3>
+				<p>When the contextual bar doesn’t do anything it can be completely removed. Note that in phone size UI there’s always a bar containing the current page’s title.</p>
+				<h3>Combinations</h3>
+				<p>It’s not recommended to combine the above mentioned contextual bar types. For instance having both tabs and contextual actions simultaneously may work in some situations on desktop. But language variants (longer labels/titles) and fluidity across devices carry the risk of rendering your combined interface unusable for larger segments of users.</p>
+				<h3>Pickers as navigation hubs</h3>
+				<p><a href="http://tradeshift.github.io/#design/patterns/pickers.html" data-ts="Button"="">Pickers</a> also provide the opportunity to function as navigation items.</p>
+				<blockquote><h6>For Developers</h6><p>Read more about <a href="//tradeshift.github.io/#components/overview/layout.html" data-ts="Button"="">Components related to Navigation</a>.</p></blockquote>
+				<hr/>
+				<p>Continue reading our Design Patterns on the <a href="//tradeshift.github.io/#design/patterns/inputs.html" data-ts="Button"="">Basic Inputs</a> page.</p>nav.html:35:17
+				-->
+                </section>
+            </article>
         </div>
     </main>
-    <script src="../assets/markdown.js"></script>
-    <script>
-        ts.ui.ready(function() {
-            $.get('assets/index.md', function(markdown) {
-                document.querySelector('#markdown').innerHTML = window.markdown.toHTML(markdown, 'Maruku');
-            });
-        });
-    </script>
 </body>
 
 </html>

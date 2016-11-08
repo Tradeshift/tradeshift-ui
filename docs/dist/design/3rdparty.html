@@ -22,19 +22,42 @@
         <div data-ts="MainContent">
             <div data-ts="MainFrame">
                 <article>
-                    <output id="markdown"></output>
+                    <h1>3rd Party Apps</h1>
+                    <section>
+                        <p>Your application integrates into the existing Tradeshift UI through an iFrame in the <a href="http://tradeshift.github.io/#design/guidelines/structure.html" data-ts="Button"=""="">main content area</a>. If you would like to have
+                            other methods for integrating with Tradeshift&#x2019;s UI please send the requests to <a href="mailto:apps@tradeshift.com">apps@tradeshift.com</a></p>
+                        <h3><span>Branding 3rd party embedded apps</span></h3>
+                        <p>Third parties can maintain their visual identity on Tradeshift first by deciding if they want to use the Tradeshift recommended stylesheets and markup by using the Tradeshift UIComponents. Using the recommended Tradeshift style
+                            is required for Tradeshift to be able to promote your app to Tradeshift users. Regardless of what visual branding is used on form fields, buttons, etc., third parties still have the freedom to include their logo and other elements
+                            within their app that maintain their visual identity.</p>
+                        <h3><span>Publishing Your Apps</span></h3>
+                        <p>Please view <a href="https://apps.tradeshift.com" data-ts="Button">apps.tradeshift.com</a> to learn how to launch your app.</p>
+                        <h3><span>Promoting my app</span></h3>
+                        <p>We are always willing to help market innovative applications that utilize the benefits of the Tradeshift platform to democratize business. For more information, please contact us at <a href="mailto:apps@tradeshift.com">apps@tradeshift.com</a></p>
+                        <h3><span>Non-integrated applications</span></h3>
+                        <p>Applications that are not embedded in Tradeshift&#x2019;s UI (i.e. exist on a separate service) that use Tradeshift&#x2019;s API must adhere to Tradeshift&#x2019;s branding guidelines. These guidelines are simple: &quot;Powered
+                            by Tradeshift&quot; must be visible on any page in proximity to a portion of the page that uses the Tradeshift API. You can decide how the text will look on the page, but it must show that some portion of the page is enabled
+                            by Tradeshift.</p>
+                        <!--
+				<hr/>
+				<p>If you are interested in more design documentation, read our <a href="//tradeshift.github.io/#design/patterns/index.html" data-ts="Button"="">Design Patterns</a> page.</p>3rdparty.html:34:17
+				-->
+                    </section>
                 </article>
             </div>
         </div>
     </main>
-    <script src="../assets/markdown.js"></script>
-    <script>
-        ts.ui.ready(function() {
-            $.get('assets/3rdparty.md', function(markdown) {
-                document.querySelector('#markdown').innerHTML = window.markdown.toHTML(markdown, 'Maruku');
-            });
-        });
-    </script>
+    <!--
+<script src="assets/markdown.js"></script>
+<script>
+	ts.ui.ready(function() {
+		$.get('assets/3rdparty.md', function(markdown) {
+			console.log(window.markdown.toHTML(markdown, 'Maruku'));
+			document.querySelector('#markdown').innerHTML = window.markdown.toHTML(markdown, 'Maruku');
+		});
+	});
+</script>
+-->
 </body>
 
 </html>

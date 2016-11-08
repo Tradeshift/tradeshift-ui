@@ -9,4 +9,4 @@ ts.dox.tabs([
 	['3rd Party Apps', '3rdparty.html'],
 	['Downloads', 'downloads.html', true]
 ]);
-ts.ui.TopBar.green();
+//ts.ui.TopBar.green();

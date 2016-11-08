@@ -462,8 +462,9 @@ ts.ui.ToolBarSpirit = (function using(chained, confirmed, Client, Type, guiArray
 		 * @param {boolean} attaching This is `false' when toolbar gets removed
 		 */
 		_layoutinit: function(attaching) {
+			var position = this._layoutmain(attaching);
 			if(attaching) {
-				switch(this._layoutmain(attaching)) {
+				switch(position) {
 					case 'before':
 						this._initbreakpoint();
 						break;

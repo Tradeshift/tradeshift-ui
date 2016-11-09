@@ -39,15 +39,6 @@
             </article>
         </div>
     </main>
-    <script src="../assets/markdown.js"></script>
-    <script>
-        ts.ui.ready(function() {
-            $.get('assets/emails.md', function(markdown) {
-                document.querySelector('#markdown').innerHTML = window.markdown.toHTML(markdown, 'Maruku');
-                console.log(window.markdown.toHTML(markdown, 'Maruku'));
-            });
-        });
-    </script>
 </body>
 
 </html>

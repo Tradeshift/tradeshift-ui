@@ -8,6 +8,5 @@ ts.dox.tabs([
 	['Tables', 'tables.html'],
 	['Switches', 'switches.html'],
 	['Full Page Apps', 'fullpage.html'],
-	['Emails', 'emails.html'],
-	['Alerts & Notifications', 'notifications.html', true]
+	['Emails', 'emails.html']
 ]);

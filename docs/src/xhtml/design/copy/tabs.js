@@ -3,7 +3,7 @@
  */
 ts.dox.tabs([
 	['Principles', 'index.html'],
-	['During Development', 'dev.html'],
+	['Development', 'dev.html'],
 	['Terminology', 'terms.html'],
 	['Error Messages', 'errors.html'],
 	['Buttons', 'buttons.html'],

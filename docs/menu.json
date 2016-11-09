@@ -32,54 +32,24 @@
 		]
 	},
 	{
-		"label": "Design",
+		"label": "Design Guidelines",
 		"icon": "ts-icon-pen-brush",
 		"path": "design/",
 		"items": [
 			{
-				"label": "Patterns",
+				"label": "Design Patterns",
 				"icon": "ts-icon-programming-jigsaw",
 				"path": "design/patterns/"
 			},
 			{
-				"label": "Visual Style",
-				"icon": "ts-icon-laptop-heart-1",
-				"path": "design/style/",
-				"hidden": true
-			},
-			{
-				"label": "Copy",
+				"label": "Product Copy",
 				"icon": "ts-icon-spelling-check-1",
 				"path": "design/copy/"
 			}
 		]
 	},
 	{
-		"hidden": true,
-		"label": "Principles",
-		"icon": "ts-icon-color-palette",
-		"items": [
-			{
-				"label": "Themes",
-				"icon": "ts-icon-color-palette",
-				"path": "principles/themes.html",
-				"hidden": true
-			},
-			{
-				"label": "Responsive Design",
-				"icon": "ts-icon-devices",
-				"path": "principles/responsive.html",
-				"hidden": true
-			},
-			{
-				"label": "Typography",
-				"icon": "ts-icon-spelling-check-1",
-				"path": "principles/typo.html"
-			}
-		]
-	},
-	{
-		"label": "Components",
+		"label": "UI Components",
 		"icon": "ts-icon-modules-1",
 		"path": "components/",
 		"items": [
@@ -177,38 +147,39 @@
 	},
 	{
 		"label": "Appendix",
+		"note": "MUST MANUALLY SYNCHRONIZE THE PAGE /#appendix/ TO THIS JSON!",
 		"path": "appendix/",
 		"icon": "ts-icon-video-games-space-invaders-1",
 		"items": [
 			{
-				"label": "Automated Layout",
-				"icon": "ts-icon-window-application-6",
-				"path": "features/autolayout/"
-			},
-			{
-				"label": "Automagic Focus",
-				"icon": "ts-icon-focus-2",
-				"path": "features/autofocus/"
-			},
-			{
 				"label": "Responsive Design",
 				"icon": "ts-icon-devices",
-				"path": "features/responsive/"
+				"path": "appendix/responsive/"
 			}, 
 			{
 				"label": "Colors",
 				"icon": "ts-icon-paint-palette",
-				"path": "features/colors/"
+				"path": "appendix/colors/"
 			},
 			{
 				"label": "Typography",
 				"icon": "ts-icon-spelling-check-1",
-				"path": "features/typo/"
+				"path": "appendix/typo/"
 			},
 			{
 				"label": "Markdown",
 				"icon": "ts-icon-font-size",
-				"path": "development/markdown/"
+				"path": "appendix/markdown/"
+			},
+			{
+				"label": "Automated Layout",
+				"icon": "ts-icon-window-application-6",
+				"path": "appendix/autolayout/"
+			},
+			{
+				"label": "Automagic Focus",
+				"icon": "ts-icon-focus-2",
+				"path": "appendix/autofocus/"
 			}
 		]
 	},

@@ -14,6 +14,7 @@
     "grunt-contrib-less": "^1.3.0",
     "grunt-contrib-uglify": "^1.0.1",
     "grunt-contrib-watch": "^1.0.0",
+    "grunt-link-checker": "^0.2.0",
     "grunt-spiritual-build": "^0.1.18",
     "grunt-spiritual-edbml": "^0.3.0",
     "image-diff": "^1.6.3",

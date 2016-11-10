@@ -76,8 +76,18 @@ ts.ui.ToolBarSpirit = (function using(chained, confirmed, Client, Type, guiArray
 		 */
 		onasync: function() {
 			this.super.onasync();
-			this._layoutinit(true);
+			this._layoutinit();
 			this._looknormal(this.css);
+		},
+
+		/**
+		 * Further hotfix for situation explained in previous comment.
+		 */
+		onattach: function() {
+			this.super.onattach();
+			if(this.life.async) {
+				this._layoutmain(true);
+			}
 		},
 
 		/**
@@ -85,7 +95,7 @@ ts.ui.ToolBarSpirit = (function using(chained, confirmed, Client, Type, guiArray
 		 */
 		ondetach: function() {
 			this.super.ondetach();
-			this._layoutinit(false);
+			this._layoutmain(false);
 		},
 
 		/**
@@ -461,25 +471,24 @@ ts.ui.ToolBarSpirit = (function using(chained, confirmed, Client, Type, guiArray
 		 * Add/remove classnames on the HTML element so we can style the MAIN.
 		 * @param {boolean} attaching This is `false' when toolbar gets removed
 		 */
-		_layoutinit: function(attaching) {
-			if(attaching) {
-				switch(this._layoutmain(attaching)) {
-					case 'before':
-						this._initbreakpoint();
-						break;
-					case 'after':
-						this._looknormal(this.css);
-						ts.ui.addBreakPointListener(function() {
-							if(!this.$destructed) {
-								this._looknormal(this.css);
-							}
-						}.bind(this));
-						break;
-				}
+		_layoutinit: function() {
+			switch(this._layoutmain(true)) {
+				case 'before':
+					this._initbreakpoint();
+					break;
+				case 'after':
+					this._looknormal(this.css);
+					ts.ui.addBreakPointListener(function() {
+						if(!this.$destructed) {
+							this._looknormal(this.css);
+						}
+					}.bind(this));
+					break;
 			}
 		},
 		
 		/**
+		 * @param {boolean} show
 		 * @returns {string}
 		 */
 		_layoutmain: function(show) {

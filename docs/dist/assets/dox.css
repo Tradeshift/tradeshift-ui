@@ -46,36 +46,23 @@ article h5 {
   font-weight: 300;
   letter-spacing: 0.25px;
 }
-section,
-#markdown {
+section {
   margin-bottom: 22px;
 }
-section.desc,
-#markdown.desc {
+section.desc {
   font-style: italic;
   margin-bottom: 44px;
   font-weight: 400 !important;
 }
 section.desc,
-#markdown.desc,
-section.desc code,
-#markdown.desc code {
+section.desc code {
   font-size: 16px;
 }
 section p,
-#markdown p,
 section li,
-#markdown li {
+section dl {
   font-weight: 300;
   letter-spacing: 0.25px;
-  line-height: 22px;
-}
-section p,
-#markdown p {
-  margin-bottom: 22px;
-}
-#markdown li {
-  margin-bottom: 11px;
 }
 dl {
   margin-bottom: 22px;
@@ -1241,9 +1228,13 @@ article {
   padding-left: 22px;
 }
 /* Section-specific styling ..................................................*/
-html.design.ts-bg-lite .ts-main {
-  background-color: #ffffff;
+/*
+html.design.ts-bg-lite {
+	.ts-main {
+		background-color: @ts-white;
+	}
 }
+*/
 /* Search style ..................................................*/
 #results li {
   display: block;

@@ -73,17 +73,20 @@
 						</script>
 					</figure>
 
-					<h3>Update Icon</h3>
-					<p>You can change the icon by adding <code>icon:</code> and the icon class name.</p>
+					<h3>Dialog icons</h3>
+					<p>You can point the <code>icon</code> property to an alternative <a data-ts="Button" href="/#components/icons/css.html">icon class</a>, but you should stick to the stock icons whenever possible so that the user can easily recognize the dialog type.</p>
 					<figure data-ts="DoxScript">
 						<script type="runnable">
-							ts.ui.Dialog.confirm('Sign up for Tradeshift?', 'Join Now', {
+							ts.ui.Dialog.confirm('Proceed to Checkout?', 'Check Out', {
 								icon: 'ts-icon-cart',
 								primary: 'accept',
 								focused: 'accept'
 							});
 						</script>
 					</figure>
+					<div data-ts="Note">
+						<p>TODO: Create <code>ts-icon-question</code> and use it as default in Dialogs.</p>
+					</div>
 				</section>
 			</article>
 		</main>

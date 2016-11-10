@@ -1,11 +1,12 @@
-var getstatic = require('serve-static');
-var processor = require('./tasks/processor');
-var publisher = require('./tasks/publisher');
-var btunneler = require('./tasks/tuneller.js');
-var bsshooter = require('./tasks/shooter.js');
-var stackconf;
-var S = require("string");
+const getstatic = require('serve-static');
+const processor = require('./tasks/processor');
+const publisher = require('./tasks/publisher');
+const btunneler = require('./tasks/tuneller.js');
+const bsshooter = require('./tasks/shooter.js');
+const path = require('path');
+const S = require("string");
 
+var stackconf;
 try {
 	stackconf = require('./browserstack.json');
 } catch (err) {
@@ -204,6 +205,22 @@ module.exports = function(grunt) {
 				options: {debounceDelay: 250}
 			}
 		},
+
+		linkChecker: {
+			dev: {
+				site: 'localhost',
+				options: {
+					initialPort: 10114,
+					initialPath: '/dist/intro/',
+					callback: function (crawler) {
+						crawler.addFetchCondition(function (url) {
+							var ext = path.extname(url.path);
+							return url.port === '10114' && (ext === '.html' || !ext);
+						});
+					}
+				}
+			}
+		},
 		
 		concurrent: {
 			localdev: {
@@ -321,6 +338,8 @@ module.exports = function(grunt) {
 	// important: Run this before committing to Git!
 	grunt.task.registerTask('dist', xxx('target_public'));
 
+	grunt.registerTask('links', ['linkChecker']);
+
 	// local screenshots (compare current code with the latest release)
 	grunt.task.registerTask('screenshots:local', ['clean:screenshots_local', 'tunneler', 'shooter:local', 'tunneler:stop']);
 
@@ -414,32 +433,32 @@ module.exports = function(grunt) {
 // Backup ......................................................................
 
 /**
-   * Experimentally support history API (if at all worth the trouble)
-   * @see https://github.com/gruntjs/grunt-contrib-connect/issues/191
-   *
-  function middleware(connect, options) {
-    var middlewares = [];
-    if (!Array.isArray(options.base)) {
-      options.base = [options.base];
-    }
-    var directory = options.directory || options.base[options.base.length - 1];
-    options.base.forEach(function(base) { // serve static files
-      middlewares.push(getstatic(base));
-    });
-    // make directory browse-able.
-    middlewares.push(getstatic(directory));
-    // not found - just serve index.html
-    middlewares.push(function(req, res){
-      for(var file, i = 0; i < options.base.length; i++){
-        file = options.base + "/index.html"; 
-        if (grunt.file.exists(file)){
-          require('fs').createReadStream(file).pipe(res);
-          return; // we're done
-        }
-      }
-      res.statusCode(404); // where's index.html?
-      res.end();
-    });
-    return middlewares;
-  }
-  */
+	 * Experimentally support history API (if at all worth the trouble)
+	 * @see https://github.com/gruntjs/grunt-contrib-connect/issues/191
+	 *
+	function middleware(connect, options) {
+		var middlewares = [];
+		if (!Array.isArray(options.base)) {
+			options.base = [options.base];
+		}
+		var directory = options.directory || options.base[options.base.length - 1];
+		options.base.forEach(function(base) { // serve static files
+			middlewares.push(getstatic(base));
+		});
+		// make directory browse-able.
+		middlewares.push(getstatic(directory));
+		// not found - just serve index.html
+		middlewares.push(function(req, res){
+			for(var file, i = 0; i < options.base.length; i++){
+				file = options.base + "/index.html"; 
+				if (grunt.file.exists(file)){
+					require('fs').createReadStream(file).pipe(res);
+					return; // we're done
+				}
+			}
+			res.statusCode(404); // where's index.html?
+			res.end();
+		});
+		return middlewares;
+	}
+	*/

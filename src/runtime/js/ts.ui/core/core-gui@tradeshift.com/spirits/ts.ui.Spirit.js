@@ -156,7 +156,7 @@ ts.ui.Spirit = (function using(Type, GuiArray, confirmed) {
 			})) {
 				/**
 				 * @todo do this a bit less harsh (or fix the detection)
-				 */
+				 *
 				// spirit.css.add('ts-error-oldscheme');
 				if(main) {
 					console.warn(
@@ -169,6 +169,7 @@ ts.ui.Spirit = (function using(Type, GuiArray, confirmed) {
 						name.replace('ts.', 'data-ts.') + '" on the ' + spirit.$classname
 					);
 				}
+				*/
 			}
 		}
 

@@ -588,7 +588,8 @@ ts.ui.SideShowSpirit = (function using(chained, Client, Parser, GuiObject, Color
 					this._setuptabs(panels, panels[0], this);
 					this._fixappearance();
 				} else {
-					throw new Error('(Multiple) Panels in Aside must have a label');
+					console.warn('(Multiple) Panels in Aside must have a label');
+					console.log(this.dom.html());
 				}
 			}
 		},

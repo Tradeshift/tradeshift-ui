@@ -2,7 +2,7 @@
 <html lang="en-us" class="ts-docs">
 
 <head>
-    <title>Navigation Items</title>
+    <title>Structure</title>
     <meta name="viewport" content="width=device-width">
     <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-6.1.1-alpha.2.min.js"></script>
     <script src="/dist/assets/dox.min.js"></script>
@@ -21,71 +21,45 @@
     <header data-ts="TopBar"></header>
     <main data-ts="Main">
         <div data-ts="MainContent">
-            <article>
-                <h1>Navigation Items</h1>
-                <section>
-                    <h3><span>Global Menu Items</span></h3>
-                    <figure>
-                        <img alt="Global menu items with branding" src="assets/img/navigation-global-tablet-branded1.png">
-                    </figure>
-                    <p>Menu items can be inserted anywhere in the global menu to provide direct access to your application. An application icon must be provided as well as a name for your application. A highlight color can be specified for your menu item,
-                        allowing integration of your visual identity in combination with your custom icon.</p>
-                    <h3><span>Shortcuts</span></h3>
-                    <figure>
-                        <img alt="Shortcuts on a tablet" src="assets/img/navigation-global-tablet-shortcuts.png">
-                    </figure>
-                    <p>Shortcuts are only available in tablet size and are stacked vertically along the left side of the screen under the Tradeshift logo mark. The shortcuts are basically global menu items that have been defined to also appear in the shortcut
-                        list. This means that the shortcuts are a subset of the global menu items. Only specify your global menu item as a shortcut if frequent and repeated access to your functionality on mobile devices is necessary.</p>
-                    <h3><span>Contextual menu</span></h3>
-                    <p>The contextual menu (<a href="http://tradeshift.github.io/#design/guidelines/structure.html" data-ts="Button"=""="">the area above the main content area</a>) can be customized in a few different ways.</p>
-                    <figure>
-                        <img alt="Contextual actions" src="assets/img/navigation-contextual-actions.png">
-                        <figcaption>Buttons for contextual actions</figcaption>
-                    </figure>
-                    <p>When using the contextual bar to present actions, these actions must always be highest level actions to what&#x2019;s on the page. I.e. actions that manipulate the entirety of the contents.</p>
-                    <figure>
-                        <img alt="Invoice creation example" src="assets/img/button-styles-01.png">
-                    </figure>
-                    <p>The invoice creation example has document delete, save and send as contextual actions. These actions modify the entirety of what&#x2019;s on the page. More fine-grained controls, such as adding lines, belong to the contents of the
-                        document, and should never appear in the contextual bar as actions. An alternative example [connector app and connections page] is when the page contains a collection of objects. In this case, the contextual action of adding another
-                        object to the collection is allowed as contextual action, as it alters the collection, being the highest level on that kind of page.</p>
-                    <figure>
-                        <img alt="Tabbed navigation" src="assets/img/navigation-contextual-tabbed1.png">
-                        <figcaption>Tabbed navigation</figcaption>
-                    </figure>
-                    <p>The contextual bar can also contain tabs with the purpose of splitting related contents into subsections that can be processed individually in any given order. An example is this documentation.</p>
-                    <figure>
-                        <img alt="Progress tabbed navigation in action" src="assets/img/navigation-contextual-tabbed-progress.png">
-                        <figcaption>Progress-tabbed navigation</figcaption>
-                    </figure>
-                    <p>When a tabbed navigation is preferred but there&#x2019;s a requirement for users to process all tabs in order, the progress-tabbed contextual bar is used. Note that the progress-tabbed navigation leaves ample space for a flow headline,
-                        by keeping the progress tabs below the contextual bar space. Progress-tabbed navigation works well for setup flows where all steps are required, such as a custom registration flow.</p>
-                    <!--
-				<figure>
-					<img alt="Progress tabbed navigation in a custom registration flow" src="assets/img/navigation-tabs-progressive1.gif"/>
-				</figure>
-				-->
-                    <figure>
-                        <img alt="Searching in the TopBar" src="assets/img/navigation-contextual-search1.png">
-                        <figcaption>Filtering and searching</figcaption>
-                    </figure>
-                    <p>For managing complex lists the contextual bar can be completely exchanged with search and filter functionality. This is especially usable for long lists, such as the documents list pages.</p>
-                    <figure>
-                        <img alt="Searching in the Document List" src="assets/img/navigation-context-search.gif">
-                    </figure>
-                    <!--
-				<h3>Hidden</h3>
-				<p>When the contextual bar doesn’t do anything it can be completely removed. Note that in phone size UI there’s always a bar containing the current page’s title.</p>
-				<h3>Combinations</h3>
-				<p>It’s not recommended to combine the above mentioned contextual bar types. For instance having both tabs and contextual actions simultaneously may work in some situations on desktop. But language variants (longer labels/titles) and fluidity across devices carry the risk of rendering your combined interface unusable for larger segments of users.</p>
-				<h3>Pickers as navigation hubs</h3>
-				<p><a href="http://tradeshift.github.io/#design/patterns/pickers.html" data-ts="Button"="">Pickers</a> also provide the opportunity to function as navigation items.</p>
-				<blockquote><h6>For Developers</h6><p>Read more about <a href="//tradeshift.github.io/#components/overview/layout.html" data-ts="Button"="">Components related to Navigation</a>.</p></blockquote>
-				<hr/>
-				<p>Continue reading our Design Patterns on the <a href="//tradeshift.github.io/#design/patterns/inputs.html" data-ts="Button"="">Basic Inputs</a> page.</p>nav.html:35:17
-				-->
-                </section>
-            </article>
+            <div data-ts="MainFrame">
+                <article>
+                    <h1>UI Structure</h1>
+                    <section class="desc">
+                        <p>Due to the responsive nature of Tradeshift, you should pay careful attention to how UI elements transform across screen sizes. The application&#x2019;s navigation elements transform as illustrated in the following.</p>
+                    </section>
+                    <section>
+                        <p><strong>Small &quot;phone size&quot; devices (&lt;600px):</strong> The Main area takes up as much space as possible, leaving only the TopBar with a shortcut to access the Global Menu. The TopBar buttons are moved to a hidden menu.
+                            The TopBar will slide out of sight when you scroll, to optimize the screen estate even further.</p>
+                        <figure>
+                            <img alt="Tradeshift on a phone" src="../assets/img/deviceanimation-phone-2.gif">
+                        </figure>
+                        <p><strong>Medium &quot;tablet size&quot; devices (600px to 1270px):</strong> The primary and secondary buttons are visible in the TopBar. Tertiary buttons, which are expected to be used less often, are hidden in a menu. The <a data-ts="Button"
+                                href="#design/patterns/buttons.html">Buttons</a> page explains these categories in detail.</p>
+                        <figure>
+                            <img alt="Tradeshift on a tablet" src="../assets/img/deviceanimation-tablet-3.gif">
+                        </figure>
+                        <p><strong>Large &quot;desktop size&quot; devices (&gt;1270px):</strong> The Global Menu is expanded and the TopBar behaves as in &quot;tablet&quot; style.</p>
+                        <figure>
+                            <img alt="Tradeshift on a desktop" src="../assets/img/deviceanimation-desktop-2.gif">
+                        </figure>
+                        <dl>
+                            <dt>Global Menu</dt>
+                            <dd>The <em>Global Menu</em> is the primary way for the user to switch between the main functional areas. Core applications such as Document Creation and User Settings provide a Global Menu Item for the user to access these applications
+                                directly. The Global Menu is present in all contexts and cannot be disabled. It will, however, expand and collapse based on available screen space.</dd>
+                            <dt>TopBar</dt>
+                            <dd>The <em>TopBar</em> serves multiple purposes and takes on different appearances. In the examples above, the TopBar contains buttons for actions, but other uses of the TopBar &#x2013; such as tabbed navigation &#x2013; are possible.</dd>
+                            <dt>Main</dt>
+                            <dd><em>Main</em> is where most task solving takes place. Tradeshift applications are designed on a fluid grid, which lets applications &quot;fluidly&quot; fill out the entire main content area on all screen resolutions, up to
+                                1270 point width. Attempts should always be made, to fill out the main content area &#x2013; and if this is not possible, you should visually define the boundaries of the functionality.</dd>
+                        </dl>
+                        <!--
+					<hr/>
+					<blockquote><h6>For Developers</h6><p>Read more about <a href="//tradeshift.github.io/#components/overview/layout.html" data-ts="Button"="">Components related to Layout</a>.</p></blockquote>
+					<p>Continue reading our Design Guidelines on the <a href="//tradeshift.github.io/#design/guidelines/gestures.html" data-ts="Button"="">Keyboard &amp; Gestures</a> page.</p>structure.html:34:17
+					-->
+                    </section>
+                </article>
+            </div>
         </div>
     </main>
 </body>

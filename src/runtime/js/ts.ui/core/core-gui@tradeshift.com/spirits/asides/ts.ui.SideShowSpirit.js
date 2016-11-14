@@ -588,8 +588,10 @@ ts.ui.SideShowSpirit = (function using(chained, Client, Parser, GuiObject, Color
 					this._setuptabs(panels, panels[0], this);
 					this._fixappearance();
 				} else {
-					console.warn('(Multiple) Panels in Aside must have a label');
-					console.log(this.dom.html());
+					console.warn(
+						'(Multiple) Panels in Aside must have ' +
+						'a label in order to create the TabBar'
+					);
 				}
 			}
 		},

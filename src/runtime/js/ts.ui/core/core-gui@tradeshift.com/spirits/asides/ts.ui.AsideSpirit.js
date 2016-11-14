@@ -60,6 +60,17 @@ ts.ui.AsideSpirit = (function using(chained, confirmed, Client, LayoutModel, not
 			this._position(100);
 			this.dom.hide();
 		},
+
+		/**
+		 * Check for the footer only once, knowing 
+		 * that Angular might well insert it later.
+		 */
+		onready: function() {
+			this.super.onready();
+			if(this.dom.q('this > .ts-footer')) {
+				this.css.add('ts-hasfooter');
+			}
+		},
 				
 		/**
 		 * Reflex Aside members when we open the Aside.
@@ -323,23 +334,25 @@ ts.ui.AsideSpirit = (function using(chained, confirmed, Client, LayoutModel, not
 		},
 
 		/**
-		 * Aside header (toolbar) is now fixed height, 
-		 * so we can harcode the panel height in CSS.
-		 * TODO: Refactor something so that only the Drawer does reflex!!!
+		 * Aside header (Toolbar) is now fixed height, so we can 
+		 * harcode the panel height in CSS and save some layout 
+		 * calculations *except* when there's a Footer present.
 		 * @overwrites {ts.ui.SideShowSpirit#_reflex}
 		 * @param @optional {function} action
 		 * @returns {object}
 		 */
 		_reflex: function(action) {
 			var thing;
-			if(action) {
+			if(this.css.contains('ts-hasfooter')) {
+				thing = this.super._reflex(action);
+			} else if(action) {
 				thing = action.call(this);
 			}
 			return thing;
 		},
 
 		/**
-		 * Fix an occasional collistion with the Angular compiler.
+		 * Fix an occasional collision with the Angular compiler.
 		 */
 		_delayedAngularInitialization: function() {
 			if (!this._hackInitialized) {

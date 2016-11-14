@@ -22,6 +22,7 @@ article em {
   font-style: italic;
 }
 article b,
+article a,
 article strong {
   font-weight: 400;
 }

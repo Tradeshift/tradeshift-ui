@@ -2,7 +2,8 @@
  * Add some tabs to this section.
  */
 ts.dox.tabs([
-	['Navigation Items', 'index.html'],
+	['UI Structure', 'index.html'],
+	['Navigation Items', 'nav.html'],
 	['Buttons', 'buttons.html'],
 	['Option Lists & Pickers', 'pickers.html'],
 	['Tables', 'tables.html'],

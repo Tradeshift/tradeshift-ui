@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<title>TabBar</title>
-		<script src="tabs.js"></script>
+		<embed src="tabs.xhtml"></embed>
 		<script>
 			ts.ui.ready(function() { // support color scheme links in API table
 				var method;
@@ -32,7 +32,7 @@
 						<p>Provides second level tabbed navigation.</p>
 					</section>
 					<section id="tabs">
-						<include href="topbar.xhtml#tabs-desc">
+						<embed src="topbar.xhtml#tabs-desc">
 							<replace input="TopBar" output="TabBar"/>
 							<replace input="[4" output="[2"/>
 							<replace input="(4" output="(2"/>
@@ -44,13 +44,13 @@
 										{label: 'Inline TabBar'}
 									]);
 								</script>
-							</replace>
-						</include>
+							</embed>
+						</link>
 					</section>
 					<section>
-						<include href="topbar.xhtml#tabs-api">
+						<embed src="topbar.xhtml#tabs-api">
 							<replace input="TopBar" output="TabBar"/>
-						</include>
+						</embed>
 					</section>
 					<h2 id="buttons">TabBar.buttons</h2>
 					<section>
@@ -72,9 +72,9 @@
 						</figure>
 					</section>
 					<section>
-						<include href="topbar.xhtml#buttons-api">
+						<embed src="topbar.xhtml#buttons-api">
 							<replace input="TopBar" output="TabBar"/>
-						</include>
+						</embed>
 					</section>
 				</article>
 			</div>

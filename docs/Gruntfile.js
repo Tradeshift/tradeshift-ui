@@ -211,7 +211,7 @@ module.exports = function(grunt) {
 				site: 'localhost',
 				options: {
 					initialPort: 10114,
-					initialPath: '/dist/intro/',
+					initialPath: '/index.html',
 					callback: function (crawler) {
 						crawler.addFetchCondition(function (url) {
 							var ext = path.extname(url.path);
@@ -323,11 +323,30 @@ module.exports = function(grunt) {
 					return publisher.publish(
 						content.
 							replace('${includes}', tags).
-							replace('${menujson}', json)
+							replace('${menujson}', json).
+							replace('${menuhtml}', seomenu(JSON.parse(json)))
 					);
 				}
 			}
 		};
+	}
+
+	/**
+	 * @param {Array<object>} items
+	 */
+	function seomenu(items) {
+		const NEW = '\n\t\t';
+		return items.reduce((html, item, i) => {
+			if(!item.hidden) {
+				if(item.path) {
+					html += `<link rel="robots" href="/dist/${item.path}"/>${NEW}`;
+				}
+				if(item.items) { 
+					html += seomenu(item.items);
+				}
+			}
+			return html;
+		}, '');
 	}
 	
 	// Tasks .....................................................................

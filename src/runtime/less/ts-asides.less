@@ -9,7 +9,7 @@
 	> .ts-panel:not([class*="ts-bg"]) {
 		background-color: @ts-white;
 	}
-	> .ts-panel {
+	&:not(.ts-hasfooter) > .ts-panel {
 		.ts-mixin-maximize();
 		top: @ts-unit-triple;
 	}

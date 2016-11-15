@@ -262,9 +262,9 @@ function headertags($) {
  */
 function includetags($, source) {
 	var includes = [];
-	$('embed').each(function(index, include) {
+	$('object[data]').each(function(index, include) {
 		include = $(include);
-		var full = include.attr('src') || '';
+		var full = include.attr('data') || '';
 		var cuts = full.split('#');
 		var href = cuts[0];
 		var hash = cuts[1];

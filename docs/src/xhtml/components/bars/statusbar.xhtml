@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<title>StatusBar</title>
-		<embed src="tabs.xhtml"></embed>
+		<object data="tabs.xhtml"></object>
 	</head>
 	<body>
 		<header data-ts="TopBar"></header>
@@ -44,14 +44,14 @@
 						
 					<h2 id="buttons">StatusBar.buttons</h2>
 					<section>
-						<embed src="topbar.xhtml#buttons-desc">
+						<object data="topbar.xhtml#buttons-desc">
 							<replace input="TopBar" output="StatusBar"/>
-						</embed>
+						</object>
 					</section>
 					<section>
-						<embed src="topbar.xhtml#buttons-api">
+						<object data="topbar.xhtml#buttons-api">
 							<replace input="TopBar" output="StatusBar"/>
-						</embed>
+						</object>
 					</section>
 					
 					<h2 id="pager">StatusBar.pager</h2>
@@ -69,7 +69,7 @@
 							</script>
 						</figure>
 						<p>To make room for the Pager, and to make it look nice center-aligned, any potential buttons in the StatusBar will be moved into a menu. Note that even primary buttons will be hidden when the StatusBar features a Pager.</p>
-						<embed src="../pager/index.xhtml#pager-api"></embed>
+						<object data="../pager/index.xhtml#pager-api"></object>
 						<div data-ts="Note">
 							<i class="ts-icon-todo"></i>
 							<p>TODO: Explain how the statusbar behaves in mobile view. Also, we might need to split long status messages into two lines when the window is resizing. For now, we'll just pretend that all users have desktop-sized screens.</p>

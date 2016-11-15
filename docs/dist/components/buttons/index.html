@@ -8,7 +8,9 @@
     <script src="/dist/assets/dox.min.js"></script>
     <script src="/dist/assets/jquery-2.2.4.min.js"></script>
     <link rel="stylesheet" href="/dist/assets/dox.css">
-    <script src="tabs.js"></script>
+    <link rel="prefetch" title="Button" href="index.html">
+    <link rel="prefetch" title="Buttons" href="buttons.html">
+    <link rel="prefetch" title="Gallery" href="gallery.html">
     <script>
         function spin(selector) {
             $(selector).attr("data-ts.busy", true);
@@ -16,6 +18,9 @@
                 $(selector).attr("data-ts.busy", false);
             }, 3000);
         }
+    </script>
+    <script>
+        ts.dox.tabs()
     </script>
 </head>
 

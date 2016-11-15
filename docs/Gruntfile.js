@@ -332,9 +332,13 @@ module.exports = function(grunt) {
 	}
 
 	/**
+	 * Outputting the menu via `link` tags so that Google can crawl 
+	 * us and the `grunt link` task can be used to check everything.
+	 * Note that these link should not `prefetch` because that will 
+	 * slow down the loading of the (first loaded) iframe.
 	 * @param {Array<object>} items
 	 */
-	function seomenu(items) {
+	function seomenu(items, prefetch) {
 		const NEW = '\n\t\t';
 		return items.reduce((html, item, i) => {
 			if(!item.hidden) {

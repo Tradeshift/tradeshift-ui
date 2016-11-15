@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<title>UserCard</title>
-		<script src="tabs.js"></script>
+		<object data="tabs.xhtml"></object>
 		<style>
 		 	figure .output {
 		 		text-align: center;
@@ -14,14 +14,11 @@
 		<main data-ts="Main">
 			<article>
 				<h1>UserCard</h1>
-				<section>
-					<div data-ts="Note">
-						<i class="ts-icon-warning"></i>
-						<p>UserCards are a work in progress. This is a developer preview!</p>
-					</div>
+				<section class="desc">
+					<p>In this first iteration, the UserCard can simply show some user details in an Aside.</p>
 				</section>
 				<section>
-					<p>In this first iteration, the UserCard can simply display some user details in an Aside. Properties are all optional but you should at least include the name.</p>
+					<p>The properties are all optional but you should at least include the name.</p>
 					<figure data-ts="DoxScript">
 						<script type="runnable">
 							ts.ui.UserCard({

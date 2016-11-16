@@ -2,20 +2,22 @@
 <html>
 	<head>
 		<title>Aside Test One</title>
-		<meta name="robots" content="noindex">
-		<script src="tabs.js"></script>
+		<meta name="robots" content="noindex"/>
+		<object data="tabs.xhtml"></object>
 	</head>
 	<body>
 		<header data-ts="TopBar"></header>
 		<main data-ts="Main">
 			<article>
 				<h1>Aside CSS testing</h1>
-				<p>We'll want to take a screenshot of this Aside so we can test the CSS.</p>
-				<p>
-					<button data-ts="Button" class="ts-primary" onclick="ts.ui.get('myaside').toggle()">
-						<span>Open the aside</span>
-					</button>
-				<p>
+				<section>
+					<p>We'll want to take a screenshot of this Aside so we can test the CSS.</p>
+					<p>
+						<button data-ts="Button" class="ts-primary" onclick="ts.ui.get('myaside').toggle()">
+							<span>Open the aside</span>
+						</button>
+					</p>
+				</section>
 			</article>
 		</main>
 		<aside data-ts="Aside" id="myaside" data-ts.title="Aside CSS Check">

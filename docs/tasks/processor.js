@@ -29,6 +29,7 @@ module.exports = {
 		$ = highlite($);
 		$ = maincontent($);
 		$ = chromelinks($);
+		$ = inittabs($);
 		$('html').addClass('ts-docs');
 		return publisher.publish(
 			beautify($.html().replace(EMPTYLINE, ''))
@@ -261,14 +262,14 @@ function headertags($) {
  */
 function includetags($, source) {
 	var includes = [];
-	$('include').each(function(index, include) {
+	$('object[data]').each(function(index, include) {
 		include = $(include);
-		var full = include.attr('href') || '';
+		var full = include.attr('data') || '';
 		var cuts = full.split('#');
 		var href = cuts[0];
 		var hash = cuts[1];
 		var html = '';
-		if(href && hash) {
+		if(href) {
 			var file = path.dirname(source) + '/' + href;
 			file = path.normalize(file);
 			if(fs.existsSync(file)) {
@@ -281,7 +282,6 @@ function includetags($, source) {
 				html = badinclude(file);
 			}
 			include.replaceWith(html);
-			//console.log('replaced ' + full + ' with some HTML', html.replace(/\n|\s\s+/g, ''));
 		} else {
 			console.log('Human error: hash id expected' );
 		}
@@ -293,28 +293,34 @@ function includetags($, source) {
  * Mount the file in a temporary DOM 
  * and extract the outerHTML of target.
  * @param {string} file
- * @param {string} id
+ * @param @optional {string} id Omit to include the *whole* document
  * @param {Array<function>} parsers
  
  */
 function fetchinclude(file, id, preparsers, postparsers) {
 	var src = fs.readFileSync(file, {encoding: 'UTF-8'});
 	var $ = cheerio.load(src);
-	var elm = $('#' + id);
 	var clone, html;
-	if(elm[0]) {
-		clone = elm.clone();
-		preparsers.forEach(function(parse) {
-			clone = parse(clone);
-		});
-		html = clone.html();
-		postparsers.forEach(function(parse) {
-			html = parse(html);
-		});
-		return html;
+	if(id) {
+		var elm = $('#' + id);
+		if(elm[0]) {
+			clone = elm.clone();
+			preparsers.forEach(function(parse) {
+				clone = parse(clone);
+			});
+			html = clone.html();
+			postparsers.forEach(function(parse) {
+				html = parse(html);
+			});
+			return html;
+		} else {
+			console.log('Human error: "#' + id + '" not found in "' + file + '"');
+			return badinclude('#' + id);
+		}
 	} else {
-		console.log('Human error: "#' + id + '" not found in "' + file + '"');
-		return badinclude('#' + id);
+		// basically these would be the tabs,so we will 
+		// just bypass preparsers and postparsers here...
+		return $.html() //$(':root').html(); 
 	}
 }
 
@@ -433,7 +439,23 @@ function spanheader(html) {
 	return '<span>' + html + '</span>';
 }
 
-// Chrome inks .................................................................
+
+// Tabs ........................................................................
+
+/**
+ * Initialize the tabs long before the Runtime boots 
+ * up, so that the layout doesn't appear to jump.
+ */
+function inittabs($) {
+	var head = $('head');
+	if(head.find('link[rel=prefetch]').length) {
+		head.append('<script>ts.dox.tabs()</script>');
+	}
+	return $;
+}
+
+
+// Chrome links ................................................................
 
 /**
  * The HTML output makes it possible to navigate links *without* the chrome 

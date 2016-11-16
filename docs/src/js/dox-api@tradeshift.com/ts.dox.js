@@ -85,6 +85,24 @@ ts.dox = gui.namespace('ts.dox', (function() {
 		};
 	}
 
+	/**
+	 * Convert titled `link rel="prefetch` tags into TopMenu tabs.
+	 * @returns {Array<object>}
+	 */
+	function parselinks() {
+		var tabs = document.head.querySelectorAll('link[rel=prefetch]');
+		return gui.Array.from(tabs).filter(function(link) {
+				return !!link.getAttribute('title');
+			}).map(function(link) {
+				return [
+					link.getAttribute('title'),
+					link.getAttribute('href'),
+					link.className.includes('hidden')
+				];
+			}
+		);
+	}
+
 	return { // Public ...........................................................
 
 		/**
@@ -95,17 +113,20 @@ ts.dox = gui.namespace('ts.dox', (function() {
 
 		/**
 		 * Show those tabs.
-		 * @param {Array<Array>} tabs
+		 * @param @optional {Array<Array>} tabs Omit to build from `link` tags in HEAD
 		 */
 		tabs: function(tabs) {
-			var path = location.pathname;
-			var file = path.substring(path.lastIndexOf('/') + 1);
-			var fold = path.replace(file, '');
-			var indx = file === '';
-			if(hasrelevant(tabs)) {
-				ts.ui.TopBar.tabs(tabs.filter(visibletab).map(function(tab) {
-					return createtab(tab, file, fold, indx, tab[2] === true);
-				}));
+			tabs = tabs || parselinks();
+			if(tabs.length) {
+				var path = location.pathname;
+				var file = path.substring(path.lastIndexOf('/') + 1);
+				var fold = path.replace(file, '');
+				var indx = file === '';
+				if(hasrelevant(tabs)) {
+					ts.ui.TopBar.tabs(tabs.filter(visibletab).map(function(tab) {
+						return createtab(tab, file, fold, indx, tab[2] === true);
+					}));
+				}
 			}
 		}
 	};

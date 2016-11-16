@@ -40,6 +40,7 @@ ts.ui.FakeDateInputSpirit = (function using(chained, tick, time) {
 		 */
 		proxy: chained(function(input) {
 			this.super.proxy(input);
+			this.disabled = input.disabled;
 			this._initialupdate();
 		}),
 

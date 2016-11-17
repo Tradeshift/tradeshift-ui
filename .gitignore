@@ -30,6 +30,7 @@ integration_test/screenshots
 .Trashes
 ehthumbs.db
 Thumbs.db
+.vscode
 
 # Logs
 logs

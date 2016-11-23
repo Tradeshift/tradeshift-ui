@@ -40,8 +40,17 @@ ts.ui.FieldSetSpirit = (function() {
 			}
 		},
 
+		// Privileged ..............................................................
 
-		// Private .........................................................
+		/**
+		 * Layout as options group.
+		 */
+		$options: function() {
+			this.css.add(ts.ui.CLASS_OPTIONS);
+		},
+
+
+		// Private .................................................................
 
 		/**
 		 * Can we focus a radio button?
@@ -75,16 +84,6 @@ ts.ui.FieldSetSpirit = (function() {
 		 */
 		_focus: function(is) {
 			this.css.shift(is, ts.ui.CLASS_FOCUS);
-		},
-
-
-		// Secret ........................................................
-
-		/**
-		 * Layout as options group.
-		 */
-		$options: function() {
-			this.css.add(ts.ui.CLASS_OPTIONS);
 		}
 
 	});

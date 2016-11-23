@@ -78,7 +78,7 @@ ts.ui.SwitchSpirit = (function using(tick, time) {
 			this._label(function(label) {
 				label.$switch();
 			});
-			this._group(function(group) {
+			this._fieldset(function(group) {
 				group.$options();
 			});
 		},

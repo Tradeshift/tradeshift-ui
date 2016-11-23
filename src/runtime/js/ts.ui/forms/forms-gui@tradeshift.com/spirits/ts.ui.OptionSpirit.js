@@ -31,7 +31,7 @@ ts.ui.OptionSpirit = ts.ui.FieldSpirit.extend({
 		this._label(function(label) {
 			label.$option();
 		});
-		this._group(function(group) {
+		this._fieldset(function(group) {
 			group.$options();
 		});
 	},

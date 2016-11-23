@@ -1,44 +1,67 @@
+// Mixins ......................................................................
+
+.mixin-field-header() {
+	position: absolute;
+	left: @ts-unit-half;
+	right: @ts-unit-half;
+	top: 0;
+	display: block;
+	height: @ts-unit-plus;
+	padding-top: @ts-unit-half;
+	line-height: 11px;
+	text-transform: uppercase;
+	font-weight: @ts-fontweight-bold;
+	font-size: @ts-fontsize-mini;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+
+// Forms .......................................................................
+
 .ts-form {
 	display: block;
 	text-align: left;
 	.ts-fieldset {
 		display: block;
-		overflow: hidden;
-		padding: @ts-unit-half;
-		//background-color: lime;
 		position: relative;
-		padding-top: @ts-unit-double;
+		font-size: 0;
+		padding-top: @ts-unit-half;
 		> span,
 		> label {
+			font-size: @ts-fontsize;
 			display: block;
 			overflow: hidden;
 		}
-		> span:first-child,
-		> label > span:first-child {
-			position: absolute;
-			left: @ts-unit-half;
-			right: @ts-unit-half;
-			top: @ts-unit-half;
-			display: block;
-			height: @ts-unit-plus;
-			//background-color: yellow;
-			padding-top: @ts-unit-half;
-			line-height: 11px;
-			text-transform: uppercase;
-			font-weight: @ts-fontweight-bold;
-			font-size: @ts-fontsize-mini;
-			white-space: nowrap;
-			overflow: hidden;
-			text-overflow: ellipsis;
+		> label {
+			position: relative;
+			padding: @ts-unit-half;
+			padding-top: @ts-unit-plus;
 		}
-	}
-	.ts-fieldset.ts-options {
-		label {
-			input,
-			span {
-				display: inline-block;
-				vertical-align: top;
+		&.ts-options {
+			padding-top: @ts-unit-double;
+			padding-bottom: @ts-unit-half;
+			margin-top: @ts-unit-half;
+			> span:first-child {
+				.mixin-field-header();
 			}
+			> label {
+				padding-top: 0;
+				padding-bottom: 0;
+				input,
+				span {
+					display: inline-block;
+					vertical-align: top;
+				}
+			}
+		}
+		&:not(.ts-options) {
+			> label {
+				> span:first-child {
+					.mixin-field-header();
+				}
+			}	
 		}
 	}
 	.ts-field {
@@ -53,16 +76,13 @@
 			border-radius: @ts-radius;
 			padding-top: @ts-unit-quarter - 1px;
 			padding-bottom: @ts-unit-quarter - 1px;
-			padding-left: @ts-unit-half;			
+			padding-left: @ts-unit-half;
 			background-color: @ts-white;
-		}
-		&.ts-text:not(.ts-textarea),
-		&.ts-date {
-			//height: @ts-unit-plus;
 		}
 		&.ts-textarea {
 			max-height: @ts-unit * 10;
 			min-height: @ts-unit * 3;
+			padding-bottom: 0;
 			resize: none;
 		}
 		&.ts-date,
@@ -123,11 +143,15 @@
 			}
 		}
 	}
+}
 
-	// Focus .....................................................................
+// Focus .....................................................................
 
-	.ts-focus,
-	.ts-focus-on {
+.ts-form {
+	fieldset.ts-focus,
+	label.ts-focus,
+	label.ts-focus-on {
+		background-color: @ts-liteblue;
 		.ts-field {
 			&.ts-text,
 			&.ts-date {
@@ -135,10 +159,12 @@
 			}
 		}
 	}
+}
 
 
-	// Faking it .................................................................
+// Faking it .................................................................
 
+.ts-form {
 	.ts-select,
 	.ts-dateinput {
 		position: absolute;
@@ -149,6 +175,200 @@
 	.ts-select[multiple] {
 		~ button {
 			display: none;
+		}
+	}
+}
+
+// Switches ....................................................................
+
+/*
+.calc(@prop; @val) {
+  @{prop}: calc(~'@{val}');
+  @{prop}: -moz-calc(~'@{val}');
+  @{prop}: -webkit-calc(~'@{val}');
+  @{prop}: -o-calc(~'@{val}');
+}
+*/
+
+.ts-form {
+	label.ts-switchlabel {
+		text-align: right;
+		line-height: 0;
+		> span {
+			line-height: @ts-unit-plus;
+			float: left;
+			text-align: left;
+			background-color: lime;
+			display: block;
+			width: calc(~"100% - 5.5px");
+		}
+		&.ts-disabled {
+			> span:after {
+				display: none;
+			}
+			.ts-field.ts-switchbox + .ts-switcher {
+				> i:before {
+					content: 'V'; // lock
+					font-size: @ts-fontsize-medium;
+				}
+				&.ts-engine-webkit {
+					> i:before {
+						top: @ts-unit-half + 0.25px;
+						left: -0.25px;
+					}
+				}
+				&.ts-engine-gecko {
+					> i:before {
+						top: @ts-unit-half - 0.5px;
+						left: 0;
+					}
+				}
+			}
+		}
+	}
+	.ts-field.ts-switchbox {
+		opacity: 0;
+		font-size: 0;
+		width: 1px;
+		height: 1px;
+		overflow: hidden;
+		position: absolute;
+		top: @ts-unit-half;
+		top: @ts-unit-half;
+		right: 0;
+		margin: 0;
+		+ .ts-switcher {
+			display: inline-block;
+			height: @ts-unit;
+			width: @ts-unit-double;
+			position: relative;
+			top: @ts-unit-quarter;
+			border-radius: @ts-unit-half;
+			background-color: @ts-lite-dark;
+			&, > i {
+				.ts-mixin-transition(all,0.1s,ease-out);
+			}
+			> i {
+				height: @ts-unit;
+				width: @ts-unit;
+				border-radius: @ts-unit-half;
+				display: inline-block;
+				position: absolute;
+				left: 0;
+				margin-left: 0;
+				line-height: 0;
+				font-size: @ts-fontsize-big;
+				&:before {
+					top: @ts-unit-half;
+				}
+				&:first-child {
+					opacity: 1;
+					background-color: @ts-medium;
+					color: @ts-lite-dark;
+					&:before {
+						left: -0.5px;
+					}
+				}
+				&:last-child {
+					opacity: 0;
+					background-color: @ts-green-dark;
+					color: @ts-green-text;
+				}
+			}
+			&.ts-checked {
+				background-color: @ts-litegreen; // TODO: this color!
+				> i {
+					left: 100%;
+					margin-left: -@ts-unit;
+					&:first-child {
+						opacity: 0;
+					}
+					&:last-child {
+						opacity: 1;
+					}
+				}
+			}
+			&.ts-engine-webkit {
+				> i.ts-icon-cancel:before {
+					top: @ts-unit-half + 1.25px;
+					left: -0.25px;
+				}
+				> i.ts-icon-checked:before {
+					left: 0;
+					top: @ts-unit-half + 2px;
+				}
+			}
+			&.ts-engine-gecko {
+				> i.ts-icon-cancel:before {
+					top: @ts-unit-half + 0.5px;
+					left: 0;
+				}
+				> i.ts-icon-checked:before {
+					left: 0.5px;
+					top: @ts-unit-half + 2px;
+				}
+			}
+		}
+	}
+}
+
+
+// Multi-fields  ...............................................................
+
+.ts-form {
+	.ts-fieldset.ts-multi {
+		> label {
+			display: inline-block;
+			vertical-align: top;
+			padding-right: @ts-unit-quarter;
+			span {
+				right: @ts-unit-quarter;
+			}
+			+ label {
+				padding-left: @ts-unit-quarter;
+				span {
+					left: @ts-unit-quarter;
+				}
+			}
+			&:last-child {
+				padding-right: @ts-unit-half;
+				span {
+					right: @ts-unit-half;
+				}
+			}
+			&:nth-child(2) + label {
+				display: none;
+			}
+		}
+		&,
+		&.ts-1-1 {
+			label {
+				width: 100%/2;
+			}
+		}
+		&.ts-1-2 {
+			label:nth-child(1) {
+				width: 100%/3;
+			}
+			label:nth-child(2) {
+				width: 100%/1.5;
+			}
+		}
+		&.ts-2-1 {
+			label:nth-child(1) {
+				width: 100%/1.5;
+			}
+			label:nth-child(2) {
+				width: 100%/3;
+			}
+		}
+		&.ts-1-1-1 {
+			label {
+				width: 100%/3;
+				&:nth-child(2) + label {
+					display: inline-block;
+				}
+			}
 		}
 	}
 }

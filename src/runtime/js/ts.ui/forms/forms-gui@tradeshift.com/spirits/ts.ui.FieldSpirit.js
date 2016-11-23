@@ -95,8 +95,7 @@ ts.ui.FieldSpirit = (function using(chained) {
 		// Privileged ................................................................
 
 		/**
-		 * Style the form. All fields attach this "control class" to the label so 
-		 * that we can verify it to intercept a glitch with Angular integration.
+		 * Style the form.
 		 * @see {ts.ui.LabelSpirit#ontick}
 		 */
 		$updatestyling: function() {
@@ -164,7 +163,7 @@ ts.ui.FieldSpirit = (function using(chained) {
 		 * Has containing fieldset? If so, run the optional callback action.
 		 * @param @optional {function} Takes the {ts.ui.FieldSetSpirit} as argument.
 		 */
-		_group: function(action) {
+		_fieldset: function(action) {
 			var group, result;
 			this._label(function(label) {
 				if ((group = label.dom.parent(ts.ui.FieldSetSpirit))) {

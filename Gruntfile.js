@@ -257,7 +257,8 @@ module.exports = function(grunt) {
 			}
 		},
 
-		// CSS post-parsing will optimize for mobile (removing :hover declarations)
+		// CSS post-parsing will optimize for mobile 
+		// (only do :hover on devices with a mouse!)
 		touchfriendly: {
 			dev: {
 				files: {
@@ -275,7 +276,8 @@ module.exports = function(grunt) {
 		cssmin: {
 		  options: {
 		    shorthandCompacting: false,
-		    roundingPrecision: -1
+		    roundingPrecision: -1,
+		    sourceMap: true
 		  },
 		  dev: {
 		    files: {
@@ -475,13 +477,14 @@ module.exports = function(grunt) {
 	 * @returns {Array<string>}
 	 */
 	function getapisources() {
+		const build = src => getbuild('src/runtime/js/ts.ui/' + src);
 		return ['src/runtime/js/ts-polyfilla.js', 'src/runtime/js/ts-namespace.js', 'src/runtime/js/ts.ui/ts.ui.js'].map(validated).
 			concat(getbuild('src/runtime/js/ts.lib/build.json')).
-			concat(getbuild('src/runtime/js/ts.ui/core/core-api@tradeshift.com/build.json')).
-			concat(getbuild('src/runtime/js/ts.ui/forms/forms-api@tradeshift.com/build.json')).
-			concat(getbuild('src/runtime/js/ts.ui/objects/objects-api@tradeshift.com/build.json')).
-			concat(getbuild('src/runtime/js/ts.ui/bars/bars-api@tradeshift.com/build.json')).
-			concat(getbuild('src/runtime/js/ts.ui/tables/tables-api@tradeshift.com/build.json'));
+			concat(build('core/core-api@tradeshift.com/build.json')).
+			concat(build('forms/forms-api@tradeshift.com/build.json')).
+			concat(build('objects/objects-api@tradeshift.com/build.json')).
+			concat(build('bars/bars-api@tradeshift.com/build.json')).
+			concat(build('tables/tables-api@tradeshift.com/build.json'));
 	}
 
 	/**
@@ -489,12 +492,13 @@ module.exports = function(grunt) {
 	 * @returns {Array<string>}
 	 */
 	function getguisources() {
+		const build = src => getbuild('src/runtime/js/ts.ui/' + src);
 		return [].
-			concat(getbuild('src/runtime/js/ts.ui/core/core-gui@tradeshift.com/build.json')).
-			concat(getbuild('src/runtime/js/ts.ui/forms/forms-gui@tradeshift.com/build.json')).
-			concat(getbuild('src/runtime/js/ts.ui/objects/objects-gui@tradeshift.com/build.json')).
-			concat(getbuild('src/runtime/js/ts.ui/bars/bars-gui@tradeshift.com/build.json')).
-			concat(getbuild('src/runtime/js/ts.ui/tables/tables-gui@tradeshift.com/build.json'));
+			concat(build('core/core-gui@tradeshift.com/build.json')).
+			concat(build('forms/forms-gui@tradeshift.com/build.json')).
+			concat(build('objects/objects-gui@tradeshift.com/build.json')).
+			concat(build('bars/bars-gui@tradeshift.com/build.json')).
+			concat(build('tables/tables-gui@tradeshift.com/build.json'));
 	}
 
 	/**

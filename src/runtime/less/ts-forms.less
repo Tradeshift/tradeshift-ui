@@ -23,11 +23,14 @@
 .ts-form {
 	display: block;
 	text-align: left;
+	background-color: yellow;
 	.ts-fieldset {
 		display: block;
 		position: relative;
 		font-size: 0;
-		padding-top: @ts-unit-half;
+		+ .ts-fieldset {
+			padding-top: @ts-unit-half;
+		}
 		> span,
 		> label {
 			font-size: @ts-fontsize;
@@ -81,7 +84,8 @@
 		}
 		&.ts-textarea {
 			max-height: @ts-unit * 10;
-			min-height: @ts-unit * 3;
+			min-height: @ts-unit * 3.5;
+			padding-right: @ts-unit-half;
 			padding-bottom: 0;
 			resize: none;
 		}

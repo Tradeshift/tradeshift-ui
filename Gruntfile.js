@@ -244,7 +244,7 @@ module.exports = function(grunt) {
 			}
 		},
 
-		// compile LESS to minified CSS
+		// compile LESS to CSS
 		less: {
 			before: {
 				options: {
@@ -253,24 +253,6 @@ module.exports = function(grunt) {
 				},
 				files: {
 					'temp/css-compiled.css': 'src/runtime/less/build.less'
-				}
-			},
-			dev: {
-				options: {
-					relativeUrls: true,
-					cleancss: true
-				},
-				files: {
-					'dist/ts.min.css': 'dist/ts.css'
-				}
-			},
-			cdn: {
-				options: {
-					relativeUrls: true,
-					cleancss: true
-				},
-				files: {
-					'dist/cdn/ts-<%= pkg.version %>.min.css': 'dist/cdn/ts-<%= pkg.version %>.css'
 				}
 			}
 		},
@@ -289,8 +271,27 @@ module.exports = function(grunt) {
 			}
 		},
 
+		// crunch to minified CSS
+		cssmin: {
+		  options: {
+		    shorthandCompacting: false,
+		    roundingPrecision: -1
+		  },
+		  dev: {
+		    files: {
+		      'dist/ts.min.css': 'dist/ts.css'
+		    }
+		  },
+		  cdn: {
+		  	files: {
+		  		'dist/cdn/ts-<%= pkg.version %>.min.css': 'dist/cdn/ts-<%= pkg.version %>.css'	
+		  	}
+		  }
+		},
+
 		// we need to generate the dox file only whenever
 		// a JS file gets is added, removed or renamed.
+		// TODO: Remove this stuff!
 		spiritualdox : {
 			runtime : {
 				files : {
@@ -342,7 +343,7 @@ module.exports = function(grunt) {
 			},
 			*/
 			less: {
-				tasks: [ 'less:before', 'touchfriendly', 'less:dev', 'tsless:dev'],
+				tasks: [ 'less:before', 'touchfriendly', 'cssmin:dev', 'tsless:dev'],
 				files: ['src/runtime/less/**/*.less']
 			},
 			edbml: {
@@ -653,7 +654,7 @@ module.exports = function(grunt) {
 			'uglify:dev',
 			'less:before',
 			'touchfriendly:dev',
-			'less:dev',
+			'cssmin:dev',
 			'tsless:dev',
 			'copy:lang_dev',
 			'concurrent'
@@ -679,7 +680,7 @@ module.exports = function(grunt) {
 			'uglify:cdn',
 			'less:before',
 			'touchfriendly:cdn',
-			'less:cdn',
+			'cssmin:cdn',
 			'copy:lang_cdn',
 			'compress',
 			'copy:fix_less_gzip',
@@ -704,7 +705,7 @@ module.exports = function(grunt) {
 	grunt.registerTask('css', 'Compiles CSS', [
 		'less:before',
 		'touchfriendly:dev',
-		'less:dev',
+		'cssmin:dev',
 		'tsless:dev'
 	]);
 

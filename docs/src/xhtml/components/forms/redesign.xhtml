@@ -13,27 +13,26 @@
 				<p>Hello world.</p>
 			</section>
 			<section>
+
+				<h3>Text and date</h3>
+
 				<form data-ts="Form">
+					<!--
 					<fieldset>
-						<span>Settings Page</span>
 						<label>
-							<span>Secret feature ... Please take into account that this text can be infinitely long so that this text</span>
-							<input type="checkbox"/>
+							<input type="text" value="NO LABEL SPAN!"/>
 						</label>
+					</fieldset>
+					-->
+					<fieldset>
 						<label>
-							<span>Secret Feature (On by default)</span>
-							<input type="checkbox" checked/>
+							<span>Text</span>
+							<input type="text"/>
 						</label>
 					</fieldset>
 					<fieldset>
 						<label>
-							<span>Text (because line height is now 11, this text should be truncatated whenever it's far too long to show</span>
-							<input type="text" required/>
-						</label>
-					</fieldset>
-					<fieldset>
-						<label>
-							<span>Text (required)</span>
+							<span>Text required</span>
 							<input type="text" required/>
 						</label>
 					</fieldset>
@@ -44,54 +43,15 @@
 						</label>
 					</fieldset>
 					<fieldset>
-						<span>Choose wisely</span>
 						<label>
-							<input type="radio" name="radio" checked/>
-							<span>Red pill</span>
-						</label>
-						<label>
-							<input type="radio" name="radio"/>
-							<span>Blue pill</span>
-						</label>
-					</fieldset>
-					<fieldset>
-					<label>
-						<span>Date</span>
-						<input type="date" min="2014-01-01" max="2018-01-01" placeholder="Select date"/>
-					</label>
-				</fieldset>
-					<fieldset>
-						<span>Legally Binding Contract</span>
-						<label>
-							<input type="checkbox"/>
-							<span>I agree to something and this text is just extremely long, I wonder how it would fit when translated into some sort of Hungarian vampire dialect.</span>
-						</label>
-						<label>
-							<input type="checkbox" checked/>
-							<span>I agree to something (by default)</span>
+							<span>Textarea required</span>
+							<textarea></textarea>
 						</label>
 					</fieldset>
 					<fieldset>
 						<label>
-							<span>Select</span>
-							<select>
-								<option value="a">One</option>
-								<option value="b">Two</option>
-								<option value="c">Three</option>
-							</select>
-						</label>
-					</fieldset>
-					<fieldset>
-						<label>
-							<span>Select multiple</span>
-							<select multiple>
-								<option value="a" selected>One</option>
-								<option value="b" selected>Two</option>
-								<option value="c">Three</option>
-								<option value="d">Four</option>
-								<option value="e">Five</option>
-							</select>
-							<button>Cool, apply changes!</button>
+							<span>Date</span>
+							<input type="date" min="2014-01-01" max="2018-01-01" placeholder="Select date"/>
 						</label>
 					</fieldset>
 				</form>
@@ -100,7 +60,7 @@
 				<h3>Multifield</h3>
 
 				<form data-ts="Form">
-					<fieldset class="ts-multi ts-1-1">
+					<fieldset class="ts-multi">
 						<label>
 							<span>1</span>
 							<input type="text" placeholder="ts-multi (ts-1-1)"/>
@@ -147,6 +107,87 @@
 							<span>1</span>
 							<input type="text"/>
 						</label>
+					</fieldset>
+				</form>
+
+
+				<h3>Options</h3>
+
+				<form data-ts="Form">
+					<fieldset>
+						<span>Radios</span>
+						<label>
+							<input type="radio" name="radio" checked/>
+							<span>Option One</span>
+						</label>
+						<label>
+							<input type="radio" name="radio"/>
+							<span>Option Two</span>
+						</label>
+					</fieldset>
+					<fieldset>
+						<span>Checkbox</span>
+						<label>
+							<input type="checkbox"/>
+							<span>I agree</span>
+						</label>
+						<label>
+							<input type="checkbox" checked/>
+							<span>I don't agree</span>
+						</label>
+					</fieldset>
+					<fieldset>
+						<span>Switch</span>
+						<label>
+							<span>I agree</span>
+							<input type="checkbox"/>
+						</label>
+						<label>
+							<span>I don't agree</span>
+							<input type="checkbox" checked/>
+						</label>
+					</fieldset>
+					<fieldset>
+						<label>
+							<span>Select</span>
+							<select>
+								<option value="a">One</option>
+								<option value="b">Two</option>
+								<option value="c">Three</option>
+							</select>
+						</label>
+					</fieldset>
+					<fieldset>
+						<label>
+							<span>Select multiple</span>
+							<select multiple>
+								<option value="a" selected>One</option>
+								<option value="b" selected>Two</option>
+								<option value="c">Three</option>
+								<option value="d">Four</option>
+								<option value="e">Five</option>
+							</select>
+							<button>Cool, apply changes!</button>
+						</label>
+					</fieldset>
+				</form>
+
+
+				<h3>Errors</h3>
+
+				<form data-ts="Form">
+					<fieldset>
+						<label class="ts-error">
+							<span>Text</span>
+							<input type="text"/>
+						</label>
+						<!--
+						<dl class="ts-errors">
+							<dt>Text</dt>
+							<dd>An explanation of the error in question</dd>
+							<dd>Another explanation of the error in question</dd>
+						</dl>
+						-->
 					</fieldset>
 				</form>
 

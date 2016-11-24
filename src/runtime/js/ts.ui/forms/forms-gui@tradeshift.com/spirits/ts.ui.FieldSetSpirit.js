@@ -47,6 +47,7 @@ ts.ui.FieldSetSpirit = (function() {
 		 */
 		$options: function() {
 			this.css.add(ts.ui.CLASS_OPTIONS);
+			this.css.shift(!this.dom.q('span + label'), 'ts-nolabel');
 		},
 
 

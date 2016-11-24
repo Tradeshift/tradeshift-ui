@@ -50,17 +50,8 @@ ts.ui.LabelSpirit = (function using(FieldSpirit, chained, tick, time, controlcla
 			this.event.add('mousedown');
 			this.event.add('focus blur', this, this, true);
 			this.tick.add(tick).start(tick, time);
+			this.css.shift(!this.dom.q('span'), 'ts-nolabel');
 		},
-
-		/**
-		 * Checking for unauthorized classname updates. 
-		 * This doesn't fix the Angular glith, but hey.
-		 *
-		onasync: function() {
-			this.super.onasync();
-			this.att.add('class');
-		},
-		*/
 		
 		/**
 		 * If the control class has not been applied, we'll ask all fields to 
@@ -259,52 +250,3 @@ ts.ui.LabelSpirit = (function using(FieldSpirit, chained, tick, time, controlcla
 	ts.ui.FieldSpirit.TICK_TIME,
 	ts.ui.CLASS_FIELDLABEL
 ));
-
-/*
- * Previous attempt to fix the Angular glitch.
- * This may still come in handy (needs testing).
- *
-function base) {
-
-	var tick = ts.ui.FieldSpirit.TICK_SYNC;
-	var time = ts.ui.FieldSpirit.TICK_TIME;
-
-	/**
-	 * It's been discovered that a hostile framework is killing 
-	 * our classes with an `ng-class` directive, so we'll do a 
-	 * workaorund that some day *must* be lifted to a level so 
-	 * that it applies to all classes applied by UI components.
-	 *
-	return function persist() {
-		var args = arguments;
-		var that = this;
-		var all = this._persisted;
-		var old = null;
-
-		// remove existing persistant hotfix
-		if((old = all.reduce(function(result, next) {
-			return result || (next.identifier === persist ? next : null);
-		}, null))) {
-			gui.Array.remove(all, all.indexOf(old));
-		}
-
-		// add new persisted hotfix
-		all.push({
-			identifier: persist,
-			refresh: function() {
-				base.apply(that, args);
-			}
-		});
-
-		// change the class and then watch for unauthorized changes
-		this._suspended = true;
-		var res = base.apply(this, args);
-		this.att.add('class'); // observe `class` and re-apply hotfixes
-		this._suspended = false;
-
-		// resturn something, perhaps
-		return res;
-	};
-
-})
-*/

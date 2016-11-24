@@ -1,11 +1,14 @@
 // Mixins ......................................................................
 
+/*
+ * This thing is position:absolute because Firefox has 
+ * (ancient) problems with styling of fieldset elements 
+ */
 .mixin-field-header() {
 	position: absolute;
 	left: @ts-unit-half;
 	right: @ts-unit-half;
 	top: 0;
-	display: block;
 	height: @ts-unit-plus;
 	padding-top: @ts-unit-half;
 	line-height: 11px;
@@ -23,7 +26,6 @@
 .ts-form {
 	display: block;
 	text-align: left;
-	background-color: yellow;
 	.ts-fieldset {
 		display: block;
 		position: relative;
@@ -41,17 +43,25 @@
 			position: relative;
 			padding: @ts-unit-half;
 			padding-top: @ts-unit-plus;
+			border-radius: @ts-radius;
+			&.ts-nolabel {
+				padding-top: @ts-unit-half;
+			}
 		}
 		&.ts-options {
 			padding-top: @ts-unit-double;
 			padding-bottom: @ts-unit-half;
 			margin-top: @ts-unit-half;
+			&.ts-nolabel {
+				padding-top: @ts-unit-half;
+			}	
 			> span:first-child {
 				.mixin-field-header();
 			}
 			> label {
 				padding-top: 0;
 				padding-bottom: 0;
+				border-radius: @ts-radius;
 				input,
 				span {
 					display: inline-block;
@@ -185,26 +195,18 @@
 
 // Switches ....................................................................
 
-/*
-.calc(@prop; @val) {
-  @{prop}: calc(~'@{val}');
-  @{prop}: -moz-calc(~'@{val}');
-  @{prop}: -webkit-calc(~'@{val}');
-  @{prop}: -o-calc(~'@{val}');
-}
-*/
-
 .ts-form {
 	label.ts-switchlabel {
 		text-align: right;
 		line-height: 0;
 		> span {
-			line-height: @ts-unit-plus;
-			float: left;
-			text-align: left;
-			background-color: lime;
 			display: block;
-			width: calc(~"100% - 5.5px");
+			line-height: @ts-unit;
+			padding-top: @ts-unit-quarter;
+			padding-bottom: @ts-unit-quarter;
+			width: calc(~"100% - "@ts-unit-double);
+			text-align: left;
+			float: left;
 		}
 		&.ts-disabled {
 			> span:after {
@@ -373,6 +375,31 @@
 					display: inline-block;
 				}
 			}
+		}
+	}
+}
+
+
+// Errors ......................................................................
+
+.ts-form {
+	label.ts-error {
+		&,
+		&.ts-focus,
+		&.ts-focus-on {
+			.ts-field {
+				&.ts-text,
+				&.ts-date {
+					border-color: @ts-red;
+				}
+			}
+		}
+		&.ts-focus,
+		&.ts-focus-on {
+			background-color: lighten(@ts-red, 57%);
+		}
+		+ .ts-errors {
+			font-size: @ts-fontsize-mini;
 		}
 	}
 }

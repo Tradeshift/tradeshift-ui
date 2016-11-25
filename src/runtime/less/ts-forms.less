@@ -67,6 +67,10 @@
 					display: inline-block;
 					vertical-align: top;
 				}
+				> span {
+					padding-top: @ts-unit-quarter;
+					padding-bottom: @ts-unit-quarter;
+				}
 			}
 		}
 		&:not(.ts-options) {
@@ -103,7 +107,8 @@
 		&.ts-fake {
 			color: transparent !important;
 			text-shadow: 0 0 0 @ts-black;
-			&[readonly] {
+			&[readonly],
+			&[disabled] {
 				cursor: pointer;
 			}
 			.ts-engine-explorer9 & {
@@ -125,8 +130,8 @@
 				font-family: @ts-fontstack-icon;
 				font-size: 20px;
 				font-weight: normal;
+				top: @ts-unit-quarter;
 				left: 0;
-				top: 0;
 			}
 			+ span:after {
 				top: 50%;
@@ -159,26 +164,60 @@
 	}
 }
 
+
 // Focus .....................................................................
 
 .ts-form {
 	fieldset.ts-focus,
 	label.ts-focus,
 	label.ts-focus-on {
-		background-color: @ts-liteblue;
-		.ts-field {
-			&.ts-text,
-			&.ts-date {
-				border-color: @ts-blue;
+		&:not(.ts-disabled):not(.ts-readonly) {
+			background-color: @ts-liteblue;
+			.ts-field {
+				&.ts-text,
+				&.ts-date {
+					border-color: @ts-blue;
+				}
+			}
+		}
+	}
+	label.ts-focus,
+	label.ts-focus-on {
+		&.ts-fakelabel {
+			&:not(.ts-disabled):not(.ts-readonly) {
+				&:before {
+					color: @ts-blue;
+				}
 			}
 		}
 	}
 }
 
 
-// Faking it .................................................................
+// Faking it ...................................................................
 
 .ts-form {
+	.ts-datelabel,
+	.ts-fakelabel,
+	.ts-autocompletelabel {
+		&, * {
+			cursor: pointer;
+		}
+	}
+	.ts-fakelabel { // open-aside-triangle
+		&:not(.ts-disabled):not(.ts-readonly) {
+			&:before {
+				.ts-mixin-icon(@ts-fontsize-small);
+				content: "6";
+				position: absolute;
+				right: @ts-unit-half;
+				left: auto;
+				bottom: 26px;
+				width: @ts-unit-plus;
+				background-color: yellow;
+			}
+		}
+	}
 	.ts-select,
 	.ts-dateinput {
 		position: absolute;
@@ -193,6 +232,7 @@
 	}
 }
 
+
 // Switches ....................................................................
 
 .ts-form {
@@ -202,8 +242,6 @@
 		> span {
 			display: block;
 			line-height: @ts-unit;
-			padding-top: @ts-unit-quarter;
-			padding-bottom: @ts-unit-quarter;
 			width: calc(~"100% - "@ts-unit-double);
 			text-align: left;
 			float: left;
@@ -239,7 +277,6 @@
 		height: 1px;
 		overflow: hidden;
 		position: absolute;
-		top: @ts-unit-half;
 		top: @ts-unit-half;
 		right: 0;
 		margin: 0;
@@ -403,3 +440,44 @@
 		}
 	}
 }
+
+
+// Disabled & readonly .........................................................
+
+.ts-form {
+	label {
+		&.ts-readonly, // :not(.ts-fakelabel)
+		&.ts-disabled {
+			> input,
+			> textarea {
+				&,
+				&[disabled],
+				&[readonly] {
+					padding-right: @ts-unit-plus;
+				}
+			}
+			> input,
+			> input[disabled],
+			> input[readonly],
+			> span {
+				color: @ts-medium;
+			}
+			> span:after {
+				.ts-mixin-icon();
+				position: absolute;
+				font-size: @ts-fontsize-big;
+				top: auto;
+				right: @ts-unit-half;
+				bottom: (@ts-unit + @ts-unit-quarter + 1px);
+				content: 'V'; // lock
+			}
+			.ts-field {
+				&.ts-text,
+				&.ts-date {
+					border-color: @ts-lite;
+				}
+			}
+		}
+	}
+}
+

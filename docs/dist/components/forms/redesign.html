@@ -22,141 +22,164 @@
 <body>
     <header data-ts="TopBar"></header>
     <main data-ts="Main">
-        <div data-ts="MainContent">
-            <article>
-                <h1>Redesign</h1>
-                <section class="desc">
-                    <p>Hello world.</p>
-                </section>
-                <section>
-                    <h3><span>Text and date</span></h3>
-                    <form data-ts="Form">
-                        <!--
+        <!--
+		<article>
+			<h1>Redesign</h1>
+			<section class="desc">
+				<p>Hello world.</p>
+			</section>
+			<section>
+				<h3>Text and date</h3>
+				<form data-ts="Form">
 					<fieldset>
 						<label>
-							<input type="text" value="NO LABEL SPAN!"/>
+							<span>Text</span>
+							<input type="text"/>
 						</label>
 					</fieldset>
-					-->
-                        <fieldset>
-                            <label>
-							<span>Text</span>
-							<input type="text">
-						</label>
-                        </fieldset>
-                        <fieldset>
-                            <label>
-							<span>Text required</span>
-							<input type="text" required>
-						</label>
-                        </fieldset>
-                        <fieldset>
-                            <label>
+					<fieldset>
+						<label>
 							<span>Textarea</span>
 							<textarea></textarea>
 						</label>
-                        </fieldset>
-                        <fieldset>
-                            <label>
-							<span>Textarea required</span>
-							<textarea></textarea>
-						</label>
-                        </fieldset>
-                        <fieldset>
-                            <label>
+					</fieldset>
+					<fieldset>
+						<label>
 							<span>Date</span>
-							<input type="date" min="2014-01-01" max="2018-01-01" placeholder="Select date">
+							<input type="date" value="2016-12-24"/>
 						</label>
-                        </fieldset>
-                    </form>
-                    <h3><span>Multifield</span></h3>
-                    <form data-ts="Form">
-                        <fieldset class="ts-multi">
-                            <label>
+					</fieldset>
+				</form>
+				<h3>Disabled</h3>
+				<form data-ts="Form">
+					<fieldset>
+						<label>
+							<span>Text</span>
+							<input type="text" disabled/>
+						</label>
+					</fieldset>
+					<fieldset>
+						<label>
+							<span>Textarea</span>
+							<textarea disabled></textarea>
+						</label>
+					</fieldset>
+					<fieldset>
+						<label>
+							<span>Date</span>
+							<input type="date" disabled value="2016-12-24"/>
+						</label>
+					</fieldset>
+				</form>
+				<h3>Readonly</h3>
+				<form data-ts="Form">
+					<fieldset>
+						<label>
+							<span>Text</span>
+							<input type="text" readonly/>
+						</label>
+					</fieldset>
+					<fieldset>
+						<label>
+							<span>Textarea</span>
+							<textarea readonly></textarea>
+						</label>
+					</fieldset>
+					<fieldset>
+						<label>
+							<span>Date</span>
+							<input type="date" readonly value="2016-12-24"/>
+						</label>
+					</fieldset>
+				</form>
+				<h3>Multifield</h3>
+				<form data-ts="Form">
+					<fieldset class="ts-multi">
+						<label>
 							<span>1</span>
-							<input type="text" placeholder="ts-multi (ts-1-1)">
+							<input type="text" placeholder="ts-multi (ts-1-1)"/>
 						</label>
-                            <label>
+						<label>
 							<span>1</span>
-							<input type="text">
+							<input type="text"/>
 						</label>
-                            <label>
+						<label>
 							<span>1</span>
-							<input type="text">
+							<input type="text"/>
 						</label>
-                        </fieldset>
-                        <fieldset class="ts-multi ts-2-1">
-                            <label>
+					</fieldset>
+					<fieldset class="ts-multi ts-2-1">
+						<label>
 							<span>2</span>
-							<input type="text" placeholder="ts-multi ts-2-1">
+							<input type="text" placeholder="ts-multi ts-2-1"/>
 						</label>
-                            <label>
+						<label>
 							<span>1</span>
-							<input type="text">
+							<input type="text"/>
 						</label>
-                        </fieldset>
-                        <fieldset class="ts-multi ts-1-2">
-                            <label>
+					</fieldset>
+					<fieldset class="ts-multi ts-1-2">
+						<label>
 							<span>1</span>
-							<input type="text" placeholder="ts-multi ts-1-2">
+							<input type="text" placeholder="ts-multi ts-1-2"/>
 						</label>
-                            <label>
+						<label>
 							<span>2</span>
-							<input type="text">
+							<input type="text"/>
 						</label>
-                        </fieldset>
-                        <fieldset class="ts-multi ts-1-1-1">
-                            <label>
+					</fieldset>
+					<fieldset class="ts-multi ts-1-1-1">
+						<label>
 							<span>1</span>
-							<input type="text" placeholder="ts-multi ts-1-1-1">
+							<input type="text" placeholder="ts-multi ts-1-1-1"/>
 						</label>
-                            <label>
+						<label>
 							<span>1</span>
-							<input type="text">
+							<input type="text"/>
 						</label>
-                            <label>
+						<label>
 							<span>1</span>
-							<input type="text">
+							<input type="text"/>
 						</label>
-                        </fieldset>
-                    </form>
-                    <h3><span>Options</span></h3>
-                    <form data-ts="Form">
-                        <fieldset>
-                            <span>Radios</span>
-                            <label>
-							<input type="radio" name="radio" checked>
+					</fieldset>
+				</form>
+				<h3>Options</h3>
+				<form data-ts="Form">
+					<fieldset>
+						<span>Radios</span>
+						<label>
+							<input type="radio" name="radio" checked/>
 							<span>Option One</span>
 						</label>
-                            <label>
-							<input type="radio" name="radio">
+						<label>
+							<input type="radio" name="radio"/>
 							<span>Option Two</span>
 						</label>
-                        </fieldset>
-                        <fieldset>
-                            <span>Checkbox</span>
-                            <label>
-							<input type="checkbox">
+					</fieldset>
+					<fieldset>
+						<span>Checkbox</span>
+						<label>
+							<input type="checkbox"/>
 							<span>I agree</span>
 						</label>
-                            <label>
-							<input type="checkbox" checked>
-							<span>I don&apos;t agree</span>
+						<label>
+							<input type="checkbox" checked/>
+							<span>I don't agree</span>
 						</label>
-                        </fieldset>
-                        <fieldset>
-                            <span>Switch</span>
-                            <label>
+					</fieldset>
+					<fieldset>
+						<span>Switch</span>
+						<label>
 							<span>I agree</span>
-							<input type="checkbox">
+							<input type="checkbox"/>
 						</label>
-                            <label>
-							<span>I don&apos;t agree</span>
-							<input type="checkbox" checked>
+						<label>
+							<span>I don't agree</span>
+							<input type="checkbox" checked/>
 						</label>
-                        </fieldset>
-                        <fieldset>
-                            <label>
+					</fieldset>
+					<fieldset>
+						<label>
 							<span>Select</span>
 							<select>
 								<option value="a">One</option>
@@ -164,9 +187,9 @@
 								<option value="c">Three</option>
 							</select>
 						</label>
-                        </fieldset>
-                        <fieldset>
-                            <label>
+					</fieldset>
+					<fieldset>
+						<label>
 							<span>Select multiple</span>
 							<select multiple>
 								<option value="a" selected>One</option>
@@ -177,26 +200,107 @@
 							</select>
 							<button>Cool, apply changes!</button>
 						</label>
-                        </fieldset>
-                    </form>
-                    <h3><span>Errors</span></h3>
-                    <form data-ts="Form">
-                        <fieldset>
-                            <label class="ts-error">
+					</fieldset>
+				</form>
+				<h3>Errors</h3>
+				<form data-ts="Form">
+					<fieldset>
+						<label class="ts-error">
 							<span>Text</span>
-							<input type="text">
+							<input type="text"/>
 						</label>
-                            <!--
 						<dl class="ts-errors">
 							<dt>Text</dt>
 							<dd>An explanation of the error in question</dd>
 							<dd>Another explanation of the error in question</dd>
 						</dl>
-						-->
-                        </fieldset>
-                    </form>
-                </section>
-            </article>
+					</fieldset>
+				</form>
+			</section>
+		</article>
+		-->
+        <div data-ts="MainContent">
+            <div data-ts="Panel" data-ts.label="Text and date">
+                <article>
+                    <h1>Hello</h1>
+                    <section>
+                        <form data-ts="Form">
+                            <fieldset>
+                                <label>
+								<span>Text</span>
+								<input type="text">
+							</label>
+                            </fieldset>
+                            <fieldset>
+                                <label>
+								<span>Textarea</span>
+								<textarea></textarea>
+							</label>
+                            </fieldset>
+                            <fieldset>
+                                <label>
+								<span>Date</span>
+								<input type="date" value="2016-12-24">
+							</label>
+                            </fieldset>
+                        </form>
+                    </section>
+                </article>
+            </div>
+            <div data-ts="Panel" data-ts.label="Disabled">
+                <article>
+                    <h1>Disabled</h1>
+                    <section>
+                        <form data-ts="Form">
+                            <fieldset>
+                                <label>
+								<span>Text</span>
+								<input type="text" disabled>
+							</label>
+                            </fieldset>
+                            <fieldset>
+                                <label>
+								<span>Textarea</span>
+								<textarea disabled></textarea>
+							</label>
+                            </fieldset>
+                            <fieldset>
+                                <label>
+								<span>Date</span>
+								<input type="date" disabled value="2016-12-24">
+							</label>
+                            </fieldset>
+                        </form>
+                    </section>
+                </article>
+            </div>
+            <div data-ts="Panel" data-ts.label="Readonly">
+                <article>
+                    <h1>Readonly</h1>
+                    <section>
+                        <form data-ts="Form">
+                            <fieldset>
+                                <label>
+								<span>Text</span>
+								<input type="text" readonly>
+							</label>
+                            </fieldset>
+                            <fieldset>
+                                <label>
+								<span>Textarea</span>
+								<textarea readonly></textarea>
+							</label>
+                            </fieldset>
+                            <fieldset>
+                                <label>
+								<span>Date</span>
+								<input type="date" readonly value="2016-12-24">
+							</label>
+                            </fieldset>
+                        </form>
+                    </section>
+                </article>
+            </div>
         </div>
     </main>
 </body>

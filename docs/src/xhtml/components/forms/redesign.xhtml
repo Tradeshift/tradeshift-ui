@@ -7,6 +7,92 @@
 <body>
 	<header data-ts="TopBar"></header>
 	<main data-ts="Main">
+		<div data-ts="Panel" data-ts.label="Text and date">
+			<article>
+				<h1>Hello</h1>
+				<section>
+					<form data-ts="Form">
+						<fieldset>
+							<label>
+								<span>Text</span>
+								<input type="text"/>
+							</label>
+						</fieldset>
+						<fieldset>
+							<label>
+								<span>Textarea</span>
+								<textarea></textarea>
+							</label>
+						</fieldset>
+						<fieldset>
+							<label>
+								<span>Date</span>
+								<input type="date" value="2016-12-24"/>
+							</label>
+						</fieldset>
+					</form>
+				</section>
+			</article>
+		</div>
+
+		<div data-ts="Panel" data-ts.label="Disabled">
+			<article>
+				<h1>Disabled</h1> 
+				<section>
+					<form data-ts="Form">
+						<fieldset>
+							<label>
+								<span>Text</span>
+								<input type="text" disabled/>
+							</label>
+						</fieldset>
+						<fieldset>
+							<label>
+								<span>Textarea</span>
+								<textarea disabled></textarea>
+							</label>
+						</fieldset>
+						<fieldset>
+							<label>
+								<span>Date</span>
+								<input type="date" disabled value="2016-12-24"/>
+							</label>
+						</fieldset>
+					</form>
+				</section>
+			</article>
+		</div>
+
+		<div data-ts="Panel" data-ts.label="Readonly">
+			<article>
+				<h1>Readonly</h1> 
+				<section>
+					<form data-ts="Form">
+						<fieldset>
+							<label>
+								<span>Text</span>
+								<input type="text" readonly/>
+							</label>
+						</fieldset>
+						<fieldset>
+							<label>
+								<span>Textarea</span>
+								<textarea readonly></textarea>
+							</label>
+						</fieldset>
+						<fieldset>
+							<label>
+								<span>Date</span>
+								<input type="date" readonly value="2016-12-24"/>
+							</label>
+						</fieldset>
+					</section>
+				</form>
+			</article>
+		</div>
+
+
+		<!--
 		<article>
 			<h1>Redesign</h1>
 			<section class="desc">
@@ -17,23 +103,10 @@
 				<h3>Text and date</h3>
 
 				<form data-ts="Form">
-					<!--
-					<fieldset>
-						<label>
-							<input type="text" value="NO LABEL SPAN!"/>
-						</label>
-					</fieldset>
-					-->
 					<fieldset>
 						<label>
 							<span>Text</span>
 							<input type="text"/>
-						</label>
-					</fieldset>
-					<fieldset>
-						<label>
-							<span>Text required</span>
-							<input type="text" required/>
 						</label>
 					</fieldset>
 					<fieldset>
@@ -44,14 +117,56 @@
 					</fieldset>
 					<fieldset>
 						<label>
-							<span>Textarea required</span>
-							<textarea></textarea>
+							<span>Date</span>
+							<input type="date" value="2016-12-24"/>
+						</label>
+					</fieldset>
+				</form>
+
+
+				<h3>Disabled</h3>
+
+				<form data-ts="Form">
+					<fieldset>
+						<label>
+							<span>Text</span>
+							<input type="text" disabled/>
+						</label>
+					</fieldset>
+					<fieldset>
+						<label>
+							<span>Textarea</span>
+							<textarea disabled></textarea>
 						</label>
 					</fieldset>
 					<fieldset>
 						<label>
 							<span>Date</span>
-							<input type="date" min="2014-01-01" max="2018-01-01" placeholder="Select date"/>
+							<input type="date" disabled value="2016-12-24"/>
+						</label>
+					</fieldset>
+				</form>
+
+
+				<h3>Readonly</h3>
+
+				<form data-ts="Form">
+					<fieldset>
+						<label>
+							<span>Text</span>
+							<input type="text" readonly/>
+						</label>
+					</fieldset>
+					<fieldset>
+						<label>
+							<span>Textarea</span>
+							<textarea readonly></textarea>
+						</label>
+					</fieldset>
+					<fieldset>
+						<label>
+							<span>Date</span>
+							<input type="date" readonly value="2016-12-24"/>
 						</label>
 					</fieldset>
 				</form>
@@ -181,18 +296,17 @@
 							<span>Text</span>
 							<input type="text"/>
 						</label>
-						<!--
 						<dl class="ts-errors">
 							<dt>Text</dt>
 							<dd>An explanation of the error in question</dd>
 							<dd>Another explanation of the error in question</dd>
 						</dl>
-						-->
 					</fieldset>
 				</form>
 
 			</section>
 		</article>
+		-->
 	</main>
 </body>
 </html>

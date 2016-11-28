@@ -83,6 +83,9 @@
 	}
 	.ts-field {
 		display: block;
+		&.ts-text:not([disabled]) {
+			cursor: text;
+		}
 		&.ts-text,
 		&.ts-date {
 			border: 1px solid @ts-medium-liter;
@@ -105,8 +108,10 @@
 		}
 		&.ts-date,
 		&.ts-fake {
-			color: transparent !important;
-			text-shadow: 0 0 0 @ts-black;
+			// Note to self: These styles may be relevant for iPad stuff!
+			// color: transparent !important;
+			// text-shadow: 0 0 0 @ts-black;
+			/*
 			&[readonly],
 			&[disabled] {
 				cursor: pointer;
@@ -114,6 +119,7 @@
 			.ts-engine-explorer9 & {
 				color: @ts-black !important;
 			}
+			*/
 		}
 		&.ts-option {
 			opacity: 0;
@@ -200,8 +206,10 @@
 	.ts-datelabel,
 	.ts-fakelabel,
 	.ts-autocompletelabel {
-		&, * {
-			cursor: pointer;
+		&:not(.ts-disabled):not(.ts-readonly) {
+			&, * {
+				cursor: pointer;
+			}
 		}
 	}
 	.ts-fakelabel { // open-aside-triangle
@@ -224,6 +232,12 @@
 		opacity: 0;
 		width: 0;
 		height: 0;
+		padding: 0 !important;
+	}
+	.ts-select {
+		option { // https://bugzilla.mozilla.org/show_bug.cgi?id=392863 
+			display: none;
+		}
 	}
 	.ts-select[multiple] {
 		~ button {
@@ -252,7 +266,7 @@
 			}
 			.ts-field.ts-switchbox + .ts-switcher {
 				> i:before {
-					content: 'V'; // lock
+					content: 'V'; // lock UPDATE REQUIRED!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 					font-size: @ts-fontsize-medium;
 				}
 				&.ts-engine-webkit {
@@ -456,24 +470,27 @@
 					padding-right: @ts-unit-plus;
 				}
 			}
-			> input,
-			> input[disabled],
-			> input[readonly],
-			> span {
+			&:after {
+				.ts-mixin-icon();
+				content: 'V'; // lock
+				position: absolute;
+				top: @ts-unit-plus;
+				right: @ts-unit-half;
+				width: @ts-unit-plus;
+				height: @ts-unit-plus;
+				line-height: @ts-unit-plus;
+				font-size: @ts-fontsize-medium;
+				pointer-events: none;
+			}
+		}
+		&.ts-disabled {
+			> .ts-field,
+			> span,
+			&:after {
 				color: @ts-medium;
 			}
-			> span:after {
-				.ts-mixin-icon();
-				position: absolute;
-				font-size: @ts-fontsize-big;
-				top: auto;
-				right: @ts-unit-half;
-				bottom: (@ts-unit + @ts-unit-quarter + 1px);
-				content: 'V'; // lock
-			}
 			.ts-field {
-				&.ts-text,
-				&.ts-date {
+				&.ts-text { // &.ts-date
 					border-color: @ts-lite;
 				}
 			}

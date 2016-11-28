@@ -46,6 +46,19 @@ ts.ui.InputSpirit = (function using(chained, Type, Client) {
 		},
 
 		/**
+		 * Shortcut to 'this.element.readonly'.
+		 * @type {boolean}
+		 */
+		readonly: {
+			getter: function() {
+				return this.att.has('readonly');
+			},
+			setter: function(is) {
+				this.att.set('readonly', is);
+			}
+		},
+
+		/**
 		 * Observe that model.
 		 */
 		onconfigure: function() {

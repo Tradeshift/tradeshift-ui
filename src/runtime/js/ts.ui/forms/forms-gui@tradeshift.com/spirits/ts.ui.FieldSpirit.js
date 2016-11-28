@@ -91,8 +91,9 @@ ts.ui.FieldSpirit = (function using(chained) {
 				this.$updatestyling();
 			}
 		},
+		
 
-		// Privileged ................................................................
+		// Privileged ..............................................................
 
 		/**
 		 * Style the form.
@@ -101,9 +102,11 @@ ts.ui.FieldSpirit = (function using(chained) {
 		$updatestyling: function() {
 			this._label(function(label) {
 				label.$fieldlabel();
-				label.$disabled(this.att.has('disabled'));
-				label.$readonly(this.att.has('readonly'));
 				label.$required(this.att.has('required'));
+				label.$disabled(this.att.has('disabled'));
+				if(!this.css.contains(ts.ui.CLASS_FAKE)) {
+					label.$readonly(this.att.has('readonly'));
+				}
 			});
 			
 		},

@@ -49,6 +49,7 @@
 			}
 		}
 		&.ts-options {
+			padding-left: @ts-unit-half;
 			padding-top: @ts-unit-double;
 			padding-bottom: @ts-unit-half;
 			margin-top: @ts-unit-half;
@@ -88,7 +89,7 @@
 		}
 		&.ts-text,
 		&.ts-date {
-			border: 1px solid @ts-medium-liter;
+			border: 1px solid @ts-medium-litest;
 			display: block;
 			width: 100%;
 			font-size: @ts-fontsize-mini;
@@ -173,17 +174,40 @@
 
 // Focus .....................................................................
 
+.mixin-focus-outline {
+	border: 1px solid @ts-blue;
+	outline: 1px solid @ts-blue;
+}
+
 .ts-form {
-	fieldset.ts-focus,
 	label.ts-focus,
 	label.ts-focus-on {
 		&:not(.ts-disabled):not(.ts-readonly) {
-			background-color: @ts-liteblue;
+			//background-color: @ts-liteblue;
 			.ts-field {
 				&.ts-text,
 				&.ts-date {
-					border-color: @ts-blue;
+					border: 1px solid @ts-blue;
+					outline: 1px solid @ts-blue;
+					border-radius: 0;
 				}
+			}
+			&.ts-checkbox,
+			&.ts-switchlabel {
+				outline: 2px solid @ts-blue;
+			}
+		}
+	}
+	fieldset.ts-focus {
+		&:not(.ts-disabled):not(.ts-readonly) {
+			&:before {
+				content: '';
+				position: absolute;
+				left: @ts-unit-half;
+				right: @ts-unit-half;
+				top: @ts-unit-double;
+				bottom: @ts-unit-half;
+				outline: 2px solid @ts-blue;
 			}
 		}
 	}

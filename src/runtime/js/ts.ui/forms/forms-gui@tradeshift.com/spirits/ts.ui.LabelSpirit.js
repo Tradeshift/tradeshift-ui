@@ -184,9 +184,11 @@ ts.ui.LabelSpirit = (function using(FieldSpirit, chained, tick, time, controlcla
 
 		/**
 		 * Layout as radio or checkbox label.
+		 * @param {string} type 'radio' or 'checkbox'
 		 */
-		$option: chained(function() {
+		$option: chained(function(type) {
 			this.css.add(class_option);
+			this.css.add('ts-' + type);
 		}),
 
 		/**

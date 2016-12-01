@@ -200,6 +200,101 @@
 }
 
 
+// Errors ......................................................................
+
+.ts-form {
+	label.ts-error {
+		&,
+		&.ts-focus,
+		&.ts-focus-on {
+			&:not(.ts-disabled):not(.ts-readonly) {
+				.ts-field {
+					&.ts-text,
+					&.ts-date {
+						border-color: @ts-red;
+					}
+				}
+			}
+		}
+		&.ts-focus,
+		&.ts-focus-on {
+			&:not(.ts-disabled):not(.ts-readonly) {
+				background-color: lighten(@ts-red, 57%);
+			}
+		}
+	}
+	.ts-errors,
+	.ts-info {
+		color: @ts-darkred;
+		margin-left: @ts-unit-half;
+		font-size: @ts-fontsize-mini;
+		font-weight: @ts-fontweight;
+		margin-bottom: @ts-unit-plus;
+		font-weight: normal;
+		position: relative;
+		> dt,
+		> dd {
+			position:relative;
+			padding-left: 19px;
+			&:before {
+				position: absolute;
+				content: "";
+				-webkit-font-smoothing: antialiased;
+				-moz-osx-font-smoothing: grayscale;
+				font-weight: normal;
+				font-style: normal;
+				text-decoration: none;
+				text-transform: none;
+				font-style: normal;
+				line-height: 0;
+				text-align: center;
+			}
+		}
+		> dt {
+			font-weight: bold;
+			&:before {
+				font-family: @ts-fontstack-icon;
+				font-weight: @ts-fontweight;
+				font-size: @ts-fontsize-medium;
+				top: 12px;
+				left: 0;
+				content: "!";
+			}
+		}
+		> dd {
+			&:before {
+				content: "\2219";
+				font-size: 35px;
+				line-height: 0;
+				position: absolute;
+				top: 9px;
+				left: 3px;
+			}
+		}
+	}
+	.ts-info {
+		color: @ts-black;
+		> dt {
+			&:before {
+				content: "i";
+				color: @ts-blue;
+			}
+		}
+	}
+	.ts-disabled {
+		+ .ts-errors,
+		+ .ts-info {
+			color: @ts-medium;
+			> dt {
+				&:before {
+					color: @ts-medium;
+				}
+			}
+		}
+	}
+}
+
+
 // Faking it ...................................................................
 
 .ts-form {
@@ -430,30 +525,6 @@
 	}
 }
 
-
-// Errors ......................................................................
-
-.ts-form {
-	label.ts-error {
-		&,
-		&.ts-focus,
-		&.ts-focus-on {
-			.ts-field {
-				&.ts-text,
-				&.ts-date {
-					border-color: @ts-red;
-				}
-			}
-		}
-		&.ts-focus,
-		&.ts-focus-on {
-			background-color: lighten(@ts-red, 57%);
-		}
-		+ .ts-errors {
-			font-size: @ts-fontsize-mini;
-		}
-	}
-}
 
 
 // Disabled & readonly .........................................................

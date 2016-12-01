@@ -11,9 +11,15 @@ ts.ui.PanelSpirit = (function using(ACTION_ATTACH, ACTION_DETACH, ACTION_SHOW, A
 
 		/**
 		 * For when the panel is used to generate tabs.
-		 * @type {string} label
+		 * @type {string}
 		 */
 		label: null,
+
+		/**
+		 * For when the panel is used to generate tabs.
+		 * @type {boolean}
+		 */
+		selected: false,
 		
 		/**
 		 * For when the panel is used to generate tabs.

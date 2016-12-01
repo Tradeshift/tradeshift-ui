@@ -7,9 +7,9 @@
 <body>
 	<header data-ts="TopBar"></header>
 	<main data-ts="Main">
-		<div data-ts="Panel" data-ts.label="Text and date">
+		<div data-ts="Panel" data-ts.label="Standard">
 			<article>
-				<h1>Hello</h1>
+				<h1>Standard</h1>
 				<section>
 					<form data-ts="Form">
 						<fieldset>
@@ -25,27 +25,27 @@
 							</label>
 						</fieldset>
 						<fieldset>
-						<label>
-							<span>Select</span>
-							<select>
-								<option value="a">One</option>
-								<option value="b">Two</option>
-								<option value="c">Three</option>
-							</select>
-						</label>
-					</fieldset>
-					<fieldset>
-						<label>
-							<span>Select multiple</span>
-							<select multiple>
-								<option value="a" selected>One</option>
-								<option value="b" selected>Two</option>
-								<option value="c">Three</option>
-								<option value="d">Four</option>
-								<option value="e">Five</option>
-							</select>
-							<button>Cool, apply changes!</button>
-						</label>
+							<label>
+								<span>Select</span>
+								<select>
+									<option value="a">One</option>
+									<option value="b">Two</option>
+									<option value="c">Three</option>
+								</select>
+							</label>
+						</fieldset>
+						<fieldset>
+							<label>
+								<span>Select multiple</span>
+								<select multiple>
+									<option value="a" selected>One</option>
+									<option value="b" selected>Two</option>
+									<option value="c">Three</option>
+									<option value="d">Four</option>
+									<option value="e">Five</option>
+								</select>
+								<button>Cool, apply changes!</button>
+							</label>
 						</fieldset>
 						<fieldset>
 							<label>
@@ -109,34 +109,68 @@
 							</label>
 						</fieldset>
 						<fieldset>
-						<label>
-							<span>Select</span>
-							<select disabled>
-								<option value="a">One</option>
-								<option value="b">Two</option>
-								<option value="c">Three</option>
-							</select>
-						</label>
-					</fieldset>
-					<fieldset>
-						<label>
-							<span>Select multiple</span>
-							<select multiple disabled>
-								<option value="a" selected>One</option>
-								<option value="b" selected>Two</option>
-								<option value="c">Three</option>
-								<option value="d">Four</option>
-								<option value="e">Five</option>
-							</select>
-							<button>Cool, apply changes!</button>
-						</label>
-					</fieldset>
+							<label>
+								<span>Select</span>
+								<select disabled>
+									<option value="a">One</option>
+									<option value="b">Two</option>
+									<option value="c">Three</option>
+								</select>
+							</label>
+						</fieldset>
+						<fieldset>
+							<label>
+								<span>Select multiple</span>
+								<select multiple disabled>
+									<option value="a" selected>One</option>
+									<option value="b" selected>Two</option>
+									<option value="c">Three</option>
+									<option value="d">Four</option>
+									<option value="e">Five</option>
+								</select>
+								<button>Cool, apply changes!</button>
+							</label>
+						</fieldset>
 						<fieldset>
 							<label>
 								<span>Date</span>
 								<input type="date" disabled value="2016-12-24"/>
 							</label>
 						</fieldset>
+						<fieldset>
+							<span>Radios</span>
+							<label>
+								<input type="radio" name="radio" checked disabled/>
+								<span>Option One</span>
+							</label>
+							<label>
+								<input type="radio" name="radio" disabled/>
+								<span>Option Two</span>
+							</label>
+						</fieldset>
+						<fieldset>
+							<span>Checkbox</span>
+							<label>
+								<input type="checkbox" disabled/>
+								<span>I agree</span>
+							</label>
+							<label>
+								<input type="checkbox" checked disabled/>
+								<span>I don't agree</span>
+							</label>
+						</fieldset>
+						<fieldset>
+							<span>Switch</span>
+							<label>
+								<span>I agree</span>
+								<input type="checkbox" disabled/>
+							</label>
+							<label>
+								<span>I don't agree</span>
+								<input type="checkbox" checked disabled/>
+							</label>
+						</fieldset>
+					</form>
 					</form>
 				</section>
 			</article>
@@ -188,227 +222,134 @@
 								<input type="date" readonly value="2016-12-24"/>
 							</label>
 						</fieldset>
-					</section>
-				</form>
+					</form>
+					<div data-ts="Note">
+						<i class="ts-icon-info"></i>
+						<p>Note that <code>readonly</code> has no function on radio groups and checkboxes.</p>
+					</div>
+				</section>
 			</article>
 		</div>
 
+		<div data-ts="Panel" data-ts.label="Multi">
+			<article>
+				<h1>Multi</h1>
+				<section>
+					<form data-ts="Form">
+						<fieldset class="ts-multi">
+							<label>
+								<span>Text Multi</span>
+								<input type="text" value="Text"/>
+							</label>
+							<label>
+								<span>Date Multi</span>
+								<input type="date" value="2016-12-24"/>
+							</label>
+						</fieldset>
+						<fieldset class="ts-multi">
+							<label>
+								<span>Textarea Multi</span>
+								<textarea>Textarea</textarea>
+							</label>
+							<label>
+								<span>More Multi</span>
+								<textarea>Textarea</textarea>
+							</label>
+						</fieldset>
+						<fieldset class="ts-multi">
+							<label>
+								<span>Select Multi</span>
+								<select>
+									<option value="a">One</option>
+									<option value="b">Two</option>
+									<option value="c">Three</option>
+								</select>
+							</label>
+							<label>
+								<span>Select Multi</span>
+								<select>
+									<option value="a">One</option>
+									<option value="b" selected>Two</option>
+									<option value="c">Three</option>
+								</select>
+							</label>
+						</fieldset>
+						<fieldset class="ts-multi">
+							<label>
+								<span>Multiselect multi</span>
+								<select multiple>
+									<option value="a" selected>One</option>
+									<option value="b">Two</option>
+									<option value="c">Three</option>
+									<option value="d">Four</option>
+									<option value="e">Five</option>
+								</select>
+								<button>Cool, apply changes!</button>
+							</label>
+							<label>
+								<span>Multiselect multi</span>
+								<select multiple>
+									<option value="a" selected>One</option>
+									<option value="b" selected>Two</option>
+									<option value="c">Three</option>
+									<option value="d">Four</option>
+									<option value="e">Five</option>
+								</select>
+								<button>Cool, apply changes!</button>
+							</label>
+						</fieldset>
+					</form>
+				</section>
+			</article>
+		</div>
 
-		<!--
-		<article>
-			<h1>Redesign</h1>
-			<section class="desc">
-				<p>Hello world.</p>
-			</section>
-			<section>
+		<div data-ts="Panel" data-ts.label="Errors &amp; Info" data-ts.selected="true">
+			<article>
+				<h1>Errors &amp; Info</h1>
+				<section>
+					<div data-ts="Note">
+						<i class="ts-icon-info"></i>
+						<p>This has a new and incompatible design, but that is not implemented yet. We must however still support the old design, at least for a transition period.</p>
+					</div>
+					<form data-ts="Form">
+						<fieldset>
+							<label class="ts-error">
+								<span>Error (old design)</span>
+								<input type="text" value="Something wrong"/>
+							</label>
+							<dl class="ts-errors">
+								<dt>Text</dt>
+								<dd>An explanation of the error in question</dd>
+								<dd>Another explanation of the error in question</dd>
+							</dl>
+						</fieldset>
+						<fieldset>
+							<label>
+								<span>Info (old design)</span>
+								<input type="text" value="What is this?"/>
+							</label>
+							<dl class="ts-info">
+								<dt>Text</dt>
+								<dd>An information about the field</dd>
+								<dd>Another information about the field</dd>
+							</dl>
+						</fieldset>
+						<fieldset>
+							<label>
+								<span>Disabled info (old design)</span>
+								<input type="text" value="What is this?" disabled/>
+							</label>
+							<dl class="ts-info">
+								<dt>Text</dt>
+								<dd>An information about the field</dd>
+								<dd>Another information about the field</dd>
+							</dl>
+						</fieldset>
+					</form>
+				</section>
+			</article>
+		</div>
 
-				<h3>Text and date</h3>
-
-				<form data-ts="Form">
-					<fieldset>
-						<label>
-							<span>Text</span>
-							<input type="text"/>
-						</label>
-					</fieldset>
-					<fieldset>
-						<label>
-							<span>Textarea</span>
-							<textarea></textarea>
-						</label>
-					</fieldset>
-					<fieldset>
-						<label>
-							<span>Date</span>
-							<input type="date" value="2016-12-24"/>
-						</label>
-					</fieldset>
-				</form>
-
-
-				<h3>Disabled</h3>
-
-				<form data-ts="Form">
-					<fieldset>
-						<label>
-							<span>Text</span>
-							<input type="text" disabled/>
-						</label>
-					</fieldset>
-					<fieldset>
-						<label>
-							<span>Textarea</span>
-							<textarea disabled></textarea>
-						</label>
-					</fieldset>
-					<fieldset>
-						<label>
-							<span>Date</span>
-							<input type="date" disabled value="2016-12-24"/>
-						</label>
-					</fieldset>
-				</form>
-
-
-				<h3>Readonly</h3>
-
-				<form data-ts="Form">
-					<fieldset>
-						<label>
-							<span>Text</span>
-							<input type="text" readonly/>
-						</label>
-					</fieldset>
-					<fieldset>
-						<label>
-							<span>Textarea</span>
-							<textarea readonly></textarea>
-						</label>
-					</fieldset>
-					<fieldset>
-						<label>
-							<span>Date</span>
-							<input type="date" readonly value="2016-12-24"/>
-						</label>
-					</fieldset>
-				</form>
-
-
-				<h3>Multifield</h3>
-
-				<form data-ts="Form">
-					<fieldset class="ts-multi">
-						<label>
-							<span>1</span>
-							<input type="text" placeholder="ts-multi (ts-1-1)"/>
-						</label>
-						<label>
-							<span>1</span>
-							<input type="text"/>
-						</label>
-						<label>
-							<span>1</span>
-							<input type="text"/>
-						</label>
-					</fieldset>
-					<fieldset class="ts-multi ts-2-1">
-						<label>
-							<span>2</span>
-							<input type="text" placeholder="ts-multi ts-2-1"/>
-						</label>
-						<label>
-							<span>1</span>
-							<input type="text"/>
-						</label>
-					</fieldset>
-					<fieldset class="ts-multi ts-1-2">
-						<label>
-							<span>1</span>
-							<input type="text" placeholder="ts-multi ts-1-2"/>
-						</label>
-						<label>
-							<span>2</span>
-							<input type="text"/>
-						</label>
-					</fieldset>
-					<fieldset class="ts-multi ts-1-1-1">
-						<label>
-							<span>1</span>
-							<input type="text" placeholder="ts-multi ts-1-1-1"/>
-						</label>
-						<label>
-							<span>1</span>
-							<input type="text"/>
-						</label>
-						<label>
-							<span>1</span>
-							<input type="text"/>
-						</label>
-					</fieldset>
-				</form>
-
-
-				<h3>Options</h3>
-
-				<form data-ts="Form">
-					<fieldset>
-						<span>Radios</span>
-						<label>
-							<input type="radio" name="radio" checked/>
-							<span>Option One</span>
-						</label>
-						<label>
-							<input type="radio" name="radio"/>
-							<span>Option Two</span>
-						</label>
-					</fieldset>
-					<fieldset>
-						<span>Checkbox</span>
-						<label>
-							<input type="checkbox"/>
-							<span>I agree</span>
-						</label>
-						<label>
-							<input type="checkbox" checked/>
-							<span>I don't agree</span>
-						</label>
-					</fieldset>
-					<fieldset>
-						<span>Switch</span>
-						<label>
-							<span>I agree</span>
-							<input type="checkbox"/>
-						</label>
-						<label>
-							<span>I don't agree</span>
-							<input type="checkbox" checked/>
-						</label>
-					</fieldset>
-					<fieldset>
-						<label>
-							<span>Select</span>
-							<select>
-								<option value="a">One</option>
-								<option value="b">Two</option>
-								<option value="c">Three</option>
-							</select>
-						</label>
-					</fieldset>
-					<fieldset>
-						<label>
-							<span>Select multiple</span>
-							<select multiple>
-								<option value="a" selected>One</option>
-								<option value="b" selected>Two</option>
-								<option value="c">Three</option>
-								<option value="d">Four</option>
-								<option value="e">Five</option>
-							</select>
-							<button>Cool, apply changes!</button>
-						</label>
-					</fieldset>
-				</form>
-
-
-				<h3>Errors</h3>
-
-				<form data-ts="Form">
-					<fieldset>
-						<label class="ts-error">
-							<span>Text</span>
-							<input type="text"/>
-						</label>
-						<dl class="ts-errors">
-							<dt>Text</dt>
-							<dd>An explanation of the error in question</dd>
-							<dd>Another explanation of the error in question</dd>
-						</dl>
-					</fieldset>
-				</form>
-
-			</section>
-		</article>
-		-->
 	</main>
 </body>
 </html>

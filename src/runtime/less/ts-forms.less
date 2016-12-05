@@ -4,7 +4,7 @@
  * This thing is position:absolute because Firefox has 
  * (ancient) problems with styling of fieldset elements 
  */
-.mixin-field-header() {
+.local-mixin-field-header() {
 	position: absolute;
 	left: @ts-unit-half;
 	right: @ts-unit-half;
@@ -33,11 +33,13 @@
 		+ .ts-fieldset {
 			padding-top: @ts-unit-half;
 		}
+		> span {
+			overflow: hidden;
+		}
 		> span,
 		> label {
 			font-size: @ts-fontsize;
 			display: block;
-			overflow: hidden;
 		}
 		> label {
 			position: relative;
@@ -50,6 +52,7 @@
 		}
 		&.ts-options {
 			padding-left: @ts-unit-half;
+			padding-right: @ts-unit-half;
 			padding-top: @ts-unit-double;
 			padding-bottom: @ts-unit-half;
 			margin-top: @ts-unit-half;
@@ -57,27 +60,28 @@
 				padding-top: @ts-unit-half;
 			}	
 			> span:first-child {
-				.mixin-field-header();
+				.local-mixin-field-header();
 			}
 			> label {
 				padding-top: 0;
 				padding-bottom: 0;
 				border-radius: @ts-radius;
+				border: 1px solid transparent;
 				input,
 				span {
 					display: inline-block;
 					vertical-align: top;
 				}
 				> span {
-					padding-top: @ts-unit-quarter;
-					padding-bottom: @ts-unit-quarter;
+					padding-top: @ts-unit-quarter - 1px;
+					padding-bottom: @ts-unit-quarter - 1px;
 				}
 			}
 		}
 		&:not(.ts-options) {
 			> label {
 				> span:first-child {
-					.mixin-field-header();
+					.local-mixin-field-header();
 				}
 			}	
 		}
@@ -137,7 +141,7 @@
 				font-family: @ts-fontstack-icon;
 				font-size: 20px;
 				font-weight: normal;
-				top: @ts-unit-quarter;
+				top: @ts-unit-quarter - 1px;
 				left: 0;
 			}
 			+ span:after {
@@ -174,40 +178,37 @@
 
 // Focus .....................................................................
 
-.mixin-focus-outline {
-	border: 1px solid @ts-blue;
-	outline: 1px solid @ts-blue;
+.local-mixin-focus-outline(@color: @ts-blue) {
+	border: 1px solid @color;
+	box-shadow: 0 0 0 1px fade(@color, 75%);
 }
 
 .ts-form {
 	label.ts-focus,
 	label.ts-focus-on {
 		&:not(.ts-disabled):not(.ts-readonly) {
-			//background-color: @ts-liteblue;
 			.ts-field {
 				&.ts-text,
 				&.ts-date {
-					border: 1px solid @ts-blue;
-					outline: 1px solid @ts-blue;
-					border-radius: 0;
+					.local-mixin-focus-outline();
 				}
 			}
 			&.ts-checkbox,
 			&.ts-switchlabel {
-				outline: 2px solid @ts-blue;
+				.local-mixin-focus-outline();
 			}
 		}
 	}
 	fieldset.ts-focus {
 		&:not(.ts-disabled):not(.ts-readonly) {
 			&:before {
+				.local-mixin-focus-outline();
 				content: '';
 				position: absolute;
 				left: @ts-unit-half;
 				right: @ts-unit-half;
-				top: @ts-unit-double;
-				bottom: @ts-unit-half;
-				outline: 2px solid @ts-blue;
+				top: @ts-unit-plus;
+				bottom: 0;
 			}
 		}
 	}
@@ -228,22 +229,28 @@
 
 .ts-form {
 	label.ts-error {
-		&,
-		&.ts-focus,
-		&.ts-focus-on {
-			&:not(.ts-disabled):not(.ts-readonly) {
-				.ts-field {
-					&.ts-text,
-					&.ts-date {
-						border-color: @ts-red;
-					}
+		&:not(.ts-disabled):not(.ts-readonly) {
+			.ts-field {
+				&.ts-text,
+				&.ts-date {
+					border-color: @ts-red;
 				}
 			}
 		}
 		&.ts-focus,
 		&.ts-focus-on {
 			&:not(.ts-disabled):not(.ts-readonly) {
-				background-color: lighten(@ts-red, 57%);
+				.ts-field {
+					&.ts-text,
+					&.ts-date {
+						.local-mixin-focus-outline(@ts-red);
+					}
+				}
+				&.ts-checkbox,
+				&.ts-switchlabel {
+					.local-mixin-focus-outline(@ts-red);
+				}
+
 			}
 		}
 	}
@@ -336,12 +343,18 @@
 			&:before {
 				.ts-mixin-icon(@ts-fontsize-small);
 				content: "6";
+				content: 'l';
 				position: absolute;
 				right: @ts-unit-half;
 				left: auto;
 				bottom: 26px;
 				width: @ts-unit-plus;
-				background-color: yellow;
+				color: @ts-medium;
+			}
+			&.ts-engine-gecko {
+				&:before {
+					bottom: 27px;
+				}
 			}
 		}
 	}
@@ -372,6 +385,7 @@
 	label.ts-switchlabel {
 		text-align: right;
 		line-height: 0;
+		overflow: hidden;
 		> span {
 			display: block;
 			line-height: @ts-unit;
@@ -418,7 +432,7 @@
 			height: @ts-unit;
 			width: @ts-unit-double;
 			position: relative;
-			top: @ts-unit-quarter;
+			top: @ts-unit-quarter - 1px;
 			border-radius: @ts-unit-half;
 			background-color: @ts-lite-dark;
 			&, > i {
@@ -593,3 +607,67 @@
 	}
 }
 
+
+// Autocomplete ................................................................
+
+.ts-form {
+	.ts-autocomplete-list {
+		position: absolute;
+		left: 0;
+		right: 0;
+		z-index: 1;
+		background: @ts-dark-liter;
+		border-bottom: 1px solid @ts-black;
+		max-height: ((@ts-unit * 7.5) - 1px);
+		margin: 1px @ts-unit-half 0;
+		overflow-y: auto;
+		> li {
+			position: relative;
+			height: @ts-unit-plus;
+			line-height: @ts-unit-plus;
+			border-bottom: 1px solid @ts-black;
+			padding: 0 7px;
+			font-size: @ts-fontsize-mini;
+			overflow: hidden;
+			background: @ts-dark-liter;
+			color: fade(@ts-white, 70%);
+			text-overflow: ellipsis;
+			cursor: pointer;
+			&:after {
+				position: absolute;
+				right: @ts-unit-half;
+				top: 50%;
+				line-height: 0;
+				font-style: normal;
+			}
+			&.ts-autocomplete-results {
+				background: @ts-dark;
+				font-style: italic;
+			}
+			&.ts-autocomplete-results {
+				&.ts-autocomplete-selected:after {
+					content: '↓';
+					font-style: normal;
+				}
+			}
+			&:last-child {
+				border-bottom: 1px solid transparent;
+			}
+			&.ts-autocomplete-selected {
+				color: @ts-white;
+				background: @ts-blue;
+				&:after {
+					content: '↲';
+				}
+			}
+			&:hover {
+				color: @ts-white;
+				background: fade(@ts-blue, 50%);
+			}
+			b {
+				font-weight: @ts-fontweight;
+				text-decoration: underline;
+			}
+		}
+	}
+}

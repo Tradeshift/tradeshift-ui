@@ -1,13 +1,14 @@
 /**
  * Spirit of the label.
  * @extends {ts.ui.Spirit}
+ * @using {gui.Client} Client
  * @using {ts.ui.FieldSpirit} FieldSpirit
  * @using {gui.Combo.chained}
  * @using {string} tick
  * @using {number} time
  * @using {number} controlclass
  */
-ts.ui.LabelSpirit = (function using(FieldSpirit, chained, tick, time, controlclass) {
+ts.ui.LabelSpirit = (function using(Client, FieldSpirit, chained, tick, time, controlclass) {
 
 	var class_switchlabel = ts.ui.CLASS_SWITCHLABEL,
 		class_fieldlabel = ts.ui.CLASS_FIELDLABEL,
@@ -51,6 +52,7 @@ ts.ui.LabelSpirit = (function using(FieldSpirit, chained, tick, time, controlcla
 			this.event.add('focus blur', this, this, true);
 			this.tick.add(tick).start(tick, time);
 			this.css.shift(!this.dom.q('span'), 'ts-nolabel');
+			this.css.add('ts-engine-' + Client.agent);
 		},
 		
 		/**
@@ -248,6 +250,7 @@ ts.ui.LabelSpirit = (function using(FieldSpirit, chained, tick, time, controlcla
 	});
 
 }(
+	gui.Client,
 	ts.ui.FieldSpirit,
 	gui.Combo.chained,
 	ts.ui.FieldSpirit.TICK_SYNC,

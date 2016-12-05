@@ -34,58 +34,25 @@
                     <div class="splitscreen-container">
                         <ul class="splitscreen">
                             <li>
-                                <figure data-ts="DoxScript" class="attention runnable" data-ts.code="var%20autocomplete%20%3D%20ts.ui.get(&apos;%23mystaticautocomplete&apos;)%3B%0Aautocomplete.data(%5B%0A%09%7B%0A%09%09key%3A%200%2C%0A%09%09value%3A%20&apos;zero&apos;%0A%09%7D%2C%0A%09%7B%0A%09%09key%3A%201%2C%0A%09%09value%3A%20&apos;one&apos;%0A%09%7D%2C%0A%09%7B%0A%09%09key%3A%202%2C%0A%09%09value%3A%20&apos;two&apos;%0A%09%7D%2C%0A%09%7B%0A%09%09key%3A%203%2C%0A%09%09value%3A%20&apos;three&apos;%0A%09%7D%2C%0A%09%7B%0A%09%09key%3A%204%2C%0A%09%09value%3A%20&apos;four&apos;%0A%09%7D%2C%0A%09%7B%0A%09%09key%3A%205%2C%0A%09%09value%3A%20&apos;five&apos;%0A%09%7D%2C%0A%09%7B%0A%09%09key%3A%206%2C%0A%09%09value%3A%20&apos;six&apos;%0A%09%7D%2C%7B%0A%09%09key%3A%207%2C%0A%09%09value%3A%20&apos;seven&apos;%0A%09%7D%2C%0A%09%7B%0A%09%09key%3A%208%2C%0A%09%09value%3A%20&apos;eight&apos;%0A%09%7D%2C%0A%09%7B%0A%09%09key%3A%209%2C%0A%09%09value%3A%20&apos;nine&apos;%0A%09%7D%2C%0A%09%7B%0A%09%09key%3A%2010%2C%0A%09%09value%3A%20&apos;ten&apos;%0A%09%7D%0A%5D)%3B">
+                                <figure data-ts="DoxScript" class="attention runnable" data-ts.code="var%20autocomplete%20%3D%20ts.ui.get(&apos;%23mystaticautocomplete&apos;)%3B%0Aautocomplete.data(%5B%0A%09%7B%20key%3A%200%2C%20value%3A%20&apos;zero&apos;%20%7D%2C%0A%09%7B%20key%3A%201%2C%20value%3A%20&apos;one&apos;%20%7D%2C%0A%09%7B%20key%3A%202%2C%20value%3A%20&apos;two&apos;%20%7D%2C%0A%09%7B%20key%3A%203%2C%20value%3A%20&apos;three&apos;%20%7D%2C%0A%09%7B%20key%3A%204%2C%20value%3A%20&apos;four&apos;%20%7D%2C%0A%09%7B%20key%3A%205%2C%20value%3A%20&apos;five&apos;%20%7D%2C%0A%09%7B%20key%3A%206%2C%20value%3A%20&apos;six&apos;%20%7D%2C%0A%09%7B%20key%3A%207%2C%20value%3A%20&apos;seven&apos;%20%7D%2C%0A%09%7B%20key%3A%208%2C%20value%3A%20&apos;eight&apos;%20%7D%2C%0A%09%7B%20key%3A%209%2C%20value%3A%20&apos;nine&apos;%20%7D%0A%5D)%3B">
                                     <script type="runnable">
                                         var autocomplete = ts.ui.get('#mystaticautocomplete'); autocomplete.data([ { key: 0, value: 'zero' }, { key: 1, value: 'one' }, { key: 2, value: 'two' }, { key: 3, value: 'three' }, { key: 4, value: 'four' }, { key: 5, value: 'five' }, { key: 6, value:
-                                        'six' },{ key: 7, value: 'seven' }, { key: 8, value: 'eight' }, { key: 9, value: 'nine' }, { key: 10, value: 'ten' } ]);
+                                        'six' }, { key: 7, value: 'seven' }, { key: 8, value: 'eight' }, { key: 9, value: 'nine' } ]);
                                     </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                                     <div class="tabpanels">
                                         <pre class="prism language-javascript">
 <code><span class="token keyword">var</span> autocomplete <span class="token operator">=</span> ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#mystaticautocomplete&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 autocomplete<span class="token punctuation">.</span><span class="token function">data<span class="token punctuation">(</span></span><span class="token punctuation">[</span>
-	<span class="token punctuation">{</span>
-		key<span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
-		value<span class="token punctuation">:</span> <span class="token string">&apos;zero&apos;</span>
-	<span class="token punctuation">}</span><span class="token punctuation">,</span>
-	<span class="token punctuation">{</span>
-		key<span class="token punctuation">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
-		value<span class="token punctuation">:</span> <span class="token string">&apos;one&apos;</span>
-	<span class="token punctuation">}</span><span class="token punctuation">,</span>
-	<span class="token punctuation">{</span>
-		key<span class="token punctuation">:</span> <span class="token number">2</span><span class="token punctuation">,</span>
-		value<span class="token punctuation">:</span> <span class="token string">&apos;two&apos;</span>
-	<span class="token punctuation">}</span><span class="token punctuation">,</span>
-	<span class="token punctuation">{</span>
-		key<span class="token punctuation">:</span> <span class="token number">3</span><span class="token punctuation">,</span>
-		value<span class="token punctuation">:</span> <span class="token string">&apos;three&apos;</span>
-	<span class="token punctuation">}</span><span class="token punctuation">,</span>
-	<span class="token punctuation">{</span>
-		key<span class="token punctuation">:</span> <span class="token number">4</span><span class="token punctuation">,</span>
-		value<span class="token punctuation">:</span> <span class="token string">&apos;four&apos;</span>
-	<span class="token punctuation">}</span><span class="token punctuation">,</span>
-	<span class="token punctuation">{</span>
-		key<span class="token punctuation">:</span> <span class="token number">5</span><span class="token punctuation">,</span>
-		value<span class="token punctuation">:</span> <span class="token string">&apos;five&apos;</span>
-	<span class="token punctuation">}</span><span class="token punctuation">,</span>
-	<span class="token punctuation">{</span>
-		key<span class="token punctuation">:</span> <span class="token number">6</span><span class="token punctuation">,</span>
-		value<span class="token punctuation">:</span> <span class="token string">&apos;six&apos;</span>
-	<span class="token punctuation">}</span><span class="token punctuation">,</span><span class="token punctuation">{</span>
-		key<span class="token punctuation">:</span> <span class="token number">7</span><span class="token punctuation">,</span>
-		value<span class="token punctuation">:</span> <span class="token string">&apos;seven&apos;</span>
-	<span class="token punctuation">}</span><span class="token punctuation">,</span>
-	<span class="token punctuation">{</span>
-		key<span class="token punctuation">:</span> <span class="token number">8</span><span class="token punctuation">,</span>
-		value<span class="token punctuation">:</span> <span class="token string">&apos;eight&apos;</span>
-	<span class="token punctuation">}</span><span class="token punctuation">,</span>
-	<span class="token punctuation">{</span>
-		key<span class="token punctuation">:</span> <span class="token number">9</span><span class="token punctuation">,</span>
-		value<span class="token punctuation">:</span> <span class="token string">&apos;nine&apos;</span>
-	<span class="token punctuation">}</span><span class="token punctuation">,</span>
-	<span class="token punctuation">{</span>
-		key<span class="token punctuation">:</span> <span class="token number">10</span><span class="token punctuation">,</span>
-		value<span class="token punctuation">:</span> <span class="token string">&apos;ten&apos;</span>
-	<span class="token punctuation">}</span>
+	<span class="token punctuation">{</span> key<span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">,</span> value<span class="token punctuation">:</span> <span class="token string">&apos;zero&apos;</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+	<span class="token punctuation">{</span> key<span class="token punctuation">:</span> <span class="token number">1</span><span class="token punctuation">,</span> value<span class="token punctuation">:</span> <span class="token string">&apos;one&apos;</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+	<span class="token punctuation">{</span> key<span class="token punctuation">:</span> <span class="token number">2</span><span class="token punctuation">,</span> value<span class="token punctuation">:</span> <span class="token string">&apos;two&apos;</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+	<span class="token punctuation">{</span> key<span class="token punctuation">:</span> <span class="token number">3</span><span class="token punctuation">,</span> value<span class="token punctuation">:</span> <span class="token string">&apos;three&apos;</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+	<span class="token punctuation">{</span> key<span class="token punctuation">:</span> <span class="token number">4</span><span class="token punctuation">,</span> value<span class="token punctuation">:</span> <span class="token string">&apos;four&apos;</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+	<span class="token punctuation">{</span> key<span class="token punctuation">:</span> <span class="token number">5</span><span class="token punctuation">,</span> value<span class="token punctuation">:</span> <span class="token string">&apos;five&apos;</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+	<span class="token punctuation">{</span> key<span class="token punctuation">:</span> <span class="token number">6</span><span class="token punctuation">,</span> value<span class="token punctuation">:</span> <span class="token string">&apos;six&apos;</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+	<span class="token punctuation">{</span> key<span class="token punctuation">:</span> <span class="token number">7</span><span class="token punctuation">,</span> value<span class="token punctuation">:</span> <span class="token string">&apos;seven&apos;</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+	<span class="token punctuation">{</span> key<span class="token punctuation">:</span> <span class="token number">8</span><span class="token punctuation">,</span> value<span class="token punctuation">:</span> <span class="token string">&apos;eight&apos;</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+	<span class="token punctuation">{</span> key<span class="token punctuation">:</span> <span class="token number">9</span><span class="token punctuation">,</span> value<span class="token punctuation">:</span> <span class="token string">&apos;nine&apos;</span> <span class="token punctuation">}</span>
 <span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
 </pre>
                                     </div>
@@ -190,7 +157,7 @@ autocomplete<span class="token punctuation">.</span><span class="token function"
                     <div class="splitscreen-container">
                         <ul class="splitscreen">
                             <li>
-                                <figure data-ts="DoxScript" class="runnable" data-ts.code="var%20autocomplete%20%3D%20ts.ui.get(&apos;%23myspecialautocomplete&apos;)%3B%0Aautocomplete.data(%5B%0A%09%7B%0A%09%09key%3A%200%2C%0A%09%09value%3A%20&apos;zero&apos;%0A%09%7D%2C%0A%09%7B%0A%09%09key%3A%201%2C%0A%09%09value%3A%20&apos;one&apos;%0A%09%7D%0A%5D)%3B%0Aautocomplete.onselect(function(item)%20%7B%0A%09ts.ui.Notification.success(&apos;%22&apos;%20%2B%20item.value%20%2B%20&apos;%22%20selected&apos;)%3B%0A%09return%20item.value%3B%0A%7D)%3B">
+                                <figure data-ts="DoxScript" class="runnable" data-ts.code="var%20autocomplete%20%3D%20ts.ui.get(&apos;%23myspecialautocomplete&apos;)%3B%0Aautocomplete.data(%5B%0A%09%7B%20key%3A%200%2C%20value%3A%20&apos;zero&apos;%20%7D%2C%0A%09%7B%20key%3A%201%2C%20value%3A%20&apos;one&apos;%20%7D%0A%5D)%3B%0Aautocomplete.onselect(function(item)%20%7B%0A%09ts.ui.Notification.success(&apos;%22&apos;%20%2B%20item.value%20%2B%20&apos;%22%20selected&apos;)%3B%0A%09return%20item.value%3B%0A%7D)%3B">
                                     <script type="runnable">
                                         var autocomplete = ts.ui.get('#myspecialautocomplete'); autocomplete.data([ { key: 0, value: 'zero' }, { key: 1, value: 'one' } ]); autocomplete.onselect(function(item) { ts.ui.Notification.success('"' + item.value + '" selected'); return item.value;
                                         });
@@ -199,14 +166,8 @@ autocomplete<span class="token punctuation">.</span><span class="token function"
                                         <pre class="prism language-javascript">
 <code><span class="token keyword">var</span> autocomplete <span class="token operator">=</span> ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#myspecialautocomplete&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 autocomplete<span class="token punctuation">.</span><span class="token function">data<span class="token punctuation">(</span></span><span class="token punctuation">[</span>
-	<span class="token punctuation">{</span>
-		key<span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
-		value<span class="token punctuation">:</span> <span class="token string">&apos;zero&apos;</span>
-	<span class="token punctuation">}</span><span class="token punctuation">,</span>
-	<span class="token punctuation">{</span>
-		key<span class="token punctuation">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
-		value<span class="token punctuation">:</span> <span class="token string">&apos;one&apos;</span>
-	<span class="token punctuation">}</span>
+	<span class="token punctuation">{</span> key<span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">,</span> value<span class="token punctuation">:</span> <span class="token string">&apos;zero&apos;</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+	<span class="token punctuation">{</span> key<span class="token punctuation">:</span> <span class="token number">1</span><span class="token punctuation">,</span> value<span class="token punctuation">:</span> <span class="token string">&apos;one&apos;</span> <span class="token punctuation">}</span>
 <span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 autocomplete<span class="token punctuation">.</span><span class="token function">onselect<span class="token punctuation">(</span></span><span class="token keyword">function</span><span class="token punctuation">(</span>item<span class="token punctuation">)</span> <span class="token punctuation">{</span>
 	ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Notification<span class="token punctuation">.</span><span class="token function">success<span class="token punctuation">(</span></span><span class="token string">&apos;&quot;&apos;</span> <span class="token operator">+</span> item<span class="token punctuation">.</span>value <span class="token operator">+</span> <span class="token string">&apos;&quot; selected&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>

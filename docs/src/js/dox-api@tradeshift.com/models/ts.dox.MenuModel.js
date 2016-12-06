@@ -5,8 +5,14 @@
 ts.dox.MenuModel = ts.dox.ItemModel.extend({
 
 	/**
-	 * @type {Array}
+	 * Convert search results (list of objects) 
+	 * into models so that they are EDBML aware.
+	 * @type {ts.ui.Collection<ts.ui.Model>}
 	 */
-	searchresults: Array
+	searchresults: ts.ui.Collection.extend({
+		$of: ts.ui.Model.extend({
+			selected: false
+		})
+	}),
 
 });

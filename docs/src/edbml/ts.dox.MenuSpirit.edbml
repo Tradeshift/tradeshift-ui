@@ -57,12 +57,11 @@
 	}
 
 	function renderResult(result) {
+		console.log(String(result));
 		<li>
-			<a data-ts="Button" href="/#${result.href}">
+			@class = result.selected ? 'ts-checked' : null;
+			<a @class data-ts="Button" href="/#${result.href}">
 				<span>${result.title}</span>
-				<!--
-				<span>${result.content}</span>
-				-->
 			</a>
 		</li>
 	}

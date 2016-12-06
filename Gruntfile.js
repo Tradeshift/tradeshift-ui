@@ -274,21 +274,21 @@ module.exports = function(grunt) {
 
 		// crunch to minified CSS
 		cssmin: {
-		  options: {
-		    shorthandCompacting: false,
-		    roundingPrecision: -1,
-		    sourceMap: true
-		  },
-		  dev: {
-		    files: {
-		      'dist/ts.min.css': 'dist/ts.css'
-		    }
-		  },
-		  cdn: {
-		  	files: {
-		  		'dist/cdn/ts-<%= pkg.version %>.min.css': 'dist/cdn/ts-<%= pkg.version %>.css'	
-		  	}
-		  }
+			options: {
+				shorthandCompacting: false,
+				roundingPrecision: -1,
+				sourceMap: true
+			},
+			dev: {
+				files: {
+					'dist/ts.min.css': 'dist/ts.css'
+				}
+			},
+			cdn: {
+				files: {
+					'dist/cdn/ts-<%= pkg.version %>.min.css': 'dist/cdn/ts-<%= pkg.version %>.css'	
+				}
+			}
 		},
 
 		// we need to generate the dox file only whenever

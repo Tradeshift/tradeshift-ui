@@ -1,8 +1,15 @@
 <!DOCTYPE edbml>
 <script>
 	<?input name="menu" type="ts.dox.MenuModel"?>
-	
-	renderItems(menu.items);
+
+	if(menu.searchresults) {
+		renderResults(menu.searchresults);
+	} else {
+		renderItems(menu.items);
+	}
+
+
+	// Menu mode .................................................................
 	
 	function renderItems(items) {
 		items.filter(function(item) {
@@ -40,6 +47,24 @@
 			<i data-ts="Icon" class="${item.icon}"></i>
 			<span>${item.label}</span>
 		</a>
+	}
+
+
+	// Search mode ...............................................................
+
+	function renderResults(results) {
+		results.forEach(renderResult);
+	}
+
+	function renderResult(result) {
+		<li>
+			<a data-ts="Button" href="/#${result.href}">
+				<span>${result.title}</span>
+				<!--
+				<span>${result.content}</span>
+				-->
+			</a>
+		</li>
 	}
 	
 </script>

@@ -167,6 +167,14 @@ ts.dox.MenuSpirit = (function using(isInView, goIntoView) {
         then.now();
       }
     },
+
+    /**
+     * @param {Array<Object>} results
+     */
+    showresults: function(results) {
+    	this._model.searchresults = results || null;
+	    this.script.run(); // TODO: shoul not be needed :(
+    }
     
   });
 

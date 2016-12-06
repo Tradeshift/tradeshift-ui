@@ -558,7 +558,7 @@ table.api th {
 .ts-doxchrome .ts-sidebar .ts-toolbar-title label {
   -webkit-font-smoothing: antialiased;
   font-family: Tradeshifticons;
-  font-size: 37px;
+  font-size: 25px;
   font-weight: normal;
 }
 .ts-doxchrome .ts-sidebar .ts-panel {
@@ -753,7 +753,7 @@ table.api th {
 }
 .ts-doxchrome .ts-topbarspinner {
   z-index: 2001;
-  left: 176px;
+  left: 166px;
 }
 .ts-doxchrome .button-menu-open i {
   transition: opacity 0.2s;

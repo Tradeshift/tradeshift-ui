@@ -240,7 +240,21 @@ ts.ui.SideShowSpirit = (function using(chained, Client, Parser, GuiObject, Color
 		}),
 
 		/**
-		 * Get or set header model.
+		 * Get or set the titlebar search model.
+		 * @param {Object|ts.ui.SearchModel} search
+		 * @returns {ts.ui.SearchModel|ts.ui.SideShowSpirit}
+		 */
+		search: chained(function(search) {
+			var header = this._headerspirit();
+			if(arguments.length) {
+				header.search(search);
+			} else {
+				return header.search();
+			}
+		}),
+
+		/**
+		 * Get or set header model. TODO: Should be private, huh?
 		 * @param @optional {object} opt_json
 		 * @returns {ts.ui.ToolBarModel}
 		 */

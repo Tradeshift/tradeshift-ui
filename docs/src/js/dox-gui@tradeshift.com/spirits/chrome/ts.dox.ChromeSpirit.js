@@ -54,6 +54,15 @@ ts.dox.ChromeSpirit = (function using(CSSPlugin, Then) {
 				location.hash = 'intro/';
 			}
 			this._layout(window.innerWidth);
+			this._setupsearch(this._sbar, this._menu);
+		},
+
+		/**
+		 * TODO: Move to after first iframe load!
+		 */
+		onasync: function() {
+			this.super.onasync();
+			initlunr();
 		},
 		
 		/**
@@ -307,7 +316,7 @@ ts.dox.ChromeSpirit = (function using(CSSPlugin, Then) {
 			var full = 'collapse-full';
 			var mobile = width <= BP_TABLET;
 			var tablet = width > BP_TABLET && width < BP_TABLET + SIDEBAR_MACRO;
-			var desktop = !mobile && !tablet;  
+			var desktop = !mobile && !tablet;	
 			this._sbar.isOpen = desktop;
 			this._sbar._closebutton(!desktop);
 			if(mobile) {
@@ -394,8 +403,92 @@ ts.dox.ChromeSpirit = (function using(CSSPlugin, Then) {
 			} else {
 				document.title = (title + ' — ' + GLOBALTITLE);
 			}
+		},
+
+		/**
+		 * @param {ts.ui.SideBarSpirit} sidebar
+		 * @param {ts.ui.MenuSpirit} menu
+		 */
+		_setupsearch: function(sidebar, menu) {	
+			sidebar.search({
+				onsearch: function(query) {
+					menu.showresults(query ? search(query) : null);
+				}
+			});
 		}
 		
 	});
 		
 }(gui.CSSPlugin, gui.Then));
+
+
+// LUNR ........................................................................
+
+var lunrindex,
+		$results,
+		pagesindex;
+
+
+/**
+ * Trigger a search in lunr and transform the result
+ * @param	{String} query
+ * @return {Array}	results
+ */
+function initlunr() {
+	$.getJSON('/dist/lunr.json').done(function(index) {
+		pagesindex = index;
+		lunrindex = lunr(function() {
+		this.field("title", {
+			boost: 10
+		});
+		this.field("tags", {
+			boost: 5
+		 });
+		this.field("content");
+			// ref is the result item identifier (I chose the page URL)
+			this.ref("href");
+		});
+		pagesindex.forEach(function(page) {
+			if(page) {
+				lunrindex.add(page);
+			}
+		});
+		/*
+		$('input#search').on('keyup', function() {
+			var query = $(this).val();
+			var result = lunrindex.search(query);
+		});
+		*/
+	}).fail(function(jqxhr, textStatus, error) {
+			var err = textStatus + ", " + error;
+			console.error("Error getting index flie:", err);
+	}); 
+}
+
+
+/**
+ * Trigger a search in lunr and transform the result
+ * @param	{String} query
+ * @return {Array}	results
+ */
+function search(query) {
+	return lunrindex.search(query).map(function(result) {
+		return pagesindex.filter(function(page) {
+			return page && page.href === result.ref;
+		})[0];
+	});
+}
+
+/**
+ * get slice string
+ * @param  {String} query string
+ * @param  {Array} content array
+ * @return {String}  results
+ *
+function getContent(query, content) {
+  var queryIndex = content.indexOf(query);
+  var start = queryIndex - 10 > 0 ? queryIndex - 10 : 0;
+  var end = queryIndex + 10 > content.length - 1 ? content.length - 1 : queryIndex + 10;
+  return content.slice(start, end).join(' ') + '...'; //replace(query, '<code>' + query + '</code>') + '...';
+}
+*/

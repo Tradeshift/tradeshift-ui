@@ -2,4 +2,11 @@
  * Menu model.
  * @extends {ts.dox.ItemModel}
  */
-ts.dox.MenuModel = ts.dox.ItemModel.extend();
+ts.dox.MenuModel = ts.dox.ItemModel.extend({
+
+	/**
+	 * @type {Array}
+	 */
+	searchresults: Array
+
+});

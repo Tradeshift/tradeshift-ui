@@ -58,14 +58,6 @@ ts.dox.ChromeSpirit = (function using(CSSPlugin, Then) {
 		},
 
 		/**
-		 * TODO: Move to after first iframe load!
-		 */
-		onasync: function() {
-			this.super.onasync();
-			initlunr();
-		},
-		
-		/**
 		 * Menu is hidden to supress flickering, 
 		 * we'll show it as soon as it's rendered.
 		 * Also, hide SideBar shadow on first item.
@@ -201,6 +193,12 @@ ts.dox.ChromeSpirit = (function using(CSSPlugin, Then) {
 		 * @type {gui.Then}
 		 */
 		 _thenclosed: null,
+
+		 /**
+		  * Search query (while in search mode).
+		  * @type {string}
+		  */
+		 _searchquery: '',
 		 
 		/**
 		 * Extract hash from given URL and assign to window location.
@@ -214,26 +212,30 @@ ts.dox.ChromeSpirit = (function using(CSSPlugin, Then) {
 		},
 		
 		/**
-		 * Location hash changed. 
+		 * Location hash changed. While developing, we double check for 404.
 		 * @param {string} hash
 		 */
 		_onhashchange: function(hash) {
 			if(hash.length > 1) {
 				var path = hash.substring(1);
-				var ajax = new gui.Request('dist/' + path).acceptText();
-				ajax.get().then(function preload(status, data) {
-					switch(status) {
-						case 200:
-							this._load4real(path, data);
-							break;
-						case 404:
-							ts.ui.Notification.error('404 Not Found');
-							break;
-						default:
-							console.log('Unhandled reponse status', status);
-							break;
-					}
-				}, this);
+				if(location.hostname === 'localhost') {
+					var ajax = new gui.Request('dist/' + path).acceptText();
+					ajax.get().then(function preload(status, data) {
+						switch(status) {
+							case 200:
+								this._load4real(path, data);
+								break;
+							case 404:
+								ts.ui.Notification.error('404 Not Found');
+								break;
+							default:
+								console.log('Unhandled reponse status', status);
+								break;
+						}
+					}, this);
+				} else {
+					this._load4real(path, data);
+				}
 			}
 		},
 
@@ -244,7 +246,8 @@ ts.dox.ChromeSpirit = (function using(CSSPlugin, Then) {
 		 */
 		_load4real: function(path, data) {
 			this._blocking(true);
-			this._menu.selectbestitem(path).then(function() {
+			this._menu.selectbestitem(path).then(function(first) {
+				this.css.shift(first, 'selectfirstitem');
 				this.tick.time(function() {
 					this._loadnext(path, data);
 				}, this._isopenmenu() ? 300 : 0);
@@ -261,7 +264,8 @@ ts.dox.ChromeSpirit = (function using(CSSPlugin, Then) {
 			this._openmenu(false);
 			this._showloading(false);
 			this.tick.time(function hotfix() {
-				ts.ui.get(document.documentElement).reflex();
+				ts.ui.get(document.documentElement).reflex(); 
+				initlunr();
 			});
 		},
 		
@@ -297,6 +301,7 @@ ts.dox.ChromeSpirit = (function using(CSSPlugin, Then) {
 					this._loadnext(path, data);
 				}, this);
 			} else {
+				path = this._searchquery ? path + '?query=' + this._searchquery : path;
 				this._oldframe = this.dom.qdoc('iframe', ts.ui.FrameSpirit) || null;
 				this._main.dom.append(ts.ui.FrameSpirit.summon('dist/' + path));
 			}
@@ -409,10 +414,17 @@ ts.dox.ChromeSpirit = (function using(CSSPlugin, Then) {
 		 * @param {ts.ui.SideBarSpirit} sidebar
 		 * @param {ts.ui.MenuSpirit} menu
 		 */
-		_setupsearch: function(sidebar, menu) {	
+		_setupsearch: function(sidebar, menu) {
+			var chrome = this;
 			sidebar.search({
 				onsearch: function(query) {
-					menu.showresults(query ? search(query) : null);
+					chrome._searchquery = query;
+					chrome.broadcast.dispatchGlobal('dox-search-query', query);
+					if(query) {
+						menu.showresults(query, search(query));
+					} else {
+						menu.showmenu();
+					}
 				}
 			});
 		}
@@ -424,9 +436,7 @@ ts.dox.ChromeSpirit = (function using(CSSPlugin, Then) {
 
 // LUNR ........................................................................
 
-var lunrindex,
-		$results,
-		pagesindex;
+var lunrindex, $results, pagesindex;
 
 
 /**
@@ -438,14 +448,9 @@ function initlunr() {
 	$.getJSON('/dist/lunr.json').done(function(index) {
 		pagesindex = index;
 		lunrindex = lunr(function() {
-		this.field("title", {
-			boost: 10
-		});
-		this.field("tags", {
-			boost: 5
-		 });
-		this.field("content");
-			// ref is the result item identifier (I chose the page URL)
+			this.field("title", {boost: 10});
+			this.field("tags", {boost: 5});
+			this.field("content");
 			this.ref("href");
 		});
 		pagesindex.forEach(function(page) {
@@ -453,18 +458,11 @@ function initlunr() {
 				lunrindex.add(page);
 			}
 		});
-		/*
-		$('input#search').on('keyup', function() {
-			var query = $(this).val();
-			var result = lunrindex.search(query);
-		});
-		*/
 	}).fail(function(jqxhr, textStatus, error) {
-			var err = textStatus + ", " + error;
-			console.error("Error getting index flie:", err);
+		var err = textStatus + ", " + error;
+		console.error("Error getting index flie:", err);
 	}); 
 }
-
 
 /**
  * Trigger a search in lunr and transform the result

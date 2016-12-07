@@ -47,6 +47,7 @@ module.exports = function(grunt) {
 			'<meta name="viewport" content="width=device-width"/>',
 			'<script src="//127.0.0.1:10111/dist/ts.min.js"></script>',
 			'<script src="/dist/assets/dox.min.js"></script>',
+			'<script src="/dist/assets/mark.min.js"></script>',
 			'<script src="/dist/assets/jquery-2.2.4.min.js"></script>',
 			'<link rel="stylesheet" href="/dist/assets/dox.css"/>'
 		],
@@ -56,6 +57,7 @@ module.exports = function(grunt) {
 			'<meta name="viewport" content="width=device-width"/>',
 			'<script src="<%=config.runtime_hosting%>/ts-<%=config.runtime_version%>.min.js"></script>',
 			'<script src="/dist/assets/dox.min.js"></script>',
+			'<script src="/dist/assets/mark.min.js"></script>',
 			'<script src="/dist/assets/jquery-2.2.4.min.js"></script>',
 			'<link rel="stylesheet" href="/dist/assets/dox.css"/>'
 		],
@@ -116,7 +118,8 @@ module.exports = function(grunt) {
 						src: [
 							'angular-1.3.6.min.js',
 							'jquery-2.2.4.min.js',
-							'lunr.min.js'
+							'lunr.min.js',
+							'mark.min.js'
 						]
 					}
 				]
@@ -392,28 +395,25 @@ module.exports = function(grunt) {
 	grunt.task.registerTask('lunr', 'generate lunr index', function(){
 		var prefix = 'dist/';
 		grunt.log.writeln("Build pages index");
-		var indexPages = function() {
+		function indexPages() {
 				var pagesIndex = [];
 				grunt.file.recurse(prefix, function(abspath, rootdir, subdir, filename) {
 						grunt.verbose.writeln("Parse file:",abspath);
 						pagesIndex.push(processFile(abspath, filename));
 				});
-
 				return pagesIndex;
 		};
-
-		var processFile = function(abspath, filename) {
+		function processFile(abspath, filename) {
 				var pageIndex;
-
 				if (S(filename).endsWith(".html")) {
 						pageIndex = processHTMLFile(abspath, filename);
 				}
 				return pageIndex;
 		};
-
-		var processHTMLFile = function(abspath, filename) {
+		function processHTMLFile(abspath, filename) {
 			var content = grunt.file.read(abspath);
-			if(S(content).between('<meta','>').contains('noindex')) {
+			var markup = S(content);
+			if(markup.includes('robots') && markup.includes('noindex')) {
 				return;
 			}
 			var title = S(content).between('<title>','</title>').s;
@@ -425,7 +425,6 @@ module.exports = function(grunt) {
 					content: S(content).trim().stripTags().stripPunctuation().s
 			};
 		};
-
 		grunt.file.write("dist/lunr.json", JSON.stringify(indexPages()));
 		grunt.log.ok("Index built");
 	});

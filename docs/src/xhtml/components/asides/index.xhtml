@@ -192,31 +192,38 @@
 
 		<aside data-ts="Aside" id="one" data-ts.open="false" data-ts.title="Aside One" class="ts-bg-red">
 			<div data-ts="Panel">
-				<p>
-					<button data-ts="Button" onclick="toggle('#two')" class="ts-tertiary">
-						<span>Open next aside</span>
-					</button>
+				<menu data-ts="Buttons">
+					<li>
+						<button data-ts="Button" onclick="toggle('#two')" class="ts-tertiary">
+							<span>Open next aside</span>
+						</button>
+					</li>
+				</menu>
 				</p>
 			</div>
 		</aside>
 
 		<aside data-ts="Aside" id="two" data-ts.open="false" data-ts.title="Aside Two" class="ts-bg-purple">
 			<div data-ts="Panel">
-				<p>
-					<button data-ts="Button" onclick="toggle('#three')" class="ts-tertiary">
-						<span>Open next aside</span>
-					</button>
-				</p>
+				<menu data-ts="Buttons">
+					<li>
+						<button data-ts="Button" onclick="toggle('#three')" class="ts-tertiary">
+							<span>Open next aside</span>
+						</button>
+					</li>
+				</menu>
 			</div>
 		</aside>
 
 		<aside data-ts="Aside" id="three" data-ts.open="false" data-ts.title="Aside Three" class="ts-bg-green">
 			<div data-ts="Panel">
-				<p>
-					<button data-ts="Button" onclick="toggle('#one', '#two', '#three')" class="ts-primary">
-						<span>Thanks, now close them</span>
-					</button>
-				</p>
+				<menu data-ts="Buttons">
+					<li>
+						<button data-ts="Button" onclick="toggle('#one', '#two', '#three')" class="ts-primary">
+							<span>Thanks, now close them</span>
+						</button>
+					</li>
+				</menu>
 			</div>
 		</aside>
 

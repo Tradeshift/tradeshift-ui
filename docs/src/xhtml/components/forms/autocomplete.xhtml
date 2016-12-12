@@ -21,49 +21,16 @@
 						<script type="runnable">
 							var autocomplete = ts.ui.get('#mystaticautocomplete');
 							autocomplete.data([
-								{
-									key: 0,
-									value: 'zero'
-								},
-								{
-									key: 1,
-									value: 'one'
-								},
-								{
-									key: 2,
-									value: 'two'
-								},
-								{
-									key: 3,
-									value: 'three'
-								},
-								{
-									key: 4,
-									value: 'four'
-								},
-								{
-									key: 5,
-									value: 'five'
-								},
-								{
-									key: 6,
-									value: 'six'
-								},{
-									key: 7,
-									value: 'seven'
-								},
-								{
-									key: 8,
-									value: 'eight'
-								},
-								{
-									key: 9,
-									value: 'nine'
-								},
-								{
-									key: 10,
-									value: 'ten'
-								}
+								{ key: 0, value: 'zero' },
+								{ key: 1, value: 'one' },
+								{ key: 2, value: 'two' },
+								{ key: 3, value: 'three' },
+								{ key: 4, value: 'four' },
+								{ key: 5, value: 'five' },
+								{ key: 6, value: 'six' },
+								{ key: 7, value: 'seven' },
+								{ key: 8, value: 'eight' },
+								{ key: 9, value: 'nine' }
 							]);
 						</script>
 					</figure>
@@ -161,14 +128,8 @@
 						<script type="runnable">
 							var autocomplete = ts.ui.get('#myspecialautocomplete');
 							autocomplete.data([
-								{
-									key: 0,
-									value: 'zero'
-								},
-								{
-									key: 1,
-									value: 'one'
-								}
+								{ key: 0, value: 'zero' },
+								{ key: 1, value: 'one' }
 							]);
 							autocomplete.onselect(function(item) {
 								ts.ui.Notification.success('"' + item.value + '" selected');

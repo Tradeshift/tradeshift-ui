@@ -50,7 +50,7 @@ ts.ui.FakeInputSpirit = (function() {
 		proxy: function(element) {
 			this._proxyelement = element;
 			this._proxyspirit = ts.ui.get(element);
-			this.event.add('keydown', element, this);
+			this.event.add('keydown keypress keyup', element, this);
 		},
 
 		/**
@@ -62,19 +62,19 @@ ts.ui.FakeInputSpirit = (function() {
 			switch (e.type) {
 				/*
 				 * Try not to focus this, focus the real 
-				 * element for better keyboard handling.
+				 * element for better keyboard handling. 
+				 * TODO: This makes text not selectable 
+				 * in fake select (when readonly).
 				 */
 				case 'focus':
-					switch(e.target) {
-						case this.element:
+					if(e.target === this.element) {
+						if(!this._inactive()) {
 							this._proxyelement.focus();
-							break;
-						case this._proxyelement:
-							break;
+						}
 					}
 					break;
 				case 'click':
-					if(!this.disabled) {
+					if(!this._inactive()) {
 						this._maybeopen();
 					}
 					break;
@@ -91,7 +91,7 @@ ts.ui.FakeInputSpirit = (function() {
 						case KEY_ENTER:
 						case KEY_SPACE:
 							e.preventDefault();
-							if(!this.disabled) {
+							if(!this._inactive()) {
 								this._maybeopen();
 							}
 							break;
@@ -117,8 +117,19 @@ ts.ui.FakeInputSpirit = (function() {
 		// Private .................................................................
 
 		/**
-		 * Click might be triggered twice, 
-		 * Is it because of FastClick.js??
+		 * The proxied element is disabled or readonly? We double check `readonly` 
+		 * to support readonly on SELECT fields, who according to spec cannot be 
+		 * readonly (only disabled).
+		 * @returns {boolean}
+		 */
+		_inactive: function() {
+			var elm = this._proxyelement;
+			return !!(elm.disabled || elm.readOnly || elm.hasAttribute('readonly'));
+		},
+
+		/**
+		 * TODO: Click might be triggered twice, is it because of FastClick.js??
+		 * TODO: Ouch! https://bugzilla.mozilla.org/show_bug.cgi?id=392863
 		 */
 		_maybeopen: function() {
 			if(!this._isopen) {

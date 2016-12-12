@@ -29,7 +29,6 @@ ts.ui.DateInputSpirit = (function(tick, time) {
 		 */
 		onconfigure: function() {
 			this.super.onconfigure();
-			this.att.set('readonly', true);
 			this.att.add('min max');
 		},
 

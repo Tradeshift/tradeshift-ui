@@ -147,11 +147,11 @@ ts.ui.TextAreaSpirit = (function using(Type, Client, unit, tick, time) {
 		 * If the height changed, dispatch action to any containing layout managers.
 		 */
 		_autosize: function() {
-			var target;
+			var target, padding = unit * 0.5;
 			var current = this.css.height || this.box.height;
 			this.css.height = 'auto';
 			if((target = Math.floor(this.element.scrollHeight / unit) * unit) > 0) {
-				this.css.height = target;
+				this.css.height = target + padding;
 				if(current !== target) {
 					this._hotfixchrome(this.element);
 					this.action.dispatch(ts.ui.ACTION_CHANGED, {
@@ -197,40 +197,3 @@ ts.ui.TextAreaSpirit = (function using(Type, Client, unit, tick, time) {
 	ts.ui.FieldSpirit.TICK_SYNC,
 	ts.ui.FieldSpirit.TICK_TIME
 ));
-
-
-/*
- * BACKUP HOTFIX FOR V4 UNTIL NEXT RELEASE .....................................
- *
-if(gui.Client.isChrome) {
-
-	// abort when scrollbar
-	function hasscrollbar(elem) {
-		return elem.scrollHeight > elem.offsetHeight;
-	}
-
-	// force repaint
-	function forcerepaint(comp, elem) {
-		gui.Tick.nextFrame(function() {
-			comp.css.display = 'none';
-			elem.offsetHeight;
-			comp.css.display = '';
-		});
-	}
-
-	// setup to monitor texareas changing height
-	ts.ui.ready(function() {
-		ts.ui.get('html').action.add(ts.ui.ACTION_CHANGED, {
-			onaction: function(a) {
-				var comp = a.target;
-				var elem = comp.element;
-				if(ts.ui.TextAreaSpirit.is(comp)) {
-					if(!hasscrollbar(elem)) {
-						forcerepaint(comp, elem);
-					}
-				}
-			}
-		})
-	});
-}
-*/

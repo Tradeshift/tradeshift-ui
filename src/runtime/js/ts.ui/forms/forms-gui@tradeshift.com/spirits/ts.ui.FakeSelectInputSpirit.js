@@ -371,6 +371,23 @@ ts.ui.FakeSelectInputSpirit = (function using(chained, confirmed, tick, time, gu
 		_onasideclose: function(menu, observer) {
 			menu.removeObserver(observer); // TODO: auto when disposed!
 			menu.selectedIndexes.removeObserver(observer);
+			if(menu.select === 'one') {
+				this._instantfeedback(menu.selectedIndex);
+			}
+		},
+
+		/**
+		 * We've set it up so that the `change` event doesn't trigger 
+		 * until the Aside is fully closed (so that the animation is 
+		 * not ruined by other activity), but here we hack it so that 
+		 * there is instant visual feedback when selection changes.
+		 * @param {number} index
+		 */
+		_instantfeedback: function(index) {
+			var options = this._proxyelement.options;
+			if(options[index]) {
+				this.value = options[index].text;
+			}
 		},
 
 		/**

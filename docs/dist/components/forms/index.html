@@ -13,6 +13,7 @@
     <link rel="prefetch" title="Autocomplete" href="autocomplete.html">
     <link rel="prefetch" title="Error / Info" href="example.html">
     <link rel="prefetch" title="Test" href="test-1.html" class="hidden">
+    <link rel="prefetch" title="Redesign" href="redesign.html" class="hidden">
     <script>
         ts.dox.tabs()
     </script>
@@ -319,7 +320,7 @@
                         </span>
                     </h3>
                     <p>The <code class="el">select</code> <code class="attr-pair"><span>multiple</span></code> only triggers a change when the <samp>Done</samp> button is pressed. You can customize the button label by adding a <code class="el">button</code>                        to the <code class="el">label</code> element, but note that this only configures the <em>text</em> on the button (eg. no event listeners are fired).</p>
-                    <figure data-ts="DoxMarkup" data-ts.code="%3Cform%20data-ts%3D%22Form%22%3E%0A%09%3Cfieldset%3E%0A%09%09%3Clabel%3E%0A%09%09%09%3Cspan%3ESelect%20multiple%3C%2Fspan%3E%0A%09%09%09%3Cselect%20multiple%3E%0A%09%09%09%09%3Coption%20value%3D%22a%22%20selected%3EOne%3C%2Foption%3E%0A%09%09%09%09%3Coption%20value%3D%22b%22%20selected%3ETwo%3C%2Foption%3E%0A%09%09%09%09%3Coption%20value%3D%22c%22%3EThree%3C%2Foption%3E%0A%09%09%09%09%3Coption%20value%3D%22d%22%3EFour%3C%2Foption%3E%0A%09%09%09%09%3Coption%20value%3D%22e%22%3EFive%3C%2Foption%3E%0A%09%09%09%3C%2Fselect%3E%0A%09%09%09%3Cbutton%3ECool%2C%20apply%20changes!%3C%2Fbutton%3E%0A%09%09%3C%2Flabel%3E%0A%09%3C%2Ffieldset%3E%0A%3C%2Fform%3E">
+                    <figure data-ts="DoxMarkup" data-ts.code="%3Cform%20data-ts%3D%22Form%22%3E%0A%09%3Cfieldset%3E%0A%09%09%3Clabel%3E%0A%09%09%09%3Cspan%3ESelect%20multiple%3C%2Fspan%3E%0A%09%09%09%3Cselect%20multiple%3E%0A%09%09%09%09%3Coption%20value%3D%22a%22%3EOne%3C%2Foption%3E%0A%09%09%09%09%3Coption%20value%3D%22b%22%3ETwo%3C%2Foption%3E%0A%09%09%09%09%3Coption%20value%3D%22c%22%3EThree%3C%2Foption%3E%0A%09%09%09%09%3Coption%20value%3D%22d%22%3EFour%3C%2Foption%3E%0A%09%09%09%09%3Coption%20value%3D%22e%22%3EFive%3C%2Foption%3E%0A%09%09%09%3C%2Fselect%3E%0A%09%09%09%3Cbutton%3ECool%2C%20apply%20changes!%3C%2Fbutton%3E%0A%09%09%3C%2Flabel%3E%0A%09%3C%2Ffieldset%3E%0A%3C%2Fform%3E">
                         <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Atrue%2C%22runs%22%3Afalse%2C%22flip%22%3Atrue%7D">
                         <div class="tabpanels">
                             <div class="output">
@@ -328,8 +329,8 @@
                                         <label>
 			<span>Select multiple</span>
 			<select multiple>
-				<option value="a" selected>One</option>
-				<option value="b" selected>Two</option>
+				<option value="a">One</option>
+				<option value="b">Two</option>
 				<option value="c">Three</option>
 				<option value="d">Four</option>
 				<option value="e">Five</option>
@@ -345,8 +346,8 @@
 		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>label</span><span class="token punctuation">&gt;</span></span>
 			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">&gt;</span></span>Select multiple<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span>
 			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>select</span> <span class="token attr-name">multiple</span><span class="token punctuation">&gt;</span></span>
-				<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>option</span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>a<span class="token punctuation">&quot;</span></span> <span class="token attr-name">selected</span><span class="token punctuation">&gt;</span></span>One<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>option</span><span class="token punctuation">&gt;</span></span>
-				<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>option</span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>b<span class="token punctuation">&quot;</span></span> <span class="token attr-name">selected</span><span class="token punctuation">&gt;</span></span>Two<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>option</span><span class="token punctuation">&gt;</span></span>
+				<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>option</span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>a<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>One<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>option</span><span class="token punctuation">&gt;</span></span>
+				<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>option</span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>b<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>Two<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>option</span><span class="token punctuation">&gt;</span></span>
 				<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>option</span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>c<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>Three<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>option</span><span class="token punctuation">&gt;</span></span>
 				<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>option</span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>d<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>Four<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>option</span><span class="token punctuation">&gt;</span></span>
 				<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>option</span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>e<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>Five<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>option</span><span class="token punctuation">&gt;</span></span>

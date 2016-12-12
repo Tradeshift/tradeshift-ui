@@ -169,11 +169,14 @@ header<span class="token punctuation">.</span>buttons<span class="token punctuat
         </aside>
         <div data-ts="Footer">
             <p>Footer content. The button below is only relevant in <strong>mobile</strong> view.</p>
-            <p>
-                <button data-ts="Button" class="ts-tertiary" onclick="gui.get(&apos;mysidebar&apos;).toggle()">
-						<span>Toggle SideBar</span>
-					</button>
-            </p>
+            <menu data-ts="Buttons">
+                <li>
+                    <button data-ts="Button" class="ts-tertiary" onclick="gui.get(&apos;mysidebar&apos;).toggle()">
+							<span>Toggle SideBar</span>
+						</button>
+                </li>
+            </menu>
+            <p></p>
         </div>
     </aside>
 </body>

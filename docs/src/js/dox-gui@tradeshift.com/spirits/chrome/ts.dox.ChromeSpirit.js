@@ -218,12 +218,12 @@ ts.dox.ChromeSpirit = (function using(CSSPlugin, Then) {
 		_onhashchange: function(hash) {
 			if(hash.length > 1) {
 				var path = hash.substring(1);
-				if(true || location.hostname === 'localhost') {
+				if(location.hostname === 'localhost') {
 					var ajax = new gui.Request('dist/' + path).acceptText();
-					ajax.get().then(function preload(status, data) {
+					ajax.get().then(function preload(status) {
 						switch(status) {
 							case 200:
-								this._load4real(path, data);
+								this._load4real(path);
 								break;
 							case 404:
 								ts.ui.Notification.error('404 Not Found');
@@ -242,14 +242,13 @@ ts.dox.ChromeSpirit = (function using(CSSPlugin, Then) {
 		/** 
 		 * Load the page (now known to exist).
 		 * @param {string} path
-		 * @param {string} date (not used)
 		 */
-		_load4real: function(path, data) {
+		_load4real: function(path) {
 			this._blocking(true);
 			this._menu.selectbestitem(path).then(function(first) {
 				this.css.shift(first, 'selectfirstitem');
 				this.tick.time(function() {
-					this._loadnext(path, data);
+					this._loadnext(path);
 				}, this._isopenmenu() ? 300 : 0);
 			}, this);
 		},
@@ -291,14 +290,13 @@ ts.dox.ChromeSpirit = (function using(CSSPlugin, Then) {
 		 * be creating an unique IFRAME for every page load. 
 		 * Make sure not to transition while we are loading.
 		 * @param {string} path
-		 * @param {string} data (not used)
 		 */
-		_loadnext: function(path, data) {
+		_loadnext: function(path) {
 			this._showloading(true);
 			if(this._isopenmenu()) {
 				this._openmenu(false);
 				this._thenclosed = new Then(function() {
-					this._loadnext(path, data);
+					this._loadnext(path);
 				}, this);
 			} else {
 				path = this._searchquery ? path + '?query=' + this._searchquery : path;

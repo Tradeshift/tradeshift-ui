@@ -6,6 +6,13 @@
 ts.ui.Greenfield = (function using(up, down) {
 
 	/**
+	 * Dispatching actions up or down. We'll
+	 * redefine this method in `setupactions`
+	 * @param {object} data
+	 */
+	var doaction = function(data) {};
+
+	/**
 	 * App frame signals up, host frame signals down.
 	 */
 	function setupactions() {
@@ -36,13 +43,6 @@ ts.ui.Greenfield = (function using(up, down) {
 			gui.init(setupactions);
 		}
 	}
-
-	/**
-	 * Dispatching actions up or down. We'll
-	 * redefine this method in `setupactions`
-	 * @param {object} data
-	 */
-	function doaction(data) {}
 
 	/**
 	 * Handle actions *descending* from the Greenfield host.

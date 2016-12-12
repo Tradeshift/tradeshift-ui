@@ -244,7 +244,7 @@ module.exports = function(grunt) {
 			}
 		},
 
-		// compile LESS to minified CSS
+		// compile LESS to CSS
 		less: {
 			before: {
 				options: {
@@ -254,28 +254,11 @@ module.exports = function(grunt) {
 				files: {
 					'temp/css-compiled.css': 'src/runtime/less/build.less'
 				}
-			},
-			dev: {
-				options: {
-					relativeUrls: true,
-					cleancss: true
-				},
-				files: {
-					'dist/ts.min.css': 'dist/ts.css'
-				}
-			},
-			cdn: {
-				options: {
-					relativeUrls: true,
-					cleancss: true
-				},
-				files: {
-					'dist/cdn/ts-<%= pkg.version %>.min.css': 'dist/cdn/ts-<%= pkg.version %>.css'
-				}
 			}
 		},
 
-		// CSS post-parsing will optimize for mobile (removing :hover declarations)
+		// CSS post-parsing will optimize for mobile 
+		// (only do :hover on devices with a mouse!)
 		touchfriendly: {
 			dev: {
 				files: {
@@ -289,8 +272,28 @@ module.exports = function(grunt) {
 			}
 		},
 
+		// crunch to minified CSS
+		cssmin: {
+			options: {
+				shorthandCompacting: false,
+				roundingPrecision: -1,
+				sourceMap: true
+			},
+			dev: {
+				files: {
+					'dist/ts.min.css': 'dist/ts.css'
+				}
+			},
+			cdn: {
+				files: {
+					'dist/cdn/ts-<%= pkg.version %>.min.css': 'dist/cdn/ts-<%= pkg.version %>.css'	
+				}
+			}
+		},
+
 		// we need to generate the dox file only whenever
 		// a JS file gets is added, removed or renamed.
+		// TODO: Remove this stuff!
 		spiritualdox : {
 			runtime : {
 				files : {
@@ -342,7 +345,7 @@ module.exports = function(grunt) {
 			},
 			*/
 			less: {
-				tasks: [ 'less:before', 'touchfriendly', 'less:dev', 'tsless:dev'],
+				tasks: [ 'less:before', 'touchfriendly', 'cssmin:dev', 'tsless:dev'],
 				files: ['src/runtime/less/**/*.less']
 			},
 			edbml: {
@@ -474,13 +477,14 @@ module.exports = function(grunt) {
 	 * @returns {Array<string>}
 	 */
 	function getapisources() {
+		const build = src => getbuild('src/runtime/js/ts.ui/' + src);
 		return ['src/runtime/js/ts-polyfilla.js', 'src/runtime/js/ts-namespace.js', 'src/runtime/js/ts.ui/ts.ui.js'].map(validated).
 			concat(getbuild('src/runtime/js/ts.lib/build.json')).
-			concat(getbuild('src/runtime/js/ts.ui/core/core-api@tradeshift.com/build.json')).
-			concat(getbuild('src/runtime/js/ts.ui/forms/forms-api@tradeshift.com/build.json')).
-			concat(getbuild('src/runtime/js/ts.ui/objects/objects-api@tradeshift.com/build.json')).
-			concat(getbuild('src/runtime/js/ts.ui/bars/bars-api@tradeshift.com/build.json')).
-			concat(getbuild('src/runtime/js/ts.ui/tables/tables-api@tradeshift.com/build.json'));
+			concat(build('core/core-api@tradeshift.com/build.json')).
+			concat(build('forms/forms-api@tradeshift.com/build.json')).
+			concat(build('objects/objects-api@tradeshift.com/build.json')).
+			concat(build('bars/bars-api@tradeshift.com/build.json')).
+			concat(build('tables/tables-api@tradeshift.com/build.json'));
 	}
 
 	/**
@@ -488,12 +492,13 @@ module.exports = function(grunt) {
 	 * @returns {Array<string>}
 	 */
 	function getguisources() {
+		const build = src => getbuild('src/runtime/js/ts.ui/' + src);
 		return [].
-			concat(getbuild('src/runtime/js/ts.ui/core/core-gui@tradeshift.com/build.json')).
-			concat(getbuild('src/runtime/js/ts.ui/forms/forms-gui@tradeshift.com/build.json')).
-			concat(getbuild('src/runtime/js/ts.ui/objects/objects-gui@tradeshift.com/build.json')).
-			concat(getbuild('src/runtime/js/ts.ui/bars/bars-gui@tradeshift.com/build.json')).
-			concat(getbuild('src/runtime/js/ts.ui/tables/tables-gui@tradeshift.com/build.json'));
+			concat(build('core/core-gui@tradeshift.com/build.json')).
+			concat(build('forms/forms-gui@tradeshift.com/build.json')).
+			concat(build('objects/objects-gui@tradeshift.com/build.json')).
+			concat(build('bars/bars-gui@tradeshift.com/build.json')).
+			concat(build('tables/tables-gui@tradeshift.com/build.json'));
 	}
 
 	/**
@@ -653,7 +658,7 @@ module.exports = function(grunt) {
 			'uglify:dev',
 			'less:before',
 			'touchfriendly:dev',
-			'less:dev',
+			'cssmin:dev',
 			'tsless:dev',
 			'copy:lang_dev',
 			'concurrent'
@@ -679,7 +684,7 @@ module.exports = function(grunt) {
 			'uglify:cdn',
 			'less:before',
 			'touchfriendly:cdn',
-			'less:cdn',
+			'cssmin:cdn',
 			'copy:lang_cdn',
 			'compress',
 			'copy:fix_less_gzip',
@@ -704,7 +709,7 @@ module.exports = function(grunt) {
 	grunt.registerTask('css', 'Compiles CSS', [
 		'less:before',
 		'touchfriendly:dev',
-		'less:dev',
+		'cssmin:dev',
 		'tsless:dev'
 	]);
 

@@ -29,9 +29,9 @@ ts.ui.OptionSpirit = ts.ui.FieldSpirit.extend({
 	$updatestyling: function() {
 		this.super.$updatestyling();
 		this._label(function(label) {
-			label.$option();
+			label.$option(this.element.type);
 		});
-		this._group(function(group) {
+		this._fieldset(function(group) {
 			group.$options();
 		});
 	},

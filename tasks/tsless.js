@@ -6,9 +6,8 @@ var underline = '', it = 80;
 while(it) { underline += '.'; it--;}
 
 /**
- * Collect the LESS for public consumption, so that devs can copy-paste the 
- * thing into their own LESS setup. For now we simply release *all* the LESS 
- * (minus some comments and stuff), maybr the variables and mixins are enough.
+ * Publish some LESS for public consumption (variables and mixins for now), 
+ * so that devs can copy-paste these things into their own LESS setup.
  */
 module.exports = {
 	init: function(grunt) {

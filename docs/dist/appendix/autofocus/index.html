@@ -71,29 +71,35 @@
     </aside>
     <aside data-ts="Aside" id="one" data-ts.title="Aside One" class="ts-bg-red">
         <div data-ts="Panel">
-            <p>
-                <button data-ts="Button" onclick="toggle(&apos;#two&apos;)" class="ts-primary">
-						<span>Open next aside</span>
-					</button>
-            </p>
+            <menu data-ts="Buttons">
+                <li>
+                    <button data-ts="Button" onclick="toggle(&apos;#two&apos;)" class="ts-primary">
+							<span>Open next aside</span>
+						</button>
+                </li>
+            </menu>
         </div>
     </aside>
     <aside data-ts="Aside" id="two" data-ts.title="Aside Two" class="ts-bg-purple">
         <div data-ts="Panel">
-            <p>
-                <button data-ts="Button" onclick="toggle(&apos;#three&apos;)" class="ts-primary">
-						<span>Open next aside</span>
-					</button>
-            </p>
+            <menu data-ts="Buttons">
+                <li>
+                    <button data-ts="Button" onclick="toggle(&apos;#three&apos;)" class="ts-primary">
+							<span>Open next aside</span>
+						</button>
+                </li>
+            </menu>
         </div>
     </aside>
     <aside data-ts="Aside" id="three" data-ts.title="Aside Three" class="ts-bg-green">
         <div data-ts="Panel">
-            <p>
-                <button data-ts="Button" onclick="toggle(&apos;#one&apos;, &apos;#two&apos;, &apos;#three&apos;)" class="ts-primary">
-						<span>Thanks, now close them</span>
-					</button>
-            </p>
+            <menu data-ts="Buttons">
+                <li>
+                    <button data-ts="Button" onclick="toggle(&apos;#one&apos;, &apos;#two&apos;, &apos;#three&apos;)" class="ts-primary">
+							<span>Thanks, now close them</span>
+						</button>
+                </li>
+            </menu>
             <div data-ts="Note">
                 <i class="ts-icon-error"></i>
                 <p>It appears we have a bug. If you do click that button, the focus will be lost. But you can try to close them one at a time by clicking the <code>X</code> in the corner.</p>

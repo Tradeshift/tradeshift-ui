@@ -17,7 +17,6 @@ ts.ui.FakeDateInputSpirit = (function using(chained, tick, time) {
 		 */
 		onattach: function() {
 			this.super.onattach();
-			this.att.set('readonly', true); // or what?
 			this.css.add(ts.ui.CLASS_DATE);
 		},
 		

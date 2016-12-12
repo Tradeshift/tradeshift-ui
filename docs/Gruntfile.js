@@ -338,7 +338,7 @@ module.exports = function(grunt) {
 	 * slow down the loading of the (first loaded) iframe.
 	 * @param {Array<object>} items
 	 */
-	function seomenu(items, prefetch) {
+	function seomenu(items) {
 		const NEW = '\n\t\t';
 		return items.reduce((html, item, i) => {
 			if(!item.hidden) {

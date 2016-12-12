@@ -218,7 +218,7 @@ ts.dox.ChromeSpirit = (function using(CSSPlugin, Then) {
 		_onhashchange: function(hash) {
 			if(hash.length > 1) {
 				var path = hash.substring(1);
-				if(location.hostname === 'localhost') {
+				if(true || location.hostname === 'localhost') {
 					var ajax = new gui.Request('dist/' + path).acceptText();
 					ajax.get().then(function preload(status, data) {
 						switch(status) {
@@ -234,7 +234,7 @@ ts.dox.ChromeSpirit = (function using(CSSPlugin, Then) {
 						}
 					}, this);
 				} else {
-					this._load4real(path, data);
+					this._load4real(path);
 				}
 			}
 		},

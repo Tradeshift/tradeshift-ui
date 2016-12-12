@@ -218,6 +218,11 @@ ts.ui.SideShowSpirit = (function using(chained, Client, Parser, GuiObject, Color
 			switch(a.type) {
 				case PANEL_ATTACH:
 				case PANEL_DETACH:
+					var panel = a.target;
+					var added = a.type === PANEL_ATTACH;
+					if(panel.label) { // otherwise just ignore
+						this._updatetab(panel, added);
+					}
 					a.consume(); // don't exit the Aside
 					break;
 			}
@@ -297,6 +302,13 @@ ts.ui.SideShowSpirit = (function using(chained, Client, Parser, GuiObject, Color
 			this.action.dispatch('FLIP', this.flipped);
 		},
 
+		/**
+		 * Get the TabBar 
+		 * @returns {ts.ui.TabBarSpirit}
+		 */
+		tabbar: function() {
+			return this._tabbar;
+		},
 
 		// Privileged ..............................................................
 
@@ -323,6 +335,12 @@ ts.ui.SideShowSpirit = (function using(chained, Client, Parser, GuiObject, Color
 		 * 
 		 */
 		_theme: null,
+
+		/**
+		 * The Main tabbar.
+		 * @type {ts.ui.TabBarSpirit}
+		 */
+		_tabbar: null,
 		
 		/**
 		 * Monitor footer updates until we can enable CSS layout again.
@@ -597,6 +615,19 @@ ts.ui.SideShowSpirit = (function using(chained, Client, Parser, GuiObject, Color
 		},
 
 		/**
+		 * Remove the tabbar if you don't need it any more
+		 * And then reflex the spirit  
+		 */
+		_removetabbar: function() {
+			this._reflex(function() {
+				var bar = this.tabbar();
+				bar.dom.remove();
+				this.css.remove('ts-has-panels'); 
+				this._tabbar = null;
+			});
+		},
+
+		/**
 		 * Multiple panels found, setup the tabbar to switch between them.
 		 * @param {Array<ts.ui.PanelSpirit>} panels
 		 * @param {ts.ui.SideBarSpirit} that
@@ -608,7 +639,7 @@ ts.ui.SideShowSpirit = (function using(chained, Client, Parser, GuiObject, Color
 					label: panel.label,
 					selected: index === 0,
 					$onselect: function() {
-						panels.forEach(function(p) {
+						that.dom.qall('this > .ts-panel', ts.ui.PanelSpirit).forEach(function(p) {
 							if(p === panel) {
 								p.show();
 							} else {
@@ -619,6 +650,56 @@ ts.ui.SideShowSpirit = (function using(chained, Client, Parser, GuiObject, Color
 					}
 				});
 			});
+			this._tabbar = tabbar;
+		},
+
+		/**
+		 * Added or remove tab for Panel at given index.
+		 * TODO: Support a `selected` property in the {ts.ui.PanelSpirit}
+		 * TODO: When all panels are done, somehow force `tabbar.script.run()` ...
+		 * @param {ts.ui.PanelSpirit} panel
+		 */
+		_updatetab: function(panel, added) {
+			var css = 'this > .ts-panel';
+			var bar = this.tabbar();
+			var elm = this.element;
+			var dom = this.dom;
+			var index = dom.qall(css, ts.ui.PanelSpirit).indexOf(panel);
+			if (!bar) {
+				return;
+			}
+			if(added) {
+				if(index !== 0) {
+					panel.hide();
+				}
+				bar.tabs().splice(index, 0, {
+					label: panel.label,
+					selected: index === 0,
+					$onselect: function() {
+						dom.qall(css, ts.ui.PanelSpirit).forEach(function(p) {
+							if(p === panel) {
+								p.show();
+								elm.scrollTop = 0; // TODO(jmo@): account for topbar position in mobile breakpoint
+								p.$onselect();
+							} else {
+								p.hide();
+							}
+						});
+					}
+				});
+			} else {
+				bar.tabs().splice(index, 1).forEach(function(tab) {
+					if (tab.selected) {
+						var selectedindex = index ? index - 1 : index;
+						bar.tabs()[selectedindex].select();
+					}
+					tab.dispose();
+				});
+				if (bar.tabs().length === 1) {
+					this._removetabbar();
+				}
+			}
+			bar.$hascontent(); // for the tabbar to render instantly
 		},
 		
 		/**

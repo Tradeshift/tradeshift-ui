@@ -30,7 +30,7 @@ gui.Then.prototype = {
 		this._callback = callback ? callback : null;
 		this._pointer = thisp ? thisp : null;
 		if (this._now) {
-			this.now();
+			this.now.apply(this, this._arg);
 		}
 	},
 
@@ -46,6 +46,7 @@ gui.Then.prototype = {
 			this.then(null, null);
 			c.apply(p, arguments);
 		} else {
+			this._arg = arguments;
 			this._now = true;
 		}
 	}),

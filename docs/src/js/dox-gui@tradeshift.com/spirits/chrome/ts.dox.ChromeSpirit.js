@@ -54,8 +54,9 @@ ts.dox.ChromeSpirit = (function using(CSSPlugin, Then) {
 				location.hash = 'intro/';
 			}
 			this._layout(window.innerWidth);
+			this._setupsearch(this._sbar, this._menu);
 		},
-		
+
 		/**
 		 * Menu is hidden to supress flickering, 
 		 * we'll show it as soon as it's rendered.
@@ -192,6 +193,12 @@ ts.dox.ChromeSpirit = (function using(CSSPlugin, Then) {
 		 * @type {gui.Then}
 		 */
 		 _thenclosed: null,
+
+		 /**
+		  * Search query (while in search mode).
+		  * @type {string}
+		  */
+		 _searchquery: '',
 		 
 		/**
 		 * Extract hash from given URL and assign to window location.
@@ -205,26 +212,30 @@ ts.dox.ChromeSpirit = (function using(CSSPlugin, Then) {
 		},
 		
 		/**
-		 * Location hash changed. 
+		 * Location hash changed. While developing, we double check for 404.
 		 * @param {string} hash
 		 */
 		_onhashchange: function(hash) {
 			if(hash.length > 1) {
 				var path = hash.substring(1);
-				var ajax = new gui.Request('dist/' + path).acceptText();
-				ajax.get().then(function preload(status, data) {
-					switch(status) {
-						case 200:
-							this._load4real(path, data);
-							break;
-						case 404:
-							ts.ui.Notification.error('404 Not Found');
-							break;
-						default:
-							console.log('Unhandled reponse status', status);
-							break;
-					}
-				}, this);
+				if(location.hostname === 'localhost') {
+					var ajax = new gui.Request('dist/' + path).acceptText();
+					ajax.get().then(function preload(status, data) {
+						switch(status) {
+							case 200:
+								this._load4real(path, data);
+								break;
+							case 404:
+								ts.ui.Notification.error('404 Not Found');
+								break;
+							default:
+								console.log('Unhandled reponse status', status);
+								break;
+						}
+					}, this);
+				} else {
+					this._load4real(path, data);
+				}
 			}
 		},
 
@@ -235,7 +246,8 @@ ts.dox.ChromeSpirit = (function using(CSSPlugin, Then) {
 		 */
 		_load4real: function(path, data) {
 			this._blocking(true);
-			this._menu.selectbestitem(path).then(function() {
+			this._menu.selectbestitem(path).then(function(first) {
+				this.css.shift(first, 'selectfirstitem');
 				this.tick.time(function() {
 					this._loadnext(path, data);
 				}, this._isopenmenu() ? 300 : 0);
@@ -252,7 +264,8 @@ ts.dox.ChromeSpirit = (function using(CSSPlugin, Then) {
 			this._openmenu(false);
 			this._showloading(false);
 			this.tick.time(function hotfix() {
-				ts.ui.get(document.documentElement).reflex();
+				ts.ui.get(document.documentElement).reflex(); 
+				initlunr();
 			});
 		},
 		
@@ -288,6 +301,7 @@ ts.dox.ChromeSpirit = (function using(CSSPlugin, Then) {
 					this._loadnext(path, data);
 				}, this);
 			} else {
+				path = this._searchquery ? path + '?query=' + this._searchquery : path;
 				this._oldframe = this.dom.qdoc('iframe', ts.ui.FrameSpirit) || null;
 				this._main.dom.append(ts.ui.FrameSpirit.summon('dist/' + path));
 			}
@@ -307,7 +321,7 @@ ts.dox.ChromeSpirit = (function using(CSSPlugin, Then) {
 			var full = 'collapse-full';
 			var mobile = width <= BP_TABLET;
 			var tablet = width > BP_TABLET && width < BP_TABLET + SIDEBAR_MACRO;
-			var desktop = !mobile && !tablet;  
+			var desktop = !mobile && !tablet;	
 			this._sbar.isOpen = desktop;
 			this._sbar._closebutton(!desktop);
 			if(mobile) {
@@ -394,8 +408,85 @@ ts.dox.ChromeSpirit = (function using(CSSPlugin, Then) {
 			} else {
 				document.title = (title + ' — ' + GLOBALTITLE);
 			}
+		},
+
+		/**
+		 * @param {ts.ui.SideBarSpirit} sidebar
+		 * @param {ts.ui.MenuSpirit} menu
+		 */
+		_setupsearch: function(sidebar, menu) {
+			var chrome = this;
+			sidebar.search({
+				onsearch: function(query) {
+					chrome._searchquery = query;
+					chrome.broadcast.dispatchGlobal('dox-search-query', query);
+					if(query) {
+						menu.showresults(query, search(query));
+					} else {
+						menu.showmenu();
+					}
+				}
+			});
 		}
 		
 	});
 		
 }(gui.CSSPlugin, gui.Then));
+
+
+// LUNR ........................................................................
+
+var lunrindex, $results, pagesindex;
+
+
+/**
+ * Trigger a search in lunr and transform the result
+ * @param	{String} query
+ * @return {Array}	results
+ */
+function initlunr() {
+	$.getJSON('/dist/lunr.json').done(function(index) {
+		pagesindex = index;
+		lunrindex = lunr(function() {
+			this.field("title", {boost: 10});
+			this.field("tags", {boost: 5});
+			this.field("content");
+			this.ref("href");
+		});
+		pagesindex.forEach(function(page) {
+			if(page) {
+				lunrindex.add(page);
+			}
+		});
+	}).fail(function(jqxhr, textStatus, error) {
+		var err = textStatus + ", " + error;
+		console.error("Error getting index flie:", err);
+	}); 
+}
+
+/**
+ * Trigger a search in lunr and transform the result
+ * @param	{String} query
+ * @return {Array}	results
+ */
+function search(query) {
+	return lunrindex.search(query).map(function(result) {
+		return pagesindex.filter(function(page) {
+			return page && page.href === result.ref;
+		})[0];
+	});
+}
+
+/**
+ * get slice string
+ * @param  {String} query string
+ * @param  {Array} content array
+ * @return {String}  results
+ *
+function getContent(query, content) {
+  var queryIndex = content.indexOf(query);
+  var start = queryIndex - 10 > 0 ? queryIndex - 10 : 0;
+  var end = queryIndex + 10 > content.length - 1 ? content.length - 1 : queryIndex + 10;
+  return content.slice(start, end).join(' ') + '...'; //replace(query, '<code>' + query + '</code>') + '...';
+}
+*/

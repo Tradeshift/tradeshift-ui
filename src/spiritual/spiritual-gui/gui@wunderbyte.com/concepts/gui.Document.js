@@ -215,11 +215,9 @@ gui.Document = (function() {
 		 * @param {boolean} hidden
 		 */
 		_onvisibilitychange: function(visible) {
-			if(visible) {
-				var root = gui.get(document.documentElement);
-				if(root) {
-					root.reflex();
-				}
+			var root = gui.get(document.documentElement);
+			if(visible && root) {
+				root.reflex();
 			}
 		},
 

@@ -31,6 +31,7 @@ module.exports = {
 		$ = chromelinks($);
 		$ = inittabs($);
 		$('html').addClass('ts-docs');
+		$('html').attr('spellcheck', false);
 		return publisher.publish(
 			beautify($.html().replace(EMPTYLINE, ''))
 		);
@@ -249,8 +250,9 @@ function localization($) {
  * @returns {$}
  */
 function headertags($) {
-	var i = 1; while(i++ < 7) {
+	var i = 1; while(i <= 6) {
 		headertype($, $('h' + i));
+		i ++;
 	}
 	return $;
 }

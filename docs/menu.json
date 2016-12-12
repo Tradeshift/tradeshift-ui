@@ -1,10 +1,5 @@
 [
 	{
-		"label": "Search",
-		"icon": "ts-icon-romance-find-love",
-		"path": "search/"
-	},
-	{
 		"label": "Intro",
 		"icon": "ts-icon-interface-information",
 		"path": "intro/"

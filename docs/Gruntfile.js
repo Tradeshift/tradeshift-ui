@@ -3,6 +3,7 @@ const processor = require('./tasks/processor');
 const publisher = require('./tasks/publisher');
 const btunneler = require('./tasks/tuneller.js');
 const bsshooter = require('./tasks/shooter.js');
+const cheerio = require('cheerio');
 const path = require('path');
 const S = require("string");
 
@@ -410,20 +411,26 @@ module.exports = function(grunt) {
 				}
 				return pageIndex;
 		};
+		function ignoreHTML(raw) {
+			var ix1 = raw.indexOf('<body>');
+			var ix2 = raw.indexOf('</body>') + '</body>'.length;
+			var dom = cheerio.load(raw.substring(ix1, ix2));
+			return dom.root().text();
+		}
 		function processHTMLFile(abspath, filename) {
-			var content = grunt.file.read(abspath);
-			var markup = S(content);
-			if(markup.includes('robots') && markup.includes('noindex')) {
+			var raw = grunt.file.read(abspath);
+			if(raw.includes('robots') && raw.includes('noindex')) {
 				return;
-			}
-			var title = S(content).between('<title>','</title>').s;
-			var href = S(abspath)
-					.chompLeft(prefix).s;
-			return {
+			} else {
+				var content = ignoreHTML(raw);
+				var title = S(raw).between('<title>','</title>').s;
+				var href = S(abspath).chompLeft(prefix).s;
+				return {
 					title: title,
 					href: href,
 					content: S(content).trim().stripTags().stripPunctuation().s
-			};
+				};
+			}
 		};
 		grunt.file.write("dist/lunr.json", JSON.stringify(indexPages()));
 		grunt.log.ok("Index built");

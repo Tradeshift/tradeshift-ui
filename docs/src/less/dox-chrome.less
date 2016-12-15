@@ -287,12 +287,25 @@
 			opacity: 0;
 		}
 		&.uncollapse {
+			.ts-topbarspinner {
+				display: none;
+			}
 			.ts-main {
 				.ts-mixin-translate3d(@ts-width-aside - @ts-unit-triple, 0, 0);
 			}
 			.ts-menu h3 {
 				opacity: 1;
 			}
+			&.searching {
+				.ts-toolbar-menu.ts-right {
+					display: none; // hide sidebar close button while searching
+				}
+			}
+		}
+		&:not(.uncollapse) {
+			.ts-search {
+				display: none;
+			}	
 		}
 	}
 	&.collapse-full {

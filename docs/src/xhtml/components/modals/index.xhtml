@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Menu</title>
+		<script>
+		ts.ui.ready(function() {
+			ts.ui.get('#mymodal').open();
+		});
+		</script>
+	</head>
+	<body>
+		<header data-ts="TopBar"></header>
+		<main data-ts="Main">
+			<article id="panel1">
+				<h1>Modal</h1>
+				<section class="desc">
+					<p>Yeah.</p>
+				</section>
+				<section>
+					<p>Hello</p>
+				</section>
+			</article>
+		</main>
+		<div data-ts="Modal" id="mymodal" data-ts.title="Johnson">
+			<div data-ts="Panel"></div>
+		</div>
+	</body>
+</html>

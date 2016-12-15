@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en-us" class="ts-docs" spellcheck="false">
+
+<head>
+    <title>Menu</title>
+    <meta name="viewport" content="width=device-width">
+    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-7.0.0-alpha.2.min.js"></script>
+    <script src="/dist/assets/dox.min.js"></script>
+    <script src="/dist/assets/mark.min.js"></script>
+    <script src="/dist/assets/jquery-2.2.4.min.js"></script>
+    <link rel="stylesheet" href="/dist/assets/dox.css">
+    <script>
+        ts.ui.ready(function() {
+            ts.ui.get('#mymodal').open();
+        });
+    </script>
+</head>
+
+<body>
+    <header data-ts="TopBar"></header>
+    <main data-ts="Main">
+        <div data-ts="MainContent">
+            <article id="panel1">
+                <h1><span>Modal</span></h1>
+                <section class="desc">
+                    <p>Yeah.</p>
+                </section>
+                <section>
+                    <p>Hello</p>
+                </section>
+            </article>
+        </div>
+    </main>
+    <div data-ts="Modal" id="mymodal" data-ts.title="Johnson">
+        <div data-ts="Panel"></div>
+    </div>
+</body>
+
+</html>

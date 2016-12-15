@@ -94,6 +94,11 @@
 				"path": "components/menus/"
 			},
 			{
+				"label": "Modal",
+				"icon": "ts-icon-navigation-drawer-2",
+				"path": "components/modals/"
+			},
+			{
 				"label": "Note",
 				"icon": "ts-icon-paragraph-normal",
 				"path": "components/notes/"

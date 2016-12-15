@@ -10,6 +10,7 @@ ts.dox.ChromeSpirit = (function using(CSSPlugin, Then) {
 		SIDEBAR_MICRO = 66,
 		SIDEBAR_MACRO = 320,
 		GLOBALTITLE = 'Tradeshift UI',
+		ONSEARCH = 'ts-action-search',
 		MENUOPEN = 'action-open-menu',
 		MENUCLOSE = 'action-close-menu',
 		ONDOM = ts.ui.ACTION_FRAME_ONDOM,
@@ -39,11 +40,8 @@ ts.dox.ChromeSpirit = (function using(CSSPlugin, Then) {
 			this._menu.life.add(gui.LIFE_RENDER, this);
 			this.event.add('hashchange', window);
 			this.event.add('transitionend', this._main);
-			this.action.add([
-				ONDOM, MENUOPEN, MENUCLOSE
-			]).addGlobal([
-				TITLE, DOLOAD
-			]);
+			this.action.add([ONDOM, ONSEARCH, MENUOPEN, MENUCLOSE])
+				.addGlobal([TITLE, DOLOAD]);
 			this.broadcast.addGlobal([
 				TITLE, MENUON, ONROTATE,
 				ASIDESON, ASIDESOFF, DIALOGSON, DIALOGSOFF
@@ -94,6 +92,9 @@ ts.dox.ChromeSpirit = (function using(CSSPlugin, Then) {
 				case DOLOAD:
 					this._sethashfromhref(a.data.href);
 					a.consume();
+					break;
+				case ONSEARCH:
+					this.css.shift(a.data, 'searching');
 					break;
 				case ONDOM:
 					if(ts.dox.booting) {
@@ -278,6 +279,7 @@ ts.dox.ChromeSpirit = (function using(CSSPlugin, Then) {
 				this._openmenu(false);
 				this._showloading(false);
 				this._blocking(false);
+				this._resetsearch(!this._iscollapsed());
 				if(this._oldframe) {
 					this._oldframe.dom.remove();
 					this._oldframe = null;
@@ -425,6 +427,21 @@ ts.dox.ChromeSpirit = (function using(CSSPlugin, Then) {
 					}
 				}
 			});
+		},
+
+		/**
+		 * In mobile and tablet, clear the search when SideBar closes. 
+		 * This may not be the optimal workflow for the searching user.
+		 * @param {boolean} desktop Abort in desktop breakpoint
+		 */
+		_resetsearch: function(desktop) {
+			if(!desktop) {
+				this.dom.q('.ts-search', ts.ui.SearchSpirit).clear();
+				if(this._searchquery) {
+					this._searchquery = null;
+					this._menu.showmenu();
+				}
+			}
 		}
 		
 	});

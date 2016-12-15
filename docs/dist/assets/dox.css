@@ -837,6 +837,9 @@ table.api th {
   transition-timing-function: cubic-bezier(0.23, 1, 0.32, 1);
   opacity: 0;
 }
+.ts-doxchrome.collapse-some.uncollapse .ts-topbarspinner {
+  display: none;
+}
 .ts-doxchrome.collapse-some.uncollapse .ts-main {
   -webkit-transform: translate3d(254px, 0, 0);
   -moz-transform: translate3d(254px, 0, 0);
@@ -845,6 +848,12 @@ table.api th {
 }
 .ts-doxchrome.collapse-some.uncollapse .ts-menu h3 {
   opacity: 1;
+}
+.ts-doxchrome.collapse-some.uncollapse.searching .ts-toolbar-menu.ts-right {
+  display: none;
+}
+.ts-doxchrome.collapse-some:not(.uncollapse) .ts-search {
+  display: none;
 }
 .ts-doxchrome.collapse-full:before {
   display: none;

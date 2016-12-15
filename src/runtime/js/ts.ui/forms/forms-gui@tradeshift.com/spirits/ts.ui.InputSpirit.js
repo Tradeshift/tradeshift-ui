@@ -169,6 +169,14 @@ ts.ui.InputSpirit = (function using(chained, Type, Client) {
 		}),
 
 		/**
+		 * Clear the input.
+		 * @returns {ts.ui.SearchSpirit}
+		 */
+		clear: chained(function() {
+			this.value = '';
+		}),
+
+		/**
 		 * Set or get the model.
 		 * TODO: Move all this to ancestor spirit (ts.ui.Spirit)?
 		 * @param {ts.ui.InputModel} model

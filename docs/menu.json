@@ -96,8 +96,7 @@
 			{
 				"label": "Modal",
 				"icon": "ts-icon-navigation-drawer-2",
-				"path": "components/modals/",
-				"hidden": true
+				"path": "components/modals/"
 			},
 			{
 				"label": "Note",

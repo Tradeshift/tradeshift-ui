@@ -306,7 +306,9 @@ ts.ui = gui.namespace('ts.ui', (function using(Client, guiArray, confirmed, chai
 		BROADCAST_DIALOG_WILL_CLOSE: 'ts-broadcast-dialog-will-close',
 		BROADCAST_DIALOG_DID_CLOSE: 'ts-broadcast-dialog-did-close',
 		BROADCAST_MODAL_WILL_OPEN: 'ts-broadcast-modal-will-open',
+		BROADCAST_MODAL_DID_OPEN: 'ts-broadcast-modal-did-open',
 		BROADCAST_MODAL_WILL_CLOSE: 'ts-broadcast-modal-will-close',
+		BROADCAST_MODAL_DID_CLOSE: 'ts-broadcast-modal-did-close',
 		BROADCAST_ATTENTION_MOVE: 'ts-broadcast-attention-move',
 		BROADCAST_PANEL_SYNC_MENU: 'ts-broadcast-panel-sync-to-menu',
 

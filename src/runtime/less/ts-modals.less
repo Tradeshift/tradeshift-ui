@@ -3,29 +3,71 @@
 	width: 740px;
 	height: 320px;
 	left: 50%;
-	top: 50%;
+	top: 20%;
 	margin-left: -320px;
-	margin-top: -160px;
 	border-radius: @ts-radius;
 	box-shadow: 2px 2px 8px rgba(0,0,0,0.75);
-	.ts-panel {
+	> header {
+		border-radius: @ts-radius @ts-radius 0 0;
+		button.ts-tertiary { // probably the closing X
+			border-color: transparent !important;
+		}
+	}
+	> .ts-panel {
 		.ts-mixin-maximize();
+		padding: @ts-unit;
+		padding-bottom: 0;
 		background-color: @ts-white;
+		overflow: hidden;
+		&:after {
+			content: '!'; // firefix dysfunction :(
+			display: block;
+			visibility: hidden;
+		}
+	}
+	&.ts-overflow {
+		> .ts-panel {
+			overflow-y: scroll;
+			overflow-x: hidden;
+		}
+	}
+	> footer {
+		border-radius: 0 0 @ts-radius @ts-radius;
+		position: absolute;
+		bottom: 0;
+		width: 100%;
 	}
 	&.ts-hasheader {
-		> .ts-toolbar:first-of-type {
-			border-radius: @ts-radius @ts-radius 0 0;
-		}
 		> .ts-panel {
 			top: @ts-unit-triple;
 		}
 	}
 	&.ts-hasfooter {
-		> .ts-toolbar:last-of-type {
-			border-radius: 0 0 @ts-radius @ts-radius;
-		}
 		> .ts-panel {
 			bottom: @ts-unit-triple;
+		}
+	}
+	&.ts-transition {
+		will-change: transform;
+		transition-property: transform, opacity;
+		transition-duration: @ts-transition-now;
+		.ts-mixin-transform-origin(50%, 50%);
+		.ts-mixin-scale(1.075);
+		opacity: 0;
+		&.ts-opening,
+		&.ts-open {
+			.ts-mixin-transition-timing(ease-out);
+			.ts-mixin-scale(1);
+			opacity: 1;
+		}
+		&.ts-closing {
+			.ts-mixin-transition-timing(ease-in);
+			.ts-mixin-scale(0.925);
+			opacity: 0;
+		}
+		&.ts-opening,
+		&.ts-closing {
+			pointer-events: none;
 		}
 	}
 }

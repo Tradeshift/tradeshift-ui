@@ -35,6 +35,7 @@
 	"spirits/dates/ts.ui.TimeSpirit.js",
 	"spirits/spinners/ts.ui.SpinnerSpirit.js",
 	"spirits/notes/ts.ui.NoteSpirit.js",
+	"spirits/modals/ts.ui.ModalSpirit.js",
 
 	"module.js"
 ]

@@ -1,0 +1,31 @@
+.ts-modal {
+	position: absolute;
+	width: 740px;
+	height: 320px;
+	left: 50%;
+	top: 50%;
+	margin-left: -320px;
+	margin-top: -160px;
+	border-radius: @ts-radius;
+	box-shadow: 2px 2px 8px rgba(0,0,0,0.75);
+	.ts-panel {
+		.ts-mixin-maximize();
+		background-color: @ts-white;
+	}
+	&.ts-hasheader {
+		> .ts-toolbar:first-of-type {
+			border-radius: @ts-radius @ts-radius 0 0;
+		}
+		> .ts-panel {
+			top: @ts-unit-triple;
+		}
+	}
+	&.ts-hasfooter {
+		> .ts-toolbar:last-of-type {
+			border-radius: 0 0 @ts-radius @ts-radius;
+		}
+		> .ts-panel {
+			bottom: @ts-unit-triple;
+		}
+	}
+}

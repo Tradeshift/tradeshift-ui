@@ -423,7 +423,7 @@ ts.ui.SideShowSpirit = (function using(chained, Client, Parser, GuiObject, Color
 			if(insist || !this._isinternal()) {
 				var panel = this.dom.q('.ts-panel', ts.ui.PanelSpirit);
 				if (!panel) {
-					throw new Error('Expected a ts-panel');
+					throw new Error('Expected a Panel');
 				}
 				return panel;
 			}
@@ -439,7 +439,7 @@ ts.ui.SideShowSpirit = (function using(chained, Client, Parser, GuiObject, Color
 			if(!this._isinternal()) {
 				if(!this.guilayout.outsideMain()) {
 					throw new Error(
-						this + ' must be positioned outside ts-main', this.element
+						this + ' must be positioned outside Main', this.element
 					);
 				}
 			}

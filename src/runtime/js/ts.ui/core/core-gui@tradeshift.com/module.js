@@ -11,27 +11,7 @@ gui.module('core-gui@tradeshift.com', {
 		// stuff that the framework uses
 		['html', ts.ui.DocumentSpirit],
 
-		// OLD
-		/*
-		['[ts-main]', ts.ui.MainSpirit],
-		['[ts-main-content]', ts.ui.MainContentSpirit],
-		['[ts-iframe]', ts.ui.FrameSpirit],
-		['[ts-aside]', ts.ui.AsideSpirit],
-		['[ts-sidebar]', ts.ui.SideBarSpirit],
-		['[ts-footer]', ts.ui.FooterSpirit],
-		['[ts-panel]', ts.ui.PanelSpirit],
-		['[ts-menu]', ts.ui.MenuSpirit],
-		['[ts-button]', ts.ui.ButtonSpirit],
-		['[ts-buttons]', ts.ui.ButtonMenuSpirit],
-		['[ts-link]', ts.ui.LinkSpirit],
-		['[ts-pager]', ts.ui.PagerSpirit],
-		['[ts-time]', ts.ui.TimeSpirit],
-		['[ts-note]', ts.ui.NoteSpirit],
-		['[ts-spirit]', ts.ui.Spirit],
-		['[ts-icon]', ts.ui.IconSpirit],
-		*/
-		
-		// NEW
+		// stuff that developers use
 		['[data-ts=Main]', ts.ui.MainSpirit],
 		['[data-ts=MainContent]', ts.ui.MainContentSpirit],
 		['[data-ts=Frame]', ts.ui.FrameSpirit],
@@ -48,6 +28,7 @@ gui.module('core-gui@tradeshift.com', {
 		['[data-ts=Note]', ts.ui.NoteSpirit],
 		['[data-ts=Icon]', ts.ui.IconSpirit],
 		['[data-ts=Spinner]', ts.ui.SpinnerSpirit],
+		['[data-ts=Modal]', ts.ui.ModalSpirit],
 		['[data-ts=Spirit]', ts.ui.Spirit],
 
 		/*

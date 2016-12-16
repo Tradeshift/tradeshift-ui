@@ -431,12 +431,12 @@ ts.dox.ChromeSpirit = (function using(CSSPlugin, Then) {
 
 		/**
 		 * In mobile and tablet, clear the search when SideBar closes. 
-		 * This may not be the optimal workflow for the searching user.
+		 * (may not be the optimal workflow for the searching user!)
 		 * @param {boolean} desktop Abort in desktop breakpoint
 		 */
 		_resetsearch: function(desktop) {
 			if(!desktop) {
-				this.dom.q('.ts-search', ts.ui.SearchSpirit).clear();
+				this.dom.q('.ts-search', ts.ui.SearchSpirit).value = '';
 				if(this._searchquery) {
 					this._searchquery = null;
 					this._menu.showmenu();

@@ -5,6 +5,12 @@
  */
 ts.ui.ModalSpirit = (function using(ToolBarSpirit, chained) {
 
+	var willopen = ts.ui.BROADCAST_DIALOG_WILL_OPEN,
+		goopen = ts.ui.BROADCAST_DIALOG_GO_OPEN,
+		didopen = ts.ui.BROADCAST_DIALOG_DID_OPEN,
+		willclose = ts.ui.BROADCAST_DIALOG_WILL_CLOSE,
+		didclose = ts.ui.BROADCAST_DIALOG_DID_CLOSE;
+
 	return ts.ui.Spirit.extend({
 
 		/**
@@ -20,7 +26,9 @@ ts.ui.ModalSpirit = (function using(ToolBarSpirit, chained) {
 		 */
 		open: function(open) {
 			if(this._confirmposition()) {
+				this.broadcast.dispatch(willopen);
 				this.css.shift(open, 'ts-open');
+				this.broadcast.dispatch(didopen);
 			}
 		},
 
@@ -63,6 +71,7 @@ ts.ui.ModalSpirit = (function using(ToolBarSpirit, chained) {
 		 */
 		_header: function() {
 			var ToolBarSpirit = ts.ui.ToolBarSpirit; // TODO: Load this after!
+			this.css.add('ts-hasheader');
 			return this.dom.q('header.ts-toolbar', ToolBarSpirit) || 
 				this.dom.prepend(ToolBarSpirit.summon('header', 'ts-bg-blue'));
 		},
@@ -72,6 +81,7 @@ ts.ui.ModalSpirit = (function using(ToolBarSpirit, chained) {
 		 * @returns {ts.ui.ToolBarSpirit}
 		 */
 		_footer: function() {
+			this.css.add('ts-hasfooter');
 			var ToolBarSpirit = ts.ui.ToolBarSpirit; // TODO: Load this after!
 			return this.dom.q('footer.ts-toolbar', ToolBarSpirit) || 
 				this.dom.append(ToolBarSpirit.summon('footer', 'ts-bg-green'));

@@ -363,7 +363,7 @@ module.exports = function(grunt) {
 	grunt.task.registerTask('default', xxx('target_local').concat(['concurrent']));
 	
 	// important: Run this before committing to Git!
-	grunt.task.registerTask('dist', xxx('target_public'));
+	grunt.task.registerTask('dist', xxx('target_public').concat(['concurrent']));
 
 	grunt.registerTask('links', ['linkChecker']);
 

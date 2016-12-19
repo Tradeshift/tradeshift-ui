@@ -268,9 +268,9 @@ ts.ui.SideShowSpirit = (function using(chained, Client, Parser, GuiObject, Color
 		},
 
 		/**
-		 * Open AND close the aside. Setup to support the HTML
-		 * attribute: gui.open="true|false"
-		 * @param {boolean=} opt_open Omit to simply open.
+		 * Open AND close the aside (setup to support the HTML
+		 * attribute: `data-ts.open="true|false"`)
+		 * @param @optional {boolean} opt_open Omit to simply open.
 		 * @return {ts.ui.AsideSpirit}
 		 */
 		open: chained(function(opt_open) {

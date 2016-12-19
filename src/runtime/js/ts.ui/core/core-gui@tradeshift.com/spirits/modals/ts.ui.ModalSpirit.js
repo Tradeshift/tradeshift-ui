@@ -60,7 +60,7 @@ ts.ui.ModalSpirit = (function using(ToolBarSpirit, Client, transition, chained) 
 		 * @param @optional {boolean} opt_open Omit to simply open
 		 */
 		open: function(opt_open) {
-			var then = this._then = new gui.Then()
+			var then = this._then = new gui.Then();
 			opt_open = arguments.length ? opt_open : true;
 			if(opt_open !== this.isOpen) {
 				if(opt_open) {
@@ -187,7 +187,7 @@ ts.ui.ModalSpirit = (function using(ToolBarSpirit, Client, transition, chained) 
 						this.css.add('ts-opening');
 						this.event.add('transitionend');
 					} else {
-						fadeIn(true);
+						this._fadeIn(true);
 					}
 				}, this);
 			}

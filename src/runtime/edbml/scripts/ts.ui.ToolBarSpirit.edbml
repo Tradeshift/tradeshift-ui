@@ -30,24 +30,27 @@
 				}
 				if(!mobilos && hastabs && !hasnavi) {
 					renderTabs(spirit, tabs, id, mobilos);
-				} else if(search) {
-					@class = klass('ts-toolbar-search', search);
-					<li id="${id}-search" @class>
-						out.html += search.render();
-					</li>
-				} else if(title && !using(search)) {
-					@class = klass('ts-toolbar-title');
-					<li id="${id}-title" @class>
-						if(statusbar) {
-							<label>
-								var whitelist = ['strong', 'em', 'strike', 'code'];
-								if(toolbar.linkable) whitelist.push('a');
-								out.html += ts.ui.Markdown.parse(title, whitelist);
-							</label>
-						} else {
-							<label>${title}</label>
-						}
-					</li>
+				} else {
+				 if(search) {
+						@class = klass('ts-toolbar-search', search);
+						<li id="${id}-search" @class>
+							out.html += search.render();
+						</li>
+					}
+					if(title && (!search || !using(search))) {
+						@class = klass('ts-toolbar-title');
+						<li id="${id}-title" @class>
+							if(statusbar) {
+								<label>
+									var whitelist = ['strong', 'em', 'strike', 'code'];
+									if(toolbar.linkable) whitelist.push('a');
+									out.html += ts.ui.Markdown.parse(title, whitelist);
+								</label>
+							} else {
+								<label>${title}</label>
+							}
+						</li>
+					}
 				}
 			</menu>
 		}

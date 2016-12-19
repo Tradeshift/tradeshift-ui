@@ -245,7 +245,21 @@ ts.ui.SideShowSpirit = (function using(chained, Client, Parser, GuiObject, Color
 		}),
 
 		/**
-		 * Get or set header model.
+		 * Get or set the titlebar search model.
+		 * @param {Object|ts.ui.SearchModel} search
+		 * @returns {ts.ui.SearchModel|ts.ui.SideShowSpirit}
+		 */
+		search: chained(function(search) {
+			var header = this._headerspirit();
+			if(arguments.length) {
+				header.search(search);
+			} else {
+				return header.search();
+			}
+		}),
+
+		/**
+		 * Get or set header model. TODO: Should be private, huh?
 		 * @param @optional {object} opt_json
 		 * @returns {ts.ui.ToolBarModel}
 		 */
@@ -254,9 +268,9 @@ ts.ui.SideShowSpirit = (function using(chained, Client, Parser, GuiObject, Color
 		},
 
 		/**
-		 * Open AND close the aside. Setup to support the HTML
-		 * attribute: gui.open="true|false"
-		 * @param {boolean=} opt_open Omit to simply open.
+		 * Open AND close the aside (setup to support the HTML
+		 * attribute: `data-ts.open="true|false"`)
+		 * @param @optional {boolean} opt_open Omit to simply open.
 		 * @return {ts.ui.AsideSpirit}
 		 */
 		open: chained(function(opt_open) {
@@ -409,7 +423,7 @@ ts.ui.SideShowSpirit = (function using(chained, Client, Parser, GuiObject, Color
 			if(insist || !this._isinternal()) {
 				var panel = this.dom.q('.ts-panel', ts.ui.PanelSpirit);
 				if (!panel) {
-					throw new Error('Expected a ts-panel');
+					throw new Error('Expected a Panel');
 				}
 				return panel;
 			}
@@ -425,7 +439,7 @@ ts.ui.SideShowSpirit = (function using(chained, Client, Parser, GuiObject, Color
 			if(!this._isinternal()) {
 				if(!this.guilayout.outsideMain()) {
 					throw new Error(
-						this + ' must be positioned outside ts-main', this.element
+						this + ' must be positioned outside Main', this.element
 					);
 				}
 			}

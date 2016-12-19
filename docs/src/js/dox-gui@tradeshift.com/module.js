@@ -1,42 +1,108 @@
 /**
  * Dox GUI module.
  */
-gui.module('dox-gui@tradeshift.com', {
+
+(function scoped() {
 
 	/**
-	 * Channeling spirits to CSS selectors.
+	 * Hilite marker.
+	 * @type {Mark}
 	 */
-	channel: [
-		["[data-ts=DoxChrome]", ts.dox.ChromeSpirit],
-		["[data-ts=DoxMenu]", ts.dox.MenuSpirit],
-		["[data-ts=DoxItem]", ts.dox.ItemSpirit],
-		["[data-ts=DoxSubMenu]", ts.dox.SubMenuSpirit],
-		["[data-ts=DoxMenuCover]", ts.dox.MenuCoverSpirit],
-		['[data-ts=DoxMarkup]', ts.dox.MarkupSpirit],
-		['[data-ts=DoxScript]', ts.dox.JavaScriptSpirit],
-		['[data-ts=DoxApi]', ts.dox.ApiTableSpirit],
-		['[data-ts=Button]', ts.dox.LinkSpirit]
-	],
-	
-	oncontextinitialize: function() {
-		gui.attributes.push('docs'); // needed still?
-		if(window !== top) {
-			this._sectionclassname(location.href);
-		}
-	},
-	
+	var marker = null;
+
 	/**
-	 * Extract the section name from the URL and 
-	 * attach it as a classname on the HTML tag 
-	 * so we can style this section amazingly.
-	 * @param {string} href
+	 * Hilite config.
+	 * @see https://markjs.io/
 	 */
-	_sectionclassname: function(href) {
-		var rest = href.split('/dist/')[1];
-		var root = document.documentElement;
-		if(rest && rest.length) {
-			gui.CSSPlugin.add(root, rest.split('/')[0]);
+	var config = {
+		done: function() {
+			if(length) {
+				document.querySelector('mark').scrollIntoView(false);
+			}
+		}
+	};
+
+	/**
+	 * Hilite that text.
+	 * @param {string} text
+	 */
+	function hilite(text) {
+		marker = marker || new Mark(document.body);
+		marker.mark(text, config);
+	}
+
+	/**
+	 * Clear old hilite.
+	 */
+	function nolite() {
+		if(marker) {
+			marker.unmark();
 		}
 	}
 
-});
+	/*
+	 * Declare the module alreay.
+	 */
+	gui.module('dox-gui@tradeshift.com', {
+
+		/**
+		 * Channeling spirits to CSS selectors.
+		 */
+		channel: [
+			["[data-ts=DoxChrome]", ts.dox.ChromeSpirit],
+			["[data-ts=DoxMenu]", ts.dox.MenuSpirit],
+			["[data-ts=DoxItem]", ts.dox.ItemSpirit],
+			["[data-ts=DoxSubMenu]", ts.dox.SubMenuSpirit],
+			["[data-ts=DoxMenuCover]", ts.dox.MenuCoverSpirit],
+			['[data-ts=DoxMarkup]', ts.dox.MarkupSpirit],
+			['[data-ts=DoxScript]', ts.dox.JavaScriptSpirit],
+			['[data-ts=DoxApi]', ts.dox.ApiTableSpirit],
+			['[data-ts=Button]', ts.dox.LinkSpirit]
+		],
+		
+		/**
+		 * Setup section-specific classname for styling (although not used).
+		 */
+		oncontextinitialize: function() {
+			if(gui.hosted) {
+				this._sectionclassname(location.href);
+			}
+		},
+
+		/**
+		 * Highlight search query.
+		 */
+		onafterspiritualize: function() {
+			var pattern = '?query=';
+			if(gui.hosted) {
+				if(location.search.includes(pattern)) {
+					hilite(location.search.split(pattern)[1]);
+				}
+				gui.Broadcast.addGlobal('dox-search-query', {
+					onbroadcast: function(b) {
+						nolite();
+						if(b.data) {
+							hilite(b.data);
+						}
+					}
+				})
+			}
+		},
+		
+		/**
+		 * Extract the section name from the URL and 
+		 * attach it as a classname on the HTML tag 
+		 * so we can style this section amazingly.
+		 * @param {string} href
+		 */
+		_sectionclassname: function(href) {
+			var rest = href.split('/dist/')[1];
+			var root = document.documentElement;
+			if(rest && rest.length) {
+				gui.CSSPlugin.add(root, rest.split('/')[0]);
+			}
+		}
+
+	});
+
+}());

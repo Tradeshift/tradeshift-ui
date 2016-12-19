@@ -112,6 +112,22 @@ ts.ui.PanelSpirit = (function using(ACTION_ATTACH, ACTION_DETACH, ACTION_SHOW, A
 			this.visible = false;
 			this.action.dispatch(ACTION_HIDE, this._isroot());
 		},
+
+		/**
+		 * How high should the Panel be in order to *not* show the scrollbar?
+		 * @returns {number}
+		 */
+		naturalHeight: function() {
+			return this.element.scrollHeight;
+		},
+
+		/**
+		 * Panel shows a scrollbar (assumeing `overflow` is `scroll` or `auto`)?
+		 * @returns {boolean}
+		 */
+		hasOverflow: function() {
+			return this.naturalHeight() > this.element.offsetHeight;
+		},
 		
 		
 		// Privileged .............................................................. 

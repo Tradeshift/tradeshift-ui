@@ -624,7 +624,7 @@ ts.ui.AsideSpirit = (function using(chained, confirmed, Client, LayoutModel, not
 				var panel = this.dom.parent(ts.ui.PanelSpirit);
 				if (panel && this.dom.containedBy(panel)) {
 					throw new Error(
-						'In a ts-drawer, ts-aside must be positioned outside the ts-panel', 
+						'In the SideBar, Aside must be positioned outside the ts-panel', 
 						this.element
 					);
 				}

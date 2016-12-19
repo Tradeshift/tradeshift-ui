@@ -10,7 +10,9 @@ ts.ui.DocumentDialogPlugin = (function() {
 		goopen = ts.ui.BROADCAST_DIALOG_GO_OPEN,
 		didopen = ts.ui.BROADCAST_DIALOG_DID_OPEN,
 		willclose = ts.ui.BROADCAST_DIALOG_WILL_CLOSE,
-		didclose = ts.ui.BROADCAST_DIALOG_DID_CLOSE;
+		didclose = ts.ui.BROADCAST_DIALOG_DID_CLOSE,
+		modal_willopen = ts.ui.BROADCAST_MODAL_WILL_OPEN,
+		modal_willclose = ts.ui.BROADCAST_MODAL_WILL_CLOSE;
 
 	// global broadcasts *for* the top frame dialog plugin
 	var globalon = ts.ui.BROADCAST_GLOBAL_DIALOGS_WILL_ON,
@@ -35,7 +37,9 @@ ts.ui.DocumentDialogPlugin = (function() {
 				goopen,
 				goopen,
 				willclose,
-				didclose
+				didclose,
+				modal_willopen,
+				modal_willclose
 			], this);
 		},
 
@@ -68,6 +72,12 @@ ts.ui.DocumentDialogPlugin = (function() {
 						this._updateblocking(false);
 						announce(globaloff);
 					}
+					break;
+				case modal_willopen:
+					this._updateblocking(true);
+					break;
+				case modal_willclose:
+					this._updateblocking(false);
 					break;
 			}
 		},

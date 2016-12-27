@@ -465,6 +465,32 @@ group<span class="token punctuation">.</span><span class="token function">push<s
                     </figure>
                     <p>Note that tabbed navigation is not supposed to coexist with Back and Forward buttons.</p>
                 </section>
+                <h2><span>TopBar Hide &amp; Show</span></h2>
+                <section>
+                    <p>You can hide the TopBar, if you want.</p>
+                    <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.TopBar.hide()%3B">
+                        <script type="runnable">
+                            ts.ui.TopBar.hide();
+                        </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                        <div class="tabpanels">
+                            <pre class="prism language-javascript">
+<code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>TopBar<span class="token punctuation">.</span><span class="token function">hide<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
+</pre>
+                        </div>
+                    </figure>
+                    <p>You also can show the TopBar, as you wish</p>
+                    <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.TopBar.show()%3B">
+                        <script type="runnable">
+                            ts.ui.TopBar.show();
+                        </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                        <div class="tabpanels">
+                            <pre class="prism language-javascript">
+<code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>TopBar<span class="token punctuation">.</span><span class="token function">show<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
+</pre>
+                        </div>
+                    </figure>
+                    <p>Note that you will trap in the app forever, if you hide the TopBar in mobile.</p>
+                </section>
                 <h2><span>TopBar summary</span></h2>
                 <section>
                     <p>Here&apos;s a summary of the TopBar methods, including some bonus not yet discussed.</p>

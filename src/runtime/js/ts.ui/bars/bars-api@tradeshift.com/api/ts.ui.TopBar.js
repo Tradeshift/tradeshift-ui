@@ -303,7 +303,9 @@ ts.ui.TopBar = {
 		 * @returns {ts.ui.TopBar}
 		 */
 		hide: api(chained(function() { 
-			topbar.visible = false;
+			if (ts.ui.breakpoint !== 'mobile') {
+				topbar.visible = false;
+			}
 		})),
 		
 		/**

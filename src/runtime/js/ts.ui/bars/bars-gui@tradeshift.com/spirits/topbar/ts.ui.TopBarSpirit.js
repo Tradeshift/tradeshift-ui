@@ -85,16 +85,6 @@ ts.ui.TopBarSpirit = (function(TopBar, Client) {
 		},
 
 		/**
-		 * Apparently the scrollbar size is not computed on startup
-		 * so we'll just adjust for the scrollbar some 4ms later on.
-		 *
-		onasync: function() {
-			this.super.onasync();
-			this._initbreakpoint();
-		},
-		*/
-
-		/**
 		 * Update classes on the HTML element as soon as the rendering is done.
 		 * If the TopBar element for some reason was added late, we'll need to 
 		 * reflex the page so that js-based layouts (as in SideBars) can account 
@@ -114,20 +104,6 @@ ts.ui.TopBarSpirit = (function(TopBar, Client) {
 				this._reflexfixed = true;
 			}
 		},
-		
-		/**
-		 * Remove root classnames when the TopBar is removed. 
-		 * This to support a docs page (on layout), because the 
-		 * TopBar should probably never be removed for real.
-		 *
-		ondetach: function() {
-			this.super.ondetach();
-			var root = ts.ui.get(document.documentElement);
-			root.css.remove(HAS_TOPBAR);
-			root.css.remove(HAS_TOPBAR_TABS);
-			root.reflex();
-		},
-		*/
 		
 		/**
 		 * Handle (model) changes.

@@ -38,8 +38,10 @@ ts.ui.MainSpirit = (function using(Type, PANEL_ATTACH, PANEL_DETACH) {
 	 * @returns {ts.ui.BarSpirit}
 	 */
 	function suspended(bar, action, thisp) {
-		bar.life.add('ts-life-toolbar-hascontent', {
+		var type = 'ts-life-toolbar-hascontent';
+		bar.life.add(type, {
 			onlife: function() {
+				bar.life.remove(type, this);
 				action.call(thisp, bar);
 			}
 		});

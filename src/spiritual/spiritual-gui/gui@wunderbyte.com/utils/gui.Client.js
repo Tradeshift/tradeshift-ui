@@ -255,78 +255,78 @@ gui.Client = (function() {
 		 * @type {boolean}
 		 */
 		this.hasPositionFixed = false;
+
+		/**
+		 * Compute some stuff that couldn't be determined parse time.
+		 */
+		this.$init = function() {
+			if (!gui.CSSPlugin) {
+				return;
+			}
+			var win = window,
+				doc = document,
+				html = doc.documentElement,
+				body = doc.body,
+				root = null;
+
+			// make sure window is scrollable
+			var temp = body.appendChild(
+				gui.CSSPlugin.style(doc.createElement("div"), {
+					position: "absolute",
+					height: "10px",
+					width: "10px",
+					top: "100%"
+				})
+			);
+
+			// what element will get scrolled?
+			win.scrollBy(0, 10);
+			root = html.scrollTop ? html : body;
+			this.scrollRoot = root;
+
+			// supports position fixed?
+			gui.CSSPlugin.style(temp, {
+				position: "fixed",
+				top: "10px"
+			});
+
+			// restore scroll when finished
+			var has = temp.getBoundingClientRect().top === 10;
+			this.hasPositionFixed = has;
+			body.removeChild(temp);
+			win.scrollBy(0, -10);
+
+			// compute scrollbar size
+			var inner = gui.CSSPlugin.style(document.createElement("p"), {
+				width: "100%",
+				height: "200px"
+			});
+			var outer = gui.CSSPlugin.style(document.createElement("div"), {
+				position: "absolute",
+				top: "0",
+				left: "0",
+				visibility: "hidden",
+				width: "200px",
+				height: "150px",
+				overflow: "hidden"
+			});
+			outer.appendChild(inner);
+			html.appendChild(outer);
+			var w1 = inner.offsetWidth;
+			outer.style.overflow = "scroll";
+			var w2 = inner.offsetWidth;
+			if (w1 === w2) {
+				w2 = outer.clientWidth;
+			}
+			html.removeChild(outer);
+			this.scrollBarSize = w1 - w2;
+			if (this.isExplorer) {
+				// sad hotfix for IE, but TODO: isn't the scrollbar really big in Windows 10?
+				this.scrollBarSize = 17;
+			}
+		}
 	}
 
 	return new Client();
 
 }());
-
-/**
- * TODO: Perhaps move this somewhere.
- */
-document.addEventListener('DOMContentLoaded', function() {
-	if (!gui.CSSPlugin) {
-		return; // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-	}
-	var win = window,
-		doc = document,
-		html = doc.documentElement,
-		body = doc.body,
-		root = null;
-
-	// make sure window is scrollable
-	var temp = body.appendChild(
-		gui.CSSPlugin.style(doc.createElement("div"), {
-			position: "absolute",
-			height: "10px",
-			width: "10px",
-			top: "100%"
-		})
-	);
-
-	// what element will get scrolled?
-	win.scrollBy(0, 10);
-	root = html.scrollTop ? html : body;
-	gui.Client.scrollRoot = root;
-
-	// supports position fixed?
-	gui.CSSPlugin.style(temp, {
-		position: "fixed",
-		top: "10px"
-	});
-
-	// restore scroll when finished
-	var has = temp.getBoundingClientRect().top === 10;
-	gui.Client.hasPositionFixed = has;
-	body.removeChild(temp);
-	win.scrollBy(0, -10);
-
-	// compute scrollbar size
-	var inner = gui.CSSPlugin.style(document.createElement("p"), {
-		width: "100%",
-		height: "200px"
-	});
-	var outer = gui.CSSPlugin.style(document.createElement("div"), {
-		position: "absolute",
-		top: "0",
-		left: "0",
-		visibility: "hidden",
-		width: "200px",
-		height: "150px",
-		overflow: "hidden"
-	});
-	outer.appendChild(inner);
-	html.appendChild(outer);
-	var w1 = inner.offsetWidth;
-	outer.style.overflow = "scroll";
-	var w2 = inner.offsetWidth;
-	if (w1 === w2) {
-		w2 = outer.clientWidth;
-	}
-	html.removeChild(outer);
-	gui.Client.scrollBarSize = w1 - w2;
-	if (gui.Client.isExplorer) {
-		// sad hotfix for IE, but TODO: isn't the scrollbar really big in Windows 10?
-		gui.Client.scrollBarSize = 17;
-	}
-});

@@ -177,6 +177,7 @@ ts.ui.ModalSpirit = (function using(ToolBarSpirit, Client, transition, chained) 
 				this._execute('onopened');
 				this.broadcast.dispatch(didopen);
 				this._then.now();
+				this._focus();
 			} else {
 				this.dom.show();
 				this._cloak(true);
@@ -213,6 +214,17 @@ ts.ui.ModalSpirit = (function using(ToolBarSpirit, Client, transition, chained) 
 				} else {
 					this._fadeOut(true);
 				}
+			}
+		},
+
+		/**
+		 * On Modal opened, focus the first focusable thing 
+		 * (having allowed the dev to focus something first)
+		 */
+		_focus: function() {
+			var focused = document.activeElement;
+			if(!focused || !this.dom.contains(focused)) {
+				this.attention.enter();
 			}
 		},
 

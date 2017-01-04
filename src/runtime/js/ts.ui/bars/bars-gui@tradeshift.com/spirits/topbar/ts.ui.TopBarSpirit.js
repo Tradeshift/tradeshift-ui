@@ -52,6 +52,28 @@ ts.ui.TopBarSpirit = (function(TopBar, Client) {
 			}
 			this.super.onenter();
 		},
+
+		/**
+		 * Making sure *not* to call the superclass `onattach` here.
+		 * This whole setup could do with a nice refactoring some day.
+		 */
+		onattach: function() {
+			ts.ui.Spirit.prototype.onattach.call(this);
+			this._initbreakpoint(true);
+		},
+
+		/**
+		 * Emergency remove all root classnames if someone removes the TopBar.
+		 * Again, making sure *not* to invoke the superclass `ondetach` here.
+		 */
+		ondetach: function() {
+			ts.ui.Spirit.prototype.ondetach.call(this);
+			this._initbreakpoint(false);
+			var root = ts.ui.get(document.documentElement);
+			root.css.remove(HAS_TOPBAR);
+			root.css.remove(HAS_TOPBAR_TABS);
+			root.reflex();
+		},
 		
 		/**
 		 * When the topbar's ready we tell the Chrome 
@@ -65,11 +87,12 @@ ts.ui.TopBarSpirit = (function(TopBar, Client) {
 		/**
 		 * Apparently the scrollbar size is not computed on startup
 		 * so we'll just adjust for the scrollbar some 4ms later on.
-		 */
+		 *
 		onasync: function() {
 			this.super.onasync();
 			this._initbreakpoint();
 		},
+		*/
 
 		/**
 		 * Update classes on the HTML element as soon as the rendering is done.
@@ -96,7 +119,7 @@ ts.ui.TopBarSpirit = (function(TopBar, Client) {
 		 * Remove root classnames when the TopBar is removed. 
 		 * This to support a docs page (on layout), because the 
 		 * TopBar should probably never be removed for real.
-		 */
+		 *
 		ondetach: function() {
 			this.super.ondetach();
 			var root = ts.ui.get(document.documentElement);
@@ -104,6 +127,7 @@ ts.ui.TopBarSpirit = (function(TopBar, Client) {
 			root.css.remove(HAS_TOPBAR_TABS);
 			root.reflex();
 		},
+		*/
 		
 		/**
 		 * Handle (model) changes.

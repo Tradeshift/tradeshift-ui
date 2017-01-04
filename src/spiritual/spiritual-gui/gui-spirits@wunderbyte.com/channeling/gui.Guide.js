@@ -418,7 +418,10 @@ gui.Guide = (function using(
 				return spirit;
 			}
 			function attach(spirit) {
-				Spirit.$attach(spirit);
+				// TODO: This check should not be needed, probably a bug in the detach sequence or something :/
+				if (!spirit.life.attached) {
+					Spirit.$attach(spirit);
+				}
 				return spirit;
 			}
 			function ready(spirit) {

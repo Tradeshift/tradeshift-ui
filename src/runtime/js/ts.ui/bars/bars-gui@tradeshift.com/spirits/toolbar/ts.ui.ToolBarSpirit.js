@@ -240,7 +240,7 @@ ts.ui.ToolBarSpirit = (function using(chained, confirmed, Client, Type, guiArray
 		}),
 
 		/**
-		 * Get or set the title.
+		 * Get or set the title (aborting weird Moustache syntax).
 		 * @param @optional {string} title
 		 * @returns {string|ts.ui.ToolBarSpirit}
 		 */
@@ -248,9 +248,12 @@ ts.ui.ToolBarSpirit = (function using(chained, confirmed, Client, Type, guiArray
 			chained(function(opt_string) {
 				var model = this.model();
 				if (arguments.length) {
-					this.$hascontent();
-					model.title = opt_string;
-					this.event.add('click');
+					if(opt_string.trim().indexOf('{') !== 0) {
+						this.$hascontent();
+						model.title = opt_string;
+						this.event.add('click');
+						this.$hascontent();
+					}
 				} else {
 					return model.title;
 				}
@@ -375,7 +378,6 @@ ts.ui.ToolBarSpirit = (function using(chained, confirmed, Client, Type, guiArray
 		
 		/**
 		 * Hide the ToolBar.
-		 * TODO: Root classnames!
 		 * @returns {ts.ui.ToolBarSpirit}
 		 */
 		hide: chained(function() {
@@ -388,7 +390,6 @@ ts.ui.ToolBarSpirit = (function using(chained, confirmed, Client, Type, guiArray
 		
 		/**
 		 * Show the ToolBar.
-		 * TODO: Root classnames!
 		 * @returns {ts.ui.ToolBarSpirit}
 		 */
 		show: chained(function() {
@@ -401,9 +402,15 @@ ts.ui.ToolBarSpirit = (function using(chained, confirmed, Client, Type, guiArray
 		
 		/**
 		 * Clear the ToolBar.
+		 * TODO: Do we really want to clear the title?
 		 */
 		clear: chained(function() {
-			console.log('TODO!');
+			var model = this._model;
+			model.buttons.clear();
+			model.tabs.clear();
+			model.search = null;
+			model.pager = null;
+			model.title = null;
 		}),
 
 
@@ -616,8 +623,8 @@ ts.ui.ToolBarSpirit = (function using(chained, confirmed, Client, Type, guiArray
 		/**
 		 * Breakpoint changed.
 		 */
-		_onbreakpoint: function(main) {
-			this.super._onbreakpoint(main);
+		_onbreakpoint: function() {
+			this.super._onbreakpoint();
 			this._looknormal(this.css);
 		},
 

@@ -14,6 +14,9 @@
 					}
 				})
 			});
+			function restoreTopBar() {
+				ts.dox.tabs();
+			}
 		</script>
 	</head>
 	<body>
@@ -544,6 +547,34 @@
 					</figure>
 					<p>Note that tabbed navigation is not supposed to coexist with Back and Forward buttons.</p>
 				</section>
+
+
+				<h2>Hide &amp; show the TopBar</h2>
+				<section>
+					<p>You can hide the TopBar &mdash; but not in mobile breakpoint, see below. Note that this operation will clear the contents of the TopBar.</p>
+					<figure data-ts="DoxScript">
+						<script type="runnable">
+							ts.ui.TopBar.hide();
+						</script>
+					</figure>
+					<p>You can also show it again. Because the content was cleared, we'll also restore it.</p>
+					<figure data-ts="DoxScript">
+						<script type="runnable">
+							ts.ui.TopBar.show();
+							restoreTopBar();
+						</script>
+					</figure>
+					<p>When you resize the window to mobile breakpoint, the hidden TopBar will be shown again automatically. That's because the TopBar is used to access the main navigation. Without the TopBar, you would be stuck in the app forever. But since you chose to hide the TopBar, we can assume that the content of the TopBar is not relevant. Therefore:</p>
+
+					<div data-ts="Note">
+						<i class="ts-icon-warning"></i>
+						<p>Since we don't want to show an outdated TopBar to mobile users, the content of the TopBar will be <em>cleared</em> when you hide it. To restore the old content, you will simply have to populate the TopBar again.</p>
+					</div>
+
+					<p>If you don't want your app to feature a TopBar under any circumstance, you can simply remove the whole <code>&lt;div data-ts="TopBar"&gt;</code> from the HTML.</p>
+					
+				</section>
+
 				
 				<h2>TopBar summary</h2>
 				<section>

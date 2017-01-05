@@ -2,8 +2,10 @@
  * Spirit of the TopBar.
  * @using {ts.ui.TopBar} TopBar
  * @using {gui.Client} Client
+ * @using {gui.Combo.chained} chained
+ * @using {gui.Arguments.confirmed} confirmed
  */
-ts.ui.TopBarSpirit = (function(TopBar, Client) {	
+ts.ui.TopBarSpirit = (function(TopBar, Client, chained, confirmed) {	
 	
 	var HAS_TOPBAR = ts.ui.CLASS_HAS_TOPBAR;
 	var HAS_TOPBAR_TABS = ts.ui.CLASS_HAS_TOPBAR_TABS;
@@ -122,16 +124,27 @@ ts.ui.TopBarSpirit = (function(TopBar, Client) {
 				}
 			}, this);
 		},
-		
+
 		/**
-		 * Set the title, but only if it doesn't have weird Mustache syntax.
-		 * @param {String} title
+		 * Get or set the title (aborting weird Moustache syntax). 
+		 * @overwrites {ts.ui.ToolBarSpirit#title}
+		 * @param @optional {string} title
+		 * @returns {string|ts.ui.TopBarSpirit}
 		 */
-		title: function(title) {
-			if (title.indexOf('{') !== 0) {
-				ts.ui.TopBar.title(title);
-			}
-		},
+		title: confirmed('(string)')(
+			chained(function(opt_string) {
+				if (arguments.length) {
+					if(opt_string.trim().indexOf('{') !== 0) {
+						this.$hascontent();
+						ts.ui.TopBar.title(opt_string);
+						this.event.add('click');
+						this.$hascontent();
+					}
+				} else {
+					return ts.ui.TopBar.title();
+				}
+			})
+		),
 		
 		/**
 		 * Never be using some other model.
@@ -143,6 +156,25 @@ ts.ui.TopBarSpirit = (function(TopBar, Client) {
 				throw new Error('Cannot assign :/');
 			}
 			return this._model;
+		},
+
+		/**
+		 * Make sure this goes via the API so that the 
+		 * business logic with mobile breakpoint works.
+		 * @overwrites {ts.ui.ToolBarSpirit#hide}
+		 * @throws {Error}
+		 */
+		hide: function() {
+			throw new Error('Please use ts.ui.TopBar.hide()');
+		},
+
+		/**
+		 * Make sure this goes via the API.
+		 * @overwrites {ts.ui.ToolBarSpirit#hide}
+		 * @throws {Error}
+		 */
+		show: function() {
+			throw new Error('Please use ts.ui.TopBar.show()');
 		},
 		
 		
@@ -159,14 +191,6 @@ ts.ui.TopBarSpirit = (function(TopBar, Client) {
 		 * @overwrites {ts.ui.ToolBarSpirit#_layoutinit}
 		 */
 		_layoutinit: function(attaching) {},
-		
-		/**
-		 * Breakpoint changed.
-		 */
-		_onbreakpoint: function() {
-			this.super._onbreakpoint();
-			this._looknormal(this.css);
-		},
 
 		/**
 		 * In mobile breakpoint, the TopBar is "floating" and that 
@@ -207,24 +231,31 @@ ts.ui.TopBarSpirit = (function(TopBar, Client) {
 			var root = ts.ui.get(document.documentElement);
 			root.css.shift(show, HAS_TOPBAR);
 			root.css.shift(tabs, HAS_TOPBAR_TABS);
-			this.css.shift(!tbar.visible, CLASS_HIDDEN);
+			this.css.shift(!show, CLASS_HIDDEN);
+			if(!show) {
+				this.clear();
+			}
 		},
 		
 		/**
 		 * Should always show in mobile, otherwise should only 
-		 * show if it has content (buttons, tabs, title etc). 
-		 * NOTE: THIS BREAKS DEFAULT HTML CONTENT TOPBAR!!!!!
+		 * show if it has content (buttons, tabs, title etc) 
+		 * or if now empty but used to have some of that stuff.
 		 * @param {ts.ui.TopBarModel} tbar
 		 * @param {string} breakpoint
 		 */
 		_shouldshow: function(tbar, breakpoint) {
-			var is = tbar.visible;
-			if(is && breakpoint !== 'mobile') {
-				is = tbar.hascontent || tbar.hadcontent;
+			if(breakpoint === 'mobile') {
+				return true;
+			} else {
+				return tbar.visible && (
+					this.life.hascontent ||
+					tbar.hascontent ||
+					tbar.hadcontent
+				);
 			}
-			return is;
 		}
 		
 	});
 	
-}(ts.ui.TopBar, gui.Client));
+}(ts.ui.TopBar, gui.Client, gui.Combo.chained, gui.Arguments.confirmed));

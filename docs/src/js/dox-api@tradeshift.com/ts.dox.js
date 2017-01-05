@@ -112,8 +112,8 @@ ts.dox = gui.namespace('ts.dox', (function() {
 		booting: true,
 
 		/**
-		 * Show those tabs.
-		 * @param @optional {Array<Array>} tabs Omit to build from `link` tags in HEAD
+		 * Show those tabs. Omit the argument to build from `link` tags in HEAD
+		 * @param @optional {Array<Array>} tabs (can be omitted)
 		 */
 		tabs: function(tabs) {
 			tabs = tabs || parselinks();

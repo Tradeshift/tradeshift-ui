@@ -324,7 +324,7 @@ gui.Client = (function() {
 				// sad hotfix for IE, but TODO: isn't the scrollbar really big in Windows 10?
 				this.scrollBarSize = 17;
 			}
-		}
+		};
 	}
 
 	return new Client();

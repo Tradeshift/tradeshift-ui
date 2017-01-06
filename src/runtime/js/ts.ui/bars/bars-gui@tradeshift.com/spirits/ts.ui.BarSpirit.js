@@ -86,17 +86,22 @@ ts.ui.BarSpirit = (function(TopBar, Client, chained, UNIT_DOUBLE, UNIT_TRIPLE) {
 		 * `left` and `top` in both cases) but IE9 users are after all not mobile.
 		 * TODO: Make sure to also remove the breakpoint listener when we terminate.
 		 */
-		_initbreakpoint: function() {
+		_initbreakpoint: function(attach) {
 			var main = this.$getmain();
 			if(main && Client.has3D) {
 				this.sprite.y = 0;
-				this._onbreakpoint();
-				ts.ui.addBreakPointListener(function(newpoint, oldpoint) {
+				if(attach) {
 					this._onbreakpoint();
-					if(oldpoint === 'mobile') {
-						this.sprite.y = 0;
-					}
-				}.bind(this));
+					this._breakfunction = function(newpoint, oldpoint) {
+						this._onbreakpoint();
+						if(oldpoint && oldpoint === 'mobile') {
+							this.sprite.y = 0;
+						}
+					}.bind(this);
+					ts.ui.addBreakPointListener(this._breakfunction);
+				} else if(this._breakfunction) {
+					ts.ui.removeBreakPointListener(this._breakfunction);
+				}
 			}
 		},
 

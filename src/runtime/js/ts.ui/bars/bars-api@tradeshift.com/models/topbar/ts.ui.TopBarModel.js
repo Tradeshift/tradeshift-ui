@@ -79,17 +79,13 @@ ts.ui.TopBarModel = (function using(chained) {
 		/**
 		 * Handle model changes.
 		 * @param {Array<edb.Change>} changes
-		 * @returns {boolean} True when updated
 		 */
 		onchange: function(changes) {
-			if(!this.super.onchange(changes)) {
-				return changes.reduce(function(did, c) {
-					if(c.name === 'defaultTitle') {
-						this._updatehascontent();
-						did = true;
-					}
-					return did;
-				}, false);
+			this.super.onchange(changes);
+			if(changes.some(function(c) {
+				return c.name === 'defaultTitle';
+			})) {
+				this._updatehascontent();
 			}
 		},
 		

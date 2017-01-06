@@ -84,15 +84,16 @@ ts.ui.ToolBarModel = (function using(chained) {
 		/**
 		 * Handle model changes.
 		 * @param {Array<edb.Change>} changes
-		 * @returns {boolean} True when updated
 		 */
 		onchange: function(changes) {
 			var has = 'hascontent';
 			var had = 'hadcontent';
+			if(!this.hadcontent) {
+				this.hadcontent = changes.some(function(c) {
+					return c.name === has && c.newValue;
+				});
+			}
 			if(changes.some(function(c) {
-				if(!this.hadcontent) {
-					this.hadcontent = (c.name === has && c.newValue);
-				}
 				return c.name !== has && c.name !== had;
 			}, this)) {
 				this._updatehascontent();
@@ -123,7 +124,6 @@ ts.ui.ToolBarModel = (function using(chained) {
 
 		/**
 		 * Watch myself and my collections.
-		 * TODO: {TopBarModel} must add `navigation` to this list !!!!!!!!!!!!!!!!!!
 		 * @param {boolean} doit
 		 */
 		_watchmodels: function(doit) {

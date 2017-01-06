@@ -70,24 +70,11 @@ ts.ui.ToolBarSpirit = (function using(chained, confirmed, Client, Type, guiArray
 		},
 
 		/**
-		 * It appears that {gui.Client#scrollBarSize} is not computed 
-		 * on `DOMContentLoaded` so perhaps we should fix that instead 
-		 * (perhaps that wasn't possible?). This might cause a reflow.
-		 */
-		onasync: function() {
-			this.super.onasync();
-			this._layoutinit();
-			this._looknormal(this.css);
-		},
-
-		/**
 		 * Further hotfix for situation explained in previous comment.
 		 */
 		onattach: function() {
 			this.super.onattach();
-			if(this.life.async) {
-				this._layoutmain(true);
-			}
+			this._layoutmain(true);
 		},
 
 		/**
@@ -253,7 +240,7 @@ ts.ui.ToolBarSpirit = (function using(chained, confirmed, Client, Type, guiArray
 		}),
 
 		/**
-		 * Get or set the title.
+		 * Get or set the title (aborting weird Moustache syntax).
 		 * @param @optional {string} title
 		 * @returns {string|ts.ui.ToolBarSpirit}
 		 */
@@ -261,9 +248,12 @@ ts.ui.ToolBarSpirit = (function using(chained, confirmed, Client, Type, guiArray
 			chained(function(opt_string) {
 				var model = this.model();
 				if (arguments.length) {
-					this.$hascontent();
-					model.title = opt_string;
-					this.event.add('click');
+					if(opt_string.trim().indexOf('{') !== 0) {
+						this.$hascontent();
+						model.title = opt_string;
+						this.event.add('click');
+						this.$hascontent();
+					}
 				} else {
 					return model.title;
 				}
@@ -388,7 +378,6 @@ ts.ui.ToolBarSpirit = (function using(chained, confirmed, Client, Type, guiArray
 		
 		/**
 		 * Hide the ToolBar.
-		 * TODO: Root classnames!
 		 * @returns {ts.ui.ToolBarSpirit}
 		 */
 		hide: chained(function() {
@@ -401,7 +390,6 @@ ts.ui.ToolBarSpirit = (function using(chained, confirmed, Client, Type, guiArray
 		
 		/**
 		 * Show the ToolBar.
-		 * TODO: Root classnames!
 		 * @returns {ts.ui.ToolBarSpirit}
 		 */
 		show: chained(function() {
@@ -414,9 +402,15 @@ ts.ui.ToolBarSpirit = (function using(chained, confirmed, Client, Type, guiArray
 		
 		/**
 		 * Clear the ToolBar.
+		 * TODO: Do we really want to clear the title?
 		 */
 		clear: chained(function() {
-			console.log('TODO!');
+			var model = this._model;
+			model.buttons.clear();
+			model.tabs.clear();
+			model.search = null;
+			model.pager = null;
+			model.title = null;
 		}),
 
 
@@ -466,41 +460,22 @@ ts.ui.ToolBarSpirit = (function using(chained, confirmed, Client, Type, guiArray
 				}
 			}
 		},
-
+				
 		/**
-		 * Add/remove classnames on the HTML element so we can style the MAIN.
-		 * @param {boolean} attaching This is `false' when toolbar gets removed
-		 */
-		_layoutinit: function() {
-			switch(this._layoutmain(true)) {
-				case 'before':
-					this._initbreakpoint();
-					break;
-				case 'after':
-					this._looknormal(this.css);
-					ts.ui.addBreakPointListener(function() {
-						if(!this.$destructed) {
-							this._looknormal(this.css);
-						}
-					}.bind(this));
-					break;
-			}
-		},
-		
-		/**
+		 * Layout the Main section.
 		 * @param {boolean} show
-		 * @returns {string}
 		 */
 		_layoutmain: function(show) {
-			if(this.dom.embedded()) {
+			if(this.guilayout.outsideMain()) {
 				if(this.guilayout.beforeMain()) {
+					this._looknormal(this.css);
 					this._layoutbefore(show);
-					return 'before';
+					this._initbreakpoint(show);
 				} else if(this.guilayout.afterMain()) {
+					this._looknormal(this.css);
 					this._layoutafter(show);
-					return 'after';
 				}
-			}
+			}			
 		},
 		
 		/**
@@ -537,10 +512,11 @@ ts.ui.ToolBarSpirit = (function using(chained, confirmed, Client, Type, guiArray
 		 * @param {gui.CSSPlugin} css
 		 */
 		_looknormal: function(css) {
+			var mobile = ts.ui.isMobilePoint();
 			if (['ts-toolbar-first', 'ts-toolbar-last'].some(function(klass) {
 					return css.contains(klass);
 				})) {
-					css.right = ts.ui.isMobilePoint() ? Client.scrollBarSize : '';
+					css.right = mobile ? Client.scrollBarSize : '';
 				}
 		},
 		
@@ -647,8 +623,8 @@ ts.ui.ToolBarSpirit = (function using(chained, confirmed, Client, Type, guiArray
 		/**
 		 * Breakpoint changed.
 		 */
-		_onbreakpoint: function(main) {
-			this.super._onbreakpoint(main);
+		_onbreakpoint: function() {
+			this.super._onbreakpoint();
 			this._looknormal(this.css);
 		},
 

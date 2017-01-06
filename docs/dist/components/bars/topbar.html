@@ -4,7 +4,7 @@
 <head>
     <title>TopBar</title>
     <meta name="viewport" content="width=device-width">
-    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-7.0.0-alpha.3.min.js"></script>
+    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-7.0.0-alpha.4.min.js"></script>
     <script src="/dist/assets/dox.min.js"></script>
     <script src="/dist/assets/mark.min.js"></script>
     <script src="/dist/assets/jquery-2.2.4.min.js"></script>
@@ -24,6 +24,10 @@
                 }
             })
         });
+
+        function restoreTopBar() {
+            ts.dox.tabs();
+        }
     </script>
     <script>
         ts.dox.tabs()
@@ -464,6 +468,39 @@ group<span class="token punctuation">.</span><span class="token function">push<s
                         </div>
                     </figure>
                     <p>Note that tabbed navigation is not supposed to coexist with Back and Forward buttons.</p>
+                </section>
+                <h2><span>Hide &amp; show the TopBar</span></h2>
+                <section>
+                    <p>You can hide the TopBar &#x2014; but not in mobile breakpoint, see below. Note that this operation will clear the contents of the TopBar.</p>
+                    <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.TopBar.hide()%3B">
+                        <script type="runnable">
+                            ts.ui.TopBar.hide();
+                        </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                        <div class="tabpanels">
+                            <pre class="prism language-javascript">
+<code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>TopBar<span class="token punctuation">.</span><span class="token function">hide<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
+</pre>
+                        </div>
+                    </figure>
+                    <p>You can also show it again. Because the content was cleared, we&apos;ll also restore it.</p>
+                    <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.TopBar.show()%3B%0ArestoreTopBar()%3B">
+                        <script type="runnable">
+                            ts.ui.TopBar.show(); restoreTopBar();
+                        </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                        <div class="tabpanels">
+                            <pre class="prism language-javascript">
+<code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>TopBar<span class="token punctuation">.</span><span class="token function">show<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">restoreTopBar<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
+</pre>
+                        </div>
+                    </figure>
+                    <p>When you resize the window to mobile breakpoint, the hidden TopBar will be shown again automatically. That&apos;s because the TopBar is used to access the main navigation. Without the TopBar, you would be stuck in the app forever.
+                        But since you chose to hide the TopBar, we can assume that the content of the TopBar is not relevant. Therefore:</p>
+                    <div data-ts="Note">
+                        <i class="ts-icon-warning"></i>
+                        <p>Since we don&apos;t want to show an outdated TopBar to mobile users, the content of the TopBar will be <em>cleared</em> when you hide it. To restore the old content, you will simply have to populate the TopBar again.</p>
+                    </div>
+                    <p>If you don&apos;t want your app to feature a TopBar under any circumstance, you can simply remove the whole <code>&lt;div data-ts=&quot;TopBar&quot;&gt;</code> from the HTML.</p>
                 </section>
                 <h2><span>TopBar summary</span></h2>
                 <section>

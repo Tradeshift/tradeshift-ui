@@ -299,11 +299,14 @@ ts.ui.TopBar = {
 		})),
 
 		/**
-		 * Hide ts.ui.Topbar.
+		 * Hide ts.ui.Topbar. Because this won't have any effect in 
+		 * mobile  breakpoint, we'll also clear the TopBar (so that 
+		 * in mobile, the effect is simply to clear the TopBar).
 		 * @returns {ts.ui.TopBar}
 		 */
 		hide: api(chained(function() { 
 			topbar.visible = false;
+			topbar.clear();
 		})),
 		
 		/**

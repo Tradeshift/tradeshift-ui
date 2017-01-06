@@ -126,6 +126,7 @@ gui = gui.Object.extend(gui, {
 	 */
 	bootstrap: function() {
 		var delay = gui.bootstrapdelay;
+		gui.Client.$init();
 		function start() {
 			gui.spiritualizing = true;
 			gui.Guide.$startGuiding();

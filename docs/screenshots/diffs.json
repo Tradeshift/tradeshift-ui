@@ -1,5 +1,50 @@
 [
 	{
+		"browser": "Firefox",
+		"diffs": [
+			[
+				"components",
+				"components/screenshots/index.html",
+				"screenshots/local/firefox/components.png",
+				"screenshots/release/firefox/components.png",
+				"screenshots/diffs/firefox/components.png"
+			],
+			[
+				"form",
+				"components/screenshots/form.html",
+				"screenshots/local/firefox/form.png",
+				"screenshots/release/firefox/form.png",
+				"screenshots/diffs/firefox/form.png"
+			],
+			[
+				"aside",
+				"components/screenshots/aside.html",
+				"screenshots/local/firefox/aside.png",
+				"screenshots/release/firefox/aside.png",
+				"screenshots/diffs/firefox/aside.png"
+			]
+		]
+	},
+	{
+		"browser": "Chrome",
+		"diffs": [
+			[
+				"form",
+				"components/screenshots/form.html",
+				"screenshots/local/chrome/form.png",
+				"screenshots/release/chrome/form.png",
+				"screenshots/diffs/chrome/form.png"
+			],
+			[
+				"aside",
+				"components/screenshots/aside.html",
+				"screenshots/local/chrome/aside.png",
+				"screenshots/release/chrome/aside.png",
+				"screenshots/diffs/chrome/aside.png"
+			]
+		]
+	},
+	{
 		"browser": "Safari",
 		"diffs": [
 			[
@@ -26,8 +71,163 @@
 		]
 	},
 	{
+		"browser": "Internet Explorer 9",
+		"diffs": [
+			[
+				"form",
+				"components/screenshots/form.html",
+				"screenshots/local/internet-explorer-9/form.png",
+				"screenshots/release/internet-explorer-9/form.png",
+				"screenshots/diffs/internet-explorer-9/form.png"
+			],
+			[
+				"aside",
+				"components/screenshots/aside.html",
+				"screenshots/local/internet-explorer-9/aside.png",
+				"screenshots/release/internet-explorer-9/aside.png",
+				"screenshots/diffs/internet-explorer-9/aside.png"
+			],
+			[
+				"form",
+				"components/screenshots/form.html",
+				"screenshots/local/internet-explorer-10/form.png",
+				"screenshots/release/internet-explorer-10/form.png",
+				"screenshots/diffs/internet-explorer-10/form.png"
+			],
+			[
+				"aside",
+				"components/screenshots/aside.html",
+				"screenshots/local/internet-explorer-10/aside.png",
+				"screenshots/release/internet-explorer-10/aside.png",
+				"screenshots/diffs/internet-explorer-10/aside.png"
+			],
+			[
+				"form",
+				"components/screenshots/form.html",
+				"screenshots/local/internet-explorer-11/form.png",
+				"screenshots/release/internet-explorer-11/form.png",
+				"screenshots/diffs/internet-explorer-11/form.png"
+			],
+			[
+				"aside",
+				"components/screenshots/aside.html",
+				"screenshots/local/internet-explorer-11/aside.png",
+				"screenshots/release/internet-explorer-11/aside.png",
+				"screenshots/diffs/internet-explorer-11/aside.png"
+			]
+		]
+	},
+	{
+		"browser": "Internet Explorer 10",
+		"diffs": [
+			[
+				"form",
+				"components/screenshots/form.html",
+				"screenshots/local/internet-explorer-9/form.png",
+				"screenshots/release/internet-explorer-9/form.png",
+				"screenshots/diffs/internet-explorer-9/form.png"
+			],
+			[
+				"aside",
+				"components/screenshots/aside.html",
+				"screenshots/local/internet-explorer-9/aside.png",
+				"screenshots/release/internet-explorer-9/aside.png",
+				"screenshots/diffs/internet-explorer-9/aside.png"
+			],
+			[
+				"form",
+				"components/screenshots/form.html",
+				"screenshots/local/internet-explorer-10/form.png",
+				"screenshots/release/internet-explorer-10/form.png",
+				"screenshots/diffs/internet-explorer-10/form.png"
+			],
+			[
+				"aside",
+				"components/screenshots/aside.html",
+				"screenshots/local/internet-explorer-10/aside.png",
+				"screenshots/release/internet-explorer-10/aside.png",
+				"screenshots/diffs/internet-explorer-10/aside.png"
+			],
+			[
+				"form",
+				"components/screenshots/form.html",
+				"screenshots/local/internet-explorer-11/form.png",
+				"screenshots/release/internet-explorer-11/form.png",
+				"screenshots/diffs/internet-explorer-11/form.png"
+			],
+			[
+				"aside",
+				"components/screenshots/aside.html",
+				"screenshots/local/internet-explorer-11/aside.png",
+				"screenshots/release/internet-explorer-11/aside.png",
+				"screenshots/diffs/internet-explorer-11/aside.png"
+			]
+		]
+	},
+	{
+		"browser": "Internet Explorer 11",
+		"diffs": [
+			[
+				"form",
+				"components/screenshots/form.html",
+				"screenshots/local/internet-explorer-9/form.png",
+				"screenshots/release/internet-explorer-9/form.png",
+				"screenshots/diffs/internet-explorer-9/form.png"
+			],
+			[
+				"aside",
+				"components/screenshots/aside.html",
+				"screenshots/local/internet-explorer-9/aside.png",
+				"screenshots/release/internet-explorer-9/aside.png",
+				"screenshots/diffs/internet-explorer-9/aside.png"
+			],
+			[
+				"form",
+				"components/screenshots/form.html",
+				"screenshots/local/internet-explorer-10/form.png",
+				"screenshots/release/internet-explorer-10/form.png",
+				"screenshots/diffs/internet-explorer-10/form.png"
+			],
+			[
+				"aside",
+				"components/screenshots/aside.html",
+				"screenshots/local/internet-explorer-10/aside.png",
+				"screenshots/release/internet-explorer-10/aside.png",
+				"screenshots/diffs/internet-explorer-10/aside.png"
+			],
+			[
+				"form",
+				"components/screenshots/form.html",
+				"screenshots/local/internet-explorer-11/form.png",
+				"screenshots/release/internet-explorer-11/form.png",
+				"screenshots/diffs/internet-explorer-11/form.png"
+			],
+			[
+				"aside",
+				"components/screenshots/aside.html",
+				"screenshots/local/internet-explorer-11/aside.png",
+				"screenshots/release/internet-explorer-11/aside.png",
+				"screenshots/diffs/internet-explorer-11/aside.png"
+			]
+		]
+	},
+	{
 		"browser": "Edge",
 		"diffs": [
+			[
+				"components",
+				"components/screenshots/index.html",
+				"screenshots/local/edge/components.png",
+				"screenshots/release/edge/components.png",
+				"screenshots/diffs/edge/components.png"
+			],
+			[
+				"form",
+				"components/screenshots/form.html",
+				"screenshots/local/edge/form.png",
+				"screenshots/release/edge/form.png",
+				"screenshots/diffs/edge/form.png"
+			],
 			[
 				"aside",
 				"components/screenshots/aside.html",

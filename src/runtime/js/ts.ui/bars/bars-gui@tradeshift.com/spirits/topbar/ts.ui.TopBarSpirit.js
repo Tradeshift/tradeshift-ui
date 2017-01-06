@@ -20,6 +20,7 @@ ts.ui.TopBarSpirit = (function(TopBar, Client, chained, confirmed) {
 		 */
 		onconstruct: function() {
 			this.super.onconstruct();
+			this.life.hascontent = false;
 			this._model = ts.ui.TopBar.$getmodel();
 			this._matchcolor(this, this._model);
 			this.script.load(ts.ui.ToolBarSpirit.edbml);
@@ -127,6 +128,9 @@ ts.ui.TopBarSpirit = (function(TopBar, Client, chained, confirmed) {
 
 		/**
 		 * Get or set the title (aborting weird Moustache syntax). 
+		 *
+		 * TODO: `this._model` is the TopBarModel, so why did we overwrite this?
+		 *
 		 * @overwrites {ts.ui.ToolBarSpirit#title}
 		 * @param @optional {string} title
 		 * @returns {string|ts.ui.TopBarSpirit}
@@ -232,9 +236,6 @@ ts.ui.TopBarSpirit = (function(TopBar, Client, chained, confirmed) {
 			root.css.shift(show, HAS_TOPBAR);
 			root.css.shift(tabs, HAS_TOPBAR_TABS);
 			this.css.shift(!show, CLASS_HIDDEN);
-			if(!show) {
-				this.clear();
-			}
 		},
 		
 		/**

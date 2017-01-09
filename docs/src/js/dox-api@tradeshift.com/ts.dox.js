@@ -2,7 +2,7 @@
  * Namespace object.
  */
 ts.dox = gui.namespace('ts.dox', (function() {
-
+	
 	/**
 	 * This is decidedly *not* the case upon GitHub pages.
 	 */
@@ -37,12 +37,17 @@ ts.dox = gui.namespace('ts.dox', (function() {
 	}
 
 	/**
+	 * Tab should be visible?
+	 * 1) All tabs should be visible on localhost, for you and I to see
+	 * 2) But they should also be visible when the page is loaded standalone 
+	 *    (without the chrome) so that we can show stuff online on a "secret" 
+	 *    URL without the page automatically loading the first *visible* tab.
 	 * @param {Array} tab
 	 * @returns {boolean}
 	 */
 	function visibletab(tab) {
 		if(tab[2] === true) {
-			return islocalhost;
+			return islocalhost || !gui.hosted;
 		}
 		return true;
 	}

@@ -61,7 +61,9 @@ gui.Guide = (function using(
 		$startGuiding: function() {
 			this._startGuiding();
 			Broadcast.dispatch(gui.BROADCAST_WILL_SPIRITUALIZE);
-			this._spiritualizeinitially();
+			gui.$measure('spiritualize initially', function() {
+				this._spiritualizeinitially();
+			}, this);
 			Broadcast.dispatch(gui.BROADCAST_DID_SPIRITUALIZE);
 		},
 

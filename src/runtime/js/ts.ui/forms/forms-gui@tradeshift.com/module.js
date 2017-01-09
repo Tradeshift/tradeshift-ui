@@ -13,26 +13,7 @@ gui.module('forms-gui@tradeshift.com', {
 	 * @see {ts.ui.FormSpirit#onconstruct}
 	 */
 	channel: [
-
-		// OLD
-		/*
-		['[ts-form]', ts.ui.FormSpirit],
-		['[ts-group]', ts.ui.FieldSetSpirit],
-		['[ts-label]', ts.ui.LabelSpirit],
-		['[ts-switch]', ts.ui.SwitchSpirit],
-		['[ts-option]', ts.ui.OptionSpirit],
-		['[ts-input]', ts.ui.TextInputSpirit],
-		['[ts-dateinput]', ts.ui.DateInputSpirit],
-		['[ts-textarea]', ts.ui.TextAreaSpirit],
-		['[ts-select]', ts.ui.SelectSpirit],
-		['[ts-search]', ts.ui.SearchSpirit],
-		['[ts-autocomplete]', ts.ui.AutocompleteInputSpirit],
-		['[ts-calendar]', ts.ui.CalendarSpirit],
-		['[ts-fakedateinput]', ts.ui.FakeDateInputSpirit],
-		['[ts-fakeselectinput]', ts.ui.FakeSelectInputSpirit],
-		*/
 		
-		// NEW
 		['[data-ts=Form]', ts.ui.FormSpirit],
 		['[data-ts=FieldSet]', ts.ui.FieldSetSpirit],
 		['[data-ts=Label]', ts.ui.LabelSpirit],
@@ -56,7 +37,7 @@ gui.module('forms-gui@tradeshift.com', {
 		['[data-ts=FakeDateInput]', ts.ui.FakeDateInputSpirit],
 		['[data-ts=FakeSelectInput]', ts.ui.FakeSelectInputSpirit],
 
-		// markup structure channeling
+		// markup structure channeling (these are known to cause a major slowdown!)
 		['.ts-form fieldset', ts.ui.FieldSetSpirit],
 		['.ts-form label', ts.ui.LabelSpirit],
 		['.ts-form input[type=date]', ts.ui.DateInputSpirit],

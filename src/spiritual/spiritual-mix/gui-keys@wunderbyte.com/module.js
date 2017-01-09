@@ -1,4 +1,10 @@
 /**
+ * Note: Just because this happens to be the last loaded module (in Spiritual).
+ */
+gui.$stop('parse spiritual');
+
+
+/**
  * Keys module.
  * @TODO http://www.w3.org/TR/DOM-Level-3-Events/#events-keyboardevents
  * @TODO http://dev.opera.com/articles/view/functional-key-handling-in-opera-tv-store-applications/

@@ -1,3 +1,8 @@
+/*
+ * (Note: Just because this happens to be the last loaded bundle)
+ */
+gui.$stop('parse runtime');
+
 /**
  * Tables GUI module.
  */
@@ -8,10 +13,6 @@ gui.module('tables-gui@tradeshift.com', {
 	 */
 	channel: [
 		
-		// OLD
-		//['[ts-table]', ts.ui.TableSpirit],
-		
-		// NEW
 		['[data-ts=Table]', ts.ui.TableSpirit]
 	],
 

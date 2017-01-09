@@ -1,3 +1,5 @@
+gui.$mark('parse runtime');
+
 /**
  * Namespace object.
  * @using {gui.Client} Client
@@ -508,47 +510,6 @@ ts.ui = gui.namespace('ts.ui', (function using(Client, guiArray, confirmed, chai
 				}
 			});
 		},
-		
-		/**
-     * @returns {object}
-     *
-    topbar: function() {
-      return ts.ui.TopBar;
-    },
-	    
-    /** 
-     * Get the TabBar.
-     * @param @optional {function} cb
-     * @returns {ts.ui.TabBarSpirit}
-     *
-    tabbar: confirmed('(function)')(function(cb) {
-      return getbar(function() {
-        return getmain().tabbar();
-      }, cb);
-    }),
-	    
-    /** 
-     * Get the ToolBar.
-     *  @param @optional {function} cb
-     * @returns {ts.ui.ToolBarSpirit}
-     *
-    toolbar: confirmed('(function)')(function(cb) {
-      return getbar(function() {
-        return getmain().toolbar();
-      }, cb);
-    }),
-	    
-    /**
-     * Get the StatusBar.
-     * @param @optional {function} cb
-     * @returns {ts.ui.ToolBarSpirit}
-     *
-    statusbar: confirmed('(function)')(function(cb) {
-      return getbar(function() {
-        return getmain().statusbar();
-      }, cb);
-    }),
-		*/
 
 
 		// Private .................................................................
@@ -564,6 +525,7 @@ ts.ui = gui.namespace('ts.ui', (function using(Client, guiArray, confirmed, chai
 			}
 			return model;
 		}
+
 	};
 
 }(gui.Client, gui.Array, gui.Arguments.confirmed, gui.Combo.chained)));
@@ -602,9 +564,24 @@ ts.ui.COLORS = {
 };
 
 /**
+ * Experimental.
+ */
+ts.ui.ready(function debugtiming() {
+	var times = gui.$measurements();
+	if(times.length && console.table) {
+		console.table(times.map(function(m) {
+			return {
+				'What happened' : m.name,
+				'For how long' : m.duration
+			};
+		}));
+	}
+});
+
+/**
  * Observe that LayoutModel.
  */
-ts.ui.ready(function() {
+ts.ui.ready(function addobserver() {
 	var layout = ts.ui.LayoutModel.output.get();
 	ts.ui.breakpoint = layout.breakpoint;
 	layout.addObserver(ts.ui);

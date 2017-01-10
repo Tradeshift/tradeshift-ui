@@ -176,6 +176,7 @@ ts.ui = gui.namespace('ts.ui', (function using(Client, guiArray, confirmed, chai
 		CLASS_WARNING: 'ts-warning',
 		CLASS_ERROR: 'ts-error',
 		CLASS_INFO: 'ts-info',
+		CLASS_OPTIMIZED: 'ts-optimized',
 
 		// widgets - TODO: maybe move to core-gui@tradeshift.com
 		CLASS_MAIN: 'ts-main',
@@ -219,6 +220,7 @@ ts.ui = gui.namespace('ts.ui', (function using(Client, guiArray, confirmed, chai
 		CLASS_DISABLED: 'ts-disabled',
 		CLASS_READONLY: 'ts-readonly',
 		CLASS_REQUIRED: 'ts-required',
+		CLASS_NOLOCK: 'ts-nolock',
 
 		// background colors
 		CLASS_BG_LITE: 'ts-bg-lite',

@@ -12,7 +12,7 @@ ts.ui.ButtonMenuSpirit = ts.ui.Spirit.extend({
 	onconstruct:function() {
 		this.super.onconstruct();
 		ts.ui.CoreModule.channelComplexSelectors(
-			!this.css.contains('ts-optimized')
+			!this.css.contains(ts.ui.CLASS_OPTIMIZED)
 		);
 	}
 

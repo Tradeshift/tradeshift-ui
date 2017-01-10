@@ -52,14 +52,6 @@ ts.ui.FormsModule = gui.module('forms-gui@tradeshift.com', {
 				['.ts-form textarea', ts.ui.TextAreaSpirit],
 				['.ts-form select', ts.ui.SelectSpirit]
 			]);
-			gui.getChannels().forEach(function(c) {
-				console.log(c);
-			});
-			/*
-			console.log(gui.getChannels().map(function(a) {
-				return a[0];
-			}));
-			*/
 		}
 	},
 

@@ -74,8 +74,10 @@
 		 */
 		onafterspiritualize: function() {
 			if(gui.hosted) {
-				this._debugmetrics('metrics');
 				this._hilitesearch('?query=');
+				gui.Tick.time(function postponed() { // make sure we catch all metrics
+					this._debugmetrics('metrics');
+				}, 0, this);
 			}
 		},
 		
@@ -118,8 +120,12 @@
 		_debugmetrics: function(pattern) {
 			if(top.location.search.includes(pattern)) {
 				var times = gui.$measurements();
+				var name = 'What happened';
 				if(times.length && console.table) {
-					console.table(times.map(function(m) {
+					console.debug('\n' + document.title);
+					console.table(times.sort(function(a, b) {
+						return b.duration >= a.duration ? 1 : -1;
+					}).map(function(m) {
 						return {
 							'What happened' : m.name,
 							'For how long' : m.duration

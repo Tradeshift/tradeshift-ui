@@ -61,8 +61,9 @@ gui.Guide = (function using(
 		$startGuiding: function() {
 			this._startGuiding();
 			Broadcast.dispatch(gui.BROADCAST_WILL_SPIRITUALIZE);
-			gui.$measure('spiritualize initially', function() {
+			gui.$measure('- spiritualize initially', function() {
 				this._spiritualizeinitially();
+				gui.$stop('boostrap everything');
 			}, this);
 			Broadcast.dispatch(gui.BROADCAST_DID_SPIRITUALIZE);
 		},

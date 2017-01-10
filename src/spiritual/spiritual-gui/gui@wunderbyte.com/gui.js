@@ -456,4 +456,4 @@ window.gui = (function using(Namespace, Timer) {
  * Start the measurements.
  */
 gui.$mark('boostrap everything');
-gui.$mark('parse spiritual');
+gui.$mark('- parse spiritual');

@@ -1,4 +1,4 @@
-gui.$mark('parse runtime');
+gui.$mark('- parse runtime');
 
 /**
  * Namespace object.

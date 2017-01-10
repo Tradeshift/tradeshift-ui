@@ -70,22 +70,12 @@
 		},
 
 		/**
-		 * Highlight search query.
+		 * Highlight search query and maybe log performance metrics to console.
 		 */
 		onafterspiritualize: function() {
-			var pattern = '?query=';
 			if(gui.hosted) {
-				if(location.search.includes(pattern)) {
-					hilite(location.search.split(pattern)[1]);
-				}
-				gui.Broadcast.addGlobal('dox-search-query', {
-					onbroadcast: function(b) {
-						nolite();
-						if(b.data) {
-							hilite(b.data);
-						}
-					}
-				})
+				this._debugmetrics('metrics');
+				this._hilitesearch('?query=');
 			}
 		},
 		
@@ -100,6 +90,42 @@
 			var root = document.documentElement;
 			if(rest && rest.length) {
 				gui.CSSPlugin.add(root, rest.split('/')[0]);
+			}
+		},
+
+		/**
+		 * Highlight search query.
+		 * @param {string} pattern
+		 */
+		_hilitesearch: function(pattern) {
+			if(location.search.includes(pattern)) {
+				hilite(location.search.split(pattern)[1]);
+			}
+			gui.Broadcast.addGlobal('dox-search-query', {
+				onbroadcast: function(b) {
+					nolite();
+					if(b.data) {
+						hilite(b.data);
+					}
+				}
+			})
+		},
+
+		/**
+		 * Log performance metrics to console.
+		 * @param {string} pattern
+		 */
+		_debugmetrics: function(pattern) {
+			if(top.location.search.includes(pattern)) {
+				var times = gui.$measurements();
+				if(times.length && console.table) {
+					console.table(times.map(function(m) {
+						return {
+							'What happened' : m.name,
+							'For how long' : m.duration
+						};
+					}));
+				}
 			}
 		}
 

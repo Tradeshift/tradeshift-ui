@@ -43,7 +43,7 @@ ts.ui.CoreModule = gui.module('core-gui@tradeshift.com', {
 			this._channeled = true;
 			gui.channel([
 				['.ts-buttons button, .ts-buttons a', ts.ui.ButtonSpirit]
-			])
+			]);
 		}
 	},
 

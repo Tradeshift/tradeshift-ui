@@ -60,7 +60,7 @@ ts.ui.FormSpirit = (function() {
 		 */
 		_channelComplexSelectors: function() {
 			var module = ts.ui.FormsModule;
-			var enable = !this.css.contains('ts-optimized');
+			var enable = !this.css.contains(ts.ui.CLASS_OPTIMIZED);
 			module.channelComplexSelectors(enable);
 		}
 

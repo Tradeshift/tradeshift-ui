@@ -3,9 +3,7 @@
  * The "?internal" flag will also load the CSS.
  */
 (function boostrap(sources) {
-
-	console.log(JSON.stringify(sources, 0, 4));
-
+	
 	var intern, sheet, 
 		scripts = document.querySelectorAll('script'),
 		head = document.querySelector('head'),

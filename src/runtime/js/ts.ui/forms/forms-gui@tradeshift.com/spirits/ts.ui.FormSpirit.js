@@ -57,7 +57,6 @@ ts.ui.FormSpirit = (function() {
 		/**
 		 * Channel spirits for complex selectors as soon 
 		 * as the first Form is encountered on the page.
-		 * TODO: This for button groups!
 		 */
 		_channelComplexSelectors: function() {
 			var module = ts.ui.FormsModule;

@@ -564,21 +564,6 @@ ts.ui.COLORS = {
 };
 
 /**
- * Experimental.
- */
-ts.ui.ready(function debugtiming() {
-	var times = gui.$measurements();
-	if(times.length && console.table) {
-		console.table(times.map(function(m) {
-			return {
-				'What happened' : m.name,
-				'For how long' : m.duration
-			};
-		}));
-	}
-});
-
-/**
  * Observe that LayoutModel.
  */
 ts.ui.ready(function addobserver() {

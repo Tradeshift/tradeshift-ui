@@ -14,7 +14,7 @@
     "Daniel Spitzer <dsp@tradeshift.com> (https://github.com/sampi)"
   ],
   "license": "SEE LICENSE IN LICENSE.md",
-  "homepage": "https://ui.tradeshift.com/",
+  "homepage": "https://ui-dev.tradeshift.com/",
   "scripts": {
     "test": "grunt test"
   },
@@ -29,7 +29,7 @@
     "library"
   ],
   "engines": {
-    "node": "4.5.0"
+    "node": "6.9.4"
   },
   "devDependencies": {
     "alce": "^1.0.0",

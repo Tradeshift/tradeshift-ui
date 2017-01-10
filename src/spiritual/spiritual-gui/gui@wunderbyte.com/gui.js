@@ -446,7 +446,7 @@ window.gui = (function using(Namespace, Timer) {
 					return performance.getEntriesByType('measure');
 				}
 			}
-		}
+		};
 	}(!!(window.performance && performance.getEntriesByType && location.port === '10114')))
 
 ));
@@ -455,4 +455,5 @@ window.gui = (function using(Namespace, Timer) {
 /*
  * Start the measurements.
  */
+gui.$mark('boostrap everything');
 gui.$mark('parse spiritual');

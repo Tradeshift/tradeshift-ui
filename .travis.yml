@@ -11,7 +11,7 @@ addons:
 
 language: node_js
 node_js:
-  - "node"
+  - 6
 
 matrix:
   fast_finish: true
@@ -23,8 +23,12 @@ before_install:
 install:
   - echo '{"AWSAccessKeyId":"","AWSSecretKey":""}' >> aws-keys.json
   - npm install -g grunt-cli
-  - npm install
+  - yarn
+
+script:
+  - yarn test
 
 cache:
+  yarn: true
   directories:
     - node_modules

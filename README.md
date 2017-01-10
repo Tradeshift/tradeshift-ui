@@ -6,8 +6,8 @@
 
 # [Tradeshift UI](https://ui.tradeshift.com)
 
-Tradeshift UI is a UI library to help you create apps that implement the [Tradeshift Design Principles](https://ui.tradeshift.com/#design/).
-Check out our [documentation site](https://ui.tradeshift.com) to learn more about how it works and try out live code examples.
+Tradeshift UI is a UI library to help you create apps that implement the [Tradeshift Design Principles](https://ui-dev.tradeshift.com/#design/).
+Check out our [documentation site](https://ui-dev.tradeshift.com) to learn more about how it works and try out live code examples.
 
 If you want to know about what the latest version is and what's new, check out our [releases page](https://github.com/Tradeshift/tradeshift-ui/releases).
 
@@ -49,7 +49,7 @@ Watch out, whenever you create a commit, the pre-commit hook will generate the d
 
 ## Documentation
 
-If you want to browse our [documentation site](https://ui.tradeshift.com) you can do so easily.
+If you want to browse our [documentation site](https://ui-dev.tradeshift.com) you can do so easily.
 
 ## Releasing
 

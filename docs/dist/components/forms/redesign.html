@@ -187,6 +187,10 @@
 							</label>
                             </fieldset>
                         </form>
+                        <div data-ts="Note">
+                            <i class="ts-icon-todo"></i>
+                            <p>TODO: Ghost optiongroup label (only) when all options are disabled.</p>
+                        </div>
                     </section>
                 </article>
             </div>
@@ -241,6 +245,15 @@
                             <i class="ts-icon-info"></i>
                             <p>Note that <code>readonly</code> has no function on radio groups and checkboxes.</p>
                         </div>
+                        <p>One can make a <code>readonly</code> field look normal with the <code>ts-unlocked</code> classname.</p>
+                        <form data-ts="Form">
+                            <fieldset>
+                                <label>
+								<span>Text</span>
+								<input type="text" value="The lock icon is now hidden" readonly class="ts-unlocked">
+							</label>
+                            </fieldset>
+                        </form>
                     </section>
                 </article>
             </div>
@@ -361,8 +374,101 @@
                     </section>
                 </article>
             </div>
+            <div data-ts="Panel" data-ts.label="Asides">
+                <article>
+                    <h1><span>Forms in Asides</span></h1>
+                    <section>
+                        <p>Check out the Form in that Aside.</p>
+                        <p>
+                            <button data-ts="Button" class="ts-primary" onclick="ts.ui.get(&apos;myaside&apos;).open()">
+							<span>Open the Aside&#x2026;</span>
+						</button>
+                        </p>
+                    </section>
+                </article>
+            </div>
         </div>
     </main>
+    <aside data-ts="Aside" id="myaside" data-ts.title="Form in Aside">
+        <div data-ts="Panel">
+            <form data-ts="Form">
+                <fieldset>
+                    <label>
+						<span>Text</span>
+						<input type="text" value="Text">
+					</label>
+                </fieldset>
+                <fieldset>
+                    <label>
+						<span>Textarea</span>
+						<textarea>Textarea</textarea>
+					</label>
+                </fieldset>
+                <fieldset>
+                    <label>
+						<span>Select</span>
+						<select>
+							<option value="a">One</option>
+							<option value="b">Two</option>
+							<option value="c">Three</option>
+						</select>
+					</label>
+                </fieldset>
+                <fieldset>
+                    <label>
+						<span>Select multiple</span>
+						<select multiple>
+							<option value="a" selected>One</option>
+							<option value="b" selected>Two</option>
+							<option value="c">Three</option>
+							<option value="d">Four</option>
+							<option value="e">Five</option>
+						</select>
+						<button>Cool, apply changes!</button>
+					</label>
+                </fieldset>
+                <fieldset>
+                    <label>
+						<span>Date</span>
+						<input type="date" value="2016-12-24">
+					</label>
+                </fieldset>
+                <fieldset>
+                    <span>Radios</span>
+                    <label>
+						<input type="radio" name="radio" checked>
+						<span>Option One</span>
+					</label>
+                    <label>
+						<input type="radio" name="radio">
+						<span>Option Two</span>
+					</label>
+                </fieldset>
+                <fieldset>
+                    <span>Checkbox</span>
+                    <label>
+						<input type="checkbox">
+						<span>I agree</span>
+					</label>
+                    <label>
+						<input type="checkbox" checked>
+						<span>I don&apos;t agree</span>
+					</label>
+                </fieldset>
+                <fieldset>
+                    <span>Switch</span>
+                    <label>
+						<span>I agree</span>
+						<input type="checkbox">
+					</label>
+                    <label>
+						<span>I don&apos;t agree</span>
+						<input type="checkbox" checked>
+					</label>
+                </fieldset>
+            </form>
+        </div>
+    </aside>
 </body>
 
 </html>

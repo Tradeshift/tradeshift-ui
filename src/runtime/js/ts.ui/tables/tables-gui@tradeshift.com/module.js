@@ -1,8 +1,3 @@
-/*
- * (Note: Just because this happens to be the last loaded bundle)
- */
-gui.$stop('- parse runtime');
-
 /**
  * Tables GUI module.
  */
@@ -27,3 +22,12 @@ gui.module('tables-gui@tradeshift.com', {
 	}
 
 });
+
+/*
+ * Note: Just because this happens to be the last loaded bundle
+ * Note: During "idle time", the browser was parsing other resources 
+ *       (CSS and JS) and/or waiting for the DOMContentLoadeed event.
+ * TODO: These kinds of "saga" measurements into seperate script files!
+ */
+gui.$stop('- parse runtime');
+gui.$mark('- idle time ...');

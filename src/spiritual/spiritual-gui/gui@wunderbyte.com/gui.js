@@ -427,6 +427,9 @@ window.gui = (function using(Namespace, Timer) {
 	 * @returns {object}
 	 */
 	(function Timer(enabled) {
+		var port = location.port; // development on local machine
+		var host = location.host; // enabled on the Docs website
+		enabled = enabled && (port === '10114' || host === 'ui-dev.tradeshift.com');
 		return {
 			mark: function(string) {
 				if(enabled) {
@@ -447,13 +450,14 @@ window.gui = (function using(Namespace, Timer) {
 				}
 			}
 		};
-	}(!!(window.performance && performance.getEntriesByType && location.port === '10114')))
+	}(!!window.performance))
 
 ));
 
 
 /*
  * Start the measurements.
+ * TODO: These kinds of "saga" measurements into seperate script files!
  */
 gui.$mark('boostrap everything');
 gui.$mark('- parse spiritual');

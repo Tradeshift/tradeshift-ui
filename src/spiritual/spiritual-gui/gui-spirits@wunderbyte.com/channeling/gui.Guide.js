@@ -59,6 +59,7 @@ gui.Guide = (function using(
 		 * Release the spirits and proclaim the document spiritualized.
 		 */
 		$startGuiding: function() {
+			gui.$stop('- idle time ...');
 			this._startGuiding();
 			Broadcast.dispatch(gui.BROADCAST_WILL_SPIRITUALIZE);
 			gui.$measure('- spiritualize initially', function() {

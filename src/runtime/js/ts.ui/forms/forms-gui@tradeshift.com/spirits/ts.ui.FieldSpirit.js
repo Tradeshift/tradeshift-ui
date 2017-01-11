@@ -105,7 +105,7 @@ ts.ui.FieldSpirit = (function using(chained) {
 				label.$required(this.att.has('required'));
 				label.$disabled(this.att.has('disabled'));
 				if(!this.css.contains(ts.ui.CLASS_FAKE)) {
-					if(!this.css.contains('ts-unlocked')) {
+					if(!this.css.contains(ts.ui.CLASS_NOLOCK)) {
 						label.$readonly(this.att.has('readonly'));
 					}
 				}

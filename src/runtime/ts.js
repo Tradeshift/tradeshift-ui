@@ -3,7 +3,7 @@
  * The "?internal" flag will also load the CSS.
  */
 (function boostrap(sources) {
-
+	
 	var intern, sheet, 
 		scripts = document.querySelectorAll('script'),
 		head = document.querySelector('head'),
@@ -51,7 +51,8 @@
 	}
 
 	/*
-	 * Document write sync (and blocking if in HEAD).
+	 * Inject the script(s). Not quite as sync as it used to be 
+	 * because `document.write` is being phased out (in Chrome).
 	 */
 	function loadsync() {
 		var srcs = [];
@@ -63,19 +64,15 @@
 			// note that it's because en-US is default in JS...
 			console.log('No lang given. Will default to en-US');
 		}
-		if(srcs.length) { // simply document.write the localization scripts
-			try {
-				document.write(
-					srcs.map(function(src) {
-						return '<script src="' + src + '"></script>';
-					}).join('\n')
-				);
-			} catch(exception) { // let's fix this when it happens (it will!)
-				console.error([
-					'This environment doesn\'t support document.write.',
-					'Please let us know you\'ve encountered this bug!'
-				].join(' '), exception.message);
-			}
+		if(srcs.length) {
+			var next, prev = script, head = script.parentNode;
+			srcs.forEach(function(src) {
+				next = document.createElement('script');
+				next.src = src;
+				next.async = false;
+				head.insertBefore(next, prev.nextSibling);
+				prev = next;
+			});
 		}
 	}
 

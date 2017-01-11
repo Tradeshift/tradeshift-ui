@@ -61,7 +61,10 @@ gui.Guide = (function using(
 		$startGuiding: function() {
 			this._startGuiding();
 			Broadcast.dispatch(gui.BROADCAST_WILL_SPIRITUALIZE);
-			this._spiritualizeinitially();
+			gui.$measure('- spiritualize initially', function() {
+				this._spiritualizeinitially();
+				gui.$stop('boostrap everything');
+			}, this);
 			Broadcast.dispatch(gui.BROADCAST_DID_SPIRITUALIZE);
 		},
 
@@ -497,15 +500,15 @@ gui.Guide = (function using(
 		 * @param {function|String} klass Constructor or name
 		 */
 		_channelOne: function(select, klass) {
-			var spirit;
+			var spirit, booting = !!this._todochannels;
 			if (gui.initialized) {
-				if (typeof klass === "string") {
-					spirit = gui.Object.lookup(klass);
-				} else {
-					spirit = klass;
-				}
+				spirit = typeof klass === "string" ? gui.Object.lookup(klass) : klass;
 				if (!gui.debug || Type.isSpiritConstructor(spirit)) {
-					this._channels.unshift([select, spirit]);
+					if(booting) {
+						this._channels.unshift([select, spirit]);
+					} else {
+						this._channels.push([select, spirit]);
+					}
 				} else {
 					console.error('Bad spirit for selector "' + select + '": ' + spirit);
 				}

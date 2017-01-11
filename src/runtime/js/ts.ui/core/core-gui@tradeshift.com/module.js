@@ -1,7 +1,7 @@
 /**
  * Core GUI module.
  */
-gui.module('core-gui@tradeshift.com', {
+ts.ui.CoreModule = gui.module('core-gui@tradeshift.com', {
 
 	/**
 	 * Channeling spirits to CSS selectors.
@@ -30,14 +30,22 @@ gui.module('core-gui@tradeshift.com', {
 		['[data-ts=Spinner]', ts.ui.SpinnerSpirit],
 		['[data-ts=Modal]', ts.ui.ModalSpirit],
 		['[data-ts=Spirit]', ts.ui.Spirit],
-
-		/*
-		 * @neal: This type of selector (as used a lot in forms) will slow
-		 * the stuff down, but it does make the markup easy to author. We
-		 * should at some point measure the performance hit of this thing!
-		 */
-		['.ts-buttons button, .ts-buttons a', ts.ui.ButtonSpirit]
 	],
+
+	/**
+	 * This type of selector (as used a lot in forms) will slow the stuff down, 
+	 * but it does make the markup easy to author. We'll at least make sure that 
+	 * the channelings are not introduced before they needed.
+	 * @see {ts.ui.ButtonMenuSpirit#onconstruct}
+	 */
+	channelComplexSelectors: function(enabled) {
+		if(enabled && !this._channeled) {
+			this._channeled = true;
+			gui.channel([
+				['.ts-buttons button, .ts-buttons a', ts.ui.ButtonSpirit]
+			]);
+		}
+	},
 
 	/**
 	 * Setup plugins (for all spirits).
@@ -100,6 +108,12 @@ gui.module('core-gui@tradeshift.com', {
 
 
 	// Private ...................................................................
+
+	/**
+	 * Complex selectors have been channeled?
+	 * @type {boolean}
+	 */
+	_channeled: false,
 
 	/**
 	 * Override the {gui.EventPlugin} to add support

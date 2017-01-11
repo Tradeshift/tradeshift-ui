@@ -1,38 +1,13 @@
 /**
  * Forms GUI module.
- * TODO: rename {ts.ui.FieldSetSpirit} to something less generic
  */
-gui.module('forms-gui@tradeshift.com', {
+ts.ui.FormsModule = gui.module('forms-gui@tradeshift.com', {
 
 	/**
-	 * Channeling spirits to CSS selectors. 
-	 * TODO (jmo@): The {ts.ui.FormSpirit} should maybe channel markup structure 
-	 * selectors (which may be expensive) only when first encountered in the DOM.
-	 * These spirits should in that case be channeled *last* so that they don't 
-	 * take priority of user-defined channels (if required).
-	 * @see {ts.ui.FormSpirit#onconstruct}
+	 * Channeling spirits to CSS selectors.
 	 */
 	channel: [
-
-		// OLD
-		/*
-		['[ts-form]', ts.ui.FormSpirit],
-		['[ts-group]', ts.ui.FieldSetSpirit],
-		['[ts-label]', ts.ui.LabelSpirit],
-		['[ts-switch]', ts.ui.SwitchSpirit],
-		['[ts-option]', ts.ui.OptionSpirit],
-		['[ts-input]', ts.ui.TextInputSpirit],
-		['[ts-dateinput]', ts.ui.DateInputSpirit],
-		['[ts-textarea]', ts.ui.TextAreaSpirit],
-		['[ts-select]', ts.ui.SelectSpirit],
-		['[ts-search]', ts.ui.SearchSpirit],
-		['[ts-autocomplete]', ts.ui.AutocompleteInputSpirit],
-		['[ts-calendar]', ts.ui.CalendarSpirit],
-		['[ts-fakedateinput]', ts.ui.FakeDateInputSpirit],
-		['[ts-fakeselectinput]', ts.ui.FakeSelectInputSpirit],
-		*/
 		
-		// NEW
 		['[data-ts=Form]', ts.ui.FormSpirit],
 		['[data-ts=FieldSet]', ts.ui.FieldSetSpirit],
 		['[data-ts=Label]', ts.ui.LabelSpirit],
@@ -54,17 +29,39 @@ gui.module('forms-gui@tradeshift.com', {
 		// @see {ts.ui.DateInputSpirit}
 		// @see {ts.ui.SelectSpirit}
 		['[data-ts=FakeDateInput]', ts.ui.FakeDateInputSpirit],
-		['[data-ts=FakeSelectInput]', ts.ui.FakeSelectInputSpirit],
+		['[data-ts=FakeSelectInput]', ts.ui.FakeSelectInputSpirit]
+	],
 
-		// markup structure channeling
-		['.ts-form fieldset', ts.ui.FieldSetSpirit],
-		['.ts-form label', ts.ui.LabelSpirit],
-		['.ts-form input[type=date]', ts.ui.DateInputSpirit],
-		['.ts-form span + input[type=checkbox]', ts.ui.SwitchSpirit],
-		['.ts-form input[type=checkbox], .ts-form input[type=radio]', ts.ui.OptionSpirit],
-		['.ts-form input', ts.ui.TextInputSpirit],
-		['.ts-form textarea', ts.ui.TextAreaSpirit],
-		['.ts-form select', ts.ui.SelectSpirit]
-	]
+	/**
+	 * Channeling spirits to complex CSS selectors at considerable performance 
+	 * penalty; this will however make the forms markup much easier to author. 
+	 * This method is called when the first {ts.ui.FormSpirit} is encountered.
+	 * @see {ts.ui.FormSpirit#onconstruct}
+	 * @param {boolean} enabled
+	 */
+	channelComplexSelectors: function(enabled) {
+		if(enabled && !this._channeled) {
+			this._channeled = true;
+			gui.channel([
+				['.ts-form fieldset', ts.ui.FieldSetSpirit],
+				['.ts-form label', ts.ui.LabelSpirit],
+				['.ts-form input[type=date]', ts.ui.DateInputSpirit],
+				['.ts-form span + input[type=checkbox]', ts.ui.SwitchSpirit],
+				['.ts-form input[type=checkbox], .ts-form input[type=radio]', ts.ui.OptionSpirit],
+				['.ts-form input', ts.ui.TextInputSpirit],
+				['.ts-form textarea', ts.ui.TextAreaSpirit],
+				['.ts-form select', ts.ui.SelectSpirit]
+			]);
+		}
+	},
+
+
+	// Private ...................................................................
+
+	/**
+	 * Complex selectors have been channeled?
+	 * @type {boolean}
+	 */
+	_channeled: false
 
 });

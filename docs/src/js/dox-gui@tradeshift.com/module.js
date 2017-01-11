@@ -70,22 +70,14 @@
 		},
 
 		/**
-		 * Highlight search query.
+		 * Highlight search query and maybe log performance metrics to console.
 		 */
 		onafterspiritualize: function() {
-			var pattern = '?query=';
 			if(gui.hosted) {
-				if(location.search.includes(pattern)) {
-					hilite(location.search.split(pattern)[1]);
-				}
-				gui.Broadcast.addGlobal('dox-search-query', {
-					onbroadcast: function(b) {
-						nolite();
-						if(b.data) {
-							hilite(b.data);
-						}
-					}
-				})
+				this._hilitesearch('?query=');
+				gui.Tick.time(function postponed() { // make sure we catch all metrics
+					this._debugmetrics('metrics');
+				}, 0, this);
 			}
 		},
 		
@@ -100,6 +92,46 @@
 			var root = document.documentElement;
 			if(rest && rest.length) {
 				gui.CSSPlugin.add(root, rest.split('/')[0]);
+			}
+		},
+
+		/**
+		 * Highlight search query.
+		 * @param {string} pattern
+		 */
+		_hilitesearch: function(pattern) {
+			if(location.search.includes(pattern)) {
+				hilite(location.search.split(pattern)[1]);
+			}
+			gui.Broadcast.addGlobal('dox-search-query', {
+				onbroadcast: function(b) {
+					nolite();
+					if(b.data) {
+						hilite(b.data);
+					}
+				}
+			})
+		},
+
+		/**
+		 * Log performance metrics to console.
+		 * @param {string} pattern
+		 */
+		_debugmetrics: function(pattern) {
+			if(top.location.search.includes(pattern)) {
+				var times = gui.$measurements();
+				var name = 'What happened';
+				if(times.length && console.table) {
+					console.debug('\n' + document.title);
+					console.table(times.sort(function(a, b) {
+						return b.duration >= a.duration ? 1 : -1;
+					}).map(function(m) {
+						return {
+							'What happened' : m.name,
+							'For how long' : m.duration
+						};
+					}));
+				}
 			}
 		}
 

@@ -1,8 +1,9 @@
 /**
  * Create the primordial namespace.
  * @using {ts.gui.Namespace} Namespace
+ * @using {Object} Timer
  */
-window.gui = (function using(Namespace) {
+window.gui = (function using(Namespace, Timer) {
 
 	return new Namespace('gui', {
 		
@@ -274,6 +275,7 @@ window.gui = (function using(Namespace) {
 			return this;
 		},
 
+
 		// Privileged ..............................................................
 
 		/**
@@ -302,6 +304,45 @@ window.gui = (function using(Namespace) {
 		$shutdown: function() {
 			this.unloading = true;
 		},
+
+		/**
+		 * Start measurement.
+		 * @param {string} string
+		 */
+		$mark: function(string) {
+			Timer.mark(string);
+		},
+
+		/**
+		 * Stop measurement.
+		 * @param {string} string
+		 * @returns {PerformanceMeasure}
+		 */
+		$stop: function(string) {
+			return Timer.stop(string);
+		},
+
+		/**
+		 * Conduct measurement of given action.
+		 * @param {string} string
+		 * @param {Function} action
+		 * @param @optional {Object} thisp
+		 * Note: Returns the result of calling that action (not the timing info).
+		 */
+		$measure: function(string, action, thisp) {
+			this.$mark(string);
+			var res = action.call(thisp);
+			this.$stop(string);
+			return res;
+		},
+
+		/**
+		 * Get all measurements. Note: This always returns an array, maybe empty.
+		 * @returns {Array|Array<PerformanceMeasure>}
+		 */
+		$measurements: function() {
+			return Timer.measurements() || [];
+		}
 		
 	})._exist();
 
@@ -376,4 +417,43 @@ window.gui = (function using(Namespace) {
 
 	return Namespace;
 
-}())));
+}()), 
+
+	/*
+	 * Ad hoc timing device to investigate the timing of all things 
+	 * (made in such a way that we can polyfill the timing for IE later).
+	 * TODO: check out `performance.setResourceTimingBufferSize(10000);`
+	 * @param {boolean} enabled
+	 * @returns {object}
+	 */
+	(function Timer(enabled) {
+		return {
+			mark: function(string) {
+				if(enabled) {
+					performance.mark('mark ' + string);
+				}
+			},
+			stop: function(string) {
+				if(enabled) {
+					performance.mark('stop ' + string);
+					performance.measure(string, 'mark ' + string, 'stop ' + string);
+					var entries = performance.getEntriesByName(string);
+					return entries[entries.length - 1];
+				}
+			},
+			measurements: function() {
+				if(enabled) {
+					return performance.getEntriesByType('measure');
+				}
+			}
+		};
+	}(!!(window.performance && performance.getEntriesByType && location.port === '10114')))
+
+));
+
+
+/*
+ * Start the measurements.
+ */
+gui.$mark('boostrap everything');
+gui.$mark('- parse spiritual');

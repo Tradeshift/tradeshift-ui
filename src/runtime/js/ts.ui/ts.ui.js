@@ -1,3 +1,5 @@
+gui.$mark('- parse runtime');
+
 /**
  * Namespace object.
  * @using {gui.Client} Client
@@ -174,6 +176,7 @@ ts.ui = gui.namespace('ts.ui', (function using(Client, guiArray, confirmed, chai
 		CLASS_WARNING: 'ts-warning',
 		CLASS_ERROR: 'ts-error',
 		CLASS_INFO: 'ts-info',
+		CLASS_OPTIMIZED: 'ts-optimized',
 
 		// widgets - TODO: maybe move to core-gui@tradeshift.com
 		CLASS_MAIN: 'ts-main',
@@ -217,6 +220,7 @@ ts.ui = gui.namespace('ts.ui', (function using(Client, guiArray, confirmed, chai
 		CLASS_DISABLED: 'ts-disabled',
 		CLASS_READONLY: 'ts-readonly',
 		CLASS_REQUIRED: 'ts-required',
+		CLASS_NOLOCK: 'ts-nolock',
 
 		// background colors
 		CLASS_BG_LITE: 'ts-bg-lite',
@@ -508,47 +512,6 @@ ts.ui = gui.namespace('ts.ui', (function using(Client, guiArray, confirmed, chai
 				}
 			});
 		},
-		
-		/**
-     * @returns {object}
-     *
-    topbar: function() {
-      return ts.ui.TopBar;
-    },
-	    
-    /** 
-     * Get the TabBar.
-     * @param @optional {function} cb
-     * @returns {ts.ui.TabBarSpirit}
-     *
-    tabbar: confirmed('(function)')(function(cb) {
-      return getbar(function() {
-        return getmain().tabbar();
-      }, cb);
-    }),
-	    
-    /** 
-     * Get the ToolBar.
-     *  @param @optional {function} cb
-     * @returns {ts.ui.ToolBarSpirit}
-     *
-    toolbar: confirmed('(function)')(function(cb) {
-      return getbar(function() {
-        return getmain().toolbar();
-      }, cb);
-    }),
-	    
-    /**
-     * Get the StatusBar.
-     * @param @optional {function} cb
-     * @returns {ts.ui.ToolBarSpirit}
-     *
-    statusbar: confirmed('(function)')(function(cb) {
-      return getbar(function() {
-        return getmain().statusbar();
-      }, cb);
-    }),
-		*/
 
 
 		// Private .................................................................
@@ -564,6 +527,7 @@ ts.ui = gui.namespace('ts.ui', (function using(Client, guiArray, confirmed, chai
 			}
 			return model;
 		}
+
 	};
 
 }(gui.Client, gui.Array, gui.Arguments.confirmed, gui.Combo.chained)));
@@ -604,7 +568,7 @@ ts.ui.COLORS = {
 /**
  * Observe that LayoutModel.
  */
-ts.ui.ready(function() {
+ts.ui.ready(function addobserver() {
 	var layout = ts.ui.LayoutModel.output.get();
 	ts.ui.breakpoint = layout.breakpoint;
 	layout.addObserver(ts.ui);

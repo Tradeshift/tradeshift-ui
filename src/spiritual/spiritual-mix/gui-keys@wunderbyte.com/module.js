@@ -1,17 +1,16 @@
 /**
+ * Note: Just because this happens to be the last loaded module (in Spiritual).
+ */
+gui.$stop('- parse spiritual');
+
+
+/**
  * Keys module.
  * @TODO http://www.w3.org/TR/DOM-Level-3-Events/#events-keyboardevents
  * @TODO http://dev.opera.com/articles/view/functional-key-handling-in-opera-tv-store-applications/
  */
 gui.KeysModule = gui.module("gui-keys@wunderbyte.com", {
-
-	/**
-	 * Channeling spirits to CSS selectors.
-	 */
-	channel: [
-		[".gui-key", gui.KeySpirit]
-	],
-
+	
 	/*
 	 * Plugins (for all spirits).
 	 * @TODO: combo

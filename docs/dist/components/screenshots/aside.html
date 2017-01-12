@@ -11,9 +11,34 @@
     <link rel="stylesheet" href="/dist/assets/dox.css">
     <meta name="robots" content="noindex">
     <script src="aside.js"></script>
+    <style>
+        #metrics {
+            position: absolute;
+            z-index: 10000;
+            width: 320px;
+            top: 160px;
+            left: 50%;
+            margin-left: -160px;
+            background-color: rgb(253, 254, 213);
+            color: rgb(127, 115, 72);
+            padding: 22px;
+            border-radius: 3px;
+            box-shadow: 3px 3px 6px rgb(0, 0, 0, 0.75);
+        }
+        
+        #metrics table {
+            width: 100%;
+        }
+        
+        #metrics table td:last-child {
+            text-align: right;
+        }
+    </style>
 </head>
 
 <body>
+    <div id="metrics">Hello</div>
+    <header data-ts="TopBar"></header>
     <main data-ts="Main">
         <div data-ts="MainContent"></div>
     </main>

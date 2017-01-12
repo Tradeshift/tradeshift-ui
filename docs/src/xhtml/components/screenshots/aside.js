@@ -1,7 +1,12 @@
-var openAside = function() {
-	var aside = ts.ui.get('#myaside');
-	aside.open();
-};
 ts.ui.ready(function() {
-    openAside();
+	ts.ui.get('#myaside').open();
+	setTimeout(function postponed() { // make sure we get all measurements
+		var times = gui.$measurements();
+		document.querySelector('#metrics').innerHTML = 
+		'<table>' + 
+			times.map(function(m) {
+				return '<tr><td>' + m.name + '</td><td>' + Math.round(m.duration) + '</td></tr>';
+			}).join('') +
+		'</table>';
+	});
 });

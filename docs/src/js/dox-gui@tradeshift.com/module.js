@@ -119,18 +119,24 @@
 		 */
 		_debugmetrics: function(pattern) {
 			if(top.location.search.includes(pattern)) {
-				var times = gui.$measurements();
 				var name = 'What happened';
-				if(times.length && console.table) {
+				var times = gui.$measurements().sort(function(a, b) {
+					return b.duration >= a.duration ? 1 : -1;
+				});
+				if(times.length) {
 					console.debug('\n' + document.title);
-					console.table(times.sort(function(a, b) {
-						return b.duration >= a.duration ? 1 : -1;
-					}).map(function(m) {
-						return {
-							'What happened' : m.name,
-							'For how long' : m.duration
-						};
-					}));
+					if(console.table) {
+						console.table(times.map(function(m) {
+							return {
+								'What happened' : m.name,
+								'For how long' : m.duration
+							};
+						}));
+					} else {
+						console.log(times.map(function(m) {
+							return '  ' + m.name + ': ' + m.duration;
+						}).join('\n'));
+					}
 				}
 			}
 		}

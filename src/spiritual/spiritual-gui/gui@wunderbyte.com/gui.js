@@ -420,33 +420,102 @@ window.gui = (function using(Namespace, Timer) {
 }()), 
 
 	/*
-	 * Ad hoc timing device to investigate the timing of all the things 
-	 * (made in such a way that we can polyfill the timing for IE later).
+	 * Ad hoc timing device to investigate the timing of all the things.
 	 * TODO: check out `performance.setResourceTimingBufferSize(10000);`
-	 * @param {boolean} enabled (Adjusted to only run on Docs and in devmode)
+	 * @param {boolean} native Supporting `window.performance` natively?
 	 * @returns {object}
 	 */
-	(function Timer(enabled) {
+	(function Timer(native) {
+
 		var port = location.port; // development on local machine
-		var host = location.host; // enabled on the Docs website
-		enabled = enabled && (port === '10114' || host === 'ui-dev.tradeshift.com');
+		var host = location.host; // native on the Docs website
+		var runs = native && (port === '10114' || host === 'ui-dev.tradeshift.com');
+
+		let sets = {}; // for polyfilling
+		var list = []; // for polyfilling
+
+		/**
+		 * Get current time (for polyfilling).
+		 * @returns {number}
+		 */
+		function time() {
+			return window.performance ? performance.now() : Date.now();
+		}
+
+		/**
+		 * Insert item chronologically correct (for polyfilling).
+		 * @param {object} item
+		 * @returns {object}
+		 */
+		function push(item) {
+			let low = 0;
+			let high = list.length;
+			let mid;
+			while (low < high) {
+				mid = (low + high) >>> 1;
+				if (list[mid].startTime < item.startTime) {
+					low = mid + 1;
+				} else {
+					high = mid;
+				}
+			}
+			list.splice(low, 0, item);
+			return item;
+		}
+
 		return {
-			mark: function(string) {
-				if(enabled) {
-					performance.mark('mark ' + string);
+
+			/**
+			 * Begin measurement.
+			 * @param {string} key
+			 * @returns {Timer}
+			 */
+			mark: function(key) {
+				if(runs) {
+					if(native) {
+						performance.mark('mark ' + key);
+					} else {
+						sets['$' + key] = time();
+					}
+				}
+				return this;
+			},
+
+			/**
+			 * End measurement.
+			 * @param {string} key
+			 * @returns {object}
+			 */
+			stop: function(key) {
+				if(runs) {
+					if(native) {
+						performance.mark('stop ' + key);
+						performance.measure(key, 'mark ' + key, 'stop ' + key);
+						var entries = performance.getEntriesByName(key);
+						return entries[entries.length - 1];
+					} else {
+						var init = sets['$' + key];
+						return push({
+							startTime: init,
+							name: key,
+							duration: time() - init,
+							itemType: 'measure'
+						});
+					}
 				}
 			},
-			stop: function(string) {
-				if(enabled) {
-					performance.mark('stop ' + string);
-					performance.measure(string, 'mark ' + string, 'stop ' + string);
-					var entries = performance.getEntriesByName(string);
-					return entries[entries.length - 1];
-				}
-			},
+
+			/**
+			 * Get all measurements.
+			 * @returns {Array<Object>}
+			 */
 			measurements: function() {
-				if(enabled) {
-					return performance.getEntriesByType('measure');
+				if(runs) {
+					if(native) {
+						return performance.getEntriesByType('measure');
+					} else {
+						return list.splice();
+					}
 				}
 			}
 		};

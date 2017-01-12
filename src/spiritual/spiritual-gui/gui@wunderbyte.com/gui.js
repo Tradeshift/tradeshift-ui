@@ -423,15 +423,12 @@ window.gui = (function using(Namespace, Timer) {
 	 * Ad hoc timing device to investigate the timing of all the things.
 	 * TODO: check out `performance.setResourceTimingBufferSize(10000);`
 	 * @param {boolean} native Supporting `window.performance` natively?
+	 * @param {boolean} enabled Timing enabled (in dev mode and on Docs)?
 	 * @returns {object}
 	 */
-	(function Timer(native) {
+	(function Timer(native, enabled) {
 
-		var port = location.port; // development on local machine
-		var host = location.host; // native on the Docs website
-		var runs = native && (port === '10114' || host === 'ui-dev.tradeshift.com');
-
-		let sets = {}; // for polyfilling
+		var sets = {}; // for polyfilling
 		var list = []; // for polyfilling
 
 		/**
@@ -448,9 +445,9 @@ window.gui = (function using(Namespace, Timer) {
 		 * @returns {object}
 		 */
 		function push(item) {
-			let low = 0;
-			let high = list.length;
-			let mid;
+			var low = 0;
+			var high = list.length;
+			var mid;
 			while (low < high) {
 				mid = (low + high) >>> 1;
 				if (list[mid].startTime < item.startTime) {
@@ -471,7 +468,7 @@ window.gui = (function using(Namespace, Timer) {
 			 * @returns {Timer}
 			 */
 			mark: function(key) {
-				if(runs) {
+				if(enabled) {
 					if(native) {
 						performance.mark('mark ' + key);
 					} else {
@@ -487,7 +484,7 @@ window.gui = (function using(Namespace, Timer) {
 			 * @returns {object}
 			 */
 			stop: function(key) {
-				if(runs) {
+				if(enabled) {
 					if(native) {
 						performance.mark('stop ' + key);
 						performance.measure(key, 'mark ' + key, 'stop ' + key);
@@ -510,22 +507,22 @@ window.gui = (function using(Namespace, Timer) {
 			 * @returns {Array<Object>}
 			 */
 			measurements: function() {
-				if(runs) {
+				if(enabled) {
 					if(native) {
 						return performance.getEntriesByType('measure');
 					} else {
-						return list.splice();
+						return list.slice();
 					}
 				}
 			}
 		};
-	}(!!(
-		window.performance &&
-		performance.mark &&
-		performance.measure &&
-		performance.getEntriesByName && 
-		performance.getEntriesByType
-	)))
+	}(!!(window.performance &&
+			performance.mark &&
+			performance.measure &&
+			performance.getEntriesByName && 
+			performance.getEntriesByType),
+		!!(location.port === '10114' || location.host === 'ui-dev.tradeshift.com')
+	))
 
 ));
 

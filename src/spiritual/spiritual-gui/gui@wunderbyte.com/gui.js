@@ -420,10 +420,10 @@ window.gui = (function using(Namespace, Timer) {
 }()), 
 
 	/*
-	 * Ad hoc timing device to investigate the timing of all things 
+	 * Ad hoc timing device to investigate the timing of all the things 
 	 * (made in such a way that we can polyfill the timing for IE later).
 	 * TODO: check out `performance.setResourceTimingBufferSize(10000);`
-	 * @param {boolean} enabled
+	 * @param {boolean} enabled (Adjusted to only run on Docs and in devmode)
 	 * @returns {object}
 	 */
 	(function Timer(enabled) {
@@ -450,7 +450,13 @@ window.gui = (function using(Namespace, Timer) {
 				}
 			}
 		};
-	}(!!window.performance))
+	}(!!(
+		window.performance &&
+		performance.mark &&
+		performance.measure &&
+		performance.getEntriesByName && 
+		performance.getEntriesByType
+	)))
 
 ));
 

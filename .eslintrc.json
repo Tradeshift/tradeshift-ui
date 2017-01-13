@@ -1,0 +1,40 @@
+{
+	"parserOptions": {
+		"ecmaVersion": 5
+	},
+	"extends": "tradeshift",
+	"root": true,
+	"plugins": ["jasmine"],
+	"globals": {
+		"ActiveXObject": false,
+		"chrome": false,
+		"edb": false,
+		"edbml": false,
+		"gui": false,
+		"ts": false,
+
+		"helper": false,
+		"sometime": false,
+
+		"$": false,
+		"angular": false,
+		"lunr": false,
+		"Mark": false,
+		"server": false
+	},
+	"env": {
+		"browser": true,
+		"jasmine": true
+	},
+	"rules": {
+		"camelcase": 0,
+		"guard-for-in": 0,
+		"one-var": 0,
+		"no-new-func": 0,
+		"no-script-url": 0,
+		"no-unsafe-finally": 0,
+		"no-useless-call": 0,
+		"no-useless-escape": 0,
+		"standard/computed-property-even-spacing": 0
+	}
+}

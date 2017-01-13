@@ -1,0 +1,200 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/Users/wiredearp/dev/job/tradeshift-ui"
+	],
+	"file_history":
+	[
+		"/Users/wiredearp/Tradeshift/Frontend/web-app/js/ts3/ui/ui.js",
+		"/Users/wiredearp/Tradeshift/Frontend/web-app/js/angular/directives/ui-icon.js",
+		"/Users/wiredearp/Tradeshift/Apps-Server/node_modules/.bin/uglifycss"
+	],
+	"find":
+	{
+		"height": 23.0
+	},
+	"find_in_files":
+	{
+		"height": 93.0,
+		"where_history":
+		[
+			"/Users/wiredearp/dev/job/tradeshift-ui",
+			"/Users/wiredearp/dev/job/tradeshift-ui/src",
+			"/Users/wiredearp/Tradeshift/Frontend"
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"AKIAJFRD736YK2KOQUGA",
+			"ATTACH",
+			"firstElementChild",
+			"nextElementSibling",
+			"migration",
+			"x-frame-options"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 23.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "job.sublime-project",
+	"replace":
+	{
+		"height": 42.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"ts-side",
+				"src/runtime/less/ts-sidebars.less"
+			],
+			[
+				"ts.ui.main",
+				"src/runtime/js/ts.ui/core/core-gui@tradeshift.com/spirits/main/ts.ui.MainSpirit.js"
+			],
+			[
+				"sideshow",
+				"src/runtime/js/ts.ui/core/core-gui@tradeshift.com/spirits/asides/ts.ui.SideShowSpirit.js"
+			],
+			[
+				"buttons.less",
+				"docs/src/xhtml/components/buttons/gallery.less"
+			],
+			[
+				"ui.histor",
+				"Frontend/web-app/js/ts3/ui/plugins/ui.history.js"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 269.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

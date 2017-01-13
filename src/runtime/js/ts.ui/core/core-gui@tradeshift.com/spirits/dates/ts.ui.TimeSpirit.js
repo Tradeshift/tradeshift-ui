@@ -5,7 +5,6 @@
  * @using {gui.Combo.chained}
  */
 ts.ui.TimeSpirit = (function using(chained) {
-
 	var mytick = 'mytick';
 	var time = 1000;
 	var issame = false;
@@ -28,7 +27,7 @@ ts.ui.TimeSpirit = (function using(chained) {
 		 */
 		ontick: function(tick) {
 			this.super.ontick(tick);
-			if(tick.type === mytick) {
+			if (tick.type === mytick) {
 				this._setText();
 			}
 		},
@@ -38,7 +37,7 @@ ts.ui.TimeSpirit = (function using(chained) {
 		 */
 		onatt: function(att) {
 			this.super.onatt(att);
-			if(att.name === 'datetime') {
+			if (att.name === 'datetime') {
 				this._setText();
 			}
 		},
@@ -57,21 +56,20 @@ ts.ui.TimeSpirit = (function using(chained) {
 			}
 			if (realtime && !issame) {
 				this.element.textContent = this._getTime(datetime, realtime);
-				this.element.title = ts.ui.moment(datetime).format("MMM Do YYYY, h:mm:ss a");
+				this.element.title = ts.ui.moment(datetime).format('MMM Do YYYY, h:mm:ss a');
 				return;
 			}
 			if (ts.ui.moment(datetime).isValid()) {
 				this.element.textContent = ts.ui.moment(datetime).fromNow();
-				this.element.title = ts.ui.moment(datetime).format("MMM Do YYYY, h:mm:ss a");
-
-			}else {
+				this.element.title = ts.ui.moment(datetime).format('MMM Do YYYY, h:mm:ss a');
+			} else {
 				if (parseInt(datetime, 10) && ts.ui.moment(parseInt(datetime, 10)).isValid()) {
 					datetime = parseInt(datetime, 10);
 					this.element.textContent = ts.ui.moment(datetime).fromNow();
-					this.element.title = ts.ui.moment(datetime).format("MMM Do YYYY, h:mm:ss a");
+					this.element.title = ts.ui.moment(datetime).format('MMM Do YYYY, h:mm:ss a');
 				} else {
 					this.element.textContent = datetime;
-					this.element.title = datetime;	
+					this.element.title = datetime;
 				}
 			}
 		},
@@ -114,7 +112,5 @@ ts.ui.TimeSpirit = (function using(chained) {
 			return ts.ui.moment(newdatetime).fromNow();
 		}
 
-
 	});
-
 }(gui.Combo.chained));

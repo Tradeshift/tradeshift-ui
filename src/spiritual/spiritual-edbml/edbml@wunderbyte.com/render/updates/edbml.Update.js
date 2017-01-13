@@ -14,7 +14,7 @@ edbml.Update = gui.Class.create(Object.prototype, {
 	 *
 	 * 1) It's the id of an element. Or if no id:
 	 * 2) It's the $instanceid of a {gui.Spirít}
-	 * @see  {edbml.Update#element}
+	 * @see	{edbml.Update#element}
 	 * @type {String}
 	 */
 	id: null,
@@ -67,16 +67,16 @@ edbml.Update = gui.Class.create(Object.prototype, {
 				element = spirit.element;
 			}
 		}
-		if(!element) {
+		if (!element) {
 			element = document.querySelector('#' + this.id);
 		}
-		if(element) {
-			if(cb) {
+		if (element) {
+			if (cb) {
 				cb.call(this, element);
 			}
 		} else {
-			if(edbml.debug) {
-				console.error("No element to match @id: " + this.id);	
+			if (edbml.debug) {
+				console.error('No element to match @id: ' + this.id);
 			}
 		}
 		return element;
@@ -88,7 +88,6 @@ edbml.Update = gui.Class.create(Object.prototype, {
 	dispose: function() {
 		this._summary = null;
 	},
-
 
 	// Private ...................................................................
 
@@ -104,7 +103,7 @@ edbml.Update = gui.Class.create(Object.prototype, {
 	 * @return {boolean}
 	 */
 	_beforeUpdate: function(element) {
-		var event = "x-beforeupdate-" + this.type;
+		var event = 'x-beforeupdate-' + this.type;
 		return this._dispatch(element, event);
 	},
 
@@ -114,7 +113,7 @@ edbml.Update = gui.Class.create(Object.prototype, {
 	 * @return {boolean}
 	 */
 	_afterUpdate: function(element) {
-		var event = "x-afterupdate-" + this.type;
+		var event = 'x-afterupdate-' + this.type;
 		return this._dispatch(element, event);
 	},
 
@@ -126,8 +125,8 @@ edbml.Update = gui.Class.create(Object.prototype, {
 	 * @return {boolean} False if event was canceled
 	 */
 	_dispatch: function(element, name) {
-		if(element) { // hotfix https://github.com/Tradeshift/docs/issues/141
-			var event = document.createEvent("UIEvents");
+		if (element) { // hotfix https://github.com/Tradeshift/docs/issues/141
+			var event = document.createEvent('UIEvents');
 			event.initEvent(name, true, true);
 			return element.dispatchEvent(event);
 		} else {
@@ -142,12 +141,11 @@ edbml.Update = gui.Class.create(Object.prototype, {
 	_report: function(report) {
 		if (edbml.debug) {
 			if (gui.KeyMaster.isKey(this.id)) {
-				report = report.replace(this.id, "(anonymous)");
+				report = report.replace(this.id, '(anonymous)');
 			}
 			console.debug(report, this.element());
 		}
 	}
-
 
 }, {}, { // Static .............................................................
 
@@ -156,7 +154,7 @@ edbml.Update = gui.Class.create(Object.prototype, {
 	 * {@see ReplaceUpdate}
 	 * @type {String}
 	 */
-	TYPE_HARD: "hard",
+	TYPE_HARD: 'hard',
 
 	/**
 	 * Attribute update. The element must have an ID specified.
@@ -164,7 +162,7 @@ edbml.Update = gui.Class.create(Object.prototype, {
 	 * {@see AttributesUpdate}
 	 * @type {String}
 	 */
-	TYPE_ATTS: "atts",
+	TYPE_ATTS: 'atts',
 
 	/**
 	 * Insertion update: Inserts a child without replacing the parent. Child
@@ -172,13 +170,13 @@ edbml.Update = gui.Class.create(Object.prototype, {
 	 * {@see SiblingUpdate}
 	 * @type {String}
 	 */
-	TYPE_INSERT: "insert",
+	TYPE_INSERT: 'insert',
 
 	/**
 	 * {@see SiblingUpdate}
 	 * @type {String}
 	 */
-	TYPE_APPEND: "append",
+	TYPE_APPEND: 'append',
 
 	/**
 	 * Removal update: Removes a child without replacing the parent. Child
@@ -186,13 +184,13 @@ edbml.Update = gui.Class.create(Object.prototype, {
 	 * {@see SiblingUpdate}
 	 * @type {String}
 	 */
-	TYPE_REMOVE: "remove",
+	TYPE_REMOVE: 'remove',
 
 	/**
 	 * EDB function update. Dereferencing functions bound to GUI
 	 * events that are no longer associated to any DOM element.
 	 * @type {String}
 	 */
-	TYPE_FUNCTION: "function"
+	TYPE_FUNCTION: 'function'
 
 });

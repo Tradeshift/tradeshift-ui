@@ -1,10 +1,10 @@
 /*
  * Register module.
  */
-gui.module("edb@wunderbyte.com", {
+gui.module('edb@wunderbyte.com', {
 
 	/*
-	 * Register plugins for all spirits 
+	 * Register plugins for all spirits
 	 * (if the GUI spirits are avilable).
 	 */
 	plugin: {
@@ -18,7 +18,7 @@ gui.module("edb@wunderbyte.com", {
 	mixin: {
 
 		/**
-		 * Do `typeinstance.output()` to trigger this method. 
+		 * Do `typeinstance.output()` to trigger this method.
 		 * The `input.data` property points to `typeinstance`
 		 * @param {edb.Input} input
 		 */

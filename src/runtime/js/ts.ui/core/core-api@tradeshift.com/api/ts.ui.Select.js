@@ -11,6 +11,6 @@ ts.ui.Select = function(json) {
  * Identification.
  * @return {string}
  */
-ts.ui.Select.toString = function(){
+ts.ui.Select.toString = function() {
 	return '[function ts.ui.Select]';
 };

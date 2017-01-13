@@ -4,7 +4,6 @@
  * @using {gui.CSSPlugin} CSSPlugin
  */
 edbml.AttsUpdate = (function using(CSSPlugin) {
-
 	return edbml.Update.extend({
 
 		/**
@@ -33,10 +32,10 @@ edbml.AttsUpdate = (function using(CSSPlugin) {
 		update: function() {
 			this.super.update();
 			this.element(function(element) {
-				if(this._beforeUpdate(element)) {
+				if (this._beforeUpdate(element)) {
 					this._update(element);
 					this._afterUpdate(element);
-					this._report();	
+					this._report();
 				}
 			});
 		},
@@ -50,7 +49,6 @@ edbml.AttsUpdate = (function using(CSSPlugin) {
 			delete this._xold;
 			delete this._xnew;
 		},
-
 
 		// Private .................................................................
 
@@ -76,26 +74,26 @@ edbml.AttsUpdate = (function using(CSSPlugin) {
 			Array.forEach(this._xnew.attributes, function(newatt) {
 				var oldatt = this._xold.getAttribute(newatt.name);
 				if (oldatt === null || oldatt !== newatt.value) {
-					if(newatt.name === 'class') {
+					if (newatt.name === 'class') {
 						this._classlist(element, this._xold, newatt.value);
 					} else {
 						this._set(element, newatt.name, newatt.value);
 					}
 					this._summary.push(
-						"@" + newatt.name + "=\"" + newatt.value + "\"" +
+						'@' + newatt.name + '="' + newatt.value + '"' +
 						(element.id ? ' (#' + element.id + ')' : '')
 					);
 				}
 			}, this);
 			Array.forEach(this._xold.attributes, function(oldatt) {
 				if (!this._xnew.hasAttribute(oldatt.name)) {
-					if(oldatt.name === 'class') {
+					if (oldatt.name === 'class') {
 						this._classlist(element, this._xold, '');
 					} else {
 						this._del(element, oldatt.name, null);
 					}
 					this._summary.push(
-						"removed @" + oldatt.name +
+						'removed @' + oldatt.name +
 						(element.id ? ' (#' + element.id + ')' : '')
 					);
 				}
@@ -116,12 +114,12 @@ edbml.AttsUpdate = (function using(CSSPlugin) {
 			} else {
 				element.setAttribute(name, value);
 				switch (name) {
-					case "checked":
+					case 'checked':
 						if (!element.checked) {
 							element.checked = true;
 						}
 						break;
-					case "value":
+					case 'value':
 						if (element.value !== value) {
 							element.value = String(value); // ?
 						}
@@ -143,7 +141,7 @@ edbml.AttsUpdate = (function using(CSSPlugin) {
 				spirit.att.del(name);
 			} else {
 				switch (name) {
-					case "checked":
+					case 'checked':
 						element.checked = false;
 						break;
 					default:
@@ -154,7 +152,7 @@ edbml.AttsUpdate = (function using(CSSPlugin) {
 		},
 
 		/**
-		 * Maintain the class attribute non-destructively 
+		 * Maintain the class attribute non-destructively
 		 * so that outside agencies may contribute to it.
 		 * @param {Element} element The actual DOM
 		 * @param {Element} xelement The virtual DOM
@@ -164,12 +162,12 @@ edbml.AttsUpdate = (function using(CSSPlugin) {
 			var newnames = classname.split(' ');
 			var oldnames = xelement.className.split(' ');
 			oldnames.forEach(function(oldname) {
-				if(oldname && newnames.indexOf(oldname) === -1) {
+				if (oldname && newnames.indexOf(oldname) === -1) {
 					CSSPlugin.remove(element, oldname);
 				}
 			});
 			newnames.forEach(function(newname) {
-				if(newname && oldnames.indexOf(newname) === -1) {
+				if (newname && oldnames.indexOf(newname) === -1) {
 					CSSPlugin.add(element, newname);
 				}
 			});
@@ -185,5 +183,4 @@ edbml.AttsUpdate = (function using(CSSPlugin) {
 		}
 
 	});
-
 }(gui.CSSPlugin));

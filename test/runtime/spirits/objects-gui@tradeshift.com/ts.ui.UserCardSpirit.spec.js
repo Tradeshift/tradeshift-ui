@@ -13,7 +13,7 @@ describe('ts.ui.CompanyCardSpirit', function likethis() {
 			}
 		}).open();
 
-		sometime(function later(){
+		sometime(function later() {
 			var aside = document.querySelector('aside[data-ts=Aside]');
 			expect(aside.innerHTML).toContain('Wired Earp');
 			expect(aside.innerHTML).toContain('EDB Programmer');

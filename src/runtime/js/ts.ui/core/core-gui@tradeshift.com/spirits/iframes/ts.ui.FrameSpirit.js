@@ -24,7 +24,7 @@ ts.ui.FrameSpirit = gui.IframeSpirit.extend({
 	},
 
 	/**
-	 * Translate life events (non-bubbling) to actions (bubbling). 
+	 * Translate life events (non-bubbling) to actions (bubbling).
 	 * Actions are intended for the {ts.top.RootSpirit} to intecept.
 	 * @param {gui.Life} l
 	 */
@@ -73,7 +73,7 @@ ts.ui.FrameSpirit = gui.IframeSpirit.extend({
 	},
 
 	/**
-	 * Load src. If the src starts with a #hash, we'll 
+	 * Load src. If the src starts with a #hash, we'll
 	 * try to update the hosted document without reload.
 	 * @param {String} url
 	 * @return {gui.Then}
@@ -87,7 +87,6 @@ ts.ui.FrameSpirit = gui.IframeSpirit.extend({
 		}
 		return then;
 	},
-
 
 	// Private .............................................
 
@@ -110,7 +109,7 @@ ts.ui.FrameSpirit = gui.IframeSpirit.extend({
 	/**
 	 * Update hash inside the iframe. We can't do this
 	 * reliably from the outside without nuking the
-	 * (xorigin) iframe page, but we can transmit the 
+	 * (xorigin) iframe page, but we can transmit the
 	 * instruction to the contained document(spirit).
 	 * @param {string} hash
 	 * @param {gui.Then} then
@@ -122,9 +121,9 @@ ts.ui.FrameSpirit = gui.IframeSpirit.extend({
 	},
 
 	/**
-	 * Content document spiritualized. Important: This can be used to relay 
-	 * models "globally" from the chrome to the content, but we're not using 
-	 * this kind of (Greenfield) stuff now. Since it might still come in 
+	 * Content document spiritualized. Important: This can be used to relay
+	 * models "globally" from the chrome to the content, but we're not using
+	 * this kind of (Greenfield) stuff now. Since it might still come in
 	 * handy, perhaps we better leave this commented code around for a while...
 	 * @override {gui.IframeSpirit#_onspiritualized}
 	 *
@@ -151,7 +150,6 @@ ts.ui.FrameSpirit = gui.IframeSpirit.extend({
 		});
 		return map;
 	}
-
 
 }, { // Static .................................................................
 

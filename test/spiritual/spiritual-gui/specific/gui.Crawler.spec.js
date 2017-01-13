@@ -3,41 +3,40 @@
  * TODO: Test for xframe crawlers!
  */
 describe('gui.Crawler', function likethis() {
-
 	var MARKUP = [
 		'<ul class="gui-spirit level-1">',
-			'<li class="level-1">1.1</li>',
-			'<li class="level-1 skipchildren">1.2',
-				'<ul class="gui-spirit level-2 stophere">',
-					'<li class="level-2">1.3.1</li>',
-					'<li class="level-2">1.3.2</li>',
-					'<li class="level-2">1.3.3</li>',
-				'</ul>',
-			'</li>',
-			'<li class="level-1">1.3</li>',
+		'<li class="level-1">1.1</li>',
+		'<li class="level-1 skipchildren">1.2',
+		'<ul class="gui-spirit level-2 stophere">',
+		'<li class="level-2">1.3.1</li>',
+		'<li class="level-2">1.3.2</li>',
+		'<li class="level-2">1.3.3</li>',
+		'</ul>',
+		'</li>',
+		'<li class="level-1">1.3</li>',
 		'</ul>',
 		'<ul class="gui-spirit level-1">',
-			'<li class="level-1">2.1</li>',
-			'<li class="level-1 skipchildren">2.2',
-				'<ul class="gui-spirit level-2">',
-					'<li class="level-2">2.3.1</li>',
-					'<li class="level-2">2.3.2</li>',
-					'<li class="level-2">2.3.3</li>',
-				'</ul>',
-			'</li>',
-			'<li class="level-1">2.3</li>',
+		'<li class="level-1">2.1</li>',
+		'<li class="level-1 skipchildren">2.2',
+		'<ul class="gui-spirit level-2">',
+		'<li class="level-2">2.3.1</li>',
+		'<li class="level-2">2.3.2</li>',
+		'<li class="level-2">2.3.3</li>',
+		'</ul>',
+		'</li>',
+		'<li class="level-1">2.3</li>',
 		'</ul>',
 		'<ul class="gui-spirit level-1">',
-			'<li class="level-1">3.1</li>',
-			'<li class="level-1 skipchildren">3.2',
-				'<ul class="gui-spirit level-2">',
-					'<li class="level-2">3.3.1</li>',
-					'<li class="level-2">3.3.2</li>',
-					'<li class="level-2">3.3.3</li>',
-				'</ul>',
-			'</li>',
-			'<li class="level-1">3.3</li>',
+		'<li class="level-1">3.1</li>',
+		'<li class="level-1 skipchildren">3.2',
+		'<ul class="gui-spirit level-2">',
+		'<li class="level-2">3.3.1</li>',
+		'<li class="level-2">3.3.2</li>',
+		'<li class="level-2">3.3.3</li>',
 		'</ul>',
+		'</li>',
+		'<li class="level-1">3.3</li>',
+		'</ul>'
 	].join('\n');
 
 	/**
@@ -50,7 +49,6 @@ describe('gui.Crawler', function likethis() {
 		var textdata = textnode.data.trim();
 		return parseInt(textdata.replace(/\./g, ''), 10);
 	}
-	
 
 	// Preparations ..............................................................
 
@@ -70,7 +68,6 @@ describe('gui.Crawler', function likethis() {
 		this.sandbox.parentNode.removeChild(this.sandbox);
 	});
 
-	
 	// Expectations ..............................................................
 
 	/**
@@ -94,7 +91,7 @@ describe('gui.Crawler', function likethis() {
 		var spirits = [];
 		new gui.Crawler().descend(this.sandbox, {
 			handleSpirit: function(spirit) {
-				if(gui.Spirit.is(spirit)) {
+				if (gui.Spirit.is(spirit)) {
 					spirits.push(spirit);
 				}
 			}
@@ -122,7 +119,7 @@ describe('gui.Crawler', function likethis() {
 	});
 
 	/**
-	 * Both handleElement and handleSpirit can 
+	 * Both handleElement and handleSpirit can
 	 * return directives to control the crawler.
 	 */
 	it('should ignore the spirit if the element returns a directive', function() {
@@ -155,19 +152,19 @@ describe('gui.Crawler', function likethis() {
 	});
 
 	/**
-	 * SKIP_CHILDREN prevents further descend into the DOM tree, 
+	 * SKIP_CHILDREN prevents further descend into the DOM tree,
 	 * but the *siblings* should still be crawled (unlike STOP).
 	 */
 	it('should skip the children (not the siblings) if a directive says so', function() {
 		var items = [], firstlevelitems = this.sandbox.querySelectorAll('li.level-1');
 		function hasclass(elm, name) {
-			return elm.className.indexOf(name) >-1; // IE no classList!
+			return elm.className.indexOf(name) > -1; // IE no classList!
 		}
 		new gui.Crawler().descend(this.sandbox, {
 			handleElement: function(elm) {
-				if(elm.localName === 'li') {
+				if (elm.localName === 'li') {
 					items.push(elm);
-					if(hasclass(elm, 'skipchildren')) {
+					if (hasclass(elm, 'skipchildren')) {
 						return gui.Crawler.SKIP_CHILDREN;
 					}
 				}
@@ -186,12 +183,12 @@ describe('gui.Crawler', function likethis() {
 		var items = [];
 		new gui.Crawler().descend(this.sandbox, {
 			handleElement: function(element) {
-				if(element.localName === 'li') {
+				if (element.localName === 'li') {
 					items.push(element);
 				}
 			},
 			handleSpirit: function(spirit) {
-				if(spirit.css.contains('stophere')) {
+				if (spirit.css.contains('stophere')) {
 					return gui.Crawler.STOP;
 				}
 			}
@@ -206,7 +203,7 @@ describe('gui.Crawler', function likethis() {
 		var items = [];
 		new gui.Crawler().descend(this.sandbox, {
 			handleElement: function(elm) {
-				if(elm.localName === 'li') {
+				if (elm.localName === 'li') {
 					items.push(getvalue(elm));
 				}
 			}
@@ -232,5 +229,4 @@ describe('gui.Crawler', function likethis() {
 			return tags[index] === tag;
 		})).toBe(true);
 	});
-
 });

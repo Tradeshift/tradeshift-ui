@@ -16,5 +16,5 @@ var initTable = function() {
 };
 
 $(document).ready(function() {
-    initTable();
+		initTable();
 });

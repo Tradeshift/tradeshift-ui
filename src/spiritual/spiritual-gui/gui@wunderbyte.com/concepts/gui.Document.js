@@ -3,7 +3,6 @@
  * TODO: Support custom implementation?
  */
 gui.Document = (function() {
-
 	/**
 	 * Dispatch global action to hosting document (if any).
 	 * This will most likely get picked up by the containing
@@ -20,19 +19,19 @@ gui.Document = (function() {
 	/**
 	 * Dispatch one or more (local) broadcasts.
 	 */
-	function dobrodcast( /* ...types*/ ) {
+	function dobrodcast(/* ...types */) {
 		gui.Array.make(arguments).forEach(function(type) {
 			gui.Broadcast.dispatch(type);
 		});
 	}
 
 	/**
-	 * If the window width is zero, we assume that this iframe was  
-	 * either just created (and there is this bug in WebKit) or that 
-	 * the iframe is `display:none`. This would need to be accounted 
-	 * for in *all* spirits that measure width, height, display state 
-	 * and so on, so we will simply not run until iframe gets shown. 
-	 * Note that this may delay spiritualization to happen *async* 
+	 * If the window width is zero, we assume that this iframe was
+	 * either just created (and there is this bug in WebKit) or that
+	 * the iframe is `display:none`. This would need to be accounted
+	 * for in *all* spirits that measure width, height, display state
+	 * and so on, so we will simply not run until iframe gets shown.
+	 * Note that this may delay spiritualization to happen *async*
 	 * sometimes after the `DOMContentLoaded` event has fired.
 	 */
 	function islayoutready() {
@@ -99,7 +98,6 @@ gui.Document = (function() {
 			}
 		},
 
-
 		// Private .................................................................
 
 		/**
@@ -133,7 +131,7 @@ gui.Document = (function() {
 			gui.$initialize();
 			this._configure(gui.namespaces());
 			(function onlayoutready() {
-				if(islayoutready()) {
+				if (islayoutready()) {
 					doaction(gui.ACTION_DOC_ONDOMCONTENT, location.href);
 					dobrodcast(
 						gui.BROADCAST_TODOM, // intercepted in gui.extensions.js (if bundled)
@@ -179,9 +177,9 @@ gui.Document = (function() {
 		 */
 		_onmouseevent: function(e) {
 			gui.broadcastGlobal(({
-				"click": gui.BROADCAST_MOUSECLICK,
-				"mousedown": gui.BROADCAST_MOUSEDOWN,
-				"mouseup": gui.BROADCAST_MOUSEUP
+				click: gui.BROADCAST_MOUSECLICK,
+				mousedown: gui.BROADCAST_MOUSEDOWN,
+				mouseup: gui.BROADCAST_MOUSEUP
 			})[e.type], gui.$contextid);
 		},
 
@@ -210,13 +208,13 @@ gui.Document = (function() {
 
 		/**
 		 * Reflex all whenever the user comes back from other tab excursions.
-		 * TODO: Figure out if nested iframes can even see this stuff and 
+		 * TODO: Figure out if nested iframes can even see this stuff and
 		 * create something like `reflexGlobal` in case they really can't.
 		 * @param {boolean} hidden
 		 */
 		_onvisibilitychange: function(visible) {
 			var root = gui.get(document.documentElement);
-			if(visible && root) {
+			if (visible && root) {
 				root.reflex();
 			}
 		},
@@ -246,7 +244,6 @@ gui.Document = (function() {
 		}
 
 	});
-
 }());
 
 /**

@@ -1,5 +1,4 @@
 describe('ts.ui.TableGutterSpirit.edbml', function likethis() {
-
 	it('should contain input', function(done) {
 		var html = '<div data-ts="Table"></div>';
 		sometime(function later() {

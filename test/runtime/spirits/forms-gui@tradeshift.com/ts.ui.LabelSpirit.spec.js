@@ -1,5 +1,4 @@
 describe('ts.ui.LabelSpirit', function likethis() {
-
 	it('should (eventually) channel via ts-attribute', function(done) {
 		var spirit, dom = helper.createTestDom();
 		dom.innerHTML = '<input data-ts="Label"/>';
@@ -9,5 +8,4 @@ describe('ts.ui.LabelSpirit', function likethis() {
 			done();
 		});
 	});
-
 });

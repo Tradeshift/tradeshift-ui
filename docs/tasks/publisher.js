@@ -1,6 +1,6 @@
 /**
- * For local development, remove references to 
- * 127.0.0.1 to support mobile device testing. 
+ * For local development, remove references to
+ * 127.0.0.1 to support mobile device testing.
  */
 module.exports = {
 
@@ -12,7 +12,7 @@ module.exports = {
 	publish: function(text) {
 		var localhost = '127.0.0.1';
 		var publichost = getip();
-		while(text.indexOf(localhost) >-1) {
+		while (text.indexOf(localhost) > -1) {
 			text = text.replace(localhost, publichost);
 		}
 		return text;
@@ -27,14 +27,14 @@ function getip() {
 	var result = null;
 	var ifaces = require('os').networkInterfaces();
 	Object.keys(ifaces).forEach(function(dev) {
-		ifaces[dev].every(function(details){
+		ifaces[dev].every(function(details) {
 			if (details.family === 'IPv4') {
 				result = details.address;
 			}
 			return !result;
 		});
 	});
-	if(result === '127.0.0.1') {
+	if (result === '127.0.0.1') {
 		result = 'localhost'; // otherwise not work offline (?)
 	}
 	return result;

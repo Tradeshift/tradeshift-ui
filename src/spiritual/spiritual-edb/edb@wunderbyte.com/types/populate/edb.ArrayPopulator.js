@@ -3,7 +3,6 @@
  * @using {gui.Type} Type
  */
 edb.ArrayPopulator = (function using(Type) {
-
 	/**
 	 * Array was declared to contain lists (not objects)?
 	 * @param {edb.Array} array
@@ -28,19 +27,19 @@ edb.ArrayPopulator = (function using(Type) {
 	 * @param {object} o
 	 * @returns {edb.Type}
 	 */
-	function constructas(Type, o) {
-		if (!gui.debug || edb.Type.isConstructor(Type)) {
+	function constructas(edbType, o) {
+		if (!gui.debug || edb.Type.isConstructor(edbType)) {
 			if (edb.Type.is(o)) {
-				if (Type.is(o)) {
+				if (edbType.is(o)) {
 					return o;
 				} else {
-					fail(Type, o);
+					fail(edbType, o);
 				}
 			} else {
 				return new Type(o);
 			}
 		} else {
-			fail('edb.Type', Type);
+			fail('edb.Type', edbType);
 		}
 	}
 
@@ -54,11 +53,12 @@ edb.ArrayPopulator = (function using(Type) {
 		var t = filter(o);
 		if (Type.isConstructor(t)) {
 			t = constructas(t, o);
-		} else { // if (edb.Type.is(t) || t === null)
+		}
+		// else { // if (edb.Type.is(t) || t === null)
 			// TODO: Support $of simple object/array here!
 			// TODO: At least make sure not `undefined`!
-			t = t;
-		}
+			// t = t;
+		// }
 		/*
 		 else {
 			fail(
@@ -116,16 +116,15 @@ edb.ArrayPopulator = (function using(Type) {
 		return args.map(function(o) {
 			if (!edb.Type.is(o)) {
 				switch (Type.of(o)) {
-					case "object":
+					case 'object':
 						return new edb.Object(o);
-					case "array":
+					case 'array':
 						return new edb.Array(o);
 				}
 			}
 			return o;
 		});
 	}
-
 
 	return { // Public ...........................................................
 
@@ -172,5 +171,4 @@ edb.ArrayPopulator = (function using(Type) {
 		}
 
 	};
-
 }(gui.Type));

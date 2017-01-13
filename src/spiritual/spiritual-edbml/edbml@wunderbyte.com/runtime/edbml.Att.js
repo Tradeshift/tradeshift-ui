@@ -17,9 +17,8 @@ edbml.Att.prototype = gui.Object.create(null, {
 	 * @returns {String}
 	 */
 	toString: function() {
-		return "[object edbml.Att]";
+		return '[object edbml.Att]';
 	},
-
 
 	// Privileged ................................................................
 
@@ -30,14 +29,14 @@ edbml.Att.prototype = gui.Object.create(null, {
 	 */
 	$: function(att) {
 		var val = this[att],
-			html = "";
+			html = '';
 		switch (gui.Type.of(val)) {
-			case "null":
-			case "undefined":
+			case 'null':
+			case 'undefined':
 				break;
 			default:
 				val = edbml.Att.$encode(this[att]);
-				html += att + "=\"" + val + "\" ";
+				html += att + '="' + val + '" ';
 				break;
 		}
 		return html;
@@ -58,7 +57,7 @@ edbml.Att.prototype = gui.Object.create(null, {
 	 * @returns {String}
 	 */
 	$all: function() {
-		var html = "";
+		var html = '';
 		gui.Object.nonmethods(this).forEach(function(att) {
 			html += this.$(att);
 		}, this);
@@ -66,7 +65,6 @@ edbml.Att.prototype = gui.Object.create(null, {
 	}
 
 });
-
 
 // Static privileged ...........................................................
 
@@ -79,25 +77,25 @@ edbml.Att.prototype = gui.Object.create(null, {
 edbml.Att.$encode = function(data) {
 	var type = gui.Type.of(data);
 	switch (type) {
-		case "string":
+		case 'string':
 			data = edbml.safeattr(data);
 			break;
-		case "number":
-		case "boolean":
+		case 'number':
+		case 'boolean':
 			data = String(data);
 			break;
-		case "object":
-		case "array":
+		case 'object':
+		case 'array':
 			try {
 				data = encodeURIComponent(JSON.stringify(data));
 			} catch (jsonex) {
-				throw new Error("Could not create HTML attribute: " + jsonex);
+				throw new Error('Could not create HTML attribute: ' + jsonex);
 			}
 			break;
-		case "date":
-			throw new Error("TODO: edbml.Att.encode standard date format?");
+		case 'date':
+			throw new Error('TODO: edbml.Att.encode standard date format?');
 		default:
-			throw new Error("Could not create HTML attribute for " + type);
+			throw new Error('Could not create HTML attribute for ' + type);
 	}
 	return data;
 };

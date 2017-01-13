@@ -2,7 +2,6 @@
  * Outputting and connecting.
  */
 describe('edb.Type.output', function likethis() {
-
 	/**
 	 * @param {function} done
 	 * @param {boolean} testobject
@@ -12,7 +11,6 @@ describe('edb.Type.output', function likethis() {
 	 * @param @optional {boolean} testinstrevoke
 	 */
 	function doTheTest(done, testobject, testlater, testdecendant, testrevoke, testinstrevoke) {
-
 		// create superclass and subclass
 		var AncestorType = testobject ? edb.Object.extend() : edb.Array.extend();
 		var DescendantType = AncestorType.extend();
@@ -24,11 +22,11 @@ describe('edb.Type.output', function likethis() {
 		// create the listener
 		var listener = {
 			oninput: function(input) {
-				if(input.type === MyType) {
-					if(testrevoke && input.data === null) {
+				if (input.type === MyType) {
+					if (testrevoke && input.data === null) {
 						done();
 					} else {
-						if(input.data === mytype) {
+						if (input.data === mytype) {
 							done();
 						}
 					}
@@ -37,7 +35,7 @@ describe('edb.Type.output', function likethis() {
 		};
 
 		// connect listener before output?
-		if(!testlater) {
+		if (!testlater) {
 			AncestorType.output.connect(listener);
 		}
 
@@ -45,16 +43,16 @@ describe('edb.Type.output', function likethis() {
 		mytype.output();
 
 		// connect listener after output?
-		if(testlater) {
+		if (testlater) {
 			setTimeout(function muchlater() {
 				AncestorType.output.connect(listener);
 			}, 500);
 		}
 
 		// revoke the output again?
-		if(testrevoke) {
+		if (testrevoke) {
 			setTimeout(function muchlater() {
-				if(testinstrevoke) {
+				if (testinstrevoke) {
 					mytype.revoke();
 				} else {
 					MyType.output.revoke();
@@ -94,5 +92,4 @@ describe('edb.Type.output', function likethis() {
 			}, false, true);
 		}, false);
 	});
-
 });

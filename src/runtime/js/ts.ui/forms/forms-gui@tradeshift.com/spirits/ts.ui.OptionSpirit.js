@@ -20,7 +20,6 @@ ts.ui.OptionSpirit = ts.ui.FieldSpirit.extend({
 		this.css.add(ts.ui.CLASS_OPTION);
 	},
 
-
 	// Privileged ................................................................
 
 	/**
@@ -36,7 +35,6 @@ ts.ui.OptionSpirit = ts.ui.FieldSpirit.extend({
 		});
 	},
 
-
 	// Private ...................................................................
 
 	/**
@@ -46,10 +44,10 @@ ts.ui.OptionSpirit = ts.ui.FieldSpirit.extend({
 	 * @param {string} type
 	 */
 	_confirmbasic: function(name, type) {
-		if(gui.debug) {
-			if(name !== 'input') {
+		if (gui.debug) {
+			if (name !== 'input') {
 				throw new Error(this + ' must attach to an input field', this.element);
-			} else if(type !== 'checkbox' && type !== 'radio') {
+			} else if (type !== 'checkbox' && type !== 'radio') {
 				throw new Error(this + ' must attach to a checkbox or radio', this.element);
 			}
 		}

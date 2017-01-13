@@ -3,13 +3,6 @@
  * @see Tradeshift/Apps/master/src/main/apps/Lib/components/Date/code/Date.js
  */
 ts.lib.Date = (function() {
-
-	var SEC_MS = 1000;
-	var MIN_MS = 60 * SEC_MS;
-	var HOUR_MS = 60 * MIN_MS;
-	var DAY_MS = 24 * HOUR_MS;
-	var WEEK_MS = 7 * DAY_MS;
-
 	var regionalDateFormats = [];
 
 	regionalDateFormats['en-US'] = 'mm/dd/yy';
@@ -17,7 +10,7 @@ ts.lib.Date = (function() {
 	regionalDateFormats.da = 'dd-mm-yy';
 	regionalDateFormats.hu = 'yy.mm.dd.';
 
-	//this should be set by the localization engine
+	// this should be set by the localization engine
 	var regionalDateFormat = regionalDateFormats['en-US'];
 
 	function zf(num) {
@@ -47,7 +40,7 @@ ts.lib.Date = (function() {
 	}
 
 	function _dateStringToObject(dateString) {
-		if (dateString.length !== 10) { //yyyy-mm-dd
+		if (dateString.length !== 10) { // yyyy-mm-dd
 			return {
 				year: _getCurrentFullYear(),
 				month: _getCurrentMonth(),
@@ -98,7 +91,7 @@ ts.lib.Date = (function() {
 		var prevChar = 'x',
 			returnDate = '';
 		for (var i = 0,
-				regionalDateFormatLength = regionalDateFormat.length; i < regionalDateFormatLength; ++i) {
+			regionalDateFormatLength = regionalDateFormat.length; i < regionalDateFormatLength; ++i) {
 			var currentChar = regionalDateFormat[i];
 			if (currentChar === 'y') {
 				returnDate += year.substr((prevChar === 'y' ? 3 : 2), 1);
@@ -206,5 +199,4 @@ ts.lib.Date = (function() {
 			return _getDateString(new Date());
 		}
 	};
-
 }());

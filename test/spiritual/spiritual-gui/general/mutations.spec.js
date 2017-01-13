@@ -4,8 +4,6 @@
  * TODO: Support and test DOM4 methods
  */
 describe('Regular DOM mutations (without spirits)', function likethis() {
-
-
 	// Preparations ..............................................................
 
 	var main = document.body.appendChild(getelm('main'));
@@ -15,13 +13,12 @@ describe('Regular DOM mutations (without spirits)', function likethis() {
 	}
 
 	function elmcount(n) {
-		return main.childElementCount == n;
+		return main.childElementCount === n;
 	}
 
 	function firstelm(name) {
 		return main.firstElementChild.localName === name;
 	}
-
 
 	// Expectations ..............................................................
 

@@ -5,7 +5,6 @@
  * @using {gui.Arguments#confirmed} confirmed
  */
 ts.ui.ObjectModel = (function using(confirmed) {
-
 	return ts.ui.Model.extend({
 
 		/**
@@ -27,8 +26,8 @@ ts.ui.ObjectModel = (function using(confirmed) {
 		mock: false,
 
 		/**
-		 * The `data` is declared as a simple object in case we need to embed UBL 
-		 * documents and what not. This means that changes to the date will not 
+		 * The `data` is declared as a simple object in case we need to embed UBL
+		 * documents and what not. This means that changes to the date will not
 		 * automatically trigger EDBML renderings (the data cannot be observed).
 		 * @type {JSONObject}
 		 */
@@ -40,7 +39,7 @@ ts.ui.ObjectModel = (function using(confirmed) {
 		 * @param @optional {string} classconfig The spirits classname may serve as config
 		 * @returns {string}
 		 */
-		render: confirmed('(boolean)', '(string)') (
+		render: confirmed('(boolean)', '(string)')(
 			function(contentonly, classconfig) {
 				return this._edbml()(
 					this, contentonly || false, classconfig || 'ts-default'
@@ -54,16 +53,15 @@ ts.ui.ObjectModel = (function using(confirmed) {
 		 */
 		onconstruct: function() {
 			this.super.onconstruct();
-			if(!this.id) {
+			if (!this.id) {
 				throw new Error(this + ' requires a unique id');
 			}
 		},
 
-
 		// Private .................................................................
 
 		/**
-		 * Get EDBML function for this object. 
+		 * Get EDBML function for this object.
 		 * Note: Subclass must implement this.
 		 * @returns {function}
 		 */
@@ -72,5 +70,4 @@ ts.ui.ObjectModel = (function using(confirmed) {
 		}
 
 	});
-
 }(gui.Arguments.confirmed));

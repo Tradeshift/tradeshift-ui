@@ -5,14 +5,14 @@ gui.Type = {
 
 	/**
 	 * Get type of argument. Note that response may differ between user agents.
-	 * @see  http://javascriptweblog.wordpress.com/2011/08/08/fixing-the-javascript-typeof-operator
+	 * @see	http://javascriptweblog.wordpress.com/2011/08/08/fixing-the-javascript-typeof-operator
 	 * @param {object} o
 	 * @returns {String}
 	 */
 	of: function(o) {
 		var type = ({}).toString.call(o).match(this._typeexp)[1].toLowerCase();
-		if (type === "domwindow" && String(typeof o) === "undefined") {
-			type = "undefined"; // some kind of degenerate bug in Safari on iPad
+		if (type === 'domwindow' && String(typeof o) === 'undefined') {
+			type = 'undefined'; // some kind of degenerate bug in Safari on iPad
 		}
 		return type;
 	},
@@ -24,7 +24,7 @@ gui.Type = {
 	 * @returns {boolean}
 	 */
 	isDefined: function(o) {
-		return this.of(o) !== "undefined";
+		return this.of(o) !== 'undefined';
 	},
 
 	/**
@@ -34,11 +34,11 @@ gui.Type = {
 	 */
 	isComplex: function(o) {
 		switch (this.of(o)) {
-			case "undefined":
-			case "boolean":
-			case "number":
-			case "string":
-			case "null":
+			case 'undefined':
+			case 'boolean':
+			case 'number':
+			case 'string':
+			case 'null':
 				return false;
 		}
 		return true;
@@ -59,7 +59,7 @@ gui.Type = {
 	 * @returns {boolean}
 	 */
 	isEvent: function(o) {
-		return this.of(o).endsWith("event") && this.isDefined(o.type);
+		return this.of(o).endsWith('event') && this.isDefined(o.type);
 	},
 
 	/**
@@ -96,7 +96,7 @@ gui.Type = {
 	 */
 	isMethod: function(o) {
 		return o && this.isFunction(o) && !this.isConstructor(o) &&
-			!String(o).includes("[native code]"); // hotfix 'Array' and 'Object' ...
+			!String(o).includes('[native code]'); // hotfix 'Array' and 'Object' ...
 	},
 
 	/**
@@ -155,12 +155,12 @@ gui.Type = {
 	cast: function(string) {
 		var result = String(string);
 		switch (result) {
-			case "null":
+			case 'null':
 				result = null;
 				break;
-			case "true":
-			case "false":
-				result = (result === "true");
+			case 'true':
+			case 'false':
+				result = (result === 'true');
 				break;
 			default:
 				if (String(parseInt(result, 10)) === result) {
@@ -172,7 +172,6 @@ gui.Type = {
 		}
 		return result;
 	},
-
 
 	// Private ...................................................................
 
@@ -189,17 +188,17 @@ gui.Type = {
  * TODO: can we do an "isError" here?
  */
 (function generatecode() {
-	[ "array",
-		"function",
-		"object",
-		"string",
-		"number",
-		"boolean",
-		"null",
-		"arguments",
-		"file"
+	['array',
+		'function',
+		'object',
+		'string',
+		'number',
+		'boolean',
+		'null',
+		'arguments',
+		'file'
 	].forEach(function(type) {
-		this["is" + type[0].toUpperCase() + type.slice(1)] = function is(o) {
+		this['is' + type[0].toUpperCase() + type.slice(1)] = function is(o) {
 			return this.of(o) === type;
 		};
 	}, this);

@@ -1,6 +1,6 @@
 /**
  * Manager of iframes.
- * TODO(jmo@): This file is not used in app iframes, but still needs to be 
+ * TODO(jmo@): This file is not used in app iframes, but still needs to be
  * subclassed by both top.js and sub.js, so we're stashing it here for now.
  */
 ts.ui.MainFrameSpirit = ts.ui.Spirit.extend({
@@ -31,7 +31,7 @@ ts.ui.MainFrameSpirit = ts.ui.Spirit.extend({
 	},
 
 	/**
-	 * Handle actions, making sure that actions from 
+	 * Handle actions, making sure that actions from
 	 * an unloading app doesn't reach the top window.
 	 * @param {gui.Action} a
 	 */
@@ -76,9 +76,9 @@ ts.ui.MainFrameSpirit = ts.ui.Spirit.extend({
 	 */
 	onevent: function(e) {
 		this.super.onevent(e);
-		if(e.type === 'message') {
-			if(this._newframe && e.source === this._newframe.contentWindow) {
-				switch(e.data) {
+		if (e.type === 'message') {
+			if (this._newframe && e.source === this._newframe.contentWindow) {
+				switch (e.data) {
 					case ts.ui.MESSAGE_BUSY:
 						console.error('TODO: implement mechanism for delaying _onload()');
 						break;
@@ -103,7 +103,6 @@ ts.ui.MainFrameSpirit = ts.ui.Spirit.extend({
 		}
 		return false;
 	},
-
 
 	// Private ...................................................................
 
@@ -135,10 +134,10 @@ ts.ui.MainFrameSpirit = ts.ui.Spirit.extend({
 	 * @type {ts.ui.FrameSpirit}
 	 */
 	_oldframe: null,
-	
+
 	/**
 	 * Prepare do declare everything loaded when
-	 * 
+	 *
 	 * 1. the 'onload' event fires on the iframe
 	 * 2. the iframe does postmessage 'ts-ready'
 	 */
@@ -148,11 +147,11 @@ ts.ui.MainFrameSpirit = ts.ui.Spirit.extend({
 			this._onload();
 		}, time);
 	},
-	
+
 	/**
-	 * Create new iframe. We listen for the `DOMContentLoaded` 
-	 * event to fire before we show the app, perhaps something 
-	 * more elaborate should be implemented at some point 
+	 * Create new iframe. We listen for the `DOMContentLoaded`
+	 * event to fire before we show the app, perhaps something
+	 * more elaborate should be implemented at some point
 	 * (like a message dispatched manually from the iframe).
 	 * @return {ts.ui.FrameSpirit}
 	 */
@@ -178,7 +177,6 @@ ts.ui.MainFrameSpirit = ts.ui.Spirit.extend({
 	_load: function(href) {
 		var cuts = href.split('#');
 		var path = cuts[0];
-		var hash = cuts[1];
 		if (path !== this._path) {
 			this._loadnew(href);
 			this._path = path;
@@ -211,12 +209,12 @@ ts.ui.MainFrameSpirit = ts.ui.Spirit.extend({
 	},
 
 	/**
-	 * Create new `this._newframe` and mark current frame as oldframe. 
+	 * Create new `this._newframe` and mark current frame as oldframe.
 	 * The frames will not *visibly* toggle until newframe is loaded.
 	 */
 	_switchframes: function() {
 		var oldframe = this._oldframe = this._newframe;
-		var newframe = this._newframe = this._createframe();
+		this._newframe = this._createframe();
 		if (oldframe) {
 			oldframe.action.descendGlobal(ts.ui.ACTION_GLOBAL_TERMINATE);
 		}

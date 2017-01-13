@@ -34,9 +34,9 @@ module.exports = {
 	 */
 	merge: function(config1, config2) {
 		config1 = read(config1);
-		if(exists(config2)) {
+		if (exists(config2)) {
 			config1 = xtend(
-				config1, 
+				config1,
 				read(config2)
 			);
 		}

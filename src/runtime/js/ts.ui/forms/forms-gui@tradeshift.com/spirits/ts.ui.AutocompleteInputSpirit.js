@@ -43,7 +43,6 @@ ts.ui.AutocompleteInputSpirit = (function using(chained) {
 			return this;
 		}),
 
-
 		// Private ...................................................................
 
 		/**

@@ -10,14 +10,14 @@ gui.DOMChanger = {
 	init: function() {
 		var proto = Element.prototype;
 		if (gui.Type.isDefined(proto.spirit)) {
-			throw new Error("Spiritual loaded twice?");
+			throw new Error('Spiritual loaded twice?');
 		} else {
 			proto.spirit = null; // defineProperty fails in iOS5
 		}
 	},
 
 	/**
-	 * Extend native DOM methods in given window scope. 
+	 * Extend native DOM methods in given window scope.
 	 * Wonder what happens now with SVG in Explorer?
 	 */
 	change: function() {
@@ -25,7 +25,6 @@ gui.DOMChanger = {
 		this._changeelement(gui.Client.isExplorer ? HTMLElement : Element, combos);
 		this._changefragment(DocumentFragment, this._fragmethods(combos));
 	},
-
 
 	// Private ...................................................................
 
@@ -35,7 +34,7 @@ gui.DOMChanger = {
 	 * @param {Map} combos
 	 */
 	_changeelement: function(Elm, combos) {
-		if(this._isoldgecko()) {
+		if (this._isoldgecko()) {
 			this._changeoldgecko(combos);
 		} else {
 			this._change(Elm.prototype, combos);
@@ -43,7 +42,7 @@ gui.DOMChanger = {
 	},
 
 	/**
-	 * Fundamentally change all document fragments. When jQuery moves elements 
+	 * Fundamentally change all document fragments. When jQuery moves elements
 	 * around, it places them in an intermediary document fragment (by default).
 	 * @param {constructor} Frag
 	 * @param {Map} combosubset
@@ -59,9 +58,9 @@ gui.DOMChanger = {
 	 */
 	_fragmethods: function(combos) {
 		var frag = document.createDocumentFragment();
-		return gui.Object.map(combos, 
+		return gui.Object.map(combos,
 			function fragmentmethod(key, value) {
-				if(frag[key]) {
+				if (frag[key]) {
 					return value;
 				}
 			}
@@ -130,14 +129,14 @@ gui.DOMChanger = {
 	_ismethod: function(name) {
 		var is = false;
 		switch (name) {
-			case "appendChild":
-			case "removeChild":
-			case "insertBefore":
-			case "replaceChild":
-			case "setAttribute":
-			case "removeAttribute":
-			case "insertAdjecantHTML":
-			case "remove":
+			case 'appendChild':
+			case 'removeChild':
+			case 'insertBefore':
+			case 'replaceChild':
+			case 'setAttribute':
+			case 'removeAttribute':
+			case 'insertAdjecantHTML':
+			case 'remove':
 				is = true;
 				break;
 		}
@@ -167,7 +166,7 @@ gui.DOMChanger = {
 	 */
 	_doaccessor: function(proto, name, combo, once) {
 		var base = Object.getOwnPropertyDescriptor(proto, name);
-		if(gui.Client.isExplorer9 && name === 'className') {
+		if (gui.Client.isExplorer9 && name === 'className') {
 			return; // TODO: This condition goes into {gui.DOMCombos} somehow
 		}
 		if (base) {
@@ -180,13 +179,13 @@ gui.DOMChanger = {
 					base.set.call(this, value);
 				})
 			});
-		} else if(!once) { // textContent hotfix (is on different prototype)
+		} else if (!once) { // textContent hotfix (is on different prototype)
 			this._doaccessor(Node.prototype, name, combo, true);
 		}
 	},
 
 	/**
-	 * New Firefox can do it the standard way and they will 
+	 * New Firefox can do it the standard way and they will
 	 * probably remove the non-standard way at some point.
 	 * @param {object} proto
 	 * @param {String} name
@@ -202,7 +201,7 @@ gui.DOMChanger = {
 	},
 
 	/**
-	 * Symbol was enabled in Firefox 36 and we'll 
+	 * Symbol was enabled in Firefox 36 and we'll
 	 * just declare anything before this as old.
 	 * @returns {boolean}
 	 */
@@ -231,7 +230,6 @@ gui.DOMChanger = {
 			this._doaccessor(Node.prototype, name, combo, root);
 		}
 	},
-
 
 	/**
 	 * Old Firefox has to traverse the constructor of all elements.

@@ -5,17 +5,16 @@
  * @using {gui.Combo.chained} chained
  * @using {gui.Arguments.confirmed} confirmed
  */
-ts.ui.TopBarSpirit = (function(TopBar, Client, chained, confirmed) {	
-	
+ts.ui.TopBarSpirit = (function(TopBar, Client, chained, confirmed) {
 	var HAS_TOPBAR = ts.ui.CLASS_HAS_TOPBAR;
 	var HAS_TOPBAR_TABS = ts.ui.CLASS_HAS_TOPBAR_TABS;
 	var TOPBAR_READY = ts.ui.BROADCAST_GLOBAL_TOPBAR_READY;
 	var CLASS_HIDDEN = ts.ui.CLASS_HIDDEN;
-	
+
 	return ts.ui.ToolBarSpirit.extend({
-		 
+
 		/**
-		 * Always be using this particular model. The model 
+		 * Always be using this particular model. The model
 		 * may have been configured before this spirit exists.
 		 */
 		onconstruct: function() {
@@ -27,7 +26,7 @@ ts.ui.TopBarSpirit = (function(TopBar, Client, chained, confirmed) {
 			this.script.input(this._model);
 			this._model.addObserver(this);
 		},
-		
+
 		/**
 		 * Cleanup (in case TopBar gets removed).
 		 * TODO: this should really be automated!
@@ -36,7 +35,7 @@ ts.ui.TopBarSpirit = (function(TopBar, Client, chained, confirmed) {
 			this.super.onconfigure();
 			this.model().removeObserver(this);
 		},
-		
+
 		/**
 		 * Setup.
 		 */
@@ -45,12 +44,12 @@ ts.ui.TopBarSpirit = (function(TopBar, Client, chained, confirmed) {
 			this.sprite.y = 0;
 			this.css.remove(ts.ui.CLASS_MICRO).add(ts.ui.CLASS_MACRO);
 		},
-		
+
 		/**
-		 * Change it to dark 
+		 * Change it to dark
 		 */
 		onenter: function() {
-			if(!this.css.name().includes('ts-bg')) {
+			if (!this.css.name().includes('ts-bg')) {
 				this.dark();
 			}
 			this.super.onenter();
@@ -77,9 +76,9 @@ ts.ui.TopBarSpirit = (function(TopBar, Client, chained, confirmed) {
 			root.css.remove(HAS_TOPBAR_TABS);
 			root.reflex();
 		},
-		
+
 		/**
-		 * When the topbar's ready we tell the Chrome 
+		 * When the topbar's ready we tell the Chrome
 		 * about it and it will send the defaultTitle
 		 */
 		onready: function() {
@@ -89,8 +88,8 @@ ts.ui.TopBarSpirit = (function(TopBar, Client, chained, confirmed) {
 
 		/**
 		 * Update classes on the HTML element as soon as the rendering is done.
-		 * If the TopBar element for some reason was added late, we'll need to 
-		 * reflex the page so that js-based layouts (as in SideBars) can account 
+		 * If the TopBar element for some reason was added late, we'll need to
+		 * reflex the page so that js-based layouts (as in SideBars) can account
 		 * for the height of the TopBar.
 		 * @param {TODO} summary
 		 */
@@ -98,16 +97,16 @@ ts.ui.TopBarSpirit = (function(TopBar, Client, chained, confirmed) {
 			this.super.onrender(summary);
 			var tbar = this._model;
 			this._setclasses();
-			if(this.element.offsetWidth) {
+			if (this.element.offsetWidth) {
 				this._calculate(tbar.tabs);
 			}
-			if(gui.spiritualized && tbar.hascontent && !this._reflexfixed) {
+			if (gui.spiritualized && tbar.hascontent && !this._reflexfixed) {
 				var root = document.documentElement;
 				ts.ui.get(root).reflex();
 				this._reflexfixed = true;
 			}
 		},
-		
+
 		/**
 		 * Handle (model) changes.
 		 * @param {Array<edb.Change>} changes
@@ -115,7 +114,7 @@ ts.ui.TopBarSpirit = (function(TopBar, Client, chained, confirmed) {
 		onchange: function(changes) {
 			this.super.onchange(changes);
 			changes.forEach(function(c) {
-				switch(c.name) {
+				switch (c.name) {
 					case 'color':
 						this._matchcolor(this, this._model);
 						break;
@@ -127,7 +126,7 @@ ts.ui.TopBarSpirit = (function(TopBar, Client, chained, confirmed) {
 		},
 
 		/**
-		 * Get or set the title (aborting weird Moustache syntax). 
+		 * Get or set the title (aborting weird Moustache syntax).
 		 *
 		 * TODO: `this._model` is the TopBarModel, so why did we overwrite this?
 		 *
@@ -138,7 +137,7 @@ ts.ui.TopBarSpirit = (function(TopBar, Client, chained, confirmed) {
 		title: confirmed('(string)')(
 			chained(function(opt_string) {
 				if (arguments.length) {
-					if(opt_string.trim().indexOf('{') !== 0) {
+					if (opt_string.trim().indexOf('{') !== 0) {
 						this.$hascontent();
 						ts.ui.TopBar.title(opt_string);
 						this.event.add('click');
@@ -149,21 +148,21 @@ ts.ui.TopBarSpirit = (function(TopBar, Client, chained, confirmed) {
 				}
 			})
 		),
-		
+
 		/**
 		 * Never be using some other model.
 		 * @override {ts.ui.ToolBarSpirit#model}
 		 * @returns {ts.ui.TopBarModel}
 		 */
 		model: function() {
-			if(arguments.length) {
+			if (arguments.length) {
 				throw new Error('Cannot assign :/');
 			}
 			return this._model;
 		},
 
 		/**
-		 * Make sure this goes via the API so that the 
+		 * Make sure this goes via the API so that the
 		 * business logic with mobile breakpoint works.
 		 * @overwrites {ts.ui.ToolBarSpirit#hide}
 		 * @throws {Error}
@@ -180,10 +179,9 @@ ts.ui.TopBarSpirit = (function(TopBar, Client, chained, confirmed) {
 		show: function() {
 			throw new Error('Please use ts.ui.TopBar.show()');
 		},
-		
-		
+
 		// Private .................................................................
-		
+
 		/**
 		 * @type boolean
 		 */
@@ -197,28 +195,28 @@ ts.ui.TopBarSpirit = (function(TopBar, Client, chained, confirmed) {
 		_layoutinit: function(attaching) {},
 
 		/**
-		 * In mobile breakpoint, the TopBar is "floating" and that 
-		 * looks better when we make some room for the scrollbar 
+		 * In mobile breakpoint, the TopBar is "floating" and that
+		 * looks better when we make some room for the scrollbar
 		 * (at least on platforms where the scrollbar even exists).
 		 * @param {gui.CSSPlugin} css
 		 */
 		_looknormal: function(css) {
 			css.right = ts.ui.isMobilePoint() ? Client.scrollBarSize : '';
 		},
-		
+
 		/**
 		 * TODO: Fix this elsehow!
-		 * The idea here is to allow for more TopBar negative scrolling 
-		 * when the tabs are open in mobile breakpoint, but it turns out 
+		 * The idea here is to allow for more TopBar negative scrolling
+		 * when the tabs are open in mobile breakpoint, but it turns out
 		 * not to work after all :/
 		 * @overrides {ts.ui.BarSpirit#_offsetlimit}
 		 * @returns {number}
 		 */
 		_offsetLimit: function() {
 			var stop = this.super._offsetLimit();
-			if(ts.ui.isMobilePoint()) {
+			if (ts.ui.isMobilePoint()) {
 				var tabs = this.dom.q('.ts-toolbar-tabs', ts.ui.TopBarTabsSpirit);
-				if(tabs && tabs.isOpen) {
+				if (tabs && tabs.isOpen) {
 					stop = tabs.$offsetLimit();
 				}
 			}
@@ -237,16 +235,16 @@ ts.ui.TopBarSpirit = (function(TopBar, Client, chained, confirmed) {
 			root.css.shift(tabs, HAS_TOPBAR_TABS);
 			this.css.shift(!show, CLASS_HIDDEN);
 		},
-		
+
 		/**
-		 * Should always show in mobile, otherwise should only 
-		 * show if it has content (buttons, tabs, title etc) 
+		 * Should always show in mobile, otherwise should only
+		 * show if it has content (buttons, tabs, title etc)
 		 * or if now empty but used to have some of that stuff.
 		 * @param {ts.ui.TopBarModel} tbar
 		 * @param {string} breakpoint
 		 */
 		_shouldshow: function(tbar, breakpoint) {
-			if(breakpoint === 'mobile') {
+			if (breakpoint === 'mobile') {
 				return true;
 			} else {
 				return tbar.visible && (
@@ -256,7 +254,6 @@ ts.ui.TopBarSpirit = (function(TopBar, Client, chained, confirmed) {
 				);
 			}
 		}
-		
+
 	});
-	
 }(ts.ui.TopBar, gui.Client, gui.Combo.chained, gui.Arguments.confirmed));

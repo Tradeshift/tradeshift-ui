@@ -23,13 +23,11 @@ ts.ui.Dialog.toString = function() {
  */
 ts.ui.Dialog.confirm = function(/* ...args */) {};
 
-
 /**
  * Severe confirmation dialog.
  * @returns {ts.ui.DialogModel}
  */
 ts.ui.Dialog.warning = function(/* ...args */) {};
-
 
 /**
  * Cataclysmic confirmation dialog.
@@ -38,12 +36,11 @@ ts.ui.Dialog.warning = function(/* ...args */) {};
 ts.ui.Dialog.danger = function(/* ...args */) {};
 
 /**
- * Absolute minimum time to display a 
+ * Absolute minimum time to display a
  * dialog with no buttons to close it.
  * @type {number} Time in milliseconds
  */
 ts.ui.Dialog.DEFAULT_TIME = 1500;
-
 
 // Implementation ..............................................................
 
@@ -56,7 +53,6 @@ ts.ui.Dialog.DEFAULT_TIME = 1500;
  * @using {gui.Type} Type
  */
 (function using(api, chained, hidden, GuiArray, GuiObject, Type) {
-
 	var Dialog = ts.ui.Dialog;
 
 	/**
@@ -79,7 +75,7 @@ ts.ui.Dialog.DEFAULT_TIME = 1500;
 	 * @param {String} method [description].
 	 * @param {object} param
 	 */
-	function applyreverse(method /* ...params */ ) {
+	function applyreverse(method /* ...params */) {
 		var myself = 'ts.ui.Dialog';
 		var params = [].slice.call(arguments, 1);
 		ts.ui.Greenfield.$applyreverse(myself, method, params);
@@ -94,8 +90,8 @@ ts.ui.Dialog.DEFAULT_TIME = 1500;
 	function toggle(model, open) {
 		if (ts.ui.greenfield) {
 			if (open) {
-				// TODO (jmo@): This implies that we create a new spirit/model 
-				// constallation in the parent frame for every open, we should 
+				// TODO (jmo@): This implies that we create a new spirit/model
+				// constallation in the parent frame for every open, we should
 				// rig it for recycling untill `dispose` is called by the user.
 				applyreverse('$open', model.serializeToString());
 			} else {
@@ -126,7 +122,7 @@ ts.ui.Dialog.DEFAULT_TIME = 1500;
 	}
 
 	/**
-	 * Never write "undefined" on screen and 
+	 * Never write "undefined" on screen and
 	 * don't show buttons with an empty label.
 	 * @param {string} string
 	 * @returns {string}
@@ -148,8 +144,8 @@ ts.ui.Dialog.DEFAULT_TIME = 1500;
 	}
 
 	/**
-	 * Build the DialogModel. Notifications don't have 
-	 * cancel. The success notifications has nothing. 
+	 * Build the DialogModel. Notifications don't have
+	 * cancel. The success notifications has nothing.
 	 * Dialogs with no buttons will close automatically.
 	 * @param {string} type
 	 * @param {boolean} note
@@ -160,16 +156,16 @@ ts.ui.Dialog.DEFAULT_TIME = 1500;
 	function getmodel(type, note, strings, config) {
 		return Dialog(
 			GuiObject.extendmissing(config, {
-					type: type,
-					icon: geticon(type),
-					items: [{
-						item: "text",
-						text: tostring(strings[0])
-					}]
-				})
+				type: type,
+				icon: geticon(type),
+				items: [{
+					item: 'text',
+					text: tostring(strings[0])
+				}]
+			})
 			).acceptButton(type === Dialog.SUCCESS ? null : {
 				label: tostring(strings[1])
-			}).cancelButton( note ? null : {
+			}).cancelButton(note ? null : {
 				label: tostring(strings[2])
 			}
 		);
@@ -181,7 +177,7 @@ ts.ui.Dialog.DEFAULT_TIME = 1500;
 	 * @returns {string}
 	 */
 	function geticon(type) {
-		switch(type) {
+		switch (type) {
 			case Dialog.SUCCESS:
 				return 'ts-icon-accept';
 			case Dialog.INFO:
@@ -190,7 +186,7 @@ ts.ui.Dialog.DEFAULT_TIME = 1500;
 				return 'ts-icon-warning';
 			case Dialog.ERROR:
 				return 'ts-icon-error';
-			case Dialog.DANGER: 
+			case Dialog.DANGER:
 				return 'ts-icon-warning';
 			case Dialog.CONFIRM:
 				return 'ts-icon-todo';
@@ -204,7 +200,7 @@ ts.ui.Dialog.DEFAULT_TIME = 1500;
 	GuiObject.extend(Dialog, {
 
 		/*
-		 * Dialog types. Note that some of these should 
+		 * Dialog types. Note that some of these should
 		 * be considered like {ts.ui.Notification} types.
 		 */
 		INFO: 'ts-dialog-info',
@@ -270,7 +266,6 @@ ts.ui.Dialog.DEFAULT_TIME = 1500;
 			return getdialog(this.DANGER, arguments);
 		})),
 
-
 		// Privileged ..............................................................
 
 		/**
@@ -305,5 +300,4 @@ ts.ui.Dialog.DEFAULT_TIME = 1500;
 			}
 		}))
 	});
-
 }(ts.ui.Greenfield.api, gui.Combo.chained, gui.Object.hidden, gui.Array, gui.Object, gui.Type));

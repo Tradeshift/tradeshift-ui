@@ -18,11 +18,8 @@
  * @using {ts.ui.PagerModel} pager
  */
 ts.ui.TableSpirit = (function using(Type, Client, guiArray, DOMPlugin, CSSPlugin, ConfigPlugin, Position, chained, confirmed, TableRowModel, ButtonSpirit, PagerModel) {
-
 	var UNIT = 22;
 	var UNIT_DOUBLE = UNIT * 2;
-	var UNIT_TRIPLE = UNIT * 3;
-	var ICON_ON = 'ts-icon-checkboxon';
 	var ICON_OFF = 'ts-icon-checkbox';
 	var CLASS_TEXTAREA = 'ts-table-input';
 	var CLASS_CLICKABLE = 'ts-clickable';
@@ -79,7 +76,7 @@ ts.ui.TableSpirit = (function using(Type, Client, guiArray, DOMPlugin, CSSPlugin
 	 * @param {object} x
 	 * @returns {boolean}
 	 */
-	function selected(x) {
+	function selected(x) { // eslint-disable-line no-unused-vars
 		return !!x.selected;
 	}
 
@@ -103,16 +100,6 @@ ts.ui.TableSpirit = (function using(Type, Client, guiArray, DOMPlugin, CSSPlugin
 	}
 
 	/**
-	 * TODO: Support that you don't have to match columns
-	 * and cells length. Until that, verify that you do.
-	 * @param {number} reflength
-	 * @param {number} inlength
-	 */
-	function matchlength(reflength, inlength) {
-		return true;
-	}
-
-	/**
 	 * TODO: Think some more about this....
 	 * TODO: More error info goes here...
 	 */
@@ -129,7 +116,7 @@ ts.ui.TableSpirit = (function using(Type, Client, guiArray, DOMPlugin, CSSPlugin
 	 */
 	function makearray(args) {
 		var first = args[0];
-		if(first && Array.isArray(first)) {
+		if (first && Array.isArray(first)) {
 			return first;
 		} else {
 			return guiArray.from(args);
@@ -147,14 +134,14 @@ ts.ui.TableSpirit = (function using(Type, Client, guiArray, DOMPlugin, CSSPlugin
 	function deepclone(thing) {
 		return JSON.parse(JSON.stringify(thing));
 	}
-	
+
 	/**
 	 * Clientside sorting is slow. Let's at least announce the fact.
 	 * TODO: Measure how well clientside search stacks up to this.
 	 * @param {boolean} required (should really be device specific)
 	 */
 	function perfwarning(required) {
-		if(required) {
+		if (required) {
 			console.warn(
 				'The client will freeze while we sort this many ' +
 				'rows. If you see this warning, please remind ' +
@@ -171,12 +158,12 @@ ts.ui.TableSpirit = (function using(Type, Client, guiArray, DOMPlugin, CSSPlugin
 		busy: function(busy) {
 			var opts = {message: busy, position: 'absolute'};
 			var that = this;
-			if(this.box.height && this.dom.q('.ts-table-body')) {
+			if (this.box.height && this.dom.q('.ts-table-body')) {
 				this._initspin(opts);
-				if(busy){
-					this.guistatus.busy(this.$instanceid);	
-				}else {
-					this.guistatus.done(this.$instanceid);	
+				if (busy) {
+					this.guistatus.busy(this.$instanceid);
+				} else {
+					this.guistatus.done(this.$instanceid);
 				}
 			} else { // not rendered, we'll try again when something has changed...
 				this.life.add(gui.LIFE_RENDER, {
@@ -343,12 +330,12 @@ ts.ui.TableSpirit = (function using(Type, Client, guiArray, DOMPlugin, CSSPlugin
 		 * Window was (most likely) resized. Note that devs should
 		 * call `table.reflex()` and not 'table.onflex()` if the
 		 * layout has changed to impact maximized Tables because
-		 * that's how the API is supposed to work (so everything 
+		 * that's how the API is supposed to work (so everything
 		 * that starts with `on` should never be manually invoked).
 		 */
 		onflex: function() {
 			this.super.onflex();
-			if(this._crashproof()) {
+			if (this._crashproof()) {
 				if (this._ismaximized()) {
 					this._onafterresize(this._target);
 					this._maxpages();
@@ -368,7 +355,7 @@ ts.ui.TableSpirit = (function using(Type, Client, guiArray, DOMPlugin, CSSPlugin
 		 */
 		onaction: function(a) {
 			this.super.onaction(a);
-			switch(a.type) {
+			switch (a.type) {
 				case ts.ui.ACTION_STATUSBAR_LEVEL:
 					this.guilayout.gotoLevel(a.data);
 					this._onafterresize(); // after resize, `onresize` might now be called twice :/
@@ -380,7 +367,7 @@ ts.ui.TableSpirit = (function using(Type, Client, guiArray, DOMPlugin, CSSPlugin
 					a.consume();
 					break;
 				case ts.ui.ACTION_SAFE_LINK:
-					if(Type.isFunction(this.onlink)) {
+					if (Type.isFunction(this.onlink)) {
 						this.onlink.call(this, a.data);
 					}
 					a.consume();
@@ -395,38 +382,38 @@ ts.ui.TableSpirit = (function using(Type, Client, guiArray, DOMPlugin, CSSPlugin
 					break;
 			}
 		},
-		
+
 		/**
 		 * Button or Switch or something was triggered.
 		 * @param {ts.ui.Spirit} spirit
 		 * @param {function|null} action
 		 */
-		_onextra: function(action, spirit /*...rest*/ ) {
+		_onextra: function(action, spirit /* ...rest */) {
 			var name, value, elm = spirit.element;
-			if(Type.isFunction(action)) {
+			if (Type.isFunction(action)) {
 				var args = gui.Array.from(arguments).slice(2);
 				var posi = this.queryplugin.getpos(elm);
-				if((name = elm.getAttribute('name'))) {
-					if((value = elm.getAttribute('value'))) {
+				if ((name = elm.getAttribute('name'))) {
+					if ((value = elm.getAttribute('value'))) {
 						value = Type.cast(value);
-						if(Type.isString(value)) {
+						if (Type.isString(value)) {
 							value = ConfigPlugin.jsonvaluate(value);
 						}
 					}
-					action.apply(this, 
+					action.apply(this,
 						[name, value || undefined].concat(args).concat([posi.y, posi.x])
 					);
 				}
 			}
 		},
-		
+
 		/**
 		 *
 		 */
 		onbutton: function(name, value) {
 			console.log(name, value);
 		},
-		
+
 		/**
 		 *
 		 */
@@ -440,8 +427,8 @@ ts.ui.TableSpirit = (function using(Type, Client, guiArray, DOMPlugin, CSSPlugin
 		 */
 		ontick: function(t) {
 			this.super.ontick(t);
-			if(t.type === this._TICKSELECT) {
-				if(this.onselect) {
+			if (t.type === this._TICKSELECT) {
+				if (this.onselect) {
 					this.onselect.call(this, this._rowsadd, this._rowsoff);
 					this._rowsadd = [];
 					this._rowsoff = [];
@@ -456,17 +443,16 @@ ts.ui.TableSpirit = (function using(Type, Client, guiArray, DOMPlugin, CSSPlugin
 		 */
 		onchange: function(changes) {
 			this.super.onchange(changes);
-			if(this._model.maxrows && !this._rowsmutated) {
+			if (this._model.maxrows && !this._rowsmutated) {
 				var type = edb.ArrayChange.TYPE_SPLICE;
 				var rows = this._model.rows;
 				changes.forEach(function(c) {
-					if(c.object === rows && c.type === type) {
+					if (c.object === rows && c.type === type) {
 						this._rowsmutated = true;
 					}
 				}, this);
 			}
 		},
-
 
 		// Building ................................................................
 
@@ -496,7 +482,6 @@ ts.ui.TableSpirit = (function using(Type, Client, guiArray, DOMPlugin, CSSPlugin
 		rows: confirmed('(array)')(
 			chained(function(json) {
 				var model = this._model;
-				var limit = model.maxrows;
 				if (arguments.length) {
 					model.removeObserver(this);
 					model.rows = deepclone(json);
@@ -518,7 +503,7 @@ ts.ui.TableSpirit = (function using(Type, Client, guiArray, DOMPlugin, CSSPlugin
 			chained(function(rowindex, json) {
 				var model = this._model;
 				var asobject = true;
-				if(arguments.length > 1) {
+				if (arguments.length > 1) {
 					model.setrow(rowindex, json);
 				} else {
 					return model.getrow(rowindex, asobject);
@@ -537,7 +522,7 @@ ts.ui.TableSpirit = (function using(Type, Client, guiArray, DOMPlugin, CSSPlugin
 			chained(function(rowindex, cellindex, newcell) {
 				var model = this._model;
 				var asobject = true;
-				if(arguments.length > 2) {
+				if (arguments.length > 2) {
 					model.setcell(rowindex, cellindex, newcell);
 					// TODO(jmo@): reverse area sync may be needed :/
 				} else {
@@ -556,7 +541,7 @@ ts.ui.TableSpirit = (function using(Type, Client, guiArray, DOMPlugin, CSSPlugin
 		invalid: confirmed('number', 'number', '(string)')(
 			chained(function(rowindex, cellindex, message) {
 				this._model.setvalidity(false, rowindex, cellindex, message);
-				if(this._model.editable) { // attach the classname max pronto
+				if (this._model.editable) { // attach the classname max pronto
 					this.editorplugin.failfast(rowindex, cellindex);
 				}
 			})
@@ -570,11 +555,9 @@ ts.ui.TableSpirit = (function using(Type, Client, guiArray, DOMPlugin, CSSPlugin
 		 */
 		valid: confirmed('number', 'number')(
 			chained(function(rowindex, cellindex) {
-				var model = this._model;
 				this._model.setvalidity(true, rowindex, cellindex);
 			})
 		),
-
 
 		// Layout ..................................................................
 
@@ -592,12 +575,11 @@ ts.ui.TableSpirit = (function using(Type, Client, guiArray, DOMPlugin, CSSPlugin
 				this.broadcast.add(ended);
 				var maxrows = this.max();
 				this._createpager();
-				if(onresize) {
+				if (onresize) {
 					onresize(maxrows);
 				}
 			})
 		),
-
 
 		// Paging ..................................................................
 
@@ -634,10 +616,10 @@ ts.ui.TableSpirit = (function using(Type, Client, guiArray, DOMPlugin, CSSPlugin
 				}
 			})
 		),
-		
+
 		/**
-		 * Works like {ts.ui.TableSpirit#max}, but fixes the height 
-		 * of the Table so that it doesn't jump when the date arrives. 
+		 * Works like {ts.ui.TableSpirit#max}, but fixes the height
+		 * of the Table so that it doesn't jump when the date arrives.
 		 * You can pass a `0` (zero) to reset a previously set size.
 		 * @param @optional {number} n
 		 * @param @internal {boolean} fixed
@@ -673,11 +655,10 @@ ts.ui.TableSpirit = (function using(Type, Client, guiArray, DOMPlugin, CSSPlugin
 		 * @returns {ts.ui.TableSpirit}
 		 */
 		style: chained(function(config) {
-			if(config && config.type) {
+			if (config && config.type) {
 				this.css.add(config.type);
 			}
 		}),
-
 
 		// Buttons .................................................................
 
@@ -690,7 +671,7 @@ ts.ui.TableSpirit = (function using(Type, Client, guiArray, DOMPlugin, CSSPlugin
 		buttons: chained(function(json) {
 			var model = this._model;
 			var toolb = model.toolbar;
-			if(arguments.length) {
+			if (arguments.length) {
 				toolb.buttons.clear();
 				json.forEach(function(o) {
 					toolb.buttons.push(o);
@@ -699,7 +680,6 @@ ts.ui.TableSpirit = (function using(Type, Client, guiArray, DOMPlugin, CSSPlugin
 				return toolb.buttons;
 			}
 		}),
-
 
 		// Configure ...............................................................
 
@@ -715,12 +695,12 @@ ts.ui.TableSpirit = (function using(Type, Client, guiArray, DOMPlugin, CSSPlugin
 				var toolb = model.toolbar;
 				this.onconf = onconf || this.onconf;
 				model.configurable = true;
-				if(!toolb.buttons.get('config')) {
+				if (!toolb.buttons.get('config')) {
 					toolb.buttons.push({
 						id: 'config',
 						icon: 'ts-icon-settings',
 						onclick: function() {
-							if(table.onconf) {
+							if (table.onconf) {
 								table.onconf.call(this, table);
 							}
 						}
@@ -741,7 +721,6 @@ ts.ui.TableSpirit = (function using(Type, Client, guiArray, DOMPlugin, CSSPlugin
 			this.onconf = null;
 			model.$dirty(); // BUG: `configurable` not picked up!!!!!!
 		}),
-
 
 		// Selecting ...............................................................
 
@@ -786,7 +765,7 @@ ts.ui.TableSpirit = (function using(Type, Client, guiArray, DOMPlugin, CSSPlugin
 		 */
 		selected: function(/* ...indexes */) {
 			var model = this._model;
-			if(arguments.length) {
+			if (arguments.length) {
 				return makearray(arguments).every(function(index) {
 					return model.rowselected(index);
 				});
@@ -825,7 +804,7 @@ ts.ui.TableSpirit = (function using(Type, Client, guiArray, DOMPlugin, CSSPlugin
 				var model = this._model;
 				var indxs = given.length ? given : model.rows.map(indexes);
 				makearray(indxs).forEach(function(i) {
-					if(model.rowselected(i)) {
+					if (model.rowselected(i)) {
 						this.unselect(i);
 					} else {
 						this.select(i);
@@ -833,7 +812,6 @@ ts.ui.TableSpirit = (function using(Type, Client, guiArray, DOMPlugin, CSSPlugin
 				}, this);
 			})
 		),
-
 
 		// Searching ...............................................................
 
@@ -931,7 +909,7 @@ ts.ui.TableSpirit = (function using(Type, Client, guiArray, DOMPlugin, CSSPlugin
 			var col = cols[colindex];
 			if (this._model.sortable) {
 				if (col) {
-					if(Type.isBoolean(ascending)) {
+					if (Type.isBoolean(ascending)) {
 						col.ascending = ascending;
 					}
 					model.sort(col);
@@ -961,7 +939,7 @@ ts.ui.TableSpirit = (function using(Type, Client, guiArray, DOMPlugin, CSSPlugin
 			model.search(colindex, value);
 			this._resetpager();
 			this._resetscrolling();
-			if(!model.compiled) {
+			if (!model.compiled) {
 				model.$dirty();
 			}
 		}),
@@ -973,20 +951,19 @@ ts.ui.TableSpirit = (function using(Type, Client, guiArray, DOMPlugin, CSSPlugin
 		onrender: function(summary) {
 			this.super.onrender(summary);
 			this._layouteverything();
-			if(summary.first) { // lock keyboard navigation to rows (when editing)
-				if(!this.attention.trapping) {
+			if (summary.first) { // lock keyboard navigation to rows (when editing)
+				if (!this.attention.trapping) {
 					this.attention.trap(this.queryplugin.getrows());
 				}
 			}
 			// this should really be `onbeforerender` (when we have that)
-			if(this._rowsmutated) {
+			if (this._rowsmutated) {
 				this._rowsmutated = false;
 				var first = this._model.firstVisibleRow();
 				var index = first ? first.$index : 0;
 				this._bestpage(index);
 			}
 		},
-
 
 		// Editing .................................................................
 
@@ -1001,7 +978,7 @@ ts.ui.TableSpirit = (function using(Type, Client, guiArray, DOMPlugin, CSSPlugin
 				var model = this._model;
 				model.editable = true;
 				this.editorplugin.init(true);
-				if(onedit) {
+				if (onedit) {
 					this.onedit = onedit;
 				}
 			})
@@ -1025,13 +1002,12 @@ ts.ui.TableSpirit = (function using(Type, Client, guiArray, DOMPlugin, CSSPlugin
 		 * @returns {ts.ui.TableSpirit}
 		 */
 		focus: chained(function(rowindex, cellindex) {
-			if(this._model.editable) {
+			if (this._model.editable) {
 				this.editorplugin.focus(rowindex, cellindex);
 			} else {
 				throw new Error('Cannot focus non-editable Table');
 			}
 		}),
-
 
 		// Status ..................................................................
 
@@ -1044,16 +1020,15 @@ ts.ui.TableSpirit = (function using(Type, Client, guiArray, DOMPlugin, CSSPlugin
 		 */
 		status: chained(function(message) {
 			var toolbar = this._model.toolbar;
-			if(arguments.length) {
+			if (arguments.length) {
 				this._statusmessage = message;
-				if(!this._errormessage) {
+				if (!this._errormessage) {
 					toolbar.title = message;
 				}
 			} else {
 				return toolbar.title;
 			}
 		}),
-
 
 		// Linking .................................................................
 
@@ -1067,7 +1042,7 @@ ts.ui.TableSpirit = (function using(Type, Client, guiArray, DOMPlugin, CSSPlugin
 		linkable: confirmed('(function)')(
 			chained(function(onlink) {
 				this._model.linkable = true;
-				if(arguments.length) {
+				if (arguments.length) {
 					this.onlink = onlink;
 				}
 			})
@@ -1081,12 +1056,11 @@ ts.ui.TableSpirit = (function using(Type, Client, guiArray, DOMPlugin, CSSPlugin
 			this._model.linkable = false;
 		}),
 
-
 		// Privileged ..............................................................
-		
+
 		/**
-		 * If not zero, the Table height will be fixed to 
-		 * show this many standard rows where "standard" 
+		 * If not zero, the Table height will be fixed to
+		 * show this many standard rows where "standard"
 		 * rows are assumed to be single line (no wraps).
 		 * @type {number}
 		 */
@@ -1098,16 +1072,15 @@ ts.ui.TableSpirit = (function using(Type, Client, guiArray, DOMPlugin, CSSPlugin
 		 */
 		$errormessage: function(message) {
 			var toolbar = this._model.toolbar;
-			if(message) {
+			if (message) {
 				toolbar.title = this._errormessage = message;
 			} else {
-				if(this._errormessage) {
+				if (this._errormessage) {
 					toolbar.title = this._statusmessage || '';
 					this._errormessage = null;
 				}
 			}
 		},
-
 
 		// Private .................................................................
 
@@ -1196,7 +1169,7 @@ ts.ui.TableSpirit = (function using(Type, Client, guiArray, DOMPlugin, CSSPlugin
 		 * @type {string}
 		 */
 		_errormessage: null,
-		
+
 		/**
 		 * Spirit of the spinner.
 		 * @type {ts.ui.SpinnerSpirit}
@@ -1218,7 +1191,7 @@ ts.ui.TableSpirit = (function using(Type, Client, guiArray, DOMPlugin, CSSPlugin
 		 */
 		_layouteverything: function() {
 			var model = this._model;
-			if(this._crashproof()) {
+			if (this._crashproof()) {
 				this.layoutplugin.layout(this, model);
 				this._clip(this.queryplugin.getguts(true));
 				this.layoutplugin.flex(this, model);
@@ -1231,9 +1204,9 @@ ts.ui.TableSpirit = (function using(Type, Client, guiArray, DOMPlugin, CSSPlugin
 				model.toolbar
 			);
 		},
-		
+
 		/**
-		 * We know that if the rows are `display:none` or something, 
+		 * We know that if the rows are `display:none` or something,
 		 * the layout calculations will freeze the browser so bad.
 		 * @returns {boolean}
 		 */
@@ -1255,12 +1228,10 @@ ts.ui.TableSpirit = (function using(Type, Client, guiArray, DOMPlugin, CSSPlugin
 		 */
 		_clearrows: function(model) {
 			var rows = model.rows;
-			if(model.compiled) {
+			if (model.compiled) {
 				this._observerows(false);
 				model.compiled = false;
 				rows.clear();
-			} else {
-
 			}
 			return rows;
 		},
@@ -1278,8 +1249,8 @@ ts.ui.TableSpirit = (function using(Type, Client, guiArray, DOMPlugin, CSSPlugin
 			var changed = makearray(indxs).filter(function(i) {
 				return select ? model.selectrow(i) : model.unselectrow(i);
 			});
-			if(changed.length) {
-				if(this.onselect) {
+			if (changed.length) {
+				if (this.onselect) {
 					collect.push.apply(collect, changed);
 					this.tick.dispatch(this._TICKSELECT);
 				}
@@ -1294,7 +1265,7 @@ ts.ui.TableSpirit = (function using(Type, Client, guiArray, DOMPlugin, CSSPlugin
 		 * (not needed on select because the page is now already selected).
 		 */
 		_selectall: function(on) {
-			if(on === false) {
+			if (on === false) {
 				this._unselectfast();
 				this.tick.time(function unfreeze() {
 					this.unselect();
@@ -1318,7 +1289,7 @@ ts.ui.TableSpirit = (function using(Type, Client, guiArray, DOMPlugin, CSSPlugin
 			var butt = menu.dom.qall(path);
 			buts.concat(butt).map(function(but) {
 				return but.querySelector('i');
-			}).forEach(function (icon) {
+			}).forEach(function(icon) {
 				icon.className = ICON_OFF;
 			});
 		},
@@ -1332,7 +1303,7 @@ ts.ui.TableSpirit = (function using(Type, Client, guiArray, DOMPlugin, CSSPlugin
 			var idxs = page.map(function(row) {
 				return row.$index;
 			});
-			if(on === false) {
+			if (on === false) {
 				this.unselect(idxs);
 			} else {
 				this.select(idxs);
@@ -1350,15 +1321,15 @@ ts.ui.TableSpirit = (function using(Type, Client, guiArray, DOMPlugin, CSSPlugin
 			var toolbar = model.toolbar;
 			var oldpager = toolbar.pager;
 			var newpager = null;
-			if(arguments.length) {
+			if (arguments.length) {
 				newpager = this._createcustompager(json);
-			} else if(this._ownpager) {
+			} else if (this._ownpager) {
 				newpager = this._createownpager(model, this);
 			}
-			if(newpager) {
+			if (newpager) {
 				toolbar.pager = newpager;
 				this._maxpages();
-				if(oldpager) {
+				if (oldpager) {
 					oldpager.dispose();
 				}
 			}
@@ -1396,7 +1367,7 @@ ts.ui.TableSpirit = (function using(Type, Client, guiArray, DOMPlugin, CSSPlugin
 		 */
 		_maxpages: function() {
 			var pager = this._model.toolbar.pager;
-			if(pager) {
+			if (pager) {
 				var width = this.box.width;
 				pager.max = width < 600 ? 3 : 5;
 			}
@@ -1408,7 +1379,7 @@ ts.ui.TableSpirit = (function using(Type, Client, guiArray, DOMPlugin, CSSPlugin
 		_resetpager: function() {
 			var model = this._model;
 			var pager = this.pager();
-			if(this._ownpager && model.maxrows) {
+			if (this._ownpager && model.maxrows) {
 				pager.pages = model.pageCount();
 				pager.page = 0;
 			}
@@ -1421,7 +1392,7 @@ ts.ui.TableSpirit = (function using(Type, Client, guiArray, DOMPlugin, CSSPlugin
 		_resetscrolling: function() {
 			this._renderqueue.push(function resetscrolling() {
 				var rows = this.queryplugin.getrows();
-				if(rows) {
+				if (rows) {
 					rows.scrollTop = 0;
 				}
 			});
@@ -1465,8 +1436,7 @@ ts.ui.TableSpirit = (function using(Type, Client, guiArray, DOMPlugin, CSSPlugin
 		 */
 		_onclick: function(elm) {
 			var model = this._model;
-			var spirit = null;
-			if(model.menuopen) {
+			if (model.menuopen) {
 				this._specialclick(elm);
 			} else {
 				this._regularclick(elm);
@@ -1479,13 +1449,13 @@ ts.ui.TableSpirit = (function using(Type, Client, guiArray, DOMPlugin, CSSPlugin
 		 */
 		_specialclick: function(elm) {
 			var menu = this.queryplugin.getmenu();
-			if(this._contains(menu, elm)) {
+			if (this._contains(menu, elm)) {
 				this._onmenuclick(elm);
 			} else {
 				this._openmenu(false);
 			}
 		},
-		
+
 		/**
 		 * Something was clicked and selection menu is closed.
 		 * @param {Element} elm
@@ -1506,9 +1476,9 @@ ts.ui.TableSpirit = (function using(Type, Client, guiArray, DOMPlugin, CSSPlugin
 				}
 			}
 			if (model.selectable) {
-				if(CSSPlugin.contains(elm, CLASS_SELECTBUTTON)) {
+				if (CSSPlugin.contains(elm, CLASS_SELECTBUTTON)) {
 					this._ongutsclick(elm);
-				} else if(this._contains(this.queryplugin.getmenu(), elm)) {
+				} else if (this._contains(this.queryplugin.getmenu(), elm)) {
 					this._onmenuclick(elm);
 				}
 			}
@@ -1548,14 +1518,14 @@ ts.ui.TableSpirit = (function using(Type, Client, guiArray, DOMPlugin, CSSPlugin
 			this._layouteverything();
 			this._hackscrolling();
 			var max = this.max();
-			if(this._ownpager) {
+			if (this._ownpager) {
 				if (index > -1) {
 					this._resizing = true;
 					this.script.suspend();
 					this._bestpage(index);
 				}
 			}
-			if(this.onresize) {
+			if (this.onresize) {
 				this.onresize.call(this, max);
 			}
 		},
@@ -1600,17 +1570,16 @@ ts.ui.TableSpirit = (function using(Type, Client, guiArray, DOMPlugin, CSSPlugin
 
 		/**
 		 * Patching a dysfunction in WebKit where scroll position
-		 * gets reset after HTML is updated by the EDBML engine. 
+		 * gets reset after HTML is updated by the EDBML engine.
 		 * TODO(jmo@): Move this to the {ts.ui.TableLayoutPlugin}
 		 */
 		_hackscrolling: function() {
 			var plug = this.queryplugin;
 			var rows = plug.getrows();
-			var body = plug.getbody();
 			var cols = plug.getcols(true);
 			var guts = plug.getguts(true);
 			this._clip(guts);
-			if(rows && cols) {
+			if (rows && cols) {
 				this._onscroll(rows.scrollLeft, rows.scrollTop, cols, guts);
 			}
 		},
@@ -1629,7 +1598,7 @@ ts.ui.TableSpirit = (function using(Type, Client, guiArray, DOMPlugin, CSSPlugin
 		 */
 		_clip: function(guts) {
 			var bsize = Client.scrollBarSize;
-			if(guts && bsize) {
+			if (guts && bsize) {
 				var avail = this.queryplugin.getbody().offsetHeight;
 				var scrol = this.queryplugin.getrows().scrollTop;
 				guts.css.maxHeight = avail + scrol - bsize;
@@ -1683,15 +1652,15 @@ ts.ui.TableSpirit = (function using(Type, Client, guiArray, DOMPlugin, CSSPlugin
 		 */
 		_onrowsclick: function(elem, editable) {
 			var area, pos = this.queryplugin.getpos(elem);
-			if(pos) { // abort when non-floating gutter is clicked
-				if(this.onclick) {
+			if (pos) { // abort when non-floating gutter is clicked
+				if (this.onclick) {
 					this.onclick(pos.y, pos.x);
 				}
-				if(editable) {
-					while(elem.localName !== 'td') {
+				if (editable) {
+					while (elem.localName !== 'td') {
 						elem = elem.parentNode;
 					}
-					if((area = elem.querySelector('.' + CLASS_TEXTAREA))) {
+					if ((area = elem.querySelector('.' + CLASS_TEXTAREA))) {
 						area.focus();
 					}
 				}
@@ -1715,11 +1684,11 @@ ts.ui.TableSpirit = (function using(Type, Client, guiArray, DOMPlugin, CSSPlugin
 		 * @param {Element} elm
 		 */
 		_onmenuclick: function(elm) {
-			if((elm = ButtonSpirit.getButton(elm))) {
-				switch(this.queryplugin.getaction(elm)) {
+			if ((elm = ButtonSpirit.getButton(elm))) {
+				switch (this.queryplugin.getaction(elm)) {
 					case 'selection-menu':
-						if(this._maybeclearall()) {
-							if(this.onunselectall) {
+						if (this._maybeclearall()) {
+							if (this.onunselectall) {
 								this.onunselectall.call(this);
 							}
 						} else {
@@ -1737,7 +1706,7 @@ ts.ui.TableSpirit = (function using(Type, Client, guiArray, DOMPlugin, CSSPlugin
 						this._openmenu(false);
 						this._renderqueue.push(function menuclosed() {
 							this._selectall();
-							if(this.onselectall) {
+							if (this.onselectall) {
 								this.onselectall();
 							}
 						});
@@ -1755,7 +1724,7 @@ ts.ui.TableSpirit = (function using(Type, Client, guiArray, DOMPlugin, CSSPlugin
 		 * @returns {boolean} True on clear all
 		 */
 		_maybeclearall: function(hasselections) {
-			if(this._model.isVisibleRowSelected()) {
+			if (this._model.isVisibleRowSelected()) {
 				this.event.remove('click', document);
 				this._openmenu(false);
 				this._selectall(false);
@@ -1777,7 +1746,7 @@ ts.ui.TableSpirit = (function using(Type, Client, guiArray, DOMPlugin, CSSPlugin
 			var toolb = model.toolbar;
 			var pager = toolb.pager;
 			var pages = pager && pager.pages > 1;
-			if(pages && open !== model.menuopen) {
+			if (pages && open !== model.menuopen) {
 				this._model.menuopen = open;
 				this.tick.time(function() {
 					this.event.shift(open, 'click', document);
@@ -1845,7 +1814,7 @@ ts.ui.TableSpirit = (function using(Type, Client, guiArray, DOMPlugin, CSSPlugin
 		_flush: function() {
 			this.tick.next(function onrepaint() {
 				var list = this._renderqueue;
-				while(list.length) {
+				while (list.length) {
 					list.shift().call(this);
 				}
 			});
@@ -1884,7 +1853,7 @@ ts.ui.TableSpirit = (function using(Type, Client, guiArray, DOMPlugin, CSSPlugin
 			if (opts.message) {
 				this._createCover(rect);
 				this._spinner.spin(this.dom.q('.ts-table-body'), opts);
-			} else if(this._cover){
+			} else if (this._cover) {
 				this._spinner.stop();
 				this._cover.remove();
 				this._cover = null;
@@ -1905,7 +1874,6 @@ ts.ui.TableSpirit = (function using(Type, Client, guiArray, DOMPlugin, CSSPlugin
 			this._cover = cover;
 		}
 	});
-
 }(
 	gui.Type,
 	gui.Client,

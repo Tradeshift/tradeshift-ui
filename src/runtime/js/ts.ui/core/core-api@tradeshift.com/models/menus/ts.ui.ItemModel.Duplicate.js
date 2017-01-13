@@ -4,9 +4,8 @@
  * @param {function} chained
  */
 ts.ui.ItemModel = (function using(chained) {
-
 	return ts.ui.Model.extend({
-		
+
 		/**
 		 * Friendly name.
 		 * @type {string}
@@ -26,7 +25,7 @@ ts.ui.ItemModel = (function using(chained) {
 		icon: null,
 
 		/**
-		 * Is clicked? This will IMMEDIATELY RESET to false but we need a 
+		 * Is clicked? This will IMMEDIATELY RESET to false but we need a
 		 * model property to synchronize the click across window contexts.
 		 * @type {boolean}
 		 */
@@ -69,7 +68,7 @@ ts.ui.ItemModel = (function using(chained) {
 				changes.forEach(function(c) {
 					if (c.name === 'clicked' && c.newValue) {
 						this.clicked = false;
-						if(!this.selected) {
+						if (!this.selected) {
 							gui.Tick.time(function unfreeze() {
 								this.onselect();
 							}.bind(this));
@@ -77,12 +76,12 @@ ts.ui.ItemModel = (function using(chained) {
 							console.log('TODO: implement onunselect?');
 						}
 					}
-				},this);
+				}, this);
 			}
 		},
 
 		/**
-		 * Select item. Note that this only "checks" the item if the 
+		 * Select item. Note that this only "checks" the item if the
 		 * containing {ts.ui.MenuModel} has the `select` property set.
 		 * @return {ts.ui.ItemModel}
 		 */
@@ -91,11 +90,11 @@ ts.ui.ItemModel = (function using(chained) {
 		}),
 
 		/**
-		 * Unselect item. Does nothing unless the containing 
+		 * Unselect item. Does nothing unless the containing
 		 * {ts.ui.MenuModel} has the `select` property set.
 		 * @return {ts.ui.ItemModel}
 		 */
-		unselect: chained(function(){
+		unselect: chained(function() {
 			this.clicked = true;
 		}),
 
@@ -108,5 +107,4 @@ ts.ui.ItemModel = (function using(chained) {
 		}
 
 	});
-
 }(gui.Combo.chained));

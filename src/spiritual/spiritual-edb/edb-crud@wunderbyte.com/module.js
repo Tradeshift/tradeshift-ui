@@ -1,10 +1,9 @@
 /**
  * Work in progress. Not tested at all.
  */
-gui.module("edb-crud@wunderbyte.com", {
+gui.module('edb-crud@wunderbyte.com', {
 
 	oncontextinitialize: function() {
-
 		edb.Type.mixin({
 
 			/**
@@ -12,7 +11,7 @@ gui.module("edb-crud@wunderbyte.com", {
 			 */
 			GET: function() {
 				throw new Error(
-					"Not supported. Use " + this.constructor + ".GET(optionalid)"
+					'Not supported. Use ' + this.constructor + '.GET(optionalid)'
 				);
 			},
 
@@ -41,8 +40,7 @@ gui.module("edb-crud@wunderbyte.com", {
 			 */
 			DELETE: function(options) {
 				return this.constructor.DELETE(this, options);
-			},
-
+			}
 
 		}, { // Xstatic ............................................................
 
@@ -62,7 +60,7 @@ gui.module("edb-crud@wunderbyte.com", {
 			 * the resource is fetched, updated or deleted.
 			 * @type {String}
 			 */
-			primarykey: "_id",
+			primarykey: '_id',
 
 			/**
 			 * GET resource.
@@ -86,7 +84,7 @@ gui.module("edb-crud@wunderbyte.com", {
 			 * @returns {gui.Then}
 			 */
 			PUT: function(inst, options) {
-				return this.$httpupdate("PUT", inst, options);
+				return this.$httpupdate('PUT', inst, options);
 			},
 
 			/**
@@ -97,7 +95,7 @@ gui.module("edb-crud@wunderbyte.com", {
 			 * @returns {gui.Then}
 			 */
 			POST: function(inst, options) {
-				return this.$httpupdate("POST", inst, options);
+				return this.$httpupdate('POST', inst, options);
 			},
 
 			/**
@@ -108,9 +106,8 @@ gui.module("edb-crud@wunderbyte.com", {
 			 * @returns {gui.Then}
 			 */
 			DELETE: function(inst, options) {
-				return this.$httpupdate("DELETE", inst, options);
+				return this.$httpupdate('DELETE', inst, options);
 			},
-
 
 			// Privileged static .....................................................
 
@@ -120,19 +117,16 @@ gui.module("edb-crud@wunderbyte.com", {
 			$httpread: function() {
 				var type = this;
 				var then = new gui.Then();
-				var href, id, options;
+				var href, options;
 				Array.forEach(arguments, function(arg) {
 					switch (gui.Type.of(arg)) {
-						case "string":
-							id = arg;
-							break;
-						case "object":
+						case 'object':
 							options = arg;
 							break;
 					}
 				});
 				href = gui.URL.parametrize(this.uri, options);
-				this.$httprequest(href, "GET", null, function(response) {
+				this.$httprequest(href, 'GET', null, function(response) {
 					then.now(type.$httpresponse(response));
 				});
 				return then;
@@ -150,7 +144,7 @@ gui.module("edb-crud@wunderbyte.com", {
 				var then = new gui.Then();
 				var href = gui.URL.parametrize(inst.uri, options);
 				var data = gui.Type.isInstance(inst) ? inst.toJSON() : inst;
-				this.$httprequest(href, method || "PUT", data, function(response) {
+				this.$httprequest(href, method || 'PUT', data, function(response) {
 					then.now(type.$httpresponse(response, options, method));
 				});
 				return then;
@@ -184,8 +178,8 @@ gui.module("edb-crud@wunderbyte.com", {
 			$httpresponse: function(response, options, method) {
 				var Type = this;
 				switch (gui.Type.of(response)) {
-					case "object":
-					case "array":
+					case 'object':
+					case 'array':
 						response = new Type(response);
 						break;
 				}

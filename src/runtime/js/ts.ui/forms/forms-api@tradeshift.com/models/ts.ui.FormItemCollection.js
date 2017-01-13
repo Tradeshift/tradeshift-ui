@@ -10,7 +10,6 @@ ts.ui.FormItemCollection = ts.ui.Collection.extend({
 	 */
 	item: 'formitems'
 
-
 }, { // Static .................................................................
 
 	/**

@@ -6,7 +6,6 @@
  * TODO: Object.is and friends
  */
 (function polyfilla() {
-
 	/**
 	 * Extend one object with another.
 	 * @param {object} what Native prototype
@@ -34,10 +33,10 @@
 				return this.trimLeft().trimRight();
 			},
 			trimRight: function() {
-				return this.replace(/\s+$/,'');
+				return this.replace(/\s+$/, '');
 			},
 			trimLeft: function() {
-				return this.replace(/^\s*/, "");
+				return this.replace(/^\s*/, '');
 			},
 			repeat: function(n) {
 				return new Array(n + 1).join(this);
@@ -58,7 +57,7 @@
 				return String.prototype.indexOf.apply(this, arguments) !== -1;
 			},
 			toArray: function() {
-				return this.split("");
+				return this.split('');
 			}
 		});
 	}
@@ -124,7 +123,7 @@
 				return Array.prototype.filter.call(array, fun, thisp);
 			},
 			isArray: function isArray(o) {
-				return Object.prototype.toString.call(o) === "[object Array]";
+				return Object.prototype.toString.call(o) === '[object Array]';
 			},
 			concat: function(a1, a2) {
 				function map(e) {
@@ -141,8 +140,8 @@
 	function functions() {
 		extend(Function.prototype, {
 			bind: function bind(oThis) {
-				if (typeof this !== "function") {
-					throw new TypeError("Function bind not callable");
+				if (typeof this !== 'function') {
+					throw new TypeError('Function bind not callable');
 				}
 				var fSlice = Array.prototype.slice,
 					aArgs = fSlice.call(arguments, 1),
@@ -196,8 +195,8 @@
 							var currTime = new Date().getTime();
 							var timeToCall = Math.max(0, 16 - (currTime - lastTime));
 							var id = window.setTimeout(function() {
-									callback(currTime + timeToCall);
-								},
+								callback(currTime + timeToCall);
+							},
 								timeToCall);
 							lastTime = currTime + timeToCall;
 							return id;
@@ -222,8 +221,8 @@
 			setImmediate: (function() {
 				var list = [],
 					handle = 1;
-				var name = "spiritual:emulated:setimmediate";
-				window.addEventListener("message", function(e) {
+				var name = 'spiritual:emulated:setimmediate';
+				window.addEventListener('message', function(e) {
 					if (e.data === name && list.length) {
 						list.shift().apply(window);
 						e.stopPropagation();
@@ -231,7 +230,7 @@
 				}, false);
 				return function emulated(func) {
 					list.push(func);
-					window.postMessage(name, "*");
+					window.postMessage(name, '*');
 					return handle++;
 				};
 			})()
@@ -270,5 +269,4 @@
 			effects();
 		}
 	}(false));
-
 }());

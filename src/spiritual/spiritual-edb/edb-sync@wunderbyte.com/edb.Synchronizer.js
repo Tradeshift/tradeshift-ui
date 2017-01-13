@@ -2,7 +2,6 @@
  * Synchronization studio.
  */
 edb.Synchronizer = (function() {
-
 	/**
 	 * Setup type for synchronization.
 	 * @param {edb.Type} type
@@ -28,7 +27,7 @@ edb.Synchronizer = (function() {
 	 */
 	function syncto(type, id, global) {
 		var broadcast = edb.SyncTransmitter.BROADCAST + id;
-		var addscoped = global ? "addGlobal" : "add";
+		var addscoped = global ? 'addGlobal' : 'add';
 		gui.Broadcast[addscoped](broadcast,
 			new edb.SyncReceiver(type)
 		);
@@ -45,7 +44,6 @@ edb.Synchronizer = (function() {
 			edb.Synchronizer.globals[id] = true;
 		}
 	}
-
 
 	return { // Public ...........................................................
 
@@ -65,7 +63,7 @@ edb.Synchronizer = (function() {
 		 * @param {number} ways
 		 * @param {boolean} global
 		 */
-		sync: gui.Arguments.confirmed("object", "number", "(boolean)")(
+		sync: gui.Arguments.confirmed('object', 'number', '(boolean)')(
 			function(type, ways, global) {
 				new edb.Crawler().crawl(type, {
 					ontype: function(t) {
@@ -78,5 +76,4 @@ edb.Synchronizer = (function() {
 			}
 		)
 	};
-
 }());

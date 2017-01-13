@@ -4,7 +4,6 @@
  * @param {function} chained
  */
 ts.ui.AsideModel = (function using(chained) {
-
 	return ts.ui.Model.extend({
 
 		/**
@@ -18,7 +17,7 @@ ts.ui.AsideModel = (function using(chained) {
 		 * @type {ts.ui.Collection<ts.ui.Model>}
 		 */
 		items: ts.ui.Collection,
-		
+
 		/**
 		 * Aside title.
 		 * @type {String}
@@ -26,7 +25,7 @@ ts.ui.AsideModel = (function using(chained) {
 		title: null,
 
 		/**
-		 * Current aside status (for xframe synchronization). 
+		 * Current aside status (for xframe synchronization).
 		 * Matches one of onopen|onopened|onclose|onclosed
 		 * @type {string}
 		 */
@@ -39,7 +38,7 @@ ts.ui.AsideModel = (function using(chained) {
 		onopen: null,
 
 		/**
-		 * Open for implementation. Related to some kind 
+		 * Open for implementation. Related to some kind
 		 * of performance hack, not really a public fact.
 		 * @type {function}
 		 */
@@ -86,7 +85,7 @@ ts.ui.AsideModel = (function using(chained) {
 		gofocused: false,
 
 		/**
-		 * Block the {ts.ui.AsideSpirit} from declaring itself open. Relates 
+		 * Block the {ts.ui.AsideSpirit} from declaring itself open. Relates
 		 * to some kind of internal performance optimization for SELECT menus.
 		 * @type {boolean}
 		 */
@@ -117,11 +116,11 @@ ts.ui.AsideModel = (function using(chained) {
 			changes.forEach(function(c) {
 				if (c.name === 'status') {
 					var method = c.newValue;
-					if(this[method]) {
-						this[method] ();
+					if (this[method]) {
+						this[method]();
 					}
 				}
-			},this);
+			}, this);
 		},
 
 		/**
@@ -141,16 +140,16 @@ ts.ui.AsideModel = (function using(chained) {
 		}),
 
 		/**
-		 * Focus something in the Aside. This toggle gets picked up by 
+		 * Focus something in the Aside. This toggle gets picked up by
 		 * the {ts.ui.AsideSpirit} which will soon set it back to `false`,
 		 * @returns {ts.ui.AsideModel}
 		 */
 		focus: chained(function() {
 			this.gofocused = true;
 		}),
-		
+
 		/**
-		 * Allow the {ts.ui.AsideSpirit} to declare itself open. Again, 
+		 * Allow the {ts.ui.AsideSpirit} to declare itself open. Again,
 		 * these things must be synchronized xframe via property toggles.
 		 * @returns {ts.ui.MenuModel}
 		 */
@@ -159,12 +158,11 @@ ts.ui.AsideModel = (function using(chained) {
 		})
 
 	});
-
 }(gui.Combo.chained));
 
 /**
- * Generate methods `blue` `green` `purple` and so 
- * on to change the general color scheme of the Aside. 
+ * Generate methods `blue` `green` `purple` and so
+ * on to change the general color scheme of the Aside.
  * Note that `white` and `lite` both translate to blue!
  * @using {Object} methods
  */

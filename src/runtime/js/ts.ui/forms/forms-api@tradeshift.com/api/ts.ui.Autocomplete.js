@@ -11,7 +11,7 @@ ts.ui.Autocomplete = function() {
  * Identification.
  * @return {string}
  */
-ts.ui.Autocomplete.toString = function(){
+ts.ui.Autocomplete.toString = function() {
 	return '[function ts.ui.Autocomplete]';
 };
 
@@ -26,7 +26,6 @@ ts.ui.Autocomplete.localize = function(config) {};
 // Implementation ..............................................................
 
 (function Autocomplete() {
-	
 	var locale = null;
 
 	gui.Object.extend(ts.ui.Autocomplete, {
@@ -35,15 +34,15 @@ ts.ui.Autocomplete.localize = function(config) {};
 		 * Localize.
 		 * @param {object} newlocale
 		 */
-		localize: function (newlocale) {
+		localize: function(newlocale) {
 			if (arguments.length) {
-				if (!locale || Object.keys(locale).every(function (key) {
-						var has = newlocale.hasOwnProperty(key);
-						if (!has) {
-							console.error('Missing translations for ' + key);
-						}
-						return has;
-					})) {
+				if (!locale || Object.keys(locale).every(function(key) {
+					var has = newlocale.hasOwnProperty(key);
+					if (!has) {
+						console.error('Missing translations for ' + key);
+					}
+					return has;
+				})) {
 					locale = newlocale;
 				}
 			} else {
@@ -51,7 +50,6 @@ ts.ui.Autocomplete.localize = function(config) {};
 			}
 		}
 	});
-
 }());
 
 /**
@@ -69,7 +67,7 @@ ts.ui.Autocomplete.localize({
 		} else if (count === 1) {
 			return '1 match';
 		} else {
-			return count + ' matches'; 
+			return count + ' matches';
 		}
 	}
 });

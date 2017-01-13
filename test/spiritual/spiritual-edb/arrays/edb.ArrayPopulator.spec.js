@@ -2,9 +2,8 @@
  * Populate edb.Arrays.
  */
 describe('edb.ArrayPopulator', function likethis() {
+	var NAME = 'Jim Bob Johnson';
 
-	var NAME = "Jim Bob Johnson";
-	
 	var PersonModel = edb.Object.extend({
 		name: NAME
 	});
@@ -25,7 +24,8 @@ describe('edb.ArrayPopulator', function likethis() {
 	});
 
 	it('should fail on bad input', function() {
-		var persons, fail = false;
+		var persons; // eslint-disable-line no-unused-vars
+		var fail = false;
 		try {
 			persons = new PersonCollection([false]);
 		} catch (typeerror) {
@@ -33,5 +33,4 @@ describe('edb.ArrayPopulator', function likethis() {
 		}
 		expect(fail).toBe(true);
 	});
-
 });

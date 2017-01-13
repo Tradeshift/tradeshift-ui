@@ -2,13 +2,12 @@
  * Observing arrays.
  */
 describe('edb.Array.observe()', function likethis() {
-	
 	it('should trigger on push', function(done) {
 		var list = new edb.Array([null]);
 		list.addObserver({
 			onchange: function() {
 				done();
-			}		
+			}
 		});
 		list.push(null);
 	});
@@ -18,10 +17,9 @@ describe('edb.Array.observe()', function likethis() {
 		list.addObserver({
 			onchange: function() {
 				done();
-			}		
+			}
 		});
 		list.pop();
-
 	});
 
 	it('should trigger on shift', function(done) {
@@ -29,7 +27,7 @@ describe('edb.Array.observe()', function likethis() {
 		list.addObserver({
 			onchange: function() {
 				done();
-			}		
+			}
 		});
 		list.shift();
 	});
@@ -39,7 +37,7 @@ describe('edb.Array.observe()', function likethis() {
 		list.addObserver({
 			onchange: function() {
 				done();
-			}		
+			}
 		});
 		list.unshift(null);
 	});
@@ -49,7 +47,7 @@ describe('edb.Array.observe()', function likethis() {
 		list.addObserver({
 			onchange: function() {
 				done();
-			}		
+			}
 		});
 		list.splice(1, 0, null);
 	});
@@ -59,7 +57,7 @@ describe('edb.Array.observe()', function likethis() {
 		list.addObserver({
 			onchange: function() {
 				done();
-			}		
+			}
 		});
 		list.reverse();
 	});
@@ -69,7 +67,7 @@ describe('edb.Array.observe()', function likethis() {
 		list.addObserver({
 			onchange: function() {
 				done();
-			}		
+			}
 		});
 		list.push(null);
 		list.pop();

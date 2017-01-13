@@ -6,7 +6,6 @@
  * @using {function} notontouch Setup to ignore focus stuff on touch device
  */
 ts.ui.AttentionPlugin = (function using(GuiArray, chained, notontouch) {
-	
 	return ts.ui.Plugin.extend({
 
 		/**
@@ -55,13 +54,13 @@ ts.ui.AttentionPlugin = (function using(GuiArray, chained, notontouch) {
 			var that = this;
 			function find(informs) {
 				return all.reduce(function(result, next) {
-					if(!result && that._isfocus(next, informs)) {
+					if (!result && that._isfocus(next, informs)) {
 						result = next;
 					}
 					return result;
 				}, null);
 			}
-			if((hit = find(true) || find(false))) {
+			if ((hit = find(true) || find(false))) {
 				hit.focus();
 			}
 			return (hit !== null);
@@ -73,20 +72,20 @@ ts.ui.AttentionPlugin = (function using(GuiArray, chained, notontouch) {
 		 * @returns {ts.ui.AttentionPlugin}
 		 */
 		exit: function(opt_elm) {
-			if(this._entered) {
+			if (this._entered) {
 				var elm = this._getelement(opt_elm);
 				var dom = gui.DOMPlugin;
 				var act = document.activeElement;
 				var def = act === document.body;
-				if(act && !act.nodeType) {
+				if (act && !act.nodeType) {
 					act = null; // IE11 may miserably report activeElement as an array :/
 				}
 				if (def && act) {
 					act.blur();
-				} else if(act) {
-					 if(act === elm || dom.contains(elm, act)) {
-						 act.blur();
-					 }
+				} else if (act) {
+					if (act === elm || dom.contains(elm, act)) {
+						act.blur();
+					}
 				}
 				this._attention('exit');
 			}
@@ -144,7 +143,6 @@ ts.ui.AttentionPlugin = (function using(GuiArray, chained, notontouch) {
 			}
 		},
 
-
 		// Private .................................................................
 
 		/**
@@ -189,7 +187,7 @@ ts.ui.AttentionPlugin = (function using(GuiArray, chained, notontouch) {
 			}).forEach(function(kbd, last) {
 				kbd.tabIndex = 0;
 				kbd.onfocus = function() {
-					this._tryfocus(elm, last ? false : true);
+					this._tryfocus(elm, !last);
 				}.bind(this);
 			}, this);
 		},
@@ -200,12 +198,12 @@ ts.ui.AttentionPlugin = (function using(GuiArray, chained, notontouch) {
 		 * @returns {boolean} True when something was focused
 		 */
 		_tryfocus: function(elm, reverse) {
-			var is, did = false,
+			var did = false,
 				elms = elm.getElementsByTagName('*');
 			if ((elms = GuiArray.from(elms)).length) {
 				elms = reverse ? elms.reverse() : elms;
-				did = this._didfocus(elms.filter(function(elm) {
-					return elm.tabIndex > -1 && !elm.disabled;
+				did = this._didfocus(elms.filter(function(elem) {
+					return elem.tabIndex > -1 && !elem.disabled;
 				}));
 			}
 			return did;
@@ -258,7 +256,7 @@ ts.ui.AttentionPlugin = (function using(GuiArray, chained, notontouch) {
 				}
 				if (elm.tabIndex > -1) {
 					// in IE9/IE10 it appears *everything* has tabIndex zero ...
-					if(elm.hasAttribute('tabindex')) { // so we'll make extra sure!
+					if (elm.hasAttribute('tabindex')) { // so we'll make extra sure!
 						return true;
 					}
 				}
@@ -351,7 +349,6 @@ ts.ui.AttentionPlugin = (function using(GuiArray, chained, notontouch) {
 			}
 		}
 	});
-
 }(gui.Array, gui.Combo.chained, function notontouch(base) {
 	return function() {
 		if (!gui.Client.isTouchDevice) {

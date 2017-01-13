@@ -4,14 +4,13 @@
  * @using {gui.Combo.chained} chained
  */
 ts.ui.FieldSpirit = (function using(chained) {
-		
-		return ts.ui.Spirit.extend({
+	return ts.ui.Spirit.extend({
 
 		/**
-		 * Shortcut `this.element.value` with an automated 
-		 * management of special classname for empty fields. 
-		 * Also fixes the (browser-inherrent) dysfunction 
-		 * where changing the value will move the caret to 
+		 * Shortcut `this.element.value` with an automated
+		 * management of special classname for empty fields.
+		 * Also fixes the (browser-inherrent) dysfunction
+		 * where changing the value will move the caret to
 		 * the end of the field.
 		 * TODO: Global fix via https://github.com/wunderbyte/spiritual-edbml/issues/17
 		 * TODO: Move this to {ts.ui.InputSpirit} please...
@@ -26,21 +25,21 @@ ts.ui.FieldSpirit = (function using(chained) {
 				var idx = -1;
 				var elm = this.element;
 				var foc = document.activeElement;
-				if(foc && foc === elm)  {
+				if (foc && foc === elm) {
 					idx = elm.value.slice(0, elm.selectionStart).length;
 				}
 				elm.value = value;
-				if(idx > -1) {
+				if (idx > -1) {
 					elm.setSelectionRange(idx, idx);
 				}
-				if(!this.$destructed) {
+				if (!this.$destructed) {
 					this._label(function(label) {
 						label.$empty(!value);
 					});
 				}
 			}
 		},
-		
+
 		/**
 		 * Attach to the DOM.
 		 */
@@ -67,14 +66,14 @@ ts.ui.FieldSpirit = (function using(chained) {
 		onevent: function(e) {
 			this.super.onevent(e);
 			var model = this._model;
-			switch(e.type) {
+			switch (e.type) {
 				case 'focus':
-					if(model) {
+					if (model) {
 						model.focused = true;
 					}
 					break;
 				case 'blur':
-					if(model) {
+					if (model) {
 						model.focused = false;
 					}
 					break;
@@ -87,11 +86,10 @@ ts.ui.FieldSpirit = (function using(chained) {
 		 */
 		ontick: function(t) {
 			this.super.ontick(t);
-			if(t.type === ts.ui.FieldSpirit.TICK_SYNC) {
+			if (t.type === ts.ui.FieldSpirit.TICK_SYNC) {
 				this.$updatestyling();
 			}
 		},
-		
 
 		// Privileged ..............................................................
 
@@ -104,15 +102,14 @@ ts.ui.FieldSpirit = (function using(chained) {
 				label.$fieldlabel();
 				label.$required(this.att.has('required'));
 				label.$disabled(this.att.has('disabled'));
-				if(!this.css.contains(ts.ui.CLASS_FAKE)) {
-					if(!this.css.contains(ts.ui.CLASS_NOLOCK)) {
+				if (!this.css.contains(ts.ui.CLASS_FAKE)) {
+					if (!this.css.contains(ts.ui.CLASS_NOLOCK)) {
 						label.$readonly(this.att.has('readonly'));
 					}
 				}
 			});
-			
 		},
-		
+
 		/**
 		 * Focus the field.
 		 * @returns {ts.ui.FieldSpirit}
@@ -120,7 +117,7 @@ ts.ui.FieldSpirit = (function using(chained) {
 		focus: chained(function() {
 			this.element.focus();
 		}),
-		
+
 		/**
 		 * Blur the field.
 		 * @returns {ts.ui.FieldSpirit}
@@ -128,7 +125,6 @@ ts.ui.FieldSpirit = (function using(chained) {
 		blur: chained(function() {
 			this.element.blur();
 		}),
-
 
 		// Private .................................................................
 
@@ -154,9 +150,9 @@ ts.ui.FieldSpirit = (function using(chained) {
 		 */
 		_label: function(action) {
 			var label, result;
-			if(this.dom.embedded()) {
+			if (this.dom.embedded()) {
 				if ((label = this.dom.parent(ts.ui.LabelSpirit))) {
-					if(action) {
+					if (action) {
 						result = action.call(this, label);
 					}
 				}
@@ -172,21 +168,20 @@ ts.ui.FieldSpirit = (function using(chained) {
 			var group, result;
 			this._label(function(label) {
 				if ((group = label.dom.parent(ts.ui.FieldSetSpirit))) {
-					if(action) {
+					if (action) {
 						result = action.call(this, group);
 					}
 				}
 			});
 			return result;
-		},
-		
+		}
 
 	}, { // Static .................................................................
 
 		/**
-		 * The `value` property of form fields cannot be observed for changes, 
-		 * so we start a periodic tick to perform this kind of syncrhonization. 
-		 * We do it in a way so that there's only a single setInterval involved. 
+		 * The `value` property of form fields cannot be observed for changes,
+		 * so we start a periodic tick to perform this kind of syncrhonization.
+		 * We do it in a way so that there's only a single setInterval involved.
 		 * We also code it so that any delay is only visual (formdata remains sync).
 		 * TODO(jmo@): Hook into Page Visibility API if the browser doesn't already.
 		 */
@@ -194,5 +189,4 @@ ts.ui.FieldSpirit = (function using(chained) {
 		TICK_TIME: (gui.Client.isTouchDevice ? 1000 : 500)
 
 	});
-
 }(gui.Combo.chained));

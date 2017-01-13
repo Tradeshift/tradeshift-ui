@@ -7,7 +7,7 @@ ts.ui.FormsModule = gui.module('forms-gui@tradeshift.com', {
 	 * Channeling spirits to CSS selectors.
 	 */
 	channel: [
-		
+
 		['[data-ts=Form]', ts.ui.FormSpirit],
 		['[data-ts=FieldSet]', ts.ui.FieldSetSpirit],
 		['[data-ts=Label]', ts.ui.LabelSpirit],
@@ -20,11 +20,11 @@ ts.ui.FormsModule = gui.module('forms-gui@tradeshift.com', {
 		['[data-ts=Search]', ts.ui.SearchSpirit],
 		['[data-ts=AutoComplete]', ts.ui.AutocompleteInputSpirit],
 		['[data-ts=Calendar]', ts.ui.CalendarSpirit], // does not belong here...
-		
-		// these are really "private" spirits created by 
-		// other spirits, but we need to assign them here 
-		// because otherwise they will not be recognized 
-		// when Angular (sadly) has parsed them into the 
+
+		// these are really "private" spirits created by
+		// other spirits, but we need to assign them here
+		// because otherwise they will not be recognized
+		// when Angular (sadly) has parsed them into the
 		// templates, which in itself is a tragic problem.
 		// @see {ts.ui.DateInputSpirit}
 		// @see {ts.ui.SelectSpirit}
@@ -33,14 +33,14 @@ ts.ui.FormsModule = gui.module('forms-gui@tradeshift.com', {
 	],
 
 	/**
-	 * Channeling spirits to complex CSS selectors at considerable performance 
-	 * penalty; this will however make the forms markup much easier to author. 
+	 * Channeling spirits to complex CSS selectors at considerable performance
+	 * penalty; this will however make the forms markup much easier to author.
 	 * This method is called when the first {ts.ui.FormSpirit} is encountered.
 	 * @see {ts.ui.FormSpirit#onconstruct}
 	 * @param {boolean} enabled
 	 */
 	channelComplexSelectors: function(enabled) {
-		if(enabled && !this._channeled) {
+		if (enabled && !this._channeled) {
 			this._channeled = true;
 			gui.channel([
 				['.ts-form fieldset', ts.ui.FieldSetSpirit],
@@ -54,7 +54,6 @@ ts.ui.FormsModule = gui.module('forms-gui@tradeshift.com', {
 			]);
 		}
 	},
-
 
 	// Private ...................................................................
 

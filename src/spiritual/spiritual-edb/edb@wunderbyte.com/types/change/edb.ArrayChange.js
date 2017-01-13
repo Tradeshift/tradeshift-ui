@@ -36,7 +36,7 @@ edb.ArrayChange.prototype = gui.Object.create(edb.Change.prototype, {
 /*
  * Update types. We'll stick to `splice` for now.
  */
-edb.ArrayChange.TYPE_SPLICE = "splice";
+edb.ArrayChange.TYPE_SPLICE = 'splice';
 
 /**
  * Given a `splice` change, compute the arguments required

@@ -6,7 +6,6 @@
  * @using {string} time
  */
 ts.ui.SwitchSpirit = (function using(tick, time) {
-
 	return ts.ui.FieldSpirit.extend({
 
 		/**
@@ -15,7 +14,7 @@ ts.ui.SwitchSpirit = (function using(tick, time) {
 		onenter: function() {
 			this.super.onenter();
 			this._confirmbasic(
-				this.element.localName, 
+				this.element.localName,
 				this.element.type
 			);
 		},
@@ -35,7 +34,7 @@ ts.ui.SwitchSpirit = (function using(tick, time) {
 		},
 
 		/**
-		 * Syncrhonize on an interval so that we don't have to anticipate 
+		 * Syncrhonize on an interval so that we don't have to anticipate
 		 * all the strange stuff that Angular might do with our elements.
 		 */
 		onready: function() {
@@ -49,7 +48,7 @@ ts.ui.SwitchSpirit = (function using(tick, time) {
 		 */
 		onevent: function(e) {
 			this.super.onevent(e);
-			switch(e.type) {
+			switch (e.type) {
 				case 'change':
 					this._synchronize();
 					break;
@@ -62,11 +61,10 @@ ts.ui.SwitchSpirit = (function using(tick, time) {
 		 */
 		ontick: function(t) {
 			this.super.ontick(t);
-			if(t.type === tick) {
+			if (t.type === tick) {
 				this._synchronize();
 			}
 		},
-
 
 		// Privileged ..............................................................
 
@@ -83,7 +81,6 @@ ts.ui.SwitchSpirit = (function using(tick, time) {
 			});
 		},
 
-
 		// Private .................................................................
 
 		/**
@@ -91,7 +88,7 @@ ts.ui.SwitchSpirit = (function using(tick, time) {
 		 * @type {HTMLDivElement}
 		 */
 		_switch: null,
-		
+
 		/**
 		 * Snapshot checked status so that we know when it changes.
 		 * @type {boolean|null}
@@ -104,7 +101,7 @@ ts.ui.SwitchSpirit = (function using(tick, time) {
 		 */
 		_createswitch: function() {
 			var oldswitch = this.dom.following(ts.ui.Spirit)[0];
-			if(oldswitch && oldswitch.css.contains('ts-switcher')) {
+			if (oldswitch && oldswitch.css.contains('ts-switcher')) {
 				oldswitch.dom.remove();
 			}
 			return ts.ui.get(this.dom.after(
@@ -115,16 +112,16 @@ ts.ui.SwitchSpirit = (function using(tick, time) {
 		},
 
 		/**
-		 * Match switch to checkbox. Note that we do 
+		 * Match switch to checkbox. Note that we do
 		 * this on an interval just to make sure...
 		 * @param @optional {boolean} init Don't dispatch action on init
 		 */
 		_synchronize: function(init) {
 			var checked = this.element.checked;
-			if(init || checked !== this._snapshot) {
+			if (init || checked !== this._snapshot) {
 				this._switch.css.shift(checked, ts.ui.CLASS_CHECKED);
 				this._snapshot = checked;
-				if(!init) {
+				if (!init) {
 					this.action.dispatch(ts.ui.ACTION_SWITCH, checked);
 				}
 			}
@@ -136,15 +133,14 @@ ts.ui.SwitchSpirit = (function using(tick, time) {
 		 */
 		_confirmbasic: function(name, type) {
 			var elm = this.element;
-			if(gui.debug) {
-				if(name !== 'input') {
+			if (gui.debug) {
+				if (name !== 'input') {
 					throw new Error(this + ' must attach to an input field', elm);
-				} else if(type !== 'checkbox' && type !== 'radio') {
+				} else if (type !== 'checkbox' && type !== 'radio') {
 					throw new Error(this + ' must attach to a checkbox or radio', elm);
 				}
 			}
 		}
 
 	});
-
 }(ts.ui.FieldSpirit.TICK_SYNC, ts.ui.FieldSpirit.TICK_TIME));

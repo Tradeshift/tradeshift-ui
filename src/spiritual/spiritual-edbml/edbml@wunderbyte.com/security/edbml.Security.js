@@ -5,7 +5,6 @@
  * @using {RegExp} unsafexp
  */
 edbml.Security = (function using(safeelm, safemap, unsafexp) {
-
 	return {
 
 		/**
@@ -29,14 +28,12 @@ edbml.Security = (function using(safeelm, safemap, unsafexp) {
 			return String(string).replace(unsafexp, function(c) {
 				return safemap[c];
 			});
-		},
+		}
 	};
-
-
 }( // Using ....................................................................
 
 	/*
-	 * Creates an element for escaping 
+	 * Creates an element for escaping
 	 * text that goes into HTML markup.
 	 */
 	(function safeelm() {
@@ -47,8 +44,8 @@ edbml.Security = (function using(safeelm, safemap, unsafexp) {
 	}()),
 
 	/*
-	 * Creates a basic (UNSAFE) map for escaping 
-	 * text that goes into HTML attribute context. 
+	 * Creates a basic (UNSAFE) map for escaping
+	 * text that goes into HTML attribute context.
 	 * We'll need to figure out something better...
 	 */
 	(function safemap() {
@@ -62,7 +59,7 @@ edbml.Security = (function using(safeelm, safemap, unsafexp) {
 	}()),
 
 	/*
-	 * (UNSAFE) regular expression to figure out some basic 
+	 * (UNSAFE) regular expression to figure out some basic
 	 * entities that should be escaped in HTML attributes.
 	 */
 	/[&<>'"]/g

@@ -6,7 +6,6 @@
  * @using {gui.Array} guiArray
  */
 gui.TickPlugin = (function using(chained, guiArray) {
-
 	return gui.TrackerPlugin.extend({
 
 		/**
@@ -35,8 +34,8 @@ gui.TickPlugin = (function using(chained, guiArray) {
 		 * @returns {gui.TickPlugin}
 		 */
 		add: chained(function(types, handler, one) {
-			if(!this.spirit.$destructed) {
-				handler = handler ? handler : this.spirit;
+			if (!this.spirit.$destructed) {
+				handler = handler || this.spirit;
 				if (gui.Interface.validate(gui.ITickHandler, handler)) {
 					guiArray.make(types).forEach(function(type) {
 						if (this._addchecks(type, [handler, this._global])) {
@@ -51,11 +50,11 @@ gui.TickPlugin = (function using(chained, guiArray) {
 		 * Remove one or more tick handlers.
 		 * @param {string|Array<string>} types
 		 * @param @optional {object} handler implements
-		 *        ActionListener interface, defaults to spirit
+		 *				ActionListener interface, defaults to spirit
 		 * @returns {gui.TickPlugin}
 		 */
 		remove: chained(function(types, handler) {
-			handler = handler ? handler : this.spirit;
+			handler = handler || this.spirit;
 			if (gui.Interface.validate(gui.ITickHandler, handler)) {
 				guiArray.make(types).forEach(function(type) {
 					if (this._removechecks(type, [handler, this._global])) {
@@ -168,7 +167,6 @@ gui.TickPlugin = (function using(chained, guiArray) {
 			return this._dispatch(type, time || 0);
 		},
 
-
 		// Private .................................................................
 
 		/**
@@ -253,5 +251,4 @@ gui.TickPlugin = (function using(chained, guiArray) {
 			}
 		}
 	});
-
 }(gui.Combo.chained, gui.Array));

@@ -2,9 +2,8 @@
  * Advanced pager model.
  */
 ts.ui.PagerModel = (function() {
-
 	return ts.ui.Model.extend({
-		
+
 		/**
 		 * Friendly name.
 		 * @type {string}
@@ -80,7 +79,7 @@ ts.ui.PagerModel = (function() {
 			this.page = this.pages - 1;
 			this.init = this.pages - this.max;
 		},
-		
+
 		/**
 		 * Goto next.
 		 */
@@ -102,11 +101,11 @@ ts.ui.PagerModel = (function() {
 		 * @param {Array<edb.Change>} changes
 		 */
 		onchange: function(changes) {
-			if(this.onselect) {
+			if (this.onselect) {
 				changes.forEach(function(c) {
-					if(c.name === 'page') {
+					if (c.name === 'page') {
 						this.onselect(c.newValue);
-						if(c.newValue > c.oldValue) {
+						if (c.newValue > c.oldValue) {
 							this._initup();
 						} else {
 							this._initdown();
@@ -124,25 +123,23 @@ ts.ui.PagerModel = (function() {
 			return ts.ui.pager.edbml(this);
 		},
 
-
 		// Private .................................................................
 
-		_initup : function() {
+		_initup: function() {
 			var max = this.max;
 			var page = this.page;
 			var pages = this.pages;
-			while(page >= this.init + max && this.init <= pages - max) {
+			while (page >= this.init + max && this.init <= pages - max) {
 				this.init ++;
 			}
 		},
 
 		_initdown: function() {
 			var page = this.page;
-			while(page < this.init && this.init > 0) {
+			while (page < this.init && this.init > 0) {
 				this.init --;
 			}
 		}
 
 	});
-
 }());

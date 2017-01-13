@@ -5,9 +5,8 @@
  * @using {string} PANEL_DETACH
  */
 ts.ui.MainSpirit = (function using(Type, PANEL_ATTACH, PANEL_DETACH) {
-	
 	/**
-	 * The TopBar and ToolBar and TabBar share inheritance chain, 
+	 * The TopBar and ToolBar and TabBar share inheritance chain,
 	 * se we'll need an elaborate setup to distinguish them apart.
 	 * @param {ts.ui.MainSpirit} main
 	 * @param {Constructor} Bar
@@ -17,7 +16,7 @@ ts.ui.MainSpirit = (function using(Type, PANEL_ATTACH, PANEL_DETACH) {
 			return spirit.constructor === Bar;
 		});
 	}
-	
+
 	/**
 	 * @param {ts.ui.MainSpirit} main
 	 * @param {Constructor} Bar
@@ -27,7 +26,7 @@ ts.ui.MainSpirit = (function using(Type, PANEL_ATTACH, PANEL_DETACH) {
 			return spirit.constructor === Bar;
 		});
 	}
-	
+
 	/**
 	 * Setup to insert the bar only when it has any content.
 	 * @see {ts.ui.ToolBarModel#_updatehascontent}
@@ -47,7 +46,7 @@ ts.ui.MainSpirit = (function using(Type, PANEL_ATTACH, PANEL_DETACH) {
 		});
 		return bar;
 	}
-	
+
 	return ts.ui.Spirit.extend({
 
 		/**
@@ -62,14 +61,14 @@ ts.ui.MainSpirit = (function using(Type, PANEL_ATTACH, PANEL_DETACH) {
 			var opts = {
 				message: gui.Type.isString(busy) ? busy : ''
 			};
-			if(!busy || !this._isbusy) {
+			if (!busy || !this._isbusy) {
 				this._initspin(busy, opts);
-				if(busy){
+				if (busy) {
 					this.guistatus.busy(this.$instanceid);
 					this._isbusy = true;
-				}else {
+				} else {
 					this.guistatus.done(this.$instanceid);
-					this._isbusy = false;	
+					this._isbusy = false;
 				}
 			}
 		},
@@ -81,13 +80,13 @@ ts.ui.MainSpirit = (function using(Type, PANEL_ATTACH, PANEL_DETACH) {
 			var opts = {
 				message: busyblocking,
 				cover: true,
-				color: "#fff",
+				color: '#fff'
 			};
 			this._initspin(busyblocking, opts);
-			if(busyblocking){
-				this.guistatus.busy(this.$instanceid);	
-			}else {
-				this.guistatus.done(this.$instanceid);	
+			if (busyblocking) {
+				this.guistatus.busy(this.$instanceid);
+			} else {
+				this.guistatus.done(this.$instanceid);
 			}
 		},
 
@@ -103,46 +102,46 @@ ts.ui.MainSpirit = (function using(Type, PANEL_ATTACH, PANEL_DETACH) {
 				PANEL_DETACH
 			]);
 		},
-		
+
 		/**
 		 * Handle action: Panel added or removed.
-		 * TODO: Validate the the Panel is a direct child of Main. 
+		 * TODO: Validate the the Panel is a direct child of Main.
 		 * @param {gui.Action} a
 		 */
 		onaction: function(a) {
 			this.super.onaction(a);
-			switch(a.type) {
+			switch (a.type) {
 				case PANEL_ATTACH:
 				case PANEL_DETACH:
 					var panel = a.target;
 					var index = panel.dom.ordinal();
 					var added = a.type === PANEL_ATTACH;
-					if(panel.label) { // otherwise just ignore
+					if (panel.label) { // otherwise just ignore
 						this._updatetab(panel, index, added);
 					}
 					a.consume();
 					break;
 			}
 		},
-		
+
 		/**
-		 * Trap focus in the MAIN section so that TAB 
+		 * Trap focus in the MAIN section so that TAB
 		 * won't travel into ASIDE or exit the IFRAME.
 		 */
 		onready: function() {
 			this.super.onready();
-			if(this.dom.q('.ts-main-content')) { // TODO: delete this after some releases...
+			if (this.dom.q('.ts-main-content')) { // TODO: delete this after some releases...
 				throw new Error('Classname "ts-main-content" has been renamed to "ts-maincontent"');
 			}
-			if(gui.debug) {
-				if(this.dom.qdocall('.ts-main').length > 1) {
+			if (gui.debug) {
+				if (this.dom.qdocall('.ts-main').length > 1) {
 					console.error('Main components should not be nested :/');
 				}
 			}
 		},
 
 		/**
-		 * If the `autofocus` element is not focused by now, we'll do just that. 
+		 * If the `autofocus` element is not focused by now, we'll do just that.
 		 * TODO(jmo@): Perhaps validate that there is only one 'autofocus' arond?
 		 */
 		onvisible: function() {
@@ -152,9 +151,9 @@ ts.ui.MainSpirit = (function using(Type, PANEL_ATTACH, PANEL_DETACH) {
 				auto.focus();
 			}
 		},
-		
+
 		/**
-		 * Get the TabBar (will be created it if it doesn't exist) 
+		 * Get the TabBar (will be created it if it doesn't exist)
 		 * while accounting for manually created TabBar and ToolBar.
 		 * TODO: Make sure that this gets inserted BEFORE the ordinary ToolBar.
 		 * @returns {ts.ui.TabBarSpirit}
@@ -167,9 +166,9 @@ ts.ui.MainSpirit = (function using(Type, PANEL_ATTACH, PANEL_DETACH) {
 					(toolbar || this).dom.before(tabbar);
 				}, this));
 		},
-		
+
 		/**
-		 * Get the ToolBar (will be created it if it doesn't exist) 
+		 * Get the ToolBar (will be created it if it doesn't exist)
 		 * while accounting for manually created TabBar and ToolBar.
 		 * @returns {ts.ui.TabBarSpirit}
 		 */
@@ -177,16 +176,16 @@ ts.ui.MainSpirit = (function using(Type, PANEL_ATTACH, PANEL_DETACH) {
 			var ToolBar = ts.ui.ToolBarSpirit;
 			return this._toolbar || (this._toolbar = preceding(this, ToolBar) || suspended(ToolBar.summon('header'), function oncontent(toolbar) {
 				var tabbar = preceding(this, ts.ui.TabBarSpirit);
-				if(tabbar) {
+				if (tabbar) {
 					tabbar.dom.after(toolbar);
 				} else {
 					this.dom.before(toolbar);
 				}
 			}, this));
 		},
-		
+
 		/**
-		 * Get the ToolBar (will be created it if it doesn't exist) 
+		 * Get the ToolBar (will be created it if it doesn't exist)
 		 * while accounting for manually created StatusBar.
 		 * @returns {ts.ui.StatusBarSpirit}
 		 */
@@ -197,28 +196,27 @@ ts.ui.MainSpirit = (function using(Type, PANEL_ATTACH, PANEL_DETACH) {
 				this.dom.after(statusbar);
 			}, this));
 		},
-		
-		
+
 		// Private .................................................................
-		
+
 		/**
 		 * The Main tabbar.
 		 * @type {ts.ui.TabBarSpirit}
 		 */
 		_tabbar: null,
-		
+
 		/**
 		 * The Main toolbar.
 		 * @type {ts.ui.ToolBarSpirit}
 		 */
 		_toolbar: null,
-		
+
 		/**
 		 * The Main statusbar.
 		 * @type {ts.ui.ToolBarSpirit}
 		 */
 		_statusbar: null,
-		
+
 		/**
 		 * Added or remove tab for Panel at given index.
 		 * TODO: Support a `selected` property in the {ts.ui.PanelSpirit}
@@ -231,8 +229,8 @@ ts.ui.MainSpirit = (function using(Type, PANEL_ATTACH, PANEL_DETACH) {
 			var bar = this.tabbar();
 			var elm = this.element;
 			var dom = this.dom;
-			if(added) {
-				if(index < 0) {
+			if (added) {
+				if (index < 0) {
 					panel.hide();
 				}
 				bar.tabs().splice(index, 0, {
@@ -240,7 +238,7 @@ ts.ui.MainSpirit = (function using(Type, PANEL_ATTACH, PANEL_DETACH) {
 					selected: panel.selected || index === 0,
 					$onselect: function() {
 						dom.qall(css, ts.ui.PanelSpirit).forEach(function(p) {
-							if(p === panel) {
+							if (p === panel) {
 								p.show();
 								elm.scrollTop = 0; // TODO(jmo@): account for topbar position in mobile breakpoint
 								p.$onselect();
@@ -275,5 +273,4 @@ ts.ui.MainSpirit = (function using(Type, PANEL_ATTACH, PANEL_DETACH) {
 		}
 
 	});
-	
 }(gui.Type, ts.ui.ACTION_PANEL_ATTACH, ts.ui.ACTION_PANEL_DETACH));

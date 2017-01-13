@@ -9,7 +9,6 @@
  * @using {number} controlclass
  */
 ts.ui.LabelSpirit = (function using(Client, FieldSpirit, chained, tick, time, controlclass) {
-
 	var class_switchlabel = ts.ui.CLASS_SWITCHLABEL,
 		class_fieldlabel = ts.ui.CLASS_FIELDLABEL,
 		class_textlabel = ts.ui.CLASS_TEXTLABEL,
@@ -24,8 +23,8 @@ ts.ui.LabelSpirit = (function using(Client, FieldSpirit, chained, tick, time, co
 		class_empty = ts.ui.CLASS_EMPTY;
 
 	/**
-	 * Under mysterious circumstances, the label will loose it's styling 
-	 * when running inside Angular templates. The only known workaround 
+	 * Under mysterious circumstances, the label will loose it's styling
+	 * when running inside Angular templates. The only known workaround
 	 * is to periodically check for missing classnames and reapply them.
 	 * @param {ts.ui.FieldSpirit} field
 	 */
@@ -54,15 +53,15 @@ ts.ui.LabelSpirit = (function using(Client, FieldSpirit, chained, tick, time, co
 			this.css.shift(!this.dom.q('span'), 'ts-nolabel');
 			this.css.add('ts-engine-' + Client.agent);
 		},
-		
+
 		/**
-		 * If the control class has not been applied, we'll ask all fields to 
+		 * If the control class has not been applied, we'll ask all fields to
 		 * refresh the styling. Fixes a (rare) glitch in Angular integration.
 		 * @param {gui.Tick} t
 		 */
 		ontick: function(t) {
 			this.super.ontick(t);
-			if(t.type === tick) {
+			if (t.type === tick) {
 				this._refreshstyling();
 			}
 		},
@@ -103,7 +102,6 @@ ts.ui.LabelSpirit = (function using(Client, FieldSpirit, chained, tick, time, co
 			return span ? span.textContent.trim() : '';
 		},
 
-
 		// Private .................................................................
 
 		/**
@@ -126,22 +124,21 @@ ts.ui.LabelSpirit = (function using(Client, FieldSpirit, chained, tick, time, co
 		},
 
 		/**
-		 * If the "control class" is lost, we'll assume that the 
+		 * If the "control class" is lost, we'll assume that the
 		 * (rare) Angular glitch has occured and reapply styling.
 		 */
 		_refreshstyling: function() {
-			if(!this.css.contains(controlclass)) {
+			if (!this.css.contains(controlclass)) {
 				this.dom.descendants(FieldSpirit).forEach(updatestyling);
 			}
 		},
-
 
 		// Priveleged ..............................................................
 
 		/**
 		 * This is like a "control class" that all fields
-		 * will attach. If we don't see this class, it's 
-		 * because Angular has done something terrible 
+		 * will attach. If we don't see this class, it's
+		 * because Angular has done something terrible
 		 * and we must react in a strong way.
 		 */
 		$fieldlabel: chained(function() {
@@ -210,7 +207,7 @@ ts.ui.LabelSpirit = (function using(Client, FieldSpirit, chained, tick, time, co
 				this.css.shift(disabled, class_disabled);
 			}
 		}),
-		
+
 		/**
 		 * Field read only? (also called when not read only).
 		 * @param {boolean} readonly
@@ -227,7 +224,7 @@ ts.ui.LabelSpirit = (function using(Client, FieldSpirit, chained, tick, time, co
 				this.css.shift(readonly, class_readonly);
 			}
 		}),
-		
+
 		/**
 		 * Field required? (also called when not required).
 		 * @param {boolean} readonly
@@ -248,7 +245,6 @@ ts.ui.LabelSpirit = (function using(Client, FieldSpirit, chained, tick, time, co
 		})
 
 	});
-
 }(
 	gui.Client,
 	ts.ui.FieldSpirit,

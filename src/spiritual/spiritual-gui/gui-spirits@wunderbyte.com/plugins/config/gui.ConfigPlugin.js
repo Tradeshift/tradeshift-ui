@@ -28,7 +28,7 @@ gui.ConfigPlugin = gui.Plugin.extend({
 	 */
 	onlife: function(l) {
 		var update;
-		if(l.type === gui.LIFE_READY) {
+		if (l.type === gui.LIFE_READY) {
 			while ((update = this._onready.shift())) {
 				update.action();
 			}
@@ -51,7 +51,6 @@ gui.ConfigPlugin = gui.Plugin.extend({
 			return !hit;
 		}, this);
 	},
-
 
 	// Private ...................................................................
 
@@ -95,8 +94,8 @@ gui.ConfigPlugin = gui.Plugin.extend({
 			this._schedule(struct, prop, this._revaluate(value));
 		} else {
 			console.error(
-				"No definition for \"" + name +
-				"\" in " + this.spirit.toString()
+				'No definition for "' + name +
+				'" in ' + this.spirit.toString()
 			);
 		}
 	},
@@ -114,8 +113,8 @@ gui.ConfigPlugin = gui.Plugin.extend({
 				struct[prop](value);
 			} else {
 				this.spirit.life.add(gui.LIFE_READY, this);
-				if(this._onready) {
-					var index = this._onready.reduce(function(x, o, i) {
+				if (this._onready) {
+					this._onready.reduce(function(x, o, i) {
 						return o.struct === struct && o.prop === prop ? i : x;
 					}, -1);
 				} else {
@@ -154,7 +153,6 @@ gui.ConfigPlugin = gui.Plugin.extend({
 		return value;
 	}
 
-
 }, { // Static .................................................................
 
 	/**
@@ -164,27 +162,27 @@ gui.ConfigPlugin = gui.Plugin.extend({
 	lazy: false,
 
 	/**
-	 * Use dots to separate object-path style attributes. 
+	 * Use dots to separate object-path style attributes.
 	 * Isolated so that you can overwrite it if you like.
 	 * @type {string}
 	 */
 	SEPARATOR: '.',
 
 	/**
-	 * Hack to parse invalid JSON (with no quotes on keys) 
-	 * as valid JSON, so basically a relaxed `JSON.parse`. 
+	 * Hack to parse invalid JSON (with no quotes on keys)
+	 * as valid JSON, so basically a relaxed `JSON.parse`.
 	 * TODO: Now validate that we actually get an object!
 	 * @param {string} json
 	 * @returns {object}
 	 */
-	jsonify: (function(div){
-	  return function(json){
-	    div.setAttribute('onclick', 'this.json = ' + json);
-	    div.click();
-	    return div.json;
-	  };
+	jsonify: (function(div) {
+		return function(json) {
+			div.setAttribute('onclick', 'this.json = ' + json);
+			div.click();
+			return div.json;
+		};
 	})(document.createElement('div')),
-	
+
 	/**
 	 * JSONArray or JSONObject scrambled with encodeURIComponent?
 	 * If so, let's decode and parse this into an array or object.

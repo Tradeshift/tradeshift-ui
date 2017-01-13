@@ -53,7 +53,7 @@ gui.IframeSpirit = gui.Spirit.extend({
 	 */
 	onconstruct: function() {
 		this.super.onconstruct();
-		this.event.add("message", window);
+		this.event.add('message', window);
 		this._postbox = [];
 	},
 
@@ -77,12 +77,11 @@ gui.IframeSpirit = gui.Spirit.extend({
 		}
 		var src = this.element.src;
 		if (src && src !== gui.IframeSpirit.SRC_DEFAULT) {
-			if (!src.startsWith("blob:")) { // wrong...
+			if (!src.startsWith('blob:')) { // wrong...
 				this._setupsrc(src);
 			}
 		}
 	},
-
 
 	/**
 	 * Handle action.
@@ -106,7 +105,7 @@ gui.IframeSpirit = gui.Spirit.extend({
 				a.consume();
 				break;
 			case gui.ACTION_DOC_ONHASH:
-				base = this.contentLocation.href.split("#")[0];
+				base = this.contentLocation.href.split('#')[0];
 				this.contentLocation = new gui.URL(document, base + a.data);
 				this.life.dispatch(gui.LIFE_IFRAME_ONHASH);
 				a.consume();
@@ -205,12 +204,11 @@ gui.IframeSpirit = gui.Spirit.extend({
 	 */
 	postMessage: function(msg) {
 		if (this.spiritualized) {
-			this.contentWindow.postMessage(msg, "*");
+			this.contentWindow.postMessage(msg, '*');
 		} else {
 			this._postbox.push(msg);
 		}
 	},
-
 
 	// Private ...................................................................
 
@@ -222,10 +220,10 @@ gui.IframeSpirit = gui.Spirit.extend({
 		this.contentLocation = new gui.URL(doc, src);
 		this.xguest = (function(secured) {
 			if (secured) {
-				return "*";
+				return '*';
 			} else if (gui.URL.external(src, doc)) {
 				var url = new gui.URL(doc, src);
-				return url.protocol + "//" + url.host;
+				return url.protocol + '//' + url.host;
 			}
 			return null;
 		}(this._sandboxed()));
@@ -274,7 +272,7 @@ gui.IframeSpirit = gui.Spirit.extend({
 	 */
 	_onmessage: function(msg, origin, source) {
 		if (source === this.contentWindow) {
-			if (msg.startsWith("spiritual-action:")) {
+			if (msg.startsWith('spiritual-action:')) {
 				var a = gui.Action.parse(msg);
 				if (a.direction === gui.Action.ASCEND) {
 					this.action.$handleownaction = true;
@@ -298,7 +296,7 @@ gui.IframeSpirit = gui.Spirit.extend({
 	 * Action intercepted by the {gui.DocumentSpirit}.
 	 */
 	_visibility: function() {
-		if (gui.hasModule("gui-layout@wunderbyte.com")) { // TODO: - fix
+		if (gui.hasModule('gui-layout@wunderbyte.com')) { // TODO: - fix
 			if (gui.Type.isDefined(this.life.visible)) {
 				this.action.descendGlobal(
 					gui.$ACTION_XFRAME_VISIBILITY,
@@ -308,29 +306,28 @@ gui.IframeSpirit = gui.Spirit.extend({
 		}
 	}
 
-
 }, { // Recurring static .......................................................
 
 	/**
 	 * Summon spirit.
-	 * TODO: why does spirit.src method fail strangely 
-	 *       just now? using iframe.src instead...
+	 * TODO: why does spirit.src method fail strangely
+	 *			 just now? using iframe.src instead...
 	 * @param {Document} doc
 	 * @param @optional {String} src
 	 * @returns {gui.IframeSpirit}
 	 */
 	summon: function(doc, src) {
-		var iframe = doc.createElement("iframe");
+		var iframe = doc.createElement('iframe');
 		var spirit = this.possess(iframe);
-		spirit.css.add("gui-iframe");
+		spirit.css.add('gui-iframe');
 		/*
 		 * TODO: should be moved to src() method (but fails)!!!!!
 		 */
 		if (src) {
 			if (gui.URL.external(src, doc)) {
 				var url = new gui.URL(doc, src);
-				spirit.xguest = url.protocol + "//" + url.host;
-				//src = this.sign ( src, doc, spirit.$instanceid );
+				spirit.xguest = url.protocol + '//' + url.host;
+				// src = this.sign ( src, doc, spirit.$instanceid );
 			}
 		} else {
 			src = this.SRC_DEFAULT;
@@ -339,7 +336,6 @@ gui.IframeSpirit = gui.Spirit.extend({
 		return spirit;
 	}
 
-
 }, { // Static .................................................................
 
 	/**
@@ -347,6 +343,6 @@ gui.IframeSpirit = gui.Spirit.extend({
 	 * may raise security concerns for some browsers when running HTTPS setup.
 	 * @type {String}
 	 */
-	SRC_DEFAULT: "javascript:void(false);"
+	SRC_DEFAULT: 'javascript:void(false);'
 
 });

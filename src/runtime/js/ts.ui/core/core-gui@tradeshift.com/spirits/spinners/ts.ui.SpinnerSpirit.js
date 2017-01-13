@@ -2,15 +2,14 @@
  * Spirit of the spin.
  * @extends {ts.ui.Spirit}
  */
-ts.ui.SpinnerSpirit = (function using(){
-	
+ts.ui.SpinnerSpirit = (function using() {
 	return ts.ui.Spirit.extend({
-		
+
 		/**
 		 * Support `data-ts.spinning="boolean"` attribute.
 		 */
 		spinning: function(is) {
-			if(is) {
+			if (is) {
 				var opt = ts.ui.SpinnerSpirit.topbar();
 				var top = this.css.contains('ts-topbarspinner');
 				this.spin(this.element, top ? opt : null);
@@ -19,7 +18,7 @@ ts.ui.SpinnerSpirit = (function using(){
 			}
 		},
 		/**
-		
+
 		 * Start spinning.
 		 * @param @optional {element} element
 		 * @param @optional {object} options
@@ -27,14 +26,14 @@ ts.ui.SpinnerSpirit = (function using(){
 		spin: function(element, options) {
 			element = element || this.element;
 			var opts = ts.ui.SpinnerSpirit.defaults(options);
-			if(this._spinner) {
+			if (this._spinner) {
 				this.stop();
 			}
 			this._spinner = new ts.ui.Spinner(opts).spin();
 			element.appendChild(this._spinner.el);
 			if (opts.message) {
-				this._textelement = document.createElement("div");
-				this._textelement.className = "ts-spinner-text";
+				this._textelement = document.createElement('div');
+				this._textelement.className = 'ts-spinner-text';
 				this._textelement.style.top = opts.top;
 				this._textelement.style.color = opts.color;
 				this._textelement.innerHTML = opts.message;
@@ -59,7 +58,6 @@ ts.ui.SpinnerSpirit = (function using(){
 				this._textelement = null;
 			}
 		},
-		
 
 		// Private .................................................................
 
@@ -90,13 +88,13 @@ ts.ui.SpinnerSpirit = (function using(){
 		 * @param {boolean} blocking
 		 */
 		_updateblocking: function(blocking) {
-			if(blocking) {
-				if(!this._blocking) {
+			if (blocking) {
+				if (!this._blocking) {
 					this._cover().fadeIn();
 					this._blocking = true;
 				}
 			} else {
-				if(this._blocking) {
+				if (this._blocking) {
 					this._cover().fadeOut();
 					this._blocking = false;
 				}
@@ -111,10 +109,9 @@ ts.ui.SpinnerSpirit = (function using(){
 		_cover: function() {
 			return ts.ui.CoverSpirit.getCover(this._coverid);
 		}
-		
 
 	}, { // Static ...............................................................
-		
+
 		/**
 		 * Default or modified configuration.
 		 * @param @optional {object} options
@@ -124,8 +121,8 @@ ts.ui.SpinnerSpirit = (function using(){
 				lines: 12, // The number of lines to draw
 				length: 22, // The length of each line
 				width: 6, // The line thickness
-				radius: 22,// The radius of the inner circle
-				scale: 1,// Scales overall size of the spinner
+				radius: 22, // The radius of the inner circle
+				scale: 1, // Scales overall size of the spinner
 				corners: 1, // Corner roundness (0..1)
 				color: '#555', // #rgb or #rrggbb or array of colors
 				opacity: 0.5, // Opacity of the lines
@@ -133,13 +130,13 @@ ts.ui.SpinnerSpirit = (function using(){
 				direction: 1, // 1: clockwise, -1: counterclockwise
 				speed: 1, // Rounds per second
 				trail: 60, // Afterglow percentage
-				fps: 12,// Frames per second when using setTimeout() as a fallback for CSS
-				zIndex: 40000,// The z-index (defaults to 4000)
-				className: 'spinner',// The CSS class to assign to the spinner
-				top: '50%',// Top position relative to parent
-				left: '50%',// Left position relative to parent
-				shadow: false,// Whether to render a shadow
-				hwaccel: true,// Whether to use hardware acceleration
+				fps: 12, // Frames per second when using setTimeout() as a fallback for CSS
+				zIndex: 40000, // The z-index (defaults to 4000)
+				className: 'spinner', // The CSS class to assign to the spinner
+				top: '50%', // Top position relative to parent
+				left: '50%', // Left position relative to parent
+				shadow: false, // Whether to render a shadow
+				hwaccel: true, // Whether to use hardware acceleration
 				position: 'fixed', // Element positioning
 				message: '', // Text under the spinner
 				cover: false // Has a cover
@@ -149,7 +146,7 @@ ts.ui.SpinnerSpirit = (function using(){
 			}
 			return opts;
 		},
-		
+
 		/**
 		 * TopBar spinner modifications.
 		 * @returns {object}
@@ -163,7 +160,6 @@ ts.ui.SpinnerSpirit = (function using(){
 				color: 'rgb(255,255,255)'
 			};
 		}
-		
-	});
 
+	});
 }());

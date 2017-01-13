@@ -1,13 +1,12 @@
 /**
  * Tracking EDB input. Note that the {edb.ScriptPlugin} is using this
- * plugin, so don't assume the existence of `this.spirit` around here. 
+ * plugin, so don't assume the existence of `this.spirit` around here.
  * (the ScriptPlugin residers over in the edbml module, if you wonder).
  * @extends {gui.TrackerPlugin}
  * @using {gui.Combo.chained} chained
  * @using {edb.Input} Input
  */
 edb.InputPlugin = (function using(chained, Input) {
-
 	return gui.TrackerPlugin.extend({
 
 		/**
@@ -98,8 +97,8 @@ edb.InputPlugin = (function using(chained, Input) {
 				return input.data.constructor;
 			});
 			var best = Input.$bestmatch(Type, Types, false);
-			var input = best ? this._matches.filter(function(input) {
-				return input.type === best;
+			var input = best ? this._matches.filter(function(inputMatch) {
+				return inputMatch.type === best;
 			}).shift() : null;
 			return input ? input.data : null;
 		},
@@ -126,7 +125,6 @@ edb.InputPlugin = (function using(chained, Input) {
 			return false;
 		},
 
-
 		// Deprecated ..............................................................
 
 		/**
@@ -137,7 +135,6 @@ edb.InputPlugin = (function using(chained, Input) {
 			return this.connect.apply(this, arguments);
 		},
 
-
 		/**
 		 * @deprecated
 		 */
@@ -146,7 +143,6 @@ edb.InputPlugin = (function using(chained, Input) {
 			return this.disconnect.apply(this, arguments);
 		},
 
-
 		// Privileged ..............................................................
 
 		/**
@@ -154,7 +150,7 @@ edb.InputPlugin = (function using(chained, Input) {
 		 * @param {edb.Input} input
 		 */
 		$oninput: function(input) {
-			if(input) {
+			if (input) {
 				if (input.data === null) {
 					this._mayberevoke(input);
 					return false;
@@ -165,7 +161,6 @@ edb.InputPlugin = (function using(chained, Input) {
 				throw new TypeError('Bad input: ' + input + ' ' + (this.spirit || ''));
 			}
 		},
-
 
 		// Private .................................................................
 
@@ -211,8 +206,8 @@ edb.InputPlugin = (function using(chained, Input) {
 			var watches = this._watches;
 			var best = Input.$bestmatch(input.type, watches, true);
 			if (best) {
-				var oldinput = matches.filter(function(input) {
-					return input.type === best;
+				var oldinput = matches.filter(function(inputFilter) {
+					return inputFilter.type === best;
 				})[0];
 				var index = matches.indexOf(oldinput);
 				matches.splice(index, 1);
@@ -290,5 +285,4 @@ edb.InputPlugin = (function using(chained, Input) {
 		}
 
 	});
-
 }(gui.Combo.chained, edb.Input));

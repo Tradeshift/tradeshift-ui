@@ -3,5 +3,5 @@
  * @extends {ts.ui.Collection}
  */
 ts.ui.TableColCollection = ts.ui.Collection.extend({
-	$of:ts.ui.TableColModel
+	$of: ts.ui.TableColModel
 });

@@ -6,16 +6,15 @@
  * @using {gui.Arguments.confirmed} TODO: something faster (big data scenario)
  */
 ts.ui.TableRowCollection = (function using(Collection, GuiArray, confirmed) {
-
 	var Super = Collection.prototype;
 
 	/**
-	 * This should really be fixed in the core somewhere, but anyways: 
-	 * We know for a fact that folks will serve their Angular models 
-	 * directly to the Table so that our state and Angulars state 
-	 * become entangled. Thus, we'll need to deepclone the data and 
-	 * work on *copies* of the data. Note that this is only a problem 
-	 * because we don't create models from the data (for performance 
+	 * This should really be fixed in the core somewhere, but anyways:
+	 * We know for a fact that folks will serve their Angular models
+	 * directly to the Table so that our state and Angulars state
+	 * become entangled. Thus, we'll need to deepclone the data and
+	 * work on *copies* of the data. Note that this is only a problem
+	 * because we don't create models from the data (for performance
 	 * reasons), since otherwise this would be sorted out already.
 	 */
 	function deepclone(thing) {
@@ -25,7 +24,7 @@ ts.ui.TableRowCollection = (function using(Collection, GuiArray, confirmed) {
 	return Collection.extend({
 
 		/**
-		 * Need to do this because we can accept both objects and 
+		 * Need to do this because we can accept both objects and
 		 * arrays and I guess we never though about that before.
 		 * TODO(jmo@): verify that this is needed and fix it in {edb.ArrayPopulator}
 		 */
@@ -60,7 +59,7 @@ ts.ui.TableRowCollection = (function using(Collection, GuiArray, confirmed) {
 		 * @overwrites {ts.ui.Collection#splice}
 		 */
 		splice: function() {
-			if(this._suspended) {
+			if (this._suspended) {
 				Super.splice.apply(this, arguments);
 			} else {
 				var args = GuiArray.from(arguments);
@@ -70,12 +69,11 @@ ts.ui.TableRowCollection = (function using(Collection, GuiArray, confirmed) {
 			}
 		},
 
-
 		// Privileged ..............................................................
 
 		/**
-		 * We should only deepclone stuff that the user injects, not the 
-		 * stuff that we (ourself) array-manipulate inside the component. 
+		 * We should only deepclone stuff that the user injects, not the
+		 * stuff that we (ourself) array-manipulate inside the component.
 		 * This method will disable deepcloning while performing an action.
 		 * @param {function} action
 		 * @param @optional {object} thisp
@@ -87,16 +85,14 @@ ts.ui.TableRowCollection = (function using(Collection, GuiArray, confirmed) {
 			return res;
 		},
 
-
 		// Private .................................................................
 
 		/**
-		 * While true, we will not deepclone the 
+		 * While true, we will not deepclone the
 		 * stuff that gets added to the collection.
 		 * @type {boolean}
 		 */
 		_suspended: false
 
 	});
-
 }(ts.ui.Collection, gui.Array, gui.Arguments.confirmed));

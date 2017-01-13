@@ -35,7 +35,6 @@ gui.Arguments = {
 		};
 	},
 
-
 	// Private ...................................................................
 
 	/**
@@ -95,19 +94,19 @@ gui.Arguments = {
 	 * @returns {boolean}
 	 */
 	_matches: function(xpect, arg, index) {
-		var needs = !xpect.startsWith("(");
-		var split = this._xtract(xpect, !needs).split("|");
+		var needs = !xpect.startsWith('(');
+		var split = this._xtract(xpect, !needs).split('|');
 		var input = gui.Type.of(arg);
-		var match = (xpect === "*" ||
-			(xpect === 'node' && arg && arg.nodeType) || 
-			(xpect === 'constructor' && arg && gui.Type.isConstructor(arg)) || 
-			(xpect === 'element' && arg && arg.nodeType === Node.ELEMENT_NODE) || 
-			(xpect === 'spirit' && arg && arg.$instanceid && arg.element) || 
-			(!needs && input === "undefined") ||
-			(!needs && split.indexOf("*") > -1) ||
+		var match = (xpect === '*' ||
+			(xpect === 'node' && arg && arg.nodeType) ||
+			(xpect === 'constructor' && arg && gui.Type.isConstructor(arg)) ||
+			(xpect === 'element' && arg && arg.nodeType === Node.ELEMENT_NODE) ||
+			(xpect === 'spirit' && arg && arg.$instanceid && arg.element) ||
+			(!needs && input === 'undefined') ||
+			(!needs && split.indexOf('*') > -1) ||
 			split.indexOf(input) > -1);
 		if (!match && this._validating) {
-			if (input === "string") {
+			if (input === 'string') {
 				arg = '"' + arg + '"';
 			}
 			this._bugsummary = [index, xpect, input, arg];
@@ -125,9 +124,9 @@ gui.Arguments = {
 		var summ = this._bugsummary;
 		var name = that.constructor.$classname || String(that);
 		console.error([
-			"Spiritual GUI: Bad argument " + summ.shift(),
-			"for " + name + ":", "Expected " + summ.shift() + ",",
-			"got " + summ.shift() + ":", summ.shift()
-		].join(" "));
+			'Spiritual GUI: Bad argument ' + summ.shift(),
+			'for ' + name + ':', 'Expected ' + summ.shift() + ',',
+			'got ' + summ.shift() + ':', summ.shift()
+		].join(' '));
 	}
 };

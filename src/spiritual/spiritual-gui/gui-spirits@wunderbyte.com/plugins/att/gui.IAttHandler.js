@@ -8,7 +8,7 @@ gui.IAttHandler = {
 	 * @returns {String}
 	 */
 	toString: function() {
-		return "[object IAttHandler]";
+		return '[object IAttHandler]';
 	},
 
 	/**

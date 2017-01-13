@@ -6,7 +6,6 @@
  * @using {gui.Client} Client
  */
 ts.ui.InputSpirit = (function using(chained, Type, Client) {
-
 	return ts.ui.FieldSpirit.extend({
 
 		/**
@@ -63,7 +62,7 @@ ts.ui.InputSpirit = (function using(chained, Type, Client) {
 		 */
 		onconfigure: function() {
 			this.super.onconfigure();
-			if(this._ismodelled()) {
+			if (this._ismodelled()) {
 				this._setupmodel(this._model, true);
 			}
 		},
@@ -74,7 +73,7 @@ ts.ui.InputSpirit = (function using(chained, Type, Client) {
 		ondestruct: function() {
 			this.super.ondestruct();
 			this._discount();
-			if(this._ismodelled()) {
+			if (this._ismodelled()) {
 				this._setupmodel(this._model, false);
 			}
 		},
@@ -100,28 +99,28 @@ ts.ui.InputSpirit = (function using(chained, Type, Client) {
 			var model = this._model;
 			switch (e.type) {
 				case 'keydown':
-					if(e.keyCode === 13) {
+					if (e.keyCode === 13) {
 						this._onenterkey(e);
 					}
 					break;
 				case 'input' :
 				case 'change' :
 					var value = this.value;
-					if(value !== this._snapshot) {
+					if (value !== this._snapshot) {
 						this._snapshot = value;
 						this._oninput(value);
 					}
 					break;
 				case 'focus':
 					this.event.add('keydown');
-					if(model) {
+					if (model) {
 						model.focused = true;
 					}
 					break;
 				case 'blur':
 					this.event.remove('keydown');
 					this._oncount();
-					if(model) {
+					if (model) {
 						model.focused = false;
 					}
 					break;
@@ -151,7 +150,7 @@ ts.ui.InputSpirit = (function using(chained, Type, Client) {
 					break;
 			}
 		},
-		
+
 		/**
 		 * Sugar not disabled.
 		 * @returns {ts.ui.InputSpirit}
@@ -183,10 +182,10 @@ ts.ui.InputSpirit = (function using(chained, Type, Client) {
 		 * @returns {ts.ui.InputSpirit|ts.ui.InputModel}
 		 */
 		model: chained(function(model) {
-			if(arguments.length) {
-				if(ts.ui.InputModel.is(model)) {
-					if(model !== this._model) { // TODO(jmo@): edbml.$get should fix this: https://github.com/wunderbyte/spiritual-edbml/issues/14
-						if(this._model) {
+			if (arguments.length) {
+				if (ts.ui.InputModel.is(model)) {
+					if (model !== this._model) { // TODO(jmo@): edbml.$get should fix this: https://github.com/wunderbyte/spiritual-edbml/issues/14
+						if (this._model) {
 							this._setupmodel(this._model, false);
 						}
 						this._model = model;
@@ -200,7 +199,6 @@ ts.ui.InputSpirit = (function using(chained, Type, Client) {
 			}
 		}),
 
-
 		// Privileged ..............................................................
 
 		/**
@@ -212,7 +210,6 @@ ts.ui.InputSpirit = (function using(chained, Type, Client) {
 				label.$empty(!this.value);
 			});
 		},
-
 
 		// private .................................................................
 
@@ -247,7 +244,7 @@ ts.ui.InputSpirit = (function using(chained, Type, Client) {
 		 * @param {boolean} setup Setup or unsetup?
 		 */
 		_setupmodel: function(model, setup) {
-			if(setup) {
+			if (setup) {
 				model.addObserver(this);
 			} else {
 				model.removeObserver(this);
@@ -258,11 +255,11 @@ ts.ui.InputSpirit = (function using(chained, Type, Client) {
 			this.onenterkey = setup ? function() {
 				model.enterkey = true;
 			} : null;
-			if(setup) {
-				if(model.value) {
+			if (setup) {
+				if (model.value) {
 					this.value = model.value;
 				}
-				if(model.focused) {
+				if (model.focused) {
 					this.element.focus();
 				}
 			}
@@ -302,16 +299,16 @@ ts.ui.InputSpirit = (function using(chained, Type, Client) {
 			this._label(function(label) {
 				label.$empty(!value);
 			});
-			if(this.onidle) {
+			if (this.onidle) {
 				this._countdown();
 			}
-			if(this._ismodelled()) {
+			if (this._ismodelled()) {
 				this._model.value = value;
 			}
 		},
-		
+
 		/**
-		 * Handle model change. Some of this can be moved to EDBML pending 
+		 * Handle model change. Some of this can be moved to EDBML pending
 		 * https://github.com/wunderbyte/spiritual-edbml/issues/4 (NOW FIXED!).
 		 * @param {ts.ui.Model} model
 		 * @param {string} name
@@ -319,18 +316,18 @@ ts.ui.InputSpirit = (function using(chained, Type, Client) {
 		 * @param {object} oldvalue
 		 */
 		_onmodelchange: function(model, name, value, oldvalue) {
-			if(model === this._model) {
-				switch(name) {
+			if (model === this._model) {
+				switch (name) {
 					case 'value':
 						this.value = value;
-						if(!value) {
+						if (!value) {
 							this._label(function(label) {
 								label.$empty(true);
 							});
 						}
 						break;
 					case 'focused':
-						if(value) {
+						if (value) {
 							this.element.focus();
 						} else {
 							this.element.blur();
@@ -341,23 +338,22 @@ ts.ui.InputSpirit = (function using(chained, Type, Client) {
 		},
 
 		/**
-		 * Note that a 'preventDefault()' will prevent IE10 from clearing 
-		 * the value of the input for reasons that remain a mystery. This 
-		 * will however prevent buttons in forms from submittin, so let's 
+		 * Note that a 'preventDefault()' will prevent IE10 from clearing
+		 * the value of the input for reasons that remain a mystery. This
+		 * will however prevent buttons in forms from submittin, so let's
 		 * think about this some more.
 		 * @param {KeyEvent} e
 		 */
 		_onenterkey: function(e) {
-			if(!this._suspendenterkey) {
-				if(this._maybeinvoke(this.onenterkey, this.value)) {
+			if (!this._suspendenterkey) {
+				if (this._maybeinvoke(this.onenterkey, this.value)) {
 					this._discount();
 				}
 			}
-			if(this.element.localName !== 'textarea') {
+			if (this.element.localName !== 'textarea') {
 				// e.preventDefault(); // see comment above...
 			}
 		}
-
 
 	}, { // Static ...............................................................
 
@@ -370,5 +366,4 @@ ts.ui.InputSpirit = (function using(chained, Type, Client) {
 		}
 
 	});
-
 }(gui.Combo.chained, gui.Type, gui.Client));

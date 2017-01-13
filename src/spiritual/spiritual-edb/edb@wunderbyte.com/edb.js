@@ -2,8 +2,7 @@
  * Namepace object.
  * @using {gui.Arguments.confirmed}
  */
-window.edb = gui.namespace("edb", (function using(confirmed) {
-
+window.edb = gui.namespace('edb', (function using(confirmed) {
 	return {
 
 		/**
@@ -30,17 +29,17 @@ window.edb = gui.namespace("edb", (function using(confirmed) {
 		/**
 		 * Broadcasts.
 		 */
-		BROADCAST_ACCESS: "edb-broadcast-access",
-		BROADCAST_CHANGE: "edb-broadcast-change",
-		BROADCAST_OUTPUT: "edb-broadcast-output",
-		BROADCAST_SCRIPT_INVOKE: "edb-broadcast-script-invoke",
+		BROADCAST_ACCESS: 'edb-broadcast-access',
+		BROADCAST_CHANGE: 'edb-broadcast-change',
+		BROADCAST_OUTPUT: 'edb-broadcast-output',
+		BROADCAST_SCRIPT_INVOKE: 'edb-broadcast-script-invoke',
 
 		/**
 		 * Ticks.
 		 */
-		TICK_SCRIPT_UPDATE: "edb-tick-script-update",
-		TICK_COLLECT_INPUT: "edb-tick-collect-input",
-		TICK_PUBLISH_CHANGES: "edb-tick-update-changes",
+		TICK_SCRIPT_UPDATE: 'edb-tick-script-update',
+		TICK_COLLECT_INPUT: 'edb-tick-collect-input',
+		TICK_PUBLISH_CHANGES: 'edb-tick-update-changes',
 
 		/**
 		 * @deprecated
@@ -50,11 +49,10 @@ window.edb = gui.namespace("edb", (function using(confirmed) {
 		}
 
 	};
-
 }(gui.Arguments.confirmed)));
 
 /**
- * Toggle this to force the next model change to notify observers 
+ * Toggle this to force the next model change to notify observers
  * synchronously. The flag will automatically toggle back to false.
  *
 (function setup(critical) {

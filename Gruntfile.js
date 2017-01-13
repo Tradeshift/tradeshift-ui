@@ -1,14 +1,11 @@
-/*global process*/
+/* global process */
 
 /**
  * TODO (jmo@): node --max-old-space-size=4096 /usr/local/bin/grunt ci
  * @param {Grunt} grunt
  */
 module.exports = function(grunt) {
-
 	'use strict';
-
-	var xtend = require('node.extend');
 
 	// load grunt tasks
 	require('load-grunt-tasks')(grunt);
@@ -23,7 +20,7 @@ module.exports = function(grunt) {
 		'tsless',
 		'touchfriendly',
 		'check_cdn'
-	].forEach(function (task) {
+	].forEach(function(task) {
 		require('./tasks/' + task).init(grunt);
 	});
 
@@ -53,12 +50,12 @@ module.exports = function(grunt) {
 			all: [
 				'temp/**',
 				'dist/**',
-				'public/**',
+				'public/**'
 			],
 			cdn: [
 				'temp/**',
 				'dist/cdn/**',
-				'public/**',
+				'public/**'
 			]
 		},
 
@@ -72,7 +69,7 @@ module.exports = function(grunt) {
 				flatten: true,
 				expand: true,
 				src: 'src/runtime/js/ts.ui/lang/*',
-				dest: 'dist/',
+				dest: 'dist/'
 			},
 			lang_cdn: {
 				flatten: true,
@@ -148,7 +145,7 @@ module.exports = function(grunt) {
 			outline: {
 				options: {},
 				files: {
-					'temp/edbml-compiled.js' : ['src/runtime/edbml/**/*.edbml']
+					'temp/edbml-compiled.js': ['src/runtime/edbml/**/*.edbml']
 				}
 			}
 		},
@@ -234,12 +231,12 @@ module.exports = function(grunt) {
 			},
 			dev: {
 				files: {
-					'dist/ts.min.js' : 'dist/ts.js'
+					'dist/ts.min.js': 'dist/ts.js'
 				}
 			},
 			cdn: {
 				files: {
-					'dist/cdn/ts-<%= pkg.version %>.min.js' : 'dist/cdn/ts-<%= pkg.version %>.js'
+					'dist/cdn/ts-<%= pkg.version %>.min.js': 'dist/cdn/ts-<%= pkg.version %>.js'
 				}
 			}
 		},
@@ -257,17 +254,17 @@ module.exports = function(grunt) {
 			}
 		},
 
-		// CSS post-parsing will optimize for mobile 
+		// CSS post-parsing will optimize for mobile
 		// (only do :hover on devices with a mouse!)
 		touchfriendly: {
 			dev: {
 				files: {
-					'dist/ts.css' : 'temp/css-compiled.css'
+					'dist/ts.css': 'temp/css-compiled.css'
 				}
 			},
 			cdn: {
 				files: {
-					'dist/cdn/ts-<%= pkg.version %>.css' : 'temp/css-compiled.css'
+					'dist/cdn/ts-<%= pkg.version %>.css': 'temp/css-compiled.css'
 				}
 			}
 		},
@@ -286,7 +283,7 @@ module.exports = function(grunt) {
 			},
 			cdn: {
 				files: {
-					'dist/cdn/ts-<%= pkg.version %>.min.css': 'dist/cdn/ts-<%= pkg.version %>.css'	
+					'dist/cdn/ts-<%= pkg.version %>.min.css': 'dist/cdn/ts-<%= pkg.version %>.css'
 				}
 			}
 		},
@@ -294,10 +291,10 @@ module.exports = function(grunt) {
 		// we need to generate the dox file only whenever
 		// a JS file gets is added, removed or renamed.
 		// TODO: Remove this stuff!
-		spiritualdox : {
-			runtime : {
-				files : {
-					'dox/tradeshift-ui.html' : [
+		spiritualdox: {
+			runtime: {
+				files: {
+					'dox/tradeshift-ui.html': [
 						'src/runtime/js/**/*.js',
 						'!**/dependencies/**'
 					]
@@ -315,16 +312,16 @@ module.exports = function(grunt) {
 				src: [
 					'**/*.map',
 					'**/*.js',
-					'**/*.css',
+					'**/*.css'
 				],
 				dest: 'public/',
 				rename: function(dest, src) {
-					if(src.indexOf('.map') > -1) {
-						return dest + src.replace('.map','.map.gz');
-					} if(src.indexOf('.js') > -1) {
-						return dest + src.replace('.js','.js.gz');
-					} if(src.indexOf('.css') > -1) {
-						return dest + src.replace('.css','.css.gz');
+					if (src.indexOf('.map') > -1) {
+						return dest + src.replace('.map', '.map.gz');
+					} if (src.indexOf('.js') > -1) {
+						return dest + src.replace('.js', '.js.gz');
+					} if (src.indexOf('.css') > -1) {
+						return dest + src.replace('.css', '.css.gz');
 					} else {
 						return dest + src;
 					}
@@ -345,7 +342,7 @@ module.exports = function(grunt) {
 			},
 			*/
 			less: {
-				tasks: [ 'less:before', 'touchfriendly', 'cssmin:dev', 'tsless:dev'],
+				tasks: ['less:before', 'touchfriendly', 'cssmin:dev', 'tsless:dev'],
 				files: ['src/runtime/less/**/*.less']
 			},
 			edbml: {
@@ -370,9 +367,9 @@ module.exports = function(grunt) {
 		},
 
 		// local dev server
-		devserver : { // kill -9 $(lsof -t -i :10111)
+		devserver: { // kill -9 $(lsof -t -i :10111)
 			server: {},
-			options : {
+			options: {
 				base: '.',
 				port: 10111
 			}
@@ -446,12 +443,11 @@ module.exports = function(grunt) {
 					 * https://help.github.com/articles/creating-an-access-token-for-command-line-use
 					 * And set it as an ENV VAR
 					 */
-					accessTokenVar: 'GH_ACCESS_TOK',
+					accessTokenVar: 'GH_ACCESS_TOK'
 				}
 			}
 		}
 	});
-
 
 	// Utility functions .........................................................
 
@@ -462,14 +458,14 @@ module.exports = function(grunt) {
 	 * @returns {object}
 	 */
 	function bundle(target, sources) {
-		var config = {
+		var bundleConfig = {
 			options: {
 				min: false
 			},
 			files: {}
 		};
-		config.files[target] = sources;
-		return config;
+		bundleConfig.files[target] = sources;
+		return bundleConfig;
 	}
 
 	/**
@@ -478,13 +474,13 @@ module.exports = function(grunt) {
 	 */
 	function getapisources() {
 		const build = src => getbuild('src/runtime/js/ts.ui/' + src);
-		return ['src/runtime/js/ts-polyfilla.js', 'src/runtime/js/ts-namespace.js', 'src/runtime/js/ts.ui/ts.ui.js'].map(validated).
-			concat(getbuild('src/runtime/js/ts.lib/build.json')).
-			concat(build('core/core-api@tradeshift.com/build.json')).
-			concat(build('forms/forms-api@tradeshift.com/build.json')).
-			concat(build('objects/objects-api@tradeshift.com/build.json')).
-			concat(build('bars/bars-api@tradeshift.com/build.json')).
-			concat(build('tables/tables-api@tradeshift.com/build.json'));
+		return ['src/runtime/js/ts-polyfilla.js', 'src/runtime/js/ts-namespace.js', 'src/runtime/js/ts.ui/ts.ui.js'].map(validated)
+			.concat(getbuild('src/runtime/js/ts.lib/build.json'))
+			.concat(build('core/core-api@tradeshift.com/build.json'))
+			.concat(build('forms/forms-api@tradeshift.com/build.json'))
+			.concat(build('objects/objects-api@tradeshift.com/build.json'))
+			.concat(build('bars/bars-api@tradeshift.com/build.json'))
+			.concat(build('tables/tables-api@tradeshift.com/build.json'));
 	}
 
 	/**
@@ -493,12 +489,12 @@ module.exports = function(grunt) {
 	 */
 	function getguisources() {
 		const build = src => getbuild('src/runtime/js/ts.ui/' + src);
-		return [].
-			concat(build('core/core-gui@tradeshift.com/build.json')).
-			concat(build('forms/forms-gui@tradeshift.com/build.json')).
-			concat(build('objects/objects-gui@tradeshift.com/build.json')).
-			concat(build('bars/bars-gui@tradeshift.com/build.json')).
-			concat(build('tables/tables-gui@tradeshift.com/build.json'));
+		return []
+			.concat(build('core/core-gui@tradeshift.com/build.json'))
+			.concat(build('forms/forms-gui@tradeshift.com/build.json'))
+			.concat(build('objects/objects-gui@tradeshift.com/build.json'))
+			.concat(build('bars/bars-gui@tradeshift.com/build.json'))
+			.concat(build('tables/tables-gui@tradeshift.com/build.json'));
 	}
 
 	/**
@@ -523,7 +519,7 @@ module.exports = function(grunt) {
 			'temp/module-edb.js',
 			'temp/ts-runtime-api.js',
 			'temp/moment.js',
-			'temp/spin.js',
+			'temp/spin.js'
 		];
 	}
 
@@ -546,7 +542,7 @@ module.exports = function(grunt) {
 	function getbuildoptions() {
 		return {
 			process: function(src, path) {
-				if(path === 'temp/ts-runtime-api.js') {
+				if (path === 'temp/ts-runtime-api.js') {
 					var version = grunt.template.process('<%= pkg.version %>');
 					return src.replace('$$VERSION$$', version);
 				}
@@ -574,7 +570,7 @@ module.exports = function(grunt) {
 	 * @returns {boolean}
 	 */
 	function validated(src) {
-		if(!grunt.file.exists(src)) {
+		if (!grunt.file.exists(src)) {
 			grunt.log.error('Human error: ' + src + ' does not exist.');
 		}
 		return src;
@@ -587,7 +583,7 @@ module.exports = function(grunt) {
 	 */
 	function checkconfig(folder) {
 		return {
-			urls:[
+			urls: [
 				'<%= config.cdn_base %>' + folder + '/ts-<%= pkg.version %>.js',
 				'<%= config.cdn_base %>' + folder + '/ts-<%= pkg.version %>.min.js',
 				'<%= config.cdn_base %>' + folder + '/ts-<%= pkg.version %>.min.js.map'
@@ -635,7 +631,7 @@ module.exports = function(grunt) {
 			},
 			files: {
 				// dist/cdn/ts-<%= pkg.version %>
-				'temp/ts.js' : 'src/runtime/ts.js'
+				'temp/ts.js': 'src/runtime/ts.js'
 			}
 		};
 	}
@@ -687,7 +683,7 @@ module.exports = function(grunt) {
 			'cssmin:cdn',
 			'copy:lang_cdn',
 			'compress',
-			'copy:fix_less_gzip',
+			'copy:fix_less_gzip'
 		];
 	}
 
@@ -730,5 +726,4 @@ module.exports = function(grunt) {
 		'tsjs:karma',
 		'karma:local'
 	]);
-
 };

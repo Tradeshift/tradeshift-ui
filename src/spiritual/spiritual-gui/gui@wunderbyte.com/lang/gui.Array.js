@@ -4,7 +4,7 @@
 gui.Array = {
 
 	/**
-	 * Takes a variable number of arguments and produces 
+	 * Takes a variable number of arguments and produces
 	 * an instance of Array containing those elements.
 	 * http://wiki.ecmascript.org/doku.php?id=strawman:array_extras
 	 * @returns {Array}
@@ -53,9 +53,9 @@ gui.Array = {
 	 */
 	make: function(arg) {
 		switch (gui.Type.of(arg)) {
-			case "string":
-				return arg.split(" ");
-			case "array":
+			case 'string':
+				return arg.split(' ');
+			case 'array':
 				return this.from(arg);
 			default:
 				if (gui.Type.isArrayLike(arg)) {

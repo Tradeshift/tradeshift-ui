@@ -5,7 +5,6 @@
  * @using {gui.Combo#chained}
  */
 edb.Object = (function using(confirmed, chained) {
-
 	return gui.Class.create(Object.prototype, {
 
 		/**
@@ -26,7 +25,6 @@ edb.Object = (function using(confirmed, chained) {
 			edb.Object.unobserve(this, handler);
 		})),
 
-
 		// Privileged ..............................................................
 
 		/**
@@ -36,22 +34,22 @@ edb.Object = (function using(confirmed, chained) {
 		$onconstruct: function(json) {
 			edb.Type.prototype.$onconstruct.apply(this, arguments);
 			switch (gui.Type.of(json)) {
-				case "object":
-				case "undefined":
-				case "null":
+				case 'object':
+				case 'undefined':
+				case 'null':
 					var proxy = gui.Object.copy(json || {});
 					var types = edb.ObjectPopulator.populate(proxy, this);
 					edb.ObjectProxy.approximate(proxy, this, types);
 					break;
 				default:
 					throw new TypeError(
-						"Unexpected edb.Object constructor argument of type " +
-						gui.Type.of(json) + ": " + String(json)
+						'Unexpected edb.Object constructor argument of type ' +
+						gui.Type.of(json) + ': ' + String(json)
 					);
 			}
 			this.onconstruct();
 			if (this.oninit) {
-				console.error("Deprecated API is deprecated: " + this + ".oninit");
+				console.error('Deprecated API is deprecated: ' + this + '.oninit');
 			}
 		},
 
@@ -66,7 +64,7 @@ edb.Object = (function using(confirmed, chained) {
 		toJSON: function() {
 			return gui.Object.map(this, function(key, value) {
 				var c = key.charAt(0);
-				if (c !== "$" && c !== "_") {
+				if (c !== '$' && c !== '_') {
 					if (edb.Type.is(value)) {
 						return value.toJSON();
 					}
@@ -76,7 +74,6 @@ edb.Object = (function using(confirmed, chained) {
 		}
 
 	});
-
 }(gui.Arguments.confirmed, gui.Combo.chained));
 
 /**
@@ -116,16 +113,16 @@ edb.Object.mixin(null, edb.Type.$staticmixins(), {
 						changes.push(change);
 					});
 					handlers.filter(function(handler) {
-						if(!(exists = !handler.$destructed)) {
+						if (!(exists = !handler.$destructed)) {
 							mishandlers.push(handler);
 						}
 						return exists;
 					}).forEach(function(handler) {
-						if(!handler.__changes) {
+						if (!handler.__changes) {
 							handler.__changes = [];
 						}
-						handler.__changes.push(changes); 
-						if(changelings.indexOf(handler) === -1) {
+						handler.__changes.push(changes);
+						if (changelings.indexOf(handler) === -1) {
 							changelings.push(handler);
 						}
 					});
@@ -137,14 +134,13 @@ edb.Object.mixin(null, edb.Type.$staticmixins(), {
 			});
 			changelings.forEach(function(handler) {
 				var groups = handler.__changes;
-				handler.onchange(groups.reduce(function(sum, changes) {
-					return sum.concat(changes);
+				handler.onchange(groups.reduce(function(sum, changesToReduce) {
+					return sum.concat(changesToReduce);
 				}, []));
 				delete handler.__changes;
 			});
 		}
 	},
-
 
 	// Privileged static .........................................................
 
@@ -168,17 +164,16 @@ edb.Object.mixin(null, edb.Type.$staticmixins(), {
 	 * @param {object} newval
 	 */
 	$onchange: function(object, name, oldval, newval) {
-		if(oldval !== newval) {
+		if (oldval !== newval) {
 			var type = edb.ObjectChange.TYPE_UPDATE;
 			var all = this._changes, id = object.$instanceid;
 			var set = all[id] || (all[id] = Object.create(null));
-			var now = false; //edb.$criticalchange;
-			set [name] = new edb.ObjectChange(object, name, type, oldval, newval);
+			var now = false; // edb.$criticalchange;
+			set[name] = new edb.ObjectChange(object, name, type, oldval, newval);
 			gui.Tick.dispatch(edb.TICK_PUBLISH_CHANGES, (now ? -1 : 0));
-			//edb.$criticalchange = false;
+			// edb.$criticalchange = false;
 		}
 	},
-
 
 	// Private static ............................................................
 
@@ -192,7 +187,7 @@ edb.Object.mixin(null, edb.Type.$staticmixins(), {
 	 * Mapping instanceids to lists of changes.
 	 * @type {Map<String,Array<edb.ObjectChange>>}
 	 */
-	_changes: Object.create(null),
+	_changes: Object.create(null)
 
 });
 

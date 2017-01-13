@@ -5,7 +5,7 @@
 ts.ui.CompanyCardSpirit = ts.ui.CardSpirit.extend({
 
 	/**
-	 * TODO: Maybe add logic here to hide 
+	 * TODO: Maybe add logic here to hide
 	 * the logo until it's fully loaded?
 	 */
 	onrender: function() {
@@ -17,7 +17,7 @@ ts.ui.CompanyCardSpirit = ts.ui.CardSpirit.extend({
 	 * From the future.
 	 */
 	open: function() {
-		if(this._model) {
+		if (this._model) {
 			this._openaside(ts.ui.CompanyCardModel.from(this._model));
 			console.warn('This is an experimental feature. Please don\'t use it.');
 		} else {
@@ -53,13 +53,13 @@ ts.ui.CompanyCardSpirit = ts.ui.CardSpirit.extend({
 		}).open();
 
 		/*
-		 * We need to implement a menu.onchange() callback of some kind 
+		 * We need to implement a menu.onchange() callback of some kind
 		 * now that the menu items have been refactored to "simple" data.
 		 */
 		(function tempworkaround(menu) {
 			menu.addObserver({
 				onchange: function(changes) {
-					if(changes[0].name === 'selectedIndex') {
+					if (changes[0].name === 'selectedIndex') {
 						aside.close();
 						aside.onclosed = function() {
 							ts.ui.Notification.success('To be continued...');
@@ -97,11 +97,11 @@ ts.ui.CompanyCardSpirit = ts.ui.CardSpirit.extend({
 		id: gui.KeyMaster.generateGUID(),
 		mock: true,
 		data: {
-			name: "Company Name",
+			name: 'Company Name',
 			size: '123',
-			location: "Company Location, Country",
+			location: 'Company Location, Country',
 			industry: 'Company Industry'
 		}
-	}),
+	})
 
 });

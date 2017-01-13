@@ -2,7 +2,6 @@
  * Array methods.
  */
 describe('edb.Array', function likethis() {
-	
 	function Observer() {}
 	Observer.prototype = {
 		poked: 0,
@@ -46,5 +45,4 @@ describe('edb.Array', function likethis() {
 		list.reverse();
 		expect(list[0]).toBe(false);
 	});
-
 });

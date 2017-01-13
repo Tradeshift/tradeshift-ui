@@ -2,7 +2,7 @@ describe('ts.ui.MainSpirit', function likethis() {
 	function setup(action, html, done) {
 		var spirit, dom = helper.createTestDom();
 		dom.innerHTML = html;
-		sometime(function later(){
+		sometime(function later() {
 			spirit = ts.ui.get(dom.querySelector('main'));
 			action(spirit, dom);
 			done();
@@ -37,7 +37,7 @@ describe('ts.ui.MainSpirit', function likethis() {
 	// it('should show a tabbar', function(done) {
 	// 	var html = '<main ts-main>'+
 	// 					'<div ts-main-content>'+
-	// 						'<div ts-panel="" ts.label="leo">'+ 
+	// 						'<div ts-panel="" ts.label="leo">'+
 	// 							'<p>main content.</p>'+
 	// 						'</div>'+
 	// 						'<div ts-panel="" ts.label="daniel">'+
@@ -54,6 +54,4 @@ describe('ts.ui.MainSpirit', function likethis() {
 	// 		});
 	// 	}, html, done);
 	// });
-
-
 });

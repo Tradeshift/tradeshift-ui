@@ -6,7 +6,6 @@
  * @extends {ts.ui.Collection}
  */
 ts.ui.TabCollection = (function using(chained, confirmed) {
-	
 	return ts.ui.Collection.extend({
 
 		/**
@@ -20,7 +19,7 @@ ts.ui.TabCollection = (function using(chained, confirmed) {
 		 * @type {string}
 		 */
 		item: 'tabs',
-		
+
 		/**
 		 * Optional button to add new tab.
 		 * @type {ts.ui.ButtonModel}
@@ -43,29 +42,29 @@ ts.ui.TabCollection = (function using(chained, confirmed) {
 				}
 			}
 		},
-		
+
 		/**
-		 * Show the button to add new tab. The actual adding of 
+		 * Show the button to add new tab. The actual adding of
 		 * the tabs is done manually (when the callback fires).
 		 * @param @optional {function} opt_cb
 		 * @returns {ts.ui.ToolBarSpirit}
 		 */
 		showNew: confirmed('(function)')(
-			chained(function(opt_cb){
+			chained(function(opt_cb) {
 				var that = this;
 				if (this.newtabbutton) {
 					this.newtabbutton.dispose();
 				}
 				this.newtabbutton = new ts.ui.ButtonModel({
 					onclick: function() {
-						if(opt_cb) {
+						if (opt_cb) {
 							opt_cb.call(that);
 						}
 					}
 				});
 			})
 		),
-		
+
 		/**
 		 * Hide the button to add new tab.
 		 * @returns {ts.ui.ToolBarSpirit}
@@ -111,7 +110,6 @@ ts.ui.TabCollection = (function using(chained, confirmed) {
 			}, this);
 		},
 
-
 		// Private ...................................................................
 
 		/**
@@ -130,8 +128,8 @@ ts.ui.TabCollection = (function using(chained, confirmed) {
 		 * Toggle selection.
 		 */
 		_toggle: function(newtab, oldtab) {
-			if(newtab !== oldtab) {
-				if(oldtab) {
+			if (newtab !== oldtab) {
+				if (oldtab) {
 					oldtab.unselect();
 				}
 				this._current = newtab.select();
@@ -146,7 +144,7 @@ ts.ui.TabCollection = (function using(chained, confirmed) {
 		_ontabchange: function(c) {
 			if (c.type === edb.ObjectChange.TYPE_UPDATE) {
 				if (c.name === 'selected' && c.newValue) {
-					if(c.object !== this._current) {
+					if (c.object !== this._current) {
 						this.selectedIndex = this.indexOf(c.object);
 					}
 				}
@@ -173,7 +171,7 @@ ts.ui.TabCollection = (function using(chained, confirmed) {
 		 */
 		_onsplice: function(tabs, removed, added) {
 			var that = this, current = this._current;
-			if(removed.length) {
+			if (removed.length) {
 				gui.Tick.next(function allow_multiple_operations() {
 					removed.filter(function really_removed(tab) {
 						return tabs.indexOf(tab) === -1;
@@ -191,11 +189,11 @@ ts.ui.TabCollection = (function using(chained, confirmed) {
 			}, this);
 
 			/*
-			 * TODO: Make us not depend on this timeout, 
+			 * TODO: Make us not depend on this timeout,
 			 * hacking it now for the Client-Docs stuff.
 			 */
 			setTimeout(function butwhy() {
-				this._fallback();	
+				this._fallback();
 			}.bind(this));
 		},
 
@@ -203,13 +201,13 @@ ts.ui.TabCollection = (function using(chained, confirmed) {
 		 * Make sure something nice is selected.
 		 */
 		_fallback: function() {
-			if(this.length) {
-				if(this.selectedIndex === -1) {
+			if (this.length) {
+				if (this.selectedIndex === -1) {
 					var last = this._lastknownindex;
-					while(last > this.length) {
-						last --;
+					while (last > this.length) {
+						last--;
 					}
-					if(last >= 1) {
+					if (last >= 1) {
 						this[last - 1].select();
 					} else {
 						this[0].select();
@@ -221,5 +219,4 @@ ts.ui.TabCollection = (function using(chained, confirmed) {
 			}
 		}
 	});
-	
 }(gui.Combo.chained, gui.Arguments.confirmed));

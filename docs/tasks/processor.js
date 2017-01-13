@@ -38,7 +38,6 @@ module.exports = {
 	}
 };
 
-
 // Private .....................................................................
 
 function maincontent($) {
@@ -97,9 +96,8 @@ function unindent(code) {
 	var tabs = /^\n+\s+/.exec(code)[0].replace(/\n/g, '');
 	return code.split('\n').map(function(line, i) {
 		return line.replace(tabs, '');
-	}).join('\n').trim ();
+	}).join('\n').trim();
 }
-
 
 // Formatting code snippets ....................................................
 
@@ -107,13 +105,13 @@ function unindent(code) {
  * Hilite code snippets.
  */
 function highlite($) {
-	var script, code, html, klass, type, lang, gram, elem;
+	var script, code, klass, type, lang, gram;
 	var figures = ['DoxMarkup', 'DoxScript'];
 	$('figure').each(function(i, figure) {
 		figure = $(figure);
 		script = figure.find('script');
 		figures.forEach(function(att) {
-			if(figure.attr('data-ts') === att) {
+			if (figure.attr('data-ts') === att) {
 				klass = att === 'DoxMarkup' ? 'language-markup' : 'language-javascript';
 				type = script.attr('type') || 'text/plain';
 				lang = klass.split('-')[1];
@@ -126,7 +124,7 @@ function highlite($) {
 	});
 	$('[data-ts=DoxApi]').each(function(i, table) {
 		script = $(table).find('script');
-		if(script) {
+		if (script) {
 			code = unindent(script.text());
 			$(table).attr('data-ts.code', encodeURIComponent(code));
 			script.remove();
@@ -134,7 +132,6 @@ function highlite($) {
 	});
 	return $;
 }
-
 
 // Code snippet "chrome" .......................................................
 
@@ -151,21 +148,21 @@ function highlite($) {
  */
 function setup($, figure, script, klass, type, lang, gram, code) {
 	var html = prism.highlight(code, gram, lang);
-	var runs = type.indexOf('runnable') >-1;
-	var edit = type.indexOf('editable') >-1;
+	var runs = type.indexOf('runnable') > -1;
+	var edit = type.indexOf('editable') > -1;
 	var xxxx = figure.find('output')[0];
-	var outs = xxxx ? true : false;
+	var outs = !!xxxx;
 	var flip = outs && !!($(xxxx).next('script')[0]); // output before script?
 	var elem = $.parseHTML(getelement(klass, html, code, runs, edit, outs, flip));
-	if(runs) {
+	if (runs) {
 		figure.addClass('runnable');
 	}
-	if(type === 'text/plain') {
+	if (type === 'text/plain') {
 		script.replaceWith(elem);
 	} else {
 		script.after(elem);
 	}
-	if(outs) {
+	if (outs) {
 		figure.find('output').remove();
 	}
 }
@@ -180,7 +177,6 @@ function setup($, figure, script, klass, type, lang, gram, code) {
  */
 function getelement(klass, html, code, runs, edit, outs, flip) {
 	var output = outs ? getoutput(code) : '';
-	var showTabs = outs || runs;
 	var x = {
 		show: outs || runs,
 		outs: outs,
@@ -188,37 +184,15 @@ function getelement(klass, html, code, runs, edit, outs, flip) {
 		flip: flip
 	};
 	return [
-		'<input type="hidden" value="' + encodeURIComponent(JSON.stringify(x)) +'"/>',
+		'<input type="hidden" value="' + encodeURIComponent(JSON.stringify(x)) + '"/>',
 		'<div class="tabpanels">',
 			[outs ? (flip ? output : '') : ''],
-			'<pre class="prism ' + klass + '">',
-				'<code>' + html + '</code>',
-			'</pre>',
+		'<pre class="prism ' + klass + '">',
+		'<code>' + html + '</code>',
+		'</pre>',
 			[outs ? (flip ? '' : output) : ''],
 		'</div>'
 	].join('\n');
-}
-
-function getrevertbutton() {
-	return '<button data-ts="Button" class="revert">' +
-			'<span>Revert</span>' +
-			'<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 9c-2.3 0-4.5 0.9-6.1 2.4L3.7 9.3C3.4 9 3 8.9 2.6 9.1 2.2 9.2 2 9.6 2 10v11c0 0.6 0.4 1 1 1h11c0.4 0 0.8-0.2 0.9-0.6 0.2-0.4 0.1-0.8-0.2-1.1l-3.5-3.5c0.5-1.6 2-2.8 3.8-2.8 2.2 0 4 1.8 4 4 0 0 0 0 0 0 0 0.6 0.4 1 1 1s1-0.4 1-1c0 0 0 0 0 0C21 13 17 9 12 9z"/></svg>' +
-		'</button>';
-}
-
-/**
- * Get "Run This Code" button markup.
- * @param {string} action
- * @param {string} text
- * @returns {string}
- */
-function getbutton(text, icon, css) {
-	return [
-		'<button data-ts="Button" class="' + css +'">',
-			text ? '<span>' + text + '</span>' : '',
-			icon ? '<i class="' + icon + '"></i>' : '',
-		'</button>'
-	].join('');
 }
 
 /**
@@ -228,7 +202,6 @@ function getbutton(text, icon, css) {
 function getoutput(code) {
 	return '<div class="output">' + code + '</div>';
 }
-
 
 // Typography ..................................................................
 
@@ -250,20 +223,19 @@ function localization($) {
  * @returns {$}
  */
 function headertags($) {
-	var i = 1; while(i <= 6) {
+	var i = 1; while (i <= 6) {
 		headertype($, $('h' + i));
-		i ++;
+		i++;
 	}
 	return $;
 }
 
 /**
- * Resolve weird object tags that can pull content from other files. 
+ * Resolve weird object tags that can pull content from other files.
  * just so that we don't copy paste and/or forget to update something.
  * (Cheerio cannot parse `object[type=text/html]` so we'll match `type`.
  */
 function includetags($, source) {
-	var includes = [];
 	$('object[data]').each(function(index, include) {
 		include = $(include);
 		var full = include.attr('data') || '';
@@ -271,10 +243,10 @@ function includetags($, source) {
 		var href = cuts[0];
 		var hash = cuts[1];
 		var html = '';
-		if(href) {
+		if (href) {
 			var file = path.dirname(source) + '/' + href;
 			file = path.normalize(file);
-			if(fs.existsSync(file)) {
+			if (fs.existsSync(file)) {
 				var pre = preparsers(include, $);
 				var post = postparsers(include, $);
 				html = fetchinclude(file, hash, pre, post);
@@ -285,33 +257,33 @@ function includetags($, source) {
 			}
 			include.replaceWith(html);
 		} else {
-			console.log('Human error: hash id expected' );
+			console.log('Human error: hash id expected');
 		}
 	});
 	return $;
 }
 
 /**
- * Mount the file in a temporary DOM 
+ * Mount the file in a temporary DOM
  * and extract the outerHTML of target.
  * @param {string} file
  * @param @optional {string} id Omit to include the *whole* document
  * @param {Array<function>} parsers
- 
+
  */
-function fetchinclude(file, id, preparsers, postparsers) {
+function fetchinclude(file, id, preparsersArray, postparsersArray) {
 	var src = fs.readFileSync(file, {encoding: 'UTF-8'});
 	var $ = cheerio.load(src);
 	var clone, html;
-	if(id) {
+	if (id) {
 		var elm = $('#' + id);
-		if(elm[0]) {
+		if (elm[0]) {
 			clone = elm.clone();
-			preparsers.forEach(function(parse) {
+			preparsersArray.forEach(function(parse) {
 				clone = parse(clone);
 			});
 			html = clone.html();
-			postparsers.forEach(function(parse) {
+			postparsersArray.forEach(function(parse) {
 				html = parse(html);
 			});
 			return html;
@@ -320,9 +292,9 @@ function fetchinclude(file, id, preparsers, postparsers) {
 			return badinclude('#' + id);
 		}
 	} else {
-		// basically these would be the tabs,so we will 
+		// basically these would be the tabs,so we will
 		// just bypass preparsers and postparsers here...
-		return $.html() //$(':root').html(); 
+		return $.html(); // $(':root').html();
 	}
 }
 
@@ -337,7 +309,7 @@ function preparsers(include, $) {
 		replace = $(replace);
 		parsers.push(function(clone) {
 			var oldelm = clone.find('#' + replace.attr('id'));
-			if(oldelm) {
+			if (oldelm) {
 				oldelm.replaceWith(replace.html());
 			}
 			return clone;
@@ -358,7 +330,7 @@ function postparsers(include, $) {
 		parsers.push(function(html) {
 			var input = replace.attr('input');
 			var output = replace.attr('output');
-			while(html.indexOf(input) >-1) {
+			while (html.indexOf(input) > -1) {
 				html = html.replace(input, output);
 			}
 			return html;
@@ -375,15 +347,15 @@ function postparsers(include, $) {
 function badinclude(message) {
 	return [
 		'<div data-ts="Note">',
-		'  <i class="ts-icon-error"></i>',
-		'  <p><code>' + message + '</code> not found :/</p>',
+		'	<i class="ts-icon-error"></i>',
+		'	<p><code>' + message + '</code> not found :/</p>',
 		'</div>'
 	].join('\n');
 }
 
-/** 
- * The `.splitscreen` is `display:table` so that `max-width` 
- * doesn't work (according to the spec), so we'll wrap all 
+/**
+ * The `.splitscreen` is `display:table` so that `max-width`
+ * doesn't work (according to the spec), so we'll wrap all
  * splitscreens inside a `display:block` element.
  * @param {$} $
  * @returns {$}
@@ -405,9 +377,9 @@ function specialtags($) {
 		var att = txt.split('=')[0];
 		var val = txt.split('="')[1];
 		$(tag).replaceWith(
-			'<code class="attr-pair">' + 
-			'<span>' + att + '</span>' + 
-			(val ? '="<span>' + val.slice(0, -1) +'</span>"' : '') +
+			'<code class="attr-pair">' +
+			'<span>' + att + '</span>' +
+			(val ? '="<span>' + val.slice(0, -1) + '</span>"' : '') +
 			'</code>'
 		);
 	});
@@ -441,28 +413,26 @@ function spanheader(html) {
 	return '<span>' + html + '</span>';
 }
 
-
 // Tabs ........................................................................
 
 /**
- * Initialize the tabs long before the Runtime boots 
+ * Initialize the tabs long before the Runtime boots
  * up, so that the layout doesn't appear to jump.
  */
 function inittabs($) {
 	var head = $('head');
-	if(head.find('link[rel=prefetch]').length) {
+	if (head.find('link[rel=prefetch]').length) {
 		head.append('<script>ts.dox.tabs()</script>');
 	}
 	return $;
 }
 
-
 // Chrome links ................................................................
 
 /**
- * The HTML output makes it possible to navigate links *without* the chrome 
- * (and this will also make it possible for some robots to crawl the site). 
- * At runtime, the {ts.dox.LinkSpirit} will detect if we are running inside 
+ * The HTML output makes it possible to navigate links *without* the chrome
+ * (and this will also make it possible for some robots to crawl the site).
+ * At runtime, the {ts.dox.LinkSpirit} will detect if we are running inside
  * the chrome and then convert the `href` back to originally authored `/#`.
  * @param {$} $
  * returns {$}
@@ -471,28 +441,27 @@ function chromelinks($) {
 	$('a[data-ts=Button]').each(function(i, a) {
 		var link = $(a);
 		var href = link.attr('href');
-		if(href && href.startsWith('/#')) {
+		if (href && href.startsWith('/#')) {
 			link.attr('href', href.replace('/#', '/dist/'));
 		}
 	});
 	return $;
 }
 
-
 // Stickys .....................................................................
 
-function stickys($) {
+function stickys($) { // eslint-disable-line no-unused-vars
 	var newissue = 'https://github.com/Tradeshift/Client-Runtime/issues/new';
 	$('body').first().append([
 		'<aside data-ts="Note" class="sticky ts-bg-yellow">',
-		'  <p>If you find a bug or need a feature…</p>',
-		'    <menu class="ts-buttons">',
-		'      <li>',
-		'        <a data-ts="Button" target="_blank" href="' + newissue + '" class="ts-secondary">',
-		'          <span>Create GitHub Issue…</span>',
-		'        </a>',
-		'    </li>',
-		'  </menu>',
+		'	<p>If you find a bug or need a feature…</p>',
+		'		<menu class="ts-buttons">',
+		'			<li>',
+		'				<a data-ts="Button" target="_blank" href="' + newissue + '" class="ts-secondary">',
+		'					<span>Create GitHub Issue…</span>',
+		'				</a>',
+		'		</li>',
+		'	</menu>',
 		'</aside>'
 	].join('\n'));
 	return $;

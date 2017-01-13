@@ -1,5 +1,4 @@
 describe('ts.ui.TextInputSpirit', function likethis() {
-
 	it('should (eventually) channel via ts-attribute', function(done) {
 		var spirit, dom = helper.createTestDom();
 		dom.innerHTML = '<input data-ts="Input"/>';
@@ -24,7 +23,7 @@ describe('ts.ui.TextInputSpirit', function likethis() {
 		}
 		expect(err).not.toBeNull();
 	});
-	
+
 	it('should fail when channeled to an INPUT of wrong type', function() {
 		var dom = helper.createTestDom();
 		var input = document.createElement('input');

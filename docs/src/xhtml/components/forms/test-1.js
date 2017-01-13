@@ -3,7 +3,6 @@
  */
 (function setup() {
 	setTimeout(function somethingasync() {
-
 		// select one
 		var select = document.querySelector('#outsideselect');
 		select.innerHTML = [
@@ -21,7 +20,6 @@
 			'<option value="d">Four</option>',
 			'<option value="e">Five</option>'
 		].join('\n');
-
 	});
 }());
 
@@ -30,10 +28,8 @@
  * @using {Angular} angular
  */
 (function setup(angular) {
-	angular.module('app', []).controller('TestController', ['$scope', function TestController($scope) {		
-		
+	angular.module('app', []).controller('TestController', ['$scope', function TestController($scope) {
 		setTimeout(function somethingasync() {
-
 			// testing nesting
 			$scope.testList1 = [1];
 			$scope.testList2 = [2];
@@ -46,7 +42,7 @@
 				{ name: 'Three', value: '3' }
 			];
 			$scope.typeOption = $scope.typeOptions[0].value;
-			
+
 			// testing select multi
 			$scope.colors = [{
 				name: 'black',
@@ -72,8 +68,6 @@
 
 			// digest this
 			$scope.$digest();
-
 		}, 500);
-
 	}]);
 }(window.angular));

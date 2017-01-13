@@ -29,11 +29,11 @@ gui.Spirit = gui.Class.create(Object.prototype, {
 	 * @returns {String}
 	 */
 	toString: function() {
-		return "[object gui.Spirit]";
+		return '[object gui.Spirit]';
 	},
 
 	/**
-	 * Exorcise spirit from element. 
+	 * Exorcise spirit from element.
 	 * TODO: This whole thing with 'dispose' for all {gui.Class} things
 	 */
 	exorcise: function() {
@@ -43,12 +43,11 @@ gui.Spirit = gui.Class.create(Object.prototype, {
 		}
 	},
 
-
 	// Sync lifecycle ............................................................
 
 	/**
 	 * You can safely overload or overwrite methods in the lifecycle section,
-	 * but you should always leave it to the {gui.Guide} to invoke them. 
+	 * but you should always leave it to the {gui.Guide} to invoke them.
 	 * Make sure to always call `this.super.method()` unless you really mean it.
 	 */
 
@@ -67,8 +66,8 @@ gui.Spirit = gui.Class.create(Object.prototype, {
 	onconfigure: function() {},
 
 	/**
-	 * `onenter` gets called when the spirit element is first 
-	 * encounted in the page DOM. This is only called once in 
+	 * `onenter` gets called when the spirit element is first
+	 * encounted in the page DOM. This is only called once in
 	 * the lifecycle of a spirit (unlike `attach`, see below).
 	 */
 	onenter: function() {},
@@ -77,14 +76,14 @@ gui.Spirit = gui.Class.create(Object.prototype, {
 	 * `onattach` gets called whenever
 	 *
 	 * 1. The spirit element is attached to the document DOM by some guy
-	 * 2. The element is already in DOM when the page loads and the spirit 
-	 *    gets injected by the framework
+	 * 2. The element is already in DOM when the page loads and the spirit
+	 *		gets injected by the framework
 	 */
 	onattach: function() {},
 
 	/**
-	 * `onready` gets called (only once) when all descendant spirits 
-	 * are attached and ready. From a DOM tree perspective, this fires 
+	 * `onready` gets called (only once) when all descendant spirits
+	 * are attached and ready. From a DOM tree perspective, this fires
 	 * in reverse order, innermost first.
 	 */
 	onready: function() {},
@@ -95,15 +94,15 @@ gui.Spirit = gui.Class.create(Object.prototype, {
 	oninit: function() {},
 
 	/**
-	 * `ondetach` gets callend whenever the spirit element is about to 
-	 * be detached from the DOM tree. Unless the element is appended 
+	 * `ondetach` gets callend whenever the spirit element is about to
+	 * be detached from the DOM tree. Unless the element is appended
 	 * somewhere else, this will schedule the spirit for destruction.
 	 */
 	ondetach: function() {},
 
 	/**
-	 * `onexit` gets called if the spirit element has been *manually* detached 
-	 * and not re-attached in the same execution stack. Spirit is not positioned 
+	 * `onexit` gets called if the spirit element has been *manually* detached
+	 * and not re-attached in the same execution stack. Spirit is not positioned
 	 * in the document DOM at this point.
 	 */
 	onexit: function() {},
@@ -117,25 +116,22 @@ gui.Spirit = gui.Class.create(Object.prototype, {
 	 */
 	ondestruct: function() {},
 
-
 	// Async lifecycle ...........................................................
 
 	/**
-	 * Invoked some milliseconds after `onattach` to give the browser a repaint 
+	 * Invoked some milliseconds after `onattach` to give the browser a repaint
 	 * break. TODO: Should be evaluated after 'appendChild' to another position.
 	 */
 	onasync: function() {},
 
-
 	// Handlers ..................................................................
 
-	/**	
+	/**
 	 * Handle crawler (tell me more)
 	 * @param {gui.Crawler} crawler
 	 * @returns {number}
 	 */
 	oncrawler: function(crawler) {},
-
 
 	// Layout ....................................................................
 
@@ -145,7 +141,7 @@ gui.Spirit = gui.Class.create(Object.prototype, {
 	 * @param @optional {object} thisp
 	 */
 	reflex: function(action, thisp) {
-		if(action) {
+		if (action) {
 			action.apply(thisp);
 		}
 		new gui.Crawler(gui.CRAWLER_REFLEX).descend(this, {
@@ -159,7 +155,6 @@ gui.Spirit = gui.Class.create(Object.prototype, {
 	 *
 	 */
 	onflex: function() {},
-
 
 	// Privileged ................................................................
 
@@ -216,7 +211,7 @@ gui.Spirit = gui.Class.create(Object.prototype, {
 		this.life = new gui.LifePlugin(this);
 		this.config = new gui.ConfigPlugin(this);
 		Object.keys(plugins).filter(function(prefix) {
-			return prefix !== "life" && prefix !== "config";
+			return prefix !== 'life' && prefix !== 'config';
 		}).sort().forEach(function(prefix) {
 			Plugin = plugins[prefix];
 			if ((this.life.plugins[prefix] = !Plugin.lazy)) {
@@ -240,18 +235,17 @@ gui.Spirit = gui.Class.create(Object.prototype, {
 				if (gui.attributes.every(function(f) {
 					return !elm.hasAttribute(f);
 				})) {
-					val = "[" + this.constructor.$classname + "]";
+					val = '[' + this.constructor.$classname + ']';
 					elm.setAttribute(fix, val);
 				}
 			} else {
 				val = elm.getAttribute(fix);
-				if (val && val.startsWith("[")) {
+				if (val && val.startsWith('[')) {
 					elm.removeAttribute(fix);
 				}
 			}
 		}
 	}
-
 
 }, { // Xstatic (copied onto subclass constructors) ............................
 
@@ -268,7 +262,7 @@ gui.Spirit = gui.Class.create(Object.prototype, {
 	 * @returns {gui.Spirit}
 	 */
 	summon: function(doc) {
-		return this.possess((doc || document).createElement("div"));
+		return this.possess((doc || document).createElement('div'));
 	},
 
 	/**
@@ -283,7 +277,7 @@ gui.Spirit = gui.Class.create(Object.prototype, {
 	/**
 	 * Extend with plugins.
 	 * @TODO: move all this to {gui.Class}
-	 * @TODO: validate that user isn't declaring non-primitives on the prototype 
+	 * @TODO: validate that user isn't declaring non-primitives on the prototype
 	 * @param {object} extension
 	 * @param {object} recurring
 	 * @param {object} statics
@@ -316,11 +310,10 @@ gui.Spirit = gui.Class.create(Object.prototype, {
 				});
 			}
 		} else {
-			console.error("Plugin naming crash in " + this + ": " + prefix);
+			console.error('Plugin naming crash in ' + this + ': ' + prefix);
 		}
 		return this;
 	},
-
 
 	// Privileged ................................................................
 
@@ -329,7 +322,6 @@ gui.Spirit = gui.Class.create(Object.prototype, {
 	 * @type {Map<String,function>}
 	 */
 	$plugins: Object.create(null)
-
 
 }, { // Static privileged ......................................................
 
@@ -454,7 +446,7 @@ gui.Spirit = gui.Class.create(Object.prototype, {
 	 */
 	$oninit: function(spirit) {
 		spirit.life.initialized = true;
-		spirit.life.dispatch("life-initialized");
+		spirit.life.dispatch('life-initialized');
 		spirit.oninit();
 	}
 

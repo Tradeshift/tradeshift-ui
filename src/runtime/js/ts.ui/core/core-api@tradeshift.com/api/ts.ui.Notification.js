@@ -31,7 +31,7 @@ ts.ui.Notification = {
 	 * @returns {ts.ui.DialogModel}
 	 */
 	warning: function(text) {},
-		
+
 	/**
 	 * Display error.
 	 * @param {string} text
@@ -40,7 +40,6 @@ ts.ui.Notification = {
 	error: function(text) {}
 
 };
-
 
 // Implementation ..............................................................
 
@@ -52,7 +51,6 @@ ts.ui.Notification = {
  * @using {gui.Arguments#confirmed} confirmed
  */
 (function using(Dialog, GuiObject, chained, confirmed) {
-
 	/**
 	 * Validate argument types.
 	 * @param {function} action
@@ -70,13 +68,12 @@ ts.ui.Notification = {
 		return Dialog.$getdialog(type, args, true);
 	}
 
-
 	GuiObject.extend(ts.ui.Notification, {
 
 		/**
-		 * Arguments order here is *fuzzy*: One string will specify the message, 
-		 * another potential string will specify the button text and an object 
-		 * will configure the dialog `onaccept` callback and some other stuff. 
+		 * Arguments order here is *fuzzy*: One string will specify the message,
+		 * another potential string will specify the button text and an object
+		 * will configure the dialog `onaccept` callback and some other stuff.
 		 * @param {string} text
 		 * @param @optional {object} config
 		 * @returns {ts.ui.Notification}
@@ -116,5 +113,4 @@ ts.ui.Notification = {
 		})
 
 	});
-
 }(ts.ui.Dialog, gui.Object, gui.Combo.chained, gui.Arguments.confirmed));

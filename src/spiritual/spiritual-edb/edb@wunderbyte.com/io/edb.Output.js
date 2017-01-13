@@ -4,7 +4,6 @@
  * @using {gui.Combo.chained} chained
  */
 edb.Output = (function using(chained) {
-
 	return gui.Class.create({
 
 		/**
@@ -43,7 +42,6 @@ edb.Output = (function using(chained) {
 			edb.Input.$disconnect(this._type, handler);
 		}),
 
-		
 		// Private .................................................................
 
 		/**
@@ -51,7 +49,6 @@ edb.Output = (function using(chained) {
 		 * @type {constuctor}
 		 */
 		_type: null,
-
 
 		// Privileged ..............................................................
 
@@ -63,7 +60,6 @@ edb.Output = (function using(chained) {
 			this._type = Type;
 		},
 
-
 		// Deprecated ..............................................................
 
 		add: function() {
@@ -73,7 +69,6 @@ edb.Output = (function using(chained) {
 		remove: function() {
 			return this.disconnect.apply(this, arguments);
 		}
-
 
 	}, {}, { // Static privileged ................................................
 
@@ -111,7 +106,7 @@ edb.Output = (function using(chained) {
 				if (this._map) {
 					var classid = Type.$classid;
 					var typeobj = this._map[classid];
-					return typeobj ? true : false;
+					return !!typeobj;
 				}
 				return false;
 			} else {
@@ -138,7 +133,6 @@ edb.Output = (function using(chained) {
 			}
 		},
 
-
 		// Static private ..........................................................
 
 		/**
@@ -160,5 +154,4 @@ edb.Output = (function using(chained) {
 		}
 
 	});
-
 }(gui.Combo.chained));

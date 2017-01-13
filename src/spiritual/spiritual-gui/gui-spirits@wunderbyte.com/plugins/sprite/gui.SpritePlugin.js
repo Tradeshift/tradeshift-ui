@@ -4,11 +4,10 @@
  * @TODO: support non-px units
  */
 gui.SpritePlugin = (function() {
-	
-	function total(a, b) {
+	function total(a, b) { // eslint-disable-line no-unused-vars
 		return (a || 0) + b;
 	}
-	
+
 	return gui.Plugin.extend({
 
 		/**
@@ -66,13 +65,12 @@ gui.SpritePlugin = (function() {
 		 */
 		reset: function() {
 			if (gui.Client.has3D) {
-				this.spirit.css.set("-beta-transform", "");
+				this.spirit.css.set('-beta-transform', '');
 			} else {
-				this.spirit.css.left = "";
-				this.spirit.css.top = "";
+				this.spirit.css.left = '';
+				this.spirit.css.top = '';
 			}
 		},
-
 
 		// Private ...............................................
 
@@ -107,20 +105,19 @@ gui.SpritePlugin = (function() {
 			var pos = this._pos;
 			var set = [pos.x, pos.y, pos.z].map(Math.round);
 			var css = this.spirit.css;
-			if(false && set.reduce(total) === 0) {
-				this.reset(); // DISABLED FOR NOW!
+			// if (false && set.reduce(total) === 0) {
+			// 	this.reset(); // DISABLED FOR NOW!
+			// } else {
+			if (gui.Client.has3D) {
+				css.set('-beta-transform',
+					'translate3d(' + set.join('px,') + 'px)'
+				);
 			} else {
-				if (gui.Client.has3D) {
-					css.set("-beta-transform",
-						"translate3d(" + set.join("px,") + "px)"
-					);
-				} else {
-					var def = this._defpos(css);
-					css.left = def.x + set[0];
-					css.top = def.y + set[1];
-				}
+				var def = this._defpos(css);
+				css.left = def.x + set[0];
+				css.top = def.y + set[1];
 			}
+			// }
 		}
 	});
-	
 }());

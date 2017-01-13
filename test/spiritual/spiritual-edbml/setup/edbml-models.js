@@ -1,5 +1,5 @@
 tst = gui.namespace('tst', {
-	ModelOne : edb.Object.extend({
+	ModelOne: edb.Object.extend({
 		text: ''
 	})
 });

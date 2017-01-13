@@ -6,11 +6,10 @@
  * @using {gui.CSSPlugin} CSSPlugin
  */
 ts.ui.PagerSpirit = (function using(Type, ButtonSpirit, CSSPlugin) {
-
 	return ts.ui.Spirit.extend({
 
 		/**
-		 * Create the (default) model first so that it's 
+		 * Create the (default) model first so that it's
 		 * ready to be configured via HTML attributes.
 		 */
 		onconstruct: function() {
@@ -28,8 +27,8 @@ ts.ui.PagerSpirit = (function using(Type, ButtonSpirit, CSSPlugin) {
 		},
 
 		/**
-		 * Evaluate HTML attributes and load the script. 
-		 * Note that a NEW model may be assigned via the 
+		 * Evaluate HTML attributes and load the script.
+		 * Note that a NEW model may be assigned via the
 		 * HTML atttributes (like in "ts.ui.pager.edbml").
 		 */
 		onconfigure: function() {
@@ -46,11 +45,11 @@ ts.ui.PagerSpirit = (function using(Type, ButtonSpirit, CSSPlugin) {
 		 */
 		onevent: function(e) {
 			this.super.onevent(e);
-			if(e.type === 'click') {
+			if (e.type === 'click') {
 				var element = e.target;
 				var button = ButtonSpirit.getButton(element);
 				var model = this._model;
-				if(button && !button.disabled) {
+				if (button && !button.disabled) {
 					this._update(button);
 					this.tick.time(function unfreeze() {
 						this._navigate(button, model);
@@ -93,21 +92,20 @@ ts.ui.PagerSpirit = (function using(Type, ButtonSpirit, CSSPlugin) {
 		onselect: null,
 
 		/**
-		 * Handle changes. Note that the model also has an `onselect` 
+		 * Handle changes. Note that the model also has an `onselect`
 		 * method, this evaluates the *spirits* `onselect` method.
-		 * The timeout allows for the pager to update the selection 
+		 * The timeout allows for the pager to update the selection
 		 * before whatever big operation might happen happens after.
 		 * @param {Array<edb.Change>} changes
 		 */
 		onchange: function(changes) {
 			var model = this._model;
 			changes.forEach(function(change) {
-				if(change.object === model && change.name === 'page') {
+				if (change.object === model && change.name === 'page') {
 					this._onchange(change.newValue);
 				}
 			}, this);
 		},
-
 
 		// Private .................................................................
 
@@ -118,13 +116,13 @@ ts.ui.PagerSpirit = (function using(Type, ButtonSpirit, CSSPlugin) {
 		_model: null,
 
 		/**
-		 * Update the button with DHTML for instant feedback before we change 
-		 * properties in the model (since we don't know what big operation might 
+		 * Update the button with DHTML for instant feedback before we change
+		 * properties in the model (since we don't know what big operation might
 		 * happen then). After the EDBML repaint, the result will look the same.
 		 * @param {HTMLButtonElement} button
 		 */
 		_update: function(button) {
-			if(button.getAttribute('data-page')) {
+			if (button.getAttribute('data-page')) {
 				this.dom.qall('button').forEach(function(b) {
 					CSSPlugin.shift(b, b === button, 'ts-selected');
 				});
@@ -138,8 +136,8 @@ ts.ui.PagerSpirit = (function using(Type, ButtonSpirit, CSSPlugin) {
 			var callb = this.onselect;
 			this.page = index;
 			this.action.dispatch(ts.ui.ACTION_PAGER_SELECT, index);
-			if(callb) {
-				if(Type.isString(callb)) { // assigned via HTML attribute?
+			if (callb) {
+				if (Type.isString(callb)) { // assigned via HTML attribute?
 					callb = new Function(['index'], callb);
 				}
 				callb.call(this, this.page);
@@ -153,13 +151,12 @@ ts.ui.PagerSpirit = (function using(Type, ButtonSpirit, CSSPlugin) {
 		_navigate: function(button, model) {
 			var page = button.getAttribute('data-page');
 			var jump = button.getAttribute('data-jump');
-			if(page) {
+			if (page) {
 				model.page = Type.cast(page);
-			} else if(jump) {
+			} else if (jump) {
 				model[jump]();
 			}
 		}
 
 	});
-
 }(gui.Type, ts.ui.ButtonSpirit, gui.CSSPlugin));

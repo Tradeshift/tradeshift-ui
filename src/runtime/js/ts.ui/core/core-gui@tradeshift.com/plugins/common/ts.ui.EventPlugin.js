@@ -11,9 +11,9 @@ ts.ui.EventPlugin = gui.EventPlugin.extend({
 	handleEvent: function(e) {
 		this.super.handleEvent(e);
 		var fake, time, spirit = this.spirit;
-		switch(e.type) {
+		switch (e.type) {
 			case 'mouseenter':
-				if(this._hoverintent) {
+				if (this._hoverintent) {
 					fake = this._getfakeevent(e, 'hoverintent');
 					time = ts.ui.EventPlugin.HOVER_INTENT_TIME;
 					this._hovercountdown = gui.Tick.time(function() {
@@ -22,12 +22,11 @@ ts.ui.EventPlugin = gui.EventPlugin.extend({
 				}
 				break;
 			case 'mouseleave':
-				if(this._hoverintent) {
+				if (this._hoverintent) {
 					gui.Tick.cancelTime(this._hovercountdown);
 				}
 		}
 	},
-
 
 	// Private ...................................................................
 
@@ -53,7 +52,7 @@ ts.ui.EventPlugin = gui.EventPlugin.extend({
 	 * @param {boolean} capture
 	 */
 	_shiftEventListener: function(add, target, type, handler, capture) {
-		switch(type) {
+		switch (type) {
 			case 'hoverintent':
 				this._shiftHoverListener(add, target, type, handler, capture);
 				break;
@@ -64,7 +63,7 @@ ts.ui.EventPlugin = gui.EventPlugin.extend({
 	},
 
 	/*
-	 * TODO(jmo@): Account for `this._mouseenter` and `this._mouseleave` 
+	 * TODO(jmo@): Account for `this._mouseenter` and `this._mouseleave`
 	 * pending investigation of whether or not Safari supports this stuff.
 	 * @param {boolean} add
 	 * @param {Node} target
@@ -75,8 +74,8 @@ ts.ui.EventPlugin = gui.EventPlugin.extend({
 	_shiftHoverListener: function(add, target, type, handler, capture) {
 		this._hoverintent = add;
 		target = this._getelementtarget(target);
-		if(target === this.spirit.element) {
-			if(add) { // note that we never remove the listener (we use boolean flags)
+		if (target === this.spirit.element) {
+			if (add) { // note that we never remove the listener (we use boolean flags)
 				['mouseenter', 'mouseleave'].forEach(function(t) {
 					target.addEventListener(t, this);
 				}, this);
@@ -86,11 +85,10 @@ ts.ui.EventPlugin = gui.EventPlugin.extend({
 		}
 	}
 
+}, {}, { //	Static ............................................................
 
-}, {}, { //  Static ............................................................
-
-	/**	
-	 * Timeout in milliseconds before we assume 
+	/**
+	 * Timeout in milliseconds before we assume
 	 * that the user intends to hover something.
 	 * @type {number}
 	 */

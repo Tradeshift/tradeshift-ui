@@ -3,15 +3,15 @@ var chalk = require('chalk');
 
 var comment = false;
 var underline = '', it = 80;
-while(it) { underline += '.'; it--;}
+while (it) { underline += '.'; it--; }
 
 /**
- * Publish some LESS for public consumption (variables and mixins for now), 
+ * Publish some LESS for public consumption (variables and mixins for now),
  * so that devs can copy-paste these things into their own LESS setup.
  */
 module.exports = {
 	init: function(grunt) {
-		grunt.registerMultiTask('tsless','concat less files', function() {
+		grunt.registerMultiTask('tsless', 'concat less files', function() {
 			var file, folder, less;
 			this.files.forEach(function(pair) {
 				file = pair.src[0];
@@ -42,8 +42,8 @@ module.exports = {
  */
 function importurl(line) {
 	var match;
-	if((match = line.match(/".+"/))) {
-		return match.shift().replace(/"/g,'');
+	if ((match = line.match(/".+"/))) {
+		return match.shift().replace(/"/g, '');
 	}
 }
 
@@ -53,7 +53,7 @@ function importurl(line) {
  * @param {string} src
  * @returns {string}
  */
-function getless(grunt ,src) {
+function getless(grunt, src) {
 	var file, less, head;
 	file = path.basename(src);
 	less = grunt.file.read(src);
@@ -68,11 +68,11 @@ function getless(grunt ,src) {
  * @returns {string}
  */
 function clean(less) {
-	return less.split('\n').
-		filter(nofancystuff).
-		filter(noblockcomment).
-		map(nocomment).
-		join('\n');
+	return less.split('\n')
+		.filter(nofancystuff)
+		.filter(noblockcomment)
+		.map(nocomment)
+		.join('\n');
 }
 
 /**
@@ -91,7 +91,7 @@ function format(head, less) {
  */
 function nofancystuff(line) {
 	var trim = line.trim();
-	return trim.length && 
+	return trim.length &&
 		trim.indexOf('//') !== 0 &&
 		trim.indexOf('@import') !== 0;
 }
@@ -112,13 +112,13 @@ function nocomment(line) {
  */
 function noblockcomment(line) {
 	var trim = line.trim();
-	if(!comment && trim.startsWith('/*')) {
-		if(!trim.endsWith('*/')) {
+	if (!comment && trim.startsWith('/*')) {
+		if (!trim.endsWith('*/')) {
 			comment = true;
 		}
 		return false;
 	}
-	if(comment && trim.startsWith('*/')) {
+	if (comment && trim.startsWith('*/')) {
 		comment = false;
 		return false;
 	}

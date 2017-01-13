@@ -35,7 +35,7 @@ gui.Position.prototype = {
 	 * @returns {String}
 	 */
 	toString: function() {
-		return "[object gui.Position]";
+		return '[object gui.Position]';
 	},
 
 	/**
@@ -46,7 +46,6 @@ gui.Position.prototype = {
 		return new gui.Position(this.x, this.y, this.z);
 	}
 };
-
 
 // Static ......................................................................
 

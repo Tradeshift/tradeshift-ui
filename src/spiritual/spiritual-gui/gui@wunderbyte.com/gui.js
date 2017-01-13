@@ -4,9 +4,8 @@
  * @using {Object} Timer
  */
 window.gui = (function using(Namespace, Timer) {
-
 	return new Namespace('gui', {
-		
+
 		/**
 		 * Export as `gui.Namespace`.
 		 * @type {constructor}
@@ -64,9 +63,8 @@ window.gui = (function using(Namespace, Timer) {
 		BROADCAST_HASHCHANGE: 'gui-broadcast-window-hashchange',
 		BROADCAST_ORIENTATIONCHANGE: 'gui-broadcast-orientationchange',
 		BROADCAST_TWEEN: 'gui-broadcast-tween',
-		
 
-		/** 
+		/**
 		 * Global actions
 		 */
 		ACTION_DOC_ONDOMCONTENT: 'gui-action-document-domcontent',
@@ -88,7 +86,7 @@ window.gui = (function using(Namespace, Timer) {
 		ORIENTATION_LANDSCAPE: 1,
 
 		/**
-		 * Uniquely identifies this instance of `gui` knowing 
+		 * Uniquely identifies this instance of `gui` knowing
 		 * that other instances may exist in iframes.
 		 * @type {String}
 		 */
@@ -135,7 +133,7 @@ window.gui = (function using(Namespace, Timer) {
 		unloading: false,
 
 		/**
-		 * Do something before the spirits get here. 
+		 * Do something before the spirits get here.
 		 * if that's already too late, just do it now.
 		 * @param @optional {function} action
 		 * @param @optional {object} thisp
@@ -166,10 +164,10 @@ window.gui = (function using(Namespace, Timer) {
 		},
 
 		/**
-		 * The `ready` method get's expanded in 
-		 * core-spirits@wunderbyte.com (it runs 
-		 * when spirits are all ready) but for 
-		 * now we'll just alias it to `init`. 
+		 * The `ready` method get's expanded in
+		 * core-spirits@wunderbyte.com (it runs
+		 * when spirits are all ready) but for
+		 * now we'll just alias it to `init`.
 		 * @param @optional {function} action
 		 * @param @optional {object} thisp
 		 * @returns {boolean} True when ready already
@@ -191,7 +189,7 @@ window.gui = (function using(Namespace, Timer) {
 				module = gui.Module.$register(new Module(name));
 				return module;
 			} else {
-				throw new Error("Module needs an identity token");
+				throw new Error('Module needs an identity token');
 			}
 		},
 
@@ -238,7 +236,7 @@ window.gui = (function using(Namespace, Timer) {
 				no = new gui.Namespace(ns);
 				no = gui.Object.assert(ns, no);
 			} else {
-				throw new TypeError("Expected a namespace string");
+				throw new TypeError('Expected a namespace string');
 			}
 			return gui.Object.extend(no, members || {});
 		},
@@ -255,7 +253,6 @@ window.gui = (function using(Namespace, Timer) {
 			gui.Broadcast.dispatchGlobal(msg, arg);
 		},
 
-
 		// Private .................................................................
 
 		/**
@@ -270,11 +267,10 @@ window.gui = (function using(Namespace, Timer) {
 			this.hosted = window !== parent;
 			this.$contextid = 'key' + Math.random().toString().slice(2, 11);
 			if (this.hosted) { // TODO: get rid of this stuff!
-				this.xhost = "*";
+				this.xhost = '*';
 			}
 			return this;
 		},
-
 
 		// Privileged ..............................................................
 
@@ -343,14 +339,13 @@ window.gui = (function using(Namespace, Timer) {
 		$measurements: function() {
 			return Timer.measurements() || [];
 		}
-		
+
 	})._exist();
-
-
-}((function() { // ad hoc namespace mechanism ..................................
+}((function() {
+ // ad hoc namespace mechanism ..................................
 
 	/**
-	 * When the first namespace `gui` has been instantiated, 
+	 * When the first namespace `gui` has been instantiated,
 	 * this will become exposed publically as `gui.Namespace`.
 	 * TODO: Let's remember to check for namespace collions!
 	 * @param {string} ns
@@ -382,7 +377,7 @@ window.gui = (function using(Namespace, Timer) {
 		 * @returns {String}
 		 */
 		toString: function() {
-			return "[namespace " + this.$ns + "]";
+			return '[namespace ' + this.$ns + ']';
 		},
 
 		/**
@@ -401,14 +396,14 @@ window.gui = (function using(Namespace, Timer) {
 		 */
 		_spacename: function(o, name) {
 			gui.Object.each(o, function(key, value) {
-				if (key !== "$superclass" && gui.Type.isConstructor(value)) {
+				if (key !== '$superclass' && gui.Type.isConstructor(value)) {
 					if (value.$classname === gui.Class.ANONYMOUS) {
 						Object.defineProperty(value, '$classname', {
-							value: name + "." + key,
+							value: name + '.' + key,
 							enumerable: true,
 							writable: false
 						});
-						this._spacename(value, name + "." + key);
+						this._spacename(value, name + '.' + key);
 					}
 				}
 			}, this);
@@ -416,8 +411,7 @@ window.gui = (function using(Namespace, Timer) {
 	};
 
 	return Namespace;
-
-}()), 
+}()),
 
 	/*
 	 * Ad hoc timing device to investigate the timing of all the things.
@@ -427,7 +421,6 @@ window.gui = (function using(Namespace, Timer) {
 	 * @returns {object}
 	 */
 	(function Timer(native, enabled) {
-
 		var sets = {}; // for polyfilling
 		var list = []; // for polyfilling
 
@@ -460,8 +453,8 @@ window.gui = (function using(Namespace, Timer) {
 			 * @returns {Timer}
 			 */
 			mark: function(key) {
-				if(enabled) {
-					if(native) {
+				if (enabled) {
+					if (native) {
 						performance.mark('mark ' + key);
 					} else {
 						sets['$' + key] = Date.now();
@@ -476,8 +469,8 @@ window.gui = (function using(Namespace, Timer) {
 			 * @returns {object}
 			 */
 			stop: function(key) {
-				if(enabled) {
-					if(native) {
+				if (enabled) {
+					if (native) {
 						performance.mark('stop ' + key);
 						performance.measure(key, 'mark ' + key, 'stop ' + key);
 						var entries = performance.getEntriesByName(key);
@@ -499,8 +492,8 @@ window.gui = (function using(Namespace, Timer) {
 			 * @returns {Array<Object>}
 			 */
 			measurements: function() {
-				if(enabled) {
-					if(native) {
+				if (enabled) {
+					if (native) {
 						return performance.getEntriesByType('measure');
 					} else {
 						return list.slice();
@@ -511,13 +504,12 @@ window.gui = (function using(Namespace, Timer) {
 	}(!!(window.performance &&
 			performance.mark &&
 			performance.measure &&
-			performance.getEntriesByName && 
+			performance.getEntriesByName &&
 			performance.getEntriesByType),
 		!!(location.port === '10114' || location.host === 'ui-dev.tradeshift.com')
 	))
 
 ));
-
 
 /*
  * Start the measurements.

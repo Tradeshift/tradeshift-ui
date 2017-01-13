@@ -3,14 +3,11 @@
  * The "?internal" flag will also load the CSS.
  */
 (function boostrap(sources) {
-	
-	var intern, sheet, 
-		scripts = document.querySelectorAll('script'),
+	var scripts = document.querySelectorAll('script'),
 		head = document.querySelector('head'),
-		body = document.querySelector('body') || head,
 		script = scripts[scripts.length - 1];
 
-	// assign an ID to this script so that if we break up into "bundles", 
+	// assign an ID to this script so that if we break up into "bundles",
 	// the scripts ID can be used as an ad hoc bundle detection feature.
 	script.id = script.id || 'ts-js';
 
@@ -40,7 +37,7 @@
 	 * @param {HTMLLinkElement} existing
 	 */
 	function stylesheet(existing) {
-		if(!existing) { // testing a theory...
+		if (!existing) { // testing a theory...
 			var oldsheet = document.querySelector('link[rel=stylesheet]');
 			var newsheet = document.createElement('link');
 			newsheet.id = 'ts-css'; // prepare for multiple bundles...
@@ -51,7 +48,7 @@
 	}
 
 	/*
-	 * Inject the script(s). Not quite as sync as it used to be 
+	 * Inject the script(s). Not quite as sync as it used to be
 	 * because `document.write` is being phased out (in Chrome).
 	 */
 	function loadsync() {
@@ -64,18 +61,19 @@
 			// note that it's because en-US is default in JS...
 			console.log('No lang given. Will default to en-US');
 		}
-		if(srcs.length) {
-			var next, prev = script, head = script.parentNode;
+		if (srcs.length) {
+			var next,
+				prev = script,
+				head_ = script.parentNode;
 			srcs.forEach(function(src) {
 				next = document.createElement('script');
 				next.src = src;
 				next.async = false;
-				head.insertBefore(next, prev.nextSibling);
+				head_.insertBefore(next, prev.nextSibling);
 				prev = next;
 			});
 		}
 	}
-
 }({
 	langbundle: '${langbundle}',
 	runtimecss: '${runtimecss}'

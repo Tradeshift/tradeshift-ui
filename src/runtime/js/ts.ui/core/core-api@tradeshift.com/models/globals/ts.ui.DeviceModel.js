@@ -9,14 +9,13 @@ ts.ui.DeviceModel = ts.ui.Model.extend({
 	 * @type {string}
 	 */
 	item: 'device',
-	
+
 	/**
 	 * Matches "portrait" or "landscape".
 	 * Defaults to landscape for desktop.
 	 * @type {string}
 	 */
 	orientation: 'landscape'
-
 
 }, { // Static .................................................................
 

@@ -20,7 +20,7 @@ $.getJSON('assets/rowdata.json', function(json) {
 				label: 'Build Incrementally',
 				type: 'ts-secondary',
 				onclick: function() {
-					build_incrementally(table, input);
+					buildIncrementally(table, input);
 					disablebuttons(toolb);
 				}
 			},
@@ -28,7 +28,7 @@ $.getJSON('assets/rowdata.json', function(json) {
 				label: 'Build Everything',
 				type: 'ts-secondary',
 				onclick: function() {
-					build_everything(table, input);
+					buildEverything(table, input);
 					disablebuttons(toolb);
 				}
 			}
@@ -113,7 +113,7 @@ function gettoolbarbuttons() {
  * @param {ts.ui.TableSpirit} table
  * @param {Array<Array<string|number|object>>} rows
  */
-function build_everything(table, rows) {
+function buildEverything(table, rows) {
 	table.rows(rows);
 }
 
@@ -126,7 +126,7 @@ function build_everything(table, rows) {
  * @param {Array<Array<string|number|object>>} rows
  * @param {number} limit
  */
-function build_incrementally(table, rows) {
+function buildIncrementally(table, rows) {
 
 	// tracking max rows per page (the table will tell us how many it can fit)
 	var maxrows = -1;

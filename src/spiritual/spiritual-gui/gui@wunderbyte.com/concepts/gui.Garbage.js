@@ -1,6 +1,6 @@
 /**
  * Where spirits go to be garbage collected. Not for public
- * consumption: Please dispose of spirits via the {gui.Guide}. 
+ * consumption: Please dispose of spirits via the {gui.Guide}.
  * TODO: Don't assume that we are collecting spirits primarily
  * @see {gui.Guide#materialize}
  * @see {gui.Guide#materializeOne}
@@ -14,20 +14,20 @@ gui.Garbage = {
 	 * since sometimes we might append additional information.
 	 * @type {string}
 	 */
-	DENIAL: "Attempt to handle destructed object",
+	DENIAL: 'Attempt to handle destructed object',
 
 	/**
 	 * Identification.
 	 * @returns {string}
 	 */
 	toString: function() {
-		return "[object gui.Garbage]";
+		return '[object gui.Garbage]';
 	},
 
 	/**
 	 * Nukefication moved to next tick. This will minimize chaos,
 	 * but does imply that for the duration of this tick, methods
-	 * might be called on spirits that don't exist in the DOM and 
+	 * might be called on spirits that don't exist in the DOM and
 	 * this should technically not be possible :/
 	 */
 	ontick: function(t) {
@@ -37,7 +37,6 @@ gui.Garbage = {
 			}
 		}
 	},
-
 
 	// Privileged ................................................................
 
@@ -69,7 +68,7 @@ gui.Garbage = {
 			plugins = spirit.life.plugins;
 		gui.Object.each(plugins, function(prefix, instantiated) {
 			if (instantiated) {
-				if (prefix !== "life") {
+				if (prefix !== 'life') {
 					prefixes.push(prefix);
 				}
 			} else {
@@ -179,25 +178,24 @@ gui.Garbage = {
 	 */
 	DENY: function(message) {
 		var stack, e = new Error(
-			gui.Garbage.DENIAL + (message ? ": " + message : "")
+			gui.Garbage.DENIAL + (message ? ': ' + message : '')
 		);
 		if (!gui.Client.isExplorer && (stack = e.stack)) {
 			if (gui.Client.isWebKit) {
-				stack = stack.replace(/^[^\(]+?[\n$]/gm, "").
-				replace(/^\s+at\s+/gm, "").
-				replace(/^Object.<anonymous>\s*\(/gm, "{anonymous}()@").
-				split("\n");
+				stack = stack.replace(/^[^\(]+?[\n$]/gm, '')
+				.replace(/^\s+at\s+/gm, '')
+				.replace(/^Object.<anonymous>\s*\(/gm, '{anonymous}()@')
+				.split('\n');
 			} else {
-				stack = stack.split("\n");
+				stack = stack.split('\n');
 			}
 			stack.shift();
 			stack.shift(); // @TODO: shift one more now?
-			console.warn(e.message + "\n" + stack);
+			console.warn(e.message + '\n' + stack);
 		} else {
 			console.warn(e.message);
 		}
 	},
-
 
 	// Private ...................................................................
 

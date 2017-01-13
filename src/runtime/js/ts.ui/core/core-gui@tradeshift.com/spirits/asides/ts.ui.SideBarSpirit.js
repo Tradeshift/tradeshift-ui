@@ -9,13 +9,11 @@
  * @using {ts.ui.BACKGROUND_COLORS} Colors
  */
 ts.ui.SideBarSpirit = (function using(chained, Type, Client, GuiObject, Colors) {
-
 	// consuming all actions from nested asides
 	var willopen = ts.ui.ACTION_ASIDE_WILL_OPEN,
 		didopen = ts.ui.ACTION_ASIDE_DID_OPEN,
 		willclose = ts.ui.ACTION_ASIDE_WILL_CLOSE,
-		didclose = ts.ui.ACTION_ASIDE_DID_CLOSE,
-		doclose = ts.ui.ACTION_GLOBAL_ASIDES_DO_CLOSE;
+		didclose = ts.ui.ACTION_ASIDE_DID_CLOSE;
 
 	return ts.ui.SideShowSpirit.extend({
 
@@ -35,12 +33,12 @@ ts.ui.SideBarSpirit = (function using(chained, Type, Client, GuiObject, Colors) 
 				return this._autoclose;
 			},
 			setter: function(autoclose) {
-				if(Type.isBoolean(Type.cast(autoclose))) { // no weird moustache syntax
+				if (Type.isBoolean(Type.cast(autoclose))) { // no weird moustache syntax
 					this.css.shift(autoclose, 'ts-autoclose');
 					this._autoclose = !!autoclose;
-					if(this.life.ready) { // changed post init
-						if(this._autoclose) {
-							if(ts.ui.isMobilePoint()) {
+					if (this.life.ready) { // changed post init
+						if (this._autoclose) {
+							if (ts.ui.isMobilePoint()) {
 								this._breakpoint();
 							}
 						} else {
@@ -52,7 +50,7 @@ ts.ui.SideBarSpirit = (function using(chained, Type, Client, GuiObject, Colors) 
 				}
 			}
 		},
-		
+
 		/**
 		 * Setup to consume actions from nested Asides.
 		 */
@@ -73,13 +71,13 @@ ts.ui.SideBarSpirit = (function using(chained, Type, Client, GuiObject, Colors) 
 			this.super.onenter();
 			this._breakpointwatch();
 			this.css.shift(this._autoclose, 'ts-autoclose');
-			if(ts.ui.isMobilePoint()) {
+			if (ts.ui.isMobilePoint()) {
 				this._breakpoint();
 			} else {
 				this._reflex();
 			}
 		},
-		
+
 		/**
 		 * Add assistant classnames.
 		 */
@@ -98,8 +96,8 @@ ts.ui.SideBarSpirit = (function using(chained, Type, Client, GuiObject, Colors) 
 		},
 
 		/**
-		 * Give'm a second to move the SideBar into it's designated 
-		 * position (immediately before or after the '.ts-main' element) 
+		 * Give'm a second to move the SideBar into it's designated
+		 * position (immediately before or after the '.ts-main' element)
 		 * if for some reason the portal server didn't place it there.
 		 */
 		onready: function() {
@@ -116,22 +114,22 @@ ts.ui.SideBarSpirit = (function using(chained, Type, Client, GuiObject, Colors) 
 		 */
 		oninput: function(i) {
 			this.super.oninput(i);
-			if(i.type === ts.ui.TopBarModel) {
+			if (i.type === ts.ui.TopBarModel) {
 				i.data.addObserver(this);
 			}
 		},
 
 		/**
-		 * Handle changes. Reflex the layout when TopBar toggles 
-		 * and hope this fixes the height measurement in Safari. 
+		 * Handle changes. Reflex the layout when TopBar toggles
+		 * and hope this fixes the height measurement in Safari.
 		 * UPDATE: It worked - now do this with a simple broadcast!!!!!!!!!!!!!!!!!!
 		 * @param {Array<edb.Change>} changes
 		 */
 		onchange: function(changes) {
 			this.super.onchange(changes);
 			changes.forEach(function(change) {
-				if(ts.ui.TopBarModel.is(change.object)) {
-					if(change.name === 'hascontent') {
+				if (ts.ui.TopBarModel.is(change.object)) {
+					if (change.name === 'hascontent') {
 						this._reflex();
 					}
 				}
@@ -139,13 +137,13 @@ ts.ui.SideBarSpirit = (function using(chained, Type, Client, GuiObject, Colors) 
 		},
 
 		/**
-		 * Consume all nested aside actions 
+		 * Consume all nested aside actions
 		 * so as not to trigger the cover.
 		 * @param {gui.Action} a
 		 */
 		onaction: function(a) {
 			this.super.onaction(a);
-			switch(a.type) {
+			switch (a.type) {
 				case willopen:
 					this._fitaside(a.target, this.dom.qall(
 						'.ts-footer', ts.ui.FooterSpirit
@@ -167,7 +165,6 @@ ts.ui.SideBarSpirit = (function using(chained, Type, Client, GuiObject, Colors) 
 			this.super.ondestruct();
 			ts.ui.removeBreakPointListener(this);
 		},
-
 
 		// Private .................................................................
 
@@ -193,13 +190,12 @@ ts.ui.SideBarSpirit = (function using(chained, Type, Client, GuiObject, Colors) 
 		 */
 		_layoutmain: function(attaching) {
 			var layout = this.guilayout;
-			if(layout.outsideMain()) {
+			if (layout.outsideMain()) {
 				var local1 = 'ts-sidebar-first',
 					local2 = 'ts-sidebar-last',
-					global1 = 'ts-has-sidebar',
 					global2 = 'ts-has-sidebar-first',
 					global3 = 'ts-has-sidebar-last';
-				if(layout.beforeMain()) {
+				if (layout.beforeMain()) {
 					this.css.shift(attaching, local1);
 					layout.shiftGlobal(attaching, global2);
 				} else {
@@ -210,7 +206,7 @@ ts.ui.SideBarSpirit = (function using(chained, Type, Client, GuiObject, Colors) 
 		},
 
 		/**
-		 * Watch for breakpoint changes (using some 
+		 * Watch for breakpoint changes (using some
 		 * temporary API that should be refactored).
 		 */
 		_breakpointwatch: function() {
@@ -226,15 +222,15 @@ ts.ui.SideBarSpirit = (function using(chained, Type, Client, GuiObject, Colors) 
 		 */
 		_breakpoint: function() {
 			var go = ts.ui.isMobilePoint();
-			if(this._autoclose) {
+			if (this._autoclose) {
 				this._closebutton(go);
-				if(go) {
-					if(this.isOpen) {
+				if (go) {
+					if (this.isOpen) {
 						this.close();
 						this.isOpen = false;
 					}
 				} else {
-					if(!this.isOpen) {
+					if (!this.isOpen) {
 						this.isOpen = true;
 						this.guilayout.flexGlobal();
 					}
@@ -246,7 +242,7 @@ ts.ui.SideBarSpirit = (function using(chained, Type, Client, GuiObject, Colors) 
 		 * Show the SideBar (now that it's hidden in mobile view).
 		 */
 		_open: function() {
-			if(this.super._open()) {
+			if (this.super._open()) {
 				this.css.add('ts-will-open');
 				this._reflex();
 				this.tick.time(function slide() {
@@ -259,7 +255,7 @@ ts.ui.SideBarSpirit = (function using(chained, Type, Client, GuiObject, Colors) 
 		 * Don't show the SideBar.
 		 */
 		_close: function() {
-			if(this.super._close()) {
+			if (this.super._close()) {
 				this.css.remove(ts.ui.CLASS_OPEN);
 				this.tick.time(function undisplay() {
 					this.css.remove('ts-will-open');
@@ -273,26 +269,24 @@ ts.ui.SideBarSpirit = (function using(chained, Type, Client, GuiObject, Colors) 
 		 * @param {Array<ts.ui.FooterSpirit>} footers List of bonus footers
 		 */
 		_fitaside: function(aside, footers) {
-			if(footers.length) {
+			if (footers.length) {
 				aside.css.bottom = footers.reduce(function(totalheight, footer) {
 					return totalheight + footer.box.height;
 				}, 0);
 			}
-		},
-
+		}
 
 	}, { // Xstatic ..............................................................
-		
+
 		/**
-		 * List of members that should inherit any assigned background color. 
-		 * In the SideBar, all members get the same color (unless explicitly 
+		 * List of members that should inherit any assigned background color.
+		 * In the SideBar, all members get the same color (unless explicitly
 		 * given a bg-color classname in the HTML).
 		 * @type {Array<string>}
 		 */
 		$bgmembers: ['.ts-header', '.ts-tabbar', '.ts-panel', '.ts-footer']
-		
-	});
 
+	});
 }(
 	gui.Combo.chained,
 	gui.Type,

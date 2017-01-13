@@ -1,11 +1,10 @@
-const getstatic = require('serve-static');
 const processor = require('./tasks/processor');
 const publisher = require('./tasks/publisher');
 const btunneler = require('./tasks/tuneller.js');
 const bsshooter = require('./tasks/shooter.js');
 const cheerio = require('cheerio');
 const path = require('path');
-const S = require("string");
+const S = require('string');
 
 var stackconf;
 try {
@@ -21,7 +20,6 @@ try {
  * @param {Grunt} grunt
  */
 module.exports = function(grunt) {
-
 	'use strict';
 
 	// autoload everything that looks like Grunt tasks
@@ -87,8 +85,8 @@ module.exports = function(grunt) {
 					min: false
 				},
 				files: {
-					'temp/dox-api.js' : ['src/js/dox-api@tradeshift.com/build.json'],
-					'temp/dox-gui.js' : ['src/js/dox-gui@tradeshift.com/build.json']
+					'temp/dox-api.js': ['src/js/dox-api@tradeshift.com/build.json'],
+					'temp/dox-gui.js': ['src/js/dox-gui@tradeshift.com/build.json']
 				}
 			}
 		},
@@ -102,7 +100,7 @@ module.exports = function(grunt) {
 					beautify: true
 				},
 				files: {
-					'temp/dox-edbml.js' : ['src/edbml/*.edbml']
+					'temp/dox-edbml.js': ['src/edbml/*.edbml']
 				}
 			}
 		},
@@ -134,7 +132,7 @@ module.exports = function(grunt) {
 						src: [
 							'**',
 							'!**/*.xhtml',
-							'!**/*.less',
+							'!**/*.less'
 						]
 					}
 				]
@@ -165,12 +163,12 @@ module.exports = function(grunt) {
 			},
 			local: {
 				options: {
-					paths: 'src/less', // not working :/
+					paths: 'src/less' // not working :/
 				},
 				files: [{
 					expand: true,
 					cwd: 'src/xhtml/',
-					src: [ '**/*.less' ],
+					src: ['**/*.less'],
 					dest: 'dist',
 					ext: '.css'
 				}]
@@ -216,8 +214,8 @@ module.exports = function(grunt) {
 				options: {
 					initialPort: 10114,
 					initialPath: '/index.html',
-					callback: function (crawler) {
-						crawler.addFetchCondition(function (url) {
+					callback: function(crawler) {
+						crawler.addFetchCondition(function(url) {
 							var ext = path.extname(url.path);
 							return url.port === '10114' && (ext === '.html' || !ext);
 						});
@@ -319,16 +317,16 @@ module.exports = function(grunt) {
 			src: 'src/xhtml/index.xhtml',
 			dest: './index.html',
 			options: {
-				process: function (content, srcpath) {
-					var tags = grunt.template.process('<%=' + tagset +'%>');
+				process: function(content, srcpath) {
+					var tags = grunt.template.process('<%=' + tagset + '%>');
 					var menu = grunt.file.readJSON('menu.json');
 					var json = JSON.stringify(menu, null, null);
 					tags = tags.replace(/,/g, '\n		');
 					return publisher.publish(
-						content.
-							replace('${includes}', tags).
-							replace('${menujson}', json).
-							replace('${menuhtml}', seomenu(JSON.parse(json)))
+						content
+							.replace('${includes}', tags)
+							.replace('${menujson}', json)
+							.replace('${menuhtml}', seomenu(JSON.parse(json)))
 					);
 				}
 			}
@@ -345,11 +343,11 @@ module.exports = function(grunt) {
 	function seomenu(items) {
 		const NEW = '\n\t\t';
 		return items.reduce((html, item, i) => {
-			if(!item.hidden) {
-				if(item.path) {
+			if (!item.hidden) {
+				if (item.path) {
 					html += `<link rel="robots" href="/dist/${item.path}"/>${NEW}`;
 				}
-				if(item.items) {
+				if (item.items) {
 					html += seomenu(item.items);
 				}
 			}
@@ -395,23 +393,23 @@ module.exports = function(grunt) {
 	 * @param {string } tags
 	 * @returns {Array<string>}
 	 */
-	grunt.task.registerTask('lunr', 'generate lunr index', function(){
+	grunt.task.registerTask('lunr', 'generate lunr index', function() {
 		var prefix = 'dist/';
-		grunt.log.writeln("Build pages index");
+		grunt.log.writeln('Build pages index');
 		function indexPages() {
-				var pagesIndex = [];
-				grunt.file.recurse(prefix, function(abspath, rootdir, subdir, filename) {
-						grunt.verbose.writeln("Parse file:",abspath);
-						pagesIndex.push(processFile(abspath, filename));
-				});
-				return pagesIndex;
+			var pagesIndex = [];
+			grunt.file.recurse(prefix, function(abspath, rootdir, subdir, filename) {
+				grunt.verbose.writeln('Parse file:', abspath);
+				pagesIndex.push(processFile(abspath, filename));
+			});
+			return pagesIndex;
 		};
 		function processFile(abspath, filename) {
-				var pageIndex;
-				if (S(filename).endsWith(".html")) {
-						pageIndex = processHTMLFile(abspath, filename);
-				}
-				return pageIndex;
+			var pageIndex;
+			if (S(filename).endsWith('.html')) {
+				pageIndex = processHTMLFile(abspath, filename);
+			}
+			return pageIndex;
 		};
 		function ignoreHTML(raw) {
 			var ix1 = raw.indexOf('<body>');
@@ -421,11 +419,11 @@ module.exports = function(grunt) {
 		}
 		function processHTMLFile(abspath, filename) {
 			var raw = grunt.file.read(abspath);
-			if(raw.includes('robots') && raw.includes('noindex')) {
+			if (raw.includes('robots') && raw.includes('noindex')) {
 				return;
 			} else {
 				var content = ignoreHTML(raw);
-				var title = S(raw).between('<title>','</title>').s;
+				var title = S(raw).between('<title>', '</title>').s;
 				var href = S(abspath).chompLeft(prefix).s;
 				return {
 					title: title,
@@ -434,8 +432,8 @@ module.exports = function(grunt) {
 				};
 			}
 		};
-		grunt.file.write("dist/lunr.json", JSON.stringify(indexPages()));
-		grunt.log.ok("Index built");
+		grunt.file.write('dist/lunr.json', JSON.stringify(indexPages()));
+		grunt.log.ok('Index built');
 	});
 
 	/**
@@ -457,39 +455,4 @@ module.exports = function(grunt) {
 			'lunr'
 		];
 	}
-
 };
-
-
-// Backup ......................................................................
-
-/**
-	 * Experimentally support history API (if at all worth the trouble)
-	 * @see https://github.com/gruntjs/grunt-contrib-connect/issues/191
-	 *
-	function middleware(connect, options) {
-		var middlewares = [];
-		if (!Array.isArray(options.base)) {
-			options.base = [options.base];
-		}
-		var directory = options.directory || options.base[options.base.length - 1];
-		options.base.forEach(function(base) { // serve static files
-			middlewares.push(getstatic(base));
-		});
-		// make directory browse-able.
-		middlewares.push(getstatic(directory));
-		// not found - just serve index.html
-		middlewares.push(function(req, res){
-			for(var file, i = 0; i < options.base.length; i++){
-				file = options.base + "/index.html";
-				if (grunt.file.exists(file)){
-					require('fs').createReadStream(file).pipe(res);
-					return; // we're done
-				}
-			}
-			res.statusCode(404); // where's index.html?
-			res.end();
-		});
-		return middlewares;
-	}
-	*/

@@ -12,7 +12,6 @@ ts.ui.DocumentLayoutPlugin = ts.ui.Plugin.extend({
 	 * so we will have to go about it in a delicate way.
 	 */
 	managelayout: function() {
-		var points = this._points = this._computepoints();
 		var layout = this._computelayout();
 		var device = this._computedevice();
 		if (layout) {
@@ -40,7 +39,6 @@ ts.ui.DocumentLayoutPlugin = ts.ui.Plugin.extend({
 		}
 	},
 
-
 	// Private ...................................................................
 
 	/**
@@ -57,7 +55,7 @@ ts.ui.DocumentLayoutPlugin = ts.ui.Plugin.extend({
 	 * @type {number}
 	 */
 	_timeout: -1,
-	
+
 	/**
 	 * Compute breakpoints array.
 	 */
@@ -116,6 +114,6 @@ ts.ui.DocumentLayoutPlugin = ts.ui.Plugin.extend({
 		var model = ts.ui.LayoutModel.output.get();
 		model.breakpoint = layout.breakpoint;
 		model.breakpoints = layout.breakpoints;
-	},
+	}
 
 });

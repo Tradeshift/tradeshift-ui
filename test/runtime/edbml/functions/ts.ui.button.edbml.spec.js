@@ -1,5 +1,4 @@
 describe('ts.ui.button.edbml', function likethis() {
-
 	// @param {boolean} icononly
 	function gethtml(icononly) {
 		return ts.ui.button.edbml(
@@ -26,5 +25,4 @@ describe('ts.ui.button.edbml', function likethis() {
 	it('should not contain an icon', function() {
 		expect(gethtml()).not.toContain('ts-icon-hest');
 	});
-
 });

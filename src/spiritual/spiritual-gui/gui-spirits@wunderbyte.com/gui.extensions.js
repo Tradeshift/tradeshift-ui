@@ -1,3 +1,5 @@
+/* global gui:true */
+
 /**
  * Extend `gui` to support spirits.
  */
@@ -23,11 +25,10 @@ gui = gui.Object.extend(gui, {
 	 */
 	MODE_FUNNY: 'funny',
 
-
 	// broadcasts
 	BROADCAST_WILL_SPIRITUALIZE: 'gui-broadcast-will-spiritualize',
 	BROADCAST_DID_SPIRITUALIZE: 'gui-broadcast-did-spiritualize',
-	
+
 	// actions
 	ACTION_DOC_ONSPIRITUALIZED: 'gui-action-document-spiritualized',
 
@@ -70,7 +71,7 @@ gui = gui.Object.extend(gui, {
 	CRAWLER_INVISIBLE: 'gui-crawler-invisible', // TODO: move to plugin
 	CRAWLER_REFLEX: 'gui-crawler-reflex',
 
-	/** 
+	/**
 	 * CSS classnames
 	 */
 	CLASS_NOSPIRITS: 'gui-nospirits', // declare spirit-free zone (performance)
@@ -91,8 +92,8 @@ gui = gui.Object.extend(gui, {
 	autostrap: true,
 
 	/**
-	 * Delay boostrap by some milliseconds as a "catch all" for 
-	 * frameworks that do something to the DOM without exposing 
+	 * Delay boostrap by some milliseconds as a "catch all" for
+	 * frameworks that do something to the DOM without exposing
 	 * lifecycle events that tell us *when* it's done (Angular).
 	 * @type {number}
 	 */
@@ -118,10 +119,10 @@ gui = gui.Object.extend(gui, {
 	attributes: null,
 
 	/**
-	 * Boostrap Spiritual. Unless `autostrap` is set to `false`, this 
-	 * happens automatically at `DOMContentLoaded`. You can nudge the 
-	 * `boostrapdelay` to accomodate for cornercase framework behavior, 
-	 * ie. allow Angular to parse the DOM for template elements first 
+	 * Boostrap Spiritual. Unless `autostrap` is set to `false`, this
+	 * happens automatically at `DOMContentLoaded`. You can nudge the
+	 * `boostrapdelay` to accomodate for cornercase framework behavior,
+	 * ie. allow Angular to parse the DOM for template elements first
 	 * (this to avoid HTML from initialized spirits in the tempaltes!).
 	 */
 	bootstrap: function() {
@@ -133,7 +134,7 @@ gui = gui.Object.extend(gui, {
 			gui.spiritualizing = false;
 			gui._nowready();
 		}
-		if(delay > -1) {
+		if (delay > -1) {
 			setTimeout(start, delay);
 		} else {
 			start();
@@ -201,7 +202,7 @@ gui = gui.Object.extend(gui, {
 	},
 
 	/**
-	 * Get spirit for fuzzy argument. 
+	 * Get spirit for fuzzy argument.
 	 * TODO: Perhaps delegate this to {gui.DOMPlugin}?
 	 * @param {String|Element} arg
 	 * @param @optional {function} callback
@@ -210,11 +211,11 @@ gui = gui.Object.extend(gui, {
 	 */
 	get: function(arg, callback, thisp) {
 		var spirit;
-		switch(arguments.length) {
+		switch (arguments.length) {
 			case 1:
-				if(this.spiritualizing || this.spiritualized) {
+				if (this.spiritualizing || this.spiritualized) {
 					spirit = this._getspirit(arg);
-				} else if(window.console && console.warn) {
+				} else if (window.console && console.warn) {
 					console.warn(this._guigetmessage());
 				}
 				break;
@@ -262,7 +263,7 @@ gui = gui.Object.extend(gui, {
 	},
 
 	/**
-	 * Do something when everything is spiritualized (synchronously after 
+	 * Do something when everything is spiritualized (synchronously after
 	 * DOMContentLoaded). Or if that's already too late, just do it now.
 	 * TODO: support `onready` object handler
 	 * @overwrites {gui#ready} A stub implementation
@@ -285,7 +286,6 @@ gui = gui.Object.extend(gui, {
 		return is;
 	},
 
-
 	// Private ...................................................................
 
 	/**
@@ -294,7 +294,7 @@ gui = gui.Object.extend(gui, {
 	_readycallbacks: null,
 
 	/**
-	 * Setup a broadcast listener to bootstrap Spiritual 
+	 * Setup a broadcast listener to bootstrap Spiritual
 	 * after any other potential framework initialization.
 	 * @returns {gui.Namespace} myself
 	 */
@@ -302,7 +302,7 @@ gui = gui.Object.extend(gui, {
 		this.attributes = ['gui'];
 		gui.Broadcast.add(gui.BROADCAST_TODOM, {
 			onbroadcast: function() {
-				if(gui.autostrap) {
+				if (gui.autostrap) {
 					gui.bootstrap();
 				}
 			}
@@ -311,7 +311,7 @@ gui = gui.Object.extend(gui, {
 	},
 
 	/**
-	 * Initial spirits are ready. 
+	 * Initial spirits are ready.
 	 * Run accumulated callbacks.
 	 */
 	_nowready: function() {
@@ -340,8 +340,8 @@ gui = gui.Object.extend(gui, {
 				}
 				if (!spirit) {
 					try {
-						element = arg.match(/[^a-zA-Z\d]/) ? 
-							doc.querySelector(arg) :  // lookup selector in document
+						element = arg.match(/[^a-zA-Z\d]/) ?
+							doc.querySelector(arg) :	// lookup selector in document
 							(
 								doc.getElementById(arg) || // lookup by ID in document
 								doc.querySelector(arg) // lookup by tagname in document

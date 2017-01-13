@@ -1,10 +1,9 @@
 describe('ts.ui.SelectSpirit', function likethis() {
-
 	var MARKUP = [
 		'<select data-ts="Select">',
-			'<option value="1">One</option>',
-			'<option value="2">Two</option>',
-			'<option value="3">Three</option>',
+		'<option value="1">One</option>',
+		'<option value="2">Two</option>',
+		'<option value="3">Three</option>',
 		'</select>'
 	].join('\n');
 
@@ -19,7 +18,7 @@ describe('ts.ui.SelectSpirit', function likethis() {
 	});
 
 	it('should insert the FakeSelectInputSpirit (fake select)', function(done) {
-		var spirit, dom = helper.createTestDom();
+		var dom = helper.createTestDom();
 		dom.innerHTML = MARKUP;
 		sometime(function later() {
 			var fake = ts.ui.get(dom.querySelector('select + input'));
@@ -27,5 +26,4 @@ describe('ts.ui.SelectSpirit', function likethis() {
 			done();
 		});
 	});
-
 });

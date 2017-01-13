@@ -29,17 +29,17 @@ ts.ui.CoreModule = gui.module('core-gui@tradeshift.com', {
 		['[data-ts=Icon]', ts.ui.IconSpirit],
 		['[data-ts=Spinner]', ts.ui.SpinnerSpirit],
 		['[data-ts=Modal]', ts.ui.ModalSpirit],
-		['[data-ts=Spirit]', ts.ui.Spirit],
+		['[data-ts=Spirit]', ts.ui.Spirit]
 	],
 
 	/**
-	 * This type of selector (as used a lot in forms) will slow the stuff down, 
-	 * but it does make the markup easy to author. We'll at least make sure that 
+	 * This type of selector (as used a lot in forms) will slow the stuff down,
+	 * but it does make the markup easy to author. We'll at least make sure that
 	 * the channelings are not introduced before they needed.
 	 * @see {ts.ui.ButtonMenuSpirit#onconstruct}
 	 */
 	channelComplexSelectors: function(enabled) {
-		if(enabled && !this._channeled) {
+		if (enabled && !this._channeled) {
 			this._channeled = true;
 			gui.channel([
 				['.ts-buttons button, .ts-buttons a', ts.ui.ButtonSpirit]
@@ -51,9 +51,9 @@ ts.ui.CoreModule = gui.module('core-gui@tradeshift.com', {
 	 * Setup plugins (for all spirits).
 	 */
 	plugin: {
-		'guistatus' : ts.ui.StatusPlugin,
-		'guilayout' : ts.ui.LayoutPlugin,
-		'attention' : ts.ui.AttentionPlugin
+		guistatus: ts.ui.StatusPlugin,
+		guilayout: ts.ui.LayoutPlugin,
+		attention: ts.ui.AttentionPlugin
 	},
 
 	/**
@@ -69,14 +69,13 @@ ts.ui.CoreModule = gui.module('core-gui@tradeshift.com', {
 	},
 
 	/**
-	 * Let the spirit know what attribute value we use to channel it 
+	 * Let the spirit know what attribute value we use to channel it
 	 * so that it may add that attribute value as a CSS classname.
 	 * TODO(jmo@): Split this up into something more readable :)
 	 */
 	onbeforespiritualize: function() {
-		
 		var ATTRIBUTE = /^\[data-ts=[a-zA-Z]+\]$/;
-		
+
 		function allcssnames(constructor) {
 			return gui.Class.ancestorsAndSelf(constructor).map(function(c) {
 				return c.$cssname || undefined;
@@ -84,12 +83,12 @@ ts.ui.CoreModule = gui.module('core-gui@tradeshift.com', {
 				return !!cssname;
 			}).join(' ');
 		}
-		
+
 		gui.getChannels().map(function(channel) {
 			var cssselector = channel[0];
 			var constructor = channel[1];
-			if(cssselector.trim().match(ATTRIBUTE)) {
-				if(constructor.$cssname) {
+			if (cssselector.trim().match(ATTRIBUTE)) {
+				if (constructor.$cssname) {
 					throw new Error(constructor + ' appears to be channeled twice? ' + constructor.$cssname);
 				} else {
 					var attval = cssselector.replace('data-ts=', '').slice(1, -1);
@@ -105,7 +104,6 @@ ts.ui.CoreModule = gui.module('core-gui@tradeshift.com', {
 			constructor.$cssnames = allcssnames(constructor);
 		});
 	},
-
 
 	// Private ...................................................................
 
@@ -126,15 +124,15 @@ ts.ui.CoreModule = gui.module('core-gui@tradeshift.com', {
 
 	/**
 	 * Special plugins for the {ts.ui.DocumentSpirit}
-	 * to manage the layout model, dialogs and asides 
+	 * to manage the layout model, dialogs and asides
 	 * and root level panels (that create TopBar tabs).
 	 */
 	_documentplugins: function() {
-		ts.ui.DocumentSpirit.
-			plugin('layoutplugin', ts.ui.DocumentLayoutPlugin).
-			plugin('dialogplugin', ts.ui.DocumentDialogPlugin).
-			plugin('asideplugin', ts.ui.DocumentAsidePlugin).
-			plugin('panelplugin', ts.ui.DocumentPanelPlugin);
+		ts.ui.DocumentSpirit
+			.plugin('layoutplugin', ts.ui.DocumentLayoutPlugin)
+			.plugin('dialogplugin', ts.ui.DocumentDialogPlugin)
+			.plugin('asideplugin', ts.ui.DocumentAsidePlugin)
+			.plugin('panelplugin', ts.ui.DocumentPanelPlugin);
 	},
 
 	/**
@@ -153,7 +151,7 @@ ts.ui.CoreModule = gui.module('core-gui@tradeshift.com', {
 	_defaultcolors: function() {
 		var cssp = gui.CSSPlugin;
 		var html = document.documentElement;
-		if(!html.className.includes('ts-bg')) {
+		if (!html.className.includes('ts-bg')) {
 			cssp.add(html, 'ts-bg-lite');
 		}
 	}

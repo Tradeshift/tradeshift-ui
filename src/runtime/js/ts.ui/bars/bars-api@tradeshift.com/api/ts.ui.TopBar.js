@@ -6,7 +6,7 @@ ts.ui.TopBar = {
 
 	/**
 	 * @deprecated so don't use this!
-	 * Get or set tabs and/or buttons. 
+	 * Get or set tabs and/or buttons.
 	 * @param @optional {object} opt_json
 	 * @returns {ts.ui.TopBarModel}
 	 */
@@ -47,7 +47,7 @@ ts.ui.TopBar = {
 	showBack: function(callback) {},
 
 	/**
-	 * Setup to show Forward button (with associated callback). 
+	 * Setup to show Forward button (with associated callback).
 	 * Use 'null' argument to remove the button.
 	 * @param {function|null} callback
 	 * @returns {ts.ui.TopBarModel}
@@ -67,7 +67,7 @@ ts.ui.TopBar = {
 	hideNext: function() {},
 
 	/**
-	 * Setup to show ts.ui.Topbar. 
+	 * Setup to show ts.ui.Topbar.
 	 * @returns {ts.ui.TopBarModel}
 	 */
 	show: function() {},
@@ -102,12 +102,12 @@ ts.ui.TopBar = {
 	 * Identification.
 	 * @returns {string}
 	 */
-	toString: function(){
+	toString: function() {
 		return '[object ts.ui.TopBar]';
 	},
 
 	/**
-	 * Ad-hoc localization interface. Omit the 
+	 * Ad-hoc localization interface. Omit the
 	 * argument to get the current localization.
 	 * TODO: Greenfield this (add xframe support).
 	 * @param @optional {Object} config
@@ -115,7 +115,6 @@ ts.ui.TopBar = {
 	 */
 	localize: function(config) {}
 };
-
 
 // Implementation ..............................................................
 
@@ -127,11 +126,9 @@ ts.ui.TopBar = {
  * @using {gui.Type} Type
  */
 (function using(api, hidden, chained, confirmed, Type) {
-
 	var topbar = null; // {ts.ui.TopBarModel}
-	var spirit = null; // {ts.ui.TopBarSpirit}
 	var locale = null;
-	
+
 	/**
 	 * Setup to initialize the topbar whenever any method is called upon it.
 	 * @param {function) base
@@ -145,7 +142,7 @@ ts.ui.TopBar = {
 	}
 
 	/**
-	 * Append or remove Back/Forward button. 
+	 * Append or remove Back/Forward button.
 	 * We always nuke the existing button.
 	 * @param {string} insert (unshift|push)
 	 * @param {object} button
@@ -154,10 +151,10 @@ ts.ui.TopBar = {
 		var nav = topbar.navigation;
 		var but = nav.get(button.id);
 		var add = button.onclick !== null;
-		if(but) {
+		if (but) {
 			nav.remove(but);
 		}
-		if(add) {
+		if (add) {
 			nav[insert](button);
 		}
 	}
@@ -188,7 +185,7 @@ ts.ui.TopBar = {
 						topbar.tabs.push(json);
 					});
 				}
-				if(!arguments.length) {
+				if (!arguments.length) {
 					return topbar.tabs;
 				}
 			})
@@ -207,7 +204,7 @@ ts.ui.TopBar = {
 						topbar.buttons.push(json);
 					});
 				}
-				if(!arguments.length) {
+				if (!arguments.length) {
 					return topbar.buttons;
 				}
 			})
@@ -220,7 +217,7 @@ ts.ui.TopBar = {
 		 */
 		title: api(chained(confirmed('(string)')(
 			init(function(title) {
-				if(arguments.length) {
+				if (arguments.length) {
 					topbar.title = title;
 				} else {
 					return topbar.title;
@@ -235,7 +232,7 @@ ts.ui.TopBar = {
 		 */
 		defaultTitle: api(chained(confirmed('(string)')(
 			init(function(defaultTitle) {
-				if(arguments.length) {
+				if (arguments.length) {
 					topbar.defaultTitle = defaultTitle;
 				} else {
 					return topbar.defaultTitle;
@@ -299,16 +296,16 @@ ts.ui.TopBar = {
 		})),
 
 		/**
-		 * Hide ts.ui.Topbar. Because this won't have any effect in 
-		 * mobile  breakpoint, we'll also clear the TopBar (so that 
+		 * Hide ts.ui.Topbar. Because this won't have any effect in
+		 * mobile	breakpoint, we'll also clear the TopBar (so that
 		 * in mobile, the effect is simply to clear the TopBar).
 		 * @returns {ts.ui.TopBar}
 		 */
-		hide: api(chained(function() { 
+		hide: api(chained(function() {
 			topbar.visible = false;
 			topbar.clear();
 		})),
-		
+
 		/**
 		 * Clear the tabs and buttons and title and so on.
 		 * @returns {ts.ui.TopBar}
@@ -316,12 +313,11 @@ ts.ui.TopBar = {
 		clear: api(chained(function() {
 			topbar.clear();
 		})),
-		
 
 		// Privileged ..............................................................
 
 		/**
-		 * 
+		 *
 		 * @see {ts.ui.TopBarSpirit#onconfigure}
 		 */
 		$getmodel: init(function() {
@@ -329,17 +325,17 @@ ts.ui.TopBar = {
 		}),
 
 		/**
-		 * TODO: This is copy-pasted from some other API, refactor for common 
+		 * TODO: This is copy-pasted from some other API, refactor for common
 		 * inheritance chain (and supress "privacy" concerns for simpler code).
 		 */
 		localize: api(chained(function(arg) {
-			if(arguments.length) {
-				switch(gui.Type.of(arg)) {
+			if (arguments.length) {
+				switch (gui.Type.of(arg)) {
 					case 'object':
 						var newlocale = arg;
-						if(!locale || Object.keys(locale).every(function(key) {
+						if (!locale || Object.keys(locale).every(function(key) {
 							var has = newlocale.hasOwnProperty(key);
-							if(!has) {
+							if (!has) {
 								console.error('Missing translations for ' + key);
 							}
 							return has;
@@ -349,7 +345,7 @@ ts.ui.TopBar = {
 						break;
 					case 'string':
 						var key = arg;
-						if(locale && locale.hasOwnProperty(key)) {
+						if (locale && locale.hasOwnProperty(key)) {
 							return locale[key];
 						} else {
 							console.error('Missing translations for ' + key);
@@ -362,9 +358,9 @@ ts.ui.TopBar = {
 		}))
 
 	});
-	
+
 	/**
-	 * Generate methods `blue` `green` `purple` and so 
+	 * Generate methods `blue` `green` `purple` and so
 	 * on to change the general color scheme of the TopBar.
 	 */
 	gui.Object.each(ts.ui.BACKGROUND_COLORS, function(methodname, classname) {
@@ -373,7 +369,6 @@ ts.ui.TopBar = {
 			return ts.ui.TopBar;
 		});
 	});
-
 }(
 	ts.ui.Greenfield.api, // TODO: This is not used no more...
 	gui.Object.hidden, // TODO: This also makes litte sense now...
@@ -386,6 +381,6 @@ ts.ui.TopBar = {
  * Default-localize the TopBar.
  */
 ts.ui.TopBar.localize({
-	'options': 'Options',
-	'more' : 'More...'
+	options: 'Options',
+	more: 'More...'
 });

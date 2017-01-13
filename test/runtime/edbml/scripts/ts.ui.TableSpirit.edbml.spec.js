@@ -1,5 +1,4 @@
 describe('ts.ui.TableSpirit.edbml', function likethis() {
-
 	function getspirit(html, id) {
 		var dom = helper.createTestDom();
 		dom.innerHTML = html;
@@ -21,7 +20,7 @@ describe('ts.ui.TableSpirit.edbml', function likethis() {
 	it('should contain gutter', function(done) {
 		var html = '<div data-ts="Table" id="mytable"></div>';
 		var spirit = getspirit(html, 'mytable');
-		spirit.selectable().rows([{ cells: ['A', 'D', 'G'], selected: true}]);
+		spirit.selectable().rows([{cells: ['A', 'D', 'G'], selected: true}]);
 		sometime(function later() {
 			expect(spirit.element.innerHTML).toContain('ts-table-gutter');
 			done();

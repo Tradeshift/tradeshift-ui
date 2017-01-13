@@ -25,7 +25,6 @@ edbml.SoftUpdate = edbml.Update.extend({
 		delete this.xelement;
 	},
 
-
 	// Private ...................................................................
 
 	/**

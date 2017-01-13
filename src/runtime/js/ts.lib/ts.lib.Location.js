@@ -2,7 +2,6 @@
  * Location.
  */
 ts.lib.Location = (function() {
-
 	/**
 	 * Request for the hosting {ts.ui.FrameSpirit} to update location href.
 	 * @param {string} href
@@ -60,5 +59,4 @@ ts.lib.Location = (function() {
 			console.error('todo');
 		}
 	};
-
 }());

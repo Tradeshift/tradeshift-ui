@@ -98,12 +98,12 @@ gui.LifePlugin = gui.TrackerPlugin.extend({
 	/**
 	 * Add one or more action handlers.
 	 * @param {object} arg
-	 * @param @optional {object} handler implements LifeListener 
+	 * @param @optional {object} handler implements LifeListener
 	 * interface, defaults to this.spirit
 	 * @returns {gui.Spirit}
 	 */
 	add: function(arg, handler) {
-		handler = handler ? handler : this.spirit;
+		handler = handler || this.spirit;
 		gui.Array.make(arg).forEach(function(type) {
 			if (this._addchecks(type, [handler])) {
 				if (!this._handlers[type]) {
@@ -118,12 +118,12 @@ gui.LifePlugin = gui.TrackerPlugin.extend({
 	/**
 	 * Remove one or more action handlers.
 	 * @param {object} arg
-	 * @param @optional {object} handler implements LifeListener 
+	 * @param @optional {object} handler implements LifeListener
 	 * interface, defaults to spirit
 	 * @returns {gui.Spirit}
 	 */
 	remove: function(arg, handler) {
-		handler = handler ? handler : this.spirit;
+		handler = handler || this.spirit;
 		gui.Array.make(arg).forEach(function(type) {
 			if (this._removechecks(type, [handler])) {
 				if (this._handlers[type]) { // weirdo Gecko condition...
@@ -139,7 +139,7 @@ gui.LifePlugin = gui.TrackerPlugin.extend({
 	},
 
 	/**
-	 * Dispatch type and cleanup handlers for 
+	 * Dispatch type and cleanup handlers for
 	 * life cycle events that only occurs once.
 	 * TODO: support optional data argument
 	 * @param {String} type

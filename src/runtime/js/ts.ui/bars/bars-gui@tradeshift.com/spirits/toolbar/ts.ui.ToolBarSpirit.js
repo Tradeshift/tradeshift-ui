@@ -12,11 +12,10 @@
  * @using {ts.ui.BACKGROUND_COLORS} bgcolors
  */
 ts.ui.ToolBarSpirit = (function using(chained, confirmed, Client, Type, guiArray, CSSPlugin, DOMPlugin, TextModel, SearchModel, TopBar, ButtonModel, bgcolors) {
-
 	/*
-	 * When rendering as a statusbar, we'll split into multiple rows 
-	 * when we hit this breakpoint. Note that this is only used in 
-	 * the Table component for now, might need an adjustment later. 
+	 * When rendering as a statusbar, we'll split into multiple rows
+	 * when we hit this breakpoint. Note that this is only used in
+	 * the Table component for now, might need an adjustment later.
 	 * Breakpoint corresponds to an iPad in vertical orientation.
 	 */
 	var BREAKPOINT_1 = 768;
@@ -48,15 +47,15 @@ ts.ui.ToolBarSpirit = (function using(chained, confirmed, Client, Type, guiArray
 	function sumwidth(sum, li) {
 		return sum + li.offsetWidth;
 	}
-	
+
 	return ts.ui.BarSpirit.extend({
-		
+
 		/**
 		 * Bar is visible?
 		 * @type {boolean}
 		 */
 		visible: true,
-		
+
 		/**
 		 * @see https://github.com/wunderbyte/spiritual-gui/issues/109
 		 */
@@ -64,7 +63,7 @@ ts.ui.ToolBarSpirit = (function using(chained, confirmed, Client, Type, guiArray
 			this._validate();
 			this.super.onenter();
 			this.action.add([edbml.ACTION_RENDER, 'ts-action-search']);
-			if(!this.css.name().includes('ts-bg')) {
+			if (!this.css.name().includes('ts-bg')) {
 				this.lite();
 			}
 		},
@@ -91,7 +90,7 @@ ts.ui.ToolBarSpirit = (function using(chained, confirmed, Client, Type, guiArray
 		 */
 		onaction: function(a) {
 			this.super.onaction(a);
-			switch(a.type) {
+			switch (a.type) {
 				case edbml.ACTION_RENDER:
 					this._flex();
 					break;
@@ -111,35 +110,35 @@ ts.ui.ToolBarSpirit = (function using(chained, confirmed, Client, Type, guiArray
 			this.super.onevent(e);
 			var title = this.dom.q('.ts-toolbar-title');
 			var search = this.dom.q('.ts-search', ts.ui.SearchSpirit);
-			if(title && search && DOMPlugin.contains(title, e.target)) {
+			if (title && search && DOMPlugin.contains(title, e.target)) {
 				search.focus();
 			}
 		},
-		
+
 		/**
-		 * Handle model changes. 
+		 * Handle model changes.
 		 * @param {Array<edb.Change>} changes
 		 */
 		onchange: function(changes) {
 			this.super.onchange(changes);
 			changes.forEach(function(c) {
-				if(c.name === 'hascontent') {
+				if (c.name === 'hascontent') {
 					this.$hascontent(c.newValue);
 				}
 			}, this);
 		},
-		
+
 		/**
 		 * Clean up.
 		 * TODO: Again, this should be handled automatically some day.
 		 */
 		ondestruct: function() {
 			this.super.ondestruct();
-			if(this._ismodelled()) {
+			if (this._ismodelled()) {
 				this._model.removeObserver(this);
 			}
 		},
-		
+
 		/**
 		 * Show tabs as menu in aside (this gets invoked by the EDBML template).
 		 * @see ts.ui.TopBarSpirit.edbml
@@ -154,7 +153,7 @@ ts.ui.ToolBarSpirit = (function using(chained, confirmed, Client, Type, guiArray
 				title: TopBar.localize('more'),
 				onclosed: function() {
 					this.dispose();
-					if(selecteditem) { // postponed to transition the Aside elegantly
+					if (selecteditem) { // postponed to transition the Aside elegantly
 						self._arraymove(tabs, selecteditem, 1);
 					}
 				}
@@ -166,7 +165,7 @@ ts.ui.ToolBarSpirit = (function using(chained, confirmed, Client, Type, guiArray
 						selecteditem = item.id;
 						aside.close();
 					},
-					items: tabs.filter(function(tab){
+					items: tabs.filter(function(tab) {
 						return !tab.$isontop;
 					}).map(function(tab) {
 						return {
@@ -189,7 +188,7 @@ ts.ui.ToolBarSpirit = (function using(chained, confirmed, Client, Type, guiArray
 			var model = this._model;
 			var selected = null;
 			var aside = ts.ui.Aside({
-				title: TopBar.localize('options'), //@TODO,use the topbar localize 
+				title: TopBar.localize('options'), // @TODO,use the topbar localize
 				items: [
 					ts.ui.Buttons({
 						items: buttons.map(function(button) {
@@ -205,7 +204,7 @@ ts.ui.ToolBarSpirit = (function using(chained, confirmed, Client, Type, guiArray
 				],
 				onclosed: function() {
 					this.dispose();
-					if(selected && selected.onclick){ 
+					if (selected && selected.onclick) {
 						selected.click();
 					}
 				}
@@ -217,9 +216,9 @@ ts.ui.ToolBarSpirit = (function using(chained, confirmed, Client, Type, guiArray
 		 * Set the toolbar to macro.
 		 * @returns {ts.ui.ToolBarSpirit}
 		 */
-		macro: chained(function(){
+		macro: chained(function() {
 			this.css.remove(ts.ui.CLASS_MICRO).add(ts.ui.CLASS_MACRO);
-			if(this._outsidemain()) {
+			if (this._outsidemain()) {
 				this.guilayout.shiftGlobal(false, 'ts-has-toolbar-first-ts-micro');
 				this.guilayout.shiftGlobal(true, 'ts-has-toolbar-first-ts-macro');
 				this.guilayout.flexGlobal();
@@ -230,9 +229,9 @@ ts.ui.ToolBarSpirit = (function using(chained, confirmed, Client, Type, guiArray
 		 * Set the toolbar to micro.
 		 * @returns {ts.ui.ToolBarSpirit}
 		 */
-		micro: chained(function(){
+		micro: chained(function() {
 			this.css.remove(ts.ui.CLASS_MACRO).add(ts.ui.CLASS_MICRO);
-			if(this._outsidemain()) {
+			if (this._outsidemain()) {
 				this.guilayout.shiftGlobal(false, 'ts-has-toolbar-first-ts-macro');
 				this.guilayout.shiftGlobal(true, 'ts-has-toolbar-first-ts-micro');
 				this.guilayout.flexGlobal();
@@ -245,12 +244,12 @@ ts.ui.ToolBarSpirit = (function using(chained, confirmed, Client, Type, guiArray
 		 * @returns {string|ts.ui.ToolBarSpirit}
 		 */
 		title: confirmed('(string)')(
-			chained(function(opt_string) {
+			chained(function(opt_json) {
 				var model = this.model();
 				if (arguments.length) {
-					if(opt_string.trim().indexOf('{') !== 0) {
+					if (opt_json.trim().indexOf('{') !== 0) {
 						this.$hascontent();
-						model.title = opt_string;
+						model.title = opt_json;
 						this.event.add('click');
 						this.$hascontent();
 					}
@@ -283,7 +282,7 @@ ts.ui.ToolBarSpirit = (function using(chained, confirmed, Client, Type, guiArray
 				}
 			})
 		),
-		
+
 		/**
 		 * Get or set the buttons.
 		 * @param @optional {Array<object>} opt_json
@@ -323,10 +322,10 @@ ts.ui.ToolBarSpirit = (function using(chained, confirmed, Client, Type, guiArray
 				}
 			})
 		),
-		
+
 		/**
-		 * Attempt to economize space by automatically transferring 
-		 * any assigned buttons (especially tertiary) into an Aside. 
+		 * Attempt to economize space by automatically transferring
+		 * any assigned buttons (especially tertiary) into an Aside.
 		 * Note that this is `true` by defult (make space for tabs).
 		 * @param {boolean} compact
 		 * @returns {ts.ui.TableSpirit|boolean}
@@ -334,10 +333,10 @@ ts.ui.ToolBarSpirit = (function using(chained, confirmed, Client, Type, guiArray
 		compact: chained(function() {
 			this.model().compact = true;
 		}),
-		
+
 		/**
-		 * Don't attempt to economize space by automatically 
-		 * moving buttons (especially tertiary) into an Aside. 
+		 * Don't attempt to economize space by automatically
+		 * moving buttons (especially tertiary) into an Aside.
 		 * @returns {ts.ui.TableSpirit|boolean}
 		 */
 		uncompact: chained(function() {
@@ -352,7 +351,7 @@ ts.ui.ToolBarSpirit = (function using(chained, confirmed, Client, Type, guiArray
 		 */
 		model: ts.ui.Spirit.createModelMethod(
 			ts.ui.ToolBarModel,
-			"ts.ui.ToolBarSpirit.edbml",
+			'ts.ui.ToolBarSpirit.edbml',
 			function observe(model) {
 				model.addObserver(this);
 			}
@@ -375,31 +374,31 @@ ts.ui.ToolBarSpirit = (function using(chained, confirmed, Client, Type, guiArray
 			this.super.onflex();
 			this._layout();
 		},
-		
+
 		/**
 		 * Hide the ToolBar.
 		 * @returns {ts.ui.ToolBarSpirit}
 		 */
 		hide: chained(function() {
-			if(this.visible) {
+			if (this.visible) {
 				this.dom.hide();
 				this.visible = false;
 				this._layoutmain(false);
 			}
 		}),
-		
+
 		/**
 		 * Show the ToolBar.
 		 * @returns {ts.ui.ToolBarSpirit}
 		 */
 		show: chained(function() {
-			if(!this.visible) {
+			if (!this.visible) {
 				this.dom.show();
 				this.visible = true;
 				this._layoutmain(true);
 			}
 		}),
-		
+
 		/**
 		 * Clear the ToolBar.
 		 * TODO: Do we really want to clear the title?
@@ -413,13 +412,12 @@ ts.ui.ToolBarSpirit = (function using(chained, confirmed, Client, Type, guiArray
 			model.title = null;
 		}),
 
-
 		// Privileged ..............................................................
 
 		/**
-		 * EDB model observers are always triggered async and this may cause the 
-		 * (main) toolbars to flicker into existence on page load. When you know 
-		 * that an operation will cause the toolbar to have content, please make 
+		 * EDB model observers are always triggered async and this may cause the
+		 * (main) toolbars to flicker into existence on page load. When you know
+		 * that an operation will cause the toolbar to have content, please make
 		 * sure to call this method manually.
 		 * TODO(jmo@): Some kind of synchronous observer setup to mitigate this.
 		 * @param @optional {boolean} hascontent
@@ -431,53 +429,52 @@ ts.ui.ToolBarSpirit = (function using(chained, confirmed, Client, Type, guiArray
 				has ? 'ts-life-toolbar-hascontent' : 'ts-life-toolbar-nocontent'
 			);
 		},
-		
 
 		// Private .................................................................
-		
+
 		/**
-		 * Confirm that we don't have hardcoded HTML content, 
+		 * Confirm that we don't have hardcoded HTML content,
 		 * because the HTML will just be nuked when we render.
 		 * TODO: Upgrade this to a `throw` in future version.
 		 */
 		_validate: function() {
-			if(this.element.childElementCount) {
+			if (this.element.childElementCount) {
 				console.error(
 					'The ' + this.$classname + ' should not have HTML content.'
 				);
 			}
 		},
-		
+
 		/**
 		 * Compute flex (relative widths) of all members.
 		 * Figure out if all tabs can fit inside the bar.
 		 */
 		_layout: function() {
-			if(this.element.offsetWidth) {
+			if (this.element.offsetWidth) {
 				this._flex();
-				if(this._ismodelled()) {
+				if (this._ismodelled()) {
 					this._calculate(this._model.tabs);
 				}
 			}
 		},
-				
+
 		/**
 		 * Layout the Main section.
 		 * @param {boolean} show
 		 */
 		_layoutmain: function(show) {
-			if(this.guilayout.outsideMain()) {
-				if(this.guilayout.beforeMain()) {
+			if (this.guilayout.outsideMain()) {
+				if (this.guilayout.beforeMain()) {
 					this._looknormal(this.css);
 					this._layoutbefore(show);
 					this._initbreakpoint(show);
-				} else if(this.guilayout.afterMain()) {
+				} else if (this.guilayout.afterMain()) {
 					this._looknormal(this.css);
 					this._layoutafter(show);
 				}
-			}			
+			}
 		},
-		
+
 		/**
 		 * @param {boolean} show
 		 */
@@ -487,7 +484,7 @@ ts.ui.ToolBarSpirit = (function using(chained, confirmed, Client, Type, guiArray
 			var klass = 'ts-has-toolbar-first-' + (micro ? 'ts-micro' : 'ts-macro');
 			this.guilayout.shiftGlobal(show, klass);
 		},
-		
+
 		/**
 		 * @param {boolean} show
 		 */
@@ -495,7 +492,7 @@ ts.ui.ToolBarSpirit = (function using(chained, confirmed, Client, Type, guiArray
 			this.css.shift(show, 'ts-toolbar-last');
 			this.guilayout.shiftGlobal(show, 'ts-has-toolbar-last');
 		},
-		
+
 		/**
 		 * Is positioned outside the Main section? Must be called after init phase.
 		 * @returns {boolean}
@@ -507,19 +504,19 @@ ts.ui.ToolBarSpirit = (function using(chained, confirmed, Client, Type, guiArray
 		},
 
 		/**
-		 * When fixed to top or bottom, the Toolbar covers the MAIN scrollbar. 
+		 * When fixed to top or bottom, the Toolbar covers the MAIN scrollbar.
 		 * Let's offset it some pixels to the left so that it looks OK again.
 		 * @param {gui.CSSPlugin} css
 		 */
 		_looknormal: function(css) {
 			var mobile = ts.ui.isMobilePoint();
 			if (['ts-toolbar-first', 'ts-toolbar-last'].some(function(klass) {
-					return css.contains(klass);
-				})) {
-					css.right = mobile ? Client.scrollBarSize : '';
-				}
+				return css.contains(klass);
+			})) {
+				css.right = mobile ? Client.scrollBarSize : '';
+			}
 		},
-		
+
 		/**
 		 * Match spirit color to model color (we use it for the Asides).
 		 * @param {ts.ui.Spirit} spirit (implements color scheme methods).
@@ -528,7 +525,7 @@ ts.ui.ToolBarSpirit = (function using(chained, confirmed, Client, Type, guiArray
 		 */
 		_matchcolor: function(spirit, model) {
 			gui.Object.each(bgcolors, function(methodname, classname) {
-				if(classname === model.color) {
+				if (classname === model.color) {
 					spirit[methodname]();
 				}
 			});
@@ -546,7 +543,7 @@ ts.ui.ToolBarSpirit = (function using(chained, confirmed, Client, Type, guiArray
 			var items = lefts.concat(right);
 			var small = avail <= BREAKPOINT_1;
 			this._cnames(small, lefts, right, extra);
-			if (small && this.css.contains('ts-statusbar')) { //TODO: move to StatusBarSpirit!
+			if (small && this.css.contains('ts-statusbar')) { // TODO: move to StatusBarSpirit!
 				this._flexnone(items.concat(extra));
 			} else {
 				if (extra.length) {
@@ -589,7 +586,7 @@ ts.ui.ToolBarSpirit = (function using(chained, confirmed, Client, Type, guiArray
 		},
 
 		/**
-		 * Toggle some classnames. Mostly relevant for 
+		 * Toggle some classnames. Mostly relevant for
 		 * statusbar rendering in the mobile breakpoint.
 		 * @param {boolean} small
 		 * @param {Array} lefts
@@ -629,22 +626,22 @@ ts.ui.ToolBarSpirit = (function using(chained, confirmed, Client, Type, guiArray
 		},
 
 		/**
-		 * Hide tabs that won't fit (and show the More-tab). Note 
+		 * Hide tabs that won't fit (and show the More-tab). Note
 		 * that the More-tab is not rendered in mobile breakpoint.
 		 * @param {Array<ts.ui.TabModel>} tabs
 		*/
 		_calculate: function calculate(tabs) {
 			var moretab, gonetab, avail, width, dofit;
-			if(tabs && tabs.getLength()) {
-				if((moretab = this.dom.q('.ts-tab-more', ts.ui.Spirit))) {
+			if (tabs && tabs.getLength()) {
+				if ((moretab = this.dom.q('.ts-tab-more', ts.ui.Spirit))) {
 					moretab.css.display = '';
 					avail = this._getavailwidth(22);
 					this._setmaxwidth(avail);
 					width = 44; // width of the more-tab button
 					dofit = this._toggletabs(tabs, width, avail);
 					moretab.css.display = dofit ? 'none' : '';
-					if(!dofit) { // make sure selected tab is visible
-						if((gonetab = tabs.find(function ishidden(tab) {
+					if (!dofit) { // make sure selected tab is visible
+						if ((gonetab = tabs.find(function ishidden(tab) {
 							return tab.selected && !tab.$isontop;
 						}))) {
 							this._arraymove(tabs, gonetab.$instanceid, 1);
@@ -673,9 +670,9 @@ ts.ui.ToolBarSpirit = (function using(chained, confirmed, Client, Type, guiArray
 		 */
 		_arraymove: function(arr, id, toIndex) {
 			var fromIndex = -1;
-			var element = arr.find(function(item, index){
+			var element = arr.find(function(item, index) {
 				fromIndex = index;
-				return item.$instanceid == id;
+				return item.$instanceid === id;
 			});
 			element.selected = true;
 			arr.splice(fromIndex, 1);
@@ -694,12 +691,12 @@ ts.ui.ToolBarSpirit = (function using(chained, confirmed, Client, Type, guiArray
 			var oldie = Client.isExplorer9 || Client.isExplorer10;
 			return tabs.reduce(function(isontop, tabmodel) {
 				tabspirit = that.dom.q('#' + tabmodel.$instanceid, ts.ui.Spirit);
-				if(isontop) {
+				if (isontop) {
 					tabspirit.css.display = '';
 					taboffset = tabspirit.box.width + (oldie ? 1 : 0);
 					isontop = tabsoffset + taboffset < availwidth - moreoffset;
 				}
-				if(isontop) {
+				if (isontop) {
 					tabsoffset += taboffset;
 					tabmodel.$isontop = true;
 				} else {
@@ -720,7 +717,6 @@ ts.ui.ToolBarSpirit = (function using(chained, confirmed, Client, Type, guiArray
 			return this.box.width - (right ? right.offsetWidth : 0) - (center ? center.offsetWidth : 0) - (buffer || 0);
 		}
 
-
 	}, { // Static ...............................................................
 
 		/**
@@ -736,7 +732,6 @@ ts.ui.ToolBarSpirit = (function using(chained, confirmed, Client, Type, guiArray
 		}
 
 	});
-
 }(
 	gui.Combo.chained,
 	gui.Arguments.confirmed,

@@ -18,15 +18,13 @@ ts.ui.UserCard.toString = function() {
 };
 
 /**
- * Ad-hoc localization interface. Omit the 
+ * Ad-hoc localization interface. Omit the
  * argument to get the current localization.
  * TODO: Greenfield this (add xframe support).
  * @param @optional {object|string} config
  * @returns {object}
  */
 ts.ui.UserCard.localize = function(config) {};
-
-
 
 // Implementation ..............................................................
 
@@ -36,7 +34,6 @@ ts.ui.UserCard.localize = function(config) {};
  * @using {gui.Combo#chained} chained
  */
 (function UserCard(api, hidden, chained) {
-
 	var locale = null;
 
 	/**
@@ -56,9 +53,9 @@ ts.ui.UserCard.localize = function(config) {};
 				switch (c.name) {
 					case 'isOpen':
 						var clone = ts.ui.UserCardModel.from(model);
-						clone.type = "ts-details";
+						clone.type = 'ts-details';
 						ts.ui.Aside({
-							title: that.localize("userDetails"),
+							title: that.localize('userDetails'),
 							items: [
 								clone
 							],
@@ -72,17 +69,17 @@ ts.ui.UserCard.localize = function(config) {};
 		}),
 
 		/**
-		 * TODO: This is copy-pasted from some other API, refactor for common 
+		 * TODO: This is copy-pasted from some other API, refactor for common
 		 * inheritance chain (and supress "privacy" concerns for simpler code).
 		 */
 		localize: api(chained(function(arg) {
-			if(arguments.length) {
-				switch(gui.Type.of(arg)) {
+			if (arguments.length) {
+				switch (gui.Type.of(arg)) {
 					case 'object':
 						var newlocale = arg;
-						if(!locale || Object.keys(locale).every(function(key) {
+						if (!locale || Object.keys(locale).every(function(key) {
 							var has = newlocale.hasOwnProperty(key);
-							if(!has) {
+							if (!has) {
 								console.error('Missing translations for ' + key);
 							}
 							return has;
@@ -92,7 +89,7 @@ ts.ui.UserCard.localize = function(config) {};
 						break;
 					case 'string':
 						var key = arg;
-						if(locale && locale.hasOwnProperty(key)) {
+						if (locale && locale.hasOwnProperty(key)) {
 							return locale[key];
 						} else {
 							console.error('Missing translations for ' + key);
@@ -105,7 +102,6 @@ ts.ui.UserCard.localize = function(config) {};
 		}))
 
 	});
-
 }(ts.ui.Greenfield.api, gui.Object.hidden, gui.Combo.chained));
 
 /**
@@ -113,8 +109,8 @@ ts.ui.UserCard.localize = function(config) {};
  */
 ts.ui.UserCard.localize({
 
-	'currentUserDisplayName' : 'You',
-	'userDetails' : 'User Details'
+	currentUserDisplayName: 'You',
+	userDetails: 'User Details'
 
 });
 

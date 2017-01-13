@@ -2,17 +2,16 @@
  * Outputting and connecting.
  */
 describe('edb.InputPlugin', function likethis() {
-
 	var BaseType = edb.Object.extend(); // superclass
 	var DerivedType = BaseType.extend(); // subclass
 
-	afterEach(function cleanup_output() {
-    BaseType.output.revoke();
-    DerivedType.output.revoke();
-  });
+	afterEach(function cleanupOutput() {
+		BaseType.output.revoke();
+		DerivedType.output.revoke();
+	});
 
 	/**
-	 * someinstance.output() will trigger the oninput() of all connected spirits. 
+	 * someinstance.output() will trigger the oninput() of all connected spirits.
 	 * The argument is a {edb.Input} object whose `data` points to that instance.
 	 */
 	it('should connect to the output', function(done) {
@@ -77,7 +76,7 @@ describe('edb.InputPlugin', function likethis() {
 	});
 
 	it('should connect to derived classes automatically', function(done) {
-		var subtype, derived, spirit = gui.Spirit.summon();
+		var derived, spirit = gui.Spirit.summon();
 		spirit.oninput = function(input) {
 			expect(input.data).toBe(derived);
 			expect(input.type).toBe(DerivedType);
@@ -89,5 +88,4 @@ describe('edb.InputPlugin', function likethis() {
 		derived = new DerivedType();
 		derived.output();
 	});
-
 });

@@ -3,7 +3,6 @@
  * @extends {ts.ui.Model}
  */
 ts.ui.FormModel = (function using(chained) {
-
 	return ts.ui.Model.extend({
 
 		/**
@@ -19,7 +18,7 @@ ts.ui.FormModel = (function using(chained) {
 		items: ts.ui.FormItemCollection,
 
 		/**
-		 * Form buttons collection. Buttons will appear below the form. 
+		 * Form buttons collection. Buttons will appear below the form.
 		 * They get scaled to full form width to cope with translation.
 		 * TODO(jmo@): Render this via ButtonGroup once we actually need it!
 		 * @type {ts.ui.ButtonCollection<ts.ui.ButtonModel>}
@@ -58,11 +57,11 @@ ts.ui.FormModel = (function using(chained) {
 			changes.forEach(function(c) {
 				if (c.name === 'submitted' && c.newValue) {
 					this.submitted = false;
-					if(this.onsubmit) {
+					if (this.onsubmit) {
 						this.onsubmit();
 					}
 				}
-			},this);
+			}, this);
 		},
 
 		/**
@@ -90,12 +89,11 @@ ts.ui.FormModel = (function using(chained) {
 		 */
 		submitButton: chained(function(opt_label, opt_icon) {
 			this._button(
-				opt_label || ts.ui.String.LABEL_SUBMIT, 
-				opt_icon || "ts-icon-proceed",
+				opt_label || ts.ui.String.LABEL_SUBMIT,
+				opt_icon || 'ts-icon-proceed',
 				this.submit
 			);
 		}),
-
 
 		// Private ...................................................................
 
@@ -108,10 +106,10 @@ ts.ui.FormModel = (function using(chained) {
 		_button: function(label, icon, action) {
 			var that = this;
 			this.buttons.push({
-				label : label,
+				label: label,
 				icon: icon,
 				onclick: function() {
-					if(action) {
+					if (action) {
 						action.call(that);
 					}
 				}
@@ -119,5 +117,4 @@ ts.ui.FormModel = (function using(chained) {
 		}
 
 	});
-
 }(gui.Combo.chained));

@@ -16,10 +16,10 @@ gui.Function = {
 	create: function(name, params, body, context) {
 		var F = context ? context.Function : Function;
 		name = this.safename(name);
-		params = params ? params.join(",") : "";
-		body = body || "";
+		params = params ? params.join(',') : '';
+		body = body || '';
 		return new F(
-			"return function " + name + " ( " + params + " ) {" + body + "}"
+			'return function ' + name + ' ( ' + params + ' ) {' + body + '}'
 		)();
 	},
 
@@ -30,9 +30,9 @@ gui.Function = {
 	 * @param {function} decorator
 	 * @returns {object}
 	 */
-	decorateBefore: gui.Arguments.confirmed("object|function", "string", "function")(
+	decorateBefore: gui.Arguments.confirmed('object|function', 'string', 'function')(
 		function(target, name, decorator) {
-			return this._decorate("before", target, name, decorator);
+			return this._decorate('before', target, name, decorator);
 		}
 	),
 
@@ -43,9 +43,9 @@ gui.Function = {
 	 * @param {function} decorator
 	 * @returns {object}
 	 */
-	decorateAfter: gui.Arguments.confirmed("object|function", "string", "function")(
+	decorateAfter: gui.Arguments.confirmed('object|function', 'string', 'function')(
 		function(target, name, decorator) {
-			return this._decorate("after", target, name, decorator);
+			return this._decorate('after', target, name, decorator);
 		}
 	),
 
@@ -57,7 +57,7 @@ gui.Function = {
 	 * @returns {object}
 	 */
 	decorateAround: function() {
-		throw new Error("TODO");
+		throw new Error('TODO');
 	},
 
 	/**
@@ -67,12 +67,11 @@ gui.Function = {
 	 * @return {String}
 	 */
 	safename: function(name) {
-		if (name && name.includes(".")) {
-			name = name.split(".").pop();
+		if (name && name.includes('.')) {
+			name = name.split('.').pop();
 		}
-		return name || "";
+		return name || '';
 	},
-
 
 	// Private ...................................................................
 
@@ -88,5 +87,5 @@ gui.Function = {
 		target[name] = gui.Combo[position](decorator)(target[name]);
 		return target;
 	}
-	
+
 };

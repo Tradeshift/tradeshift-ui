@@ -1,16 +1,14 @@
 describe('ts.ui.AsideSpirit.edbml', function likethis() {
-
 	function gethtml(model) {
 		var spirit = ts.ui.AsideSpirit.summon(model);
 		var dom = helper.createTestDom();
 		dom.appendChild(spirit.element);
 		return dom.innerHTML;
 	}
-	
-	it('should contain header and panel', function(done) {
 
+	it('should contain header and panel', function(done) {
 		var model = new ts.ui.AsideModel({
-			title:'leo'
+			title: 'leo'
 		});
 
 		sometime(function later() {
@@ -34,6 +32,4 @@ describe('ts.ui.AsideSpirit.edbml', function likethis() {
 			done();
 		});
 	});
-
-
 });

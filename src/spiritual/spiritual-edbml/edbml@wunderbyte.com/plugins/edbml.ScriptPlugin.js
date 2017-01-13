@@ -3,7 +3,7 @@
  * @extends {gui.Plugin}
  * @using {gui.Combo.chained}
  * @using {gui.Arguments.confirmed}
- * @using {gui.Type} Type 
+ * @using {gui.Type} Type
  * @using {gui.Tick} Tick
  * @using {gui.Object} guiObject
  * @using {gui.Array} guiArray
@@ -11,7 +11,6 @@
  * @using {gui.Broadcast} Broadcast
  */
 edbml.ScriptPlugin = (function using(chained, confirmed, Type, Tick, guiObject, guiArray, DOMPlugin, Broadcast) {
-
 	return gui.Plugin.extend({
 
 		/**
@@ -65,7 +64,7 @@ edbml.ScriptPlugin = (function using(chained, confirmed, Type, Tick, guiObject, 
 				Object.keys(oldprops).forEach(function(id) {
 					try {
 						oldprops[id].object.removeObserver(this);
-					} catch(exception) { // could this possibly fail?
+					} catch (exception) { // could this possibly fail?
 						console.error('Please tell jmo@ that you got this exception');
 					}
 				}, this);
@@ -77,7 +76,7 @@ edbml.ScriptPlugin = (function using(chained, confirmed, Type, Tick, guiObject, 
 		 * @param {function|String} script
 		 * @returns {edb.ScriptPlugin}
 		 */
-		load: chained(confirmed("function|string")(function(script) {
+		load: chained(confirmed('function|string')(function(script) {
 			script = Type.isFunction(script) ? script : guiObject.lookup(script);
 			if (script) {
 				this.loaded = true;
@@ -111,7 +110,7 @@ edbml.ScriptPlugin = (function using(chained, confirmed, Type, Tick, guiObject, 
 		/**
 		 * Run script and write result to DOM (if needed).
 		 */
-		run: function( /* arguments */ ) {
+		run: function(/* arguments */) {
 			Tick.cancelFrame(this._frameindex);
 			if (this.loaded) {
 				if (!this.$input || this.$input.done) {
@@ -136,20 +135,20 @@ edbml.ScriptPlugin = (function using(chained, confirmed, Type, Tick, guiObject, 
 		 * @param {String} html
 		 */
 		write: function(html) {
-			if(!this.suspended) {
+			if (!this.suspended) {
 				var changed = this._html !== html;
 				var focused = this._focusedfield();
 				if (changed) {
 					this._html = html;
 					this._updater.update(html);
-					if(focused) {
+					if (focused) {
 						this._restorefocus(focused);
 					}
 				}
 				this._status(this.spirit);
 				this.ran = true;
 			} else {
-				if(edbml.debug) {
+				if (edbml.debug) {
 					console.debug('(ScriptPlugin was suspended)', this.$instanceid);
 				}
 			}
@@ -160,27 +159,27 @@ edbml.ScriptPlugin = (function using(chained, confirmed, Type, Tick, guiObject, 
 		 * @param {edb.Type|Array<edb.Type>}
 		 * @returns {edb.Type|Array<edb.Type>}
 		 */
-		input: function( /*...arguments*/ ) {
+		input: function(/* ...arguments */) {
 			var inputs, input;
-			if((input = this.$input)) {
+			if ((input = this.$input)) {
 				if (this.loaded) {
 					inputs = guiArray.make(arguments).map(function(type) {
 						return new edb.Input(type.constructor, type);
 					});
 					/*
-					 * This will give the user a chance to update 
+					 * This will give the user a chance to update
 					 * the Type before we evaluate it internally.
-					 * TODO: this would break the CoverSpirit CSS 
+					 * TODO: this would break the CoverSpirit CSS
 					 * animation, look into how this works out...
 					 */
 					var that = this;
-					//gui.Tick.next(function disabled_for_now() {
-						if(!that.$destructed) {
-							inputs.forEach(function(i) {
-								input.$oninput(i);
-							});
-						}
-					//});
+					// gui.Tick.next(function disabled_for_now() {
+					if (!that.$destructed) {
+						inputs.forEach(function(i) {
+							input.$oninput(i);
+						});
+					}
+					// });
 					return inputs.length > 1 ? inputs : inputs[0]; // TODO: not return???
 				} else {
 					this._notloaded();
@@ -193,11 +192,11 @@ edbml.ScriptPlugin = (function using(chained, confirmed, Type, Tick, guiObject, 
 		/**
 		 * Privately revoke type(s). Accepts instances or constructors. Not tested!
 		 */
-		revoke: function( /*arguments*/ ) {
+		revoke: function(/* arguments */) {
 			guiArray.make(arguments).forEach(function(type) {
-				var Type = edb.Type.is(type) ? type.constructor : type;
+				var edbType = edb.Type.is(type) ? type.constructor : type;
 				this.$input.$oninput(
-					new edb.Input(Type, null)
+					new edb.Input(edbType, null)
 				);
 			}, this);
 		},
@@ -237,12 +236,12 @@ edbml.ScriptPlugin = (function using(chained, confirmed, Type, Tick, guiObject, 
 				var id = c.object.$instanceid,
 					clas = c.object.$classname,
 					name = c.name;
-				if(edbml.$rendering && edbml.$rendering[id]) {
-						console.error(
-						'Don\'t update "' + name + '" of the ' + clas +  ' while ' +
+				if (edbml.$rendering && edbml.$rendering[id]) {
+					console.error(
+						'Don\'t update "' + name + '" of the ' + clas + ' while ' +
 						'rendering, it will cause the rendering to run in an endless loop. '
 					);
-				} else if(this._oldprops[id]) {
+				} else if (this._oldprops[id]) {
 					var props = this._oldprops[id].properties;
 					try {
 						if (!name || props[name]) {
@@ -280,30 +279,27 @@ edbml.ScriptPlugin = (function using(chained, confirmed, Type, Tick, guiObject, 
 		 */
 		suspend: chained(function() {
 			this.suspended = true;
-			if(edbml.debug) {
+			if (edbml.debug) {
 				console.debug('(Supending ScriptPlugin)', this.$instanceid);
 			}
-
 		}),
 
 		unsuspend: chained(function(run) {
 			this.suspended = false;
-			if(edbml.debug) {
+			if (edbml.debug) {
 				console.debug('(Unsupending ScriptPlugin)', this.$instanceid);
 			}
 		}),
-
 
 		// Privileged ..............................................................
 
 		/**
 		 * Hijacking the {edb.InputPlugin} which has been
-		 * designed to work without an associated spirit. 
+		 * designed to work without an associated spirit.
 		 * Accessed by method {edbml#$runtimeconfigure}
 		 * @type {edb.InputPlugin}
 		 */
 		$input: null,
-
 
 		// Private .................................................................
 
@@ -368,7 +364,7 @@ edbml.ScriptPlugin = (function using(chained, confirmed, Type, Tick, guiObject, 
 					var keys = Object.keys(pi);
 					var name = keys[0];
 					var atts = pi[name];
-					if (name === "input") {
+					if (name === 'input') {
 						var list = atts.required === false ? optional : required;
 						list.push(guiObject.lookup(atts.type));
 						return true;
@@ -398,7 +394,7 @@ edbml.ScriptPlugin = (function using(chained, confirmed, Type, Tick, guiObject, 
 		_stop: function() {
 			var oldprops = this._oldprops,
 				newprops = this._newprops;
-				edbml.$rendering = null;
+			edbml.$rendering = null;
 			Broadcast.remove(edb.BROADCAST_ACCESS, this);
 			edb.$accessaware = false;
 			Object.keys(oldprops).forEach(function(id) {
@@ -463,7 +459,7 @@ edbml.ScriptPlugin = (function using(chained, confirmed, Type, Tick, guiObject, 
 		 * Run the script while monitoring edb.Type inspections.
 		 * @returns {String}
 		 */
-		_run: function( /* arguments */ ) {
+		_run: function(/* arguments */) {
 			this._start();
 			var html = this._script.apply(this.spirit, arguments);
 			this._stop();
@@ -481,10 +477,10 @@ edbml.ScriptPlugin = (function using(chained, confirmed, Type, Tick, guiObject, 
 		_notready: function() {
 			var input = this.$input,
 				type;
-			(input._watches || []).forEach(function(Type) {
-				if ((type = edb.get(Type))) {
+			(input._watches || []).forEach(function(edbType) {
+				if ((type = edb.get(edbType))) {
 					input.$oninput(
-						new edb.Input(Type, type)
+						new edb.Input(edbType, type)
 					);
 				}
 			}, this);
@@ -504,16 +500,16 @@ edbml.ScriptPlugin = (function using(chained, confirmed, Type, Tick, guiObject, 
 		},
 
 		/**
-		 * No input expected. 
+		 * No input expected.
 		 */
 		_noinputexpected: function() {
 			console.error('Spiritual EDBML: No input expected for ' + this.spirit);
 		},
 
 		/**
-		 * Focus is inside the spirit? Compute a fitting  CSS selector so that we 
-		 * may restore focus if and when the focused field gets replaced. This will 
-		 * in given case nuke the undo stack, but you can't both forget to scope 
+		 * Focus is inside the spirit? Compute a fitting	CSS selector so that we
+		 * may restore focus if and when the focused field gets replaced. This will
+		 * in given case nuke the undo stack, but you can't both forget to scope
 		 * your input fields (with an ID) and have a pleasent website, so please do.
 		 * TODO: warning in debug mode when an ID is missing.
 		 * @returns {string}
@@ -522,12 +518,12 @@ edbml.ScriptPlugin = (function using(chained, confirmed, Type, Tick, guiObject, 
 			var focused;
 			try {
 				focused = document.activeElement;
-			} catch(ieException) { // Occasional IE failure
+			} catch (ieException) { // Occasional IE failure
 				focused = null;
 			}
-			if(focused && Type.isElement(focused)) { // Ridiculous IE 11 failure
-				if(DOMPlugin.contains(this.spirit.element, focused)) {
-					return this._focusselector(focused);	
+			if (focused && Type.isElement(focused)) { // Ridiculous IE 11 failure
+				if (DOMPlugin.contains(this.spirit.element, focused)) {
+					return this._focusselector(focused);
 				}
 			}
 			return null;
@@ -542,10 +538,10 @@ edbml.ScriptPlugin = (function using(chained, confirmed, Type, Tick, guiObject, 
 		_focusselector: function(elm) {
 			var index = -1;
 			var parts = [];
-			function hasid(elm) {
-				if (elm.id) {
+			function hasid(elem) {
+				if (elem.id) {
 					try {
-						DOMPlugin.q(elm.parentNode, elm.id);
+						DOMPlugin.q(elem.parentNode, elem.id);
 						return true;
 					} catch (malformedexception) {}
 				}
@@ -553,20 +549,20 @@ edbml.ScriptPlugin = (function using(chained, confirmed, Type, Tick, guiObject, 
 			}
 			while (elm && elm.nodeType === Node.ELEMENT_NODE) {
 				if (hasid(elm)) {
-					parts.push("#" + elm.id);
+					parts.push('#' + elm.id);
 					elm = null;
 				} else {
-					if (elm.localName === "body") {
-						parts.push("body");
+					if (elm.localName === 'body') {
+						parts.push('body');
 						elm = null;
 					} else {
 						index = DOMPlugin.ordinal(elm) + 1;
-						parts.push(">" + elm.localName + ":nth-child(" + index + ")");
+						parts.push('>' + elm.localName + ':nth-child(' + index + ')');
 						elm = elm.parentNode;
 					}
 				}
 			}
-			return parts.reverse().join("");
+			return parts.reverse().join('');
 		},
 
 		/**
@@ -579,10 +575,10 @@ edbml.ScriptPlugin = (function using(chained, confirmed, Type, Tick, guiObject, 
 			var focus;
 			try {
 				focus = document.activeElement;
-			} catch(ieException) { // Occasional IE failure
+			} catch (ieException) { // Occasional IE failure
 				focus = null;
 			}
-			if(field && field !== focus) { // Occasional IE error
+			if (field && field !== focus) { // Occasional IE error
 				field.focus();
 				if (gui.CSSPlugin.matches(field, texts)) {
 					field.setSelectionRange(
@@ -594,7 +590,6 @@ edbml.ScriptPlugin = (function using(chained, confirmed, Type, Tick, guiObject, 
 		}
 
 	});
-
 }(
 	gui.Combo.chained,
 	gui.Arguments.confirmed,

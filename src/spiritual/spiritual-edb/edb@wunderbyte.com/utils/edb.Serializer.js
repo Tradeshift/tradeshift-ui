@@ -1,5 +1,4 @@
 edb.Serializer = (function scoped() {
-
 	function Serializer() {}
 	Serializer.prototype = {
 
@@ -14,7 +13,7 @@ edb.Serializer = (function scoped() {
 			if (isType(type)) {
 				return JSON.stringify(parse(type), filter, tabs);
 			} else {
-				throw new TypeError("Expected edb.Object|edb.Array");
+				throw new TypeError('Expected edb.Object|edb.Array');
 			}
 		}
 	};
@@ -89,7 +88,7 @@ edb.Serializer = (function scoped() {
 	 */
 	function mapObject(key, value) {
 		var c = key.charAt(0);
-		if (c === "_" || c === "$") {
+		if (c === '_' || c === '$') {
 			return undefined;
 		} else if (isArray(this) && key.match(INTRINSIC)) {
 			return undefined;
@@ -125,5 +124,4 @@ edb.Serializer = (function scoped() {
 	}
 
 	return Serializer;
-
 }());

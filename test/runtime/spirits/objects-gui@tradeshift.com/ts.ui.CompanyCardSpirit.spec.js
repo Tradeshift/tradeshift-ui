@@ -1,12 +1,11 @@
 describe('ts.ui.CompanyCardSpirit', function likethis() {
-
 	var CARDDATA = {
-		id: "6bf17754-f9de-4e31-aa31-bd3ff765b9c2",
+		id: '6bf17754-f9de-4e31-aa31-bd3ff765b9c2',
 		data: {
-			name: "Tradeshift",
-			logo: "assets/logo.png",
+			name: 'Tradeshift',
+			logo: 'assets/logo.png',
 			size: '100–249',
-			location: "San Francisco, California",
+			location: 'San Francisco, California',
 			industry: 'Software & IT',
 			connection: 2
 		}
@@ -21,7 +20,7 @@ describe('ts.ui.CompanyCardSpirit', function likethis() {
 			done();
 		});
 	});
-	
+
 	it('should generate HTML via .render(json)', function(done) {
 		var spirit, dom = helper.createTestDom();
 		dom.innerHTML = '<div data-ts="CompanyCard"></div>';
@@ -30,7 +29,7 @@ describe('ts.ui.CompanyCardSpirit', function likethis() {
 			spirit.render(CARDDATA);
 			var html = spirit.element.innerHTML.replace(/&amp;/g, '&');
 			Object.keys(CARDDATA.data).forEach(function(key) {
-				if(key === 'connection') {
+				if (key === 'connection') {
 					expect(html).toContain('Connected');
 				} else {
 					var value = CARDDATA.data[key];
@@ -49,7 +48,7 @@ describe('ts.ui.CompanyCardSpirit', function likethis() {
 			spirit = ts.ui.get(dom.querySelector('div'));
 			var html = spirit.element.innerHTML.replace(/&amp;/g, '&');
 			Object.keys(CARDDATA.data).forEach(function(key) {
-				if(key === 'connection') {
+				if (key === 'connection') {
 					expect(html).toContain('Connected');
 				} else {
 					var value = CARDDATA.data[key];
@@ -59,5 +58,4 @@ describe('ts.ui.CompanyCardSpirit', function likethis() {
 			done();
 		});
 	});
-
 });

@@ -1,7 +1,7 @@
 /**
  * Support spirits.
  */
-gui.Module.mixin ({
+gui.Module.mixin({
 
 	/**
 	 * Plugins for all spirits.
@@ -34,7 +34,6 @@ gui.Module.mixin ({
 	 */
 	onafterspiritualize: function() {},
 
-	
 	// Privileged ................................................................
 
 	/**
@@ -53,7 +52,6 @@ gui.Module.mixin ({
 		};
 	}
 
-
 }, {}, { // Static .............................................................
 
 	/**
@@ -71,7 +69,7 @@ gui.Module.mixin ({
 				if (gui.Type.isDefined(Plugin)) {
 					gui.Spirit.plugin(prefix, Plugin);
 				} else { // TODO: move check into gui.Spirit.plugin
-					console.error("Undefined plugin for prefix: " + prefix);
+					console.error('Undefined plugin for prefix: ' + prefix);
 				}
 			});
 		}
@@ -87,14 +85,14 @@ gui.Module.mixin ({
 }(gui.Module._modules));
 
 /**
- * Hookup modules to spirits lifecycle. 
+ * Hookup modules to spirits lifecycle.
  * Broadcasts dispatched by {gui.Guide}.
  * @param {Array<gui.Module>} modules
  */
 (function hookup(modules) {
 	gui.Object.each({
-		'onbeforespiritualize': gui.BROADCAST_WILL_SPIRITUALIZE,
-		'onafterspiritualize': gui.BROADCAST_DID_SPIRITUALIZE
+		onbeforespiritualize: gui.BROADCAST_WILL_SPIRITUALIZE,
+		onafterspiritualize: gui.BROADCAST_DID_SPIRITUALIZE
 	}, function associate(action, broadcast) {
 		gui.Broadcast.add(broadcast, {
 			onbroadcast: function() {

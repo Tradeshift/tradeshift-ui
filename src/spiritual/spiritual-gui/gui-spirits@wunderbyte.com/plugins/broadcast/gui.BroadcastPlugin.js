@@ -4,7 +4,6 @@
  * @using {gui.Combo#chained}
  */
 gui.BroadcastPlugin = (function using(chained, confirmed) {
-
 	return gui.TrackerPlugin.extend({
 
 		/**
@@ -13,9 +12,9 @@ gui.BroadcastPlugin = (function using(chained, confirmed) {
 		 * @param @optional {object} handler implements BroadcastListener (defaults to spirit)
 		 * @returns {gui.BroadcastPlugin}
 		 */
-		add: confirmed("string|array")(
+		add: confirmed('string|array')(
 			chained(function(arg, handler) {
-				handler = handler ? handler : this.spirit;
+				handler = handler || this.spirit;
 				var sig = this._global ? null : this._sig;
 				gui.Array.make(arg).forEach(function(type) {
 					if (this._addchecks(type, [handler, this._global])) {
@@ -35,9 +34,9 @@ gui.BroadcastPlugin = (function using(chained, confirmed) {
 		 * @param @optional {object} handler implements BroadcastListener (defaults to spirit)
 		 * @returns {gui.BroadcastPlugin}
 		 */
-		remove: confirmed("string|array")(
+		remove: confirmed('string|array')(
 			chained(function(arg, handler) {
-				handler = handler ? handler : this.spirit;
+				handler = handler || this.spirit;
 				var sig = this._global ? null : this._sig;
 				gui.Array.make(arg).forEach(function(type) {
 					if (this._removechecks(type, [handler, this._global])) {
@@ -57,7 +56,7 @@ gui.BroadcastPlugin = (function using(chained, confirmed) {
 		 * @param @optional {object} data
 		 * @returns {gui.Broadcast}
 		 */
-		dispatch: confirmed("string|array")(
+		dispatch: confirmed('string|array')(
 			function(arg, data) {
 				var result = null;
 				var global = this._global;
@@ -121,7 +120,6 @@ gui.BroadcastPlugin = (function using(chained, confirmed) {
 				return this.dispatch(arg, data);
 			});
 		},
-		
 
 		// Private .................................................................
 
@@ -142,5 +140,4 @@ gui.BroadcastPlugin = (function using(chained, confirmed) {
 		}
 
 	});
-
 }(gui.Combo.chained, gui.Arguments.confirmed));

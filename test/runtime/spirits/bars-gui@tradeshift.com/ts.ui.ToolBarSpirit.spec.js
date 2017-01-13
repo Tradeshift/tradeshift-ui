@@ -1,13 +1,6 @@
 describe('ts.ui.ToolBarSpirit', function likethis() {
-
-	var isExplorer = (
-		navigator.userAgent.indexOf('MSIE') !== -1 ||
-		navigator.appVersion.indexOf('Trident/') > 0
-	);
-
-
 	// Preparations ..............................................................
-	
+
 	function setup(action) {
 		var spirit, dom = helper.createTestDom();
 		dom.innerHTML = '<header data-ts="ToolBar"></header>';
@@ -17,10 +10,6 @@ describe('ts.ui.ToolBarSpirit', function likethis() {
 		});
 	}
 
-	function getsearchlabel(spirit) {
-		return spirit.element.querySelector('.ts-toolbar-search label');
-	}
-
 	function getsearchinput(spirit) {
 		return spirit.element.querySelector('.ts-toolbar-search input');
 	}
@@ -28,20 +17,6 @@ describe('ts.ui.ToolBarSpirit', function likethis() {
 	function getbuttonsitem(spirit) {
 		return spirit.element.querySelector('.ts-toolbar-menu.ts-right');
 	}
-
-	function getpageritem(spirit) {
-		return spirit.element.querySelector('.ts-toolbar-menu.ts-center');	
-	}
-
-	function keydownsearch(spirit) {
-		var i = getsearchinput(spirit);
-		var e = document.createEvent('Event');
-		e.keyCode = 13;
-		e.initEvent('keydown', true, true);
-		i.focus();
-		i.dispatchEvent(e);
-	}
-
 
 	// Expectations ..............................................................
 
@@ -82,7 +57,7 @@ describe('ts.ui.ToolBarSpirit', function likethis() {
 				input = getsearchinput(spirit);
 				expect(input.value).toBe('Hest');
 				spirit.search().value = 'Fest';
-				sometime(function later() {
+				sometime(function later_() {
 					input = getsearchinput(spirit);
 					expect(input.value).toBe('Fest');
 					done();
@@ -95,7 +70,7 @@ describe('ts.ui.ToolBarSpirit', function likethis() {
 		var item;
 		setup(function(spirit) {
 			spirit.buttons([
-				{ 
+				{
 					type: 'ts-primary',
 					label: 'Hest'
 				},
@@ -144,11 +119,32 @@ describe('ts.ui.ToolBarSpirit', function likethis() {
 	// 		});
 	// 	});
 	// });
-	
-	
+
 	// SKETCHY TESTS ZONE ........................................................
-	
+
 	/*
+
+	var isExplorer = (
+		navigator.userAgent.indexOf('MSIE') !== -1 ||
+		navigator.appVersion.indexOf('Trident/') > 0
+	);
+
+	function getsearchlabel(spirit) {
+		return spirit.element.querySelector('.ts-toolbar-search label');
+	}
+
+	function getpageritem(spirit) {
+		return spirit.element.querySelector('.ts-toolbar-menu.ts-center');
+	}
+
+	function keydownsearch(spirit) {
+		var i = getsearchinput(spirit);
+		var e = document.createEvent('Event');
+		e.keyCode = 13;
+		e.initEvent('keydown', true, true);
+		i.focus();
+		i.dispatchEvent(e);
+	}
 
 	// NOTE: this test may be subject to random failure
 	it('should expand/collapse search on focus/blur', function(done) {
@@ -164,7 +160,7 @@ describe('ts.ui.ToolBarSpirit', function likethis() {
 			});
 		});
 	});
-	
+
 	// NOTE: this test may be subject to random failure
 	it('should call onsubmit when ENTER is pressed', function(done) {
 		setup(function(spirit) {
@@ -207,5 +203,4 @@ describe('ts.ui.ToolBarSpirit', function likethis() {
 		});
 	});
 	*/
-
 });

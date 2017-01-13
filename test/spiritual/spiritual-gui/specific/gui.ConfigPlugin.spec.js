@@ -1,10 +1,8 @@
 /**
- * The config plugin matches prefixed DOM attributes 
+ * The config plugin matches prefixed DOM attributes
  * to property setters and method calls on the spirit.
  */
 describe('ts.ConfigPlugin', function likethis() {
-
-
 	// Preparations ..............................................................
 
 	/**
@@ -37,10 +35,9 @@ describe('ts.ConfigPlugin', function likethis() {
 		},
 		booleanmethod: function(value) {
 			this.booleanvalue = value;
-		},
+		}
 	});
 
-	
 	// Expectations ..............................................................
 
 	it('should work with a ts.prefixed attribute', function() {
@@ -83,5 +80,4 @@ describe('ts.ConfigPlugin', function likethis() {
 		element.setAttribute('ts.booleanvalue', 'false');
 		expect(spirit.booleanvalue).toBe(false);
 	});
-
 });

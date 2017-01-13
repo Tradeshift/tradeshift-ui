@@ -17,26 +17,23 @@ module.exports = {
 	 * @param {function} done
 	 */
 	shoot: function(options, done) {
-
 		var diffs = [];
 		var sessions = options.browsers.map(function(string) {
-
 			return function(callback) {
-
 				Out.headline(string);
 				var currenturl = null;
 
 				var browser = new Browser(string);
-				var driver = new webdriver.Builder().
-					  usingServer(URL_BROWSERCLOUD).
-					  withCapabilities({
-					  	'browserName': browser.nickname,
-						'version': browser.versname,
-						'platform': browser.platform,
-						'browserstack.local': true,
-						'browserstack.user': options.user,
-						'browserstack.key': options.key
-					  }).build();
+				var driver = new webdriver.Builder()
+						.usingServer(URL_BROWSERCLOUD)
+						.withCapabilities({
+							browserName: browser.nickname,
+							version: browser.versname,
+							platform: browser.platform,
+							'browserstack.local': true,
+							'browserstack.user': options.user,
+							'browserstack.key': options.key
+						}).build();
 
 				/**
 				 * Create function to load a page.
@@ -50,7 +47,7 @@ module.exports = {
 						return new Promise(function(resolve, reject) {
 							driver.wait(function() {
 								var readyroot = webdriver.By.css('html.ts-ready'); // not needed?
-							  return driver.findElements(readyroot);
+								return driver.findElements(readyroot);
 							}).then(function() {
 								currenturl = url;
 								action(resolve);
@@ -70,10 +67,10 @@ module.exports = {
 					return new Promise(function(resolve, reject) {
 						Out.write(filename);
 						driver.takeScreenshot().then(function(data) {
-							fs.writeFile(File.ensurefolder(target), data.replace(/^data:image\/png;base64,/,''), 'base64', function(err) {
-								if(err) {
+							fs.writeFile(File.ensurefolder(target), data.replace(/^data:image\/png;base64,/, ''), 'base64', function(err) {
+								if (err) {
 									throw err;
-								} else if(options.compare && options.differs) {
+								} else if (options.compare && options.differs) {
 									compare(target, resolve);
 								} else {
 									Out.erase().writeln(filename);
@@ -93,7 +90,7 @@ module.exports = {
 					var source = target.replace(options.folder, options.compare);
 					var differ = target.replace(options.folder, options.differs);
 					var filenm = path.basename(target);
-					if(fs.existsSync(source)) {
+					if (fs.existsSync(source)) {
 						var setup = {
 							url: currenturl,
 							browser: browser.nickname,
@@ -103,10 +100,10 @@ module.exports = {
 						};
 						diff(setup, function(err, similar) {
 							Out.erase();
-							if(err) {
+							if (err) {
 								console.error(err.message);
 							}
-							if(similar) {
+							if (similar) {
 								Out.writeln(filenm, 'green');
 							} else {
 								Out.writeln(filenm, 'red');
@@ -125,18 +122,16 @@ module.exports = {
 				 * @param {Array<function>} shots
 				 */
 				(function nextshot(shots) {
-					var next = shots.shift();	
+					var next = shots.shift();
 					next().then(function() {
-						if(shots.length) {
+						if (shots.length) {
 							nextshot(shots);
 						} else {
 							callback(diffs, done);
 						}
 					});
 				}(screenshots(webdriver, driver, shoot)));
-
 			};
-
 		});
 
 		/**
@@ -145,16 +140,16 @@ module.exports = {
 		 */
 		(function nextsession() {
 			var json, next = sessions.shift();
-			next(function done(diffs, done) {
-				if(sessions.length) {
+			next(function nextDone_(sessionDiffs, nextDone) {
+				if (sessions.length) {
 					nextsession();
 				} else {
-					json = formatjson(diffs, options);
+					json = formatjson(sessionDiffs, options);
 					fs.writeFile('screenshots/diffs.json', json, () => {
-						if(options.compare) {
-							Out.report(diffs.length);
+						if (options.compare) {
+							Out.report(sessionDiffs.length);
 						}
-						done();
+						nextDone();
 					});
 				}
 			});
@@ -166,13 +161,13 @@ module.exports = {
 		 * @param {Object} options
 		 * @returns {string}
 		 */
-		function formatjson(diffs, options) {
+		function formatjson(diffs, options) { // eslint-disable-line no-shadow
 			var dirty = object => !!object.diffs.length;
 			var space = s => s.replace(/-/g, ' ');
 			var title = s => space(path.basename(s).replace(path.extname(s), ''));
 			return JSON.stringify(options.browsers.map(string => {
 				var browser = new Browser(string);
-				var matches = diff => diff.browser === browser.nickname;
+				var matches = diff => diff.browser === browser.nickname; // eslint-disable-line no-shadow
 				return {
 					browser: browser.nicename,
 					diffs: diffs.filter(matches).map(setup => {
@@ -191,11 +186,10 @@ module.exports = {
 
 };
 
-
 // Scoped ......................................................................
 
 /**
- * Browser string breakdown. Let's keep it short 
+ * Browser string breakdown. Let's keep it short
  * in the Gruntfile so it's easy to comment out.
  */
 class Browser {
@@ -230,7 +224,7 @@ class Out {
 	 */
 	static write(text, color) {
 		text = color ? chalk[color](text) : text;
-		stdout.write('  ' + text);
+		stdout.write('	' + text);
 	}
 
 	/**
@@ -240,7 +234,7 @@ class Out {
 	 */
 	static writeln(text, color) {
 		text = color ? chalk[color](text) : text;
-		stdout.write('  ' + text + '\n');
+		stdout.write('	' + text + '\n');
 	}
 
 	/**
@@ -250,7 +244,7 @@ class Out {
 	 */
 	static appendln(text, color) {
 		text = color ? chalk[color](text) : text;
-		stdout.write('  ' + text + '\n');
+		stdout.write('	' + text + '\n');
 	}
 
 	/**
@@ -258,7 +252,7 @@ class Out {
 	 * @returns {Constructor}
 	 */
 	static erase() {
-		stdout.write("\r\x1b[K");
+		stdout.write('\r\x1b[K');
 		return this;
 	}
 
@@ -267,7 +261,7 @@ class Out {
 	 * @param {number} count
 	 */
 	static report(count) {
-		if(count) {
+		if (count) {
 			console.log(`\n${count} diffs found: ${chalk.blue(URL_SCREENSHOTS)}`);
 		} else {
 			console.log(`\nNo diffs found. Please work harder.`);
@@ -295,9 +289,9 @@ class File {
 	 * @eturns {string}
 	 */
 	static ensurefolder(target) {
-		path.dirname(target).split('/').reduce((prev, path) => {
-			var next = prev + path + '/';
-			if (!fs.existsSync(next)){
+		path.dirname(target).split('/').reduce((prev, folderPath) => {
+			var next = prev + folderPath + '/';
+			if (!fs.existsSync(next)) {
 				fs.mkdirSync(next);
 			}
 			return next;

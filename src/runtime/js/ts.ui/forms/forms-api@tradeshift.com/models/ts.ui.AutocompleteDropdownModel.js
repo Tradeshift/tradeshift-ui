@@ -7,7 +7,7 @@ ts.ui.AutocompleteDropdownModel = (function using() {
 		 * Friendly name
 		 */
 		item: 'autocompletedropdown',
-		
+
 		/**
 		 * List of all possible items
 		 * @type {Array.<{key: String, value: String}>}
@@ -19,14 +19,14 @@ ts.ui.AutocompleteDropdownModel = (function using() {
 		 * @type {String}
 		 */
 		filter: '',
-		
+
 		/**
 		 * List of items shown currently.
 		 * TODO: Is this used and/or updated?
-		 * @type {Array.<{key: String, value: String}>} 
+		 * @type {Array.<{key: String, value: String}>}
 		 */
 		filteredAutocompleteList: null,
-		
+
 		/**
 		 * Initialize.
 		 */

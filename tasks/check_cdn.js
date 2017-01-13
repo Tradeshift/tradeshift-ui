@@ -1,7 +1,6 @@
 var http = require('http');
 var url = require('url');
 
-
 /**
  * Checks CDN for existing resources (and fails if they do exist)
  * TODO (jmo@): http://stackoverflow.com/questions/16965582/node-js-http-get-hangs-after-5-requests-to-remote-site
@@ -25,7 +24,7 @@ module.exports = {
 						done(false);
 						return;
 					}
-					grunt.log.writeln(("CDN resource not found:" + cdnUrl).green);
+					grunt.log.writeln(('CDN resource not found:' + cdnUrl).green);
 					checkNext();
 				});
 				req.end();

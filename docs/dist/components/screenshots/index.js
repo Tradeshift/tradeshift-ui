@@ -38,8 +38,8 @@ var initStatusBar = function() {
 };
 
 $(document).ready(function() {
-    initTopBar();
-    initTabBar();
-    initToolBar();
-    initStatusBar();
+		initTopBar();
+		initTabBar();
+		initToolBar();
+		initStatusBar();
 });

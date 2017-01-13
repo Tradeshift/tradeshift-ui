@@ -1,5 +1,5 @@
-/*global module*/
-module.exports = function (karmaConfig) {
+/* global module */
+module.exports = function(karmaConfig) {
 	'use strict';
 
 	var confObj = {
@@ -13,7 +13,7 @@ module.exports = function (karmaConfig) {
 			'test/spiritual/**/*.spec.js',
 			'test/runtime/**/*.spec.js',
 			{pattern: 'dist/*', included: false, served: true},
-			{pattern: 'node_modules/**/*', included: false, served: true},
+			{pattern: 'node_modules/**/*', included: false, served: true}
 		],
 
 		singleRun: true,
@@ -21,15 +21,14 @@ module.exports = function (karmaConfig) {
 		reporters: ['spec'],
 		specReporter: {
 			maxLogLines: 10,
-			suppressErrorSummary: false,  
-			suppressFailed: false, 
-			suppressPassed: false, 
-			suppressSkipped: true, 
-			showSpecTiming: true 
+			suppressErrorSummary: false,
+			suppressFailed: false,
+			suppressPassed: false,
+			suppressSkipped: true,
+			showSpecTiming: true
 		},
 		logLevel: 'INFO'
 	};
-
 
 	karmaConfig.set(confObj);
 };

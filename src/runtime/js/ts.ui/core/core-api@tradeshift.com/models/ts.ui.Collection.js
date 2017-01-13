@@ -5,28 +5,27 @@
  * @extends {edb.Array}
  */
 ts.ui.Collection = (function using(chained, guiArray) {
-
 	/**
-	 * Get model for item type. Mapping is wrapped in a function call 
-	 * because the actual constructors aren't parsed at this point :/ 
-	 * Propbably this whole list should be maintained somewhere else 
+	 * Get model for item type. Mapping is wrapped in a function call
+	 * because the actual constructors aren't parsed at this point :/
+	 * Propbably this whole list should be maintained somewhere else
 	 * and also broken down into *discrete bundles* for future splitup.
 	 * @param {string} item
 	 * @return {constructor}
 	 */
 	function getmodel(item) {
 		return {
-			'text': ts.ui.TextModel,
-			'input': ts.ui.InputModel,
-			'form': ts.ui.FormModel,
-			'menu': ts.ui.MenuModel,
-			'item': ts.ui.ItemModel,
-			'select': ts.ui.SelectModel,
-			'textarea': ts.ui.TextAreaModel,
-			'date': ts.ui.DatePickerModel,
-			'button': ts.ui.ButtonModel,
-			'comment': ts.ui.CommentModel,
-			'action': ts.ui.ActionModel
+			text: ts.ui.TextModel,
+			input: ts.ui.InputModel,
+			form: ts.ui.FormModel,
+			menu: ts.ui.MenuModel,
+			item: ts.ui.ItemModel,
+			select: ts.ui.SelectModel,
+			textarea: ts.ui.TextAreaModel,
+			date: ts.ui.DatePickerModel,
+			button: ts.ui.ButtonModel,
+			comment: ts.ui.CommentModel,
+			action: ts.ui.ActionModel
 		}[item] || (function nomatch() {
 			console.error('"' + item + '" not matched to nothing');
 			return null;
@@ -41,7 +40,7 @@ ts.ui.Collection = (function using(chained, guiArray) {
 	 * @return {constructor|ts.ui.Model}
 	 */
 	function anything(collection, input, assumed) {
-		if(input) {
+		if (input) {
 			if (ts.ui.Model.is(input)) {
 				return input;
 			} else if (input.item) {
@@ -49,7 +48,7 @@ ts.ui.Collection = (function using(chained, guiArray) {
 			} else if (assumed) {
 				return getmodel(assumed);
 			} else {
-				if(collection.constructor === ts.ui.Collection) {
+				if (collection.constructor === ts.ui.Collection) {
 					return null;	// no enforcement in base class
 				} else {
 					return nothing(collection);
@@ -59,7 +58,7 @@ ts.ui.Collection = (function using(chained, guiArray) {
 	}
 
 	/**
-	 * Parse collection input to any allowed type. Allowed types may be defined 
+	 * Parse collection input to any allowed type. Allowed types may be defined
 	 * by a static `allow` property on the collection constructor: `MyCol.allow`
 	 * @see {ts.ui.FormItemsCollection} for an example
 	 * @param {ts.ui.Collection} collection
@@ -70,8 +69,8 @@ ts.ui.Collection = (function using(chained, guiArray) {
 	 */
 	function something(collection, input, allowed, assumed) {
 		var Model, item = input.item;
-		if(item) {
-			if(ts.ui.Model.is(input) && allowed.some(function(it) {
+		if (item) {
+			if (ts.ui.Model.is(input) && allowed.some(function(it) {
 				return (Model = getmodel(it)).is(input);
 			})) {
 				return input;
@@ -106,12 +105,12 @@ ts.ui.Collection = (function using(chained, guiArray) {
 	 * @return {null}
 	 */
 	function nothing(collection) {
-		console.error('Item for ' + collection +' needs an \'item\' property');
+		console.error('Item for ' + collection + ' needs an \'item\' property');
 		return null;
 	}
 
 	return edb.Array.extend({
-	
+
 		/**
 		 * Friendly name.
 		 * @type {string}
@@ -125,8 +124,8 @@ ts.ui.Collection = (function using(chained, guiArray) {
 		disposed: false,
 
 		/**
-		 * Match the incoming JSONs `item` property to a set of 
-		 * known model constructors and parse to an appropriate type. 
+		 * Match the incoming JSONs `item` property to a set of
+		 * known model constructors and parse to an appropriate type.
 		 * The collection can declare (in the `Static` section):
 		 *
 		 * 1) Which kind of `item` it is ready to accept
@@ -138,7 +137,7 @@ ts.ui.Collection = (function using(chained, guiArray) {
 		$of: function(input) {
 			var allowed = this.constructor.allow;
 			var assumed = this.constructor.assume;
-			if(input) {
+			if (input) {
 				return allowed ?
 						something(this, input, allowed, assumed) :
 						anything(this, input, assumed);
@@ -152,7 +151,7 @@ ts.ui.Collection = (function using(chained, guiArray) {
 		 * @param {string|number} id
 		 */
 		get: function(id) {
-			switch(gui.Type.of(id)) {
+			switch (gui.Type.of(id)) {
 				case 'number':
 					return this.super.get(id);
 				case 'string':
@@ -166,7 +165,7 @@ ts.ui.Collection = (function using(chained, guiArray) {
 		 * Bounce collection to HTML string.
 		 * @return {string}
 		 */
-		render: function(){
+		render: function() {
 			return this.map(function(model) {
 				return model.render();
 			}).join('');
@@ -187,33 +186,31 @@ ts.ui.Collection = (function using(chained, guiArray) {
 		 * @param {ts.ui.Model|ts.ui.Collection} model
 		 */
 		contains: function(model) {
-			return this.indexOf(model) >-1;
+			return this.indexOf(model) > -1;
 		},
 
 		/**
-		 * Clear this collection. It's always a good idea to reuse a collection 
-		 * instead of creating a new one, because the existing collection might 
+		 * Clear this collection. It's always a good idea to reuse a collection
+		 * instead of creating a new one, because the existing collection might
 		 * have observers attached. @neal: Is this a good name for this method?
 		 * @returns {ts.ui.Collection}
 		 */
 		clear: chained(function() {
-			while(this.length) {
+			while (this.length) {
 				this.pop();
 			}
 		}),
 
 		/**
-		 * Flag as disposed. This would allow associated spirit to dispose 
+		 * Flag as disposed. This would allow associated spirit to dispose
 		 * (flagged by a boolean so that this may be synchronized xframe).
 		 */
-		dispose: function(){
+		dispose: function() {
 			this.disposed = true;
 			this.super.dispose();
 		}
 
-
 	}, { // Static ...............................................................
-
 
 		/**
 		 * Allowed content models (by `item` property).
@@ -228,5 +225,4 @@ ts.ui.Collection = (function using(chained, guiArray) {
 		assume: null
 
 	});
-
 }(gui.Combo.chained, gui.Array));

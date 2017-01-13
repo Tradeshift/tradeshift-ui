@@ -14,9 +14,6 @@
 	&.ts-expanded {
 		display: block;
 	}
-	&.ts-expanded input {
-		width: 100%;	
-	}
 	.ts-input,
 	.ts-button-clear {
 		position: absolute;
@@ -31,12 +28,12 @@
 		background-repeat: no-repeat;
 		background-position: 12px 11px;
 		background-size: 20px 20px;
-		text-indent: 100%;
 		background-color: rgba(255,255,255,0.01); // otherwise IE no focus can do
 		font-weight: @ts-fontweight !important; // TODO: MOVE TO TABLE COMPONENT(?)
 		display: inline-block;
 		padding: 0;
 		color: @ts-black;
+		text-indent: 100%;
 	}
 	.ts-button-clear {
 		visibility: hidden;
@@ -47,7 +44,8 @@
 }
 .ts-flex .ts-search .ts-input,
 .ts-search:not(.ts-empty) .ts-input,
-.ts-search .ts-input:focus {
+.ts-search .ts-input:focus,
+.ts-search.ts-expanded .ts-input {
 	padding: 0 @ts-unit-double 0 @ts-unit-half;
 	background-color: @ts-white;
 	padding-left: @ts-unit-double;

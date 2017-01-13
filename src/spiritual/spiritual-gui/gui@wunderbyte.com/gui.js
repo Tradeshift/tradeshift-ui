@@ -432,14 +432,6 @@ window.gui = (function using(Namespace, Timer) {
 		var list = []; // for polyfilling
 
 		/**
-		 * Get current time (for polyfilling).
-		 * @returns {number}
-		 */
-		function time() {
-			return window.performance ? performance.now() : Date.now();
-		}
-
-		/**
 		 * Insert item chronologically correct (for polyfilling).
 		 * @param {object} item
 		 * @returns {object}
@@ -472,7 +464,7 @@ window.gui = (function using(Namespace, Timer) {
 					if(native) {
 						performance.mark('mark ' + key);
 					} else {
-						sets['$' + key] = time();
+						sets['$' + key] = Date.now();
 					}
 				}
 				return this;
@@ -495,7 +487,7 @@ window.gui = (function using(Namespace, Timer) {
 						return push({
 							startTime: init,
 							name: key,
-							duration: time() - init,
+							duration: Date.now() - init,
 							itemType: 'measure'
 						});
 					}

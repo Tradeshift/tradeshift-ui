@@ -2,7 +2,7 @@ describe('ts.ui.PagerSpirit', function likethis() {
 	function setup(action, html, done) {
 		var spirit, dom = helper.createTestDom();
 		dom.innerHTML = html;
-		sometime(function later(){
+		sometime(function later() {
 			spirit = ts.ui.get(dom.querySelector('div[data-ts=Pager]'));
 			action(spirit, dom);
 			done();
@@ -60,5 +60,4 @@ describe('ts.ui.PagerSpirit', function likethis() {
 			});
 		}, html, done);
 	});
-
 });

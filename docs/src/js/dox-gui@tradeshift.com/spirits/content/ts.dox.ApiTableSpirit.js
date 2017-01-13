@@ -5,9 +5,8 @@
  * @using {ts.ui.Markdown} Markdown
  */
 ts.dox.ApiTableSpirit = (function using(Type, GuiObject, GuiArray, Markdown) {
-	
 	/**
-	 * Parse strings for markdown content and 
+	 * Parse strings for markdown content and
 	 * support at least the `code` syntax....
 	 */
 	function minimalmarkdown(object) {
@@ -20,17 +19,17 @@ ts.dox.ApiTableSpirit = (function using(Type, GuiObject, GuiArray, Markdown) {
 	}
 
 	/**
-	 * Fix markdown and return any complex objects 
+	 * Fix markdown and return any complex objects
 	 * so that we can fix those recursively 4 ever.
 	 */
 	function parsemarkdown(object, key, value) {
 		var code = /`(.*)`/g;
-		if(Type.isComplex(value)) {
+		if (Type.isComplex(value)) {
 			return value;
 		} else {
-			if(key === 'desc')  {
+			if (key === 'desc') {
 				object[key] = Markdown.parse(value);
-			} else if(Type.isString(value)) {
+			} else if (Type.isString(value)) {
 				object[key] = value.replace(code, '<code>$1</code>');
 			}
 		}
@@ -39,10 +38,10 @@ ts.dox.ApiTableSpirit = (function using(Type, GuiObject, GuiArray, Markdown) {
 	return ts.ui.Spirit.extend({
 
 		/**
-		 * This gets converted from inline script to some kind of attribute by the 
-		 * Grunt task called "processor.js" because another subtask, the beautifier, 
-		 * would destroy formatting of the JSON string. What's more, the string will 
-		 * be autoconverted to an object because {gui.ConfigPlugin} can see that 
+		 * This gets converted from inline script to some kind of attribute by the
+		 * Grunt task called "processor.js" because another subtask, the beautifier,
+		 * would destroy formatting of the JSON string. What's more, the string will
+		 * be autoconverted to an object because {gui.ConfigPlugin} can see that
 		 * the string looks like encoded JSON.
 		 * @type {object}
 		 */
@@ -53,12 +52,11 @@ ts.dox.ApiTableSpirit = (function using(Type, GuiObject, GuiArray, Markdown) {
 		 */
 		onconfigure: function() {
 			this.super.onconfigure();
-			if(this.code) {
+			if (this.code) {
 				this.script.load(ts.dox.ApiTableSpirit.edbml);
 				this.script.run(minimalmarkdown(this.code));
 			}
 		}
 
 	});
-
 }(gui.Type, gui.Object, gui.Array, ts.ui.Markdown));

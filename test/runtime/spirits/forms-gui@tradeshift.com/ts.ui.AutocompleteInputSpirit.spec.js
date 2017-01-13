@@ -26,7 +26,7 @@ describe('ts.ui.AutocompleteInputSpirit', function likethis() {
 	/**
 	 * @TODO finish these tests
 	 */
-	
+
 	// describe('> ts.ui.AutocompleteDropdownSpirit', function likethis() {
 	// 	beforeEach(function dothis(done) {
 	// 		sometime(function later() {
@@ -63,7 +63,7 @@ describe('ts.ui.AutocompleteInputSpirit', function likethis() {
 	// 			});
 	// 		});
 	// 	});
-	//	
+	//
 	// 	it('should have the results item on top', function(done) {
 	// 		console.log('should have the results item on top');
 	// 		dom.querySelector('#myautocomplete').focus();

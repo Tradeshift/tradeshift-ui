@@ -3,7 +3,6 @@
  * @using {gui.Combo#chained}
  */
 edb.Type = (function using(chained) {
-
 	return gui.Class.create(null, {
 
 		/**
@@ -63,7 +62,6 @@ edb.Type = (function using(chained) {
 			return new edb.Serializer().serializeToString(this, filter, tabs);
 		},
 
-
 		// Privileged ................................................................
 
 		/**
@@ -87,7 +85,7 @@ edb.Type = (function using(chained) {
 		 * Called after `ondestruct`.
 		 */
 		$ondestruct: function() {
-			// TODO: This functionality should be provided 
+			// TODO: This functionality should be provided
 			// by the states module (eg. not in the core).
 			if (this.constructor.storage) {
 				this.persist();
@@ -95,9 +93,7 @@ edb.Type = (function using(chained) {
 		}
 
 	});
-
 }(gui.Combo.chained));
-
 
 // Static ......................................................................
 
@@ -134,18 +130,18 @@ edb.Type.mixin(null, null, {
 	lookup: function(context, arg) {
 		var type = null;
 		switch (gui.Type.of(arg)) {
-			case "function":
+			case 'function':
 				type = arg; // TODO: confirm
 				break;
-			case "string":
+			case 'string':
 				type = gui.Object.lookup(arg, context);
 				break;
-			case "object":
-				console.error(this + ": expected edb.Type constructor (not an object)");
+			case 'object':
+				console.error(this + ': expected edb.Type constructor (not an object)');
 				break;
 		}
 		if (!type) {
-			throw new TypeError("The type \"" + arg + "\" does not exist");
+			throw new TypeError('The type "' + arg + '" does not exist');
 		}
 		return type;
 	},
@@ -156,9 +152,9 @@ edb.Type.mixin(null, null, {
 	cast: function fix(value) {
 		if (gui.Type.isComplex(value) && !edb.Type.is(value)) {
 			switch (gui.Type.of(value)) {
-				case "object":
+				case 'object':
 					return edb.Object.from(value);
-				case "array":
+				case 'array':
 					return edb.Array.from(value);
 			}
 		}
@@ -178,7 +174,6 @@ edb.Type.mixin(null, null, {
 		});
 		return this;
 	},
-
 
 	// Privileged ................................................................
 
@@ -238,7 +233,6 @@ edb.Type.mixin(null, null, {
 
 });
 
-
 // Mixins ......................................................................
 
 /**
@@ -246,7 +240,6 @@ edb.Type.mixin(null, null, {
  * @using {gui.Arguments.confirmed}
  */
 (function using(confirmed) {
-
 	var iomixins = { // input-output methods
 
 		/**
@@ -276,12 +269,12 @@ edb.Type.mixin(null, null, {
 	var spassermixins = {
 
 		/**
-		 * Create *new* instance from argument of fuzzy type. 
+		 * Create *new* instance from argument of fuzzy type.
 		 * All nested models will also be instanced as *new*.
 		 * @param {String|object|Array|edb.Object|edb.Array} json
 		 * @return {edb.Object|edb.Array}
 		 */
-		from: gui.Arguments.confirmed("(string|object|array|null)")(
+		from: gui.Arguments.confirmed('(string|object|array|null)')(
 			function(json) {
 				var Type = this;
 				if (json) {
@@ -289,7 +282,7 @@ edb.Type.mixin(null, null, {
 						json = new edb.Serializer().serializeToString(json);
 					}
 					if (gui.Type.isString(json)) {
-						if (json.includes("$object") || json.includes("$array")) {
+						if (json.includes('$object') || json.includes('$array')) {
 							json = new edb.Parser().parseFromString(json, null);
 						}
 					}
@@ -327,10 +320,9 @@ edb.Type.mixin(null, null, {
 		var mixins = {};
 		[iomixins, spassermixins].forEach(function(set) {
 			Object.keys(set).forEach(function(key) {
-				mixins[key] = set [key];
+				mixins[key] = set[key];
 			}, this);
 		}, this);
 		return mixins;
 	};
-
 }(gui.Arguments.confirmed));

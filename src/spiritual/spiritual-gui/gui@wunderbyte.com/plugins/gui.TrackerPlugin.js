@@ -34,7 +34,7 @@ gui.TrackerPlugin = gui.Plugin.extend({
 	 * @returns {gui.Tracker}
 	 */
 	toggle: function(arg, checks) {
-		console.error("TODO: SpiritTracker#toggle");
+		console.error('TODO: SpiritTracker#toggle');
 	},
 
 	/**
@@ -43,7 +43,7 @@ gui.TrackerPlugin = gui.Plugin.extend({
 	 * @param {boolean} on
 	 * @returns {gui.Tracker}
 	 */
-	shift: function(on /*...rest */ ) {
+	shift: function(on /* ...rest */) {
 		var rest = gui.Array.from(arguments).slice(1);
 		if (on) {
 			return this.add.apply(this, rest);
@@ -57,7 +57,7 @@ gui.TrackerPlugin = gui.Plugin.extend({
 	 * @param {boolean} on
 	 * @returns {gui.Tracker}
 	 */
-	shiftGlobal: function(on /*...rest */ ) {
+	shiftGlobal: function(on /* ...rest */) {
 		return this._globalize(function() {
 			return this.shift.apply(arguments);
 		});
@@ -74,7 +74,6 @@ gui.TrackerPlugin = gui.Plugin.extend({
 			return this._trackedtypes[type];
 		}, this);
 	},
-
 
 	// Private .....................................................
 
@@ -215,7 +214,7 @@ gui.TrackerPlugin = gui.Plugin.extend({
 		});
 		return result;
 	},
-	
+
 	/**
 	 * Isolated for subclass to overwrite.
 	 * @param {String} type
@@ -223,7 +222,7 @@ gui.TrackerPlugin = gui.Plugin.extend({
 	 */
 	_cleanup: function(type, checks) {
 		if (this._removechecks(type, checks)) {
-			// do cleanup here (perhaps overwrite all 
+			// do cleanup here (perhaps overwrite all
 			// this to perform _removechecks elsewhere)
 		}
 	}

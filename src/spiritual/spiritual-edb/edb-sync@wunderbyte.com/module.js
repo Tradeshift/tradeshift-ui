@@ -1,10 +1,9 @@
 /**
  * Sync module.
  */
-gui.module("edb-sync@wunderbyte.com", {
+gui.module('edb-sync@wunderbyte.com', {
 
 	oncontextinitialize: function() {
-
 		/**
 		 * Create synchronized instance of Type from source.
 		 * @param {edb.Type} type
@@ -30,8 +29,7 @@ gui.module("edb-sync@wunderbyte.com", {
 			/**
 			 *
 			 */
-			$synchglobally: false,
-
+			$synchglobally: false
 
 		}, { // Recurring static ...................................................
 

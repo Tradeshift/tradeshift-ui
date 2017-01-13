@@ -44,7 +44,7 @@ gui.Combo = {
 		return function(base) {
 			return function() {
 				var argv, callback, result, that = this;
-				argv = 1 <= arguments.length ? slice.call(arguments, 0) : [];
+				argv = arguments.length >= 1 ? slice.call(arguments, 0) : [];
 				result = void 0;
 				callback = function() {
 					result = base.apply(that, argv);
@@ -75,7 +75,7 @@ gui.Combo = {
 	/**
 	 * Make function return `this` if otherwise it would return `undefined`.
 	 * Variant of the `fluent` combinator which would always returns `this`.
-	 * We use this extensively to ensure API consistancy, but we might remove 
+	 * We use this extensively to ensure API consistancy, but we might remove
 	 * it for a theoretical performance gain once we have a huge test suite.
 	 * @param {function} base
 	 * @returns {function}
@@ -88,7 +88,7 @@ gui.Combo = {
 	},
 
 	/**
-	 * Memoize return value for function that take zero or more 
+	 * Memoize return value for function that take zero or more
 	 * args, each of which must be amenable to JSON.stringify.
 	 * @param {function} base
 	 * @returns {function}

@@ -1,5 +1,4 @@
 describe('ts.ui.AsideSpirit', function likethis() {
-
 	var MARKUP = '<aside data-ts="Aside"><div data-ts="Panel"></div></aside>';
 	var TRANSITION_DONE = (ts.ui.TRANSITION_FAST + 100);
 
@@ -23,7 +22,7 @@ describe('ts.ui.AsideSpirit', function likethis() {
 				window.onerror = null;
 				try {
 					dom.removeChild(spirit.element);
-				} catch(justincase) {}
+				} catch (justincase) {}
 				done();
 			};
 			spirit.open();
@@ -55,7 +54,7 @@ describe('ts.ui.AsideSpirit', function likethis() {
 				done();
 			};
 			spirit.open();
-		}); 
+		});
 		it('closes the aside', function(done) {
 			var spirit = this.spirit;
 			setTimeout(function() {

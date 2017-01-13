@@ -4,35 +4,35 @@ describe('ts.ui.usercard.edbml', function likethis() {
 	}
 
 	it('should contain ts-usercard-main', function() {
-		var user = new ts.ui.UserCardModel({id:"leo"}),
+		var user = new ts.ui.UserCardModel({id: 'leo'}),
 			contentonly = true,
 			classconfig = '';
 		expect(gethtml(user, contentonly, classconfig)).toContain('ts-usercard-main');
 	});
 
 	it('should contain ts-usercard-name in front of ts-usercard-image', function() {
-		var user = new ts.ui.UserCardModel({id:"leo"}),
+		var user = new ts.ui.UserCardModel({id: 'leo'}),
 			contentonly = true,
 			classconfig = 'ts-compact ts-reverse';
 		expect(gethtml(user, contentonly, classconfig)).toContain('<p class="ts-usercard-name"><span></span></p><p class="ts-usercard-image">');
 	});
 
 	it('should contain ts-usercard-image in front of ts-usercard-name', function() {
-		var user = new ts.ui.UserCardModel({id:"leo"}),
+		var user = new ts.ui.UserCardModel({id: 'leo'}),
 			contentonly = true,
 			classconfig = '';
 		expect(gethtml(user, contentonly, classconfig)).toContain('<p class="ts-usercard-image"><img data-ts="UserImage"   width="44"  height="44" /></p><p class="ts-usercard-name"><span></span></p>');
 	});
 
 	it('should contain ts-usercard-details', function() {
-		var user = new ts.ui.UserCardModel({id:"leo"}),
+		var user = new ts.ui.UserCardModel({id: 'leo'}),
 			contentonly = true,
 			classconfig = 'ts-details';
 		expect(gethtml(user, contentonly, classconfig)).toContain('ts-usercard-details');
 	});
 
 	it('should not contain ts-usercard-details', function() {
-		var user = new ts.ui.UserCardModel({id:"leo"}),
+		var user = new ts.ui.UserCardModel({id: 'leo'}),
 			contentonly = true,
 			classconfig = '';
 		expect(gethtml(user, contentonly, classconfig)).not.toContain('ts-usercard-details');
@@ -40,14 +40,14 @@ describe('ts.ui.usercard.edbml', function likethis() {
 
 	it('should contain details', function() {
 		var user = new ts.ui.UserCardModel({
-					id: "leo",
-					data: {
-						title: 'leo',
-						role: 'developer',
-						company: 'tradeshift',
-						email: 'lza@tradeshift.com'
-					}
-				}),
+				id: 'leo',
+				data: {
+					title: 'leo',
+					role: 'developer',
+					company: 'tradeshift',
+					email: 'lza@tradeshift.com'
+				}
+			}),
 			contentonly = true,
 			classconfig = 'ts-details';
 		expect(gethtml(user, contentonly, classconfig)).toContain('<li class="ts-usercard-title">leo</li>');

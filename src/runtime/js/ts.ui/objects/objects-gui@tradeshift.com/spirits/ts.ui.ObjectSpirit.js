@@ -7,12 +7,11 @@
  * @using {gui.Arguments.confirmed}
  */
 ts.ui.ObjectSpirit = (function using(Type, chained, confirmed) {
-
 	// TODO: automatically quote keys (for inline JSON island)
 	// TODO: Perhaps use {gui.ConfigPlugin#jsonify} for this?
 	function escape(json) {
 		var regx = /({|,)(?:\s*)(?:')?([A-Za-z_$\.][A-Za-z0-9_ \-\.$]*)(?:')?(?:\s*):/g;
-		return json.replace(regx, "$1\"$2\":");
+		return json.replace(regx, '$1"$2":');
 	}
 
 	return ts.ui.Spirit.extend({
@@ -41,10 +40,10 @@ ts.ui.ObjectSpirit = (function using(Type, chained, confirmed) {
 				return this._details;
 			},
 			setter: function(enable) {
-				if(enable === '') { // TODO: This by default in {gui.AttPlugin}
+				if (enable === '') { // TODO: This by default in {gui.AttPlugin}
 					enable = true;
 				}
-				if(Type.isBoolean(enable)) {
+				if (Type.isBoolean(enable)) {
 					this._toggledetails(enable, this.element);
 					this._details = enable;
 				}
@@ -59,11 +58,11 @@ ts.ui.ObjectSpirit = (function using(Type, chained, confirmed) {
 		 */
 		onconfigure: function() {
 			this.super.onconfigure();
-			var script, path = 'script[type="application/json"]';			
+			var script, path = 'script[type="application/json"]';
 			this.css.add('ts-object');
 			this.script.load(ts.ui.ObjectSpirit.edbml);
 			if ((script = this.dom.q(path))) {
-				//console.log(encodeURIComponent(script.textContent.trim()));
+				// console.log(encodeURIComponent(script.textContent.trim()));
 				this.render(JSON.parse(script.textContent));
 			} else {
 				this.script.run(this._model);
@@ -77,9 +76,9 @@ ts.ui.ObjectSpirit = (function using(Type, chained, confirmed) {
 		 */
 		onevent: function(e) {
 			this.super.onevent(e);
-			switch(e.type) {
+			switch (e.type) {
 				case 'click':
-					if(this._details) {
+					if (this._details) {
 						this.open();
 					}
 					break;
@@ -92,7 +91,7 @@ ts.ui.ObjectSpirit = (function using(Type, chained, confirmed) {
 		 * @returns {ts.ui.ObjectSpirit}
 		 */
 		render: confirmed('object')(chained(function(json) {
-			if(this._assignmodel(json)) {
+			if (this._assignmodel(json)) {
 				this._guid = this._model.id;
 				this.script.run(this._model);
 			}
@@ -100,7 +99,7 @@ ts.ui.ObjectSpirit = (function using(Type, chained, confirmed) {
 
 		/**
 		 * The sub-class should implented the function
-		 * May be we implented it here 
+		 * May be we implented it here
 		 * Open an aside to show some details
 		 */
 		open: function() {},
@@ -112,8 +111,8 @@ ts.ui.ObjectSpirit = (function using(Type, chained, confirmed) {
 		 */
 		_assignmodel: function(data) {
 			var Model = this.constructor.model;
-			if(data) {
-				if(this._model) {
+			if (data) {
+				if (this._model) {
 					this._model.dispose();
 				}
 				this._model = Model.from(data);
@@ -140,7 +139,6 @@ ts.ui.ObjectSpirit = (function using(Type, chained, confirmed) {
 				}
 			}
 		},
-
 
 		// Private .................................................................
 
@@ -170,29 +168,26 @@ ts.ui.ObjectSpirit = (function using(Type, chained, confirmed) {
 		_toggledetails: function(on, elm) {
 			this.css.shift(on, 'ts-has-details');
 			this.event.shift(on, 'click');
-			if(!this.dom.tag().match(/button|a/)) {
+			if (!this.dom.tag().match(/button|a/)) {
 				elm.tabIndex = on ? this.att.get('tabindex') || 0 : -1;
 			}
 		}
 
-
 	}, { // Static ...............................................................
 
 		/**
-		 * Scenario 1 and 2: Convert injected JSON to this 
+		 * Scenario 1 and 2: Convert injected JSON to this
 		 * kind of model. The subclass should define this.
 		 * @type {constructor}
 		 */
 		model: ts.ui.ObjectModel,
 
 		/**
-		 * Scenario 3: Fetch the model from public output of 
+		 * Scenario 3: Fetch the model from public output of
 		 * this collection.  The subclass should define this.
 		 * @type {constructor}
 		 */
 		collection: ts.ui.ObjectCollection
 
-
 	});
-
 }(gui.Type, gui.Combo.chained, gui.Arguments.confirmed));

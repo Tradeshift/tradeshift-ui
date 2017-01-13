@@ -1,5 +1,4 @@
 describe('ts.ui.ButtonSpirit', function likethis() {
-
 	var MARKUP = [
 		'<button data-ts="Button">',
 		'  <span>Label</span>',
@@ -8,7 +7,7 @@ describe('ts.ui.ButtonSpirit', function likethis() {
 
 	function setup(action, html) {
 		var spirit, dom = helper.createTestDom();
-		dom.innerHTML = html ? html : MARKUP;
+		dom.innerHTML = html || MARKUP;
 		sometime(function later() {
 			spirit = ts.ui.get(dom.querySelector('button'));
 			action(spirit);
@@ -44,5 +43,4 @@ describe('ts.ui.ButtonSpirit', function likethis() {
 			done();
 		}, html);
 	});
-
 });

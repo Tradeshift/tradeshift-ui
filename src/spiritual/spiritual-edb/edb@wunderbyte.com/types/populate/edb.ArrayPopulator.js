@@ -3,7 +3,6 @@
  * @using {gui.Type} Type
  */
 edb.ArrayPopulator = (function using(Type) {
-
 	/**
 	 * Array was declared to contain lists (not objects)?
 	 * @param {edb.Array} array
@@ -116,16 +115,15 @@ edb.ArrayPopulator = (function using(Type) {
 		return args.map(function(o) {
 			if (!edb.Type.is(o)) {
 				switch (Type.of(o)) {
-					case "object":
+					case 'object':
 						return new edb.Object(o);
-					case "array":
+					case 'array':
 						return new edb.Array(o);
 				}
 			}
 			return o;
 		});
 	}
-
 
 	return { // Public ...........................................................
 
@@ -172,5 +170,4 @@ edb.ArrayPopulator = (function using(Type) {
 		}
 
 	};
-
 }(gui.Type));

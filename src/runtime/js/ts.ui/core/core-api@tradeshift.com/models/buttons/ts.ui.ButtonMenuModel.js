@@ -1,19 +1,18 @@
 ts.ui.ButtonMenuModel = (function() {
-  
-  return ts.ui.Model.extend({
-    
+	return ts.ui.Model.extend({
+
     /**
      * Friendly name.
      * @type {string}
      */
-    item: 'buttonsmenu',
-    
+		item: 'buttonsmenu',
+
     /**
      * Buttons.
      * @type {ts.ui.ButtonCollection<ts.ui.ButtonModel>}
      */
-    items: ts.ui.ButtonCollection,
-    
+		items: ts.ui.ButtonCollection,
+
     /**
 		 * Bounce model to HTML.
 		 * @return {string}
@@ -21,6 +20,5 @@ ts.ui.ButtonMenuModel = (function() {
 		render: function() {
 			return ts.ui.buttonsmenu.edbml(this);
 		}
-  });
-    
+	});
 }());

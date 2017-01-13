@@ -2,7 +2,6 @@
  * Populate edb.Objects.
  */
 describe('edb.ObjectPopulator', function likethis() {
-
 	var NativeObject = Object;
 	var NativeArray = Array;
 
@@ -49,5 +48,4 @@ describe('edb.ObjectPopulator', function likethis() {
 		expect(hans.simplefriend).not.toEqual(jasmine.any(edb.Object));
 		expect(hans.simplefriends).not.toEqual(jasmine.any(edb.Array));
 	});
-
 });

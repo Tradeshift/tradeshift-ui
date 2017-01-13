@@ -21,8 +21,8 @@ ts.ui.MainContentSpirit = ts.ui.Spirit.extend({
 		 * @todo fix the root cause why the class doesn't get added
 		 */
 		this.css.add('ts-maincontent');
-		if(gui.debug) {
-			if(this.dom.qdocall('.ts-maincontent').length > 1) {
+		if (gui.debug) {
+			if (this.dom.qdocall('.ts-maincontent').length > 1) {
 				console.log('There should be only on .ts-maincontent at any given time :/');
 			}
 		}

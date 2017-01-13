@@ -4,7 +4,6 @@
  * @using {gui.Client} Client
  */
 ts.ui.DocumentSpirit = (function using(Client) {
-	
 	var APP_LOADING = ts.ui.BROADCAST_GLOBAL_APP_LOADING;
 	var APP_ABORTED = ts.ui.BROADCAST_GLOBAL_APP_ABORTED;
 	var APP_COMPLETE = ts.ui.BROADCAST_GLOBAL_APP_COMPLETE;
@@ -12,7 +11,7 @@ ts.ui.DocumentSpirit = (function using(Client) {
 	return gui.DocumentSpirit.extend({
 
 		/**
-		 * Kickstart the plugins that manage layout, asides and dialogs. 
+		 * Kickstart the plugins that manage layout, asides and dialogs.
 		 * Prepare to parse global models posted from the parent frame.
 		 * Setup to change location hash if and when the chrome says to.
 		 */
@@ -45,17 +44,17 @@ ts.ui.DocumentSpirit = (function using(Client) {
 		 */
 		onconfigure: function() {
 			this.super.onconfigure();
-			this.css.add('ts-engine-' + Client.agent).
-				shift(gui.hosted, 'ts-iframe-hosted').
-				shift(Client.isExplorer9, 'ts-engine-explorer9').
-				shift(Client.isTouchDevice, 'ts-device-touch').
-				shift(!Client.isTouchDevice, 'ts-device-mouse');
+			this.css.add('ts-engine-' + Client.agent)
+				.shift(gui.hosted, 'ts-iframe-hosted')
+				.shift(Client.isExplorer9, 'ts-engine-explorer9')
+				.shift(Client.isTouchDevice, 'ts-device-touch')
+				.shift(!Client.isTouchDevice, 'ts-device-mouse');
 		},
 
 		/**
-		 * This classname will show everything. It's all been hidden 
-		 * until now to avoid the "flash on non-spiritualized content" 
-		 * (so it's essentially a Runtime equivalent to `ng-cloak`). 
+		 * This classname will show everything. It's all been hidden
+		 * until now to avoid the "flash on non-spiritualized content"
+		 * (so it's essentially a Runtime equivalent to `ng-cloak`).
 		 */
 		onready: function() {
 			this.super.onready();
@@ -63,15 +62,15 @@ ts.ui.DocumentSpirit = (function using(Client) {
 		},
 
 		/**
-		 * Validate structure and stuff. The `touchstart` event has to 
+		 * Validate structure and stuff. The `touchstart` event has to
 		 * do with an iOS bug that most likely is fixed in Safari now.
 		 */
 		onasync: function() {
-			if(ts.ui.appframe) {
+			if (ts.ui.appframe) {
 				var main = this.dom.qdoc('.ts-main');
 				var tbar = this.dom.qdoc('.ts-topbar');
-				if(main) {
-					main.addEventListener('touchstart', function(){});
+				if (main) {
+					main.addEventListener('touchstart', function() {});
 				} else {
 					console.warn('WARNING: This app needs a ts-main');
 				}
@@ -100,7 +99,7 @@ ts.ui.DocumentSpirit = (function using(Client) {
 					ts.lib.Location.assign(a.data);
 					break;
 				// information about global models descending from the hosting frame.
-				// this is disabled for now - see {ts.ui.FrameSpirit} - but the idea 
+				// this is disabled for now - see {ts.ui.FrameSpirit} - but the idea
 				// might come in handy at some point in the future, so we'll leave it.
 				case ts.ui.ACTION_GLOBAL_MODELS_INITIALIZE:
 					this._outputmodels(a.data);
@@ -117,13 +116,13 @@ ts.ui.DocumentSpirit = (function using(Client) {
 					break;
 				// statusbar changed height on window resize
 				case ts.ui.ACTION_STATUSBAR_LEVEL:
-					if(a.target.guilayout.outsideMain()) {
+					if (a.target.guilayout.outsideMain()) {
 						this.guilayout.gotoLevel(a.data);
 					}
 					break;
 			}
 		},
-		
+
 		/**
 		 * Handle broadcast.
 		 * @param {gui.Broadcast} b
@@ -131,7 +130,7 @@ ts.ui.DocumentSpirit = (function using(Client) {
 		onbroadcast: function(b) {
 			this.super.onbroadcast(b);
 			var cname = ts.ui.CLASS_LOADING;
-			switch(b.type) {
+			switch (b.type) {
 				case APP_LOADING:
 				case APP_ABORTED:
 					this.css.add(cname);
@@ -143,16 +142,16 @@ ts.ui.DocumentSpirit = (function using(Client) {
 		},
 
 		/**
-		 * Handle the {ts.ui.LayoutModel} whether it was 
-		 * 
-		 * 1. output by the local {ts.ui.LayoutPlugin} or 
+		 * Handle the {ts.ui.LayoutModel} whether it was
+		 *
+		 * 1. output by the local {ts.ui.LayoutPlugin} or
 		 * 2. posted down from the chrome (global model)
 		 * @param {edb.Input} input
-		 */ 
+		 */
 		oninput: function(input) {
 			this.super.oninput(input);
 			var model = input.data;
-			switch(input.type) {
+			switch (input.type) {
 				case ts.ui.LayoutModel:
 					this._breakpoints(model.breakpoints);
 					this._breakpoint(model.breakpoint);
@@ -178,8 +177,8 @@ ts.ui.DocumentSpirit = (function using(Client) {
 		},
 
 		/**
-		 * This will crawl the document on window resize and 
-		 * invoke the `onflex` method on all spirits, but we 
+		 * This will crawl the document on window resize and
+		 * invoke the `onflex` method on all spirits, but we
 		 * make sure that the breakpoints are resolved first.
 		 * @overwrites {gui.DocumentSpirit#reflex}
 		 */
@@ -188,7 +187,7 @@ ts.ui.DocumentSpirit = (function using(Client) {
 				this.super.reflex();
 			});
 		},
-		
+
 		/**
 		 * @param {boolean} on
 		 * @param {string|Array<string>} classnames
@@ -196,13 +195,12 @@ ts.ui.DocumentSpirit = (function using(Client) {
 		shiftclassnames: function(on, cnames) {
 			this.layoutplugin.shiftclassnames(!!on, gui.Array.make(cnames));
 		},
-		
 
 		// Private .................................................................
 
 		/**
 		 * Output models in this window scope by recreating
-		 * them from JSON posted by the hosting iframespirit. 
+		 * them from JSON posted by the hosting iframespirit.
 		 * NOTE: Migrating models have been disabled for now!
 		 * @see {ts.ui.FrameSpirit#_mapmodels}
 		 * @param {Map.<String|object>} models
@@ -278,5 +276,4 @@ ts.ui.DocumentSpirit = (function using(Client) {
 		}
 
 	});
-
 }(gui.Client));

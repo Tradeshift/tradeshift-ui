@@ -5,19 +5,18 @@
  * @using {ts.ui.CompanyCard} Card
  */
 ts.ui.CompanyCardModel = (function using(Type, Card) {
-
 	/**
 	 * Confirm lookup in (user configurable) array.
 	 * @type {number} type
 	 * @param {object|string} result
 	 */
 	function confirm(index, result) {
-		if(!Type.isDefined(result)) {
+		if (!Type.isDefined(result)) {
 			throw new RangeError(index + ' out of reach');
 		}
 		return result;
 	}
-	
+
 	/**
 	 * Lookup connection type.
 	 * @param {number} index
@@ -26,7 +25,7 @@ ts.ui.CompanyCardModel = (function using(Type, Card) {
 	function connections(index) {
 		return Card.connectionTypes[index];
 	}
-	
+
 	/**
 	 * Lookup industry.
 	 * @param {number} index
@@ -35,7 +34,7 @@ ts.ui.CompanyCardModel = (function using(Type, Card) {
 	function industries(index) {
 		return Card.industryTypes[index];
 	}
-	
+
 	/**
 	 * Lookup company size.
 	 * @param {number} index
@@ -47,7 +46,7 @@ ts.ui.CompanyCardModel = (function using(Type, Card) {
 
 	return ts.ui.CardModel.extend({
 
-		/** 
+		/**
 		 * Friendly name.
 		 */
 		item: 'companycard',
@@ -64,7 +63,6 @@ ts.ui.CompanyCardModel = (function using(Type, Card) {
 		 */
 		data: Object,
 
-		
 		// Privileged ..............................................................
 
 		/**
@@ -74,9 +72,9 @@ ts.ui.CompanyCardModel = (function using(Type, Card) {
 		 */
 		$computeConnection: function() {
 			var type, index = this.data.connection;
-			if(Type.isDefined(index)) {
-				if(Type.isNumber(index)) {
-					if((type = connections(index)) && confirm(index, type)) {
+			if (Type.isDefined(index)) {
+				if (Type.isNumber(index)) {
+					if ((type = connections(index)) && confirm(index, type)) {
 						return {
 							text: type[0],
 							icon: type[1]
@@ -90,14 +88,14 @@ ts.ui.CompanyCardModel = (function using(Type, Card) {
 		},
 
 		/**
-		 * Compute the industry string (based on 
+		 * Compute the industry string (based on
 		 * hardcoded string or index for lookup).
 		 * @see {ts.ui.companycard.edbml}
 		 * @returns {string}
 		 */
 		$computeIndustry: function() {
 			var type = this.data.industry;
-			switch(Type.of(type)) {
+			switch (Type.of(type)) {
 				case 'string':
 					return type;
 				case 'number':
@@ -106,14 +104,14 @@ ts.ui.CompanyCardModel = (function using(Type, Card) {
 		},
 
 		/**
-		 * Compute the company size (based on 
+		 * Compute the company size (based on
 		 * hardcoded string or index for lookup).
 		 * @see {ts.ui.companycard.edbml}
 		 * @returns {string}
 		 */
 		$computeSize: function() {
 			var type = this.data.size;
-			switch(Type.of(type)) {
+			switch (Type.of(type)) {
 				case 'string':
 					return type;
 				case 'number':
@@ -121,11 +119,10 @@ ts.ui.CompanyCardModel = (function using(Type, Card) {
 			}
 		},
 
-
 		// Private .................................................................
 
 		/**
-		 * Get EDBML function for this card. 
+		 * Get EDBML function for this card.
 		 * @see {ts.ui.ObjectModel#_edbml}
 		 * @returns {function}
 		 */
@@ -134,6 +131,4 @@ ts.ui.CompanyCardModel = (function using(Type, Card) {
 		}
 
 	});
-
-
 }(gui.Type, ts.ui.CompanyCard));

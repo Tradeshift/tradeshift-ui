@@ -1,5 +1,5 @@
 /**
- * Base spirit for aside-like components. 
+ * Base spirit for aside-like components.
  * @see {ts.ui.AsideSpirit}
  * @see {ts.ui.SideBarSpirit}
  * @see @deprecated {ts.ui.DrawerSpirit}
@@ -12,7 +12,6 @@
  * @using {ts.ui.ACTION_PANEL_DETACH} PANEL_DETACH
  */
 ts.ui.SideShowSpirit = (function using(chained, Client, Parser, GuiObject, Colors, PANEL_ATTACH, PANEL_DETACH) {
-
 	// custom dom events (for public consumption)
 	var domevent = {
 		WILLOPEN: ts.ui.EVENT_ASIDE_WILL_OPEN,
@@ -27,7 +26,7 @@ ts.ui.SideShowSpirit = (function using(chained, Client, Parser, GuiObject, Color
 			return colors[key];
 		});
 	}(ts.ui.BACKGROUND_COLORS));
-	
+
 	/**
 	 * Extract `ts-bg-` classname from spirit.
 	 * @param {ts.ui.Spirit} spirit
@@ -89,10 +88,10 @@ ts.ui.SideShowSpirit = (function using(chained, Client, Parser, GuiObject, Color
 		 */
 		busy: function(busy) {
 			this._initspin(busy);
-			if(busy){
-				this.guistatus.busy(this.$instanceid);	
-			}else {
-				this.guistatus.done(this.$instanceid);	
+			if (busy) {
+				this.guistatus.busy(this.$instanceid);
+			} else {
+				this.guistatus.done(this.$instanceid);
 			}
 		},
 
@@ -109,8 +108,8 @@ ts.ui.SideShowSpirit = (function using(chained, Client, Parser, GuiObject, Color
 		 */
 		onenter: function() {
 			this.super.onenter();
-			if(this.flipped) {
-				//this.css.add('ts-flipped'); TODO!
+			if (this.flipped) {
+				// this.css.add('ts-flipped'); TODO!
 				this.event.add('transitionend');
 				this.css.add('ts-flipping ts-flip-init');
 				this.tick.time(function transition_ok() {
@@ -118,7 +117,7 @@ ts.ui.SideShowSpirit = (function using(chained, Client, Parser, GuiObject, Color
 				});
 			}
 		},
-		
+
 		/**
 		 * Fix the color scheme.
 		 */
@@ -151,7 +150,7 @@ ts.ui.SideShowSpirit = (function using(chained, Client, Parser, GuiObject, Color
 		 */
 		ondestruct: function() {
 			this.super.ondestruct();
-			if(this._observer) {
+			if (this._observer) {
 				this._observer.disconnect();
 			}
 		},
@@ -179,7 +178,7 @@ ts.ui.SideShowSpirit = (function using(chained, Client, Parser, GuiObject, Color
 		 */
 		ontick: function(t) {
 			this.super.ontick(t);
-			if(t.type === 'ts-sideshow-theme') {
+			if (t.type === 'ts-sideshow-theme') {
 				this._theme = this._theme || this._extractcolor('ts-bg-blue');
 				this._transfercolor(this._theme, this.constructor.$bgmembers);
 				this._themesupport(this.dom);
@@ -193,12 +192,12 @@ ts.ui.SideShowSpirit = (function using(chained, Client, Parser, GuiObject, Color
 		 */
 		onevent: function(e) {
 			this.super.onevent(e);
-			switch(e.type) {
+			switch (e.type) {
 				case 'DOMSubtreeModified':
 					this._reflex(); // reflex on footer update in IE
 					break;
 				case 'transitionend':
-					if(this._flipping) {
+					if (this._flipping) {
 						this._ontransitionend(
 							ts.ui.get(e.target)
 						);
@@ -208,19 +207,19 @@ ts.ui.SideShowSpirit = (function using(chained, Client, Parser, GuiObject, Color
 		},
 
 		/**
-		 * We'll need to support that the tabbar auto-updates whenever a panel gets 
-		 * added or removed (like we do in the Main TabBar) but for now, we'll just 
+		 * We'll need to support that the tabbar auto-updates whenever a panel gets
+		 * added or removed (like we do in the Main TabBar) but for now, we'll just
 		 * make sure that these actions (dispatched from the Panel) are contained.
 		 * @param {gui.Action} a
 		 */
 		onaction: function(a) {
 			this.super.onaction(a);
-			switch(a.type) {
+			switch (a.type) {
 				case PANEL_ATTACH:
 				case PANEL_DETACH:
 					var panel = a.target;
 					var added = a.type === PANEL_ATTACH;
-					if(panel.label) { // otherwise just ignore
+					if (panel.label) { // otherwise just ignore
 						this._updatetab(panel, added);
 					}
 					a.consume(); // don't exit the Aside
@@ -235,7 +234,7 @@ ts.ui.SideShowSpirit = (function using(chained, Client, Parser, GuiObject, Color
 		 */
 		title: chained(function(title) {
 			var header = this._headerspirit();
-			if(arguments.length) {
+			if (arguments.length) {
 				this._reflex(function() {
 					header.title(title);
 				});
@@ -251,7 +250,7 @@ ts.ui.SideShowSpirit = (function using(chained, Client, Parser, GuiObject, Color
 		 */
 		search: chained(function(search) {
 			var header = this._headerspirit();
-			if(arguments.length) {
+			if (arguments.length) {
 				header.search(search);
 			} else {
 				return header.search();
@@ -317,7 +316,7 @@ ts.ui.SideShowSpirit = (function using(chained, Client, Parser, GuiObject, Color
 		},
 
 		/**
-		 * Get the TabBar 
+		 * Get the TabBar
 		 * @returns {ts.ui.TabBarSpirit}
 		 */
 		tabbar: function() {
@@ -331,7 +330,7 @@ ts.ui.SideShowSpirit = (function using(chained, Client, Parser, GuiObject, Color
 		 * @returns {gui.Then} Some kind of Promise-like object
 		 */
 		$flip: function() {
-			if(!this._flipping) {
+			if (!this._flipping) {
 				this._flipping = new gui.Then();
 				this.event.add('transitionend');
 				this.css.remove('ts-flipped').add('ts-flipping');
@@ -342,11 +341,10 @@ ts.ui.SideShowSpirit = (function using(chained, Client, Parser, GuiObject, Color
 			return this._flipping;
 		},
 
-
 		// Private .................................................................
 
 		/**
-		 * 
+		 *
 		 */
 		_theme: null,
 
@@ -355,7 +353,7 @@ ts.ui.SideShowSpirit = (function using(chained, Client, Parser, GuiObject, Color
 		 * @type {ts.ui.TabBarSpirit}
 		 */
 		_tabbar: null,
-		
+
 		/**
 		 * Monitor footer updates until we can enable CSS layout again.
 		 * @type {MutationObserver}
@@ -370,11 +368,11 @@ ts.ui.SideShowSpirit = (function using(chained, Client, Parser, GuiObject, Color
 
 		/**
 		 * @deprecated
-		 * The classname `ts-internal` will make this thing not behave 
-		 * much like an Aside because that was needed for teams that 
-		 * didn't want to use Asides. The classname affects both JS 
-		 * behavior and CSS styling. When we get support for different 
-		 * versions of UI Components (in V4), we should see if this 
+		 * The classname `ts-internal` will make this thing not behave
+		 * much like an Aside because that was needed for teams that
+		 * didn't want to use Asides. The classname affects both JS
+		 * behavior and CSS styling. When we get support for different
+		 * versions of UI Components (in V4), we should see if this
 		 * can be deprecated in favor of standard UI Components.
 		 * @returns {boolean}
 		 */
@@ -390,20 +388,20 @@ ts.ui.SideShowSpirit = (function using(chained, Client, Parser, GuiObject, Color
 		 */
 		_reflex: function(action) {
 			var panel, avail = this.box.height, height = 0, thing = (action ? action.call(this) : null);
-			if(this.isOpen && avail) {
+			if (this.isOpen && avail) {
 				var asides = [];
 				this.dom.children(gui.Spirit).forEach(function(spirit) {
-					if(ts.ui.PanelSpirit.is(spirit) && spirit.visible) {
+					if (ts.ui.PanelSpirit.is(spirit) && spirit.visible) {
 						panel = spirit;
 					} else {
-						if(ts.ui.AsideSpirit.is(spirit)) {
+						if (ts.ui.AsideSpirit.is(spirit)) {
 							asides.push(spirit);
 						} else {
 							height += spirit.box.height;
 						}
 					}
 				});
-				if(panel) {
+				if (panel) {
 					panel.css.height = avail - height;
 				}
 				// TODO: Not this on global reflex!!!!!!!!!
@@ -420,7 +418,7 @@ ts.ui.SideShowSpirit = (function using(chained, Client, Parser, GuiObject, Color
 		 * @return {ts.ui.Spirit}
 		 */
 		_confirmpanel: function(insist) {
-			if(insist || !this._isinternal()) {
+			if (insist || !this._isinternal()) {
 				var panel = this.dom.q('.ts-panel', ts.ui.PanelSpirit);
 				if (!panel) {
 					throw new Error('Expected a Panel');
@@ -436,8 +434,8 @@ ts.ui.SideShowSpirit = (function using(chained, Client, Parser, GuiObject, Color
 		 * - The {ts.ui.CollaborationSpirit} doesn't do this because of politics.
 		 */
 		_confirmposition: function() {
-			if(!this._isinternal()) {
-				if(!this.guilayout.outsideMain()) {
+			if (!this._isinternal()) {
+				if (!this.guilayout.outsideMain()) {
 					throw new Error(
 						this + ' must be positioned outside Main', this.element
 					);
@@ -471,7 +469,7 @@ ts.ui.SideShowSpirit = (function using(chained, Client, Parser, GuiObject, Color
 		 */
 		_headerspirit: function() {
 			return (
-				this.dom.q('this > .ts-header', ts.ui.ToolBarSpirit) || 
+				this.dom.q('this > .ts-header', ts.ui.ToolBarSpirit) ||
 				this._reflex(function createheader() {
 					var header = ts.ui.ToolBarSpirit.summon('header', 'ts-header');
 					this.dom.prepend(header);
@@ -482,20 +480,20 @@ ts.ui.SideShowSpirit = (function using(chained, Client, Parser, GuiObject, Color
 		},
 
 		/**
-		 * The footer versus panel layout was originally implemented using 
-		 * flexbox but there was a problem with this whenever CSS transitions 
-		 * and transform were added, so we've switched to JS layout. This means 
-		 * that we have to recalculate the layout whenever content is changed 
+		 * The footer versus panel layout was originally implemented using
+		 * flexbox but there was a problem with this whenever CSS transitions
+		 * and transform were added, so we've switched to JS layout. This means
+		 * that we have to recalculate the layout whenever content is changed
 		 * in the footer, but fortunately that's cost-effective nowadays.
-		 * TODO: We should at some point attempt to go back to CSS layout, 
-		 * but note that the problem (in Chrome only!) is only apparent 
+		 * TODO: We should at some point attempt to go back to CSS layout,
+		 * but note that the problem (in Chrome only!) is only apparent
 		 * in a production/sandbox environment. They are however easy to spot.
 		 * @param {constructor} Observer Which is undefined in old IE versions
 		 */
 		_initfooter: function(Observer) {
 			var footer = this.dom.q('.ts-footer');
-			if(footer) {
-				if(Observer) {
+			if (footer) {
+				if (Observer) {
 					this._observer = new Observer(function() {
 						this._reflex();
 					}.bind(this));
@@ -516,10 +514,10 @@ ts.ui.SideShowSpirit = (function using(chained, Client, Parser, GuiObject, Color
 		 * @param {ts.ui.Spirit} spirit
 		 */
 		_ontransitionend: function(spirit) {
-			if(ts.ui.PanelSpirit.is(spirit)) {
+			if (ts.ui.PanelSpirit.is(spirit)) {
 				this.event.remove('transitionend');
 				this.css.remove('ts-flipping ts-flip-in ts-flip-out');
-				if(this.css.contains('ts-flip-init')) {
+				if (this.css.contains('ts-flip-init')) {
 					this.css.remove('ts-flip-init').add('ts-flipped');
 				} else {
 					this.flipped = !this.flipped;
@@ -529,7 +527,7 @@ ts.ui.SideShowSpirit = (function using(chained, Client, Parser, GuiObject, Color
 				this._flipping = null;
 			}
 		},
-		
+
 		/**
 		 * Add or remove the closing X button in the titlebar.
 		 * @param @optional {boolean} show
@@ -539,8 +537,8 @@ ts.ui.SideShowSpirit = (function using(chained, Client, Parser, GuiObject, Color
 			var tool = this._headerspirit();
 			var list = tool.buttons();
 			var butt = list.get('close-button');
-			if(show !== false) {
-				if(!butt) {
+			if (show !== false) {
+				if (!butt) {
 					list.push({
 						item: 'button',
 						icon: 'ts-icon-close',
@@ -551,13 +549,13 @@ ts.ui.SideShowSpirit = (function using(chained, Client, Parser, GuiObject, Color
 						}
 					});
 				}
-			} else if(butt) {
+			} else if (butt) {
 				list.remove(butt);
-				 // if `autoclose` was changed sometime *after* initialization, 
-				 // we'll need to remove any header that doesn't have a `title` 
+				 // if `autoclose` was changed sometime *after* initialization,
+				 // we'll need to remove any header that doesn't have a `title`
 				 // while accounting for the fact that models are updated async.
 				this.tick.time(function asyncproblem() {
-					if(!tool.life.hascontent) {
+					if (!tool.life.hascontent) {
 						this.reflex(function removeheader() {
 							tool.dom.remove();
 							this._fixappearance();
@@ -568,7 +566,7 @@ ts.ui.SideShowSpirit = (function using(chained, Client, Parser, GuiObject, Color
 		},
 
 		/**
-		 * Opening scene implemented by subclass(es). 
+		 * Opening scene implemented by subclass(es).
 		 * Except for the coloring stuff, apparently.
 		 * @param {boolean} animated
 		 * @returns {boolean}
@@ -596,8 +594,8 @@ ts.ui.SideShowSpirit = (function using(chained, Client, Parser, GuiObject, Color
 			}
 			if (busy) {
 				var opts = {
-					message:busy,
-					top:"226px"
+					message: busy,
+					top: '226px'
 				};
 				this.spin.spin(this.element, opts);
 			} else {
@@ -606,14 +604,14 @@ ts.ui.SideShowSpirit = (function using(chained, Client, Parser, GuiObject, Color
 		},
 
 		/**
-		 * If more than one panel next to aside, generate the tabbar automaticly  
+		 * If more than one panel next to aside, generate the tabbar automaticly
 		 * TODO(leo@): Perhaps to watch the panels to add or delete panel in the tabbar
 		 * TODO(jmo@): This can (probably) be moved to the {ts.ui.SideShowSpirit}
 		 */
 		_inittabs: function() {
 			var panels = this.dom.qall('this > .ts-panel', ts.ui.PanelSpirit);
-			if(panels.length > 1) {
-				if(panels.every(function(panel) {
+			if (panels.length > 1) {
+				if (panels.every(function(panel) {
 					return !!panel.label;
 				})) {
 					this.css.add('ts-has-panels');
@@ -630,13 +628,13 @@ ts.ui.SideShowSpirit = (function using(chained, Client, Parser, GuiObject, Color
 
 		/**
 		 * Remove the tabbar if you don't need it any more
-		 * And then reflex the spirit  
+		 * And then reflex the spirit
 		 */
 		_removetabbar: function() {
 			this._reflex(function() {
 				var bar = this.tabbar();
 				bar.dom.remove();
-				this.css.remove('ts-has-panels'); 
+				this.css.remove('ts-has-panels');
 				this._tabbar = null;
 			});
 		},
@@ -654,7 +652,7 @@ ts.ui.SideShowSpirit = (function using(chained, Client, Parser, GuiObject, Color
 					selected: index === 0,
 					$onselect: function() {
 						that.dom.qall('this > .ts-panel', ts.ui.PanelSpirit).forEach(function(p) {
-							if(p === panel) {
+							if (p === panel) {
 								p.show();
 							} else {
 								p.hide();
@@ -682,8 +680,8 @@ ts.ui.SideShowSpirit = (function using(chained, Client, Parser, GuiObject, Color
 			if (!bar) {
 				return;
 			}
-			if(added) {
-				if(index !== 0) {
+			if (added) {
+				if (index !== 0) {
 					panel.hide();
 				}
 				bar.tabs().splice(index, 0, {
@@ -691,7 +689,7 @@ ts.ui.SideShowSpirit = (function using(chained, Client, Parser, GuiObject, Color
 					selected: index === 0,
 					$onselect: function() {
 						dom.qall(css, ts.ui.PanelSpirit).forEach(function(p) {
-							if(p === panel) {
+							if (p === panel) {
 								p.show();
 								elm.scrollTop = 0; // TODO(jmo@): account for topbar position in mobile breakpoint
 								p.$onselect();
@@ -715,10 +713,10 @@ ts.ui.SideShowSpirit = (function using(chained, Client, Parser, GuiObject, Color
 			}
 			bar.$hascontent(); // for the tabbar to render instantly
 		},
-		
+
 		/**
-		 * Manage background colors and dropshadows. The tick mechanism 
-		 * schedules the operation at the end of the execution stack so 
+		 * Manage background colors and dropshadows. The tick mechanism
+		 * schedules the operation at the end of the execution stack so
 		 * that it only runs *once* even if called multiple times over.
 		 * @see {ts.ui.SideShowSpirit#ontick}
 		 */
@@ -726,11 +724,11 @@ ts.ui.SideShowSpirit = (function using(chained, Client, Parser, GuiObject, Color
 			var tick = 'ts-sideshow-theme';
 			this.tick.add(tick).dispatch(tick);
 		},
-		
+
 		/**
-		 * If spirit was created via a model, return the model color. 
-		 * Otherwise return any bg-color classname found in the HTML 
-		 * and also *remove it* (it will soon be applied elsewhere) 
+		 * If spirit was created via a model, return the model color.
+		 * Otherwise return any bg-color classname found in the HTML
+		 * and also *remove it* (it will soon be applied elsewhere)
 		 * so that (in a future project) we can flip the Aside nicely.
 		 * @param {string} color Fallback color!
 		 * @returns {string}
@@ -739,20 +737,20 @@ ts.ui.SideShowSpirit = (function using(chained, Client, Parser, GuiObject, Color
 			function fixweirdlooking(c) {
 				return c.match(/ts-bg-lite|ts-bg-white/) ? 'ts-bg-blue' : c;
 			}
-			if(this._ismodelled() && this._model.color) {
+			if (this._ismodelled() && this._model.color) {
 				color = fixweirdlooking(this._model.color);
 			} else {
 				GuiObject.each(Colors, function(key, value) {
-					if(this.css.contains(value)) {
+					if (this.css.contains(value)) {
 						this.css.remove((color = value));
 					}
 				}, this);
 			}
 			return color;
 		},
-		
+
 		/**
-		 * Transform background color to members (unless it 
+		 * Transform background color to members (unless it
 		 * already has a background color classname given).
 		 * @param {string} color
 		 * @param {Array<string>} selectors
@@ -763,17 +761,17 @@ ts.ui.SideShowSpirit = (function using(chained, Client, Parser, GuiObject, Color
 				dom.qall(selector, ts.ui.Spirit).filter(function(spirit) {
 					return true;
 				}).forEach(function(spirit) {
-					switch(selector) {
+					switch (selector) {
 						case '.ts-header':
 						case '.ts-tabbar':
 							spirit.css.remove(BGCOLORS).add(color);
-							if(spirit._ismodelled()) {
+							if (spirit._ismodelled()) {
 								spirit._model.color = color;
 							}
 							break;
 						default:
 							var classname = spirit.css.name();
-							if(!classname.includes('ts-bg')) {
+							if (!classname.includes('ts-bg')) {
 								spirit.css.add(color);
 							}
 							break;
@@ -781,10 +779,10 @@ ts.ui.SideShowSpirit = (function using(chained, Client, Parser, GuiObject, Color
 				});
 			});
 		},
-		
+
 		/**
-		 * Apply color theme extras. The dropshadows are done with DIVs (instead 
-		 * of using CSS box-shadow) to keep them under control without using any  
+		 * Apply color theme extras. The dropshadows are done with DIVs (instead
+		 * of using CSS box-shadow) to keep them under control without using any
 		 * kind of z-index, since this would mess up the general page layout.
 		 * @param {gui.DOMPlugin} dom
 		 */
@@ -798,21 +796,21 @@ ts.ui.SideShowSpirit = (function using(chained, Client, Parser, GuiObject, Color
 			dom.qall('.ts-shadow').forEach(function dontduplicate(shadow) {
 				shadow.parentNode.removeChild(shadow);
 			});
-			if(tabbs && getcolor(tabbs) !== color) {
+			if (tabbs && getcolor(tabbs) !== color) {
 				tabbs.white();
-			} else if([tabbs, headr].every(function(thing) {
+			} else if ([tabbs, headr].every(function(thing) {
 				return thing && getcolor(thing) === color;
 			})) {
 				panel.dom.before(shade.cloneNode());
 				headr.css.add('ts-inset');
-			} else if(headr && getcolor(headr) === color) {
+			} else if (headr && getcolor(headr) === color) {
 				panel.dom.before(shade.cloneNode());
 			}
-			if(footr && getcolor(footr) === color) {
+			if (footr && getcolor(footr) === color) {
 				footr.dom.before(shade.cloneNode());
 			}
 		},
-		
+
 		/**
 		 * Execute callback configured via HTML attribute or via JS property.
 		 * The 'this' keyword points to the element or the spirit respectively.
@@ -830,18 +828,17 @@ ts.ui.SideShowSpirit = (function using(chained, Client, Parser, GuiObject, Color
 				}
 			}
 			return true;
-		},
+		}
 
 	}, { // Xstatic ..............................................................
-		
+
 		/**
 		 * List of members that should inherit any assigned background color.
 		 * @type {Array<string>}
 		 */
 		$bgmembers: ['.ts-header']
-		
-	});
 
+	});
 }(
 	gui.Combo.chained,
 	gui.Client,

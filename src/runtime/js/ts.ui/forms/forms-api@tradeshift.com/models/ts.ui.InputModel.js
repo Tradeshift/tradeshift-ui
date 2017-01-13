@@ -4,7 +4,6 @@
  * @using {gui.Combo#chained} chained
  */
 ts.ui.InputModel = (function using(Client, chained) {
-
 	return ts.ui.Model.extend({
 
 		/**
@@ -18,7 +17,7 @@ ts.ui.InputModel = (function using(Client, chained) {
 		 * @type {string}
 		 */
 		type: 'text',
-		
+
 		/**
 		 * Input name.
 		 * @type {string}
@@ -96,7 +95,7 @@ ts.ui.InputModel = (function using(Client, chained) {
 		 * @type {boolean}
 		 */
 		readonly: false,
-		
+
 		/**
 		 * Disabled?
 		 * @type {boolean}
@@ -110,7 +109,7 @@ ts.ui.InputModel = (function using(Client, chained) {
 		focused: false,
 
 		/**
-		 * Attempt to focus this field? 
+		 * Attempt to focus this field?
 		 * TODO(jmo@: Actually support this
 		 * @type {boolean}
 		 */
@@ -168,8 +167,8 @@ ts.ui.InputModel = (function using(Client, chained) {
 		 * @param {string} error
 		 */
 		setCustomValidity: function(error) {
-			this.validity.customError = error ? true : false;
-			this.validity.valid = error ? false : true;
+			this.validity.customError = !!error;
+			this.validity.valid = !error;
 			this._validationMessage = error || '';
 		},
 
@@ -212,7 +211,6 @@ ts.ui.InputModel = (function using(Client, chained) {
 			return ts.ui.input.edbml(this);
 		},
 
-
 		// Private .................................................................
 
 		/**
@@ -222,38 +220,38 @@ ts.ui.InputModel = (function using(Client, chained) {
 		_checker: null,
 
 		/**
-		 * Snapshot the value so that we never fire the 
+		 * Snapshot the value so that we never fire the
 		 * `onidle` callback twice for the same value.
 		 * @type {string}
 		 */
 		_snapshot: null,
 
 		/**
-		 * Property was changed (note that this model is observing itself 
+		 * Property was changed (note that this model is observing itself
 		 * because of all this xframe synchronization stuff going on).
 		 * @param {string} name
 		 * @param {string|boolean} value
 		 */
 		_onpropertychange: function(name, value) {
 			var isTrue = (value === true);
-			switch(name) {
+			switch (name) {
 				case 'idle':
-					if(isTrue) {
+					if (isTrue) {
 						this.idle = false;
-						if((value = this.value) !== this._snapshot) {
+						if ((value = this.value) !== this._snapshot) {
 							this._maybeinvoke(this.onidle, value);
 							this._snapshot = value;
 						}
 					}
 					break;
 				case 'enterkey':
-					if(isTrue) {
+					if (isTrue) {
 						this.enterkey = false;
 						this._maybeinvoke(this.onenterkey, this.value);
 					}
 					break;
 				case 'focused':
-					if(isTrue) {
+					if (isTrue) {
 						this._maybeinvoke(this.onfocus);
 					} else {
 						this._maybeinvoke(this.onblur);
@@ -266,5 +264,4 @@ ts.ui.InputModel = (function using(Client, chained) {
 		}
 
 	});
-
 }(gui.Client, gui.Combo.chained));

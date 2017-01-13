@@ -6,7 +6,6 @@
  * @using {string} ACTION_HIDE
  */
 ts.ui.PanelSpirit = (function using(ACTION_ATTACH, ACTION_DETACH, ACTION_SHOW, ACTION_HIDE, ACTION_CLASS) {
-	
 	return ts.ui.Spirit.extend({
 
 		/**
@@ -20,7 +19,7 @@ ts.ui.PanelSpirit = (function using(ACTION_ATTACH, ACTION_DETACH, ACTION_SHOW, A
 		 * @type {boolean}
 		 */
 		selected: false,
-		
+
 		/**
 		 * For when the panel is used to generate tabs.
 		 * @type {string} label
@@ -32,13 +31,13 @@ ts.ui.PanelSpirit = (function using(ACTION_ATTACH, ACTION_DETACH, ACTION_SHOW, A
 		 * @type {boolean} visible
 		 */
 		visible: true,
-		
+
 		/**
 		 * Open for implementation.
 		 * @type {function}
 		 */
 		onselect: null,
-		
+
 		/**
 		 * Setup.
 		 */
@@ -51,7 +50,7 @@ ts.ui.PanelSpirit = (function using(ACTION_ATTACH, ACTION_DETACH, ACTION_SHOW, A
 				ACTION_CLASS
 			]);
 		},
-		
+
 		/**
 		 * Attach.
 		 */
@@ -59,7 +58,7 @@ ts.ui.PanelSpirit = (function using(ACTION_ATTACH, ACTION_DETACH, ACTION_SHOW, A
 			this.super.onattach();
 			this.action.dispatch(ACTION_ATTACH, this._isroot());
 		},
-		
+
 		/**
 		 * Detach.
 		 */
@@ -67,33 +66,33 @@ ts.ui.PanelSpirit = (function using(ACTION_ATTACH, ACTION_DETACH, ACTION_SHOW, A
 			this.super.ondetach();
 			this.action.dispatch(ACTION_DETACH, this._isroot());
 		},
-		
+
 		/**
-		 * Consume nested panel actions. When a request for root CSS 
-		 * update is found, we'll stamp the action with a pointer to 
+		 * Consume nested panel actions. When a request for root CSS
+		 * update is found, we'll stamp the action with a pointer to
 		 * this panel (so that root CSS always matches selected panel).
 		 * @param {gui.Action} a
 		 */
 		onaction: function(a) {
-			switch(a.type) {
+			switch (a.type) {
 				case ACTION_ATTACH:
 				case ACTION_SHOW:
 				case ACTION_HIDE:
 					a.consume();
 					break;
 				case ACTION_CLASS:
-					if(this._isroot()) {
+					if (this._isroot()) {
 						a.data.relatedPanel = this;
 					}
 					break;
 				case ts.ui.ACTION_STATUSBAR_LEVEL:
-					if(a.target.guilayout.outsideMain()) { // TODO: CSS FOR THIS!
+					if (a.target.guilayout.outsideMain()) { // TODO: CSS FOR THIS!
 						this.guilayout.gotolevel(a.data);
 					}
 					break;
 			}
 		},
-		
+
 		/*
 		 * Show the panel.
 		 */
@@ -128,15 +127,14 @@ ts.ui.PanelSpirit = (function using(ACTION_ATTACH, ACTION_DETACH, ACTION_SHOW, A
 		hasOverflow: function() {
 			return this.naturalHeight() > this.element.offsetHeight;
 		},
-		
-		
-		// Privileged .............................................................. 
-		
+
+		// Privileged ..............................................................
+
 		/**
 		 *
 		 */
 		$onselect: function() {
-			switch(gui.Type.of(this.onselect)) {
+			switch (gui.Type.of(this.onselect)) {
 				case 'function':
 					this.onselect();
 					break;
@@ -145,10 +143,9 @@ ts.ui.PanelSpirit = (function using(ACTION_ATTACH, ACTION_DETACH, ACTION_SHOW, A
 					break;
 			}
 		},
-		
-		
+
 		// Private .................................................................
-		
+
 		/**
 		 * Is root level panel?
 		 * @returns {boolean}
@@ -158,7 +155,6 @@ ts.ui.PanelSpirit = (function using(ACTION_ATTACH, ACTION_DETACH, ACTION_SHOW, A
 		}
 
 	});
-	
 }(
 	ts.ui.ACTION_PANEL_ATTACH,
 	ts.ui.ACTION_PANEL_DETACH,

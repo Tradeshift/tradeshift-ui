@@ -4,8 +4,7 @@
  * @using {gui.Then} Then
  */
 ts.dox.ChromeSpirit = (function using(CSSPlugin, Then) {
-	
-	var 
+	var
 		BP_TABLET = 600,
 		SIDEBAR_MICRO = 66,
 		SIDEBAR_MACRO = 320,
@@ -26,9 +25,9 @@ ts.dox.ChromeSpirit = (function using(CSSPlugin, Then) {
 		ASIDESOFF = ts.ui.BROADCAST_GLOBAL_ASIDES_WILL_OFF,
 		DIALOGSON = ts.ui.BROADCAST_GLOBAL_DIALOGS_WILL_BLOCK,
 		DIALOGSOFF = ts.ui.BROADCAST_GLOBAL_DIALOGS_DID_UNBLOCK;
-		
+
 	return ts.ui.Spirit.extend({
-		
+
 		/**
 		 * Get ready.
 		 */
@@ -46,7 +45,7 @@ ts.dox.ChromeSpirit = (function using(CSSPlugin, Then) {
 				TITLE, MENUON, ONROTATE,
 				ASIDESON, ASIDESOFF, DIALOGSON, DIALOGSOFF
 			]).add(ONRESIZE);
-			if(location.hash.length > 1) {
+			if (location.hash.length > 1) {
 				this._onhashchange(location.hash);
 			} else {
 				location.hash = 'intro/';
@@ -56,30 +55,30 @@ ts.dox.ChromeSpirit = (function using(CSSPlugin, Then) {
 		},
 
 		/**
-		 * Menu is hidden to supress flickering, 
+		 * Menu is hidden to supress flickering,
 		 * we'll show it as soon as it's rendered.
 		 * Also, hide SideBar shadow on first item.
 		 */
 		onlife: function(l) {
 			this.super.onlife(l);
 			var first = '.ts-doxmenu > .ts-checked:first-child';
-			if(l.type === gui.LIFE_RENDER) {
+			if (l.type === gui.LIFE_RENDER) {
 				this.css.shift(this.dom.q(first), 'intropage');
-				if(!this.css.contains('ts-menudone')) {
+				if (!this.css.contains('ts-menudone')) {
 					this.reflex(function showmenu() {
 						this.css.add('ts-menudone');
 					}, this);
 				}
 			}
 		},
-		
+
 		/**
 		 * Handle action.
 		 * @param {gui.Action} a
 		 */
 		onaction: function(a) {
 			this.super.onaction(a);
-			switch(a.type) {
+			switch (a.type) {
 				case TITLE:
 					this._title(a.data);
 					break;
@@ -97,7 +96,7 @@ ts.dox.ChromeSpirit = (function using(CSSPlugin, Then) {
 					this.css.shift(a.data, 'searching');
 					break;
 				case ONDOM:
-					if(ts.dox.booting) {
+					if (ts.dox.booting) {
 						this._firstload();
 						ts.dox.booting = false;
 					} else {
@@ -106,16 +105,16 @@ ts.dox.ChromeSpirit = (function using(CSSPlugin, Then) {
 					break;
 			}
 		},
-		
+
 		/**
 		 * Handle broadcast.
 		 * @param {gui.Broadcast} b
 		 */
 		onbroadcast: function(b) {
 			this.super.onbroadcast(b);
-			switch(b.type) {
+			switch (b.type) {
 				case MENUON:
-					if(this._iscollapsed()) {
+					if (this._iscollapsed()) {
 						this._openmenu(true);
 					}
 					break;
@@ -137,16 +136,16 @@ ts.dox.ChromeSpirit = (function using(CSSPlugin, Then) {
 					break;
 			}
 		},
-		
+
 		/**
 		 * Handle event.
 		 * @param {Event} e
 		 */
 		onevent: function(e) {
 			this.super.onevent(e);
-			switch(e.type) {
+			switch (e.type) {
 				case 'transitionend':
-					if(this._thenclosed) {
+					if (this._thenclosed) {
 						this._thenclosed.now();
 						this._thenclosed = null;
 					}
@@ -156,39 +155,38 @@ ts.dox.ChromeSpirit = (function using(CSSPlugin, Then) {
 					break;
 			}
 		},
-		
+
 		/**
 		 * Handle key.
 		 * @param {gui.Key} k
 		 */
 		onkey: function(k) {
 			this.super.onkey(k);
-			if(k.down && k.type === 'Esc') {
+			if (k.down && k.type === 'Esc') {
 				this._openmenu(false);
 			}
 		},
-		
-		
+
 		// Private .................................................................
-		
+
 		/**
 		 * Spirit of the SideBar.
 		 * @type {ts.dox.MenuSpirit}
 		 */
 		_sbar: null,
-		
+
 		/**
 		 * Spirit of the Menu.
 		 * @type {ts.dox.MenuSpirit}
 		 */
 		_menu: null,
-		
+
 		/**
 		 * Spirit of the Main.
 		 * @type {ts.ui.MainSpirit}
 		 */
 		_main: null,
-		
+
 		/**
 		 * Some sort of "promise" to resolve menu animation.
 		 * @type {gui.Then}
@@ -200,29 +198,29 @@ ts.dox.ChromeSpirit = (function using(CSSPlugin, Then) {
 		  * @type {string}
 		  */
 		 _searchquery: '',
-		 
+
 		/**
 		 * Extract hash from given URL and assign to window location.
 		 * @param {string} href
 		 */
 		_sethashfromhref: function(href) {
 			var hash = href.split('#')[1];
-			if(hash) {
+			if (hash) {
 				location.hash = hash;
 			}
 		},
-		
+
 		/**
 		 * Location hash changed. While developing, we double check for 404.
 		 * @param {string} hash
 		 */
 		_onhashchange: function(hash) {
-			if(hash.length > 1) {
+			if (hash.length > 1) {
 				var path = hash.substring(1);
-				if(location.hostname === 'localhost') {
+				if (location.hostname === 'localhost') {
 					var ajax = new gui.Request('dist/' + path).acceptText();
 					ajax.get().then(function preload(status) {
-						switch(status) {
+						switch (status) {
 							case 200:
 								this._load4real(path);
 								break;
@@ -240,7 +238,7 @@ ts.dox.ChromeSpirit = (function using(CSSPlugin, Then) {
 			}
 		},
 
-		/** 
+		/**
 		 * Load the page (now known to exist).
 		 * @param {string} path
 		 */
@@ -253,10 +251,10 @@ ts.dox.ChromeSpirit = (function using(CSSPlugin, Then) {
 				}, this._isopenmenu() ? 300 : 0);
 			}, this);
 		},
-		
+
 		/**
-		 * First page loaded in iframe. When all these scripts have been upladed 
-		 * to the internet and are not found in the browsers cache, the `flex()` 
+		 * First page loaded in iframe. When all these scripts have been upladed
+		 * to the internet and are not found in the browsers cache, the `flex()`
 		 * operation would not run in sync with the layout, so we'll hotfix it.
 		 */
 		_firstload: function() {
@@ -264,14 +262,14 @@ ts.dox.ChromeSpirit = (function using(CSSPlugin, Then) {
 			this._openmenu(false);
 			this._showloading(false);
 			this.tick.time(function hotfix() {
-				ts.ui.get(document.documentElement).reflex(); 
+				ts.ui.get(document.documentElement).reflex();
 				initlunr();
 			});
 		},
-		
+
 		/**
 		 * Subsequent page loaded in iframe: Switch from one iframe to the other.
-		 * Allowing the layout to stabilize first so that we don't notice flicker 
+		 * Allowing the layout to stabilize first so that we don't notice flicker
 		 * (we create new iframes to avoid browser history local to the iframes).
 		 */
 		_nextload: function() {
@@ -280,22 +278,22 @@ ts.dox.ChromeSpirit = (function using(CSSPlugin, Then) {
 				this._showloading(false);
 				this._blocking(false);
 				this._resetsearch(!this._iscollapsed());
-				if(this._oldframe) {
+				if (this._oldframe) {
 					this._oldframe.dom.remove();
 					this._oldframe = null;
 				}
 			}, 50);
 		},
-		
+
 		/**
-		 * Prevent IFRAME from adding to the browser history 
-		 * be creating an unique IFRAME for every page load. 
+		 * Prevent IFRAME from adding to the browser history
+		 * be creating an unique IFRAME for every page load.
 		 * Make sure not to transition while we are loading.
 		 * @param {string} path
 		 */
 		_loadnext: function(path) {
 			this._showloading(true);
-			if(this._isopenmenu()) {
+			if (this._isopenmenu()) {
 				this._openmenu(false);
 				this._thenclosed = new Then(function() {
 					this._loadnext(path);
@@ -306,13 +304,13 @@ ts.dox.ChromeSpirit = (function using(CSSPlugin, Then) {
 				this._main.dom.append(ts.ui.FrameSpirit.summon('dist/' + path));
 			}
 		},
-		
+
 		/**
-		 * Note that there is a "dead zone" where the iframe 
-		 * is in mobile breakpoint while the chrome stays in 
-		 * tablet breakpoint. To avoid this, the breakpoint 
-		 * should really be managed entirely by the chrome 
-		 * and posted down to iframes, but this strategy was 
+		 * Note that there is a "dead zone" where the iframe
+		 * is in mobile breakpoint while the chrome stays in
+		 * tablet breakpoint. To avoid this, the breakpoint
+		 * should really be managed entirely by the chrome
+		 * and posted down to iframes, but this strategy was
 		 * abandoned for historical reasons...
 		 * @param {number} width
 		 */
@@ -321,12 +319,12 @@ ts.dox.ChromeSpirit = (function using(CSSPlugin, Then) {
 			var full = 'collapse-full';
 			var mobile = width <= BP_TABLET;
 			var tablet = width > BP_TABLET && width < BP_TABLET + SIDEBAR_MACRO;
-			var desktop = !mobile && !tablet;	
+			var desktop = !mobile && !tablet;
 			this._sbar.isOpen = desktop;
 			this._sbar._closebutton(!desktop);
-			if(mobile) {
+			if (mobile) {
 				this.css.remove(some).add(full);
-			} else if(tablet) {
+			} else if (tablet) {
 				this.css.remove(full).add(some);
 			} else {
 				this.css.remove(some).remove(full);
@@ -334,19 +332,19 @@ ts.dox.ChromeSpirit = (function using(CSSPlugin, Then) {
 		},
 
 		/**
-		 * Show (and hide) blocking cover to prevent the user from 
+		 * Show (and hide) blocking cover to prevent the user from
 		 * requesting new iframes while the current one is loading.
 		 * @param {boolean} block
 		 */
 		_blocking: function(block) {
 			var cover = this._cover('ts-dox-blocking');
-			if(block) {
+			if (block) {
 				cover.show();
 			} else {
 				cover.hide();
 			}
 		},
-		
+
 		/**
 		 * Open the (collapsed) menu.
 		 * @param {boolean} uncollapse
@@ -359,7 +357,7 @@ ts.dox.ChromeSpirit = (function using(CSSPlugin, Then) {
 				this._openmenu(false);
 			}.bind(this) : null;
 		},
-		
+
 		/**
 		 * Is menu open (relevant for collapsed menu)?
 		 * @returns {boolean}
@@ -367,7 +365,7 @@ ts.dox.ChromeSpirit = (function using(CSSPlugin, Then) {
 		_isopenmenu: function() {
 			return this.css.contains('uncollapse');
 		},
-		
+
 		/**
 		 * Is layout collapsed (tablet or mobile)?
 		 * @returns {boolean}
@@ -377,9 +375,9 @@ ts.dox.ChromeSpirit = (function using(CSSPlugin, Then) {
 				return this.css.contains(name);
 			}, this);
 		},
-		
+
 		/**
-		 * This toggles the classname `ts-loading` 
+		 * This toggles the classname `ts-loading`
 		 * on the root HTML element in all frames.
 		 * TODO: Support ABORTED if and when we get a 404.
 		 * @param {boolean} loading
@@ -387,7 +385,7 @@ ts.dox.ChromeSpirit = (function using(CSSPlugin, Then) {
 		_showloading: function(loading) {
 			this.broadcast.dispatchGlobal(loading ? LOADING : COMPLETE);
 		},
-		
+
 		/**
 		 * Get-create CoverSpirit for misc things. First
 		 * run creates the spirit and appends it to BODY.
@@ -397,13 +395,13 @@ ts.dox.ChromeSpirit = (function using(CSSPlugin, Then) {
 		_cover: function(id) {
 			return ts.ui.CoverSpirit.getCover(id);
 		},
-		
+
 		/**
 		 * Match topframe title to iframe document title.
 		 * @param {string} title
 		 */
 		_title: function(title) {
-			if(title === GLOBALTITLE) {
+			if (title === GLOBALTITLE) {
 				document.title = GLOBALTITLE;
 			} else {
 				document.title = (title + ' — ' + GLOBALTITLE);
@@ -420,7 +418,7 @@ ts.dox.ChromeSpirit = (function using(CSSPlugin, Then) {
 				onsearch: function(query) {
 					chrome._searchquery = query;
 					chrome.broadcast.dispatchGlobal('dox-search-query', query);
-					if(query) {
+					if (query) {
 						menu.showresults(query, search(query));
 					} else {
 						menu.showmenu();
@@ -430,29 +428,26 @@ ts.dox.ChromeSpirit = (function using(CSSPlugin, Then) {
 		},
 
 		/**
-		 * In mobile and tablet, clear the search when SideBar closes. 
+		 * In mobile and tablet, clear the search when SideBar closes.
 		 * (may not be the optimal workflow for the searching user!)
 		 * @param {boolean} desktop Abort in desktop breakpoint
 		 */
 		_resetsearch: function(desktop) {
-			if(!desktop) {
+			if (!desktop) {
 				this.dom.q('.ts-search', ts.ui.SearchSpirit).value = '';
-				if(this._searchquery) {
+				if (this._searchquery) {
 					this._searchquery = null;
 					this._menu.showmenu();
 				}
 			}
 		}
-		
-	});
-		
-}(gui.CSSPlugin, gui.Then));
 
+	});
+}(gui.CSSPlugin, gui.Then));
 
 // LUNR ........................................................................
 
 var lunrindex, $results, pagesindex;
-
 
 /**
  * Trigger a search in lunr and transform the result
@@ -463,20 +458,20 @@ function initlunr() {
 	$.getJSON('/dist/lunr.json').done(function(index) {
 		pagesindex = index;
 		lunrindex = lunr(function() {
-			this.field("title", {boost: 10});
-			this.field("tags", {boost: 5});
-			this.field("content");
-			this.ref("href");
+			this.field('title', {boost: 10});
+			this.field('tags', {boost: 5});
+			this.field('content');
+			this.ref('href');
 		});
 		pagesindex.forEach(function(page) {
-			if(page) {
+			if (page) {
 				lunrindex.add(page);
 			}
 		});
 	}).fail(function(jqxhr, textStatus, error) {
-		var err = textStatus + ", " + error;
-		console.error("Error getting index flie:", err);
-	}); 
+		var err = textStatus + ', ' + error;
+		console.error('Error getting index flie:', err);
+	});
 }
 
 /**

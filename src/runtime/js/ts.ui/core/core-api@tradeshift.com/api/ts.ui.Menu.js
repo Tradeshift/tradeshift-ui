@@ -11,6 +11,6 @@ ts.ui.Menu = function(json) {
  * Identification.
  * @return {string}
  */
-ts.ui.Menu.toString = function(){
+ts.ui.Menu.toString = function() {
 	return '[function ts.ui.Menu]';
 };

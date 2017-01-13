@@ -1,5 +1,5 @@
 /**
- * Parsing markup strings to DOM nodes. You might think that this was called a 
+ * Parsing markup strings to DOM nodes. You might think that this was called a
  * DOMParser, but that's just plain wrong because it doesn't parse DOM elements.
  */
 gui.HTMLParser = {
@@ -9,7 +9,7 @@ gui.HTMLParser = {
 	 * @returns {String}
 	 */
 	toString: function() {
-		return "[object gui.HTMLParser]";
+		return '[object gui.HTMLParser]';
 	},
 
 	/**
@@ -52,10 +52,10 @@ gui.HTMLParser = {
 	 */
 	parseToNodes: function(markup, targetdoc) {
 		var elm, doc = this._document ||
-			(this._document = document.implementation.createHTMLDocument(""));
+			(this._document = document.implementation.createHTMLDocument(''));
 		return gui.Guide.suspend(function() {
 			doc.body.innerHTML = this._unsanitize(markup);
-			elm = doc.querySelector("." + this._classname) || doc.body;
+			elm = doc.querySelector('.' + this._classname) || doc.body;
 			return Array.map(elm.childNodes, function(node) {
 				return (targetdoc || document).importNode(node, true);
 			});
@@ -70,14 +70,14 @@ gui.HTMLParser = {
 	 * @returns {HTMLDocument}
 	 */
 	parseToDocument: function(markup) {
-		markup = markup || "";
+		markup = markup || '';
 		return gui.Guide.suspend(function() {
-			var doc = document.implementation.createHTMLDocument("");
-			if (markup.toLowerCase().includes("<!doctype")) {
+			var doc = document.implementation.createHTMLDocument('');
+			if (markup.toLowerCase().includes('<!doctype')) {
 				try {
 					doc.documentElement.innerHTML = markup;
 				} catch (ie9exception) {
-					doc = new ActiveXObject("htmlfile");
+					doc = new ActiveXObject('htmlfile');
 					doc.open();
 					doc.write(markup);
 					doc.close();
@@ -89,14 +89,13 @@ gui.HTMLParser = {
 		});
 	},
 
-
 	// Private ...................................................................
 
 	/**
 	 * Classname for obscure wrapping containers.
 	 * @type {String}
 	 */
-	_classname: "_gui-htmlparser",
+	_classname: '_gui-htmlparser',
 
 	/**
 	 * Match comments.
@@ -125,12 +124,12 @@ gui.HTMLParser = {
 	 */
 	_unsanitize: function(markup) {
 		var match, fix;
-		markup = markup.trim().replace(this._comments, "");
+		markup = markup.trim().replace(this._comments, '');
 		if ((match = markup.match(this._firsttag))) {
 			if ((fix = this._unsanestructures[match[1]])) {
-				markup = fix.
-				replace("${class}", this._classname).
-				replace("${markup}", markup);
+				markup = fix
+				.replace('${class}', this._classname)
+				.replace('${markup}', markup);
 			}
 		}
 		return markup;
@@ -145,15 +144,15 @@ gui.HTMLParser = {
 	 */
 	_unsanestructures: (function() {
 		var map = {
-			'td': '<table><tbody><tr class="${class}">${markup}</tr></tbody></table>',
-			'tr': '<table><tbody class="${class}">${markup}</tbody></table>',
-			'tbody': '<table class="${class}">${markup}</table>',
-			'col': '<table><colgroup class="${class}">${markup}</colgroup></table>',
-			'option': '<select class="${class}"><option>a</option>${markup}</select>'
+			td: '<table><tbody><tr class="${class}">${markup}</tr></tbody></table>',
+			tr: '<table><tbody class="${class}">${markup}</tbody></table>',
+			tbody: '<table class="${class}">${markup}</table>',
+			col: '<table><colgroup class="${class}">${markup}</colgroup></table>',
+			option: '<select class="${class}"><option>a</option>${markup}</select>'
 		};
-		map["th"] = map["td"]; // duplicate fixes.
-		["thead", "tfoot", "caption", "colgroup"].forEach(function(tag) {
-			map[tag] = map["tbody"];
+		map.th = map.td; // duplicate fixes.
+		['thead', 'tfoot', 'caption', 'colgroup'].forEach(function(tag) {
+			map[tag] = map.tbody;
 		});
 		return map;
 	}())

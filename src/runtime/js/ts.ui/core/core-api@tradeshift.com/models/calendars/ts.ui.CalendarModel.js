@@ -3,7 +3,6 @@
  * @extends {ts.ui.Model}
  */
 ts.ui.CalendarModel = (function() {
-
 	/**
 	 * TEMPORARY HACK FOR LOCALIZATION.
 	 * @param {string} translatable
@@ -32,13 +31,13 @@ ts.ui.CalendarModel = (function() {
 	};
 
 	return ts.ui.Model.extend({
-		
+
 		/**
 		 * Friendly name.
 		 * @type {string}
 		 */
 		item: 'calendar',
-		
+
 		/**
 		 * [now description]
 		 * @type {String}
@@ -153,7 +152,6 @@ ts.ui.CalendarModel = (function() {
 			}
 		},
 
-
 		// Private ....................................................
 
 		/**
@@ -175,9 +173,9 @@ ts.ui.CalendarModel = (function() {
 		_getRelativeMonth: function(year, month, diff) {
 			month = parseInt(month, 10) + diff;
 			year = parseInt(year, 10);
-			if (month < 0) { //0 is january
+			if (month < 0) { // 0 is january
 				year = this._getRelativeYear(year, -1);
-				month = 11; //11 is december
+				month = 11; // 11 is december
 			} else if (month > 11) {
 				year = this._getRelativeYear(year, 1);
 				month = 0;
@@ -210,24 +208,24 @@ ts.ui.CalendarModel = (function() {
 			year = parseInt(year, 10);
 			month = parseInt(month, 10);
 			var days = [],
-					numDays = ts.lib.Date.getDaysInMonth(year, month),
-					numDaysInPrevMonth = ts.lib.Date.getDaysInMonth(year, month - 1),
-					startDay = ts.lib.Date.getFirstDayInMonth(year, month) -
+				numDays = ts.lib.Date.getDaysInMonth(year, month),
+				numDaysInPrevMonth = ts.lib.Date.getDaysInMonth(year, month - 1),
+				startDay = ts.lib.Date.getFirstDayInMonth(year, month) -
 							ts.ui.CalendarModel.firstDay,
 					// TODO (jmo@): some kind of hack for february???
-					numRows = Math.ceil(numDays / 7),
-					selectedIsVisible = (year === parseInt(this._selectedDate.year, 10) &&
+				numRows = Math.ceil(numDays / 7),
+				selectedIsVisible = (year === parseInt(this._selectedDate.year, 10) &&
 							month === parseInt(this._selectedDate.month, 10)),
-					todayIsVisible = (year === ts.lib.Date.getCurrentFullYear() &&
+				todayIsVisible = (year === ts.lib.Date.getCurrentFullYear() &&
 							month === ts.lib.Date.getCurrentMonth()),
-					row, col;
-			//days[row][col] = {...}
+				row, col;
+			// days[row][col] = {...}
 			for (row = 0; row < numRows; ++row) {
 				for (col = 0; col < 7; ++col) {
 					var i = row * 7 + col,
-							day = i - startDay + 1,
-							tempRow = null,
-							newDate;
+						day = i - startDay + 1,
+						tempRow = null,
+						newDate;
 					if (col === 0) {
 						days[row] = [];
 					}
@@ -241,7 +239,7 @@ ts.ui.CalendarModel = (function() {
 							month: month,
 							day: day
 						});
-					} else if (day <= 0) { //days from the previous month
+					} else if (day <= 0) { // days from the previous month
 						newDate = this._getRelativeMonth(year, month, -1);
 						tempRow = days[row];
 						tempRow[col] = new Cell({
@@ -250,7 +248,7 @@ ts.ui.CalendarModel = (function() {
 							day: numDaysInPrevMonth + day,
 							prev: true
 						});
-					} else if (day > numDays) { //days from the next month
+					} else if (day > numDays) { // days from the next month
 						newDate = this._getRelativeMonth(year, month, 1);
 						tempRow = days[row];
 						tempRow[col] = new Cell({
@@ -362,9 +360,7 @@ ts.ui.CalendarModel = (function() {
 		]
 
 	});
-
 }());
-
 
 /*
 function Controller ( lib) {

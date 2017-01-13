@@ -1,9 +1,9 @@
 /**
- * Visibility is an abstract status. When you mark a spirit as visible or 
- * invisible, the methods `onvisible` or `oninvisible` will be called on 
- * spirit and descendants. Current visibility status can be read in the 
- * {gui.LifePlugin}: `spirit.life.visible`. Visibility is resolved async, 
- * so this property is `undefined` on startup. If you need to take an action 
+ * Visibility is an abstract status. When you mark a spirit as visible or
+ * invisible, the methods `onvisible` or `oninvisible` will be called on
+ * spirit and descendants. Current visibility status can be read in the
+ * {gui.LifePlugin}: `spirit.life.visible`. Visibility is resolved async,
+ * so this property is `undefined` on startup. If you need to take an action
  * that depends on visibility, just wait for `onvisible` to be invoked.
  * @TODO: Could document.elementFromPoint() be used to detect hidden stuff?
  * @TODO: hook this up to http://www.w3.org/TR/page-visibility/
@@ -12,7 +12,6 @@
  * @using {gui.Combo#chained}
  */
 gui.VisibilityPlugin = (function using(chained) {
-
 	return gui.Plugin.extend({
 
 		/**
@@ -30,7 +29,6 @@ gui.VisibilityPlugin = (function using(chained) {
 		off: chained(function() {
 			gui.VisibilityPlugin.off(this.spirit);
 		})
-
 
 	}, {}, { // Static ...........................................................
 
@@ -65,7 +63,6 @@ gui.VisibilityPlugin = (function using(chained) {
 			}
 		},
 
-
 		// Privileged static .......................................................
 
 		/**
@@ -78,7 +75,6 @@ gui.VisibilityPlugin = (function using(chained) {
 			this._go(spirit, !this._invisible(spirit));
 		},
 
-
 		// Private static ..........................................................
 
 		/**
@@ -90,7 +86,7 @@ gui.VisibilityPlugin = (function using(chained) {
 		 */
 		_invisible: function(spirit) {
 			return spirit.css.contains(gui.CLASS_INVISIBLE) ||
-				spirit.css.matches("." + gui.CLASS_INVISIBLE + " *");
+				spirit.css.matches('.' + gui.CLASS_INVISIBLE + ' *');
 		},
 
 		/**
@@ -123,5 +119,4 @@ gui.VisibilityPlugin = (function using(chained) {
 		}
 
 	});
-
 }(gui.Combo.chained));

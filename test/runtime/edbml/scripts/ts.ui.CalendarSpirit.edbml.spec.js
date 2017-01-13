@@ -1,12 +1,11 @@
 describe('ts.ui.CalendarSpirit.edbml', function likethis() {
-
 	function gethtml(calendar) {
 		var spirit = ts.ui.CalendarSpirit.summon(calendar);
 		var dom = helper.createTestDom();
 		dom.appendChild(spirit.element);
 		return dom.innerHTML;
 	}
-	
+
 	it('should contain ts-calendar-transports', function(done) {
 		var calendar = new ts.ui.DatePickerModel();
 		sometime(function later() {
@@ -28,7 +27,7 @@ describe('ts.ui.CalendarSpirit.edbml', function likethis() {
 
 	it('should contian value', function(done) {
 		var calendar = new ts.ui.DatePickerModel({
-			value: '1973-03-26',
+			value: '1973-03-26'
 		});
 		sometime(function later() {
 			expect(gethtml(calendar)).toContain('1973');
@@ -36,6 +35,5 @@ describe('ts.ui.CalendarSpirit.edbml', function likethis() {
 			expect(gethtml(calendar)).toContain('26');
 			done();
 		});
-	});	
-
+	});
 });

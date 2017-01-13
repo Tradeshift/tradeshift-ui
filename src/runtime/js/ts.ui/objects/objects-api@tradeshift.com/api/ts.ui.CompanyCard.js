@@ -58,7 +58,6 @@ ts.ui.CompanyCard = {
 
 };
 
-
 // Implementation ..............................................................
 
 /**
@@ -66,9 +65,8 @@ ts.ui.CompanyCard = {
  * @using {gui.Object}
  */
 (function using(GuiArray, GuiObject) {
-
 	var collection = null;
-	
+
 	GuiObject.extend(ts.ui.CompanyCard, {
 
 		/**
@@ -77,9 +75,9 @@ ts.ui.CompanyCard = {
 		 */
 		render: function(arg) {
 			var objects;
-			if(arguments.length) {
+			if (arguments.length) {
 				objects = GuiArray.make(arg);
-				if(collection) {
+				if (collection) {
 					objects.forEach(function(o) {
 						collection.push(o);
 					});
@@ -101,5 +99,4 @@ ts.ui.CompanyCard = {
 		}
 
 	});
-
 }(gui.Array, gui.Object));

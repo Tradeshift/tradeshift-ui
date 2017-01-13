@@ -1,13 +1,11 @@
 describe('ts.ui.ToolBarSpirit', function likethis() {
-
 	var isExplorer = (
 		navigator.userAgent.indexOf('MSIE') !== -1 ||
 		navigator.appVersion.indexOf('Trident/') > 0
 	);
 
-
 	// Preparations ..............................................................
-	
+
 	function setup(action) {
 		var spirit, dom = helper.createTestDom();
 		dom.innerHTML = '<header data-ts="ToolBar"></header>';
@@ -30,7 +28,7 @@ describe('ts.ui.ToolBarSpirit', function likethis() {
 	}
 
 	function getpageritem(spirit) {
-		return spirit.element.querySelector('.ts-toolbar-menu.ts-center');	
+		return spirit.element.querySelector('.ts-toolbar-menu.ts-center');
 	}
 
 	function keydownsearch(spirit) {
@@ -41,7 +39,6 @@ describe('ts.ui.ToolBarSpirit', function likethis() {
 		i.focus();
 		i.dispatchEvent(e);
 	}
-
 
 	// Expectations ..............................................................
 
@@ -95,7 +92,7 @@ describe('ts.ui.ToolBarSpirit', function likethis() {
 		var item;
 		setup(function(spirit) {
 			spirit.buttons([
-				{ 
+				{
 					type: 'ts-primary',
 					label: 'Hest'
 				},
@@ -144,10 +141,9 @@ describe('ts.ui.ToolBarSpirit', function likethis() {
 	// 		});
 	// 	});
 	// });
-	
-	
+
 	// SKETCHY TESTS ZONE ........................................................
-	
+
 	/*
 
 	// NOTE: this test may be subject to random failure
@@ -164,7 +160,7 @@ describe('ts.ui.ToolBarSpirit', function likethis() {
 			});
 		});
 	});
-	
+
 	// NOTE: this test may be subject to random failure
 	it('should call onsubmit when ENTER is pressed', function(done) {
 		setup(function(spirit) {
@@ -207,5 +203,4 @@ describe('ts.ui.ToolBarSpirit', function likethis() {
 		});
 	});
 	*/
-
 });

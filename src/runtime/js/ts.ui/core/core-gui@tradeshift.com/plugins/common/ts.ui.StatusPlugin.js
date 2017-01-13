@@ -5,7 +5,6 @@
  * @param {gui.Arguments.confirmed} confirmed
  */
 ts.ui.StatusPlugin = (function using(confirmed) {
-
 	var BUSY1 = ts.ui.BROADCAST_GLOBAL_STATUS_BUSY;
 	var DONE1 = ts.ui.BROADCAST_GLOBAL_STATUS_DONE;
 	var BUSY2 = ts.ui.BROADCAST_GLOBAL_STATUS_BUSY_BLOCKING;
@@ -27,13 +26,13 @@ ts.ui.StatusPlugin = (function using(confirmed) {
 		ondestruct: function() {
 			this.super.ondestruct();
 			var exit = {};
-			if(this.isBusy()) {
+			if (this.isBusy()) {
 				exit[BUSY1] = DONE1;
 				exit[BUSY2] = DONE2;
 				Object.keys(this._bookmarks).forEach(function(key) {
 					var cuts = key.split(this._SEPARATOR);
 					this._done(exit[cuts[0]], cuts[1]);
-				},this);
+				}, this);
 			}
 		},
 
@@ -43,7 +42,7 @@ ts.ui.StatusPlugin = (function using(confirmed) {
 		 * @type {boolean}
 		 */
 		isBusy: function(doingwhat) {
-			if(arguments.length) {
+			if (arguments.length) {
 				return Object.keys(this._bookmarks).some(function(activity) {
 					return activity.includes(doingwhat);
 				});
@@ -84,7 +83,6 @@ ts.ui.StatusPlugin = (function using(confirmed) {
 			this._done(DONE2, message);
 		},
 
-
 		// Private .................................................................
 
 		/**
@@ -113,7 +111,7 @@ ts.ui.StatusPlugin = (function using(confirmed) {
 		 * @param {String} broadcast
 		 * @param {String} message
 		 */
-		_busy: confirmed('string') (function(broadcast, message) {
+		_busy: confirmed('string')(function(broadcast, message) {
 			this._bookmarks[broadcast + this._SEPARATOR + message] = true;
 			message = this._stamp(message);
 			this.spirit.life.dispatch(ts.ui.LIFE_STATUS_BUSY, message);
@@ -125,12 +123,12 @@ ts.ui.StatusPlugin = (function using(confirmed) {
 		 * @param {String} broadcast
 		 * @param {String} message
 		 */
-		_done: confirmed('string') (function(broadcast, message) {
+		_done: confirmed('string')(function(broadcast, message) {
 			delete this._bookmarks[broadcast + this._SEPARATOR + message];
 			message = this._stamp(message);
 			gui.Tick.next(function() {
 				gui.Broadcast.dispatchGlobal(broadcast, message);
-				if(this.spirit) { // TODO (jmo@): better angle on destructed spirit!
+				if (this.spirit) { // TODO (jmo@): better angle on destructed spirit!
 					this.spirit.life.dispatch(
 							ts.ui.LIFE_STATUS_DONE,
 							this._stamp(message)
@@ -139,14 +137,13 @@ ts.ui.StatusPlugin = (function using(confirmed) {
 			}, this);
 		})
 
-
 	}, { // Static ........................................................
 
 		/**
 		 * Report busy.
 		 * @param {String} message
 		 */
-		busy: confirmed('string') (function(message) {
+		busy: confirmed('string')(function(message) {
 			gui.Broadcast.dispatchGlobal(BUSY1, message);
 		}),
 
@@ -154,7 +151,7 @@ ts.ui.StatusPlugin = (function using(confirmed) {
 		 * Report done.
 		 * @param {String} message
 		 */
-		done: confirmed('string') (function(message) {
+		done: confirmed('string')(function(message) {
 			gui.Tick.next(function() {
 				gui.Broadcast.dispatchGlobal(DONE1, message);
 			});
@@ -164,7 +161,7 @@ ts.ui.StatusPlugin = (function using(confirmed) {
 		 * Report busy blocking.
 		 * @param {String} message
 		 */
-		busyBlocking: confirmed('string') (function(message) {
+		busyBlocking: confirmed('string')(function(message) {
 			gui.Broadcast.dispatchGlobal(BUSY2, message);
 		}),
 
@@ -172,7 +169,7 @@ ts.ui.StatusPlugin = (function using(confirmed) {
 		 * Report done blocking.
 		 * @param {String} message
 		 */
-		doneBlocking: confirmed('string') (function(message) {
+		doneBlocking: confirmed('string')(function(message) {
 			var broadcast = ts.ui.BROADCAST_GLOBAL_STATUS_DONE_BLOCKING;
 			gui.Tick.next(function() {
 				gui.Broadcast.dispatchGlobal(DONE2, message);
@@ -180,5 +177,4 @@ ts.ui.StatusPlugin = (function using(confirmed) {
 		})
 
 	});
-
 }(gui.Arguments.confirmed));

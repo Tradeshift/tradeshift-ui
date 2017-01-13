@@ -42,7 +42,6 @@ edbml.InsertUpdate = edbml.SoftUpdate.extend({
 		});
 	},
 
-
 	// Private ...................................................................
 
 	/**
@@ -50,7 +49,7 @@ edbml.InsertUpdate = edbml.SoftUpdate.extend({
 	 * TODO: Push to update manager.
 	 */
 	_report: function() {
-		var message = "edbml.InsertUpdate #" + this.xelement.getAttribute("id");
+		var message = 'edbml.InsertUpdate #' + this.xelement.getAttribute('id');
 		this.super._report(message);
 	}
 });

@@ -1,6 +1,6 @@
 /**
  * The spirit guide crawls the document while channeling
- * spirits into DOM elements that matches CSS selectors. 
+ * spirits into DOM elements that matches CSS selectors.
  * @using {gui.Assistant} Assistant
  * @using {gui.Type} Type
  * @using {gui.Array} Array
@@ -18,9 +18,8 @@ gui.Guide = (function using(
 	Spirit,
 	Tick,
 	Crawler) {
-
 	/**
-	 * Tracking spirits inside and outside the DOM. 
+	 * Tracking spirits inside and outside the DOM.
 	 * Spirits not in the DOM are scheduled to die.
 	 */
 	var documentspirits = {
@@ -36,7 +35,7 @@ gui.Guide = (function using(
 		 * @returns {String}
 		 */
 		toString: function() {
-			return "[object gui.Guide]";
+			return '[object gui.Guide]';
 		},
 
 		/**
@@ -51,7 +50,6 @@ gui.Guide = (function using(
 			this._suspended = false;
 			return res;
 		},
-
 
 		// Privileged ..............................................................
 
@@ -71,7 +69,7 @@ gui.Guide = (function using(
 
 		/**
 		 * Associate element to new spirit instance.
-		 * Offloading this to assistant while we 
+		 * Offloading this to assistant while we
 		 * figure out who should handle this stuff.
 		 * @param {Element} elm
 		 * @param {constructor} Spirit
@@ -133,7 +131,7 @@ gui.Guide = (function using(
 		},
 
 		/**
-		 * Invoke ondetach for element spirit and descendants spirits. 
+		 * Invoke ondetach for element spirit and descendants spirits.
 		 * TODO: This sequence should probably be revisited at some point.
 		 * @param {Element|gui.Spirit} target
 		 */
@@ -190,7 +188,7 @@ gui.Guide = (function using(
 		 */
 		$debug: function() {
 			console.log(this._channels.reduce(function(log, channel) {
-				return log + '\n\n' + channel[0] + " : " + channel[1];
+				return log + '\n\n' + channel[0] + ' : ' + channel[1];
 			}, location.href));
 		},
 
@@ -256,7 +254,7 @@ gui.Guide = (function using(
 		},
 
 		/**
-		 * Get spirit by `$instanceid`. 
+		 * Get spirit by `$instanceid`.
 		 * Please go via `gui.get(id)`.
 		 * @param {string} key
 		 * @returns {gui.Spirit}
@@ -265,9 +263,8 @@ gui.Guide = (function using(
 			return documentspirits.inside[key] || null;
 		},
 
-
 		// Private .................................................................
-		
+
 		/**
 		 *
 		 */
@@ -293,14 +290,14 @@ gui.Guide = (function using(
 		_suspended: false,
 
 		/**
-		 * Setup to handle spirits entering and leaving the DOM. 
+		 * Setup to handle spirits entering and leaving the DOM.
 		 * Flush channelings that were bufffered during bootup.
 		 */
 		_startGuiding: function() {
 			var ticks = [gui.$TICK_INSIDE, gui.$TICK_OUTSIDE];
 			gui.Tick.add(ticks, {
 				ontick: function(tick) {
-					if(tick.type === ticks[0]) {
+					if (tick.type === ticks[0]) {
 						gui.Guide._updateincoming();
 					} else {
 						gui.Guide._updateoutside();
@@ -337,8 +334,8 @@ gui.Guide = (function using(
 		},
 
 		/**
-		 * Continue with spiritualize/materialize of given node? The 'webkithack' 
-		 * relates to the problem with Safari (and old Chrome) where removed nodes 
+		 * Continue with spiritualize/materialize of given node? The 'webkithack'
+		 * relates to the problem with Safari (and old Chrome) where removed nodes
 		 * get detected asynchronously and is therefore NOT embedded when we run.
 		 * @param {Node} node
 		 * @param @optional {boolean} webkithack (sometimes true on nodes removed)
@@ -503,9 +500,9 @@ gui.Guide = (function using(
 		_channelOne: function(select, klass) {
 			var spirit, booting = !!this._todochannels;
 			if (gui.initialized) {
-				spirit = typeof klass === "string" ? gui.Object.lookup(klass) : klass;
+				spirit = typeof klass === 'string' ? gui.Object.lookup(klass) : klass;
 				if (!gui.debug || Type.isSpiritConstructor(spirit)) {
-					if(booting) {
+					if (booting) {
 						this._channels.unshift([select, spirit]);
 					} else {
 						this._channels.push([select, spirit]);
@@ -520,8 +517,8 @@ gui.Guide = (function using(
 		},
 
 		/**
-		 * TODO: the 'reverse()' should really not be done here, but in 
-		 * the condition above, however, that screws it up, huge disaster 
+		 * TODO: the 'reverse()' should really not be done here, but in
+		 * the condition above, however, that screws it up, huge disaster
 		 * and something must be done about it !!!!!!!!!!!!!!!!!!!!!!!!!!
 		 */
 		_channelAll: function(channels) {
@@ -558,7 +555,7 @@ gui.Guide = (function using(
 		},
 
 		/**
-		 * Update spirits not in the DOM. 
+		 * Update spirits not in the DOM.
 		 */
 		_updateoutside: function() {
 			var outside = documentspirits.outside;
@@ -580,7 +577,6 @@ gui.Guide = (function using(
 			documentspirits.outside = Object.create(null);
 		},
 
-
 		// TODO: Externalize .......................................................
 
 		/**
@@ -588,14 +584,13 @@ gui.Guide = (function using(
 		 * @param {Array<gui.Spirit>}
 		 */
 		_visibility: function(spirits) {
-			if (gui.hasModule("gui-layout@wunderbyte.com")) {
+			if (gui.hasModule('gui-layout@wunderbyte.com')) {
 				DOMPlugin.group(spirits).forEach(function(spirit) {
 					gui.VisibilityPlugin.$init(spirit);
 				}, this);
 			}
 		}
 	};
-
 }(
 	gui.Assistant,
 	gui.Type,

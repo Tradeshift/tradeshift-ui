@@ -1,15 +1,15 @@
 /**
- * Spirit of the icon. Convert font icon to svg. 
+ * Spirit of the icon. Convert font icon to svg.
  * @extends {ts.ui.Spirit}
  */
-ts.ui.IconSpirit = (function using(){
+ts.ui.IconSpirit = (function using() {
 	var ICON_PREFIX = 'ts-icon-';
 	var SVG_LINK = '//d5wfroyti11sa.cloudfront.net/prod/client/svg-icons/';
 	var ICON_SUBSTITUTES = {
 		todo: 'vote-flag-7',
 		warning: 'interface-alert-triangle'
 	};
-	
+
 	return ts.ui.Spirit.extend({
 
 		/**
@@ -25,7 +25,7 @@ ts.ui.IconSpirit = (function using(){
 		 */
 		onatt: function(att) {
 			this.super.onatt(att);
-			if(att.name === 'class') {
+			if (att.name === 'class') {
 				this._loadsvg();
 			}
 		},
@@ -38,7 +38,7 @@ ts.ui.IconSpirit = (function using(){
 		 */
 		_loadsvg: function() {
 			var icon = this.$geticon();
-			if(!icon) {
+			if (!icon) {
 				return;
 			}
 			var ajax = null;
@@ -46,7 +46,7 @@ ts.ui.IconSpirit = (function using(){
 			if (gui.Client.isExplorer9) {
 				ajax = new window.XDomainRequest();
 				ajax.open('get', SVG_LINK + encodeURIComponent(icon) + '.svg', true);
-				setTimeout(function () { //why need to do like this https://developer.mozilla.org/en-US/docs/Web/API/XDomainRequest
+				setTimeout(function() { // why need to do like this https://developer.mozilla.org/en-US/docs/Web/API/XDomainRequest
 				    ajax.send();
 				}, 0);
 			} else {
@@ -62,10 +62,10 @@ ts.ui.IconSpirit = (function using(){
 					});
 				}
 			};
-			ajax.onerror = function () { 
+			ajax.onerror = function() {
 			    console.error('Can not get the svg ' + icon);
 			};
-		}, 
+		},
 
 		/**
 		 * Get icon
@@ -73,24 +73,24 @@ ts.ui.IconSpirit = (function using(){
 		$geticon: function() {
 			var result = null;
 			var klasses = this.element.className.split(' ');
-			if(!klasses.length) {
+			if (!klasses.length) {
 				return result;
 			}
-			klasses.map(function(item){
-				if(item.indexOf(ICON_PREFIX) > -1){
+			klasses.map(function(item) {
+				if (item.indexOf(ICON_PREFIX) > -1) {
 					result = item.substring(8, item.length);
 				}
 			});
 			return this.$substitute(result);
 		},
-		
+
 		$substitute: function(icon) {
 			if (ICON_SUBSTITUTES[icon]) {
 				return ICON_SUBSTITUTES[icon];
 			}
 			return icon;
 		},
-		
+
 		$fixsize: function() {
 			var fontSize = parseFloat(this.css.compute('fontSize'));
 			var svgElem = this.element.querySelector('svg');
@@ -98,5 +98,4 @@ ts.ui.IconSpirit = (function using(){
 			svgElem.setAttribute('height', fontSize);
 		}
 	});
-
 }());

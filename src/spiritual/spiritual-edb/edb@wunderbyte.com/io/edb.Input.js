@@ -8,7 +8,6 @@
  * @using {gui.Class} GuiType
  */
 edb.Input = (function using(chained, memoized, Interface, GuiType, GuiClass) {
-
 	/**
 	 * Tracking input handlers (equivalent to "output listeners").
 	 * @using {gui.MapList<string,Array<edb.Input.IInputHandler>>} handlers
@@ -45,10 +44,9 @@ edb.Input = (function using(chained, memoized, Interface, GuiType, GuiClass) {
 				this.type = Type;
 				this.data = type;
 			} else {
-				throw new TypeError(type + " is not a Type instance");
+				throw new TypeError(type + ' is not a Type instance');
 			}
 		}
-
 
 	}, {}, { // Static ...........................................................
 
@@ -62,7 +60,6 @@ edb.Input = (function using(chained, memoized, Interface, GuiType, GuiClass) {
 			}
 		},
 
-
 		// Privileged static .......................................................
 
 		/**
@@ -72,8 +69,8 @@ edb.Input = (function using(chained, memoized, Interface, GuiType, GuiClass) {
 		 */
 		$connect: chained(function(Types, handler) {
 			Types = this.$breakdown(Types);
-			if(Interface.validate(this.IInputHandler, handler)) {
-				if(Types.every(this._check)) {
+			if (Interface.validate(this.IInputHandler, handler)) {
+				if (Types.every(this._check)) {
 					this._add(Types, handler);
 				}
 			}
@@ -86,8 +83,8 @@ edb.Input = (function using(chained, memoized, Interface, GuiType, GuiClass) {
 		 */
 		$disconnect: chained(function(Types, handler) {
 			Types = this.$breakdown(Types);
-			if(Interface.validate(this.IInputHandler, handler)) {
-				if(Types.every(this._check)) {
+			if (Interface.validate(this.IInputHandler, handler)) {
+				if (Types.every(this._check)) {
 					this._remove(Types, handler);
 				}
 			}
@@ -95,7 +92,7 @@ edb.Input = (function using(chained, memoized, Interface, GuiType, GuiClass) {
 		}),
 
 		/**
-		 * Breakdown complicated argument into an 
+		 * Breakdown complicated argument into an
 		 * array of one or more type constructors.
 		 * @param {object} arg
 		 * @returns {constructor|Array<constructor>|string|object}
@@ -119,7 +116,7 @@ edb.Input = (function using(chained, memoized, Interface, GuiType, GuiClass) {
 			} else {
 				handlers.each(function(classid, list) {
 					Type = GuiClass.get(classid);
-					if(type instanceof Type) {
+					if (type instanceof Type) {
 						list.slice().forEach(function(handler) {
 							handler.oninput(input);
 						});
@@ -129,7 +126,7 @@ edb.Input = (function using(chained, memoized, Interface, GuiType, GuiClass) {
 		},
 
 		/**
-		 * Lookup identical or ancestor/descandant constructor. 
+		 * Lookup identical or ancestor/descandant constructor.
 		 * This will come in handy for the {edb.InputPlugin}.
 		 * @param {constructor} target type constructor
 		 * @param {Array<constructor>} types type constructors
@@ -167,7 +164,6 @@ edb.Input = (function using(chained, memoized, Interface, GuiType, GuiClass) {
 			return this._rateone(target.$classid, type.$classid);
 		},
 
-
 		// Private static ..........................................................
 
 		/**
@@ -178,12 +174,12 @@ edb.Input = (function using(chained, memoized, Interface, GuiType, GuiClass) {
 		_breakarray: function(array) {
 			return array.map(function(o) {
 				switch (GuiType.of(o)) {
-					case "function":
+					case 'function':
 						return o;
-					case "string":
+					case 'string':
 						return gui.Object.lookup(o);
-					case "object":
-						console.error("Expected function. Got object.");
+					case 'object':
+						console.error('Expected function. Got object.');
 				}
 			}, this);
 		},
@@ -195,12 +191,12 @@ edb.Input = (function using(chained, memoized, Interface, GuiType, GuiClass) {
 		 */
 		_breakother: function(arg) {
 			switch (GuiType.of(arg)) {
-				case "function":
+				case 'function':
 					return [arg];
-				case "string":
-					return this._breakarray(arg.split(" "));
-				case "object":
-					console.error("Expected function. Got object.");
+				case 'string':
+					return this._breakarray(arg.split(' '));
+				case 'object':
+					console.error('Expected function. Got object.');
 			}
 		},
 
@@ -240,13 +236,13 @@ edb.Input = (function using(chained, memoized, Interface, GuiType, GuiClass) {
 		 */
 		_check: function(Type) {
 			if (!GuiType.isDefined(Type)) {
-				throw new TypeError("Could not register input for undefined Type");
+				throw new TypeError('Could not register input for undefined Type');
 			}
 			return true;
 		},
 
 		/**
-		 * Get identical or ancestor/descandant constructor 
+		 * Get identical or ancestor/descandant constructor
 		 * by `$classid` and memoize the return value.
 		 * @param {string} targetid
 		 * @param {Array<string>} typeid
@@ -269,7 +265,7 @@ edb.Input = (function using(chained, memoized, Interface, GuiType, GuiClass) {
 		}),
 
 		/**
-		 * Rate the degree of separation between classes 
+		 * Rate the degree of separation between classes
 		 * by `$classid` and memoize the return value.
 		 * @param {string} targetid
 		 * @param {string} typeid
@@ -294,7 +290,6 @@ edb.Input = (function using(chained, memoized, Interface, GuiType, GuiClass) {
 			}
 			return rating;
 		}),
-
 
 		// Deprecated ..............................................................
 
@@ -333,7 +328,6 @@ edb.Input = (function using(chained, memoized, Interface, GuiType, GuiClass) {
 		}
 
 	});
-
 }(
 	gui.Combo.chained,
 	gui.Combo.memoized,

@@ -1,10 +1,8 @@
 /**
- * The config plugin matches prefixed DOM attributes 
+ * The config plugin matches prefixed DOM attributes
  * to property setters and method calls on the spirit.
  */
 describe('gui.EventPlugin', function likethis() {
-
-
 	// Preparations ..............................................................
 
 	/**
@@ -39,8 +37,8 @@ describe('gui.EventPlugin', function likethis() {
 		},
 		fadeOut: function() {
 			/*
-			 * Important: The transitionend listener MUST NOT be added 
-			 * in the same execution stack as the transition procedure. 
+			 * Important: The transitionend listener MUST NOT be added
+			 * in the same execution stack as the transition procedure.
 			 * Perhaps reintroduce transition lib from SPIRITUAL-MIX???
 			 */
 			this.event.add('transitionend');
@@ -50,13 +48,12 @@ describe('gui.EventPlugin', function likethis() {
 		},
 		onevent: function(e) {
 			gui.Spirit.prototype.onevent.call(this, e);
-			if(e.type === 'transitionend') {
+			if (e.type === 'transitionend') {
 				this.done();
 			}
 		}
 	});
 
-	
 	// Expectations ..............................................................
 
 	/*
@@ -69,5 +66,4 @@ describe('gui.EventPlugin', function likethis() {
 		spirit.fadeOut();
 	});
 	*/
-
 });

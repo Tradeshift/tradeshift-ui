@@ -1,5 +1,4 @@
 describe('ts.ui.TextAreaSpirit', function likethis() {
-
 	it('should (eventually) channel via ts-attribute', function(done) {
 		var spirit, dom = helper.createTestDom();
 		dom.innerHTML = '<textarea data-ts="TextArea"/>';
@@ -25,5 +24,4 @@ describe('ts.ui.TextAreaSpirit', function likethis() {
 		expect(err).not.toBeNull();
 	});
 	*/
-
 });

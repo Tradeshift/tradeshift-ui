@@ -3,12 +3,12 @@
  */
 gui.ITickHandler = {
 
-	/** 
+	/**
 	 * Identification.
 	 * @returns {String}
 	 */
 	toString: function() {
-		return "[object ITickHandler]";
+		return '[object ITickHandler]';
 	},
 
 	/**

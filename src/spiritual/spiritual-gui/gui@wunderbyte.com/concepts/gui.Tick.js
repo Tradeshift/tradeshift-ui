@@ -1,10 +1,9 @@
-/** 
+/**
  * Ticks are used for timed events.
  * TODO: Tick.push
  * @using {gui.Arguments#confirmed}
  */
 (function using(confirmed) {
-
 	/**
 	 * @param {String} type
 	 */
@@ -25,10 +24,9 @@
 		 * @returns {String}
 		 */
 		toString: function() {
-			return "[object gui.Tick]";
+			return '[object gui.Tick]';
 		}
 	};
-
 
 	// Static ....................................................................
 
@@ -39,16 +37,16 @@
 		 * @returns {String}
 		 */
 		toString: function() {
-			return "[function gui.Tick]";
+			return '[function gui.Tick]';
 		},
 
 		/**
 		 * Add handler for tick.
-		 * The `confirmed` stuff would cause a *random* error that might be 
+		 * The `confirmed` stuff would cause a *random* error that might be
 		 * related to minification, so we've simply disabled it for now :/
-		 * UPDATE: We now believe that said random error is caused somehow 
-		 * by use of the `postMessage` trick to emulate `setImmediate`, 
-		 * because Angular uses this trick for rendering and the error only 
+		 * UPDATE: We now believe that said random error is caused somehow
+		 * by use of the `postMessage` trick to emulate `setImmediate`,
+		 * because Angular uses this trick for rendering and the error only
 		 * occurs while Angular is rendering (`setTimeout` will fix it)...
 		 * TODO: Sig argument is deprecated...
 		 * @param {object} type String or array of strings
@@ -56,7 +54,7 @@
 		 * @param @optional {boolean} one Remove handler after on tick of this type?
 		 * @returns {function}
 		 */
-		add: function(type, handler, sig) { //confirmed("string|array", "object|function", "(string)")(
+		add: function(type, handler, sig) { // confirmed("string|array", "object|function", "(string)")(
 			return this._add(type, handler, false, sig || gui.$contextid);
 		},
 
@@ -66,7 +64,7 @@
 		 * @param {object} handler
 		 * @returns {function}
 		 */
-		remove: function(type, handler, sig) { //confirmed("string|array", "object|function", "(string)")(
+		remove: function(type, handler, sig) { // confirmed("string|array", "object|function", "(string)")(
 			return this._remove(type, handler, sig || gui.$contextid);
 		},
 
@@ -76,7 +74,7 @@
 		 * @param {object} handler
 		 * @returns {function}
 		 */
-		one: function(type, handler, sig) { //confirmed("string|array", "object|function", "(string)")(
+		one: function(type, handler, sig) { // confirmed("string|array", "object|function", "(string)")(
 			return this._add(type, handler, true, sig || gui.$contextid);
 		},
 
@@ -143,7 +141,7 @@
 		 * @param {number} time Time in milliseconds
 		 * @returns {function}
 		 */
-		start: confirmed("string", "number")(
+		start: confirmed('string', 'number')(
 			function(type, time) {
 				var map = this._intervals;
 				if (!map[type]) {
@@ -160,7 +158,7 @@
 		 * @param {String} type Tick type
 		 * @returns {function}
 		 */
-		stop: confirmed("string")(
+		stop: confirmed('string')(
 			function(type) {
 				var map = this._intervals;
 				var id = map[type];
@@ -181,7 +179,6 @@
 		dispatch: function(type, time, sig) {
 			return this._dispatch(type, time, sig || gui.$contextid);
 		},
-		
 
 		// Private static ..........................................................
 
@@ -199,18 +196,18 @@
 		},
 
 		/**
-		 * Hello. There seems to be a *random* error where the handler get's passed 
-		 * along to this method wrapped in an array. It would happen *sometimes* 
-		 * in the test, but changing a `console.error` to `throw new Error` would 
-		 * make it go away (see "gui.Arguments.js"). This would however only fix 
-		 * the *tests*: We know of at least one production scenario where the 
-		 * bug persists, so we'll just unwrap the hander from the array manually. 
+		 * Hello. There seems to be a *random* error where the handler get's passed
+		 * along to this method wrapped in an array. It would happen *sometimes*
+		 * in the test, but changing a `console.error` to `throw new Error` would
+		 * make it go away (see "gui.Arguments.js"). This would however only fix
+		 * the *tests*: We know of at least one production scenario where the
+		 * bug persists, so we'll just unwrap the hander from the array manually.
 		 * The bug could be related to minification, but we will probably never know.
 		 */
 		_add: function(type, handler, one, sig) {
-			if(Array.isArray(handler)) {
+			if (Array.isArray(handler)) {
 				handler = handler[0]; // hacky workaround :/
-				if(gui.debug) {
+				if (gui.debug) {
 					console.warn('The weird bug just happened!');
 				}
 			}
@@ -251,9 +248,9 @@
 					this._remove(t, handler, sig);
 				}, this);
 			} else {
-				if(Array.isArray(handler)) {
+				if (Array.isArray(handler)) {
 					handler = handler[0]; // hacky workaround :/
-					if(gui.debug) {
+					if (gui.debug) {
 						console.warn('The weird bug just happened!');
 					}
 				}
@@ -261,7 +258,7 @@
 				var list = map.handlers[type];
 				if (list) {
 					var index = list.indexOf(handler);
-					if(index > -1) {
+					if (index > -1) {
 						gui.Array.remove(list, index);
 						if (list.length === 0) {
 							delete map.handlers[type];
@@ -293,7 +290,7 @@
 				};
 				if (!time) {
 					id = setImmediate(doit);
-				} else if(time > 0) {
+				} else if (time > 0) {
 					id = setTimeout(doit, time);
 				} else {
 					doit();
@@ -311,7 +308,7 @@
 			if (list) {
 				var mishandlers = [];
 				list.filter(function(handler) {
-					if(handler.$destructed) {
+					if (handler.$destructed) {
 						mishandlers.push(handler);
 						return false;
 					}
@@ -326,5 +323,4 @@
 		}
 
 	});
-
 }(gui.Arguments.confirmed));

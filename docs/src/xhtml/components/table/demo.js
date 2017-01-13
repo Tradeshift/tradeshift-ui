@@ -3,7 +3,6 @@
  */
 $.getJSON('assets/rowdata.json', function(json) {
 	ts.ui.ready(function() {
-
 		var input = generatedata(json).times(8);
 		var title = input.length + ' Products';
 		var table = ts.ui.get('#demotable');
@@ -36,7 +35,7 @@ $.getJSON('assets/rowdata.json', function(json) {
 		function disablebuttons(toolb) {
 			toolb.buttons([]); // DOH - disabled buttons not implemented on ToolBar :/
 		}
-		
+
 		/*
 		 * There's simply too much data in the table to sort things clientside.
 		 * We should fix that by moving the sort to a Worker process somehow.
@@ -45,14 +44,12 @@ $.getJSON('assets/rowdata.json', function(json) {
 			table.sort(index, ascending);
 		});
 		*/
-		
+
 		ts.ui.Notification.info(
 			'Work in progress: Note that this page is really more of a internal test page than a demo.'
 		);
-
 	});
 });
-
 
 // Table columns ...............................................................
 
@@ -104,7 +101,6 @@ function gettoolbarbuttons() {
 	}];
 }
 
-
 // Build everything ............................................................
 
 /**
@@ -117,7 +113,6 @@ function build_everything(table, rows) {
 	table.rows(rows);
 }
 
-
 // Build incrementally .........................................................
 
 /**
@@ -127,7 +122,6 @@ function build_everything(table, rows) {
  * @param {number} limit
  */
 function build_incrementally(table, rows) {
-
 	// tracking max rows per page (the table will tell us how many it can fit)
 	var maxrows = -1;
 
@@ -160,7 +154,6 @@ function build_incrementally(table, rows) {
 		}
 	);
 
-
 	/*
 	 * Create custom pager to intercept selection (whenever the page changes).
 	 */
@@ -186,7 +179,7 @@ function build_incrementally(table, rows) {
 		var pager = table.pager();
 		var pages = rows.length / maxrows;
 		pager.pages = Math.ceil(pages);
-		if(first > 0) {
+		if (first > 0) {
 			pager.page = getpage(first);
 		}
 	}
@@ -227,14 +220,12 @@ function build_incrementally(table, rows) {
 	function getpage(index) {
 		var pagesize = maxrows;
 		var page = 0, iter = 0;
-		while((iter += pagesize) <= index) {
-			page ++;
+		while ((iter += pagesize) <= index) {
+			page++;
 		}
 		return page;
 	}
-
 }
-
 
 // Table editing ...............................................................
 
@@ -247,9 +238,9 @@ function build_incrementally(table, rows) {
 function ontableedit(ri, ci, value) {
 	var table = ts.ui.get('#demotable');
 	var column = table.cols()[ci];
-	if(column.type.includes('ts-number')) {
+	if (column.type.includes('ts-number')) {
 		value = Number(value);
-		if(isNaN(value)) {
+		if (isNaN(value)) {
 			table.invalid(ri, ci, 'Please type a number');
 		} else {
 			table.cell(ri, ci, value);
@@ -258,7 +249,6 @@ function ontableedit(ri, ci, value) {
 		table.cell(ri, ci, value);
 	}
 }
-
 
 // Generate dummy data .........................................................
 
@@ -273,7 +263,7 @@ function generatedata(rows) {
 		times: function(mult, debug) {
 			var mults = 'x'.repeat(mult).split('');
 			rows = rows.map(function(row) { // make more cells
-				return row.concat(row); //.concat(rows).concat(rows);
+				return row.concat(row); // .concat(rows).concat(rows);
 			});
 			mults.forEach(function() { // make more rows
 				rows = rows.concat(rows);

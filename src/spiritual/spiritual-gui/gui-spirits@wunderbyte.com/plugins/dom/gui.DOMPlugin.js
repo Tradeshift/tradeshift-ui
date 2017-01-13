@@ -8,7 +8,6 @@
  * @using {gui.DOMObserver}
  */
 gui.DOMPlugin = (function using(chained, guide, observer) {
-
 	return gui.Plugin.extend({
 
 		/**
@@ -32,7 +31,7 @@ gui.DOMPlugin = (function using(chained, guide, observer) {
 		title: chained(function(title) {
 			var element = this.spirit.element;
 			if (gui.Type.isDefined(title)) {
-				element.title = title ? title : "";
+				element.title = title || '';
 			} else {
 				return element.title;
 			}
@@ -71,7 +70,7 @@ gui.DOMPlugin = (function using(chained, guide, observer) {
 		 * @returns {gui.DOMPlugin}
 		 */
 		empty: chained(function() {
-			this.html("");
+			this.html('');
 		}),
 
 		/**
@@ -82,7 +81,7 @@ gui.DOMPlugin = (function using(chained, guide, observer) {
 		hide: chained(function() {
 			if (!this.spirit.css.contains(gui.CLASS_HIDDEN)) {
 				this.spirit.css.add(gui.CLASS_HIDDEN);
-				if (gui.hasModule("gui-layout@wunderbyte.com")) { // TODO: - fix
+				if (gui.hasModule('gui-layout@wunderbyte.com')) { // TODO: - fix
 					if (this.spirit.visibility) { // some kind of Selenium corner case
 						this.spirit.visibility.off();
 					}
@@ -98,7 +97,7 @@ gui.DOMPlugin = (function using(chained, guide, observer) {
 		show: chained(function() {
 			if (this.spirit.css.contains(gui.CLASS_HIDDEN)) {
 				this.spirit.css.remove(gui.CLASS_HIDDEN);
-				if (gui.hasModule("gui-layout@wunderbyte.com")) {
+				if (gui.hasModule('gui-layout@wunderbyte.com')) {
 					if (this.spirit.visibility) { // some kind of Selenium corner case
 						this.spirit.visibility.on();
 					}
@@ -196,7 +195,6 @@ gui.DOMPlugin = (function using(chained, guide, observer) {
 		parseToNodes: function(html) {
 			return gui.DOMPlugin.parseToNodes(html);
 		}
-
 
 	}, {}, { // Static ...........................................................
 
@@ -385,7 +383,7 @@ gui.DOMPlugin = (function using(chained, guide, observer) {
 					try {
 						result = node.querySelector(selector);
 					} catch (exception) {
-						console.error("Dysfunctional selector: " + selector);
+						console.error('Dysfunctional selector: ' + selector);
 						throw exception;
 					}
 				}
@@ -440,7 +438,6 @@ gui.DOMPlugin = (function using(chained, guide, observer) {
 			return this.qall(document, selector, type);
 		},
 
-
 		// Private static .........................................................
 
 		/**
@@ -457,14 +454,14 @@ gui.DOMPlugin = (function using(chained, guide, observer) {
 				if (regexp.test(selector)) {
 					hadid = node.id;
 					id = node.id = (node.id || gui.KeyMaster.generateKey());
-					selector = selector.replace(regexp, "#" + id);
+					selector = selector.replace(regexp, '#' + id);
 					node = node.ownerDocument;
 				}
 			}
 			return function(action) {
 				var res = action.call(gui.DOMPlugin, node, selector);
 				if (orig && !hadid) {
-					orig.id = "";
+					orig.id = '';
 				}
 				return res;
 			};
@@ -481,7 +478,6 @@ gui.DOMPlugin = (function using(chained, guide, observer) {
 		_thiskeyword: /^this|,this/g // TODO: ((^|,)\s*):scope/g
 
 	});
-
 }(
 	gui.Combo.chained,
 	gui.Guide,
@@ -553,10 +549,10 @@ gui.DOMPlugin.mixin(
 					return base.apply(this, arguments);
 				} else {
 					type = gui.Type.of(type);
-					throw new TypeError("Unknown spirit for query: " + name + "(" + selector + "," + type + ")");
+					throw new TypeError('Unknown spirit for query: ' + name + '(' + selector + ',' + type + ')');
 				}
 			} else {
-				throw new TypeError("Bad selector for query: " + name + "(" + selector + ")");
+				throw new TypeError('Bad selector for query: ' + name + '(' + selector + ')');
 			}
 		};
 	})
@@ -815,7 +811,7 @@ gui.DOMPlugin.mixin(
 				spirit, el = this.spirit.element;
 			while ((el = el.nextElementSibling)) {
 				if (type) {
-					if((spirit = el.spirit) && spirit instanceof type) {
+					if ((spirit = el.spirit) && spirit instanceof type) {
 						result.push(spirit);
 					}
 				} else {
@@ -835,7 +831,7 @@ gui.DOMPlugin.mixin(
 				spirit, el = this.spirit.element;
 			while ((el = el.previousElementSibling)) {
 				if (type) {
-					if((spirit = el.spirit) && spirit instanceof type) {
+					if ((spirit = el.spirit) && spirit instanceof type) {
 						result.push(spirit);
 					}
 				} else {
@@ -860,8 +856,8 @@ gui.DOMPlugin.mixin(
 				return base.apply(this, arguments);
 			} else {
 				throw new TypeError(
-					"Unknown spirit for query: " + name +
-					"(" + gui.Type.of(Type) + ")"
+					'Unknown spirit for query: ' + name +
+					'(' + gui.Type.of(Type) + ')'
 				);
 			}
 		};
@@ -869,7 +865,6 @@ gui.DOMPlugin.mixin(
 );
 
 (function scoped() {
-
 	/**
 	 * @TODO fancy insertions
 	 */
@@ -889,14 +884,14 @@ gui.DOMPlugin.mixin(
 			}
 			return this; // or what?
 		},
-		
+
 		// @todo implement prependChild()
-		///**
+		// /**
 		// * Prepend spirit (element) to another spirit or element.
 		// * @param {object} thing
 		// * @returns {gui.DOMPlugin} or what?
 		// */
-		//prependTo: function(thing) {
+		// prependTo: function(thing) {
 		//	var elm = this.spirit.element;
 		//	if (gui.Type.isSpirit(thing)) {
 		//		thing.dom.prepend(elm);
@@ -904,7 +899,7 @@ gui.DOMPlugin.mixin(
 		//		thing.prependChild(elm);
 		//	}
 		//	return this; // or what?
-		//},
+		// },
 
 		/**
 		 * Insert spirit (element) before another spirit or element
@@ -920,7 +915,6 @@ gui.DOMPlugin.mixin(
 			}
 			return this; // or what?
 		},
-
 
 		/**
 		 * Parse HTML to DOM node.
@@ -940,11 +934,9 @@ gui.DOMPlugin.mixin(
 		 */
 		parseToNodes: function(html, targetdoc) {
 			return gui.HTMLParser.parseToNodes(html, targetdoc);
-		},
+		}
 	});
-
 }());
-
 
 /**
  * DOM insertion methods accept one argument: one spirit OR one element OR an array of either or both.
@@ -954,7 +946,6 @@ gui.DOMPlugin.mixin(
  */
 
 (function scoped() {
-
 	gui.DOMPlugin.mixin(
 		gui.Object.map({
 
@@ -1025,7 +1016,6 @@ gui.DOMPlugin.mixin(
 			}
 
 		}, function map(name, base) {
-
 			/*
 			 * 1. Convert arguments to array of one or more elements
 			 * 2. Confirm array of elements (exception supressed pending IE9 issue)

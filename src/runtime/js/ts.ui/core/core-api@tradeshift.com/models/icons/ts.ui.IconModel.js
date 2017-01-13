@@ -2,29 +2,27 @@
  * Advanced icon model.
  */
 ts.ui.IconModel = (function() {
+	return ts.ui.Model.extend({
 
-  return ts.ui.Model.extend({
-    
     /**
      * The classname of the rendered `<i>` element.
      * @type {string}
      */
-    type: null,
-    
+		type: null,
+
     /**
      * Icon color.
      * @type {string}
      */
-    color: 'dark',
-    
+		color: 'dark',
+
     /**
      * Bounce model to HTML.
      * @returns {string}
      */
-    render: function() {
-      return ts.ui.icononly.edbml(this);
-    }
-    
-  });
-  
+		render: function() {
+			return ts.ui.icononly.edbml(this);
+		}
+
+	});
 }());

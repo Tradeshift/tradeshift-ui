@@ -6,7 +6,6 @@
  * @using {function} gui.Combo.chained
  */
 ts.ui.ModalSpirit = (function using(ToolBarSpirit, Client, transition, chained) {
-
 	var willopen = ts.ui.BROADCAST_MODAL_WILL_OPEN,
 		didopen = ts.ui.BROADCAST_MODAL_DID_OPEN,
 		willclose = ts.ui.BROADCAST_MODAL_WILL_CLOSE,
@@ -55,21 +54,21 @@ ts.ui.ModalSpirit = (function using(ToolBarSpirit, Client, transition, chained) 
 		},
 
 		/**
-		 * Open AND close the Modal (setup to support the 
+		 * Open AND close the Modal (setup to support the
 		 * HTML attribute: `data-ts.open="true|false"`)
 		 * @param @optional {boolean} opt_open Omit to simply open
 		 */
 		open: function(opt_open) {
 			var then = this._then = new gui.Then();
 			opt_open = arguments.length ? opt_open : true;
-			if(opt_open !== this.isOpen) {
-				if(opt_open) {
-					if(this._execute('onopen') && this._confirmposition()) {
+			if (opt_open !== this.isOpen) {
+				if (opt_open) {
+					if (this._execute('onopen') && this._confirmposition()) {
 						this.isOpen = true;
 						this._fadeIn();
 					}
 				} else {
-					if(this._execute('onclose')) {
+					if (this._execute('onclose')) {
 						this.isOpen = false;
 						this._fadeOut();
 					}
@@ -92,9 +91,9 @@ ts.ui.ModalSpirit = (function using(ToolBarSpirit, Client, transition, chained) 
 		 */
 		onevent: function(e) {
 			this.super.onevent(e);
-			if(e.type === 'transitionend' && e.target === this.element) {
+			if (e.type === 'transitionend' && e.target === this.element) {
 				this.event.remove(e.type);
-				if(this.isOpen) {
+				if (this.isOpen) {
 					this._fadeIn(true);
 				} else {
 					this._fadeOut(true);
@@ -108,7 +107,7 @@ ts.ui.ModalSpirit = (function using(ToolBarSpirit, Client, transition, chained) 
 		 */
 		onkey: function(key) {
 			this.super.onkey(key);
-			if(key.type === 'Esc') {
+			if (key.type === 'Esc') {
 				this.close();
 			}
 		},
@@ -119,7 +118,7 @@ ts.ui.ModalSpirit = (function using(ToolBarSpirit, Client, transition, chained) 
 		 */
 		title: chained(function(title) {
 			var header = this._header();
-			if(arguments.length) {
+			if (arguments.length) {
 				header.title(title);
 			} else {
 				return header.title();
@@ -133,7 +132,7 @@ ts.ui.ModalSpirit = (function using(ToolBarSpirit, Client, transition, chained) 
 		 */
 		buttons: chained(function(json) {
 			var footer = this._footer();
-			if(arguments.length) {
+			if (arguments.length) {
 				footer.buttons(json);
 			} else {
 				return footer.buttons();
@@ -150,12 +149,11 @@ ts.ui.ModalSpirit = (function using(ToolBarSpirit, Client, transition, chained) 
 			var avail = window.innerHeight;
 			this._autosize(avail).then(function(height, breaks) {
 				this._position(height, avail, breaks);
-				if(callback) {
+				if (callback) {
 					callback.call(thisp);
 				}
 			}, this);
 		},
-
 
 		// Private .................................................................
 
@@ -171,7 +169,7 @@ ts.ui.ModalSpirit = (function using(ToolBarSpirit, Client, transition, chained) 
 		 */
 		_fadeIn: function(done) {
 			var avail = window.innerHeight;
-			if(done) {
+			if (done) {
 				this.key.add('Esc');
 				this.css.remove('ts-opening').add('ts-open');
 				this._execute('onopened');
@@ -184,7 +182,7 @@ ts.ui.ModalSpirit = (function using(ToolBarSpirit, Client, transition, chained) 
 				this.broadcast.dispatch(willopen);
 				this.onflex(function() {
 					this._cloak(false);
-					if(transition) {
+					if (transition) {
 						this.css.add('ts-opening');
 						this.event.add('transitionend');
 					} else {
@@ -199,7 +197,7 @@ ts.ui.ModalSpirit = (function using(ToolBarSpirit, Client, transition, chained) 
 		 * @param @optional {boolean} done Animation finished?
 		 */
 		_fadeOut: function(done) {
-			if(done) {
+			if (done) {
 				this.dom.hide();
 				this.css.remove('ts-closing');
 				this._execute('onclosed');
@@ -209,7 +207,7 @@ ts.ui.ModalSpirit = (function using(ToolBarSpirit, Client, transition, chained) 
 				this.key.remove('Esc');
 				this.broadcast.dispatch(willclose);
 				this.css.add('ts-closing').remove('ts-open');
-				if(transition) {
+				if (transition) {
 					this.event.add('transitionend');
 				} else {
 					this._fadeOut(true);
@@ -218,12 +216,12 @@ ts.ui.ModalSpirit = (function using(ToolBarSpirit, Client, transition, chained) 
 		},
 
 		/**
-		 * On Modal opened, focus the first focusable thing 
+		 * On Modal opened, focus the first focusable thing
 		 * (having allowed the dev to focus something first)
 		 */
 		_focus: function() {
 			var focused = document.activeElement;
-			if(!focused || !this.dom.contains(focused)) {
+			if (!focused || !this.dom.contains(focused)) {
 				this.attention.enter();
 			}
 		},
@@ -241,7 +239,7 @@ ts.ui.ModalSpirit = (function using(ToolBarSpirit, Client, transition, chained) 
 		_autosize: function(avail) {
 			this.css.remove('ts-overflow');
 			var then = new gui.Then();
-			var height = this._panel().naturalHeight() + 
+			var height = this._panel().naturalHeight() +
 				(this.css.contains('ts-hasheader') ? 66 : 0) +
 				(this.css.contains('ts-hasheader') ? 66 : 0);
 			var breaks = height > avail;
@@ -272,7 +270,7 @@ ts.ui.ModalSpirit = (function using(ToolBarSpirit, Client, transition, chained) 
 		 */
 		_setup: function(panel) {
 			var that = this;
-			if(panel) {
+			if (panel) {
 				this.attention.trap(panel);
 				this._header().buttons([{
 					icon: 'ts-icon-close',
@@ -300,7 +298,7 @@ ts.ui.ModalSpirit = (function using(ToolBarSpirit, Client, transition, chained) 
 		_header: function() {
 			var ToolBarSpirit = ts.ui.ToolBarSpirit; // TODO: Load this after!
 			this.css.add('ts-hasheader');
-			return this.dom.q('header.ts-toolbar', ToolBarSpirit) || 
+			return this.dom.q('header.ts-toolbar', ToolBarSpirit) ||
 				this.dom.prepend(ToolBarSpirit.summon('header', 'ts-bg-blue'));
 		},
 
@@ -311,7 +309,7 @@ ts.ui.ModalSpirit = (function using(ToolBarSpirit, Client, transition, chained) 
 		_footer: function() {
 			this.css.add('ts-hasfooter');
 			var ToolBarSpirit = ts.ui.ToolBarSpirit; // TODO: Load this after!
-			return this.dom.q('footer.ts-toolbar', ToolBarSpirit) || 
+			return this.dom.q('footer.ts-toolbar', ToolBarSpirit) ||
 				this.dom.append(ToolBarSpirit.summon('footer'));
 		},
 
@@ -321,7 +319,7 @@ ts.ui.ModalSpirit = (function using(ToolBarSpirit, Client, transition, chained) 
 		 * @throws {Error}
 		 */
 		_confirmposition: function() {
-			if(this.guilayout.outsideMain()) {
+			if (this.guilayout.outsideMain()) {
 				return true;
 			} else {
 				throw new Error(
@@ -347,8 +345,7 @@ ts.ui.ModalSpirit = (function using(ToolBarSpirit, Client, transition, chained) 
 				}
 			}
 			return true;
-		},
+		}
 
 	});
-
 }(ts.ui.ToolBarSpirit, gui.Client, gui.Client.hasTransitions, gui.Combo.chained));

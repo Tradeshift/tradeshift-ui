@@ -6,18 +6,17 @@
  * @using {gui.Arguments#confirmed} confirmed
  */
 ts.ui.Spirit = (function using(Type, GuiArray, confirmed) {
-	
 	/**
 	 * Don't show errors on directives that are used in V4.
 	 * TODO: When the migration is over, this should go.
 	 */
 	function isV4directive(name) {
 		return window.V4_FRAME && [
-			'ts-show', //part of the aside directive
-			'ts-close', //part of the aside directive
-			'ts-title', //part of the aside directive
+			'ts-show', // part of the aside directive
+			'ts-close', // part of the aside directive
+			'ts-title', // part of the aside directive
 			'ts-app',
-				
+
 			'ts-component-factory',
 			'ts-input-validator',
 			'ts-file-on-change',
@@ -25,18 +24,18 @@ ts.ui.Spirit = (function using(Type, GuiArray, confirmed) {
 			'ts-sidebar',
 			'ts-topbar',
 			'ts-userimage',
-				
+
 			'ts-pager',
 			'ts-pages',
 			'ts-page'
-				
+
 		].some(function(directive) {
 			return name === directive;
 		});
 	}
 
 	return gui.Spirit.extend({
-		
+
 		/**
 		 * Setup.
 		 */
@@ -45,19 +44,18 @@ ts.ui.Spirit = (function using(Type, GuiArray, confirmed) {
 			this._confirmattributes(gui.debug);
 			this._configureclassnames(this.css);
 		},
-		
 
 		// Private .................................................................
 
 		/**
-		 * The spirit can have a model associated. This usually 
+		 * The spirit can have a model associated. This usually
 		 * implies that the spirit was generated via API calls.
 		 * @type {ts.ui.Model}
 		 */
 		_model: null,
 
 		/**
-		 * This spirit was somehow generated via API calls? 
+		 * This spirit was somehow generated via API calls?
 		 * In other words, it's not a simple DHTML widget.
 		 * @return {boolean}
 		 */
@@ -72,8 +70,8 @@ ts.ui.Spirit = (function using(Type, GuiArray, confirmed) {
 		 */
 		_confirmattributes: function(debug) {
 			if (debug && this.att.all().some(function(att) {
-					return att.name === 'gui' || att.name.startsWith('gui.');
-				})) {
+				return att.name === 'gui' || att.name.startsWith('gui.');
+			})) {
 				console.warn(
 					'The "gui" attribute should not used. Use the "ts" ' +
 					'attribute to configure the ' + this.$classname
@@ -88,33 +86,32 @@ ts.ui.Spirit = (function using(Type, GuiArray, confirmed) {
 		 */
 		_configureclassnames: function(css) {
 			var cssnames = this.constructor.$cssnames;
-			if(cssnames) {
+			if (cssnames) {
 				this.css.add(cssnames);
 			}
 		},
 
 		/**
-		 * Invoke that function with optional arguments *only if* it's defined. 
-		 * If the `action` argument is a string, we'll compile it to a function. 
+		 * Invoke that function with optional arguments *only if* it's defined.
+		 * If the `action` argument is a string, we'll compile it to a function.
 		 * Note that the `this` keyword will in either case point to this spirit.
 		 * TODO: Support multiple args
 		 * @param {string|function} action
 		 * @returns {boolan} True if the action was called
 		 */
 		_maybeinvoke: function(action, arg) {
-			if(action) {
+			if (action) {
 				var args = [];
-				if(arguments.length > 1) {
+				if (arguments.length > 1) {
 					args.push(arg);
 				}
-				if(Type.isString(action)) {
+				if (Type.isString(action)) {
 					action = new Function(action);
 				}
 				action.apply(this, args);
 			}
 			return !!action;
 		},
-
 
 		// Privileged ..............................................................
 
@@ -126,7 +123,7 @@ ts.ui.Spirit = (function using(Type, GuiArray, confirmed) {
 		 * @overwrites {gui.Spirit.$debug}
 		 */
 		$debug: function(construct) {
-			if(construct) {
+			if (construct) {
 				this.att.set('data-ts-spirit', this.$classname);
 				if (this.constructor.$cssname) {
 					this.$catchdeprecated(this, this.element);
@@ -135,24 +132,24 @@ ts.ui.Spirit = (function using(Type, GuiArray, confirmed) {
 				this.att.del('data-ts-spirit');
 			}
 		},
-		
+
 		/**
-		 * This should eventually throw an error so that we can 
-		 * fix all instances of the deprecated attribute scheme. 
+		 * This should eventually throw an error so that we can
+		 * fix all instances of the deprecated attribute scheme.
 		 * When the migration is done, this should be removed!!!
 		 * @param {ts.ui.Spirit} spirit
 		 * @param {Element} elm
 		 */
 		$catchdeprecated: function(spirit, elm) {
 			var name, main, is, atts = GuiArray.from(elm.attributes);
-			if(atts.some(function(att) {
-				if((is = att.name.startsWith('ts-') && !isV4directive(att.name))) {
+			if (atts.some(function(att) {
+				if ((is = att.name.startsWith('ts-') && !isV4directive(att.name))) {
 					name = att.name;
 					main = true;
-				} else if((is = att.name.startsWith('ts.'))) {
+				} else if ((is = att.name.startsWith('ts.'))) {
 					name = att.name;
 				}
-				return is;	
+				return is;
 			})) {
 				/**
 				 * @todo do this a bit less harsh (or fix the detection)
@@ -160,12 +157,12 @@ ts.ui.Spirit = (function using(Type, GuiArray, confirmed) {
 				// spirit.css.add('ts-error-oldscheme');
 				if(main) {
 					console.warn(
-						'The attribute "' + name + '" is deprecated. Use data-ts="' + 
+						'The attribute "' + name + '" is deprecated. Use data-ts="' +
 						spirit.constructor.$nicename + '" to initialize the ' + spirit.$classname
 					);
 				} else {
 					console.warn(
-						'The attribute "' + name + '" is deprecated. Use "' + 
+						'The attribute "' + name + '" is deprecated. Use "' +
 						name.replace('ts.', 'data-ts.') + '" on the ' + spirit.$classname
 					);
 				}
@@ -173,42 +170,41 @@ ts.ui.Spirit = (function using(Type, GuiArray, confirmed) {
 			}
 		}
 
-
 	}, { // Xstatic ..............................................................
-		
+
 	}, { // Static ...............................................................
 
 		/**
-		 * Spirit name as refered to in the documentation 
-		 * and also as used in the `data-ts` attribute. 
+		 * Spirit name as refered to in the documentation
+		 * and also as used in the `data-ts` attribute.
 		 * This only applies to spirits with a channeling.
 		 * @type {string}
 		 */
 		$nicename: null,
-		
+
 		/**
-		 * Spirit CSS classname. This gets autocomputed 
+		 * Spirit CSS classname. This gets autocomputed
 		 * on startup over in the file called "ts.ui.js".
 		 * This only applies to spirits with a channeling.
 		 * @type {string}
 		 */
 		$cssname: null,
-		
+
 		/**
-		 * Inherit CSS classnames via JS class hierarchy 
+		 * Inherit CSS classnames via JS class hierarchy
 		 * Still only applies to spirits with a channeling.
 		 * @type {string}
 		 */
 		$cssnames: null,
 
 		/**
-		 * Create method to get or set the model associated to a spirit, 
-		 * (just to make sure that the API remains somewhat consistant). 
+		 * Create method to get or set the model associated to a spirit,
+		 * (just to make sure that the API remains somewhat consistant).
 		 * A model is instantiated if the getter is called before setter!
 		 * TODO: The (generated) method should be prefixed with a `$` dollar.
 		 * @param {constructor|string} Model eg. ts.ui.ToolBarModel
 		 * @param {function|string} edbml eg. ts.ui.ToolBarSpirit.edbml
-		 * @param @optional {function} 
+		 * @param @optional {function}
 		 * @returns {function} Optionally do something with that model
 		 */
 		createModelMethod: confirmed('function', 'function|string', '(function)')(
@@ -218,8 +214,8 @@ ts.ui.Spirit = (function using(Type, GuiArray, confirmed) {
 				};
 				return function modelmethod(opt_json) {
 					var model = opt_json;
-					if(model) {
-						if(opt_json !== this._model) {
+					if (model) {
+						if (opt_json !== this._model) {
 							if (!Model.is(model)) {
 								model = new Model(opt_json);
 							}
@@ -238,5 +234,4 @@ ts.ui.Spirit = (function using(Type, GuiArray, confirmed) {
 		)
 
 	});
-
 }(gui.Type, gui.Array, gui.Arguments.confirmed));

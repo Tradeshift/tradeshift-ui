@@ -3,7 +3,6 @@
  * @extends {ts.ui.BarModel}
  */
 ts.ui.ToolBarModel = (function using(chained) {
-
 	return ts.ui.BarModel.extend({
 
 		/**
@@ -11,13 +10,13 @@ ts.ui.ToolBarModel = (function using(chained) {
 		 * @type {string}
 		 */
 		item: 'toolbar',
-		
+
 		/**
 		 * Has tabs or buttons or anything at all really?
 		 * @type {boolean}
 		 */
 		hascontent: false,
-		
+
 		/**
 		 * Has now or has ever had tabs or buttons and stuf?
 		 * @type {boolean}
@@ -35,15 +34,15 @@ ts.ui.ToolBarModel = (function using(chained) {
 		 * @type {string}
 		 */
 		title: null,
-		
-		/** 
+
+		/**
 		 * Toolbar search model.
 		 * @type {ts.ui.InputModel}
 		 */
 		search: null,
-		
+
 		/**
-		 * Attempt to economize space by automatically transferring 
+		 * Attempt to economize space by automatically transferring
 		 * any assigned buttons (especially tertiary) into an Aside?
 		 * @type {boolean}
 		 */
@@ -88,18 +87,18 @@ ts.ui.ToolBarModel = (function using(chained) {
 		onchange: function(changes) {
 			var has = 'hascontent';
 			var had = 'hadcontent';
-			if(!this.hadcontent) {
+			if (!this.hadcontent) {
 				this.hadcontent = changes.some(function(c) {
 					return c.name === has && c.newValue;
 				});
 			}
-			if(changes.some(function(c) {
+			if (changes.some(function(c) {
 				return c.name !== has && c.name !== had;
 			}, this)) {
 				this._updatehascontent();
 			}
 		},
-		
+
 		/**
 		 * Clear the stuff.
 		 * @returns {ts.ui.ToolBarModel}
@@ -128,7 +127,7 @@ ts.ui.ToolBarModel = (function using(chained) {
 		 */
 		_watchmodels: function(doit) {
 			[this, this.buttons, this.tabs].forEach(function(model) {
-				if(doit) {
+				if (doit) {
 					model.addObserver(this);
 				} else {
 					model.removeObserver(this);
@@ -137,14 +136,14 @@ ts.ui.ToolBarModel = (function using(chained) {
 		},
 
 		/**
-		 * Compute the property `hascontent` so that others 
+		 * Compute the property `hascontent` so that others
 		 * won't have to remember this long list of checks.
 		 * @returns {boolean} True when there's content...
 		 */
 		_updatehascontent: function() {
 			this.hascontent = !!(
-				this.tabs.length || 
-				this.buttons.length || 
+				this.tabs.length ||
+				this.buttons.length ||
 				this.title ||
 				this.search
 			);

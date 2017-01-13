@@ -9,16 +9,16 @@ gui.URL = function(doc, href) {
 		var val, link = gui.URL._createLink(doc, href);
 		Object.keys(gui.URL.prototype).forEach(function(key) { // TODO: exclude toString somehow...
 			if (gui.Type.isString((val = link[key]))) {
-				if (key === "pathname" && !val.startsWith("/")) {
-					val = "/" + val; // http://stackoverflow.com/questions/956233/javascript-pathname-ie-quirk
+				if (key === 'pathname' && !val.startsWith('/')) {
+					val = '/' + val; // http://stackoverflow.com/questions/956233/javascript-pathname-ie-quirk
 				}
 				this[key] = val;
 			}
 		}, this);
 		this.id = this.hash ? this.hash.substring(1) : null;
-		this.external = this.href.split("#")[0] !== doc.URL.split("#")[0];
+		this.external = this.href.split('#')[0] !== doc.URL.split('#')[0];
 	} else {
-		throw new TypeError("Document expected");
+		throw new TypeError('Document expected');
 	}
 };
 
@@ -38,7 +38,6 @@ gui.URL.prototype = {
 	}
 };
 
-
 // Statics ..............................................................................................
 
 /**
@@ -49,23 +48,23 @@ gui.URL.prototype = {
  * @returns {String}
  */
 gui.URL.absolute = function(base, href) { // return /(^data:)|(^http[s]?:)|(^\/)/.test(inUrl);
-	href = href || "";
+	href = href || '';
 	if (base.nodeType === Node.DOCUMENT_NODE) {
 		return new gui.URL(base, href).href;
-	} else if (typeof base === "string") {
-		var stack = base.split("/");
-		var parts = href.split("/");
+	} else if (typeof base === 'string') {
+		var stack = base.split('/');
+		var parts = href.split('/');
 		stack.pop(); // remove current filename (or empty string) (omit if "base" is the current folder without trailing slash)
 		parts.forEach(function(part) {
-			if (part !== ".") {
-				if (part === "..") {
+			if (part !== '.') {
+				if (part === '..') {
 					stack.pop();
 				} else {
 					stack.push(part);
 				}
 			}
 		});
-		return stack.join("/");
+		return stack.join('/');
 	}
 };
 
@@ -88,8 +87,8 @@ gui.URL.external = function(src, doc) {
  * @returns {String} String or null
  */
 gui.URL.getParam = function(url, name) {
-	name = name.replace(/(\[|\])/g, "\\$1");
-	var results = new RegExp("[\\?&]" + name + "=([^&#]*)").exec(url);
+	name = name.replace(/(\[|\])/g, '\\$1');
+	var results = new RegExp('[\\?&]' + name + '=([^&#]*)').exec(url);
 	return results === null ? null : results[1];
 };
 
@@ -105,19 +104,19 @@ gui.URL.getParam = function(url, name) {
 gui.URL.setParam = function(url, name, value) {
 	var params = [],
 		cut, index = -1;
-	var path = url.split("#")[0];
-	var hash = url.split("#")[1];
-	if (path.indexOf("?") > -1) {
-		cut = path.split("?");
+	var path = url.split('#')[0];
+	var hash = url.split('#')[1];
+	if (path.indexOf('?') > -1) {
+		cut = path.split('?');
 		path = cut[0];
-		params = cut[1].split("&");
+		params = cut[1].split('&');
 		params.every(function(param, i) {
-			var x = param.split("=");
+			var x = param.split('=');
 			if (x[0] === name) {
 				index = i;
 				if (value !== null) {
 					x[1] = value;
-					params[i] = x.join("=");
+					params[i] = x.join('=');
 				}
 			}
 			return index < 0;
@@ -128,10 +127,10 @@ gui.URL.setParam = function(url, name, value) {
 			params.remove(index, index);
 		}
 	} else if (index < 0) {
-		params[params.length] = [name, value].join("=");
+		params[params.length] = [name, value].join('=');
 	}
-	params = params.length > 0 ? "?" + params.join("&") : "";
-	return path + params + (hash ? "#" + hash : "");
+	params = params.length > 0 ? '?' + params.join('&') : '';
+	return path + params + (hash ? '#' + hash : '');
 };
 
 /**
@@ -143,15 +142,15 @@ gui.URL.setParam = function(url, name, value) {
 gui.URL.parametrize = function(baseurl, params) {
 	if (gui.Type.isObject(params)) {
 		gui.Object.each(params, function(key, value) {
-			baseurl += baseurl.includes("?") ? "&" : "?";
+			baseurl += baseurl.includes('?') ? '&' : '?';
 			switch (gui.Type.of(value)) {
-				case "array":
+				case 'array':
 					baseurl += value.map(function(member) {
-						return key + "=" + String(member);
-					}).join("&");
+						return key + '=' + String(member);
+					}).join('&');
 					break;
 				default:
-					baseurl += key + "=" + String(value);
+					baseurl += key + '=' + String(value);
 					break;
 			}
 		});
@@ -166,7 +165,7 @@ gui.URL.parametrize = function(baseurl, params) {
  */
 gui.URL.origin = function(win) {
 	var loc = win.location;
-	return loc.origin || loc.protocol + "//" + loc.host;
+	return loc.origin || loc.protocol + '//' + loc.host;
 };
 
 /**
@@ -174,8 +173,8 @@ gui.URL.origin = function(win) {
  * @param @optional {String} href
  */
 gui.URL._createLink = function(doc, href) {
-	var link = doc.createElement("a");
-	link.href = href || "";
+	var link = doc.createElement('a');
+	link.href = href || '';
 	if (gui.Client.isExplorer) { // IE9???
 		var uri = gui.URL.parseUri(link.href);
 		Object.keys(uri).forEach(function(key) {
@@ -195,11 +194,11 @@ gui.URL._createLink = function(doc, href) {
  */
 gui.URL.parseUri = function(str) {
 	var o = gui.URL.parseOptions,
-		m = o.parser[o.strictMode ? "strict" : "loose"].exec(str),
+		m = o.parser[o.strictMode ? 'strict' : 'loose'].exec(str),
 		uri = {},
 		i = 14;
 	while (i--) {
-		uri[o.key[i]] = m[i] || "";
+		uri[o.key[i]] = m[i] || '';
 	}
 	uri[o.q.name] = {};
 	uri[o.key[12]].replace(o.q.parser, function($0, $1, $2) {
@@ -216,9 +215,9 @@ gui.URL.parseUri = function(str) {
  */
 gui.URL.parseOptions = {
 	strictMode: true,
-	key: ["source", "protocol", "authority", "userInfo", "user", "password", "host", "port", "relative", "path", "directory", "file", "query", "anchor"],
+	key: ['source', 'protocol', 'authority', 'userInfo', 'user', 'password', 'host', 'port', 'relative', 'path', 'directory', 'file', 'query', 'anchor'],
 	q: {
-		name: "queryKey",
+		name: 'queryKey',
 		parser: /(?:^|&)([^&=]*)=?([^&]*)/g
 	},
 	parser: {

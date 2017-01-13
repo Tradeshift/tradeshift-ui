@@ -11,7 +11,7 @@ gui.module('tables-gui@tradeshift.com', {
 	],
 
 	/**
-	 * Setup some special plugins for the Table 
+	 * Setup some special plugins for the Table
 	 * (to split the code up in smaller pieces).
 	 */
 	oncontextinitialize: function() {
@@ -25,7 +25,7 @@ gui.module('tables-gui@tradeshift.com', {
 
 /*
  * Note: Just because this happens to be the last loaded bundle
- * Note: During "idle time", the browser was parsing other resources 
+ * Note: During "idle time", the browser was parsing other resources
  *       (CSS and JS) and/or waiting for the DOMContentLoadeed event.
  * TODO: These kinds of "saga" measurements into seperate script files!
  */

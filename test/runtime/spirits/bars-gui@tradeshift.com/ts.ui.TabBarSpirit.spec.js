@@ -1,8 +1,6 @@
 describe('ts.ui.TabBarSpirit', function likethis() {
-
-
 	// Preparations ..............................................................
-	
+
 	function setup(action) {
 		var spirit, dom = helper.createTestDom();
 		dom.innerHTML = '<div data-ts="TabBar"></div>';
@@ -13,7 +11,7 @@ describe('ts.ui.TabBarSpirit', function likethis() {
 	}
 
 	function gettabsitem(spirit) {
-		return spirit.element.querySelector('.ts-toolbar-menu.ts-left');	
+		return spirit.element.querySelector('.ts-toolbar-menu.ts-left');
 	}
 
 	// Expectations ..............................................................
@@ -26,11 +24,11 @@ describe('ts.ui.TabBarSpirit', function likethis() {
 	});
 
 	// SKETCHY TESTS ZONE ........................................................
-	
+
 	/*
-	
+
 	// NOTE: this test may be subject to random failure
-	
+
 	it('should show some tabs', function(done) {
 		var item;
 		setup(function(spirit) {
@@ -51,7 +49,7 @@ describe('ts.ui.TabBarSpirit', function likethis() {
 			});
 		});
 	});
-	
+
 	it('should have more tabs', function(done) {
 		var item;
 		setup(function(spirit) {
@@ -60,7 +58,7 @@ describe('ts.ui.TabBarSpirit', function likethis() {
 				tabs.push({label: 'Moth' + i});
 			}
 			spirit.tabs(tabs);
-			
+
 			sometime(function later() {
 				item = gettabsitem(spirit);
 				expect(item.innerHTML).toContain('Moth');
@@ -71,5 +69,4 @@ describe('ts.ui.TabBarSpirit', function likethis() {
 	});
 
 	*/
-
 });

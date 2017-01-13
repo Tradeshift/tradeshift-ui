@@ -4,8 +4,7 @@
  * @using {gui.Combo.chained} chained
  */
 ts.ui.TableColModel = (function using(chained) {
-	
-	// remove special characters from 
+	// remove special characters from
 	// alphabetic sorting sequence
 	var SPECIAL = /[^A-z\d ]/gi;
 
@@ -16,32 +15,32 @@ ts.ui.TableColModel = (function using(chained) {
 	 * @param {boolean} ascending
 	 */
 	function sortnum(n1, n2, ascending) {
-		if(n1 < n2) {
+		if (n1 < n2) {
 			return ascending ? -1 : 1;
 		}
-		if(n1 > n2) {
+		if (n1 > n2) {
 			return ascending ? 1 : -1;
 		}
 		return 0;
 	}
-	
+
 	/**
 	 * Sort alphabetically in a non-sophisticated way.
 	 * @param {string} s1
 	 * @param {string} s2
 	 * @param {boolean} ascending
 	 */
-	function sortalpha(a, b, ascending){
+	function sortalpha(a, b, ascending) {
 		var com = compare(normalize(a), normalize(b));
-		if(com < 0) {
+		if (com < 0) {
 			return ascending ? -1 : 1;
 		}
-		if(com > 0) {
+		if (com > 0) {
 			return ascending ? 1 : -1;
 		}
 		return 0;
 	}
-	
+
 	/**
 	 * This seems to tweak the alphabetical sorting favourably.
 	 * @param {string} string
@@ -50,21 +49,20 @@ ts.ui.TableColModel = (function using(chained) {
 	function normalize(string) {
 		return string.toLowerCase().replace(SPECIAL, '');
 	}
-	
+
 	/**
-	 * You can apparently `localeCompare` strings for 
+	 * You can apparently `localeCompare` strings for
 	 * better resolution of strange regional characters.
 	 * @see http://mdn.io/localeCompare
 	 * TODO(jmo@): Support futher locale options
 	 */
 	function compare(string1, string2) {
-		if(string1.localeCompare) {
+		if (string1.localeCompare) {
 			return string1.localeCompare(string2);
 		} else {
 			return string1 > string2;
 		}
 	}
-
 
 	return ts.ui.Model.extend({
 
@@ -99,7 +97,7 @@ ts.ui.TableColModel = (function using(chained) {
 		ascending: true,
 
 		/**
-		 * Cells in this column are editable? Please note that 
+		 * Cells in this column are editable? Please note that
 		 * this is assumed `true` unless explicitly denied!
 		 * @type {boolean}
 		 */
@@ -161,7 +159,7 @@ ts.ui.TableColModel = (function using(chained) {
 		 */
 		sort: function(val1, val2, numerically) {
 			var ascending = this.ascending;
-			if(numerically) {
+			if (numerically) {
 				return sortnum(val1, val2, ascending);
 			} else {
 				return sortalpha(val1, val2, ascending);
@@ -177,21 +175,20 @@ ts.ui.TableColModel = (function using(chained) {
 		},
 
 		/**
-		 * Temp API updated warning. 
+		 * Temp API updated warning.
 		 * Can be removed later on...
 		 */
 		onconstruct: function() {
 			this.super.onconstruct();
 			var type = this.type;
-			if(type === 'text' || type === 'number') {
+			if (type === 'text' || type === 'number') {
 				this.type = 'ts-' + type;
 				console.warn(
-					'The column `type` property must be changed ' + 
+					'The column `type` property must be changed ' +
 					'from "' + type + '" to "ts-' + type + '"'
 				);
 			}
-		},
-		
-	});
+		}
 
+	});
 }(gui.Combo.chained));

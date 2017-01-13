@@ -1,5 +1,4 @@
 describe('ts.ui.form.edbml', function likethis() {
-
 	it('should contain a form', function() {
 		var html = ts.ui.form.edbml();
 		expect(html).toContain('data-ts="Form"');
@@ -18,5 +17,4 @@ describe('ts.ui.form.edbml', function likethis() {
 		var html = ts.ui.form.edbml(new ts.ui.FormModel({}).submitButton('Login')); // this API will change!
 		expect(html).toContain('<button');
 	});
-
 });

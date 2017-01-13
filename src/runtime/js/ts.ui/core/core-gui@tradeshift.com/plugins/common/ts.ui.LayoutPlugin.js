@@ -6,13 +6,12 @@
  * @using {gui.Combo#chained} chained
  */
 ts.ui.LayoutPlugin = (function using(GuiArray, DOMPlugin, CSSPlugin, chained) {
-	
 	return ts.ui.Plugin.extend({
 
 		/**
 		 * Spirit is positioned before or after Main (not inside)?
-		 * TODO(jmo@): could not use classname `ts-main` because of 
-		 * timing  conflicts in tests, must investigate performance 
+		 * TODO(jmo@): could not use classname `ts-main` because of
+		 * timing  conflicts in tests, must investigate performance
 		 * of the selector used instead.
 		 * @returns {boolean}
 		 */
@@ -26,8 +25,8 @@ ts.ui.LayoutPlugin = (function using(GuiArray, DOMPlugin, CSSPlugin, chained) {
 		 */
 		beforeMain: function() {
 			var is = false, elm = this.spirit.element;
-			if(!this._isinaside() && !this._isinmain()) {
-				while((!is && (elm = elm.nextElementSibling))) {
+			if (!this._isinaside() && !this._isinmain()) {
+				while ((!is && (elm = elm.nextElementSibling))) {
 					is = CSSPlugin.contains(elm, 'ts-main');
 				}
 			}
@@ -40,14 +39,14 @@ ts.ui.LayoutPlugin = (function using(GuiArray, DOMPlugin, CSSPlugin, chained) {
 		 */
 		afterMain: function() {
 			var is = false, elm = this.spirit.element;
-			if(!this._isinaside() && !this._isinmain()) {
-				while((!is && (elm = elm.previousElementSibling))) {
+			if (!this._isinaside() && !this._isinmain()) {
+				while ((!is && (elm = elm.previousElementSibling))) {
 					is = CSSPlugin.contains(elm, 'ts-main');
 				}
 			}
 			return is;
 		},
-		
+
 		/**
 		 * Add or remove classname(s) on the HTML element.
 		 * @param {truthy} on
@@ -60,7 +59,7 @@ ts.ui.LayoutPlugin = (function using(GuiArray, DOMPlugin, CSSPlugin, chained) {
 				enabled: !!on
 			});
 		}),
-		
+
 		/**
 		 * Flex everything (because of JavaScript based layout).
 		 * @returns {ts.ui.LayoutPlugin}
@@ -68,11 +67,11 @@ ts.ui.LayoutPlugin = (function using(GuiArray, DOMPlugin, CSSPlugin, chained) {
 		flexGlobal: chained(function() {
 			ts.ui.get(document.documentElement).reflex();
 		}),
-		
+
 		/**
-		 * Apply classname based on the current height of some 
+		 * Apply classname based on the current height of some
 		 * descendant StatusBarSpirit. This is known to affect
-		 * TableSpirit, PanelSpirit and DocumentSpirit (and it 
+		 * TableSpirit, PanelSpirit and DocumentSpirit (and it
 		 * also runs on the StatusBarSpirit itself).
 		 * @param {number} level
 		 */
@@ -83,10 +82,9 @@ ts.ui.LayoutPlugin = (function using(GuiArray, DOMPlugin, CSSPlugin, chained) {
 				css.shift(number === level, 'ts-level-' + string);
 			});
 		},
-		
-		 
+
 		// Private .................................................................
-		
+
 		/**
 		 * Spirit is inside some kind of Aside?
 		 * @returns {boolean}
@@ -102,7 +100,6 @@ ts.ui.LayoutPlugin = (function using(GuiArray, DOMPlugin, CSSPlugin, chained) {
 		_isinmain: function() {
 			return this.spirit.css.matches('.ts-main *');
 		}
-
 
 	}, { // Static ...............................................................
 
@@ -122,14 +119,13 @@ ts.ui.LayoutPlugin = (function using(GuiArray, DOMPlugin, CSSPlugin, chained) {
 		 * @returns {boolean}
 		 */
 		contains: function(cname) {
-			if(gui.debug) {
+			if (gui.debug) {
 				console.log('TODO: this must be synced to root panels setup');
 			}
 			return ts.ui.get(document.documentElement).css.contains(cname);
 		}
 
 	});
-
 }(
 	gui.Array,
 	gui.DOMPlugin,

@@ -39,9 +39,8 @@ gui.EventSummary.prototype = {
 	 * @returns {String}
 	 */
 	toString: function() {
-		return "[object gui.EventSummary]";
+		return '[object gui.EventSummary]';
 	},
-
 
 	// Private ...................................................................
 

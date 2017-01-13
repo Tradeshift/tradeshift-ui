@@ -9,7 +9,7 @@ gui.IEventHandler = {
 	 * @returns {String}
 	 */
 	toString: function() {
-		return "[object IEventHandler]";
+		return '[object IEventHandler]';
 	},
 
 	/**

@@ -11,6 +11,6 @@ ts.ui.Buttons = function(json) {
  * Identification.
  * @return {string}
  */
-ts.ui.Buttons.toString = function(){
+ts.ui.Buttons.toString = function() {
 	return '[function ts.ui.Buttons]';
 };

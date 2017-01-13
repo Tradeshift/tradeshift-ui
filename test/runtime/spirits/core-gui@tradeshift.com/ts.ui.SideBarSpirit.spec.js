@@ -1,9 +1,6 @@
 describe('ts.ui.SideBarSpirit', function likethis() {
-
-
-
 	// Preparations ..............................................................
-	
+
 	function setup(action) {
 		var spirit, dom = helper.createTestDom();
 		dom.innerHTML = '<aside data-ts="SideBar"><div data-ts="Panel"><p>Leo</p></div></aside>';
@@ -26,7 +23,7 @@ describe('ts.ui.SideBarSpirit', function likethis() {
 			spirit.element.setAttribute('data-ts.title', 'Daniel');
 			sometime(function later() {
 				expect(spirit.element.innerHTML).toContain('Daniel');
-				done();	
+				done();
 			});
 		});
 	});
@@ -47,7 +44,7 @@ describe('ts.ui.SideBarSpirit', function likethis() {
 			sometime(function later() {
 				expect(spirit.element.innerHTML).toContain('Moth');
 				expect(spirit.element.innerHTML).toContain('ts-spinner-text');
-				done();	
+				done();
 			});
 		});
 	});
@@ -59,9 +56,8 @@ describe('ts.ui.SideBarSpirit', function likethis() {
 			});
 			sometime(function later() {
 				expect(spirit.element.innerHTML).toContain('ts-icon-leo');
-				done();	
+				done();
 			});
 		});
 	});
-
 });

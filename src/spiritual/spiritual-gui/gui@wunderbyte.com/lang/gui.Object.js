@@ -42,7 +42,7 @@ gui.Object = {
 				}
 			}, this);
 		} else {
-			throw new TypeError("Expected object, got " + gui.Type.of(source));
+			throw new TypeError('Expected object, got ' + gui.Type.of(source));
 		}
 		return target;
 	},
@@ -66,7 +66,7 @@ gui.Object = {
 		try {
 			return this.extend({}, source);
 		} catch (exception) {
-			throw new TypeError("Could not object-copy " + gui.Type.of(source));
+			throw new TypeError('Could not object-copy ' + gui.Type.of(source));
 		}
 	},
 
@@ -133,10 +133,10 @@ gui.Object = {
 	lookup: function(opath, context) {
 		var result, struct = context || self;
 		if (gui.Type.isString(opath)) {
-			if (!opath.includes(".")) {
+			if (!opath.includes('.')) {
 				result = struct[opath];
 			} else {
-				var parts = opath.split(".");
+				var parts = opath.split('.');
 				parts.every(function(part) {
 					struct = struct[part];
 					return gui.Type.isDefined(struct);
@@ -144,7 +144,7 @@ gui.Object = {
 				result = struct;
 			}
 		} else {
-			throw new TypeError("Expected string, got " + gui.Type.of(opath));
+			throw new TypeError('Expected string, got ' + gui.Type.of(opath));
 		}
 		return result;
 	},
@@ -159,8 +159,8 @@ gui.Object = {
 	 */
 	assert: function(opath, value, context) {
 		var prop, struct = context || self;
-		if (opath.includes(".")) {
-			var parts = opath.split(".");
+		if (opath.includes('.')) {
+			var parts = opath.split('.');
 			prop = parts.pop();
 			parts.forEach(function(part) {
 				struct = struct[part] || (struct[part] = {});
@@ -233,7 +233,7 @@ gui.Object = {
 		var methods = Array.prototype.slice.call(arguments).slice(1);
 		if (!methods.length) {
 			methods = gui.Object.ownmethods(object).filter(function(name) {
-				return name[0] !== "_"; // exclude private methods
+				return name[0] !== '_'; // exclude private methods
 			});
 		}
 		methods.forEach(function(name) {
@@ -254,7 +254,6 @@ gui.Object = {
 		method.$hidden = true;
 		return method;
 	},
-
 
 	// Private ...................................................................
 

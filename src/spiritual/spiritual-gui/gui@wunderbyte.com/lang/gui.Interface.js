@@ -14,12 +14,12 @@ gui.Interface = {
 		var expected = interfais.toString();
 		var type = gui.Type.of(object);
 		switch (type) {
-			case "null":
-			case "string":
-			case "number":
-			case "boolean":
-			case "undefined":
-				throw new Error("Expected " + expected + ", got " + type + ": " + object);
+			case 'null':
+			case 'string':
+			case 'number':
+			case 'boolean':
+			case 'undefined':
+				throw new Error('Expected ' + expected + ', got ' + type + ': ' + object);
 			default:
 				try {
 					var missing = null,
@@ -30,10 +30,10 @@ gui.Interface = {
 						return gui.Type.of(object[name]) === t;
 					});
 					if (!is) {
-						throw new Error("Expected " + expected + ". A required " + type + " \"" + missing + "\" is missing");
+						throw new Error('Expected ' + expected + '. A required ' + type + ' "' + missing + '" is missing');
 					}
 				} catch (exception) {
-					throw new Error("Expected " + expected);
+					throw new Error('Expected ' + expected);
 				}
 				break;
 		}

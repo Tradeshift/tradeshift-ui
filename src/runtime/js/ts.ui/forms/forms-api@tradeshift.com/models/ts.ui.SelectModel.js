@@ -3,7 +3,7 @@
  * @extends {ts.ui.Model}
  */
 ts.ui.SelectModel = ts.ui.Model.extend({
-	
+
 	/**
 	 * Friendly name.
 	 * @type {string}

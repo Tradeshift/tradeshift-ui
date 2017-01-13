@@ -1,5 +1,5 @@
 var kommando = require('kommando');
-//var server = require('../integration_test/lib/server');
+// var server = require('../integration_test/lib/server');
 var xtend = require('node.extend');
 var _ = require('lodash');
 
@@ -42,7 +42,7 @@ function getCapabilities(config) {
 			{
 				'browserstack.user': driverOptions.username,
 				'browserstack.key': driverOptions.accessKey,
-				'resolution': '1280x1024'
+				resolution: '1280x1024'
 			},
 			b
 		);
@@ -61,7 +61,7 @@ function getBrowserstackConfig() {
 		{
 			driver: 'browser-stack',
 			driverOptions: getDriverOptions(config),
-			capabilities: getCapabilities(config),
+			capabilities: getCapabilities(config)
 	  },
 		BASE_KOMMANDO_CONFIG
 	);

@@ -5,7 +5,7 @@
 ts.ui.SelectSpirit = ts.ui.FieldSpirit.extend({
 
 	/**
-	 * Attribute `ts.debugsync` can be toggled to induce random selections. 
+	 * Attribute `ts.debugsync` can be toggled to induce random selections.
 	 * This will come in handy when we attempt to synchronize everything.
 	 * @type {boolean}
 	 */
@@ -22,16 +22,15 @@ ts.ui.SelectSpirit = ts.ui.FieldSpirit.extend({
 			ts.ui.FakeSelectInputSpirit
 		).proxy(this.element);
 	},
-	
 
 	// Private ...................................................................
-	
+
 	/**
-	 * Now this is tricky: If this spirit happened to attach to an Angular 
-	 * template before Angular parsed the template, the temple will now 
-	 * contain the initialized markup including the fake input. In that case, 
-	 * we'll need to remove it first. There is unfortunately no way yo figure 
-	 * out, whether or not a piece of HTML is intended for a template, is the 
+	 * Now this is tricky: If this spirit happened to attach to an Angular
+	 * template before Angular parsed the template, the temple will now
+	 * contain the initialized markup including the fake input. In that case,
+	 * we'll need to remove it first. There is unfortunately no way yo figure
+	 * out, whether or not a piece of HTML is intended for a template, is the
 	 * result of a template, or is not related to templates at all.
 	 * TODO(jmo@): Link to Angular GitHub issue when online...
 	 * @param {constructor} SelectInput
@@ -39,14 +38,14 @@ ts.ui.SelectSpirit = ts.ui.FieldSpirit.extend({
 	 */
 	_createfake: function(SelectInput) {
 		var oldfake = this.dom.following(ts.ui.TextInputSpirit); // huh?
-		if(oldfake[0]) {
+		if (oldfake[0]) {
 			oldfake[0].dom.remove();
 		}
 		return this.dom.after(SelectInput.summon());
 	},
 
 	/**
-	 * Debug component synchronization. Change indexes and 
+	 * Debug component synchronization. Change indexes and
 	 * append new options. Don't try this in production.
 	 * TODO: This in a test instead :)
 	 * @param {boolean} enabled
@@ -54,9 +53,9 @@ ts.ui.SelectSpirit = ts.ui.FieldSpirit.extend({
 	_debugsync: function(enabled) {
 		var elm = this.element;
 		var ops = elm.options;
-		if(enabled) {
+		if (enabled) {
 			setInterval(function updaterandomly() {
-				if(elm.multiple) {
+				if (elm.multiple) {
 					console.log('indexes: ' + gui.Array.from(ops).map(
 						function(o, i) {
 							o.selected = Math.random() > 0.5;

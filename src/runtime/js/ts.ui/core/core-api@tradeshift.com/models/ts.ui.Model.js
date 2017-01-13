@@ -4,7 +4,6 @@
  * @using {gui.Type} Type
  */
 ts.ui.Model = (function using(Type) {
-
 	return edb.Object.extend({
 
 		/**
@@ -12,7 +11,7 @@ ts.ui.Model = (function using(Type) {
 		 * @type {string}
 		 */
 		id: null,
-		
+
 		/**
 		 * Friendly name.
 		 * @type {string}
@@ -31,16 +30,16 @@ ts.ui.Model = (function using(Type) {
 		tempdirtyflag: -1,
 
 		/**
-		 * Verify that we've set the badly named `item` property which is supposed to 
+		 * Verify that we've set the badly named `item` property which is supposed to
 		 * let us match any lump of raw JSON to a particular Model constructor.
-		 * TODO (jmo@): The name of this makes sense for menu-items, form-items, 
+		 * TODO (jmo@): The name of this makes sense for menu-items, form-items,
 		 * toolbar-items etc. but something more generic would come in handy...
 		 */
 		onconstruct: function() {
 			this.super.onconstruct();
-			if(gui.debug && this.item === 'model') {
+			if (gui.debug && this.item === 'model') {
 				console.error(
-					"A unique property 'item' is missing from " + this, 
+					"A unique property 'item' is missing from " + this,
 					JSON.stringify(this, null, true)
 				);
 			}
@@ -56,19 +55,18 @@ ts.ui.Model = (function using(Type) {
 		},
 
 		/**
-		 * Flag as disposed. This would allow any associated spirit to 
+		 * Flag as disposed. This would allow any associated spirit to
 		 * dispose. This setup has not been fully implemented just yet.
 		 * TODO (jmo@): in Spiritual EDB, allow time for synced types!
 		 */
 		dispose: function() {
 			this.disposed = true;
-			//this.super.dispose(); // hotfix: not enough time to sync the status!
+			// this.super.dispose(); // hotfix: not enough time to sync the status!
 			gui.Tick.time(function() {
 				edb.Type.$destruct(this);
 			}, 0, this);
 		},
 
-		
 		// Privileged ..............................................................
 
 		/**
@@ -79,24 +77,23 @@ ts.ui.Model = (function using(Type) {
 			this.tempdirtyflag = Math.random();
 		},
 
-
 		// Private .................................................................
 
 		/**
-		 * Invoke that function with optional arguments *only if* it's defined. 
-		 * If the `action` argument is a string, we'll compile it to a function. 
+		 * Invoke that function with optional arguments *only if* it's defined.
+		 * If the `action` argument is a string, we'll compile it to a function.
 		 * Note that the `this` keyword will in either case point to this model.
 		 * TODO: Support multiple args
 		 * @param {string|function} action
 		 * @returns {boolan} True if the action was called
 		 */
 		_maybeinvoke: function(action, arg) {
-			if(action) {
+			if (action) {
 				var args = [];
-				if(arguments.length > 1) {
+				if (arguments.length > 1) {
 					args.push(arg);
 				}
-				if(Type.isString(action)) {
+				if (Type.isString(action)) {
 					action = new Function(action);
 				}
 				action.apply(this, args);
@@ -105,5 +102,4 @@ ts.ui.Model = (function using(Type) {
 		}
 
 	});
-
 }(gui.Type));

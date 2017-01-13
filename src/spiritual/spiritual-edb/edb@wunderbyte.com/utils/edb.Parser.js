@@ -1,5 +1,4 @@
 edb.Parser = (function() {
-
 	function Parser() {}
 	Parser.prototype = {
 
@@ -17,7 +16,7 @@ edb.Parser = (function() {
 				if (isType(json)) {
 					return parse(json, type);
 				} else {
-					throw new TypeError("Expected serialized edb.Object|edb.Array");
+					throw new TypeError('Expected serialized edb.Object|edb.Array');
 				}
 			}
 		}
@@ -42,8 +41,8 @@ edb.Parser = (function() {
 		} else if (Type) {
 			return Type.from(json);
 		} else {
-			var error = new TypeError(name + " is not defined");
-			if(name === gui.Class.ANONYMOUS) {
+			var error = new TypeError(name + ' is not defined');
+			if (name === gui.Class.ANONYMOUS) {
 				console.error(
 					'TODO: Spiritual should make sure ' +
 					'that nothing is ever "' + name + '"\n' +
@@ -89,13 +88,12 @@ edb.Parser = (function() {
 	function mapObject(key, value) {
 		switch (key) {
 			case '$classname': // TODO: think about this at some point...
-				//case '$instanceid'
-				//case '$originalid'
+				// case '$instanceid'
+				// case '$originalid'
 				return undefined;
 			default:
 				return mapValue(value);
 		}
-
 	}
 
 	/**
@@ -109,5 +107,4 @@ edb.Parser = (function() {
 	}
 
 	return Parser;
-
 }());

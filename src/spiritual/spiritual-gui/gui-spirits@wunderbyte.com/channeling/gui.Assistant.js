@@ -3,7 +3,6 @@
  * @using {gui.Crawler} Crawler
  */
 gui.Assistant = (function using(Crawler) {
-
 	return {
 
 		/**
@@ -15,14 +14,14 @@ gui.Assistant = (function using(Crawler) {
 		$possess: function(elm, Spirit) {
 			if (elm.spirit) {
 				throw new Error(
-					"Cannot repossess element with spirit " +
-					elm.spirit + " (exorcise first)"
+					'Cannot repossess element with spirit ' +
+					elm.spirit + ' (exorcise first)'
 				);
 			} else if (!gui.debug || gui.Type.isSpiritConstructor(Spirit)) {
 				elm.spirit = new Spirit(elm);
 			} else {
 				throw new Error(
-					"Not a spirit constructor (" + gui.Type.of(Spirit) + ")"
+					'Not a spirit constructor (' + gui.Type.of(Spirit) + ')'
 				);
 			}
 			return elm.spirit;
@@ -75,13 +74,13 @@ gui.Assistant = (function using(Crawler) {
 						return Crawler.SKIP_CHILDREN;
 					} else if (!elm.childElementCount) {
 						return Crawler.SKIP_CHILDREN;
-					} else if(elm.hasAttribute('tempname')) {
+					} else if (elm.hasAttribute('tempname')) {
 						return Crawler.SKIP_CHILDREN;
 					} else {
 						// TODO: interface for this kind of stuff!
 						switch (elm.localName) {
-							case "pre":
-							case "code":
+							case 'pre':
+							case 'code':
 								return Crawler.SKIP_CHILDREN;
 						}
 					}
@@ -90,8 +89,6 @@ gui.Assistant = (function using(Crawler) {
 			});
 			return spirits;
 		},
-
-
 
 		// Private ...................................................................
 
@@ -108,7 +105,7 @@ gui.Assistant = (function using(Crawler) {
 			var experimentalattribute = 'data-ts';  // TRADESHIFT HOTFIX
 			if (elm.nodeType === Node.ELEMENT_NODE) {
 				if (gui.attributes.every(function(fix) {
-					if(fix === experimentalattribute) {
+					if (fix === experimentalattribute) {
 						return true;
 					} else {
 						res = this._maybepossessinline(elm, fix);
@@ -141,11 +138,11 @@ gui.Assistant = (function using(Crawler) {
 		_maybepossessinline: function(elm, fix) {
 			var res = null;
 			var att = elm.getAttribute(fix);
-			if (gui.Type.isString(att) && !att.startsWith("[")) {
-				if (att !== "") {
+			if (gui.Type.isString(att) && !att.startsWith('[')) {
+				if (att !== '') {
 					res = gui.Object.lookup(att);
-					if(!res) {
-						console.error(att + " is not defined.");
+					if (!res) {
+						console.error(att + ' is not defined.');
 					}
 				} else {
 					res = false; // strange return value implies no spirit for empty string
@@ -154,5 +151,4 @@ gui.Assistant = (function using(Crawler) {
 			return res;
 		}
 	};
-
 }(gui.Crawler));

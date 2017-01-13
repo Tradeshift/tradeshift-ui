@@ -15,7 +15,7 @@ ts.ui.String = {
 	LABEL_INFO: 'Read More',
 	LABEL_OPTIONS: 'Options',
 	LABEL_DATEPICK: 'Select Date',
-	
+
 	/**
 	 * notifications.
 	 */
@@ -43,10 +43,10 @@ ts.ui.String = {
 	 * @returns {string}
 	 */
 	getError: function(error) {
-		if((error = this + ' ' + error.toUpperCase())) {
+		if ((error = this + ' ' + error.toUpperCase())) {
 			return error;
 		} else {
-			console.error("No such error", error);
+			console.error('No such error', error);
 		}
 	}
 };

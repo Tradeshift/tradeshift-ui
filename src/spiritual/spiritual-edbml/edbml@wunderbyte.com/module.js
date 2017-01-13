@@ -1,7 +1,7 @@
 /*
  * Register module.
  */
-gui.module("edbml@wunderbyte.com", {
+gui.module('edbml@wunderbyte.com', {
 
 	/*
 	 * Mixin properties and method.
@@ -24,7 +24,7 @@ gui.module("edbml@wunderbyte.com", {
 			if (gui.Type.isFunction(script)) {
 				this.script.load(script);
 			} else {
-				throw new TypeError(this + " could not load script");
+				throw new TypeError(this + ' could not load script');
 			}
 		},
 
@@ -68,14 +68,13 @@ gui.module("edbml@wunderbyte.com", {
 	 * Channeling spirits to CSS selectors.
 	 */
 	channel: [
-		[".gui-script", "edbml.ScriptSpirit"]
+		['.gui-script', 'edbml.ScriptSpirit']
 	],
 
 	/**
 	 * Setup environment.
 	 */
 	oncontextinitialize: function() {
-		
 		/*
 		 * Automatically load spirit scripts by naming convention?
 		 * ns.MySpirit would automatically load ns.MySpirit.edbml
@@ -91,8 +90,8 @@ gui.module("edbml@wunderbyte.com", {
 		});
 
 		/*
-		 * Nasty hack to circumvent that we hardcode "event" into inline poke 
-		 * events, this creates an undesired global variable, but fixes an 
+		 * Nasty hack to circumvent that we hardcode "event" into inline poke
+		 * events, this creates an undesired global variable, but fixes an
 		 * exception in the console, at least I think this was the problem.
 		 */
 		if (!window.event) {

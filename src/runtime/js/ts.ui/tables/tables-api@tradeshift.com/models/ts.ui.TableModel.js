@@ -6,7 +6,6 @@
  * @using {ts.ui.Model} Model
  */
 ts.ui.TableModel = (function using(RowCollection, Type, Model) {
-
 	/**
 	 * Something is visible? Optimized for non-yet-moddeled JSON thing.
 	 * @param {JSONObject|ts.ui.TableColModel|ts.ui.TableRowModel} thing
@@ -23,7 +22,7 @@ ts.ui.TableModel = (function using(RowCollection, Type, Model) {
 	 */
 	function validcell(thing) {
 		var is = (thing !== undefined && thing !== null);
-		if(!is) {
+		if (!is) {
 			console.error('Cell content cannot be of type ' + Type.of(thing));
 		}
 		return is;
@@ -46,7 +45,7 @@ ts.ui.TableModel = (function using(RowCollection, Type, Model) {
 			};
 		}
 		x.cells = x.cells.map(cellify);
-		if(i !== undefined) {
+		if (i !== undefined) {
 			x.$index = i;
 		}
 		return x;
@@ -60,7 +59,7 @@ ts.ui.TableModel = (function using(RowCollection, Type, Model) {
 	 * @returns {object}
 	 */
 	function cellify(x, i) {
-		if(validcell(x)) {
+		if (validcell(x)) {
 			if (primitive(x)) {
 				x = {
 					value: x,
@@ -69,22 +68,22 @@ ts.ui.TableModel = (function using(RowCollection, Type, Model) {
 			} else {
 				// TODO: validate object-with-value-property
 			}
-			if(!Model.is(x)) {
+			if (!Model.is(x)) {
 				x.valid = x.valid !== false;
 				x.message = x.message || null;
 			}
-			if(i !== undefined) {
+			if (i !== undefined) {
 				x.$index = i;
 			}
 		}
 		return x;
 	}
-	
+
 	/**
-	 * If the cell contains a JSON object and the object has an `item` property, 
-	 * we will convert it into the corresponding model. The model instance will 
-	 * replace the JSON object so the this conversion is permanent. Note that 
-	 * the conversion happens as table cells are being rendered in the *view*, 
+	 * If the cell contains a JSON object and the object has an `item` property,
+	 * we will convert it into the corresponding model. The model instance will
+	 * replace the JSON object so the this conversion is permanent. Note that
+	 * the conversion happens as table cells are being rendered in the *view*,
 	 * ie. we don't convert everything at once (for performance in big data).
 	 * @param {ts.ui.TableModel} table
 	 * @param {Array<object>} row (rowified into objects)
@@ -92,7 +91,7 @@ ts.ui.TableModel = (function using(RowCollection, Type, Model) {
 	function modelify(table, row) {
 		var ModelC, rowindex, celindex;
 		row.cells = row.cells.map(function(cell) {
-			if(cell.item && !Model.is(cell)) {
+			if (cell.item && !Model.is(cell)) {
 				ModelC = getmodel(cell.item);
 				rowindex = row.$index;
 				celindex = cell.$index;
@@ -104,9 +103,9 @@ ts.ui.TableModel = (function using(RowCollection, Type, Model) {
 		});
 		return row;
 	}
-	
+
 	/**
-	 * Get model constructor by friendly name. For more 
+	 * Get model constructor by friendly name. For more
 	 * potential models, see the file {ts.ui.Collection}.
 	 * TODO: All "friendly names" should be PascalCased!
 	 * @param {string} item
@@ -114,11 +113,11 @@ ts.ui.TableModel = (function using(RowCollection, Type, Model) {
 	 */
 	function getmodel(item) {
 		return {
-			//'select': ts.ui.SelectModel, // TODO: support
-			//'date': ts.ui.DatePickerModel, // TODO: support
-			'button': ts.ui.ButtonModel,
+			// 'select': ts.ui.SelectModel, // TODO: support
+			// 'date': ts.ui.DatePickerModel, // TODO: support
+			button: ts.ui.ButtonModel,
 			'switch': ts.ui.SwitchModel,
-			'icon': ts.ui.IconModel
+			icon: ts.ui.IconModel
 		}[item.toLowerCase()] || (function nomatch() {
 			console.error('"' + item + '" not matched to nothing');
 			return null;
@@ -155,7 +154,7 @@ ts.ui.TableModel = (function using(RowCollection, Type, Model) {
 	 * @eeturns {string|number} (or anything really!)
 	 */
 	function getsortvalue(row, index) {
-		if(Array.isArray(row)) {
+		if (Array.isArray(row)) {
 			return row[index];
 		} else {
 			var cel = row.cells[index];
@@ -164,10 +163,9 @@ ts.ui.TableModel = (function using(RowCollection, Type, Model) {
 			return val !== undefined ? val : txt;
 		}
 	}
-	
 
 	return ts.ui.Model.extend({
-		
+
 		/**
 		 * Friendly name.
 		 * @type {string}
@@ -354,7 +352,7 @@ ts.ui.TableModel = (function using(RowCollection, Type, Model) {
 		 * @param {ts.ui.TableColModel} col
 		 */
 		sort: function(col) {
-			if(col) {
+			if (col) {
 				this._sortcol = col;
 			}
 		},
@@ -364,7 +362,7 @@ ts.ui.TableModel = (function using(RowCollection, Type, Model) {
 		 * @param {number} index
 		 */
 		togglerow: function(index) {
-			if(this.rowselected(index)) {
+			if (this.rowselected(index)) {
 				this.unselectrow(index);
 			} else {
 				this.selectrow(index);
@@ -389,7 +387,7 @@ ts.ui.TableModel = (function using(RowCollection, Type, Model) {
 		selectrow: function(index) {
 			var row = this.getrow(index);
 			var sel = !!row.selected;
-			if(sel === false) {
+			if (sel === false) {
 				row = this.getrow(index, true, true);
 				row.selected = true;
 				this.$dirty();
@@ -406,7 +404,7 @@ ts.ui.TableModel = (function using(RowCollection, Type, Model) {
 		unselectrow: function(index) {
 			var row = this.getrow(index);
 			var sel = !!row.selected;
-			if(sel === true) {
+			if (sel === true) {
 				row.selected = false;
 				this.$dirty();
 				return true;
@@ -422,7 +420,7 @@ ts.ui.TableModel = (function using(RowCollection, Type, Model) {
 			var indexes = [];
 			this.rows.forEach(function(row, i) {
 				var sel = !!row.selected;
-				if(sel === true && row.selectable !== false) {
+				if (sel === true && row.selectable !== false) {
 					indexes.push(i);
 				}
 			});
@@ -434,7 +432,7 @@ ts.ui.TableModel = (function using(RowCollection, Type, Model) {
 		 * @returns {number}
 		 */
 		pageCount: function() {
-			if(this.maxrows) {
+			if (this.maxrows) {
 				var show = this.rows.filter(isvisible);
 				var rows = show.length;
 				return Math.ceil(rows / this.maxrows);
@@ -455,9 +453,9 @@ ts.ui.TableModel = (function using(RowCollection, Type, Model) {
 			var all = this._layoutrows();
 			var now = -1;
 			return all.reduce(function(result, next, i) {
-				if(result === -1) {
+				if (result === -1) {
 					now += i % fit === 0 ? 1 : 0;
-					if(next === row) {
+					if (next === row) {
 						result = now;
 					}
 				}
@@ -481,9 +479,9 @@ ts.ui.TableModel = (function using(RowCollection, Type, Model) {
 		 */
 		getrow: function(rowindex, asobject, persist) {
 			var row = this.rows[rowindex];
-			if(row) {
-				if(asobject && Array.isArray(row)) {
-					if(persist) {
+			if (row) {
+				if (asobject && Array.isArray(row)) {
+					if (persist) {
 						row = rowify(row, rowindex);
 						this.rows.$suspend(function() {
 							this.rows.splice(rowindex, 1, row);
@@ -505,7 +503,7 @@ ts.ui.TableModel = (function using(RowCollection, Type, Model) {
 		 */
 		setrow: function(rowindex, row) {
 			var oldrow = this.getrow(rowindex);
-			if(oldrow) {
+			if (oldrow) {
 				this.rows.$suspend(function() {
 					this.rows.splice(rowindex, 1, row);
 				}, this);
@@ -523,7 +521,7 @@ ts.ui.TableModel = (function using(RowCollection, Type, Model) {
 		getcell: function(rowindex, cellindex) {
 			var row = this.getrow(rowindex, true);
 			var cell = row.cells[cellindex];
-			if(cell) {
+			if (cell) {
 				delete cell.$index; // because this is only user-facing for now...
 				return cell;
 			} else {
@@ -554,7 +552,7 @@ ts.ui.TableModel = (function using(RowCollection, Type, Model) {
 			var row = this.getrow(rowindex, true, true);
 			var cell = row.cells[cellindex];
 			var now = !!cell.valid;
-			if(valid !== now) {
+			if (valid !== now) {
 				cell.message = valid ? null : (message || null);
 				cell.valid = valid;
 				this.$dirty();
@@ -568,7 +566,7 @@ ts.ui.TableModel = (function using(RowCollection, Type, Model) {
 		 * @returns {gui.Position}
 		 */
 		moveposition: function(arg) {
-			switch(Type.of(arg)) {
+			switch (Type.of(arg)) {
 				case 'object':
 					this.position = arg;
 					break;
@@ -584,7 +582,6 @@ ts.ui.TableModel = (function using(RowCollection, Type, Model) {
 			return this.position;
 		},
 
-
 		// Privileged ..............................................................
 
 		/**
@@ -597,7 +594,6 @@ ts.ui.TableModel = (function using(RowCollection, Type, Model) {
 		$cellid: function(rowindex, celindex) {
 			return [this.$instanceid, 'cell', rowindex, celindex].join('-');
 		},
-
 
 		// Private .................................................................
 
@@ -630,7 +626,7 @@ ts.ui.TableModel = (function using(RowCollection, Type, Model) {
 		 * returns {Array<ts.ui.RowModel>}
 		 */
 		_sort: function(rows, col) {
-			if(col) {
+			if (col) {
 				var i = col.$index;
 				var n = !rows.map(function columnvalue(r) {
 					return getsortvalue(r, i);
@@ -655,7 +651,7 @@ ts.ui.TableModel = (function using(RowCollection, Type, Model) {
 		_ownsearch: function(index, value) {
 			value = String(value).toLowerCase();
 			this._searches = this._searches || {};
-			if(value.length) {
+			if (value.length) {
 				this._searches[index] = value;
 			} else {
 				delete this._searches[index];
@@ -694,5 +690,4 @@ ts.ui.TableModel = (function using(RowCollection, Type, Model) {
 		}
 
 	});
-
 }(ts.ui.TableRowCollection, gui.Type, ts.ui.Model));

@@ -44,7 +44,6 @@ gui.Class = {
 		return this._classes[classid] || null;
 	},
 
-	
 	// Privileged ................................................................
 
 	/**
@@ -57,7 +56,7 @@ gui.Class = {
 		var nonenumprop = gui.Property.nonenumerable;
 		var returnvalue = this;
 		Object.defineProperties(this, {
-			"$instanceid": nonenumprop({
+			$instanceid: nonenumprop({
 				value: gui.KeyMaster.generateKey()
 			}),
 			displayName: nonenumprop({
@@ -68,14 +67,13 @@ gui.Class = {
 		if (gui.Type.isFunction(constructor)) {
 			returnvalue = constructor.apply(this, arguments);
 		}
-		if(false) { // if stil an instance of gui.Class (but disabled for now)
-			if(gui.Client && gui.Super) {
+		if (false) { // if stil an instance of gui.Class (but disabled for now)
+			if (gui.Client && gui.Super) {
 				gui.Super.$proxy(returnvalue || this);
 			}
 		}
 		return returnvalue || this;
 	},
-
 
 	// Private ...................................................................
 
@@ -89,7 +87,7 @@ gui.Class = {
 	 * Nameless name.
 	 * @type {String}
 	 */
-	ANONYMOUS: "Anonymous",
+	ANONYMOUS: 'Anonymous',
 
 	/**
 	 * TODO: Memoize this!
@@ -103,7 +101,7 @@ gui.Class = {
 	 */
 	_BODY: (function($name) {
 		var body = $name.toString().trim();
-		return body.slice(body.indexOf("{") + 1, -1);
+		return body.slice(body.indexOf('{') + 1, -1);
 	}(
 		function $name() {
 			if (this instanceof $name) {
@@ -243,7 +241,7 @@ gui.Class = {
 	 * @returns {function}
 	 */
 	_interface: function(C) {
-		["extend", "mixin", "is"].forEach(function(method) {
+		['extend', 'mixin', 'is'].forEach(function(method) {
 			C[method] = this[method];
 		}, this);
 		return C;
@@ -270,10 +268,10 @@ gui.Class = {
 			}
 		});
 		C.toString = function() {
-			return "[function " + this.$classname + "]";
+			return '[function ' + this.$classname + ']';
 		};
 		C.prototype.toString = function() {
-			return "[object " + this.constructor.$classname + "]";
+			return '[object ' + this.constructor.$classname + ']';
 		};
 		return C;
 	},
@@ -285,7 +283,7 @@ gui.Class = {
 	 */
 	_namedbody: function(name) {
 		return this._BODY.replace(
-			new RegExp("\\$name", "gm"),
+			new RegExp('\\$name', 'gm'),
 			gui.Function.safename(name)
 		);
 	}
@@ -311,7 +309,6 @@ gui.Class = {
 	*/
 };
 
-
 // Class members ...............................................................
 
 gui.Object.extend(gui.Class, {
@@ -325,7 +322,7 @@ gui.Object.extend(gui.Class, {
 	 * @param {object} statics Constructor extensions
 	 * @returns {function} Constructor
 	 */
-	extend: function() { // protos, recurring, statics 
+	extend: function() { // protos, recurring, statics
 		return gui.Class._createsubclass(this, arguments);
 	},
 
@@ -368,11 +365,10 @@ gui.Object.extend(gui.Class, {
 	 * Deprecated API.
 	 */
 	isInstance: function() {
-		console.error("Deprecated API is derecated");
+		console.error('Deprecated API is derecated');
 	}
 
 });
-
 
 // Class navigation ............................................................
 
@@ -416,8 +412,8 @@ gui.Object.extend(gui.Class, {
 	},
 
 	/**
-	 * Return descendant classes and class itself. If action is provided, return 
-	 * array of the results of executing the action for each descendant class 
+	 * Return descendant classes and class itself. If action is provided, return
+	 * array of the results of executing the action for each descendant class
 	 * and class itself with the class as argument.
 	 * @param {function} C constructor
 	 * @param @optional {function} action
@@ -467,8 +463,8 @@ gui.Object.extend(gui.Class, {
 	},
 
 	/**
-	 * Return ancestor classes and class itself. If action is provided, return 
-	 * array of the results of executing the action for each ancestor class and 
+	 * Return ancestor classes and class itself. If action is provided, return
+	 * array of the results of executing the action for each ancestor class and
 	 * class itself with the class as argument.
 	 * @param {function} C constructor
 	 * @param @optional {function} action Takes the class as argument

@@ -9,7 +9,6 @@
  * @uisng {gui.Type} Type
  */
 gui.EventPlugin = (function using(chained, guiArray, DOMPlugin, Interface, Type) {
-
 	return gui.TrackerPlugin.extend({
 
 		/**
@@ -24,8 +23,8 @@ gui.EventPlugin = (function using(chained, guiArray, DOMPlugin, Interface, Type)
 		add: chained(function(arg, target, handler, capture) {
 			target = this._getelementtarget(target);
 			if (target.nodeType || Type.isWindow(target)) {
-				handler = handler ? handler : this.spirit;
-				capture = capture ? capture : false;
+				handler = handler || this.spirit;
+				capture = capture || false;
 				if (Interface.validate(gui.IEventHandler, handler)) {
 					var checks = [target, handler, capture];
 					this._breakdown(arg).forEach(function(type) {
@@ -52,8 +51,8 @@ gui.EventPlugin = (function using(chained, guiArray, DOMPlugin, Interface, Type)
 		remove: chained(function(arg, target, handler, capture) {
 			target = this._getelementtarget(target);
 			if (target.nodeType || Type.isWindow(target)) {
-				handler = handler ? handler : this.spirit;
-				capture = capture ? capture : false;
+				handler = handler || this.spirit;
+				capture = capture || false;
 				if (Interface.validate(gui.IEventHandler, handler)) {
 					var checks = [target, handler, capture];
 					this._breakdown(arg).forEach(function(type) {
@@ -79,8 +78,8 @@ gui.EventPlugin = (function using(chained, guiArray, DOMPlugin, Interface, Type)
 		 */
 		toggle: chained(function(arg, target, handler, capture) {
 			target = this._getelementtarget(target);
-			handler = handler ? handler : this.spirit;
-			capture = capture ? capture : false;
+			handler = handler || this.spirit;
+			capture = capture || false;
 			if (target instanceof gui.Spirit) {
 				target = target.element;
 			}
@@ -154,7 +153,6 @@ gui.EventPlugin = (function using(chained, guiArray, DOMPlugin, Interface, Type)
 			}
 		},
 
-
 		// Private .................................................................
 
 		/**
@@ -213,13 +211,13 @@ gui.EventPlugin = (function using(chained, guiArray, DOMPlugin, Interface, Type)
 		 * @returns {Element}
 		 */
 		_getelementtarget: function(target) {
-			target = target ? target : this.spirit.element;
+			target = target || this.spirit.element;
 			return (target instanceof gui.Spirit ? target.element : target);
 		},
 
 		/**
 		 * TODO: Delete this if Safari supports natively (and otherwise not used)
-		 * Clone the DOM event into a JS 
+		 * Clone the DOM event into a JS
 		 * object, then change the type.
 		 * @param {Event} realevent
 		 * @param {string} newtype
@@ -227,8 +225,8 @@ gui.EventPlugin = (function using(chained, guiArray, DOMPlugin, Interface, Type)
 		 */
 		_getfakeevent: function(realevent, newtype) {
 			var prop, fakeevent = Object.create(null);
-			for(prop in realevent){
-				switch(prop) {
+			for (prop in realevent) {
+				switch (prop) {
 					case 'webkitMovementX':
 					case 'webkitMovementY':
 						// avoid console "deprecated" warning
@@ -269,13 +267,13 @@ gui.EventPlugin = (function using(chained, guiArray, DOMPlugin, Interface, Type)
 		/**
 		 * Compute vendor prefixed 'transitionend' event name.
 		 * NOTE: Chrome is unprefixed now, Safarai is still left.
-		 * NOTE: Some functionality regarding the transitionend 
+		 * NOTE: Some functionality regarding the transitionend
 		 *       event still resides in the "module.js" file!
 		 * @TODO: Cache the result somehow...
 		 * @returns {String}
 		 */
 		_transitionend: function() {
-			if('transition' in document.documentElement.style) {
+			if ('transition' in document.documentElement.style) {
 				return 'transitionend';
 			} else {
 				return 'webkitTransitionEnd';
@@ -283,7 +281,6 @@ gui.EventPlugin = (function using(chained, guiArray, DOMPlugin, Interface, Type)
 		}
 
 	});
-
 }(
 	gui.Combo.chained,
 	gui.Array,

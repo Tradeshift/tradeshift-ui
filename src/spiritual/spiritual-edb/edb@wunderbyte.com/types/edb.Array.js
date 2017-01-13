@@ -3,7 +3,6 @@
  * @using {gui.Combo#chained}
  */
 (function using(proto, chained) {
-
 	/**
 	 * edb.Array
 	 * @extends {edb.Type} (although not really)
@@ -84,7 +83,6 @@
 			}
 			return proto.reverse.apply(this);
 		},
-
 
 		// Expandos ................................................................
 
@@ -181,10 +179,9 @@
 			}
 		},
 
-
 		/**
-		 * Create true array without expando properties, recursively 
-		 * normalizing nested EDB types. Returns the type of array we 
+		 * Create true array without expando properties, recursively
+		 * normalizing nested EDB types. Returns the type of array we
 		 * would typically transmit back to the server or something.
 		 * @returns {Array}
 		 */
@@ -198,7 +195,6 @@
 		}
 
 	});
-
 
 	// Helpers ...................................................................
 
@@ -230,11 +226,9 @@
 	 */
 	function observes(array) {
 		var key = array.$instanceid;
-		return edb.Array._observers[key] ? true : false;
+		return !!edb.Array._observers[key];
 	}
-
 }(Array.prototype, gui.Combo.chained));
-
 
 /**
  * Mixin static methods. Recurring static members mixed in from {edb.Type}.
@@ -279,7 +273,6 @@ edb.Array.mixin(null, edb.Type.$staticmixins(), {
 		}
 	},
 
-
 	// Private static ............................................................
 
 	/**
@@ -293,7 +286,6 @@ edb.Array.mixin(null, edb.Type.$staticmixins(), {
 	 * @type {Map<String,Array<edb.ArrayChange>>}
 	 */
 	_changes: Object.create(null),
-
 
 	// Privileged static .........................................................
 
@@ -323,18 +315,16 @@ edb.Array.mixin(null, edb.Type.$staticmixins(), {
 		var now = false; // edb.$criticalchange;
 		set.push(new edb.ArrayChange(array, index, removed, added));
 		gui.Tick.dispatch(edb.TICK_PUBLISH_CHANGES, now ? -1 : 0);
-		//edb.$criticalchange = false;
-	},
+		// edb.$criticalchange = false;
+	}
 
 });
-
 
 /*
  * Overloading array methods.
  * @using {edb.Array.prototype}
  */
 (function using(proto) {
-
 	/*
 	 * Dispatch a getter broadcast before base function.
 	 */
@@ -360,17 +350,16 @@ edb.Array.mixin(null, edb.Type.$staticmixins(), {
 	 * Dispatch a broadcast whenever the list is inspected or traversed.
 	 */
 	decorateAccess(proto, [
-		"filter",
-		"forEach",
-		"every",
-		"map",
-		"some",
-		"indexOf",
-		"lastIndexOf",
-		"slice" // hm,
+		'filter',
+		'forEach',
+		'every',
+		'map',
+		'some',
+		'indexOf',
+		'lastIndexOf',
+		'slice' // hm,
 		// TODO: REDUCE!
 	]);
-
 }(edb.Array.prototype));
 
 /*
@@ -382,12 +371,10 @@ edb.Array.mixin(null, edb.Type.$staticmixins(), {
 	gui.Object.extendmissing(edb.Array.prototype, edb.Type.prototype);
 }());
 
-
-
 // BACKUP ......................................................................
 
 /**
- * Dispatch a setter broadcast after base 
+ * Dispatch a setter broadcast after base
  * function by decorating setter methods on prototype.
  * @param {object} proto Prototype to decorate
  * @param {Array<String>} methods List of method names

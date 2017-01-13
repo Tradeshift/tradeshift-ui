@@ -2,17 +2,16 @@
  * Namespace object.
  */
 ts.dox = gui.namespace('ts.dox', (function() {
-	
 	/**
 	 * This is decidedly *not* the case upon GitHub pages.
 	 */
 	var islocalhost = location.port === '10114';
 
 	/**
-	 * Get magic URL that will instruct the chrome to load next 
-	 * page as a new app. The URL is supposed to look like the 
-	 * URL the user sees in the addressbar except it must start 
-	 * with "go.tradeshift.com" instead of localhost or whatever 
+	 * Get magic URL that will instruct the chrome to load next
+	 * page as a new app. The URL is supposed to look like the
+	 * URL the user sees in the addressbar except it must start
+	 * with "go.tradeshift.com" instead of localhost or whatever
 	 * (please assume here that we're not using #hash navigation).
 	 * @param {string} foldername
 	 * @param {string} filename
@@ -26,8 +25,8 @@ ts.dox = gui.namespace('ts.dox', (function() {
 	}
 
 	/**
-	 * If only one tab is visible on GitHub pages, there's no 
-	 * need to show the tabs. The tabs might still be shown 
+	 * If only one tab is visible on GitHub pages, there's no
+	 * need to show the tabs. The tabs might still be shown
 	 * on localhost (to reveal test pages and stuff).
 	 * @param {Array} tabs
 	 * @returns {boolean}
@@ -39,14 +38,14 @@ ts.dox = gui.namespace('ts.dox', (function() {
 	/**
 	 * Tab should be visible?
 	 * 1) All tabs should be visible on localhost, for you and I to see
-	 * 2) But they should also be visible when the page is loaded standalone 
-	 *    (without the chrome) so that we can show stuff online on a "secret" 
+	 * 2) But they should also be visible when the page is loaded standalone
+	 *    (without the chrome) so that we can show stuff online on a "secret"
 	 *    URL without the page automatically loading the first *visible* tab.
 	 * @param {Array} tab
 	 * @returns {boolean}
 	 */
 	function visibletab(tab) {
-		if(tab[2] === true) {
+		if (tab[2] === true) {
 			return islocalhost || !gui.hosted;
 		}
 		return true;
@@ -80,8 +79,8 @@ ts.dox = gui.namespace('ts.dox', (function() {
 		this.label = label;
 		this.selected = selected;
 		this.onselect = function() {
-			if(!selected) {
-				if(gui.hosted) {
+			if (!selected) {
+				if (gui.hosted) {
 					top.location.hash = href;
 				} else {
 					location.href = '/dist/' + href;
@@ -97,14 +96,14 @@ ts.dox = gui.namespace('ts.dox', (function() {
 	function parselinks() {
 		var tabs = document.head.querySelectorAll('link[rel=prefetch]');
 		return gui.Array.from(tabs).filter(function(link) {
-				return !!link.getAttribute('title');
-			}).map(function(link) {
-				return [
-					link.getAttribute('title'),
-					link.getAttribute('href'),
-					link.className.includes('hidden')
-				];
-			}
+			return !!link.getAttribute('title');
+		}).map(function(link) {
+			return [
+				link.getAttribute('title'),
+				link.getAttribute('href'),
+				link.className.includes('hidden')
+			];
+		}
 		);
 	}
 
@@ -122,12 +121,12 @@ ts.dox = gui.namespace('ts.dox', (function() {
 		 */
 		tabs: function(tabs) {
 			tabs = tabs || parselinks();
-			if(tabs.length) {
+			if (tabs.length) {
 				var path = location.pathname;
 				var file = path.substring(path.lastIndexOf('/') + 1);
 				var fold = path.replace(file, '');
 				var indx = file === '';
-				if(hasrelevant(tabs)) {
+				if (hasrelevant(tabs)) {
 					ts.ui.TopBar.tabs(tabs.filter(visibletab).map(function(tab) {
 						return createtab(tab, file, fold, indx, tab[2] === true);
 					}));
@@ -135,5 +134,4 @@ ts.dox = gui.namespace('ts.dox', (function() {
 			}
 		}
 	};
-
 }()));

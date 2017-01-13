@@ -3,20 +3,19 @@
  */
 gui.$stop('- parse spiritual');
 
-
 /**
  * Keys module.
  * @TODO http://www.w3.org/TR/DOM-Level-3-Events/#events-keyboardevents
  * @TODO http://dev.opera.com/articles/view/functional-key-handling-in-opera-tv-store-applications/
  */
-gui.KeysModule = gui.module("gui-keys@wunderbyte.com", {
-	
+gui.KeysModule = gui.module('gui-keys@wunderbyte.com', {
+
 	/*
 	 * Plugins (for all spirits).
 	 * @TODO: combo
 	 */
 	plugin: {
-		"key": gui.KeyPlugin
+		key: gui.KeyPlugin
 	},
 
 	/*
@@ -38,7 +37,7 @@ gui.KeysModule = gui.module("gui-keys@wunderbyte.com", {
 	 */
 	oncontextinitialize: function(context) {
 		this._keymap = Object.create(null);
-		["keydown", "keypress", "keyup"].forEach(function(type) {
+		['keydown', 'keypress', 'keyup'].forEach(function(type) {
 			context.document.addEventListener(type, this, false);
 		}, this);
 	},
@@ -59,7 +58,6 @@ gui.KeysModule = gui.module("gui-keys@wunderbyte.com", {
 		*/
 	},
 
-
 	// Private ..........................................................
 
 	/**
@@ -74,7 +72,6 @@ gui.KeysModule = gui.module("gui-keys@wunderbyte.com", {
 	 * @type {String}
 	 */
 	_snapshot: null,
-
 
 	/**
 	 * DOM3 style events. Skipped for now since Opera 12 appears
@@ -103,7 +100,7 @@ gui.KeysModule = gui.module("gui-keys@wunderbyte.com", {
 		*/
 
 		switch (e.type) {
-			case "keydown":
+			case 'keydown':
 				if (c === undefined) {
 					this._keycode = n;
 					this._keymap[n] = null;
@@ -115,13 +112,13 @@ gui.KeysModule = gui.module("gui-keys@wunderbyte.com", {
 					}, this);
 				}
 				break;
-			case "keypress":
+			case 'keypress':
 				if (this._keycode) {
 					c = this._keychar(e.keyCode, e.charCode, e.which);
 					this._keymap[this._keycode] = c;
 				}
 				break;
-			case "keyup":
+			case 'keyup':
 				if (c !== undefined) {
 					this._broadcast(false, null, c, n, id);
 					delete this._keymap[n];
@@ -144,7 +141,7 @@ gui.KeysModule = gui.module("gui-keys@wunderbyte.com", {
 	_broadcast: function(down, key, c, code, sig) {
 		var type, msg, arg;
 		type = gui.Key.$key[code] || c;
-		type = type === " " ? gui.Key.SPACE : type;
+		type = type === ' ' ? gui.Key.SPACE : type;
 		msg = gui.BROADCAST_KEYEVENT;
 		arg = {
 			down: down,
@@ -197,4 +194,4 @@ gui.KeysModule = gui.module("gui-keys@wunderbyte.com", {
 /*
  * Register broadcast type.
  */
-gui.BROADCAST_KEYEVENT = "gui-broadcast-keyevent";
+gui.BROADCAST_KEYEVENT = 'gui-broadcast-keyevent';

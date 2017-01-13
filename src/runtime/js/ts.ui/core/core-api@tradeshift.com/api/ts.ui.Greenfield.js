@@ -4,7 +4,6 @@
  * @using {ts.ui.ACTION_GLOBAL_MESSAGE_DOWN} down
  */
 ts.ui.Greenfield = (function using(up, down) {
-
 	/**
 	 * Dispatching actions up or down. We'll
 	 * redefine this method in `setupactions`
@@ -37,7 +36,7 @@ ts.ui.Greenfield = (function using(up, down) {
 	 * 2. We're in the app frame
 	 */
 	if (ts.ui.subframe || ts.ui.appframe) {
-		if(gui.hasModule('core-gui@tradeshift.com')) {
+		if (gui.hasModule('core-gui@tradeshift.com')) {
 			gui.ready(setupactions);
 		} else {
 			gui.init(setupactions);
@@ -76,7 +75,6 @@ ts.ui.Greenfield = (function using(up, down) {
 		}
 	}
 
-
 	return { // Public ...........................................................
 
 		/**
@@ -101,7 +99,6 @@ ts.ui.Greenfield = (function using(up, down) {
 			api.$api = true;
 			return api;
 		},
-
 
 		// Secret ..................................................................
 
@@ -137,7 +134,6 @@ ts.ui.Greenfield = (function using(up, down) {
 		}
 
 	};
-
 }(
 	ts.ui.ACTION_GLOBAL_MESSAGE_UP,
 	ts.ui.ACTION_GLOBAL_MESSAGE_DOWN

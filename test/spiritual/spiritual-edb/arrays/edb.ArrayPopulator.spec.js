@@ -2,9 +2,8 @@
  * Populate edb.Arrays.
  */
 describe('edb.ArrayPopulator', function likethis() {
+	var NAME = 'Jim Bob Johnson';
 
-	var NAME = "Jim Bob Johnson";
-	
 	var PersonModel = edb.Object.extend({
 		name: NAME
 	});
@@ -33,5 +32,4 @@ describe('edb.ArrayPopulator', function likethis() {
 		}
 		expect(fail).toBe(true);
 	});
-
 });

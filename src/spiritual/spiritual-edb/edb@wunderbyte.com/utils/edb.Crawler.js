@@ -3,7 +3,6 @@
  * TODO: Implement 'stop' directive
  */
 edb.Crawler = (function() {
-
 	function Crawler() {}
 	Crawler.prototype = {
 
@@ -55,5 +54,4 @@ edb.Crawler = (function() {
 	}
 
 	return Crawler;
-
 }());

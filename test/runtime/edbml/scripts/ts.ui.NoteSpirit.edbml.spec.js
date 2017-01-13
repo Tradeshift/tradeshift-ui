@@ -1,16 +1,14 @@
 describe('ts.ui.NoteSpirit.edbml', function likethis() {
-
 	function gethtml(model) {
 		var spirit = ts.ui.NoteSpirit.summon(model);
 		var dom = helper.createTestDom();
 		dom.appendChild(spirit.element);
 		return dom.innerHTML;
 	}
-	
 
 	it('should contian icon', function(done) {
 		var model = new ts.ui.NoteModel({
-			icon: "ts-icon-leo"
+			icon: 'ts-icon-leo'
 		});
 		sometime(function later() {
 			expect(gethtml(model)).toContain('ts-icon-leo');
@@ -20,7 +18,7 @@ describe('ts.ui.NoteSpirit.edbml', function likethis() {
 
 	it('should contian text', function(done) {
 		var model = new ts.ui.NoteModel({
-			text: "daniel"
+			text: 'daniel'
 		});
 		sometime(function later() {
 			expect(gethtml(model)).toContain('daniel');
@@ -30,7 +28,7 @@ describe('ts.ui.NoteSpirit.edbml', function likethis() {
 
 	it('should contian close button', function(done) {
 		var model = new ts.ui.NoteModel({
-			onclose: function(){}
+			onclose: function() {}
 		});
 		sometime(function later() {
 			expect(gethtml(model)).toContain('<button class="ts-note-close"');
@@ -38,6 +36,4 @@ describe('ts.ui.NoteSpirit.edbml', function likethis() {
 			done();
 		});
 	});
-
-
 });

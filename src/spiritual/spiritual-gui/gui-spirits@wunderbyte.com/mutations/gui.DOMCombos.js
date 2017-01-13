@@ -18,16 +18,15 @@ gui.DOMCombos = (function using(
 	guiArray,
 	DOMPlugin
 ) {
-
 	/**
-	 * Is `this` embedded in document? If `this` is a document 
-	 * fragment, we'll look at those other arguments instead. 
+	 * Is `this` embedded in document? If `this` is a document
+	 * fragment, we'll look at those other arguments instead.
 	 * @returns {boolean}
 	 */
 	var ifEmbedded = provided(function(newnode, oldnode) {
-		if(Type.isDocumentFragment(this)) {
+		if (Type.isDocumentFragment(this)) {
 			return DOMPlugin.embedded(this) ||
-				(newnode && DOMPlugin.embedded(newnode)) || 
+				(newnode && DOMPlugin.embedded(newnode)) ||
 				(oldnode && DOMPlugin.embedded(oldnode));
 		} else {
 			return DOMPlugin.embedded(this);
@@ -59,7 +58,7 @@ gui.DOMCombos = (function using(
 	});
 
 	/**
-	 * There should never *really* be any document fragments here, 
+	 * There should never *really* be any document fragments here,
 	 * but we will support that just in case it's possible somehow.
 	 * @param {Node} node
 	 */
@@ -109,10 +108,10 @@ gui.DOMCombos = (function using(
 	});
 
 	/*
-	 * Spirit-aware className. Convert js-property change to DOM attribute change 
-	 * so that attribute listeners can pick it up. Note that this voids the 
-	 * base `className` call, so let's hope other frameworks don't attempt to 
-	 * override the native accessor. Note that this doesn't work in IE9, 
+	 * Spirit-aware className. Convert js-property change to DOM attribute change
+	 * so that attribute listeners can pick it up. Note that this voids the
+	 * base `className` call, so let's hope other frameworks don't attempt to
+	 * override the native accessor. Note that this doesn't work in IE9,
 	 * so other workarounds are needed (Mutation Events in {gui.AttPlugin}).
 	 * @param {string} name
 	 */
@@ -220,7 +219,6 @@ gui.DOMCombos = (function using(
 		return action;
 	};
 
-
 	return { // Public ...........................................................
 
 		appendChild: function(base) {
@@ -314,13 +312,13 @@ gui.DOMCombos = (function using(
 					otherwise(base)),
 				otherwise(base))
 			);
-		},
+		}
 		/*
-		 * If we should need to create observers for the class attribute that 
-		 * would also work when updated via the JavaScript `className` property, 
-		 * we'll need to enable this, but we don't need that for the moment. 
-		 * Note also the IE9 can't do this and will need an `onpropertychange` 
-		 * handler be setup somewhere in the {gui.AttPlugin}. Something like 
+		 * If we should need to create observers for the class attribute that
+		 * would also work when updated via the JavaScript `className` property,
+		 * we'll need to enable this, but we don't need that for the moment.
+		 * Note also the IE9 can't do this and will need an `onpropertychange`
+		 * handler be setup somewhere in the {gui.AttPlugin}. Something like
 		 * this should also be setup to intercept `disabled` and `id` and such.
 		 * @see {gui.AttPlugin}
 		 *
@@ -333,7 +331,6 @@ gui.DOMCombos = (function using(
 		}
 		*/
 	};
-
 }(
 	gui.Combo.before,
 	gui.Combo.after,

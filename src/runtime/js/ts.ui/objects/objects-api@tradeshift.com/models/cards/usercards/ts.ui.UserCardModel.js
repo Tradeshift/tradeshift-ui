@@ -5,10 +5,9 @@
  * @using {ts.ui.CardModel}
  */
 ts.ui.UserCardModel = (function using(Card, CardModel) {
-	
 	return CardModel.extend({
 
-		/** 
+		/**
 		 * the type of the user component.
 		 * the value of the type: ts-default, ts-inline, ts-details
 		 * TODO: This is "presentation data", should be deprecated!
@@ -16,7 +15,7 @@ ts.ui.UserCardModel = (function using(Card, CardModel) {
 		 */
 		type: ts.ui.Card.TYPE_DEFAULT,
 
-		/** 
+		/**
 		 * Friendly name.
 		 * @type {string}
 		 */
@@ -39,7 +38,7 @@ ts.ui.UserCardModel = (function using(Card, CardModel) {
 		 * Card is detailed in Aside?
 		 * @type {boolean}
 		 */
-		isOpen : false,
+		isOpen: false,
 
 		/**
 		 * Show details in Aside.
@@ -50,11 +49,10 @@ ts.ui.UserCardModel = (function using(Card, CardModel) {
 			return this;
 		},
 
-
 		// Private .................................................................
 
 		/**
-		 * Get EDBML function for this card. 
+		 * Get EDBML function for this card.
 		 * @returns {function}
 		 */
 		_edbml: function() {
@@ -62,5 +60,4 @@ ts.ui.UserCardModel = (function using(Card, CardModel) {
 		}
 
 	});
-
 }(ts.ui.Card, ts.ui.CardModel));

@@ -4,9 +4,8 @@
  * @using {gui.Combo#chained}
  */
 ts.ui.DatePickerModel = (function using(chained) {
-
 	return ts.ui.Model.extend({
-	
+
 		/**
 		 * Friendly name.
 		 * @type {string}
@@ -14,7 +13,7 @@ ts.ui.DatePickerModel = (function using(chained) {
 		item: 'date',
 
 		/**
-		 * DatePickers are often associated to an aside, 
+		 * DatePickers are often associated to an aside,
 		 * in which case this becomes the aside header.
 		 * @type {string}
 		 */
@@ -97,7 +96,7 @@ ts.ui.DatePickerModel = (function using(chained) {
 							this.onselect(c.newValue, c.oldValue);
 						}.bind(this));
 					}
-				},this);
+				}, this);
 			}
 		},
 
@@ -110,5 +109,4 @@ ts.ui.DatePickerModel = (function using(chained) {
 		}
 
 	});
-
 }(gui.Combo.chained));

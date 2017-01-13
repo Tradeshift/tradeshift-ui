@@ -4,7 +4,6 @@
  * @using {gui.Combo#chained}
  */
 ts.ui.TabModel = (function using(chained) {
-
 	return ts.ui.Model.extend({
 
 		/**
@@ -67,7 +66,7 @@ ts.ui.TabModel = (function using(chained) {
 		 * @type {function}
 		 */
 		onclose: null,
-		
+
 		/**
 		 * Alias {ts.ui.TabModel#closable}.
 		 * @see https://uk.answers.yahoo.com/question/index?qid=20070329061734AAtI9Hc
@@ -130,16 +129,14 @@ ts.ui.TabModel = (function using(chained) {
 		unselect: chained(function() {
 			this.selected = false;
 		}),
-		
-		
+
 		// Privileged ..............................................................
-		
+
 		/**
 		 * Secret `onselect` for system private implementation.
 		 * @type {function}
 		 */
 		$onselect: null,
-
 
 		// Private .................................................................
 
@@ -156,15 +153,14 @@ ts.ui.TabModel = (function using(chained) {
 			if (this.onselect || this.$onselect) {
 				gui.Tick.cancelTime(this._timeout);
 				this._timeout = gui.Tick.time(function unfreeze() {
-					if(this.$onselect) { // system implementation
+					if (this.$onselect) { // system implementation
 						this.$onselect();
 					}
-					if(this.onselect) { // user configurable
+					if (this.onselect) { // user configurable
 						this.onselect();
 					}
 				}, 25, this);
 			}
 		}
 	});
-
 }(gui.Combo.chained));

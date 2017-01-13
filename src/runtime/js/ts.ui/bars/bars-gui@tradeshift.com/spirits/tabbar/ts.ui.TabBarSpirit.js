@@ -5,9 +5,8 @@
 	* @using {string} CLASS_MICRO
   */
 ts.ui.TabBarSpirit = (function(CLASS_MACRO, CLASS_MICRO) {
-	
 	return ts.ui.ToolBarSpirit.extend({
-		
+
 		/**
 		 * Set `ts-micro` for the default style.
 		 */
@@ -17,7 +16,7 @@ ts.ui.TabBarSpirit = (function(CLASS_MACRO, CLASS_MICRO) {
 				this.css.add(CLASS_MICRO);
 			}
 		},
-		
+
 		/**
 		 * The title would anyway be hidden by the tabs.
 		 * @overwrites {ts.ui.ToolBar#title}
@@ -27,5 +26,4 @@ ts.ui.TabBarSpirit = (function(CLASS_MACRO, CLASS_MICRO) {
 		}
 
 	});
-
 }(ts.ui.CLASS_MACRO, ts.ui.CLASS_MICRO));

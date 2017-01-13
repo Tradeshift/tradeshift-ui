@@ -2,35 +2,34 @@
  * Spirit of the script snippet.
  */
 ts.dox.JavaScriptSpirit = ts.dox.PrismSpirit.extend({
-	
+
 	/**
 	 * Handle event.
 	 */
 	onevent: function(e) {
 		var elm = e.target;
 		var prism = this.dom.q('.prism');
-		if(e.type === 'click' && prism && !this._editor) {
-			if(prism === elm || gui.DOMPlugin.contains(prism, e.target)) {
+		if (e.type === 'click' && prism && !this._editor) {
+			if (prism === elm || gui.DOMPlugin.contains(prism, e.target)) {
 				this._edit();
 			}
 		}
 	},
 
-
 	// Private ...................................................................
-	
+
 	/**
 	 * Ad hoc code editor.
 	 * @type {ts.ui.TextAreaSpirit}
 	 */
 	_editor: null,
-	
+
 	/**
 	 * @param {object} config
 	 */
 	_parseconfig: function(config) {
 		this.super._parseconfig(config);
-		if(config.runs) {
+		if (config.runs) {
 			var classed = this.css.contains('attention');
 			var primary = this._attention(classed);
 			var buttons = this._toolbar.buttons();
@@ -57,16 +56,16 @@ ts.dox.JavaScriptSpirit = ts.dox.PrismSpirit.extend({
 			this.event.add('click');
 		}
 	},
-	
+
 	/**
 	 * Run this code.
 	 */
 	_run: function() {
 		try {
 			new Function(this._editor ? this._editor.value : this.code)();
-		} catch(exception) {
+		} catch (exception) {
 			console.error(exception.message);
-			if(this._editor) {
+			if (this._editor) {
 				ts.ui.Notification.error(exception.message);
 			} else {
 				ts.ui.Notification.warning([
@@ -77,7 +76,7 @@ ts.dox.JavaScriptSpirit = ts.dox.PrismSpirit.extend({
 			}
 		}
 	},
-	
+
 	/**
 	 * Go to edit mode.
 	 * @param {ts.ui.ButtonSpirit} button
@@ -92,29 +91,29 @@ ts.dox.JavaScriptSpirit = ts.dox.PrismSpirit.extend({
 		area.focus();
 		area.element.setSelectionRange(0, 0);
 	},
-	
+
 	/**
 	 * Draw attention.
 	 * @param {boolean} yes
 	 * @returns {boolean}
 	 */
 	_attention: function(yes) {
-		if(yes) {
+		if (yes) {
 			this.dom.append(
 				gui.HTMLParser.parseToNode([
 					'<div class="message">',
-						'<p>',
-							'<i class="ts-icon-arrowleft"></i>',
-							'<strong>Interactive time</strong><br/>',
-							'Please <code>Run this code</code>',
-						'</p>',
+					'<p>',
+					'<i class="ts-icon-arrowleft"></i>',
+					'<strong>Interactive time</strong><br/>',
+					'Please <code>Run this code</code>',
+					'</p>',
 					'</div>'
 				].join('\n'))
 			);
 		}
 		return yes;
 	},
-	
+
 	/**
 	 * Make TAB work more or less. Also setup to show the Delete icon on changes.
 	 * http://stackoverflow.com/questions/1738808/keypress-in-jquery-press-tab-inside-textarea-when-editing-an-existing-text
@@ -123,13 +122,13 @@ ts.dox.JavaScriptSpirit = ts.dox.PrismSpirit.extend({
 	_makeeditor: function(area) {
 		var value = area.value;
 		var buttons = this._toolbar.buttons();
-		$(area.element).keypress(function (e) {
+		$(area.element).keypress(function(e) {
 			if (e.keyCode == 9) {
-				var myValue = "\t";
+				var myValue = '\t';
 				var startPos = this.selectionStart;
 				var endPos = this.selectionEnd;
 				var scrollTop = this.scrollTop;
-				this.value = this.value.substring(0, startPos) + myValue + this.value.substring(endPos,this.value.length);
+				this.value = this.value.substring(0, startPos) + myValue + this.value.substring(endPos, this.value.length);
 				this.focus();
 				this.selectionStart = startPos + myValue.length;
 				this.selectionEnd = startPos + myValue.length;
@@ -137,7 +136,7 @@ ts.dox.JavaScriptSpirit = ts.dox.PrismSpirit.extend({
 				e.preventDefault();
 			}
 		}).keyup(function() {
-			if(value !== null && area.value !== value) {
+			if (value !== null && area.value !== value) {
 				buttons.get('button-revert').show();
 			}
 		});

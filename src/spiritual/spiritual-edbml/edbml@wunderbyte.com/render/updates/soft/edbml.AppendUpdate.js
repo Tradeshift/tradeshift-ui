@@ -39,7 +39,7 @@ edbml.AppendUpdate = edbml.SoftUpdate.extend({
 	 * TODO: Push to update manager.
 	 */
 	_report: function() {
-		var message = "edbml.AppendUpdate #" + this.xelement.getAttribute("id");
+		var message = 'edbml.AppendUpdate #' + this.xelement.getAttribute('id');
 		this.super._report(message);
 	}
 });

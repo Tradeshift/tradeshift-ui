@@ -1,15 +1,14 @@
 describe('ts.ui.DialogSpirit.edbml', function likethis() {
-
 	function gethtml(dialog) {
 		var spirit = ts.ui.DialogSpirit.summon(dialog);
 		var dom = helper.createTestDom();
 		dom.appendChild(spirit.element);
 		return dom.innerHTML;
 	}
-	
+
 	it('should contain icon', function(done) {
 		var dialog = new ts.ui.DialogModel({
-			icon: "moth-daniel-leo"
+			icon: 'moth-daniel-leo'
 		});
 		sometime(function later() {
 			expect(gethtml(dialog)).toContain('<div class="ts-dialog-head">');
@@ -73,5 +72,4 @@ describe('ts.ui.DialogSpirit.edbml', function likethis() {
 			done();
 		});
 	});
-
 });

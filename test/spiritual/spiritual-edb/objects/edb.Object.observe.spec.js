@@ -2,7 +2,6 @@
  * Observing objects.
  */
 describe('edb.Object.observe()', function likethis() {
-	
 	function Observer() {}
 	Observer.prototype = {
 		poked: 0,
@@ -18,7 +17,7 @@ describe('edb.Object.observe()', function likethis() {
 		});
 		hans.addObserver(john);
 		hans.name = 'Jens';
-		setTimeout(function(){
+		setTimeout(function() {
 			expect(john.poked).toBe(1);
 			hans.removeObserver(john);
 			done();
@@ -30,13 +29,13 @@ describe('edb.Object.observe()', function likethis() {
 		var hans = new edb.Object({
 			name: 'Hans',
 			nickname: 'Hanzi',
-			age: 23,
+			age: 23
 		});
 		hans.addObserver(john);
 		hans.name = 'Jens';
 		hans.nickname = 'Jones';
 		hans.age = 46;
-		setTimeout(function(){
+		setTimeout(function() {
 			expect(john.poked).toBe(1);
 			hans.removeObserver(john);
 			done();
@@ -48,22 +47,21 @@ describe('edb.Object.observe()', function likethis() {
 		var hans = new edb.Object({
 			name: 'Hans',
 			nickname: 'Hanzi',
-			age: 23,
+			age: 23
 		});
 		hans.addObserver(john);
 		hans.name = 'Jens';
 		hans.nickname = 'Jones';
 		hans.age = 46;
-		//expect(changes).toEqual({ object: 'with', all: ['the', 'properties'] })
+		// expect(changes).toEqual({ object: 'with', all: ['the', 'properties'] })
 		john.onchange = function(changes) {
 			var type = edb.ObjectChange.TYPE_UPDATE;
 			expect(changes).toEqual([
-				{object: hans, name: 'name', newValue:'Jens', oldValue: 'Hans', type: type},
-				{object: hans, name: 'nickname', newValue:'Jones', oldValue: 'Hanzi', type: type},
-				{object: hans, name:'age', newValue:46, oldValue: 23, type: type}
+				{object: hans, name: 'name', newValue: 'Jens', oldValue: 'Hans', type: type},
+				{object: hans, name: 'nickname', newValue: 'Jones', oldValue: 'Hanzi', type: type},
+				{object: hans, name: 'age', newValue: 46, oldValue: 23, type: type}
 			]);
 			done();
 		};
 	});
-
 });

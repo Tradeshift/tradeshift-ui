@@ -1,19 +1,18 @@
-/*global describe, it, expect, spyOn, beforeEach, afterEach, jasmine, helper*/
+/* global describe, it, expect, spyOn, beforeEach, afterEach, jasmine, helper */
 (function testSetup() {
-
 	// Delay starting the tests until after the document is ready, as Spiritual waits for that.
 	var oldStart = window.__karma__.start;
-	window.__karma__.start = function () {
+	window.__karma__.start = function() {
 		gui.debug = true;
-		document.addEventListener("DOMContentLoaded", function () {
+		document.addEventListener('DOMContentLoaded', function() {
 			setTimeout(oldStart, 0);
 		}, false);
 	};
-	
+
 	/**
-	 * Async sugar. Having a somewhat big timeout for now until we get time 
-	 * to adjust it to whatever minimum the {gui.DOMObserver} demands. Note 
-	 * that eventually all spirits should and will attach synchronously, but 
+	 * Async sugar. Having a somewhat big timeout for now until we get time
+	 * to adjust it to whatever minimum the {gui.DOMObserver} demands. Note
+	 * that eventually all spirits should and will attach synchronously, but
 	 * currently they aren't because of the some kind of Chromium issue.
 	 * @see http://code.google.com/p/chromium/issues/detail?id=13175
 	 * @param {function} later
@@ -32,12 +31,12 @@
 				document.createElement('main')
 			);
 			main.className = 'ts-main';
-			if(Spirit) {
+			if (Spirit) {
 				var spirit = Spirit.summon();
 				spirit.dom.appendTo(main);
 			}
 			afterEach(function cleanup() {
-				if(main.parentNode === document.body) {
+				if (main.parentNode === document.body) {
 					document.body.removeChild(main);
 				}
 			});
@@ -50,5 +49,4 @@
 			return dom.innerHTML;
 		}
 	};
-
 }());

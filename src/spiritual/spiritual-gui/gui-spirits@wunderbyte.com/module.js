@@ -17,17 +17,17 @@ gui.module('gui-spirits@wunderbyte.com', {
 	 */
 	plugin: {
 		'super': gui.SuperPlugin, // TODO: for all gui.Class things!
-		'action': gui.ActionPlugin,
-		'broadcast': gui.BroadcastPlugin,
-		'tick': gui.TickPlugin,
-		'att': gui.AttPlugin,
-		'config': gui.ConfigPlugin,
-		'box': gui.BoxPlugin,
-		'css': gui.CSSPlugin,
-		'dom': gui.DOMPlugin,
-		'event': gui.EventPlugin,
-		'life': gui.LifePlugin,
-		'sprite': gui.SpritePlugin
+		action: gui.ActionPlugin,
+		broadcast: gui.BroadcastPlugin,
+		tick: gui.TickPlugin,
+		att: gui.AttPlugin,
+		config: gui.ConfigPlugin,
+		box: gui.BoxPlugin,
+		css: gui.CSSPlugin,
+		dom: gui.DOMPlugin,
+		event: gui.EventPlugin,
+		life: gui.LifePlugin,
+		sprite: gui.SpritePlugin
 	},
 
 	/**
@@ -91,7 +91,7 @@ gui.module('gui-spirits@wunderbyte.com', {
 			this.onevent(e);
 		},
 
-		// presumably some kind of hotfix for not conflicting 
+		// presumably some kind of hotfix for not conflicting
 		// callbacks with destructed spirits, but why here???
 		$ondestruct: gui.Combo.before(function() {
 			this.handleEvent = function() {};

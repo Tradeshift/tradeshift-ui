@@ -1,7 +1,7 @@
 /**
- * Spirit of the input field that acts like a SELECT element. 
- * NOTE: All this business logic should be moved into the Menu API so 
- * that someone else can create his own implementation of a "fake select" 
+ * Spirit of the input field that acts like a SELECT element.
+ * NOTE: All this business logic should be moved into the Menu API so
+ * that someone else can create his own implementation of a "fake select"
  * with just a few lines of code. Not now though.
  * @extends {ts.ui.FakeInputSpirit}
  * @using {gui.Combo#chained}
@@ -11,7 +11,6 @@
  * @using {gui.Array} guiArray
  */
 ts.ui.FakeSelectInputSpirit = (function using(chained, confirmed, tick, time, guiArray) {
-
 	/**
 	 * @param {HTMLOptionsCollection} options
 	 * @returns {Array<number>}
@@ -36,7 +35,6 @@ ts.ui.FakeSelectInputSpirit = (function using(chained, confirmed, tick, time, gu
 		return index > -1;
 	}
 
-	
 	return ts.ui.FakeInputSpirit.extend({
 
 		/**
@@ -68,7 +66,7 @@ ts.ui.FakeSelectInputSpirit = (function using(chained, confirmed, tick, time, gu
 		ontick: function(t) {
 			this.super.ontick(t);
 			if (t.type === tick) {
-				if(!this._proxyspirit.$destructed) {
+				if (!this._proxyspirit.$destructed) {
 					this._syncfake(
 						this._proxyelement,
 						this._menumodel
@@ -100,7 +98,6 @@ ts.ui.FakeSelectInputSpirit = (function using(chained, confirmed, tick, time, gu
 				}
 			})
 		),
-
 
 		// Private .................................................................
 
@@ -185,7 +182,7 @@ ts.ui.FakeSelectInputSpirit = (function using(chained, confirmed, tick, time, gu
 		},
 
 		/**
-		 * Change selection index (on the actual SELECT element). 
+		 * Change selection index (on the actual SELECT element).
 		 * TODO(jmo@): Implement this as a callback on the Menu!
 		 * @param {number} index
 		 */
@@ -215,7 +212,7 @@ ts.ui.FakeSelectInputSpirit = (function using(chained, confirmed, tick, time, gu
 		},
 
 		/**
-		 * Compute JSON for the {ts.ui.MenuModel} items collection. 
+		 * Compute JSON for the {ts.ui.MenuModel} items collection.
 		 * @returns {Array<object>}
 		 * @param {HTMLSelectElement} select
 		 */
@@ -231,7 +228,6 @@ ts.ui.FakeSelectInputSpirit = (function using(chained, confirmed, tick, time, gu
 		_openaside: function(onclosed) {
 			this._open(this._proxyelement, this._proxyelement.options, onclosed);
 		},
-		
 
 		// Aside ...................................................................
 
@@ -297,10 +293,10 @@ ts.ui.FakeSelectInputSpirit = (function using(chained, confirmed, tick, time, gu
 			});
 
 			// custom label for the "Done" button (in multiple selects)?
-			if(multiple) {
+			if (multiple) {
 				var button;
 				this._label(function(label) {
-					if((button = label.dom.q('button'))) {
+					if ((button = label.dom.q('button'))) {
 						menu.donebuttonlabel = button.textContent;
 					}
 				});
@@ -311,9 +307,9 @@ ts.ui.FakeSelectInputSpirit = (function using(chained, confirmed, tick, time, gu
 			observer = {
 				onchange: function(changes) {
 					changes.forEach(function(change) {
-						switch(change.object) {
+						switch (change.object) {
 							case menu:
-								if(change.name === 'selectedIndex') {
+								if (change.name === 'selectedIndex') {
 									var newindex = change.newValue;
 									var oldindex = that._selectedIndex;
 									if (newindex !== oldindex) {
@@ -322,8 +318,8 @@ ts.ui.FakeSelectInputSpirit = (function using(chained, confirmed, tick, time, gu
 										}, 150);
 									}
 								}
-								if(change.name === 'donebuttonpressed') {
-									if(menu.select === 'many') {
+								if (change.name === 'donebuttonpressed') {
+									if (menu.select === 'many') {
 										that._updatestatus(menu.selectedIndexes.length);
 										aside.close();
 									}
@@ -345,7 +341,7 @@ ts.ui.FakeSelectInputSpirit = (function using(chained, confirmed, tick, time, gu
 		},
 
 		/**
-		 * Max items on screen roughly accounting for Aside 
+		 * Max items on screen roughly accounting for Aside
 		 * title and panel paddeng (will compute better later).
 		 */
 		_getminimumitemscount: function() {
@@ -371,21 +367,21 @@ ts.ui.FakeSelectInputSpirit = (function using(chained, confirmed, tick, time, gu
 		_onasideclose: function(menu, observer) {
 			menu.removeObserver(observer); // TODO: auto when disposed!
 			menu.selectedIndexes.removeObserver(observer);
-			if(menu.select === 'one') {
+			if (menu.select === 'one') {
 				this._instantfeedback(menu.selectedIndex);
 			}
 		},
 
 		/**
-		 * We've set it up so that the `change` event doesn't trigger 
-		 * until the Aside is fully closed (so that the animation is 
-		 * not ruined by other activity), but here we hack it so that 
+		 * We've set it up so that the `change` event doesn't trigger
+		 * until the Aside is fully closed (so that the animation is
+		 * not ruined by other activity), but here we hack it so that
 		 * there is instant visual feedback when selection changes.
 		 * @param {number} index
 		 */
 		_instantfeedback: function(index) {
 			var options = this._proxyelement.options;
-			if(options[index]) {
+			if (options[index]) {
 				this.value = options[index].text;
 			}
 		},
@@ -401,7 +397,7 @@ ts.ui.FakeSelectInputSpirit = (function using(chained, confirmed, tick, time, gu
 					this._doselectone(menu.selectedIndex); // TODO: check this with the iPad :/
 					break;
 				case 'many':
-					if(menu.donebuttonpressed) {
+					if (menu.donebuttonpressed) {
 						this._doselectmany(menu.selectedIndexes);
 					}
 					break;
@@ -409,22 +405,21 @@ ts.ui.FakeSelectInputSpirit = (function using(chained, confirmed, tick, time, gu
 			this._menumodel = null;
 		},
 
-
 		// Sync ....................................................................
 
 		/**
 		 * Sync the fake select to the real select. Note that
-		 * this method is runs periodically on a {gui.Tick}. 
-		 * The strange cornercase hack is supposed to fix a 
-		 * mysterious bug somewhere in V4 where a SELECT with 
-		 * only a single option would simply not update after 
+		 * this method is runs periodically on a {gui.Tick}.
+		 * The strange cornercase hack is supposed to fix a
+		 * mysterious bug somewhere in V4 where a SELECT with
+		 * only a single option would simply not update after
 		 * an asynchronous operation.
 		 * @param {HTMLSelectElement} select The real SELECT element
 		 * @param {ts.ui.MenuModel} model Exists only when Aside is open
 		 */
 		_syncfake: function(select, model) {
 			var cornercase = select.options.length && !this.element.value;
-			if(cornercase || [
+			if (cornercase || [
 				this._changedlength(select, this._optionslength, model),
 				this._changedindex(select, this._selectedIndex, model),
 				this._changedindexes(select, this._selectedIndexes, model)
@@ -459,9 +454,9 @@ ts.ui.FakeSelectInputSpirit = (function using(chained, confirmed, tick, time, gu
 		 */
 		_changedindex: function(select, oldindex, model) {
 			var did = false, newindex;
-			if(!select.multiple) {
+			if (!select.multiple) {
 				newindex = select.selectedIndex;
-				if((did = (newindex !== oldindex))) {
+				if ((did = (newindex !== oldindex))) {
 					if (model) {
 						model.selectedIndex = newindex;
 					}
@@ -479,16 +474,16 @@ ts.ui.FakeSelectInputSpirit = (function using(chained, confirmed, tick, time, gu
 		 */
 		_changedindexes: function(select, oldindexes, model) {
 			var did = false, newindexes;
-			if(select.multiple) {
+			if (select.multiple) {
 				newindexes = this._getindexes(select.options);
 				if (newindexes.some(function(i, x) {
-						return oldindexes[x] !== i;
-					})) {
+					return oldindexes[x] !== i;
+				})) {
 					did = true;
-					if(model) {
+					if (model) {
 						// make sure not to reassign the list (this would kill the observer)
 						var list = model.selectedIndexes;
-						while(list.length) {
+						while (list.length) {
 							list.pop();
 						}
 						newindexes.forEach(function(i) {
@@ -500,9 +495,7 @@ ts.ui.FakeSelectInputSpirit = (function using(chained, confirmed, tick, time, gu
 			return did;
 		}
 
-
 	});
-
 }(
 	gui.Combo.chained,
 	gui.Arguments.confirmed,

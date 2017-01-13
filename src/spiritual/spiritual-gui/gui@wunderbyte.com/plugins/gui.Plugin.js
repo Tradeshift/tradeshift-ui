@@ -47,7 +47,6 @@ gui.Plugin = gui.Class.create(Object.prototype, {
 		}
 	},
 
-
 	// Privileged ................................................................
 
 	/**
@@ -62,8 +61,8 @@ gui.Plugin = gui.Class.create(Object.prototype, {
 	 */
 	$onconstruct: function(client) {
 		this.client = client;
-		if(gui.hasModule('gui-spirits@wunderbyte.com')) {
-			if(client instanceof gui.Spirit) {
+		if (gui.hasModule('gui-spirits@wunderbyte.com')) {
+			if (client instanceof gui.Spirit) {
 				this.spirit = client || null;
 				this.context = window; // otherwise web worker scenario, maybe deprecate
 			}
@@ -76,7 +75,6 @@ gui.Plugin = gui.Class.create(Object.prototype, {
 	 */
 	$ondestruct: function() {}
 
-
 }, { // Xstatic ................................................................
 
 	/**
@@ -84,7 +82,6 @@ gui.Plugin = gui.Class.create(Object.prototype, {
 	 * @type {boolean}
 	 */
 	lazy: true
-
 
 }, { // Static .................................................................
 
@@ -134,6 +131,5 @@ gui.Plugin = gui.Class.create(Object.prototype, {
 			}
 		});
 	}
-
 
 });

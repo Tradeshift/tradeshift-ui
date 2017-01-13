@@ -2,7 +2,7 @@ describe('ts.ui.select.edbml', function likethis() {
 	function gethtml() {
 		return ts.ui.select.edbml(
 			new ts.ui.SelectModel({
-				options: [{value:1,text:'test'}]
+				options: [{value: 1, text: 'test'}]
 			})
 		);
 	}

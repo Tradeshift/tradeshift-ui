@@ -10,7 +10,6 @@
  * @using {gui.Key} key
  */
 ts.ui.TableEditPlugin = (function(CSSPlugin, DOMPlugin, Position, Client, Key) {
-
 	var CLASS_CONTAINER = 'ts-table-cell';
 	var CLASS_TEXTAREA = 'ts-table-input';
 	var CLASS_EDITMODE = 'ts-table-editmode';
@@ -61,7 +60,7 @@ ts.ui.TableEditPlugin = (function(CSSPlugin, DOMPlugin, Position, Client, Key) {
 		 */
 		failfast: function(rowindex, cellindex) {
 			var td = this._getcellat(rowindex, cellindex);
-			if(td) {
+			if (td) {
 				CSSPlugin.add(td, CLASS_INVALID);
 			}
 		},
@@ -74,7 +73,7 @@ ts.ui.TableEditPlugin = (function(CSSPlugin, DOMPlugin, Position, Client, Key) {
 		focus: function(rowindex, cellindex) {
 			this._focuscell(this._getcellat(rowindex, cellindex), true);
 		},
-		
+
 		/**
 		 * Blur cell at index.
 		 * @param {number} rowindex
@@ -91,19 +90,19 @@ ts.ui.TableEditPlugin = (function(CSSPlugin, DOMPlugin, Position, Client, Key) {
 		onevent: function(e) {
 			var target = e.target;
 			var spirit = this.spirit;
-			switch(e.type) {
+			switch (e.type) {
 				case 'focus':
 				case 'blur':
-					if(hasclass(target, CLASS_TEXTAREA)) {
+					if (hasclass(target, CLASS_TEXTAREA)) {
 						this._areaupdate(target, e.type === 'focus');
-					} else if(this._navimode) {
+					} else if (this._navimode) {
 						this._maybereset(spirit, target);
 					}
 					break;
 				case 'keypress':
 				case 'keydown':
-					if(this._noscroll) {
-						switch(e.keyCode) {
+					if (this._noscroll) {
+						switch (e.keyCode) {
 							case 38:
 							case 40:
 								e.preventDefault();
@@ -120,12 +119,12 @@ ts.ui.TableEditPlugin = (function(CSSPlugin, DOMPlugin, Position, Client, Key) {
 		 * @param {gui.Action} a
 		 */
 		onaction: function(a) {
-			if(a.type === ts.ui.ACTION_CHANGED) {
-				if(ts.ui.TextAreaSpirit.is(a.target)) {
+			if (a.type === ts.ui.ACTION_CHANGED) {
+				if (ts.ui.TextAreaSpirit.is(a.target)) {
 					var area = a.target.element;
 					var cont = area.parentNode;
 					var next = a.data.newheight;
-					if(document.activeElement === area) {
+					if (document.activeElement === area) {
 						this._sync(true, area, cont, next);
 					}
 				}
@@ -140,11 +139,11 @@ ts.ui.TableEditPlugin = (function(CSSPlugin, DOMPlugin, Position, Client, Key) {
 		onkey: function(key) {
 			var spirit = this.spirit;
 			var model = spirit._model;
-			if(key.down) {
-				switch(key.type) {
+			if (key.down) {
+				switch (key.type) {
 					case 'Enter':
-						if(!Key.shiftDown) {
-							if((this._navimode = !this._navimode)) {
+						if (!Key.shiftDown) {
+							if ((this._navimode = !this._navimode)) {
 								this._gonavimode(spirit);
 							} else {
 								this._goeditmode(spirit);
@@ -152,7 +151,7 @@ ts.ui.TableEditPlugin = (function(CSSPlugin, DOMPlugin, Position, Client, Key) {
 						}
 						break;
 					case 'Esc':
-						if(this._editmode) {
+						if (this._editmode) {
 							this._escape(this._cell);
 							this._editmode = false;
 							this._navimode = true;
@@ -171,14 +170,13 @@ ts.ui.TableEditPlugin = (function(CSSPlugin, DOMPlugin, Position, Client, Key) {
 		 * @param {gui.Life} life
 		 */
 		onlife: function(life) {
-			if(life.type === gui.LIFE_RENDER) {
+			if (life.type === gui.LIFE_RENDER) {
 				this._syncinvalid();
-				if(this._cell) { // catch scenario: ENTER on edited cell
+				if (this._cell) { // catch scenario: ENTER on edited cell
 					this._resolveinvalid(this._cell);
 				}
 			}
 		},
-
 
 		// Private .................................................................
 
@@ -244,7 +242,7 @@ ts.ui.TableEditPlugin = (function(CSSPlugin, DOMPlugin, Position, Client, Key) {
 			this._sync(focused, area, cont);
 			CSSPlugin.shift(cell, focused, CLASS_EDITMODE);
 			this.spirit.css.shift(focused, CLASS_EDITMODE);
-			if(focused) {
+			if (focused) {
 				this._areafocus(this.spirit, area, cell);
 			} else {
 				this._areablur(area);
@@ -305,9 +303,9 @@ ts.ui.TableEditPlugin = (function(CSSPlugin, DOMPlugin, Position, Client, Key) {
 			var lastrow = rows[rows.length - 1];
 			var initcel = cels[selects ? 1 : 0];
 			var lastcel = cels[cels.length - 1];
-			switch(dir) {
+			switch (dir) {
 				case 'up':
-					return (row === initrow  ? lastrow : rows[--irow]).cells[icel];
+					return (row === initrow ? lastrow : rows[--irow]).cells[icel];
 				case 'down':
 					return (row === lastrow ? initrow : rows[++irow]).cells[icel];
 				case 'left':
@@ -325,12 +323,12 @@ ts.ui.TableEditPlugin = (function(CSSPlugin, DOMPlugin, Position, Client, Key) {
 		_focuscell: function(cell, edit) {
 			var current = this._cell;
 			var target = edit ? CLASS_TEXTAREA : CLASS_OUTLINER;
-			if((this._cell = cell)) {
+			if ((this._cell = cell)) {
 				this._resolveinvalid(cell);
 				gui.Tick.time(function() {
 					query(cell, target).focus();
 				});
-			} else if(current) {
+			} else if (current) {
 				query(current, target).blur();
 			}
 		},
@@ -353,7 +351,7 @@ ts.ui.TableEditPlugin = (function(CSSPlugin, DOMPlugin, Position, Client, Key) {
 		_goeditmode: function(spirit) {
 			var cell = this._cell;
 			var area = query(cell, CLASS_TEXTAREA);
-			if(area) { // otherwise not editable
+			if (area) { // otherwise not editable
 				this._resetall(spirit);
 				area.focus();
 			}
@@ -369,7 +367,7 @@ ts.ui.TableEditPlugin = (function(CSSPlugin, DOMPlugin, Position, Client, Key) {
 		_evalchange: function(area, newval, oldval) {
 			var spirit = this.spirit;
 			var onedit = spirit.onedit;
-			if(onedit && (newval !== oldval)) {
+			if (onedit && (newval !== oldval)) {
 				var pos = spirit.queryplugin.getpos(area);
 				onedit.call(spirit, pos.y, pos.x, newval, oldval);
 			}
@@ -400,7 +398,7 @@ ts.ui.TableEditPlugin = (function(CSSPlugin, DOMPlugin, Position, Client, Key) {
 		 */
 		_sync: function(sync, area, cont, height) {
 			height = (height || area.offsetHeight) - 1;
-			if(sync) {
+			if (sync) {
 				cont.style.minHeight = height + 'px';
 				this._shrink(area, height);
 			} else {
@@ -410,16 +408,16 @@ ts.ui.TableEditPlugin = (function(CSSPlugin, DOMPlugin, Position, Client, Key) {
 		},
 
 		/**
-		 * Make the textarea appear smaller than it really is so that it doesn't 
-		 * appear to overlap the bottom cell border. Unfortunately, IE11 and up 
+		 * Make the textarea appear smaller than it really is so that it doesn't
+		 * appear to overlap the bottom cell border. Unfortunately, IE11 and up
 		 * has a bug where this affects the *actual* height of the textarea :/
 		 * TODO(jmo@): We still need to perform this cosmetic tweak for newer IE!
 		 * @param {HTMLTextAreaElement} area
 		 * @param {number|boolean} height
 		 */
 		_shrink: function(area, height) {
-			if(!Client.isExplorer11 && !Client.isEdge) {
-				if(height) {
+			if (!Client.isExplorer11 && !Client.isEdge) {
+				if (height) {
 					area.style.clip = 'rect(auto,auto,' + height + 'px,auto)';
 				} else {
 					area.style.clip = '';
@@ -448,11 +446,11 @@ ts.ui.TableEditPlugin = (function(CSSPlugin, DOMPlugin, Position, Client, Key) {
 		 * @param {HTMLElement} elm
 		 */
 		_maybereset: function(spirit, elm) {
-			if(hasclass(elm, CLASS_OUTLINER)) {
+			if (hasclass(elm, CLASS_OUTLINER)) {
 				gui.Tick.next(function allow_new_focus() {
 					var rows = spirit.queryplugin.getrows();
 					var curr = document.activeElement;
-					if(!DOMPlugin.contains(rows, curr) || !curr) {
+					if (!DOMPlugin.contains(rows, curr) || !curr) {
 						this._resetall(spirit);
 					}
 				}, this);
@@ -479,8 +477,8 @@ ts.ui.TableEditPlugin = (function(CSSPlugin, DOMPlugin, Position, Client, Key) {
 		_resolveinvalid: function(cell) {
 			var spirit = this.spirit;
 			var model = spirit._model;
-			if((cell = this._getcellmodel(spirit, model, cell))) {
-				if(!cell.valid && cell.message) {
+			if ((cell = this._getcellmodel(spirit, model, cell))) {
+				if (!cell.valid && cell.message) {
 					spirit.$errormessage(cell.message);
 					return true;
 				} else {
@@ -502,7 +500,7 @@ ts.ui.TableEditPlugin = (function(CSSPlugin, DOMPlugin, Position, Client, Key) {
 			var cel = model.getcell(pos.y, pos.x);
 			return cel;
 		},
-		
+
 		/**
 		 * ESCAPE key was pressed. Restore original value.
 		 * TODO: This should require less hacks :/
@@ -510,7 +508,7 @@ ts.ui.TableEditPlugin = (function(CSSPlugin, DOMPlugin, Position, Client, Key) {
 		 */
 		_escape: function(cell) {
 			var area = query(cell, CLASS_TEXTAREA);
-			if(this._snapshot !== null) {
+			if (this._snapshot !== null) {
 				area.value = this._snapshot;
 			} else {
 				console.error('Out of synch');
@@ -518,5 +516,4 @@ ts.ui.TableEditPlugin = (function(CSSPlugin, DOMPlugin, Position, Client, Key) {
 		}
 
 	});
-
 }(gui.CSSPlugin, gui.DOMPlugin, gui.Position, gui.Client, gui.Key));

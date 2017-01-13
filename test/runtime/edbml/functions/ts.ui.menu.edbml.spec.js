@@ -1,6 +1,6 @@
 describe('ts.ui.menu.edbml', function likethis() {
 	function gethtml(menu) {
-		var model = menu ? menu : {items: [{},{}]};
+		var model = menu || {items: [{}, {}]};
 		return ts.ui.menu.edbml(
 			new ts.ui.MenuModel(model)
 		);
@@ -12,9 +12,9 @@ describe('ts.ui.menu.edbml', function likethis() {
 
 	it('should contain padding-top:', function() {
 		var menu = {
-				items: [{},{}],
-				maxItemsShown: 1
-			};
+			items: [{}, {}],
+			maxItemsShown: 1
+		};
 		expect(gethtml(menu)).toContain('padding-top:');
 	});
 
@@ -44,7 +44,7 @@ describe('ts.ui.menu.edbml', function likethis() {
 	it('should not contain disabled button', function() {
 		var menu = {
 			items: [{
-				label: 'menu',
+				label: 'menu'
 			}]
 		};
 		expect(gethtml(menu)).not.toContain('<button disabled');
@@ -72,7 +72,7 @@ describe('ts.ui.menu.edbml', function likethis() {
 	it('should selected', function() {
 		var menu = {
 			items: [{
-				label: 'menu',
+				label: 'menu'
 			}],
 			selectedIndex: 0
 		};
@@ -82,9 +82,9 @@ describe('ts.ui.menu.edbml', function likethis() {
 	it('should contain ts-buttons', function() {
 		var menu = {
 			items: [{
-				label: 'menu',
-			},{
-				label: 'menu',
+				label: 'menu'
+			}, {
+				label: 'menu'
 			}],
 			select: 'many',
 			selectedIndexes: [1]
@@ -95,9 +95,9 @@ describe('ts.ui.menu.edbml', function likethis() {
 	it('should contain disabled ts-buttons', function() {
 		var menu = {
 			items: [{
-				label: 'menu',
-			},{
-				label: 'menu',
+				label: 'menu'
+			}, {
+				label: 'menu'
 			}],
 			select: 'many',
 			selectedIndexes: [1],
@@ -109,9 +109,9 @@ describe('ts.ui.menu.edbml', function likethis() {
 	it('should not contain disabled ts-buttons', function() {
 		var menu = {
 			items: [{
-				label: 'menu',
-			},{
-				label: 'menu',
+				label: 'menu'
+			}, {
+				label: 'menu'
 			}],
 			select: 'many',
 			selectedIndexes: [1],
@@ -123,9 +123,9 @@ describe('ts.ui.menu.edbml', function likethis() {
 	it('should contain ts-buttons label', function() {
 		var menu = {
 			items: [{
-				label: 'menu',
-			},{
-				label: 'menu',
+				label: 'menu'
+			}, {
+				label: 'menu'
 			}],
 			select: 'many',
 			selectedIndexes: [1],
@@ -133,5 +133,4 @@ describe('ts.ui.menu.edbml', function likethis() {
 		};
 		expect(gethtml(menu)).toContain('test');
 	});
-
 });

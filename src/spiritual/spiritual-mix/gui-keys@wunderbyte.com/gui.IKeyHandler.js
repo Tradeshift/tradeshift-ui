@@ -8,7 +8,7 @@ gui.IKeyHandler = {
 	 * @returns {String}
 	 */
 	toString: function() {
-		return "[object IKeyHandler]";
+		return '[object IKeyHandler]';
 	},
 
 	/**

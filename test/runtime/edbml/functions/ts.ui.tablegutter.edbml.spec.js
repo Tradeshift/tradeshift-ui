@@ -5,7 +5,7 @@ describe('ts.ui.tablegutter.edbml', function likethis() {
 
 	it('should contain ts-table-checkbox', function() {
 		var table = {},
-			rows = [{},{}];
+			rows = [{}, {}];
 		expect(gethtml(table, rows)).toContain('ts-table-checkbox');
 	});
 });

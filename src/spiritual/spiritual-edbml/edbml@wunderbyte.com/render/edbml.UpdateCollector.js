@@ -35,7 +35,7 @@ edbml.UpdateCollector = gui.Class.create(Object.prototype, {
 	 * @returns {boolean}
 	 */
 	hardupdates: function(id) {
-		return this._hardupdates[id] ? true : false;
+		return !!this._hardupdates[id];
 	},
 
 	/**

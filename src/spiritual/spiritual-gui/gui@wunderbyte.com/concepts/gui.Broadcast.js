@@ -1,19 +1,18 @@
-/** 
+/**
  * Broadcast.
  * @using {gui.Arguments#confirmed}
  * @using {gui.Combo#chained}
  */
 gui.Broadcast = (function using(confirmed, chained) {
-
 	/**
-	 * Under mysterious circumstances, Internet Explorer may evaluate this 
-	 * callback in a phantom lexical scope where `gui` is undefined, so 
+	 * Under mysterious circumstances, Internet Explorer may evaluate this
+	 * callback in a phantom lexical scope where `gui` is undefined, so
 	 * we'll check that that `gui` exsists ang ignore the message otherwise.
 	 * TODO: If this fails, surely it will fix with a `try-catch` statement.
 	 */
 	window.addEventListener('message', function onmessage(e) {
-		if(window.gui && gui.Type && gui.Type.isString(e.data)) {
-			if(e.data.startsWith('spiritual-broadcast:')) {
+		if (window.gui && gui.Type && gui.Type.isString(e.data)) {
+			if (e.data.startsWith('spiritual-broadcast:')) {
 				gui.Broadcast.$maybeBroadcastGlobal(e.data);
 			}
 		}
@@ -68,9 +67,7 @@ gui.Broadcast = (function using(confirmed, chained) {
 			this.$contextids = this.$contextids || [];
 		}
 
-
 	}, {}, { // Static ...........................................................
-
 
 		/**
 		 * Broadcast handler interface.
@@ -195,7 +192,7 @@ gui.Broadcast = (function using(confirmed, chained) {
 		 * @returns {String}
 		 */
 		stringify: function(b) {
-			var prefix = "spiritual-broadcast:";
+			var prefix = 'spiritual-broadcast:';
 			return prefix + (function() {
 				b.target = null;
 				b.data = (function(d) {
@@ -222,28 +219,26 @@ gui.Broadcast = (function using(confirmed, chained) {
 		 * @returns {object}
 		 */
 		parse: function(msg) {
-			var prefix = "spiritual-broadcast:";
+			var prefix = 'spiritual-broadcast:';
 			if (msg.startsWith(prefix)) {
 				return JSON.parse(msg.split(prefix)[1]);
 			}
 		},
 
-
 		// Privileged static .......................................................
 
 		/**
-		 * Parse postmessage into broadcast in this window? 
-		 * Broadcasts propagate over-agressively, so perhaps 
+		 * Parse postmessage into broadcast in this window?
+		 * Broadcasts propagate over-agressively, so perhaps
 		 * the broadcast has already bypassed this context.
 		 * @param {string} postmessage
 		 */
 		$maybeBroadcastGlobal: function(postmessage) {
 			var b = gui.Broadcast.parse(postmessage);
-			if(b.$contextids.indexOf(gui.$contextid) === -1) {
+			if (b.$contextids.indexOf(gui.$contextid) === -1) {
 				gui.Broadcast._dispatch(b);
 			}
 		},
-
 
 		// Private .................................................................
 
@@ -253,7 +248,7 @@ gui.Broadcast = (function using(confirmed, chained) {
 		 * @param {object|function} handler Implements `onbroadcast`
 		 * @param @optional {String} sig
 		 */
-		_add: confirmed("array|string", "object|function", "(string)")(
+		_add: confirmed('array|string', 'object|function', '(string)')(
 			function(type, handler, sig) {
 				var interfais = gui.Broadcast.IBroadcastHandler;
 				if (true || gui.Interface.validate(interfais, handler)) {
@@ -298,14 +293,14 @@ gui.Broadcast = (function using(confirmed, chained) {
 					}, this);
 				} else {
 					var index, array = (function(locals, globals) {
-						if (sig) {
-							if (locals[sig]) {
-								return locals[sig][message];
+							if (sig) {
+								if (locals[sig]) {
+									return locals[sig][message];
+								}
+							} else {
+								return globals[message];
 							}
-						} else {
-							return globals[message];
-						}
-					}(this._locals, this._globals));
+						}(this._locals, this._globals));
 					if (array) {
 						index = array.indexOf(handler);
 						if (index > -1) {
@@ -323,8 +318,8 @@ gui.Broadcast = (function using(confirmed, chained) {
 		_dispatch: function(b) {
 			var map = b.global ? this._globals : this._locals[gui.$contextid];
 			if (gui.hasModule('gui-spirits@wunderbyte.com')) {
-				if(!gui.spiritualized) {
-					if(b.type !== gui.BROADCAST_WILL_SPIRITUALIZE) {
+				if (!gui.spiritualized) {
+					if (b.type !== gui.BROADCAST_WILL_SPIRITUALIZE) {
 						// TODO: cache broadcast until spiritualized?
 					}
 				}
@@ -371,13 +366,13 @@ gui.Broadcast = (function using(confirmed, chained) {
 
 		/**
 		 * Propagate broadcast to sub documents.
-		 * TODO: implement something similar to {gui.IframeSpirit._postbox} 
-		 * but without expecting the bundle gui-spirits@wunderbyte.com 
+		 * TODO: implement something similar to {gui.IframeSpirit._postbox}
+		 * but without expecting the bundle gui-spirits@wunderbyte.com
 		 * (it would in that case involve onload instead of onspiritualized)
 		 * @param {string} postmessage
 		 */
 		_propagateDown: function(postmessage) {
-			var iframes = document.querySelectorAll("iframe");
+			var iframes = document.querySelectorAll('iframe');
 			Array.forEach(iframes, function(iframe) {
 				iframe.contentWindow.postMessage(postmessage, '*');
 			});
@@ -389,10 +384,9 @@ gui.Broadcast = (function using(confirmed, chained) {
 		 */
 		_propagateUp: function(postmessage) {
 			if (window !== top) {
-				parent.postMessage(postmessage, "*");
+				parent.postMessage(postmessage, '*');
 			}
 		}
 
 	});
-
 }(gui.Arguments.confirmed, gui.Combo.chained));

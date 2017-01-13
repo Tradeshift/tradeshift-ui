@@ -29,16 +29,15 @@ edbml.FunctionUpdate = edbml.Update.extend({
 		this.element(function(elm) {
 			if (this._map) {
 				if ((count = edbml.FunctionUpdate._remap(elm, this._map))) {
-					this._report("remapped " + count + " keys");
+					this._report('remapped ' + count + ' keys');
 				}
 			} else {
 				if ((count = edbml.FunctionUpdate._revoke(elm))) {
-					this._report("revoked " + count + " keys");
+					this._report('revoked ' + count + ' keys');
 				}
 			}
 		});
 	},
-
 
 	// Private ...................................................................
 
@@ -47,10 +46,9 @@ edbml.FunctionUpdate = edbml.Update.extend({
 	 * @param {String} report
 	 */
 	_report: function(report) {
-		var message = "edbml.FunctionUpdate " + report + " (" + this.$instanceid + ")";
+		var message = 'edbml.FunctionUpdate ' + report + ' (' + this.$instanceid + ')';
 		this.super._report(message);
 	}
-
 
 }, { // Static .................................................................
 
@@ -111,7 +109,7 @@ edbml.FunctionUpdate = edbml.Update.extend({
 				if (elm !== element) {
 					Array.forEach(elm.attributes, function(att) {
 						val = att.value;
-						if (val.includes("edbml.$run") || val.includes("edbml.$get")) {
+						if (val.includes('edbml.$run') || val.includes('edbml.$get')) {
 							atts.push([elm, att]);
 						}
 					});

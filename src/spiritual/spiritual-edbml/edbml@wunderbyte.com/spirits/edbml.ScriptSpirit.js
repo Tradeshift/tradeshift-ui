@@ -1,5 +1,5 @@
 /**
- * Spirit of the SCRIPT tag that 
+ * Spirit of the SCRIPT tag that
  * contains the (compiled) EDBML.
  */
 edbml.ScriptSpirit = gui.Spirit.extend({

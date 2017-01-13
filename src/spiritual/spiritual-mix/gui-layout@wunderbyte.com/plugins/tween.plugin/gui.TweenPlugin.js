@@ -6,7 +6,6 @@
  * @using {gui.Arguments#confirmed}
  */
 gui.TweenPlugin = (function using(chained, confirmed) {
-
 	return gui.TrackerPlugin.extend({
 
 		/**
@@ -14,7 +13,7 @@ gui.TweenPlugin = (function using(chained, confirmed) {
 		 * @param {String|Array<String>} type
 		 * @returns {gui.TweenPlugin}
 		 */
-		add: chained(confirmed("string")(function(type) {
+		add: chained(confirmed('string')(function(type) {
 			gui.Array.make(type).forEach(function(type) {
 				if (this._addchecks(type)) {
 					gui.Broadcast.add(gui.BROADCAST_TWEEN, this);
@@ -27,7 +26,7 @@ gui.TweenPlugin = (function using(chained, confirmed) {
 		 * @param {String|Array<String>} type
 		 * @returns {gui.TweenPlugin}
 		 */
-		remove: chained(confirmed("string")(function(type) {
+		remove: chained(confirmed('string')(function(type) {
 			gui.Array.make(type).forEach(function(type) {
 				if (this._removechecks(type)) {
 					gui.Broadcast.remove(gui.BROADCAST_TWEEN, this);
@@ -42,7 +41,7 @@ gui.TweenPlugin = (function using(chained, confirmed) {
 		 * @param @optional {object} data Optional data thingy
 		 * @returns {gui.Tween} TODO: Don't return anything!!!
 		 */
-		dispatch: confirmed("string")(function(type, options, data) {
+		dispatch: confirmed('string')(function(type, options, data) {
 			var result = null;
 			gui.Array.make(type).forEach(function(type) {
 				result = gui.Tween.dispatch(type, options, data);
@@ -52,7 +51,7 @@ gui.TweenPlugin = (function using(chained, confirmed) {
 
 		/**
 		 * Add tween listener and dispatch this tween.
-		 * TODO: We have to find a different setup for this, 
+		 * TODO: We have to find a different setup for this,
 		 *       at least we have to change this method name.
 		 * @param {String|Array<String>} type
 		 * @param @optional {object} options Configure timing etc.
@@ -90,5 +89,4 @@ gui.TweenPlugin = (function using(chained, confirmed) {
 		}
 
 	});
-
 }(gui.Combo.chained, gui.Arguments.confirmed));

@@ -4,18 +4,18 @@
  * @using {gui.Combo#chained} chained
  */
 gui.Action = (function using(confirmed, chained) {
-
-	if(gui.hosted) { // relay actions from parent frame.
+	if (gui.hosted) {
+ // relay actions from parent frame.
 
 		/*
-		 * Under mysterious circumstances, Internet Explorer may evaluate this 
-		 * callback in a phantom lexical scope where `gui` is undefined, so 
+		 * Under mysterious circumstances, Internet Explorer may evaluate this
+		 * callback in a phantom lexical scope where `gui` is undefined, so
 		 * we'll check that that `gui` exsists ang ignore the message otherwise.
 		 * TODO: If this fails, surely it will fix with a `try-catch` statement.
 		 */
 		addEventListener('message', function(e) {
-			if(window.gui && gui.Type && gui.Type.isString(e.data)) {
-				if(e.source === parent) {
+			if (window.gui && gui.Type && gui.Type.isString(e.data)) {
+				if (e.source === parent) {
 					gui.Action.$maybeDescendGlobal(e.data);
 				}
 			}
@@ -109,12 +109,10 @@ gui.Action = (function using(confirmed, chained) {
 			this.consume(consumer);
 		}
 
-
 	}, {}, { // Static ...........................................................
 
-
-		DESCEND : 'descend',
-		ASCEND : 'ascend',
+		DESCEND: 'descend',
+		ASCEND: 'ascend',
 
 		/**
 		 * Action handler interface.
@@ -222,26 +220,26 @@ gui.Action = (function using(confirmed, chained) {
 		 * @returns {String}
 		 */
 		stringify: function(a, key) {
-			var prefix = "spiritual-action:";
+			var prefix = 'spiritual-action:';
 			return prefix + (function() {
 				a.target = null;
 				a.data = (function(d) {
-						if (gui.Type.isComplex(d)) {
-							if (gui.Type.isFunction(d.stringify)) {
-								d = d.stringify();
-							} else {
-								try {
-									JSON.stringify(d);
-								} catch (jsonexception) {
-									d = null;
-								}
+					if (gui.Type.isComplex(d)) {
+						if (gui.Type.isFunction(d.stringify)) {
+							d = d.stringify();
+						} else {
+							try {
+								JSON.stringify(d);
+							} catch (jsonexception) {
+								d = null;
 							}
 						}
-						return d;
-					}(a.data));
-					a.instanceid = key || null;
-					return JSON.stringify(a);
-				}());
+					}
+					return d;
+				}(a.data));
+				a.instanceid = key || null;
+				return JSON.stringify(a);
+			}());
 		},
 
 		/**
@@ -250,7 +248,7 @@ gui.Action = (function using(confirmed, chained) {
 		 * @returns {gui.Action}
 		 */
 		parse: function(msg) {
-			var prefix = "spiritual-action:";
+			var prefix = 'spiritual-action:';
 			if (msg.startsWith(prefix)) {
 				return new gui.Action(
 					JSON.parse(msg.split(prefix)[1])
@@ -258,7 +256,6 @@ gui.Action = (function using(confirmed, chained) {
 			}
 			return null;
 		},
-
 
 		// Privileged static .......................................................
 
@@ -268,17 +265,17 @@ gui.Action = (function using(confirmed, chained) {
 		 */
 		$maybeDescendGlobal: function(postmessage) {
 			var data = postmessage, action, root, handlers;
-			if(gui.Type.isString(data) && data.startsWith("spiritual-action:")) {
+			if (gui.Type.isString(data) && data.startsWith('spiritual-action:')) {
 				action = gui.Action.parse(data);
 				if (action.direction === gui.Action.DESCEND) {
 					// Hotfix for actions in nospirit scenario
 					// TODO: rething this pending WeakMaps...
-					if((handlers = this._globals[action.type])) {
+					if ((handlers = this._globals[action.type])) {
 						handlers.slice().forEach(function(handler) {
 							handler.onaction(action);
 						});
 					}
-					if(gui.hasModule('gui-spirits@wunderbyte.com')) {
+					if (gui.hasModule('gui-spirits@wunderbyte.com')) {
 						gui.ready(function onspiritualized() {
 							if ((root = gui.get('html'))) {
 								root.action.$handleownaction = true;
@@ -293,7 +290,6 @@ gui.Action = (function using(confirmed, chained) {
 			}
 		},
 
-
 		// Private static ..........................................................
 
 		/**
@@ -307,24 +303,24 @@ gui.Action = (function using(confirmed, chained) {
 		_locals: {},
 
 		/**
-		 * 
+		 *
 		 */
 		_listen: function(add, node, type, handler, global) {
-			if(node.nodeType === Node.DOCUMENT_NODE) {
+			if (node.nodeType === Node.DOCUMENT_NODE) {
 				var map = global ? this._globals : this._locals;
 				var handlers = map[type];
 				var ok = gui.Action.IActionHandler;
 				if (gui.Interface.validate(ok, handler)) {
 					gui.Array.make(type).forEach(function(t) {
-						if(add) {
-							if(!handlers) {
+						if (add) {
+							if (!handlers) {
 								handlers = map[type] = [];
 							}
-							if(handlers.indexOf(handler) === -1) {
+							if (handlers.indexOf(handler) === -1) {
 								handlers.push(handler);
 							}
-						} else if(handlers) {
-							if(gui.Array.remove(handlers, handler) === 0) {
+						} else if (handlers) {
+							if (gui.Array.remove(handlers, handler) === 0) {
 								delete map[type];
 							}
 						}
@@ -349,7 +345,6 @@ gui.Action = (function using(confirmed, chained) {
 		 * @returns {gui.Action}
 		 */
 		_dispatch: function dispatch(target, type, data, direction, global) {
-
 			// TODO: encapsulate this
 			var action = new gui.Action({
 				target: target,
@@ -377,7 +372,7 @@ gui.Action = (function using(confirmed, chained) {
 					}
 					return directive;
 				},
-				
+
 				/*
 				 * Teleport action across domains.
 				 * @see {gui.IframeSpirit}
@@ -387,12 +382,11 @@ gui.Action = (function using(confirmed, chained) {
 				 */
 				transcend: function(win, uri, key) {
 					var msg = gui.Action.stringify(action, key);
-					win.postMessage(msg, "*"); // uri
+					win.postMessage(msg, '*'); // uri
 				}
 			});
 			return action;
 		}
 
 	});
-
 }(gui.Arguments.confirmed, gui.Combo.chained));

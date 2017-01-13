@@ -17,22 +17,19 @@ module.exports = {
 	 * @param {function} done
 	 */
 	shoot: function(options, done) {
-
 		var diffs = [];
 		var sessions = options.browsers.map(function(string) {
-
 			return function(callback) {
-
 				Out.headline(string);
 				var currenturl = null;
 
 				var browser = new Browser(string);
-				var driver = new webdriver.Builder().
-					  usingServer(URL_BROWSERCLOUD).
-					  withCapabilities({
-					  	'browserName': browser.nickname,
-						'version': browser.versname,
-						'platform': browser.platform,
+				var driver = new webdriver.Builder()
+					  .usingServer(URL_BROWSERCLOUD)
+					  .withCapabilities({
+					  	browserName: browser.nickname,
+						version: browser.versname,
+						platform: browser.platform,
 						'browserstack.local': true,
 						'browserstack.user': options.user,
 						'browserstack.key': options.key
@@ -70,10 +67,10 @@ module.exports = {
 					return new Promise(function(resolve, reject) {
 						Out.write(filename);
 						driver.takeScreenshot().then(function(data) {
-							fs.writeFile(File.ensurefolder(target), data.replace(/^data:image\/png;base64,/,''), 'base64', function(err) {
-								if(err) {
+							fs.writeFile(File.ensurefolder(target), data.replace(/^data:image\/png;base64,/, ''), 'base64', function(err) {
+								if (err) {
 									throw err;
-								} else if(options.compare && options.differs) {
+								} else if (options.compare && options.differs) {
 									compare(target, resolve);
 								} else {
 									Out.erase().writeln(filename);
@@ -93,7 +90,7 @@ module.exports = {
 					var source = target.replace(options.folder, options.compare);
 					var differ = target.replace(options.folder, options.differs);
 					var filenm = path.basename(target);
-					if(fs.existsSync(source)) {
+					if (fs.existsSync(source)) {
 						var setup = {
 							url: currenturl,
 							browser: browser.nickname,
@@ -103,10 +100,10 @@ module.exports = {
 						};
 						diff(setup, function(err, similar) {
 							Out.erase();
-							if(err) {
+							if (err) {
 								console.error(err.message);
 							}
-							if(similar) {
+							if (similar) {
 								Out.writeln(filenm, 'green');
 							} else {
 								Out.writeln(filenm, 'red');
@@ -125,18 +122,16 @@ module.exports = {
 				 * @param {Array<function>} shots
 				 */
 				(function nextshot(shots) {
-					var next = shots.shift();	
+					var next = shots.shift();
 					next().then(function() {
-						if(shots.length) {
+						if (shots.length) {
 							nextshot(shots);
 						} else {
 							callback(diffs, done);
 						}
 					});
 				}(screenshots(webdriver, driver, shoot)));
-
 			};
-
 		});
 
 		/**
@@ -146,12 +141,12 @@ module.exports = {
 		(function nextsession() {
 			var json, next = sessions.shift();
 			next(function done(diffs, done) {
-				if(sessions.length) {
+				if (sessions.length) {
 					nextsession();
 				} else {
 					json = formatjson(diffs, options);
 					fs.writeFile('screenshots/diffs.json', json, () => {
-						if(options.compare) {
+						if (options.compare) {
 							Out.report(diffs.length);
 						}
 						done();
@@ -191,11 +186,10 @@ module.exports = {
 
 };
 
-
 // Scoped ......................................................................
 
 /**
- * Browser string breakdown. Let's keep it short 
+ * Browser string breakdown. Let's keep it short
  * in the Gruntfile so it's easy to comment out.
  */
 class Browser {
@@ -258,7 +252,7 @@ class Out {
 	 * @returns {Constructor}
 	 */
 	static erase() {
-		stdout.write("\r\x1b[K");
+		stdout.write('\r\x1b[K');
 		return this;
 	}
 
@@ -267,7 +261,7 @@ class Out {
 	 * @param {number} count
 	 */
 	static report(count) {
-		if(count) {
+		if (count) {
 			console.log(`\n${count} diffs found: ${chalk.blue(URL_SCREENSHOTS)}`);
 		} else {
 			console.log(`\nNo diffs found. Please work harder.`);
@@ -297,7 +291,7 @@ class File {
 	static ensurefolder(target) {
 		path.dirname(target).split('/').reduce((prev, path) => {
 			var next = prev + path + '/';
-			if (!fs.existsSync(next)){
+			if (!fs.existsSync(next)) {
 				fs.mkdirSync(next);
 			}
 			return next;

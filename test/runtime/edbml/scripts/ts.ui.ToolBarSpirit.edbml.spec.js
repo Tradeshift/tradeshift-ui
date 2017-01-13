@@ -10,7 +10,7 @@ describe('ts.ui.ToolBarSpirit.edbml', function likethis() {
 		var html = '<footer data-ts="ToolBar" id="mytoolbar1"></footer>';
 		var spirit = getspirit(html, 'mytoolbar1');
 		spirit.title('leo');
-		sometime(function later(){
+		sometime(function later() {
 			expect(spirit.element.innerHTML).toContain('ts-toolbar-title');
 			expect(spirit.element.innerHTML).toContain('leo');
 			done();
@@ -21,7 +21,7 @@ describe('ts.ui.ToolBarSpirit.edbml', function likethis() {
 		var html = '<footer data-ts="ToolBar" id="mytoolbar2"></footer>';
 		var spirit = getspirit(html, 'mytoolbar2');
 		spirit.search({});
-		sometime(function later(){
+		sometime(function later() {
 			expect(spirit.element.innerHTML).toContain('ts-toolbar-search');
 			done();
 		});
@@ -34,7 +34,7 @@ describe('ts.ui.ToolBarSpirit.edbml', function likethis() {
 			label: 'Daniel',
 			type: 'ts-primary'
 		}]);
-		sometime(function later(){
+		sometime(function later() {
 			expect(spirit.element.innerHTML).toContain('ts-primary');
 			expect(spirit.element.innerHTML).toContain('Daniel');
 			done();
@@ -45,11 +45,9 @@ describe('ts.ui.ToolBarSpirit.edbml', function likethis() {
 		var html = '<footer data-ts="ToolBar" id="mytoolbar4"></footer>';
 		var spirit = getspirit(html, 'mytoolbar4');
 		spirit.title('moth');
-		sometime(function later(){
+		sometime(function later() {
 			expect(spirit.element.innerHTML).toContain('ts-toolbar-menu');
 			done();
 		});
 	});
-
-
 });

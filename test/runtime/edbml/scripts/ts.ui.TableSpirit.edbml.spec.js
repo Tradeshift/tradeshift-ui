@@ -1,5 +1,4 @@
 describe('ts.ui.TableSpirit.edbml', function likethis() {
-
 	function getspirit(html, id) {
 		var dom = helper.createTestDom();
 		dom.innerHTML = html;

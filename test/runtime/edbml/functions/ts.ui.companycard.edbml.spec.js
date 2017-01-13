@@ -1,5 +1,4 @@
 describe('ts.ui.companycard.edbml', function likethis() {
-
 	var card = {
 		id: '6bf17754-f9de-4e31-aa31-bd3ff765b9c2',
 		data: {}
@@ -44,7 +43,7 @@ describe('ts.ui.companycard.edbml', function likethis() {
 	});
 
 	it('should contain ts-companycard-industry', function() {
-		card.data.industry = 'software'; 
+		card.data.industry = 'software';
 		expect(gethtml(card, true)).toContain('ts-companycard-industry');
 	});
 
@@ -74,5 +73,4 @@ describe('ts.ui.companycard.edbml', function likethis() {
 		card.data.logo = 'flag.png';
 		expect(gethtml(card, true)).toContain('ts-companycard-logo');
 	});
-
 });

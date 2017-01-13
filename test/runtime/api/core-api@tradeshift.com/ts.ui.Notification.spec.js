@@ -1,9 +1,8 @@
 describe('ts.ui.Notification', function likethis() {
-
 	// Preparations ..............................................................
 
 	/**
-	 * Get body of latest notification. Account for 
+	 * Get body of latest notification. Account for
 	 * notifications lingering from previous tests.
 	 * @returns {HTMLDivElement}
 	 */
@@ -22,7 +21,6 @@ describe('ts.ui.Notification', function likethis() {
 			action();
 		}, 500);
 	}
-
 
 	// Expectations ..............................................................
 
@@ -91,5 +89,4 @@ describe('ts.ui.Notification', function likethis() {
 			done();
 		});
 	});
-
 });

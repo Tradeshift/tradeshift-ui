@@ -3,7 +3,6 @@
  * @using {gui.DOMPlugin} DOMPlugin
  */
 edbml.HardUpdate = (function using(DOMPlugin) {
-
 	return edbml.Update.extend({
 
 		/**
@@ -51,16 +50,14 @@ edbml.HardUpdate = (function using(DOMPlugin) {
 			delete this.xelement;
 		},
 
-
 		// Private ...................................................................
 
 		/**
 		 * Hello.
 		 */
 		_report: function() {
-			var message = "edbml.HardUpdate #" + this.id;
+			var message = 'edbml.HardUpdate #' + this.id;
 			this.super._report(message);
 		}
 	});
-
 }(gui.DOMPlugin));

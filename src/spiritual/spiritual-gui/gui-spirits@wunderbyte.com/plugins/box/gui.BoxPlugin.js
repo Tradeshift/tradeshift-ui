@@ -5,12 +5,12 @@
  */
 gui.BoxPlugin = gui.Plugin.extend({
 
-	width:   0, // width
-	height:  0, // height
-	localX:  0, // X relative to positioned ancestor
-	localY:  0, // Y relative to positioned ancestor
-	pageX:   0, // X relative to the full page (includes scrolling)
-	pageY:   0, // Y telative to the full page (includes scrolling)	  
+	width: 0, // width
+	height: 0, // height
+	localX: 0, // X relative to positioned ancestor
+	localY: 0, // Y relative to positioned ancestor
+	pageX: 0, // X relative to the full page (includes scrolling)
+	pageY: 0, // Y telative to the full page (includes scrolling)
 	clientX: 0, // X relative to the viewport (excludes scrolling)
 	clientY: 0, // Y relative to the viewport (excludes scrolling)
 
@@ -21,7 +21,7 @@ gui.BoxPlugin = gui.Plugin.extend({
 	 */
 	_scrollroot: function() {
 		return (function(doc) {
-			if (gui.Client.scrollRoot.localName === "html") {
+			if (gui.Client.scrollRoot.localName === 'html') {
 				return doc.documentElement;
 			} else {
 				return doc.body;

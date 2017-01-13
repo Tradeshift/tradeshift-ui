@@ -48,15 +48,18 @@ search<span class="token punctuation">.</span>value <span class="token operator"
 </pre>
                                 </div>
                             </figure>
+                        </section>
+                        <p>To keep the field expanded at all times, simply assign the CSS classname <code>ts-expanded</code>.</p>
+                        <section>
                             <h3>Search callbacks</h3>
                             <p>The <code>onsearch</code> callback gets invoked when when the user presses <kbd>ENTER</kbd>.</p>
-                            <figure data-ts="DoxScript" class="runnable" data-ts.code="var%20search%20%3D%20ts.ui.get(&apos;%23mysearch&apos;)%3B%0Asearch.value%20%3D%20&apos;Press%20ENTER%20here&apos;%3B%0Asearch.onsearch%20%3D%20function(value)%20%7B%0A%09ts.ui.Notification.success(value%20%7C%7C%20&apos;Search%20cleared&apos;)%3B%0A%7D%3B">
+                            <figure data-ts="DoxScript" class="runnable" data-ts.code="var%20search%20%3D%20ts.ui.ToolBar.search()%3B%0Asearch.value%20%3D%20&apos;Press%20ENTER%20here&apos;%3B%0Asearch.onsearch%20%3D%20function(value)%20%7B%0A%09ts.ui.Notification.success(value%20%7C%7C%20&apos;Search%20cleared&apos;)%3B%0A%7D%3B">
                                 <script type="runnable">
-                                    var search = ts.ui.get('#mysearch'); search.value = 'Press ENTER here'; search.onsearch = function(value) { ts.ui.Notification.success(value || 'Search cleared'); };
+                                    var search = ts.ui.ToolBar.search(); search.value = 'Press ENTER here'; search.onsearch = function(value) { ts.ui.Notification.success(value || 'Search cleared'); };
                                 </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                                 <div class="tabpanels">
                                     <pre class="prism language-javascript">
-<code><span class="token keyword">var</span> search <span class="token operator">=</span> ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#mysearch&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<code><span class="token keyword">var</span> search <span class="token operator">=</span> ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>ToolBar<span class="token punctuation">.</span><span class="token function">search<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 search<span class="token punctuation">.</span>value <span class="token operator">=</span> <span class="token string">&apos;Press ENTER here&apos;</span><span class="token punctuation">;</span>
 search<span class="token punctuation">.</span>onsearch <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span> <span class="token punctuation">{</span>
 	ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Notification<span class="token punctuation">.</span><span class="token function">success<span class="token punctuation">(</span></span>value <span class="token operator">||</span> <span class="token string">&apos;Search cleared&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -65,13 +68,13 @@ search<span class="token punctuation">.</span>onsearch <span class="token operat
                                 </div>
                             </figure>
                             <p>If defined, the <code>onidle</code> method gets called whenever the user pauses typing.</p>
-                            <figure data-ts="DoxScript" class="runnable" data-ts.code="var%20search%20%3D%20ts.ui.get(&apos;%23mysearch&apos;)%3B%0Asearch.value%20%3D%20&apos;Try%20it%20now!&apos;%3B%0Asearch.onidle%20%3D%20function(value)%20%7B%0A%09ts.ui.Notification.success(value)%3B%0A%7D%3B">
+                            <figure data-ts="DoxScript" class="runnable" data-ts.code="var%20search%20%3D%20ts.ui.ToolBar.search()%3B%0Asearch.value%20%3D%20&apos;Try%20it%20now!&apos;%3B%0Asearch.onidle%20%3D%20function(value)%20%7B%0A%09ts.ui.Notification.success(value)%3B%0A%7D%3B">
                                 <script type="runnable">
-                                    var search = ts.ui.get('#mysearch'); search.value = 'Try it now!'; search.onidle = function(value) { ts.ui.Notification.success(value); };
+                                    var search = ts.ui.ToolBar.search(); search.value = 'Try it now!'; search.onidle = function(value) { ts.ui.Notification.success(value); };
                                 </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                                 <div class="tabpanels">
                                     <pre class="prism language-javascript">
-<code><span class="token keyword">var</span> search <span class="token operator">=</span> ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#mysearch&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<code><span class="token keyword">var</span> search <span class="token operator">=</span> ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>ToolBar<span class="token punctuation">.</span><span class="token function">search<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 search<span class="token punctuation">.</span>value <span class="token operator">=</span> <span class="token string">&apos;Try it now!&apos;</span><span class="token punctuation">;</span>
 search<span class="token punctuation">.</span>onidle <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span> <span class="token punctuation">{</span>
 	ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Notification<span class="token punctuation">.</span><span class="token function">success<span class="token punctuation">(</span></span>value<span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -82,13 +85,13 @@ search<span class="token punctuation">.</span>onidle <span class="token operator
                             <p>The <code>onidle</code> method may also be called when the field loses focus. The <code>idletime</code> property controls the timeout value, default is <code>500</code> (milliseconds).</p>
                             <h3>Search info</h3>
                             <p>The <code>info</code> property doubles as both the <code>placeholder</code> when the field is expanded and the <code>title</code> (or tooltip) when the field is collapsed.</p>
-                            <figure data-ts="DoxScript" class="runnable" data-ts.code="var%20search%20%3D%20ts.ui.get(&apos;%23mysearch&apos;)%3B%0Asearch.info%20%3D%20&apos;Search%20amongst%20the%20things&apos;%3B%0Asearch.value%20%3D%20&apos;&apos;%3B%20%2F%2F%20collapse%20the%20field">
+                            <figure data-ts="DoxScript" class="runnable" data-ts.code="var%20search%20%3D%20ts.ui.ToolBar.search()%3B%0Asearch.info%20%3D%20&apos;Search%20amongst%20the%20things&apos;%3B%0Asearch.value%20%3D%20&apos;&apos;%3B%20%2F%2F%20collapse%20the%20field">
                                 <script type="runnable">
-                                    var search = ts.ui.get('#mysearch'); search.info = 'Search amongst the things'; search.value = ''; // collapse the field
+                                    var search = ts.ui.ToolBar.search(); search.info = 'Search amongst the things'; search.value = ''; // collapse the field
                                 </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                                 <div class="tabpanels">
                                     <pre class="prism language-javascript">
-<code><span class="token keyword">var</span> search <span class="token operator">=</span> ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#mysearch&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<code><span class="token keyword">var</span> search <span class="token operator">=</span> ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>ToolBar<span class="token punctuation">.</span><span class="token function">search<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 search<span class="token punctuation">.</span>info <span class="token operator">=</span> <span class="token string">&apos;Search amongst the things&apos;</span><span class="token punctuation">;</span>
 search<span class="token punctuation">.</span>value <span class="token operator">=</span> <span class="token string">&apos;&apos;</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// collapse the field</span></code>
 </pre>

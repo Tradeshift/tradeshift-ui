@@ -10,8 +10,12 @@
 			border-radius: @ts-unit;
 		}
 	}
-	&.ts-searching {
+	&.ts-searching,
+	&.ts-expanded {
 		display: block;
+	}
+	&.ts-expanded input {
+		width: 100%;	
 	}
 	.ts-input,
 	.ts-button-clear {

@@ -263,6 +263,8 @@ search<span class="token punctuation">.</span>value <span class="token operator"
 </pre>
                             </div>
                         </figure>
+                    </section>
+                    <section id="search-methods" data-important="THIS GETS INCLUDED IN OTHER PAGES!">
                         <h3><span>Search callbacks</span></h3>
                         <p>The <code>onsearch</code> callback gets invoked when when the user presses <kbd>ENTER</kbd>.</p>
                         <figure data-ts="DoxScript" class="runnable" data-ts.code="var%20search%20%3D%20ts.ui.ToolBar.search()%3B%0Asearch.value%20%3D%20&apos;Press%20ENTER%20here&apos;%3B%0Asearch.onsearch%20%3D%20function(value)%20%7B%0A%09ts.ui.Notification.success(value%20%7C%7C%20&apos;Search%20cleared&apos;)%3B%0A%7D%3B">

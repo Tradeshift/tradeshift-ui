@@ -52,7 +52,7 @@ ts.ui.SearchSpirit = (function using(ButtonSpirit, CSSPlugin, Type, chained) {
 		},
 
 		/**
-		 * Assign or change the model (noting that the API user is not supposed to).
+		 * Assign or change the model (the API user is not supposed to do this!).
 		 * @param {ts.ui.SearchModel} model
 		 */
 		model: function(model) {
@@ -117,19 +117,6 @@ ts.ui.SearchSpirit = (function using(ButtonSpirit, CSSPlugin, Type, chained) {
 				this._model.idletime = value;
 			}
 		},
-		
-		/**
-		 * Placeholder (when expanded) and title (when collapsed).
-		 * @type {number}
-		 */
-		info: {
-			getter: function() {
-				return this._model.info;
-			},
-			setter: function(value) {
-				this._model.info = value;
-			}
-		},
 
 		/**
 		 * Open for implementation: Called when the user presses ENTER 
@@ -168,6 +155,20 @@ ts.ui.SearchSpirit = (function using(ButtonSpirit, CSSPlugin, Type, chained) {
 		 */
 		blur: chained(function() {
 			this._model.blur();
+		}),
+
+		/**
+		 * The `info` string acts as a title (tooltip) when 
+		 * collapsed and as an input placeholder when expanded.
+		 * @param @optional {string} text
+		 * @returns {string|ts.ui.SearchSpirit}
+		 */
+		info: chained(function(text) {
+			if(arguments.length) {
+				this._model.info = text;
+			} else {
+				return this._model.info;
+			}
 		}),
 
 

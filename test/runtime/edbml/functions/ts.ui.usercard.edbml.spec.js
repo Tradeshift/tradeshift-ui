@@ -21,7 +21,12 @@ describe('ts.ui.usercard.edbml', function likethis() {
 		var user = new ts.ui.UserCardModel({id: 'leo'}),
 			contentonly = true,
 			classconfig = '';
-		expect(gethtml(user, contentonly, classconfig)).toContain('<p class="ts-usercard-image"><img data-ts="UserImage"	 width="44"	height="44" /></p><p class="ts-usercard-name"><span></span></p>');
+		var markup = gethtml(user, contentonly, classconfig);
+		var index1 = markup.indexOf('ts-usercard-image');
+		var index2 = markup.indexOf('ts-usercard-name');
+		expect(index1).toBeGreaterThan(0);
+		expect(index2).toBeGreaterThan(0);
+		expect(index1).toBeLessThan(index2);
 	});
 
 	it('should contain ts-usercard-details', function() {

@@ -23,7 +23,7 @@ edb.ArrayPopulator = (function using(Type) {
 
 	/**
 	 * Used in function `guidedconvert`.
-	 * @param {constructor} Type
+	 * @param {constructor} edbType
 	 * @param {object} o
 	 * @returns {edb.Type}
 	 */
@@ -36,7 +36,7 @@ edb.ArrayPopulator = (function using(Type) {
 					fail(edbType, o);
 				}
 			} else {
-				return new Type(o);
+				return new edbType(o);
 			}
 		} else {
 			fail('edb.Type', edbType);

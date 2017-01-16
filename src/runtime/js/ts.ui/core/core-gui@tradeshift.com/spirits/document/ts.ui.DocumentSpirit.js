@@ -248,15 +248,16 @@ ts.ui.DocumentSpirit = (function using(Client) {
 		},
 
 		/**
-		 * Update classname for current breakpoint.
+		 * Update classname for current breakpoint, then 
+		 * dispatch an custom event for anyone to handle.
 		 * @param {string} newpoint
 		 * @param {string=} opt_oldpoint
 		 */
 		_breakpoint: function(newpoint, opt_oldpoint) {
-			this.event.dispatch('ts-breakpoint'); // TODO: figure out event details IE9!
 			function fix(p) { return 'ts-' + p + '-only'; }
 			this.css.remove('ts-mobile-only ts-tablet-only ts-desktop-only');
 			this.css.add(fix(newpoint));
+			this.event.dispatch('ts-breakpoint', {bubbles: true});
 		},
 
 		/**

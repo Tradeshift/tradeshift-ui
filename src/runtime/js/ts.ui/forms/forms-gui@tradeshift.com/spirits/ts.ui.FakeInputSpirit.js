@@ -1,11 +1,10 @@
 /**
- * The date-input and the select will hide themselves 
+ * The date-input and the select will hide themselves
  * and present this fake input to the outside world.
  * @see {ts.ui.FakeDateInputSpirit}
  * @see {ts.ui.FakeSelectInputSpirit}
  */
 ts.ui.FakeInputSpirit = (function() {
-
 	var KEY_ENTER = 13;
 	var KEY_SPACE = 32;
 
@@ -21,7 +20,7 @@ ts.ui.FakeInputSpirit = (function() {
 		},
 
 		/**
-		 * Set it up so that we are prepared to work 
+		 * Set it up so that we are prepared to work
 		 * even if not embedded into a Form component.
 		 */
 		onattach: function() {
@@ -54,44 +53,44 @@ ts.ui.FakeInputSpirit = (function() {
 		},
 
 		/**
-		 * Handle event. Notice that we don't call super. 
+		 * Handle event. Notice that we don't call super.
 		 * We should probably refactor something some day.
 		 * @param {Event} e
 		 */
 		onevent: function(e) {
 			switch (e.type) {
 				/*
-				 * Try not to focus this, focus the real 
-				 * element for better keyboard handling. 
-				 * TODO: This makes text not selectable 
+				 * Try not to focus this, focus the real
+				 * element for better keyboard handling.
+				 * TODO: This makes text not selectable
 				 * in fake select (when readonly).
 				 */
 				case 'focus':
-					if(e.target === this.element) {
-						if(!this._inactive()) {
+					if (e.target === this.element) {
+						if (!this._inactive()) {
 							this._proxyelement.focus();
 						}
 					}
 					break;
 				case 'click':
-					if(!this._inactive()) {
+					if (!this._inactive()) {
 						this._maybeopen();
 					}
 					break;
 				case 'keydown':
-					
+
 				/*
 				 * All attempts to open the aside would fail :/
-				 * Keyboard handling simply disabled for the time 
-				 * being, but we also need to `preventDefault` the 
-				 * ENTER key to stop Chrome from showing native 
+				 * Keyboard handling simply disabled for the time
+				 * being, but we also need to `preventDefault` the
+				 * ENTER key to stop Chrome from showing native
 				 * select dropdowns and date pickers at this point.
 				 */
-					switch(e.keyCode) {
+					switch (e.keyCode) {
 						case KEY_ENTER:
 						case KEY_SPACE:
 							e.preventDefault();
-							if(!this._inactive()) {
+							if (!this._inactive()) {
 								this._maybeopen();
 							}
 							break;
@@ -99,7 +98,6 @@ ts.ui.FakeInputSpirit = (function() {
 					break;
 			}
 		},
-
 
 		// Privileged ..............................................................
 
@@ -113,12 +111,11 @@ ts.ui.FakeInputSpirit = (function() {
 			});
 		},
 
-
 		// Private .................................................................
 
 		/**
-		 * The proxied element is disabled or readonly? We double check `readonly` 
-		 * to support readonly on SELECT fields, who according to spec cannot be 
+		 * The proxied element is disabled or readonly? We double check `readonly`
+		 * to support readonly on SELECT fields, who according to spec cannot be
 		 * readonly (only disabled).
 		 * @returns {boolean}
 		 */
@@ -132,7 +129,7 @@ ts.ui.FakeInputSpirit = (function() {
 		 * TODO: Ouch! https://bugzilla.mozilla.org/show_bug.cgi?id=392863
 		 */
 		_maybeopen: function() {
-			if(!this._isopen) {
+			if (!this._isopen) {
 				this._isopen = true;
 				this._label(function(label) {
 					label.css.add(ts.ui.CLASS_FOCUS_ON);
@@ -148,12 +145,12 @@ ts.ui.FakeInputSpirit = (function() {
 		},
 
 		/**
-		 * TODO: Use `ts.ui.get(this._proxyelement).event.trigger('change') 
+		 * TODO: Use `ts.ui.get(this._proxyelement).event.trigger('change')
 		 * but make sure that we cover this with some kind of test first...
 		 */
 		_triggerchange: function() {
-			var evt = document.createEvent("HTMLEvents");
-			evt.initEvent("change", false, true);
+			var evt = document.createEvent('HTMLEvents');
+			evt.initEvent('change', false, true);
 			this._proxyelement.dispatchEvent(evt);
 		},
 
@@ -163,7 +160,6 @@ ts.ui.FakeInputSpirit = (function() {
 		_restorefocus: function() {
 			this._proxyelement.focus();
 		}
-		
-	});
 
+	});
 }());

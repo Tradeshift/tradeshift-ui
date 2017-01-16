@@ -3,7 +3,6 @@
  * @using {gui.Arguments#confirmed}
  */
 edb.SyncTransmitter = (function using(confirmed) {
-
 	/**
 	 * Relay all changes from monitored source to
 	 * synchronized targets via broadcast message.
@@ -16,7 +15,7 @@ edb.SyncTransmitter = (function using(confirmed) {
 			maybechange(c, c.object, dispatch, syncdone);
 		});
 		gui.Object.each(dispatch, function(id, syncs) {
-			var method = edb.Synchronizer.globals[id] ? "dispatchGlobal" : "dispatch";
+			var method = edb.Synchronizer.globals[id] ? 'dispatchGlobal' : 'dispatch';
 			gui.Broadcast[method](edb.SyncTransmitter.BROADCAST + id, syncs);
 		});
 		syncdone.forEach(function(type) {
@@ -79,7 +78,6 @@ edb.SyncTransmitter = (function using(confirmed) {
 		}
 	}
 
-
 	return { // Public ...........................................................
 
 		/**
@@ -87,7 +85,7 @@ edb.SyncTransmitter = (function using(confirmed) {
 		 * (more unique broadcasts implies less overhead in handlers).
 		 * @type {String}
 		 */
-		BROADCAST: "edb-synchronize-",
+		BROADCAST: 'edb-synchronize-',
 
 		/**
 		 * Handle changes.
@@ -97,5 +95,4 @@ edb.SyncTransmitter = (function using(confirmed) {
 			onchange(changes);
 		}
 	};
-
 }(gui.Arguments.confirmed));

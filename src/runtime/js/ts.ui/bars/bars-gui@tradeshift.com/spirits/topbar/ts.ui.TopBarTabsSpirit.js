@@ -1,6 +1,6 @@
 /**
-  * Spirit of the topbar tabs.
-  */
+	* Spirit of the topbar tabs.
+	*/
 ts.ui.TopBarTabsSpirit = ts.ui.Spirit.extend({
 
 	/**
@@ -45,7 +45,7 @@ ts.ui.TopBarTabsSpirit = ts.ui.Spirit.extend({
 	onchange: function(changes) {
 		this.super.onchange(changes);
 		changes.forEach(function(c) {
-			if(c.object instanceof ts.ui.LayoutModel) {
+			if (c.object instanceof ts.ui.LayoutModel) {
 				this._onbreakpoint(c.object.isMobilePoint());
 			}
 		}, this);
@@ -57,10 +57,10 @@ ts.ui.TopBarTabsSpirit = ts.ui.Spirit.extend({
 	 */
 	onevent: function(e) {
 		this.super.onevent(e);
-		switch(e.type) {
+		switch (e.type) {
 			case 'click':
 				this.event.remove('click');
-				if(ts.ui.isMobilePoint()) {
+				if (ts.ui.isMobilePoint()) {
 					this._toggle();
 				}
 				break;
@@ -88,11 +88,11 @@ ts.ui.TopBarTabsSpirit = ts.ui.Spirit.extend({
 	 */
 	onbroadcast: function(b) {
 		this.super.onbroadcast(b);
-		switch(b.type) {
+		switch (b.type) {
 			case gui.BROADCAST_MOUSECLICK:
 				this.broadcast.removeGlobal(b.type);
 				this._time = this.tick.time(function pause() {
-					if(this.isOpen) {
+					if (this.isOpen) {
 						this._toggle();
 					}
 				}, 100);
@@ -101,29 +101,28 @@ ts.ui.TopBarTabsSpirit = ts.ui.Spirit.extend({
 	},
 
 	/**
-	 * Make sure we collapse the tabs (in mobile breakpoint) 
+	 * Make sure we collapse the tabs (in mobile breakpoint)
 	 * before we load next so that the animation doesn't jerk.
 	 */
 	onaction: function(a) {
 		this.super.onaction(a);
-		if(a.type === ts.ui.ACTION_GLOBAL_LOAD) {
+		if (a.type === ts.ui.ACTION_GLOBAL_LOAD) {
 			this._loadargs = a.data;
 			a.consume();
 		}
 	},
 
-
 	// Privileged ................................................................
 
 	/**
-	 * When tabs are expanded in mobile breakpoint, the 
+	 * When tabs are expanded in mobile breakpoint, the
 	 * {ts.ui.TopBarSpirit} will allow bonus scrolling.
 	 * @returns {number}
 	 */
 	$offsetLimit: function() {
 		var items = this.dom.qall('li', ts.ui.Spirit);
 		var stops = Number.MAX_VALUE;
-		if(items.length) {
+		if (items.length) {
 			var last = items.pop();
 			var init = ts.ui.UNIT_TRIPLE;
 			var ends = last.sprite.y + last.box.height + init;
@@ -132,7 +131,6 @@ ts.ui.TopBarTabsSpirit = ts.ui.Spirit.extend({
 		return stops;
 	},
 
-
 	// Private ...................................................................
 
 	/**
@@ -140,7 +138,7 @@ ts.ui.TopBarTabsSpirit = ts.ui.Spirit.extend({
 	 * @type {Array<ts.ui.Spirit>}
 	 */
 	_items: null,
-	
+
 	/**
 	 * Timeout index.
 	 * @type {number}
@@ -154,7 +152,7 @@ ts.ui.TopBarTabsSpirit = ts.ui.Spirit.extend({
 	_down: false,
 
 	/**
-	 * Consume the `gui.Action` that instructs the (Docs website!!) chrome 
+	 * Consume the `gui.Action` that instructs the (Docs website!!) chrome
 	 * to load something. We'll dispatch the again again after toggle done.
 	 * @type {object} See original dispatch in the `ts.ui#load` method.
 	 */
@@ -169,7 +167,7 @@ ts.ui.TopBarTabsSpirit = ts.ui.Spirit.extend({
 		if (this._items.length > 1) {
 			this.css.shift((this.isOpen = !this.isOpen), ts.ui.CLASS_OPEN);
 		}
-		if(reset) {
+		if (reset) {
 			this._expand(1);
 			this._ontoggle();
 		} else {
@@ -189,12 +187,12 @@ ts.ui.TopBarTabsSpirit = ts.ui.Spirit.extend({
 		var root = ts.ui.get('html');
 		var load = ts.ui.ACTION_GLOBAL_LOAD;
 		var args = this._loadargs;
-		if(this.isOpen) {
+		if (this.isOpen) {
 			this.broadcast.addGlobal(gui.BROADCAST_MOUSECLICK);
 			root.action.addGlobal(load, this);
 		} else {
 			root.action.removeGlobal(load, this);
-			if(args) {
+			if (args) {
 				root.action.dispatchGlobal(load, args);
 				this._loadargs = null;
 			}
@@ -211,23 +209,21 @@ ts.ui.TopBarTabsSpirit = ts.ui.Spirit.extend({
 	_expand: function(value) {
 		value = this.isOpen ? value : 1 - value;
 		this._items.forEach(function(spirit, index) {
-			if(!spirit.life.destructed) {
+			if (!spirit.life.destructed) {
 				spirit.sprite.y = 44 * value * index;
 			}
 		});
 	},
 
 	/**
-	 * Handle breakpoint change. Fit the scrollbar so that it doesn't go 
-	 * under the tabs. There's no scrollbar on real mobile (and in OSX), 
+	 * Handle breakpoint change. Fit the scrollbar so that it doesn't go
+	 * under the tabs. There's no scrollbar on real mobile (and in OSX),
 	 * so few people will notice that this really doesn't look right...
 	 * @param {boolean} mobile
 	 */
 	_onbreakpoint: function(mobile) {
-		var tbar = this.dom.ancestor(ts.ui.TopBarSpirit);
-		var main = tbar.$getmain();
 		this.event.shift(mobile, 'click');
-		if(!mobile && this.isOpen) {
+		if (!mobile && this.isOpen) {
 			this._toggle(true);
 		}
 	}

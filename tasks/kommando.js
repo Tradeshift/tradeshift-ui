@@ -1,9 +1,9 @@
 var kommando = require('kommando');
-//var server = require('../integration_test/lib/server');
+// var server = require('../integration_test/lib/server');
 var xtend = require('node.extend');
 var _ = require('lodash');
 
-var config = require('./config').init().merge(
+var mergedConfig = require('./config').init().merge(
 	'config.json',
 	'config.local.json'
 );
@@ -42,7 +42,7 @@ function getCapabilities(config) {
 			{
 				'browserstack.user': driverOptions.username,
 				'browserstack.key': driverOptions.accessKey,
-				'resolution': '1280x1024'
+				resolution: '1280x1024'
 			},
 			b
 		);
@@ -60,9 +60,9 @@ function getBrowserstackConfig() {
 	return _.defaults(
 		{
 			driver: 'browser-stack',
-			driverOptions: getDriverOptions(config),
-			capabilities: getCapabilities(config),
-	  },
+			driverOptions: getDriverOptions(mergedConfig),
+			capabilities: getCapabilities(mergedConfig)
+		},
 		BASE_KOMMANDO_CONFIG
 	);
 }
@@ -77,7 +77,7 @@ function getLocalConfig() {
 }
 
 function task(kommandoConfig, done) {
-	var PORT = config.integration_server_port;
+	var PORT = mergedConfig.integration_server_port;
 
 	server.isSelenium = true;
 	server.listen(PORT, function(err) {
@@ -86,8 +86,8 @@ function task(kommandoConfig, done) {
 			return;
 		}
 
-		kommando(kommandoConfig, function(err) {
-			if (err) {
+		kommando(kommandoConfig, function(kErr) {
+			if (kErr) {
 				return done(false);
 			}
 			done();

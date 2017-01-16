@@ -1,4 +1,4 @@
-if(window.ts && ts.ui && ts.ui.DatePicker) {
+if (window.ts && ts.ui && ts.ui.DatePicker) {
 	ts.ui.DatePicker.localize({
 		firstDay: 1,
 		monthNames: [

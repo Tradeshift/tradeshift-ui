@@ -1,5 +1,4 @@
 describe('ts.ui.OptionSpirit', function likethis() {
-	
 	it('should (eventually) channel via ts-attribute', function(done) {
 		var spirit, dom = helper.createTestDom();
 		dom.innerHTML = '<input type="checkbox" data-ts="Option">';
@@ -9,7 +8,7 @@ describe('ts.ui.OptionSpirit', function likethis() {
 			done();
 		});
 	});
-	
+
 	it('must fail when not channeled to an INPUT', function() {
 		var dom = helper.createTestDom();
 		var div = document.createElement('div');
@@ -17,7 +16,7 @@ describe('ts.ui.OptionSpirit', function likethis() {
 		try {
 			div.setAttribute('data-ts', 'Option');
 			dom.appendChild(div);
-		} catch(exception) {
+		} catch (exception) {
 			err = exception;
 		}
 		expect(err).not.toBeNull();
@@ -31,10 +30,9 @@ describe('ts.ui.OptionSpirit', function likethis() {
 			input.setAttribute('data-ts', 'Option');
 			input.type = 'text';
 			dom.appendChild(input);
-		} catch(exception) {
+		} catch (exception) {
 			err = exception;
 		}
 		expect(err).not.toBeNull();
 	});
-
 });

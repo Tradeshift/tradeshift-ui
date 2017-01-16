@@ -8,17 +8,16 @@ ts.dox.MarkupSpirit = ts.dox.PrismSpirit.extend({
 	 */
 	onenter: function() {
 		this.super.onenter();
-		if(this.dom.q('.output')) {
+		if (this.dom.q('.output')) {
 			this._initialize(
 				this.dom.q('.tabpanels'),
 				this.dom.qall('.tabpanels > *')
 			);
 		}
 	},
-	
 
 	// Private ...................................................................
-	
+
 	/**
 	 * @param {object} config
 	 */
@@ -26,7 +25,7 @@ ts.dox.MarkupSpirit = ts.dox.PrismSpirit.extend({
 		this.super._parseconfig(config);
 		var flip = config.flip;
 		var that = this;
-		if(config.outs) {	
+		if (config.outs) {
 			var tabs = [
 				{
 					label: 'Markup',
@@ -49,7 +48,7 @@ ts.dox.MarkupSpirit = ts.dox.PrismSpirit.extend({
 					}
 				}
 			];
-			if(flip) {
+			if (flip) {
 				tabs.reverse();
 			}
 			this._toolbar.tabs(tabs);
@@ -69,7 +68,7 @@ ts.dox.MarkupSpirit = ts.dox.PrismSpirit.extend({
 			return height > max ? height : max;
 		}, 0) + 'px';
 	},
-	
+
 	/**
 	 * Toggle panels in a hacked up way.
 	 * @param {number} oldindex

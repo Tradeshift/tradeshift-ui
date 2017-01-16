@@ -35,7 +35,6 @@ gui.Module = gui.Class.create(Object.prototype, {
 	 */
 	onunload: function() {},
 
-
 	// Privileged ................................................................
 
 	/**
@@ -54,7 +53,6 @@ gui.Module = gui.Class.create(Object.prototype, {
 			return '[module ' + name + ']';
 		};
 	}
-
 
 }, {}, { // Static .............................................................
 
@@ -105,9 +103,9 @@ gui.Module = gui.Class.create(Object.prototype, {
  */
 (function hookup(modules) {
 	gui.Object.each({
-		'ondom': gui.BROADCAST_TODOM,
-		'onload': gui.BROADCAST_TOLOAD,
-		'onunload': gui.BROADCAST_TOUNLOAD
+		ondom: gui.BROADCAST_TODOM,
+		onload: gui.BROADCAST_TOLOAD,
+		onunload: gui.BROADCAST_TOUNLOAD
 	}, function associate(action, broadcast) {
 		gui.Broadcast.add(broadcast, {
 			onbroadcast: function() {

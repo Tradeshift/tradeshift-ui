@@ -13,10 +13,9 @@ ts.ui.Aside = function(json) {
  * Identification.
  * @returns {string}
  */
-ts.ui.Aside.toString = function(){
+ts.ui.Aside.toString = function() {
 	return '[function ts.ui.Aside]';
 };
-
 
 /**
  * API proposal: Close all the asides all over the world (not used yet).
@@ -29,7 +28,6 @@ ts.ui.Aside.closeAll = function() {
 	);
 };
 
-
 // Implementation ..............................................................
 
 /**
@@ -37,8 +35,6 @@ ts.ui.Aside.closeAll = function() {
  * @using {gui.Object#hidden} hidden
  */
 (function using(api, hidden) {
-
-
 	/**
 	 * Get spirit for model.
 	 * @param {ts.ui.AsideModel} model
@@ -66,23 +62,23 @@ ts.ui.Aside.closeAll = function() {
 	}
 
 	/**
-	 * Toggle model open and closed. Manifest spirit 
+	 * Toggle model open and closed. Manifest spirit
 	 * in the parent frame when model is first opened.
 	 * @param {ts.ui.AsideModel} model
 	 * @param {boolean} open
 	 * @return {ts.ui.AsideModel}
 	 */
-	function toggle(model,open) {
-		if(ts.ui.greenfield) {
-			if(open) {
-				// TODO (jmo@): This implies that we create a new spirit/model 
-				// constallation in the parent frame for every open, we should 
+	function toggle(model, open) {
+		if (ts.ui.greenfield) {
+			if (open) {
+				// TODO (jmo@): This implies that we create a new spirit/model
+				// constallation in the parent frame for every open, we should
 				// rig it for recycling untill `dispose` is called by the user.
 				applyreverse('$open', model.serializeToString());
 			} else {
 				applyreverse('$close', model.$instanceid);
 			}
-		}else{
+		} else {
 			getspirit(model).open(open);
 		}
 		return model;
@@ -105,11 +101,11 @@ ts.ui.Aside.closeAll = function() {
 						toggle(model, c.newValue);
 						break;
 					case 'disposed' :
-						var spirit = gui.get('#' +  model.$instanceid);
-						if(spirit) {
-							gui.Tick.time(function(){ // TODO (jmi@): why otherwise error?
+						var spirit = gui.get('#' + model.$instanceid);
+						if (spirit) {
+							gui.Tick.time(function() { // TODO (jmi@): why otherwise error?
 								spirit.dom.remove();
-							},100);
+							}, 100);
 						}
 						break;
 				}
@@ -140,10 +136,9 @@ ts.ui.Aside.closeAll = function() {
 		 */
 		$close: hidden(api(function(id) {
 			var spirit = gui.get('#' + id);
-			if(spirit && spirit.isOpen) {
+			if (spirit && spirit.isOpen) {
 				spirit.close();
 			}
 		}))
 	});
-	
 }(ts.ui.Greenfield.api, gui.Object.hidden));

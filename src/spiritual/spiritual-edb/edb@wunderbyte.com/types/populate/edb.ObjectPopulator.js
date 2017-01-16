@@ -6,7 +6,6 @@
  * @using {gui.Type#isConstructor}
  */
 edb.ObjectPopulator = (function using(isdefined, iscomplex, isfunction, isconstructor) {
-
 	/**
 	 * List non-private fields names from handler that are not
 	 * mixed in from {edb.Type} and not inherited from native.
@@ -38,7 +37,7 @@ edb.ObjectPopulator = (function using(isdefined, iscomplex, isfunction, isconstr
 		delete json.$instanceid;
 		delete json.$originalid;
 		if (id) {
-			Object.defineProperty(type, "$originalid", gui.Property.nonenumerable({
+			Object.defineProperty(type, '$originalid', gui.Property.nonenumerable({
 				value: id
 			}));
 		}
@@ -51,7 +50,7 @@ edb.ObjectPopulator = (function using(isdefined, iscomplex, isfunction, isconstr
 	 */
 	function faildefined(name, key) {
 		throw new TypeError(
-			name + " declares \"" + key + "\" as something undefined"
+			name + ' declares "' + key + '" as something undefined'
 		);
 	}
 
@@ -62,7 +61,7 @@ edb.ObjectPopulator = (function using(isdefined, iscomplex, isfunction, isconstr
 	 */
 	function failconstructor(name, key) {
 		throw new TypeError(
-			name + " \"" + key + "\" must resolve to a constructor"
+			name + ' "' + key + '" must resolve to a constructor'
 		);
 	}
 
@@ -91,7 +90,6 @@ edb.ObjectPopulator = (function using(isdefined, iscomplex, isfunction, isconstr
 		}
 	}
 
-
 	return { // Public ...............................................................
 
 		/**
@@ -112,7 +110,7 @@ edb.ObjectPopulator = (function using(isdefined, iscomplex, isfunction, isconstr
 				switch (def) {
 					case Object:
 						//	console.error('TODO: Support Object in edb.ObjectPopulator');
-						if(val && gui.Type.isObject(val)) {
+						if (val && gui.Type.isObject(val)) {
 							type[key] = JSON.parse(JSON.stringify(val)); // {};
 						} else {
 							type[key] = null;
@@ -121,7 +119,7 @@ edb.ObjectPopulator = (function using(isdefined, iscomplex, isfunction, isconstr
 						break;
 					case Array:
 						if (val && Array.isArray(val)) {
-							type[key] = JSON.parse(JSON.stringify(val)); //val.slice();
+							type[key] = JSON.parse(JSON.stringify(val)); // val.slice();
 						} else {
 							type[key] = null;
 							// type[key] = []; !!!!!!!!!!!!!!
@@ -167,17 +165,16 @@ edb.ObjectPopulator = (function using(isdefined, iscomplex, isfunction, isconstr
 			gui.Object.nonmethods(json).filter(function(key) {
 				return pure.indexOf(key) === -1;
 			}).forEach(function(key) {
-				var def = json[key];
-				if (isregular(key) && gui.Type.isComplex(def)) {
+				var def_ = json[key];
+				if (isregular(key) && gui.Type.isComplex(def_)) {
 					if (!types[key]) {
-						types[key] = edb.Type.cast(def);
+						types[key] = edb.Type.cast(def_);
 					}
 				}
 			});
 			return types;
 		}
 	};
-
 })(
 	gui.Type.isDefined,
 	gui.Type.isComplex,

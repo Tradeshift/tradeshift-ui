@@ -5,8 +5,7 @@
  * @using {gui.Combo#chained}
  * @using {gui.Client} Client
  */
-gui.AttPlugin = (function using(confirmed, chained, Client	) {
-
+gui.AttPlugin = (function using(confirmed, chained, Client) {
 	return gui.TrackerPlugin.extend({
 
 		/**
@@ -66,7 +65,7 @@ gui.AttPlugin = (function using(confirmed, chained, Client	) {
 		 * @param {string|number|boolean} value
 		 * @returns {gui.AttPlugin}
 		 */
-		shift: confirmed("boolean", "string")(
+		shift: confirmed('boolean', 'string')(
 			chained(function(on, name, value) {
 				if (on) {
 					if (value !== undefined) {
@@ -104,14 +103,14 @@ gui.AttPlugin = (function using(confirmed, chained, Client	) {
 		 * @param @optional {object|function} handler
 		 * @returns {gui.AttPlugin}
 		 */
-		add: confirmed("array|string", "(object|function)")(
+		add: confirmed('array|string', '(object|function)')(
 			chained(function(arg, handler) {
-				handler = handler ? handler : this.spirit;
+				handler = handler || this.spirit;
 				if (gui.Interface.validate(gui.IAttHandler, handler)) {
 					gui.Array.make(arg).forEach(function(type) {
-						if(this._addchecks(type, [handler])) {
+						if (this._addchecks(type, [handler])) {
 							this._onadd(type);
-							if(type == 'class' && Client.isExplorer9) {
+							if (type === 'class' && Client.isExplorer9) {
 								this.spirit.element.addEventListener('DOMAttrModified', this);
 							}
 						}
@@ -126,14 +125,14 @@ gui.AttPlugin = (function using(confirmed, chained, Client	) {
 		 * @param @optional {object} handler
 		 * @returns {gui.AttPlugin}
 		 */
-		remove: confirmed("array|string", "(object|function)")(
+		remove: confirmed('array|string', '(object|function)')(
 			chained(function(arg, handler) {
-				handler = handler ? handler : this.spirit;
+				handler = handler || this.spirit;
 				if (gui.Interface.validate(gui.IAttHandler, handler)) {
 					gui.Array.make(arg).forEach(function(type) {
-						if(this._removechecks(type, [handler])) {
+						if (this._removechecks(type, [handler])) {
 							// NOTE: we'll need to enable something in {gui.DOMCombos} to watch `class`!
-							if(type == 'class' && Client.isExplorer9) {
+							if (type === 'class' && Client.isExplorer9) {
 								this.spirit.element.removeEventListener('DOMAttrModified', this);
 							}
 						}
@@ -143,30 +142,28 @@ gui.AttPlugin = (function using(confirmed, chained, Client	) {
 		),
 
 		/**
-		 * Handle that mutation event for IE9. Other browsers will be 
+		 * Handle that mutation event for IE9. Other browsers will be
 		 * covered with an override of `className` in {gui.DOMCombos}.
 		 * @param {MutationEvent} e
 		 */
 		handleEvent: function(e) {
-			if(e.type === 'DOMAttrModified' && e.attrName === 'class') {
+			if (e.type === 'DOMAttrModified' && e.attrName === 'class') {
 				this.$onatt('class', e.newValue);
 			}
 		},
 
 		/**
-		 * Cleanup weird event listener. The DOMAttrModified event 
+		 * Cleanup weird event listener. The DOMAttrModified event
 		 * is by the way not exactly great for overall performance.
 		 * @param {String} type
 		 * @param {Array<object>} checks
 		 */
 		_cleanup: function(type, checks) {
 			this.super._cleanup(type, checks);
-			if(type === 'class' && Client.isExplorer9) {
+			if (type === 'class' && Client.isExplorer9) {
 				this.spirit.element.removeEventListener('DOMAttrModified', this);
 			}
 		},
-
-
 
 		// Privileged ..............................................................
 
@@ -211,7 +208,6 @@ gui.AttPlugin = (function using(confirmed, chained, Client	) {
 			}
 		},
 
-
 		// Private .................................................................
 
 		/**
@@ -229,7 +225,6 @@ gui.AttPlugin = (function using(confirmed, chained, Client	) {
 			}
 		}
 
-		
 	}, {}, { // Static ...........................................................
 
 		/**
@@ -260,10 +255,10 @@ gui.AttPlugin = (function using(confirmed, chained, Client	) {
 		set: chained(function(elm, name, value, $hotfix) {
 			var spirit = elm.spirit;
 			var change = false;
-			
+
 			if (this._ischecked(elm, name)) { // checkbox or radio?
 				change = elm.checked !== value;
-				elm.checked = String(value) === "false" ? false : value !== null;
+				elm.checked = String(value) === 'false' ? false : value !== null;
 				if (change) {
 					spirit.att.$onatt(name, value);
 				}
@@ -302,14 +297,14 @@ gui.AttPlugin = (function using(confirmed, chained, Client	) {
 		 * @returns {boolean}
 		 */
 		_ischecked: function(elm, name) {
-			return elm.type && elm.checked !== undefined && name === "checked";
+			return elm.type && elm.checked !== undefined && name === 'checked';
 		},
 
 		/**
 		 * @returns {boolean}
 		 */
 		_isvalue: function(elm, name) {
-			return elm.value !== undefined && name === "value";
+			return elm.value !== undefined && name === 'value';
 		},
 
 		/**
@@ -333,7 +328,7 @@ gui.AttPlugin = (function using(confirmed, chained, Client	) {
 			if (this._ischecked(elm, name)) {
 				elm.checked = false;
 			} else if (this._isvalue(elm, name)) {
-				elm.value = ""; // or what?
+				elm.value = ''; // or what?
 			} else {
 				if (spirit) {
 					spirit.att.$suspend(function() {
@@ -385,5 +380,4 @@ gui.AttPlugin = (function using(confirmed, chained, Client	) {
 		})
 
 	});
-
 }(gui.Arguments.confirmed, gui.Combo.chained, gui.Client));

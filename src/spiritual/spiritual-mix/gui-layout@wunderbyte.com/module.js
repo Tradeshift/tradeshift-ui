@@ -1,15 +1,15 @@
 /**
  * It's the layout module.
  */
-gui.module("gui-layout@wunderbyte.com", {
+gui.module('gui-layout@wunderbyte.com', {
 
 	/**
 	 * Assign plugins to prefixes for all {gui.Spirit}.
 	 */
 	plugin: {
-		"tween": gui.TweenPlugin,
-		"transition": gui.TransitionPlugin,
-		"visibility": gui.VisibilityPlugin
+		tween: gui.TweenPlugin,
+		transition: gui.TransitionPlugin,
+		visibility: gui.VisibilityPlugin
 	},
 
 	/**

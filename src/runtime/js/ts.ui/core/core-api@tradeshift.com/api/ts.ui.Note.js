@@ -26,7 +26,6 @@ ts.ui.Note.toString = function() {
 // Implementation ..............................................................
 
 (function using(api, chained, confirmed) {
-
 	/**
 	 * API methods.
 	 */
@@ -48,6 +47,6 @@ ts.ui.Note.toString = function() {
 		/**
 		 * Handle (model) changes.
 		 */
-		onchange: function () {}
+		onchange: function() {}
 	});
 }());

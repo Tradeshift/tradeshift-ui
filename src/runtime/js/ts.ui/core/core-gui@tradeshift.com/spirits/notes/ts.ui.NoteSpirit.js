@@ -19,7 +19,7 @@ ts.ui.NoteSpirit = (function using(Note, Client, chained, confirmed) {
 	var CLASS_CLOSE_ICON = 'ts-icon-close';
 	var CLASS_CLOSE_BUTTON = 'ts-note-close';
 	var CLASS_HIDDEN = ts.ui.CLASS_HIDDEN;
-	
+
 	return ts.ui.Spirit.extend({
 		/**
 		 * Is the Note closing?
@@ -66,7 +66,7 @@ ts.ui.NoteSpirit = (function using(Note, Client, chained, confirmed) {
 		 */
 		onevent: function(e) {
 			this.super.onevent(e);
-			switch(e.type) {
+			switch (e.type) {
 				case 'transitionend':
 					if (this._closing) {
 						this._closing.now();
@@ -78,8 +78,8 @@ ts.ui.NoteSpirit = (function using(Note, Client, chained, confirmed) {
 					gui.Tick.time(function() {
 						this.css.add(CLASS_HIDDEN);
 					}, 50, this);
-					
-				break;
+
+					break;
 			}
 		},
 
@@ -91,7 +91,7 @@ ts.ui.NoteSpirit = (function using(Note, Client, chained, confirmed) {
 				button.event.add('click', button, this);
 			}
 		},
-		
+
 		/**
 		 * Set icon.
 		 * icon-class: gui.CSSPlugin.add(i, classname);
@@ -100,7 +100,7 @@ ts.ui.NoteSpirit = (function using(Note, Client, chained, confirmed) {
 		icon: chained(function(classname) {
 			var i = this.dom.q('i') || this.dom.prepend(document.createElement('i'));
 			i.className = classname;
-			
+
 			this._adjustVisible();
 		}),
 
@@ -111,7 +111,7 @@ ts.ui.NoteSpirit = (function using(Note, Client, chained, confirmed) {
 		text: chained(function(text) {
 			var p = this.dom.q('p') || this.dom.append(document.createElement('p'));
 			p.textContent = text;
-			
+
 			this._adjustVisible();
 		}),
 
@@ -154,9 +154,9 @@ ts.ui.NoteSpirit = (function using(Note, Client, chained, confirmed) {
 				}
 			})
 		),
-		
+
 		// Private .................................................................
-		
+
 		/**
 		 * Adjust Note visibility.
 		 * @private
@@ -167,10 +167,10 @@ ts.ui.NoteSpirit = (function using(Note, Client, chained, confirmed) {
 			} else {
 				this.css.remove(CLASS_HAS_CLOSE);
 			}
-			
+
 			if (
 				(!!this.dom.q('p') && !!this.dom.q('p').textContent) ||
-				(!!this.dom.q('i') && !!this.dom.q('i').className) || 
+				(!!this.dom.q('i') && !!this.dom.q('i').className) ||
 				(!!this.dom.q('.ts-note-buttons'))
 			) {
 				this.dom.show();

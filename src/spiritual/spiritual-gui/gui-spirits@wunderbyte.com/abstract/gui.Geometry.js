@@ -43,7 +43,7 @@ gui.Geometry.prototype = {
 	 * @returns {String}
 	 */
 	toString: function() {
-		return "[object gui.Geometry]";
+		return '[object gui.Geometry]';
 	},
 
 	/**
@@ -54,7 +54,6 @@ gui.Geometry.prototype = {
 		return gui.Geometry.hitTest(this, geo);
 	}
 };
-
 
 // Static ......................................................................
 

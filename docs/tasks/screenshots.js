@@ -1,5 +1,4 @@
 module.exports = function screenshots(webdriver, driver, shoot) {
-
 	return [
 
 		// shoot('intro/', function(done) {

@@ -5,13 +5,12 @@
  * @using {gui.Combo#chained} chained
  */
 ts.ui.CoverSpirit = (function using(chained, Client) {
-
 	var MOUSE_EVENTS = Client.isTouchDevice ? 'touchstart mouseenter' : 'mousedown mouseenter';
 
 	return ts.ui.Spirit.extend({
 
 		/**
-		 * Pending a current glitch in Chrome where multiple simultaneous 
+		 * Pending a current glitch in Chrome where multiple simultaneous
 		 * transitions freak out, we have disabled cover fades in WebKit.
 		 * UPDATE: We're pushing our luck with WebKit again...
 		 */
@@ -44,7 +43,7 @@ ts.ui.CoverSpirit = (function using(chained, Client) {
 		 * @return {ts.ui.CoverSpirit}
 		 */
 		shift: chained(function(show) {
-			if(show) {
+			if (show) {
 				this.show();
 			} else {
 				this.hide();
@@ -96,7 +95,7 @@ ts.ui.CoverSpirit = (function using(chained, Client) {
 		},
 
 		/**
-		 * Closeing all ASIDEs when cover is clicked. 
+		 * Closeing all ASIDEs when cover is clicked.
 		 * Also maintaining ASIDE class and display.
 		 * @param {Event} e
 		 */
@@ -106,30 +105,29 @@ ts.ui.CoverSpirit = (function using(chained, Client) {
 			switch (e.type) {
 				case 'mousedown' :
 				case 'touchstart' :
-					if(id) {
+					if (id) {
 						this.broadcast.dispatchGlobal(
 							ts.ui.BROADCAST_GLOBAL_COVER_TOUCH, id
 						);
 					}
 					break;
 				case 'mouseenter': // probably related to the Client-Docs chrome...
-					if(id) {
+					if (id) {
 						this.broadcast.dispatchGlobal(
 							ts.ui.BROADCAST_GLOBAL_COVER_HOVER, id
 						);
 					}
 					break;
 				case 'transitionend' :
-					if(e.target === this.element) {
+					if (e.target === this.element) {
 						this.event.remove(e.type);
-						if(!this._shouldbevisible) {
+						if (!this._shouldbevisible) {
 							this.hide();
 						}
 					}
 					break;
 			}
 		},
-
 
 		// Private .................................................................
 
@@ -145,11 +143,10 @@ ts.ui.CoverSpirit = (function using(chained, Client) {
 		 */
 		_shouldbevisible: false
 
-
 	}, { // Static ...............................................................
 
 		/**
-		 * Summon spirit. 
+		 * Summon spirit.
 		 * @param @optional {gui.Geometry|object} opt_geo
 		 * @returns {gui.CoverSpirit}
 		 */
@@ -163,7 +160,7 @@ ts.ui.CoverSpirit = (function using(chained, Client) {
 		},
 
 		/**
-		 * Get-create CoverSpirit with ID and classname. First 
+		 * Get-create CoverSpirit with ID and classname. First
 		 * run creates the spirit and appends it to the BODY.
 		 * @param {string} token For both ID and classname
 		 * @param @optional {Element} target Where to append the cover
@@ -177,7 +174,6 @@ ts.ui.CoverSpirit = (function using(chained, Client) {
 				spirit.dom.id(token);
 				return spirit;
 			}());
-		},
+		}
 	});
-
 }(gui.Combo.chained, gui.Client));

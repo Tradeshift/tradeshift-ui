@@ -5,12 +5,11 @@
  * using {function} linkparser
  */
 ts.ui.Markdown = (function using(linkparser) {
-
 	// make sure to always parse tags in the same order (h is for H1-H4)
 	var ORDER = ['h', 'strong', 'em', 'strike', 'code', 'a', 'ul', 'ol'];
 
 	// looks complex enough to compile only once...
-	var SINGLENEWLINE = /(^|[^\n])\n(?!\n)/g; 
+	var SINGLENEWLINE = /(^|[^\n])\n(?!\n)/g;
 
 	/*
 	 * Mapping tagnames to functions that will parse a single line of markdown.
@@ -19,7 +18,7 @@ ts.ui.Markdown = (function using(linkparser) {
 	var parsers = {
 
 		// headers H1-H4
-		'h': blockfunction([
+		h: blockfunction([
 			[/^####/, '<h4>$</h4>'],
 			[/^###/, '<h3>$</h3>'],
 			[/^##/, '<h2>$</h2>'],
@@ -27,43 +26,43 @@ ts.ui.Markdown = (function using(linkparser) {
 		]),
 
 		// unordered lists
-		'ul': blockfunction([
-			[/^      \*/, '<ul><ul><ul><ul><li>$</li></ul></ul></ul></ul>'],
-			[/^    \*/, '<ul><ul><ul><li>$</li></ul></ul></ul>'],
-			[/^  \*/, '<ul><ul><li>$</li></ul></ul>'],
+		ul: blockfunction([
+			[/^ {6}\*/, '<ul><ul><ul><ul><li>$</li></ul></ul></ul></ul>'],
+			[/^ {4}\*/, '<ul><ul><ul><li>$</li></ul></ul></ul>'],
+			[/^ {2}\*/, '<ul><ul><li>$</li></ul></ul>'],
 			[/^\*/, '<ul><li>$</li></ul>']
 		]),
 
 		// ordered lists
-		'ol': blockfunction([
-			[/^      \d+\./, '<ol><ol><ol><ol><li>$</li></ol></ol></ol></ol>'],
-			[/^   \d+\./, '<ol><ol><ol><li>$</li></ol></ol></ol>'],
-			[/^  \d+\./, '<ol><ol><li>$</li></ol></ol>'],
+		ol: blockfunction([
+			[/^ {6}\d+\./, '<ol><ol><ol><ol><li>$</li></ol></ol></ol></ol>'],
+			[/^ {3}\d+\./, '<ol><ol><ol><li>$</li></ol></ol></ol>'],
+			[/^ {2}\d+\./, '<ol><ol><li>$</li></ol></ol>'],
 			[/^\d+\./, '<ol><li>$</li></ol>']
 		]),
 
 		// bold text
-		'strong': inlinefunction([
-			[/\*\*(.*?)\*\*/g, '<strong>$1</strong>'],
+		strong: inlinefunction([
+			[/\*\*(.*?)\*\*/g, '<strong>$1</strong>']
 		]),
 
 		// italic text
-		'em': inlinefunction([
-			[/\*(.*?)\*/g, '<em>$1</em>'],
+		em: inlinefunction([
+			[/\*(.*?)\*/g, '<em>$1</em>']
 		]),
 
 		// strike text
-		'strike': inlinefunction([
+		strike: inlinefunction([
 			[/~~(.*?)~~/g, '<del>$1</del>']
 		]),
 
 		// code and tech terms (TODO: also support blockcode ```)
-		'code': inlinefunction([
+		code: inlinefunction([
 			[/`(.*?)`/g, '<code>$1</code>']
 		]),
 
 		// links (scroll down for implementation)
-		'a': linkparser
+		a: linkparser
 	};
 
 	/**
@@ -141,7 +140,7 @@ ts.ui.Markdown = (function using(linkparser) {
 	}
 
 	/**
-	 * Collect parsers needed to resolve given tagnames. Note 
+	 * Collect parsers needed to resolve given tagnames. Note
 	 * that if no tags are specified, we support all of them.
 	 * @param {Array<string} List of tagnames
 	 * @return {Array<function>}
@@ -150,13 +149,13 @@ ts.ui.Markdown = (function using(linkparser) {
 		tags = tags || ORDER;
 		return ORDER.filter(function(tag) {
 			return tags.indexOf(tag) > -1;
-		}).map(function(tag) { 
+		}).map(function(tag) {
 			return parsers[tag];
 		});
 	}
 
 	/**
-	 * Split string on newlines (or double newlines) 
+	 * Split string on newlines (or double newlines)
 	 * and run each segment by a function to fix it.
 	 * @param {string} string
 	 * @param {function} action
@@ -174,14 +173,14 @@ ts.ui.Markdown = (function using(linkparser) {
 	 * @param {string} line
 	 * @returns {string}
 	 */
-	function parseline(line, parsers) {
-		return parsers.reduce(function(result, parse) {
+	function parseline(line, lineParsers) {
+		return lineParsers.reduce(function(result, parse) {
 			return parse(result) || result;
 		}, line.trimRight());
 	}
 
 	/**
-	 * Split on double-newlines, then add paragraph tags 
+	 * Split on double-newlines, then add paragraph tags
 	 * when the first tag isn't a block level element.
 	 * @param {string} html All resolved except P tags.
 	 * @returns {string}
@@ -194,10 +193,10 @@ ts.ui.Markdown = (function using(linkparser) {
 			}));
 		}, doubles);
 	}
-	
+
 	/**
-	 * Markdown requires double newlines (for historic reasons) to render a 
-	 * paragraph, but we would like to support single newline for `BR` breaks, 
+	 * Markdown requires double newlines (for historic reasons) to render a
+	 * paragraph, but we would like to support single newline for `BR` breaks,
 	 * so we'll insert a string sequence that may later be parsed in context.
 	 * @param {string} string
 	 * @returns {string}
@@ -205,7 +204,7 @@ ts.ui.Markdown = (function using(linkparser) {
 	function linehack(string) {
 		return string.replace(SINGLENEWLINE, '$1 %%%'); // some unlikely string
 	}
-	
+
 	/**
 	 * Replace temp string sequence with either nothing or a `BR` linebreak.
 	 * @param {string} string
@@ -215,7 +214,6 @@ ts.ui.Markdown = (function using(linkparser) {
 	function unhack(string, breaks) {
 		return string.replace(/%%%/g, breaks ? '<br/>' : '');
 	}
-	
 
 	// Public ....................................................................
 
@@ -227,15 +225,13 @@ ts.ui.Markdown = (function using(linkparser) {
 	 */
 	return {
 		parse: function(markdown, tagnames) {
-			var parsers = getparsers(validate(tagnames));
+			var allParsers = getparsers(validate(tagnames));
 			var safetxt = edbml.safetext(markdown);
 			return paragraphs(sanitize(eachline(safetxt, function(line) {
-				return parseline(line, parsers);
+				return parseline(line, allParsers);
 			})));
 		}
 	};
-
-
 }( // LINKS ..................................................................
 
 	/**
@@ -248,10 +244,10 @@ ts.ui.Markdown = (function using(linkparser) {
 		var init, text, href, post, last, html, test;
 
 		function link() {
-			return '<a data-ts="Button" data-ts.type="$type" data-ts.data="$data">$text</a>'.
-				replace('$type', ts.ui.ACTION_SAFE_LINK).
-				replace('$data', edbml.safeattr(href)).
-				replace('$text', edbml.safetext(text));
+			return '<a data-ts="Button" data-ts.type="$type" data-ts.data="$data">$text</a>'
+				.replace('$type', ts.ui.ACTION_SAFE_LINK)
+				.replace('$data', edbml.safeattr(href))
+				.replace('$text', edbml.safetext(text));
 		}
 
 		function parsecut(cut, idx, all) {
@@ -295,7 +291,6 @@ ts.ui.Markdown = (function using(linkparser) {
 			reset();
 			return (line.split(')[').map(parsecut).join('')) || line;
 		};
-
 	}(/\(.+$/, /^.+\]/))
 
 ));

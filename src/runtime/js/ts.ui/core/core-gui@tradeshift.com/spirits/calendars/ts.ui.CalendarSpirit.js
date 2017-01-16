@@ -4,8 +4,7 @@
  * @extends {ts.ui.Spirit}
  * @using {Object} locale (ad-hoc localization config)
  */
-ts.ui.CalendarSpirit = (function () {
-
+ts.ui.CalendarSpirit = (function() {
 	/**
 	 *
 	 */
@@ -125,7 +124,7 @@ ts.ui.CalendarSpirit = (function () {
 	 * @param {string} term
 	 * @return {string}
 	 */
-	function t(term) {
+	function t(term) { // eslint-disable-line no-unused-vars
 		return term;
 	}
 
@@ -152,7 +151,6 @@ ts.ui.CalendarSpirit = (function () {
 	Cell.parse = function(string) {
 		return new Cell(JSON.parse(string));
 	};
-
 
 	return ts.ui.Spirit.extend({
 
@@ -200,11 +198,11 @@ ts.ui.CalendarSpirit = (function () {
 				this._current = ts.lib.Date.dateStringToObject(this.value || 'today');
 				this._year = this._current.year;
 				this._month = this._current.month;
-				if(this.min) {
+				if (this.min) {
 					this._min = ts.lib.Date.dateStringToObject(this.min);
 				}
-				if(this.max) {
-					this._max = ts.lib.Date.dateStringToObject(this.max);	
+				if (this.max) {
+					this._max = ts.lib.Date.dateStringToObject(this.max);
 				}
 			} else {
 				throw new Error('Dysfunction');
@@ -224,14 +222,13 @@ ts.ui.CalendarSpirit = (function () {
 		onevent: function(e) {
 			this.super.onevent(e);
 			var node = e.target;
-			if(e.type === 'click') {
-				if(this._doaction(node.parentNode, node)) {
+			if (e.type === 'click') {
+				if (this._doaction(node.parentNode, node)) {
 					e.stopPropagation();
 					e.preventDefault();
 				}
 			}
 		},
-
 
 		// Private .................................................................
 
@@ -287,7 +284,7 @@ ts.ui.CalendarSpirit = (function () {
 		 */
 		_doaction: function(parent, child) {
 			var testnode = (parent.localName === 'button' ? parent : child);
-			switch(testnode.name) {
+			switch (testnode.name) {
 				case 'accept':
 					this._select(
 						Cell.parse(testnode.value)
@@ -417,11 +414,11 @@ ts.ui.CalendarSpirit = (function () {
 		 */
 		_minDay: function(min, year, month) {
 			var day = 0;
-			if(min && year === min.year) {
-				if(month === min.month) {
+			if (min && year === min.year) {
+				if (month === min.month) {
 					day = min.day;
 				} else {
-					if(month < min.month) {
+					if (month < min.month) {
 						day = Number.MAX_VALUE;
 					}
 				}
@@ -437,11 +434,11 @@ ts.ui.CalendarSpirit = (function () {
 		 */
 		_maxDay: function(max, year, month) {
 			var day = 0;
-			if(max && year === max.year) {
-				if(month === max.month) {
+			if (max && year === max.year) {
+				if (month === max.month) {
 					day = max.day;
 				} else {
-					if(month > max.month) {
+					if (month > max.month) {
 						day = 1 - Number.MAX_VALUE;
 					}
 				}
@@ -483,7 +480,6 @@ ts.ui.CalendarSpirit = (function () {
 			);
 		}
 
-
 	}, { // Static ...............................................................
 
 		/**
@@ -497,5 +493,4 @@ ts.ui.CalendarSpirit = (function () {
 		}
 
 	});
-
 }());

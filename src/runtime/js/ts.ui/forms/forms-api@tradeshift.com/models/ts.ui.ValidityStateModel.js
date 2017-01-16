@@ -4,9 +4,8 @@
  */
 ts.ui.ValidityStateModel = edb.Object.extend({
 
-
 	// Matching HTML specification: Do not rename (see custom stuff below) .......
-	
+
 	/**
 	 * The element meets all constraint validations
 	 * and is therefore considered to be valid.
@@ -15,7 +14,7 @@ ts.ui.ValidityStateModel = edb.Object.extend({
 	valid: true,
 
 	/**
-	 * The element's custom validity message has been set to a non-empty 
+	 * The element's custom validity message has been set to a non-empty
 	 * string by calling the element's `setCustomValidity()` method.
 	 * @type {boolean}
 	 */
@@ -39,13 +38,13 @@ ts.ui.ValidityStateModel = edb.Object.extend({
 	rangeUnderflow:	false,
 
 	/**
-	 * The value does not fit the rules determined by the step attribute 
+	 * The value does not fit the rules determined by the step attribute
 	 * (that is, it's not evenly divisible by the step value).
 	 */
 	stepMismatch:	false,
 
 	/**
-	 * The value exceeds the specified maxlength. Some browsers block 
+	 * The value exceeds the specified maxlength. Some browsers block
 	 * input at `maxlength`, preventing this. Maybe we should do the same.
 	 * @type {boolean}
 	 */
@@ -67,11 +66,10 @@ ts.ui.ValidityStateModel = edb.Object.extend({
 	 * The element has a required attribute, but no value.
 	 * @type {boolean}
 	 */
-	valueMissing: false,
-
+	valueMissing: false
 
 	// Tradeshift custom stuff ...................................................
-	
+
 	/*
 	 * Custom stuff goes here....
 	 */

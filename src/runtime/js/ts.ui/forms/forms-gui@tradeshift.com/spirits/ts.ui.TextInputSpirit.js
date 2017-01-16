@@ -12,7 +12,6 @@ ts.ui.TextInputSpirit = ts.ui.InputSpirit.extend({
 		this.css.add(ts.ui.CLASS_TEXT);
 	},
 
-
 	// Privileged ................................................................
 
 	/**

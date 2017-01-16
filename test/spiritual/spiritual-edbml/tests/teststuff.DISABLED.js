@@ -2,7 +2,6 @@
  * Testing the stuff.
  */
 describe('Mock test', function likethis() {
-
 	it('should render when inserted', function(done) {
 		var spirit = gui.Spirit.summon();
 		spirit.script.load(tst.test1.edbml);
@@ -37,5 +36,4 @@ describe('Mock test', function likethis() {
 			done();
 		}, 100);
 	});
-
 });

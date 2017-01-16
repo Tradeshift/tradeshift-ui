@@ -26,6 +26,6 @@ gui.Life.prototype = {
 	 * @returns {String}
 	 */
 	toString: function() {
-		return "[object gui.Life]";
+		return '[object gui.Life]';
 	}
 };

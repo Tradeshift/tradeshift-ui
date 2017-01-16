@@ -104,7 +104,7 @@ describe('ts.ui.toolbartabs.edbml', function likethis() {
 
 	it('should not contain ts-tab-label', function() {
 		var spirit = {},
-			tabs = [{label:'leo'}],
+			tabs = [{label: 'leo'}],
 			id = 'test',
 			mobile = false;
 		expect(gethtml(spirit, tabs, id, mobile)).toContain('<span class="ts-tab-label">leo</span>');

@@ -5,7 +5,6 @@
  * @using {gui.Combo.chained} chained
  */
 ts.ui.MenuModel = (function using(Type, chained) {
-
 	return ts.ui.Model.extend({
 
 		/**
@@ -15,7 +14,7 @@ ts.ui.MenuModel = (function using(Type, chained) {
 		item: 'menu',
 
 		/**
-		 * Items list. Note that this is a just an array of "simple" objects, 
+		 * Items list. Note that this is a just an array of "simple" objects,
 		 * that's why the 'onselect' callback is on the menu and not the item.
 		 * @type {Array}
 		 */
@@ -79,7 +78,7 @@ ts.ui.MenuModel = (function using(Type, chained) {
 		donebuttonlabel: ts.ui.String.LABEL_ACCEPT,
 
 		/**
-		 * Only used for the Done button in multiple selects. 
+		 * Only used for the Done button in multiple selects.
 		 * If needed elsewhere, please rethink implementation.
 		 * @see {ts.ui.SelectInputSpirit}
 		 * @type {boolean}
@@ -87,13 +86,13 @@ ts.ui.MenuModel = (function using(Type, chained) {
 		donebuttonenabled: false,
 
 		/**
-		 * Used for the Done button in multiple selects. 
+		 * Used for the Done button in multiple selects.
 		 * @type {boolean}
 		 */
 		donebuttonpressed: false,
 
 		/**
-		 * Not shown, but we can assign one anyway 
+		 * Not shown, but we can assign one anyway
 		 * (it might be used in Aside headers etc).
 		 * @type {string}
 		 */
@@ -109,7 +108,7 @@ ts.ui.MenuModel = (function using(Type, chained) {
 			var that = this;
 			this.addObserver(this);
 			if (this.select === 'many') {
-				//this.selectedIndexes.addObserver(this);
+				// this.selectedIndexes.addObserver(this);
 			}
 			this._searchmodel = new ts.ui.SearchModel({
 				onsearch: function(value) {
@@ -135,12 +134,12 @@ ts.ui.MenuModel = (function using(Type, chained) {
 		 */
 		onchange: function(changes) {
 			changes.forEach(function(c) {
-				switch(c.name) {
+				switch (c.name) {
 					case 'searchterm':
 						this._search(c.newValue);
 						break;
 					case 'selectedIndex':
-						if(this.onselect) {
+						if (this.onselect) {
 							this.onselect(c.newValue);
 						}
 						break;
@@ -149,7 +148,7 @@ ts.ui.MenuModel = (function using(Type, chained) {
 		},
 
 		/**
-		 * Show all items (assuming hre that maxItemsShown was enforced). 
+		 * Show all items (assuming hre that maxItemsShown was enforced).
 		 * Again, we can only sync this xframe via simple property changes.
 		 * @returns {ts.ui.MenuModel}
 		 */
@@ -173,17 +172,17 @@ ts.ui.MenuModel = (function using(Type, chained) {
 		},
 
 		open: function() {
-			var aside = ts.ui.Aside({
+			ts.ui.Aside({
 				title: 'Test',
 				items: [this]
 			}).open();
 		},
 
 		/**
-		 * We have no idea where this MenuModel is being rendered, but when we're 
-		 * optimizing SELECT performance, we need the panel of the containing aside 
-		 * to scroll to some designated position. This method is called directly 
-		 * from within the EDBML function so that everything is synchronized to a 
+		 * We have no idea where this MenuModel is being rendered, but when we're
+		 * optimizing SELECT performance, we need the panel of the containing aside
+		 * to scroll to some designated position. This method is called directly
+		 * from within the EDBML function so that everything is synchronized to a
 		 * single screen repaint (eg. not involving any async observer callbacks).
 		 * @see {ts.ui.menu.edbml}
 		 * @param {number} scrollTop
@@ -195,7 +194,6 @@ ts.ui.MenuModel = (function using(Type, chained) {
 			});
 		},
 
-
 		// Private .................................................................
 
 		/**
@@ -205,7 +203,7 @@ ts.ui.MenuModel = (function using(Type, chained) {
 		_searchmodel: null,
 
 		/**
-		 * Search will probably be moved into the Aside header, 
+		 * Search will probably be moved into the Aside header,
 		 * at which point this code can be deleted for good...
 		 * @param {string} value
 		 */
@@ -234,5 +232,4 @@ ts.ui.MenuModel = (function using(Type, chained) {
 		}
 
 	});
-
 }(gui.Type, gui.Combo.chained));

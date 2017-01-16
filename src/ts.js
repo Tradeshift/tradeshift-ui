@@ -3,10 +3,8 @@
  * The "?internal" flag will also load the CSS.
  */
 (function boostrap(sources) {
-
-	var intern, sheet, script, scripts = document.querySelectorAll('script'),
-		head = document.querySelector('head'),
-		body = document.querySelector('body') || head;
+	var intern, script, scripts = document.querySelectorAll('script'),
+		head = document.querySelector('head');
 
 	// fix relative protocols in blob
 	if (location.protocol === 'blob:') {
@@ -18,11 +16,11 @@
 	// include the stylesheet?
 
 	/*
-	 * Big disaster: Karma cannot all of a sudden work with querystring paramters 
-	 * to the file because it expects a file (and not a web resource). This means 
-	 * that we cannot append '?internal' in the karma config. We can bypass this 
-	 * terrible dilemma, however, by adding simply '?' because Karma does that 
-	 * internally. We'll just do that for now, since the whole testing shebang 
+	 * Big disaster: Karma cannot all of a sudden work with querystring paramters
+	 * to the file because it expects a file (and not a web resource). This means
+	 * that we cannot append '?internal' in the karma config. We can bypass this
+	 * terrible dilemma, however, by adding simply '?' because Karma does that
+	 * internally. We'll just do that for now, since the whole testing shebang
 	 * (which now depends or IP adresses on localhost) must be refactored anyhow.
 	 */
 	script = scripts[scripts.length - 1];
@@ -58,7 +56,7 @@
 	/*
 	 * Document write sync (and blocking if in HEAD).
 	 */
-	function loadsync() {		
+	function loadsync() {
 		var api = [sources.spiritsapi, sources.runtimeapi];
 		var gui = [sources.spiritsgui, sources.runtimegui];
 		var lang = document.querySelector('html').getAttribute('lang');
@@ -66,7 +64,7 @@
 		if (lang) {
 			lang = lang.toLowerCase().replace('_', '-');
 			gui.push(sources.langbundle.replace('<LANG>', lang));
-		} else if(!document.all && window.console && console.log) { // !
+		} else if (!document.all && window.console && console.log) { // !
 			console.log('No lang given. Will default to en-us');
 		}
 
@@ -91,7 +89,6 @@
 			});
 		});
 	}
-
 }({
 	langbundle: '${langbundle}',
 	spiritsapi: '${spiritsapi}',

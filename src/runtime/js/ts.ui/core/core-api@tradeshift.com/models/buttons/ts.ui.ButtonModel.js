@@ -6,9 +6,8 @@
  * @using {gui.Type} Type
  */
 ts.ui.ButtonModel = (function using(chained, confirmed, Type) {
-	
 	return ts.ui.Model.extend({
-	
+
 		/**
 		 * Friendly name.
 		 * @type {string}
@@ -32,9 +31,9 @@ ts.ui.ButtonModel = (function using(chained, confirmed, Type) {
 		 * @type {string}
 		 */
 		info: null,
-		
+
 		/**
-		 * Stretch to fill the space? Support 
+		 * Stretch to fill the space? Support
 		 * for this depends on the use case.
 		 * @type {number} (treated as truthy for now)
 		 */
@@ -47,7 +46,7 @@ ts.ui.ButtonModel = (function using(chained, confirmed, Type) {
 		type: ts.ui.CLASS_TERTIARY,
 
 		/**
-		 * Reverse label and icon? If true, 
+		 * Reverse label and icon? If true,
 		 * button width will be set to 100%.
 		 * @type {boolean}
 		 */
@@ -58,7 +57,7 @@ ts.ui.ButtonModel = (function using(chained, confirmed, Type) {
 		 * @type {function}
 		 */
 		onclick: null,
-		
+
 		/**
 		 * Visible?
 		 * @type {boolean}
@@ -72,7 +71,7 @@ ts.ui.ButtonModel = (function using(chained, confirmed, Type) {
 		disabled: false,
 
 		/**
-		 * No default keyboard support until the 
+		 * No default keyboard support until the
 		 * whole keyboard things has been worked.
 		 * @type {number}
 		 */
@@ -83,43 +82,43 @@ ts.ui.ButtonModel = (function using(chained, confirmed, Type) {
 		 * @type {boolean}
 		 */
 		autofocus: false,
-		
+
 		/**
 		 * Busy message.
 		 * @type {string}
 		 */
 		busystatus: null,
-		
+
 		/**
 		 * Button name.
 		 * @type {string}
 		 */
 		name: null,
-		
+
 		/**
 		 * Button value.
 		 * @type {Any}
 		 */
 		value: null,
-		
+
 		/**
 		 * The `action.type` that will dispatch when clicked (internal use).
 		 * @type {string}
 		 */
 		action: null,
-		
+
 		/**
 		 * Dispatched as the `action.data` (internal use).
 		 * @type {Any}
 		 */
 		data: null,
-		
+
 		/**
 		 * Click that button.
 		 * @returns {ts.ui.ButtonModel}
 		 */
 		click: chained(function() {
-			if(Type.isFunction(this.onclick)) {
+			if (Type.isFunction(this.onclick)) {
 				setTimeout(function unfreeze() {
 					this.onclick();
 				}.bind(this), 50);
@@ -157,7 +156,7 @@ ts.ui.ButtonModel = (function using(chained, confirmed, Type) {
 		disable: chained(function() {
 			this.disabled = true;
 		}),
-		
+
 		/**
 		 * Mark as busy.
 		 * @param @optional {string} label
@@ -166,7 +165,7 @@ ts.ui.ButtonModel = (function using(chained, confirmed, Type) {
 		busy: confirmed('(string)')(chained(function(label) {
 			this.busystatus = label || true;
 		})),
-		
+
 		/**
 		 * Mark as done.
 		 * @returns {ts.ui.ButtonModel}
@@ -183,15 +182,13 @@ ts.ui.ButtonModel = (function using(chained, confirmed, Type) {
 		render: function(isButtonMenu) {
 			return ts.ui.button.edbml(this, isButtonMenu);
 		},
-		
-		
+
 		// Private .................................................................
-		
+
 		/**
 		 *
 		 */
 		_oldlabel: null
 
 	});
-
 }(gui.Combo.chained, gui.Arguments.confirmed, gui.Type));

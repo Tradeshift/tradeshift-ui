@@ -1,24 +1,23 @@
 /**
  * Monitor document for unsolicitated DOM changes and spiritualize
- * elements accordingly. This patches a missing feature in Safari 
- * that blocks us from overriding native DOM getters and setters 
- * (eg. `innerHTML`). Importantly note that spirits will be attached 
+ * elements accordingly. This patches a missing feature in Safari
+ * that blocks us from overriding native DOM getters and setters
+ * (eg. `innerHTML`). Importantly note that spirits will be attached
  * and detached *asynchronously* with this.
  * @using {gui.Type} Type
  * @using {gui.Array} GuiArray
  */
 gui.DOMObserver = (function using(Type, GuiArray) {
-	
 	/*
 	 * Handle mutations?
 	 */
 	var connected = true;
-	
+
 	/*
 	 * Counting stuff that suspends mutation handling.
 	 */
 	var suspend = 0;
-	
+
 	/**
 	 * Node is element?
 	 * @param {Node} node
@@ -27,7 +26,7 @@ gui.DOMObserver = (function using(Type, GuiArray) {
 	function iselement(node) {
 		return node && node.nodeType === Node.ELEMENT_NODE;
 	}
-	
+
 	/**
 	 * Materialize (whole subtree).
 	 * @param {Element} node
@@ -36,7 +35,7 @@ gui.DOMObserver = (function using(Type, GuiArray) {
 		var webkithack = true;
 		gui.materialize(node, webkithack);
 	}
-	
+
 	/**
 	 * Spiritualize (whole subtree).
 	 * @param {Element} node
@@ -44,7 +43,7 @@ gui.DOMObserver = (function using(Type, GuiArray) {
 	function spiritualize(node) {
 		gui.spiritualize(node);
 	}
-	
+
 	/**
 	 * Building arrays from nodelists so that they are easier to work with.
 	 * @param {Array} array
@@ -64,7 +63,7 @@ gui.DOMObserver = (function using(Type, GuiArray) {
 			return concatenate(result, added ? mutation.addedNodes : mutation.removedNodes);
 		}, []);
 	}
-	
+
 	/**
 	 * Collect added nodes (while removing duplicates: Nodes that moved around).
 	 * @param {Array<MutationRecord>} mutations
@@ -75,7 +74,7 @@ gui.DOMObserver = (function using(Type, GuiArray) {
 			return added.indexOf(node) === i;
 		});
 	}
-	
+
 	/**
 	 * Collect removed nodes (while removing nodes reinserted elsewhere).
 	 * @param {Array<MutationRecord>} mutations
@@ -87,20 +86,20 @@ gui.DOMObserver = (function using(Type, GuiArray) {
 			return added.indexOf(node) === -1;
 		});
 	}
-	
+
 	/**
 	 * Main MutationObserver callback.
 	 * @param {Array<MutationRecord>} mutations
 	 */
 	function handlemutations(mutations) {
-		if(connected) {
+		if (connected) {
 			var added = addednodes(mutations);
 			var removed = removednodes(mutations, added);
 			removed.filter(iselement).forEach(materialize);
 			added.filter(iselement).forEach(spiritualize);
 		}
 	}
-	
+
 	return {
 
 		/**
@@ -165,9 +164,8 @@ gui.DOMObserver = (function using(Type, GuiArray) {
 			}
 		},
 
-
 		// Private .................................................................
-		
+
 		/**
 		 * Get MutationObserver.
 		 * (IE11 has this now!)
@@ -180,7 +178,6 @@ gui.DOMObserver = (function using(Type, GuiArray) {
 				window.MozMutationObserver
 			);
 		}
-		
-	};
 
+	};
 }(gui.Type, gui.Array));

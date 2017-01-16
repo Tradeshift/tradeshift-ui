@@ -60,10 +60,9 @@ gui.Property = {
 				set: def.setter || this._NOSETTER
 			});
 		} else {
-			throw new TypeError("Expected getter and/or setter method");
+			throw new TypeError('Expected getter and/or setter method');
 		}
 	},
-
 
 	// Private ...................................................................
 
@@ -76,8 +75,8 @@ gui.Property = {
 		return Object.keys(obj).every(function(key) {
 			var is = false;
 			switch (key) {
-				case "getter":
-				case "setter":
+				case 'getter':
+				case 'setter':
 					is = gui.Type.isFunction(obj[key]);
 					break;
 			}
@@ -113,8 +112,8 @@ gui.Property = {
 		return Object.keys(obj).every(function(key) {
 			var is = false;
 			switch (key) {
-				case "getter":
-				case "setter":
+				case 'getter':
+				case 'setter':
 					is = gui.Type.isFunction(obj[key]);
 					break;
 			}
@@ -132,12 +131,12 @@ gui.Property = {
 	 */
 	_activeaccessor: function(proto, key, def) {
 		var desc;
-		["getter", "setter"].forEach(function(name, set) {
+		['getter', 'setter'].forEach(function(name, set) {
 			while (proto && proto[key] && !gui.Type.isDefined(def[name])) {
 				proto = Object.getPrototypeOf(proto);
 				desc = Object.getOwnPropertyDescriptor(proto, key);
 				if (desc) {
-					def[name] = desc[set ? "set" : "get"];
+					def[name] = desc[set ? 'set' : 'get'];
 				}
 			}
 		});
@@ -153,14 +152,14 @@ gui.Property = {
 	 * Bad getter.
 	 */
 	_NOGETTER: function() {
-		throw new Error("Getting a property that has only a setter");
+		throw new Error('Getting a property that has only a setter');
 	},
 
 	/**
 	 * Bad setter.
 	 */
 	_NOSETTER: function() {
-		throw new Error("Setting a property that has only a getter");
+		throw new Error('Setting a property that has only a getter');
 	}
 };
 

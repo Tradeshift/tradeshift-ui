@@ -5,9 +5,8 @@
  * @using {ts.ui.Card} card
  */
 ts.ui.CardSpirit = (function(Card) {
-
 	/*
-	 * If these classes are not found, 
+	 * If these classes are not found,
 	 * we'll add a default classname.
 	 */
 	var specialclasses = [
@@ -19,13 +18,13 @@ ts.ui.CardSpirit = (function(Card) {
 	return ts.ui.ObjectSpirit.extend({
 
 		/**
-		 * Stub myself with a potential mock model so that we can 
-		 * show a default rendering before some real data arrives. 
+		 * Stub myself with a potential mock model so that we can
+		 * show a default rendering before some real data arrives.
 		 * TODO: Perhaps move up to {ts.ui.ObjectSpirit}?
 		 */
 		onconfigure: function() {
 			var mock = this.constructor.MOCK_MODEL;
-			if(mock && !this._model) {
+			if (mock && !this._model) {
 				this._model = mock;
 			}
 			this.super.onconfigure();
@@ -39,7 +38,6 @@ ts.ui.CardSpirit = (function(Card) {
 			this._classnames(this.css);
 		},
 
-
 		// Private .................................................................
 
 		/**
@@ -48,7 +46,7 @@ ts.ui.CardSpirit = (function(Card) {
 		 */
 		_classnames: function(css) {
 			css.add('ts-card');
-			if(!specialclasses.some(function(cname) {
+			if (!specialclasses.some(function(cname) {
 				return css.contains(cname);
 			})) {
 				css.add(Card.TYPE_DEFAULT);
@@ -56,5 +54,4 @@ ts.ui.CardSpirit = (function(Card) {
 		}
 
 	});
-
 }(ts.ui.Card));

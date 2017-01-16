@@ -3,7 +3,7 @@
  * @extends {ts.ui.InputModel}
  */
 ts.ui.SearchModel = ts.ui.InputModel.extend({
-	
+
 	/**
 	 * Friendly name.
 	 * @type {string}
@@ -15,7 +15,7 @@ ts.ui.SearchModel = ts.ui.InputModel.extend({
 	 * @type {string}
 	 */
 	type: 'search',
-	
+
 	/**
 	 * Placeholder and title (tooltip) string.
 	 * TODO: Rename this to info (to conform with ButtonModel)
@@ -36,14 +36,14 @@ ts.ui.SearchModel = ts.ui.InputModel.extend({
 	 * @param {string} value
 	 */
 	onsearch: null,
-	
+
 	/**
-	 * Stretch to fill the space? Support 
+	 * Stretch to fill the space? Support
 	 * for this depends on the use case.
 	 * @type {number} (treated as truthy for now)
 	 */
 	flex: 0,
-	
+
 	/**
 	 * @deprecated
 	 * @type {string}
@@ -67,7 +67,7 @@ ts.ui.SearchModel = ts.ui.InputModel.extend({
 		this.super.clear();
 		this._bestcallback(this.value);
 	},
-	
+
 	/**
 	 * Invoke appropriate callback on ENTER.
 	 * @param {string} value
@@ -75,8 +75,8 @@ ts.ui.SearchModel = ts.ui.InputModel.extend({
 	onenterkey: function() {
 		this._bestcallback(this.value);
 	},
- 
-	/** 
+
+	/**
 	 * Bounce model to HTML.
 	 * @param @optional {boolean} toolbar (temp cornercase!)
 	 * @overrides {ts.ui.InputModel#render}
@@ -86,15 +86,14 @@ ts.ui.SearchModel = ts.ui.InputModel.extend({
 		return ts.ui.search.edbml(this);
 	},
 
-
 	// Private ...................................................................
 
-	/** 
+	/**
 	 * Call `onsearch` if defined, otherwise call `onidle` (if defined).
 	 * @param {string} value
 	 */
 	_bestcallback: function(value) {
-		if(!this._maybeinvoke(this.onsearch, value)) {
+		if (!this._maybeinvoke(this.onsearch, value)) {
 			this._maybeinvoke(this.onidle, value);
 		}
 	}

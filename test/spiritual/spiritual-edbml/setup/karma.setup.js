@@ -1,3 +1,3 @@
 afterEach(function cleanup() {
-	document.body.innerHTML = "";
+	document.body.innerHTML = '';
 });

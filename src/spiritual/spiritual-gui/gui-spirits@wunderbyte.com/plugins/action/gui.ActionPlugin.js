@@ -1,4 +1,4 @@
-/** 
+/**
  * ActionPlugin.
  * @extends {gui.TrackerPlugin}
  * TODO: 'one' and 'oneGlobal' methods
@@ -6,7 +6,6 @@
  * @using {gui.Combo#chained}
  */
 gui.ActionPlugin = (function using(confirmed, chained) {
-
 	return gui.TrackerPlugin.extend({
 
 		/**
@@ -27,9 +26,9 @@ gui.ActionPlugin = (function using(confirmed, chained) {
 		 * @param @optional {object|function} handler
 		 * @returns {gui.ActionPlugin}
 		 */
-		add: confirmed("array|string", "(object|function)")(
+		add: confirmed('array|string', '(object|function)')(
 			chained(function(arg, handler) {
-				handler = handler ? handler : this.spirit;
+				handler = handler || this.spirit;
 				if (gui.Interface.validate(gui.Action.IActionHandler, handler)) {
 					gui.Array.make(arg).forEach(function(type) {
 						this._addchecks(type, [handler, this._global]);
@@ -44,9 +43,9 @@ gui.ActionPlugin = (function using(confirmed, chained) {
 		 * @param @optional {object} handler
 		 * @returns {gui.ActionPlugin}
 		 */
-		remove: confirmed("array|string", "(object|function)")(
+		remove: confirmed('array|string', '(object|function)')(
 			chained(function(arg, handler) {
-				handler = handler ? handler : this.spirit;
+				handler = handler || this.spirit;
 				if (gui.Interface.validate(gui.Action.IActionHandler, handler)) {
 					gui.Array.make(arg).forEach(function(type) {
 						this._removechecks(type, [handler, this._global]);
@@ -78,7 +77,7 @@ gui.ActionPlugin = (function using(confirmed, chained) {
 				return this.remove(arg, handler);
 			});
 		},
-		
+
 		/**
 		 * Dispatch type(s) ascending.
 		 * @alias {gui.ActionPlugin#ascend}
@@ -86,7 +85,7 @@ gui.ActionPlugin = (function using(confirmed, chained) {
 		 * @param @optional {object} data
 		 * @returns {gui.Action}
 		 */
-		dispatch: confirmed("string", "(*)")(function(type, data) {
+		dispatch: confirmed('string', '(*)')(function(type, data) {
 			return gui.Action.dispatch(this.spirit, type, data);
 		}),
 
@@ -96,7 +95,7 @@ gui.ActionPlugin = (function using(confirmed, chained) {
 		 * @param @optional {object} data
 		 * @returns {gui.Action}
 		 */
-		ascend: confirmed("string", "(*)")(function(type, data) {
+		ascend: confirmed('string', '(*)')(function(type, data) {
 			return gui.Action.ascend(this.spirit, type, data);
 		}),
 
@@ -106,7 +105,7 @@ gui.ActionPlugin = (function using(confirmed, chained) {
 		 * @param @optional {object} data
 		 * @returns {gui.Action}
 		 */
-		descend: confirmed("string", "(*)")(function(type, data) {
+		descend: confirmed('string', '(*)')(function(type, data) {
 			return gui.Action.descend(this.spirit, type, data);
 		}),
 
@@ -117,7 +116,7 @@ gui.ActionPlugin = (function using(confirmed, chained) {
 		 * @param @optional {object} data
 		 * @returns {gui.Action}
 		 */
-		dispatchGlobal: confirmed("string", "(*)")(function(type, data) {
+		dispatchGlobal: confirmed('string', '(*)')(function(type, data) {
 			return gui.Action.dispatchGlobal(this.spirit, type, data);
 		}),
 
@@ -127,7 +126,7 @@ gui.ActionPlugin = (function using(confirmed, chained) {
 		 * @param @optional {object} data
 		 * @returns {gui.Action}
 		 */
-		ascendGlobal: confirmed("string", "(*)")(function(type, data) {
+		ascendGlobal: confirmed('string', '(*)')(function(type, data) {
 			return gui.Action.ascendGlobal(this.spirit, type, data);
 		}),
 
@@ -137,10 +136,9 @@ gui.ActionPlugin = (function using(confirmed, chained) {
 		 * @param @optional {object} data
 		 * @returns {gui.Action}
 		 */
-		descendGlobal: confirmed("string", "(*)")(function(type, data) {
+		descendGlobal: confirmed('string', '(*)')(function(type, data) {
 			return gui.Action.descendGlobal(this.spirit, type, data);
 		}),
-
 
 		// Private .................................................................
 
@@ -160,12 +158,11 @@ gui.ActionPlugin = (function using(confirmed, chained) {
 			}
 		},
 
-
 		// Privileged ..............................................................
 
 		/**
-		 * Flip to a mode where the spirit will handle it's own action. Corner case 
-		 * scenario: IframeSpirit watches an action while relaying the same action 
+		 * Flip to a mode where the spirit will handle it's own action. Corner case
+		 * scenario: IframeSpirit watches an action while relaying the same action
 		 * from another document context.
 		 * @type {boolean}
 		 */
@@ -192,5 +189,4 @@ gui.ActionPlugin = (function using(confirmed, chained) {
 		}
 
 	});
-
 }(gui.Arguments.confirmed, gui.Combo.chained));

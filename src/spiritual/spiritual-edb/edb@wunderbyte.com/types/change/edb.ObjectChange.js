@@ -26,4 +26,4 @@ edb.ObjectChange.prototype = gui.Object.create(edb.Change.prototype, {
  * native 'Object.observe' comes along.
  * @type {String}
  */
-edb.ObjectChange.TYPE_UPDATE = "update";
+edb.ObjectChange.TYPE_UPDATE = 'update';

@@ -42,5 +42,4 @@ describe('ts.ui.tablecheck.edbml', function likethis() {
 		expect(gethtml(table, row, fixed)).toContain('-floating-');
 		expect(gethtml(table, row, fixed)).not.toContain('-fixed-');
 	});
-
 });

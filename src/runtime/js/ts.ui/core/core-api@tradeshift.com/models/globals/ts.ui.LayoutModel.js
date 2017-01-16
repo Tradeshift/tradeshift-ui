@@ -3,7 +3,7 @@
  * @extends {ts.ui.GlobalModel}
  */
 ts.ui.LayoutModel = ts.ui.Model.extend({
-		
+
 	/**
 	 * Friendly name.
 	 * @type {string}
@@ -42,7 +42,7 @@ ts.ui.LayoutModel = ts.ui.Model.extend({
 	 * @type {boolean}
 	 */
 	blocking: false,
-	
+
 	/**
 	 * Tracking open asides by `$instanceid` so we can count them.
 	 * @type {Array<string>}
@@ -61,7 +61,7 @@ ts.ui.LayoutModel = ts.ui.Model.extend({
 	 * @type {Array<string>}
 	 */
 	attention: edb.Array, // TODO: ts.ui.Collection (but focus would break)
-	
+
 	/**
 	 * Instantiate collections.
 	 */
@@ -96,10 +96,9 @@ ts.ui.LayoutModel = ts.ui.Model.extend({
 		return this.breakpoint === ts.ui.LayoutModel.BREAKPOINT_DESKTOP;
 	}
 
-
 }, { // Static .................................................................
 
-	BREAKPOINTS: { 1270 : 'desktop', 600 : 'tablet', 0 : 'mobile' },
+	BREAKPOINTS: { 1270: 'desktop', 600: 'tablet', 0: 'mobile' },
 	BREAKPOINT_MOBILE: 'mobile', // something the size of a phone
 	BREAKPOINT_TABLET: 'tablet', // something the size of a tablet
 	BREAKPOINT_DESKTOP: 'desktop' // something the size of a table

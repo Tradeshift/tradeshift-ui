@@ -10,9 +10,8 @@ ts.ui.ItemCollection = ts.ui.Collection.extend({
 	 */
 	item: 'items'
 
-
 }, { // Static .................................................................
-	
+
 	assume: 'item'
 
 });

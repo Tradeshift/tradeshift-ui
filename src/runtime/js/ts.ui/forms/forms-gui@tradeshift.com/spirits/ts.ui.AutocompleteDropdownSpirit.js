@@ -2,7 +2,7 @@
  * Spirit of the autocomplete.
  */
 ts.ui.AutocompleteDropdownSpirit = (function using(Client) {
-	var CLASS_RESULTS_ITEM = 'ts-autocomplete-results'; 
+	var CLASS_RESULTS_ITEM = 'ts-autocomplete-results';
 	var CLASS_ITEM_SELECTED = 'ts-autocomplete-selected';
 
 	var KeyCodes = {
@@ -22,7 +22,6 @@ ts.ui.AutocompleteDropdownSpirit = (function using(Client) {
 		}
 	};
 
-
 	function getLocale() {
 		return ts.ui.Autocomplete.localize();
 	}
@@ -33,7 +32,6 @@ ts.ui.AutocompleteDropdownSpirit = (function using(Client) {
 		 * @type {Boolean}
 		 */
 		_isActive: false,
-
 
 		// Proxying from another input field here ..................................
 
@@ -58,11 +56,11 @@ ts.ui.AutocompleteDropdownSpirit = (function using(Client) {
 		data: function(d) {
 			this._model.autocompleteList = d;
 		},
-		
+
 		onfilter: function(f) {
 			this._model.onfilter = f;
 		},
-		
+
 		onselect: function(f) {
 			this._model.onselect = f;
 		},
@@ -186,7 +184,6 @@ ts.ui.AutocompleteDropdownSpirit = (function using(Client) {
 			this.onfocus();
 		},
 
-
 		/**
 		 * On blur, hide the field
 		 * isNow should be false, when clicking on the field because the focus
@@ -236,7 +233,7 @@ ts.ui.AutocompleteDropdownSpirit = (function using(Client) {
 		 * @param {HTMLElement} elem
 		 */
 		_scroll: function(elem) {
-			if (elem){
+			if (elem) {
 				var elemRect = elem.getBoundingClientRect();
 				var elemHeight = elemRect.bottom - elemRect.top;
 				var elemSiblings = elem.parentNode.childNodes;
@@ -325,7 +322,7 @@ ts.ui.AutocompleteDropdownSpirit = (function using(Client) {
 				this._locale.matchString
 			);
 			var autocompleteElem = this._getelem();
-			if (autocompleteElem !== null){
+			if (autocompleteElem !== null) {
 				var autocompleteListLength = this._model.filteredAutocompleteList.length;
 
 				if (autocompleteListLength > 0) {

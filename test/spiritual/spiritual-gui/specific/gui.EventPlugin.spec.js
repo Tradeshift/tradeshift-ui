@@ -1,10 +1,8 @@
 /**
- * The config plugin matches prefixed DOM attributes 
+ * The config plugin matches prefixed DOM attributes
  * to property setters and method calls on the spirit.
  */
 describe('gui.EventPlugin', function likethis() {
-
-
 	// Preparations ..............................................................
 
 	/**
@@ -25,7 +23,7 @@ describe('gui.EventPlugin', function likethis() {
 	/**
 	 * Spirit of the test.
 	 */
-	var TestSpirit = gui.Spirit.extend({
+	var TestSpirit = gui.Spirit.extend({ // eslint-disable-line no-unused-vars
 		done: function() {
 			// implemented by the test...
 		},
@@ -39,24 +37,23 @@ describe('gui.EventPlugin', function likethis() {
 		},
 		fadeOut: function() {
 			/*
-			 * Important: The transitionend listener MUST NOT be added 
-			 * in the same execution stack as the transition procedure. 
+			 * Important: The transitionend listener MUST NOT be added
+			 * in the same execution stack as the transition procedure.
 			 * Perhaps reintroduce transition lib from SPIRITUAL-MIX???
 			 */
 			this.event.add('transitionend');
-			this.tick.next(function because_browser_fail() {
+			this.tick.next(function becauseBrowserFail() {
 				this.element.style.opacity = 0;
 			});
 		},
 		onevent: function(e) {
 			gui.Spirit.prototype.onevent.call(this, e);
-			if(e.type === 'transitionend') {
+			if (e.type === 'transitionend') {
 				this.done();
 			}
 		}
 	});
 
-	
 	// Expectations ..............................................................
 
 	/*
@@ -69,5 +66,4 @@ describe('gui.EventPlugin', function likethis() {
 		spirit.fadeOut();
 	});
 	*/
-
 });

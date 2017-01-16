@@ -2,7 +2,7 @@ describe('ts.ui.MenuSpirit', function likethis() {
 	function setup(action, html, done) {
 		var spirit, dom = helper.createTestDom();
 		dom.innerHTML = html;
-		sometime(function later(){
+		sometime(function later() {
 			spirit = ts.ui.get(dom.querySelector('menu'));
 			action(spirit);
 			done();

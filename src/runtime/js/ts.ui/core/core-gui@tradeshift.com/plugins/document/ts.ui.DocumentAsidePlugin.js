@@ -5,7 +5,6 @@
  * @using {gui.Tick} Tick
  */
 ts.ui.DocumentAsidePlugin = (function using(Tick) {
-
 	// local actions *from* asides in this context
 	var willopen = ts.ui.ACTION_ASIDE_WILL_OPEN,
 		didopen = ts.ui.ACTION_ASIDE_DID_OPEN,
@@ -32,11 +31,11 @@ ts.ui.DocumentAsidePlugin = (function using(Tick) {
 	 * @param {Array<ts.ui.SideShowSpirit} last
 	 */
 	function flip(first, last) {
-		if(first.length) {
+		if (first.length) {
 			first.slice().forEach(function(spirit, index) {
 				spirit.$flip().then(function() {
 					gui.Array.remove(first, index);
-					if(!first.length && last) {
+					if (!first.length && last) {
 						flip(last);
 					}
 				});
@@ -122,15 +121,14 @@ ts.ui.DocumentAsidePlugin = (function using(Tick) {
 		ontick: function(t) {
 			var out = this._flipout;
 			var ins = this._flipins;
-			if(t.type === 'xxx') {
-				if(out.length) {
+			if (t.type === 'xxx') {
+				if (out.length) {
 					flip(out, ins);
 				} else {
 					flip(ins);
 				}
 			}
 		},
-
 
 		// Private .................................................................
 
@@ -156,5 +154,4 @@ ts.ui.DocumentAsidePlugin = (function using(Tick) {
 		}
 
 	});
-
 }(gui.Tick));

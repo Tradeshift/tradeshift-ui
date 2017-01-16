@@ -1,4 +1,4 @@
 /**
  * Core module.
  */
-gui.module("gui@wunderbyte.com");
+gui.module('gui@wunderbyte.com');

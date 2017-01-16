@@ -4,7 +4,6 @@
  * @using {ts.ui.Markdown} Markdown Converts (subset of) markdown to markup
  */
 ts.ui.TextModel = (function using(Markdown) {
-
 	return ts.ui.Model.extend({
 
 		/**
@@ -21,7 +20,7 @@ ts.ui.TextModel = (function using(Markdown) {
 
 		/**
 		 * Bounce model to HTML. This (at least) produces one or more <p> tags
-		 * @param @optional {Array<string>} tags If specified, decides what tags 
+		 * @param @optional {Array<string>} tags If specified, decides what tags
 		 * besides <p> to be parsed. If not, all supported tags will get parsed.
 		 * @return {string}
 		 */
@@ -30,6 +29,4 @@ ts.ui.TextModel = (function using(Markdown) {
 		}
 
 	});
-
-
 }(ts.ui.Markdown));

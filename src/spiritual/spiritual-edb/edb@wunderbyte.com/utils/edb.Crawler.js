@@ -3,7 +3,6 @@
  * TODO: Implement 'stop' directive
  */
 edb.Crawler = (function() {
-
 	function Crawler() {}
 	Crawler.prototype = {
 
@@ -25,9 +24,9 @@ edb.Crawler = (function() {
 	 */
 	function crawl(type, handler) {
 		gui.Object.each(type, istype).forEach(
-			function(type) {
-				handle(type, handler);
-				crawl(type, handler);
+			function(oneType) {
+				handle(oneType, handler);
+				crawl(oneType, handler);
 			}
 		);
 	}
@@ -55,5 +54,4 @@ edb.Crawler = (function() {
 	}
 
 	return Crawler;
-
 }());

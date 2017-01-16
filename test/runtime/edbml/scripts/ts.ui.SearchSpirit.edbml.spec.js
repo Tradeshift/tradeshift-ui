@@ -1,5 +1,4 @@
 describe('ts.ui.PagerSpirit.edbml', function likethis() {
-
 	it('should contain input', function(done) {
 		var html = '<div data-ts="Search" class="ts-inset"></div>';
 		sometime(function later() {
@@ -31,5 +30,4 @@ describe('ts.ui.PagerSpirit.edbml', function likethis() {
 			done();
 		});
 	});
-
 });

@@ -4,7 +4,6 @@
  * @using {gui.Type} type
  */
 gui.Crawler = (function using(Type) {
-
 	return gui.Class.create(Object.prototype, {
 
 		/**
@@ -29,7 +28,7 @@ gui.Crawler = (function using(Type) {
 		 * @returns {String}
 		 */
 		toString: function() {
-			return "[object gui.Crawler]";
+			return '[object gui.Crawler]';
 		},
 
 		/**
@@ -128,7 +127,6 @@ gui.Crawler = (function using(Type) {
 			this.global = false;
 		},
 
-
 		// Private ...................................................................
 
 		/**
@@ -144,7 +142,7 @@ gui.Crawler = (function using(Type) {
 		 * @param {boolean} start
 		 */
 		_descend: function(elm, handler, arg, start) {
-			var win, next, spirit, directive = this._handleElement(elm, handler, arg);
+			var next, spirit, directive = this._handleElement(elm, handler, arg);
 			switch (directive) {
 				case gui.Crawler.STOP:
 					this._stopped = true;
@@ -154,24 +152,23 @@ gui.Crawler = (function using(Type) {
 					if (directive !== gui.Crawler.SKIP_CHILDREN) {
 						if (elm.childElementCount) {
 							this._descend(elm.firstElementChild, handler, arg, false);
-						} else if (this.global && elm.localName === "iframe") {
+						} else if (this.global && elm.localName === 'iframe') {
 							/*
 							 * TODO: Make iframe transcend work even without spirit support.
 							 */
 							if ((spirit = elm.spirit) && (spirit instanceof gui.IframeSpirit)) {
-								win = elm.ownerDocument.defaultView;
 								if (Type.isFunction(handler.transcend)) {
 									handler.transcend(
-										spirit.contentWindow, 
-										spirit.xguest, 
+										spirit.contentWindow,
+										spirit.xguest,
 										spirit.$instanceid
 									);
 								}
 							}
 						}
 					}
-					if(!this._stopped) {
-						if (!start && (next = elm.nextElementSibling))  {
+					if (!this._stopped) {
+						if (!start && (next = elm.nextElementSibling)) {
 							this._descend(next, handler, arg, false);
 						}
 					}
@@ -193,8 +190,8 @@ gui.Crawler = (function using(Type) {
 				if (Type.isFunction(handler.handleElement)) {
 					directive = handler.handleElement(element, arg);
 				}
-				if(!directive && hasspirit) {
-					if((spirit = gui.get(element))) {
+				if (!directive && hasspirit) {
+					if ((spirit = gui.get(element))) {
 						directive = spirit.oncrawler(this);
 						if (!directive) {
 							if (Type.isFunction(handler.handleSpirit)) {
@@ -220,16 +217,14 @@ gui.Crawler = (function using(Type) {
 			return handler.handleSpirit(spirit);
 		}
 
-
 	}, {}, { // Static .............................................................
 
-		ASCENDING: "ascending",
-		DESCENDING: "descending",
+		ASCENDING: 'ascending',
+		DESCENDING: 'descending',
 		CONTINUE: 0,
 		STOP: 1,
 		SKIP: 2, // @TODO: support this
 		SKIP_CHILDREN: 4
 
 	});
-
 }(gui.Type));

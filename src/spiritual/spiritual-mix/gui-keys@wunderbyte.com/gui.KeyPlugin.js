@@ -5,7 +5,6 @@
  * @using {gui.Combo#chained}
  */
 gui.KeyPlugin = (function using(confirmed, chained) {
-
 	return gui.TrackerPlugin.extend({
 
 		/**
@@ -14,9 +13,9 @@ gui.KeyPlugin = (function using(confirmed, chained) {
 		 * @param @optional {object|function} handler
 		 * @returns {gui.KeyPlugin}
 		 */
-		add: confirmed("array|string", "(object|function)")(
+		add: confirmed('array|string', '(object|function)')(
 			chained(function(arg, handler) {
-				handler = handler ? handler : this.spirit;
+				handler = handler || this.spirit;
 				if (gui.Interface.validate(gui.IKeyHandler, handler)) {
 					gui.Array.make(arg).forEach(function(a) {
 						if (this._addchecks(String(a), [handler, this._global])) {
@@ -33,9 +32,9 @@ gui.KeyPlugin = (function using(confirmed, chained) {
 		 * @param @optional {object} handler
 		 * @returns {gui.KeyPlugin}
 		 */
-		remove: confirmed("array|string", "(object|function)")(
+		remove: confirmed('array|string', '(object|function)')(
 			chained(function(arg, handler) {
-				handler = handler ? handler : this.spirit;
+				handler = handler || this.spirit;
 				if (gui.Interface.validate(gui.IKeyHandler, handler)) {
 					gui.Array.make(arg).forEach(function(a) {
 						if (this._removechecks(String(a), [handler, this._global])) {
@@ -77,7 +76,7 @@ gui.KeyPlugin = (function using(confirmed, chained) {
 		 * @param {gui.Broadcast} b
 		 */
 		onbroadcast: function(b) {
-			var list, checks, handler, isglobal;
+			var list, handler, isglobal;
 			if (b.type === gui.BROADCAST_KEYEVENT) {
 				var down = b.data.down,
 					type = b.data.type;
@@ -93,7 +92,6 @@ gui.KeyPlugin = (function using(confirmed, chained) {
 			}
 		},
 
-
 		// Private .....................................................................
 
 		/**
@@ -104,10 +102,10 @@ gui.KeyPlugin = (function using(confirmed, chained) {
 			var act, sig = this.context.gui.$contextid;
 			var type = gui.BROADCAST_KEYEVENT;
 			if (this._global) {
-				act = add ? "addGlobal" : "removeGlobal";
+				act = add ? 'addGlobal' : 'removeGlobal';
 				gui.Broadcast[act](type, this);
 			} else {
-				act = add ? "add" : "remove";
+				act = add ? 'add' : 'remove';
 				gui.Broadcast[act](type, this, sig);
 			}
 		},
@@ -127,5 +125,4 @@ gui.KeyPlugin = (function using(confirmed, chained) {
 		}
 
 	});
-
 }(gui.Arguments.confirmed, gui.Combo.chained));

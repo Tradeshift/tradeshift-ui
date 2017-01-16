@@ -2,9 +2,8 @@
  * Proxy all the things.
  */
 edb.ObjectProxy = (function scoped() {
-
-	/* 
-	 * Don't trigger object accessors 
+	/*
+	 * Don't trigger object accessors
 	 * while scanning them internally.
 	 */
 	var suspend = false;
@@ -44,8 +43,8 @@ edb.ObjectProxy = (function scoped() {
 	}
 
 	/**
-	 * Since in this case we are not creating models of simple objects and 
-	 * arrays, we'll need to *clone* the data so that our state doesn't get 
+	 * Since in this case we are not creating models of simple objects and
+	 * arrays, we'll need to *clone* the data so that our state doesn't get
 	 * entangled into something that another framework depends upon.
 	 * @param {object|array} thing
 	 * @returns {object|array}
@@ -53,23 +52,21 @@ edb.ObjectProxy = (function scoped() {
 	function deepclone(thing) {
 		try {
 			thing = JSON.parse(JSON.stringify(thing));
-		} catch(exception) {
+		} catch (exception) {
 			console.error('Could not parse as JSON', exception.message, thing);
 		}
 		return thing;
 	}
 
-
 	return { // Public ...........................................................
 
 		/**
 		 * Simplistic proxy mechanism to dispatch broadcasts on getters and setters.
-		 * @param {object} target The object whose properties are being intercepted. 
-		 * @param {edb.Object|edb.Array} handler The edb.Type instance that 
-		 *        intercepts the properties
+		 * @param {object} target The object whose properties are being intercepted.
+		 * @param {edb.Object|edb.Array} handler The edb.Type instance that
+		 *				intercepts the properties
 		 */
 		approximate: function(target, handler, types) {
-
 			/*
 			 * Transfer all methods to the handler.
 			 */
@@ -78,17 +75,17 @@ edb.ObjectProxy = (function scoped() {
 			});
 
 			/*
-			 * Clone the first level of properties to make sure we don't entangle the 
-			 * state of some other system that might still use it for other purposes. 
-			 * Note that we can't deep clone via JSON parse and stringify because the 
-			 * next level might still contain *methods* of interest, but that will 
+			 * Clone the first level of properties to make sure we don't entangle the
+			 * state of some other system that might still use it for other purposes.
+			 * Note that we can't deep clone via JSON parse and stringify because the
+			 * next level might still contain *methods* of interest, but that will
 			 * again become the first level of any nested Types (so fixed by this).
 			 * TODO: We don't need to copy the methods here, so let's not do that ...
 			 * TODO: https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Structured_clone_algorithm
 			 */
 			target = gui.Object.copy(target);
 
-			/* 
+			/*
 			 * 1. Objects by default convert to edb.Object
 			 * 2. Arrays by default convert to edb.Array
 			 * 3. Simple properties get target accessors
@@ -110,7 +107,7 @@ edb.ObjectProxy = (function scoped() {
 								return desc.get.call(this);
 							} else {
 								var inst = types[key];
-								if(inst && edb.Type.is(inst)) {
+								if (inst && edb.Type.is(inst)) {
 									return inst;
 								} else {
 									return target[key];
@@ -126,16 +123,16 @@ edb.ObjectProxy = (function scoped() {
 									if (edb.Type.is(value)) {
 										types[key] = value;
 									} else {
-										if(value === null) {
+										if (value === null) {
 											types[key] = null; // NOW WE DON't KNOW THE TYPE NEXT TIME!
 										} else {
-											if(edb.Type.is(type)) {
+											if (edb.Type.is(type)) {
 												Type = type.constructor; // already instantiated
 											} else {
 												Type = type; // not yet instantiate
 											}
-											//Type = type.constructor; // TODO: filter function support!
-											if(!Type.from) {
+											// Type = type.constructor; // TODO: filter function support!
+											if (!Type.from) {
 												console.error('Bad setup for "' + key + '"');
 											}
 											types[key] = Type.from(value);
@@ -146,7 +143,7 @@ edb.ObjectProxy = (function scoped() {
 									var oldval = target[key];
 									Type = handler.constructor;
 									var cast = Type.prototype[key];
-									switch (cast) { // TODO: filter function support! 
+									switch (cast) { // TODO: filter function support!
 										case Object:
 										case Array:
 											if (gui.Type.isNull(value) || gui.Type.isComplex(value)) {
@@ -171,5 +168,4 @@ edb.ObjectProxy = (function scoped() {
 			});
 		}
 	};
-
 }());

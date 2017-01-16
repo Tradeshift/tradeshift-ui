@@ -5,7 +5,6 @@
  * @using {gui.Combo.chained} chained
  */
 ts.ui.ButtonCollection = (function using(confirmed, chained) {
-
 	return ts.ui.Collection.extend({
 
 		/**
@@ -13,27 +12,27 @@ ts.ui.ButtonCollection = (function using(confirmed, chained) {
 		 * @type {string}
 		 */
 		item: 'buttons',
-		
+
 		/**
 		 * All buttons (manually made) visible?
 		 * TODO: This prop should be observed!
 		 * @type {boolean}
 		 */
 		visible: true,
-		
+
 		/**
 		 * All buttons (manually) disabled?
 		 * TODO: This prop should be observed!
 		 * @type {boolean}
 		 */
 		disabled: false,
-		
+
 		/**
 		 * Content model constructor.
 		 * @returns {constructor}
 		 */
 		$of: confirmed('(object|array)')(function(arg) {
-			if(Array.isArray(arg)) {
+			if (Array.isArray(arg)) {
 				return ts.ui.ButtonCollection;
 			} else {
 				return ts.ui.ButtonModel;
@@ -73,7 +72,7 @@ ts.ui.ButtonCollection = (function using(confirmed, chained) {
 		render: function() {
 			return ts.ui.buttons.edbml(this);
 		},
-		
+
 		/**
 		 * Hide all buttons.
 		 * @returns {ts.ui.ButtonCollection}
@@ -84,7 +83,7 @@ ts.ui.ButtonCollection = (function using(confirmed, chained) {
 				button.hide();
 			});
 		}),
-		
+
 		/**
 		 * Show all buttons.
 		 * @returns {ts.ui.ButtonCollection}
@@ -95,7 +94,7 @@ ts.ui.ButtonCollection = (function using(confirmed, chained) {
 				button.show();
 			});
 		}),
-		
+
 		/**
 		 * Disable all buttons.
 		 * @returns {ts.ui.ButtonCollection}
@@ -106,7 +105,7 @@ ts.ui.ButtonCollection = (function using(confirmed, chained) {
 				button.disable();
 			});
 		}),
-		
+
 		/**
 		 * Enable all buttons.
 		 * @returns {ts.ui.ButtonCollection}
@@ -117,7 +116,6 @@ ts.ui.ButtonCollection = (function using(confirmed, chained) {
 				button.enable();
 			});
 		}),
-
 
 		// Private .....................................................
 
@@ -152,7 +150,7 @@ ts.ui.ButtonCollection = (function using(confirmed, chained) {
 		 */
 		_filterBy: function(klass) {
 			return this.filter(function(member) {
-				switch(member.constructor) {
+				switch (member.constructor) {
 					case ts.ui.ButtonModel:
 						return member.type.includes(klass);
 					case ts.ui.ButtonCollection:
@@ -162,5 +160,4 @@ ts.ui.ButtonCollection = (function using(confirmed, chained) {
 		}
 
 	});
-
 }(gui.Arguments.confirmed, gui.Combo.chained));

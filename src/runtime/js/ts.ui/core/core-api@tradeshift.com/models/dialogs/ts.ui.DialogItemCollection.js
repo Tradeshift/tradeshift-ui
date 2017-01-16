@@ -8,8 +8,7 @@ ts.ui.DialogItemCollection = ts.ui.Collection.extend({
 	 * Friendly name.
 	 * @type {string}
 	 */
-	item: 'dialogitems',
-
+	item: 'dialogitems'
 
 }, { // Static .................................................................
 

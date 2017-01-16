@@ -11,7 +11,6 @@
  * @using {gui.KeyMaster} KeyMaster
  */
 edbml.UpdateManager = (function using(UpdateCollector, HardUpdate, AttsUpdate, InsertUpdate, RemoveUpdate, AppendUpdate, FunctionUpdate, GuiObject, KeyMaster) {
-
 	return gui.Class.create(Object.prototype, {
 
 		/**
@@ -48,7 +47,6 @@ edbml.UpdateManager = (function using(UpdateCollector, HardUpdate, AttsUpdate, I
 				this._updates = null;
 			}
 		},
-
 
 		// Private ...................................................................
 
@@ -207,7 +205,7 @@ edbml.UpdateManager = (function using(UpdateCollector, HardUpdate, AttsUpdate, I
 									}
 									result = false; // crawling continued in _updatesoft
 								} else {
-									if (oldnode.localName !== "textarea") { // TODO: better forms support!
+									if (oldnode.localName !== 'textarea') { // TODO: better forms support!
 										result = newnode.childNodes.length === oldnode.childNodes.length;
 										if (!result && oldnode.id) {
 											lastnode = newnode;
@@ -234,7 +232,7 @@ edbml.UpdateManager = (function using(UpdateCollector, HardUpdate, AttsUpdate, I
 		 * @returns {boolean}
 		 */
 		_familiar: function(newnode, oldnode) {
-			return ["namespaceURI", "localName"].every(function(prop) {
+			return ['namespaceURI', 'localName'].every(function(prop) {
 				return newnode[prop] === oldnode[prop];
 			});
 		},
@@ -330,10 +328,10 @@ edbml.UpdateManager = (function using(UpdateCollector, HardUpdate, AttsUpdate, I
 					var res = true;
 					switch (node.nodeType) {
 						case Node.TEXT_NODE:
-							res = node.data.trim() === "";
+							res = node.data.trim() === '';
 							break;
 						case Node.ELEMENT_NODE:
-							res = node.id !== "";
+							res = node.id !== '';
 							break;
 					}
 					return res;
@@ -378,7 +376,7 @@ edbml.UpdateManager = (function using(UpdateCollector, HardUpdate, AttsUpdate, I
 			var updates = [];
 			var news = this._assistant.index(newnode.childNodes);
 			var olds = this._assistant.index(oldnode.childNodes);
-			
+
 			// add elements?
 			var child = newnode.lastElementChild,
 				topid = oldnode.id,
@@ -401,7 +399,7 @@ edbml.UpdateManager = (function using(UpdateCollector, HardUpdate, AttsUpdate, I
 				}
 				child = child.previousElementSibling;
 			}
-			
+
 			// remove elements?
 			Object.keys(olds).forEach(function(id) {
 				if (!news[id]) {
@@ -425,7 +423,6 @@ edbml.UpdateManager = (function using(UpdateCollector, HardUpdate, AttsUpdate, I
 		}
 
 	});
-
 }(
 	edbml.UpdateCollector,
 	edbml.HardUpdate,

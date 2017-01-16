@@ -1,5 +1,4 @@
 describe('ts.ui.SwitchSpirit', function likethis() {
-
 	it('should (eventually) channel via ts-attribute', function(done) {
 		var spirit, dom = helper.createTestDom();
 		dom.innerHTML = '<select data-ts="Select"/>';
@@ -17,7 +16,7 @@ describe('ts.ui.SwitchSpirit', function likethis() {
 		try {
 			div.setAttribute('data-ts', 'Switch');
 			dom.appendChild(div);
-		} catch(exception) {
+		} catch (exception) {
 			err = exception;
 		}
 		expect(err).not.toBeNull();
@@ -31,10 +30,9 @@ describe('ts.ui.SwitchSpirit', function likethis() {
 			input.setAttribute('data-ts', 'Switch');
 			input.type = 'text';
 			dom.appendChild(input);
-		} catch(exception) {
+		} catch (exception) {
 			err = exception;
 		}
 		expect(err).not.toBeNull();
 	});
-
 });

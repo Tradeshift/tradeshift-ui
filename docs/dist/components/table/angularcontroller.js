@@ -6,8 +6,8 @@ function Controller($scope) {
 	};
 	var selectedModel = {
 		all: false,
-		items:[]
-	}
+		items: []
+	};
 
 	function getRows() {
 		var rows = [],
@@ -16,7 +16,7 @@ function Controller($scope) {
 			n = model.page * model.pageSize + i + 1;
 			if (n > model.total) break;
 			rows.push({
-				selected: selectedModel.all || selectedModel.items[n-1],
+				selected: selectedModel.all || selectedModel.items[n - 1],
 				cells: [{
 					text: 'cell ' + n + '-1'
 				}, {
@@ -35,25 +35,25 @@ function Controller($scope) {
 		label: 'column 2'
 	}];
 
-	ts.ui.ready(function () {
+	ts.ui.ready(function() {
 		var table = ts.ui.get('grid');
 		table.cols(cols);
 		table.max(model.pageSize).pager({
 			page: model.page,
 			pages: model.total / model.pageSize,
-			onselect: function (n) {
-				$scope.$apply(function () {
+			onselect: function(n) {
+				$scope.$apply(function() {
 					model.page = n;
 				});
 			}
 		});
 		table.rows(getRows());
 
-		$scope.$watch(angular.bind(this, function () {
+		$scope.$watch(angular.bind(this, function() {
 			return model;
 		}),
 
-		function () {
+		function() {
 			table.rows(getRows());
 		}, true);
 
@@ -72,17 +72,17 @@ function Controller($scope) {
 
 	function selectOffers(selectedOrSelectAll, unselected) {
 		if (typeof (selectedOrSelectAll) === 'boolean') {
-			 selectedModel.all = selectedOrSelectAll;
+			selectedModel.all = selectedOrSelectAll;
 		} else {
 			selectedModel.all = false;
 			var selected = selectedOrSelectAll;
 			if (selected) {
-				selected.forEach(function (i) {
+				selected.forEach(function(i) {
 					selectedModel.items[model.page * model.pageSize + i] = 1;
 				});
 			}
 			if (unselected) {
-				unselected.forEach(function (i) {
+				unselected.forEach(function(i) {
 					delete selectedModel.items[model.page * model.pageSize + i];
 				});
 			}

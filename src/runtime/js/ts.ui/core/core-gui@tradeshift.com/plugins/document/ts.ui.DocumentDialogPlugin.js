@@ -4,11 +4,9 @@
  * @see {ts.top.DocumentDialogPlugin}
  */
 ts.ui.DocumentDialogPlugin = (function() {
-
 	// local broadcasts *from* dialogs in this context
 	var willopen = ts.ui.BROADCAST_DIALOG_WILL_OPEN,
 		goopen = ts.ui.BROADCAST_DIALOG_GO_OPEN,
-		didopen = ts.ui.BROADCAST_DIALOG_DID_OPEN,
 		willclose = ts.ui.BROADCAST_DIALOG_WILL_CLOSE,
 		didclose = ts.ui.BROADCAST_DIALOG_DID_CLOSE,
 		modal_willopen = ts.ui.BROADCAST_MODAL_WILL_OPEN,
@@ -52,7 +50,7 @@ ts.ui.DocumentDialogPlugin = (function() {
 			var dialog = b.target;
 			switch (b.type) {
 				case willopen:
-					if(queue.length) {
+					if (queue.length) {
 						dialog.suspend();
 					} else {
 						announce(globalon);
@@ -60,13 +58,13 @@ ts.ui.DocumentDialogPlugin = (function() {
 					queue.push(dialog);
 					break;
 				case goopen:
-					if(dialog) {
+					if (dialog) {
 						this._updateblocking(dialog.blocking);
 					}
 					break;
 				case didclose:
 					queue.shift();
-					if(queue.length) {
+					if (queue.length) {
 						queue[0].unsuspend();
 					} else {
 						this._updateblocking(false);
@@ -82,7 +80,6 @@ ts.ui.DocumentDialogPlugin = (function() {
 			}
 		},
 
-
 		// Private .................................................................
 
 		/**
@@ -93,7 +90,7 @@ ts.ui.DocumentDialogPlugin = (function() {
 
 		/**
 		 * Tracking open dialogs.
-		 * TODO(jmo@): This should in reality by done  in the {ts.ui.LayoutModel} 
+		 * TODO(jmo@): This should in reality by done	in the {ts.ui.LayoutModel}
 		 * so that we can account for dialogs going on in the chrome and such.
 		 * @type {Array<ts.ui.DialogSpirit}
 		 */
@@ -110,14 +107,14 @@ ts.ui.DocumentDialogPlugin = (function() {
 		 * @param {boolean} blocking
 		 */
 		_updateblocking: function(blocking) {
-			if(blocking) {
-				if(!this._blocking) {
+			if (blocking) {
+				if (!this._blocking) {
 					announce(globalblock);
 					this._cover().fadeIn();
 					this._blocking = true;
 				}
 			} else {
-				if(this._blocking) {
+				if (this._blocking) {
 					announce(globalunblock);
 					this._cover().fadeOut();
 					this._blocking = false;
@@ -135,5 +132,4 @@ ts.ui.DocumentDialogPlugin = (function() {
 		}
 
 	});
-
 }());

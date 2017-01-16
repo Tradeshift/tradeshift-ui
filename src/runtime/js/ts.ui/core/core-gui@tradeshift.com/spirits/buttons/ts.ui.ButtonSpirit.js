@@ -11,15 +11,14 @@
  * @using {boolean} ie9
  */
 ts.ui.ButtonSpirit = (function using(chained, Client, Type, CSSPlugin, ie9) {
-
 	// classnames reserved for button color scheme
 	var classnames = [
 		ts.ui.CLASS_PRIMARY,
 		ts.ui.CLASS_SECONDARY,
 		ts.ui.CLASS_TERTIARY,
-		ts.ui.CLASS_DANGER,
+		ts.ui.CLASS_DANGER
 	];
-	
+
 	// some other classnames
 	var CLASS_READY = ts.ui.CLASS_READY;
 	var CLASS_LOADING = ts.ui.CLASS_IS_LOADING;
@@ -44,9 +43,9 @@ ts.ui.ButtonSpirit = (function using(chained, Client, Type, CSSPlugin, ie9) {
 		data: null,
 
 		/**
-		 * Mark as busy or done, use `false` or empty string when done. 
+		 * Mark as busy or done, use `false` or empty string when done.
 		 * (API looks like this so we can control it via HTML attribute)
-		 * TODO(jmo@): Perhaps something more fancy for IE9, but for now 
+		 * TODO(jmo@): Perhaps something more fancy for IE9, but for now
 		 * we'll just call it "progressive enhancement"...
 		 * @param @optional {string|boolean} busy
 		 * @returns {ts.ui.ButtonSpirit}
@@ -54,13 +53,13 @@ ts.ui.ButtonSpirit = (function using(chained, Client, Type, CSSPlugin, ie9) {
 		busy: chained(function(busy) {
 			busy = arguments.length ? busy : true;
 			var css = this.css;
-			if(ie9) {
+			if (ie9) {
 				this.element.disabled = !!busy;
 			} else {
 				if (busy) {
 					this._busymessage(busy);
 					css.remove(CLASS_READY).add(CLASS_LOADING);
-				} else if(css.contains(CLASS_LOADING)) {
+				} else if (css.contains(CLASS_LOADING)) {
 					css.remove(CLASS_LOADING);
 					this._nomorebusy(function bypasstransitions() {
 						css.shift(!css.contains(CLASS_LOADING), CLASS_READY);
@@ -68,7 +67,7 @@ ts.ui.ButtonSpirit = (function using(chained, Client, Type, CSSPlugin, ie9) {
 				}
 			}
 		}),
-		
+
 		/**
 		 * Mark as done.
 		 * @returns {ts.ui.ButtonSpirit}
@@ -86,13 +85,13 @@ ts.ui.ButtonSpirit = (function using(chained, Client, Type, CSSPlugin, ie9) {
 			this.super.onconfigure();
 			this.att.add('tabindex');
 			this.event.add('click dragstart');
-			if(!Client.isTouchDevice) {
+			if (!Client.isTouchDevice) {
 				this.event.add('mousedown focus blur');
 			}
-			if(this.type === ts.ui.ACTION_SAFE_LINK && this.data) {
-				if(/^http(s?):\/\//.test(this.data)) {
+			if (this.type === ts.ui.ACTION_SAFE_LINK && this.data) {
+				if (/^http(s?):\/\//.test(this.data)) {
 					this.element.target = '_blank';
-					this.element.rel = "noopener";
+					this.element.rel = 'noopener';
 					this.element.href = this.data;
 				}
 			}
@@ -125,7 +124,7 @@ ts.ui.ButtonSpirit = (function using(chained, Client, Type, CSSPlugin, ie9) {
 		 */
 		onatt: function(a) {
 			this.super.onatt(a);
-			if(a.name === 'tabindex') {
+			if (a.name === 'tabindex') {
 				this._keyboardclass(a.value);
 			}
 		},
@@ -136,11 +135,10 @@ ts.ui.ButtonSpirit = (function using(chained, Client, Type, CSSPlugin, ie9) {
 		 */
 		onevent: function(e) {
 			this.super.onevent(e);
-			var keyboard = false;
 			var busy = this.css.contains(CLASS_LOADING);
 			switch (e.type) {
 				case 'mousedown':
-					if(!busy) {
+					if (!busy) {
 						this._depressing = true;
 						this.tick.time(function() {
 							this._depressing = false;
@@ -154,7 +152,7 @@ ts.ui.ButtonSpirit = (function using(chained, Client, Type, CSSPlugin, ie9) {
 					this._focusclass(false);
 					break;
 				case 'click':
-					if(!busy) {
+					if (!busy) {
 						this._depressing = false;
 						this._dispatchaction();
 						this._focusclass(true, true);
@@ -178,7 +176,7 @@ ts.ui.ButtonSpirit = (function using(chained, Client, Type, CSSPlugin, ie9) {
 					this.dom.append(document.createElement('i'));
 			i.className = classname;
 		}),
-		
+
 		/**
 		 * Set ot get text.
 		 * @param @optional {string} classname
@@ -186,14 +184,14 @@ ts.ui.ButtonSpirit = (function using(chained, Client, Type, CSSPlugin, ie9) {
 		 */
 		text: chained(function(text) {
 			var span = this.dom.q('span');
-			if(arguments.length) {
+			if (arguments.length) {
 				span = span || this.dom.append(document.createElement('span'));
 				span.textContent = text;
 			} else {
 				return span ? span.textContent : null;
 			}
 		}),
-		
+
 		/**
 		 * Disable the button.
 		 * @returns {ts.ui.ButtonSpirit}
@@ -201,7 +199,7 @@ ts.ui.ButtonSpirit = (function using(chained, Client, Type, CSSPlugin, ie9) {
 		disable: chained(function() {
 			this.element.disabled = true;
 		}),
-		
+
 		/**
 		 * Enable the button.
 		 * @returns {ts.ui.ButtonSpirit}
@@ -209,7 +207,6 @@ ts.ui.ButtonSpirit = (function using(chained, Client, Type, CSSPlugin, ie9) {
 		enable: chained(function() {
 			this.element.disabled = false;
 		}),
-
 
 		// Private .................................................................
 
@@ -221,14 +218,14 @@ ts.ui.ButtonSpirit = (function using(chained, Client, Type, CSSPlugin, ie9) {
 		 * @type {boolean}
 		 */
 		_depressing: false,
-		
+
 		/**
-		 * When showing a temporary busy-message, 
+		 * When showing a temporary busy-message,
 		 * snapshot the original label text here.
 		 * @type {string}
 		 */
 		_donelabel: null,
-		
+
 		/**
 		 * Default button type to "button" so that
 		 * it won't accidentally submit forms.
@@ -236,9 +233,9 @@ ts.ui.ButtonSpirit = (function using(chained, Client, Type, CSSPlugin, ie9) {
 		 * @param {string} type
 		 */
 		_defaulttype: function(name, type, href) {
-			if(name === 'button' && !type) {
+			if (name === 'button' && !type) {
 				this.element.type = 'button';
-			} else if(name === 'a' && !href) {
+			} else if (name === 'a' && !href) {
 				this.element.href = ts.ui.ButtonSpirit.HREF_DEFAULT;
 			}
 		},
@@ -249,8 +246,8 @@ ts.ui.ButtonSpirit = (function using(chained, Client, Type, CSSPlugin, ie9) {
 		 * @param {Element} ancestor
 		 */
 		_defaultclass: function(ancestor) {
-			if(ancestor && CSSPlugin.contains(ancestor, 'ts-buttons')) {
-				if(!classnames.some(function(name) {
+			if (ancestor && CSSPlugin.contains(ancestor, 'ts-buttons')) {
+				if (!classnames.some(function(name) {
 					return this.css.contains(name);
 				}, this)) {
 					this.css.add(ts.ui.CLASS_TERTIARY);
@@ -291,7 +288,9 @@ ts.ui.ButtonSpirit = (function using(chained, Client, Type, CSSPlugin, ie9) {
 		 */
 		_isnavigatable: function() {
 			var elm = this.element, href = elm.href;
-			return href && !href.startsWith('javascript:') && !elm.download;
+			return href &&
+				!href.startsWith('javascript:') &&
+				!elm.download;
 		},
 
 		/**
@@ -303,9 +302,9 @@ ts.ui.ButtonSpirit = (function using(chained, Client, Type, CSSPlugin, ie9) {
 		 */
 		_focusclass: function(is, keyboard) {
 			var css = 'ts-active';
-			if(this._isfocusable()) {
-				if(is) {
-					if(keyboard) {
+			if (this._isfocusable()) {
+				if (is) {
+					if (keyboard) {
 						this.css.add(css);
 					}
 				} else {
@@ -320,37 +319,36 @@ ts.ui.ButtonSpirit = (function using(chained, Client, Type, CSSPlugin, ie9) {
 		_dispatchaction: function() {
 			this.action.dispatch(this.type || ts.ui.ACTION_CLICK, this.data);
 		},
-		
+
 		/**
 		 * Perhaps show a status message when busy?
 		 * @param @optional {string|boolean} message
 		 */
 		_busymessage: function(message) {
-			if(Type.isString(message)) {
+			if (Type.isString(message)) {
 				this.css.add(CLASS_LOADING_MESSAGE);
 				this._donelabel = this.text();
 				this.text(message);
 			}
 		},
-		
+
 		/**
-		 * Restore original label and revert to normal 
+		 * Restore original label and revert to normal
 		 * button without any strange CSS transitions.
 		 * @param {function} done
 		 */
 		_nomorebusy: function(cb) {
-			if(this._donelabel) {
+			if (this._donelabel) {
 				this.css.remove(CLASS_LOADING_MESSAGE);
 				this.text(this._donelabel);
 				this._donelabel = null;
 			}
 			this.tick.time(function nocolortransition() {
-				if(!this.$destructed) {
+				if (!this.$destructed) {
 					cb.call(this);
 				}
 			}, 50);
 		}
-
 
 	}, { // Static ...............................................................
 
@@ -388,7 +386,7 @@ ts.ui.ButtonSpirit = (function using(chained, Client, Type, CSSPlugin, ie9) {
 		/**
 		 * If a button or something inside a button was clicked,
 		 * return that button. When IE9 dies, we should make
-		 * everything inside buttons `pointer-events:none`. 
+		 * everything inside buttons `pointer-events:none`.
 		 * Note that, confusingly, Firefox does this by default.
 		 * @param {Element} elm
 		 * @param @optional (Element) stop
@@ -414,7 +412,6 @@ ts.ui.ButtonSpirit = (function using(chained, Client, Type, CSSPlugin, ie9) {
 			return elm ? ts.ui.get(elm) : null;
 		}
 
-
 	}, { // Static ...............................................................
 
 		/**
@@ -426,5 +423,4 @@ ts.ui.ButtonSpirit = (function using(chained, Client, Type, CSSPlugin, ie9) {
 		hasfocusstyling: (!Client.isSafari && !Client.isTouchDevice)
 
 	});
-
 }(gui.Combo.chained, gui.Client, gui.Type, gui.CSSPlugin, gui.Client.isExplorer9));

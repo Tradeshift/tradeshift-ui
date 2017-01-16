@@ -7,7 +7,6 @@
  * @using {gui.Type} Type
  */
 ts.ui.DialogSpirit = (function using(Dialog, Client, chained, Type) {
-
 	var willopen = ts.ui.BROADCAST_DIALOG_WILL_OPEN,
 		goopen = ts.ui.BROADCAST_DIALOG_GO_OPEN,
 		didopen = ts.ui.BROADCAST_DIALOG_DID_OPEN,
@@ -52,7 +51,7 @@ ts.ui.DialogSpirit = (function using(Dialog, Client, chained, Type) {
 		onconfigure: function() {
 			this.super.onconfigure();
 			this.css.add(ts.ui.CLASS_DIALOG);
-			if(this._transition) {
+			if (this._transition) {
 				this.css.add(ts.ui.CLASS_TRANSITION);
 			}
 			this.dom.hide();
@@ -63,7 +62,7 @@ ts.ui.DialogSpirit = (function using(Dialog, Client, chained, Type) {
 		 */
 		ondestruct: function() {
 			this.super.ondestruct();
-			if(this.isOpen) {
+			if (this.isOpen) {
 				this.broadcast.dispatch(didclose);
 			}
 		},
@@ -88,12 +87,12 @@ ts.ui.DialogSpirit = (function using(Dialog, Client, chained, Type) {
 		 */
 		onaction: function(a) {
 			this.super.onaction(a);
-			switch(a.type) {
+			switch (a.type) {
 				case ts.ui.ACTION_SAFE_LINK:
-					if(this._ismodelled()) {
+					if (this._ismodelled()) {
 						// TODO(jmo@): Wait for animation to finish - close() should promise
 						// TODO(jmo@): Rig this up for xframe setup
-						if(Type.isFunction(this._model.onlink)) {
+						if (Type.isFunction(this._model.onlink)) {
 							this._model.onlink(a.data);
 						}
 					}
@@ -176,7 +175,7 @@ ts.ui.DialogSpirit = (function using(Dialog, Client, chained, Type) {
 		},
 
 		/**
-		 * Called by the {ts.ui.DocumentDialogPlugin} 
+		 * Called by the {ts.ui.DocumentDialogPlugin}
 		 * if other dialogs are currently in progress.
 		 */
 		suspend: function() {
@@ -184,7 +183,7 @@ ts.ui.DialogSpirit = (function using(Dialog, Client, chained, Type) {
 		},
 
 		/**
-		 * Called by the {ts.ui.DocumentDialogPlugin} 
+		 * Called by the {ts.ui.DocumentDialogPlugin}
 		 * when no other dialogs are in progress no more.
 		 */
 		unsuspend: function() {
@@ -199,12 +198,11 @@ ts.ui.DialogSpirit = (function using(Dialog, Client, chained, Type) {
 		onkey: function(k) {
 			this.super.onkey(k);
 			if (k.down && k.type === 'Esc') {
-				if(this._ismodelled()) {
+				if (this._ismodelled()) {
 					var model = this._model;
 					var buttons = model.buttons;
 					var cancel = buttons.get('cancel');
-					var accept = buttons.get('accept');
-					if(buttons.length && cancel) {
+					if (buttons.length && cancel) {
 						model.cancel();
 					} else {
 						model.accept();
@@ -212,8 +210,6 @@ ts.ui.DialogSpirit = (function using(Dialog, Client, chained, Type) {
 				}
 			}
 		},
-
-
 
 		// Private .................................................................
 
@@ -308,7 +304,7 @@ ts.ui.DialogSpirit = (function using(Dialog, Client, chained, Type) {
 				}
 			}
 			this.broadcast.dispatch(willopen);
-			if(!this._suspended) {
+			if (!this._suspended) {
 				this._goopen();
 			}
 		},
@@ -317,7 +313,6 @@ ts.ui.DialogSpirit = (function using(Dialog, Client, chained, Type) {
 		 * Let's open it.
 		 */
 		_goopen: function() {
-			var buttons = this.dom.q('.ts-dialog-buttons .ts-buttons');
 			var model = this._model;
 			this.broadcast.dispatch(goopen);
 			this.dom.show();
@@ -330,7 +325,7 @@ ts.ui.DialogSpirit = (function using(Dialog, Client, chained, Type) {
 				this._didopen();
 			}
 			if (this._ismodelled()) {
-				model.state = "onopen";
+				model.state = 'onopen';
 				this._doclassnames(this._model);
 				this._focusdefault(this._buttons());
 			}
@@ -353,7 +348,7 @@ ts.ui.DialogSpirit = (function using(Dialog, Client, chained, Type) {
 				}, time);
 			}
 			if (this._ismodelled()) {
-				this._model.state = "onopened";
+				this._model.state = 'onopened';
 			}
 		},
 
@@ -372,7 +367,7 @@ ts.ui.DialogSpirit = (function using(Dialog, Client, chained, Type) {
 				this._didclose();
 			}
 			if (this._ismodelled()) {
-				this._model.state = "onclose";
+				this._model.state = 'onclose';
 			}
 		},
 
@@ -388,7 +383,7 @@ ts.ui.DialogSpirit = (function using(Dialog, Client, chained, Type) {
 			this.attention.exit();
 			this.dom.hide();
 			if (this._ismodelled()) {
-				this._model.state = "onclosed";
+				this._model.state = 'onclosed';
 			}
 		},
 
@@ -434,7 +429,7 @@ ts.ui.DialogSpirit = (function using(Dialog, Client, chained, Type) {
 		 */
 		_focusdefault: function(buttons) {
 			var button;
-			if(buttons && (button = buttons.querySelector('[autofocus]'))) {
+			if (buttons && (button = buttons.querySelector('[autofocus]'))) {
 				button.focus();
 			}
 		},
@@ -446,12 +441,11 @@ ts.ui.DialogSpirit = (function using(Dialog, Client, chained, Type) {
 		 */
 		_buttons: function(index) {
 			var result = this.dom.q('.ts-dialog-buttons .ts-buttons');
-			if(result && arguments.length) {
+			if (result && arguments.length) {
 				result = result.querySelectorAll('.ts-button')[index];
 			}
 			return result;
 		}
-
 
 	}, { // Static ...............................................................
 
@@ -461,11 +455,10 @@ ts.ui.DialogSpirit = (function using(Dialog, Client, chained, Type) {
 		 * @return {ts.ui.DialogSpirit}
 		 */
 		summon: function(opt_model) {
-			var spirit = this.possess(document.createElement("div"));
+			var spirit = this.possess(document.createElement('div'));
 			spirit._model = (opt_model || null);
 			return spirit;
 		}
 
 	});
-
 }(ts.ui.Dialog, gui.Client, gui.Combo.chained, gui.Type));

@@ -3,18 +3,17 @@
  * @extends {ts.ui.CardSpirit}
  * @using {ts.ui.CardSpirit} CardSpirit
  */
- ts.ui.UserCardSpirit = (function(UserCard) {
-
+ts.ui.UserCardSpirit = (function(UserCard) {
 	return ts.ui.CardSpirit.extend({
 
-		 /**
+		/**
 		 * Show the user details in an aside.
 		 */
 		open: function() {
 			var clone = ts.ui.UserCardModel.from(this._model);
-			clone.type = "ts-details";
+			clone.type = 'ts-details';
 			ts.ui.Aside({
-				title: UserCard.localize("userDetails"),
+				title: UserCard.localize('userDetails'),
 				items: [
 					clone
 				],
@@ -22,10 +21,9 @@
 					this.dispose();
 				}
 			}).open();
-		},
+		}
 
-
-	 }, { // Static ..............................................................
+	}, { // Static ..............................................................
 
 		/**
 		 * Convert injected JSON to this kind of model.
@@ -42,5 +40,4 @@
 		collection: ts.ui.UserCardCollection
 
 	});
-
 }(ts.ui.UserCard));

@@ -1,7 +1,6 @@
 describe('ts.ui.PagerSpirit.edbml', function likethis() {
-
 	var html = '<div data-ts="Pager" data-ts.pages="8" data-ts.page="0"></div>';
-	
+
 	it('should contain menu', function(done) {
 		sometime(function later() {
 			expect(helper.gethtml(html)).toContain('<menu>');
@@ -103,5 +102,4 @@ describe('ts.ui.PagerSpirit.edbml', function likethis() {
 			done();
 		});
 	});
-
 });

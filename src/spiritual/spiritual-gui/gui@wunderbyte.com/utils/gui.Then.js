@@ -18,7 +18,7 @@ gui.Then.prototype = {
 	 * @returns {String}
 	 */
 	toString: function() {
-		return "[object gui.Then]";
+		return '[object gui.Then]';
 	},
 
 	/**
@@ -27,8 +27,8 @@ gui.Then.prototype = {
 	 * @param @optional {object} pointer
 	 */
 	then: function(callback, thisp) {
-		this._callback = callback ? callback : null;
-		this._pointer = thisp ? thisp : null;
+		this._callback = callback || null;
+		this._pointer = thisp || null;
 		if (this._now) {
 			this.now.apply(this, this._arg);
 		}
@@ -50,7 +50,6 @@ gui.Then.prototype = {
 			this._now = true;
 		}
 	}),
-
 
 	// Private ...................................................................
 

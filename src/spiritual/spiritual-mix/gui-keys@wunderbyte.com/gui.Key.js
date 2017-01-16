@@ -36,7 +36,6 @@ gui.Key.prototype = {
 	global: false
 };
 
-
 // Static .........................................................................................
 
 /**
@@ -114,8 +113,6 @@ gui.Key.prototype = {
 	});
 }());
 
-
-
 /**
  * These key codes "do not usually change" with keyboard layouts.
  * @TODO Read http://www.w3.org/TR/DOM-Level-3-Events/#key-values
@@ -149,8 +146,8 @@ gui.Key.prototype = {
 */
 
 /**
- * These codes are somewhat likely to match a US or European keyboard, 
- * but they are not listed in "do not usually change" section above. 
+ * These codes are somewhat likely to match a US or European keyboard,
+ * but they are not listed in "do not usually change" section above.
  *
 ( function questionablekeys () {
 	gui.Object.each ({

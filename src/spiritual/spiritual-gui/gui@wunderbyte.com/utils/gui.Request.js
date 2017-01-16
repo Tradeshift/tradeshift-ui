@@ -5,7 +5,7 @@
  */
 gui.Request = function Request(url, doc) {
 	this._headers = {
-		"Accept": "application/json"
+		Accept: 'application/json'
 	};
 	if (url) {
 		this.url(url, doc);
@@ -16,7 +16,6 @@ gui.Request = function Request(url, doc) {
  * @using {gui.Combo#chained}
  */
 gui.Request.prototype = (function using(chained) {
-
 	return {
 
 		/**
@@ -57,7 +56,7 @@ gui.Request.prototype = (function using(chained) {
 		 * @returns {gui.Request}
 		 */
 		acceptJSON: chained(function() {
-			this.accept("application/json");
+			this.accept('application/json');
 		}),
 
 		/**
@@ -65,7 +64,7 @@ gui.Request.prototype = (function using(chained) {
 		 * @returns {gui.Request}
 		 */
 		acceptXML: chained(function() {
-			this.accept("text/xml");
+			this.accept('text/xml');
 		}),
 
 		/**
@@ -73,7 +72,7 @@ gui.Request.prototype = (function using(chained) {
 		 * @returns {gui.Request}
 		 */
 		acceptText: chained(function() {
-			this.accept("text/plain");
+			this.accept('text/plain');
 		}),
 
 		/**
@@ -104,10 +103,9 @@ gui.Request.prototype = (function using(chained) {
 					this._headers[name] = String(value);
 				}, this);
 			} else {
-				throw new TypeError("Object expected");
+				throw new TypeError('Object expected');
 			}
 		}),
-
 
 		// Private ...................................................................................
 
@@ -125,7 +123,7 @@ gui.Request.prototype = (function using(chained) {
 		 * Default request type. Defaults to JSON.
 		 * @type {String}
 		 */
-		_format: "application/json",
+		_format: 'application/json',
 
 		/**
 		 * Override response mimetype?
@@ -177,37 +175,36 @@ gui.Request.prototype = (function using(chained) {
 			var result = text;
 			try {
 				switch (this._headers.Accept) {
-					case "application/json":
+					case 'application/json':
 						result = JSON.parse(text);
 						break;
-					case "text/xml":
-						result = new DOMParser().parseFromString(text, "text/xml");
+					case 'text/xml':
+						result = new DOMParser().parseFromString(text, 'text/xml');
 						break;
 				}
 			} catch (exception) {
 				if (gui.debug) {
 					console.error(
-						this._headers.Accept + " dysfunction at " + this._url
+						this._headers.Accept + ' dysfunction at ' + this._url
 					);
 				}
 			}
 			return result;
 		}
 	};
-
 }(gui.Combo.chained));
 
 /**
  * Generating methods for GET PUT POST DELETE.
  * @param @optional {object} payload
  */
-["get", "post", "put", "delete"].forEach(function(method) {
+['get', 'post', 'put', 'delete'].forEach(function(method) {
 	gui.Request.prototype[method] = function(payload) {
 		if (gui.Type.isFunction(payload)) {
-			throw new Error("Deprecated: gui.Request returns a gui.Then");
+			throw new Error('Deprecated: gui.Request returns a gui.Then');
 		}
 		var then = new gui.Then();
-		payload = method === "get" ? null : payload;
+		payload = method === 'get' ? null : payload;
 		this._request(method, payload, function(status, data, text) {
 			then.now(status, data, text);
 		});

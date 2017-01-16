@@ -5,7 +5,6 @@
  * @using {gui.Arguments#confirmed}
  */
 gui.CSSPlugin = (function using(chained, confirmed) {
-
 	return gui.Plugin.extend({
 
 		/**
@@ -13,7 +12,7 @@ gui.CSSPlugin = (function using(chained, confirmed) {
 		 * @param {string|Array<string>} name
 		 * @returns {gui.CSSPlugin}
 		 */
-		add: confirmed("string|array")(chained(function(name) {
+		add: confirmed('string|array')(chained(function(name) {
 			var elm = this.spirit.element;
 			gui.Array.make(name).forEach(function(n) {
 				gui.CSSPlugin.add(elm, n);
@@ -25,7 +24,7 @@ gui.CSSPlugin = (function using(chained, confirmed) {
 		 * @param {String} name
 		 * @returns {gui.CSSPlugin}
 		 */
-		remove: confirmed("string|array")(chained(function(name) {
+		remove: confirmed('string|array')(chained(function(name) {
 			var elm = this.spirit.element;
 			gui.Array.make(name).forEach(function(n) {
 				gui.CSSPlugin.remove(elm, n);
@@ -37,7 +36,7 @@ gui.CSSPlugin = (function using(chained, confirmed) {
 		 * @param {String} name
 		 * @returns {gui.CSSPlugin}
 		 */
-		toggle: confirmed("string|array")(chained(function(name) {
+		toggle: confirmed('string|array')(chained(function(name) {
 			var elm = this.spirit.element;
 			gui.Array.make(name).forEach(function(n) {
 				gui.CSSPlugin.toggle(elm, n);
@@ -50,7 +49,7 @@ gui.CSSPlugin = (function using(chained, confirmed) {
 		 * @param {String} name
 		 * @returns {gui.CSSPlugin}
 		 */
-		shift: confirmed("*", "string|array")(chained(function(on, name) {
+		shift: confirmed('*', 'string|array')(chained(function(on, name) {
 			var elm = this.spirit.element;
 			gui.Array.make(name).forEach(function(n) {
 				gui.CSSPlugin.shift(elm, on, n);
@@ -62,7 +61,7 @@ gui.CSSPlugin = (function using(chained, confirmed) {
 		 * @param {String} name
 		 * @returns {boolean}
 		 */
-		contains: confirmed("string")(function(name) {
+		contains: confirmed('string')(function(name) {
 			return gui.CSSPlugin.contains(this.spirit.element, name);
 		}),
 
@@ -127,7 +126,6 @@ gui.CSSPlugin = (function using(chained, confirmed) {
 			return gui.CSSPlugin.matches(this.spirit.element, selector);
 		}
 
-
 	}, {}, { // Static ...........................................................
 
 		/**
@@ -167,7 +165,7 @@ gui.CSSPlugin = (function using(chained, confirmed) {
 		 */
 		remove: chained(function(element, name) {
 			if (gui.Type.isString(name)) {
-				name = name || "";
+				name = name || '';
 				if (name.indexOf(' ') > -1) {
 					name = name.split(' ');
 				}
@@ -219,7 +217,7 @@ gui.CSSPlugin = (function using(chained, confirmed) {
 		 * @returns {function}
 		 */
 		shift: chained(function(element, on, name) {
-			if (!!on) { // coerce to boolean
+			if (on) { // coerce to boolean
 				this.add(element, name);
 			} else {
 				this.remove(element, name);
@@ -250,8 +248,8 @@ gui.CSSPlugin = (function using(chained, confirmed) {
 		 */
 		set: chained(function(element, prop, value) {
 			value = this._shorthand(prop, value);
-			if (prop === "float") {
-				prop = "cssFloat";
+			if (prop === 'float') {
+				prop = 'cssFloat';
 			} else {
 				value = this._jsvalue(value);
 				prop = this._jsproperty(prop);
@@ -315,7 +313,6 @@ gui.CSSPlugin = (function using(chained, confirmed) {
 			return matches;
 		},
 
-
 		// Private static ..........................................................
 
 		/**
@@ -323,7 +320,7 @@ gui.CSSPlugin = (function using(chained, confirmed) {
 		 * gets to stay since it represents the unprefixed property.
 		 * @type {Array<String>}
 		 */
-		_vendors: ["", "-webkit-", "-moz-", "-ms-", "-o-"],
+		_vendors: ['', '-webkit-', '-moz-', '-ms-', '-o-'],
 
 		/**
 		 * _supports Element.classList?
@@ -339,14 +336,14 @@ gui.CSSPlugin = (function using(chained, confirmed) {
 		 */
 		_shorthand: function(prop, value) {
 			var short;
-			switch(gui.Type.of(value)) { // not much of a difference (just yet)
+			switch (gui.Type.of(value)) { // not much of a difference (just yet)
 				case 'number':
-					if((short = this._numbershorthands[prop])) {
+					if ((short = this._numbershorthands[prop])) {
 						value = short.replace('@', value);
 					}
 					break;
 				case 'string':
-					if((short = this._stringshorthands[prop])) {
+					if ((short = this._stringshorthands[prop])) {
 						value = short.replace('@', value);
 					}
 					break;
@@ -372,7 +369,7 @@ gui.CSSPlugin = (function using(chained, confirmed) {
 		 */
 		_standardcase: function(string) {
 			return string.replace(/[A-Z]/g, function(all, letter) {
-				return "-" + string.charAt(letter).toLowerCase();
+				return '-' + string.charAt(letter).toLowerCase();
 			});
 		},
 
@@ -386,9 +383,9 @@ gui.CSSPlugin = (function using(chained, confirmed) {
 				fixt = prop;
 			var element = document.documentElement;
 			prop = String(prop);
-			if (prop.startsWith("-beta-")) {
+			if (prop.startsWith('-beta-')) {
 				vendors.every(function(vendor) {
-					var test = this._camelcase(prop.replace("-beta-", vendor));
+					var test = this._camelcase(prop.replace('-beta-', vendor));
 					if (element.style[test] !== undefined) {
 						fixt = test;
 						return false;
@@ -410,14 +407,14 @@ gui.CSSPlugin = (function using(chained, confirmed) {
 			var vendors = this._vendors;
 			var element = document.documentElement;
 			value = String(value);
-			if (value && value.includes("-beta-")) {
+			if (value && value.includes('-beta-')) {
 				var parts = [];
-				value.split(", ").forEach(function(part) {
-					if ((part = part.trim()).startsWith("-beta-")) {
+				value.split(', ').forEach(function(part) {
+					if ((part = part.trim()).startsWith('-beta-')) {
 						vendors.every(function(vendor) {
-							var test = this._camelcase(part.replace("-beta-", vendor));
+							var test = this._camelcase(part.replace('-beta-', vendor));
 							if (element.style[test] !== undefined) {
-								parts.push(part.replace("-beta-", vendor));
+								parts.push(part.replace('-beta-', vendor));
 								return false;
 							}
 							return true;
@@ -426,7 +423,7 @@ gui.CSSPlugin = (function using(chained, confirmed) {
 						parts.push(part);
 					}
 				}, this);
-				value = parts.join(",");
+				value = parts.join(',');
 			}
 			return value;
 		},
@@ -457,30 +454,30 @@ gui.CSSPlugin = (function using(chained, confirmed) {
 		 * @type {Map<String,String>
 		 */
 		_numbershorthands: {
-			top: "@px",
-			right: "@px",
-			bottom: "@px",
-			left: "@px",
-			width: "@px",
-			height: "@px",
-			maxWidth: "@px",
-			maxHeight: "@px",
-			minWidth: "@px",
-			minHeight: "@px",
-			textIndent: "@px",
-			margin: "@px",
-			marginTop: "@px",
-			marginRight: "@px",
-			marginBottom: "@px",
-			marginLeft: "@px",
-			padding: "@px",
-			paddingTop: "@px",
-			paddingRight: "@px",
-			paddingBottom: "@px",
-			paddingLeft: "@px",
-			fontWeight: "@",
-			opacity: "@",
-			zIndex: "@"
+			top: '@px',
+			right: '@px',
+			bottom: '@px',
+			left: '@px',
+			width: '@px',
+			height: '@px',
+			maxWidth: '@px',
+			maxHeight: '@px',
+			minWidth: '@px',
+			minHeight: '@px',
+			textIndent: '@px',
+			margin: '@px',
+			marginTop: '@px',
+			marginRight: '@px',
+			marginBottom: '@px',
+			marginLeft: '@px',
+			padding: '@px',
+			paddingTop: '@px',
+			paddingRight: '@px',
+			paddingBottom: '@px',
+			paddingLeft: '@px',
+			fontWeight: '@',
+			opacity: '@',
+			zIndex: '@'
 		},
 
 		/**
@@ -488,9 +485,9 @@ gui.CSSPlugin = (function using(chained, confirmed) {
 		 */
 		_stringshorthands: {
 			backgroundImage: 'url("@")',
-			position: "@",
-			display: "@",
-			visibility: "@"
+			position: '@',
+			display: '@',
+			visibility: '@'
 		},
 
 		/**
@@ -501,11 +498,11 @@ gui.CSSPlugin = (function using(chained, confirmed) {
 			var match = null,
 				root = document.documentElement;
 			[
-				"mozMatchesSelector",
-				"webkitMatchesSelector",
-				"msMatchesSelector",
-				"oMatchesSelector",
-				"matchesSelector"
+				'mozMatchesSelector',
+				'webkitMatchesSelector',
+				'msMatchesSelector',
+				'oMatchesSelector',
+				'matchesSelector'
 			].every(function(method) {
 				if (gui.Type.isDefined(root[method])) {
 					match = method;
@@ -516,7 +513,6 @@ gui.CSSPlugin = (function using(chained, confirmed) {
 		})()
 
 	});
-
 }(
 	gui.Combo.chained,
 	gui.Arguments.confirmed

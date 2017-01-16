@@ -1,5 +1,5 @@
 /**
- * TODO: Perhaps `connectionTypes` should be 
+ * TODO: Perhaps `connectionTypes` should be
  * moved from {ts.ui.CompanyCard} to here!!!
  */
 ts.ui.Card = {

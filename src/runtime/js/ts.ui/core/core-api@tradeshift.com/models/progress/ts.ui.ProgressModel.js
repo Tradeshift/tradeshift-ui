@@ -1,11 +1,11 @@
 /**
- * Advanced progress model. This is only used 
- * in the greenfield host frame and should 
+ * Advanced progress model. This is only used
+ * in the greenfield host frame and should
  * probably not be part of the public API.
  * TODO (jmo@): Get this out of here
  */
 ts.ui.ProgressModel = ts.ui.Model.extend({
-	
+
 	/**
 	 * Friendly name.
 	 * @type {string}
@@ -40,7 +40,6 @@ ts.ui.ProgressModel = ts.ui.Model.extend({
 		this._update();
 	},
 
-
 	// Private ...................................................................
 
 	/**
@@ -50,7 +49,7 @@ ts.ui.ProgressModel = ts.ui.Model.extend({
 	_value: 0,
 
 	/**
-	 * Broadcast progress globally. 
+	 * Broadcast progress globally.
 	 * Probably not how to do it...
 	 */
 	_update: function() {

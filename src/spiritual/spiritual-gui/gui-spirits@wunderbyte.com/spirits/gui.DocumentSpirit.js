@@ -29,7 +29,7 @@ gui.DocumentSpirit = gui.Spirit.extend({
 		switch (a.type) {
 			case gui.$ACTION_XFRAME_VISIBILITY:
 				this._waiting = false;
-				if (gui.hasModule("gui-layout@wunderbyte.com")) { // TODO: - fix
+				if (gui.hasModule('gui-layout@wunderbyte.com')) { // TODO: - fix
 					if (a.data === true) {
 						this.visibility.on();
 					} else {
@@ -47,7 +47,7 @@ gui.DocumentSpirit = gui.Spirit.extend({
 	 */
 	onbroadcast: function(b) {
 		this.super.onbroadcast(b);
-		if(b.type === gui.BROADCAST_RESIZE_END) {
+		if (b.type === gui.BROADCAST_RESIZE_END) {
 			this.reflex();
 		}
 	},
@@ -88,7 +88,6 @@ gui.DocumentSpirit = gui.Spirit.extend({
 		this.super.oninvisible();
 	},
 
-
 	// Private ...................................................................
 
 	/**
@@ -102,7 +101,7 @@ gui.DocumentSpirit = gui.Spirit.extend({
 	 * @type {boolean}
 	 */
 	_waiting: false,
-	
+
 	/**
 	 * Timeout before we broadcast window resize ended.
 	 * This timeout cancels itself on each resize event.

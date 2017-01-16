@@ -40,7 +40,6 @@ ts.ui.DocumentLayoutPlugin = ts.ui.Plugin.extend({
 		}
 	},
 
-
 	// Private ...................................................................
 
 	/**
@@ -57,7 +56,7 @@ ts.ui.DocumentLayoutPlugin = ts.ui.Plugin.extend({
 	 * @type {number}
 	 */
 	_timeout: -1,
-	
+
 	/**
 	 * Compute breakpoints array.
 	 */
@@ -116,6 +115,6 @@ ts.ui.DocumentLayoutPlugin = ts.ui.Plugin.extend({
 		var model = ts.ui.LayoutModel.output.get();
 		model.breakpoint = layout.breakpoint;
 		model.breakpoints = layout.breakpoints;
-	},
+	}
 
 });

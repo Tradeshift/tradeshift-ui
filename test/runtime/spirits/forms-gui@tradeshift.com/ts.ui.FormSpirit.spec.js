@@ -1,5 +1,4 @@
 describe('ts.ui.FormSpirit', function likethis() {
-
 	it('should (eventually) channel via ts-attribute', function(done) {
 		var spirit, dom = helper.createTestDom();
 		dom.innerHTML = '<form data-ts="Form"></form>';
@@ -20,5 +19,4 @@ describe('ts.ui.FormSpirit', function likethis() {
 		var dom = helper.createTestDom(ts.ui.FormSpirit);
 		expect(dom.innerHTML).toContain(ts.ui.FormSpirit.ACTION_DEFAULT);
 	});
-
 });

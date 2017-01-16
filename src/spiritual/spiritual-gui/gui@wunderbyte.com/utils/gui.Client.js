@@ -4,7 +4,6 @@
  * @TODO Lazycompute properties when requested (not least scrollBarSize)
  */
 gui.Client = (function() {
-
 	var agent = navigator.userAgent.toLowerCase();
 
 	/**
@@ -15,26 +14,25 @@ gui.Client = (function() {
 	function supports(feature) {
 		var root = document.documentElement;
 		var fixt = feature[0].toUpperCase() + feature.substring(1);
-		return !["", "Webkit", "Moz", "O", "ms"].every(function(prefix) {
+		return !['', 'Webkit', 'Moz', 'O', 'ms'].every(function(prefix) {
 			return root.style[prefix ? prefix + fixt : feature] === undefined;
 		});
 	}
 
 	function Client() {
-
 		// user agent death match - this obviously needs some work
-		this.isExplorer = agent.includes("msie") || agent.includes("trident") || agent.includes("edge");
-		this.isExplorer9 = this.isExplorer && agent.includes("msie 9");
-		this.isExplorer10 = this.isExplorer && agent.includes("msie 10");
-		this.isExplorer11 = this.isExplorer && agent.includes("rv:11");
-		this.isExplorer12 = this.isExplorer && agent.includes("rv:12"); // NOT TESTED!
-		this.isEdge = this.isExplorer && agent.includes("edge");
-		this.isWebKit = !this.isExplorer && agent.includes("webkit") || agent.includes("opera");
-		this.isChrome = !this.isExplorer && this.isWebKit && agent.includes("chrome");
-		this.isSafari = !this.isExplorer && this.isWebKit && !this.isChrome && agent.includes("safari");
-		this.isGecko = !this.isExplorer && !this.isWebKit && !this.isOpera && agent.includes("gecko");
-		this.isBlink = agent.includes("blink");
-		this.isChromeApp = (window.chrome && window.chrome.app && window.chrome.app.runtime) ? true : false;
+		this.isExplorer = agent.includes('msie') || agent.includes('trident') || agent.includes('edge');
+		this.isExplorer9 = this.isExplorer && agent.includes('msie 9');
+		this.isExplorer10 = this.isExplorer && agent.includes('msie 10');
+		this.isExplorer11 = this.isExplorer && agent.includes('rv:11');
+		this.isExplorer12 = this.isExplorer && agent.includes('rv:12'); // NOT TESTED!
+		this.isEdge = this.isExplorer && agent.includes('edge');
+		this.isWebKit = !this.isExplorer && agent.includes('webkit') || agent.includes('opera');
+		this.isChrome = !this.isExplorer && this.isWebKit && agent.includes('chrome');
+		this.isSafari = !this.isExplorer && this.isWebKit && !this.isChrome && agent.includes('safari');
+		this.isGecko = !this.isExplorer && !this.isWebKit && !this.isOpera && agent.includes('gecko');
+		this.isBlink = agent.includes('blink');
+		this.isChromeApp = !!((window.chrome && window.chrome.app && window.chrome.app.runtime));
 
 		/**
 		 * Agent is one of "webkit" "firefox" "opera" or "explorer"
@@ -42,14 +40,14 @@ gui.Client = (function() {
 		 */
 		this.agent = (function() {
 			if (this.isWebKit) {
-				return "webkit";
+				return 'webkit';
 			} else if (this.isGecko) {
-				return "gecko";
+				return 'gecko';
 			} else if (this.isOpera) {
-				return "opera";
+				return 'opera';
 			}
-			return "explorer";
-		}).call(this);
+			return 'explorer';
+		}.call(this));
 
 		/**
 		 * System is "linux" "osx" "ios" "windows" "windowsmobile" "haiku" or "amiga".
@@ -59,23 +57,23 @@ gui.Client = (function() {
 			shortlist.every(function(test) {
 				if (agent.includes(test)) {
 					if (test.match(/ipad|iphone/)) {
-						os = "ios";
+						os = 'ios';
 					} else {
-						os = test.replace(/ /g, ""); // no spaces
+						os = test.replace(/ /g, ''); // no spaces
 					}
 				}
 				return os === null;
 			});
 			return os;
 		}([
-			"window mobile",
-			"windows",
-			"ipad",
-			"iphone",
-			"os x",
-			"linux",
-			"haiku",
-			"amiga"
+			'window mobile',
+			'windows',
+			'ipad',
+			'iphone',
+			'os x',
+			'linux',
+			'haiku',
+			'amiga'
 		]));
 
 		/**
@@ -102,7 +100,7 @@ gui.Client = (function() {
 		 * Supports the History API?
 		 * @type {boolean}
 		 */
-		this.hasHistory = (window.history && window.history.pushState) ? true : false;
+		this.hasHistory = !!((window.history && window.history.pushState));
 
 		/**
 		 * Is touch device? Not to be confused with {gui.Client#hasTouch}
@@ -113,44 +111,44 @@ gui.Client = (function() {
 				return agent.includes(system);
 			});
 		}([
-			"android",
-			"webos",
-			"iphone",
-			"ipad",
-			"ipod",
-			"blackberry",
-			"windows phone"
+			'android',
+			'webos',
+			'iphone',
+			'ipad',
+			'ipod',
+			'blackberry',
+			'windows phone'
 		]));
 
 		/**
 		 * Supports CSS transitions?
 		 * @type {boolean}
 		 */
-		this.hasTransitions = supports("transition");
+		this.hasTransitions = supports('transition');
 
 		/**
 		 * Supports CSS transforms?
 		 * @type {boolean}
 		 */
-		this.hasTransforms = supports("transform");
+		this.hasTransforms = supports('transform');
 
 		/**
 		 * Supports CSS animations?
 		 * @type {boolean}
 		 */
-		this.hasAnimations = supports("animationName");
+		this.hasAnimations = supports('animationName');
 
 		/**
 		 * Supports CSS 3D transform? (note https://bugzilla.mozilla.org/show_bug.cgi?id=677173)
 		 * @type {boolean}
 		 */
-		this.has3D = supports("perspective");
+		this.has3D = supports('perspective');
 
 		/**
 		 * Supports flexible box module?
 		 * @type {boolean}
 		 */
-		this.hasFlex = supports("flex");
+		this.hasFlex = supports('flex');
 
 		/**
 		 * Has support for Proxy objects?
@@ -180,13 +178,13 @@ gui.Client = (function() {
 		 */
 		this.hasAnimationFrame = (function() {
 			var win = window;
-			return (
+			return !!((
 				win.requestAnimationFrame ||
 				win.webkitRequestAnimationFrame ||
 				win.mozRequestAnimationFrame ||
 				win.msRequestAnimationFrame ||
 				win.oRequestAnimationFrame
-			) ? true : false;
+			));
 		}());
 
 		/**
@@ -194,7 +192,7 @@ gui.Client = (function() {
 		 * @type {boolean}
 		 */
 		this.hasTemplates = (function(template) {
-			return 'content' in template ? true : false;
+			return 'content' in template;
 		}(document.createElement('template')));
 
 		/**
@@ -202,7 +200,7 @@ gui.Client = (function() {
 		 * @type {boolean}
 		 */
 		this.hasImports = (function(link) {
-			return 'import' in link ? true : false;
+			return 'import' in link;
 		}(document.createElement('link')));
 
 		/**
@@ -210,22 +208,22 @@ gui.Client = (function() {
 		 * @type {boolean}
 		 */
 		this.hasMutations = (function() {
-			return !["", "WebKit", "Moz", "O", "Ms"].every(function(vendor) {
-				return !gui.Type.isDefined(window[vendor + "MutationObserver"]);
+			return !['', 'WebKit', 'Moz', 'O', 'Ms'].every(function(vendor) {
+				return !gui.Type.isDefined(window[vendor + 'MutationObserver']);
 			});
 		}());
 
 		/**
-		 * DOM attributes have been moved to prototype chains 
+		 * DOM attributes have been moved to prototype chains
 		 * and they do also expose JavaScript getters/setters?
 		 * @see http://code.google.com/p/chromium/issues/detail?id=13175
-	   * @see https://bugs.webkit.org/show_bug.cgi?id=49739
+		 * @see https://bugs.webkit.org/show_bug.cgi?id=49739
 		 * @type {boolean}
 		 */
-		this.hasAttributesOnPrototype = (function(Client) {
-			if (Client.isSafari) {
+		this.hasAttributesOnPrototype = (function(Client_) {
+			if (Client_.isSafari) {
 				return false;
-			} else if (Client.isWebKit) {
+			} else if (Client_.isWebKit) {
 				var rex = /chrom(e|ium)\/([0-9]+)\./;
 				var raw = agent.match(rex);
 				var ver = raw ? parseInt(raw[2], 10) : 0;
@@ -236,7 +234,7 @@ gui.Client = (function() {
 
 		/**
 		 * Browsers disagree on the primary scrolling element.
-		 * Is it document.body or document.documentElement? 
+		 * Is it document.body or document.documentElement?
 		 * TODO: This has probably been fixed (in Chrome) by now...
 		 * @see https://code.google.com/p/chromium/issues/detail?id=2891
 		 * @type {HTMLElement}
@@ -271,11 +269,11 @@ gui.Client = (function() {
 
 			// make sure window is scrollable
 			var temp = body.appendChild(
-				gui.CSSPlugin.style(doc.createElement("div"), {
-					position: "absolute",
-					height: "10px",
-					width: "10px",
-					top: "100%"
+				gui.CSSPlugin.style(doc.createElement('div'), {
+					position: 'absolute',
+					height: '10px',
+					width: '10px',
+					top: '100%'
 				})
 			);
 
@@ -286,8 +284,8 @@ gui.Client = (function() {
 
 			// supports position fixed?
 			gui.CSSPlugin.style(temp, {
-				position: "fixed",
-				top: "10px"
+				position: 'fixed',
+				top: '10px'
 			});
 
 			// restore scroll when finished
@@ -297,23 +295,23 @@ gui.Client = (function() {
 			win.scrollBy(0, -10);
 
 			// compute scrollbar size
-			var inner = gui.CSSPlugin.style(document.createElement("p"), {
-				width: "100%",
-				height: "200px"
+			var inner = gui.CSSPlugin.style(document.createElement('p'), {
+				width: '100%',
+				height: '200px'
 			});
-			var outer = gui.CSSPlugin.style(document.createElement("div"), {
-				position: "absolute",
-				top: "0",
-				left: "0",
-				visibility: "hidden",
-				width: "200px",
-				height: "150px",
-				overflow: "hidden"
+			var outer = gui.CSSPlugin.style(document.createElement('div'), {
+				position: 'absolute',
+				top: '0',
+				left: '0',
+				visibility: 'hidden',
+				width: '200px',
+				height: '150px',
+				overflow: 'hidden'
 			});
 			outer.appendChild(inner);
 			html.appendChild(outer);
 			var w1 = inner.offsetWidth;
-			outer.style.overflow = "scroll";
+			outer.style.overflow = 'scroll';
 			var w2 = inner.offsetWidth;
 			if (w1 === w2) {
 				w2 = outer.clientWidth;
@@ -328,5 +326,4 @@ gui.Client = (function() {
 	}
 
 	return new Client();
-
 }());

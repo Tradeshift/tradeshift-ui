@@ -27,10 +27,9 @@ gui.Dimension.prototype = {
 	 * @returns {String}
 	 */
 	toString: function() {
-		return "[object gui.Dimension]";
+		return '[object gui.Dimension]';
 	}
 };
-
 
 // Static ......................................................................
 

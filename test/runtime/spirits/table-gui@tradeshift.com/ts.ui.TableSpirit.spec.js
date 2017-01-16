@@ -1,9 +1,8 @@
 describe('ts.ui.TableSpirit', function likethis() {
-
 	function setup(action) {
 		var spirit, dom = helper.createTestDom();
 		dom.innerHTML = '<div data-ts="Table"></div>';
-		sometime(function later(){
+		sometime(function later() {
 			spirit = ts.ui.get(dom.querySelector('div[data-ts=Table]'));
 			action(spirit, dom);
 		});
@@ -11,16 +10,16 @@ describe('ts.ui.TableSpirit', function likethis() {
 
 	describe('Build', function() {
 		it('should (eventually) channel via ts-attribute', function(done) {
-			setup(function(spirit, dom){
+			setup(function(spirit, dom) {
 				sometime(function later() {
 					expect(spirit.constructor).toBe(ts.ui.TableSpirit);
 					done();
-				});	
+				});
 			});
 		});
 
 		it('should contain rows and columns', function(done) {
-			setup(function(spirit, dom){
+			setup(function(spirit, dom) {
 				spirit.cols(['One', 'Two', 'Three']);
 				spirit.rows([
 					['A', 'D', 'G'],
@@ -31,71 +30,72 @@ describe('ts.ui.TableSpirit', function likethis() {
 					expect(spirit.element.innerHTML).toContain('One');
 					expect(spirit.element.innerHTML).toContain('A');
 					done();
-				});	
+				});
 			});
 		});
 
 		it('should declare columns as objects', function(done) {
-			setup(function(spirit, dom){
-				spirit.cols([{label: 'Moth'},{label: 'Daniel'},{label: 'Leo'}]);
+			setup(function(spirit, dom) {
+				spirit.cols([{label: 'Moth'}, {label: 'Daniel'}, {label: 'Leo'}]);
 				sometime(function later() {
 					expect(spirit.element.innerHTML).toContain('Moth');
 					expect(spirit.element.innerHTML).toContain('Daniel');
 					expect(spirit.element.innerHTML).toContain('Leo');
 					done();
-				});	
+				});
 			});
 		});
 
 		it('should set the type property to ts-number', function(done) {
-			setup(function(spirit, dom){
-				spirit.cols([{ label: 'Type' },{ label: 'Value', type: 'ts-number'}]);
+			setup(function(spirit, dom) {
+				spirit.cols([{label: 'Type'}, {label: 'Value', type: 'ts-number'}]);
 				spirit.rows([['Random number', Math.random()]]);
 				sometime(function later() {
 					expect(spirit.element.innerHTML).toContain('ts-number');
 					done();
-				});	
+				});
 			});
 		});
 
 		it('should mark the row as selected', function(done) {
-			setup(function(spirit, dom){
+			setup(function(spirit, dom) {
 				spirit.selectable().rows([
-					{ cells: ['A', 'D', 'G'], selected: true},
-					{ cells: ['B', 'E', 'H']},
-					{ cells: ['C', 'F', 'I']},
+					{cells: ['A', 'D', 'G'], selected: true},
+					{cells: ['B', 'E', 'H']},
+					{cells: ['C', 'F', 'I']}
 				]);
 				sometime(function later() {
 					expect(spirit.element.innerHTML).toContain('ts-icon-checkboxon');
 					done();
-				});	
+				});
 			});
 		});
 
 		it('should show the displayed text', function(done) {
-			setup(function(spirit, dom){
+			setup(function(spirit, dom) {
 				spirit.rows([{
 					cells: [
-					{value: 1, text: 'One'},
-					{value: 2, text: 'Two'},
-					{value: 3, text: 'Three'}
-				]}]);
+						{value: 1, text: 'One'},
+						{value: 2, text: 'Two'},
+						{value: 3, text: 'Three'}
+					]
+				}]);
 				sometime(function later() {
 					expect(spirit.element.innerHTML).toContain('One');
 					expect(spirit.element.innerHTML).toContain('Two');
 					expect(spirit.element.innerHTML).toContain('Three');
 					done();
-				});	
+				});
 			});
 		});
 
 		it('should update a single row', function(done) {
-			setup(function(spirit, dom){
+			setup(function(spirit, dom) {
 				spirit.rows([
 					['One', 'Two', 'Three'],
 					['Four', 'Five', 'Six']
 				]);
-				spirit.row(1,['Moth', 'Daniel', 'Leo']);
+				spirit.row(1, ['Moth', 'Daniel', 'Leo']);
 				sometime(function later() {
 					expect(spirit.element.innerHTML).toContain('Moth');
 					expect(spirit.element.innerHTML).toContain('Daniel');
@@ -104,12 +104,12 @@ describe('ts.ui.TableSpirit', function likethis() {
 					expect(spirit.element.innerHTML).not.toContain('Five');
 					expect(spirit.element.innerHTML).not.toContain('Six');
 					done();
-				});	
+				});
 			});
 		});
 
 		it('should update a single cell', function(done) {
-			setup(function(spirit, dom){
+			setup(function(spirit, dom) {
 				spirit.rows([
 					['A', 'B', 'C'],
 					['D', 'E', 'F']
@@ -119,26 +119,26 @@ describe('ts.ui.TableSpirit', function likethis() {
 					expect(spirit.element.innerHTML).toContain('Moth');
 					expect(spirit.element.innerHTML).not.toContain('E');
 					done();
-				});	
+				});
 			});
 		});
 
 		it('should use array methods', function(done) {
-			setup(function(spirit, dom){
+			setup(function(spirit, dom) {
 				spirit.rows().push(['Moth', 'Daniel', 'Leo']);
 				sometime(function later() {
 					expect(spirit.element.innerHTML).toContain('Moth');
 					expect(spirit.element.innerHTML).toContain('Daniel');
 					expect(spirit.element.innerHTML).toContain('Leo');
 					done();
-				});	
+				});
 			});
 		});
 	});
 
 	describe('Layout', function() {
 		it('should flex relative to other columns', function(done) {
-			setup(function(spirit, dom){
+			setup(function(spirit, dom) {
 				spirit.cols([
 					{label: 'Level', type: 'ts-number'},
 					{label: 'Character', flex: 2}
@@ -152,12 +152,12 @@ describe('ts.ui.TableSpirit', function likethis() {
 					var w2 = dom.querySelector('.ts-text').offsetWidth;
 					expect(w1 * 2).toBeGreaterThan(w2 - 2);
 					done();
-				});	
+				});
 			});
 		});
 
 		it('should run into truncated text', function(done) {
-			setup(function(spirit, dom){
+			setup(function(spirit, dom) {
 				spirit.cols([
 					{label: 'Level', type: 'ts-number'},
 					{label: 'Character', flex: 2, wrap: true}
@@ -169,12 +169,12 @@ describe('ts.ui.TableSpirit', function likethis() {
 				sometime(function later() {
 					expect(spirit.element.innerHTML).toContain('ts-wrap');
 					done();
-				});	
+				});
 			});
 		});
 
 		it('should assign it a minsize in pixels', function(done) {
-			setup(function(spirit, dom){
+			setup(function(spirit, dom) {
 				spirit.cols([
 					{label: 'Level', type: 'ts-number', minwidth: 200},
 					{label: 'Character'}
@@ -186,14 +186,14 @@ describe('ts.ui.TableSpirit', function likethis() {
 				sometime(function later() {
 					expect(dom.querySelector('.ts-number').offsetWidth).toBeGreaterThan(199);
 					done();
-				});	
+				});
 			});
 		});
 	});
 
 	describe('Style', function() {
 		it('type property should works as a classname for toth header and cells', function(done) {
-			setup(function(spirit, dom){
+			setup(function(spirit, dom) {
 				spirit.cols([
 					{label: 'Level', type: 'ts-number your-class'},
 					{label: 'Character', type: 'ts-number your-class'}
@@ -205,48 +205,46 @@ describe('ts.ui.TableSpirit', function likethis() {
 				sometime(function later() {
 					expect(spirit.element.innerHTML).toContain('your-class');
 					done();
-				});	
+				});
 			});
 		});
 
 		it('should works for the rows', function(done) {
-			setup(function(spirit, dom){
+			setup(function(spirit, dom) {
 				spirit.rows([
-					{ cells: ['A', 'D', 'G'], type: 'pale-red'},
-					{ cells: ['B', 'E', 'H'], type: 'pale-green'},
-					{ cells: ['C', 'F', 'I'], type: 'pale-blue'},
+					{cells: ['A', 'D', 'G'], type: 'pale-red'},
+					{cells: ['B', 'E', 'H'], type: 'pale-green'},
+					{cells: ['C', 'F', 'I'], type: 'pale-blue'}
 				]);
 				sometime(function later() {
 					expect(spirit.element.innerHTML).toContain('pale-red');
 					expect(spirit.element.innerHTML).toContain('pale-green');
 					expect(spirit.element.innerHTML).toContain('pale-blue');
 					done();
-				});	
+				});
 			});
 		});
 
 		it('should works for the cells', function(done) {
-			setup(function(spirit, dom){
-				spirit.rows([
-					{
-						cells: [
-							{text: 'Normal'},
-							{text: 'Normal'},
-							{text: 'Special', type: 'very-special'}
-						]
-					}
-				]);
+			setup(function(spirit, dom) {
+				spirit.rows([{
+					cells: [
+						{text: 'Normal'},
+						{text: 'Normal'},
+						{text: 'Special', type: 'very-special'}
+					]
+				}]);
 				sometime(function later() {
 					expect(spirit.element.innerHTML).toContain('very-special');
 					done();
-				});	
+				});
 			});
 		});
 	});
 
 	describe('Page', function() {
 		it('should create the page automatically', function(done) {
-			setup(function(spirit, dom){
+			setup(function(spirit, dom) {
 				spirit.cols([
 					{label: 'Level', type: 'ts-number your-class'},
 					{label: 'Character', type: 'ts-number your-class'}
@@ -263,12 +261,12 @@ describe('ts.ui.TableSpirit', function likethis() {
 				sometime(function later() {
 					expect(spirit.element.innerHTML).toContain('ts-toolbar-pager');
 					done();
-				});	
+				});
 			});
 		});
 
 		it('should create the page by api', function(done) {
-			setup(function(spirit, dom){
+			setup(function(spirit, dom) {
 				spirit.max(3).cols([
 					{label: 'Level', type: 'ts-number your-class'},
 					{label: 'Character', type: 'ts-number your-class'}
@@ -280,14 +278,14 @@ describe('ts.ui.TableSpirit', function likethis() {
 				sometime(function later() {
 					expect(spirit.element.innerHTML).toContain('ts-toolbar-pager');
 					done();
-				});	
+				});
 			});
 		});
 	});
 
 	describe('Format', function() {
 		it('should support a simple subset of markdown', function(done) {
-			setup(function(spirit, dom){
+			setup(function(spirit, dom) {
 				spirit.rows([
 					['*Italic text*'],
 					['**Strong text**'],
@@ -300,12 +298,12 @@ describe('ts.ui.TableSpirit', function likethis() {
 					expect(spirit.element.innerHTML).toContain('</del>');
 					expect(spirit.element.innerHTML).toContain('</code>');
 					done();
-				});	
+				});
 			});
 		});
 
 		it('should support link', function(done) {
-			setup(function(spirit, dom){
+			setup(function(spirit, dom) {
 				spirit.linkable();
 				spirit.rows([
 					['Please visit (Tradeshift)[http://www.tradeshift.com]']
@@ -313,14 +311,14 @@ describe('ts.ui.TableSpirit', function likethis() {
 				sometime(function later() {
 					expect(spirit.element.innerHTML).toContain('Tradeshift</a>');
 					done();
-				});	
+				});
 			});
 		});
 	});
 
 	describe('Sort', function() {
 		it('should sortable', function(done) {
-			setup(function(spirit, dom){
+			setup(function(spirit, dom) {
 				spirit.cols(
 					['Animal', {label: 'Price', type: 'ts-number'}]
 				).rows([
@@ -335,7 +333,7 @@ describe('ts.ui.TableSpirit', function likethis() {
 				sometime(function later() {
 					expect(spirit.element.innerHTML).toContain('ts-icon-triangledown');
 					done();
-				});	
+				});
 			});
 		});
 	});
@@ -343,101 +341,103 @@ describe('ts.ui.TableSpirit', function likethis() {
 	describe('Select', function() {
 		it('should clickable', function(done) {
 			var select = null;
-			setup(function(spirit, dom){
+			setup(function(spirit, dom) {
 				spirit.rows([
 					['A', 'E', 'I'],
 					['B', 'F', 'J'],
 					['C', 'G', 'K'],
-					['D', 'H', 'L'],
+					['D', 'H', 'L']
 				]);
-				spirit.selectable(function(selected, unselected){
+				spirit.selectable(function(selected, unselected) {
 					select = selected;
 				});
 				spirit.select(0);
 				sometime(function later() {
 					expect(select).toEqual([0]);
 					done();
-				});	
+				});
 			});
 		});
 
 		it('should clickable', function(done) {
 			var select = null;
 			var unselect = null;
-			setup(function(spirit, dom){
+			setup(function(spirit, dom) {
 				spirit.rows([
 					{cells: ['A', 'D', 'G'], selected: true},
 					{cells: ['B', 'E', 'H']},
-					{cells: ['C', 'F', 'I']},
+					{cells: ['C', 'F', 'I']}
 				]);
-				spirit.selectable(function(selected, unselected){
+				spirit.selectable(function(selected, unselected) {
 					select = selected;
 					unselect = unselected;
 				});
 				spirit.toggle();
 				sometime(function later() {
-					expect(select).toEqual([1,2]);
+					expect(select).toEqual([1, 2]);
 					expect(unselect).toEqual([0]);
 					done();
-				});	
+				});
 			});
 		});
 
 		it('should retrieve the selected indexes (as an array) with the selected method', function(done) {
-			setup(function(spirit, dom){
+			setup(function(spirit, dom) {
 				spirit.selectable().rows([
 					{cells: ['A', 'D', 'G'], selected: true},
 					{cells: ['B', 'E', 'H'], selected: true},
-					{cells: ['C', 'F', 'I']},
+					{cells: ['C', 'F', 'I']}
 				]);
-				
+
 				sometime(function later() {
-					expect(spirit.selected()).toEqual([0,1]);
+					expect(spirit.selected()).toEqual([0, 1]);
 					done();
-				});	
+				});
 			});
 		});
 
 		it('should confirm selection by passing one or more indexes (or an array)', function(done) {
-			setup(function(spirit, dom){
+			setup(function(spirit, dom) {
 				spirit.selectable().rows([
 					{cells: ['A', 'D', 'G'], selected: true},
 					{cells: ['B', 'E', 'H'], selected: true},
-					{cells: ['C', 'F', 'I']},
+					{cells: ['C', 'F', 'I']}
 				]);
-				
+
 				sometime(function later() {
-					expect(spirit.selected([0,1])).toEqual(true);
+					expect(spirit.selected([0, 1])).toEqual(true);
 					done();
-				});	
+				});
 			});
 		});
 
 		it('should get a selection menu in the header', function(done) {
-			setup(function(spirit, dom){
+			setup(function(spirit, dom) {
 				spirit.selectable().rows([
 					{cells: ['A', 'D', 'G']},
 					{cells: ['B', 'E', 'H']},
-					{cells: ['C', 'F', 'I']},
+					{cells: ['C', 'F', 'I']}
 				]);
 
 				spirit.cols(['One', 'Two', 'Three']);
-				
+
 				sometime(function later() {
 					expect(dom.querySelector('header').innerHTML).toContain('ts-table-checkbox');
 					done();
-				});	
+				});
 			});
 		});
 	});
 
 	describe('Search', function() {
 		it('should setup a SearchModel for any column via the search property', function(done) {
-			setup(function(spirit, dom){
+			setup(function(spirit, dom) {
 				spirit.cols(
-					['Animal', {label: 'Price', type: 'ts-number', search: {
-						info: "Leo"
-					}}]
+					['Animal', {label: 'Price',
+						type: 'ts-number',
+						search: {
+							info: 'Leo'
+						}}]
 				).rows([
 					['Donkey', 700],
 					['Baboon', 1500],
@@ -448,14 +448,14 @@ describe('ts.ui.TableSpirit', function likethis() {
 					expect(spirit.element.innerHTML).toContain('data-ts="Search"');
 					expect(spirit.element.innerHTML).toContain('Leo');
 					done();
-				});	
+				});
 			});
 		});
 	});
 
 	describe('Edit', function() {
 		it('should editable', function(done) {
-			setup(function(spirit, dom){
+			setup(function(spirit, dom) {
 				spirit.rows([
 					['Single asterisks is used for *italic text*'],
 					['Double asterisks is used for **strong text**'],
@@ -465,12 +465,12 @@ describe('ts.ui.TableSpirit', function likethis() {
 				sometime(function later() {
 					expect(spirit.element.innerHTML).toContain('textarea');
 					done();
-				});	
+				});
 			});
 		});
 
 		it('All cells are assumed editable unless negated in the column definition', function(done) {
-			setup(function(spirit, dom){
+			setup(function(spirit, dom) {
 				spirit.cols([
 					{label: 'Don\'t edit!', editable: false}
 				]).rows([
@@ -479,26 +479,26 @@ describe('ts.ui.TableSpirit', function likethis() {
 				sometime(function later() {
 					expect(spirit.element.innerHTML).not.toContain('textarea');
 					done();
-				});	
+				});
 			});
 		});
 
 		it('disable editing per row', function(done) {
-			setup(function(spirit, dom){
+			setup(function(spirit, dom) {
 				spirit.rows([
-					{ cells: ['X', 'X', 'X'], editable: false}
+					{cells: ['X', 'X', 'X'], editable: false}
 				]).editable();
 				sometime(function later() {
 					expect(spirit.element.innerHTML).not.toContain('textarea');
 					done();
-				});	
+				});
 			});
 		});
 	});
 
 	describe('Filter', function() {
 		it('should support a button which can be assigned an icon and an onclick method', function(done) {
-			setup(function(spirit, dom){
+			setup(function(spirit, dom) {
 				spirit.cols([
 					{
 						label: 'Hello',
@@ -513,12 +513,12 @@ describe('ts.ui.TableSpirit', function likethis() {
 				sometime(function later() {
 					expect(spirit.element.innerHTML).toContain('ts-icon-addfilter');
 					done();
-				});	
+				});
 			});
 		});
 
 		it('should change the icon and the onclick method as often as you like', function(done) {
-			setup(function(spirit, dom){
+			setup(function(spirit, dom) {
 				spirit.cols([
 					{
 						label: 'Hello',
@@ -535,14 +535,14 @@ describe('ts.ui.TableSpirit', function likethis() {
 					expect(spirit.element.innerHTML).toContain('ts-icon-view');
 					expect(spirit.element.innerHTML).not.toContain('ts-icon-addfilter');
 					done();
-				});	
+				});
 			});
 		});
 	});
 
 	describe('Config', function() {
 		it('should make the table configurable by a button in the statusbar', function(done) {
-			setup(function(spirit, dom){
+			setup(function(spirit, dom) {
 				spirit.configurable(function onclick() {
 				}).cols(['A', 'B', 'C', 'D']).rows([
 					[1, 4, 7, 10],
@@ -552,14 +552,14 @@ describe('ts.ui.TableSpirit', function likethis() {
 				sometime(function later() {
 					expect(spirit.element.innerHTML).toContain('ts-icon-settings');
 					done();
-				});	
+				});
 			});
 		});
 	});
 
 	describe('Status', function() {
 		it('should show a message in the lower left corner', function(done) {
-			setup(function(spirit, dom){
+			setup(function(spirit, dom) {
 				spirit.rows([
 					[1, 4, 7],
 					[2, 5, 8],
@@ -569,9 +569,8 @@ describe('ts.ui.TableSpirit', function likethis() {
 				sometime(function later() {
 					expect(spirit.element.innerHTML).toContain('leo');
 					done();
-				});	
+				});
 			});
 		});
 	});
-
 });

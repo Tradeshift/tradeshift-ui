@@ -11,14 +11,14 @@ edbml.Out.prototype = {
 	 * HTML string (not well-formed while parsing).
 	 * @type {String}
 	 */
-	html: "",
+	html: '',
 
 	/**
 	 * Identification.
 	 * @returns {String}
 	 */
 	toString: function() {
-		return "[object edbml.Out]";
+		return '[object edbml.Out]';
 	},
 
 	/**

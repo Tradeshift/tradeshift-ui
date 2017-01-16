@@ -6,9 +6,8 @@
  * @using {gui.Combo.chained} chained
  */
 ts.ui.SearchSpirit = (function using(ButtonSpirit, CSSPlugin, Type, chained) {
-
 	/*
-	 * We'll make the spirit interface identical to the model interface so 
+	 * We'll make the spirit interface identical to the model interface so
 	 * that we can use them interchangeably whenever one makes more sense.
 	*/
 	var methodnames = ['onsearch', 'onidle', 'onfocus', 'onblur'];
@@ -16,13 +15,13 @@ ts.ui.SearchSpirit = (function using(ButtonSpirit, CSSPlugin, Type, chained) {
 	return ts.ui.Spirit.extend({
 
 		/**
-		 * Setup. If no model is assigned via standard configuration 
+		 * Setup. If no model is assigned via standard configuration
 		 * (framework-internal usecase), we'll create the default model.
 		 */
 		onconfigure: function() {
 			this.super.onconfigure();
 			this.event.add('click').add('focus blur', this.element, this, true);
-			if(!this._model) {
+			if (!this._model) {
 				this.model(this._defaultmodel());
 			}
 		},
@@ -33,7 +32,7 @@ ts.ui.SearchSpirit = (function using(ButtonSpirit, CSSPlugin, Type, chained) {
 		 */
 		onevent: function(e) {
 			this.super.onevent(e);
-			switch(e.type) {
+			switch (e.type) {
 				case 'focus':
 				case 'blur':
 					this._isfocused = e.type === 'focus';
@@ -41,7 +40,7 @@ ts.ui.SearchSpirit = (function using(ButtonSpirit, CSSPlugin, Type, chained) {
 					break;
 				case 'click':
 					var button = ButtonSpirit.getButton(e.target);
-					if(button && CSSPlugin.contains(button, 'ts-button-clear'))	{
+					if (button && CSSPlugin.contains(button, 'ts-button-clear'))	{
 						this.dom.q('.ts-input').blur(); // IE dysfunction
 						this.tick.time(function() {
 							this._clear(this._model);
@@ -56,13 +55,13 @@ ts.ui.SearchSpirit = (function using(ButtonSpirit, CSSPlugin, Type, chained) {
 		 * @param {ts.ui.SearchModel} model
 		 */
 		model: function(model) {
-			if(model !== this._model) { // TODO(jmo@): edbml.$get should fix this: https://github.com/wunderbyte/spiritual-edbml/issues/14
-				if(this._model) {
+			if (model !== this._model) { // TODO(jmo@): edbml.$get should fix this: https://github.com/wunderbyte/spiritual-edbml/issues/14
+				if (this._model) {
 					this._model.removeObserver(this);
 				}
 				this._model = model;
 				model.addObserver(this);
-				if(!this.script.loaded) {
+				if (!this.script.loaded) {
 					this.script.load(ts.ui.SearchSpirit.edbml);
 				}
 				this.script.input(model);
@@ -78,8 +77,8 @@ ts.ui.SearchSpirit = (function using(ButtonSpirit, CSSPlugin, Type, chained) {
 			this.super.onchange(changes);
 			var model = this._model;
 			changes.forEach(function(c) {
-				if(c.object === model) {
-					switch(c.name) {
+				if (c.object === model) {
+					switch (c.name) {
 						case 'value':
 							this._update(model);
 							break;
@@ -90,7 +89,6 @@ ts.ui.SearchSpirit = (function using(ButtonSpirit, CSSPlugin, Type, chained) {
 				}
 			}, this);
 		},
-
 
 		// API .....................................................................
 
@@ -119,7 +117,7 @@ ts.ui.SearchSpirit = (function using(ButtonSpirit, CSSPlugin, Type, chained) {
 		},
 
 		/**
-		 * Open for implementation: Called when the user presses ENTER 
+		 * Open for implementation: Called when the user presses ENTER
 		 * (noting that this only works for the default-created model).
 		 * @param {string} value
 		 */
@@ -158,19 +156,18 @@ ts.ui.SearchSpirit = (function using(ButtonSpirit, CSSPlugin, Type, chained) {
 		}),
 
 		/**
-		 * The `info` string acts as a title (tooltip) when 
+		 * The `info` string acts as a title (tooltip) when
 		 * collapsed and as an input placeholder when expanded.
 		 * @param @optional {string} text
 		 * @returns {string|ts.ui.SearchSpirit}
 		 */
 		info: chained(function(text) {
-			if(arguments.length) {
+			if (arguments.length) {
 				this._model.info = text;
 			} else {
 				return this._model.info;
 			}
 		}),
-
 
 		// Private .................................................................
 
@@ -181,7 +178,7 @@ ts.ui.SearchSpirit = (function using(ButtonSpirit, CSSPlugin, Type, chained) {
 		_model: null,
 
 		/**
-		 * Create the default model. We'll attempt to make the 
+		 * Create the default model. We'll attempt to make the
 		 * spirit interface identical to the model interface.
 		 * @returns {ts.ui.SearchModel}
 		 */
@@ -189,7 +186,7 @@ ts.ui.SearchSpirit = (function using(ButtonSpirit, CSSPlugin, Type, chained) {
 			var spirit = this, model = new ts.ui.SearchModel();
 			methodnames.forEach(function(method) {
 				model[method] = function() {
-					if(Type.isFunction(spirit[method])) {
+					if (Type.isFunction(spirit[method])) {
 						spirit[method].apply(spirit, arguments);
 					}
 				};
@@ -202,14 +199,14 @@ ts.ui.SearchSpirit = (function using(ButtonSpirit, CSSPlugin, Type, chained) {
 		 * @param {ts.ui.SearchModel} model
 		 */
 		_update: function(model) {
-			if(model.flex) {
+			if (model.flex) {
 				this.css.add('ts-searching');
 			} else {
 				var emptiness = !model.value;
 				var searching = model.value || this._isfocused;
 				var isalready = this.css.contains('ts-searching');
 				this.css.shift(emptiness, 'ts-empty').shift(searching, 'ts-searching');
-				if(this.css.contains('ts-searching') !== isalready) {
+				if (this.css.contains('ts-searching') !== isalready) {
 					this.action.dispatch('ts-action-search', !isalready);
 				}
 			}
@@ -220,7 +217,7 @@ ts.ui.SearchSpirit = (function using(ButtonSpirit, CSSPlugin, Type, chained) {
 		 * @param {ts.ui.SearchModel} model
 		 */
 		_clear: function(model) {
-			if(!model.flex) { // hack for the ToolBar here...
+			if (!model.flex) { // hack for the ToolBar here...
 				this.action.dispatch('ts-action-search', false);
 				this.css.remove('ts-searching');
 			}
@@ -233,5 +230,4 @@ ts.ui.SearchSpirit = (function using(ButtonSpirit, CSSPlugin, Type, chained) {
 		}
 
 	});
-
 }(ts.ui.ButtonSpirit, gui.CSSPlugin, gui.Type, gui.Combo.chained));

@@ -22,7 +22,7 @@ gui.TransitionPlugin = gui.Plugin.extend({
 	 */
 	property: function(props) {
 		if (props) {
-			this.spirit.css.set("-beta-transition-property", props);
+			this.spirit.css.set('-beta-transition-property', props);
 		}
 		return this._init();
 	},
@@ -35,7 +35,7 @@ gui.TransitionPlugin = gui.Plugin.extend({
 	duration: function(time) {
 		if (time) {
 			time = gui.Type.isNumber(time) ? this._convert(time) : time;
-			this.spirit.css.set("-beta-transition-duration", time);
+			this.spirit.css.set('-beta-transition-duration', time);
 		}
 		return this._init();
 	},
@@ -47,7 +47,7 @@ gui.TransitionPlugin = gui.Plugin.extend({
 	 */
 	timing: function(timing) {
 		if (timing) {
-			this.spirit.css.set("-beta-transition-timing-function", timing);
+			this.spirit.css.set('-beta-transition-timing-function', timing);
 		}
 		return this._init();
 	},
@@ -57,7 +57,7 @@ gui.TransitionPlugin = gui.Plugin.extend({
 	 * @returns {gui.TransitionPlugin}
 	 */
 	easeIn: function() {
-		return this.timing("ease-in");
+		return this.timing('ease-in');
 	},
 
 	/**
@@ -65,7 +65,7 @@ gui.TransitionPlugin = gui.Plugin.extend({
 	 * @returns {gui.TransitionPlugin}
 	 */
 	easeOut: function() {
-		return this.timing("ease-out");
+		return this.timing('ease-out');
 	},
 
 	/**
@@ -73,7 +73,7 @@ gui.TransitionPlugin = gui.Plugin.extend({
 	 * @returns {gui.TransitionPlugin}
 	 */
 	easeInOut: function() {
-		return this.timing("ease-in-out");
+		return this.timing('ease-in-out');
 	},
 
 	/**
@@ -85,7 +85,7 @@ gui.TransitionPlugin = gui.Plugin.extend({
 	 * @returns {gui.TransitionPlugin}
 	 */
 	cubicBezier: function(n1, n2, n3, n4) {
-		return this.timing("cubic-bezier(" + n1 + "," + n2 + "," + n3 + "," + n4 + ")");
+		return this.timing('cubic-bezier(' + n1 + ',' + n2 + ',' + n3 + ',' + n4 + ')');
 	},
 
 	/**
@@ -93,7 +93,7 @@ gui.TransitionPlugin = gui.Plugin.extend({
 	 * @returns {gui.TransitionPlugin}
 	 */
 	none: function() {
-		return this.property("none");
+		return this.property('none');
 	},
 
 	/**
@@ -101,8 +101,8 @@ gui.TransitionPlugin = gui.Plugin.extend({
 	 * @TODO: clear out the non transition related CSS declarations!
 	 */
 	reset: function() {
-		this.property("");
-		this.timing("");
+		this.property('');
+		this.timing('');
 	},
 
 	/**
@@ -122,7 +122,7 @@ gui.TransitionPlugin = gui.Plugin.extend({
 				css[key] = value;
 			}
 		}, this);
-		var now = this.spirit.css.compute("-beta-transition-property") === "none";
+		var now = this.spirit.css.compute('-beta-transition-property') === 'none';
 		var then = this._then = new gui.Then();
 		// Firefox needs a break before setting the styles.
 		// http://stackoverflow.com/questions/6700137/css-3-transitions-with-opacity-chrome-and-firefox
@@ -139,7 +139,6 @@ gui.TransitionPlugin = gui.Plugin.extend({
 		}
 		return then;
 	},
-
 
 	// Private ..............................................................................
 
@@ -173,12 +172,12 @@ gui.TransitionPlugin = gui.Plugin.extend({
 	_init: function() {
 		if (this._endevent === null) {
 			var names = {
-				"webkit": "webkitTransitionEnd",
-				"explorer": "transitionend",
-				"gecko": "transitionend",
-				"opera": "oTransitionEnd"
+				webkit: 'webkitTransitionEnd',
+				explorer: 'transitionend',
+				gecko: 'transitionend',
+				opera: 'oTransitionEnd'
 			};
-			this._endevent = names[gui.Client.agent] || "transitionend";
+			this._endevent = names[gui.Client.agent] || 'transitionend';
 			this.spirit.event.add(this._endevent, this.spirit.element, this);
 		}
 		return this;
@@ -196,7 +195,7 @@ gui.TransitionPlugin = gui.Plugin.extend({
 
 	/**
 	 * Invoke callback when properties transitioned via run() has finished.
-	 * @param  {gui.Transition} t
+	 * @param	{gui.Transition} t
 	 */
 	_ontransition: function(t) {
 		if (--this._count === 0) {
@@ -220,8 +219,8 @@ gui.TransitionPlugin = gui.Plugin.extend({
 	 * @returns {String} Duration as string
 	 */
 	_convert: function(ms) {
-		ms = ms ? ms : this._default;
-		return ms / 1000 + "s";
+		ms = ms || this._default;
+		return ms / 1000 + 's';
 	}
 
 });

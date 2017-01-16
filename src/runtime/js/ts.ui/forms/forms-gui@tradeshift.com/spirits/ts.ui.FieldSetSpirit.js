@@ -3,7 +3,6 @@
  * @extends {ts.ui.Spirit}
  */
 ts.ui.FieldSetSpirit = (function() {
-
 	return ts.ui.Spirit.extend({
 
 		/**
@@ -50,7 +49,6 @@ ts.ui.FieldSetSpirit = (function() {
 			this.css.shift(!this.dom.q('span + label'), 'ts-nolabel');
 		},
 
-
 		// Private .................................................................
 
 		/**
@@ -88,5 +86,4 @@ ts.ui.FieldSetSpirit = (function() {
 		}
 
 	});
-
 }());

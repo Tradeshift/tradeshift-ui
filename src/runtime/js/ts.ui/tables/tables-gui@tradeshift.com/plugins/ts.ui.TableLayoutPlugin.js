@@ -5,10 +5,8 @@
  * @using {gui.Tick} Tick
  */
 ts.ui.TableLayoutPlugin = (function using(Client, Tick) {
-
 	var UNIT = 22;
 	var UNIT_DOUBLE = UNIT * 2;
-	var UNIT_TRIPLE = UNIT * 3;
 	var COL_CELLS = '.ts-table-cols th:not(.ts-table-addition)';
 	var ROW_CELLS = '.ts-table-rows tr:first-child td:not(.ts-table-addition)';
 
@@ -27,13 +25,13 @@ ts.ui.TableLayoutPlugin = (function using(Client, Tick) {
 	 */
 	function setheight(td, height) {
 		var div = td.querySelector('.ts-table-cell');
-		if(div) {
+		if (div) {
 			div.style.height = height + 'px';
 		}
 	}
 
 	/**
-	 * Cells in this column may span multiple lines? Because 
+	 * Cells in this column may span multiple lines? Because
 	 * otherwise the `style.height` setters are not needed.
 	 * @param {ts.ui.TableColModel} col
 	 * @returns {boolean}
@@ -64,11 +62,10 @@ ts.ui.TableLayoutPlugin = (function using(Client, Tick) {
 		 */
 		flex: function(spirit, model) {
 			this._hflex(spirit, model);
-			if(model.cols.some(ismultiline)) {
+			if (model.cols.some(ismultiline)) {
 				this._vfix(spirit, model);
 			}
 		},
-
 
 		// Private .................................................................
 
@@ -116,8 +113,8 @@ ts.ui.TableLayoutPlugin = (function using(Client, Tick) {
 		_layoutasync: function(spirit, model, rows, guts, flag) {
 			var x = spirit._scroll.x;
 			var y = spirit._scroll.y;
-			if(rows) {
-				switch(flag) {
+			if (rows) {
+				switch (flag) {
 					case 'paging':
 					case 'sorting':
 						y = 0;
@@ -130,7 +127,6 @@ ts.ui.TableLayoutPlugin = (function using(Client, Tick) {
 				spirit._noscrolling = false;
 			});
 		},
-
 
 		// Horizontal flex .........................................................
 
@@ -206,11 +202,11 @@ ts.ui.TableLayoutPlugin = (function using(Client, Tick) {
 		 * @param {Array<HTMLTableCellElement>} tds
 		 */
 		_hflex3: function(spirit, model, width, cols, ths, tds) {
-			if(model.rows.length) {
+			if (model.rows.length) {
 				var rows = spirit.queryplugin.getrows();
 				var result = rows.scrollWidth;
 				var STRANGE_NUMBER = 63; // strange number!
-				if(result > width) {
+				if (result > width) {
 					width = width - (result - width) - STRANGE_NUMBER;
 					this._hflex1(spirit, model, width, cols, ths, tds);
 				}
@@ -241,7 +237,6 @@ ts.ui.TableLayoutPlugin = (function using(Client, Tick) {
 			return adjust;
 		},
 
-
 		// Vertical fix ............................................................
 
 		/**
@@ -256,7 +251,7 @@ ts.ui.TableLayoutPlugin = (function using(Client, Tick) {
 			var floats = spirit._floatgutter();
 			var edits = model.editable;
 			var plug = spirit.queryplugin;
-			if(floats || edits) {
+			if (floats || edits) {
 				this._vfix2(
 					plug.getrows(true),
 					plug.getguts(true),
@@ -282,8 +277,8 @@ ts.ui.TableLayoutPlugin = (function using(Client, Tick) {
 
 		/**
 		 * Match cell height of "floating gutter" to the main (nonfloating) cells.
-		 * Also, while editing, match height of all cells to the tallest cell so 
-		 * that the `textarea` can span the entire cell vertically. It has to work 
+		 * Also, while editing, match height of all cells to the tallest cell so
+		 * that the `textarea` can span the entire cell vertically. It has to work
 		 * like that because you cannot dynamically set `focus` on touch devices.
 		 * TODO: Fix the browser specific CSS in the CSS :/
 		 * @param {HTMLDivElement} rows
@@ -300,10 +295,10 @@ ts.ui.TableLayoutPlugin = (function using(Client, Tick) {
 				return height;
 			}).forEach(function writeheight(height, index) {
 				var row = rows[index];
-				if(floats) {
+				if (floats) {
 					setheight(guts[index], height);
 				}
-				if(edits) {
+				if (edits) {
 					Array.forEach(row.cells, function(td) {
 						setheight(td, height);
 					});
@@ -312,5 +307,4 @@ ts.ui.TableLayoutPlugin = (function using(Client, Tick) {
 		}
 
 	});
-
 }(gui.Client, gui.Tick));

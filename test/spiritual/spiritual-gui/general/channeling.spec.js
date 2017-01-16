@@ -1,13 +1,11 @@
 /**
- * Channeling and exorcizing 
+ * Channeling and exorcizing
  */
 describe('Channeling and exorcising spirits', function likethis() {
-
-
 	// Preparations ..............................................................
 
 	// Why so much timeout needed??? It does work with zero, but not always...
-	var STRANGELY_BIG_TIMEOUT = 100; 
+	var STRANGELY_BIG_TIMEOUT = 100;
 
 	/**
 	 * Before test.
@@ -25,7 +23,7 @@ describe('Channeling and exorcising spirits', function likethis() {
 	});
 
 	/**
-	 * Get element that will channel a 
+	 * Get element that will channel a
 	 * spirit once inserted into DOM.
 	 * @returns {Element}
 	 */
@@ -41,7 +39,7 @@ describe('Channeling and exorcising spirits', function likethis() {
 	 * @returns {boolean}
 	 */
 	function hasSpirit(elm) {
-		return gui.get(elm) ? true : false;
+		return !!gui.get(elm);
 	}
 
 	/**
@@ -53,7 +51,6 @@ describe('Channeling and exorcising spirits', function likethis() {
 	function sometime(action) {
 		setTimeout(action, STRANGELY_BIG_TIMEOUT);
 	}
-
 
 	// Expectations ..............................................................
 
@@ -80,7 +77,7 @@ describe('Channeling and exorcising spirits', function likethis() {
 
 	it('possesses on insertBefore of document fragment', function() {
 		var frag = document.createDocumentFragment();
-		var spirits = [ getSpiritElm(), getSpiritElm() ];
+		var spirits = [getSpiritElm(), getSpiritElm()];
 		spirits.forEach(function(e) {
 			frag.appendChild(e);
 		});

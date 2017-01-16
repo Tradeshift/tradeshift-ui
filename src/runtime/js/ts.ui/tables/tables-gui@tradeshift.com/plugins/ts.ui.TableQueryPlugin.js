@@ -1,11 +1,10 @@
 /**
- * DOM query studio. Lookup elements and spirits inside the Table. Also 
+ * DOM query studio. Lookup elements and spirits inside the Table. Also
  * parse element attributes and pinpoint elements position in the model.
  * @extends {ts.ui.Plugin}
  * @using {gui.Type} Type
  */
 ts.ui.TableQueryPlugin = (function(Type) {
-
 	return ts.ui.Plugin.extend({
 
 		/**
@@ -65,18 +64,18 @@ ts.ui.TableQueryPlugin = (function(Type) {
 		},
 
 		/**
-		 * Figure out what rowindex and cellindex (in the model) a given 
+		 * Figure out what rowindex and cellindex (in the model) a given
 		 * DOM element relates to (this can be any element in the rows).
 		 * TODO: This information can now be extracted from the cell ID!!!
 		 * @param {DOMElement} elm
 		 * @returns {gui.Position} Where `y` is the rowindex and `x` is the cell.
-		 *          or `null` if element is not associated to position in the model
+		 *					or `null` if element is not associated to position in the model
 		 */
 		getpos: function(elm) {
 			var pos = new gui.Position();
 			var rows = this.getrows();
-			while(elm && elm !== rows) {
-				switch(elm.localName) {
+			while (elm && elm !== rows) {
+				switch (elm.localName) {
 					case 'tr':
 						pos.y = this.getindex(elm);
 						break;
@@ -86,7 +85,7 @@ ts.ui.TableQueryPlugin = (function(Type) {
 				}
 				elm = elm.parentNode;
 			}
-			if(pos.y !== null && pos.x !== null ) {
+			if (pos.y !== null && pos.x !== null) {
 				return pos;
 			} else {
 				return null;
@@ -112,7 +111,6 @@ ts.ui.TableQueryPlugin = (function(Type) {
 			return elm.getAttribute('data-action');
 		},
 
-
 		// Private .................................................................
 
 		/**
@@ -126,5 +124,4 @@ ts.ui.TableQueryPlugin = (function(Type) {
 		}
 
 	});
-
 }(gui.Type));

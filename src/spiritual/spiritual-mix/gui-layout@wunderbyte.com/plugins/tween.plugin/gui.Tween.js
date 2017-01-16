@@ -2,7 +2,6 @@
  * Tweening away.
  */
 gui.Tween = (function using(confirmed, chained) {
-
 	return gui.Class.create(Object.prototype, {
 
 		/**
@@ -65,10 +64,9 @@ gui.Tween = (function using(confirmed, chained) {
 			}
 		}
 
-
 	}, {}, { // Static ...........................................................
 
-		/** 
+		/**
 		 * Coordinate tween.
 		 * @param {string} type
 		 * @param @optional {object} config
@@ -77,7 +75,7 @@ gui.Tween = (function using(confirmed, chained) {
 		 */
 		dispatch: function(type, config, data) {
 			var tween = new gui.Tween(type, config, data);
-			var timer = gui.Client.hasPerformance? window.performance : Date;
+			var timer = gui.Client.hasPerformance ? window.performance : Date;
 			var start = timer.now();
 			function step() {
 				var value = 1;
@@ -107,12 +105,12 @@ gui.Tween = (function using(confirmed, chained) {
 				}
 				*/
 				tween.value = value;
-				if(tween.value === 1) {
+				if (tween.value === 1) {
 					tween.done = true;
 				}
 				gui.Broadcast.dispatch(gui.BROADCAST_TWEEN, tween);
 				tween.init = false;
-				if(!tween.done) {
+				if (!tween.done) {
 					requestAnimationFrame(step);
 				}
 			}
@@ -121,5 +119,4 @@ gui.Tween = (function using(confirmed, chained) {
 		}
 
 	});
-
 }(gui.Arguments.confirmed, gui.Combo.chained));

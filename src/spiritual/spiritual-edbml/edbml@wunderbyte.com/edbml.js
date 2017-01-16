@@ -57,7 +57,6 @@ window.edbml = gui.namespace('edbml', {
 		return edbml.Security.$safeattr(string);
 	},
 
-
 	// Privileged ................................................................
 
 	/**
@@ -124,7 +123,7 @@ window.edbml = gui.namespace('edbml', {
 			$edbml.$att = null;
 			if (spirit) {
 				$edbml.$input = null;
-			}	
+			}
 		}
 		return function($edbml) {
 			return function configured($in) {
@@ -135,7 +134,6 @@ window.edbml = gui.namespace('edbml', {
 			};
 		};
 	}()),
-
 
 	// Private ...................................................................
 
@@ -161,7 +159,7 @@ window.edbml = gui.namespace('edbml', {
 	},
 
 	/*
-	 * 
+	 *
 	 */
 	_invoke: function(key, value, checked) {
 		var func = this._invokables[key];

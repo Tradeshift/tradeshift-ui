@@ -2,12 +2,11 @@
  * edb.ObjectProxy.
  */
 describe('edb.ObjectProxy', function likethis() {
-
 	var BROADCAST = edb.BROADCAST_ACCESS;
 	var TICK = edb.TICK_PUBLISH_CHANGES;
 
 	/*
-	 * Testing the feature that enables EDBML temlates to only render 
+	 * Testing the feature that enables EDBML temlates to only render
 	 * whenever a property is changed that affects the rendering.
 	 */
 	it('should broadcast when you read a property', function(done) {
@@ -20,7 +19,7 @@ describe('edb.ObjectProxy', function likethis() {
 				var array = b.data;
 				var owner = array[0];
 				var pname = array[1];
-				if(owner === object && pname === 'name') {
+				if (owner === object && pname === 'name') {
 					gui.Broadcast.remove(BROADCAST, this);
 					// wait a second (to also test the sync)
 					setTimeout(function waitforfail() {
@@ -31,12 +30,12 @@ describe('edb.ObjectProxy', function likethis() {
 		});
 		// will trigger the broadcast *if* edb.$accessaware is true
 		edb.$accessaware = true;
-		var read_the_variable = object.name;
+		var readTheVariable = object.name; // eslint-disable-line no-unused-vars
 		edb.$accessaware = false;
 	});
 
 	/*
-	 * Testing the (low level) mechanism behind edb.Object.addObserver() 
+	 * Testing the (low level) mechanism behind edb.Object.addObserver()
 	 * which happens to be implemented using a {gui.Tick}.
 	 */
 	it('should trigger a tick (async) when you write a property', function(done) {
@@ -56,7 +55,7 @@ describe('edb.ObjectProxy', function likethis() {
 	});
 
 	/*
-	 * Nested objects also get passed by the edb.ObjectProxy so that 
+	 * Nested objects also get passed by the edb.ObjectProxy so that
 	 * any changes made can be picked up by observers (EDBML scripts).
 	 */
 	it('should trigger a tick when you write to a nested edb.Object', function(done) {
@@ -76,8 +75,8 @@ describe('edb.ObjectProxy', function likethis() {
 	});
 
 	/*
-	 * If you don't need to observe a data structure, you can bypass the 
-	 * ObjectProxy altogether by declaring the structure as "simple" data. 
+	 * If you don't need to observe a data structure, you can bypass the
+	 * ObjectProxy altogether by declaring the structure as "simple" data.
 	 * This implies that EDBML scripts will not rerender when they change.
 	 */
 	it('should NOT trigger a tick when you write to a "simple" Object', function(done) {
@@ -91,7 +90,7 @@ describe('edb.ObjectProxy', function likethis() {
 		});
 		var handler = { // this should not get triggered
 			ontick: function shouldnothappen() {
-				expect(false).toBe(true); 
+				expect(false).toBe(true);
 			}
 		};
 		gui.Tick.add(TICK, handler);
@@ -103,30 +102,29 @@ describe('edb.ObjectProxy', function likethis() {
 	});
 
 	/*
-	 * This really tests the {gui.Tick} mechanism, but the point here is to say 
+	 * This really tests the {gui.Tick} mechanism, but the point here is to say
 	 * that multiple changes are reported in one single (bulk) operation.
 	 */
 	it('should only trigger ONE tick', function(done) {
-		var object = new edb.Object ({
+		var object = new edb.Object({
 			name: 'John',
 			nickname: 'Henning',
 			age: 23
 		});
 		var sum = 0, handler = {
-			ontick: function() {
-				sum ++; // incrementing the counter for every change recorded
-			}
-		};
+				ontick: function() {
+					sum++; // incrementing the counter for every change recorded
+				}
+			};
 		gui.Tick.add(TICK, handler);
 		object.name = 'Bob';
 		object.nickname = 'Joe';
 		object.age = 5;
 		setTimeout(function checksum() {
-			if(sum === 1) {
+			if (sum === 1) {
 				gui.Tick.remove(TICK, handler);
 				done();
 			}
 		}, 50);
 	});
-
 });

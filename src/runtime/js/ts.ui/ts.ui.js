@@ -8,29 +8,12 @@ gui.$mark('- parse runtime');
  * @using {gui.Combo.chained} chained
  */
 ts.ui = gui.namespace('ts.ui', (function using(Client, guiArray, confirmed, chained) {
-	
 	/*
 	 * Supports a temp ad hoc API for breakpoint callbacks.
 	 * @type {Array<function>}
 	 */
 	var breakpointers = [];
-	
-	/**
-	 * Remove "Spirit" from class name so that the name resembles what you 
-	 * see in the Docs page. Note that the `data-ts` attribute is case sensitive 
-	 * (so that it must be with uppercase `data-ts="Aside") while in the real 
-	 * world we should probably make it case insensitive.
-	 * @param {string} name
-	 * @returns {string}
-	 */
-	function stripname(name) {
-		if(name === 'ts.ui.Spirit') {
-			return 'Spirit';
-		} else {
-			return name.replace(/^ts\.ui\./, '').replace(/Spirit/, '');
-		}
-	}
-	
+
 	return {
 
 		/**
@@ -60,10 +43,10 @@ ts.ui = gui.namespace('ts.ui', (function using(Client, guiArray, confirmed, chai
 		 */
 		frankenstein: (function(path) {
 			var vendorappid = /[A-Z][A-Za-z]+\.[A-Z][A-Za-z]+/;
-			return window !== top &&
+			return !!(window !== top &&
 				path.includes('/app/') ||
 				path.includes('/v4/') ||
-				path.match(vendorappid) ? true : false;
+				path.match(vendorappid));
 		}(window.location.pathname)),
 
 		/**
@@ -104,16 +87,14 @@ ts.ui = gui.namespace('ts.ui', (function using(Client, guiArray, confirmed, chai
 		 */
 		hasPointers: Client.hasPointers || !Client.isExplorer9,
 
-
 		// Miscelaneous ............................................................
 
 		/**
-		 * Magic URL substring used on the Dox website 
+		 * Magic URL substring used on the Dox website
 		 * (so perhaps this constant should be renamed).
 		 * @type {string}
 		 */
 		TRADESHIFT_HOME: '/',
-
 
 		// Units ...................................................................
 
@@ -121,7 +102,6 @@ ts.ui = gui.namespace('ts.ui', (function using(Client, guiArray, confirmed, chai
 		UNIT_HALF: 11,
 		UNIT_DOUBLE: 44,
 		UNIT_TRIPLE: 66,
-
 
 		// Classnames ..............................................................
 
@@ -141,11 +121,11 @@ ts.ui = gui.namespace('ts.ui', (function using(Client, guiArray, confirmed, chai
 		CLASS_HAS_TOPBAR: 'ts-has-topbar',
 		CLASS_HAS_TOPBAR_TABS: 'ts-has-topbar-tabs',
 		CLASS_HAS_NOTE: 'ts-has-note',
-		CLASS_USEFLEX: "ts-useflex",
-		CLASS_NOFLEX: "ts-noflex",
-		CLASS_USETRANSITION: "ts-usetransition",
-		CLASS_NOTRANSITION: "ts-notransition",
-		CLASS_TRANSITION: "ts-transition",
+		CLASS_USEFLEX: 'ts-useflex',
+		CLASS_NOFLEX: 'ts-noflex',
+		CLASS_USETRANSITION: 'ts-usetransition',
+		CLASS_NOTRANSITION: 'ts-notransition',
+		CLASS_TRANSITION: 'ts-transition',
 
 		// abstract
 		CLASS_PRIMARY: 'ts-primary',
@@ -227,11 +207,11 @@ ts.ui = gui.namespace('ts.ui', (function using(Client, guiArray, confirmed, chai
 		CLASS_BG_WHITE: 'ts-bg-white',
 		CLASS_BG_DARK: 'ts-bg-dark',
 		CLASS_BG_BLUE: 'ts-bg-blue',
-		CLASS_BG_GREEN:'ts-bg-green',
+		CLASS_BG_GREEN: 'ts-bg-green',
 		CLASS_BG_YELLOW: 'ts-bg-yellow',
 		CLASS_BG_RED: 'ts-bg-red',
 		CLASS_BG_PURPLE: 'ts-bg-purple',
-		
+
 		// amazing colors
 		CLASS_BLACK: 'ts-color-black',
 		CLASS_DARK: 'ts-color-dark',
@@ -239,17 +219,14 @@ ts.ui = gui.namespace('ts.ui', (function using(Client, guiArray, confirmed, chai
 		CLASS_LITE: 'ts-color-lite',
 		CLASS_WHITE: 'ts-color-white',
 		CLASS_BLUE: 'ts-color-blue',
-		CLASS_GREEN:'ts-color-green',
+		CLASS_GREEN: 'ts-color-green',
 		CLASS_YELLOW: 'ts-color-yellow',
 		CLASS_RED: 'ts-color-red',
 		CLASS_PURPLE: 'ts-color-purple',
 
-
-
 		// Icons ...................................................................
 
 		ICON_CLOSE: 'ts-icon-close',
-
 
 		// Actions .................................................................
 
@@ -346,7 +323,6 @@ ts.ui = gui.namespace('ts.ui', (function using(Client, guiArray, confirmed, chai
 		BROADCAST_GLOBAL_MENU_OPEN: 'ts-broadcast-g-menu-open',
 		BROADCAST_GLOBAL_MENU_CLOSE: 'ts-broadcast-g-menu-close',
 
-
 		// Events ..................................................................
 
 		EVENT_ASIDE_WILL_OPEN: 'ts-open',
@@ -356,17 +332,14 @@ ts.ui = gui.namespace('ts.ui', (function using(Client, guiArray, confirmed, chai
 		EVENT_FOCUS: 'ts-focus',
 		EVENT_BLUR: 'ts-blur',
 
-
 		// Ticks ...................................................................
 
 		TICK_SELECT_CHECK: 'ts-tick-select-check',
-
 
 		// Lifecycle ...............................................................
 
 		LIFE_STATUS_BUSY: 'ts-life-status-busy',
 		LIFE_STATUS_DONE: 'ts-life-status-done',
-
 
 		// Animations ..............................................................
 
@@ -377,11 +350,9 @@ ts.ui = gui.namespace('ts.ui', (function using(Client, guiArray, confirmed, chai
 		TIMING_SLOWDOWN: 'cubic-bezier(0,1,0,1)',
 		TIMING_SPEEDUP: 'cubic-bezier(1,0,1,0)',
 
-
 		// Z-indexes ...............................................................
 
-		ZINDEX_ASIDE : 2000, // duplicates @ts-zindex-aside in ts-variables.less
-		
+		ZINDEX_ASIDE: 2000, // duplicates @ts-zindex-aside in ts-variables.less
 
 		// Methods .................................................................
 
@@ -503,7 +474,7 @@ ts.ui = gui.namespace('ts.ui', (function using(Client, guiArray, confirmed, chai
 		onchange: function(changes) {
 			changes.forEach(function(c) {
 				if (c.object instanceof ts.ui.LayoutModel) {
-					if(c.name === 'breakpoint') {
+					if (c.name === 'breakpoint') {
 						ts.ui.breakpoint = c.newValue;
 						breakpointers.forEach(function(callback) {
 							callback(c.newValue, c.oldValue);
@@ -512,7 +483,6 @@ ts.ui = gui.namespace('ts.ui', (function using(Client, guiArray, confirmed, chai
 				}
 			});
 		},
-
 
 		// Private .................................................................
 
@@ -529,11 +499,10 @@ ts.ui = gui.namespace('ts.ui', (function using(Client, guiArray, confirmed, chai
 		}
 
 	};
-
 }(gui.Client, gui.Array, gui.Arguments.confirmed, gui.Combo.chained)));
 
 /**
- * Match method names to some background 
+ * Match method names to some background
  * colors for various coloring purposes.
  * @type {Map<string, string>}
  */
@@ -553,7 +522,7 @@ ts.ui.BACKGROUND_COLORS = {
  * @type {Map<string, string>}
  */
 ts.ui.COLORS = {
-	black: ts.ui.CLASS_BLACK, 
+	black: ts.ui.CLASS_BLACK,
 	dark: ts.ui.CLASS_DARK,
 	medium: ts.ui.CLASS_MEDIUM,
 	lite: ts.ui.CLASS_LITE,

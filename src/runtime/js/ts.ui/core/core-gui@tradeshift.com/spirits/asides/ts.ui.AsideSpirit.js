@@ -8,7 +8,6 @@
  * @using {ts.ui.LayoutModel} LayoutModel
  */
 ts.ui.AsideSpirit = (function using(chained, confirmed, Client, LayoutModel, notontouch) {
-
 	// custom dom events (for public implementation)
 	var domevent = {
 		WILLOPEN: ts.ui.EVENT_ASIDE_WILL_OPEN,
@@ -30,7 +29,7 @@ ts.ui.AsideSpirit = (function using(chained, confirmed, Client, LayoutModel, not
 		classopen = ts.ui.CLASS_OPEN,
 		classclosing = ts.ui.CLASS_CLOSING,
 		classclosed = ts.ui.CLASS_CLOSED;
-		
+
 	// selector to detect Asides nested inside SideBars
 	var SIDEBAR_ASIDE_SELECTOR = '.ts-sidebar .ts-aside';
 
@@ -48,7 +47,7 @@ ts.ui.AsideSpirit = (function using(chained, confirmed, Client, LayoutModel, not
 		 */
 		onconfigure: function() {
 			this.super.onconfigure();
-			if(this._ismodelled()) {
+			if (this._ismodelled()) {
 				this._model.addObserver(this);
 				this.broadcast.add(synctomenu);
 				this.autofocus = this._model.autofocus;
@@ -62,19 +61,19 @@ ts.ui.AsideSpirit = (function using(chained, confirmed, Client, LayoutModel, not
 		},
 
 		/**
-		 * Check for the footer only once, knowing 
+		 * Check for the footer only once, knowing
 		 * that Angular might well insert it later.
 		 */
 		onready: function() {
 			this.super.onready();
-			if(this.dom.q('this > .ts-footer')) {
+			if (this.dom.q('this > .ts-footer')) {
 				this.css.add('ts-hasfooter');
 			}
 		},
-				
+
 		/**
 		 * Reflex Aside members when we open the Aside.
-		 * TODO: If and when we deprecate the {gui.VisibilityPlugin} 
+		 * TODO: If and when we deprecate the {gui.VisibilityPlugin}
 		 * we should probably move `this.reflex()` to method `_open`.
 		 */
 		onvisible: function() {
@@ -112,7 +111,7 @@ ts.ui.AsideSpirit = (function using(chained, confirmed, Client, LayoutModel, not
 					);
 					break;
 				case doclose:
-					if(!this._isSideBarAside()) {
+					if (!this._isSideBarAside()) {
 						this.close();
 					}
 					break;
@@ -120,13 +119,13 @@ ts.ui.AsideSpirit = (function using(chained, confirmed, Client, LayoutModel, not
 		},
 
 		/**
-		 * Some MenuModel has requested a panel scroll operation. 
+		 * Some MenuModel has requested a panel scroll operation.
 		 * If our AsideModel contains that menu, we can do that.
 		 * @param {ts.ui.Collection} items
 		 * @param {string} instanceid
 		 */
 		_maybesynctomenu: function(menuid, offset) {
-			if(this._model.items.some(function(item) {
+			if (this._model.items.some(function(item) {
 				return item.$instanceid === menuid;
 			})) {
 				this.dom.q('.ts-panel').scrollTop = offset;
@@ -159,18 +158,18 @@ ts.ui.AsideSpirit = (function using(chained, confirmed, Client, LayoutModel, not
 			var asides = layout.asides;
 			var id = this.$instanceid;
 			changes.forEach(function(c) {
-				switch(c.object) {
+				switch (c.object) {
 					case asides:
 						var klass = ts.ui.CLASS_SECONDARY;
 						var stacked = this.css.contains(klass);
 						this._index = asides.indexOf(id);
 						var x = asides.length - this._index - 1;
-						if(x > 0) {
-							if(!stacked) {
+						if (x > 0) {
+							if (!stacked) {
 								this._stack(true);
 							}
 						} else {
-							if(stacked) {
+							if (stacked) {
 								this._stack(false);
 							}
 						}
@@ -197,7 +196,7 @@ ts.ui.AsideSpirit = (function using(chained, confirmed, Client, LayoutModel, not
 		ondestruct: function() {
 			this.super.ondestruct();
 			this._confirmstate(this._isreallyopen);
-			if(this._ismodelled()) { // TODO: automate this step
+			if (this._ismodelled()) { // TODO: automate this step
 				this._model.removeObserver(this);
 			}
 		},
@@ -208,7 +207,6 @@ ts.ui.AsideSpirit = (function using(chained, confirmed, Client, LayoutModel, not
 		focus: notontouch(function() {
 			this._focusbest();
 		}),
-
 
 		// Private .................................................................
 
@@ -244,7 +242,7 @@ ts.ui.AsideSpirit = (function using(chained, confirmed, Client, LayoutModel, not
 		_isreallyopen: false,
 
 		/**
-		 * Postponing 'onopen' until some event has occured? This setup 
+		 * Postponing 'onopen' until some event has occured? This setup
 		 * relates to a performance optimization of the SELECT menus.
 		 * @type {boolean}
 		 */
@@ -252,12 +250,12 @@ ts.ui.AsideSpirit = (function using(chained, confirmed, Client, LayoutModel, not
 
 		/**
 		 * This is just a hack for now to delay initialization of the DOM until
-		 * after angular is done with the aside. This depends on being called 
-		 * inside of a user event handler. Because implicitly, angular is done 
+		 * after angular is done with the aside. This depends on being called
+		 * inside of a user event handler. Because implicitly, angular is done
 		 * with the element at that point in time. This is very fragile.
-		 * TODO: This should be replaced with a proper Angular integration, that 
-		 * allows us to initialize elements after Angular has completed compilation 
-		 * and linking all other directives. Note that this requires us to figure 
+		 * TODO: This should be replaced with a proper Angular integration, that
+		 * allows us to initialize elements after Angular has completed compilation
+		 * and linking all other directives. Note that this requires us to figure
 		 * out *when exactly that happens* and it is not clear, if that's possible.
 		 * @type {boolean}
 		 */
@@ -272,8 +270,8 @@ ts.ui.AsideSpirit = (function using(chained, confirmed, Client, LayoutModel, not
 		},
 
 		/**
-		 * All attempts to animate the Aside with ordinary CSS transitions 
-		 * would result in fatal rendering glitches that only occurs in a 
+		 * All attempts to animate the Aside with ordinary CSS transitions
+		 * would result in fatal rendering glitches that only occurs in a
 		 * production environment, of course. Using the brute force method.
 		 * @param {boolean} open
 		 * @param @optional {boolean} callback
@@ -283,7 +281,7 @@ ts.ui.AsideSpirit = (function using(chained, confirmed, Client, LayoutModel, not
 			var then = new gui.Then();
 			var tick = this.tick;
 			var end = ts.ui.TRANSITION_FAST;
-			var xxx, deg, off;
+			var deg, off;
 			function getoffset(now) {
 				deg = now / (end / 90);
 				deg = deg * Math.PI / 180;
@@ -293,13 +291,13 @@ ts.ui.AsideSpirit = (function using(chained, confirmed, Client, LayoutModel, not
 			tick.time(function() {
 				var time = 0;
 				tick.nextFrame(function paint(stamp) {
-					if(!time) {
+					if (!time) {
 						time = stamp;
 						tick.nextFrame(paint);
 					} else {
 						var now = stamp - time;
 						var pct = getoffset(now);
-						if(now < end) {
+						if (now < end) {
 							this._position(100 - pct);
 							tick.nextFrame(paint);
 						} else {
@@ -334,8 +332,8 @@ ts.ui.AsideSpirit = (function using(chained, confirmed, Client, LayoutModel, not
 		},
 
 		/**
-		 * Aside header (Toolbar) is now fixed height, so we can 
-		 * harcode the panel height in CSS and save some layout 
+		 * Aside header (Toolbar) is now fixed height, so we can
+		 * harcode the panel height in CSS and save some layout
 		 * calculations *except* when there's a Footer present.
 		 * @overwrites {ts.ui.SideShowSpirit#_reflex}
 		 * @param @optional {function} action
@@ -343,9 +341,9 @@ ts.ui.AsideSpirit = (function using(chained, confirmed, Client, LayoutModel, not
 		 */
 		_reflex: function(action) {
 			var thing;
-			if(this.css.contains('ts-hasfooter')) {
+			if (this.css.contains('ts-hasfooter')) {
 				thing = this.super._reflex(action);
-			} else if(action) {
+			} else if (action) {
 				thing = action.call(this);
 			}
 			return thing;
@@ -358,7 +356,7 @@ ts.ui.AsideSpirit = (function using(chained, confirmed, Client, LayoutModel, not
 			if (!this._hackInitialized) {
 				this._hackInitialized = true;
 				this._closebutton();
-			}	
+			}
 		},
 
 		/**
@@ -367,7 +365,7 @@ ts.ui.AsideSpirit = (function using(chained, confirmed, Client, LayoutModel, not
 		 * @param {boolean} animated (not supported just yet)
 		 */
 		_open: function(animated) {
-			if(this.super._open(animated)) {
+			if (this.super._open(animated)) {
 				this.super._open(animated);
 				this._delayedAngularInitialization();
 				this._trapattention();
@@ -383,7 +381,7 @@ ts.ui.AsideSpirit = (function using(chained, confirmed, Client, LayoutModel, not
 		 * @param {boolean} animated (not supported)
 		 */
 		_close: function(animated) {
-			if(this.super._close(animated)) {
+			if (this.super._close(animated)) {
 				this._willclose();
 				this._slideopen(false).then(function done() {
 					this._ontransitionend();
@@ -397,12 +395,12 @@ ts.ui.AsideSpirit = (function using(chained, confirmed, Client, LayoutModel, not
 		 * @param {object} value
 		 */
 		_onmodelchange: function(name, value) {
-			switch(name) {
+			switch (name) {
 				case 'gofocused':
 					this.focus();
 					break;
 				case 'suspendopen':
-					if(this._suspendopen && value === false) {
+					if (this._suspendopen && value === false) {
 						this._suspendopen = false;
 						this._didopen();
 					}
@@ -414,7 +412,7 @@ ts.ui.AsideSpirit = (function using(chained, confirmed, Client, LayoutModel, not
 		 * CSS transition ended.
 		 */
 		_ontransitionend: function() {
-			if(this.isOpen) {
+			if (this.isOpen) {
 				this.css.remove(classopening).add(classopen);
 				this._didopen();
 			} else {
@@ -445,13 +443,13 @@ ts.ui.AsideSpirit = (function using(chained, confirmed, Client, LayoutModel, not
 			this.guistatus.busy('opening aside');
 			this._updateworld(willopen);
 			this._register(true);
-			if(this._isSideBarAside()) {
+			if (this._isSideBarAside()) {
 				this._themesupport(this.dom);
 			}
-			if((index = this._zindex())) {
+			if ((index = this._zindex())) {
 				this.css.zIndex = index;
 			}
-			if(this._ismodelled()) {
+			if (this._ismodelled()) {
 				this._model.status = 'onopen';
 			}
 		},
@@ -460,28 +458,27 @@ ts.ui.AsideSpirit = (function using(chained, confirmed, Client, LayoutModel, not
 		 * Fully opened.
 		 */
 		_didopen: function() {
-
 			/*
-			 * The model (if exists) is able to halt the execution of 'onopen' 
-			 * because it may need to run a performance optimization hack for 
-			 * SELECT menus: Only the visible items are shown while sliding 
-			 * the aside, the rest is rendered at this exact point in time. 
-			 * Integration tests should then wait for 'onopened' to finish before 
+			 * The model (if exists) is able to halt the execution of 'onopen'
+			 * because it may need to run a performance optimization hack for
+			 * SELECT menus: Only the visible items are shown while sliding
+			 * the aside, the rest is rendered at this exact point in time.
+			 * Integration tests should then wait for 'onopened' to finish before
 			 * they attempt to select items in the aside (since they don't exist).
 			 */
-			if(this._ismodelled()) {
+			if (this._ismodelled()) {
 				var model = this._model;
-				if(model.status === 'onopen') {
-					if(model.suspendopen) {
+				if (model.status === 'onopen') {
+					if (model.suspendopen) {
 						model.status = 'onbeforeopened';
 						this._suspendopen = true;
-						return; // exit here	
+						return; // exit here
 					}
 				}
 			}
 
 			/*
-			 * ... otherwise go ahead with the 'onopen' procedure, noting that 
+			 * ... otherwise go ahead with the 'onopen' procedure, noting that
 			 * integration tests can safely work with the aside from now on.
 			 */
 			this._updateworld(didopen);
@@ -496,18 +493,18 @@ ts.ui.AsideSpirit = (function using(chained, confirmed, Client, LayoutModel, not
 			});
 
 			/**
-			 * It would be nice to do this before the Aside opens, 
-			 * but we can assume that any MVC template has rendered 
-			 * (actually we can't assume that even when fully open). 
-			 * Also, assigning focus *while* animating will glitch 
+			 * It would be nice to do this before the Aside opens,
+			 * but we can assume that any MVC template has rendered
+			 * (actually we can't assume that even when fully open).
+			 * Also, assigning focus *while* animating will glitch
 			 * the browser, or at least it will mess with Firefox.
 			 */
-			if(this.autofocus) {
+			if (this.autofocus) {
 				this.focus();
 			}
 
 			/**
-			 * Exucute some action whenever new Asides open. 
+			 * Exucute some action whenever new Asides open.
 			 * This relates to styling of secondary Asides.
 			 */
 			var layout = LayoutModel.output.get();
@@ -516,7 +513,7 @@ ts.ui.AsideSpirit = (function using(chained, confirmed, Client, LayoutModel, not
 			/**
 			 * Finally update the model.
 			 */
-			if(this._ismodelled()) {
+			if (this._ismodelled()) {
 				this._model.status = 'onopened';
 			}
 		},
@@ -531,7 +528,7 @@ ts.ui.AsideSpirit = (function using(chained, confirmed, Client, LayoutModel, not
 			this.broadcast.removeGlobal(doclose);
 			this.key.removeGlobal('Esc');
 			this._register(false);
-			if(this._ismodelled()) {
+			if (this._ismodelled()) {
 				this._model.status = 'onclose';
 			}
 		},
@@ -553,7 +550,7 @@ ts.ui.AsideSpirit = (function using(chained, confirmed, Client, LayoutModel, not
 			this.event.dispatch(domevent.DIDCLOSE, {
 				bubbles: true
 			});
-			if(this._ismodelled()) {
+			if (this._ismodelled()) {
 				this._model.status = 'onclosed';
 			}
 		},
@@ -592,14 +589,14 @@ ts.ui.AsideSpirit = (function using(chained, confirmed, Client, LayoutModel, not
 		 */
 		_focusbest: notontouch(function() {
 			var elm, best = ['[autofocus]', '.ts-checked button'];
-			if(!best.some(function(selector) {
-				if((elm = this.dom.q(selector))) {
+			if (!best.some(function(selector) {
+				if ((elm = this.dom.q(selector))) {
 					elm.focus();
 				}
 				return !!elm;
 			}, this)) {
 				var panel = this.dom.q('.ts-panel');
-				if(!this.attention.enter(panel)) {
+				if (!this.attention.enter(panel)) {
 					panel.tabIndex = 0;
 					panel.focus();
 				}
@@ -620,11 +617,11 @@ ts.ui.AsideSpirit = (function using(chained, confirmed, Client, LayoutModel, not
 		 * @overrides {ts.ui.SideShowSpirit#_confirmposition}
 		 */
 		_confirmposition: function() {
-			if(this._isSideBarAside()) {
+			if (this._isSideBarAside()) {
 				var panel = this.dom.parent(ts.ui.PanelSpirit);
 				if (panel && this.dom.containedBy(panel)) {
 					throw new Error(
-						'In the SideBar, Aside must be positioned outside the ts-panel', 
+						'In the SideBar, Aside must be positioned outside the ts-panel',
 						this.element
 					);
 				}
@@ -639,18 +636,17 @@ ts.ui.AsideSpirit = (function using(chained, confirmed, Client, LayoutModel, not
 		 * @param {boolean} stillopen
 		 */
 		_confirmstate: function(stillopen) {
-			if(stillopen) {
+			if (stillopen) {
 				var cry = this + ' should not be removed from the document while open.';
 				console.error(cry);
-				if(gui.debug) {
+				if (gui.debug) {
 					throw new Error(cry);
 				}
 			}
 		}
 
-
 	}, { // Static ...............................................................
-		
+
 		/**
 		 * Stacking offset in percent of the width of the aside.
 		 * @type {number}
@@ -670,7 +666,6 @@ ts.ui.AsideSpirit = (function using(chained, confirmed, Client, LayoutModel, not
 		})
 
 	});
-
 }(
 	gui.Combo.chained,
 	gui.Arguments.confirmed,

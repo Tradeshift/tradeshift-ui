@@ -1,16 +1,15 @@
 /**
- * Spirit of the image. Note that all this fallback image functionality should 
- * probably be moved serverside (on an open accesss point) at some point. 
+ * Spirit of the image. Note that all this fallback image functionality should
+ * probably be moved serverside (on an open accesss point) at some point.
  * TODO: Read https://developer.mozilla.org/en-US/docs/Web/API/WindowBase64/btoa#Unicode_Strings
  * @using {string} css (this is the Base64 encoded "'Open Sans" in weight 400)
  */
 ts.ui.ImageSpirit = (function using(fontcss) {
-
 	/**
-	 * Generate URL from Blob stylesheet. The stylesheet 
-	 * contains the font so that we can use that in SVG. 
-	 * It turns out that Chrome doesn't do `@import` in 
-	 * SVG files, so we should probably convert this to 
+	 * Generate URL from Blob stylesheet. The stylesheet
+	 * contains the font so that we can use that in SVG.
+	 * It turns out that Chrome doesn't do `@import` in
+	 * SVG files, so we should probably convert this to
 	 * something that works more optimized.
 	 * @type {string}
 	 */
@@ -21,18 +20,18 @@ ts.ui.ImageSpirit = (function using(fontcss) {
 	}());
 
 	/**
-	 * With our current setup, only Firefox can handle the font in 
-	 * a really optimized way because Chrome can't use `@import` in 
-	 * SVG files. If that becomes a problem, we must fix it. But 
-	 * the fast workaround is to return `null` which will then 
-	 * fallback the font to Arial in that browser. Note that this 
-	 * should only be a problem if there are hundreds of generated 
+	 * With our current setup, only Firefox can handle the font in
+	 * a really optimized way because Chrome can't use `@import` in
+	 * SVG files. If that becomes a problem, we must fix it. But
+	 * the fast workaround is to return `null` which will then
+	 * fallback the font to Arial in that browser. Note that this
+	 * should only be a problem if there are hundreds of generated
 	 * images being rendered at the exact same time.
 	 * @param {string} agent
 	 * @returns string;
 	 */
 	function getfontsheet(agent) {
-		switch(agent) {
+		switch (agent) {
 			case 'gecko':
 			case 'webkit':
 				return fontsheet;
@@ -86,9 +85,9 @@ ts.ui.ImageSpirit = (function using(fontcss) {
 		var red = color(name, 3);
 		var green = color(name, 5);
 		var blue = color(name, 7);
-		red = (red + r)/2;
-		green = (green + g)/2;
-		blue = (blue + b)/2;
+		red = (red + r) / 2;
+		green = (green + g) / 2;
+		blue = (blue + b) / 2;
 		var col = [red, green, blue].map(Math.floor);
 		return 'rgb(' + darken(col, mod || 0).join(',') + ')';
 	}
@@ -97,9 +96,9 @@ ts.ui.ImageSpirit = (function using(fontcss) {
 	 * Obscurely darken or lighten a color.
 	 * https://gist.github.com/p01/1005192
 	 */
-	function darken(c, n){
+	function darken(c, n) {
 		return c.map(function(d) {
-			return (d+=n) < 0 ? 0 : d > 255 ? 255 : d|0;
+			return (d += n) < 0 ? 0 : d > 255 ? 255 : d | 0;
 		});
 	}
 
@@ -127,7 +126,6 @@ ts.ui.ImageSpirit = (function using(fontcss) {
 		return Math.floor(parseFloat('0.' + hash(word, n)) * 256);
 	}
 
-
 	return ts.ui.Spirit.extend({
 
 		/**
@@ -135,8 +133,8 @@ ts.ui.ImageSpirit = (function using(fontcss) {
 		 */
 		onconfigure: function() {
 			this.super.onconfigure();
-			if(this.att.get('src')) {
-				if(this.element.naturalWidth) {
+			if (this.att.get('src')) {
+				if (this.element.naturalWidth) {
 					this._onload();
 				} else {
 					this.event.add('load').add('error');
@@ -153,7 +151,7 @@ ts.ui.ImageSpirit = (function using(fontcss) {
 		 */
 		onevent: function(e) {
 			this.super.onevent(e);
-			switch(e.type) {
+			switch (e.type) {
 				case 'load':
 					this.event.remove('load');
 					this._onload();
@@ -166,18 +164,18 @@ ts.ui.ImageSpirit = (function using(fontcss) {
 		},
 
 		/**
-		 * The ALT attribute will be used to generate a fallback 
+		 * The ALT attribute will be used to generate a fallback
 		 * image: We generate an SVG which we then Base64 encode.
 		 * @param {gui.Att} att
 		 */
 		onatt: function(att) {
 			this.super.onatt(att);
-			if(att.name === 'alt') {
-				if(!att.value.includes('{{')) { // no weird handlebars syntax
-					if(!this.att.has('title')) {
+			if (att.name === 'alt') {
+				if (!att.value.includes('{{')) { // no weird handlebars syntax
+					if (!this.att.has('title')) {
 						this.att.set('title', att.value);
 					}
-					if(window.btoa) {
+					if (window.btoa) {
 						this.element.src = this._computesource(att.value);
 					} else {
 						// We'll need to polyfill some Base64 stuff for Exploder :/
@@ -187,12 +185,11 @@ ts.ui.ImageSpirit = (function using(fontcss) {
 			}
 		},
 
-
 		// Private .................................................................
 
 		/**
-		 * We've set the `opacity` to `0` while loading the image just 
-		 * in case the browser flashes some kind of strange symbol. But 
+		 * We've set the `opacity` to `0` while loading the image just
+		 * in case the browser flashes some kind of strange symbol. But
 		 * this is perhaps not needed nowadays, must check slow connection.
 		 */
 		_onload: function() {
@@ -201,8 +198,8 @@ ts.ui.ImageSpirit = (function using(fontcss) {
 		},
 
 		/**
-		 * Compute fallback image source. Note that we don't read `offsetWidth` 
-		 * because that will force the browser the repaint mid-rendering, we'll 
+		 * Compute fallback image source. Note that we don't read `offsetWidth`
+		 * because that will force the browser the repaint mid-rendering, we'll
 		 * suggest that the `width` attribute is specified (for best quality).
 		 * @param {string} name
 		 * @returns {string}
@@ -210,17 +207,16 @@ ts.ui.ImageSpirit = (function using(fontcss) {
 		_computesource: function(name) {
 			var w = this.att.get('width');
 			var h = this.att.get('height');
-			if((w || h) && w !== h) {
+			if ((w || h) && w !== h) {
 				console.error('Height of the ' + this + ' must match the width');
 			}
 			return getsource(name, w, h);
 		}
 
-
 	}, { // Static ...............................................................
 
 		/**
-		 * Compute consistantly pleasent color for given string. 
+		 * Compute consistantly pleasent color for given string.
 		 * Exposing this in case the color needs to be replicated.
 		 * @param {string} str
 		 * @returns {string}
@@ -230,7 +226,6 @@ ts.ui.ImageSpirit = (function using(fontcss) {
 		}
 
 	});
-
 }([
 	'@font-face {',
 	'	font-family: "Open Sans";',

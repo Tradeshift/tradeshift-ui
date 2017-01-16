@@ -5,7 +5,6 @@
  * @using {gui.Array} GuiArray
  */
 gui.MapList = (function using(confirmed, GuiArray) {
-
 	function MapList(Fit) {
 		this._map = Object.create(null);
 		this._fit = Fit || null;
@@ -46,15 +45,15 @@ gui.MapList = (function using(confirmed, GuiArray) {
 		 * TODO: Support function arg for destructing members of the list?
 		 * @param {string} key
 		 */
-		"delete": function(key) {
+		'delete': function(key) {
 			this._map[key] = null;
 			delete this._map[key];
 		},
 
 		/**
-		 * Push entry to list indexed by key. 
+		 * Push entry to list indexed by key.
 		 * Don't push no double entries here.
-		 * Creates the list on first push. 
+		 * Creates the list on first push.
 		 * Return true if not already added.
 		 * @param {string} key
 		 * @param {object} val
@@ -63,8 +62,8 @@ gui.MapList = (function using(confirmed, GuiArray) {
 		add: confirmed('string')(function(key, val) {
 			var list = this.get(key) || this.set(key, []);
 			var puts = list.indexOf(val) === -1;
-			if(puts) {
-				if(this._fit && !(val instanceof this._fit)) {
+			if (puts) {
+				if (this._fit && !(val instanceof this._fit)) {
 					throw new TypeError(val + ' is not a ' + this._fit);
 				}
 				list.push(val);
@@ -112,5 +111,4 @@ gui.MapList = (function using(confirmed, GuiArray) {
 	};
 
 	return MapList;
-
 }(gui.Arguments.confirmed, gui.Array));

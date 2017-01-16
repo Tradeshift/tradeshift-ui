@@ -21,25 +21,25 @@ edbml.UpdateAssistant = {
 		element.innerHTML = markup;
 		element.id = id;
 		// TODO: Plugin this!
-		Array.forEach(element.querySelectorAll("option"), function(option) {
-			switch (option.getAttribute("selected")) {
-				case "true":
-					option.setAttribute("selected", "selected");
+		Array.forEach(element.querySelectorAll('option'), function(option) {
+			switch (option.getAttribute('selected')) {
+				case 'true':
+					option.setAttribute('selected', 'selected');
 					break;
-				case "false":
-					option.removeAttribute("selected");
+				case 'false':
+					option.removeAttribute('selected');
 					break;
 			}
 		});
 		// TODO: Plugin this!
-		var inputs = "input[type=checkbox],input[type=radio]";
+		var inputs = 'input[type=checkbox],input[type=radio]';
 		Array.forEach(element.querySelectorAll(inputs), function(option) {
-			switch (option.getAttribute("checked")) {
-				case "true":
-					option.setAttribute("checked", "checked");
+			switch (option.getAttribute('checked')) {
+				case 'true':
+					option.setAttribute('checked', 'checked');
 					break;
-				case "false":
-					option.removeAttribute("checked");
+				case 'false':
+					option.removeAttribute('checked');
 					break;
 			}
 		});

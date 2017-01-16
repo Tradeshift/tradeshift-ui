@@ -3,8 +3,7 @@
  * @extends {ts.ui.Model}
  * @using {ts.ui.Note} Note
  */
-ts.ui.NoteModel = function using() {
-
+ts.ui.NoteModel = (function using() {
 	return ts.ui.Model.extend({
 		/**
 		 * Friendly name.
@@ -41,7 +40,7 @@ ts.ui.NoteModel = function using() {
 		 * @type {ts.ui.ButtonCollection<ts.ui.ButtonModel>}
 		 */
 		buttons: ts.ui.ButtonCollection,
-		
+
 		// Privileged ..............................................................
 
 		/**
@@ -49,6 +48,6 @@ ts.ui.NoteModel = function using() {
 		 * @type {boolean}
 		 */
 		$isTopNote: false
-		
+
 	});
-}();
+}());

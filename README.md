@@ -4,14 +4,14 @@
 [![Dependencies](https://img.shields.io/david/Tradeshift/tradeshift-ui.svg?style=flat-square)](https://david-dm.org/Tradeshift/tradeshift-ui)
 [![DevDependencies](https://img.shields.io/david/dev/Tradeshift/tradeshift-ui.svg?style=flat-square)](https://david-dm.org/Tradeshift/tradeshift-ui#info=devDependencies&view=list)
 
-# [Tradeshift UI](https://ui.tradeshift.com)
+# [Tradeshift UI](http://ui.tradeshift.com)
 
-Tradeshift UI is a UI library to help you create apps that implement the [Tradeshift Design Principles](https://ui.tradeshift.com/#design/).
-Check out our [documentation site](https://ui.tradeshift.com) to learn more about how it works and try out live code examples.
+Tradeshift UI is a UI library to help you create apps that implement the [Tradeshift Design Principles](http://ui.tradeshift.com/#design/).
+Check out our [documentation site](http://ui.tradeshift.com) to learn more about how it works and try out live code examples.
 
-If you want to know about what the latest version is and what's new, check out our [releases page](https://github.com/Tradeshift/tradeshift-ui/releases).
+If you want to know about what the latest version is and what's new, check out our [releases page](http://github.com/Tradeshift/tradeshift-ui/releases).
 
-If you'd like to submit a feature request or report a bug, go to our [issues pages](https://github.com/Tradeshift/tradeshift-ui/issues).
+If you'd like to submit a feature request or report a bug, go to our [issues pages](http://github.com/Tradeshift/tradeshift-ui/issues).
 
 ## Installation
 
@@ -49,7 +49,7 @@ Watch out, whenever you create a commit, the pre-commit hook will generate the d
 
 ## Documentation
 
-If you want to browse our [documentation site](https://ui.tradeshift.com) you can do so easily.
+If you want to browse our [documentation site](http://ui.tradeshift.com) you can do so easily.
 
 ## Releasing
 

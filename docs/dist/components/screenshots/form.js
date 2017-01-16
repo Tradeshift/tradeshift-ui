@@ -6,15 +6,14 @@ var initTable = function() {
 		{cells: ['A', 'D', 'G'], selected: true},
 		{cells: ['B', 'E', 'H'], selectable: false},
 		{cells: ['C', 'F', 'I']},
-		{cells: ['H', 'J', 'K']},
+		{cells: ['H', 'J', 'K']}
 	]);
 	table.status('This is the message.');
 	table.configurable().pager({
 		pages: 23
 	});
-	
 };
 
 $(document).ready(function() {
-		initTable();
+	initTable();
 });

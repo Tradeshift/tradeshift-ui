@@ -1,4 +1,4 @@
-function toggle(/*...selectors*/) { // eslint-disable-line no-unused-vars
+function toggle(/* ...selectors */) { // eslint-disable-line no-unused-vars
 	Array.forEach(arguments, function(selector) {
 		ts.ui.get(selector).toggle();
 	});

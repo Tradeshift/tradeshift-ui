@@ -367,6 +367,12 @@ ts.ui.SideShowSpirit = (function using(chained, Client, Parser, GuiObject, Color
 		flipping: false,
 
 		/**
+		 * Configured with the closing "X" button?
+		 * @type {boolean}
+		 */
+		_canclose: false,
+
+		/**
 		 * @deprecated
 		 * The classname `ts-internal` will make this thing not behave
 		 * much like an Aside because that was needed for teams that
@@ -529,28 +535,20 @@ ts.ui.SideShowSpirit = (function using(chained, Client, Parser, GuiObject, Color
 		},
 
 		/**
-		 * Add or remove the closing X button in the titlebar.
+		 * Add or remove the closing "X" button in the titlebar.
 		 * @param @optional {boolean} show
 		 */
 		_closebutton: function(show) {
 			var that = this;
 			var tool = this._headerspirit();
-			var list = tool.buttons();
-			var butt = list.get('close-button');
 			if (show !== false) {
-				if (!butt) {
-					list.push({
-						item: 'button',
-						icon: 'ts-icon-close',
-						align: 'right',
-						id: 'close-button',
-						onclick: function() {
-							that.close();
-						}
-					});
-				}
-			} else if (butt) {
-				list.remove(butt);
+				this._canclose = true;
+				tool.showClose(function() {
+					that.close();
+				});
+			} else if (this._canclose) {
+				this._canclose = false;
+				tool.hideClose();
 				// if `autoclose` was changed sometime *after* initialization,
 				// we'll need to remove any header that doesn't have a `title`
 				// while accounting for the fact that models are updated async.

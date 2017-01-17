@@ -73,7 +73,7 @@
 	}
 
 	function renderRight(id, buttons) {
-		if(buttons.length) {
+		if(buttons.length || toolbar.closebutton) {
 			<menu id="${id}-buttons" class="ts-toolbar-menu ts-right">
 				if(!toolbar.compact) {
 					toolbar.$allbuttons().forEach(renderbutton);
@@ -86,6 +86,9 @@
 						toolbar.$specialbuttons(),
 						toolbar.$normalbuttons()
 					);
+				}
+				if(toolbar.closebutton) {
+					renderbutton(toolbar.closebutton);
 				}
 			</menu>
 		}

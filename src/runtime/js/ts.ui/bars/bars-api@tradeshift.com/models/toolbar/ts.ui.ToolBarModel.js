@@ -61,6 +61,12 @@ ts.ui.ToolBarModel = (function using(chained) {
 		buttons: ts.ui.ButtonCollection,
 
 		/**
+		 * Reserved for the closing "X" in Aside headers and so forth.
+		 * @type {ts.ui.ButtonModel}
+		 */
+		closebutton: ts.ui.ButtonModel,
+
+		/**
 		 * Newup defaults.
 		 */
 		onconstruct: function() {
@@ -145,7 +151,8 @@ ts.ui.ToolBarModel = (function using(chained) {
 				this.tabs.length ||
 				this.buttons.length ||
 				this.title ||
-				this.search
+				this.search ||
+				this.closebutton
 			);
 			return this.hascontent;
 		}

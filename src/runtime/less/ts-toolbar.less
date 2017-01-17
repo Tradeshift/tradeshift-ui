@@ -500,10 +500,12 @@
 	}
 }
 .ts-toolbar-first {
-	&:after {
-		content: '';
-		top: 100%;
-		background: linear-gradient(0deg, rgba(0,0,0,0), rgba(0,0,0,0.35));
+	&.ts-bg-lite {
+		&:after {
+			content: '';
+			top: 100%;
+			background: linear-gradient(0deg, rgba(0,0,0,0), rgba(0,0,0,0.35));
+		}
 	}
 	&.ts-micro + .ts-toolbar-first {
 		top: @ts-unit * 2;
@@ -515,10 +517,12 @@
 .ts-toolbar-last {
 	top: auto;
 	bottom: 0;
-	&:after {
-		content: '';
-		top: -5px;
-		background: linear-gradient(0deg, rgba(0,0,0,0.35), rgba(0,0,0,0));
+	&.ts-bg-lite {
+		&:after {
+			content: '';
+			top: -5px;
+			background: linear-gradient(0deg, rgba(0,0,0,0.35), rgba(0,0,0,0));
+		}
 	}
 }
 

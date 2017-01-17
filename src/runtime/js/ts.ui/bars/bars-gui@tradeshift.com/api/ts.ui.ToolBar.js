@@ -24,5 +24,10 @@ ts.ui.ToolBar = (function using(methods) {
 	'search',
 	'hide',
 	'show',
-	'clear'
+	'clear',
+	'green',
+	'blue',
+	'purple',
+	'dark',
+	'lite'
 ]));

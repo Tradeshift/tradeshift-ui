@@ -14,6 +14,18 @@
     <link rel="prefetch" title="ToolBar" href="toolbar.html">
     <link rel="prefetch" title="StatusBar" href="statusbar.html">
     <script>
+        ts.ui.ready(function() { // support color scheme links in API table
+            var method;
+            ts.ui.get('html').action.add('ts-action-safe-link', {
+                onaction: function(a) {
+                    if ((method = ts.ui.ToolBar[a.data])) {
+                        method.call(ts.ui.ToolBar);
+                    }
+                }
+            })
+        });
+    </script>
+    <script>
         ts.dox.tabs()
     </script>
 </head>

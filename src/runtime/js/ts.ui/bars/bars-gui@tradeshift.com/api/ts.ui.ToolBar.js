@@ -17,12 +17,19 @@ ts.ui.ToolBar = (function using(methods) {
 		}
 	});
 	return ts.ui.Bar.extend(protos, xstatics, statics);
-}([
+}([ // these methods are mapped directly to the spirits methods!
 	'title',
 	'buttons',
 	'tabs',
 	'search',
 	'hide',
 	'show',
-	'clear'
+	'clear',
+	'green',
+	'blue',
+	'purple',
+	'dark',
+	'lite',
+	'showClose',
+	'hideClose'
 ]));

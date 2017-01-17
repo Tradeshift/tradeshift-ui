@@ -404,12 +404,35 @@ ts.ui.ToolBarSpirit = (function using(chained, confirmed, Client, Type, guiArray
 		 * TODO: Do we really want to clear the title?
 		 */
 		clear: chained(function() {
-			var model = this._model;
+			var model = this.model();
 			model.buttons.clear();
 			model.tabs.clear();
 			model.search = null;
 			model.pager = null;
 			model.title = null;
+		}),
+
+		/**
+		 * Show the close button "X".
+		 * @param @optional {Function} onclose
+		 * @returns {ts.ui.ToolBarSpirit}
+		 */
+		showClose: confirmed('(function)')(
+			chained(function(onclose) {
+				this.model().closebutton = {
+					icon: 'ts-icon-close',
+					type: 'ts-tertiary ts-noborder',
+					onclick: onclose
+				};
+			})
+		),
+
+		/**
+		 * Hide the close button.
+		 * @returns {ts.ui.ToolBarSpirit}
+		 */
+		hideClose: chained(function() {
+			this.model().closebutton = null;
 		}),
 
 		// Privileged ..............................................................

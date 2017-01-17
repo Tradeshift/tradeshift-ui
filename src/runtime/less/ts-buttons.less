@@ -52,6 +52,11 @@
 	&, &:after {
 		border-radius: @ts-unit;
 	}
+	&.ts-noborder {
+		&, &:after {
+			border-color: transparent !important;
+		}
+	}
 	&:before {
 		content: "";
 		.ts-mixin-maximize(@outset, @outset, @outset, @outset);
@@ -61,13 +66,11 @@
 	&.ts-ready:before {
 		.ts-mixin-transition(border-color, @ts-transition-now);
 	}
-	
 	&.ts-nofocus {
 		&:before {
 			display: none !important;
 		}
-	}
-												
+	}							
 	&:disabled {
 		opacity: 0.4;
 		cursor: not-allowed;

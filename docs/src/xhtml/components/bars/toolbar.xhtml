@@ -3,6 +3,18 @@
 	<head>
 		<title>ToolBar</title>
 		<object data="tabs.xhtml"></object>
+		<script>
+			ts.ui.ready(function() { // support color scheme links in API table
+				var method;
+				ts.ui.get('html').action.add('ts-action-safe-link', {
+					onaction: function(a) {
+						if((method = ts.ui.ToolBar[a.data])) {
+							method.call(ts.ui.ToolBar);
+						}
+					}
+				})
+			});
+		</script>
 	</head>
 	<body>
 		<header data-ts="TopBar"></header>
@@ -199,6 +211,35 @@
 										{
 											name: "hide",
 											desc: "Hide the ToolBar. Once hidden, you can use `show` to show it again."
+										},
+										{
+											name: "showClose",
+											args: "(function)",
+											desc: "Show closing `X` button with an optional callback."
+										},
+										{
+											name: "hideClose",
+											desc: "Hide the closing `X` button."
+										},
+										{
+											name: "green",
+											desc: "Change the general color scheme to (green)[green]."
+										},
+										{
+											name: "blue",
+											desc: "Change the general color scheme to (blue)[blue]."
+										},
+										{
+											name: "purple",
+											desc: "Change the general color scheme to (purple)[purple]."
+										},
+										{
+											name: "dark",
+											desc: "Change the general color scheme to (dark)[dark]"
+										},
+										{
+											name: "lite",
+											desc: "Revert back to the (default)[lite] color scheme."
 										}
 									]
 								}
@@ -282,6 +323,15 @@
 										{
 											name: "uncompact",
 											desc: "Don't collect multiple tertiary buttons in a menu. You can call `compact` to restore default behavior."
+										},
+										{
+											name: "showClose",
+											args: "(function)",
+											desc: "Show closing `X` button with an optional callback."
+										},
+										{
+											name: "hideClose",
+											desc: "Hide the closing `X` button."
 										}
 									]
 								}

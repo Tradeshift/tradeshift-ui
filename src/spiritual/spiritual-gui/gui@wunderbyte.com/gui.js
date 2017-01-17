@@ -506,7 +506,7 @@ window.gui = (function using(Namespace, Timer) {
 			performance.measure &&
 			performance.getEntriesByName &&
 			performance.getEntriesByType),
-		!!(location.port === '10114' || location.host === 'ui-dev.tradeshift.com')
+		!!(location.port === '10114' || location.host === 'ui.tradeshift.com')
 	))
 
 ));

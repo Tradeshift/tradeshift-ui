@@ -1,11 +1,12 @@
 /**
  * Advanced collection of tabs.
+ * @extends {ts.ui.Collection}
  * TODO (jmo@): Make sure 'onselect' never triggers twice
  * @using {gui.Combo#chained} chained
  * @using {gui.Arguments#confirmed} confirmed
- * @extends {ts.ui.Collection}
+ * @using {gui.Type} Type
  */
-ts.ui.TabCollection = (function using(chained, confirmed) {
+ts.ui.TabCollection = (function using(chained, confirmed, Type) {
 	return ts.ui.Collection.extend({
 
 		/**
@@ -25,6 +26,12 @@ ts.ui.TabCollection = (function using(chained, confirmed) {
 		 * @type {ts.ui.ButtonModel}
 		 */
 		newtabbutton: null,
+
+		/**
+		 * Open for implementation: Tab at given index was selected.
+		 * @param {number} index
+		 */
+		onselect: function(index) {},
 
 		/**
 		 * Selected index accessor.
@@ -128,12 +135,16 @@ ts.ui.TabCollection = (function using(chained, confirmed) {
 		 * Toggle selection.
 		 */
 		_toggle: function(newtab, oldtab) {
+			var oldindex = this._lastknownindex;
 			if (newtab !== oldtab) {
 				if (oldtab) {
 					oldtab.unselect();
 				}
 				this._current = newtab.select();
 				this._lastknownindex = this.selectedIndex;
+				if(Type.isFunction(this.onselect)) {
+					this.onselect.call(this, this.selectedIndex, oldindex);
+				}
 			}
 		},
 
@@ -219,4 +230,4 @@ ts.ui.TabCollection = (function using(chained, confirmed) {
 			}
 		}
 	});
-}(gui.Combo.chained, gui.Arguments.confirmed));
+}(gui.Combo.chained, gui.Arguments.confirmed, gui.Type));

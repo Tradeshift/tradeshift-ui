@@ -13,10 +13,8 @@
 			<p>These components will insert themselves into the DOM and generally don't come with a HTML API. Some of them are known to affect the general page layout.</p>
 		</section>
 		<section>
-			<h3>
-					<a data-ts="Button" href="/#components/bars/topbar.html">TopBar</a>
-			</h3>
-			<p>Hello world.</p>
+			<h3><a data-ts="Button" href="/#components/bars/topbar.html">TopBar</a></h3>
+			<p>The TopBar provides tabs for navigation and buttons for contextual actions.</p>
 			<figure data-ts="DoxScript">
 				<script type="runnable">
 					ts.ui.TopBar.buttons([
@@ -30,10 +28,8 @@
 			</figure>
 		</section>
 		<section>
-			<h3>
-					<a data-ts="Button" href="/#components/bars/tabbar.html">Main TabBar</a>
-			</h3>
-			<p>Hello world.</p>
+			<h3><a data-ts="Button" href="/#components/bars/tabbar.html">Main TabBar</a></h3>
+			<p>The Main TabBar provides second level tabbed navigation.</p>
 			<figure data-ts="DoxScript">
 				<script type="runnable">
 					ts.ui.TabBar.tabs([
@@ -47,10 +43,8 @@
 			</figure>
 		</section>
 		<section>
-			<h3>
-					<a data-ts="Button" href="/#components/bars/toolbar.html">Main ToolBar</a>
-			</h3>
-			<p>Hello world.</p>
+			<h3><a data-ts="Button" href="/#components/bars/toolbar.html">Main ToolBar</a></h3>
+			<p>The Main ToolBar features a Search and even more buttons for contextual actions.</p>
 			<figure data-ts="DoxScript">
 				<script type="runnable">
 					ts.ui.ToolBar.buttons([
@@ -69,9 +63,7 @@
 			</figure>
 		</section>
 		<section>
-			<h3>
-				<a data-ts="Button" href="/#components/bars/statusbar.html">Main StatusBar</a>
-			</h3>
+			<h3><a data-ts="Button" href="/#components/bars/statusbar.html">Main StatusBar</a></h3>
 			<p>Although the StatusBar can display status messages, it's perfectly alright to use it just to show some buttons. In that case, the difference from the Main ToolBar is simply that it positioned below the Main area.</p>
 			<figure data-ts="DoxScript">
 				<script type="runnable">
@@ -86,9 +78,7 @@
 			</figure>
 		</section>
 		<section>
-			<a data-ts="Button" href="/#components/datepicker/">
-				<h3>DatePicker</h3>
-			</a>
+			<h3><a data-ts="Button" href="/#components/datepicker/">DatePicker</a></h3>
 			<p>A easy way to select dates.</p>
 			<figure data-ts="DoxScript">
 				<script type="runnable">
@@ -109,29 +99,15 @@
 			</figure>
 		</section>
 		<section>
-			<a data-ts="Button" href="/#components/dialogs/">
-				<h3>Dialog</h3>
-			</a>
-			<p>
-				Get the user's complete attention.
-			</p>
+			<h3><a data-ts="Button" href="/#components/dialogs/">Dialog</a></h3>
+			<p>Works much like the JavaScript <code>confirm()</code> method.</p>
 			<figure data-ts="DoxScript">
 				<script type="runnable">
-					ts.ui.Dialog.confirm(
-						'Show the Warning dialog?',
-						'Show It',
-						'Nope',
-						{
+					ts.ui.Dialog.confirm('Show the Warning dialog?', 'Show It', 'Nope', {
 						onaccept: function() {
-							ts.ui.Dialog.warning(
-								'Show the Danger dialog?',
-								'Of Course',
-								{
+							ts.ui.Dialog.warning('Show the Danger dialog?', 'Of Course', {
 								onaccept: function() {
-									ts.ui.Dialog.danger(
-										'That could be dangerous.',
-										'Got it'
-									);
+									ts.ui.Dialog.danger('That could be dangerous.', 'Got it');
 								}
 							});
 						},
@@ -140,10 +116,8 @@
 			</figure>
 		</section>
 		<section>
-			<a data-ts="Button" href="/#components/notifications/">
-				<h3>Notification</h3>
-			</a>
-			<p>Quick popups after some action.</p>
+			<h3><a data-ts="Button" href="/#components/notifications/">Notification</a></h3>
+			<p>Themed variants of the JavaScript <code>alert()</code> method.</p>
 			<figure data-ts="DoxScript">
 				<script type="runnable">
           ts.ui.Notification.success('Notification.success');
@@ -154,15 +128,13 @@
 			</figure>
 		</section>
 		<section>
-			<a data-ts="Button" href="/#components/notes/">
-				<h3>Note</h3>
-			</a>
-			<p>A nice way to inform the user about something in general. This is <strong>not</strong> for status messages! Note that the Note attaches to the top of the page, so you will have to scroll.</p>
+			<h3><a data-ts="Button" href="/#components/notes/">Note</a></h3>
+			<p>A nice way to inform the user about something in general. This is <strong>not</strong> for status messages! The Note attaches to the top of the page, so you will have to scroll back up...</p>
 			<figure data-ts="DoxScript">
 				<script type="runnable">
 					ts.ui.Note({
 						icon: 'ts-icon-heart',
-						text: 'This page explains how to use the Note component with some nice examples.',
+						text: 'This is the Note. Thanks for scrolling up.',
 						onclose: function() {
 							ts.ui.Notification.success('The Note is gone...');
 						}
@@ -171,10 +143,8 @@
 			</figure>
 		</section>
 		<section>
-			<a data-ts="Button" href="/#components/cards/usercard.html">
-				<h3>UserCard</h3>
-			</a>
-			<p>Show details about a user.</p>
+			<h3><a data-ts="Button" href="/#components/cards/usercard.html">UserCard</a></h3>
+			<p>Show some details about a user.</p>
 			<figure data-ts="DoxScript">
 				<script type="runnable">
 					ts.ui.UserCard({

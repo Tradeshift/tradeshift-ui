@@ -115,6 +115,11 @@
 				"path": "components/pager/"
 			},
 			{
+				"label": "Panels",
+				"icon": "ts-icon-video-control-fast-forward",
+				"path": "components/panels/"
+			},
+			{
 				"label": "Search",
 				"icon": "ts-icon-romance-find-love",
 				"path": "components/search/"

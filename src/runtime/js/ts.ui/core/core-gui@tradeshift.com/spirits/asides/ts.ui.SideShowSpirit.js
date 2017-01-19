@@ -233,13 +233,12 @@ ts.ui.SideShowSpirit = (function using(chained, Client, Parser, GuiObject, Color
 		 */
 		onchange: function(changes) {
 			this.super.onchange(changes);
-			changes.forEach(function(c) {
-				if(c.type === edb.ArrayChange.TYPE_SPLICE) {
-					if(c.object instanceof ts.ui.TabCollection) {
-						if(c.object.length === 0) {
-							this._removetabbar();
-						}
-					}
+			var splice = edb.ArrayChange.TYPE_SPLICE;
+			changes.filter(function(c) {
+				return c.type === splice && ts.ui.TabCollection.is(c.object);
+			}).forEach(function(c) {
+				if(c.object.length === 0) {
+					this._removetabbar();
 				}
 			}, this);
 		},

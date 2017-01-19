@@ -91,6 +91,55 @@
 						</script>
 					</figure>
 				</section>
+
+				<h3>Adding some tabs</h3>
+				<section>
+					<p>If an <val>Aside</val> contains more than one <val>Panel</val>,
+					we will automatically create a TabBar to switch between the panels like in <a data-ts="Button" onclick="ts.ui.get('#aside2').open()">this example</a>.</p>
+					<figure data-ts="DoxMarkup">
+						<script>
+							<aside data-ts="Aside">
+								<div data-ts="Panel" data-ts.label="Tab 1">
+									<p>aside content.</p>
+								</div>
+								<div data-ts="Panel" data-ts.label="Tab 2">
+									<p>aside content.</p>
+								</div>
+							</aside>
+						</script>
+					</figure>
+					<p>The tabs can also be created programatically. In that case, the panel switching mechanism must be implemented manually somehow.</p>
+					<figure data-ts="DoxScript">
+						<script type="runnable">
+							ts.ui.get('#aside3').tabs([
+								{label: 'Tab 1', onselect: function() {
+									console.log('Panel one');
+								}},
+								{label: 'Tab 2', onselect: function() {
+									console.log('Panel two');
+								}}
+							]).open();
+							setTimeout(function() {
+								ts.ui.get('#aside3').tabs().clear();
+							}, 1000);
+						</script>
+					</figure>
+					<p>You can also mix the two approaches to dynamically update tabs that were created with <att>Panel</att> elements. This will for example assign an <code>onselect</code> callback to the third tab.</p>
+					<figure data-ts="DoxScript">
+						<script>
+							var tabs = ts.ui.get('#myaside').tabs();
+							tabs[2].onselect = function() {
+								console.log('selected');
+							};
+						</script>
+					</figure>
+					<p>To remove all dynamically created tabs, you can simply clear the tab collection.</p>
+					<figure data-ts="DoxScript">
+						<script>
+							ts.ui.get('#myaside').tabs().clear();
+						</script>
+					</figure>
+				</section>
 				
 				<h3>Showing the spinner</h3>
 				<section>
@@ -118,37 +167,6 @@
 									aside.attr('data-ts.open', false);
 								}, 500);
 							}, 1500);
-						</script>
-					</figure>
-				</section>
-				
-				<h3>Adding some tabs</h3>
-				<section>
-					<p>If an <val>Aside</val> contains more than one <val>Panel</val>,
-					we will automatically create a TabBar to switch between the panels like in <a data-ts="Button" onclick="ts.ui.get('#aside2').open()">this example</a>.</p>
-					<figure data-ts="DoxMarkup">
-						<script>
-							<aside data-ts="Aside">
-								<div data-ts="Panel" data-ts.label="Tab 1">
-									<p>aside content.</p>
-								</div>
-								<div data-ts="Panel" data-ts.label="Tab 2">
-									<p>aside content.</p>
-								</div>
-							</aside>
-						</script>
-					</figure>
-					<p>The tabs can also be created programatically, if that fits better with your setup. In that case, the panel switching mechanism must be implemented manually somehow.</p>
-					<figure data-ts="DoxScript">
-						<script type="runnable">
-							ts.ui.get('#aside3').tabs([
-								{label: 'Tab 1', onselect: function() {
-									console.log('Panel one');
-								}},
-								{label: 'Tab 2', onselect: function() {
-									console.log('Panel two');
-								}}
-							]).open();
 						</script>
 					</figure>
 				</section>

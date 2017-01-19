@@ -141,9 +141,9 @@
                         </div>
                     </figure>
                     <p>The tabs can also be created programatically. In that case, the panel switching mechanism must be implemented manually somehow.</p>
-                    <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.get(&apos;%23aside3&apos;).tabs(%5B%0A%09%7Blabel%3A%20&apos;Tab%201&apos;%2C%20onselect%3A%20function()%20%7B%0A%09%09console.log(&apos;Panel%20one&apos;)%3B%0A%09%7D%7D%2C%0A%09%7Blabel%3A%20&apos;Tab%202&apos;%2C%20onselect%3A%20function()%20%7B%0A%09%09console.log(&apos;Panel%20two&apos;)%3B%0A%09%7D%7D%0A%5D).open()%3B%0AsetTimeout(function()%20%7B%0A%09ts.ui.get(&apos;%23aside3&apos;).tabs().clear()%3B%0A%7D%2C%201000)%3B">
+                    <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.get(&apos;%23aside3&apos;).tabs(%5B%0A%09%7Blabel%3A%20&apos;Tab%201&apos;%2C%20onselect%3A%20function()%20%7B%0A%09%09console.log(&apos;Panel%20one&apos;)%3B%0A%09%7D%7D%2C%0A%09%7Blabel%3A%20&apos;Tab%202&apos;%2C%20onselect%3A%20function()%20%7B%0A%09%09console.log(&apos;Panel%20two&apos;)%3B%0A%09%7D%7D%0A%5D).open()%3B">
                         <script type="runnable">
-                            ts.ui.get('#aside3').tabs([ {label: 'Tab 1', onselect: function() { console.log('Panel one'); }}, {label: 'Tab 2', onselect: function() { console.log('Panel two'); }} ]).open(); setTimeout(function() { ts.ui.get('#aside3').tabs().clear(); }, 1000);
+                            ts.ui.get('#aside3').tabs([ {label: 'Tab 1', onselect: function() { console.log('Panel one'); }}, {label: 'Tab 2', onselect: function() { console.log('Panel two'); }} ]).open();
                         </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                         <div class="tabpanels">
                             <pre class="prism language-javascript">
@@ -154,10 +154,7 @@
 	<span class="token punctuation">{</span>label<span class="token punctuation">:</span> <span class="token string">&apos;Tab 2&apos;</span><span class="token punctuation">,</span> onselect<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
 		console<span class="token punctuation">.</span><span class="token function">log<span class="token punctuation">(</span></span><span class="token string">&apos;Panel two&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 	<span class="token punctuation">}</span><span class="token punctuation">}</span>
-<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">open<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token function">setTimeout<span class="token punctuation">(</span></span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-	ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#aside3&apos;</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">tabs<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">clear<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token number">1000</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
+<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">open<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
 </pre>
                         </div>
                     </figure>

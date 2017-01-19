@@ -1,6 +1,6 @@
 /**
  * Spirit of the label.
- * @extends {ts.ui.Spirit}
+ * @extends {ts.ui.FormSupportSpirit}
  * @using {gui.Client} Client
  * @using {ts.ui.FieldSpirit} FieldSpirit
  * @using {gui.Combo.chained}
@@ -32,7 +32,7 @@ ts.ui.LabelSpirit = (function using(Client, FieldSpirit, chained, tick, time, co
 		field.$updatestyling();
 	}
 
-	return ts.ui.Spirit.extend({
+	return ts.ui.FormSupportSpirit.extend({
 
 		/**
 		 * Setup for hotfix.

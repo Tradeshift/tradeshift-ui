@@ -21,6 +21,10 @@ ts.ui.FormsModule = gui.module('forms-gui@tradeshift.com', {
 		['[data-ts=AutoComplete]', ts.ui.AutocompleteInputSpirit],
 		['[data-ts=Calendar]', ts.ui.CalendarSpirit], // does not belong here...
 
+		// needed because of illegal usage in V4 :(
+		['fieldset.ts-form', ts.ui.FieldSetSpirit],
+		['label.ts-form', ts.ui.LabelSpirit],
+
 		// these are really "private" spirits created by
 		// other spirits, but we need to assign them here
 		// because otherwise they will not be recognized

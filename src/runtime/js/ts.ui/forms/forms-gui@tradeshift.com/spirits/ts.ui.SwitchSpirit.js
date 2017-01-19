@@ -69,15 +69,15 @@ ts.ui.SwitchSpirit = (function using(tick, time) {
 		// Privileged ..............................................................
 
 		/**
-		 * Style the form.
+		 * Style the containing form elements.
 		 */
 		$updatestyling: function() {
 			this.super.$updatestyling();
 			this._label(function(label) {
 				label.$switch();
 			});
-			this._fieldset(function(group) {
-				group.$options();
+			this._fieldset(function(fieldset) {
+				fieldset.$options();
 			});
 		},
 

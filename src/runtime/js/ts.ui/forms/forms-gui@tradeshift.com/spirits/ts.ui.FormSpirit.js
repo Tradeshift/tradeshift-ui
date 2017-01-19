@@ -1,10 +1,10 @@
 /**
  * Spirit of the form.
- * @extends {ts.ui.Spirit}
+ * @extends {ts.ui.FormSupportSpirit}
  * @using {ts.ui.FormsModule} module
  */
 ts.ui.FormSpirit = (function() {
-	return ts.ui.Spirit.extend({
+	return ts.ui.FormSupportSpirit.extend({
 
 		/**
 		 * Add the classname if not already.
@@ -14,7 +14,6 @@ ts.ui.FormSpirit = (function() {
 		 */
 		onconstruct: function() {
 			this.super.onconstruct();
-			this._channelComplexSelectors();
 			this.css.add(ts.ui.CLASS_FORM);
 			if (!this.element.getAttribute('novalidate')) {
 				this.element.setAttribute('novalidate', 'novalidate');
@@ -50,17 +49,7 @@ ts.ui.FormSpirit = (function() {
 		 * Form model.
 		 * @type {ts.ui.FormModel}
 		 */
-		_model: null,
-
-		/**
-		 * Channel spirits for complex selectors as soon
-		 * as the first Form is encountered on the page.
-		 */
-		_channelComplexSelectors: function() {
-			var module = ts.ui.FormsModule;
-			var enable = !this.css.contains(ts.ui.CLASS_OPTIMIZED);
-			module.channelComplexSelectors(enable);
-		}
+		_model: null
 
 	}, { // XStatic ..............................................................
 

@@ -1,4 +1,5 @@
 [
+	"spirits/ts.ui.FormSupportSpirit.js",
 	"spirits/ts.ui.FieldSpirit.js",
 	"spirits/ts.ui.InputSpirit.js",
 	"spirits/ts.ui.TextInputSpirit.js",

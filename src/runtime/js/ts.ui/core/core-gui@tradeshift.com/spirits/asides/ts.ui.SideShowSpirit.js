@@ -228,6 +228,23 @@ ts.ui.SideShowSpirit = (function using(chained, Client, Parser, GuiObject, Color
 		},
 
 		/**
+		 * Observing the tabbar tabs.
+		 * @param {Array<edb.Change>} changes
+		 */
+		onchange: function(changes) {
+			this.super.onchange(changes);
+			changes.forEach(function(c) {
+				if(c.type === edb.ArrayChange.TYPE_SPLICE) {
+					if(c.object instanceof ts.ui.TabCollection) {
+						if(c.object.length === 0) {
+							this._removetabbar();
+						}
+					}
+				}
+			}, this);
+		},
+
+		/**
 		 * Set or get header title.
 		 * @param {string} title
 		 * @return {ts.ui.AsideSpirit|string}
@@ -502,7 +519,9 @@ ts.ui.SideShowSpirit = (function using(chained, Client, Parser, GuiObject, Color
 				this._fixappearance();
 				this.css.add('ts-has-panels');
 				return this._reflex(function() {
-					return panel.dom.before(ts.ui.TabBarSpirit.summon());
+					var tabbar = ts.ui.TabBarSpirit.summon();
+					tabbar.tabs().addObserver(this);
+					return panel.dom.before(tabbar);
 				});
 			}.call(this));
 		},
@@ -670,14 +689,18 @@ ts.ui.SideShowSpirit = (function using(chained, Client, Parser, GuiObject, Color
 		},
 
 		/**
-		 * Remove the tabbar if you don't need it any more.
+		 * Remove the tabbar.
 		 */
 		_removetabbar: function() {
-			this._reflex(function() {
-				this._tabbarspirit().dom.remove();
-				this.css.remove('ts-has-panels');
-				this._tabbar = null;
-			});
+			var bar = this._tabbar;
+			if(bar) {
+				this._reflex(function() {
+					bar.dom.remove();
+					bar.tabs().removeObserver(this);
+					this.css.remove('ts-has-panels');
+					this._tabbar = null;
+				});
+			}
 		},
 
 		/**

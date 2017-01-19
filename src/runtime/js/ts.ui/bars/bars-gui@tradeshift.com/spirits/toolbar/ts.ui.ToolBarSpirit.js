@@ -651,7 +651,7 @@ ts.ui.ToolBarSpirit = (function using(chained, confirmed, Client, Type, guiArray
 		/**
 		 * Hide tabs that won't fit (and show the More-tab). Note
 		 * that the More-tab is not rendered in mobile breakpoint.
-		 * @param {Array<ts.ui.TabModel>} tabs
+		 * @param {Array<ts.ui.TabCollection>} tabs
 		*/
 		_calculate: function calculate(tabs) {
 			var moretab, gonetab, avail, width, dofit;
@@ -712,8 +712,13 @@ ts.ui.ToolBarSpirit = (function using(chained, confirmed, Client, Type, guiArray
 		_toggletabs: function(tabs, moreoffset, availwidth) {
 			var that = this, tabspirit, taboffset, tabsoffset = 0;
 			var oldie = Client.isExplorer9 || Client.isExplorer10;
-			return tabs.reduce(function(isontop, tabmodel) {
-				tabspirit = that.dom.q('#' + tabmodel.$instanceid, ts.ui.Spirit);
+			var getspirit = function(tabmodel) {
+				return that.dom.q('#' + tabmodel.$instanceid, ts.ui.Spirit);
+			};
+			return tabs.filter(function hotfix(tabmodel) {
+				return !!getspirit(tabmodel);
+			}).reduce(function(isontop, tabmodel) {
+				tabspirit = getspirit(tabmodel);
 				if (isontop) {
 					tabspirit.css.display = '';
 					taboffset = tabspirit.box.width + (oldie ? 1 : 0);

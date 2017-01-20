@@ -91,6 +91,52 @@
 						</script>
 					</figure>
 				</section>
+
+				<h3>Adding some tabs</h3>
+				<section>
+					<p>If an <val>Aside</val> contains more than one <val>Panel</val>,
+					we will automatically create a TabBar to switch between the panels like in <a data-ts="Button" onclick="ts.ui.get('#aside2').open()">this example</a>.</p>
+					<figure data-ts="DoxMarkup">
+						<script>
+							<aside data-ts="Aside">
+								<div data-ts="Panel" data-ts.label="Tab 1">
+									<p>aside content.</p>
+								</div>
+								<div data-ts="Panel" data-ts.label="Tab 2">
+									<p>aside content.</p>
+								</div>
+							</aside>
+						</script>
+					</figure>
+					<p>The tabs can also be created programatically. In that case, the panel switching mechanism must be implemented manually somehow.</p>
+					<figure data-ts="DoxScript">
+						<script type="runnable">
+							ts.ui.get('#aside3').tabs([
+								{label: 'Tab 1', onselect: function() {
+									console.log('Panel one');
+								}},
+								{label: 'Tab 2', onselect: function() {
+									console.log('Panel two');
+								}}
+							]).open();
+						</script>
+					</figure>
+					<p>You can also mix the two approaches to dynamically update tabs that were created with <att>Panel</att> elements. This will for example assign an <code>onselect</code> callback to the third tab.</p>
+					<figure data-ts="DoxScript">
+						<script>
+							var tabs = ts.ui.get('#myaside').tabs();
+							tabs[2].onselect = function() {
+								console.log('selected');
+							};
+						</script>
+					</figure>
+					<p>To remove all dynamically created tabs, you can simply clear the tab collection.</p>
+					<figure data-ts="DoxScript">
+						<script>
+							ts.ui.get('#myaside').tabs().clear();
+						</script>
+					</figure>
+				</section>
 				
 				<h3>Showing the spinner</h3>
 				<section>
@@ -118,24 +164,6 @@
 									aside.attr('data-ts.open', false);
 								}, 500);
 							}, 1500);
-						</script>
-					</figure>
-				</section>
-				
-				<h3>Adding some tabs</h3>
-				<section>
-					<p>If an <val>Aside</val> contains more than one <val>Panel</val>,
-					we will automatically create a TabBar to switch between the panels like in <a data-ts="Button" onclick="ts.ui.get('#tabaside').open()">this example</a>.</p>
-					<figure data-ts="DoxMarkup">
-						<script>
-							<aside data-ts="Aside">
-								<div data-ts="Panel" data-ts.label="Tab 1">
-									<p>aside content.</p>
-								</div>
-								<div data-ts="Panel" data-ts.label="Tab 2">
-									<p>aside content.</p>
-								</div>
-							</aside>
 						</script>
 					</figure>
 				</section>
@@ -181,14 +209,20 @@
 			<div data-ts="Panel"></div>
 		</aside>
 		
-		<aside data-ts="Aside" id="tabaside" data-ts.title="Tabbed Aside">
+		<aside data-ts="Aside" id="aside2" data-ts.title="Declarative Tabs">
 			<div data-ts="Panel" data-ts.label="tab 1">
 				<p>Bacon ipsum dolor sit pölsesnack, jerky pork belly short loin sausage andouille kevin capicola ham hamburger doner. Shank prosciutto flank kevin ribeye short ribs swine ham pork porchetta spare ribs kielbasa beef ribs. Prosciutto pancetta shank boudin. Corned beef shoulder capicola, turducken prosciutto pork belly sirloin shankle brisket chuck leberkas tail beef. Sirloin meatloaf pastrami beef ribs. Ball tip pastrami landjaeger, brisket Tradeshift strip steak short loin pancetta meatball corned beef tenderloin beef ribs spare ribs. Tradeshift sausage strip steak ham, ribeye pork loin meatball turkey corned beef shoulder. Leberkas jerky sirloin boudin, turducken ham hock pastrami. Doner pig boudin sausage, ball tip leberkas ground round beef jowl kielbasa tongue shankle spare ribs tail shoulder. Fatback pork kielbasa ham, doner pig short loin short ribs pancetta. Pancetta jerky biltong short loin capicola beef. Pork belly strip steak venison brisket shoulder beef filet mignon shank tenderloin tri-tip ground round shankle cow.</p>
 			</div>
 			<div data-ts="Panel" data-ts.label="tab 2">
-				<p>Strip steak flank spare ribs leberkas jowl. Ball tip porchetta flank, sirloin ham hock t-bone salami spare ribs tenderloin capicola jerky kevin shoulder hamburger. Sausage landjaeger Tradeshift fatback, pancetta tenderloin andouille cupim ground round ball tip rump short loin turducken shankle kevin. Corned beef biltong venison ham hock hamburger, pork turducken. Ham short ribs pancetta fatback picanha hamburger, short loin corned beef shankle jowl frankfurter filet mignon doner. Pork chop venison ball tip landjaeger, strip steak doner kevin ribeye pork loin t-bone porchetta sirloin jerky frankfurter tail. Pancetta shank alcatra sirloin swine cow short ribs pork jerky venison flank corned beef prosciutto pig leberkas. Sirloin strip steak meatball, andouille turkey biltong shank beef ribs. Ham turkey spare ribs ground round pig prosciutto. Rump ham hock salami, Tradeshift pölsesnack burger.</p>
+				<p>Tradeshift salami burger mit invoice pastrami, shankle venison meatball pork belly capicola ribeye sirloin doner. Tail kielbasa beef ribs landjaeger pork belly. T-bone pig andouille, doner ham sirloin short ribs meatloaf salami strip steak tenderloin short loin tri-tip pork loin. Pastrami jowl sirloin, kevin jerky filet mignon bacon pork chop brisket pancetta. Spare ribs ground round pork belly pork chop doner swine, fatback bresaola. Picanha beef ribs burgdoggen bacon sausage rump. Porchetta turkey ribeye, tenderloin landjaeger spare ribs strip steak pork belly t-bone. Tenderloin t-bone ham, doner corned beef chuck fatback ground round short ribs tri-tip. Landjaeger ribeye brisket boudin tongue pork kevin frankfurter. Swine capicola filet mignon, cow spare ribs ribeye salami sausage porchetta hamburger short ribs corned beef.</p>
 			</div>
 		</aside>
+
+		
+		<aside data-ts="Aside" id="aside3" data-ts.title="Programmatic Tabs">
+			<div data-ts="Panel"></div>
+		</aside>
+		
 
 		<aside data-ts="Aside" id="one" data-ts.open="false" data-ts.title="Aside One" class="ts-bg-red">
 			<div data-ts="Panel">

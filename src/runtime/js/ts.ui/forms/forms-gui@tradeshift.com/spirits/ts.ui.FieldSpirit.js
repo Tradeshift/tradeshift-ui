@@ -165,11 +165,11 @@ ts.ui.FieldSpirit = (function using(chained) {
 		 * @param @optional {function} Takes the {ts.ui.FieldSetSpirit} as argument.
 		 */
 		_fieldset: function(action) {
-			var group, result;
+			var fieldset, result;
 			this._label(function(label) {
-				if ((group = label.dom.parent(ts.ui.FieldSetSpirit))) {
+				if ((fieldset = label.dom.parent(ts.ui.FieldSetSpirit))) {
 					if (action) {
-						result = action.call(this, group);
+						result = action.call(this, fieldset);
 					}
 				}
 			});

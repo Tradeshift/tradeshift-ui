@@ -145,7 +145,9 @@ gui.CSSPlugin = (function using(chained, confirmed) {
 					}, this);
 				} else {
 					if (this._supports) {
-						element.classList.add(name);
+						if(!element.classList.contains(name)) {
+							element.classList.add(name);
+						}
 					} else {
 						var now = element.className.split(' ');
 						if (now.indexOf(name) === -1) {

@@ -228,6 +228,22 @@ ts.ui.SideShowSpirit = (function using(chained, Client, Parser, GuiObject, Color
 		},
 
 		/**
+		 * Observing the tabbar tabs.
+		 * @param {Array<edb.Change>} changes
+		 */
+		onchange: function(changes) {
+			this.super.onchange(changes);
+			var splice = edb.ArrayChange.TYPE_SPLICE;
+			changes.filter(function(c) {
+				return c.type === splice && ts.ui.TabCollection.is(c.object);
+			}).forEach(function(c) {
+				if(c.object.length === 0) {
+					this._removetabbar();
+				}
+			}, this);
+		},
+
+		/**
 		 * Set or get header title.
 		 * @param {string} title
 		 * @return {ts.ui.AsideSpirit|string}
@@ -316,12 +332,18 @@ ts.ui.SideShowSpirit = (function using(chained, Client, Parser, GuiObject, Color
 		},
 
 		/**
-		 * Get the TabBar
-		 * @returns {ts.ui.TabBarSpirit}
+		 * Programatically create those tabs (or modify some declarative tabs).
+		 * @returns {ts.ui.TabCollection|ts.ui.SideShowSpirit}
 		 */
-		tabbar: function() {
-			return this._tabbar;
-		},
+		tabs: chained(function() {
+			var tabbar = this._tabbarspirit();
+			if(arguments.length) {
+				tabbar.tabs.apply(tabbar, arguments);
+			} else {
+				return tabbar.tabs();
+			}
+		}),
+
 
 		// Privileged ..............................................................
 
@@ -344,7 +366,8 @@ ts.ui.SideShowSpirit = (function using(chained, Client, Parser, GuiObject, Color
 		// Private .................................................................
 
 		/**
-		 *
+		 * Snapshot the color scheme asigned via model.
+		 * @type {string}
 		 */
 		_theme: null,
 
@@ -486,6 +509,23 @@ ts.ui.SideShowSpirit = (function using(chained, Client, Parser, GuiObject, Color
 		},
 
 		/**
+		 * Get the tabbar (and create the tabbar if it doesn't already exist).
+		 * @returns {ts.ui.TabBarSpirit}
+		 */
+		_tabbarspirit: function() {
+			return this._tabbar || (this._tabbar = function createit() {
+				var panel = this.dom.q('this > .ts-panel', ts.ui.PanelSpirit);
+				this._fixappearance();
+				this.css.add('ts-has-panels');
+				return this._reflex(function() {
+					var tabbar = ts.ui.TabBarSpirit.summon();
+					tabbar.tabs().addObserver(this);
+					return panel.dom.before(tabbar);
+				});
+			}.call(this));
+		},
+
+		/**
 		 * The footer versus panel layout was originally implemented using
 		 * flexbox but there was a problem with this whenever CSS transitions
 		 * and transform were added, so we've switched to JS layout. This means
@@ -603,8 +643,6 @@ ts.ui.SideShowSpirit = (function using(chained, Client, Parser, GuiObject, Color
 
 		/**
 		 * If more than one panel next to aside, generate the tabbar automaticly
-		 * TODO(leo@): Perhaps to watch the panels to add or delete panel in the tabbar
-		 * TODO(jmo@): This can (probably) be moved to the {ts.ui.SideShowSpirit}
 		 */
 		_inittabs: function() {
 			var panels = this.dom.qall('this > .ts-panel', ts.ui.PanelSpirit);
@@ -612,9 +650,7 @@ ts.ui.SideShowSpirit = (function using(chained, Client, Parser, GuiObject, Color
 				if (panels.every(function(panel) {
 					return !!panel.label;
 				})) {
-					this.css.add('ts-has-panels');
-					this._setuptabs(panels, panels[0], this);
-					this._fixappearance();
+					this._setuptabs(panels, this);
 				} else {
 					console.warn(
 						'(Multiple) Panels in Aside must have ' +
@@ -625,25 +661,12 @@ ts.ui.SideShowSpirit = (function using(chained, Client, Parser, GuiObject, Color
 		},
 
 		/**
-		 * Remove the tabbar if you don't need it any more
-		 * And then reflex the spirit
-		 */
-		_removetabbar: function() {
-			this._reflex(function() {
-				var bar = this.tabbar();
-				bar.dom.remove();
-				this.css.remove('ts-has-panels');
-				this._tabbar = null;
-			});
-		},
-
-		/**
 		 * Multiple panels found, setup the tabbar to switch between them.
 		 * @param {Array<ts.ui.PanelSpirit>} panels
 		 * @param {ts.ui.SideBarSpirit} that
 		 */
-		_setuptabs: function(panels, first, that) {
-			var tabbar = first.dom.before(ts.ui.TabBarSpirit.summon());
+		_setuptabs: function(panels, that) {
+			var tabbar = this._tabbarspirit();
 			panels.forEach(function(panel, index) {
 				tabbar.tabs().push({
 					label: panel.label,
@@ -652,6 +675,8 @@ ts.ui.SideShowSpirit = (function using(chained, Client, Parser, GuiObject, Color
 						that.dom.qall('this > .ts-panel', ts.ui.PanelSpirit).forEach(function(p) {
 							if (p === panel) {
 								p.show();
+								p.$onselect();
+								// TODO: scroll to zero?
 							} else {
 								p.hide();
 							}
@@ -660,7 +685,21 @@ ts.ui.SideShowSpirit = (function using(chained, Client, Parser, GuiObject, Color
 					}
 				});
 			});
-			this._tabbar = tabbar;
+		},
+
+		/**
+		 * Remove the tabbar.
+		 */
+		_removetabbar: function() {
+			var bar = this._tabbar;
+			if(bar) {
+				this._reflex(function() {
+					bar.dom.remove();
+					bar.tabs().removeObserver(this);
+					this.css.remove('ts-has-panels');
+					this._tabbar = null;
+				});
+			}
 		},
 
 		/**
@@ -671,7 +710,7 @@ ts.ui.SideShowSpirit = (function using(chained, Client, Parser, GuiObject, Color
 		 */
 		_updatetab: function(panel, added) {
 			var css = 'this > .ts-panel';
-			var bar = this.tabbar();
+			var bar = this._tabbar;
 			var elm = this.element;
 			var dom = this.dom;
 			var index = dom.qall(css, ts.ui.PanelSpirit).indexOf(panel);
@@ -689,8 +728,8 @@ ts.ui.SideShowSpirit = (function using(chained, Client, Parser, GuiObject, Color
 						dom.qall(css, ts.ui.PanelSpirit).forEach(function(p) {
 							if (p === panel) {
 								p.show();
-								elm.scrollTop = 0; // TODO(jmo@): account for topbar position in mobile breakpoint
 								p.$onselect();
+								// TODO: scroll to zero?
 							} else {
 								p.hide();
 							}

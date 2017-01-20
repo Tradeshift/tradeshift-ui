@@ -1,9 +1,9 @@
 /**
  * Spirit of fieldset.
- * @extends {ts.ui.Spirit}
+ * @extends {ts.ui.FormSupportSpirit}
  */
 ts.ui.FieldSetSpirit = (function() {
-	return ts.ui.Spirit.extend({
+	return ts.ui.FormSupportSpirit.extend({
 
 		/**
 		 * Attach to the DOM.

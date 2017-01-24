@@ -15,9 +15,10 @@
 			if(false) {
 				$(document).ready(function() {
 					var $elem = $('#mysidebar');
-					var $main = $elem.closest('[ts-main]');
+					var $main = $elem.closest('.ts-main');
+					//alert($main).get(0);
 					if ($main.length > 0) {
-						$main.before($elem);
+						$main.after($elem);
 					}
 				});
 			}

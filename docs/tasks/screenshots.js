@@ -9,8 +9,8 @@ module.exports = function screenshots(webdriver, driver, shoot) {
 			driver.saveScreenshot('forms.png').then(done);
 		}),
 
-		shoot('components/screenshots/asides.html', function(done) {
-			driver.saveScreenshot('aside.png').then(done);
+		shoot('components/screenshots/bars.html', function(done) {
+			driver.saveScreenshot('bars.png').then(done);
 		}),
 
 		shoot('components/screenshots/bars.html', function(done) {

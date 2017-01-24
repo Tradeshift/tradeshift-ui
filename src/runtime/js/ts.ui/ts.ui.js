@@ -1,6 +1,13 @@
 gui.$mark('- parse runtime');
 
 /**
+ * Don't automatically spiritualize as soon as `DOMContentLoaded` occurs. 
+ * Instead we bootstrap manually in the method {ts.ui.#$scriptsloaded}.
+ * @overwrites {gui#bootstrap}
+ */
+gui.autostrap = false;
+
+/**
  * Namespace object.
  * @using {gui.Client} Client
  * @using {gui.Array} guiArray
@@ -496,6 +503,24 @@ ts.ui = gui.namespace('ts.ui', (function using(Client, guiArray, confirmed, chai
 				console.error(this + ' is not initialized');
 			}
 			return model;
+		},
+
+		// Privileged ..............................................................
+
+		/**
+		 * Toggled on `DOMContentLoaded`.
+		 * @type {boolean}
+		 */
+		$domloaded: false,
+
+		/**
+		 * Called twice: Once when when the localization script has been loaded 
+		 * and again (or maybe before) when the `DOMContentLoaded` event happens. 
+		 */
+		$scriptsloaded: function() {
+			if(this.$domloaded) {
+				gui.bootstrap();
+			}
 		}
 
 	};
@@ -541,4 +566,14 @@ ts.ui.ready(function addobserver() {
 	var layout = ts.ui.LayoutModel.output.get();
 	ts.ui.breakpoint = layout.breakpoint;
 	layout.addObserver(ts.ui);
+});
+
+/**
+ * Start spiritualizing on `DOMContentLoaded`. Note that it is possible to 
+ * infer whether or not `DOMContentLoaded` has happened via the property 
+ * `document.readyState` but that doesn't quite work alright in IE9.
+ */
+addEventListener('DOMContentLoaded', function bootstrap() {
+	ts.ui.$domloaded = true;
+	ts.ui.$scriptsloaded();
 });

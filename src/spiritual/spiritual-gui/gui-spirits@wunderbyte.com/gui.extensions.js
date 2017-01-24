@@ -126,6 +126,7 @@ gui = gui.Object.extend(gui, {
 	 * (this to avoid HTML from initialized spirits in the tempaltes!).
 	 */
 	bootstrap: function() {
+		gui.bootstrap = function notagain() {};
 		var delay = gui.bootstrapdelay;
 		gui.Client.$init();
 		function start() {
@@ -216,7 +217,12 @@ gui = gui.Object.extend(gui, {
 				if (this.spiritualizing || this.spiritualized) {
 					spirit = this._getspirit(arg);
 				} else if (window.console && console.warn) {
-					console.warn(this._guigetmessage());
+					var message = this._guigetmessage();
+					if(location.hostname === 'localhost') {
+						console.error(message); // stacktrace version
+					} else {
+						console.warn(message);
+					}
 				}
 				break;
 			case 2:

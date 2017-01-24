@@ -21,9 +21,9 @@
 	// Always load the CSS (internal flag ignored for now)
 	stylesheet(document.querySelector('#ts-css'));
 
-	// load JS (synchronously for now)
+	// load JS
 	if (document.readyState === 'loading' || document.all) {
-		loadsync();
+		loadscripts(scriptsources());
 	} else {
 		console.error('ts.js should really not be loaded async at this point...');
 	}
@@ -47,33 +47,57 @@
 		}
 	}
 
-	/*
-	 * Inject the script(s). Not quite as sync as it used to be
-	 * because `document.write` is being phased out (in Chrome).
+	/**
+	 * Compile list of script sources to load asynchronously.
+	 * This basically boils down to the localization script.
+	 * @returns {Array<string>}
 	 */
-	function loadsync() {
+	function scriptsources() {
 		var srcs = [];
-		var lang = document.querySelector('html').getAttribute('lang');
+		var root = document.documentElement;
+		var lang = root.getAttribute('lang');
 		if (lang) {
 			lang = lang.toLowerCase().replace('_', '-');
 			srcs.push(sources.langbundle.replace('<LANG>', lang));
-		} else if (!document.all) { // IE9 doesn't console.log
-			// note that it's because en-US is default in JS...
+		} else if (!document.all) {
 			console.log('No lang given. Will default to en-US');
 		}
+		return srcs;
+	}
+
+	/*
+	 * Inject the script(s). Not quite as sync as it used to be
+	 * because `document.write` is being phased out (in Chrome).
+	 * @param {Array<string>} src
+	 */
+	function loadscripts(srcs) {
+		var next = null;
+		var prev = script;
+		var left = srcs.length;
+		var root = script.parentNode;
+		var onload = function() {
+			if(--left === 0) {
+				ts.ui.$scriptsloaded();
+			}
+		};
 		if (srcs.length) {
-			var next,
-				prev = script,
-				head_ = script.parentNode;
 			srcs.forEach(function(src) {
 				next = document.createElement('script');
 				next.src = src;
-				next.async = false;
-				head_.insertBefore(next, prev.nextSibling);
+				next.defer = true;
+				next.onload = onload;
+				setTimeout(function() {
+					root.insertBefore(next, prev.nextSibling);
+				}, 1000);
 				prev = next;
+			});
+		} else {
+			setTimeout(function defered() {
+				ts.ui.$scriptsloaded();
 			});
 		}
 	}
+
 }({
 	langbundle: '${langbundle}',
 	runtimecss: '${runtimecss}'

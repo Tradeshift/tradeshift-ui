@@ -20,7 +20,9 @@ module.exports = function screenshots(webdriver, driver, shoot) {
 		}),
 
 		shoot('screenshots/pages/panels.html', function(done) {
-			driver.saveScreenshot('panels.png').then(done);
+			setTimeout(function waitforaside() {
+				driver.saveScreenshot('panels.png').then(done);
+			}, 2000);
 		})
 
 	];

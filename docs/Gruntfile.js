@@ -253,11 +253,11 @@ module.exports = function(grunt) {
 				browsers: [
 					'WIN8: firefox',
 					'WIN8: chrome',
-					//'MAC: safari',
-					//'WINDOWS: internet explorer 9',
-					//'WINDOWS: internet explorer 10',
-					//'WIN8: internet explorer 11',
-					'WIN10: edge'
+					'MAC: safari',
+					'WINDOWS: internet explorer 9',
+					'WINDOWS: internet explorer 10',
+					'WIN8: internet explorer 11',
+					'ANY: edge'
 					// 'ANY: android',
 					// 'ANY: iPhone',
 					// 'ANY: iPad',

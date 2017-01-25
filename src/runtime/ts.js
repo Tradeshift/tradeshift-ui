@@ -77,23 +77,33 @@
 		var root = script.parentNode;
 		var onload = function() {
 			if(--left === 0) {
-				ts.ui.$scriptsloaded();
+				ts.ui.$jsloaded = true;
+				ts.ui.$maybebootstrap();
 			}
 		};
 		if (srcs.length) {
+			/*
+			 * In most real world cases, the app will have a `lang` attribute 
+			 * on the root `html` element and we load the localization script.
+			 */
 			srcs.forEach(function(src) {
 				next = document.createElement('script');
 				next.src = src;
 				next.defer = true;
 				next.onload = onload;
-				setTimeout(function() {
-					root.insertBefore(next, prev.nextSibling);
-				}, 1000);
+				root.insertBefore(next, prev.nextSibling);
 				prev = next;
 			});
+			
 		} else {
+			/*
+			 * Otherwise we attempt bootstrap. All the Runtime code will be 
+			 * parsed after this code, so we have to take a break before we 
+			 * can address it. TODO: Let's micro-task instead of a timeout!
+			 */
 			setTimeout(function defered() {
-				ts.ui.$scriptsloaded();
+				ts.ui.$jsloaded = true;
+				ts.ui.$maybebootstrap();
 			});
 		}
 	}

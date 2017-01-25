@@ -508,18 +508,25 @@ ts.ui = gui.namespace('ts.ui', (function using(Client, guiArray, confirmed, chai
 		// Privileged ..............................................................
 
 		/**
-		 * Toggled on `DOMContentLoaded`.
+		 * Toggled on `DOMContentLoaded` at which point we'll attempt to boostrap.
 		 * @type {boolean}
 		 */
 		$domloaded: false,
 
 		/**
-		 * Called twice: Once when when the localization script has been loaded 
-		 * and again (or maybe before) when the `DOMContentLoaded` event happens. 
+		 * Will be set to `true` when all scripts are loaded or when there's no 
+		 * additional scripts to load (this is basically the localization script).
+		 * @type {boolean}
 		 */
-		$scriptsloaded: function() {
-			if(this.$domloaded) {
-				gui.bootstrap();
+		$jsloaded: false,
+
+		/**
+		 * Called twice: Once when when the localization script has been loaded 
+		 * and again (or maybe before) when the `DOMContentLoaded` event happens.
+		 */
+		$maybebootstrap: function(nojs) {
+			if(this.$domloaded && this.$jsloaded) {
+				gui.bootstrap(); // release the spirits
 			}
 		}
 
@@ -569,11 +576,11 @@ ts.ui.ready(function addobserver() {
 });
 
 /**
- * Start spiritualizing on `DOMContentLoaded`. Note that it is possible to 
+ * Attempt to bootstap on `DOMContentLoaded`. Note that it is possible to 
  * infer whether or not `DOMContentLoaded` has happened via the property 
  * `document.readyState` but that doesn't quite work alright in IE9.
  */
-addEventListener('DOMContentLoaded', function bootstrap() {
+addEventListener('DOMContentLoaded', function() {
 	ts.ui.$domloaded = true;
-	ts.ui.$scriptsloaded();
+	ts.ui.$maybebootstrap();
 });

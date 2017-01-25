@@ -5,7 +5,7 @@
 	window.__karma__.start = function() {
 		gui.debug = true;
 		document.addEventListener('DOMContentLoaded', function() {
-			ts.ui.ready(oldStart);
+			setTimeout(oldStart, 10000); // huh?
 		}, false);
 	};
 

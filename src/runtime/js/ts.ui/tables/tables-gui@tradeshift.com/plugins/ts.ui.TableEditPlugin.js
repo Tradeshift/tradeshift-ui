@@ -396,6 +396,7 @@ ts.ui.TableEditPlugin = (function(CSSPlugin, DOMPlugin, Position, Client, Key) {
 		 */
 		_sync: function(sync, area, cont, height) {
 			height = (height || area.offsetHeight) - 1;
+			height = (Math.round(height / 22) * 22) - 1;
 			if (sync) {
 				cont.style.minHeight = height + 'px';
 				this._shrink(area, height);

@@ -1,9 +1,6 @@
 /**
  * TODO: Reset this._scroll.y when sorting (also when searching, but how)?
  * TODO: Reset pager when when sorting (also when searching, but how)?
- *
- * NOTE: Note to self on BREAKING behavior: Markdown newlines and `ts-number`
- *
  * @using {gui.Type} Type
  * @using {gui.Client} Client
  * @uisng {gui.Array} guiArray
@@ -619,7 +616,7 @@ ts.ui.TableSpirit = (function using(Type, Client, guiArray, DOMPlugin, CSSPlugin
 
 		/**
 		 * Works like {ts.ui.TableSpirit#max}, but fixes the height
-		 * of the Table so that it doesn't jump when the date arrives.
+		 * of the Table so that it doesn't jump when the data arrives.
 		 * You can pass a `0` (zero) to reset a previously set size.
 		 * @param @optional {number} n
 		 * @param @internal {boolean} fixed
@@ -843,6 +840,10 @@ ts.ui.TableSpirit = (function using(Type, Client, guiArray, DOMPlugin, CSSPlugin
 			})
 		),
 
+		/**
+		 * Make no rows numbered, then.
+		 * @returns {ts.ui.TableSpirit}
+		 */
 		unnumbered: confirmed('(function)')(
 			chained(function() {
 				this._model.numbered = false;

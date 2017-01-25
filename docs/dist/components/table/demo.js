@@ -45,8 +45,8 @@ $.getJSON('assets/rowdata.json', function(json) {
 		});
 		*/
 
-		ts.ui.Notification.info(
-			'Work in progress: Note that this page is really more of a internal test page than a demo.'
+		ts.ui.Notification.success(
+			'Note that this is really more of a test page than a demo.'
 		);
 	});
 });

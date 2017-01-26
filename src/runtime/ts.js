@@ -75,12 +75,15 @@
 		var prev = script;
 		var left = srcs.length;
 		var root = script.parentNode;
-		var onload = function() {
+		function onload() {
 			if(--left === 0) {
-				ts.ui.$jsloaded = true;
-				ts.ui.$maybebootstrap();
+				ts.ui.$maybebootstrap(true);
 			}
 		};
+		function onerror(error) {
+			var src = error.target.src;
+			throw new URIError("The script " + src + " is not accessible :/");
+		}
 		if (srcs.length) {
 			/*
 			 * In most real world cases, the app will have a `lang` attribute 
@@ -91,6 +94,7 @@
 				next.src = src;
 				next.defer = true;
 				next.onload = onload;
+				next.onerror = onerror;
 				root.insertBefore(next, prev.nextSibling);
 				prev = next;
 			});
@@ -101,9 +105,8 @@
 			 * parsed after this code, so we have to take a break before we 
 			 * can address it. TODO: Let's micro-task instead of a timeout!
 			 */
-			setTimeout(function defered() {
-				ts.ui.$jsloaded = true;
-				ts.ui.$maybebootstrap();
+			setTimeout(function deferred() {
+				ts.ui.$maybebootstrap(true);
 			});
 		}
 	}

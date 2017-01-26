@@ -1,36 +1,35 @@
 describe('ts.ui.MainSpirit', function likethis() {
-	function setup(action, html, done) {
+	function setup(action, html) {
 		var spirit, dom = helper.createTestDom();
 		dom.innerHTML = html;
 		sometime(function later() {
 			spirit = ts.ui.get(dom.querySelector('main'));
 			action(spirit, dom);
-			done();
 		});
 	}
 
 	it('should show a spinner via DOM attribute', function(done) {
 		var html = '<main data-ts="Main"></main>';
 		setup(function(spirit, dom) {
-			spirit.element.setAttribute('ts.busy', 'Moth');
+			spirit.element.setAttribute('data-ts.busy', 'Moth is busy');
 			sometime(function later() {
-				expect(dom.querySelector('.ts-spinner-text').innerHTML).toContain('Moth');
-				expect(dom.querySelector('body')).toContain('ts-spinner-text');
+				expect(document.querySelector('.ts-spinner-text').innerHTML).toContain('Moth is busy');
+				spirit.element.removeAttribute('data-ts.busy');
 				done();
 			});
-		}, html, done);
+		}, html);
 	});
 
 	it('should show a blocking spinner via DOM attribute', function(done) {
 		var html = '<main data-ts="Main"></main>';
 		setup(function(spirit, dom) {
-			spirit.element.setAttribute('data-ts.blocking', 'Moth');
+			spirit.element.setAttribute('data-ts.blocking', 'Moth is blocking, as usual');
 			sometime(function later() {
-				expect(dom.querySelector('.ts-spinner-text').innerHTML).toContain('Moth');
-				expect(dom.querySelector('body')).toContain('ts-spinner-cover');
+				expect(document.querySelector('.ts-spinner-text').innerHTML).toContain('Moth is blocking');
+				spirit.element.removeAttribute('data-ts.blocking');
 				done();
 			});
-		}, html, done);
+		}, html);
 	});
 
 	// NOTE: this test may be subject to random failure

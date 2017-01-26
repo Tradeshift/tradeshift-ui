@@ -16,7 +16,7 @@ describe('ts.ui.CompanyCardSpirit', function likethis() {
 		dom.innerHTML = '<div data-ts="CompanyCard"></div>';
 		sometime(function later() {
 			spirit = ts.ui.get(dom.querySelector('div'));
-			expect(spirit.constructor).toBe(ts.ui.CompanyCardSpirit);
+			expect(ts.ui.CompanyCardSpirit.is(spirit)).toBe(true);
 			done();
 		});
 	});

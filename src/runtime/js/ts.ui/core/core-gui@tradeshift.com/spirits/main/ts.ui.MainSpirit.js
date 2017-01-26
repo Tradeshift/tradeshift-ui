@@ -123,23 +123,7 @@ ts.ui.MainSpirit = (function using(Type, PANEL_ATTACH, PANEL_DETACH) {
 					break;
 			}
 		},
-
-		/**
-		 * Trap focus in the MAIN section so that TAB
-		 * won't travel into ASIDE or exit the IFRAME.
-		 */
-		onready: function() {
-			this.super.onready();
-			if (this.dom.q('.ts-main-content')) { // TODO: delete this after some releases...
-				throw new Error('Classname "ts-main-content" has been renamed to "ts-maincontent"');
-			}
-			if (gui.debug) {
-				if (this.dom.qdocall('.ts-main').length > 1) {
-					console.error('Main components should not be nested :/');
-				}
-			}
-		},
-
+		
 		/**
 		 * If the `autofocus` element is not focused by now, we'll do just that.
 		 * TODO(jmo@): Perhaps validate that there is only one 'autofocus' arond?

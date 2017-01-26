@@ -154,32 +154,34 @@ ts.ui.AsideSpirit = (function using(chained, confirmed, Client, LayoutModel, not
 		 */
 		onchange: function(changes) {
 			this.super.onchange(changes);
-			var layout = LayoutModel.output.get();
-			var asides = layout.asides;
-			var id = this.$instanceid;
-			changes.forEach(function(c) {
-				switch (c.object) {
-					case asides:
-						var klass = ts.ui.CLASS_SECONDARY;
-						var stacked = this.css.contains(klass);
-						this._index = asides.indexOf(id);
-						var x = asides.length - this._index - 1;
-						if (x > 0) {
-							if (!stacked) {
-								this._stack(true);
+			if(!this.$destructed) {
+				var layout = LayoutModel.output.get();
+				var asides = layout.asides;
+				var id = this.$instanceid;
+				changes.forEach(function(c) {
+					switch (c.object) {
+						case asides:
+							var klass = ts.ui.CLASS_SECONDARY;
+							var stacked = this.css.contains(klass);
+							this._index = asides.indexOf(id);
+							var x = asides.length - this._index - 1;
+							if (x > 0) {
+								if (!stacked) {
+									this._stack(true);
+								}
+							} else {
+								if (stacked) {
+									this._stack(false);
+								}
 							}
-						} else {
-							if (stacked) {
-								this._stack(false);
-							}
-						}
-						this.css.shift(x > 0, klass);
-						break;
-					case this._model:
-						this._onmodelchange(c.name, c.newValue);
-						break;
-				}
-			}, this);
+							this.css.shift(x > 0, klass);
+							break;
+						case this._model:
+							this._onmodelchange(c.name, c.newValue);
+							break;
+					}
+				}, this);
+			}
 		},
 
 		/**
@@ -188,6 +190,9 @@ ts.ui.AsideSpirit = (function using(chained, confirmed, Client, LayoutModel, not
 		ondetach: function() {
 			this.super.ondetach();
 			this._confirmstate(this._isreallyopen);
+			if (this._ismodelled()) {
+				this._model.removeObserver(this);
+			}
 		},
 
 		/**
@@ -291,18 +296,20 @@ ts.ui.AsideSpirit = (function using(chained, confirmed, Client, LayoutModel, not
 			tick.time(function() {
 				var time = 0;
 				tick.nextFrame(function paint(stamp) {
-					if (!time) {
-						time = stamp;
-						tick.nextFrame(paint);
-					} else {
-						var now = stamp - time;
-						var pct = getoffset(now);
-						if (now < end) {
-							this._position(100 - pct);
+					if(!this.$destructed) {
+						if (!time) {
+							time = stamp;
 							tick.nextFrame(paint);
 						} else {
-							this._position(open ? 0 : 100);
-							then.now();
+							var now = stamp - time;
+							var pct = getoffset(now);
+							if (now < end) {
+								this._position(100 - pct);
+								tick.nextFrame(paint);
+							} else {
+								this._position(open ? 0 : 100);
+								then.now();
+							}
 						}
 					}
 				});

@@ -5,7 +5,6 @@ describe('ts.ui.SearchSpirit', function likethis() {
 		sometime(function later() {
 			spirit = ts.ui.get(dom.querySelector('div[data-ts=Search]'));
 			action(spirit, dom);
-			done();
 		});
 	}
 
@@ -13,13 +12,13 @@ describe('ts.ui.SearchSpirit', function likethis() {
 		var html = '<div data-ts="Search"></div>';
 		setup(function(spirit, dom) {
 			sometime(function later() {
-				expect(spirit.constructor).toBe(ts.ui.SearchSpirit);
-				expect(dom.querySelector('button[ts-button]').innerHTML).toContain('ts-icon-close');
-				expect(dom.querySelector('input[ts-input]').value).toBe('');
+				expect(ts.ui.SearchSpirit.is(spirit)).toBe(true);
+				expect(dom.querySelector('.ts-button').innerHTML).toContain('ts-icon-close');
+				expect(dom.querySelector('.ts-input').value).toBe('');
 				expect(spirit.element.className).toContain('ts-empty');
 				done();
 			});
-		}, html, done);
+		}, html);
 	});
 
 	it('should contain value', function(done) {
@@ -27,10 +26,10 @@ describe('ts.ui.SearchSpirit', function likethis() {
 		setup(function(spirit, dom) {
 			spirit.value = 'Leo';
 			sometime(function later() {
-				expect(dom.querySelector('input[ts-input]').value).toBe('Leo');
-				expect(dom.querySelector('button[ts-button]').className).not.toContain('ts-hidden');
+				expect(dom.querySelector('.ts-button').className).not.toContain('ts-hidden');
+				expect(dom.querySelector('.ts-input').value).toBe('Leo');
 				done();
 			});
-		}, html, done);
+		}, html);
 	});
 });

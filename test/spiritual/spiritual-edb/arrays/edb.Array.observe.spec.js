@@ -6,6 +6,7 @@ describe('edb.Array.observe()', function likethis() {
 		var list = new edb.Array([null]);
 		list.addObserver({
 			onchange: function() {
+				expect(true).toBe(true);
 				done();
 			}
 		});
@@ -16,6 +17,7 @@ describe('edb.Array.observe()', function likethis() {
 		var list = new edb.Array([null]);
 		list.addObserver({
 			onchange: function() {
+				expect(true).toBe(true);
 				done();
 			}
 		});
@@ -26,6 +28,7 @@ describe('edb.Array.observe()', function likethis() {
 		var list = new edb.Array([null]);
 		list.addObserver({
 			onchange: function() {
+				expect(true).toBe(true);
 				done();
 			}
 		});
@@ -36,6 +39,7 @@ describe('edb.Array.observe()', function likethis() {
 		var list = new edb.Array([null]);
 		list.addObserver({
 			onchange: function() {
+				expect(true).toBe(true);
 				done();
 			}
 		});
@@ -46,6 +50,7 @@ describe('edb.Array.observe()', function likethis() {
 		var list = new edb.Array([null]);
 		list.addObserver({
 			onchange: function() {
+				expect(true).toBe(true);
 				done();
 			}
 		});
@@ -56,6 +61,7 @@ describe('edb.Array.observe()', function likethis() {
 		var list = new edb.Array([null]);
 		list.addObserver({
 			onchange: function() {
+				expect(true).toBe(true);
 				done();
 			}
 		});
@@ -66,6 +72,7 @@ describe('edb.Array.observe()', function likethis() {
 		var list = new edb.Array([null]);
 		list.addObserver({
 			onchange: function() {
+				expect(true).toBe(true);
 				done();
 			}
 		});

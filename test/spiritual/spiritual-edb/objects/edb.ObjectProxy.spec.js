@@ -23,6 +23,7 @@ describe('edb.ObjectProxy', function likethis() {
 					gui.Broadcast.remove(BROADCAST, this);
 					// wait a second (to also test the sync)
 					setTimeout(function waitforfail() {
+						expect(true).toBe(true);
 						done();
 					}, 50);
 				}
@@ -48,6 +49,7 @@ describe('edb.ObjectProxy', function likethis() {
 		var handler = {
 			ontick: function() {
 				gui.Tick.remove(TICK, handler);
+				expect(true).toBe(true);
 				done();
 			}
 		};
@@ -68,6 +70,7 @@ describe('edb.ObjectProxy', function likethis() {
 		var handler = {
 			ontick: function() {
 				gui.Tick.remove(TICK, handler);
+				expect(true).toBe(true);
 				done();
 			}
 		};
@@ -97,6 +100,7 @@ describe('edb.ObjectProxy', function likethis() {
 		object.friend.name = 'Svend';
 		setTimeout(function waitforfail() {
 			gui.Tick.remove(TICK, handler);
+			expect(true).toBe(true);
 			done();
 		}, 50);
 	});
@@ -123,6 +127,7 @@ describe('edb.ObjectProxy', function likethis() {
 		setTimeout(function checksum() {
 			if (sum === 1) {
 				gui.Tick.remove(TICK, handler);
+				expect(true).toBe(true);
 				done();
 			}
 		}, 50);

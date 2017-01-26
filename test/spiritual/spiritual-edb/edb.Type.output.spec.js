@@ -24,9 +24,11 @@ describe('edb.Type.output', function likethis() {
 			oninput: function(input) {
 				if (input.type === MyType) {
 					if (testrevoke && input.data === null) {
+						expect(true).toBe(true);
 						done();
 					} else {
 						if (input.data === mytype) {
+							expect(true).toBe(true);
 							done();
 						}
 					}

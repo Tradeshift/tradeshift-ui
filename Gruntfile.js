@@ -65,6 +65,12 @@ module.exports = function(grunt) {
 				src: 'src/runtime/js/ts-dev.js',
 				dest: 'dist/ts.js'
 			},
+			jasmine: {
+				flatten: true,
+				expand: true,
+				src: ['dist/ts.js', 'dist/ts.css', 'dist/ts-lang-en.js'],
+				dest: 'jasmine/'
+			},
 			lang_dev: {
 				flatten: true,
 				expand: true,
@@ -106,6 +112,15 @@ module.exports = function(grunt) {
 				options: {
 					'${runtimecss}': '/dist/ts.min.css',
 					'${langbundle}': '/dist/ts-lang-<LANG>.js'
+				},
+				files: {
+					'temp/ts.js': 'src/runtime/ts.js'
+				}
+			},
+			jasmine: {
+				options: {
+					'${runtimecss}': 'ts.css',
+					'${langbundle}': 'ts-lang-<LANG>.js'
 				},
 				files: {
 					'temp/ts.js': 'src/runtime/ts.js'
@@ -192,6 +207,10 @@ module.exports = function(grunt) {
 				files: {
 					'dist/cdn/ts-<%= pkg.version %>.js': getcombobuilds()
 				}
+			},
+			jasmine: {
+				src: ['test/spiritual/**/*.spec.js', 'test/runtime/**/*.spec.js'],
+				dest: 'jasmine/specs.js'
 			}
 		},
 
@@ -641,11 +660,12 @@ module.exports = function(grunt) {
 	 * Client-Spiritual and tradeshift-ui runs on localhost
 	 * @returns {Array<string>}
 	 */
-	function buildlocal() {
+	function buildlocal(target) {
+		target = target || 'dev';
 		return [
 			'clean:all',
 			'edbml',
-			'tsjs:local',
+			'tsjs:' + target,
 			'concat:loose',
 			'concat:moment',
 			'concat:spin',
@@ -656,8 +676,7 @@ module.exports = function(grunt) {
 			'touchfriendly:dev',
 			'cssmin:dev',
 			'tsless:dev',
-			'copy:lang_dev',
-			'concurrent'
+			'copy:lang_dev'
 		];
 	}
 
@@ -690,7 +709,7 @@ module.exports = function(grunt) {
 	// Tasks .....................................................................
 
 	// setup for local develmopment (default)
-	grunt.registerTask('default', buildlocal());
+	grunt.registerTask('default', buildlocal().concat(['concurrent']));
 
 	// setup for prod, release the Bob!
 	grunt.registerTask('dist', buildcdn('prod'));
@@ -726,4 +745,9 @@ module.exports = function(grunt) {
 		'tsjs:karma',
 		'karma:local'
 	]);
+
+	grunt.registerTask('jasmine', buildlocal('jasmine').concat([
+		'concat:jasmine', 'copy:jasmine'
+	]));
+
 };

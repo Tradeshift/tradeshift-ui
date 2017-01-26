@@ -4,9 +4,7 @@
 	var oldStart = window.__karma__.start;
 	window.__karma__.start = function() {
 		gui.debug = true;
-		document.addEventListener('DOMContentLoaded', function() {
-			ts.ui.ready(oldStart);
-		}, false);
+		document.addEventListener('DOMContentLoaded', oldStart);
 	};
 
 	/**

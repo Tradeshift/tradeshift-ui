@@ -4,7 +4,6 @@ module.exports = function(karmaConfig) {
 
 	var confObj = {
 		hostname: 'localhost',
-
 		frameworks: ['jasmine'],
 
 		files: [
@@ -27,7 +26,12 @@ module.exports = function(karmaConfig) {
 			suppressSkipped: true,
 			showSpecTiming: true
 		},
-		logLevel: 'INFO'
+		logLevel: 'INFO',
+
+		browserDisconnectTimeout : 10000, // default 2000
+		browserDisconnectTolerance : 1, // default 0
+		browserNoActivityTimeout : 60000 //default 10000
+		
 	};
 
 	karmaConfig.set(confObj);

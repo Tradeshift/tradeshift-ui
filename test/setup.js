@@ -3,7 +3,9 @@
 	// Delay starting the tests until after the document is ready, as Spiritual waits for that.
 	var oldStart = window.__karma__.start;
 	window.__karma__.start = function() {
-		gui.debug = true;
+		setTimeout(function() {
+			console.log(document.documentElement.innerHTML);
+		}, 100);
 		ts.ui.ready(function() {
 			setTimeout(function() {
 				oldStart();

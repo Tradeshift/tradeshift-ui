@@ -71,15 +71,11 @@
 	 * @param {Array<string>} src
 	 */
 	function loadscripts(srcs) {
-
-		console.warn('!!!!!!!!!!!!!!!!!!! LOADSCRIPTS', srcs);
-
 		var next = null;
 		var prev = script;
 		var left = srcs.length;
 		var root = script.parentNode;
 		function onload() {
-			console.warn('!!!!!!!!!!!!!!!!!!! LOADED :)');
 			if(--left === 0) {
 				ts.ui.$maybebootstrap(true);
 			}
@@ -96,20 +92,14 @@
 			srcs.forEach(function(src) {
 				next = document.createElement('script');
 				next.src = src;
-				next.defer = true; will this fok up Travis?
-				//next.onload = onload;
-				//next.onerror = onerror;
-				next.addEventListener('load', onload);
-				next.addEventListener('error', onerror);
+				next.defer = true;
+				next.onload = onload;
+				next.onerror = onerror;
 				root.insertBefore(next, prev.nextSibling);
 				prev = next;
-
-				console.warn('!!!!!!!!!!!!!!!!!!! INSERTED', src);
 			});
 			
 		} else {
-
-			console.warn('!!!!!!!!!!!!!!!!!!! NEIN');
 			/*
 			 * Otherwise we attempt bootstrap. All the Runtime code will be 
 			 * parsed after this code, so we have to take a break before we 

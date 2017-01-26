@@ -4,7 +4,11 @@
 	var oldStart = window.__karma__.start;
 	window.__karma__.start = function() {
 		gui.debug = true;
-		document.addEventListener('DOMContentLoaded', ts.ui.ready(oldStart));
+		ts.ui.ready(function() {
+			setTimeout(function() {
+				oldStart();
+			}, 500);
+		});
 	};
 
 	/**

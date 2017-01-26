@@ -92,7 +92,7 @@
 			srcs.forEach(function(src) {
 				next = document.createElement('script');
 				next.src = src;
-				next.defer = true;
+				// next.defer = true; will this fok up Travis?
 				next.onload = onload;
 				next.onerror = onerror;
 				root.insertBefore(next, prev.nextSibling);

@@ -30,7 +30,7 @@ module.exports = function(karmaConfig) {
 
 		// https://github.com/karma-runner/karma/issues/598
 		
-		captureTimeout: 10000,
+		captureTimeout: 60000,
 		browserDisconnectTimeout: 10000,
 		browserDisconnectTolerance: 3,
 		browserNoActivityTimeout: 60000

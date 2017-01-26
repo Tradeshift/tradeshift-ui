@@ -28,17 +28,12 @@ module.exports = function(karmaConfig) {
 		},
 		logLevel: 'INFO',
 
-		/*
-		browserDisconnectTimeout : 10000, // default 2000
-		browserDisconnectTolerance : 1, // default 0
-		browserNoActivityTimeout : 60000 //default 10000
-		*/
-
+		// https://github.com/karma-runner/karma/issues/598
 		
-		captureTimeout: 2000,
+		captureTimeout: 10000,
 		browserDisconnectTimeout: 10000,
 		browserDisconnectTolerance: 3,
-		browserNoActivityTimeout: 10000,
+		browserNoActivityTimeout: 60000
 
 	};
 

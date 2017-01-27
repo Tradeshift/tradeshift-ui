@@ -149,8 +149,8 @@ module.exports = function(grunt) {
 				'Gruntfile.js',
 				'src/runtime/js/**/*.js',
 				'src/spiritual/**/*.js',
-				'test/runtime/**/*.spec.js',
-				'test/spiritual/**/*.spec.js',
+				'spec/runtime/**/*.spec.js',
+				'spec/spiritual/**/*.spec.js',
 				'!**/dependencies/**'],
 			options: grunt.file.readJSON('.jshintrc')
 		},
@@ -209,8 +209,8 @@ module.exports = function(grunt) {
 				}
 			},
 			jasmine: {
-				src: ['test/spiritual/**/*.spec.js', 'test/runtime/**/*.spec.js'],
-				dest: 'jasmine/specs.js'
+				src: ['spec/spiritual/**/*.spec.js', 'spec/runtime/**/*.spec.js'],
+				dest: 'spec/jasmine/specs.js'
 			}
 		},
 

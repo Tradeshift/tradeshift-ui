@@ -16,13 +16,14 @@
   "license": "SEE LICENSE IN LICENSE.md",
   "homepage": "https://ui-dev.tradeshift.com/",
   "scripts": {
-    "test": "grunt test"
+    "test": "echo 'TODO!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!'"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Tradeshift/tradeshift-ui.git"
   },
   "keywords": [
+    "Tradeshift",
     "ts",
     "ui",
     "components",

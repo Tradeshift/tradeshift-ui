@@ -103,7 +103,8 @@
 			/*
 			 * Otherwise we attempt bootstrap. All the Runtime code will be 
 			 * parsed after this code, so we have to take a break before we 
-			 * can address it. TODO: Let's micro-task instead of a timeout!
+			 * can address it. TODO: Let's micro-task instead of a timeout 
+			 * (or better yet, call the method from an always final script).
 			 */
 			setTimeout(function deferred() {
 				ts.ui.$maybebootstrap(true);
@@ -37330,6 +37331,7 @@ ts.ui.AsideSpirit = (function using(chained, confirmed, Client, LayoutModel, not
 		 */
 		ondetach: function() {
 			ts.ui.SideShowSpirit.prototype.ondetach.call(this);
+			console.log('DETACHED!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
 			this._confirmstate(this._isreallyopen);
 			if (this._ismodelled()) {
 				this._model.removeObserver(this);
@@ -37341,6 +37343,7 @@ ts.ui.AsideSpirit = (function using(chained, confirmed, Client, LayoutModel, not
 		 */
 		ondestruct: function() {
 			ts.ui.SideShowSpirit.prototype.ondestruct.call(this);
+			console.log('DESTRUCTED!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
 			this._confirmstate(this._isreallyopen);
 			if (this._ismodelled()) { // TODO: automate this step
 				this._model.removeObserver(this);

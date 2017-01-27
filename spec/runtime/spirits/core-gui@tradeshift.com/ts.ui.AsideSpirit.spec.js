@@ -1,23 +1,22 @@
 describe('ts.ui.AsideSpirit', function likethis() {
-	var MARKUP = '<aside data-ts="Aside"><div data-ts="Panel"></div></aside>';
+	var MARKUP = '<aside data-ts="Aside" data-ts.title="Test Aside"><div data-ts="Panel"></div></aside>';
 	var TRANSITION_DONE = (ts.ui.TRANSITION_FAST + 100);
 
 	function closeAside(spirit, done) {
 		spirit.onclosed = function() {
-			var elm = spirit.element;
-			elm.parentNode.removeChild(elm);
+			spirit.dom.remove();
 			done();
 		};
 		spirit.close();
 	}
 
 	it('should (eventually) channel via ts-attribute', function(done) {
-
 		var spirit, dom = helper.createTestDom();
 		dom.innerHTML = MARKUP;
 		sometime(function later() {
 			spirit = ts.ui.get(dom.querySelector('aside'));
-			expect(spirit.constructor).toBe(ts.ui.AsideSpirit);
+			expect(ts.ui.AsideSpirit.is(spirit)).toBe(true);
+			spirit.dom.remove();
 			done();
 		});
 	});
@@ -32,16 +31,17 @@ describe('ts.ui.AsideSpirit', function likethis() {
 				try {
 					dom.removeChild(spirit.element);
 				} catch (exception) {
-					//console.log(exception.message);
-					window.onerror = null;
-					expect(true).toBe(true);
-					closeAside(spirit, done);	
+					expect(exception).not.toBe(null);
+				} finally {
+					closeAside(spirit, done);
 				}
 			});
 		});
 	});
 
 	/*
+	 * TODO: Test that Asides can also close, but now like this
+	 *
 	describe('a broadcast close', function() {
 		beforeEach(function(done) {
 			var that = this;

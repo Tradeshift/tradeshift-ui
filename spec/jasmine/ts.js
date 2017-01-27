@@ -103,8 +103,7 @@
 			/*
 			 * Otherwise we attempt bootstrap. All the Runtime code will be 
 			 * parsed after this code, so we have to take a break before we 
-			 * can address it. TODO: Let's micro-task instead of a timeout 
-			 * (or better yet, call the method from an always final script).
+			 * can address it. TODO: Let's micro-task instead of a timeout!
 			 */
 			setTimeout(function deferred() {
 				ts.ui.$maybebootstrap(true);
@@ -8941,7 +8940,9 @@ gui.DOMPlugin = (function using(chained, guide, observer) {
 		 */
 		remove: function() {
 			var parent = this.spirit.element.parentNode;
-			parent.removeChild(this.spirit.element);
+			if(parent) {
+				parent.removeChild(this.spirit.element);
+			}
 		},
 
 		/**
@@ -37331,7 +37332,6 @@ ts.ui.AsideSpirit = (function using(chained, confirmed, Client, LayoutModel, not
 		 */
 		ondetach: function() {
 			ts.ui.SideShowSpirit.prototype.ondetach.call(this);
-			console.log('DETACHED!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
 			this._confirmstate(this._isreallyopen);
 			if (this._ismodelled()) {
 				this._model.removeObserver(this);
@@ -37343,7 +37343,6 @@ ts.ui.AsideSpirit = (function using(chained, confirmed, Client, LayoutModel, not
 		 */
 		ondestruct: function() {
 			ts.ui.SideShowSpirit.prototype.ondestruct.call(this);
-			console.log('DESTRUCTED!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
 			this._confirmstate(this._isreallyopen);
 			if (this._ismodelled()) { // TODO: automate this step
 				this._model.removeObserver(this);
@@ -37688,6 +37687,7 @@ ts.ui.AsideSpirit = (function using(chained, confirmed, Client, LayoutModel, not
 		 * Fully closed.
 		 */
 		_didclose: function() {
+			console.log('(DIDCLOSE!)')
 			var panel = this.dom.q('.ts-panel');
 			this._isreallyopen = false;
 			this._offset = 0;
@@ -37782,16 +37782,18 @@ ts.ui.AsideSpirit = (function using(chained, confirmed, Client, LayoutModel, not
 		},
 
 		/**
-		 * Throw and error if someone nukes
-		 * the ASIDE without closing it first.
+		 * Throw and/or error if someone nukes
+		 * the Aside without closing it first.
 		 * @param {boolean} stillopen
 		 */
 		_confirmstate: function(stillopen) {
 			if (stillopen) {
+				this._confirmstate = function norepeat() {};
 				var cry = this + ' should not be removed from the document while open.';
-				console.error(cry);
-				if (gui.debug) {
-					throw new Error(cry);
+				if(gui.debug) {
+					throw new Error(cry); // so that we can write a test for it :)
+				} else {
+					console.error(cry);
 				}
 			}
 		}
@@ -39332,7 +39334,8 @@ ts.ui.DialogSpirit = (function using(Dialog, Client, chained, Type) {
 		},
 
 		/**
-		 * It really did close.
+		 * It really did close. Remove and dispose 
+		 * so that it's not possible to reuse this.
 		 */
 		_didclose: function() {
 			this.broadcast.dispatch(didclose);
@@ -39341,9 +39344,12 @@ ts.ui.DialogSpirit = (function using(Dialog, Client, chained, Type) {
 				ts.ui.CLASS_CLOSING
 			]);
 			this.attention.exit();
-			this.dom.hide();
+			this.dom.remove();
 			if (this._ismodelled()) {
 				this._model.state = 'onclosed';
+				this.tick.time(function terminate() {
+					this._model.dispose();
+				});
 			}
 		},
 
@@ -45633,17 +45639,19 @@ ts.ui.ToolBarSpirit = (function using(chained, confirmed, Client, Type, guiArray
 		}),
 
 		/**
-		 * Get or set the title (aborting weird Moustache syntax).
-		 * @param @optional {string} title
+		 * Get or set the title (aborting weird Moustache syntax). 
+		 * Support also `null` because of some flaky Jasmine test.
+		 * @param @optional {string|null} title
 		 * @returns {string|ts.ui.ToolBarSpirit}
 		 */
-		title: confirmed('(string)')(
-			chained(function(opt_json) {
+		title: confirmed('(string|null)')(
+			chained(function(opt_title) {
 				var model = this.model();
 				if (arguments.length) {
-					if (opt_json.trim().indexOf('{') !== 0) {
+					opt_title = opt_title || '';
+					if (opt_title.trim().indexOf('{') !== 0) {
 						this.$hascontent();
-						model.title = opt_json;
+						model.title = opt_title;
 						this.event.add('click');
 						this.$hascontent();
 					}

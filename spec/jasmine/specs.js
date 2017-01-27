@@ -2377,6 +2377,7 @@ describe('ts.ui.AsideSpirit.edbml', function likethis() {
 
 	it('should contain item render', function(done) {
 		var model = new ts.ui.AsideModel({
+			title: 'Should contain an item',
 			items: [
 				{
 					item: 'text',
@@ -3103,25 +3104,25 @@ describe('ts.ui.ToolBarSpirit', function likethis() {
 });
 
 describe('ts.ui.AsideSpirit', function likethis() {
-	var MARKUP = '<aside data-ts="Aside"><div data-ts="Panel"></div></aside>';
+	var MARKUP = '<aside data-ts="Aside" data-ts.title="Test Aside"><div data-ts="Panel"></div></aside>';
 	var TRANSITION_DONE = (ts.ui.TRANSITION_FAST + 100);
 
 	function closeAside(spirit, done) {
 		spirit.onclosed = function() {
-			var elm = spirit.element;
-			elm.parentNode.removeChild(elm);
+			console.log('CLOSED!');
+			spirit.dom.remove();
 			done();
 		};
 		spirit.close();
 	}
 
 	it('should (eventually) channel via ts-attribute', function(done) {
-
 		var spirit, dom = helper.createTestDom();
 		dom.innerHTML = MARKUP;
 		sometime(function later() {
 			spirit = ts.ui.get(dom.querySelector('aside'));
-			expect(spirit.constructor).toBe(ts.ui.AsideSpirit);
+			expect(ts.ui.AsideSpirit.is(spirit)).toBe(true);
+			spirit.dom.remove();
 			done();
 		});
 	});
@@ -3136,16 +3137,19 @@ describe('ts.ui.AsideSpirit', function likethis() {
 				try {
 					dom.removeChild(spirit.element);
 				} catch (exception) {
-					//console.log(exception.message);
-					window.onerror = null;
-					expect(true).toBe(true);
-					closeAside(spirit, done);	
+					console.log('GOT IT!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
+					expect(exception).not.toBe(null);
+				} finally {
+					console.log('CLOSING IT...')
+					closeAside(spirit, done);
 				}
 			});
 		});
 	});
 
 	/*
+	 * TODO: Test that Asides can also close, but now like this
+	 *
 	describe('a broadcast close', function() {
 		beforeEach(function(done) {
 			var that = this;
@@ -3302,7 +3306,6 @@ describe('ts.ui.CalendarSpirit', function() {
 
 			it('has the first day selected', function() {
 				var firstDay = this.monthData[0][0];
-				console.log(firstDay);
 				expect(firstDay.day).toBe(1);
 				expect(firstDay.month).toBe(8);
 				expect(firstDay.year).toBe(2014);
@@ -3316,53 +3319,48 @@ describe('ts.ui.DialogSpirit', function likethis() {
 
 	function gethtml() {
 		var dialogs = document.querySelectorAll('.ts-dialog');
-		return (dialogs[dialogs.length - 1]).outerHTML;
+		var first = dialogs[dialogs.length - 1];
+		return first.outerHTML;
 	}
 
 	it('should display confirm information', function(done) {
-		var dialog = ts.ui.Dialog.confirm('leo', {});
+		var dialog = ts.ui.Dialog.confirm('Leo?', {});
 		sometime(function later() {
-			expect(gethtml()).toContain('leo');
-			dialog.accept();
-			done();
+			expect(gethtml()).toContain('Leo?');
+			dialog.accept().then(done);
 		});
 	});
 
 	it('should display ok button', function(done) {
-		var dialog = ts.ui.Dialog.confirm('leo', {});
+		var dialog = ts.ui.Dialog.confirm('OK button?', {});
 		sometime(function later() {
 			expect(gethtml()).toContain('OK');
-			dialog.accept();
-			done();
+			dialog.accept().then(done);
 		});
 	});
 
 	it('should display cancel button', function(done) {
-		var dialog = ts.ui.Dialog.confirm('leo', {});
+		var dialog = ts.ui.Dialog.confirm('Cancel button?', {});
 		sometime(function later() {
 			expect(gethtml()).toContain('Cancel');
-			dialog.accept();
-			done();
+			dialog.accept().then(done);
 		});
 	});
 
 	it('should display daniel button', function(done) {
-		var dialog = ts.ui.Dialog.confirm('leo', 'daniel', {});
+		var dialog = ts.ui.Dialog.confirm('Daniel?', 'daniel', {});
 		sometime(function later() {
 			expect(gethtml()).toContain('daniel');
 			expect(gethtml()).not.toContain('OK');
-			dialog.accept();
-			done();
+			dialog.accept().then(done);
 		});
 	});
 
 	it('should display primary button', function(done) {
-		var dialog = ts.ui.Dialog.confirm('leo', {primary: 'accept', focused: 'accept'});
+		var dialog = ts.ui.Dialog.confirm('Primary?', {primary: 'accept', focused: 'accept'});
 		sometime(function later() {
 			expect(gethtml()).toContain('ts-primary');
-			// expect(gethtml()).toContain('ts-focused'); // flaky
-			dialog.accept();
-			done();
+			dialog.accept().then(done);
 		});
 	});
 

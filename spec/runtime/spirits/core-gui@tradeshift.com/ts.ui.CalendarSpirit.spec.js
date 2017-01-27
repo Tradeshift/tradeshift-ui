@@ -82,7 +82,6 @@ describe('ts.ui.CalendarSpirit', function() {
 
 			it('has the first day selected', function() {
 				var firstDay = this.monthData[0][0];
-				console.log(firstDay);
 				expect(firstDay.day).toBe(1);
 				expect(firstDay.month).toBe(8);
 				expect(firstDay.year).toBe(2014);

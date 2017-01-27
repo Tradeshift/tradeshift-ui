@@ -638,16 +638,18 @@ ts.ui.AsideSpirit = (function using(chained, confirmed, Client, LayoutModel, not
 		},
 
 		/**
-		 * Throw and error if someone nukes
-		 * the ASIDE without closing it first.
+		 * Throw and/or error if someone nukes
+		 * the Aside without closing it first.
 		 * @param {boolean} stillopen
 		 */
 		_confirmstate: function(stillopen) {
 			if (stillopen) {
+				this._confirmstate = function norepeat() {};
 				var cry = this + ' should not be removed from the document while open.';
-				console.error(cry);
-				if (gui.debug) {
-					throw new Error(cry);
+				if(gui.debug) {
+					throw new Error(cry); // so that we can write a test for it :)
+				} else {
+					console.error(cry);
 				}
 			}
 		}

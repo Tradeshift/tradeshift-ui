@@ -16,7 +16,7 @@ gui.debug = true;
 window.sometime = function(later, thisp) {
 	setTimeout(function() {
 		later.call(thisp);
-	}, gui.Client.isExplorer ? 250 : 100);
+	}, gui.Client.isExplorer ? 500 : 250);
 };
 
 window.helper = {

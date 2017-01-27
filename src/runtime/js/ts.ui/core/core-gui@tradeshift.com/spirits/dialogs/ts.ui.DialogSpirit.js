@@ -372,7 +372,8 @@ ts.ui.DialogSpirit = (function using(Dialog, Client, chained, Type) {
 		},
 
 		/**
-		 * It really did close.
+		 * It really did close. Remove and dispose 
+		 * so that it's not possible to reuse this.
 		 */
 		_didclose: function() {
 			this.broadcast.dispatch(didclose);
@@ -381,9 +382,13 @@ ts.ui.DialogSpirit = (function using(Dialog, Client, chained, Type) {
 				ts.ui.CLASS_CLOSING
 			]);
 			this.attention.exit();
-			this.dom.hide();
+			this.dom.remove();
 			if (this._ismodelled()) {
-				this._model.state = 'onclosed';
+				var model = this._model;
+				model.state = 'onclosed';
+				this.tick.time(function terminate() {
+					model.model.dispose();
+				});
 			}
 		},
 

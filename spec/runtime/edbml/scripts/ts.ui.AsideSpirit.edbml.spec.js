@@ -20,6 +20,7 @@ describe('ts.ui.AsideSpirit.edbml', function likethis() {
 
 	it('should contain item render', function(done) {
 		var model = new ts.ui.AsideModel({
+			title: 'Should contain an item',
 			items: [
 				{
 					item: 'text',

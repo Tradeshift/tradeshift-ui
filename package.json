@@ -16,7 +16,8 @@
   "license": "SEE LICENSE IN LICENSE.md",
   "homepage": "https://ui-dev.tradeshift.com/",
   "scripts": {
-    "test": "echo 'TODO!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!'"
+    "test": "echo 'TODO!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!'",
+    "http": "static spec/jasmine -H '{\"Cache-Control\": \"no-cache, must-revalidate\"}'"
   },
   "repository": {
     "type": "git",
@@ -58,22 +59,15 @@
     "grunt-contrib-watch": "^0.6.1",
     "grunt-devserver": "^0.6.0",
     "grunt-git": "^0.3.2",
-    "grunt-jasmine-node": "^0.2.1",
-    "grunt-karma": "~0.12.0",
     "grunt-mkdir": "^0.1.2",
     "grunt-release-ts": "^0.14.3",
     "grunt-spiritual-build": "^0.1.18",
     "grunt-spiritual-dox": "^0.1.1",
     "grunt-spiritual-edbml": "^0.3.0",
     "html": "0.0.7",
-    "karma": "~0.13.9",
-    "karma-browserstack-launcher": "~0.1.4",
-    "karma-chrome-launcher": "0.1.12",
-    "karma-firefox-launcher": "0.1.6",
-    "karma-jasmine": "~0.3.6",
-    "karma-spec-reporter": "0.0.26",
     "load-grunt-tasks": "^0.6.0",
     "lodash": "^2.4.1",
+    "node-static": "^0.7.9",
     "node.extend": "^1.1.2",
     "q": "^1.4.1"
   }

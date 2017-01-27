@@ -69,7 +69,7 @@ module.exports = function(grunt) {
 				flatten: true,
 				expand: true,
 				src: ['dist/ts.js', 'dist/ts.css', 'dist/ts-lang-en.js'],
-				dest: 'jasmine/'
+				dest: 'spec/jasmine/'
 			},
 			lang_dev: {
 				flatten: true,
@@ -99,19 +99,10 @@ module.exports = function(grunt) {
 
 		// setup 'ts.js'
 		tsjs: {
-			local: {
+			dev: {
 				options: {
 					'${runtimecss}': '//127.0.0.1:10111/dist/ts.min.css',
 					'${langbundle}': '//127.0.0.1:10111/dist/ts-lang-<LANG>.js'
-				},
-				files: {
-					'temp/ts.js': 'src/runtime/ts.js'
-				}
-			},
-			karma: {
-				options: {
-					'${runtimecss}': '/dist/ts.min.css',
-					'${langbundle}': '/dist/ts-lang-<LANG>.js'
 				},
 				files: {
 					'temp/ts.js': 'src/runtime/ts.js'
@@ -126,9 +117,7 @@ module.exports = function(grunt) {
 					'temp/ts.js': 'src/runtime/ts.js'
 				}
 			},
-			prod: tsjs(config.folder_prod),
-			dev: tsjs(config.folder_dev),
-			temp: tsjs(config.folder_temp)
+			prod: tsjs(config.folder_prod)
 		},
 
 		// concatante the LESS (so that devs may copy-paste it from the web)

@@ -278,6 +278,8 @@ ts.ui.AsideSpirit = (function using(chained, confirmed, Client, LayoutModel, not
 		 * All attempts to animate the Aside with ordinary CSS transitions
 		 * would result in fatal rendering glitches that only occurs in a
 		 * production environment, of course. Using the brute force method.
+		 * UPDATE: This was caused by Track.js versus `handleEvent` so we 
+		 * can go ahead and use CSS transitions now :)
 		 * @param {boolean} open
 		 * @param @optional {boolean} callback
 		 * @returns {gui.Then}
@@ -644,6 +646,8 @@ ts.ui.AsideSpirit = (function using(chained, confirmed, Client, LayoutModel, not
 		 */
 		_confirmstate: function(stillopen) {
 			if (stillopen) {
+				this._updateworld(willclose);
+				this._updateworld(didclose); // nuke the cover
 				this._confirmstate = function norepeat() {};
 				var cry = this + ' should not be removed from the document while open.';
 				if(gui.debug) {

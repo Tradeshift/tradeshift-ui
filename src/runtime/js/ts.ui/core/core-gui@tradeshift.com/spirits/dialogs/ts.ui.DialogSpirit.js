@@ -387,7 +387,7 @@ ts.ui.DialogSpirit = (function using(Dialog, Client, chained, Type) {
 				var model = this._model;
 				model.state = 'onclosed';
 				this.tick.time(function terminate() {
-					model.model.dispose();
+					model.dispose();
 				});
 			}
 		},

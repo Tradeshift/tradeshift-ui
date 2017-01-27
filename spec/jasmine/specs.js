@@ -3107,15 +3107,6 @@ describe('ts.ui.AsideSpirit', function likethis() {
 	var MARKUP = '<aside data-ts="Aside" data-ts.title="Test Aside"><div data-ts="Panel"></div></aside>';
 	var TRANSITION_DONE = (ts.ui.TRANSITION_FAST + 100);
 
-	function closeAside(spirit, done) {
-		spirit.onclosed = function() {
-			console.log('CLOSED!');
-			spirit.dom.remove();
-			done();
-		};
-		spirit.close();
-	}
-
 	it('should (eventually) channel via ts-attribute', function(done) {
 		var spirit, dom = helper.createTestDom();
 		dom.innerHTML = MARKUP;
@@ -3135,15 +3126,13 @@ describe('ts.ui.AsideSpirit', function likethis() {
 			spirit.open();
 			sometime(function muchlater() {
 				try {
-					dom.removeChild(spirit.element);
+					spirit.dom.remove();
+					expect('this should not be evaluated').toBe(true);
 				} catch (exception) {
-					console.log('GOT IT!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
-					expect(exception).not.toBe(null);
-				} finally {
-					console.log('CLOSING IT...')
-					closeAside(spirit, done);
+					expect(exception).not.toBe(null);	
 				}
-			});
+				done();
+			}, 1000);
 		});
 	});
 
@@ -4012,7 +4001,7 @@ describe('ts.ui.CompanyCardSpirit', function likethis() {
 		id: '6bf17754-f9de-4e31-aa31-bd3ff765b9c2',
 		data: {
 			name: 'Tradeshift',
-			logo: 'assets/logo.png',
+			logo: 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==',
 			size: '100–249',
 			location: 'San Francisco, California',
 			industry: 'Software & IT',

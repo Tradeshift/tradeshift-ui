@@ -3,7 +3,7 @@ body {
   background-color:rgb(245,245,245) !important;
 }
 .ts-main {
-  overflow: hidden;
+  overflow: visible;
   top: 123px;
   margin: 0;
 }

@@ -3,7 +3,7 @@ describe('ts.ui.CompanyCardSpirit', function likethis() {
 		id: '6bf17754-f9de-4e31-aa31-bd3ff765b9c2',
 		data: {
 			name: 'Tradeshift',
-			logo: 'assets/logo.png',
+			logo: 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==',
 			size: '100–249',
 			location: 'San Francisco, California',
 			industry: 'Software & IT',

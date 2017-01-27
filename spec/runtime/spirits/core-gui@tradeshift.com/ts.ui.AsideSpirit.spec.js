@@ -2,14 +2,6 @@ describe('ts.ui.AsideSpirit', function likethis() {
 	var MARKUP = '<aside data-ts="Aside" data-ts.title="Test Aside"><div data-ts="Panel"></div></aside>';
 	var TRANSITION_DONE = (ts.ui.TRANSITION_FAST + 100);
 
-	function closeAside(spirit, done) {
-		spirit.onclosed = function() {
-			spirit.dom.remove();
-			done();
-		};
-		spirit.close();
-	}
-
 	it('should (eventually) channel via ts-attribute', function(done) {
 		var spirit, dom = helper.createTestDom();
 		dom.innerHTML = MARKUP;
@@ -29,13 +21,13 @@ describe('ts.ui.AsideSpirit', function likethis() {
 			spirit.open();
 			sometime(function muchlater() {
 				try {
-					dom.removeChild(spirit.element);
+					spirit.dom.remove();
+					expect('this should not be evaluated').toBe(true);
 				} catch (exception) {
-					expect(exception).not.toBe(null);
-				} finally {
-					closeAside(spirit, done);
+					expect(exception).not.toBe(null);	
 				}
-			});
+				done();
+			}, 1000);
 		});
 	});
 

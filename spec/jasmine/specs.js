@@ -2580,138 +2580,165 @@ describe('ts.ui.NoteSpirit.edbml', function likethis() {
 describe('ts.ui.PagerSpirit.edbml', function likethis() {
 	var html = '<div data-ts="Pager" data-ts.pages="8" data-ts.page="0"></div>';
 
+	function getDom() {
+		var dom = helper.createTestDom();
+		dom.innerHTML = html;
+		return dom;
+	}
+
 	it('should contain menu', function(done) {
+		var dom = getDom();
 		sometime(function later() {
-			expect(helper.gethtml(html)).toContain('<menu>');
+			expect(dom.innerHTML).toContain('<menu>');
 			done();
 		});
 	});
 
 	it('should contain disabled', function(done) {
+		var dom = getDom();
 		sometime(function later() {
-			expect(helper.gethtml(html)).toContain('disabled="disabled" data-jump');
+			expect(dom.innerHTML).toContain('disabled="disabled" data-jump');
 			done();
 		});
 	});
 
 	it('should contain ts-pager-jump ts-pager-first', function(done) {
+		var dom = getDom();
 		sometime(function later() {
-			expect(helper.gethtml(html)).toContain('ts-pager-jump ts-pager-first');
+			expect(dom.innerHTML).toContain('ts-pager-jump ts-pager-first');
 			done();
 		});
 	});
 
 	it('should contain skip-previous', function(done) {
+		var dom = getDom();
 		sometime(function later() {
-			expect(helper.gethtml(html)).toContain('skip-previous');
+			expect(dom.innerHTML).toContain('skip-previous');
 			done();
 		});
 	});
 
 	it('should contain ts-pager-jump ts-pager-prev', function(done) {
+		var dom = getDom();
 		sometime(function later() {
-			expect(helper.gethtml(html)).toContain('ts-pager-jump ts-pager-prev');
+			expect(dom.innerHTML).toContain('ts-pager-jump ts-pager-prev');
 			done();
 		});
 	});
 
 	it('should contain fast-rewind', function(done) {
+		var dom = getDom();
 		sometime(function later() {
-			expect(helper.gethtml(html)).toContain('fast-rewind');
+			expect(dom.innerHTML).toContain('fast-rewind');
 			done();
 		});
 	});
 
 	it('should contain ts-pager-step', function(done) {
+		var dom = getDom();
 		sometime(function later() {
-			expect(helper.gethtml(html)).toContain('ts-pager-step');
+			expect(dom.innerHTML).toContain('ts-pager-step');
 			done();
 		});
 	});
 
 	it('should contain 1 to 5', function(done) {
+		var dom = getDom();
 		sometime(function later() {
-			expect(helper.gethtml(html)).toContain('1');
-			expect(helper.gethtml(html)).toContain('2');
-			expect(helper.gethtml(html)).toContain('3');
-			expect(helper.gethtml(html)).toContain('4');
-			expect(helper.gethtml(html)).toContain('5');
+			expect(dom.innerHTML).toContain('1');
+			expect(dom.innerHTML).toContain('2');
+			expect(dom.innerHTML).toContain('3');
+			expect(dom.innerHTML).toContain('4');
+			expect(dom.innerHTML).toContain('5');
 			done();
 		});
 	});
 
 	it('should contain ts-selected', function(done) {
+		var dom = getDom();
 		sometime(function later() {
-			expect(helper.gethtml(html)).toContain('ts-selected');
+			expect(dom.innerHTML).toContain('ts-selected');
 			done();
 		});
 	});
 
 	it('should contain ts-more', function(done) {
+		var dom = getDom();
 		sometime(function later() {
-			expect(helper.gethtml(html)).toContain('ts-more');
+			expect(dom.innerHTML).toContain('ts-more');
 			done();
 		});
 	});
 
 	it('should contain ts-pager-jump ts-pager-next', function(done) {
+		var dom = getDom();
 		sometime(function later() {
-			expect(helper.gethtml(html)).toContain('ts-pager-jump ts-pager-next');
+			expect(dom.innerHTML).toContain('ts-pager-jump ts-pager-next');
 			done();
 		});
 	});
 
 	it('should contain fast-forward', function(done) {
+		var dom = getDom();
 		sometime(function later() {
-			expect(helper.gethtml(html)).toContain('fast-forward');
+			expect(dom.innerHTML).toContain('fast-forward');
 			done();
 		});
 	});
 
 	it('should contain ts-pager-jump ts-pager-last', function(done) {
+		var dom = getDom();
 		sometime(function later() {
-			expect(helper.gethtml(html)).toContain('ts-pager-jump ts-pager-last');
+			expect(dom.innerHTML).toContain('ts-pager-jump ts-pager-last');
 			done();
 		});
 	});
 
 	it('should contain skip-next', function(done) {
+		var dom = getDom();
 		sometime(function later() {
-			expect(helper.gethtml(html)).toContain('skip-next');
+			expect(dom.innerHTML).toContain('skip-next');
 			done();
 		});
 	});
 });
 
 describe('ts.ui.PagerSpirit.edbml', function likethis() {
+
+	function getDom(html) {
+		var dom = helper.createTestDom();
+		dom.innerHTML = html;
+		return dom;
+	}
+
 	it('should contain input', function(done) {
-		var html = '<div data-ts="Search" class="ts-inset"></div>';
+		var dom = getDom('<div data-ts="Search" class="ts-inset"></div>');
 		sometime(function later() {
-			expect(helper.gethtml(html)).toContain('<input');
+			expect(dom.innerHTML).toContain('<input');
 			done();
 		});
 	});
 
 	it('should contain button', function(done) {
-		var html = '<div data-ts="Search" class="ts-inset"></div>';
+		var dom = getDom('<div data-ts="Search" class="ts-inset"></div>');
 		sometime(function later() {
-			expect(helper.gethtml(html)).toContain('<button');
+			expect(dom.innerHTML).toContain('<button');
 			done();
 		});
 	});
 
 	it('should contain close icon', function(done) {
-		var html = '<div data-ts="Search" class="ts-inset"></div>';
+		var dom = getDom('<div data-ts="Search" class="ts-inset"></div>');
 		sometime(function later() {
-			expect(helper.gethtml(html)).toContain('<i class="ts-icon-close"></i>');
+			expect(dom.innerHTML).toContain('<i class="ts-icon-close"></i>');
 			done();
 		});
 	});
 
 	it('should contain tip', function(done) {
-		var html = '<div data-ts="Search" tip="leo"></div>';
+		var dom = getDom('<div data-ts="Search" tip="leo"></div>');
 		sometime(function later() {
-			expect(helper.gethtml(html)).toContain('leo');
+			expect(dom.innerHTML).toContain('leo');
 			done();
 		});
 	});
@@ -2719,106 +2746,121 @@ describe('ts.ui.PagerSpirit.edbml', function likethis() {
 
 describe('ts.ui.TableGutterSpirit.edbml', function likethis() {
 	it('should contain input', function(done) {
-		var html = '<div data-ts="Table"></div>';
+		var dom = helper.createTestDom();
+		dom.innerHTML = '<div data-ts="Table"></div>';
 		sometime(function later() {
-			expect(helper.gethtml(html)).toContain('<table');
-			expect(helper.gethtml(html)).toContain('<tbody>');
+			expect(dom.innerHTML).toContain('<table');
+			expect(dom.innerHTML).toContain('<tbody>');
 			done();
 		});
 	});
 });
 
 describe('ts.ui.TableSpirit.edbml', function likethis() {
-	function getspirit(html, id) {
+
+	function getDom(html) {
 		var dom = helper.createTestDom();
 		dom.innerHTML = html;
-		var spirit = ts.ui.get(dom.querySelector('#' + id));
-		return spirit;
+		return dom;
+	}
+
+	function getspirit() {
+		var then = new gui.Then(), dom = helper.createTestDom();
+		dom.innerHTML = '<div data-ts="Table"></div>';
+		sometime(function later() {
+			var footer = dom.querySelector('.ts-table');
+			then.now(ts.ui.get(footer));
+		});
+		return then;
 	}
 
 	it('should contain table', function(done) {
-		var html = '<div data-ts="Table"></div>';
+		var dom = getDom('<div data-ts="Table"></div>');
 		sometime(function later() {
-			expect(helper.gethtml(html)).toContain('ts-spirit');
-			expect(helper.gethtml(html)).toContain('<table><thead>');
-			expect(helper.gethtml(html)).toContain('ts-table-body');
-			expect(helper.gethtml(html)).toContain('ts-table-rows');
+			expect(dom.innerHTML).toContain('ts-spirit');
+			expect(dom.innerHTML).toContain('<table><thead>');
+			expect(dom.innerHTML).toContain('ts-table-body');
+			expect(dom.innerHTML).toContain('ts-table-rows');
 			done();
 		});
 	});
 
 	it('should contain gutter', function(done) {
-		var html = '<div data-ts="Table" id="mytable"></div>';
-		var spirit = getspirit(html, 'mytable');
-		spirit.selectable().rows([{cells: ['A', 'D', 'G'], selected: true}]);
-		sometime(function later() {
-			expect(spirit.element.innerHTML).toContain('ts-table-gutter');
-			done();
+		getspirit().then(function(spirit) {
+			spirit.selectable().rows([{cells: ['A', 'D', 'G'], selected: true}]);
+			sometime(function later() {
+				expect(spirit.element.innerHTML).toContain('ts-table-gutter');
+				done();
+			});
 		});
 	});
 
-	it('should contain foot', function(done) {
-		// Dont konw why, we can't use the same id, or it will show some null error
-		var html = '<div data-ts="Table" id="mytable1"></div>';
-		var spirit = getspirit(html, 'mytable1');
-		spirit.configurable();
-		sometime(function later() {
-			expect(spirit.element.innerHTML).toContain('ts-table-foot');
-			done();
+	it('should contain a footer', function(done) {
+		getspirit().then(function(spirit) {
+			spirit.configurable();
+			sometime(function later() {
+				expect(spirit.element.innerHTML).toContain('ts-table-foot');
+				done();
+			});
 		});
 	});
+
 });
 
 describe('ts.ui.ToolBarSpirit.edbml', function likethis() {
-	function getspirit(html, id) {
-		var dom = helper.createTestDom();
-		dom.innerHTML = html;
-		var spirit = ts.ui.get(dom.querySelector('#' + id));
-		return spirit;
+	
+	function getspirit() {
+		var then = new gui.Then(), dom = helper.createTestDom();
+		dom.innerHTML = '<footer data-ts="ToolBar"></footer>';
+		sometime(function later() {
+			var footer = dom.querySelector('footer');
+			then.now(ts.ui.get(footer));
+		});
+		return then;
 	}
 
 	it('should render title', function(done) {
-		var html = '<footer data-ts="ToolBar" id="mytoolbar1"></footer>';
-		var spirit = getspirit(html, 'mytoolbar1');
-		spirit.title('leo');
-		sometime(function later() {
-			expect(spirit.element.innerHTML).toContain('ts-toolbar-title');
-			expect(spirit.element.innerHTML).toContain('leo');
-			done();
+		getspirit().then(function(spirit) {
+			spirit.title('leo');
+			sometime(function later() {
+				expect(spirit.element.innerHTML).toContain('ts-toolbar-title');
+				expect(spirit.element.innerHTML).toContain('leo');
+				done();
+			});
 		});
 	});
 
 	it('should render search', function(done) {
-		var html = '<footer data-ts="ToolBar" id="mytoolbar2"></footer>';
-		var spirit = getspirit(html, 'mytoolbar2');
-		spirit.search({});
-		sometime(function later() {
-			expect(spirit.element.innerHTML).toContain('ts-toolbar-search');
-			done();
+		getspirit().then(function(spirit) {
+			spirit.search({});
+			sometime(function later() {
+				expect(spirit.element.innerHTML).toContain('ts-toolbar-search');
+				done();
+			});
 		});
 	});
 
 	it('should render button', function(done) {
-		var html = '<footer data-ts="ToolBar" id="mytoolbar3"></footer>';
-		var spirit = getspirit(html, 'mytoolbar3');
-		spirit.buttons([{
-			label: 'Daniel',
-			type: 'ts-primary'
-		}]);
-		sometime(function later() {
-			expect(spirit.element.innerHTML).toContain('ts-primary');
-			expect(spirit.element.innerHTML).toContain('Daniel');
-			done();
+		getspirit().then(function(spirit) {
+			spirit.buttons([{
+				label: 'Daniel',
+				type: 'ts-primary'
+			}]);
+			sometime(function later() {
+				expect(spirit.element.innerHTML).toContain('ts-primary');
+				expect(spirit.element.innerHTML).toContain('Daniel');
+				done();
+			});
 		});
 	});
 
 	it('should render ts-toolbar-menu', function(done) {
-		var html = '<footer data-ts="ToolBar" id="mytoolbar4"></footer>';
-		var spirit = getspirit(html, 'mytoolbar4');
-		spirit.title('moth');
-		sometime(function later() {
-			expect(spirit.element.innerHTML).toContain('ts-toolbar-menu');
-			done();
+		getspirit().then(function(spirit) {
+			spirit.title('moth');
+			sometime(function later() {
+				expect(spirit.element.innerHTML).toContain('ts-toolbar-menu');
+				done();
+			});
 		});
 	});
 });

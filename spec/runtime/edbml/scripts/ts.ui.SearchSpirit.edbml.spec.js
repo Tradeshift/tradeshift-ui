@@ -1,32 +1,39 @@
 describe('ts.ui.PagerSpirit.edbml', function likethis() {
+
+	function getDom(html) {
+		var dom = helper.createTestDom();
+		dom.innerHTML = html;
+		return dom;
+	}
+
 	it('should contain input', function(done) {
-		var html = '<div data-ts="Search" class="ts-inset"></div>';
+		var dom = getDom('<div data-ts="Search" class="ts-inset"></div>');
 		sometime(function later() {
-			expect(helper.gethtml(html)).toContain('<input');
+			expect(dom.innerHTML).toContain('<input');
 			done();
 		});
 	});
 
 	it('should contain button', function(done) {
-		var html = '<div data-ts="Search" class="ts-inset"></div>';
+		var dom = getDom('<div data-ts="Search" class="ts-inset"></div>');
 		sometime(function later() {
-			expect(helper.gethtml(html)).toContain('<button');
+			expect(dom.innerHTML).toContain('<button');
 			done();
 		});
 	});
 
 	it('should contain close icon', function(done) {
-		var html = '<div data-ts="Search" class="ts-inset"></div>';
+		var dom = getDom('<div data-ts="Search" class="ts-inset"></div>');
 		sometime(function later() {
-			expect(helper.gethtml(html)).toContain('<i class="ts-icon-close"></i>');
+			expect(dom.innerHTML).toContain('<i class="ts-icon-close"></i>');
 			done();
 		});
 	});
 
 	it('should contain tip', function(done) {
-		var html = '<div data-ts="Search" tip="leo"></div>';
+		var dom = getDom('<div data-ts="Search" tip="leo"></div>');
 		sometime(function later() {
-			expect(helper.gethtml(html)).toContain('leo');
+			expect(dom.innerHTML).toContain('leo');
 			done();
 		});
 	});

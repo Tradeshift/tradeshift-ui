@@ -1,40 +1,50 @@
 describe('ts.ui.TableSpirit.edbml', function likethis() {
-	function getspirit(html, id) {
+
+	function getDom(html) {
 		var dom = helper.createTestDom();
 		dom.innerHTML = html;
-		var spirit = ts.ui.get(dom.querySelector('#' + id));
-		return spirit;
+		return dom;
+	}
+
+	function getspirit() {
+		var then = new gui.Then(), dom = helper.createTestDom();
+		dom.innerHTML = '<div data-ts="Table"></div>';
+		sometime(function later() {
+			var footer = dom.querySelector('.ts-table');
+			then.now(ts.ui.get(footer));
+		});
+		return then;
 	}
 
 	it('should contain table', function(done) {
-		var html = '<div data-ts="Table"></div>';
+		var dom = getDom('<div data-ts="Table"></div>');
 		sometime(function later() {
-			expect(helper.gethtml(html)).toContain('ts-spirit');
-			expect(helper.gethtml(html)).toContain('<table><thead>');
-			expect(helper.gethtml(html)).toContain('ts-table-body');
-			expect(helper.gethtml(html)).toContain('ts-table-rows');
+			expect(dom.innerHTML).toContain('ts-spirit');
+			expect(dom.innerHTML).toContain('<table><thead>');
+			expect(dom.innerHTML).toContain('ts-table-body');
+			expect(dom.innerHTML).toContain('ts-table-rows');
 			done();
 		});
 	});
 
 	it('should contain gutter', function(done) {
-		var html = '<div data-ts="Table" id="mytable"></div>';
-		var spirit = getspirit(html, 'mytable');
-		spirit.selectable().rows([{cells: ['A', 'D', 'G'], selected: true}]);
-		sometime(function later() {
-			expect(spirit.element.innerHTML).toContain('ts-table-gutter');
-			done();
+		getspirit().then(function(spirit) {
+			spirit.selectable().rows([{cells: ['A', 'D', 'G'], selected: true}]);
+			sometime(function later() {
+				expect(spirit.element.innerHTML).toContain('ts-table-gutter');
+				done();
+			});
 		});
 	});
 
-	it('should contain foot', function(done) {
-		// Dont konw why, we can't use the same id, or it will show some null error
-		var html = '<div data-ts="Table" id="mytable1"></div>';
-		var spirit = getspirit(html, 'mytable1');
-		spirit.configurable();
-		sometime(function later() {
-			expect(spirit.element.innerHTML).toContain('ts-table-foot');
-			done();
+	it('should contain a footer', function(done) {
+		getspirit().then(function(spirit) {
+			spirit.configurable();
+			sometime(function later() {
+				expect(spirit.element.innerHTML).toContain('ts-table-foot');
+				done();
+			});
 		});
 	});
+
 });

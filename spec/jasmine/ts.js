@@ -47790,6 +47790,7 @@ ts.ui.TableSpirit = (function using(Type, Client, guiArray, DOMPlugin, CSSPlugin
 						}
 					});
 				}
+				model.$dirty(); // TODO: why needed (for the test)?
 			})
 		),
 

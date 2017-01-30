@@ -18,7 +18,7 @@ describe('ts.ui.PagerSpirit.edbml', function likethis() {
 	it('should contain disabled', function(done) {
 		var dom = getDom();
 		sometime(function later() {
-			expect(dom.innerHTML).toContain('disabled="disabled" data-jump');
+			expect(dom.innerHTML).toContain('disabled="disabled"');
 			done();
 		});
 	});

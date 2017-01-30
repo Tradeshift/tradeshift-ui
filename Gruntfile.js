@@ -665,7 +665,7 @@ module.exports = function(grunt) {
 			'touchfriendly:dev',
 			'cssmin:dev',
 			'tsless:dev',
-			'copy:lang_dev'
+			'copy:lang_dev',
 		];
 	}
 
@@ -691,7 +691,9 @@ module.exports = function(grunt) {
 			'cssmin:cdn',
 			'copy:lang_cdn',
 			'compress',
-			'copy:fix_less_gzip'
+			'copy:fix_less_gzip',
+			'concat:jasmine',
+			'copy:jasmine'
 		];
 	}
 
@@ -700,7 +702,7 @@ module.exports = function(grunt) {
 	// setup for local develmopment (default)
 	grunt.registerTask('default', buildlocal().concat(['concurrent']));
 
-	// setup for prod, release the Bob!
+	// setup for prod (and compile the tests)
 	grunt.registerTask('dist', buildcdn('prod'));
 
 	// never called directly, grunt-release will do that for us
@@ -710,6 +712,7 @@ module.exports = function(grunt) {
 		'aws_s3:prod'
 	]);
 
+	// compile that CSS
 	grunt.registerTask('css', 'Compiles CSS', [
 		'less:before',
 		'touchfriendly:dev',
@@ -717,6 +720,7 @@ module.exports = function(grunt) {
 		'tsless:dev'
 	]);
 
+	// compile that JS
 	grunt.registerTask('js', 'Compiles JS', [
 		'edbml',
 		'concat:loose',
@@ -727,16 +731,10 @@ module.exports = function(grunt) {
 		'uglify:dev'
 	]);
 
-	grunt.registerTask('test', 'Runs entire test suite with local Chrome', [
-		'css',
-		'js',
-		'jshint',
-		'tsjs:karma',
-		'karma:local'
-	]);
-
+	// while developing, build the Jasmine test suite like this:
 	grunt.registerTask('jasmine', buildlocal('jasmine').concat([
-		'concat:jasmine', 'copy:jasmine'
+		'concat:jasmine',
+		'copy:jasmine'
 	]));
 
 };

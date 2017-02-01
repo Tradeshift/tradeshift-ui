@@ -245,7 +245,7 @@
 					this._remove(t, handler, sig);
 				}, this);
 			} else {
-				if (Array.isArray(handler)) { //The weird bug just happened!
+				if (Array.isArray(handler)) { // The weird bug just happened!
 					handler = handler[0]; // hacky workaround :/
 				}
 				var map = this._tempname;

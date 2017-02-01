@@ -372,7 +372,7 @@ ts.ui.DialogSpirit = (function using(Dialog, Client, chained, Type) {
 		},
 
 		/**
-		 * It really did close. Remove and dispose 
+		 * It really did close. Remove and dispose
 		 * so that it's not possible to reuse this.
 		 */
 		_didclose: function() {

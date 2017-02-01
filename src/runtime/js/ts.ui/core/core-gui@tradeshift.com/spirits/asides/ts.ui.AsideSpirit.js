@@ -154,7 +154,7 @@ ts.ui.AsideSpirit = (function using(chained, confirmed, Client, LayoutModel, not
 		 */
 		onchange: function(changes) {
 			this.super.onchange(changes);
-			if(!this.$destructed) {
+			if (!this.$destructed) {
 				var layout = LayoutModel.output.get();
 				var asides = layout.asides;
 				var id = this.$instanceid;
@@ -278,7 +278,7 @@ ts.ui.AsideSpirit = (function using(chained, confirmed, Client, LayoutModel, not
 		 * All attempts to animate the Aside with ordinary CSS transitions
 		 * would result in fatal rendering glitches that only occurs in a
 		 * production environment, of course. Using the brute force method.
-		 * UPDATE: This was caused by Track.js versus `handleEvent` so we 
+		 * UPDATE: This was caused by Track.js versus `handleEvent` so we
 		 * can go ahead and use CSS transitions now :)
 		 * @param {boolean} open
 		 * @param @optional {boolean} callback
@@ -298,7 +298,7 @@ ts.ui.AsideSpirit = (function using(chained, confirmed, Client, LayoutModel, not
 			tick.time(function() {
 				var time = 0;
 				tick.nextFrame(function paint(stamp) {
-					if(!this.$destructed) {
+					if (!this.$destructed) {
 						if (!time) {
 							time = stamp;
 							tick.nextFrame(paint);
@@ -650,7 +650,7 @@ ts.ui.AsideSpirit = (function using(chained, confirmed, Client, LayoutModel, not
 				this._updateworld(didclose); // nuke the cover
 				this._confirmstate = function norepeat() {};
 				var cry = this + ' should not be removed from the document while open.';
-				if(gui.debug) {
+				if (gui.debug) {
 					throw new Error(cry); // so that we can write a test for it :)
 				} else {
 					console.error(cry);

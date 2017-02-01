@@ -123,7 +123,7 @@ ts.ui.MainSpirit = (function using(Type, PANEL_ATTACH, PANEL_DETACH) {
 					break;
 			}
 		},
-		
+
 		/**
 		 * If the `autofocus` element is not focused by now, we'll do just that.
 		 * TODO(jmo@): Perhaps validate that there is only one 'autofocus' arond?

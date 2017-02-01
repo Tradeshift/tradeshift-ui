@@ -239,7 +239,7 @@ ts.ui.ToolBarSpirit = (function using(chained, confirmed, Client, Type, guiArray
 		}),
 
 		/**
-		 * Get or set the title (aborting weird Moustache syntax). 
+		 * Get or set the title (aborting weird Moustache syntax).
 		 * Support also `null` because of some flaky Jasmine test.
 		 * @param @optional {string|null} title
 		 * @returns {string|ts.ui.ToolBarSpirit}

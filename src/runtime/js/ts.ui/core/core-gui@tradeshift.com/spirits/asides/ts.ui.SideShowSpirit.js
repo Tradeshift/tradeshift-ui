@@ -237,7 +237,7 @@ ts.ui.SideShowSpirit = (function using(chained, Client, Parser, GuiObject, Color
 			changes.filter(function(c) {
 				return c.type === splice && ts.ui.TabCollection.is(c.object);
 			}).forEach(function(c) {
-				if(c.object.length === 0) {
+				if (c.object.length === 0) {
 					this._removetabbar();
 				}
 			}, this);
@@ -337,13 +337,12 @@ ts.ui.SideShowSpirit = (function using(chained, Client, Parser, GuiObject, Color
 		 */
 		tabs: chained(function() {
 			var tabbar = this._tabbarspirit();
-			if(arguments.length) {
+			if (arguments.length) {
 				tabbar.tabs.apply(tabbar, arguments);
 			} else {
 				return tabbar.tabs();
 			}
 		}),
-
 
 		// Privileged ..............................................................
 
@@ -513,7 +512,7 @@ ts.ui.SideShowSpirit = (function using(chained, Client, Parser, GuiObject, Color
 		 * @returns {ts.ui.TabBarSpirit}
 		 */
 		_tabbarspirit: function() {
-			return this._tabbar || (this._tabbar = function createit() {
+			return this._tabbar || (this._tabbar = (function createit() {
 				var panel = this.dom.q('this > .ts-panel', ts.ui.PanelSpirit);
 				this._fixappearance();
 				this.css.add('ts-has-panels');
@@ -522,7 +521,7 @@ ts.ui.SideShowSpirit = (function using(chained, Client, Parser, GuiObject, Color
 					tabbar.tabs().addObserver(this);
 					return panel.dom.before(tabbar);
 				});
-			}.call(this));
+			}.call(this)));
 		},
 
 		/**
@@ -692,7 +691,7 @@ ts.ui.SideShowSpirit = (function using(chained, Client, Parser, GuiObject, Color
 		 */
 		_removetabbar: function() {
 			var bar = this._tabbar;
-			if(bar) {
+			if (bar) {
 				this._reflex(function() {
 					bar.dom.remove();
 					bar.tabs().removeObserver(this);
@@ -711,7 +710,6 @@ ts.ui.SideShowSpirit = (function using(chained, Client, Parser, GuiObject, Color
 		_updatetab: function(panel, added) {
 			var css = 'this > .ts-panel';
 			var bar = this._tabbar;
-			var elm = this.element;
 			var dom = this.dom;
 			var index = dom.qall(css, ts.ui.PanelSpirit).indexOf(panel);
 			if (!bar) {

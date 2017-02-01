@@ -76,17 +76,17 @@
 		var left = srcs.length;
 		var root = script.parentNode;
 		function onload() {
-			if(--left === 0) {
+			if (--left === 0) {
 				ts.ui.$maybebootstrap(true);
 			}
 		};
 		function onerror(error) {
 			var src = error.target.src;
-			throw new URIError("The script " + src + " is not accessible :/");
+			throw new URIError('The script ' + src + ' is not accessible :/');
 		}
 		if (srcs.length) {
 			/*
-			 * In most real world cases, the app will have a `lang` attribute 
+			 * In most real world cases, the app will have a `lang` attribute
 			 * on the root `html` element and we load the localization script.
 			 */
 			srcs.forEach(function(src) {
@@ -98,11 +98,10 @@
 				root.insertBefore(next, prev.nextSibling);
 				prev = next;
 			});
-			
 		} else {
 			/*
-			 * Otherwise we attempt bootstrap. All the Runtime code will be 
-			 * parsed after this code, so we have to take a break before we 
+			 * Otherwise we attempt bootstrap. All the Runtime code will be
+			 * parsed after this code, so we have to take a break before we
 			 * can address it. TODO: Let's micro-task instead of a timeout!
 			 */
 			setTimeout(function deferred() {
@@ -110,7 +109,6 @@
 			});
 		}
 	}
-
 }({
 	langbundle: '${langbundle}',
 	runtimecss: '${runtimecss}'

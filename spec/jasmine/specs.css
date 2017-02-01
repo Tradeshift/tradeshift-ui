@@ -1,18 +1,19 @@
 html,
 body {
-  background-color:rgb(245,245,245) !important;
+	background-color:rgb(245,245,245) !important;
 }
 .ts-main {
-  overflow: visible;
-  top: 123px;
-  margin: 0;
+	background-color: transparent;
+	overflow: visible;
+	top: 123px;
+	margin: 0;
 }
 .jasmine_html-reporter {
 	position: absolute;
-  z-index: 100000;
-  top: 0;
-  right: 0;
-  left: 0;
+	z-index: 100000;
+	top: 0;
+	right: 0;
+	left: 0;
 }
 ul.jasmine-specs {
 	margin-bottom: 0;

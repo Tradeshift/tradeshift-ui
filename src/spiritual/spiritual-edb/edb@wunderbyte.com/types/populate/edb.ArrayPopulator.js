@@ -23,23 +23,23 @@ edb.ArrayPopulator = (function using(Type) {
 
 	/**
 	 * Used in function `guidedconvert`.
-	 * @param {constructor} edbType
-	 * @param {object} o
+	 * @param {Constructor} edbType
+	 * @param {Cbject} o
 	 * @returns {edb.Type}
 	 */
-	function constructas(edbType, o) {
-		if (!gui.debug || edb.Type.isConstructor(edbType)) {
+	function constructas(EdbType, o) {
+		if (!gui.debug || edb.Type.isConstructor(EdbType)) {
 			if (edb.Type.is(o)) {
-				if (edbType.is(o)) {
+				if (EdbType.is(o)) {
 					return o;
 				} else {
-					fail(edbType, o);
+					fail(EdbType, o);
 				}
 			} else {
-				return new edbType(o);
+				return new EdbType(o);
 			}
 		} else {
-			fail('edb.Type', edbType);
+			fail('edb.Type', EdbType);
 		}
 	}
 

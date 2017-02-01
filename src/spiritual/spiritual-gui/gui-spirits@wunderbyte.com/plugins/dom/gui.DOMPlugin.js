@@ -130,7 +130,7 @@ gui.DOMPlugin = (function using(chained, guide, observer) {
 		 */
 		remove: function() {
 			var parent = this.spirit.element.parentNode;
-			if(parent) {
+			if (parent) {
 				parent.removeChild(this.spirit.element);
 			}
 		},

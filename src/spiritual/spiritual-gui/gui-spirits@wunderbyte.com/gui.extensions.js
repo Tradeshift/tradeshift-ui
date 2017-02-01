@@ -218,7 +218,7 @@ gui = gui.Object.extend(gui, {
 					spirit = this._getspirit(arg);
 				} else if (window.console && console.warn) {
 					var message = this._guigetmessage();
-					if(location.hostname === 'localhost') {
+					if (location.hostname === 'localhost') {
 						console.error(message); // stacktrace version
 					} else {
 						console.warn(message);

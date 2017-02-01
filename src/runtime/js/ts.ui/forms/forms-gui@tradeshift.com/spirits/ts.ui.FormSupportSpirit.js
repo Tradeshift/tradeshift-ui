@@ -1,7 +1,7 @@
 /**
- * Performs just-in-time channeling of spirits for complex selectors. These 
+ * Performs just-in-time channeling of spirits for complex selectors. These
  * selectors come with a performance hit, but they make forms easy to author.
- * Note: In V4, sometimes `ts-form` class is found on `fieldset` and random 
+ * Note: In V4, sometimes `ts-form` class is found on `fieldset` and random
  * elements, that's why we can't rely on the FormSpirit to do this thing.
  * @see {ts.ui.FormSpirit}
  * @see {ts.ui.FieldSetSpirit}

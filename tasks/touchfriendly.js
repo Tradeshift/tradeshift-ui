@@ -1,8 +1,8 @@
 var cssp = require('css-parse');
 
 /**
- * Supress CSS :hover states on mobile devices. The class 'ts-device-mouse'
- * gets added on the clientside. This thing is coppy-pasted from Runtime!
+ * Supress CSS :hover states on mobile devices. The class 
+ * 'ts-device-mouse' gets added over on the clientside.
  */
 module.exports = {
 	init: function(grunt) {
@@ -34,28 +34,3 @@ module.exports = {
 		});
 	}
 };
-
-/*
- * TODO: we have a bug somewhere :/
- *
-var primarycase = '.ts-device-mouse';
-var cornercases = ['.ts-mobile', '.ts-tablet', '.ts-desktop']; // TODO: more cornercases :/
-grunt.file.write(target,
-	input.split('\n').map(function(line) {
-		hacks.every(function(selector) {
-			if(line.startsWith(selector)) {
-				line = '.ts-device-mouse ' + selector;
-				cornercases.forEach(function(cornercase) {
-					line = line.replace(
-						primarycase + ' ' + cornercase,
-						primarycase + cornercase
-					);
-				});
-				return false;
-			}
-			return true;
-		});
-		return line;
-	}).join('\n')
-);
-*/

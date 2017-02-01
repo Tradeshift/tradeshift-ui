@@ -12,7 +12,7 @@ ts.ui.DocumentLayoutPlugin = ts.ui.Plugin.extend({
 	 * so we will have to go about it in a delicate way.
 	 */
 	managelayout: function() {
-		var points = this._points = this._computepoints();
+		this._points = this._computepoints();
 		var layout = this._computelayout();
 		var device = this._computedevice();
 		if (layout) {

@@ -1,6 +1,5 @@
 var fs = require('fs');
 var path = require('path');
-var xtend = require('node.extend');
 var alce = require('alce');
 
 var ROOT = path.join(__dirname, '..');
@@ -31,10 +30,7 @@ module.exports = {
 	merge: function(config1, config2) {
 		config1 = read(config1);
 		if (exists(config2)) {
-			config1 = xtend(
-				config1,
-				read(config2)
-			);
+			config1 = Object.assign(config1, read(config2));
 		}
 		return config1;
 	}

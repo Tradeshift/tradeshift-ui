@@ -6,15 +6,10 @@ const cheerio = require('cheerio');
 const path = require('path');
 const S = require('string');
 
-var stackconf;
-try {
-	stackconf = require('./browserstack.json');
-} catch (err) {
-	stackconf = {
-		username: '',
-		accessKey: ''
-	};
-}
+var stackconf = {
+	username: process.env.BROWSERSTACK_USERNAME,
+	accessKey: process.env.BROWSERSTACK_KEY
+};
 
 /**
  * @param {Grunt} grunt

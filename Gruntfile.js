@@ -65,6 +65,12 @@ module.exports = function(grunt) {
 				src: 'src/runtime/js/ts-dev.js',
 				dest: 'dist/ts.js'
 			},
+			jasmine: {
+				flatten: true,
+				expand: true,
+				src: ['dist/ts.js', 'dist/ts.css', 'dist/ts-lang-en.js'],
+				dest: 'spec/jasmine/'
+			},
 			lang_dev: {
 				flatten: true,
 				expand: true,
@@ -93,7 +99,7 @@ module.exports = function(grunt) {
 
 		// setup 'ts.js'
 		tsjs: {
-			local: {
+			dev: {
 				options: {
 					'${runtimecss}': '//127.0.0.1:10111/dist/ts.min.css',
 					'${langbundle}': '//127.0.0.1:10111/dist/ts-lang-<LANG>.js'
@@ -102,18 +108,16 @@ module.exports = function(grunt) {
 					'temp/ts.js': 'src/runtime/ts.js'
 				}
 			},
-			karma: {
+			jasmine: {
 				options: {
-					'${runtimecss}': '/dist/ts.min.css',
-					'${langbundle}': '/dist/ts-lang-<LANG>.js'
+					'${runtimecss}': 'ts.css',
+					'${langbundle}': 'ts-lang-<LANG>.js'
 				},
 				files: {
 					'temp/ts.js': 'src/runtime/ts.js'
 				}
 			},
-			prod: tsjs(config.folder_prod),
-			dev: tsjs(config.folder_dev),
-			temp: tsjs(config.folder_temp)
+			prod: tsjs(config.folder_prod)
 		},
 
 		// concatante the LESS (so that devs may copy-paste it from the web)
@@ -134,8 +138,8 @@ module.exports = function(grunt) {
 				'Gruntfile.js',
 				'src/runtime/js/**/*.js',
 				'src/spiritual/**/*.js',
-				'test/runtime/**/*.spec.js',
-				'test/spiritual/**/*.spec.js',
+				'spec/runtime/**/*.spec.js',
+				'spec/spiritual/**/*.spec.js',
 				'!**/dependencies/**'],
 			options: grunt.file.readJSON('.jshintrc')
 		},
@@ -192,6 +196,10 @@ module.exports = function(grunt) {
 				files: {
 					'dist/cdn/ts-<%= pkg.version %>.js': getcombobuilds()
 				}
+			},
+			jasmine: {
+				src: ['spec/spiritual/**/*.spec.js', 'spec/runtime/**/*.spec.js'],
+				dest: 'spec/jasmine/specs.js'
 			}
 		},
 
@@ -641,11 +649,12 @@ module.exports = function(grunt) {
 	 * Client-Spiritual and tradeshift-ui runs on localhost
 	 * @returns {Array<string>}
 	 */
-	function buildlocal() {
+	function buildlocal(target) {
+		target = target || 'dev';
 		return [
 			'clean:all',
 			'edbml',
-			'tsjs:local',
+			'tsjs:' + target,
 			'concat:loose',
 			'concat:moment',
 			'concat:spin',
@@ -657,7 +666,6 @@ module.exports = function(grunt) {
 			'cssmin:dev',
 			'tsless:dev',
 			'copy:lang_dev',
-			'concurrent'
 		];
 	}
 
@@ -683,16 +691,18 @@ module.exports = function(grunt) {
 			'cssmin:cdn',
 			'copy:lang_cdn',
 			'compress',
-			'copy:fix_less_gzip'
+			'copy:fix_less_gzip',
+			'concat:jasmine',
+			'copy:jasmine'
 		];
 	}
 
 	// Tasks .....................................................................
 
 	// setup for local develmopment (default)
-	grunt.registerTask('default', buildlocal());
+	grunt.registerTask('default', buildlocal().concat(['concurrent']));
 
-	// setup for prod, release the Bob!
+	// setup for prod (and compile the tests)
 	grunt.registerTask('dist', buildcdn('prod'));
 
 	// never called directly, grunt-release will do that for us
@@ -702,6 +712,7 @@ module.exports = function(grunt) {
 		'aws_s3:prod'
 	]);
 
+	// compile that CSS
 	grunt.registerTask('css', 'Compiles CSS', [
 		'less:before',
 		'touchfriendly:dev',
@@ -709,6 +720,7 @@ module.exports = function(grunt) {
 		'tsless:dev'
 	]);
 
+	// compile that JS
 	grunt.registerTask('js', 'Compiles JS', [
 		'edbml',
 		'concat:loose',
@@ -719,11 +731,10 @@ module.exports = function(grunt) {
 		'uglify:dev'
 	]);
 
-	grunt.registerTask('test', 'Runs entire test suite with local Chrome', [
-		'css',
-		'js',
-		'jshint',
-		'tsjs:karma',
-		'karma:local'
-	]);
+	// while developing, build the Jasmine test suite like this:
+	grunt.registerTask('jasmine', buildlocal('jasmine').concat([
+		'concat:jasmine',
+		'copy:jasmine'
+	]));
+
 };

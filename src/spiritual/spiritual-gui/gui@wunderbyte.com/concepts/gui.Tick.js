@@ -207,9 +207,6 @@
 		_add: function(type, handler, one, sig) {
 			if (Array.isArray(handler)) {
 				handler = handler[0]; // hacky workaround :/
-				if (gui.debug) {
-					console.warn('The weird bug just happened!');
-				}
 			}
 			if (gui.Type.isArray(type)) {
 				type.forEach(function(t) {
@@ -248,11 +245,8 @@
 					this._remove(t, handler, sig);
 				}, this);
 			} else {
-				if (Array.isArray(handler)) {
+				if (Array.isArray(handler)) { // The weird bug just happened!
 					handler = handler[0]; // hacky workaround :/
-					if (gui.debug) {
-						console.warn('The weird bug just happened!');
-					}
 				}
 				var map = this._tempname;
 				var list = map.handlers[type];

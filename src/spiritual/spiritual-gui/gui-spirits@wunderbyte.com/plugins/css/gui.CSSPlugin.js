@@ -145,7 +145,7 @@ gui.CSSPlugin = (function using(chained, confirmed) {
 					}, this);
 				} else {
 					if (this._supports) {
-						if(!element.classList.contains(name)) {
+						if (!element.classList.contains(name)) {
 							element.classList.add(name);
 						}
 					} else {

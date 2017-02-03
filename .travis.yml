@@ -1,34 +1,19 @@
 sudo: required
 dist: trusty
-
-addons:
-  firefox: "latest"
-  apt:
-    sources:
-      - google-chrome
-    packages:
-      - google-chrome-stable
-
 language: node_js
 node_js:
-  - 6
-
-matrix:
-  fast_finish: true
-
-before_install:
-  - export DISPLAY=:99.0
-  - sh -e /etc/init.d/xvfb start
-
+- 6
 install:
-  - echo '{"AWSAccessKeyId":"","AWSSecretKey":""}' >> aws-keys.json
-  - npm install -g grunt-cli
-  - yarn
-
+- echo '{"AWSAccessKeyId":"","AWSSecretKey":""}' >> aws-keys.json
+- npm install -g grunt-cli
+- yarn
 script:
-  - yarn test
-
+- yarn test
 cache:
   yarn: true
   directories:
-    - node_modules
+  - node_modules
+env:
+  global:
+  - secure: SkxJD+y99i7Q2FBlvROSDsgLKjHb5RyjFe1yrT3mBoo+FD+UR9W8eX/Y/RlFQ1m50jyZwePG4lI0sX1UiV3IjK2ggJlRzkgR+/3TJPE2QFQ4hxnmjxCOOW5TcfAcC1mkehshgNPt11og2fNw0/V4SsjvBSqhPqapLkhjkF40LlTDcBxUAqohTjEhfQ8ozHoSFUm0S6I6KnFoSej7uiDS+G+qO9K6o2s479NXEyrmrGVuAsf2sYbieovevbV1jw0F6K3WQFGpXzTcs2QO4x5l9EMyu89k2+B64eyE/sfNdSl2bGrNyRJG4UE6au1twYhALO90hnK3nwxDWEPP2yGPqKGAfMnFW9xqEdQf0nmCL2YW1zh8Twn8wMQ91uAzKMttg53lcl0titC7l5DN7WIGSIEYHQMN08VTmGhF1DhNTd0A8PwcNwW7t90sE8cfftpvfNgKfmzmbHTlMLM8VXv1K2RHYwx8rBNoJc5f+EI1edj0XQHS821qvrEvXj6LxB0nDt9RoIo11ettdeSizCwIt0WB63RDwExZF3NnbYb2GeJE7vu0yA1/0hWoMEuju75SIHmt0SgH4n+KoXZGpA+EEwVCSg76s4OmN5oObkzIOUg8/nICU2Bni7WBhDUiWZ2gZQY2KshsxDLwgftC7RpYLJe/OjpidPlpXqUB56lKE1E=
+  - secure: aiNMDR6ELxHhVyuJpDqx3GXeqse5YQBEi0zuUZvjKAld7iFOyz8nF7NrCZZRTjYGA1i5STpqi8DPRYBZa2X22QEt6ny8DV+Y9fBixk9pmXsXzTDGX0Ms4I+IVdH8IwxpusDM9VkEw3ZHxrkw5f0jfj2lxAUkRImf50siEBQQEqM5GIQeerAN9bkeLlwZNHkCiytgeV/1DXP0tvu1YvbA03S16YSK89raZY6/UrXJaOkhV0Lboc091HZcg3+w3pdOC4N8U8heVm3yaZUszVDUyjLitGLm1lU918qGDDoa31LcnLsIqFPGKhluVciW/25BEbYtllmdxR1WqGMRSoJBzzfx+bxzwKd2gz+nUFOsYM+wMQyktFOzJvmtsul3+JPcmpo5OCB7zDTUXogyeGAiEryDEaQ9sK6fAQh1WHvYQ1E/hYCrl+FoJF14kYVD+geFcRC6p9/r694b3kqGLTlAcrK9s6SMRVsABFdAFtHI0DNmCzUyh/cfjixXk5xfY2DbuzqY1FokBIFpk2oaWytRsCLGBuNTxj/hdvuv9ubTb9UEvTBk8xQ53b8p2mFENGvIa9QfIRlsLOOWj3EX5lHJMtHZ/t4A6KlbZized8KWc0eS3o8M+QuHOQQp4scEoNz+RzD4XenNz9InRp3tOocEJ3LIvoEoqb7ly+uqd4Z/Q0E=

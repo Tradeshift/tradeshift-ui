@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ja" class="ts-docs" spellcheck="false">
+
+<head>
+    <title>Screenshots</title>
+    <meta name="viewport" content="width=device-width">
+    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-7.0.0-alpha.17.min.js"></script>
+    <script src="/dist/assets/dox.min.js"></script>
+    <script src="/dist/assets/mark.min.js"></script>
+    <script src="/dist/assets/jquery-2.2.4.min.js"></script>
+    <link rel="stylesheet" href="/dist/assets/dox.css">
+    <meta name="robots" content="noindex">
+    <script>
+        ts.ui.ready(function() {
+            ts.ui.DatePicker({
+                title: 'Japanese?',
+                value: '1973-03-26'
+            }).open();
+        });
+    </script>
+</head>
+
+<body>
+    <header data-ts="TopBar"></header>
+    <div data-ts="Panel" data-ts.label="One">
+        <aside data-ts="SideBar" data-ts.title="SideBar OK?">
+            <div data-ts="Panel"></div>
+        </aside>
+        <main data-ts="Main">
+            <div data-ts="MainContent">
+                <div data-ts="Panel" data-ts.label="One">
+                    <article>
+                        <h1><span>Panel One</span></h1>
+                    </article>
+                </div>
+                <div data-ts="Panel" data-ts.label="Two">
+                    <article>
+                        <h1><span>Panel Two</span></h1>
+                    </article>
+                </div>
+                <div data-ts="Panel" data-ts.label="Three">
+                    <article>
+                        <h1><span>Panel Three</span></h1>
+                    </article>
+                </div>
+            </div>
+        </main>
+    </div>
+    <div data-ts="Panel" data-ts.label="Two">
+    </div>
+    <div data-ts="Panel" data-ts.label="Three">
+    </div>
+</body>
+
+</html>

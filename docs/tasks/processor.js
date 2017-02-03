@@ -210,7 +210,10 @@ function getoutput(code) {
  * @param {$} $
  */
 function localization($) {
-	$('html').attr('lang', 'en-us');
+	var html = $('html');
+	if(!html.attr('lang')) {
+		html.attr('lang', 'en-us');
+	}
 	return $;
 }
 

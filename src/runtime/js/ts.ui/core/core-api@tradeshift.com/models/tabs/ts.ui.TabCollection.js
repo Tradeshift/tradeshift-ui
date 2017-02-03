@@ -142,7 +142,7 @@ ts.ui.TabCollection = (function using(chained, confirmed, Type) {
 				}
 				this._current = newtab.select();
 				this._lastknownindex = this.selectedIndex;
-				if(Type.isFunction(this.onselect)) {
+				if (Type.isFunction(this.onselect)) {
 					this.onselect.call(this, this.selectedIndex, oldindex);
 				}
 			}

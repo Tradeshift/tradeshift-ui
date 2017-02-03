@@ -198,6 +198,9 @@ figure .tabpanels .ts-textarea.editcode {
   overflow: auto;
   resize: none;
 }
+figure .tabpanels .ts-textarea.editcode:focus {
+  background-color: #fdfed5;
+}
 figure .tabpanels .ts-textarea.editcode:not(:focus) {
   background-image: -webkit-linear-gradient(#f5fbfe 50%, #ffffff 50%);
   background-image: -moz-linear-gradient(#f5fbfe 50%, #ffffff 50%);

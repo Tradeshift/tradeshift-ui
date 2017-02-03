@@ -154,32 +154,34 @@ ts.ui.AsideSpirit = (function using(chained, confirmed, Client, LayoutModel, not
 		 */
 		onchange: function(changes) {
 			this.super.onchange(changes);
-			var layout = LayoutModel.output.get();
-			var asides = layout.asides;
-			var id = this.$instanceid;
-			changes.forEach(function(c) {
-				switch (c.object) {
-					case asides:
-						var klass = ts.ui.CLASS_SECONDARY;
-						var stacked = this.css.contains(klass);
-						this._index = asides.indexOf(id);
-						var x = asides.length - this._index - 1;
-						if (x > 0) {
-							if (!stacked) {
-								this._stack(true);
+			if (!this.$destructed) {
+				var layout = LayoutModel.output.get();
+				var asides = layout.asides;
+				var id = this.$instanceid;
+				changes.forEach(function(c) {
+					switch (c.object) {
+						case asides:
+							var klass = ts.ui.CLASS_SECONDARY;
+							var stacked = this.css.contains(klass);
+							this._index = asides.indexOf(id);
+							var x = asides.length - this._index - 1;
+							if (x > 0) {
+								if (!stacked) {
+									this._stack(true);
+								}
+							} else {
+								if (stacked) {
+									this._stack(false);
+								}
 							}
-						} else {
-							if (stacked) {
-								this._stack(false);
-							}
-						}
-						this.css.shift(x > 0, klass);
-						break;
-					case this._model:
-						this._onmodelchange(c.name, c.newValue);
-						break;
-				}
-			}, this);
+							this.css.shift(x > 0, klass);
+							break;
+						case this._model:
+							this._onmodelchange(c.name, c.newValue);
+							break;
+					}
+				}, this);
+			}
 		},
 
 		/**
@@ -188,6 +190,9 @@ ts.ui.AsideSpirit = (function using(chained, confirmed, Client, LayoutModel, not
 		ondetach: function() {
 			this.super.ondetach();
 			this._confirmstate(this._isreallyopen);
+			if (this._ismodelled()) {
+				this._model.removeObserver(this);
+			}
 		},
 
 		/**
@@ -273,6 +278,8 @@ ts.ui.AsideSpirit = (function using(chained, confirmed, Client, LayoutModel, not
 		 * All attempts to animate the Aside with ordinary CSS transitions
 		 * would result in fatal rendering glitches that only occurs in a
 		 * production environment, of course. Using the brute force method.
+		 * UPDATE: This was caused by Track.js versus `handleEvent` so we
+		 * can go ahead and use CSS transitions now :)
 		 * @param {boolean} open
 		 * @param @optional {boolean} callback
 		 * @returns {gui.Then}
@@ -291,18 +298,20 @@ ts.ui.AsideSpirit = (function using(chained, confirmed, Client, LayoutModel, not
 			tick.time(function() {
 				var time = 0;
 				tick.nextFrame(function paint(stamp) {
-					if (!time) {
-						time = stamp;
-						tick.nextFrame(paint);
-					} else {
-						var now = stamp - time;
-						var pct = getoffset(now);
-						if (now < end) {
-							this._position(100 - pct);
+					if (!this.$destructed) {
+						if (!time) {
+							time = stamp;
 							tick.nextFrame(paint);
 						} else {
-							this._position(open ? 0 : 100);
-							then.now();
+							var now = stamp - time;
+							var pct = getoffset(now);
+							if (now < end) {
+								this._position(100 - pct);
+								tick.nextFrame(paint);
+							} else {
+								this._position(open ? 0 : 100);
+								then.now();
+							}
 						}
 					}
 				});
@@ -631,16 +640,20 @@ ts.ui.AsideSpirit = (function using(chained, confirmed, Client, LayoutModel, not
 		},
 
 		/**
-		 * Throw and error if someone nukes
-		 * the ASIDE without closing it first.
+		 * Throw and/or error if someone nukes
+		 * the Aside without closing it first.
 		 * @param {boolean} stillopen
 		 */
 		_confirmstate: function(stillopen) {
 			if (stillopen) {
+				this._updateworld(willclose);
+				this._updateworld(didclose); // nuke the cover
+				this._confirmstate = function norepeat() {};
 				var cry = this + ' should not be removed from the document while open.';
-				console.error(cry);
 				if (gui.debug) {
-					throw new Error(cry);
+					throw new Error(cry); // so that we can write a test for it :)
+				} else {
+					console.error(cry);
 				}
 			}
 		}

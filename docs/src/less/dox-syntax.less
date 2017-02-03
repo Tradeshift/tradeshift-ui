@@ -77,6 +77,9 @@ figure {
 			padding: @ts-unit 0 @ts-unit @ts-unit;
 			overflow: auto;
 			resize: none;
+			&:focus {
+				background-color: rgb(253,254,213);
+			}
 			&:not(:focus) {
 				background-image: -webkit-linear-gradient(@superliteblue 50%, @ts-white 50%);
 				background-image: -moz-linear-gradient(@superliteblue 50%, @ts-white 50%);

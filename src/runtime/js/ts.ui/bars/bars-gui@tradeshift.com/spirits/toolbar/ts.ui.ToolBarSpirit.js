@@ -240,16 +240,18 @@ ts.ui.ToolBarSpirit = (function using(chained, confirmed, Client, Type, guiArray
 
 		/**
 		 * Get or set the title (aborting weird Moustache syntax).
-		 * @param @optional {string} title
+		 * Support also `null` because of some flaky Jasmine test.
+		 * @param @optional {string|null} title
 		 * @returns {string|ts.ui.ToolBarSpirit}
 		 */
-		title: confirmed('(string)')(
-			chained(function(opt_json) {
+		title: confirmed('(string|null)')(
+			chained(function(opt_title) {
 				var model = this.model();
 				if (arguments.length) {
-					if (opt_json.trim().indexOf('{') !== 0) {
+					opt_title = opt_title || '';
+					if (opt_title.trim().indexOf('{') !== 0) {
 						this.$hascontent();
-						model.title = opt_json;
+						model.title = opt_title;
 						this.event.add('click');
 						this.$hascontent();
 					}

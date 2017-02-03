@@ -1,0 +1,15 @@
+{
+	"test_framework": "jasmine2",
+	"test_path": "spec/jasmine/index.html",
+	"browsers": [
+		"chrome_latest",
+		"firefox_latest",
+		"safari_latest",
+		"chrome_previous",
+		"firefox_previous",
+		"safari_previous",
+		"ie_9",
+		"ie_10",
+		"ie_11"
+	]
+}

@@ -248,7 +248,7 @@ ts.ui.DocumentSpirit = (function using(Client) {
 		},
 
 		/**
-		 * Update classname for current breakpoint, then 
+		 * Update classname for current breakpoint, then
 		 * dispatch an custom event for anyone to handle.
 		 * @param {string} newpoint
 		 * @param {string=} opt_oldpoint

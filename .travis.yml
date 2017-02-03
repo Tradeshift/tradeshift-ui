@@ -8,6 +8,10 @@ addons:
       - google-chrome
     packages:
       - google-chrome-stable
+  browserstack:
+    username: "danielscirclecia1"
+    access_key:
+      secure: "WejwC+j+A+vGgri4hapdVWH2KHsWjHZrENoMgIHLjXq57dQCCna8OTci0+TegncIQJAXe4R4QIooJEAqXqFqLWM5MUMJXezYlYRO4F3b1a2He+BWgrjETG0NHq6QCxZTeYo7MNgZajiwCjzUSOAAXPiCE/svCc8Nam5GIdG7a/a+HswVvfwIbR7cowWtfwCRfOIiMxhzWWHFgT6gEDfBWKSjL1o/jAf7gpYaNVQpECB/fiR3x6+UFDRxjdz3NZ/dJKQuggiALF4Vgnk9e0ztxQpTm7fU6lW3CcstytlvvZ8pC011EGDSaI7HKkHM9Oh0mYEgc1DqSSgCoz10RuB+Vv0O+2j/Njppf+ga19g1Rq2t0cH3v6374eli5C/fCPsRbUS4QBJGBHiJEjmlVVuYGLxDYqxWeSsF/Is2ui8jBCpMg9GOKJmq8J9CVd9ucxuuywDbpPnrTZ8+VHo/dVaeEvy359xDOdwjjWNjwxASJAK1QE1z2Wt+DriQjnEq8F2iHCNx4MIvZu2YH3IcRM9WYWG6XC6t6E9fNX6yHdkVPHisBYK+LhM8g6HqdnaGtjxWOuYer/MvHCIH+6vbiavW4UIPCbDjvpU0fnEsROf2pafrUuSuD8YQCJe52+jJjdew7IzLl3eqjtsjWRLf7jglNBsWWYK/4JhksfSNT+Kuf84="
 
 language: node_js
 node_js:

@@ -2,11 +2,8 @@
 	"test_framework": "jasmine2",
 	"test_path": "spec/jasmine/index.html",
 	"browsers": [
-		"chrome_previous",
 		"chrome_latest",
-		"firefox_previous",
 		"firefox_latest",
-		"safari_previous",
 		"safari_latest",
 		"ie_9",
 		"ie_10",

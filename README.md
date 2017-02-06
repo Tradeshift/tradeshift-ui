@@ -1,5 +1,5 @@
 [![Build Status](https://travis-ci.com/Tradeshift/tradeshift-ui.svg?token=RshDHtS73Tukd2xSZzeg&branch=master)](https://travis-ci.com/Tradeshift/tradeshift-ui)
-[![Gitter](https://img.shields.io/badge/gitter-join%20chat-f81a65.svg?style=flat-square)](https://gitter.im/Tradeshift/tradeshift-ui)
+[![Gitter](https://img.shields.io/badge/gitter-join%20chat-f81a65.svg?style=flat-square)](https://gitter.im/tradeshift-ui/Lobby)
 [![PeerDependencies](https://img.shields.io/david/peer/Tradeshift/tradeshift-ui.svg?style=flat-square)](https://david-dm.org/Tradeshift/tradeshift-ui#info=peerDependencies&view=list)
 [![Dependencies](https://img.shields.io/david/Tradeshift/tradeshift-ui.svg?style=flat-square)](https://david-dm.org/Tradeshift/tradeshift-ui)
 [![DevDependencies](https://img.shields.io/david/dev/Tradeshift/tradeshift-ui.svg?style=flat-square)](https://david-dm.org/Tradeshift/tradeshift-ui#info=devDependencies&view=list)
@@ -79,7 +79,7 @@ To stay up to date with upcoming releases and new features in the works, check o
 
 ## Contribute
 
-If you would like to contribute to our codebase, just fork the repo and make a PR or just write to us on [Gitter]((https://gitter.im/Tradeshift/tradeshift-ui)), we're always looking for more input =)
+If you would like to contribute to our codebase, just fork the repo and make a PR or just write to us on [Gitter](https://gitter.im/tradeshift-ui/Lobby), we're always looking for more input =)
 
 ## License
 

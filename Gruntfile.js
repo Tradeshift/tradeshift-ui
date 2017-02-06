@@ -132,18 +132,6 @@ module.exports = function(grunt) {
 			}
 		},
 
-		// validate JS
-		jshint: {
-			all: [
-				'Gruntfile.js',
-				'src/runtime/js/**/*.js',
-				'src/spiritual/**/*.js',
-				'spec/runtime/**/*.spec.js',
-				'spec/spiritual/**/*.spec.js',
-				'!**/dependencies/**'],
-			options: grunt.file.readJSON('.jshintrc')
-		},
-
 		// parse EDBML to JS
 		edbml: {
 			outline: {

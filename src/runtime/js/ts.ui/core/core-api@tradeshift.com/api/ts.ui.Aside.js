@@ -46,6 +46,9 @@ ts.ui.Aside.closeAll = function() {
 			var spirit = ts.ui.AsideSpirit.summon(model);
 			document.body.appendChild(spirit.element);
 			spirit.element.id = id;
+			spirit.onclosed = function() {
+				model.isOpen = false;
+			}
 			return spirit;
 		}());
 	}

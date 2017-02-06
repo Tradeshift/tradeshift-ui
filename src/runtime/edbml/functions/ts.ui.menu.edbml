@@ -62,11 +62,14 @@
 		@class = selected ? "ts-checked" : null;
 		<li id="${id}-${item.index}" @class>
 			<button @disabled>
-				if(item.icon) {
+				if(item.icon && !item.reverse) {
 					<i class="${item.icon}"></i>
 				}
 				if(item.label) {
 					<span>${item.label}</span>
+				}
+				if(item.icon && item.reverse) {
+					<i class="${item.icon}"></i>
 				}
 				if(selected) {
 					<i class="ts-icon-checked"></i>

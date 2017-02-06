@@ -39,7 +39,7 @@
 			$scope.typeOptions = [
 				{ name: 'One', value: '1' },
 				{ name: 'Two', value: '2' },
-				{ name: 'Three', value: '3' }
+				{ name: 'Three', value: '3'}
 			];
 			$scope.typeOption = $scope.typeOptions[0].value;
 
@@ -68,6 +68,15 @@
 
 			// digest this
 			$scope.$digest();
+
+			// test ng-disabled
+			(function repeat() {
+				$scope.$apply(function() {
+					$scope.selectDisabled = !$scope.selectDisabled;
+				});
+				setTimeout(repeat, 2000);
+			}());
+
 		}, 500);
 	}]);
 }(window.angular));

@@ -13,14 +13,14 @@
 			<article>
 				<h1>Testing fake inputs</h1>
 				<section class="desc">
-					Testing the proxy elements created by <code>&lt;select&gt;</code> 
-					and <code>&lt;input type="date"&gt;</code>.
+					<p>Testing the proxy elements created by <code>&lt;select&gt;</code> 
+					and <code>&lt;input type="date"&gt;</code>.</p>
 				</section>
-				<div data-ts="Note">
-					<i class="ts-icon-todo"></i>
-					<p>TODO: The <code>SELECT</code> updates on the <code>tick</code>, make it faster!</p>
-				</div>
 				<section ng-app="app" ng-controller="TestController">
+					<div data-ts="Note">
+						<i class="ts-icon-todo"></i>
+						<p>TODO: The <code>SELECT</code> updates on the <code>tick</code>, make it faster!</p>
+					</div>
 					<h3>This runs <em>inside</em> the Angular controller.</h3>
 					<ul ng-repeat="level1 in testList1">
 						<li ng-repeat="level2 in testList2">
@@ -31,6 +31,7 @@
 											<span>Select</span>
 											<select
 												ng-model="typeOption" 
+												ng-disabled="selectDisabled" 
 												ng-options="option.value as option.name for option in typeOptions">
 											</select>
 										</label>

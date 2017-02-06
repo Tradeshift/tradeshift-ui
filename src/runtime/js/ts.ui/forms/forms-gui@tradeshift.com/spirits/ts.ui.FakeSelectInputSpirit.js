@@ -417,6 +417,7 @@ ts.ui.FakeSelectInputSpirit = (function using(chained, confirmed, tick, time, gu
 		 */
 		_syncfake: function(select, model) {
 			var cornercase = select.options.length && !this.element.value;
+			this.element.disabled = !!select.disabled;
 			if (cornercase || [
 				this._changedlength(select, this._optionslength, model),
 				this._changedindex(select, this._selectedIndex, model),

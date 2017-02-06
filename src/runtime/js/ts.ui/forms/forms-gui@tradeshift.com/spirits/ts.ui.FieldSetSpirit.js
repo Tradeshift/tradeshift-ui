@@ -43,10 +43,18 @@ ts.ui.FieldSetSpirit = (function() {
 
 		/**
 		 * Layout as options group.
+		 * @param {string} type 'radio' or 'checkbox'
 		 */
-		$options: function() {
-			this.css.add(ts.ui.CLASS_OPTIONS);
+		$options: function(type) {
+			this.css.add(ts.ui.CLASS_OPTIONS).add('ts-' + type);
 			this.css.shift(!this.dom.q('span + label'), 'ts-nolabel');
+		},
+
+		/**
+		 * Mark as disabled (radio group scenario).
+		 */
+		$disabled: function(disabled) {
+			this.css.shift(disabled, 'ts-disabled');
 		},
 
 		// Private .................................................................

@@ -88,6 +88,9 @@
 			}	
 		}
 	}
+	.ts-textlabel:not(.ts-disabled) {
+		cursor: text;
+	}
 	.ts-field {
 		display: block;
 		&.ts-text:not([disabled]) {
@@ -112,21 +115,6 @@
 			padding-right: @ts-unit-half;
 			padding-bottom: 0;
 			resize: none;
-		}
-		&.ts-date,
-		&.ts-fake {
-			// Note to self: These styles may be relevant for iPad stuff!
-			// color: transparent !important;
-			// text-shadow: 0 0 0 @ts-black;
-			/*
-			&[readonly],
-			&[disabled] {
-				cursor: pointer;
-			}
-			.ts-engine-explorer9 & {
-				color: @ts-black !important;
-			}
-			*/
 		}
 		&.ts-option {
 			opacity: 0;
@@ -185,8 +173,25 @@
 	box-shadow: 0 0 0 1px fade(@color, 75%);
 	border-radius: @ts-radius;
 }
+.local-mixin-hover-outline() {
+	.local-mixin-focus-outline(fade(@ts-blue, 25%));
+}
 
 .ts-form {
+	label:hover:not(.ts-focus):not(.ts-focus-on) {
+		&:not(.ts-disabled):not(.ts-readonly) {
+			.ts-field {
+				&.ts-text,
+				&.ts-date {
+					.local-mixin-hover-outline();
+				}
+			}
+			&.ts-checkbox,
+			&.ts-switchlabel {
+				.local-mixin-hover-outline();
+			}
+		}
+	}
 	label.ts-focus,
 	label.ts-focus-on {
 		&:not(.ts-disabled):not(.ts-readonly) {
@@ -202,19 +207,6 @@
 			}
 		}
 	}
-	fieldset.ts-focus {
-		&:not(.ts-disabled):not(.ts-readonly) {
-			&:before {
-				.local-mixin-focus-outline();
-				content: '';
-				position: absolute;
-				left: @ts-unit-half;
-				right: @ts-unit-half;
-				top: @ts-unit-plus;
-				bottom: 0;
-			}
-		}
-	}
 	label.ts-focus,
 	label.ts-focus-on {
 		&.ts-fakelabel {
@@ -222,6 +214,24 @@
 				&:before {
 					color: @ts-blue;
 				}
+			}
+		}
+	}
+	fieldset.ts-radio {
+		&:not(.ts-disabled):not(.ts-readonly) {
+			&:before {
+				content: '';
+				position: absolute;
+				left: @ts-unit-half;
+				right: @ts-unit-half;
+				top: @ts-unit-plus;
+				bottom: 0;
+			}
+			&:hover:not(.ts-focus):before {
+				.local-mixin-hover-outline();
+			}
+			&.ts-focus:before {
+				.local-mixin-focus-outline();
 			}
 		}
 	}
@@ -386,6 +396,7 @@
 
 .ts-form {
 	label.ts-switchlabel {
+		padding-right: @ts-unit-quarter;
 		text-align: right;
 		line-height: 0;
 		overflow: hidden;
@@ -582,9 +593,9 @@
 					padding-right: @ts-unit-plus;
 				}
 			}
-			&:after {
+			&:not(.ts-option):after {
 				.ts-mixin-icon();
-				content: 'V'; // lock
+				content: 'V'; // lock icon
 				position: absolute;
 				top: @ts-unit-plus;
 				right: @ts-unit-half;

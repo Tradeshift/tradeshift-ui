@@ -27,11 +27,15 @@ ts.ui.OptionSpirit = ts.ui.FieldSpirit.extend({
 	 */
 	$updatestyling: function() {
 		this.super.$updatestyling();
+		var type = this.element.type;
 		this._label(function(label) {
-			label.$option(this.element.type);
+			label.$option(type);
 		});
-		this._fieldset(function(group) {
-			group.$options();
+		this._fieldset(function(fieldset) {
+			fieldset.$options(type);
+			if(type === 'radio') {
+				fieldset.$disabled(this.att.has('disabled'));
+			}
 		});
 	},
 

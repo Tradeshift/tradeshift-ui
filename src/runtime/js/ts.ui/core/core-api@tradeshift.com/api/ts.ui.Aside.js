@@ -48,7 +48,7 @@ ts.ui.Aside.closeAll = function() {
 			spirit.element.id = id;
 			spirit.onclosed = function() {
 				model.isOpen = false;
-			}
+			};
 			return spirit;
 		}());
 	}

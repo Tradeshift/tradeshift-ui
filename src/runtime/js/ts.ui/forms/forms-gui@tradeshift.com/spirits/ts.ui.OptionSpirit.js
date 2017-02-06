@@ -33,7 +33,7 @@ ts.ui.OptionSpirit = ts.ui.FieldSpirit.extend({
 		});
 		this._fieldset(function(fieldset) {
 			fieldset.$options(type);
-			if(type === 'radio') {
+			if (type === 'radio') {
 				fieldset.$disabled(this.att.has('disabled'));
 			}
 		});

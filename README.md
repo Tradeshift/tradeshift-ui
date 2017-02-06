@@ -1,5 +1,5 @@
 [![Build Status](https://travis-ci.com/Tradeshift/tradeshift-ui.svg?token=RshDHtS73Tukd2xSZzeg&branch=master)](https://travis-ci.com/Tradeshift/tradeshift-ui)
-[![Gitter](https://img.shields.io/badge/gitter-join%20chat-f81a65.svg?style=flat-square)](https://gitter.im/Tradeshift/tradeshift-ui)
+[![Gitter](https://img.shields.io/badge/gitter-join%20chat-f81a65.svg?style=flat-square)](https://gitter.im/tradeshift-ui/Lobby)
 [![PeerDependencies](https://img.shields.io/david/peer/Tradeshift/tradeshift-ui.svg?style=flat-square)](https://david-dm.org/Tradeshift/tradeshift-ui#info=peerDependencies&view=list)
 [![Dependencies](https://img.shields.io/david/Tradeshift/tradeshift-ui.svg?style=flat-square)](https://david-dm.org/Tradeshift/tradeshift-ui)
 [![DevDependencies](https://img.shields.io/david/dev/Tradeshift/tradeshift-ui.svg?style=flat-square)](https://david-dm.org/Tradeshift/tradeshift-ui#info=devDependencies&view=list)
@@ -16,8 +16,6 @@ If you'd like to submit a feature request or report a bug, go to our [issues pag
 ## Installation
 
 1. Clone this repository
-1. Install [ChromeDriver](https://code.google.com/p/chromedriver/downloads/list)
-  - If you're on a Mac, the easiest way to install is with `homebrew`. Highly suggested.
 1. Install [NodeJS](https://nodejs.org/), either LTS or current.
 1. Install the Grunt Command Line Utility globally.
 	- `npm install -g grunt-cli`
@@ -58,17 +56,30 @@ It will bump the version inside `package.json`, commit, tag release, upload to C
 
 ## Running tests
 
-`grunt test`
+Make sure you have a BrowserStack Automate account and have the following environment variables set:
+```
+export BROWSERSTACK_USERNAME=[Your BrowserStack username]
+export BROWSERSTACK_KEY=[your BrowserStack key]
+```
 
-This command will run all the Karma tests for all UI Components in the locally available Firefox and Chrome installations.
+Then feel free to start running the tests as such:
+
+`npm test`
+
+This command will run all the Jasmine tests for all UI Components through BrowserStack.
+
+We're currently testing on the following browsers:
+* Google Chrome (latest, previous)
+* Mozilla Firefox (latest, previous)
+* Apple Safari (latest, previous)
+* IE9, IE10, IE11
 
 ## Roadmap
-
 To stay up to date with upcoming releases and new features in the works, check out our [ROADMAP.md](https://github.com/Tradeshift/tradeshift-ui/blob/master/ROADMAP.md).
 
 ## Contribute
 
-If you would like to contribute to our codebase, just fork the repo and make a PR or just write to us on [Gitter]((https://gitter.im/Tradeshift/tradeshift-ui)), we're always looking for more input =)
+If you would like to contribute to our codebase, just fork the repo and make a PR or just write to us on [Gitter](https://gitter.im/tradeshift-ui/Lobby), we're always looking for more input =)
 
 ## License
 

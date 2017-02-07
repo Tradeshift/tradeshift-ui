@@ -653,7 +653,7 @@ module.exports = function(grunt) {
 			'touchfriendly:dev',
 			'cssmin:dev',
 			'tsless:dev',
-			'copy:lang_dev',
+			'copy:lang_dev'
 		];
 	}
 
@@ -691,7 +691,10 @@ module.exports = function(grunt) {
 	grunt.registerTask('default', buildlocal().concat(['concurrent']));
 
 	// setup for prod (and compile the tests)
-	grunt.registerTask('dist', buildcdn('prod'));
+	grunt.registerTask('dist', [
+		'concat:jasmine',
+		'copy:jasmine'
+	].concat(buildcdn('prod')));
 
 	// never called directly, grunt-release will do that for us
 	grunt.registerTask('release-deploy', [

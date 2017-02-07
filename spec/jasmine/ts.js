@@ -110,8 +110,8 @@
 		}
 	}
 }({
-	langbundle: '//172.31.98.151:10111/dist/ts-lang-<LANG>.js',
-	runtimecss: '//172.31.98.151:10111/dist/ts.min.css'
+	langbundle: 'ts-lang-<LANG>.js',
+	runtimecss: 'ts.css'
 }));
 
 (function(window) {
@@ -6456,7 +6456,7 @@ gui = gui.Object.extend(gui, {
 			case 1:
 				if (this.spiritualizing || this.spiritualized) {
 					spirit = this._getspirit(arg);
-				} else if (window.console && console.warn) {
+				} else if (window.console && console.warn && console.error) {
 					var message = this._guigetmessage();
 					if (location.hostname === 'localhost') {
 						console.error(message); // stacktrace version

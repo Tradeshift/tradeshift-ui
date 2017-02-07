@@ -2501,6 +2501,9 @@ i svg use {
   overflow: hidden;
   text-overflow: ellipsis;
 }
+.ts-form .ts-textlabel:not(.ts-disabled) {
+  cursor: text;
+}
 .ts-form .ts-field {
   display: block;
 }
@@ -2526,18 +2529,6 @@ i svg use {
   padding-right: 11px;
   padding-bottom: 0;
   resize: none;
-}
-.ts-form .ts-field.ts-date,
-.ts-form .ts-field.ts-fake {
-  /*
-			&[readonly],
-			&[disabled] {
-				cursor: pointer;
-			}
-			.ts-engine-explorer9 & {
-				color: @ts-black !important;
-			}
-			*/
 }
 .ts-form .ts-field.ts-option {
   opacity: 0;
@@ -2577,6 +2568,18 @@ i svg use {
   line-height: 22px;
   content: "\"";
 }
+.ts-device-mouse .ts-form label:hover:not(.ts-focus):not(.ts-focus-on):not(.ts-disabled):not(.ts-readonly) .ts-field.ts-text,
+.ts-device-mouse .ts-form label:hover:not(.ts-focus):not(.ts-focus-on):not(.ts-disabled):not(.ts-readonly) .ts-field.ts-date {
+  border: 1px solid rgba(32, 160, 233, 0.25);
+  box-shadow: 0 0 0 1px rgba(32, 160, 233, 0.75);
+  border-radius: 3px;
+}
+.ts-device-mouse .ts-form label:hover:not(.ts-focus):not(.ts-focus-on):not(.ts-disabled):not(.ts-readonly).ts-checkbox,
+.ts-device-mouse .ts-form label:hover:not(.ts-focus):not(.ts-focus-on):not(.ts-disabled):not(.ts-readonly).ts-switchlabel {
+  border: 1px solid rgba(32, 160, 233, 0.25);
+  box-shadow: 0 0 0 1px rgba(32, 160, 233, 0.75);
+  border-radius: 3px;
+}
 .ts-form label.ts-focus:not(.ts-disabled):not(.ts-readonly) .ts-field.ts-text,
 .ts-form label.ts-focus-on:not(.ts-disabled):not(.ts-readonly) .ts-field.ts-text,
 .ts-form label.ts-focus:not(.ts-disabled):not(.ts-readonly) .ts-field.ts-date,
@@ -2593,10 +2596,11 @@ i svg use {
   box-shadow: 0 0 0 1px rgba(32, 160, 233, 0.75);
   border-radius: 3px;
 }
-.ts-form fieldset.ts-focus:not(.ts-disabled):not(.ts-readonly):before {
-  border: 1px solid #20a0e9;
-  box-shadow: 0 0 0 1px rgba(32, 160, 233, 0.75);
-  border-radius: 3px;
+.ts-form label.ts-focus.ts-fakelabel:not(.ts-disabled):not(.ts-readonly):before,
+.ts-form label.ts-focus-on.ts-fakelabel:not(.ts-disabled):not(.ts-readonly):before {
+  color: #20a0e9;
+}
+.ts-form .ts-fieldset.ts-radio:not(.ts-disabled):not(.ts-readonly):before {
   content: '';
   position: absolute;
   left: 11px;
@@ -2604,9 +2608,109 @@ i svg use {
   top: 33px;
   bottom: 0;
 }
-.ts-form label.ts-focus.ts-fakelabel:not(.ts-disabled):not(.ts-readonly):before,
-.ts-form label.ts-focus-on.ts-fakelabel:not(.ts-disabled):not(.ts-readonly):before {
-  color: #20a0e9;
+.ts-device-mouse .ts-form .ts-fieldset.ts-radio:not(.ts-disabled):not(.ts-readonly):hover:not(.ts-focus):before {
+  border: 1px solid rgba(32, 160, 233, 0.25);
+  box-shadow: 0 0 0 1px rgba(32, 160, 233, 0.75);
+  border-radius: 3px;
+}
+.ts-form .ts-fieldset.ts-radio:not(.ts-disabled):not(.ts-readonly).ts-focus:before {
+  border: 1px solid #20a0e9;
+  box-shadow: 0 0 0 1px rgba(32, 160, 233, 0.75);
+  border-radius: 3px;
+}
+.ts-bg-red .ts-form .ts-field.ts-date,
+.ts-bg-green .ts-form .ts-field.ts-date,
+.ts-bg-blue .ts-form .ts-field.ts-date,
+.ts-bg-purple .ts-form .ts-field.ts-date,
+.ts-bg-dark .ts-form .ts-field.ts-date,
+.ts-bg-red .ts-form .ts-field.ts-text,
+.ts-bg-green .ts-form .ts-field.ts-text,
+.ts-bg-blue .ts-form .ts-field.ts-text,
+.ts-bg-purple .ts-form .ts-field.ts-text,
+.ts-bg-dark .ts-form .ts-field.ts-text {
+  border-color: transparent !important;
+}
+.ts-device-mouse .ts-bg-red .ts-form label:hover .ts-field.ts-text,
+.ts-device-mouse .ts-bg-green .ts-form label:hover .ts-field.ts-text,
+.ts-device-mouse .ts-bg-blue .ts-form label:hover .ts-field.ts-text,
+.ts-device-mouse .ts-bg-purple .ts-form label:hover .ts-field.ts-text,
+.ts-bg-red .ts-form label.ts-focus .ts-field.ts-text,
+.ts-bg-green .ts-form label.ts-focus .ts-field.ts-text,
+.ts-bg-blue .ts-form label.ts-focus .ts-field.ts-text,
+.ts-bg-purple .ts-form label.ts-focus .ts-field.ts-text,
+.ts-bg-red .ts-form label.ts-focus-on .ts-field.ts-text,
+.ts-bg-green .ts-form label.ts-focus-on .ts-field.ts-text,
+.ts-bg-blue .ts-form label.ts-focus-on .ts-field.ts-text,
+.ts-bg-purple .ts-form label.ts-focus-on .ts-field.ts-text,
+.ts-device-mouse .ts-bg-red .ts-form label:hover .ts-field.ts-date,
+.ts-device-mouse .ts-bg-green .ts-form label:hover .ts-field.ts-date,
+.ts-device-mouse .ts-bg-blue .ts-form label:hover .ts-field.ts-date,
+.ts-device-mouse .ts-bg-purple .ts-form label:hover .ts-field.ts-date,
+.ts-bg-red .ts-form label.ts-focus .ts-field.ts-date,
+.ts-bg-green .ts-form label.ts-focus .ts-field.ts-date,
+.ts-bg-blue .ts-form label.ts-focus .ts-field.ts-date,
+.ts-bg-purple .ts-form label.ts-focus .ts-field.ts-date,
+.ts-bg-red .ts-form label.ts-focus-on .ts-field.ts-date,
+.ts-bg-green .ts-form label.ts-focus-on .ts-field.ts-date,
+.ts-bg-blue .ts-form label.ts-focus-on .ts-field.ts-date,
+.ts-bg-purple .ts-form label.ts-focus-on .ts-field.ts-date {
+  border: 1px solid transparent !important;
+  box-shadow: none !important;
+}
+.ts-device-mouse .ts-bg-red .ts-form label:hover.ts-checkbox,
+.ts-device-mouse .ts-bg-green .ts-form label:hover.ts-checkbox,
+.ts-device-mouse .ts-bg-blue .ts-form label:hover.ts-checkbox,
+.ts-device-mouse .ts-bg-purple .ts-form label:hover.ts-checkbox,
+.ts-bg-red .ts-form label.ts-focus.ts-checkbox,
+.ts-bg-green .ts-form label.ts-focus.ts-checkbox,
+.ts-bg-blue .ts-form label.ts-focus.ts-checkbox,
+.ts-bg-purple .ts-form label.ts-focus.ts-checkbox,
+.ts-bg-red .ts-form label.ts-focus-on.ts-checkbox,
+.ts-bg-green .ts-form label.ts-focus-on.ts-checkbox,
+.ts-bg-blue .ts-form label.ts-focus-on.ts-checkbox,
+.ts-bg-purple .ts-form label.ts-focus-on.ts-checkbox,
+.ts-device-mouse .ts-bg-red .ts-form label:hover.ts-switchlabel,
+.ts-device-mouse .ts-bg-green .ts-form label:hover.ts-switchlabel,
+.ts-device-mouse .ts-bg-blue .ts-form label:hover.ts-switchlabel,
+.ts-device-mouse .ts-bg-purple .ts-form label:hover.ts-switchlabel,
+.ts-bg-red .ts-form label.ts-focus.ts-switchlabel,
+.ts-bg-green .ts-form label.ts-focus.ts-switchlabel,
+.ts-bg-blue .ts-form label.ts-focus.ts-switchlabel,
+.ts-bg-purple .ts-form label.ts-focus.ts-switchlabel,
+.ts-bg-red .ts-form label.ts-focus-on.ts-switchlabel,
+.ts-bg-green .ts-form label.ts-focus-on.ts-switchlabel,
+.ts-bg-blue .ts-form label.ts-focus-on.ts-switchlabel,
+.ts-bg-purple .ts-form label.ts-focus-on.ts-switchlabel {
+  border: 1px solid transparent !important;
+  box-shadow: none !important;
+}
+.ts-device-mouse .ts-bg-red .ts-form .ts-fieldset.ts-radio:not(.ts-disabled):not(.ts-readonly):hover:not(.ts-focus):before,
+.ts-device-mouse .ts-bg-green .ts-form .ts-fieldset.ts-radio:not(.ts-disabled):not(.ts-readonly):hover:not(.ts-focus):before,
+.ts-device-mouse .ts-bg-blue .ts-form .ts-fieldset.ts-radio:not(.ts-disabled):not(.ts-readonly):hover:not(.ts-focus):before,
+.ts-device-mouse .ts-bg-purple .ts-form .ts-fieldset.ts-radio:not(.ts-disabled):not(.ts-readonly):hover:not(.ts-focus):before {
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.75);
+  border-radius: 3px;
+}
+.ts-bg-red .ts-form .ts-fieldset.ts-radio:not(.ts-disabled):not(.ts-readonly).ts-focus:before,
+.ts-bg-green .ts-form .ts-fieldset.ts-radio:not(.ts-disabled):not(.ts-readonly).ts-focus:before,
+.ts-bg-blue .ts-form .ts-fieldset.ts-radio:not(.ts-disabled):not(.ts-readonly).ts-focus:before,
+.ts-bg-purple .ts-form .ts-fieldset.ts-radio:not(.ts-disabled):not(.ts-readonly).ts-focus:before {
+  border: 1px solid #ffffff;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.75);
+  border-radius: 3px;
+}
+.ts-bg-red .ts-form label.ts-focus.ts-fakelabel:not(.ts-disabled):not(.ts-readonly):before,
+.ts-bg-red .ts-form label.ts-focus-on.ts-fakelabel:not(.ts-disabled):not(.ts-readonly):before {
+  color: #bf0000;
+}
+.ts-bg-green .ts-form label.ts-focus.ts-fakelabel:not(.ts-disabled):not(.ts-readonly):before,
+.ts-bg-green .ts-form label.ts-focus-on.ts-fakelabel:not(.ts-disabled):not(.ts-readonly):before {
+  color: #72b148;
+}
+.ts-bg-purple .ts-form label.ts-focus.ts-fakelabel:not(.ts-disabled):not(.ts-readonly):before,
+.ts-bg-purple .ts-form label.ts-focus-on.ts-fakelabel:not(.ts-disabled):not(.ts-readonly):before {
+  color: #9434c8;
 }
 .ts-form label.ts-error:not(.ts-disabled):not(.ts-readonly) .ts-field.ts-text,
 .ts-form label.ts-error:not(.ts-disabled):not(.ts-readonly) .ts-field.ts-date {
@@ -2718,7 +2822,6 @@ i svg use {
   display: inline;
   line-height: 0;
   text-align: center;
-  content: "6";
   content: 'l';
   position: absolute;
   right: 11px;
@@ -2745,6 +2848,7 @@ i svg use {
   display: none;
 }
 .ts-form label.ts-switchlabel {
+  padding-right: 5.5px;
   text-align: right;
   line-height: 0;
   overflow: hidden;
@@ -2925,8 +3029,8 @@ i svg use {
 .ts-form label.ts-disabled > textarea[readonly] {
   padding-right: 33px;
 }
-.ts-form label.ts-readonly:after,
-.ts-form label.ts-disabled:after {
+.ts-form label.ts-readonly:not(.ts-option):after,
+.ts-form label.ts-disabled:not(.ts-option):after {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-family: "Tradeshifticons", fantasy;

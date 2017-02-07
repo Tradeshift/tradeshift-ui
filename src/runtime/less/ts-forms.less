@@ -166,15 +166,19 @@
 }
 
 
-// Focus .....................................................................
+// Focus & Hover ...............................................................
 
 .local-mixin-focus-outline(@color: @ts-blue) {
 	border: 1px solid @color;
 	box-shadow: 0 0 0 1px fade(@color, 75%);
 	border-radius: @ts-radius;
 }
-.local-mixin-hover-outline() {
-	.local-mixin-focus-outline(fade(@ts-blue, 25%));
+.local-mixin-hover-outline(@color: @ts-blue) {
+	.local-mixin-focus-outline(fade(@color, 25%));
+}
+.local-mixin-no-outline() {
+	border: 1px solid transparent !important;
+	box-shadow: none !important;
 }
 
 .ts-form {
@@ -217,7 +221,7 @@
 			}
 		}
 	}
-	fieldset.ts-radio {
+	.ts-fieldset.ts-radio {
 		&:not(.ts-disabled):not(.ts-readonly) {
 			&:before {
 				content: '';
@@ -232,6 +236,95 @@
 			}
 			&.ts-focus:before {
 				.local-mixin-focus-outline();
+			}
+		}
+	}
+}
+
+
+// Colors ......................................................................
+
+.ts-bg-red,
+.ts-bg-green,
+.ts-bg-blue,
+.ts-bg-purple,
+.ts-bg-dark {
+	.ts-form {
+		.ts-field {
+			&.ts-date,
+			&.ts-text {
+				border-color: transparent !important;
+			}
+		}
+	}
+}
+
+.ts-bg-red,
+.ts-bg-green,
+.ts-bg-blue,
+.ts-bg-purple {
+	.ts-form {
+		label {
+			&:hover,
+			&.ts-focus,
+			&.ts-focus-on	{
+				.ts-field {
+					&.ts-text,
+					&.ts-date {
+						.local-mixin-no-outline();
+					}
+				}
+				&.ts-checkbox,
+				&.ts-switchlabel {
+					.local-mixin-no-outline();
+				}
+			}
+		}
+	}
+}
+.ts-bg-red,
+.ts-bg-green,
+.ts-bg-blue,
+.ts-bg-purple {
+	.ts-form {
+		.ts-fieldset.ts-radio {
+			&:not(.ts-disabled):not(.ts-readonly) {
+				&:hover:not(.ts-focus):before {
+					.local-mixin-hover-outline(@ts-white);
+				}
+				&.ts-focus:before {
+					.local-mixin-focus-outline(@ts-white);
+				}
+			}
+		}	
+	}
+}
+.ts-bg-red {
+	.ts-form {
+		label.ts-focus,
+		label.ts-focus-on {
+			&.ts-fakelabel:not(.ts-disabled):not(.ts-readonly):before {
+				color: @ts-red;
+			}
+		}
+	}
+}
+.ts-bg-green {
+	.ts-form {
+		label.ts-focus,
+		label.ts-focus-on {
+			&.ts-fakelabel:not(.ts-disabled):not(.ts-readonly):before {
+				color: @ts-green;
+			}
+		}
+	}
+}
+.ts-bg-purple {
+	.ts-form {
+		label.ts-focus,
+		label.ts-focus-on {
+			&.ts-fakelabel:not(.ts-disabled):not(.ts-readonly):before {
+				color: @ts-purple;
 			}
 		}
 	}
@@ -355,7 +448,6 @@
 		&:not(.ts-disabled):not(.ts-readonly) {
 			&:before {
 				.ts-mixin-icon(@ts-fontsize-small);
-				content: "6";
 				content: 'l';
 				position: absolute;
 				right: @ts-unit-half;

@@ -76,17 +76,17 @@
 		var left = srcs.length;
 		var root = script.parentNode;
 		function onload() {
-			if(--left === 0) {
+			if (--left === 0) {
 				ts.ui.$maybebootstrap(true);
 			}
 		};
 		function onerror(error) {
 			var src = error.target.src;
-			throw new URIError("The script " + src + " is not accessible :/");
+			throw new URIError('The script ' + src + ' is not accessible :/');
 		}
 		if (srcs.length) {
 			/*
-			 * In most real world cases, the app will have a `lang` attribute 
+			 * In most real world cases, the app will have a `lang` attribute
 			 * on the root `html` element and we load the localization script.
 			 */
 			srcs.forEach(function(src) {
@@ -98,11 +98,10 @@
 				root.insertBefore(next, prev.nextSibling);
 				prev = next;
 			});
-			
 		} else {
 			/*
-			 * Otherwise we attempt bootstrap. All the Runtime code will be 
-			 * parsed after this code, so we have to take a break before we 
+			 * Otherwise we attempt bootstrap. All the Runtime code will be
+			 * parsed after this code, so we have to take a break before we
 			 * can address it. TODO: Let's micro-task instead of a timeout!
 			 */
 			setTimeout(function deferred() {
@@ -110,10 +109,9 @@
 			});
 		}
 	}
-
 }({
-	langbundle: 'ts-lang-<LANG>.js',
-	runtimecss: 'ts.css'
+	langbundle: '//172.31.98.151:10111/dist/ts-lang-<LANG>.js',
+	runtimecss: '//172.31.98.151:10111/dist/ts.min.css'
 }));
 
 (function(window) {
@@ -6460,7 +6458,7 @@ gui = gui.Object.extend(gui, {
 					spirit = this._getspirit(arg);
 				} else if (window.console && console.warn) {
 					var message = this._guigetmessage();
-					if(location.hostname === 'localhost') {
+					if (location.hostname === 'localhost') {
 						console.error(message); // stacktrace version
 					} else {
 						console.warn(message);
@@ -8394,7 +8392,7 @@ gui.CSSPlugin = (function using(chained, confirmed) {
 					}, this);
 				} else {
 					if (this._supports) {
-						if(!element.classList.contains(name)) {
+						if (!element.classList.contains(name)) {
 							element.classList.add(name);
 						}
 					} else {
@@ -8934,7 +8932,7 @@ gui.DOMPlugin = (function using(chained, guide, observer) {
 		 */
 		remove: function() {
 			var parent = this.spirit.element.parentNode;
-			if(parent) {
+			if (parent) {
 				parent.removeChild(this.spirit.element);
 			}
 		},
@@ -14414,23 +14412,23 @@ edb.ArrayPopulator = (function using(Type) {
 
 	/**
 	 * Used in function `guidedconvert`.
-	 * @param {constructor} edbType
-	 * @param {object} o
+	 * @param {Constructor} edbType
+	 * @param {Cbject} o
 	 * @returns {edb.Type}
 	 */
-	function constructas(edbType, o) {
-		if (!gui.debug || edb.Type.isConstructor(edbType)) {
+	function constructas(EdbType, o) {
+		if (!gui.debug || edb.Type.isConstructor(EdbType)) {
 			if (edb.Type.is(o)) {
-				if (edbType.is(o)) {
+				if (EdbType.is(o)) {
 					return o;
 				} else {
-					fail(edbType, o);
+					fail(EdbType, o);
 				}
 			} else {
-				return new edbType(o);
+				return new EdbType(o);
 			}
 		} else {
-			fail('edb.Type', edbType);
+			fail('edb.Type', EdbType);
 		}
 	}
 
@@ -16544,7 +16542,7 @@ window.ts = window.ts || { // something called `ts` exists in Grails already...
 gui.$mark('- parse runtime');
 
 /**
- * Don't automatically bootstrap as soon as `DOMContentLoaded` occurs. 
+ * Don't automatically bootstrap as soon as `DOMContentLoaded` occurs.
  * Instead we bootstrap manually in the method {ts.ui.$maybebootstrap}.
  * @overwrites {gui#bootstrap}
  */
@@ -16570,7 +16568,7 @@ ts.ui = gui.namespace('ts.ui', (function using(Client, guiArray, confirmed, chai
 		 * The tradeshift-ui version goes here (via Gruntfile.js)
 		 * @type {string}
 		 */
-		version: '7.0.0-alpha.17',
+		version: '7.0.0-alpha.22',
 
 		/**
 		 * Nothing is "greenfield" now. If we should ever need it, we
@@ -17057,20 +17055,20 @@ ts.ui = gui.namespace('ts.ui', (function using(Client, guiArray, confirmed, chai
 		$domloaded: false,
 
 		/**
-		 * Will be set to `true` when all scripts are loaded or when there's no 
+		 * Will be set to `true` when all scripts are loaded or when there's no
 		 * additional scripts to load (this is basically the localization script).
 		 * @type {boolean}
 		 */
 		$jsloaded: false,
 
 		/**
-		 * Called twice: Once when when the localization script has been loaded 
+		 * Called twice: Once when when the localization script has been loaded
 		 * and again (or maybe before) when the `DOMContentLoaded` event happens.
 		 * @param @optional {boolean} jsloaded
 		 */
 		$maybebootstrap: function(jsloaded) {
 			this.$jsloaded = (this.$jsloaded || !!jsloaded);
-			if(this.$domloaded && this.$jsloaded) {
+			if (this.$domloaded && this.$jsloaded) {
 				gui.bootstrap(); // release the spirits
 			}
 		}
@@ -17121,8 +17119,8 @@ ts.ui.ready(function addobserver() {
 });
 
 /**
- * We attempt to bootstap on `DOMContentLoaded`. Note that it is possible 
- * to check whether or not `DOMContentLoaded` has happened via the property 
+ * We attempt to bootstap on `DOMContentLoaded`. Note that it is possible
+ * to check whether or not `DOMContentLoaded` has happened via the property
  * `document.readyState` but that doesn't always work quite right in IE9.
  */
 addEventListener('DOMContentLoaded', function() {
@@ -18311,6 +18309,9 @@ ts.ui.Aside.closeAll = function() {
 			var spirit = ts.ui.AsideSpirit.summon(model);
 			document.body.appendChild(spirit.element);
 			spirit.element.id = id;
+			spirit.onclosed = function() {
+				model.isOpen = false;
+			};
 			return spirit;
 		}());
 	}
@@ -20106,7 +20107,7 @@ ts.ui.TabCollection = (function using(chained, confirmed, Type) {
 				}
 				this._current = newtab.select();
 				this._lastknownindex = this.selectedIndex;
-				if(Type.isFunction(this.onselect)) {
+				if (Type.isFunction(this.onselect)) {
 					this.onselect.call(this, this.selectedIndex, oldindex);
 				}
 			}
@@ -34217,7 +34218,7 @@ ts.ui.DocumentLayoutPlugin = ts.ui.Plugin.extend({
 	 * so we will have to go about it in a delicate way.
 	 */
 	managelayout: function() {
-		var points = this._points = this._computepoints();
+		this._points = this._computepoints();
 		var layout = this._computelayout();
 		var device = this._computedevice();
 		if (layout) {
@@ -35314,7 +35315,7 @@ ts.ui.DocumentSpirit = (function using(Client) {
 		},
 
 		/**
-		 * Update classname for current breakpoint, then 
+		 * Update classname for current breakpoint, then
 		 * dispatch an custom event for anyone to handle.
 		 * @param {string} newpoint
 		 * @param {string=} opt_oldpoint
@@ -35472,7 +35473,7 @@ ts.ui.MainSpirit = (function using(Type, PANEL_ATTACH, PANEL_DETACH) {
 					break;
 			}
 		},
-		
+
 		/**
 		 * If the `autofocus` element is not focused by now, we'll do just that.
 		 * TODO(jmo@): Perhaps validate that there is only one 'autofocus' arond?
@@ -36484,7 +36485,7 @@ ts.ui.SideShowSpirit = (function using(chained, Client, Parser, GuiObject, Color
 			changes.filter(function(c) {
 				return c.type === splice && ts.ui.TabCollection.is(c.object);
 			}).forEach(function(c) {
-				if(c.object.length === 0) {
+				if (c.object.length === 0) {
 					this._removetabbar();
 				}
 			}, this);
@@ -36584,13 +36585,12 @@ ts.ui.SideShowSpirit = (function using(chained, Client, Parser, GuiObject, Color
 		 */
 		tabs: chained(function() {
 			var tabbar = this._tabbarspirit();
-			if(arguments.length) {
+			if (arguments.length) {
 				tabbar.tabs.apply(tabbar, arguments);
 			} else {
 				return tabbar.tabs();
 			}
 		}),
-
 
 		// Privileged ..............................................................
 
@@ -36760,7 +36760,7 @@ ts.ui.SideShowSpirit = (function using(chained, Client, Parser, GuiObject, Color
 		 * @returns {ts.ui.TabBarSpirit}
 		 */
 		_tabbarspirit: function() {
-			return this._tabbar || (this._tabbar = function createit() {
+			return this._tabbar || (this._tabbar = (function createit() {
 				var panel = this.dom.q('this > .ts-panel', ts.ui.PanelSpirit);
 				this._fixappearance();
 				this.css.add('ts-has-panels');
@@ -36769,7 +36769,7 @@ ts.ui.SideShowSpirit = (function using(chained, Client, Parser, GuiObject, Color
 					tabbar.tabs().addObserver(this);
 					return panel.dom.before(tabbar);
 				});
-			}.call(this));
+			}.call(this)));
 		},
 
 		/**
@@ -36939,7 +36939,7 @@ ts.ui.SideShowSpirit = (function using(chained, Client, Parser, GuiObject, Color
 		 */
 		_removetabbar: function() {
 			var bar = this._tabbar;
-			if(bar) {
+			if (bar) {
 				this._reflex(function() {
 					bar.dom.remove();
 					bar.tabs().removeObserver(this);
@@ -36958,7 +36958,6 @@ ts.ui.SideShowSpirit = (function using(chained, Client, Parser, GuiObject, Color
 		_updatetab: function(panel, added) {
 			var css = 'this > .ts-panel';
 			var bar = this._tabbar;
-			var elm = this.element;
 			var dom = this.dom;
 			var index = dom.qall(css, ts.ui.PanelSpirit).indexOf(panel);
 			if (!bar) {
@@ -37291,7 +37290,7 @@ ts.ui.AsideSpirit = (function using(chained, confirmed, Client, LayoutModel, not
 		 */
 		onchange: function(changes) {
 			ts.ui.SideShowSpirit.prototype.onchange.call(this, changes);
-			if(!this.$destructed) {
+			if (!this.$destructed) {
 				var layout = LayoutModel.output.get();
 				var asides = layout.asides;
 				var id = this.$instanceid;
@@ -37415,7 +37414,7 @@ ts.ui.AsideSpirit = (function using(chained, confirmed, Client, LayoutModel, not
 		 * All attempts to animate the Aside with ordinary CSS transitions
 		 * would result in fatal rendering glitches that only occurs in a
 		 * production environment, of course. Using the brute force method.
-		 * UPDATE: This was caused by Track.js versus `handleEvent` so we 
+		 * UPDATE: This was caused by Track.js versus `handleEvent` so we
 		 * can go ahead and use CSS transitions now :)
 		 * @param {boolean} open
 		 * @param @optional {boolean} callback
@@ -37435,7 +37434,7 @@ ts.ui.AsideSpirit = (function using(chained, confirmed, Client, LayoutModel, not
 			tick.time(function() {
 				var time = 0;
 				tick.nextFrame(function paint(stamp) {
-					if(!this.$destructed) {
+					if (!this.$destructed) {
 						if (!time) {
 							time = stamp;
 							tick.nextFrame(paint);
@@ -37787,7 +37786,7 @@ ts.ui.AsideSpirit = (function using(chained, confirmed, Client, LayoutModel, not
 				this._updateworld(didclose); // nuke the cover
 				this._confirmstate = function norepeat() {};
 				var cry = this + ' should not be removed from the document while open.';
-				if(gui.debug) {
+				if (gui.debug) {
 					throw new Error(cry); // so that we can write a test for it :)
 				} else {
 					console.error(cry);
@@ -39331,7 +39330,7 @@ ts.ui.DialogSpirit = (function using(Dialog, Client, chained, Type) {
 		},
 
 		/**
-		 * It really did close. Remove and dispose 
+		 * It really did close. Remove and dispose
 		 * so that it's not possible to reuse this.
 		 */
 		_didclose: function() {
@@ -41567,9 +41566,9 @@ ts.ui.CoreModule = gui.module('core-gui@tradeshift.com', {
 
 
 /**
- * Performs just-in-time channeling of spirits for complex selectors. These 
+ * Performs just-in-time channeling of spirits for complex selectors. These
  * selectors come with a performance hit, but they make forms easy to author.
- * Note: In V4, sometimes `ts-form` class is found on `fieldset` and random 
+ * Note: In V4, sometimes `ts-form` class is found on `fieldset` and random
  * elements, that's why we can't rely on the FormSpirit to do this thing.
  * @see {ts.ui.FormSpirit}
  * @see {ts.ui.FieldSetSpirit}
@@ -41585,6 +41584,7 @@ ts.ui.FormSupportSpirit = (function() {
 		}
 	});
 }());
+
 
 
 /**
@@ -41687,13 +41687,16 @@ ts.ui.FieldSpirit = (function using(chained) {
 		 * @see {ts.ui.LabelSpirit#ontick}
 		 */
 		$updatestyling: function() {
+			var required = this.att.has('required');
+			var disabled = this.att.has('disabled');
+			var readonly = this.att.has('readonly');
 			this._label(function(label) {
 				label.$fieldlabel();
-				label.$required(this.att.has('required'));
-				label.$disabled(this.att.has('disabled'));
+				label.$required(required);
+				label.$disabled(disabled);
 				if (!this.css.contains(ts.ui.CLASS_FAKE)) {
 					if (!this.css.contains(ts.ui.CLASS_NOLOCK)) {
-						label.$readonly(this.att.has('readonly'));
+						label.$readonly(readonly);
 					}
 				}
 			});
@@ -42856,11 +42859,15 @@ ts.ui.OptionSpirit = ts.ui.FieldSpirit.extend({
 	 */
 	$updatestyling: function() {
 		ts.ui.FieldSpirit.prototype.$updatestyling.call(this);
+		var type = this.element.type;
 		this._label(function(label) {
-			label.$option(this.element.type);
+			label.$option(type);
 		});
-		this._fieldset(function(group) {
-			group.$options();
+		this._fieldset(function(fieldset) {
+			fieldset.$options(type);
+			if (type === 'radio') {
+				fieldset.$disabled(this.att.has('disabled'));
+			}
 		});
 	},
 
@@ -43338,10 +43345,18 @@ ts.ui.FieldSetSpirit = (function() {
 
 		/**
 		 * Layout as options group.
+		 * @param {string} type 'radio' or 'checkbox'
 		 */
-		$options: function() {
-			this.css.add(ts.ui.CLASS_OPTIONS);
+		$options: function(type) {
+			this.css.add(ts.ui.CLASS_OPTIONS).add('ts-' + type);
 			this.css.shift(!this.dom.q('span + label'), 'ts-nolabel');
+		},
+
+		/**
+		 * Mark as disabled (radio group scenario).
+		 */
+		$disabled: function(disabled) {
+			this.css.shift(disabled, 'ts-disabled');
 		},
 
 		// Private .................................................................
@@ -43884,6 +43899,7 @@ ts.ui.FakeSelectInputSpirit = (function using(chained, confirmed, tick, time, gu
 		 */
 		_syncfake: function(select, model) {
 			var cornercase = select.options.length && !this.element.value;
+			this.element.disabled = !!select.disabled;
 			if (cornercase || [
 				this._changedlength(select, this._optionslength, model),
 				this._changedindex(select, this._selectedIndex, model),
@@ -45637,7 +45653,7 @@ ts.ui.ToolBarSpirit = (function using(chained, confirmed, Client, Type, guiArray
 		}),
 
 		/**
-		 * Get or set the title (aborting weird Moustache syntax). 
+		 * Get or set the title (aborting weird Moustache syntax).
 		 * Support also `null` because of some flaky Jasmine test.
 		 * @param @optional {string|null} title
 		 * @returns {string|ts.ui.ToolBarSpirit}
@@ -50283,11 +50299,14 @@ edbml.declare("ts.ui.menu.edbml").as(function $edbml(menu
     $att['class'] = selected ? 'ts-checked' : null;
     out.html += '<li id="' + $val(id) + '-' + $val(item.index) + '" ' + $att.$('class') + '>' +
                 '<button ' + $att.$('disabled') + '>';
-    if (item.icon) {
+    if (item.icon && !item.reverse) {
       out.html += '<i class="' + $val(item.icon) + '"></i>';
     }
     if (item.label) {
       out.html += '<span>' + $txt(item.label) + '</span>';
+    }
+    if (item.icon && item.reverse) {
+      out.html += '<i class="' + $val(item.icon) + '"></i>';
     }
     if (selected) {
       out.html += '<i class="ts-icon-checked"></i>';

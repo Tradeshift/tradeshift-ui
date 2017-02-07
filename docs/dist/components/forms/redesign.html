@@ -16,6 +16,14 @@
     <link rel="prefetch" title="Angular Test" href="test-1.html" class="hidden">
     <link rel="prefetch" title="Redesign" href="redesign.html" class="hidden">
     <script>
+        document.addEventListener('change', function(e) {
+            var section = document.querySelector('#bgcolor');
+            if (e.target.name && e.target.value.includes('ts-bg')) {
+                section.className = e.target.value;
+            }
+        });
+    </script>
+    <script>
         ts.dox.tabs()
     </script>
 </head>
@@ -387,8 +395,71 @@
                     </section>
                 </article>
             </div>
+            <div data-ts="Panel" data-ts.label="Colors">
+                <article>
+                    <h1><span>Colored Forms</span></h1>
+                    <section id="bgcolor" class="ts-bg-dark">
+                        <form data-ts="Form">
+                            <fieldset>
+                                <span>Choose your color</span>
+                                <label>
+								<input type="radio" name="color" value="ts-bg-dark" checked="checked">
+								<span>Dark</span>
+							</label>
+                                <label>
+								<input type="radio" name="color" value="ts-bg-red">
+								<span>Red</span>
+							</label>
+                                <label>
+								<input type="radio" name="color" value="ts-bg-green">
+								<span>Green</span>
+							</label>
+                                <label>
+								<input type="radio" name="color" value="ts-bg-blue">
+								<span>Blue</span>
+							</label>
+                                <label>
+								<input type="radio" name="color" value="ts-bg-purple">
+								<span>Purple</span>
+							</label>
+                                <label>
+								<input type="radio" name="color" value="ts-bg-yellow">
+								<span>Yellow</span>
+							</label>
+                                <label>
+								<input type="radio" name="color" value="ts-bg-lite">
+								<span>Lite/White</span>
+							</label>
+                            </fieldset>
+                            <fieldset>
+                                <label>
+								<span>Text</span>
+								<input type="text" value="Text">
+							</label>
+                            </fieldset>
+                            <fieldset>
+                                <label>
+								<span>Select</span>
+								<select>
+									<option value="a">One</option>
+									<option value="b">Two</option>
+									<option value="c">Three</option>
+								</select>
+							</label>
+                            </fieldset>
+                            <fieldset>
+                                <label>
+								<span>Date</span>
+								<input type="date" value="2016-12-24">
+							</label>
+                            </fieldset>
+                        </form>
+                    </section>
+                </article>
+            </div>
         </div>
     </main>
+    <!-- Asides .............................................................. -->
     <aside data-ts="Aside" id="myaside" data-ts.title="Form in Aside">
         <div data-ts="Panel">
             <form data-ts="Form">

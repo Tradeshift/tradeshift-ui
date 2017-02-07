@@ -98,13 +98,16 @@ ts.ui.FieldSpirit = (function using(chained) {
 		 * @see {ts.ui.LabelSpirit#ontick}
 		 */
 		$updatestyling: function() {
+			var required = this.att.has('required');
+			var disabled = this.att.has('disabled');
+			var readonly = this.att.has('readonly');
 			this._label(function(label) {
 				label.$fieldlabel();
-				label.$required(this.att.has('required'));
-				label.$disabled(this.att.has('disabled'));
+				label.$required(required);
+				label.$disabled(disabled);
 				if (!this.css.contains(ts.ui.CLASS_FAKE)) {
 					if (!this.css.contains(ts.ui.CLASS_NOLOCK)) {
-						label.$readonly(this.att.has('readonly'));
+						label.$readonly(readonly);
 					}
 				}
 			});

@@ -37,9 +37,9 @@
 
 			// testing select one
 			$scope.typeOptions = [
-				{ name: 'One', value: '1' },
-				{ name: 'Two', value: '2' },
-				{ name: 'Three', value: '3'}
+				{name: 'One', value: '1'},
+				{name: 'Two', value: '2'},
+				{name: 'Three', value: '3'}
 			];
 			$scope.typeOption = $scope.typeOptions[0].value;
 
@@ -76,7 +76,6 @@
 				});
 				setTimeout(repeat, 2000);
 			}());
-
 		}, 500);
 	}]);
 }(window.angular));

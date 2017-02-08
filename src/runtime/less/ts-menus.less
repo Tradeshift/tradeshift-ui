@@ -27,7 +27,6 @@
 			&:focus {
 				background-color: @ts-liteblue-dark;
 			}
-
 			&:not(.ts-object) {
 				.ts-mixin-unselectable();
 				display: block;
@@ -36,7 +35,6 @@
 				padding: @ts-unit-half @ts-unit-half (@ts-unit-half - 1px) @ts-unit-half;
 				text-align: left;
 				text-decoration: none;
-
 				> span,
 				> sub {
 					width: 100%;
@@ -46,8 +44,9 @@
 				> sub {
 					text-transform: uppercase;
 					font-size: @ts-fontsize-small;
+					line-height: @ts-unit;
 				}
-
+				> img,
 				> i {
 					position: absolute;
 					left: @ts-unit-half; // icon on the left by default
@@ -58,21 +57,23 @@
 						left: 0;
 					}
 				}
-
-				// icon on the right
+				> img {
+					top: @ts-unit-half;
+					left: @ts-unit-half;
+				}
 				& > span + i,
-				& > sub + i {
+				& > sub + i { // icon on the right
 					left: auto;
 					right: @ts-unit-half;
 				}
-
-				// icon on the left
 				& > i ~ span,
-				& > i ~ sub {
-					padding-right: inherit;
+				& > i ~ sub { // icon on the left
 					padding-left: @ts-unit-plus;
 				}
-
+				& > img ~ span,
+				& > img ~ sub {
+					padding-left: @ts-unit-double + @ts-unit-half;
+				}
 				&:hover {
 					span,
 					sub,
@@ -127,6 +128,17 @@
 				}
 				&:focus:before {
 					background-color: @ts-blue-dark;
+				}
+			}
+		}
+	}
+	&.ts-user-menu {
+		> li {
+			button,
+			a {
+				min-height: @ts-unit-triple;
+				> sub {
+					text-transform: none;
 				}
 			}
 		}

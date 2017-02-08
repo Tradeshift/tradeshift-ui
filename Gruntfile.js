@@ -391,31 +391,26 @@ module.exports = function(grunt) {
 			temp: uploadconfig(config.folder_temp)
 		},
 
-		karma: {
-			options: {
-				configFile: 'karma.conf.js'
-			},
-			server: {
-				browsers: [],
-				preprocessors: {},
-				singleRun: false
-			},
-			local: {
-				browsers: ['Chrome', 'Firefox'],
-				preprocessors: {},
-				singleRun: true
-			},
-			ci: {
-				singleRun: true,
-				preprocessors: {}
-			}
-		},
-
+		// hooked
 		gitadd: {},
 
+		// hooked
 		gitcommit: {},
 
+		// hooked again
 		gitpush: {},
+
+		// execute command line stuff
+		exec: {
+			eslint: {
+				command: 'npm run lint',
+				stdout: true
+			},
+			docs_dist: {
+				command: 'cd docs && grunt dist',
+				stdout: true
+			}
+		},
 
 		release: {
 			options: {
@@ -690,11 +685,20 @@ module.exports = function(grunt) {
 	// setup for local develmopment (default)
 	grunt.registerTask('default', buildlocal().concat(['concurrent']));
 
-	// setup for prod (and compile the tests)
-	grunt.registerTask('dist', [
+	// BUILD FOR PRODUCTION! RUN THIS BEFORE PULL REQUEST!
+	// NOTE: Duplicate steps going on, should be optimized
+	grunt.registerTask('dist', ['exec:eslint']
+		.concat(buildlocal('jasmine'))
+		.concat(['concat:jasmine', 'copy:jasmine'])
+		.concat(buildcdn('prod'))
+		.concat(['exec:docs_dist'])
+	);
+
+	// while developing, build the Jasmine test suite like this:
+	grunt.registerTask('jasmine', buildlocal('jasmine').concat([
 		'concat:jasmine',
 		'copy:jasmine'
-	].concat(buildcdn('prod')));
+	]));
 
 	// never called directly, grunt-release will do that for us
 	grunt.registerTask('release-deploy', [
@@ -721,11 +725,4 @@ module.exports = function(grunt) {
 		'concat:dev',
 		'uglify:dev'
 	]);
-
-	// while developing, build the Jasmine test suite like this:
-	grunt.registerTask('jasmine', buildlocal('jasmine').concat([
-		'concat:jasmine',
-		'copy:jasmine'
-	]));
-
 };

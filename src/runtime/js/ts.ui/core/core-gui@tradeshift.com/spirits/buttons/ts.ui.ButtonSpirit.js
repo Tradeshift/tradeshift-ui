@@ -53,6 +53,9 @@ ts.ui.ButtonSpirit = (function using(chained, Client, Type, CSSPlugin, ie9) {
 		busy: chained(function(busy) {
 			busy = arguments.length ? busy : true;
 			var css = this.css;
+			if (Type.isString(busy) && busy.trim().startsWith('{')) {
+				return; // about weird Moustache syntax (Angular scenario)
+			}
 			if (ie9) {
 				this.element.disabled = !!busy;
 			} else {

@@ -3183,7 +3183,10 @@ i svg use {
 .ts-menu > li > a:not(.ts-object) > sub {
   text-transform: uppercase;
   font-size: 11px;
+  line-height: 22px;
 }
+.ts-menu > li > button:not(.ts-object) > img,
+.ts-menu > li > a:not(.ts-object) > img,
 .ts-menu > li > button:not(.ts-object) > i,
 .ts-menu > li > a:not(.ts-object) > i {
   position: absolute;
@@ -3191,10 +3194,17 @@ i svg use {
   line-height: 0;
   top: 50%;
 }
+.ts-menu > li > button:not(.ts-object) > img:only-child,
+.ts-menu > li > a:not(.ts-object) > img:only-child,
 .ts-menu > li > button:not(.ts-object) > i:only-child,
 .ts-menu > li > a:not(.ts-object) > i:only-child {
   position: relative;
   left: 0;
+}
+.ts-menu > li > button:not(.ts-object) > img,
+.ts-menu > li > a:not(.ts-object) > img {
+  top: 11px;
+  left: 11px;
 }
 .ts-menu > li > button:not(.ts-object) > span + i,
 .ts-menu > li > a:not(.ts-object) > span + i,
@@ -3207,8 +3217,13 @@ i svg use {
 .ts-menu > li > a:not(.ts-object) > i ~ span,
 .ts-menu > li > button:not(.ts-object) > i ~ sub,
 .ts-menu > li > a:not(.ts-object) > i ~ sub {
-  padding-right: inherit;
   padding-left: 33px;
+}
+.ts-menu > li > button:not(.ts-object) > img ~ span,
+.ts-menu > li > a:not(.ts-object) > img ~ span,
+.ts-menu > li > button:not(.ts-object) > img ~ sub,
+.ts-menu > li > a:not(.ts-object) > img ~ sub {
+  padding-left: 55px;
 }
 .ts-device-mouse .ts-device-mouse .ts-menu > li > button:not(.ts-object):hover span,
 .ts-device-mouse .ts-device-mouse .ts-menu > li > a:not(.ts-object):hover span,
@@ -3263,6 +3278,14 @@ i svg use {
 .ts-menu > li.ts-checked > button:focus:before,
 .ts-menu > li.ts-checked > a:focus:before {
   background-color: #0c8cd5;
+}
+.ts-menu.ts-user-menu > li button,
+.ts-menu.ts-user-menu > li a {
+  min-height: 66px;
+}
+.ts-menu.ts-user-menu > li button > sub,
+.ts-menu.ts-user-menu > li a > sub {
+  text-transform: none;
 }
 .ts-tabbar.ts-bg-lite,
 .ts-tabbar.ts-bg-white {

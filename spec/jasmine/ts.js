@@ -38360,6 +38360,9 @@ ts.ui.ButtonSpirit = (function using(chained, Client, Type, CSSPlugin, ie9) {
 		busy: chained(function(busy) {
 			busy = arguments.length ? busy : true;
 			var css = this.css;
+			if (Type.isString(busy) && busy.trim().startsWith('{')) {
+				return; // about weird Moustache syntax (Angular scenario)
+			}
 			if (ie9) {
 				this.element.disabled = !!busy;
 			} else {
@@ -45594,26 +45597,31 @@ ts.ui.ToolBarSpirit = (function using(chained, confirmed, Client, Type, guiArray
 
 		/**
 		 * Show buttons as menu in aside (this gets invoked by the EDBML template).
+		 * TODO: Button groups now expands to normal buttons (they get ungrouped)!
 		 * @see ts.ui.ToolBarSpirit.edbml
 		 * @param {Array<ts.ui.ButtonModel>} buttons
 		 * @param {string} color Copy from Tobbar. Now useless(@leo)
 		 */
 		putaside: function(buttons, color) {
-			var model = this._model;
-			var selected = null;
+			var selected = null, morphed = [];
+			buttons.forEach(function transmorph(button) {
+				if (ts.ui.Collection.is(button)) { // it's a button group!
+					button.forEach(transmorph);
+				} else {
+					var data = JSON.parse(JSON.stringify(button));
+					var clone = new ts.ui.ButtonModel(data);
+					clone.onclick = function() {
+						selected = button;
+						aside.close();
+					};
+					morphed.push(clone);
+				}
+			});
 			var aside = ts.ui.Aside({
-				title: TopBar.localize('options'), // @TODO,use the topbar localize
+				title: TopBar.localize('options'),
 				items: [
 					ts.ui.Buttons({
-						items: buttons.map(function(button) {
-							var data = JSON.parse(JSON.stringify(button));
-							var clone = new ts.ui.ButtonModel(data);
-							clone.onclick = function() {
-								selected = button;
-								aside.close();
-							};
-							return clone;
-						}).reverse()
+						items: morphed.reverse()
 					})
 				],
 				onclosed: function() {
@@ -45623,7 +45631,7 @@ ts.ui.ToolBarSpirit = (function using(chained, confirmed, Client, Type, guiArray
 					}
 				}
 			});
-			this._matchcolor(aside, model).open();
+			this._matchcolor(aside, this._model).open();
 		},
 
 		/**
@@ -45835,11 +45843,11 @@ ts.ui.ToolBarSpirit = (function using(chained, confirmed, Client, Type, guiArray
 		 */
 		showClose: confirmed('(function)')(
 			chained(function(onclose) {
-				this.model().closebutton = {
+				this.model().closebutton = new ts.ui.ButtonModel({
 					icon: 'ts-icon-close',
 					type: 'ts-tertiary ts-noborder',
 					onclick: onclose
-				};
+				});
 			})
 		),
 

@@ -3916,6 +3916,12 @@ i svg use {
   color: #ffffff;
   cursor: pointer;
 }
+.ts-mobile-only .ts-topbar-tabs li.ts-add-tab {
+  max-width: none !important;
+}
+.ts-mobile-only .ts-topbar-tabs li.ts-add-tab i {
+  top: 0 !important;
+}
 .ts-mobile-only .ts-topbar-tabs .ts-button {
   padding: 11px;
   -webkit-transition-property: color;

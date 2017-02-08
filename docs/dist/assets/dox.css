@@ -60,8 +60,9 @@ section.desc code {
   font-size: 16px;
 }
 section p,
-section li,
-section dl {
+section dl,
+section ul li,
+section ol li {
   font-weight: 300;
   letter-spacing: 0.25px;
 }

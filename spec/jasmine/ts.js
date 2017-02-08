@@ -16568,7 +16568,7 @@ ts.ui = gui.namespace('ts.ui', (function using(Client, guiArray, confirmed, chai
 		 * The tradeshift-ui version goes here (via Gruntfile.js)
 		 * @type {string}
 		 */
-		version: '7.0.0-alpha.22',
+		version: '7.0.0-alpha.23',
 
 		/**
 		 * Nothing is "greenfield" now. If we should ever need it, we

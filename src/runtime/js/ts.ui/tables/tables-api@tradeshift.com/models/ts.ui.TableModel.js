@@ -115,8 +115,10 @@ ts.ui.TableModel = (function using(RowCollection, Type, Model) {
 		return {
 			// 'select': ts.ui.SelectModel, // TODO: support
 			// 'date': ts.ui.DatePickerModel, // TODO: support
+			image: ts.ui.ImageModel,
 			button: ts.ui.ButtonModel,
 			'switch': ts.ui.SwitchModel,
+			userimage: ts.ui.UserImageModel,
 			icon: ts.ui.IconModel
 		}[item.toLowerCase()] || (function nomatch() {
 			console.error('"' + item + '" not matched to nothing');

@@ -5161,6 +5161,10 @@ body > .ts-panel {
 .ts-table td.ts-has-extra.ts-has-switch .ts-switcher {
   top: 10px;
 }
+.ts-table td.ts-has-extra.ts-has-image .ts-image {
+  display: block;
+  margin: 0 auto;
+}
 .ts-table th {
   border: 1px solid #cdcdcd;
   border-bottom-color: #afafaf;

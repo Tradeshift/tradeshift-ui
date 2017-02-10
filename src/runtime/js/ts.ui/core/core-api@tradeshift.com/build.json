@@ -30,6 +30,7 @@
 	"models/pager/ts.ui.PagerModel.js",
 	"models/notes/ts.ui.NoteModel.js",
 	"models/icons/ts.ui.IconModel.js",
+	"models/images/ts.ui.ImageModel.js",
 
 	"module.js"
 ]

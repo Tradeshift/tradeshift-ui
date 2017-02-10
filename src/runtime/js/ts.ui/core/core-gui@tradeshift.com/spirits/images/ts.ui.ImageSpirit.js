@@ -133,11 +133,17 @@ ts.ui.ImageSpirit = (function using(fontcss) {
 		 */
 		onconfigure: function() {
 			this.super.onconfigure();
-			if (this.att.get('src')) {
+			var src = this.att.get('src');
+			var alt = this.att.get('alt');
+			var tit = this.att.get('title');
+			if (src) {
 				if (this.element.naturalWidth) {
 					this._onload();
 				} else {
 					this.event.add('load').add('error');
+				}
+				if (alt && !tit) {
+					this.att.set('title', alt);
 				}
 			} else {
 				this.event.add('load');
@@ -171,7 +177,7 @@ ts.ui.ImageSpirit = (function using(fontcss) {
 		onatt: function(att) {
 			this.super.onatt(att);
 			if (att.name === 'alt') {
-				if (!att.value.includes('{{')) { // no weird handlebars syntax
+				if (!att.value.includes('{')) { // no weird handlebars syntax
 					if (!this.att.has('title')) {
 						this.att.set('title', att.value);
 					}
@@ -179,7 +185,7 @@ ts.ui.ImageSpirit = (function using(fontcss) {
 						this.element.src = this._computesource(att.value);
 					} else {
 						// We'll need to polyfill some Base64 stuff for Exploder :/
-						ts.ui.Notification.success('TODO: Image fallback for IE9');
+						console.warn('TODO: Image fallback for IE9');
 					}
 				}
 			}

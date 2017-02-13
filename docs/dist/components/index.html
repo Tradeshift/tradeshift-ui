@@ -4,7 +4,7 @@
 <head>
     <title>Inline Components</title>
     <meta name="viewport" content="width=device-width">
-    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-7.0.0-alpha.24.min.js"></script>
+    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-7.0.0-alpha.25.min.js"></script>
     <script src="/dist/assets/dox.min.js"></script>
     <script src="/dist/assets/mark.min.js"></script>
     <script src="/dist/assets/jquery-2.2.4.min.js"></script>
@@ -658,22 +658,20 @@
                                             var firstload = true;
                                             var tabbar = ts.ui.get('#tabbar-example');
                                             tabbar.tabs([{
-                                                    label: "Tab One",
-                                                    onselect: function() {
-                                                        if (firstload) {
-                                                            firstload = false;
-                                                        } else {
-                                                            ts.ui.Notification.success(this.label);
-                                                        }
-                                                    }
-                                                },
-                                                {
-                                                    label: "Tab Two",
-                                                    onselect: function() {
+                                                label: "Tab One",
+                                                onselect: function() {
+                                                    if (firstload) {
+                                                        firstload = false;
+                                                    } else {
                                                         ts.ui.Notification.success(this.label);
                                                     }
                                                 }
-                                            ]);
+                                            }, {
+                                                label: "Tab Two",
+                                                onselect: function() {
+                                                    ts.ui.Notification.success(this.label);
+                                                }
+                                            }]);
                                         }
                                     });
                                 </script>
@@ -719,18 +717,15 @@
                                         onbroadcast: function() {
                                             var table = ts.ui.get('#table-example');
                                             table.cols([{
-                                                    label: 'Level',
-                                                    type: 'ts-number'
-                                                },
-                                                {
-                                                    label: 'Character',
-                                                    flex: 2
-                                                },
-                                                {
-                                                    label: 'Alignment',
-                                                    flex: 2
-                                                },
-                                            ]);
+                                                label: 'Level',
+                                                type: 'ts-number'
+                                            }, {
+                                                label: 'Character',
+                                                flex: 2
+                                            }, {
+                                                label: 'Alignment',
+                                                flex: 2
+                                            }, ]);
                                             table.rows([
                                                 [21, 'Paladin Knight', 'Lawful Good'],
                                                 [13, 'Barbarian Queen', 'Neutral Evil'],

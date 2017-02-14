@@ -5,6 +5,7 @@ src/third-party
 **/temp
 **/*-*.*.*.js
 **/*.edbml
+**/*.html
 **/*.xhtml
 **/*.min.js
 **/*.DISABLED.js

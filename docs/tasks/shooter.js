@@ -9,6 +9,11 @@ const stdout = process.stdout;
 const URL_BROWSERCLOUD = 'http://hub-cloud.browserstack.com/wd/hub';
 const URL_SCREENSHOTS = 'http://localhost:10114/dist/screenshots/';
 
+const environment = {
+	user: process.env.BROWSERSTACK_USERNAME,
+	key: process.env.BROWSERSTACK_KEY
+};
+
 module.exports = {
 
 	/**
@@ -31,8 +36,8 @@ module.exports = {
 							version: browser.versname,
 							platform: browser.platform,
 							'browserstack.local': true,
-							'browserstack.user': options.user,
-							'browserstack.key': options.key
+							'browserstack.user': environment.user,
+							'browserstack.key': environment.key
 						}).build();
 
 				// set the window size because otherwise Edge 

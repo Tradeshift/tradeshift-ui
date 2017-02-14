@@ -8,6 +8,7 @@
 	"models/cards/ts.ui.CardModel.js",
 	"models/cards/companycards/ts.ui.CompanyCardModel.js",
 	"models/cards/companycards/ts.ui.CompanyCardCollection.js",
+	"models/cards/usercards/ts.ui.UserImageModel.js",
 	"models/cards/usercards/ts.ui.UserCardModel.js",
 	"models/cards/usercards/ts.ui.UserCardCollection.js",
 

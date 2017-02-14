@@ -230,7 +230,7 @@ module.exports = function(grunt) {
 
 		tunneler: {
 			options: {
-				key: '<%=stackconf.key%>',
+				key: '<%=stackconf.accessKey%>',
 				hosts: [
 					{
 						name: 'localhost',

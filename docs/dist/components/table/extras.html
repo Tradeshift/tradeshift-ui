@@ -4,7 +4,7 @@
 <head>
     <title>Table Extras</title>
     <meta name="viewport" content="width=device-width">
-    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-7.0.0-alpha.24.min.js"></script>
+    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-7.0.0-alpha.26.min.js"></script>
     <script src="/dist/assets/dox.min.js"></script>
     <script src="/dist/assets/mark.min.js"></script>
     <script src="/dist/assets/jquery-2.2.4.min.js"></script>
@@ -44,7 +44,7 @@
                 name: name,
                 value: value,
                 checked: checked
-            }
+            };
         }
 
         function geticon(type, color) {
@@ -52,7 +52,25 @@
                 item: 'Icon',
                 type: type,
                 color: color || 'black'
-            }
+            };
+        }
+
+        function getimage(src, width, height) {
+            return {
+                item: 'Image',
+                src: src,
+                width: width || 100,
+                height: height || 100,
+                background: true
+            };
+        }
+
+        function getuserimage(name, src) {
+            return {
+                item: 'UserImage',
+                name: name,
+                src: src
+            };
         }
     </script>
     <script>
@@ -66,9 +84,16 @@
         <div data-ts="MainContent">
             <article>
                 <h1><span>Table extras</span></h1>
-                <section>
+                <section id="">
                     <p>Table cells can be declared via JSON using <a data-ts="Button" href="/dist/components/table/building.html">verbose syntax</a>. But we can use a different JSON syntax to declare cells with special content. The Table will generate components
-                        based on the value of the <code>item</code> property and this can be either <a href="#button">Button</a>, <a href="#switch">Switch</a> or <a href="#icon">Icon</a>.</p>
+                        based on the value of the <code>item</code> property and this can be one of the following.</p>
+                    <ul>
+                        <li><a href="#button">Button</a></li>
+                        <li><a href="#icon">Icon</a></li>
+                        <li><a href="#image">Image</a></li>
+                        <li><a href="#switch">Switch</a></li>
+                        <li><a href="#userimage">UserImage</a></li>
+                    </ul>
                 </section>
                 <section id="button">
                     <h3><span>Button</span></h3>
@@ -121,9 +146,117 @@ table<span class="token punctuation">.</span>onbutton <span class="token operato
                             </li>
                         </ul>
                     </div>
-                    <p>The Button <code>value</code> can be anything from strings and numbers and booleans to objects and arrays, if that helps. Just don&apos;t assign any functions, because those will be ignored. Here is the configurable properties of the
-                        <code>ButtonModel</code>.</p>
+                    <p>The Button <code>value</code> can be anything from strings and numbers and booleans to objects and arrays, if that helps. Just don&apos;t assign any functions, because those will be ignored. Here are the configurable properties of
+                        the <code>ButtonModel</code>.</p>
                     <div data-ts="DoxApi" data-ts.code="%7B%0A%09name%3A%20%22ts.ui.ButtonModel%22%2C%0A%09properties%3A%20%5B%0A%09%09%7B%0A%09%09%09name%3A%20%22label%22%2C%0A%09%09%09type%3A%20%22string%22%2C%0A%09%09%09desc%3A%20%22The%20buttons%20label.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20%22icon%22%2C%0A%09%09%09type%3A%20%22string%22%2C%0A%09%09%09desc%3A%20&apos;The%20button%20icon%20(label%20must%20be%20%60null%60%20or%20empty%20string).&apos;%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20%22info%22%2C%0A%09%09%09type%3A%20%22string%22%2C%0A%09%09%09desc%3A%20%22The%20button%20tooltip%20(hover%20text).%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20%22visible%22%2C%0A%09%09%09type%3A%20%22boolean%22%2C%0A%09%09%09desc%3A%20%22Button%20is%20visible%3F%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20%22disabled%22%2C%0A%09%09%09type%3A%20%22boolean%22%2C%0A%09%09%09desc%3A%20%22Button%20is%20disabled%3F%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20%22name%22%2C%0A%09%09%09type%3A%20%22string%22%2C%0A%09%09%09desc%3A%20%22The%20button%20name.%20May%20be%20shared%20by%20mutliple%20buttons.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20%22value%22%2C%0A%09%09%09type%3A%20%22any%22%2C%0A%09%09%09desc%3A%20%22The%20button%20value.%20We%20can%20assign%20anything%20here.%22%0A%09%09%7D%0A%09%5D%0A%7D">
+                    </div>
+                </section>
+                <section id="icon">
+                    <h3><span>Icon</span></h3>
+                    <p>This function returns the JSON to generate an icon.</p>
+                    <figure data-ts="DoxScript" data-ts.code="function%20geticon(type%2C%20color%20%3D%20&apos;black&apos;)%20%7B%0A%09return%20%7B%0A%09%09item%3A%20&apos;Icon&apos;%2C%0A%09%09type%3A%20type%2C%0A%09%09color%3A%20color%0A%09%7D%0A%7D">
+                        <input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
+                        <div class="tabpanels">
+                            <pre class="prism language-javascript">
+<code><span class="token keyword">function</span> <span class="token function">geticon<span class="token punctuation">(</span></span>type<span class="token punctuation">,</span> color <span class="token operator">=</span> <span class="token string">&apos;black&apos;</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	<span class="token keyword">return</span> <span class="token punctuation">{</span>
+		item<span class="token punctuation">:</span> <span class="token string">&apos;Icon&apos;</span><span class="token punctuation">,</span>
+		type<span class="token punctuation">:</span> type<span class="token punctuation">,</span>
+		color<span class="token punctuation">:</span> color
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code>
+</pre>
+                        </div>
+                    </figure>
+                    <p>The <code>type</code> configures the <a data-ts="Button" href="/dist/components/icons/css.html">icon classname</a> and the optional <code>color</code> property can be one of <code>black</code>, <code>medium</code>, <code>red</code>,
+                        <code>green</code>, <code>blue</code> and <code>purple</code>.</p>
+                    <div class="splitscreen-container">
+                        <ul class="splitscreen">
+                            <li>
+                                <figure data-ts="DoxScript" class="runnable" data-ts.code="var%20table%20%3D%20ts.ui.get(&apos;%23table3&apos;)%3B%0Atable.rows(%5B%0A%09%5B%0A%09%09geticon(&apos;ts-icon-sales&apos;)%2C%0A%09%09geticon(&apos;ts-icon-cancel&apos;%2C%20&apos;medium&apos;)%2C%0A%09%09geticon(&apos;ts-icon-error&apos;%2C%20&apos;red&apos;)%2C%0A%09%09geticon(&apos;ts-icon-accept&apos;%2C%20&apos;green&apos;)%2C%0A%09%09geticon(&apos;ts-icon-info&apos;%2C%20&apos;blue&apos;)%2C%0A%09%09geticon(&apos;ts-icon-favorites&apos;%2C%20&apos;purple&apos;)%0A%09%5D%0A%5D)%3B">
+                                    <script type="runnable">
+                                        var table = ts.ui.get('#table3'); table.rows([ [ geticon('ts-icon-sales'), geticon('ts-icon-cancel', 'medium'), geticon('ts-icon-error', 'red'), geticon('ts-icon-accept', 'green'), geticon('ts-icon-info', 'blue'), geticon('ts-icon-favorites', 'purple')
+                                        ] ]);
+                                    </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                                    <div class="tabpanels">
+                                        <pre class="prism language-javascript">
+<code><span class="token keyword">var</span> table <span class="token operator">=</span> ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#table3&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+table<span class="token punctuation">.</span><span class="token function">rows<span class="token punctuation">(</span></span><span class="token punctuation">[</span>
+	<span class="token punctuation">[</span>
+		<span class="token function">geticon<span class="token punctuation">(</span></span><span class="token string">&apos;ts-icon-sales&apos;</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+		<span class="token function">geticon<span class="token punctuation">(</span></span><span class="token string">&apos;ts-icon-cancel&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;medium&apos;</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+		<span class="token function">geticon<span class="token punctuation">(</span></span><span class="token string">&apos;ts-icon-error&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;red&apos;</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+		<span class="token function">geticon<span class="token punctuation">(</span></span><span class="token string">&apos;ts-icon-accept&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;green&apos;</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+		<span class="token function">geticon<span class="token punctuation">(</span></span><span class="token string">&apos;ts-icon-info&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;blue&apos;</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+		<span class="token function">geticon<span class="token punctuation">(</span></span><span class="token string">&apos;ts-icon-favorites&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;purple&apos;</span><span class="token punctuation">)</span>
+	<span class="token punctuation">]</span>
+<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
+</pre>
+                                    </div>
+                                </figure>
+                            </li>
+                            <li>
+                                <div data-ts="Table" id="table3"></div>
+                            </li>
+                        </ul>
+                    </div>
+                    <p>Here are the configurable properties of the <code>IconModel</code>.</p>
+                    <div data-ts="DoxApi" data-ts.code="%7B%0A%09name%3A%20%22ts.ui.IconModel%22%2C%0A%09properties%3A%20%5B%0A%09%09%7B%0A%09%09%09name%3A%20%22type%22%2C%0A%09%09%09type%3A%20%22string%22%2C%0A%09%09%09desc%3A%20%22The%20CSS%20classname.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20%22color%22%2C%0A%09%09%09type%3A%20%22string%22%2C%0A%09%09%09desc%3A%20%22The%20icon%20color.%22%0A%09%09%7D%2C%0A%09%5D%0A%7D">
+                    </div>
+                    <div data-ts="Note">
+                        <i class="ts-icon-info"></i>
+                        <p>This interface may change as we upgrade to SVG icons.</p>
+                    </div>
+                </section>
+                <section id="image">
+                    <h3><span>Image</span></h3>
+                    <p>This function returns the JSON to generate an Image.</p>
+                    <figure data-ts="DoxScript" data-ts.code="function%20getimage(src%2C%20width%2C%20height)%20%7B%0A%09return%20%7B%0A%09%09item%3A%20&apos;Image&apos;%2C%0A%09%09src%3A%20src%2C%0A%09%09width%3A%20width%20%7C%7C%20100%2C%0A%09%09height%3A%20height%20%7C%7C%20100%0A%09%7D%3B%0A%7D">
+                        <input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
+                        <div class="tabpanels">
+                            <pre class="prism language-javascript">
+<code><span class="token keyword">function</span> <span class="token function">getimage<span class="token punctuation">(</span></span>src<span class="token punctuation">,</span> width<span class="token punctuation">,</span> height<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	<span class="token keyword">return</span> <span class="token punctuation">{</span>
+		item<span class="token punctuation">:</span> <span class="token string">&apos;Image&apos;</span><span class="token punctuation">,</span>
+		src<span class="token punctuation">:</span> src<span class="token punctuation">,</span>
+		width<span class="token punctuation">:</span> width <span class="token operator">||</span> <span class="token number">100</span><span class="token punctuation">,</span>
+		height<span class="token punctuation">:</span> height <span class="token operator">||</span> <span class="token number">100</span>
+	<span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code>
+</pre>
+                        </div>
+                    </figure>
+                    <p>Note that the <code>width</code> and <code>height</code> properties are mandatory for us to fix the dimensions of the image even before it is loaded. This will prevent the page from jumping around.</p>
+                    <div class="splitscreen-container">
+                        <ul class="splitscreen">
+                            <li>
+                                <figure data-ts="DoxScript" class="runnable" data-ts.code="var%20table%20%3D%20ts.ui.get(&apos;%23table4&apos;)%3B%0Atable.rows(%5B%0A%09%5B%0A%09%09getimage(&apos;assets%2Fimage-1.jpg&apos;)%2C%0A%09%09getimage(&apos;assets%2Fimage-2.jpg&apos;)%2C%0A%09%09getimage(&apos;assets%2Fimage-3.jpg&apos;)%2C%0A%09%09getimage(&apos;assets%2Fimage-4.jpg&apos;)%0A%09%5D%0A%5D)%3B">
+                                    <script type="runnable">
+                                        var table = ts.ui.get('#table4'); table.rows([ [ getimage('assets/image-1.jpg'), getimage('assets/image-2.jpg'), getimage('assets/image-3.jpg'), getimage('assets/image-4.jpg') ] ]);
+                                    </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                                    <div class="tabpanels">
+                                        <pre class="prism language-javascript">
+<code><span class="token keyword">var</span> table <span class="token operator">=</span> ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#table4&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+table<span class="token punctuation">.</span><span class="token function">rows<span class="token punctuation">(</span></span><span class="token punctuation">[</span>
+	<span class="token punctuation">[</span>
+		<span class="token function">getimage<span class="token punctuation">(</span></span><span class="token string">&apos;assets/image-1.jpg&apos;</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+		<span class="token function">getimage<span class="token punctuation">(</span></span><span class="token string">&apos;assets/image-2.jpg&apos;</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+		<span class="token function">getimage<span class="token punctuation">(</span></span><span class="token string">&apos;assets/image-3.jpg&apos;</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+		<span class="token function">getimage<span class="token punctuation">(</span></span><span class="token string">&apos;assets/image-4.jpg&apos;</span><span class="token punctuation">)</span>
+	<span class="token punctuation">]</span>
+<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
+</pre>
+                                    </div>
+                                </figure>
+                            </li>
+                            <li>
+                                <div data-ts="Table" id="table4"></div>
+                            </li>
+                        </ul>
+                    </div>
+                    <p>We can also declare a boolean property <code>background</code> in the JSON. If set to <code>true</code>, the image will be rendered as a <code>background-image</code> to unlock further processing via CSS (for example via the <a data-ts="Button"
+                            target="_blank" href="http://mdn.io/background-size">background-size</a> property). Here are the configurable properties.</p>
+                    <div data-ts="DoxApi" data-ts.code="%7B%0A%09name%3A%20%22ts.ui.ImageModel%22%2C%0A%09properties%3A%20%5B%0A%09%09%7B%0A%09%09%09name%3A%20%22src%22%2C%0A%09%09%09type%3A%20%22string%22%2C%0A%09%09%09desc%3A%20%22The%20image%20URL.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20%22alt%22%2C%0A%09%09%09type%3A%20%22string%22%2C%0A%09%09%09desc%3A%20%22Optional%20%60alt%60%20description.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20%22width%22%2C%0A%09%09%09type%3A%20%22number%22%2C%0A%09%09%09desc%3A%20&apos;The%20image%20width.&apos;%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20%22height%22%2C%0A%09%09%09type%3A%20%22number%22%2C%0A%09%09%09desc%3A%20%22The%20image%20height.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20%22background%22%2C%0A%09%09%09type%3A%20%22boolean%22%2C%0A%09%09%09desc%3A%20%22Render%20as%20%60background-image%60%3F%22%0A%09%09%7D%0A%09%5D%0A%7D">
                     </div>
                 </section>
                 <section id="switch">
@@ -180,48 +313,44 @@ table<span class="token punctuation">.</span>onswitch <span class="token operato
                         <i class="ts-icon-todo"></i>
                         <p>TODO: We could need a layout feature to fix the width of the switch column.</p>
                     </div>
-                    <p>Here is the configurable properties of the <code>SwitchModel</code>.</p>
+                    <p>Here are the configurable properties of the <code>SwitchModel</code>.</p>
                     <div data-ts="DoxApi" data-ts.code="%7B%0A%09name%3A%20%22ts.ui.SwitchModel%22%2C%0A%09properties%3A%20%5B%0A%09%09%7B%0A%09%09%09name%3A%20%22name%22%2C%0A%09%09%09type%3A%20%22string%22%2C%0A%09%09%09desc%3A%20%22The%20switch%20name.%20May%20be%20shared%20by%20mutliple%20switches.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20%22value%22%2C%0A%09%09%09type%3A%20%22any%22%2C%0A%09%09%09desc%3A%20%22The%20switch%20value.%20We%20can%20assign%20anything%20here.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20%22checked%22%2C%0A%09%09%09type%3A%20%22boolean%22%2C%0A%09%09%09desc%3A%20%22Switch%20is%20toggled%20on%3F.%22%0A%09%09%7D%0A%09%5D%0A%7D">
                     </div>
                 </section>
-                <section id="icon">
-                    <h3><span>Icon</span></h3>
-                    <p>This function returns the JSON to generate an icon.</p>
-                    <figure data-ts="DoxScript" data-ts.code="function%20geticon(type%2C%20color%20%3D%20&apos;black&apos;)%20%7B%0A%09return%20%7B%0A%09%09item%3A%20&apos;Icon&apos;%2C%0A%09%09type%3A%20type%2C%0A%09%09color%3A%20color%0A%09%7D%0A%7D">
+                <section id="userimage">
+                    <h3><span>UserImage</span></h3>
+                    <p>This function returns the JSON to generate a UserImage.</p>
+                    <figure data-ts="DoxScript" data-ts.code="function%20getuserimage(name%2C%20src)%20%7B%0A%09return%20%7B%0A%09%09item%3A%20&apos;UserImage&apos;%2C%0A%09%09name%3A%20name%2C%0A%09%09src%3A%20src%0A%09%7D%3B%0A%7D">
                         <input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
                         <div class="tabpanels">
                             <pre class="prism language-javascript">
-<code><span class="token keyword">function</span> <span class="token function">geticon<span class="token punctuation">(</span></span>type<span class="token punctuation">,</span> color <span class="token operator">=</span> <span class="token string">&apos;black&apos;</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<code><span class="token keyword">function</span> <span class="token function">getuserimage<span class="token punctuation">(</span></span>name<span class="token punctuation">,</span> src<span class="token punctuation">)</span> <span class="token punctuation">{</span>
 	<span class="token keyword">return</span> <span class="token punctuation">{</span>
-		item<span class="token punctuation">:</span> <span class="token string">&apos;Icon&apos;</span><span class="token punctuation">,</span>
-		type<span class="token punctuation">:</span> type<span class="token punctuation">,</span>
-		color<span class="token punctuation">:</span> color
-	<span class="token punctuation">}</span>
+		item<span class="token punctuation">:</span> <span class="token string">&apos;UserImage&apos;</span><span class="token punctuation">,</span>
+		name<span class="token punctuation">:</span> name<span class="token punctuation">,</span>
+		src<span class="token punctuation">:</span> src
+	<span class="token punctuation">}</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span></code>
 </pre>
                         </div>
                     </figure>
-                    <p>The <code>type</code> configures the <a data-ts="Button" href="/dist/components/icons/css.html">icon classname</a> and the optional <code>color</code> property can be one of <code>black</code>, <code>medium</code>, <code>red</code>,
-                        <code>green</code>, <code>blue</code> and <code>purple</code>.</p>
+                    <p>If you like, you can also specify a <code>size</code> to adjust the width and height of the image.</p>
                     <div class="splitscreen-container">
                         <ul class="splitscreen">
                             <li>
-                                <figure data-ts="DoxScript" class="runnable" data-ts.code="var%20table%20%3D%20ts.ui.get(&apos;%23table3&apos;)%3B%0Atable.rows(%5B%0A%09%5B%0A%09%09geticon(&apos;ts-icon-sales&apos;)%2C%0A%09%09geticon(&apos;ts-icon-cancel&apos;%2C%20&apos;medium&apos;)%2C%0A%09%09geticon(&apos;ts-icon-error&apos;%2C%20&apos;red&apos;)%2C%0A%09%09geticon(&apos;ts-icon-accept&apos;%2C%20&apos;green&apos;)%2C%0A%09%09geticon(&apos;ts-icon-info&apos;%2C%20&apos;blue&apos;)%2C%0A%09%09geticon(&apos;ts-icon-favorites&apos;%2C%20&apos;purple&apos;)%0A%09%5D%0A%5D)%3B">
+                                <figure data-ts="DoxScript" class="runnable" data-ts.code="var%20table%20%3D%20ts.ui.get(&apos;%23table5&apos;)%3B%0Atable.rows(%5B%0A%09%5B%0A%09%09getuserimage(&apos;Jim%20Bob%20Johnson&apos;%2C%20&apos;assets%2Fjim.png&apos;)%2C%0A%09%09getuserimage(&apos;Karl%20Benson&apos;)%2C%0A%09%09getuserimage(&apos;Marshall%20Garrett&apos;)%2C%0A%09%09getuserimage(&apos;Kelvin%20Castro&apos;)%0A%09%5D%0A%5D)%3B">
                                     <script type="runnable">
-                                        var table = ts.ui.get('#table3'); table.rows([ [ geticon('ts-icon-sales'), geticon('ts-icon-cancel', 'medium'), geticon('ts-icon-error', 'red'), geticon('ts-icon-accept', 'green'), geticon('ts-icon-info', 'blue'), geticon('ts-icon-favorites', 'purple')
-                                        ] ]);
+                                        var table = ts.ui.get('#table5'); table.rows([ [ getuserimage('Jim Bob Johnson', 'assets/jim.png'), getuserimage('Karl Benson'), getuserimage('Marshall Garrett'), getuserimage('Kelvin Castro') ] ]);
                                     </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                                     <div class="tabpanels">
                                         <pre class="prism language-javascript">
-<code><span class="token keyword">var</span> table <span class="token operator">=</span> ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#table3&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<code><span class="token keyword">var</span> table <span class="token operator">=</span> ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#table5&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 table<span class="token punctuation">.</span><span class="token function">rows<span class="token punctuation">(</span></span><span class="token punctuation">[</span>
 	<span class="token punctuation">[</span>
-		<span class="token function">geticon<span class="token punctuation">(</span></span><span class="token string">&apos;ts-icon-sales&apos;</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
-		<span class="token function">geticon<span class="token punctuation">(</span></span><span class="token string">&apos;ts-icon-cancel&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;medium&apos;</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
-		<span class="token function">geticon<span class="token punctuation">(</span></span><span class="token string">&apos;ts-icon-error&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;red&apos;</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
-		<span class="token function">geticon<span class="token punctuation">(</span></span><span class="token string">&apos;ts-icon-accept&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;green&apos;</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
-		<span class="token function">geticon<span class="token punctuation">(</span></span><span class="token string">&apos;ts-icon-info&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;blue&apos;</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
-		<span class="token function">geticon<span class="token punctuation">(</span></span><span class="token string">&apos;ts-icon-favorites&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;purple&apos;</span><span class="token punctuation">)</span>
+		<span class="token function">getuserimage<span class="token punctuation">(</span></span><span class="token string">&apos;Jim Bob Johnson&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;assets/jim.png&apos;</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+		<span class="token function">getuserimage<span class="token punctuation">(</span></span><span class="token string">&apos;Karl Benson&apos;</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+		<span class="token function">getuserimage<span class="token punctuation">(</span></span><span class="token string">&apos;Marshall Garrett&apos;</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+		<span class="token function">getuserimage<span class="token punctuation">(</span></span><span class="token string">&apos;Kelvin Castro&apos;</span><span class="token punctuation">)</span>
 	<span class="token punctuation">]</span>
 <span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
 </pre>
@@ -229,16 +358,12 @@ table<span class="token punctuation">.</span><span class="token function">rows<s
                                 </figure>
                             </li>
                             <li>
-                                <div data-ts="Table" id="table3"></div>
+                                <div data-ts="Table" id="table5"></div>
                             </li>
                         </ul>
                     </div>
-                    <p>Here is the configurable properties of the <code>IconModel</code>.</p>
-                    <div data-ts="DoxApi" data-ts.code="%7B%0A%09name%3A%20%22ts.ui.IconModel%22%2C%0A%09properties%3A%20%5B%0A%09%09%7B%0A%09%09%09name%3A%20%22type%22%2C%0A%09%09%09type%3A%20%22string%22%2C%0A%09%09%09desc%3A%20%22The%20CSS%20classname.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20%22color%22%2C%0A%09%09%09type%3A%20%22string%22%2C%0A%09%09%09desc%3A%20%22The%20icon%20color.%22%0A%09%09%7D%2C%0A%09%5D%0A%7D">
-                    </div>
-                    <div data-ts="Note">
-                        <i class="ts-icon-info"></i>
-                        <p>This interface may change as we upgrade to SVG icons.</p>
+                    <p>Here are the properties of the UserImage.</p>
+                    <div data-ts="DoxApi" data-ts.code="%7B%0A%09name%3A%20%22ts.ui.UserImageModel%22%2C%0A%09properties%3A%20%5B%0A%09%09%7B%0A%09%09%09name%3A%20%22name%22%2C%0A%09%09%09type%3A%20%22string%22%2C%0A%09%09%09desc%3A%20%22The%20users%20full%20name.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20%22src%22%2C%0A%09%09%09type%3A%20%22string%22%2C%0A%09%09%09desc%3A%20%22Optional%20user%20photo%20or%20avatar.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20%22size%22%2C%0A%09%09%09type%3A%20%22number%22%2C%0A%09%09%09desc%3A%20&apos;The%20image%20width%20and%20height.&apos;%0A%09%09%7D%0A%09%5D%0A%7D">
                     </div>
                 </section>
             </article>

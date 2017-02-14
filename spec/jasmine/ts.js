@@ -21377,10 +21377,16 @@ ts.ui.NoteModel = (function using() {
 		text: '',
 
 		/**
-		 * What to do when closing the Note.
-		 * @type {function|null}
+		 * Open for implementation: What to do when closing the Note.
+		 * @type {Function}
 		 */
 		onclose: null,
+
+		/**
+		 * Open for implementation: Callback for when a link is clicked.
+		 * @type {Function}
+		 */
+		onlink: null,
 
 		/**
 		 * button in the note.
@@ -50306,8 +50312,7 @@ edbml.declare("ts.ui.icononly.edbml").as(function $edbml(icon
   if (icon.color && !$att['class'].includes('ts-color-')) {
     var color = ts.ui.COLORS[icon.color];
     if (color) {
-      $att['class']// TODO: check this in the model... += // TODO: check this in the model...
-' ' + color;
+      $att['class'] += ' ' + color;
     } else {
       throw new Error('The color "' + '" does is not defined');
     }

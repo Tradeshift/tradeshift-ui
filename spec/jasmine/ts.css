@@ -4533,6 +4533,9 @@ body > .ts-panel {
   padding: 11px;
   margin-bottom: 22px;
 }
+.ts-note a {
+  color: #20a0e9;
+}
 .ts-note > i {
   position: absolute;
   left: 11px;
@@ -5810,6 +5813,7 @@ body > .ts-panel {
 }
 .ts-bg-yellow {
   background-color: #fdfed5;
+  color: #7f7348;
 }
 .ts-bg-red {
   background-color: #bf0000;
@@ -5860,11 +5864,6 @@ body > .ts-panel {
 .ts-bg-lite button,
 .ts-bg-white button {
   color: #20a0e9;
-}
-.ts-bg-yellow,
-.ts-bg-yellow a,
-.ts-bg-yellow button {
-  color: #7f7348;
 }
 .ts-color-black {
   color: #1e1e1e;

@@ -30,10 +30,17 @@ ts.ui.NoteModel = (function using() {
 		text: '',
 
 		/**
-		 * What to do when closing the Note.
-		 * @type {function|null}
+		 * Open for implementation: What to do when closing the Note.
+		 * @type {Function}
 		 */
 		onclose: null,
+
+		/**
+		 * TODO: Implement callback for links clicked in the Note!!!
+		 * Open for implementation: Callback for when a link is clicked.
+		 * @type {Function}
+		 */
+		onlink: null,
 
 		/**
 		 * button in the note.

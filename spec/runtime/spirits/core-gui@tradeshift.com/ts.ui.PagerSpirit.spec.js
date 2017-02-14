@@ -45,5 +45,4 @@ describe('ts.ui.PagerSpirit', function likethis() {
 			});
 		}, html);
 	});
-
 });

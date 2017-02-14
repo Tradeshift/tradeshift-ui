@@ -1,7 +1,7 @@
 var cssp = require('css-parse');
 
 /**
- * Supress CSS :hover states on mobile devices. The class 
+ * Supress CSS :hover states on mobile devices. The class
  * 'ts-device-mouse' gets added over on the clientside.
  */
 module.exports = {

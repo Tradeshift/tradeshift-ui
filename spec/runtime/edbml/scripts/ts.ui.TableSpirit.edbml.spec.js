@@ -1,5 +1,4 @@
 describe('ts.ui.TableSpirit.edbml', function likethis() {
-
 	function getDom(html) {
 		var dom = helper.createTestDom();
 		dom.innerHTML = html;
@@ -46,5 +45,4 @@ describe('ts.ui.TableSpirit.edbml', function likethis() {
 			});
 		});
 	});
-
 });

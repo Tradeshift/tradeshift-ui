@@ -211,7 +211,7 @@ function getoutput(code) {
  */
 function localization($) {
 	var html = $('html');
-	if(!html.attr('lang')) {
+	if (!html.attr('lang')) {
 		html.attr('lang', 'en-us');
 	}
 	return $;

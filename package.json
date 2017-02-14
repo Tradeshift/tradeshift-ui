@@ -16,7 +16,7 @@
   "license": "SEE LICENSE IN LICENSE.md",
   "homepage": "https://ui-dev.tradeshift.com/",
   "scripts": {
-    "lint": "./node_modules/.bin/eslint --fix src",
+    "lint": "./node_modules/.bin/eslint --fix --config ./.eslintrc.json .",
     "test": "npm run lint && ./node_modules/.bin/browserstack-runner",
     "http": "static spec/jasmine -H '{\"Cache-Control\": \"no-cache, must-revalidate\"}'"
   },

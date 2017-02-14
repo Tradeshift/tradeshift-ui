@@ -17,5 +17,4 @@ describe('ts.ui.NoteSpirit', function likethis() {
 			});
 		}, html);
 	});
-
 });

@@ -1,6 +1,5 @@
 describe('ts.ui.AsideSpirit', function likethis() {
 	var MARKUP = '<aside data-ts="Aside" data-ts.title="Test Aside"><div data-ts="Panel"></div></aside>';
-	var TRANSITION_DONE = (ts.ui.TRANSITION_FAST + 100);
 
 	it('should (eventually) channel via ts-attribute', function(done) {
 		var spirit, dom = helper.createTestDom();
@@ -24,7 +23,7 @@ describe('ts.ui.AsideSpirit', function likethis() {
 					spirit.dom.remove();
 					expect('this should not be evaluated').toBe(true);
 				} catch (exception) {
-					expect(exception).not.toBe(null);	
+					expect(exception).not.toBe(null);
 				}
 				done();
 			}, 1000);
@@ -69,7 +68,7 @@ describe('ts.ui.AsideSpirit', function likethis() {
 			}, TRANSITION_DONE);
 		});
 	});
-	
+
 	describe('a broadcast close to an aside in a drawer', function() {
 		beforeEach(function(done) {
 			var that = this;

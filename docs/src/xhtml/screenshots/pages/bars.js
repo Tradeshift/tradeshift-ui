@@ -1,12 +1,12 @@
 function initTopBar() {
 	ts.ui.TopBar.tabs().showNew();
 	ts.ui.TopBar.tabs([
-		{label: "Components"},
-		{label: "Icon Tab", icon: "ts-icon-todo"},
-		{label: "Counter Tab", counter: 8},
-		{label: "Closeable Tab", closeable: true}
+		{label: 'Components'},
+		{label: 'Icon Tab', icon: 'ts-icon-todo'},
+		{label: 'Counter Tab', counter: 8},
+		{label: 'Closeable Tab', closeable: true}
 	]).buttons([
-		{label : "Primary", type : "ts-primary"}
+		{label: 'Primary', type: 'ts-primary'}
 	]);
 };
 
@@ -14,17 +14,17 @@ function initTabBar() {
 	ts.ui.TabBar.tabs().showNew();
 	ts.ui.TabBar.tabs([
 		{label: 'Second Level'},
-		{label: 'Icon TabBar', icon: "ts-icon-todo"},
+		{label: 'Icon TabBar', icon: 'ts-icon-todo'},
 		{label: 'Counter TabBar', counter: 1}
 	]);
 };
 
 function initToolBar() {
 	ts.ui.ToolBar.search({}).title('Main ToolBar').buttons([
-		{label : "Primary", type : "ts-primary"},
-		{label : "Secondary", type : "ts-secondary"},
-		{label : "Tertiary One"},
-		{label : "Tertiary Two"}
+		{label: 'Primary', type: 'ts-primary'},
+		{label: 'Secondary', type: 'ts-secondary'},
+		{label: 'Tertiary One'},
+		{label: 'Tertiary Two'}
 	]);
 };
 
@@ -36,27 +36,25 @@ function initStatusBar() {
 };
 
 ts.ui.ready(function() {
-
 	// main bars
-  initTopBar();
-  initTabBar();
-  initToolBar();
-  initStatusBar();
+	initTopBar();
+	initTabBar();
+	initToolBar();
+	initStatusBar();
 
-  // inline bars
-  ['toolbar', 'tabbar', 'statusbar'].forEach(function(id) {
-  	ts.ui.get(id).buttons([
-  		{label : "Primary", type : "ts-primary"},
-			{label : "Secondary", type : "ts-secondary"},
-			{label : "Tertiary One"},
-			{label : "Tertiary Two"}
-  	]);
-  });
+	// inline bars
+	['toolbar', 'tabbar', 'statusbar'].forEach(function(id) {
+		ts.ui.get(id).buttons([
+			{label: 'Primary', type: 'ts-primary'},
+			{label: 'Secondary', type: 'ts-secondary'},
+			{label: 'Tertiary One'},
+			{label: 'Tertiary Two'}
+		]);
+	});
 
-  ts.ui.get('tabbar').tabs([
-  	{label: 'One'},
-  	{label: 'Two'},
+	ts.ui.get('tabbar').tabs([
+		{label: 'One'},
+		{label: 'Two'},
 		{label: 'Three'}
-  ]);
-
+	]);
 });

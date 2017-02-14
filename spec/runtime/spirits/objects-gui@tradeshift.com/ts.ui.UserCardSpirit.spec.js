@@ -17,7 +17,6 @@ describe('ts.ui.CompanyCardSpirit', function likethis() {
 			}
 		}).open();
 
-
 		sometime(function later() {
 			var aside = document.querySelector('.ts-aside');
 			expect(aside.innerHTML).toContain('Wired Earp');

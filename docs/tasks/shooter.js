@@ -40,7 +40,7 @@ module.exports = {
 							'browserstack.key': environment.key
 						}).build();
 
-				// set the window size because otherwise Edge 
+				// set the window size because otherwise Edge
 				// would collapse it into a singularity...
 				driver.manage().window().setSize(1366, 768);
 

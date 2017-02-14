@@ -1,5 +1,4 @@
 describe('ts.ui.ToolBarSpirit.edbml', function likethis() {
-	
 	function getspirit() {
 		var then = new gui.Then(), dom = helper.createTestDom();
 		dom.innerHTML = '<footer data-ts="ToolBar"></footer>';

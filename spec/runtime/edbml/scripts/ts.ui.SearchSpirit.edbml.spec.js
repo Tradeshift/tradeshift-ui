@@ -1,5 +1,4 @@
 describe('ts.ui.PagerSpirit.edbml', function likethis() {
-
 	function getDom(html) {
 		var dom = helper.createTestDom();
 		dom.innerHTML = html;

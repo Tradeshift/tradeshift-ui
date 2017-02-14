@@ -1,5 +1,4 @@
 describe('ts.ui.DialogSpirit', function likethis() {
-
 	function gethtml() {
 		var dialogs = document.querySelectorAll('.ts-dialog');
 		var first = dialogs[dialogs.length - 1];
@@ -66,5 +65,4 @@ describe('ts.ui.DialogSpirit', function likethis() {
 		});
 	});
 	*/
-
 });

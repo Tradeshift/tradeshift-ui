@@ -4,8 +4,8 @@
 	@class = icon.type;
 	if(icon.color && !@class.includes('ts-color-')) {
 		var color = ts.ui.COLORS[icon.color];
-		if(color) { // TODO: check this in the model...
-  		@class += ' ' + color;
+		if(color) {
+  		@class += (' ' + color);
 		} else {
 			throw new Error('The color "' + '" does is not defined');
 		}

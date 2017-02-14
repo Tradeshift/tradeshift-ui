@@ -30,6 +30,11 @@ ts.ui.NoteModel = (function using() {
 		text: '',
 
 		/**
+		 * When toggled `false`, the Note will be closed and disposed.
+		 */
+		open: true,
+
+		/**
 		 * Open for implementation: What to do when closing the Note.
 		 * @type {Function}
 		 */
@@ -41,6 +46,15 @@ ts.ui.NoteModel = (function using() {
 		 * @type {Function}
 		 */
 		onlink: null,
+
+		/**
+		 * Close the note.
+		 * @returns {ts.ui.NoteModel}
+		 */
+		close: function() {
+			this.open = false;
+			return this;
+		},
 
 		/**
 		 * button in the note.

@@ -90,9 +90,6 @@
 		if(cell.item) { // will render a button or switch or something
 			css.push('ts-has-extra');
 			css.push('ts-has-' + cell.item.toLowerCase());
-			if (col) {
-				css.push(col.type);
-			}
 		} else {
 			css.push(cell.type);
 			css.push(editable ? 'ts-editable' : '');

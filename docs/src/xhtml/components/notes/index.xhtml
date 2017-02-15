@@ -31,20 +31,33 @@
 							});
 						</script>
 					</figure>
-					<p>You can add buttons to the Note.</p>
+					<p>You can add buttons to the Note. If you save a reference to the Note, you can close it with any button.</p>
 					<figure data-ts="DoxScript">
-						<script>
-							ts.ui.Note({
+						<script type="runnable">
+							var note = ts.ui.Note({
 								buttons: [{
 									label: 'Button',
 									type: 'ts-primary',
 									onclick: function() {
-										ts.ui.Notification.success(this.label);
+										note.close();
 									}
 								}]
 							});
 						</script>
 					</figure>
+					<p>You can also add some links via Markdown. When a link is clicked, the URL will be passed along to the <code>onlink</code> method. As you can see below, the URL can be just a key, it doesn't have to be real URL.
+					<figure data-ts="DoxScript">
+						<script type="runnable">
+							ts.ui.Note({
+								text: 'Choose link (one)[ONE] or (two)[TWO] or (three)[THREE].',
+								onlink: function(url) {
+									ts.ui.Notification.success(url);
+									this.close();
+								}
+							});
+						</script>
+					</figure>
+					<p>If the link should indeed link to something, make sure to provide the full protocol <code>http(s)://</code>. Notes should not be used for internal navigation, at least not yet.</p>
 					<p>You can use an <em>inline</em> Note to give information about a certain section of the page. Only the page-level Note is closeable while inline Notes should stay on the page with the content.</p>
 					<figure data-ts="DoxMarkup">
 						<output/>

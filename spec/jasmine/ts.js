@@ -16568,7 +16568,7 @@ ts.ui = gui.namespace('ts.ui', (function using(Client, guiArray, confirmed, chai
 		 * The tradeshift-ui version goes here (via Gruntfile.js)
 		 * @type {string}
 		 */
-		version: '7.0.0-alpha.26',
+		version: '7.0.0-alpha.27',
 
 		/**
 		 * Nothing is "greenfield" now. If we should ever need it, we
@@ -51342,6 +51342,9 @@ edbml.declare("ts.ui.tablerows.edbml").as(function $edbml(table, rows, cols
     // will render a button or switch or something
       css.push('ts-has-extra');
       css.push('ts-has-' + cell.item.toLowerCase());
+      if (col) {
+        css.push(col.type);
+      }
     } else {
       css.push(cell.type);
       css.push(editable ? 'ts-editable' : '');

@@ -2704,7 +2704,6 @@ describe('ts.ui.PagerSpirit.edbml', function likethis() {
 });
 
 describe('ts.ui.PagerSpirit.edbml', function likethis() {
-
 	function getDom(html) {
 		var dom = helper.createTestDom();
 		dom.innerHTML = html;
@@ -2757,7 +2756,6 @@ describe('ts.ui.TableGutterSpirit.edbml', function likethis() {
 });
 
 describe('ts.ui.TableSpirit.edbml', function likethis() {
-
 	function getDom(html) {
 		var dom = helper.createTestDom();
 		dom.innerHTML = html;
@@ -2804,11 +2802,9 @@ describe('ts.ui.TableSpirit.edbml', function likethis() {
 			});
 		});
 	});
-
 });
 
 describe('ts.ui.ToolBarSpirit.edbml', function likethis() {
-	
 	function getspirit() {
 		var then = new gui.Then(), dom = helper.createTestDom();
 		dom.innerHTML = '<footer data-ts="ToolBar"></footer>';
@@ -3147,7 +3143,6 @@ describe('ts.ui.ToolBarSpirit', function likethis() {
 
 describe('ts.ui.AsideSpirit', function likethis() {
 	var MARKUP = '<aside data-ts="Aside" data-ts.title="Test Aside"><div data-ts="Panel"></div></aside>';
-	var TRANSITION_DONE = (ts.ui.TRANSITION_FAST + 100);
 
 	it('should (eventually) channel via ts-attribute', function(done) {
 		var spirit, dom = helper.createTestDom();
@@ -3171,7 +3166,7 @@ describe('ts.ui.AsideSpirit', function likethis() {
 					spirit.dom.remove();
 					expect('this should not be evaluated').toBe(true);
 				} catch (exception) {
-					expect(exception).not.toBe(null);	
+					expect(exception).not.toBe(null);
 				}
 				done();
 			}, 1000);
@@ -3216,7 +3211,7 @@ describe('ts.ui.AsideSpirit', function likethis() {
 			}, TRANSITION_DONE);
 		});
 	});
-	
+
 	describe('a broadcast close to an aside in a drawer', function() {
 		beforeEach(function(done) {
 			var that = this;
@@ -3347,7 +3342,6 @@ describe('ts.ui.CalendarSpirit', function() {
 });
 
 describe('ts.ui.DialogSpirit', function likethis() {
-
 	function gethtml() {
 		var dialogs = document.querySelectorAll('.ts-dialog');
 		var first = dialogs[dialogs.length - 1];
@@ -3414,7 +3408,6 @@ describe('ts.ui.DialogSpirit', function likethis() {
 		});
 	});
 	*/
-
 });
 
 describe('ts.ui.MainSpirit', function likethis() {
@@ -3526,7 +3519,6 @@ describe('ts.ui.NoteSpirit', function likethis() {
 			});
 		}, html);
 	});
-
 });
 
 describe('ts.ui.PagerSpirit', function likethis() {
@@ -3576,7 +3568,6 @@ describe('ts.ui.PagerSpirit', function likethis() {
 			});
 		}, html);
 	});
-
 });
 
 describe('ts.ui.SideBarSpirit', function likethis() {
@@ -4118,7 +4109,6 @@ describe('ts.ui.CompanyCardSpirit', function likethis() {
 				companyUrl: 'http://tradeshift.com/'
 			}
 		}).open();
-
 
 		sometime(function later() {
 			var aside = document.querySelector('.ts-aside');

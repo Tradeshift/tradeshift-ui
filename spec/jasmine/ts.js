@@ -35808,7 +35808,8 @@ ts.ui.IconSpirit = (function using() {
 			}
 			ajax.onload = function() {
 				if (ajax.responseText) {
-					spirit.element.innerHTML = ajax.responseText;
+					spirit.element.innerHTML = ajax.responseText + '\n\n';
+					console.log(icon + '\n' + ajax.responseText);
 					gui.Tick.nextFrame(function() {
 						spirit.$fixsize.apply(spirit);
 					});
@@ -35848,6 +35849,81 @@ ts.ui.IconSpirit = (function using() {
 			var svgElem = this.element.querySelector('svg');
 			svgElem.setAttribute('width', fontSize);
 			svgElem.setAttribute('height', fontSize);
+		}
+	});
+}());
+
+
+
+/**
+ * CURRENTLY USED ONLY IN THE DOCS WEBSITE.
+ */
+ts.ui.NextIconSpirit = (function() {
+	/**
+	 * Cache resolved icons.
+	 * @type {Map<string, Element>}
+	 */
+	var icons = {};
+
+	/**
+	 * Always append a cloned icon.
+	 * @param {SVGElement} icon
+	 * @returns {SVGElement}
+	 */
+	function clone(icon) {
+		return icon.cloneNode(true);
+	}
+
+	return ts.ui.Spirit.extend({
+
+		/**
+		 * Monitor the `src` attribute.
+		 */
+		onconfigure: function() {
+			ts.ui.Spirit.prototype.onconfigure.call(this);
+			this.att.add('src');
+		},
+
+		/**
+		 * Handle attribute changed.
+		 * @param {gui.Att} att
+		 */
+		onatt: function(att) {
+			ts.ui.Spirit.prototype.onatt.call(this, att);
+			if (att.name === 'src') {
+				var src = att.value.trim();
+				if (!att.value.startsWith('{')) {
+					this._geticon(src).then(function(icon) {
+						this.dom.empty().append(icon);
+					}, this);
+				}
+			}
+		},
+
+		/**
+		 * Get the icon.
+		 * TODO: Resolve icon from external URL
+		 * @param {string} src
+		 * @returns {gui.Then}
+		 */
+		_geticon: function(src) {
+			var icon = icons[src];
+			var then = new gui.Then();
+			if (!icon) {
+				if (src.startsWith('#')) {
+					if ((icon = document.querySelector(src))) {
+						icons[src] = icon;
+					} else {
+						throw new Error(src + ' not found');
+					}
+				} else {
+					console.error('TODO: Resolve icon from external URL');
+				}
+			}
+			if (icon) {
+				then.now(clone(icon));
+			}
+			return then;
 		}
 	});
 }());
@@ -41546,7 +41622,7 @@ ts.ui.CoreModule = gui.module('core-gui@tradeshift.com', {
 		['[data-ts=Pager]', ts.ui.PagerSpirit],
 		['[data-ts=Time]', ts.ui.TimeSpirit],
 		['[data-ts=Note]', ts.ui.NoteSpirit],
-		['[data-ts=Icon]', ts.ui.IconSpirit],
+		['[data-ts=Icon]', ts.ui.NextIconSpirit],
 		['[data-ts=Spinner]', ts.ui.SpinnerSpirit],
 		['[data-ts=Modal]', ts.ui.ModalSpirit],
 		['[data-ts=Spirit]', ts.ui.Spirit]
@@ -51282,6 +51358,9 @@ edbml.declare("ts.ui.tablerows.edbml").as(function $edbml(table, rows, cols
     // will render a button or switch or something
       css.push('ts-has-extra');
       css.push('ts-has-' + cell.item.toLowerCase());
+      if (col) {
+        css.push(col.type);
+      }
     } else {
       css.push(cell.type);
       css.push(editable ? 'ts-editable' : '');

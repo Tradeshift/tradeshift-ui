@@ -315,12 +315,14 @@ module.exports = function(grunt) {
 				process: function(content, srcpath) {
 					var tags = grunt.template.process('<%=' + tagset + '%>');
 					var menu = grunt.file.readJSON('menu.json');
+					var svgs = grunt.file.read('src/svg/icons.svg');
 					var json = JSON.stringify(menu, null, null);
 					tags = tags.replace(/,/g, '\n		');
 					return publisher.publish(
 						content
 							.replace('${includes}', tags)
 							.replace('${menujson}', json)
+							.replace('${svgicons}', svgs.replace(/\n\n*/g, '\n'))
 							.replace('${menuhtml}', seomenu(JSON.parse(json)))
 					);
 				}

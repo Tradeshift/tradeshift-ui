@@ -45,23 +45,44 @@
 </pre>
                         </div>
                     </figure>
-                    <p>You can add buttons to the Note.</p>
-                    <figure data-ts="DoxScript" data-ts.code="ts.ui.Note(%7B%0A%09buttons%3A%20%5B%7B%0A%09%09label%3A%20&apos;Button&apos;%2C%0A%09%09type%3A%20&apos;ts-primary&apos;%2C%0A%09%09onclick%3A%20function()%20%7B%0A%09%09%09ts.ui.Notification.success(this.label)%3B%0A%09%09%7D%0A%09%7D%5D%0A%7D)%3B">
-                        <input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
+                    <p>You can add buttons to the Note. If you save a reference to the Note, you can close it with any button.</p>
+                    <figure data-ts="DoxScript" class="runnable" data-ts.code="var%20note%20%3D%20ts.ui.Note(%7B%0A%09buttons%3A%20%5B%7B%0A%09%09label%3A%20&apos;Button&apos;%2C%0A%09%09type%3A%20&apos;ts-primary&apos;%2C%0A%09%09onclick%3A%20function()%20%7B%0A%09%09%09note.close()%3B%0A%09%09%7D%0A%09%7D%5D%0A%7D)%3B">
+                        <script type="runnable">
+                            var note = ts.ui.Note({ buttons: [{ label: 'Button', type: 'ts-primary', onclick: function() { note.close(); } }] });
+                        </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                         <div class="tabpanels">
                             <pre class="prism language-javascript">
-<code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token function">Note<span class="token punctuation">(</span></span><span class="token punctuation">{</span>
+<code><span class="token keyword">var</span> note <span class="token operator">=</span> ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token function">Note<span class="token punctuation">(</span></span><span class="token punctuation">{</span>
 	buttons<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token punctuation">{</span>
 		label<span class="token punctuation">:</span> <span class="token string">&apos;Button&apos;</span><span class="token punctuation">,</span>
 		type<span class="token punctuation">:</span> <span class="token string">&apos;ts-primary&apos;</span><span class="token punctuation">,</span>
 		onclick<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-			ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Notification<span class="token punctuation">.</span><span class="token function">success<span class="token punctuation">(</span></span><span class="token keyword">this</span><span class="token punctuation">.</span>label<span class="token punctuation">)</span><span class="token punctuation">;</span>
+			note<span class="token punctuation">.</span><span class="token function">close<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 		<span class="token punctuation">}</span>
 	<span class="token punctuation">}</span><span class="token punctuation">]</span>
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
 </pre>
                         </div>
                     </figure>
+                    <p>You can also add some links via Markdown. When a link is clicked, the URL will be passed along to the <code>onlink</code> method. As you can see below, the URL can be just a key, it doesn&apos;t have to be real URL.
+                        <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.Note(%7B%0A%09text%3A%20&apos;Choose%20link%20(one)%5BONE%5D%20or%20(two)%5BTWO%5D%20or%20(three)%5BTHREE%5D.&apos;%2C%0A%09onlink%3A%20function(url)%20%7B%0A%09%09ts.ui.Notification.success(url)%3B%0A%09%09this.close()%3B%0A%09%7D%0A%7D)%3B">
+                            <script type="runnable">
+                                ts.ui.Note({ text: 'Choose link (one)[ONE] or (two)[TWO] or (three)[THREE].', onlink: function(url) { ts.ui.Notification.success(url); this.close(); } });
+                            </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                            <div class="tabpanels">
+                                <pre class="prism language-javascript">
+<code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token function">Note<span class="token punctuation">(</span></span><span class="token punctuation">{</span>
+	text<span class="token punctuation">:</span> <span class="token string">&apos;Choose link (one)[ONE] or (two)[TWO] or (three)[THREE].&apos;</span><span class="token punctuation">,</span>
+	onlink<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span>url<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Notification<span class="token punctuation">.</span><span class="token function">success<span class="token punctuation">(</span></span>url<span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">close<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
+</pre>
+                            </div>
+                        </figure>
+                    </p>
+                    <p>If the link should indeed link to something, make sure to provide the full protocol <code>http(s)://</code>. Notes should not be used for internal navigation, at least not yet.</p>
                     <p>You can use an <em>inline</em> Note to give information about a certain section of the page. Only the page-level Note is closeable while inline Notes should stay on the page with the content.</p>
                     <figure data-ts="DoxMarkup" data-ts.code="%3Cdiv%20data-ts%3D%22Note%22%3E%0A%09%3Ci%20class%3D%22ts-icon-heart%22%3E%3C%2Fi%3E%0A%09%3Cp%3EYou%20love%20the%20Note!%3C%2Fp%3E%0A%3C%2Fdiv%3E">
                         <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Atrue%2C%22runs%22%3Afalse%2C%22flip%22%3Atrue%7D">

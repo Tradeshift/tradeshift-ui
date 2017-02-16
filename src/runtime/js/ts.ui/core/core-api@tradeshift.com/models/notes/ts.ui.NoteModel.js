@@ -30,10 +30,31 @@ ts.ui.NoteModel = (function using() {
 		text: '',
 
 		/**
-		 * What to do when closing the Note.
-		 * @type {function|null}
+		 * When toggled `false`, the Note will be closed and disposed.
+		 */
+		open: true,
+
+		/**
+		 * Open for implementation: What to do when closing the Note.
+		 * @type {Function}
 		 */
 		onclose: null,
+
+		/**
+		 * TODO: Implement callback for links clicked in the Note!!!
+		 * Open for implementation: Callback for when a link is clicked.
+		 * @type {Function}
+		 */
+		onlink: null,
+
+		/**
+		 * Close the note.
+		 * @returns {ts.ui.NoteModel}
+		 */
+		close: function() {
+			this.open = false;
+			return this;
+		},
 
 		/**
 		 * button in the note.

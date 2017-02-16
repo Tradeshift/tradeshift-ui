@@ -3,31 +3,28 @@
 	border-radius: 3px;
 	padding: @ts-unit-half;
 	margin-bottom: @ts-unit;
-	
+	a {
+		color: @ts-blue;
+	}
 	> i {
 		position: absolute;
 		left: @ts-unit-half;
 		top: @ts-unit;
 	}
-
 	> *:last-child {
 		margin-bottom: 0;
 	}
-	
 	> i ~ p {
 		padding-left: @ts-unit-plus;
 	}
-
 	> p {
 		margin-bottom: 0;
 	}
-	
 	.ts-note-buttons {
 		position: absolute;
 		right: 0;
 		top: @ts-unit-half - 1;;
 	}
-
 	.ts-note-close {
 		position: absolute;
 		right: 0;
@@ -35,19 +32,15 @@
 		width: @ts-unit-double;
 		height: @ts-unit-double;
 	}
-
 	&.ts-has-close p {
 		padding-right: @ts-unit-plus;
 	}
-	
 	&.ts-closing {
 		.ts-mixin-transition('opacity');
 	}
-	
 	&.ts-closed {
 		opacity: 0;
 	}
-	
 	&:after {
 		content: '';
 		display: block;

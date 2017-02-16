@@ -21377,10 +21377,31 @@ ts.ui.NoteModel = (function using() {
 		text: '',
 
 		/**
-		 * What to do when closing the Note.
-		 * @type {function|null}
+		 * When toggled `false`, the Note will be closed and disposed.
+		 */
+		open: true,
+
+		/**
+		 * Open for implementation: What to do when closing the Note.
+		 * @type {Function}
 		 */
 		onclose: null,
+
+		/**
+		 * TODO: Implement callback for links clicked in the Note!!!
+		 * Open for implementation: Callback for when a link is clicked.
+		 * @type {Function}
+		 */
+		onlink: null,
+
+		/**
+		 * Close the note.
+		 * @returns {ts.ui.NoteModel}
+		 */
+		close: function() {
+			this.open = false;
+			return this;
+		},
 
 		/**
 		 * button in the note.
@@ -40995,11 +41016,12 @@ ts.ui.SpinnerSpirit = (function using() {
  * Spirit of the dialog.
  * @extends {ts.ui.Spirit}
  * @using {ts.ui.Note} Note
+ * @using {gui.Type} Type
  * @using {gui.Client} Client
  * @using {gui.Combo#chained} chained
  * @using {gui.Arguments#confirmed} confirmed
  */
-ts.ui.NoteSpirit = (function using(Note, Client, chained, confirmed) {
+ts.ui.NoteSpirit = (function using(Note, Type, Client, chained, confirmed) {
 	var CLASS_CLOSING = ts.ui.CLASS_CLOSING;
 	var CLASS_CLOSED = ts.ui.CLASS_CLOSED;
 	var CLASS_HAS_CLOSE = 'ts-has-close';
@@ -41025,9 +41047,11 @@ ts.ui.NoteSpirit = (function using(Note, Client, chained, confirmed) {
 		 */
 		onconfigure: function() {
 			ts.ui.Spirit.prototype.onconfigure.call(this);
-			if (this._model) {
+			if (this._ismodelled()) {
+				this.action.add(ts.ui.ACTION_SAFE_LINK);
 				this.script.load(ts.ui.NoteSpirit.edbml);
 				this.script.input(this._model);
+				this._model.addObserver(this);
 			}
 		},
 
@@ -41071,6 +41095,37 @@ ts.ui.NoteSpirit = (function using(Note, Client, chained, confirmed) {
 			}
 		},
 
+		/**
+		 * Handle action.
+		 * @param {gui.Action} a
+		 */
+		onaction: function(a) {
+			ts.ui.Spirit.prototype.onaction.call(this, a);
+			if (a.type === ts.ui.ACTION_SAFE_LINK && this._ismodelled()) {
+				if (Type.isFunction(this._model.onlink)) {
+					this._model.onlink.call(this._model, a.data);
+				}
+				a.consume();
+			}
+		},
+
+		/**
+		 * Handle (model) changes.
+		 * @param {Array<edb.Change>} changes
+		 */
+		onchange: function(changes) {
+			ts.ui.Spirit.prototype.onchange.call(this, changes);
+			changes.forEach(function(c) {
+				if (c.object === this._model && c.name === 'open' && !c.newValue) {
+					this.close();
+				}
+			}, this);
+		},
+
+		/**
+		 * Make it closeable.
+		 * @param {boolean} closeable
+		 */
 		closeable: function(closeable) {
 			if (closeable) {
 				var button = this.dom.prepend(ts.ui.ButtonSpirit.summon(document, {icon: CLASS_CLOSE_ICON}));
@@ -41081,6 +41136,14 @@ ts.ui.NoteSpirit = (function using(Note, Client, chained, confirmed) {
 		},
 
 		/**
+		 * Support alternative spelling (since none is more correct).
+		 * @alias {ts.ui.NoteSpirit#closable}
+		 */
+		closable: function() {
+			return this.closeable.apply(arguments);
+		},
+
+		/**
 		 * Set icon.
 		 * icon-class: gui.CSSPlugin.add(i, classname);
 		 * @param {String} classname
@@ -41088,7 +41151,6 @@ ts.ui.NoteSpirit = (function using(Note, Client, chained, confirmed) {
 		icon: chained(function(classname) {
 			var i = this.dom.q('i') || this.dom.prepend(document.createElement('i'));
 			i.className = classname;
-
 			this._adjustVisible();
 		}),
 
@@ -41099,27 +41161,25 @@ ts.ui.NoteSpirit = (function using(Note, Client, chained, confirmed) {
 		text: chained(function(text) {
 			var p = this.dom.q('p') || this.dom.append(document.createElement('p'));
 			p.textContent = text;
-
 			this._adjustVisible();
 		}),
 
 		/**
 		 * Close Note.
+		 * @returns {ts.ui.NoteSpirit}
 		 */
 		close: chained(function() {
 			this.$close().then(function() {
 				if (gui.Type.isFunction(this._model.onclose)) {
 					this._model.onclose();
 				}
-
 				this._adjustPage(true);
-
+				this._model.removeObserver(this);
 				this._model.dispose();
 				if (this._model === ts.ui.Note._model) {
 					ts.ui.Note._model = null;
 				}
 				this._model = null;
-
 				this.dom.remove();
 			}, this);
 		}),
@@ -41150,12 +41210,11 @@ ts.ui.NoteSpirit = (function using(Note, Client, chained, confirmed) {
 		 * @private
 		 */
 		_adjustVisible: function() {
-			if (this._model && this._model.onclose) {
+			if (this._ismodelled() && this._model.onclose) {
 				this.css.add(CLASS_HAS_CLOSE);
 			} else {
 				this.css.remove(CLASS_HAS_CLOSE);
 			}
-
 			if (
 				(!!this.dom.q('p') && !!this.dom.q('p').textContent) ||
 				(!!this.dom.q('i') && !!this.dom.q('i').className) ||
@@ -41177,13 +41236,14 @@ ts.ui.NoteSpirit = (function using(Note, Client, chained, confirmed) {
 		},
 
 		/**
-		 * adjust the <p> padding right when the note has buttons
+		 * adjust the <p> padding right when the note has buttons.
 		 * @private
 		 */
 		_adjustContentPadding: function() {
 			var buttons = this.dom.q('.ts-note-buttons');
-			if (buttons) {
-				this.dom.q('p').style.paddingRight = buttons.offsetWidth + 'px';
+			var para = this.dom.q('p');
+			if (buttons && para) {
+				para.style.paddingRight = buttons.offsetWidth + 'px';
 			}
 		},
 
@@ -41193,7 +41253,7 @@ ts.ui.NoteSpirit = (function using(Note, Client, chained, confirmed) {
 		 * @private
 		 */
 		_adjustPage: function(isRemove) {
-			if (this._model && this._model.$isTopNote) {
+			if (this._ismodelled() && this._model.$isTopNote) {
 				var height = isRemove ? 0 : this.box.height;
 				var mainContentElement = document.querySelector('.ts-maincontent');
 				mainContentElement.spirit.css.marginTop = height;
@@ -41234,6 +41294,7 @@ ts.ui.NoteSpirit = (function using(Note, Client, chained, confirmed) {
 	});
 }(
 	ts.ui.Note,
+	gui.Type,
 	gui.Client,
 	gui.Combo.chained,
 	gui.Arguments.confirmed
@@ -50382,8 +50443,7 @@ edbml.declare("ts.ui.icononly.edbml").as(function $edbml(icon
   if (icon.color && !$att['class'].includes('ts-color-')) {
     var color = ts.ui.COLORS[icon.color];
     if (color) {
-      $att['class']// TODO: check this in the model... += // TODO: check this in the model...
-' ' + color;
+      $att['class'] += ' ' + color;
     } else {
       throw new Error('The color "' + '" does is not defined');
     }

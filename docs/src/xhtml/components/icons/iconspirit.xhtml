@@ -16,15 +16,51 @@
 				<section>
 					<menu data-ts="Menu">
 						<li>
-						<button>
-							<i data-ts="Icon" src="#inline-icon"></i>
-							<span>This icon is embedded inline</span>
-						</button>
+							<button>
+								<i class="ts-icon-todo"></i>
+								<span>This is a good old CSS icon. We must always remember that the icon remains centered in the list item as the text wraps to multiple lin</span>
+							</button>
 						</li>
 						<li>
 							<button>
-								<i class="ts-icon-todo"></i>
-								<span>This is a good old CSS icon</span>
+								<i data-ts="Icon" src="#inline-icon"></i>
+								<span>This icon is embedded via inline SVG. As you can see, the icon still remains centered vertically when the text wraps to multiple line</span>
+							</button>
+						</li>
+						<li>
+							<button>
+								<i data-ts="Icon" src="myicons-1.svg#icon-1"></i>
+								<span>This icon is loaded from external bundle 1</span>
+							</button>
+						</li>
+						<li>
+							<button>
+								<i data-ts="Icon" src="myicons-1.svg#icon-2"></i>
+								<span>This icon is loaded from external bundle 1</span>
+							</button>
+						</li>
+						<li>
+							<button>
+								<i data-ts="Icon" src="myicons-1.svg#icon-3"></i>
+								<span>This icon is loaded from external bundle 1</span>
+							</button>
+						</li>
+						<li>
+							<button>
+								<i data-ts="Icon" src="myicons-2.svg#icon-1"></i>
+								<span>This icon is loaded from external bundle 2</span>
+							</button>
+						</li>
+						<li>
+							<button>
+								<i data-ts="Icon" src="myicons-2.svg#icon-2"></i>
+								<span>This icon is loaded from external bundle 2</span>
+							</button>
+						</li>
+						<li>
+							<button>
+								<i data-ts="Icon" src="myicons-2.svg#icon-3"></i>
+								<span>This icon is loaded from external bundle 2</span>
 							</button>
 						</li>
 					</menu>

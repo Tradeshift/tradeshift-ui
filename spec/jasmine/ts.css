@@ -500,6 +500,9 @@ i svg text,
 i svg use {
   fill: currentColor;
 }
+i.ts-icon svg {
+  margin-top: -50%;
+}
 .ts-icon-logo-trade:before {
   content: "K";
 }

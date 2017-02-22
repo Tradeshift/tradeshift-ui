@@ -106,6 +106,8 @@ ts.ui.NextIconSpirit = (function(URL, Request, Client, Parser) {
 				var icon = exist.querySelector(hash);
 				if (icon) {
 					then.now(clone(icon));
+				} else {
+					console.log(hash + ' not found');
 				}
 			} else {
 				console.error('Icon #id missing');

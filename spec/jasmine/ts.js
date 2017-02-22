@@ -16569,7 +16569,7 @@ ts.ui = gui.namespace('ts.ui', (function using(Client, guiArray, confirmed, chai
 		 * The tradeshift-ui version goes here (via Gruntfile.js)
 		 * @type {string}
 		 */
-		version: '7.0.0-alpha.28',
+		version: '7.0.0-alpha.29',
 
 		/**
 		 * Nothing is "greenfield" now. If we should ever need it, we
@@ -35902,15 +35902,6 @@ ts.ui.NextIconSpirit = (function(URL, Request, Client, Parser) {
 	 */
 	var queues = {};
 
-	/**
-	 * Always append a cloned icon.
-	 * @param {SVGElement} icon
-	 * @returns {SVGElement}
-	 */
-	function clone(icon) {
-		return icon.cloneNode(true);
-	}
-
 	return ts.ui.Spirit.extend({
 
 		/**
@@ -35931,7 +35922,7 @@ ts.ui.NextIconSpirit = (function(URL, Request, Client, Parser) {
 				var src = att.value.trim();
 				if (!att.value.startsWith('{')) {
 					this._geticon(src).then(function(icon) {
-						this.dom.empty().append(icon);
+						this.dom.empty().append(icon.cloneNode(true));
 					}, this);
 				}
 			}
@@ -35965,7 +35956,7 @@ ts.ui.NextIconSpirit = (function(URL, Request, Client, Parser) {
 				}
 			}
 			if (icon) {
-				then.now(clone(icon));
+				then.now(icon);
 			}
 			return then;
 		},
@@ -35984,7 +35975,9 @@ ts.ui.NextIconSpirit = (function(URL, Request, Client, Parser) {
 			} else if (hash.length > 1) {
 				var icon = exist.querySelector(hash);
 				if (icon) {
-					then.now(clone(icon));
+					then.now(icon);
+				} else {
+					console.log(hash + ' not found');
 				}
 			} else {
 				console.error('Icon #id missing');
@@ -35992,8 +35985,10 @@ ts.ui.NextIconSpirit = (function(URL, Request, Client, Parser) {
 		},
 
 		/**
+		 * Load SVG from external location (on own domain).
 		 * @param {string} path
-		 * @param {}
+		 * @param {boolean} loads
+		 * @param {Function} callback
 		 */
 		_loadexternal: function(path, loads, callback) {
 			var queue = queues[path] || (queues[path] = []);

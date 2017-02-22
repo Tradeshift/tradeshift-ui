@@ -56,7 +56,8 @@ ts.ui.IconSpirit = (function using() {
 			}
 			ajax.onload = function() {
 				if (ajax.responseText) {
-					spirit.element.innerHTML = ajax.responseText;
+					spirit.element.innerHTML = ajax.responseText + '\n\n';
+					console.log(icon + '\n' + ajax.responseText);
 					gui.Tick.nextFrame(function() {
 						spirit.$fixsize.apply(spirit);
 					});

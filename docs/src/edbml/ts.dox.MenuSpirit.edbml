@@ -44,7 +44,7 @@
 		@id = 'link-' + item.$instanceid;
 		@class = item.selected ? 'ts-checked' : null;
 		<a @id @class @href tabindex="-1">
-			<i data-ts="Icon" class="${item.icon}"></i>
+			<i data-ts="Icon" src="#${item.icon}"></i>
 			<span>${item.label}</span>
 		</a>
 	}

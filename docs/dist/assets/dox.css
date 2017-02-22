@@ -681,6 +681,9 @@ table.api th {
   letter-spacing: 0.02em;
   font-weight: 400;
 }
+.ts-doxchrome .ts-menu i svg {
+  margin-top: 0;
+}
 .ts-doxchrome .ts-menu > li > a,
 .ts-doxchrome .ts-menu > li:last-child > a {
   padding: 22px 11px 22px 33px;

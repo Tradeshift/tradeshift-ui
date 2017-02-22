@@ -4,6 +4,7 @@
  * @param @optional {Document} doc Resolve URL relative to given document location.
  */
 gui.Request = function Request(url, doc) {
+	doc = doc || document;
 	this._headers = {
 		Accept: 'application/json'
 	};

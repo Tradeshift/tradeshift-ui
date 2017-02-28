@@ -43413,6 +43413,17 @@ ts.ui.LabelSpirit = (function using(Client, FieldSpirit, chained, tick, time, co
 		},
 
 		/**
+		 * Angular might sometimes insert the `SPAN` sometimes after `onattach`
+		 * because it likes to do that kind of stuff, so we'll reconfirm the
+		 * missing label after approximately four milliseconds. If this doesn't
+		 * work, we can always move this code to method `_refrehsstyling` :(
+		 */
+		onasync: function() {
+			ts.ui.FormSupportSpirit.prototype.onasync.call(this);
+			this.css.shift(!this.dom.q('span'), 'ts-nolabel');
+		},
+
+		/**
 		 * If the control class has not been applied, we'll ask all fields to
 		 * refresh the styling. Fixes a (rare) glitch in Angular integration.
 		 * @param {gui.Tick} t

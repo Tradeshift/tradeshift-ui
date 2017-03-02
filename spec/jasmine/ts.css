@@ -2461,6 +2461,7 @@ i.ts-icon svg {
   font-weight: 600;
   font-size: 12px;
   white-space: nowrap;
+  word-wrap: normal;
   overflow: hidden;
   text-overflow: ellipsis;
 }
@@ -2501,6 +2502,7 @@ i.ts-icon svg {
   font-weight: 600;
   font-size: 12px;
   white-space: nowrap;
+  word-wrap: normal;
   overflow: hidden;
   text-overflow: ellipsis;
 }
@@ -2525,6 +2527,7 @@ i.ts-icon svg {
   padding-bottom: 4.5px;
   padding-left: 11px;
   background-color: #ffffff;
+  height: 33px;
 }
 .ts-form .ts-field.ts-textarea {
   max-height: 220px;
@@ -3031,6 +3034,10 @@ i.ts-icon svg {
 .ts-form label.ts-readonly > textarea[readonly],
 .ts-form label.ts-disabled > textarea[readonly] {
   padding-right: 33px;
+}
+.ts-form label.ts-readonly > textarea,
+.ts-form label.ts-disabled > textarea {
+  overflow: hidden;
 }
 .ts-form label.ts-readonly:not(.ts-option):after,
 .ts-form label.ts-disabled:not(.ts-option):after {

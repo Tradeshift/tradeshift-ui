@@ -208,6 +208,7 @@ ts.ui = gui.namespace('ts.ui', (function using(Client, guiArray, confirmed, chai
 		CLASS_READONLY: 'ts-readonly',
 		CLASS_REQUIRED: 'ts-required',
 		CLASS_NOLOCK: 'ts-nolock',
+		CLASS_HASLABEL: 'ts-haslabel',
 
 		// background colors
 		CLASS_BG_LITE: 'ts-bg-lite',

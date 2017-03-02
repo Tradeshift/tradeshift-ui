@@ -32,7 +32,7 @@ ts.ui.TopBarSpirit = (function(TopBar, Client, chained, confirmed) {
 		 * TODO: this should really be automated!
 		 */
 		ondestruct: function() {
-			this.super.onconfigure();
+			this.super.ondestruct();
 			this.model().removeObserver(this);
 		},
 

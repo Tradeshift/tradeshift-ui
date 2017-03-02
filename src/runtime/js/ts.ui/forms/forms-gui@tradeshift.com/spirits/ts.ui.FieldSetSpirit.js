@@ -47,7 +47,6 @@ ts.ui.FieldSetSpirit = (function() {
 		 */
 		$options: function(type) {
 			this.css.add(ts.ui.CLASS_OPTIONS).add('ts-' + type);
-			this.css.shift(!this.dom.q('span + label'), 'ts-nolabel');
 		},
 
 		/**
@@ -55,6 +54,14 @@ ts.ui.FieldSetSpirit = (function() {
 		 */
 		$disabled: function(disabled) {
 			this.css.shift(disabled, 'ts-disabled');
+		},
+
+		/**
+		 * Layout as labeled fieldset (versus unlabeled fieldset).
+		 * @param {boolean} has
+		 */
+		$haslabel: function(has) {
+			this.css.shift(has, ts.ui.CLASS_HASLABEL);
 		},
 
 		// Private .................................................................

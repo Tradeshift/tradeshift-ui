@@ -16569,7 +16569,7 @@ ts.ui = gui.namespace('ts.ui', (function using(Client, guiArray, confirmed, chai
 		 * The tradeshift-ui version goes here (via Gruntfile.js)
 		 * @type {string}
 		 */
-		version: '7.0.0-alpha.29',
+		version: '7.0.0-alpha.31',
 
 		/**
 		 * Nothing is "greenfield" now. If we should ever need it, we
@@ -16750,6 +16750,7 @@ ts.ui = gui.namespace('ts.ui', (function using(Client, guiArray, confirmed, chai
 		CLASS_READONLY: 'ts-readonly',
 		CLASS_REQUIRED: 'ts-required',
 		CLASS_NOLOCK: 'ts-nolock',
+		CLASS_HASLABEL: 'ts-haslabel',
 
 		// background colors
 		CLASS_BG_LITE: 'ts-bg-lite',
@@ -43372,6 +43373,7 @@ ts.ui.LabelSpirit = (function using(Client, FieldSpirit, chained, tick, time, co
 		class_textlabel = ts.ui.CLASS_TEXTLABEL,
 		class_datelabel = ts.ui.CLASS_DATELABEL,
 		class_fakelabel = ts.ui.CLASS_FAKELABEL,
+		class_haslabel = ts.ui.CLASS_HASLABEL,
 		class_disabled = ts.ui.CLASS_DISABLED,
 		class_readonly = ts.ui.CLASS_READONLY,
 		class_required = ts.ui.CLASS_REQUIRED,
@@ -43408,19 +43410,7 @@ ts.ui.LabelSpirit = (function using(Client, FieldSpirit, chained, tick, time, co
 			this.event.add('mousedown');
 			this.event.add('focus blur', this, this, true);
 			this.tick.add(tick).start(tick, time);
-			this.css.shift(!this.dom.q('span'), 'ts-nolabel');
 			this.css.add('ts-engine-' + Client.agent);
-		},
-
-		/**
-		 * Angular might sometimes insert the `SPAN` sometimes after `onattach`
-		 * because it likes to do that kind of stuff, so we'll reconfirm the
-		 * missing label after approximately four milliseconds. If this doesn't
-		 * work, we can always move this code to method `_refrehsstyling` :(
-		 */
-		onasync: function() {
-			ts.ui.FormSupportSpirit.prototype.onasync.call(this);
-			this.css.shift(!this.dom.q('span'), 'ts-nolabel');
 		},
 
 		/**
@@ -43530,6 +43520,13 @@ ts.ui.LabelSpirit = (function using(Client, FieldSpirit, chained, tick, time, co
 		}),
 
 		/**
+		 * Layout as labeled field (versus unlabeled field).
+		 */
+		$haslabel: chained(function(has) {
+			this.css.shift(has, class_haslabel);
+		}),
+
+		/**
 		 * Layout as date input label.
 		 */
 		$datelabel: chained(function() {
@@ -43626,6 +43623,51 @@ ts.ui.LabelSpirit = (function using(Client, FieldSpirit, chained, tick, time, co
 
 
 /**
+ * Spirit of the `SPAN` that contains the label text. If this label text is
+ * enclosed in a conditional, Angular might insert this `SPAN` at a random
+ * point in time, so the applied CSS classname is best managed by this spirit.
+ * (it would be even better to deprecate the need for a special classname,
+ * but that fixes some cross-browser problems with `text-overflow: ellipsis`).
+ * @extends {ts.ui.Spirit}
+ */
+ts.ui.LabelTextSpirit = (function() {
+	/**
+	 * Attempt to apply the classname to the containing label and if not found,
+	 * attempt to apply the class the containing fieldset (for option groups).
+	 * @param {ts.ui.Spirit} spirit
+	 * @param {boolean} on
+	 */
+	function classname(spirit, on) {
+		var label, fieldset;
+		if ((label = spirit.dom.parent(ts.ui.LabelSpirit))) {
+			label.$haslabel(on);
+		} else if ((fieldset = spirit.dom.parent(ts.ui.FieldSetSpirit))) {
+			fieldset.$haslabel(on);
+		}
+	}
+
+	return ts.ui.Spirit.extend({
+		/**
+		 * Attach the special classname.
+		 */
+		onattach: function() {
+			ts.ui.Spirit.prototype.onattach.call(this);
+			classname(this, true);
+		},
+
+		/**
+		 * Detach the special classname.
+		 */
+		ondetach: function() {
+			ts.ui.Spirit.prototype.ondetach.call(this);
+			classname(this, false);
+		}
+	});
+}());
+
+
+
+/**
  * Spirit of fieldset.
  * @extends {ts.ui.FormSupportSpirit}
  */
@@ -43674,7 +43716,6 @@ ts.ui.FieldSetSpirit = (function() {
 		 */
 		$options: function(type) {
 			this.css.add(ts.ui.CLASS_OPTIONS).add('ts-' + type);
-			this.css.shift(!this.dom.q('span + label'), 'ts-nolabel');
 		},
 
 		/**
@@ -43682,6 +43723,14 @@ ts.ui.FieldSetSpirit = (function() {
 		 */
 		$disabled: function(disabled) {
 			this.css.shift(disabled, 'ts-disabled');
+		},
+
+		/**
+		 * Layout as labeled fieldset (versus unlabeled fieldset).
+		 * @param {boolean} has
+		 */
+		$haslabel: function(has) {
+			this.css.shift(has, ts.ui.CLASS_HASLABEL);
 		},
 
 		// Private .................................................................
@@ -45098,6 +45147,7 @@ ts.ui.FormsModule = gui.module('forms-gui@tradeshift.com', {
 			gui.channel([
 				['.ts-form fieldset', ts.ui.FieldSetSpirit],
 				['.ts-form label', ts.ui.LabelSpirit],
+				['.ts-form span', ts.ui.LabelTextSpirit],
 				['.ts-form input[type=date]', ts.ui.DateInputSpirit],
 				['.ts-form span + input[type=checkbox]', ts.ui.SwitchSpirit],
 				['.ts-form input[type=checkbox], .ts-form input[type=radio]', ts.ui.OptionSpirit],
@@ -46557,7 +46607,7 @@ ts.ui.TopBarSpirit = (function(TopBar, Client, chained, confirmed) {
 		 * TODO: this should really be automated!
 		 */
 		ondestruct: function() {
-			ts.ui.ToolBarSpirit.prototype.onconfigure.call(this);
+			ts.ui.ToolBarSpirit.prototype.ondestruct.call(this);
 			this.model().removeObserver(this);
 		},
 

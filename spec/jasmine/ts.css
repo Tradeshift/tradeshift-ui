@@ -2425,27 +2425,27 @@ i.ts-icon svg {
 .ts-form .ts-fieldset > label {
   position: relative;
   padding: 11px;
-  padding-top: 33px;
+  padding-top: 11px;
   border-radius: 3px;
 }
-.ts-form.ts-fieldset > label.ts-nolabel,
-.ts-form.ts-label > label.ts-nolabel,
-.ts-form .ts-fieldset > label.ts-nolabel {
-  padding-top: 11px;
+.ts-form.ts-fieldset > label.ts-haslabel,
+.ts-form.ts-label > label.ts-haslabel,
+.ts-form .ts-fieldset > label.ts-haslabel {
+  padding-top: 33px;
 }
 .ts-form.ts-fieldset.ts-options,
 .ts-form.ts-label.ts-options,
 .ts-form .ts-fieldset.ts-options {
   padding-left: 11px;
   padding-right: 11px;
-  padding-top: 44px;
+  padding-top: 11px;
   padding-bottom: 11px;
   margin-top: 11px;
 }
-.ts-form.ts-fieldset.ts-options.ts-nolabel,
-.ts-form.ts-label.ts-options.ts-nolabel,
-.ts-form .ts-fieldset.ts-options.ts-nolabel {
-  padding-top: 11px;
+.ts-form.ts-fieldset.ts-options.ts-haslabel,
+.ts-form.ts-label.ts-options.ts-haslabel,
+.ts-form .ts-fieldset.ts-options.ts-haslabel {
+  padding-top: 44px;
 }
 .ts-form.ts-fieldset.ts-options > span:first-child,
 .ts-form.ts-label.ts-options > span:first-child,
@@ -2461,6 +2461,7 @@ i.ts-icon svg {
   font-weight: 600;
   font-size: 12px;
   white-space: nowrap;
+  word-wrap: normal;
   overflow: hidden;
   text-overflow: ellipsis;
 }
@@ -2501,6 +2502,7 @@ i.ts-icon svg {
   font-weight: 600;
   font-size: 12px;
   white-space: nowrap;
+  word-wrap: normal;
   overflow: hidden;
   text-overflow: ellipsis;
 }
@@ -2525,6 +2527,7 @@ i.ts-icon svg {
   padding-bottom: 4.5px;
   padding-left: 11px;
   background-color: #ffffff;
+  height: 33px;
 }
 .ts-form .ts-field.ts-textarea {
   max-height: 220px;
@@ -3031,6 +3034,10 @@ i.ts-icon svg {
 .ts-form label.ts-readonly > textarea[readonly],
 .ts-form label.ts-disabled > textarea[readonly] {
   padding-right: 33px;
+}
+.ts-form label.ts-readonly > textarea,
+.ts-form label.ts-disabled > textarea {
+  overflow: hidden;
 }
 .ts-form label.ts-readonly:not(.ts-option):after,
 .ts-form label.ts-disabled:not(.ts-option):after {

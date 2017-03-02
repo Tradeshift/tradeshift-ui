@@ -49,6 +49,7 @@ ts.ui.FormsModule = gui.module('forms-gui@tradeshift.com', {
 			gui.channel([
 				['.ts-form fieldset', ts.ui.FieldSetSpirit],
 				['.ts-form label', ts.ui.LabelSpirit],
+				['.ts-form span', ts.ui.LabelTextSpirit],
 				['.ts-form input[type=date]', ts.ui.DateInputSpirit],
 				['.ts-form span + input[type=checkbox]', ts.ui.SwitchSpirit],
 				['.ts-form input[type=checkbox], .ts-form input[type=radio]', ts.ui.OptionSpirit],

@@ -46,20 +46,20 @@
 		> label {
 			position: relative;
 			padding: @ts-unit-half;
-			padding-top: @ts-unit-plus;
+			padding-top: @ts-unit-half;
 			border-radius: @ts-radius;
-			&.ts-nolabel {
-				padding-top: @ts-unit-half;
+			&.ts-haslabel {
+				padding-top: @ts-unit-plus;
 			}
 		}
 		&.ts-options {
 			padding-left: @ts-unit-half;
 			padding-right: @ts-unit-half;
-			padding-top: @ts-unit-double;
+			padding-top: @ts-unit-half;
 			padding-bottom: @ts-unit-half;
 			margin-top: @ts-unit-half;
-			&.ts-nolabel {
-				padding-top: @ts-unit-half;
+			&.ts-haslabel {
+				padding-top: @ts-unit-double;
 			}	
 			> span:first-child {
 				.local-mixin-field-header();

@@ -10,6 +10,7 @@
 	"spirits/ts.ui.OptionSpirit.js",
 	"spirits/ts.ui.SwitchSpirit.js",
 	"spirits/ts.ui.LabelSpirit.js",
+	"spirits/ts.ui.LabelTextSpirit.js",
 	"spirits/ts.ui.FieldSetSpirit.js",
 	"spirits/ts.ui.SelectSpirit.js",
 	"spirits/ts.ui.FakeSelectInputSpirit.js",

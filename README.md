@@ -83,4 +83,10 @@ If you would like to contribute to our codebase, just fork the repo and make a P
 
 ## License
 
-Despite this repository being public and freely accessible to anyone, we reserve all rights, as stated in the [LICENSE.md](https://github.com/Tradeshift/tradeshift-ui/blob/master/LICENSE.md)
+* You can always create forks on GitHub, submit Issues and Pull Requests.
+* You can only use Tradeshift-UI to make apps on a Tradeshift platform, e.g. tradeshift.com.
+* You can fix a bug until the bugfix is deployed by Tradeshift.
+* You can host Tradeshift UI yourself.
+* If you want to make a bigger change or just want to talk with us, reach out to our team here on GitHub.
+
+You can read the actual license agreement in the [LICENSE.md](https://github.com/Tradeshift/tradeshift-ui/blob/master/LICENSE.md).

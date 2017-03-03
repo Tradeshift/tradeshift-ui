@@ -485,7 +485,6 @@
 	}
 }
 
-
 // Switches ....................................................................
 
 .ts-form {
@@ -718,6 +717,26 @@
 	}
 }
 
+// Customizing it ..............................................................
+
+.ts-form {
+	label.ts-customiconlabel:not(.ts-option) {
+		&:after {
+			.ts-mixin-icon(@ts-fontsize-small);
+			content: ~"attr(data-ts-icon)";
+			position: absolute;
+			right: @ts-unit-half;
+			left: auto;
+			bottom: 26px;
+			width: @ts-unit-plus;
+			color: @ts-medium;
+			line-height: @ts-unit-plus;
+		}
+		&:not(.ts-disabled):not(.ts-readonly):after {
+			line-height: 0;
+		}
+	}
+}
 
 // Autocomplete ................................................................
 

@@ -14,6 +14,12 @@ ts.ui.InputSpirit = (function using(chained, Type, Client) {
 		validity: null,
 
 		/**
+		 * Icon to use, overriding the default (date, select, disabled, etc.)
+		 * @type {String|function}
+		 */
+		icon: null,
+
+		/**
 		 * Function to execute on idle (pause).
 		 * @type {string|function}
 		 */
@@ -208,6 +214,7 @@ ts.ui.InputSpirit = (function using(chained, Type, Client) {
 			this.super.$updatestyling();
 			this._label(function(label) {
 				label.$empty(!this.value);
+				label.$customicon(this.icon);
 			});
 		},
 

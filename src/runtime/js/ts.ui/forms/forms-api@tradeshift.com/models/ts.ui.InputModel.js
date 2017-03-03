@@ -43,6 +43,12 @@ ts.ui.InputModel = (function using(Client, chained) {
 		placeholder: '',
 
 		/**
+		 * Icon to use, overriding the default (date, select, disabled, etc.)
+		 * @type {String}
+		 */
+		icon: '',
+
+		/**
 		 * Is idle? Used for xframe synchronization.
 		 * @type {boolean}
 		 */

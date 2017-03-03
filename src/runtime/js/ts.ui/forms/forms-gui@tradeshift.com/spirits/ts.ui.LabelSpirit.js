@@ -14,6 +14,7 @@ ts.ui.LabelSpirit = (function using(Client, FieldSpirit, chained, tick, time, co
 		class_textlabel = ts.ui.CLASS_TEXTLABEL,
 		class_datelabel = ts.ui.CLASS_DATELABEL,
 		class_fakelabel = ts.ui.CLASS_FAKELABEL,
+		class_customiconlabel = ts.ui.CLASS_CUSTOMICONLABEL,
 		class_haslabel = ts.ui.CLASS_HASLABEL,
 		class_disabled = ts.ui.CLASS_DISABLED,
 		class_readonly = ts.ui.CLASS_READONLY,
@@ -187,6 +188,20 @@ ts.ui.LabelSpirit = (function using(Client, FieldSpirit, chained, tick, time, co
 		$isFakelabel: function() {
 			return this.css.contains(class_fakelabel);
 		},
+
+		/**
+		 * Use a custom icon instead of the automatically generated one
+		 */
+		$customicon: chained(function(customicon) {
+			if (arguments.length) {
+				var character = ts.ui.ICONS[customicon] || '';
+				this.css.add(class_customiconlabel);
+				this.att.set('data-ts-icon', character);
+			} else {
+				this.css.remove(class_customiconlabel);
+				this.att.remove('data-ts-icon');
+			}
+		}),
 
 		/**
 		 * Layout as radio or checkbox label.

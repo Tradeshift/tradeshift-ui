@@ -14,6 +14,7 @@ ts.ui.LabelSpirit = (function using(Client, FieldSpirit, chained, tick, time, co
 		class_textlabel = ts.ui.CLASS_TEXTLABEL,
 		class_datelabel = ts.ui.CLASS_DATELABEL,
 		class_fakelabel = ts.ui.CLASS_FAKELABEL,
+		class_haslabel = ts.ui.CLASS_HASLABEL,
 		class_disabled = ts.ui.CLASS_DISABLED,
 		class_readonly = ts.ui.CLASS_READONLY,
 		class_required = ts.ui.CLASS_REQUIRED,
@@ -50,19 +51,7 @@ ts.ui.LabelSpirit = (function using(Client, FieldSpirit, chained, tick, time, co
 			this.event.add('mousedown');
 			this.event.add('focus blur', this, this, true);
 			this.tick.add(tick).start(tick, time);
-			this.css.shift(!this.dom.q('span'), 'ts-nolabel');
 			this.css.add('ts-engine-' + Client.agent);
-		},
-
-		/**
-		 * Angular might sometimes insert the `SPAN` sometimes after `onattach`
-		 * because it likes to do that kind of stuff, so we'll reconfirm the
-		 * missing label after approximately four milliseconds. If this doesn't
-		 * work, we can always move this code to method `_refrehsstyling` :(
-		 */
-		onasync: function() {
-			this.super.onasync();
-			this.css.shift(!this.dom.q('span'), 'ts-nolabel');
 		},
 
 		/**
@@ -169,6 +158,13 @@ ts.ui.LabelSpirit = (function using(Client, FieldSpirit, chained, tick, time, co
 		 */
 		$textlabel: chained(function() {
 			this.css.add(class_textlabel);
+		}),
+
+		/**
+		 * Layout as labeled field (versus unlabeled field).
+		 */
+		$haslabel: chained(function(has) {
+			this.css.shift(has, class_haslabel);
 		}),
 
 		/**

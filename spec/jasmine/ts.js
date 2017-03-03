@@ -16569,7 +16569,7 @@ ts.ui = gui.namespace('ts.ui', (function using(Client, guiArray, confirmed, chai
 		 * The tradeshift-ui version goes here (via Gruntfile.js)
 		 * @type {string}
 		 */
-		version: '7.0.0-beta.2',
+		version: '7.0.0-beta.4',
 
 		/**
 		 * Nothing is "greenfield" now. If we should ever need it, we
@@ -16740,6 +16740,7 @@ ts.ui = gui.namespace('ts.ui', (function using(Client, guiArray, confirmed, chai
 		CLASS_DATELABEL: 'ts-datelabel',
 		CLASS_FAKELABEL: 'ts-fakelabel',
 		CLASS_SWITCHLABEL: 'ts-switchlabel',
+		CLASS_CUSTOMICONLABEL: 'ts-customiconlabel',
 		CLASS_OPTIONS: 'ts-options',
 		CLASS_OPTION: 'ts-option',
 		CLASS_FOCUS: 'ts-focus',
@@ -17109,6 +17110,118 @@ ts.ui.COLORS = {
 	purple: ts.ui.CLASS_PURPLE,
 	yellow: ts.ui.CLASS_YELLOW,
 	red: ts.ui.CLASS_RED
+};
+
+/**
+ * Match icon names to icon-font characters
+ * @TODO This will be obsolete when we ascend to SVG icons
+ * @type {Map<string, string>}
+ */
+ts.ui.ICONS = {
+	'ts-icon-logo-trade': 'K',
+	'ts-icon-logo-shift': 'L',
+	'ts-icon-logo-t1': 'M',
+	'ts-icon-logo-t2': 'N',
+	'ts-icon-discovery': 'E',
+	'ts-icon-activity': 'f',
+	'ts-icon-todo': 'q',
+	'ts-icon-network': 'G',
+	'ts-icon-createdocument': 'P',
+	'ts-icon-alldocuments': 'j',
+	'ts-icon-document': ';',
+	'ts-icon-sales': 'X',
+	'ts-icon-purchases': '$',
+	'ts-icon-cart': '$',
+	'ts-icon-drafts': 'F',
+	'ts-icon-apps': 'a',
+	'ts-icon-usersettings': 'U',
+	'ts-icon-settings': 'y',
+	'ts-icon-companyprofile': 'H',
+	'ts-icon-logout': 'Q',
+	'ts-icon-support': '?',
+	'ts-icon-checked': '3',
+	'ts-icon-accept': '3',
+	'ts-icon-done': '3',
+	'ts-icon-checked-alt': '2',
+	'ts-icon-remove': 'D',
+	'ts-icon-add': '&',
+	'ts-icon-close': '*',
+	'ts-icon-location': '@',
+	'ts-icon-addfilter': 'k',
+	'ts-icon-followed': 'S',
+	'ts-icon-unfollowed': '5',
+	'ts-icon-search': 's',
+	'ts-icon-statuschange': '1',
+	'ts-icon-edit': 'p',
+	'ts-icon-rating': 'r',
+	'ts-icon-share': 'R',
+	'ts-icon-industry': 'z',
+	'ts-icon-showpicker': '6',
+	'ts-icon-warning': '!',
+	'ts-icon-timer': 't',
+	'ts-icon-comment': 'w',
+	'ts-icon-more': '+',
+	'ts-icon-users': 'g',
+	'ts-icon-ownership': '§',
+	'ts-icon-companysize': 'g',
+	'ts-icon-view': 'I',
+	'ts-icon-reject': 'd',
+	'ts-icon-dispute': '\\',
+	'ts-icon-menuswitch': 'l',
+	'ts-icon-delete': '#',
+	'ts-icon-cancel': 'd',
+	'ts-icon-info': 'i',
+	'ts-icon-forums': 'i',
+	'ts-icon-addfield': ',',
+	'ts-icon-fileaccess': '/',
+	'ts-icon-error': '!',
+	'ts-icon-appactivate': '&',
+	'ts-icon-appactive': '3',
+	'ts-icon-fileattach': 'A',
+	'ts-icon-reset': 'n',
+	'ts-icon-send': 'm',
+	'ts-icon-save': 'e',
+	'ts-icon-proceed': '>',
+	'ts-icon-back': '<',
+	'ts-icon-download': 'B',
+	'ts-icon-broadcastmessage': 'b',
+	'ts-icon-insertfrominventory': '|',
+	'ts-icon-triangleright': '6',
+	'ts-icon-triangleleft': '8',
+	'ts-icon-triangleup': '9',
+	'ts-icon-triangledown': '7',
+	'ts-icon-arrowright': '>',
+	'ts-icon-arrowleft': '<',
+	'ts-icon-arrowup': 'u',
+	'ts-icon-arrowdown': 'v',
+	'ts-icon-preview': 'o',
+	'ts-icon-locked': 'V',
+	'ts-icon-unlocked': 'W',
+	'ts-icon-next': '>',
+	'ts-icon-approve': '3',
+	'ts-icon-code': 'C',
+	'ts-icon-halt': 'h',
+	'ts-icon-pay': '_',
+	'ts-icon-other': 'O',
+	'ts-icon-myapps': 'Y',
+	'ts-icon-companyevent': 'c',
+	'ts-icon-split': '%',
+	'ts-icon-split-alt': '÷',
+	'ts-icon-merge': 'J',
+	'ts-icon-associated': '=',
+	'ts-icon-radio': '{',
+	'ts-icon-radioon': ':',
+	'ts-icon-checkbox': '\'',
+	'ts-icon-checkboxon': '"',
+	'ts-icon-written-request': '(',
+	'ts-icon-categories': ')',
+	'ts-icon-favorites': '≥',
+	'ts-icon-heart': '≥',
+	'ts-icon-preferred': '∫',
+	'ts-icon-pin': '∫',
+	'ts-icon-previously-requested': '∞',
+	'ts-icon-archive': '÷',
+	'ts-icon-add-to-archive': '∅'
 };
 
 /**
@@ -21853,6 +21966,12 @@ ts.ui.InputModel = (function using(Client, chained) {
 		 * @type {string}
 		 */
 		placeholder: '',
+
+		/**
+		 * Icon to use, overriding the default (date, select, disabled, etc.)
+		 * @type {String}
+		 */
+		icon: '',
 
 		/**
 		 * Is idle? Used for xframe synchronization.
@@ -42116,6 +42235,12 @@ ts.ui.InputSpirit = (function using(chained, Type, Client) {
 		validity: null,
 
 		/**
+		 * Icon to use, overriding the default (date, select, disabled, etc.)
+		 * @type {String|function}
+		 */
+		icon: null,
+
+		/**
 		 * Function to execute on idle (pause).
 		 * @type {string|function}
 		 */
@@ -42310,6 +42435,7 @@ ts.ui.InputSpirit = (function using(chained, Type, Client) {
 			ts.ui.FieldSpirit.prototype.$updatestyling.call(this);
 			this._label(function(label) {
 				label.$empty(!this.value);
+				label.$customicon(this.icon);
 			});
 		},
 
@@ -43373,6 +43499,7 @@ ts.ui.LabelSpirit = (function using(Client, FieldSpirit, chained, tick, time, co
 		class_textlabel = ts.ui.CLASS_TEXTLABEL,
 		class_datelabel = ts.ui.CLASS_DATELABEL,
 		class_fakelabel = ts.ui.CLASS_FAKELABEL,
+		class_customiconlabel = ts.ui.CLASS_CUSTOMICONLABEL,
 		class_haslabel = ts.ui.CLASS_HASLABEL,
 		class_disabled = ts.ui.CLASS_DISABLED,
 		class_readonly = ts.ui.CLASS_READONLY,
@@ -43546,6 +43673,20 @@ ts.ui.LabelSpirit = (function using(Client, FieldSpirit, chained, tick, time, co
 		$isFakelabel: function() {
 			return this.css.contains(class_fakelabel);
 		},
+
+		/**
+		 * Use a custom icon instead of the automatically generated one
+		 */
+		$customicon: chained(function(customicon) {
+			if (arguments.length) {
+				var character = ts.ui.ICONS[customicon] || '';
+				this.css.add(class_customiconlabel);
+				this.att.set('data-ts-icon', character);
+			} else {
+				this.css.remove(class_customiconlabel);
+				this.att.remove('data-ts-icon');
+			}
+		}),
 
 		/**
 		 * Layout as radio or checkbox label.

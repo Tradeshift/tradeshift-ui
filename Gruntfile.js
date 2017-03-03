@@ -9,7 +9,6 @@ module.exports = function(grunt) {
 
 	// load grunt tasks
 	require('load-grunt-tasks')(grunt);
-	grunt.loadNpmTasks('grunt-release-ts');
 
 	// default file encoding
 	grunt.file.defaultEncoding = 'utf8';
@@ -31,19 +30,10 @@ module.exports = function(grunt) {
 	);
 
 	// Config ....................................................................
-
-	var awsconfig;
-	try {
-		awsconfig = require('./aws-keys.json');
-	} catch (err) {
-		awsconfig = {};
-	}
-
 	grunt.initConfig({
 
 		config: config,
 		pkg: grunt.file.readJSON('package.json'),
-		aws: awsconfig,
 
 		// nuke previous build
 		clean: {
@@ -117,7 +107,15 @@ module.exports = function(grunt) {
 					'temp/ts.js': 'src/runtime/ts.js'
 				}
 			},
-			prod: tsjs(config.folder_prod)
+			prod: {
+				options: {
+					'${runtimecss}': '<%= config.cdn_live %>' + config.folder_prod + '/ts-<%= pkg.version %>.min.css',
+					'${langbundle}': '<%= config.cdn_live %>' + config.folder_prod + '/ts-lang-<LANG>-<%= pkg.version %>.js'
+				},
+				files: {
+					'temp/ts.js': 'src/runtime/ts.js'
+				}
+			}
 		},
 
 		// concatante the LESS (so that devs may copy-paste it from the web)
@@ -284,20 +282,6 @@ module.exports = function(grunt) {
 			}
 		},
 
-		// we need to generate the dox file only whenever
-		// a JS file gets is added, removed or renamed.
-		// TODO: Remove this stuff!
-		spiritualdox: {
-			runtime: {
-				files: {
-					'dox/tradeshift-ui.html': [
-						'src/runtime/js/**/*.js',
-						'!**/dependencies/**'
-					]
-				}
-			}
-		},
-
 		compress: {
 			main: {
 				options: {
@@ -310,18 +294,7 @@ module.exports = function(grunt) {
 					'**/*.js',
 					'**/*.css'
 				],
-				dest: 'public/',
-				rename: function(dest, src) {
-					if (src.indexOf('.map') > -1) {
-						return dest + src.replace('.map', '.map.gz');
-					} if (src.indexOf('.js') > -1) {
-						return dest + src.replace('.js', '.js.gz');
-					} if (src.indexOf('.css') > -1) {
-						return dest + src.replace('.css', '.css.gz');
-					} else {
-						return dest + src;
-					}
-				}
+				dest: 'public/'
 			}
 		},
 
@@ -331,12 +304,6 @@ module.exports = function(grunt) {
 				tasks: ['concat:loose', 'guibundles', 'concat:dev', 'uglify:dev'],
 				files: ['src/**/*.js', 'src/**/*.json']
 			},
-			/*
-			tsjs: { // something is wrong here...
-				tasks: ['tsjs:dev', 'uglify:dev'],
-				files: ['src/runtime/js/ts.js']
-			},
-			*/
 			less: {
 				tasks: ['less:before', 'touchfriendly', 'cssmin:dev', 'tsless:dev'],
 				files: ['src/runtime/less/**/*.less']
@@ -373,22 +340,13 @@ module.exports = function(grunt) {
 
 		// version already uploaded?
 		check_cdn: {
-			prod: checkconfig(config.folder_prod),
-			dev: checkconfig(config.folder_dev),
-			temp: checkconfig(config.folder_temp)
-		},
-
-		// s3 upload
-		aws_s3: {
-			options: {
-				accessKeyId: '<%= aws.AWSAccessKeyId %>',
-				secretAccessKey: '<%= aws.AWSSecretKey %>',
-				uploadConcurrency: 5,
-				downloadConcurrency: 5
-			},
-			prod: uploadconfig(config.folder_prod),
-			dev: uploadconfig(config.folder_dev),
-			temp: uploadconfig(config.folder_temp)
+			prod: {
+				urls: [
+					'<%= config.cdn_base %>' + config.folder_prod + '/ts-<%= pkg.version %>.js',
+					'<%= config.cdn_base %>' + config.folder_prod + '/ts-<%= pkg.version %>.min.js',
+					'<%= config.cdn_base %>' + config.folder_prod + '/ts-<%= pkg.version %>.min.js.map'
+				]
+			}
 		},
 
 		// hooked
@@ -402,6 +360,10 @@ module.exports = function(grunt) {
 
 		// execute command line stuff
 		exec: {
+			s3_upload: {
+				command: 'npm run deploy-s3',
+				stdout: true
+			},
 			eslint: {
 				command: 'npm run lint',
 				stdout: true
@@ -465,7 +427,11 @@ module.exports = function(grunt) {
 	 */
 	function getapisources() {
 		const build = src => getbuild('src/runtime/js/ts.ui/' + src);
-		return ['src/runtime/js/ts-polyfilla.js', 'src/runtime/js/ts-namespace.js', 'src/runtime/js/ts.ui/ts.ui.js'].map(validated)
+		return [
+			'src/runtime/js/ts-polyfilla.js',
+			'src/runtime/js/ts-namespace.js',
+			'src/runtime/js/ts.ui/ts.ui.js'
+		].map(validated)
 			.concat(getbuild('src/runtime/js/ts.lib/build.json'))
 			.concat(build('core/core-api@tradeshift.com/build.json'))
 			.concat(build('forms/forms-api@tradeshift.com/build.json'))
@@ -492,7 +458,9 @@ module.exports = function(grunt) {
 	 * @returns {Array<string>}
 	 */
 	function getcombobuilds() {
-		return ['temp/ts.js'].concat(getapibuilds()).concat(getguibuilds());
+		return ['temp/ts.js']
+			.concat(getapibuilds())
+			.concat(getguibuilds());
 	}
 
 	/**
@@ -568,68 +536,8 @@ module.exports = function(grunt) {
 	}
 
 	/**
-	 * Get task configuration for checking previous upload.
-	 * @param {string} folder
-	 * @returns {object}
-	 */
-	function checkconfig(folder) {
-		return {
-			urls: [
-				'<%= config.cdn_base %>' + folder + '/ts-<%= pkg.version %>.js',
-				'<%= config.cdn_base %>' + folder + '/ts-<%= pkg.version %>.min.js',
-				'<%= config.cdn_base %>' + folder + '/ts-<%= pkg.version %>.min.js.map'
-			]
-		};
-	}
-
-	/**
-	 * Get task configuration for uploading to specified folder.
-	 * @param {string} folder
-	 * @returns {object}
-	 */
-	function uploadconfig(folder) {
-		return {
-			options: {
-				bucket: 'tsresources',
-				overwrite: false,
-				gzipRename: 'ext',
-				params: {
-					CacheControl: 'max-age=29030400, public',
-					ContentEncoding: 'gzip'
-				}
-			},
-			files: [
-				{
-					expand: true,
-					cwd: 'public',
-					src: ['**'],
-					dest: folder
-				}
-			]
-		};
-	}
-
-	/**
-	 * Get config for building "ts.js" in production or dev.
-	 * @param {string} folder
-	 * @returns {object}
-	 */
-	function tsjs(folder) {
-		return {
-			options: {
-				'${runtimecss}': '<%= config.cdn_live %>' + folder + '/ts-<%= pkg.version %>.min.css',
-				'${langbundle}': '<%= config.cdn_live %>' + folder + '/ts-lang-<LANG>-<%= pkg.version %>.js'
-			},
-			files: {
-				// dist/cdn/ts-<%= pkg.version %>
-				'temp/ts.js': 'src/runtime/ts.js'
-			}
-		};
-	}
-
-	/**
 	 * Build for local development. This assumes that
-	 * Client-Spiritual and tradeshift-ui runs on localhost
+	 * tradeshift-ui runs on localhost
 	 * @returns {Array<string>}
 	 */
 	function buildlocal(target) {
@@ -704,7 +612,7 @@ module.exports = function(grunt) {
 	grunt.registerTask('release-deploy', [
 		'check_cdn:prod',
 		'dist',
-		'aws_s3:prod'
+		'exec:s3_upload'
 	]);
 
 	// compile that CSS

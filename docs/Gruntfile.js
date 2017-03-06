@@ -416,9 +416,7 @@ module.exports = function(grunt) {
 		}
 		function processHTMLFile(abspath, filename) {
 			var raw = grunt.file.read(abspath);
-			if (raw.includes('robots') && raw.includes('noindex')) {
-				return;
-			} else {
+			if (!(raw.includes('robots') && raw.includes('noindex'))) {
 				var content = ignoreHTML(raw);
 				var title = S(raw).between('<title>', '</title>').s;
 				var href = S(abspath).chompLeft(prefix).s;

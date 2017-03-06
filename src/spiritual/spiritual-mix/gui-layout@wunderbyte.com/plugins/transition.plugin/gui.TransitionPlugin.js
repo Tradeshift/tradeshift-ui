@@ -220,7 +220,7 @@ gui.TransitionPlugin = gui.Plugin.extend({
 	 */
 	_convert: function(ms) {
 		ms = ms || this._default;
-		return ms / 1000 + 's';
+		return (ms / 1000) + 's';
 	}
 
 });

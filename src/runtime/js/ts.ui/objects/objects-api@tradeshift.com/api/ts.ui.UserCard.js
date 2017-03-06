@@ -113,4 +113,3 @@ ts.ui.UserCard.localize({
 	userDetails: 'User Details'
 
 });
-

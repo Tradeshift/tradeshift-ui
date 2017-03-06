@@ -13,7 +13,7 @@ function Controller($scope) {
 		var rows = [],
 			i, n;
 		for (i = 0; i < model.pageSize; i++) {
-			n = model.page * model.pageSize + i + 1;
+			n = (model.page * model.pageSize) + i + 1;
 			if (n > model.total) break;
 			rows.push({
 				selected: selectedModel.all || selectedModel.items[n - 1],
@@ -78,12 +78,12 @@ function Controller($scope) {
 			var selected = selectedOrSelectAll;
 			if (selected) {
 				selected.forEach(function(i) {
-					selectedModel.items[model.page * model.pageSize + i] = 1;
+					selectedModel.items[(model.page * model.pageSize) + i] = 1;
 				});
 			}
 			if (unselected) {
 				unselected.forEach(function(i) {
-					delete selectedModel.items[model.page * model.pageSize + i];
+					delete selectedModel.items[(model.page * model.pageSize) + i];
 				});
 			}
 		}

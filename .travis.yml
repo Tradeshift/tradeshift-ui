@@ -3,6 +3,9 @@ dist: trusty
 language: node_js
 node_js:
 - 6
+branches:
+  only:
+  - master
 install:
 - echo '{"AWSAccessKeyId":"","AWSSecretKey":""}' >> aws-keys.json
 - npm install -g grunt-cli

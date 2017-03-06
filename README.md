@@ -1,10 +1,6 @@
-<p align="center">
-	[![travis.org Build Status](https://travis-ci.org/Tradeshift/tradeshift-ui.svg)](https://travis-ci.org/Tradeshift/tradeshift-ui)
-	[![travis.com Build Status](https://travis-ci.com/Tradeshift/tradeshift-ui.svg?token=RshDHtS73Tukd2xSZzeg&branch=master)](https://travis-ci.com/Tradeshift/tradeshift-ui)
-	[![Gitter](https://img.shields.io/badge/gitter-join%20chat-f81a65.svg?style=flat-square)](https://gitter.im/tradeshift-ui/Lobby)
-	[![Dependencies](https://david-dm.org/Tradeshift/tradeshift-ui.svg)](https://david-dm.org/Tradeshift/tradeshift-ui/)
-	[![devDependencies](https://img.shields.io/david/dev/Tradeshift/tradeshift-ui.svg?style=flat-square)](https://david-dm.org/Tradeshift/tradeshift-ui/?type=dev)
-</p>
+[![Gitter](https://img.shields.io/badge/gitter-join%20chat-f81a65.svg?style=flat-square)](https://gitter.im/tradeshift-ui/Lobby)
+[![travis.org Build Status](https://travis-ci.org/Tradeshift/tradeshift-ui.svg)](https://travis-ci.org/Tradeshift/tradeshift-ui)
+[![devDependencies](https://img.shields.io/david/dev/Tradeshift/tradeshift-ui.svg?style=flat-square)](https://david-dm.org/Tradeshift/tradeshift-ui/?type=dev)
 ___
 
 # [Tradeshift UI](http://ui.tradeshift.com)

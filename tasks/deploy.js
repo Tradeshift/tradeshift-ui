@@ -5,14 +5,12 @@ const path = require('path');
 const chalk = require('chalk');
 const s3 = require('s3');
 
-const keys = require('../aws-keys.json');
-
 http.globalAgent.maxSockets = https.globalAgent.maxSockets = 20;
 
 const client = s3.createClient({
 	s3Options: {
-		accessKeyId: keys.AWSAccessKeyId,
-		secretAccessKey: keys.AWSSecretKey
+		accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+		secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
 	},
 	maxAsyncS3: 5
 });

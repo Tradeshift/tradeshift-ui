@@ -48,7 +48,13 @@ Watch out, whenever you create a commit, the pre-commit hook will generate the d
 
 If you want to browse our [documentation site](http://ui.tradeshift.com) you can do so easily.
 
-## Releasing
+## Release & Deployment
+
+Make sure you have the following environment variables set:
+```
+export AWS_ACCESS_KEY_ID=[Your AWS Access Key ID]
+export AWS_SECRET_ACCESS_KEY=[Your AWS Secret Access Key]
+```
 
 If you have the correct AWS access keys to release a new version of tradeshift-ui, you can do so using the `grunt release` command.
 It will bump the version inside `package.json`, commit, tag release, upload to CloudFront and push to GitHub. Make sure to not do this on the `master` branch because it is protected from being pushed to directly.
@@ -58,7 +64,7 @@ It will bump the version inside `package.json`, commit, tag release, upload to C
 Make sure you have a BrowserStack Automate account and have the following environment variables set:
 ```
 export BROWSERSTACK_USERNAME=[Your BrowserStack username]
-export BROWSERSTACK_KEY=[your BrowserStack key]
+export BROWSERSTACK_KEY=[Your BrowserStack key]
 ```
 
 Then feel free to start running the tests as such:

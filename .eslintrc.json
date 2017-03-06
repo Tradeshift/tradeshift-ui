@@ -31,6 +31,7 @@
 		"one-var": 0,
 		"no-new-func": 0,
 		"no-script-url": 0,
+		"no-template-curly-in-string": 0,
 		"no-unsafe-finally": 0,
 		"no-useless-call": 0,
 		"no-useless-escape": 0,

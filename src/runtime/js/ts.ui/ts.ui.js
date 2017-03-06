@@ -51,9 +51,12 @@ ts.ui = gui.namespace('ts.ui', (function using(Client, guiArray, confirmed, chai
 		frankenstein: (function(path) {
 			var vendorappid = /[A-Z][A-Za-z]+\.[A-Z][A-Za-z]+/;
 			return !!(window !== top &&
-				path.includes('/app/') ||
-				path.includes('/v4/') ||
-				path.match(vendorappid));
+				(
+					path.includes('/app/') ||
+					path.includes('/v4/') ||
+					path.match(vendorappid)
+				)
+			);
 		}(window.location.pathname)),
 
 		/**

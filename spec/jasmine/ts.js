@@ -5806,7 +5806,7 @@ gui.Client = (function() {
 		this.isExplorer11 = this.isExplorer && agent.includes('rv:11');
 		this.isExplorer12 = this.isExplorer && agent.includes('rv:12'); // NOT TESTED!
 		this.isEdge = this.isExplorer && agent.includes('edge');
-		this.isWebKit = !this.isExplorer && agent.includes('webkit') || agent.includes('opera');
+		this.isWebKit = !this.isExplorer && (agent.includes('webkit') || agent.includes('opera'));
 		this.isChrome = !this.isExplorer && this.isWebKit && agent.includes('chrome');
 		this.isSafari = !this.isExplorer && this.isWebKit && !this.isChrome && agent.includes('safari');
 		this.isGecko = !this.isExplorer && !this.isWebKit && !this.isOpera && agent.includes('gecko');
@@ -13079,7 +13079,6 @@ gui.Module.mixin({
 
 
 
-
 /**
  * Spirits module.
  */
@@ -16593,9 +16592,12 @@ ts.ui = gui.namespace('ts.ui', (function using(Client, guiArray, confirmed, chai
 		frankenstein: (function(path) {
 			var vendorappid = /[A-Z][A-Za-z]+\.[A-Z][A-Za-z]+/;
 			return !!(window !== top &&
-				path.includes('/app/') ||
-				path.includes('/v4/') ||
-				path.match(vendorappid));
+				(
+					path.includes('/app/') ||
+					path.includes('/v4/') ||
+					path.match(vendorappid)
+				)
+			);
 		}(window.location.pathname)),
 
 		/**
@@ -22847,7 +22849,6 @@ ts.ui.UserCard.localize({
 	userDetails: 'User Details'
 
 });
-
 
 
 
@@ -30386,7 +30387,7 @@ gui.TransitionPlugin = gui.Plugin.extend({
 	 */
 	_convert: function(ms) {
 		ms = ms || this._default;
-		return ms / 1000 + 's';
+		return (ms / 1000) + 's';
 	}
 
 });
@@ -40319,7 +40320,7 @@ ts.ui.CalendarSpirit = (function() {
 		var row, col, cells = [];
 		for (row = 0; row < numRows; ++row) {
 			for (col = 0; col < 7; ++col) {
-				var i = row * 7 + col,
+				var i = (row * 7) + col,
 					day = i - startDay + 1,
 					tempRow = null,
 					newDate;

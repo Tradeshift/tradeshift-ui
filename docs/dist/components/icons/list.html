@@ -61,31 +61,36 @@
                             }
                             var table = ts.ui.get('#icons');
                             table.cols([{
-                                label: '11px',
-                                type: 'icons-size-tiny',
-                                minwidth: ts.ui.UNIT * 3
-                            }, {
-                                // @ts-fontsize-icon
-                                label: '22px',
-                                type: 'icons-size-std',
-                                minwidth: ts.ui.UNIT * 3
-                            }, {
-                                // App Icon Size
-                                label: '36px',
-                                type: 'icons-size-app',
-                                minwidth: ts.ui.UNIT * 3
-                            }, {
-                                label: 'Classname',
-                                type: 'ts-text',
-                                flex: 3,
-                                minwidth: 200
-                            }, {
-                                label: 'Description',
-                                type: 'ts-text',
-                                flex: 10,
-                                minwidth: 200,
-                                wrap: true
-                            }]);
+                                    label: '11px',
+                                    type: 'icons-size-tiny',
+                                    minwidth: ts.ui.UNIT * 3
+                                },
+                                {
+                                    // @ts-fontsize-icon
+                                    label: '22px',
+                                    type: 'icons-size-std',
+                                    minwidth: ts.ui.UNIT * 3
+                                },
+                                {
+                                    // App Icon Size
+                                    label: '36px',
+                                    type: 'icons-size-app',
+                                    minwidth: ts.ui.UNIT * 3
+                                },
+                                {
+                                    label: 'Classname',
+                                    type: 'ts-text',
+                                    flex: 3,
+                                    minwidth: 200
+                                },
+                                {
+                                    label: 'Description',
+                                    type: 'ts-text',
+                                    flex: 10,
+                                    minwidth: 200,
+                                    wrap: true
+                                }
+                            ]);
                             table.rows([
                                 geticonrow('ts-icon-discovery', 'Some ~~horrible~~ cool description **goes** *here* with `MARKDOWN` support!\n* Full\n* On\n* Awesome'),
                                 geticonrow('ts-icon-activity'),

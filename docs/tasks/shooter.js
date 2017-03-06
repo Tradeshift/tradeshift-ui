@@ -217,7 +217,6 @@ class Browser {
  * Write stuff to console.
  */
 class Out {
-
 	/**
 	 * Write headline.
 	 * @param {string} header
@@ -282,7 +281,6 @@ class Out {
  * File system stuff.
  */
 class File {
-
 	/**
 	 * Don't use spaces in filename.
 	 * @param {string} filename

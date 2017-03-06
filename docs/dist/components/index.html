@@ -658,20 +658,22 @@
                                             var firstload = true;
                                             var tabbar = ts.ui.get('#tabbar-example');
                                             tabbar.tabs([{
-                                                label: "Tab One",
-                                                onselect: function() {
-                                                    if (firstload) {
-                                                        firstload = false;
-                                                    } else {
+                                                    label: "Tab One",
+                                                    onselect: function() {
+                                                        if (firstload) {
+                                                            firstload = false;
+                                                        } else {
+                                                            ts.ui.Notification.success(this.label);
+                                                        }
+                                                    }
+                                                },
+                                                {
+                                                    label: "Tab Two",
+                                                    onselect: function() {
                                                         ts.ui.Notification.success(this.label);
                                                     }
                                                 }
-                                            }, {
-                                                label: "Tab Two",
-                                                onselect: function() {
-                                                    ts.ui.Notification.success(this.label);
-                                                }
-                                            }]);
+                                            ]);
                                         }
                                     });
                                 </script>
@@ -717,15 +719,18 @@
                                         onbroadcast: function() {
                                             var table = ts.ui.get('#table-example');
                                             table.cols([{
-                                                label: 'Level',
-                                                type: 'ts-number'
-                                            }, {
-                                                label: 'Character',
-                                                flex: 2
-                                            }, {
-                                                label: 'Alignment',
-                                                flex: 2
-                                            }, ]);
+                                                    label: 'Level',
+                                                    type: 'ts-number'
+                                                },
+                                                {
+                                                    label: 'Character',
+                                                    flex: 2
+                                                },
+                                                {
+                                                    label: 'Alignment',
+                                                    flex: 2
+                                                },
+                                            ]);
                                             table.rows([
                                                 [21, 'Paladin Knight', 'Lawful Good'],
                                                 [13, 'Barbarian Queen', 'Neutral Evil'],

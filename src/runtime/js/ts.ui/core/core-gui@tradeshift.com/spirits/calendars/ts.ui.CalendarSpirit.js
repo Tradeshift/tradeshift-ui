@@ -79,7 +79,7 @@ ts.ui.CalendarSpirit = (function() {
 		var row, col, cells = [];
 		for (row = 0; row < numRows; ++row) {
 			for (col = 0; col < 7; ++col) {
-				var i = row * 7 + col,
+				var i = (row * 7) + col,
 					day = i - startDay + 1,
 					tempRow = null,
 					newDate;

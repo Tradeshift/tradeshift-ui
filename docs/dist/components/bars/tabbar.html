@@ -26,17 +26,12 @@
             })
         });
     </script>
-    <style>
-        .sticky {
-            dislay: none !important; // at least until we've fixed the position when TabBar is before Main
-        }
-    </style>
     <script>
         ts.dox.tabs()
     </script>
 </head>
 
-<body>
+<body class="nosticky">
     <header data-ts="TopBar"></header>
     <main data-ts="Main">
         <div data-ts="MainContent">

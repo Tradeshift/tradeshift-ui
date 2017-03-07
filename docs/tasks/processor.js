@@ -30,6 +30,7 @@ module.exports = {
 		$ = maincontent($);
 		$ = chromelinks($);
 		$ = inittabs($);
+		$ = stickys($);
 		$('html').addClass('ts-docs');
 		$('html').attr('spellcheck', false);
 		return publisher.publish(
@@ -454,18 +455,21 @@ function chromelinks($) {
 // Stickys .....................................................................
 
 function stickys($) { // eslint-disable-line no-unused-vars
-	var newissue = 'https://github.com/Tradeshift/Client-Runtime/issues/new';
-	$('body').first().append([
-		'<aside data-ts="Note" class="sticky ts-bg-yellow">',
-		'	<p>If you find a bug or need a feature…</p>',
-		'		<menu class="ts-buttons">',
-		'			<li>',
-		'				<a data-ts="Button" target="_blank" href="' + newissue + '" class="ts-secondary">',
-		'					<span>Create GitHub Issue…</span>',
-		'				</a>',
-		'		</li>',
-		'	</menu>',
-		'</aside>'
-	].join('\n'));
+	const newissue = 'https://github.com/Tradeshift/tradeshift-ui/issues/new';
+	const tooltip = 'Submit new issue';
+	const body = $('body');
+	if (!body.hasClass('nosticky')) {
+		body.first().append(
+			`<aside data-ts="Note" class="sticky ts-bg-yellow">
+			  <p>If you find a bug or need a feature…</p>
+		    <menu class="ts-buttons">
+		      <li>
+		        <a data-ts="Button" target="_blank" href="${newissue}" title="${tooltip}" class="ts-secondary">
+		          <span>Create GitHub Issue…</span>
+		        </a>
+		      </li>
+			  </menu>
+			</aside>`);
+	}
 	return $;
 }

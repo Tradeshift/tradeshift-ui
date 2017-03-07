@@ -30,17 +30,12 @@
     <link rel="prefetch" title="Demo" href="demo.html">
     <link rel="prefetch" title="Angular" href="angular.html" class="hidden">
     <link rel="prefetch" title="Gutter" href="gutter.html" class="hidden">
-    <style>
-        .sticky {
-            display: none !important;
-        }
-    </style>
     <script>
         ts.dox.tabs()
     </script>
 </head>
 
-<body ng-app="app" ng-controller="Controller as c">
+<body ng-app="app" ng-controller="Controller as c" class="nosticky">
     <header data-ts="TopBar"></header>
     <header data-ts="ToolBar" id="toolbar"></header>
     <main data-ts="Main">

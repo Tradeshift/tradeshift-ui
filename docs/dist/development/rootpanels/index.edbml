@@ -2,13 +2,8 @@
 <html>
 	<head>
 		<title>Root Panels</title>
-		<style>
-			.sticky {
-				display: none !important;
-			}
-		</style>
 	</head>
-	<body>
+	<body class="nosticky">
 		<header data-ts="TopBar"></header>
     <div data-ts="Panel" data-ts.label="Panel One">
   		<main data-ts="Main">

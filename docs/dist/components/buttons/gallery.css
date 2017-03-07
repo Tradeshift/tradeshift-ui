@@ -19,9 +19,6 @@ section {
   padding: 44px;
   margin-bottom: 0;
 }
-.sticky {
-  display: none !important;
-}
 label.ts-focus,
 label.ts-focus-on {
   background-color: transparent !important;

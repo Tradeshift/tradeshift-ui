@@ -26,11 +26,6 @@
             })
         });
     </script>
-    <style>
-        .sticky {
-            dislay: none !important; // at least until we've fixed the position when TabBar is before Main
-        }
-    </style>
     <script>
         ts.dox.tabs()
     </script>
@@ -310,6 +305,16 @@ tabs<span class="token punctuation">.</span><span class="token function">showNew
             </div>
         </div>
     </main>
+    <aside data-ts="Note" class="sticky ts-bg-yellow">
+        <p>If you find a bug or need a feature&#x2026;</p>
+        <menu class="ts-buttons">
+            <li>
+                <a data-ts="Button" target="_blank" href="https://github.com/Tradeshift/tradeshift-ui/issues/new" title="Submit new issue" class="ts-secondary">
+                    <span>Create GitHub Issue&#x2026;</span>
+                </a>
+            </li>
+        </menu>
+    </aside>
 </body>
 
 </html>

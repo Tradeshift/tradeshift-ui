@@ -11,11 +11,6 @@
     <link rel="stylesheet" href="/dist/assets/dox.css">
     <link rel="prefetch" title="HTML" href="index.html">
     <link rel="prefetch" title="Test" href="test-1.html" class="hidden">
-    <style>
-        .sticky {
-            display: none !important;
-        }
-    </style>
     <script>
         // used to test that sidebars can be transferred from MAIN to BODY 
         // without breaking functionality (since this always happens in V4).
@@ -45,7 +40,7 @@
     </script>
 </head>
 
-<body>
+<body class="nosticky">
     <header data-ts="TopBar"></header>
     <main data-ts="Main">
         <div data-ts="MainContent">

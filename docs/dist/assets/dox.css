@@ -1270,14 +1270,39 @@ article {
   position: relative;
   padding-left: 22px;
 }
-/*
+#results li {
+  display: block;
+  padding-bottom: 22px;
+}
+.sticky {
+  position: fixed;
+  right: 44px;
+  top: 33px;
+  padding: 22px;
+  text-align: center;
+  display: none;
+}
+.ts-desktop-only .sticky {
+  display: block;
+}
+.ts-has-toolbar-first-ts-micro .sticky {
+  top: 77px;
+}
+.ts-has-toolbar-first-ts-macro .sticky,
+.ts-has-topbar .sticky {
+  top: 99px;
+}
+.ts-has-toolbar-first-ts-micro.ts-has-toolbar-first-ts-macro .sticky,
+.ts-has-toolbar-first-ts-micro.ts-has-topbar .sticky {
+  top: 143px;
+}
+.ts-has-toolbar-first-ts-micro.ts-has-toolbar-first-ts-macro.ts-has-topbar .sticky {
+  top: 209px;
+}
+/* Not currently used!
 html.design.ts-bg-lite {
 	.ts-main {
 		background-color: @ts-white;
 	}
 }
 */
-#results li {
-  display: block;
-  padding-bottom: 22px;
-}

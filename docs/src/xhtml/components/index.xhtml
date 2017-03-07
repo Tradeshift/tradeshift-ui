@@ -4,7 +4,7 @@
 		<title>Inline Components</title>
 		<object data="tabs.xhtml"></object>
 	</head>
-	<body>
+	<body class="nosticky">
 		<header data-ts="TopBar"></header>
 		<main data-ts="Main">	
 			<article>
@@ -20,7 +20,7 @@
 					<ul class="splitscreen">
 						<li>
 							<figure data-ts="DoxMarkup">
-								<script>
+								<script type="text/html">
 									<button data-ts="Button" class="ts-primary">
 										<span>Primary</span>
 									</button>
@@ -48,7 +48,7 @@
 					<ul class="splitscreen">
 						<li>
 							<figure data-ts="DoxMarkup">
-								<script>
+								<script type="text/html">
 									<button data-ts="Button" class="ts-primary ts-micro">
 										<span>Primary</span>
 									</button>
@@ -128,7 +128,7 @@
 					<ul class="splitscreen">
 						<li>
 							<figure data-ts="DoxMarkup">
-								<script>
+								<script type="text/html">
 									<form data-ts="Form">
 										<fieldset>
 											<label>
@@ -155,7 +155,7 @@
 					<ul class="splitscreen">
 						<li>
 							<figure data-ts="DoxMarkup">
-								<script>
+								<script type="text/html">
 									<form data-ts="Form">
 										<fieldset>
 											<label>
@@ -183,7 +183,7 @@
 					<ul class="splitscreen">
 						<li>
 							<figure data-ts="DoxMarkup">
-								<script>
+								<script type="text/html">
 									<form data-ts="Form">
 										<fieldset>
 											<label>
@@ -216,7 +216,7 @@
 					<ul class="splitscreen">
 						<li>
 							<figure data-ts="DoxMarkup">
-								<script>
+								<script type="text/html">
 									<form data-ts="Form">
 										<fieldset>
 											<label>
@@ -251,7 +251,7 @@
 					<ul class="splitscreen">
 						<li>
 							<figure data-ts="DoxMarkup">
-								<script>
+								<script type="text/html">
 									<form data-ts="Form">
 										<fieldset>
 											<label>
@@ -292,7 +292,7 @@
 					<ul class="splitscreen">
 						<li>
 							<figure data-ts="DoxMarkup">
-								<script>
+								<script type="text/html">
 									<form data-ts="Form">
 										<fieldset>
 											<span>Choose wisely</span>
@@ -329,7 +329,7 @@
 					<ul class="splitscreen">
 						<li>
 							<figure data-ts="DoxMarkup">
-								<script>
+								<script type="text/html">
 									<form data-ts="Form">
 										<fieldset>
 											<span>Legally Binding Contract</span>
@@ -366,7 +366,7 @@
 					<ul class="splitscreen">
 						<li>
 							<figure data-ts="DoxMarkup">
-								<script>
+								<script type="text/html">
 									<form data-ts="Form">
 										<fieldset>
 											<span>Settings Page</span>
@@ -406,9 +406,7 @@
 						<h3>Icons</h3>
 					</a>
 
-					<p>
-						We support <a data-ts="Button" href="/#components/icons/">a range</a> of icons. Here are a few randomly selected ones.
-					</p>
+					<p>We support <a data-ts="Button" href="/#components/icons/">a range</a> of icons. Here are a few randomly selected ones.</p>
 
 					<ul class="splitscreen">
 						<li>
@@ -451,15 +449,12 @@
 						<h3>Menu</h3>
 					</a>
 
-					<p>
-						Not to be confused with the main navigation,
-						this is simply a list of selectable items.
-					</p>
+					<p>Not to be confused with the main navigation, this is simply a list of selectable items.</p>
 
 					<ul class="splitscreen">
 						<li>
 							<figure data-ts="DoxMarkup">
-								<script>
+								<script type="text/html">
 									<menu data-ts="Menu">
 										<li>
 											<button>
@@ -503,16 +498,12 @@
 						<h3><span>Note</h3>
 					</a>
 
-					<p>
-						A nice way to inform the user about something on the page.
-						This is <b>not</b> for status messages!<br/>
-						It also works on page-level.
-					</p>
+					<p>A nice way to inform the user about something on the page. This is <b>not</b> for status messages! It also works on page-level.</p>
 
 					<ul class="splitscreen">
 						<li>
 							<figure data-ts="DoxMarkup">
-								<script>
+								<script type="text/html">
 									<div data-ts="Note">
 										<i class="ts-icon-heart"></i>
 										<p>You love the Note!</p>
@@ -534,9 +525,7 @@
 						<h3>Search</h3>
 					</a>
 
-					<p>
-						Unified search experience.
-					</p>
+					<p>Unified search experience.</p>
 
 					<ul class="splitscreen">
 						<li>
@@ -557,14 +546,12 @@
 						<span>TabBar</h3>
 					</a>
 
-					<p>
-						An easy way to show tabs. Also works on page-level.
-					</p>
+					<p>An easy way to show tabs. Also works on page-level.</p>
 
 					<ul class="splitscreen">
 						<li>
 							<figure data-ts="DoxMarkup">
-								<script>
+								<script type="text/html">
 									<scrxpt>
 										var tabbar = ts.ui.get('#tabbar-example');
 										tabbar.tabs([
@@ -622,15 +609,12 @@
 						<h3>Table</h3>
 					</a>
 
-					<p>
-						Ranging from spreadsheet-style editing
-						to just showing some tabular data.
-					</p>
+					<p>Ranging from spreadsheet-style editing to just showing some tabular data.</p>
 
 					<ul class="splitscreen">
 						<li>
 							<figure data-ts="DoxMarkup">
-								<script>
+								<script type="text/html">
 									<scrxpt>
 										var table = ts.ui.get('#table-example');
 										table.cols([
@@ -675,14 +659,12 @@
 						<h3>Time</h3>
 					</a>
 
-					<p>
-						Human readable time formatting.
-					</p>
+					<p>Human readable time formatting.</p>
 
 					<ul class="splitscreen">
 						<li>
 							<figure data-ts="DoxMarkup">
-								<script>
+								<script type="text/html">
 									<time data-ts="Time" datetime="2016-06-22 12:00:00"></time>
 								</script>
 							</figure>
@@ -698,14 +680,12 @@
 						<h3>UserImage</h3>
 					</a>
 
-					<p>
-						Little avatars for the users.
-					</p>
+					<p>Little avatars for the users.</p>
 
 					<ul class="splitscreen">
 						<li>
 							<figure data-ts="DoxMarkup">
-								<script>
+								<script type="text/html">
 									<img data-ts="UserImage" src="assets/jim.png" alt="Jim Bob Johnson"/>
 									<img data-ts="UserImage" alt="Karl Benson"/>
 									<img data-ts="UserImage" alt="Marshall Garrett"/>

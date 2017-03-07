@@ -4576,13 +4576,10 @@ body > .ts-panel {
   left: 11px;
   top: 22px;
 }
-.ts-note > *:last-child {
-  margin-bottom: 0;
-}
 .ts-note > i ~ p {
   padding-left: 33px;
 }
-.ts-note > p {
+.ts-note > :last-child {
   margin-bottom: 0;
 }
 .ts-note .ts-note-buttons {

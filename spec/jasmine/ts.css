@@ -3303,15 +3303,20 @@ i.ts-icon svg {
 .ts-menu > li:only-child > a:focus:before {
   border-radius: 3px 0 0 3px;
 }
-.ts-menu > li.ts-checked > button,
-.ts-menu > li.ts-checked > a,
-.ts-device-mouse .ts-menu > li.ts-checked > button:hover,
-.ts-device-mouse .ts-menu > li.ts-checked > a:hover {
+.ts-menu > li.ts-checked > button:disabled,
+.ts-menu > li.ts-checked > a:disabled {
+  background-color: #e1e1e1;
+  color: #898989;
+}
+.ts-menu > li.ts-checked > button:not(:disabled),
+.ts-menu > li.ts-checked > a:not(:disabled),
+.ts-device-mouse .ts-menu > li.ts-checked > button:not(:disabled):hover,
+.ts-device-mouse .ts-menu > li.ts-checked > a:not(:disabled):hover {
   background-color: #20a0e9;
   color: #ffffff;
 }
-.ts-menu > li.ts-checked > button:focus:before,
-.ts-menu > li.ts-checked > a:focus:before {
+.ts-menu > li.ts-checked > button:not(:disabled):focus:before,
+.ts-menu > li.ts-checked > a:not(:disabled):focus:before {
   background-color: #0c8cd5;
 }
 .ts-menu.ts-user-menu > li button,

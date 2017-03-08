@@ -122,12 +122,18 @@
 		&.ts-checked {
 			> button,
 			> a {
-				&, &:hover {
-					background-color: @ts-blue;
-					color: @ts-white;
+				&:disabled {
+					background-color: @ts-lite;
+					color: @ts-medium-lite;
 				}
-				&:focus:before {
-					background-color: @ts-blue-dark;
+				&:not(:disabled) {
+					&, &:hover {
+						background-color: @ts-blue;
+						color: @ts-white;
+					}
+					&:focus:before {
+						background-color: @ts-blue-dark;
+					}
 				}
 			}
 		}

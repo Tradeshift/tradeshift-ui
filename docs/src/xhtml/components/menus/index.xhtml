@@ -12,6 +12,7 @@
 					<p>Not to be confused with the main navigation, the <code class="attr-name">ts-menu</code> is simply a list of selectable items.</p>
 				</section>
 				<section>
+
 					<p>Assign <att>data-ts="Menu"</att> to a <elm>menu</elm> element to initialize it as a Menu. Use <elm>li</elm> elements to separate the menu items, all of which follows the structure of a Button.</p>
 					<figure data-ts="DoxMarkup">
 						<output/>
@@ -123,6 +124,33 @@
 						<i class="ts-icon-info"></i>
 						<p>The UI component makes no attempt to automatically manage these icons and classnames whenever a new menu item gets selected.</p>
 					</div>
+
+					<h3>Disabled items</h3>
+					<p>You can mark any selection as <em>readonly</em> by adding the <att>disabled</att> attribute to the individual buttons.</p>
+					<figure data-ts="DoxMarkup">
+						<output/>
+						<script type="text/html">
+							<menu data-ts="Menu">
+								<li>
+									<button disabled>
+										<span>Not selected</span>
+									</button>
+								</li>
+								<li>
+									<button disabled>
+										<span>Not selected</span>
+									</button>
+								</li>
+								<li class="ts-checked">
+									<button disabled>
+										<span>Selected</span>
+										<i class="ts-icon-checked"></i>
+									</button>
+								</li>
+							</menu>
+						</script>
+					</figure>
+
 				</section>
 			</article>
 		</main>

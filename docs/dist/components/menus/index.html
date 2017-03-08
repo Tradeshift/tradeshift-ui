@@ -294,6 +294,72 @@
                         <i class="ts-icon-info"></i>
                         <p>The UI component makes no attempt to automatically manage these icons and classnames whenever a new menu item gets selected.</p>
                     </div>
+                    <h3><span>Disabled items</span></h3>
+                    <p>You can mark any selection as <em>readonly</em> by adding the <code class="attr-pair"><span>disabled</span></code> attribute to the individual buttons.</p>
+                    <figure data-ts="DoxMarkup" data-ts.code="%3Cmenu%20data-ts%3D%22Menu%22%3E%0A%09%3Cli%3E%0A%09%09%3Cbutton%20disabled%3E%0A%09%09%09%3Cspan%3ENot%20selected%3C%2Fspan%3E%0A%09%09%3C%2Fbutton%3E%0A%09%3C%2Fli%3E%0A%09%3Cli%3E%0A%09%09%3Cbutton%20disabled%3E%0A%09%09%09%3Cspan%3ENot%20selected%3C%2Fspan%3E%0A%09%09%3C%2Fbutton%3E%0A%09%3C%2Fli%3E%0A%09%3Cli%20class%3D%22ts-checked%22%3E%0A%09%09%3Cbutton%20disabled%3E%0A%09%09%09%3Cspan%3ESelected%3C%2Fspan%3E%0A%09%09%09%3Ci%20class%3D%22ts-icon-checked%22%3E%3C%2Fi%3E%0A%09%09%3C%2Fbutton%3E%0A%09%3C%2Fli%3E%0A%3C%2Fmenu%3E">
+                        <script type="text/html">
+                            <menu data-ts="Menu">
+                                <li>
+                                    <button disabled>
+										<span>Not selected</span>
+									</button>
+                                </li>
+                                <li>
+                                    <button disabled>
+										<span>Not selected</span>
+									</button>
+                                </li>
+                                <li class="ts-checked">
+                                    <button disabled>
+										<span>Selected</span>
+										<i class="ts-icon-checked"></i>
+									</button>
+                                </li>
+                            </menu>
+                        </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Atrue%2C%22runs%22%3Afalse%2C%22flip%22%3Atrue%7D">
+                        <div class="tabpanels">
+                            <div class="output">
+                                <menu data-ts="Menu">
+                                    <li>
+                                        <button disabled>
+			<span>Not selected</span>
+		</button>
+                                    </li>
+                                    <li>
+                                        <button disabled>
+			<span>Not selected</span>
+		</button>
+                                    </li>
+                                    <li class="ts-checked">
+                                        <button disabled>
+			<span>Selected</span>
+			<i class="ts-icon-checked"></i>
+		</button>
+                                    </li>
+                                </menu>
+                            </div>
+                            <pre class="prism language-markup">
+<code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>menu</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Menu<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">disabled</span><span class="token punctuation">&gt;</span></span>
+			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">&gt;</span></span>Not selected<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">disabled</span><span class="token punctuation">&gt;</span></span>
+			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">&gt;</span></span>Not selected<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>ts-checked<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">disabled</span><span class="token punctuation">&gt;</span></span>
+			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">&gt;</span></span>Selected<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span>
+			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>i</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>ts-icon-checked<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>i</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>menu</span><span class="token punctuation">&gt;</span></span></code>
+</pre>
+                        </div>
+                    </figure>
                 </section>
             </article>
         </div>

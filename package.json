@@ -1,6 +1,7 @@
 {
   "name": "tradeshift-ui",
   "version": "7.0.0-beta.6",
+  "private": true,
   "description": "The Tradeshift UI Library & Framework",
   "homepage": "https://ui.tradeshift.com/",
   "bugs": {

@@ -2406,6 +2406,11 @@ i.ts-icon svg {
 .ts-form .ts-fieldset + .ts-fieldset {
   padding-top: 11px;
 }
+.ts-form.ts-fieldset > *,
+.ts-form.ts-label > *,
+.ts-form .ts-fieldset > * {
+  font-size: 14px;
+}
 .ts-form.ts-fieldset > span,
 .ts-form.ts-label > span,
 .ts-form .ts-fieldset > span {
@@ -2417,7 +2422,6 @@ i.ts-icon svg {
 .ts-form.ts-fieldset > label,
 .ts-form.ts-label > label,
 .ts-form .ts-fieldset > label {
-  font-size: 14px;
   display: block;
 }
 .ts-form.ts-fieldset > label,

@@ -3043,8 +3043,8 @@ i.ts-icon svg {
 .ts-form label.ts-disabled > textarea {
   overflow: hidden;
 }
-.ts-form label.ts-readonly:not(.ts-option):after,
-.ts-form label.ts-disabled:not(.ts-option):after {
+.ts-form label.ts-readonly:not(.ts-option):not(.ts-switchlabel):after,
+.ts-form label.ts-disabled:not(.ts-option):not(.ts-switchlabel):after {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-family: "Tradeshifticons", fantasy;

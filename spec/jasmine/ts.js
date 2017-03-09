@@ -16980,6 +16980,13 @@ ts.ui = gui.namespace('ts.ui', (function using(Client, guiArray, confirmed, chai
 		},
 
 		/**
+		 * Reflex everything (to tighten up any JS based layout).
+		 */
+		reflex: chained(function() {
+			ts.ui.get(document.documentElement).reflex();
+		}),
+
+		/**
 		 * Is mobile breakpoint?
 		 * @returns {boolean}
 		 */
@@ -36812,7 +36819,7 @@ ts.ui.SideShowSpirit = (function using(chained, Client, Parser, GuiObject, Color
 		 */
 		ontick: function(t) {
 			ts.ui.Spirit.prototype.ontick.call(this, t);
-			if (t.type === 'ts-sideshow-theme') {
+			if (!this.$destructed && t.type === 'ts-sideshow-theme' && this.dom.embedded()) {
 				this._theme = this._theme || this._extractcolor('ts-bg-blue');
 				this._transfercolor(this._theme, this.constructor.$bgmembers);
 				this._themesupport(this.dom);
@@ -38284,12 +38291,12 @@ ts.ui.SideBarSpirit = (function using(chained, Type, Client, GuiObject, Colors) 
 		},
 
 		/**
-		 * Setup the stuff.
+		 * Add assistant classnames and fix the layout.
 		 */
-		onenter: function() {
-			ts.ui.SideShowSpirit.prototype.onenter.call(this);
-			this._breakpointwatch();
-			this.css.shift(this._autoclose, 'ts-autoclose');
+		onattach: function() {
+			ts.ui.SideShowSpirit.prototype.onattach.call(this);
+			this.action.dispatch('ts-action-attach');
+			this._layoutmain(true);
 			if (ts.ui.isMobilePoint()) {
 				this._breakpoint();
 			} else {
@@ -38298,12 +38305,12 @@ ts.ui.SideBarSpirit = (function using(chained, Type, Client, GuiObject, Colors) 
 		},
 
 		/**
-		 * Add assistant classnames.
+		 * Setup the stuff.
 		 */
-		onattach: function() {
-			ts.ui.SideShowSpirit.prototype.onattach.call(this);
-			this.action.dispatch('ts-action-attach');
-			this._layoutmain(true);
+		onenter: function() {
+			ts.ui.SideShowSpirit.prototype.onenter.call(this);
+			this._breakpointwatch();
+			this.css.shift(this._autoclose, 'ts-autoclose');
 		},
 
 		/**

@@ -178,7 +178,7 @@ ts.ui.SideShowSpirit = (function using(chained, Client, Parser, GuiObject, Color
 		 */
 		ontick: function(t) {
 			this.super.ontick(t);
-			if (t.type === 'ts-sideshow-theme') {
+			if (!this.$destructed && t.type === 'ts-sideshow-theme' && this.dom.embedded()) {
 				this._theme = this._theme || this._extractcolor('ts-bg-blue');
 				this._transfercolor(this._theme, this.constructor.$bgmembers);
 				this._themesupport(this.dom);

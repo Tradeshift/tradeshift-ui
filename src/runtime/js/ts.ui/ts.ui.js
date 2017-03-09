@@ -439,6 +439,13 @@ ts.ui = gui.namespace('ts.ui', (function using(Client, guiArray, confirmed, chai
 		},
 
 		/**
+		 * Reflex everything (to tighten up any JS based layout).
+		 */
+		reflex: chained(function() {
+			ts.ui.get(document.documentElement).reflex();
+		}),
+
+		/**
 		 * Is mobile breakpoint?
 		 * @returns {boolean}
 		 */

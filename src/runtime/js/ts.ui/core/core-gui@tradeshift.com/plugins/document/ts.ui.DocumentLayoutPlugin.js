@@ -13,18 +13,10 @@ ts.ui.DocumentLayoutPlugin = ts.ui.Plugin.extend({
 	 */
 	managelayout: function() {
 		this._points = this._computepoints();
-		var layout = this._computelayout();
-		var device = this._computedevice();
-		if (layout) {
-			new ts.ui.LayoutModel(layout).output();
-			new ts.ui.DeviceModel(device).output();
-			this._updateBreakpoints();
-			gui.Broadcast.add(gui.BROADCAST_RESIZE_END, this);
-		} else {
-			setTimeout(function waitformiracle() {
-				this.managelayout();
-			}.bind(this), 0);
-		}
+		new ts.ui.LayoutModel(this._computelayout()).output();
+		new ts.ui.DeviceModel(this._computedevice()).output();
+		this._updateBreakpoints();
+		gui.Broadcast.add(gui.BROADCAST_RESIZE_END, this);
 	},
 
 	/**
@@ -77,13 +69,8 @@ ts.ui.DocumentLayoutPlugin = ts.ui.Plugin.extend({
 		var point,
 			next,
 			points = [],
-			width = window.innerWidth,
+			width = window.innerWidth || 0,
 			presets = ts.ui.LayoutModel.BREAKPOINTS;
-		if (!width) {
-			// Cornercase inside of Frankenstein apps
-			// TODO(jmo@): Remove when V4 porting done
-			return null;
-		}
 		this._points.every(function(p) {
 			if ((next = p <= width)) {
 				point = presets[p];

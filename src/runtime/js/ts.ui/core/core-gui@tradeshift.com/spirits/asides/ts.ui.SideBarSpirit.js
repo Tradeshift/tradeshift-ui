@@ -65,12 +65,12 @@ ts.ui.SideBarSpirit = (function using(chained, Type, Client, GuiObject, Colors) 
 		},
 
 		/**
-		 * Setup the stuff.
+		 * Add assistant classnames and fix the layout.
 		 */
-		onenter: function() {
-			this.super.onenter();
-			this._breakpointwatch();
-			this.css.shift(this._autoclose, 'ts-autoclose');
+		onattach: function() {
+			this.super.onattach();
+			this.action.dispatch('ts-action-attach');
+			this._layoutmain(true);
 			if (ts.ui.isMobilePoint()) {
 				this._breakpoint();
 			} else {
@@ -79,12 +79,12 @@ ts.ui.SideBarSpirit = (function using(chained, Type, Client, GuiObject, Colors) 
 		},
 
 		/**
-		 * Add assistant classnames.
+		 * Setup the stuff.
 		 */
-		onattach: function() {
-			this.super.onattach();
-			this.action.dispatch('ts-action-attach');
-			this._layoutmain(true);
+		onenter: function() {
+			this.super.onenter();
+			this._breakpointwatch();
+			this.css.shift(this._autoclose, 'ts-autoclose');
 		},
 
 		/**

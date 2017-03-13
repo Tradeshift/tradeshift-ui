@@ -214,7 +214,7 @@ ts.ui.InputSpirit = (function using(chained, Type, Client) {
 			this.super.$updatestyling();
 			this._label(function(label) {
 				label.$empty(!this.value);
-				label.$customicon(this.icon);
+				label.$customicon(this.icon, this.att.has('data-ts.icon'));
 			});
 		},
 

@@ -8,10 +8,13 @@ branches:
   - master
 install:
 - echo '{"AWSAccessKeyId":"","AWSSecretKey":""}' >> aws-keys.json
-- npm install -g grunt-cli
+- npm install -g grunt-cli travis-notify-geckoboard
+- travis-notify-geckoboard -a $GECKOBOARD_API_KEY -w $GECKOBOARD_WIDGET_KEY
 - yarn
 script:
 - yarn test
+after_script:
+- travis-notify-geckoboard -a $GECKOBOARD_API_KEY -w $GECKOBOARD_WIDGET_KEY
 cache:
   directories:
   - node_modules

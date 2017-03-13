@@ -23,9 +23,11 @@
 		padding: @ts-unit;
 		.ts-menu,
 		.ts-fieldset,
-		.ts-calendar,
-		.ts-buttons {
+		.ts-calendar {
 			.ts-mixin-expand();
+		}
+		.ts-buttons {
+			.ts-mixin-expand(@ts-unit-quarter);
 		}
 		> .ts-menu,
 		> .ts-form,

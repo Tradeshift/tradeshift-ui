@@ -2748,7 +2748,7 @@ i.ts-icon svg {
   margin-left: 11px;
   font-size: 12px;
   font-weight: 400;
-  margin-bottom: 33px;
+  margin-bottom: 11px;
   font-weight: normal;
   position: relative;
 }
@@ -4128,11 +4128,14 @@ body > .ts-panel {
 .ts-sideshow > .ts-panel .ts-fieldset,
 .ts-sideshow > .ts-footer .ts-fieldset,
 .ts-sideshow > .ts-panel .ts-calendar,
-.ts-sideshow > .ts-footer .ts-calendar,
-.ts-sideshow > .ts-panel .ts-buttons,
-.ts-sideshow > .ts-footer .ts-buttons {
+.ts-sideshow > .ts-footer .ts-calendar {
   margin-left: -11px;
   margin-right: -11px;
+}
+.ts-sideshow > .ts-panel .ts-buttons,
+.ts-sideshow > .ts-footer .ts-buttons {
+  margin-left: -5.5px;
+  margin-right: -5.5px;
 }
 .ts-sideshow > .ts-panel > .ts-menu:first-child,
 .ts-sideshow > .ts-footer > .ts-menu:first-child,

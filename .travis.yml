@@ -7,17 +7,18 @@ branches:
   only:
   - master
 install:
-- echo '{"AWSAccessKeyId":"","AWSSecretKey":""}' >> aws-keys.json
-- npm install -g grunt-cli travis-notify-geckoboard
-- travis-notify-geckoboard -a $GECKOBOARD_API_KEY -w $GECKOBOARD_WIDGET_KEY
+- npm install -g grunt-cli
+- npm install -g stream-browserify
+- cd tasks/travis-notify-geckoboard/ && yarn && node tasks/travis-notify-geckoboard/bin/travis-notify-geckoboard.js -a $GECKOBOARD_API_KEY -w $GECKOBOARD_WIDGET_KEY
 - yarn
 script:
 - yarn test
 after_script:
-- travis-notify-geckoboard -a $GECKOBOARD_API_KEY -w $GECKOBOARD_WIDGET_KEY
+- node tasks/travis-notify-geckoboard/bin/travis-notify-geckoboard.js -a $GECKOBOARD_API_KEY -w $GECKOBOARD_WIDGET_KEY
 cache:
   directories:
   - node_modules
+  - tasks/travis-notify-geckoboard/node_modules
 notifications:
   webhooks:
     urls:

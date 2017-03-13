@@ -42430,7 +42430,7 @@ ts.ui.InputSpirit = (function using(chained, Type, Client) {
 			ts.ui.FieldSpirit.prototype.$updatestyling.call(this);
 			this._label(function(label) {
 				label.$empty(!this.value);
-				label.$customicon(this.icon);
+				label.$customicon(this.icon, this.att.has('data-ts.icon'));
 			});
 		},
 
@@ -43672,8 +43672,8 @@ ts.ui.LabelSpirit = (function using(Client, FieldSpirit, chained, tick, time, co
 		/**
 		 * Use a custom icon instead of the automatically generated one
 		 */
-		$customicon: chained(function(customicon) {
-			if (arguments.length) {
+		$customicon: chained(function(customicon, hasCustomicon) {
+			if (hasCustomicon) {
 				var character = ts.ui.ICONS[customicon] || '';
 				this.css.add(class_customiconlabel);
 				this.att.set('data-ts-icon', character);

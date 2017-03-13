@@ -192,8 +192,8 @@ ts.ui.LabelSpirit = (function using(Client, FieldSpirit, chained, tick, time, co
 		/**
 		 * Use a custom icon instead of the automatically generated one
 		 */
-		$customicon: chained(function(customicon) {
-			if (arguments.length) {
+		$customicon: chained(function(customicon, hasCustomicon) {
+			if (hasCustomicon) {
 				var character = ts.ui.ICONS[customicon] || '';
 				this.css.add(class_customiconlabel);
 				this.att.set('data-ts-icon', character);

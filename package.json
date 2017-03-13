@@ -20,7 +20,7 @@
   },
   "scripts": {
     "lint": "./node_modules/.bin/eslint --fix --config ./.eslintrc.json .",
-    "test": "npm run lint && ./node_modules/.bin/browserstack-runner",
+    "test": "npm run lint && ./node_modules/.bin/grunt jasmine && ./node_modules/.bin/browserstack-runner",
     "http": "static spec/jasmine -H '{\"Cache-Control\": \"no-cache, must-revalidate\"}'",
     "deploy-s3": "node tasks/deploy.js"
   },

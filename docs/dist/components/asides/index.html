@@ -36,7 +36,13 @@
                 <section>
                     <p>The <code class="attr-value">Aside</code> component <em>must</em> be created with a child component <code class="attr-value">Panel</code>.</p>
                     <figure data-ts="DoxMarkup" data-ts.code="%3Caside%20data-ts%3D%22Aside%22%3E%0A%09%3Cdiv%20data-ts%3D%22Panel%22%3E%0A%09%09%3Cp%3EAside%20content.%3C%2Fp%3E%0A%09%3C%2Fdiv%3E%0A%3C%2Faside%3E">
-                        <input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
+                        <script type="text/html">
+                            <aside data-ts="Aside">
+                                <div data-ts="Panel">
+                                    <p>Aside content.</p>
+                                </div>
+                            </aside>
+                        </script><input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
                         <div class="tabpanels">
                             <pre class="prism language-markup">
 <code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>aside</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Aside<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
@@ -49,7 +55,16 @@
                     </figure>
                     <p>You can create the <code class="attr-value">Aside</code> wherever you like, just make sure that it&apos;s positioned outside of the <code class="attr-value">Main</code> element when it opens.</p>
                     <figure data-ts="DoxMarkup" data-ts.code="%3Cmain%20data-ts%3D%22Main%22%3E%0A%09%3Cp%3EMain%20content.%3C%2Fp%3E%0A%3C%2Fmain%3E%0A%3Caside%20data-ts%3D%22Aside%22%3E%0A%09%3Cdiv%20data-ts%3D%22Panel%22%3E%0A%09%09%3Cp%3EAside%20content.%3C%2Fp%3E%0A%09%3C%2Fdiv%3E%0A%3C%2Faside%3E">
-                        <input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
+                        <script type="text/html">
+                            <main data-ts="Main">
+                                <p>Main content.</p>
+                            </main>
+                            <aside data-ts="Aside">
+                                <div data-ts="Panel">
+                                    <p>Aside content.</p>
+                                </div>
+                            </aside>
+                        </script><input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
                         <div class="tabpanels">
                             <pre class="prism language-markup">
 <code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>main</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Main<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
@@ -68,7 +83,13 @@
                 <section>
                     <p>The <code class="attr-pair"><span>data-ts.title</span></code> attribute configures the aside with a <a data-ts="Button" onclick="toggle(&apos;#myaside&apos;);">nice header</a>.</p>
                     <figure data-ts="DoxMarkup" data-ts.code="%3Caside%20data-ts%3D%22Aside%22%20data-ts.title%3D%22Aside%20Header%22%3E%0A%09%3Cdiv%20data-ts%3D%22Panel%22%3E%0A%09%09%3Cp%3EAside%20content.%3C%2Fp%3E%0A%09%3C%2Fdiv%3E%0A%3C%2Faside%3E">
-                        <input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
+                        <script type="text/html">
+                            <aside data-ts="Aside" data-ts.title="Aside Header">
+                                <div data-ts="Panel">
+                                    <p>Aside content.</p>
+                                </div>
+                            </aside>
+                        </script><input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
                         <div class="tabpanels">
                             <pre class="prism language-markup">
 <code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>aside</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Aside<span class="token punctuation">&quot;</span></span> <span class="token attr-name">data-ts</span>.<span class="token attr-name">title</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Aside Header<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
@@ -85,7 +106,11 @@
                         <code class="attr-value">ts-bg-red</code> and
                         <code class="attr-value">ts-bg-purple</code> to the <code class="el">aside</code> element itself.</p>
                     <figure data-ts="DoxMarkup" data-ts.code="%3Caside%20data-ts%3D%22Aside%22%20class%3D%22ts-bg-red%22%3E%0A%09%3Cdiv%20data-ts%3D%22Panel%22%3E%3C%2Fdiv%3E%0A%3C%2Faside%3E">
-                        <input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
+                        <script type="text/html">
+                            <aside data-ts="Aside" class="ts-bg-red">
+                                <div data-ts="Panel"></div>
+                            </aside>
+                        </script><input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
                         <div class="tabpanels">
                             <pre class="prism language-markup">
 <code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>aside</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Aside<span class="token punctuation">&quot;</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>ts-bg-red<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
@@ -99,7 +124,13 @@
                 <section>
                     <p>The <code class="attr-pair"><span>data-ts.open</span></code> attribute can be flipped to toggle the aside.</p>
                     <figure data-ts="DoxMarkup" data-ts.code="%3Caside%20data-ts%3D%22Aside%22%20data-ts.open%3D%22false%22%20id%3D%22myaside%22%3E%0A%09%3Cdiv%20data-ts%3D%22Panel%22%3E%0A%09%09%3Cp%3EAside%20content.%3C%2Fp%3E%0A%09%3C%2Fdiv%3E%0A%3C%2Faside%3E">
-                        <input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
+                        <script type="text/html">
+                            <aside data-ts="Aside" data-ts.open="false" id="myaside">
+                                <div data-ts="Panel">
+                                    <p>Aside content.</p>
+                                </div>
+                            </aside>
+                        </script><input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
                         <div class="tabpanels">
                             <pre class="prism language-markup">
 <code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>aside</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Aside<span class="token punctuation">&quot;</span></span> <span class="token attr-name">data-ts</span>.<span class="token attr-name">open</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>false<span class="token punctuation">&quot;</span></span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>myaside<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
@@ -126,7 +157,16 @@
                 <section>
                     <p>If an <code class="attr-value">Aside</code> contains more than one <code class="attr-value">Panel</code>, we will automatically create a TabBar to switch between the panels like in <a data-ts="Button" onclick="ts.ui.get(&apos;#aside2&apos;).open()">this example</a>.</p>
                     <figure data-ts="DoxMarkup" data-ts.code="%3Caside%20data-ts%3D%22Aside%22%3E%0A%09%3Cdiv%20data-ts%3D%22Panel%22%20data-ts.label%3D%22Tab%201%22%3E%0A%09%09%3Cp%3Easide%20content.%3C%2Fp%3E%0A%09%3C%2Fdiv%3E%0A%09%3Cdiv%20data-ts%3D%22Panel%22%20data-ts.label%3D%22Tab%202%22%3E%0A%09%09%3Cp%3Easide%20content.%3C%2Fp%3E%0A%09%3C%2Fdiv%3E%0A%3C%2Faside%3E">
-                        <input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
+                        <script type="text/html">
+                            <aside data-ts="Aside">
+                                <div data-ts="Panel" data-ts.label="Tab 1">
+                                    <p>aside content.</p>
+                                </div>
+                                <div data-ts="Panel" data-ts.label="Tab 2">
+                                    <p>aside content.</p>
+                                </div>
+                            </aside>
+                        </script><input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
                         <div class="tabpanels">
                             <pre class="prism language-markup">
 <code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>aside</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Aside<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
@@ -160,7 +200,9 @@
                     </figure>
                     <p>You can also mix the two approaches to dynamically update tabs that were created with <code class="attr-pair"><span>Panel</span></code> elements. This will for example assign an <code>onselect</code> callback to the third tab.</p>
                     <figure data-ts="DoxScript" data-ts.code="var%20tabs%20%3D%20ts.ui.get(&apos;%23myaside&apos;).tabs()%3B%0Atabs%5B2%5D.onselect%20%3D%20function()%20%7B%0A%09console.log(&apos;selected&apos;)%3B%0A%7D%3B">
-                        <input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
+                        <script type="text/html">
+                            var tabs = ts.ui.get('#myaside').tabs(); tabs[2].onselect = function() { console.log('selected'); };
+                        </script><input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
                         <div class="tabpanels">
                             <pre class="prism language-javascript">
 <code><span class="token keyword">var</span> tabs <span class="token operator">=</span> ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#myaside&apos;</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">tabs<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -172,10 +214,58 @@ tabs<span class="token punctuation">[</span><span class="token number">2</span><
                     </figure>
                     <p>To remove all dynamically created tabs, you can simply clear the tab collection.</p>
                     <figure data-ts="DoxScript" data-ts.code="ts.ui.get(&apos;%23myaside&apos;).tabs().clear()%3B">
-                        <input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
+                        <script type="text/html">
+                            ts.ui.get('#myaside').tabs().clear();
+                        </script><input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
                         <div class="tabpanels">
                             <pre class="prism language-javascript">
 <code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#myaside&apos;</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">tabs<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">clear<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
+</pre>
+                        </div>
+                    </figure>
+                </section>
+                <h3><span>Adding some buttons</span></h3>
+                <section>
+                    <p>It&apos;s common for Asides to show a group of buttons, usually following a set of form fields. To make sure that they always look the same, the certified way to add this group of buttons is via a <a data-ts="Button" href="/dist/components/buttons/buttons.html">Buttons</a>                        menu.</p>
+                    <figure data-ts="DoxMarkup" data-ts.code="%3Caside%20data-ts%3D%22Aside%22%3E%0A%09%3Cdiv%20data-ts%3D%22Panel%22%3E%0A%09%09...%20form%20fields%20here%20...%0A%09%09%3Cmenu%20data-ts%3D%22Buttons%22%3E%0A%09%09%09%3Cli%3E%0A%09%09%09%09%3Cbutton%20class%3D%22ts-primary%22%3E%0A%09%09%09%09%09%3Cspan%3ESubmit%20Changes%3C%2Fspan%3E%0A%09%09%09%09%3C%2Fbutton%3E%0A%09%09%09%3C%2Fli%3E%0A%09%09%09%3Cli%3E%0A%09%09%09%09%3Cbutton%20class%3D%22ts-secondary%22%3E%0A%09%09%09%09%09%3Cspan%3ECancel%20Everything%3C%2Fspan%3E%0A%09%09%09%09%3C%2Fbutton%3E%0A%09%09%09%3C%2Fli%3E%0A%09%09%3C%2Fmenu%3E%0A%09%3C%2Fdiv%3E%0A%3C%2Faside%3E">
+                        <script type="text/html">
+                            <aside data-ts="Aside">
+                                <div data-ts="Panel">
+                                    ... form fields here ...
+                                    <menu data-ts="Buttons">
+                                        <li>
+                                            <button class="ts-primary">
+												<span>Submit Changes</span>
+											</button>
+                                        </li>
+                                        <li>
+                                            <button class="ts-secondary">
+												<span>Cancel Everything</span>
+											</button>
+                                        </li>
+                                    </menu>
+                                </div>
+                            </aside>
+                        </script><input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
+                        <div class="tabpanels">
+                            <pre class="prism language-markup">
+<code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>aside</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Aside<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Panel<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+		... form fields here ...
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>menu</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Buttons<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span><span class="token punctuation">&gt;</span></span>
+				<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>ts-primary<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+					<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">&gt;</span></span>Submit Changes<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span>
+				<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">&gt;</span></span>
+			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">&gt;</span></span>
+			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span><span class="token punctuation">&gt;</span></span>
+				<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>ts-secondary<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+					<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">&gt;</span></span>Cancel Everything<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span>
+				<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">&gt;</span></span>
+			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>menu</span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>aside</span><span class="token punctuation">&gt;</span></span></code>
 </pre>
                         </div>
                     </figure>
@@ -184,7 +274,13 @@ tabs<span class="token punctuation">[</span><span class="token number">2</span><
                 <section>
                     <p>The <code class="attr-pair"><span>data-ts.busy</span></code> attribute can be set to show the spinner</p>
                     <figure data-ts="DoxMarkup" data-ts.code="%3Caside%20data-ts%3D%22Aside%22%20data-ts.busy%3D%22Busy%20message!%22%3E%0A%09%3Cdiv%20data-ts%3D%22Panel%22%3E%0A%09%09%3Cp%3EAside%20content.%3C%2Fp%3E%0A%09%3C%2Fdiv%3E%0A%3C%2Faside%3E">
-                        <input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
+                        <script type="text/html">
+                            <aside data-ts="Aside" data-ts.busy="Busy message!">
+                                <div data-ts="Panel">
+                                    <p>Aside content.</p>
+                                </div>
+                            </aside>
+                        </script><input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
                         <div class="tabpanels">
                             <pre class="prism language-markup">
 <code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>aside</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Aside<span class="token punctuation">&quot;</span></span> <span class="token attr-name">data-ts</span>.<span class="token attr-name">busy</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Busy message!<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
@@ -225,7 +321,13 @@ aside<span class="token punctuation">.</span><span class="token function">attr<s
                         <code class="attr-name">onclosed</code>. You can also do this with <a data-ts="Button" href="/dist/components/asides/js.html">event listeners</a> if you like.
                     </p>
                     <figure data-ts="DoxMarkup" data-ts.code="%3Caside%20data-ts%3D%22Aside%22%0A%09ts.onopen%3D%22console.log(&apos;Will%20open&apos;)%22%0A%09ts.onopened%3D%22console.log(&apos;Did%20open&apos;)%22%0A%09ts.onclose%3D%22console.log(&apos;Will%20close&apos;)%22%0A%09ts.onclosed%3D%22console.log(&apos;Did%20close&apos;)%22%3E%0A%09%3Cdiv%20data-ts%3D%22Panel%22%3E%0A%09%09%3Cp%3EAside%20content.%3C%2Fp%3E%0A%09%3C%2Fdiv%3E%0A%3C%2Faside%3E">
-                        <input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
+                        <script type="text/html">
+                            <aside data-ts="Aside" ts.onopen="console.log('Will open')" ts.onopened="console.log('Did open')" ts.onclose="console.log('Will close')" ts.onclosed="console.log('Did close')">
+                                <div data-ts="Panel">
+                                    <p>Aside content.</p>
+                                </div>
+                            </aside>
+                        </script><input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
                         <div class="tabpanels">
                             <pre class="prism language-markup">
 <code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>aside</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Aside<span class="token punctuation">&quot;</span></span>

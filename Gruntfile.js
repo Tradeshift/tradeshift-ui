@@ -324,7 +324,7 @@ module.exports = function(grunt) {
 		// serve and watch
 		concurrent: {
 			docs: ['devserver', 'watch', 'exec:docs_grunt'],
-			nodocs: ['devserver', 'watch'],
+			nodocs: ['devserver', 'watch', 'asciify:banner'],
 			options: {
 				logConcurrentOutput: true
 			}
@@ -402,6 +402,16 @@ module.exports = function(grunt) {
 					 * And set it as an ENV VAR
 					 */
 					accessTokenVar: 'GH_ACCESS_TOK'
+				}
+			}
+		},
+
+		asciify: {
+			banner: {
+				text: 'Tradeshift UI',
+				options: {
+					font: 'graffiti',
+					log: true
 				}
 			}
 		}

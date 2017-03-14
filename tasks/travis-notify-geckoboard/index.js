@@ -46,7 +46,7 @@ TravisCIEnv.createFromEnv = function(env) {
 TravisCIEnv.prototype.toTextWidgetValue = function(building) {
 	const getBuildTitle = () =>
 		(
-			(this.pr ?
+			((this.pr && this.pr !== 'false') ?
 				'PR #' + this.pr + '<br/> ' + this.prBranch :
 				this.branch)
 		);

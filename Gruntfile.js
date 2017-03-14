@@ -78,12 +78,6 @@ module.exports = function(grunt) {
 					var filename = path.basename(src, ext) + '-<%= pkg.version %>' + ext;
 					return dest + '/' + grunt.template.process(filename);
 				}
-			},
-			fix_less_gzip: {
-				flatten: true,
-				expand: true,
-				src: 'dist/cdn/*.less',
-				dest: 'public/'
 			}
 		},
 
@@ -292,7 +286,8 @@ module.exports = function(grunt) {
 				src: [
 					'**/*.map',
 					'**/*.js',
-					'**/*.css'
+					'**/*.css',
+					'**/*.less'
 				],
 				dest: 'public/'
 			}
@@ -597,7 +592,6 @@ module.exports = function(grunt) {
 			'cssmin:cdn',
 			'copy:lang_cdn',
 			'compress',
-			'copy:fix_less_gzip',
 			'concat:jasmine',
 			'copy:jasmine'
 		];

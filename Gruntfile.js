@@ -363,19 +363,19 @@ module.exports = function(grunt) {
 		exec: {
 			s3_upload: {
 				command: 'npm run deploy-s3',
-				stdout: true
+				stdout: 'inherit'
 			},
 			eslint: {
 				command: 'npm run lint',
-				stdout: true
+				stdout: 'inherit'
 			},
 			docs_dist: {
 				command: 'cd docs && grunt dist',
-				stdout: true
+				stdout: 'inherit'
 			},
 			docs_grunt: {
 				command: 'cd docs && grunt',
-				stdout: true
+				stdout: 'inherit'
 			}
 		},
 

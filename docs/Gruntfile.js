@@ -70,6 +70,7 @@ module.exports = function(grunt) {
 				options: {
 					keepalive: true,
 					port: 10114,
+					open: true,
 					base: '.'
 				}
 			}
@@ -223,7 +224,7 @@ module.exports = function(grunt) {
 
 		concurrent: {
 			localdev: {
-				tasks: ['connect', 'watch'],
+				tasks: ['connect', 'watch', 'asciify:banner'],
 				options: {
 					logConcurrentOutput: true
 				}
@@ -271,6 +272,16 @@ module.exports = function(grunt) {
 					folder: 'screenshots/local/',
 					compare: 'screenshots/release/',
 					differs: 'screenshots/diffs/'
+				}
+			}
+		},
+
+		asciify: {
+			banner: {
+				text: 'Tradeshift UI',
+				options: {
+					font: 'graffiti',
+					log: true
 				}
 			}
 		}

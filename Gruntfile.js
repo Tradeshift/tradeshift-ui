@@ -323,7 +323,8 @@ module.exports = function(grunt) {
 
 		// serve and watch
 		concurrent: {
-			serve_and_watch: ['devserver', 'watch'],
+			docs: ['devserver', 'watch', 'exec:docs_grunt'],
+			nodocs: ['devserver', 'watch', 'asciify:banner'],
 			options: {
 				logConcurrentOutput: true
 			}
@@ -362,15 +363,19 @@ module.exports = function(grunt) {
 		exec: {
 			s3_upload: {
 				command: 'npm run deploy-s3',
-				stdout: true
+				stdout: 'inherit'
 			},
 			eslint: {
 				command: 'npm run lint',
-				stdout: true
+				stdout: 'inherit'
 			},
 			docs_dist: {
 				command: 'cd docs && grunt dist',
-				stdout: true
+				stdout: 'inherit'
+			},
+			docs_grunt: {
+				command: 'cd docs && grunt',
+				stdout: 'inherit'
 			}
 		},
 
@@ -397,6 +402,16 @@ module.exports = function(grunt) {
 					 * And set it as an ENV VAR
 					 */
 					accessTokenVar: 'GH_ACCESS_TOK'
+				}
+			}
+		},
+
+		asciify: {
+			banner: {
+				text: 'Tradeshift UI',
+				options: {
+					font: 'graffiti',
+					log: true
 				}
 			}
 		}
@@ -590,8 +605,11 @@ module.exports = function(grunt) {
 
 	// Tasks .....................................................................
 
-	// setup for local develmopment (default)
-	grunt.registerTask('default', buildlocal().concat(['concurrent']));
+	// setup for local develmopment (no docs)
+	grunt.registerTask('default', buildlocal().concat(['concurrent:nodocs']));
+
+	// setup for local develmopment (with docs)
+	grunt.registerTask('dev', buildlocal().concat(['concurrent:docs']));
 
 	// BUILD FOR PRODUCTION! RUN THIS BEFORE PULL REQUEST!
 	// NOTE: Duplicate steps going on, should be optimized

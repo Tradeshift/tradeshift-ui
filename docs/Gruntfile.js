@@ -25,6 +25,8 @@ module.exports = function(grunt) {
 		'config.json',
 		'config.local.json'
 	);
+	// get version number directly from the package.json of the runtime
+	config.runtime_version = require('../package.json').version;
 
 	// Config ....................................................................
 

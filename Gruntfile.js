@@ -323,7 +323,8 @@ module.exports = function(grunt) {
 
 		// serve and watch
 		concurrent: {
-			serve_and_watch: ['devserver', 'watch'],
+			docs: ['devserver', 'watch', 'exec:docs_grunt'],
+			nodocs: ['devserver', 'watch'],
 			options: {
 				logConcurrentOutput: true
 			}
@@ -370,6 +371,10 @@ module.exports = function(grunt) {
 			},
 			docs_dist: {
 				command: 'cd docs && grunt dist',
+				stdout: true
+			},
+			docs_grunt: {
+				command: 'cd docs && grunt',
 				stdout: true
 			}
 		},
@@ -590,8 +595,11 @@ module.exports = function(grunt) {
 
 	// Tasks .....................................................................
 
-	// setup for local develmopment (default)
-	grunt.registerTask('default', buildlocal().concat(['concurrent']));
+	// setup for local develmopment (no docs)
+	grunt.registerTask('default', buildlocal().concat(['concurrent:nodocs']));
+
+	// setup for local develmopment (with docs)
+	grunt.registerTask('dev', buildlocal().concat(['concurrent:docs']));
 
 	// BUILD FOR PRODUCTION! RUN THIS BEFORE PULL REQUEST!
 	// NOTE: Duplicate steps going on, should be optimized

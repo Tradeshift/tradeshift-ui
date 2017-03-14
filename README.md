@@ -35,10 +35,8 @@ If you'd like to submit a feature request or report a bug, go to our [issues pag
 
 ### Optional steps to run the documentation site locally
 
-1. Start the `grunt` script in the `docs/` folder.
-	- `cd docs; grunt`
-1. Navigate to [`http://localhost:10114/`](http://localhost:10114/) to view the documentation site locally.
-1. Whenever you modify the source files, the script will rebuild the distribution files in `dist/` so you're always using the latest version.
+1. Run `grunt dev` (instead of just `grunt`) and the documentantion website will open up on [`http://localhost:10114/`](http://localhost:10114/)
+1. Whenever you modify the source files, the script will rebuild the documentation so you're always using the latest version.
 
 ## Git Hooks
 

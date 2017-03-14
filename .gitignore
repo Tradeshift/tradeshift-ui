@@ -2,6 +2,12 @@
 config.local.json
 aws-keys.json
 
+# Jasmine auto-generated files
+spec/jasmine/specs.js
+spec/jasmine/ts-lang-en.js
+spec/jasmine/ts.css
+spec/jasmine/ts.js
+
 # Local (dev) screenshots
 docs/screenshots/local/
 docs/screenshots/diffs/

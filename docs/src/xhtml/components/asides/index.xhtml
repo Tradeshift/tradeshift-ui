@@ -22,7 +22,7 @@
 				<section>
 					<p>The <val>Aside</val> component <em>must</em> be created with a child component <val>Panel</val>.</p>
 					<figure data-ts="DoxMarkup">
-						<script>
+						<script type="text/html">
 							<aside data-ts="Aside">
 								<div data-ts="Panel">
 									<p>Aside content.</p>
@@ -32,7 +32,7 @@
 					</figure>
 					<p>You can create the <val>Aside</val> wherever you like, just make sure that it's positioned outside of the <val>Main</val> element when it opens.</p>
 					<figure data-ts="DoxMarkup">
-						<script>
+						<script type="text/html">
 							<main data-ts="Main">
 								<p>Main content.</p>
 							</main>
@@ -49,7 +49,7 @@
 				<section>
 					<p>The <att>data-ts.title</att> attribute configures the aside with a <a data-ts="Button" onclick="toggle('#myaside');">nice header</a>.</p>
 					<figure data-ts="DoxMarkup">
-						<script>
+						<script type="text/html">
 							<aside data-ts="Aside" data-ts.title="Aside Header">
 								<div data-ts="Panel">
 									<p>Aside content.</p>
@@ -64,7 +64,7 @@
 						<code class="attr-value">ts-bg-purple</code>
 						to the <code class="el">aside</code> element itself.</p>
 					<figure data-ts="DoxMarkup">
-						<script>
+						<script type="text/html">
 							<aside data-ts="Aside" class="ts-bg-red">
 								<div data-ts="Panel"></div>
 							</aside>
@@ -76,7 +76,7 @@
 				<section>
 					<p>The <att>data-ts.open</att> attribute can be flipped to toggle the aside.</p>
 					<figure data-ts="DoxMarkup">
-						<script>
+						<script type="text/html">
 							<aside data-ts="Aside" data-ts.open="false" id="myaside">
 								<div data-ts="Panel">
 									<p>Aside content.</p>
@@ -97,7 +97,7 @@
 					<p>If an <val>Aside</val> contains more than one <val>Panel</val>,
 					we will automatically create a TabBar to switch between the panels like in <a data-ts="Button" onclick="ts.ui.get('#aside2').open()">this example</a>.</p>
 					<figure data-ts="DoxMarkup">
-						<script>
+						<script type="text/html">
 							<aside data-ts="Aside">
 								<div data-ts="Panel" data-ts.label="Tab 1">
 									<p>aside content.</p>
@@ -123,7 +123,7 @@
 					</figure>
 					<p>You can also mix the two approaches to dynamically update tabs that were created with <att>Panel</att> elements. This will for example assign an <code>onselect</code> callback to the third tab.</p>
 					<figure data-ts="DoxScript">
-						<script>
+						<script type="text/html">
 							var tabs = ts.ui.get('#myaside').tabs();
 							tabs[2].onselect = function() {
 								console.log('selected');
@@ -132,8 +132,34 @@
 					</figure>
 					<p>To remove all dynamically created tabs, you can simply clear the tab collection.</p>
 					<figure data-ts="DoxScript">
-						<script>
+						<script type="text/html">
 							ts.ui.get('#myaside').tabs().clear();
+						</script>
+					</figure>
+				</section>
+
+				<h3>Adding some buttons</h3>
+				<section>
+					<p>It's common for Asides to show a group of buttons, usually following a set of form fields. To make sure that they always look the same, the certified way to add this group of buttons is via a <a data-ts="Button" href="/#components/buttons/buttons.html">Buttons</a> menu.</p>
+					<figure data-ts="DoxMarkup">
+						<script type="text/html">
+							<aside data-ts="Aside">
+								<div data-ts="Panel">
+									... form fields here ...
+									<menu data-ts="Buttons">
+										<li>
+											<button class="ts-primary">
+												<span>Submit Changes</span>
+											</button>
+										</li>
+										<li>
+											<button class="ts-secondary">
+												<span>Cancel Everything</span>
+											</button>
+										</li>
+									</menu>
+								</div>
+							</aside>
 						</script>
 					</figure>
 				</section>
@@ -142,7 +168,7 @@
 				<section>
 					<p>The <att>data-ts.busy</att> attribute can be set to show the spinner</p>
 					<figure data-ts="DoxMarkup">
-						<script>
+						<script type="text/html">
 							<aside data-ts="Aside" data-ts.busy="Busy message!">
 								<div data-ts="Panel">
 									<p>Aside content.</p>
@@ -177,7 +203,7 @@
 						You can also do this with <a data-ts="Button" href="/#components/asides/js.html">event listeners</a> if you like.
 					</p>
 					<figure data-ts="DoxMarkup">
-						<script>
+						<script type="text/html">
 							<aside data-ts="Aside"
 								ts.onopen="console.log('Will open')"
 								ts.onopened="console.log('Did open')"

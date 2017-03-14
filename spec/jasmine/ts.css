@@ -3075,7 +3075,7 @@ i.ts-icon svg {
 .ts-form label.ts-disabled .ts-field.ts-text {
   border-color: #e1e1e1;
 }
-.ts-form label.ts-customiconlabel:not(.ts-option):after {
+.ts-form label.ts-customiconlabel:not(.ts-option):not(.ts-switchlabel):after {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-family: "Tradeshifticons", fantasy;
@@ -3097,7 +3097,7 @@ i.ts-icon svg {
   color: #7f7f7f;
   line-height: 33px;
 }
-.ts-form label.ts-customiconlabel:not(.ts-option):not(.ts-disabled):not(.ts-readonly):after {
+.ts-form label.ts-customiconlabel:not(.ts-option):not(.ts-switchlabel):not(.ts-disabled):not(.ts-readonly):after {
   line-height: 0;
 }
 .ts-form .ts-autocomplete-list {

@@ -722,7 +722,7 @@
 // Customizing it ..............................................................
 
 .ts-form {
-	label.ts-customiconlabel:not(.ts-option) {
+	label.ts-customiconlabel:not(.ts-option):not(.ts-switchlabel) {
 		&:after {
 			.ts-mixin-icon(@ts-fontsize-small);
 			content: ~"attr(data-ts-icon)";

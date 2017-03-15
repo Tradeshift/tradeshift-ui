@@ -185,61 +185,75 @@
 	box-shadow: none !important;
 }
 
-.ts-form {
-	label:hover:not(.ts-focus):not(.ts-focus-on) {
-		&:not(.ts-disabled):not(.ts-readonly) {
-			.ts-field {
-				&.ts-text,
-				&.ts-date {
+.ts-form:not(.ts-nofx) {
+	.ts-fieldset {
+		label:hover:not(.ts-focus):not(.ts-focus-on) {
+			&:not(.ts-disabled):not(.ts-readonly) {
+				.ts-field {
+					&.ts-text,
+					&.ts-date {
+						.local-mixin-hover-outline();
+					}
+				}
+				&.ts-checkbox,
+				&.ts-switchlabel {
 					.local-mixin-hover-outline();
 				}
-			}
-			&.ts-checkbox,
-			&.ts-switchlabel {
-				.local-mixin-hover-outline();
+				&.ts-error {
+					.ts-field {
+						&.ts-text,
+						&.ts-date {
+							.local-mixin-hover-outline(@ts-red);
+						}
+					}
+					&.ts-checkbox,
+					&.ts-switchlabel {
+						.local-mixin-hover-outline(@ts-red);
+					}	
+				}
 			}
 		}
-	}
-	label.ts-focus,
-	label.ts-focus-on {
-		&:not(.ts-disabled):not(.ts-readonly) {
-			.ts-field {
-				&.ts-text,
-				&.ts-date {
+		label.ts-focus,
+		label.ts-focus-on {
+			&:not(.ts-disabled):not(.ts-readonly) {
+				.ts-field {
+					&.ts-text,
+					&.ts-date {
+						.local-mixin-focus-outline();
+					}
+				}
+				&.ts-checkbox,
+				&.ts-switchlabel {
 					.local-mixin-focus-outline();
 				}
 			}
-			&.ts-checkbox,
-			&.ts-switchlabel {
-				.local-mixin-focus-outline();
-			}
 		}
-	}
-	label.ts-focus,
-	label.ts-focus-on {
-		&.ts-fakelabel {
-			&:not(.ts-disabled):not(.ts-readonly) {
-				&:before {
-					color: @ts-blue;
+		label.ts-focus,
+		label.ts-focus-on {
+			&.ts-fakelabel {
+				&:not(.ts-disabled):not(.ts-readonly) {
+					&:before {
+						color: @ts-blue;
+					}
 				}
 			}
 		}
-	}
-	.ts-fieldset.ts-radio {
-		&:not(.ts-disabled):not(.ts-readonly) {
-			&:before {
-				content: '';
-				position: absolute;
-				left: @ts-unit-half;
-				right: @ts-unit-half;
-				top: @ts-unit-plus;
-				bottom: 0;
-			}
-			&:hover:not(.ts-focus):before {
-				.local-mixin-hover-outline();
-			}
-			&.ts-focus:before {
-				.local-mixin-focus-outline();
+		&.ts-radio {
+			&:not(.ts-disabled):not(.ts-readonly) {
+				&:before {
+					content: '';
+					position: absolute;
+					left: @ts-unit-half;
+					right: @ts-unit-half;
+					top: @ts-unit-plus;
+					bottom: 0;
+				}
+				&:hover:not(.ts-focus):before {
+					.local-mixin-hover-outline();
+				}
+				&.ts-focus:before {
+					.local-mixin-focus-outline();
+				}
 			}
 		}
 	}

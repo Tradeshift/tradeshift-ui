@@ -145,12 +145,11 @@ ts.ui.FakeInputSpirit = (function() {
 		},
 
 		/**
-		 * TODO: Use `ts.ui.get(this._proxyelement).event.trigger('change')
-		 * but make sure that we cover this with some kind of test first...
+		 * Dispatch `change` event from the proxied element.
 		 */
 		_triggerchange: function() {
 			var evt = document.createEvent('HTMLEvents');
-			evt.initEvent('change', false, true);
+			evt.initEvent('change', true, true);
 			this._proxyelement.dispatchEvent(evt);
 		},
 

@@ -145,12 +145,21 @@ ts.ui.FakeInputSpirit = (function() {
 		},
 
 		/**
-		 * Dispatch `change` event from the proxied element.
+		 * Dispatch `input` event (used for <input />) from the proxied element.
+		 */
+		_triggerinput: function() {
+			this._proxyelement.dispatchEvent(new Event('input', {
+				bubbles: true
+			}));
+		},
+
+		/**
+		 * Dispatch `change` event (used for <select />) from the proxied element.
 		 */
 		_triggerchange: function() {
-			var evt = document.createEvent('HTMLEvents');
-			evt.initEvent('change', true, true);
-			this._proxyelement.dispatchEvent(evt);
+			this._proxyelement.dispatchEvent(new Event('change', {
+				bubbles: true
+			}));
 		},
 
 		/**

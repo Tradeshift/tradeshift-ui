@@ -101,13 +101,13 @@ ts.ui.FakeDateInputSpirit = (function using(chained, tick, time) {
 
 		/**
 		 * Assign value to the real input
-		 * and dispatch a 'change' event.
+		 * and dispatch an 'input' event.
 		 */
 		_syncreal: function(value) {
 			var realspirit = this._proxyspirit;
 			if (realspirit.value !== value) {
 				realspirit.value = value;
-				this._triggerchange();
+				this._triggerinput();
 			}
 		},
 

@@ -1478,6 +1478,9 @@ ts.ui.TableSpirit = (function using(Type, Client, guiArray, DOMPlugin, CSSPlugin
 				}
 			}
 			if (model.selectable) {
+				if (Client.isEdge && elm.className.startsWith('ts-icon-checkbox')) {
+					elm = elm.parentNode; // `pointer-events:none` ignored in Edge 14 :/
+				}
 				if (CSSPlugin.contains(elm, CLASS_SELECTBUTTON)) {
 					this._ongutsclick(elm);
 				} else if (this._contains(this.queryplugin.getmenu(), elm)) {

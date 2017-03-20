@@ -185,23 +185,23 @@ ts.ui.AsideSpirit = (function using(chained, confirmed, Client, LayoutModel, not
 		},
 
 		/**
-		 * Confirm closed state on detach.
+		 * Make sure the cover is removed if someone
+		 * nukes the Aside without closing it first.
 		 */
 		ondetach: function() {
 			this.super.ondetach();
-			this._confirmstate(this._isreallyopen);
-			if (this._ismodelled()) {
-				this._model.removeObserver(this);
+			if (this._isreallyopen) {
+				this._updateworld(willclose);
+				this._updateworld(didclose);
 			}
 		},
 
 		/**
-		 * Confirm closed state on destruct.
+		 * Remove observers on destruct: TODO: automate this step!
 		 */
 		ondestruct: function() {
 			this.super.ondestruct();
-			this._confirmstate(this._isreallyopen);
-			if (this._ismodelled()) { // TODO: automate this step
+			if (this._ismodelled()) {
 				this._model.removeObserver(this);
 			}
 		},
@@ -636,25 +636,6 @@ ts.ui.AsideSpirit = (function using(chained, confirmed, Client, LayoutModel, not
 				}
 			} else {
 				this.super._confirmposition();
-			}
-		},
-
-		/**
-		 * Throw and/or error if someone nukes
-		 * the Aside without closing it first.
-		 * @param {boolean} stillopen
-		 */
-		_confirmstate: function(stillopen) {
-			if (stillopen) {
-				this._updateworld(willclose);
-				this._updateworld(didclose); // nuke the cover
-				this._confirmstate = function norepeat() {};
-				var cry = this + ' should not be removed from the document while open.';
-				if (gui.debug) {
-					throw new Error(cry); // so that we can write a test for it :)
-				} else {
-					console.error(cry);
-				}
 			}
 		}
 

@@ -12,21 +12,20 @@ describe('ts.ui.AsideSpirit', function likethis() {
 		});
 	});
 
-	it('should fail spectacularly when an open aside is nuked', function(done) {
+	it('should remove cover when Aside is spontaneously nuked', function(done) {
 		var spirit, dom = helper.createTestDom();
 		dom.innerHTML = MARKUP;
 		sometime(function later() {
 			spirit = ts.ui.get(dom.querySelector('aside'));
 			spirit.open();
 			sometime(function muchlater() {
-				try {
-					spirit.dom.remove();
-					expect('this should not be evaluated').toBe(true);
-				} catch (exception) {
-					expect(exception).not.toBe(null);
-				}
-				done();
-			}, 1000);
+				spirit.dom.remove();
+				sometime(function verylate() {
+					var cover = ts.ui.get('#ts-asidecover');
+					expect(cover.css.contains('ts-visible')).toBe(false);
+					done();
+				}, 500);
+			}, 500);
 		});
 	});
 

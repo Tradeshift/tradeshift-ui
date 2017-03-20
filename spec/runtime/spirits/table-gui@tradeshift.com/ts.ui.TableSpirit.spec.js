@@ -57,7 +57,7 @@ describe('ts.ui.TableSpirit', function likethis() {
 			});
 		});
 
-		it('should mark the row as selected', function(done) {
+		it('should mark the row as selected and then unselect', function(done) {
 			setup(function(spirit, dom) {
 				spirit.selectable().rows([
 					{cells: ['A', 'D', 'G'], selected: true},
@@ -66,7 +66,13 @@ describe('ts.ui.TableSpirit', function likethis() {
 				]);
 				sometime(function later() {
 					expect(spirit.element.innerHTML).toContain('ts-icon-checkboxon');
-					done();
+					var icon = spirit.element.querySelector('.ts-icon-checkboxon');
+					var butt = icon.parentNode;
+					butt.click();
+					sometime(function evenlater() {
+						expect(spirit.element.innerHTML).not.toContain('ts-icon-checkboxon');
+						done();
+					});
 				});
 			});
 		});

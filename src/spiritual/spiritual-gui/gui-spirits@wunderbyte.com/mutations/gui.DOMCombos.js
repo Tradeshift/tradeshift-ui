@@ -141,6 +141,16 @@ gui.DOMCombos = (function using(
 	});
 
 	/**
+	 * outerHTML special: Materialize `this` and erect a reference to the parent
+	 * so that `this` (and all the children) can be spiritualized in next step.
+	 */
+	var parent = null; // TODO: unref this at some point
+	var materializeThisBefore = before(function() {
+		parent = this.parentNode;
+		gui.materialize(this);
+	});
+
+	/**
 	 * Attach parent.
 	 */
 	var spiritualizeParentAfter = after(function() {
@@ -282,7 +292,7 @@ gui.DOMCombos = (function using(
 		outerHTML: function(base) {
 			return (
 				ifEnabled(
-					ifEmbedded(detachBefore(spiritualizeParentAfter(suspending(base))),
+					ifEmbedded(materializeThisBefore(detachBefore(spiritualizeParentAfter(suspending(base)))),
 					otherwise(base)),
 				otherwise(base))
 			);

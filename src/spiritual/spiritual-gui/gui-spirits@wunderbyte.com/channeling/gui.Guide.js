@@ -342,9 +342,8 @@ gui.Guide = (function using(
 		 * @returns {boolean}
 		 */
 		_handles: function(node, webkithack) {
-			return node && !this._suspended &&
-				(webkithack || DOMPlugin.embedded(node)) &&
-				Type.isElement(node);
+			return node && Type.isElement(node) && !this._suspended &&
+				(webkithack || DOMPlugin.embedded(node));
 		},
 
 		/**

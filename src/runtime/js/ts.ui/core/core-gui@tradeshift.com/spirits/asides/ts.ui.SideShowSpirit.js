@@ -671,16 +671,18 @@ ts.ui.SideShowSpirit = (function using(chained, Client, Parser, GuiObject, Color
 					label: panel.label,
 					selected: index === 0,
 					$onselect: function() {
-						that.dom.qall('this > .ts-panel', ts.ui.PanelSpirit).forEach(function(p) {
-							if (p === panel) {
-								p.show();
-								p.$onselect();
-								// TODO: scroll to zero?
-							} else {
-								p.hide();
-							}
-						});
-						that._reflex();
+						if (!that.$destructed) {
+							that.dom.qall('this > .ts-panel', ts.ui.PanelSpirit).forEach(function(p) {
+								if (p === panel) {
+									p.show();
+									p.$onselect();
+									// TODO: scroll to zero?
+								} else {
+									p.hide();
+								}
+							});
+							that._reflex();
+						}
 					}
 				});
 			});

@@ -134,14 +134,6 @@ gui.DOMCombos = (function using(
 	});
 
 	/**
-	 * Materialize subtree of `this`.
-	 */
-	var materializeSubBefore = before(function() {
-		// TODO: detach goes here!
-		gui.materializeSub(this);
-	});
-
-	/**
 	 * Spiritualize subtree of `this`
 	 */
 	var spiritualizeSubAfter = after(function() {
@@ -149,11 +141,11 @@ gui.DOMCombos = (function using(
 	});
 
 	/**
-	 * Detach `this`.
+	 * outerHTML special: Materialize `this` and erect a reference to the parent
+	 * so that `this` (and all the children) can be spiritualized in next step.
 	 */
 	var parent = null; // TODO: unref this at some point
 	var materializeThisBefore = before(function() {
-		// TODO: detach goes here!
 		parent = this.parentNode;
 		gui.materialize(this);
 	});
@@ -291,24 +283,24 @@ gui.DOMCombos = (function using(
 		},
 		innerHTML: function(base) {
 			return (
-				ifEnabled( // subtree instantly disposed without calling detach - should probably detach first!
-					ifEmbedded(materializeSubBefore(spiritualizeSubAfter(suspending(base))),
+				ifEnabled(
+					ifEmbedded(detachBefore(spiritualizeSubAfter(suspending(base))),
 					otherwise(base)),
 				otherwise(base))
 			);
 		},
 		outerHTML: function(base) {
 			return (
-				ifEnabled( // subtree instantly disposed without calling detach - should probably detach first!
-					ifEmbedded(materializeThisBefore(spiritualizeParentAfter(suspending(base))),
+				ifEnabled(
+					ifEmbedded(materializeThisBefore(detachBefore(spiritualizeParentAfter(suspending(base)))),
 					otherwise(base)),
 				otherwise(base))
 			);
 		},
 		textContent: function(base) {
 			return (
-				ifEnabled( // subtree instantly disposed without calling detach - should probably detach first!
-					ifEmbedded(materializeSubBefore(suspending(base)),
+				ifEnabled(
+					ifEmbedded(detachBefore(suspending(base)),
 					otherwise(base)),
 				otherwise(base))
 			);

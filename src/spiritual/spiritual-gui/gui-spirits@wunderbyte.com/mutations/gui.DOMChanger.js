@@ -112,6 +112,7 @@ gui.DOMChanger = {
 		if (this._ismethod(name)) {
 			this._domethod(proto, name, combo);
 		} else {
+			this._doaccessor(proto, name, combo);
 			if (gui.Client.isGecko) {
 				this._dogeckoaccesor(proto, name, combo, root);
 			} else if (ok) {
@@ -127,7 +128,6 @@ gui.DOMChanger = {
 	 * @returns {boolean}
 	 */
 	_ismethod: function(name) {
-		var is = false;
 		switch (name) {
 			case 'appendChild':
 			case 'removeChild':
@@ -135,12 +135,11 @@ gui.DOMChanger = {
 			case 'replaceChild':
 			case 'setAttribute':
 			case 'removeAttribute':
-			case 'insertAdjecantHTML':
+			case 'insertAdjacentHTML':
 			case 'remove':
-				is = true;
-				break;
+				return true;
 		}
-		return is;
+		return false;
 	},
 
 	/**

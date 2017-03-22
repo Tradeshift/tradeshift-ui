@@ -30,12 +30,12 @@ window.helper = {
 			document.createElement('main')
 		);
 		main.className = 'ts-main';
-		if(Spirit) {
+		if (Spirit) {
 			var spirit = Spirit.summon();
 			spirit.dom.appendTo(main);
 		}
 		afterEach(function cleanup() {
-			if(main.parentNode === document.body) {
+			if (main.parentNode === document.body) {
 				document.body.removeChild(main);
 			}
 		});

@@ -1,23 +1,16 @@
 /**
  * DOM decoration time.
  * TODO: Standard DOM exceptions (at our level) for missing arguments and so on.
- * TODO: insertAdjecantHTML
  * TODO: DOM4 methods
- * TODO: Maintain some kind of gui.Guide.detachSub !!!!!!
- * @using {gui.Combo.before} before
+ * @using {gui.Combo.before} beforeype
  * @using {gui.Combo.after} after
  * @using {gui.Combo.around} around
  * @using {gui.Combo.provided} provided
+ * @using {gui.Type} Type
+ * @using {gui.Array} Array
+ * @using {gui.DOMPlugin} DOMPlugin
  */
-gui.DOMCombos = (function using(
-	before,
-	after,
-	around,
-	provided,
-	Type,
-	guiArray,
-	DOMPlugin
-) {
+gui.DOMCombos = (function using(before, after, around, provided, Type, guiArray, DOMPlugin) {
 	/**
 	 * Is `this` embedded in document? If `this` is a document
 	 * fragment, we'll look at those other arguments instead.
@@ -78,6 +71,14 @@ gui.DOMCombos = (function using(
 	 */
 	var detachBefore = before(function(node) {
 		detach(node || this);
+	});
+
+	/**
+	 * Detach subtree (only).
+	 */
+	var detachSubBefore = before(function() {
+		var childrenonly = true;
+		gui.Guide.$detach(this, childrenonly);
 	});
 
 	/**
@@ -166,7 +167,7 @@ gui.DOMCombos = (function using(
 	 *		 afterend: After the element itself
 	 * @param {string} html
 	 */
-	var spiritualizeAdjecantAfter = after(function(position, html) {
+	var spiritualizeAdjacentAfter = after(function(position, html) {
 		switch (position) {
 			case 'beforebegin':
 				console.warn('TODO: Spiritualize previous siblings');
@@ -184,16 +185,11 @@ gui.DOMCombos = (function using(
 	});
 
 	/**
-	 * Pretend nothing happened when running in managed mode.
-	 * TODO: Simply mirror this prop with an internal boolean
+	 * Abstract HTMLDocument might adopt DOM combos :/
+	 * @returns {boolean}
 	 */
 	var ifEnabled = provided(function() {
-		var win = this.ownerDocument.defaultView;
-		if (win) {
-			return win.gui.mode !== gui.MODE_HUMAN;
-		} else {
-			return false; // abstract HTMLDocument might adopt DOM combos
-		}
+		return !!(this.ownerDocument.defaultView);
 	});
 
 	/**
@@ -237,10 +233,10 @@ gui.DOMCombos = (function using(
 				otherwise(base))
 			);
 		},
-		insertAdjecantHTML: function(base) {
+		insertAdjacentHTML: function(base) {
 			return (
 				ifEnabled(
-					ifEmbedded(spiritualizeAdjecantAfter(suspending(base))),
+					ifEmbedded(spiritualizeAdjacentAfter(suspending(base))),
 					otherwise(base)),
 				otherwise(base)
 			);
@@ -284,7 +280,7 @@ gui.DOMCombos = (function using(
 		innerHTML: function(base) {
 			return (
 				ifEnabled(
-					ifEmbedded(detachBefore(spiritualizeSubAfter(suspending(base))),
+					ifEmbedded(detachSubBefore(spiritualizeSubAfter(suspending(base))),
 					otherwise(base)),
 				otherwise(base))
 			);
@@ -300,7 +296,7 @@ gui.DOMCombos = (function using(
 		textContent: function(base) {
 			return (
 				ifEnabled(
-					ifEmbedded(detachBefore(suspending(base)),
+					ifEmbedded(detachSubBefore(suspending(base)),
 					otherwise(base)),
 				otherwise(base))
 			);

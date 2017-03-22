@@ -133,10 +133,12 @@ gui.Guide = (function using(
 		/**
 		 * Invoke ondetach for element spirit and descendants spirits.
 		 * TODO: This sequence should probably be revisited at some point.
+		 * TODO: TODO: Support NodeList and DocumentFragment as argument.
 		 * @param {Element|gui.Spirit} target
+		 * @param @optional {boolean} skip If true, only detach the children
 		 */
-		$detach: function(target) {
-			this._maybedetach(target);
+		$detach: function(target, skip) {
+			this._maybedetach(target, !!skip);
 		},
 
 		/*
@@ -481,11 +483,12 @@ gui.Guide = (function using(
 
 		/**
 		 * @param {Element|gui.Spirit} element
+		 * @param {boolean} skip
 		 */
-		_maybedetach: function(element) {
+		_maybedetach: function(element, skip) {
 			element = Type.isSpirit(element) ? element.element : element;
 			if (this._handles(element)) {
-				this._collect(element, false, gui.CRAWLER_DETACH).forEach(function(spirit) {
+				this._collect(element, skip, gui.CRAWLER_DETACH).forEach(function(spirit) {
 					Spirit.$detach(spirit);
 				});
 			}

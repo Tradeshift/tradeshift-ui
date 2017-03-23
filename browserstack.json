@@ -5,6 +5,7 @@
 		"chrome_latest",
 		"firefox_latest",
 		"safari_latest",
+		"edge_latest",
 		"chrome_previous",
 		"firefox_previous",
 		"safari_previous",

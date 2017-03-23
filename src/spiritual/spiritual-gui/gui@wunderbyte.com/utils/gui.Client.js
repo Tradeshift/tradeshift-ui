@@ -221,7 +221,7 @@ gui.Client = (function() {
 		 * @type {boolean}
 		 */
 		this.hasAttributesOnPrototype = (function(Client_) {
-			if (Client_.isSafari) {
+			if (Client_.isSafari || Client_.isEdge) {
 				return false;
 			} else if (Client_.isWebKit) {
 				var rex = /chrom(e|ium)\/([0-9]+)\./;

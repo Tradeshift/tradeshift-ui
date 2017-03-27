@@ -53,6 +53,7 @@ ts.ui.FormsModule = gui.module('forms-gui@tradeshift.com', {
 				['.ts-form input[type=date]', ts.ui.DateInputSpirit],
 				['.ts-form span + input[type=checkbox]', ts.ui.SwitchSpirit],
 				['.ts-form input[type=checkbox], .ts-form input[type=radio]', ts.ui.OptionSpirit],
+				['.ts-form input + input', ts.ui.Spirit], // FakeElements in V4 ignored
 				['.ts-form input', ts.ui.TextInputSpirit],
 				['.ts-form textarea', ts.ui.TextAreaSpirit],
 				['.ts-form select', ts.ui.SelectSpirit]

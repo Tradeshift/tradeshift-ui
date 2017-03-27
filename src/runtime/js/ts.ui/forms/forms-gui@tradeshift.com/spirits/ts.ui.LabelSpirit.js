@@ -235,16 +235,7 @@ ts.ui.LabelSpirit = (function using(Client, FieldSpirit, chained, tick, time, co
 		 * @param {boolean} readonly
 		 */
 		$readonly: chained(function(readonly) {
-			/*
-			if (this.$isFakelabel()) { // fakelabel is always NOT readonly
-				this.css.remove(class_readonly);
-				return;
-			}
-			*/
-			var change = this.css.contains(class_readonly) ? !readonly : readonly;
-			if (change) {
-				this.css.shift(readonly, class_readonly);
-			}
+			this.css.shift(readonly, class_readonly);
 		}),
 
 		/**

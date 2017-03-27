@@ -13,7 +13,7 @@ install:
 - cd .. && cd ..
 - yarn
 script:
-- yarn test
+- npm test
 after_script:
 - node tasks/travis-notify-geckoboard/bin/travis-notify-geckoboard.js -a $GECKOBOARD_API_KEY -w $GECKOBOARD_WIDGET_KEY
 cache:

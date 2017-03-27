@@ -112,7 +112,6 @@ gui.DOMChanger = {
 		if (this._ismethod(name)) {
 			this._domethod(proto, name, combo);
 		} else {
-			this._doaccessor(proto, name, combo);
 			if (gui.Client.isGecko) {
 				this._dogeckoaccesor(proto, name, combo, root);
 			} else if (ok) {

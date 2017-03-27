@@ -72,7 +72,9 @@ gui.VisibilityPlugin = (function using(chained) {
 		 * @param {gui.Spirit} spirit
 		 */
 		$init: function(spirit) {
-			this._go(spirit, !this._invisible(spirit));
+			if (!spirit.$destructed) {
+				this._go(spirit, !this._invisible(spirit));
+			}
 		},
 
 		// Private static ..........................................................

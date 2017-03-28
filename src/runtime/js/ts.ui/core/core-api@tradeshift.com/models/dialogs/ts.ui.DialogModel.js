@@ -41,7 +41,7 @@ ts.ui.DialogModel = (function using(
 
 	return ts.ui.Model.extend({
 		/**
-		 * Friendly name.
+		 * Friendly name.d
 		 * @type {string}
 		 */
 		item: 'dialog',

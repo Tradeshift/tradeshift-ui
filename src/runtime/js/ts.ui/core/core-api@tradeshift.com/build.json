@@ -9,6 +9,7 @@
 	"api/ts.ui.DatePicker.js",
 	"api/ts.ui.Notification.js",
 	"api/ts.ui.Note.js",
+	"api/ts.ui.Spotlight.js",
 	"api/ts.ui.Main.js",
 
 	"models/ts.ui.Model.js",
@@ -31,6 +32,7 @@
 	"models/notes/ts.ui.NoteModel.js",
 	"models/icons/ts.ui.IconModel.js",
 	"models/images/ts.ui.ImageModel.js",
+	"models/dialogs/ts.ui.SpotlightModel.js",
 
 	"module.js"
 ]

@@ -222,6 +222,27 @@ ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</s
                         </div>
                     </figure>
                 </section>
+                <section id="spotlight">
+                    <h3><span>Spotlight</span></h3>
+                    <p>Spotlight is a component to give the user relevant guide to help the users</p>
+                    <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.Spotlight(%7B%0A%09step%3A%20%7B%0A%09%09element%3A%20document.getElementById(&apos;spotlight&apos;).getElementsByTagName(&apos;button&apos;)%5B0%5D%2C%0A%09%09radius%3A%20160%2C%0A%09%09title%3A%20&apos;thats%20the%20title%20of%20the%20spot&apos;%2C%0A%09%09hint%3A%20&apos;This%20is%20where%20the%20message%20goes&apos;%0A%09%7D%0A%7D).open()%3B">
+                        <script type="runnable">
+                            ts.ui.Spotlight({ step: { element: document.getElementById('spotlight').getElementsByTagName('button')[0], radius: 160, title: 'thats the title of the spot', hint: 'This is where the message goes' } }).open();
+                        </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                        <div class="tabpanels">
+                            <pre class="prism language-javascript">
+<code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token function">Spotlight<span class="token punctuation">(</span></span><span class="token punctuation">{</span>
+	step<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+		element<span class="token punctuation">:</span> document<span class="token punctuation">.</span><span class="token function">getElementById<span class="token punctuation">(</span></span><span class="token string">&apos;spotlight&apos;</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getElementsByTagName<span class="token punctuation">(</span></span><span class="token string">&apos;button&apos;</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+		radius<span class="token punctuation">:</span> <span class="token number">160</span><span class="token punctuation">,</span>
+		title<span class="token punctuation">:</span> <span class="token string">&apos;thats the title of the spot&apos;</span><span class="token punctuation">,</span>
+		hint<span class="token punctuation">:</span> <span class="token string">&apos;This is where the message goes&apos;</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">open<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
+</pre>
+                        </div>
+                    </figure>
+                </section>
             </article>
         </div>
     </main>

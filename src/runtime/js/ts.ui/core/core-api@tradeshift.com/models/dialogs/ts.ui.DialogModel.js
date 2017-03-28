@@ -33,7 +33,7 @@ ts.ui.DialogModel = (function using(Dialog, chained, Type, GuiObject, Constants,
 	return ts.ui.Model.extend({
 
 		/**
-		 * Friendly name.
+		 * Friendly name.d
 		 * @type {string}
 		 */
 		item: 'dialog',

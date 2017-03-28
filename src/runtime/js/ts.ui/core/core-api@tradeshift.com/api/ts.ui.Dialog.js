@@ -247,6 +247,7 @@ ts.ui.Dialog.DEFAULT_TIME = 1500;
 		 * @returns {ts.ui.DialogModel}
 		 */
 		confirm: chained(api(function(/* ...args */) {
+			console.log(arguments);
 			return getdialog(this.CONFIRM, arguments);
 		})),
 

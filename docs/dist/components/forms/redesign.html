@@ -73,6 +73,17 @@
                             </fieldset>
                             <fieldset>
                                 <label>
+								<span>Select with placeholder</span>
+								<select placeholder="Please select something">
+									<option></option>
+									<option value="a">One</option>
+									<option value="b">Two</option>
+									<option value="c">Three</option>
+								</select>
+							</label>
+                            </fieldset>
+                            <fieldset>
+                                <label>
 								<span>Select multiple</span>
 								<select multiple>
 									<option value="a" selected>One</option>
@@ -160,6 +171,17 @@
                                 <label>
 								<span>Select</span>
 								<select disabled>
+									<option value="a">One</option>
+									<option value="b">Two</option>
+									<option value="c">Three</option>
+								</select>
+							</label>
+                            </fieldset>
+                            <fieldset>
+                                <label>
+								<span>Select with placeholder</span>
+								<select disabled placeholder="Please select something">
+									<option></option>
 									<option value="a">One</option>
 									<option value="b">Two</option>
 									<option value="c">Three</option>
@@ -259,6 +281,17 @@
                                 <label>
 								<span>Select</span>
 								<select readonly>
+									<option value="a">One</option>
+									<option value="b">Two</option>
+									<option value="c">Three</option>
+								</select>
+							</label>
+                            </fieldset>
+                            <fieldset>
+                                <label>
+								<span>Select with placeholder</span>
+								<select readonly placeholder="Please select something">
+									<option></option>
 									<option value="a">One</option>
 									<option value="b">Two</option>
 									<option value="c">Three</option>
@@ -376,14 +409,10 @@
                 <article>
                     <h1><span>Errors &amp; Info</span></h1>
                     <section>
-                        <div data-ts="Note">
-                            <i class="ts-icon-info"></i>
-                            <p>This has a new and incompatible design, but that is not implemented yet. We must however still support the old design, at least for a transition period.</p>
-                        </div>
                         <form data-ts="Form">
                             <fieldset>
                                 <label class="ts-error">
-								<span>Error (old design)</span>
+								<span>Error</span>
 								<input type="text" value="Something wrong">
 							</label>
                                 <dl class="ts-errors">
@@ -394,7 +423,7 @@
                             </fieldset>
                             <fieldset>
                                 <label>
-								<span>Info (old design)</span>
+								<span>Info</span>
 								<input type="text" value="What is this?">
 							</label>
                                 <dl class="ts-info">
@@ -405,7 +434,7 @@
                             </fieldset>
                             <fieldset>
                                 <label>
-								<span>Disabled info (old design)</span>
+								<span>Disabled info</span>
 								<input type="text" value="What is this?" disabled>
 							</label>
                                 <dl class="ts-info">

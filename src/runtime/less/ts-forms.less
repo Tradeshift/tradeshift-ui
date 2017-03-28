@@ -692,8 +692,11 @@
 
 .ts-form {
 	label {
-		&.ts-readonly, // :not(.ts-fakelabel)
+		&.ts-readonly,
 		&.ts-disabled {
+			::placeholder {
+				color: transparent;
+			}
 			> input,
 			> textarea {
 				&,

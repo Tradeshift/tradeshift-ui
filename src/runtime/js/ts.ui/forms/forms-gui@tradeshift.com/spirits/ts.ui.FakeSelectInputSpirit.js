@@ -159,13 +159,8 @@ ts.ui.FakeSelectInputSpirit = (function using(chained, confirmed, tick, time, gu
 				this.value = (length + ' selected'); // TODO: Localization needed!!!!!!!!!
 				this._selectedIndexes = indexes;
 			} else {
-				var index = this._proxyelement.selectedIndex;
-				this._selectedIndex = index;
-				if (options[index]) {
-					this.value = options[index].text;
-				} else {
-					this.value = '';
-				}
+				var index = this._selectedIndex = this._proxyelement.selectedIndex;
+				this.value = options[index] ? options[index].text : '';
 			}
 		},
 
@@ -220,11 +215,15 @@ ts.ui.FakeSelectInputSpirit = (function using(chained, confirmed, tick, time, gu
 			return Array.map(select.options, function(option) {
 				return {
 					label: option.text,
+					visible: !!option.text,
 					disabled: option.disabled
 				};
 			});
 		},
 
+		/**
+		 * @param {Function} onclosed
+		 */
 		_openaside: function(onclosed) {
 			this._open(this._proxyelement, this._proxyelement.options, onclosed);
 		},
@@ -417,6 +416,7 @@ ts.ui.FakeSelectInputSpirit = (function using(chained, confirmed, tick, time, gu
 		 */
 		_syncfake: function(select, model) {
 			var cornercase = select.options.length && !this.element.value;
+			this.element.placeholder = select.getAttribute('placeholder') || '';
 			this.element.disabled = !!select.disabled;
 			if (cornercase || [
 				this._changedlength(select, this._optionslength, model),

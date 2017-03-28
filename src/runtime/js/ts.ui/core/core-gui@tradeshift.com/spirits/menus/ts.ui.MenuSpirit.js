@@ -2,8 +2,9 @@
 /**
  * Spirit of the menu.
  * @using {gui.Type} Type
+ * @using {ts.ui.ButtonSpirit} ButtonSpirit
  */
-ts.ui.MenuSpirit = (function using(Type) {
+ts.ui.MenuSpirit = (function using(Type, ButtonSpirit) {
 	return ts.ui.Spirit.extend({
 
 		/**
@@ -77,7 +78,7 @@ ts.ui.MenuSpirit = (function using(Type) {
 		 * @param {Element} elm
 		 */
 		_onclick: function(elm) {
-			var button = ts.ui.ButtonSpirit.getButton(elm);
+			var button = ButtonSpirit.getButton(elm);
 			if (button && button.disabled) {
 				return;
 			}
@@ -118,7 +119,11 @@ ts.ui.MenuSpirit = (function using(Type) {
 			var current, idx;
 			switch (model.select) {
 				case 'one':
-					model.selectedIndex = index;
+					if (model.selectedIndex === index && this._hasplaceholder(model)) {
+						model.selectedIndex = 0;
+					} else {
+						model.selectedIndex = index;
+					}
 					break;
 				case 'many':
 					current = model.selectedIndexes;
@@ -132,6 +137,15 @@ ts.ui.MenuSpirit = (function using(Type) {
 					}
 					break;
 			}
+		},
+
+		/**
+		 * Forms `select` scenario: First item has no label, indicating
+		 * that the associated select element should show a placeholder?
+		 * @param {ts.ui.MenuModel} model
+		 */
+		_hasplaceholder: function(model) {
+			return model.items.length && !model.items[0].label;
 		},
 
 		/**
@@ -171,4 +185,4 @@ ts.ui.MenuSpirit = (function using(Type) {
 		}
 
 	});
-}(gui.Type));
+}(gui.Type, ts.ui.ButtonSpirit));

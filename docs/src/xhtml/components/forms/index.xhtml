@@ -194,6 +194,33 @@
 							</form>
 						</script>
 					</figure>
+					<p>You can configure the <elm>select</elm> with a default placeholder in a two-step process.</p>
+					<ul>
+						<li>Add the <att>placeholder</att> attribute to the <elm>select</elm></li>
+						<li>Leave the first <elm>option</elm> empty (no option text)</li>
+					</ul>
+					<figure data-ts="DoxMarkup">
+						<output/>
+						<script type="text/html">
+							<form data-ts="Form">
+								<fieldset>
+									<label>
+										<span>Select with placeholder</span>
+										<select placeholder="Pick a number">
+											<option></option>
+											<option value="5">5</option>
+											<option value="23">23</option>
+										</select>
+									</label>
+								</fieldset>
+							</form>
+						</script>
+					</figure>
+					<p>When a selection is made, the user can revert to the default (no selection) by clicking the selected option a second time. If you don't want to allow this, you should make sure to remove the empty <elm>option</elm>.</p>
+					<div data-ts="Note">
+						<i class="ts-icon-info"></i>
+						<p>This strange pattern ensures maximum compatibility with Angular 1.x, where an empty <elm>option</elm> is automatically inserted until a selection is performed. To also allow <em>unselection</em> in Angular, you must manually create the empty <elm>option</elm> and make sure that it is explicitly selected as default.</p>
+					</div>
 
 					<h3>
 						<span class="el">select</span>

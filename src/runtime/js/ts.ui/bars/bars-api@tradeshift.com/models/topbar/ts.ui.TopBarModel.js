@@ -120,7 +120,7 @@ ts.ui.TopBarModel = (function using(chained) {
 		 */
 		_updatehascontent: function() {
 			if (!(this.super._updatehascontent())) {
-				this.hascontent = !!(this.navigation.length || this.defaultTitle);
+				this.hascontent = !!(this.navigation.length);
 			}
 			return this.hascontent;
 		}

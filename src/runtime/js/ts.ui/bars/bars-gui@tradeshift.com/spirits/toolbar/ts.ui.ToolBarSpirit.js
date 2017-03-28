@@ -255,7 +255,6 @@ ts.ui.ToolBarSpirit = (function using(chained, confirmed, Client, Type, guiArray
 				if (arguments.length) {
 					opt_title = opt_title || '';
 					if (opt_title.trim().indexOf('{') !== 0) {
-						this.$hascontent();
 						model.title = opt_title;
 						this.event.add('click');
 						this.$hascontent();

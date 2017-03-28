@@ -405,6 +405,63 @@
 </pre>
                         </div>
                     </figure>
+                    <p>You can configure the <code class="el">select</code> with a default placeholder in a two-step process.</p>
+                    <ul>
+                        <li>Add the <code class="attr-pair"><span>placeholder</span></code> attribute to the <code class="el">select</code></li>
+                        <li>Leave the first <code class="el">option</code> empty (no option text)</li>
+                    </ul>
+                    <figure data-ts="DoxMarkup" data-ts.code="%3Cform%20data-ts%3D%22Form%22%3E%0A%09%3Cfieldset%3E%0A%09%09%3Clabel%3E%0A%09%09%09%3Cspan%3ESelect%20with%20placeholder%3C%2Fspan%3E%0A%09%09%09%3Cselect%20placeholder%3D%22Pick%20a%20number%22%3E%0A%09%09%09%09%3Coption%3E%3C%2Foption%3E%0A%09%09%09%09%3Coption%20value%3D%225%22%3E5%3C%2Foption%3E%0A%09%09%09%09%3Coption%20value%3D%2223%22%3E23%3C%2Foption%3E%0A%09%09%09%3C%2Fselect%3E%0A%09%09%3C%2Flabel%3E%0A%09%3C%2Ffieldset%3E%0A%3C%2Fform%3E">
+                        <script type="text/html">
+                            <form data-ts="Form">
+                                <fieldset>
+                                    <label>
+										<span>Select with placeholder</span>
+										<select placeholder="Pick a number">
+											<option></option>
+											<option value="5">5</option>
+											<option value="23">23</option>
+										</select>
+									</label>
+                                </fieldset>
+                            </form>
+                        </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Atrue%2C%22runs%22%3Afalse%2C%22flip%22%3Atrue%7D">
+                        <div class="tabpanels">
+                            <div class="output">
+                                <form data-ts="Form">
+                                    <fieldset>
+                                        <label>
+			<span>Select with placeholder</span>
+			<select placeholder="Pick a number">
+				<option></option>
+				<option value="5">5</option>
+				<option value="23">23</option>
+			</select>
+		</label>
+                                    </fieldset>
+                                </form>
+                            </div>
+                            <pre class="prism language-markup">
+<code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>form</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Form<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>fieldset</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>label</span><span class="token punctuation">&gt;</span></span>
+			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">&gt;</span></span>Select with placeholder<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span>
+			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>select</span> <span class="token attr-name">placeholder</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Pick a number<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+				<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>option</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>option</span><span class="token punctuation">&gt;</span></span>
+				<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>option</span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>5<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>5<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>option</span><span class="token punctuation">&gt;</span></span>
+				<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>option</span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>23<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>23<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>option</span><span class="token punctuation">&gt;</span></span>
+			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>select</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>label</span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>fieldset</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>form</span><span class="token punctuation">&gt;</span></span></code>
+</pre>
+                        </div>
+                    </figure>
+                    <p>When a selection is made, the user can revert to the default (no selection) by clicking the selected option a second time. If you don&apos;t want to allow this, you should make sure to remove the empty <code class="el">option</code>.</p>
+                    <div data-ts="Note">
+                        <i class="ts-icon-info"></i>
+                        <p>This strange pattern ensures maximum compatibility with Angular 1.x, where an empty <code class="el">option</code> is automatically inserted until a selection is performed. To also allow <em>unselection</em> in Angular, you must
+                            manually create the empty <code class="el">option</code> and make sure that it is explicitly selected as default.</p>
+                    </div>
                     <h3><span>
 						<span class="el">select</span>
                         <span class="attr-name">multiple</span>

@@ -14,15 +14,16 @@
 	var shown = menu.maxItemsShown;
 	var items = prepareItems(menu.items);
 	var minis = minimumItems(items, shown);
-	
-	renderSearch(false); // search will probably move to Aside toolbar!
+
 	if(items.length) {
 		var isoptimizing = (shown > -1);
 		@style = getinlinestyle(isoptimizing);
 		<menu data-ts="Menu" id="${id}-menu" data-ts._model="?{menu}" @style tempname>
 			minis.forEach(renderItem);
 		</menu>
-		renderDoneButton(menu); // menu.select === 'many' goes here...
+		if (menu.select === 'many') {
+			renderDoneButton(menu);
+		}
 	}
 
 	/**
@@ -91,17 +92,6 @@
 	}
 
 	/**
-	 * Render search (soon)
-	 */
-	function renderSearch(enabled) {
-		if(enabled) {
-			<form data-ts="Form" id="${id}-form">
-				out.html += menu._searchmodel.render();
-			</form>
-		}
-	}
-
-	/**
 	 * Compute inline styling for the menu. That also triggers a peculiar side 
 	 * effect: The menu will instruct the Aside to adjust the panel scrolling.
 	 */
@@ -109,7 +99,7 @@
 		if(optimized) {
 			var yspan = 44;
 			var total = items.length;
-			var start = minis[0].index;
+			var start = items.indexOf(minis[0]);
 			menu.scrollContainingPanel(start * yspan);
 			return declarations(total, start, yspan);
 		}
@@ -131,17 +121,15 @@
 	 * @param {ts.ui.MenuModel} menu
 	 */
 	function renderDoneButton(menu) {
-		if(menu.select === 'many') {
-			<menu data-ts="Buttons">
-				<li>
-					@disabled = menu.donebuttonenabled ? null : 'disabled';
-					<button @disabled id="${id}-button" class="ts-primary" +
-						onclick="#{menu.done()}">
-						<span>${menu.donebuttonlabel}</span>
-					</button>
-				</li>
-			</menu>
-		}
+		<menu data-ts="Buttons">
+			<li>
+				@disabled = menu.donebuttonenabled ? null : 'disabled';
+				<button @disabled id="${id}-button" class="ts-primary" +
+					onclick="#{menu.done()}">
+					<span>${menu.donebuttonlabel}</span>
+				</button>
+			</li>
+		</menu>
 	}
 
 </script>

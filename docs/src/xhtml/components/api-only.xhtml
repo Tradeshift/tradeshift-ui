@@ -162,6 +162,22 @@
 				</script>
 			</figure>
 		</section>
+		<section id="spotlight">
+			<h3>Spotlight</h3>
+			<p>Spotlight is a component to give the user relevant guide to help the users</p>
+			<figure data-ts="DoxScript">
+				<script type="runnable">
+					ts.ui.Spotlight({
+						step: {
+							element: document.getElementById('spotlight').getElementsByTagName('button')[0],
+							radius: 160,
+							title: 'thats the title of the spot',
+							hint: 'This is where the message goes'
+						}
+					}).open();
+				</script>
+			</figure>
+		</section>
 	</article>
 </main>
 </body>

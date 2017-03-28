@@ -26,6 +26,7 @@ integration_test/screenshots
 *.swp
 *.swn
 *.swo
+.idea/
 
 # OS generated files
 .DS_Store

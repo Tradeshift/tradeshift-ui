@@ -25,7 +25,21 @@
                         <p>We can position <code class="attr-pair"><span>Panel</span></code> elements as direct children of the <code class="el">body</code> to autogenerate tabs in the TopBar. The tabs at the top of this page are created with the markup
                             shown below.</p>
                         <figure data-ts="DoxMarkup" data-ts.code="%3Cbody%3E%0A%09%3Cheader%20data-ts%3D%22TopBar%22%3E%3C%2Fheader%3E%0A%09%3Cdiv%20data-ts%3D%22Panel%22%20data-ts.label%3D%22Panel%20One%22%3E%0A%09%09%3Cmain%20data-ts%3D%22Main%22%3E%E2%80%A6%3C%2Fmain%3E%0A%09%3C%2Fdiv%3E%0A%09%3Cdiv%20data-ts%3D%22Panel%22%20data-ts.label%3D%22Panel%20Two%22%3E%0A%09%09%3Cmain%20data-ts%3D%22Main%22%3E%E2%80%A6%3C%2Fmain%3E%0A%09%3C%2Fdiv%3E%0A%09%3Cdiv%20data-ts%3D%22Panel%22%20data-ts.label%3D%22Panel%20Three%22%3E%0A%09%09%3Cmain%20data-ts%3D%22Main%22%3E%E2%80%A6%3C%2Fmain%3E%0A%09%3C%2Fdiv%3E%0A%3C%2Fbody%3E">
-                            <input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
+                            <script type="text/html">
+
+                                <body>
+                                    <header data-ts="TopBar"></header>
+                                    <div data-ts="Panel" data-ts.label="Panel One">
+                                        <main data-ts="Main">…</main>
+                                    </div>
+                                    <div data-ts="Panel" data-ts.label="Panel Two">
+                                        <main data-ts="Main">…</main>
+                                    </div>
+                                    <div data-ts="Panel" data-ts.label="Panel Three">
+                                        <main data-ts="Main">…</main>
+                                    </div>
+                                </body>
+                            </script><input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
                             <div class="tabpanels">
                                 <pre class="prism language-markup">
 <code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">&gt;</span></span>
@@ -54,7 +68,11 @@
                         <h3><span>History support</span></h3>
                         <p>To avoid conflicts with your favorite routing library, Tradeshift UI will not attempt to update the history (via the address bar). You can however add history support if you manually intercept tab selection like this.</p>
                         <figure data-ts="DoxScript" data-ts.code="ts.ui.TopBar.tabs().onselect%20%3D%20function(newindex%2C%20oldindex)%20%7B%0A%09%2F%2F%20update%20history%20here%0A%7D%3B">
-                            <input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
+                            <script type="text/javascript">
+                                ts.ui.TopBar.tabs().onselect = function(newindex, oldindex) {
+                                    // update history here
+                                };
+                            </script><input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
                             <div class="tabpanels">
                                 <pre class="prism language-javascript">
 <code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>TopBar<span class="token punctuation">.</span><span class="token function">tabs<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">.</span>onselect <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span>newindex<span class="token punctuation">,</span> oldindex<span class="token punctuation">)</span> <span class="token punctuation">{</span>
@@ -85,7 +103,19 @@
                             <p>In this <code class="attr-pair"><span>Panel</span></code>, the nested <code class="attr-pair"><span>Main</span></code> contains two additional <code class="attr-pair"><span>Panel</span></code> elements to automatically generate
                                 the <a data-ts="Button" href="/dist/components/bars/tabbar.html">TabBar</a> seen above.</p>
                             <figure data-ts="DoxMarkup" data-ts.code="%3Cbody%3E%0A%09%3C!--%20Panel%20One%20--%3E%0A%09%3Cdiv%20data-ts%3D%22Panel%22%20data-ts.label%3D%22Panel%20Two%22%3E%0A%09%09%3Cmain%20data-ts%3D%22Main%22%3E%0A%09%09%09%3Cdiv%20data-ts%3D%22Panel%22%20data-ts.label%3D%22Panel%20Two%20A%22%3E%E2%80%A6%3C%2Fdiv%3E%0A%09%09%09%3Cdiv%20data-ts%3D%22Panel%22%20data-ts.label%3D%22Panel%20Two%20B%22%3E%E2%80%A6%3C%2Fdiv%3E%0A%09%09%3C%2Fmain%3E%0A%09%3Cdiv%3E%0A%09%3C!--%20Panel%20Three%20--%3E%0A%3C%2Fbody%3E">
-                                <input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
+                                <script type="text/html">
+
+                                    <body>
+                                        <!-- Panel One -->
+                                        <div data-ts="Panel" data-ts.label="Panel Two">
+                                            <main data-ts="Main">
+                                                <div data-ts="Panel" data-ts.label="Panel Two A">…</div>
+                                                <div data-ts="Panel" data-ts.label="Panel Two B">…</div>
+                                            </main>
+                                            <div>
+                                                <!-- Panel Three -->
+                                    </body>
+                                </script><input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
                                 <div class="tabpanels">
                                     <pre class="prism language-markup">
 <code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">&gt;</span></span>
@@ -122,42 +152,54 @@ tabs<span class="token punctuation">[</span><span class="token number">1</span><
                         <article>
                         </article>
                     </article>
-                </div>
-                <div data-ts="Panel" data-ts.label="Panel Two B">
-                    <article>
-                        <h1><span>Panel Two B</span></h1>
-                        <section>
-                            <p>Bacon ipsum Tradeshift d&#xF6;ner, shoulder loin drumstick Pork Chop Express. Swine biltong pastrami fatback meatball ham rump boudin picanha. Ground round beef ribs doner boudin, brisket biltong t-bone capicola. Corned beef
-                                flank pancetta sirloin jowl meatball pork chop alcatra. Landjaeger biltong pork chop alcatra spare ribs, turducken strip steak bresaola shankle chicken pastrami doner salami brisket. Ham hock biltong t-bone, salami sausage
-                                pork spare ribs beef flank pig. Kevin meatloaf turducken short loin sausage spare ribs tongue ham hock leberkas ham strip steak pig jerky. Tenderloin alcatra leberkas shoulder sirloin pancetta short ribs pastrami t-bone
-                                tri-tip pork belly kevin.</p>
-                            <p>Tenderloin filet mignon chicken, spare ribs meatball capicola ham jerky swine bresaola pork chop ribeye cupim t-bone bacon. Pork belly tail swine ham hock alcatra pork chop shoulder pastrami spare ribs venison hamburger beef
-                                drumstick pancetta. Kevin swine ham spare ribs strip steak andouille rump. Pork chop rump filet mignon, shankle pastrami ground round landjaeger ribeye shoulder strip steak chicken bresaola. Swine turkey bresaola, flank
-                                jerky salami bacon filet mignon. Turducken jowl pork chop, meatball pastrami swine ball tip leberkas.</p>
-                            <p>Doner cow chicken, rump swine flank salami. Pork belly bacon tenderloin tongue cow, tri-tip alcatra short ribs turducken chicken biltong drumstick meatball. Drumstick frankfurter shank sausage andouille shankle. Strip steak
-                                flank brisket ham pastrami, shoulder hamburger chicken drumstick meatball tail. Brisket drumstick meatball leberkas beef ribs. Prosciutto bacon pork shoulder salami. Meatloaf salami beef chuck biltong.</p>
-                        </section>
+                    </div>
+                    <div data-ts="Panel" data-ts.label="Panel Two B">
                         <article>
+                            <h1><span>Panel Two B</span></h1>
+                            <section>
+                                <p>Bacon ipsum Tradeshift d&#xF6;ner, shoulder loin drumstick Pork Chop Express. Swine biltong pastrami fatback meatball ham rump boudin picanha. Ground round beef ribs doner boudin, brisket biltong t-bone capicola. Corned
+                                    beef flank pancetta sirloin jowl meatball pork chop alcatra. Landjaeger biltong pork chop alcatra spare ribs, turducken strip steak bresaola shankle chicken pastrami doner salami brisket. Ham hock biltong t-bone, salami
+                                    sausage pork spare ribs beef flank pig. Kevin meatloaf turducken short loin sausage spare ribs tongue ham hock leberkas ham strip steak pig jerky. Tenderloin alcatra leberkas shoulder sirloin pancetta short ribs pastrami
+                                    t-bone tri-tip pork belly kevin.</p>
+                                <p>Tenderloin filet mignon chicken, spare ribs meatball capicola ham jerky swine bresaola pork chop ribeye cupim t-bone bacon. Pork belly tail swine ham hock alcatra pork chop shoulder pastrami spare ribs venison hamburger
+                                    beef drumstick pancetta. Kevin swine ham spare ribs strip steak andouille rump. Pork chop rump filet mignon, shankle pastrami ground round landjaeger ribeye shoulder strip steak chicken bresaola. Swine turkey bresaola,
+                                    flank jerky salami bacon filet mignon. Turducken jowl pork chop, meatball pastrami swine ball tip leberkas.</p>
+                                <p>Doner cow chicken, rump swine flank salami. Pork belly bacon tenderloin tongue cow, tri-tip alcatra short ribs turducken chicken biltong drumstick meatball. Drumstick frankfurter shank sausage andouille shankle. Strip steak
+                                    flank brisket ham pastrami, shoulder hamburger chicken drumstick meatball tail. Brisket drumstick meatball leberkas beef ribs. Prosciutto bacon pork shoulder salami. Meatloaf salami beef chuck biltong.</p>
+                            </section>
+                            <article>
+                            </article>
                         </article>
-                    </article>
-                </div>
-            </div>
+                    </div>
+                    </div>
         </main>
-    </div>
-    <div data-ts="Panel" data-ts.label="Panel Three">
-        <aside data-ts="SideBar" data-ts.title="SideBar">
-            <div data-ts="Panel"></div>
-        </aside>
-        <main data-ts="Main">
-            <div data-ts="MainContent">
-                <article>
-                    <h1><span>Panel Three</span></h1>
-                    <section>
-                        <p>In this <code class="attr-pair"><span>Panel</span></code>, we have a nested <a data-ts="Button" href="/dist/components/sidebars/">SideBar</a> just to show that it must be positioned either before or after the <code class="attr-pair"><span>Main</span></code>                            element.</p>
-                        <figure data-ts="DoxMarkup" data-ts.code="%3Cbody%3E%0A%09%3C!--%20Panel%20One%20--%3E%0A%09%3C!--%20Panel%20Two%20--%3E%0A%09%3Cdiv%20data-ts%3D%22Panel%22%20data-ts.label%3D%22Panel%20Three%22%3E%0A%09%09%3Caside%20data-ts%3D%22SideBar%22%20data-ts.title%3D%22SideBar%22%3E%0A%09%09%09%3Cdiv%20data-ts%3D%22Panel%22%3E%3C%2Fdiv%3E%0A%09%09%3C%2Faside%3E%0A%09%09%3Cmain%20data-ts%3D%22Main%22%3E%E2%80%A6%3C%2Fmain%3E%0A%09%3C%2Fdiv%3E%0A%3C%2Fbody%3E">
-                            <input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
-                            <div class="tabpanels">
-                                <pre class="prism language-markup">
+        </div>
+        <div data-ts="Panel" data-ts.label="Panel Three">
+            <aside data-ts="SideBar" data-ts.title="SideBar">
+                <div data-ts="Panel"></div>
+            </aside>
+            <main data-ts="Main">
+                <div data-ts="MainContent">
+                    <article>
+                        <h1><span>Panel Three</span></h1>
+                        <section>
+                            <p>In this <code class="attr-pair"><span>Panel</span></code>, we have a nested <a data-ts="Button" href="/dist/components/sidebars/">SideBar</a> just to show that it must be positioned either before or after the <code class="attr-pair"><span>Main</span></code>                                element.</p>
+                            <figure data-ts="DoxMarkup" data-ts.code="%3Cbody%3E%0A%09%3C!--%20Panel%20One%20--%3E%0A%09%3C!--%20Panel%20Two%20--%3E%0A%09%3Cdiv%20data-ts%3D%22Panel%22%20data-ts.label%3D%22Panel%20Three%22%3E%0A%09%09%3Caside%20data-ts%3D%22SideBar%22%20data-ts.title%3D%22SideBar%22%3E%0A%09%09%09%3Cdiv%20data-ts%3D%22Panel%22%3E%3C%2Fdiv%3E%0A%09%09%3C%2Faside%3E%0A%09%09%3Cmain%20data-ts%3D%22Main%22%3E%E2%80%A6%3C%2Fmain%3E%0A%09%3C%2Fdiv%3E%0A%3C%2Fbody%3E">
+                                <script type="text/html">
+
+                                    <body>
+                                        <!-- Panel One -->
+                                        <!-- Panel Two -->
+                                        <div data-ts="Panel" data-ts.label="Panel Three">
+                                            <aside data-ts="SideBar" data-ts.title="SideBar">
+                                                <div data-ts="Panel"></div>
+                                            </aside>
+                                            <main data-ts="Main">…</main>
+                                        </div>
+                                    </body>
+                                </script><input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
+                                <div class="tabpanels">
+                                    <pre class="prism language-markup">
 <code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">&gt;</span></span>
 	<span class="token comment" spellcheck="true">&lt;!-- Panel One --&gt;</span>
 	<span class="token comment" spellcheck="true">&lt;!-- Panel Two --&gt;</span>
@@ -169,13 +211,13 @@ tabs<span class="token punctuation">[</span><span class="token number">1</span><
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">&gt;</span></span></code>
 </pre>
-                            </div>
-                        </figure>
-                    </section>
-                </article>
-            </div>
-        </main>
-    </div>
+                                </div>
+                            </figure>
+                        </section>
+                    </article>
+                </div>
+            </main>
+        </div>
 </body>
 
 </html>

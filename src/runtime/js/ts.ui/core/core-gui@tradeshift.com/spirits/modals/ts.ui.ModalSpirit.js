@@ -147,15 +147,23 @@ ts.ui.ModalSpirit = (function using(ToolBarSpirit, Client, transition, chained) 
 		 */
 		onflex: function(callback, thisp) {
 			var avail = window.innerHeight;
-			this._autosize(avail).then(function(height, breaks) {
-				this._position(height, avail, breaks);
-				if (callback) {
-					callback.call(thisp);
-				}
-			}, this);
+			if (!this._fullscreen) {
+				this._autosize(avail).then(function(height, breaks) {
+					this._position(height, avail, breaks);
+					if (callback) {
+						callback.call(thisp);
+					}
+				}, this);
+			}
 		},
 
 		// Private .................................................................
+
+		/**
+		 * Open fullscreen?
+		 * @type {boolean}
+		 */
+		_fullscreen: true,
 
 		/**
 		 * Promise-like object for intercepting fadeIn/fadeOut setup.
@@ -271,12 +279,9 @@ ts.ui.ModalSpirit = (function using(ToolBarSpirit, Client, transition, chained) 
 			var that = this;
 			if (panel) {
 				this.attention.trap(panel);
-				this._header().buttons([{
-					icon: 'ts-icon-close',
-					onclick: function() {
-						that.open(false);
-					}
-				}]);
+				this._header().showClose(function() {
+					that.open(false);
+				});
 			} else {
 				throw new Error('Expected a ts-panel');
 			}

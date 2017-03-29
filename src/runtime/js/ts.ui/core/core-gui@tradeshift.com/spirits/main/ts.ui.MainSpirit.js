@@ -104,6 +104,14 @@ ts.ui.MainSpirit = (function using(Type, PANEL_ATTACH, PANEL_DETACH) {
 		},
 
 		/**
+		 *
+		 */
+		onready: function() {
+			this.super.onready();
+			this.dom.after(ts.ui.MatrixSpirit.summon());
+		},
+
+		/**
 		 * Handle action: Panel added or removed.
 		 * TODO: Validate the the Panel is a direct child of Main.
 		 * @param {gui.Action} a
@@ -219,7 +227,7 @@ ts.ui.MainSpirit = (function using(Type, PANEL_ATTACH, PANEL_DETACH) {
 				}
 				bar.tabs().splice(index, 0, {
 					label: panel.label,
-					selected: panel.selected || index === 0,
+					selected: panel.selected,
 					$onselect: function() {
 						dom.qall(css, ts.ui.PanelSpirit).forEach(function(p) {
 							if (p === panel) {

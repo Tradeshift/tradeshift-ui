@@ -723,7 +723,7 @@ ts.ui.SideShowSpirit = (function using(chained, Client, Parser, GuiObject, Color
 				}
 				bar.tabs().splice(index, 0, {
 					label: panel.label,
-					selected: index === 0,
+					selected: panel.selected,
 					$onselect: function() {
 						dom.qall(css, ts.ui.PanelSpirit).forEach(function(p) {
 							if (p === panel) {

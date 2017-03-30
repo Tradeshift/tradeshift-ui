@@ -23,22 +23,55 @@
                 </section>
                 <section>
                     <p>Modals are declared in HTML much like an Aside.</p>
-                    <figure data-ts="DoxMarkup" data-ts.code="%3Cdiv%20data-ts%3D%22Modal%22%20id%3D%22mymodal%22%20data-ts.title%3D%22Your%20Details%22%3E%0A%09%3Cdiv%20data-ts%3D%22Panel%22%3E%0A%09%09%3Cp%3EModal%20content%20goes%20here.%20The%20buttons%20are%20configured%20with%20JS.%3C%2Fp%3E%0A%09%3C%2Fdiv%3E%0A%3C%2Fdiv%3E">
-                        <input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
+                    <figure data-ts="DoxMarkup" data-ts.code="%3Cdialog%20data-ts%3D%22Modal%22%20id%3D%22example1%22%20data-ts.title%3D%22Example%20Modal%22%3E%0A%09%3Cdiv%20data-ts%3D%22Panel%22%3E%0A%09%09%3Cmain%20data-ts%3D%22Main%22%3E%0A%09%09%09%3Ch1%3EThe%20Modal%3C%2Fh1%3E%0A%09%09%09%3Cp%3EModal%20content%20goes%20here.%3C%2Fp%3E%0A%09%09%09%3Cp%3E%0A%09%09%09%09%3Cbutton%20onclick%3D%22ts.ui.get(&apos;%23example1&apos;).close()%22%20class%3D%22ts-primary%22%3E%0A%09%09%09%09%09%3Cspan%3EGot%20it!%3C%2Fspan%3E%0A%09%09%09%09%3C%2Fbutton%3E%0A%09%09%09%3C%2Fp%3E%0A%09%09%3C%2Fmain%3E%0A%09%3C%2Fdiv%3E%0A%3C%2Fdialog%3E">
+                        <script type="text/html">
+                            <dialog data-ts="Modal" id="example1" data-ts.title="Example Modal">
+                                <div data-ts="Panel">
+                                    <main data-ts="Main">
+                                        <h1>The Modal</h1>
+                                        <p>Modal content goes here.</p>
+                                        <p>
+                                            <button onclick="ts.ui.get('#example1').close()" class="ts-primary">
+												<span>Got it!</span>
+											</button>
+                                        </p>
+                                    </main>
+                                </div>
+                            </dialog>
+                        </script><input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
                         <div class="tabpanels">
                             <pre class="prism language-markup">
-<code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Modal<span class="token punctuation">&quot;</span></span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>mymodal<span class="token punctuation">&quot;</span></span> <span class="token attr-name">data-ts</span>.<span class="token attr-name">title</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Your Details<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+<code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dialog</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Modal<span class="token punctuation">&quot;</span></span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>example1<span class="token punctuation">&quot;</span></span> <span class="token attr-name">data-ts</span>.<span class="token attr-name">title</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Example Modal<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Panel<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
-		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>Modal content goes here. The buttons are configured with JS.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>main</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Main<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span><span class="token punctuation">&gt;</span></span>The Modal<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">&gt;</span></span>
+			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>Modal content goes here.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>
+				<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">onclick</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>ts.ui.get(&apos;#example1&apos;).close()<span class="token punctuation">&quot;</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>ts-primary<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+					<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">&gt;</span></span>Got it!<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span>
+				<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">&gt;</span></span>
+			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>main</span><span class="token punctuation">&gt;</span></span>
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span></code>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dialog</span><span class="token punctuation">&gt;</span></span></code>
 </pre>
                         </div>
                     </figure>
-                    <p>The buttons are configured much like in a ToolBar. Note that you must manually <code>open</code> and <code>close</code> the Modal.</p>
-                    <figure data-ts="DoxScript" class="attention runnable" data-ts.code="var%20modal%20%3D%20ts.ui.get(&apos;%23mymodal&apos;)%3B%0Amodal.buttons(%5B%0A%09%7B%0A%09%09label%3A%20&apos;OK&apos;%2C%0A%09%09type%3A%20&apos;ts-primary&apos;%2C%0A%09%09onclick%3A%20function()%20%7B%0A%09%09%09modal.close().then(function%20onfadeout()%20%7B%0A%09%09%09%09ts.ui.Notification.success(&apos;Success!&apos;)%3B%0A%09%09%09%7D)%3B%0A%09%09%7D%0A%09%7D%0A%5D)%3B%0Amodal.open()%3B">
+                    <figure data-ts="DoxScript" class="attention runnable" data-ts.code="ts.ui.get(&apos;%23example1&apos;).open()%3B">
                         <script type="runnable">
-                            var modal = ts.ui.get('#mymodal'); modal.buttons([ { label: 'OK', type: 'ts-primary', onclick: function() { modal.close().then(function onfadeout() { ts.ui.Notification.success('Success!'); }); } } ]); modal.open();
+                            ts.ui.get('#example1').open();
+                        </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                        <div class="tabpanels">
+                            <pre class="prism language-javascript">
+<code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#example1&apos;</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">open<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
+</pre>
+                        </div>
+                    </figure>
+                    <p>$(&apos;#example1&apos;).attr(&apos;data-ts.open&apos;, true);</p>
+                    <p>The buttons are configured much like in a ToolBar. Note that you must manually <code>open</code> and <code>close</code> the Modal.</p>
+                    <figure data-ts="DoxScript" class="runnable" data-ts.code="var%20modal%20%3D%20ts.ui.get(&apos;%23mymodal&apos;)%3B%0Amodal.buttons(%5B%0A%09%7B%0A%09%09label%3A%20&apos;OK&apos;%2C%0A%09%09type%3A%20&apos;ts-primary&apos;%2C%0A%09%09onclick%3A%20function()%20%7B%0A%09%09%09var%20message%20%3D%20this.label%3B%0A%09%09%09modal.close().then(function%20onfadeout()%20%7B%0A%09%09%09%09ts.ui.Notification.success(message)%3B%0A%09%09%09%7D)%3B%0A%09%09%7D%0A%09%7D%0A%5D)%3B%0Amodal.open()%3B">
+                        <script type="runnable">
+                            var modal = ts.ui.get('#mymodal'); modal.buttons([ { label: 'OK', type: 'ts-primary', onclick: function() { var message = this.label; modal.close().then(function onfadeout() { ts.ui.Notification.success(message); }); } } ]); modal.open();
                         </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                         <div class="tabpanels">
                             <pre class="prism language-javascript">
@@ -48,8 +81,9 @@ modal<span class="token punctuation">.</span><span class="token function">button
 		label<span class="token punctuation">:</span> <span class="token string">&apos;OK&apos;</span><span class="token punctuation">,</span>
 		type<span class="token punctuation">:</span> <span class="token string">&apos;ts-primary&apos;</span><span class="token punctuation">,</span>
 		onclick<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+			<span class="token keyword">var</span> message <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>label<span class="token punctuation">;</span>
 			modal<span class="token punctuation">.</span><span class="token function">close<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then<span class="token punctuation">(</span></span><span class="token keyword">function</span> <span class="token function">onfadeout<span class="token punctuation">(</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-				ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Notification<span class="token punctuation">.</span><span class="token function">success<span class="token punctuation">(</span></span><span class="token string">&apos;Success!&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+				ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Notification<span class="token punctuation">.</span><span class="token function">success<span class="token punctuation">(</span></span>message<span class="token punctuation">)</span><span class="token punctuation">;</span>
 			<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 		<span class="token punctuation">}</span>
 	<span class="token punctuation">}</span>
@@ -71,36 +105,75 @@ modal<span class="token punctuation">.</span><span class="token function">open<s
             </article>
         </div>
     </main>
-    <div data-ts="Modal" id="mymodal" data-ts.title="Your Details">
+    <dialog data-ts="Modal" id="example1" data-ts.title="Example Modal">
         <div data-ts="Panel">
-            <form data-ts="Form">
-                <fieldset>
-                    <label>
-							<span>Name</span>
-							<input autofocus>
-						</label>
-                </fieldset>
-                <fieldset>
-                    <label>
-							<span>Age</span>
-							<input>
-						</label>
-                </fieldset>
-                <fieldset>
-                    <label>
-							<span>Description</span>
-							<textarea></textarea>
-						</label>
-                </fieldset>
-            </form>
-            <!--				
-				<p>Bacon ipsum dolor amet jerky sausage pork belly tenderloin burgdoggen kevin prosciutto beef ribs shoulder tri-tip salami ribeye turducken rump. Rump prosciutto ham, kevin picanha drumstick chuck pork chop. Short ribs tail shank, alcatra kevin spare ribs meatloaf beef. Pork loin salami flank andouille prosciutto chuck bresaola sirloin ribeye. Bacon picanha salami filet mignon capicola beef ribs. Venison jowl meatloaf jerky porchetta, brisket shank picanha drumstick capicola frankfurter tail chuck sausage.</p>
-				<p>Jowl ground round corned beef ham hock. Picanha cow porchetta, pork belly tri-tip pork ribeye ham hock kielbasa sausage boudin fatback venison short ribs. Strip steak bresaola pastrami sausage andouille frankfurter. Shankle hamburger turkey salami alcatra meatball. Venison rump tail bacon ball tip sirloin spare ribs. Fatback picanha venison rump. Beef ribs short ribs ball tip, hamburger bacon leberkas ham hock burgdoggen meatball venison rump pork loin tenderloin tri-tip bresaola.</p>
-				<p>Pig turkey tail, swine frankfurter venison capicola shank salami pork loin. Pork belly beef turkey sausage, tongue jowl ground round leberkas brisket strip steak. Tenderloin shoulder pork ground round drumstick burgdoggen, chuck kielbasa jowl meatball turducken short loin andouille. Andouille kevin shoulder, alcatra shankle short loin bacon. Ham hock tail chuck pork belly, swine kielbasa bresaola. Jowl flank cow, tenderloin salami filet mignon picanha beef ribs.</p>
-				<p>Cupim t-bone jerky brisket biltong pancetta. Hamburger biltong pig drumstick. Fatback rump ball tip beef turkey pork loin. Pancetta beef ribs tri-tip short ribs short loin, porchetta ham chuck pastrami flank leberkas tenderloin. Chicken sausage cow tri-tip, burgdoggen chuck shank ribeye porchetta andouille swine turducken pork chop pastrami beef.</p>
-				-->
+            <main data-ts="Main">
+                <h1><span>The Modal</span></h1>
+                <p>Modal content goes here.</p>
+                <p>
+                    <button onclick="ts.ui.get(&apos;#example1&apos;).close()" data-ts="Button" class="ts-primary">
+							<span>Got it!</span>
+						</button>
+                </p>
+            </main>
         </div>
-    </div>
+    </dialog>
+    <dialog data-ts="Modal" id="mymodal" data-ts.title="Your Details">
+        <div data-ts="Panel" data-ts.label="Tab One">
+            <main data-ts="Main">
+                <h1><span>User details</span></h1>
+                <form data-ts="Form">
+                    <fieldset>
+                        <label>
+								<span>Name</span>
+								<input autofocus>
+							</label>
+                    </fieldset>
+                    <fieldset>
+                        <label>
+								<span>Age</span>
+								<input>
+							</label>
+                    </fieldset>
+                    <fieldset>
+                        <label>
+								<span>Description</span>
+								<textarea></textarea>
+							</label>
+                    </fieldset>
+                </form>
+                <p>
+                    <button onclick="alert(&apos;TODO&apos;)" class="ts-primary">
+							<span>Next?</span>
+						</button>
+                </p>
+            </main>
+        </div>
+        <div data-ts="Panel" data-ts.label="Tab One">
+            <main data-ts="Main">
+                <h1><span>More details</span></h1>
+                <p>
+                    <button onclick="alert(&apos;TODO&apos;)" class="ts-primary">
+							<span>Next?</span>
+						</button>
+                </p>
+            </main>
+        </div>
+    </dialog>
+    <!--
+					<p>Bacon ipsum dolor amet jerky sausage pork belly tenderloin burgdoggen kevin prosciutto beef ribs shoulder tri-tip salami ribeye turducken rump. Rump prosciutto ham, kevin picanha drumstick chuck pork chop. Short ribs tail shank, alcatra kevin spare ribs meatloaf beef. Pork loin salami flank andouille prosciutto chuck bresaola sirloin ribeye. Bacon picanha salami filet mignon capicola beef ribs. Venison jowl meatloaf jerky porchetta, brisket shank picanha drumstick capicola frankfurter tail chuck sausage.</p>
+					<p>Jowl ground round corned beef ham hock. Picanha cow porchetta, pork belly tri-tip pork ribeye ham hock kielbasa sausage boudin fatback venison short ribs. Strip steak bresaola pastrami sausage andouille frankfurter. Shankle hamburger turkey salami alcatra meatball. Venison rump tail bacon ball tip sirloin spare ribs. Fatback picanha venison rump. Beef ribs short ribs ball tip, hamburger bacon leberkas ham hock burgdoggen meatball venison rump pork loin tenderloin tri-tip bresaola.</p>
+					<p>Pig turkey tail, swine frankfurter venison capicola shank salami pork loin. Pork belly beef turkey sausage, tongue jowl ground round leberkas brisket strip steak. Tenderloin shoulder pork ground round drumstick burgdoggen, chuck kielbasa jowl meatball turducken short loin andouille. Andouille kevin shoulder, alcatra shankle short loin bacon. Ham hock tail chuck pork belly, swine kielbasa bresaola. Jowl flank cow, tenderloin salami filet mignon picanha beef ribs.</p>
+					<p>Cupim t-bone jerky brisket biltong pancetta. Hamburger biltong pig drumstick. Fatback rump ball tip beef turkey pork loin. Pancetta beef ribs tri-tip short ribs short loin, porchetta ham chuck pastrami flank leberkas tenderloin. Chicken sausage cow tri-tip, burgdoggen chuck shank ribeye porchetta andouille swine turducken pork chop pastrami beef.</p>
+					<p>Bacon ipsum dolor amet jerky sausage pork belly tenderloin burgdoggen kevin prosciutto beef ribs shoulder tri-tip salami ribeye turducken rump. Rump prosciutto ham, kevin picanha drumstick chuck pork chop. Short ribs tail shank, alcatra kevin spare ribs meatloaf beef. Pork loin salami flank andouille prosciutto chuck bresaola sirloin ribeye. Bacon picanha salami filet mignon capicola beef ribs. Venison jowl meatloaf jerky porchetta, brisket shank picanha drumstick capicola frankfurter tail chuck sausage.</p>
+					<p>Jowl ground round corned beef ham hock. Picanha cow porchetta, pork belly tri-tip pork ribeye ham hock kielbasa sausage boudin fatback venison short ribs. Strip steak bresaola pastrami sausage andouille frankfurter. Shankle hamburger turkey salami alcatra meatball. Venison rump tail bacon ball tip sirloin spare ribs. Fatback picanha venison rump. Beef ribs short ribs ball tip, hamburger bacon leberkas ham hock burgdoggen meatball venison rump pork loin tenderloin tri-tip bresaola.</p>
+					<p>Pig turkey tail, swine frankfurter venison capicola shank salami pork loin. Pork belly beef turkey sausage, tongue jowl ground round leberkas brisket strip steak. Tenderloin shoulder pork ground round drumstick burgdoggen, chuck kielbasa jowl meatball turducken short loin andouille. Andouille kevin shoulder, alcatra shankle short loin bacon. Ham hock tail chuck pork belly, swine kielbasa bresaola. Jowl flank cow, tenderloin salami filet mignon picanha beef ribs.</p>
+					<p>Cupim t-bone jerky brisket biltong pancetta. Hamburger biltong pig drumstick. Fatback rump ball tip beef turkey pork loin. Pancetta beef ribs tri-tip short ribs short loin, porchetta ham chuck pastrami flank leberkas tenderloin. Chicken sausage cow tri-tip, burgdoggen chuck shank ribeye porchetta andouille swine turducken pork chop pastrami beef.</p>
+					<p>Bacon ipsum dolor amet jerky sausage pork belly tenderloin burgdoggen kevin prosciutto beef ribs shoulder tri-tip salami ribeye turducken rump. Rump prosciutto ham, kevin picanha drumstick chuck pork chop. Short ribs tail shank, alcatra kevin spare ribs meatloaf beef. Pork loin salami flank andouille prosciutto chuck bresaola sirloin ribeye. Bacon picanha salami filet mignon capicola beef ribs. Venison jowl meatloaf jerky porchetta, brisket shank picanha drumstick capicola frankfurter tail chuck sausage.</p>
+					<p>Jowl ground round corned beef ham hock. Picanha cow porchetta, pork belly tri-tip pork ribeye ham hock kielbasa sausage boudin fatback venison short ribs. Strip steak bresaola pastrami sausage andouille frankfurter. Shankle hamburger turkey salami alcatra meatball. Venison rump tail bacon ball tip sirloin spare ribs. Fatback picanha venison rump. Beef ribs short ribs ball tip, hamburger bacon leberkas ham hock burgdoggen meatball venison rump pork loin tenderloin tri-tip bresaola.</p>
+					<p>Pig turkey tail, swine frankfurter venison capicola shank salami pork loin. Pork belly beef turkey sausage, tongue jowl ground round leberkas brisket strip steak. Tenderloin shoulder pork ground round drumstick burgdoggen, chuck kielbasa jowl meatball turducken short loin andouille. Andouille kevin shoulder, alcatra shankle short loin bacon. Ham hock tail chuck pork belly, swine kielbasa bresaola. Jowl flank cow, tenderloin salami filet mignon picanha beef ribs.</p>
+					<p>Cupim t-bone jerky brisket biltong pancetta. Hamburger biltong pig drumstick. Fatback rump ball tip beef turkey pork loin. Pancetta beef ribs tri-tip short ribs short loin, porchetta ham chuck pastrami flank leberkas tenderloin. Chicken sausage cow tri-tip, burgdoggen chuck shank ribeye porchetta andouille swine turducken pork chop pastrami beef.</p>
+					-->
     <aside data-ts="Note" class="sticky ts-bg-yellow">
         <p>If you find a bug or need a feature&#x2026;</p>
         <menu class="ts-buttons">

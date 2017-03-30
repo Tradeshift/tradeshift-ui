@@ -24,34 +24,26 @@
                     <section>
                         <p>We can position <code class="attr-pair"><span>Panel</span></code> elements as direct children of the <code class="el">body</code> to autogenerate tabs in the TopBar. The tabs at the top of this page are created with the markup
                             shown below.</p>
-                        <figure data-ts="DoxMarkup" data-ts.code="%3Cbody%3E%0A%09%3Cheader%20data-ts%3D%22TopBar%22%3E%3C%2Fheader%3E%0A%09%3Cdiv%20data-ts%3D%22Panel%22%20data-ts.label%3D%22Panel%20One%22%3E%0A%09%09%3Cmain%20data-ts%3D%22Main%22%3E%E2%80%A6%3C%2Fmain%3E%0A%09%3C%2Fdiv%3E%0A%09%3Cdiv%20data-ts%3D%22Panel%22%20data-ts.label%3D%22Panel%20Two%22%3E%0A%09%09%3Cmain%20data-ts%3D%22Main%22%3E%E2%80%A6%3C%2Fmain%3E%0A%09%3C%2Fdiv%3E%0A%09%3Cdiv%20data-ts%3D%22Panel%22%20data-ts.label%3D%22Panel%20Three%22%3E%0A%09%09%3Cmain%20data-ts%3D%22Main%22%3E%E2%80%A6%3C%2Fmain%3E%0A%09%3C%2Fdiv%3E%0A%3C%2Fbody%3E">
-                            <script type="text/html">
-
-                                <body>
-                                    <header data-ts="TopBar"></header>
-                                    <div data-ts="Panel" data-ts.label="Panel One">
-                                        <main data-ts="Main">…</main>
-                                    </div>
-                                    <div data-ts="Panel" data-ts.label="Panel Two">
-                                        <main data-ts="Main">…</main>
-                                    </div>
-                                    <div data-ts="Panel" data-ts.label="Panel Three">
-                                        <main data-ts="Main">…</main>
-                                    </div>
-                                </body>
-                            </script><input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
+                        <figure data-ts="DoxMarkup" data-ts.code="%3Cbody%3E%0A%09%3Cheader%20data-ts%3D%22TopBar%22%3E%3C%2Fheader%3E%0A%09%3Cdiv%20data-ts%3D%22Panel%22%20data-ts.label%3D%22Panel%20One%22%3E%0A%09%09%3Cmain%20data-ts%3D%22Main%22%3E%0A%09%09%09%3Cdiv%20data-ts%3D%22MainContent%22%3E%E2%80%A6%3C%2Fdiv%3E%0A%09%09%3C%2Fmain%3E%0A%09%3C%2Fdiv%3E%0A%09%3Cdiv%20data-ts%3D%22Panel%22%20data-ts.label%3D%22Panel%20Two%22%3E%0A%09%09%3Cmain%20data-ts%3D%22Main%22%3E%0A%09%09%09%3Cdiv%20data-ts%3D%22MainContent%22%3E%E2%80%A6%3C%2Fdiv%3E%0A%09%09%3C%2Fmain%3E%0A%09%3C%2Fdiv%3E%0A%09%3Cdiv%20data-ts%3D%22Panel%22%20data-ts.label%3D%22Panel%20Three%22%3E%0A%09%09%3Cmain%20data-ts%3D%22Main%22%3E%0A%09%09%09%3Cdiv%20data-ts%3D%22MainContent%22%3E%E2%80%A6%3C%2Fdiv%3E%0A%09%09%3C%2Fmain%3E%0A%09%3C%2Fdiv%3E%0A%3C%2Fbody%3E">
+                            <input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
                             <div class="tabpanels">
                                 <pre class="prism language-markup">
 <code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">&gt;</span></span>
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>header</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>TopBar<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>header</span><span class="token punctuation">&gt;</span></span>
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Panel<span class="token punctuation">&quot;</span></span> <span class="token attr-name">data-ts</span>.<span class="token attr-name">label</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Panel One<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
-		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>main</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Main<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>&#x2026;<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>main</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>main</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Main<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>MainContent<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>&#x2026;<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>main</span><span class="token punctuation">&gt;</span></span>
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Panel<span class="token punctuation">&quot;</span></span> <span class="token attr-name">data-ts</span>.<span class="token attr-name">label</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Panel Two<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
-		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>main</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Main<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>&#x2026;<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>main</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>main</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Main<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>MainContent<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>&#x2026;<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>main</span><span class="token punctuation">&gt;</span></span>
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Panel<span class="token punctuation">&quot;</span></span> <span class="token attr-name">data-ts</span>.<span class="token attr-name">label</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Panel Three<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
-		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>main</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Main<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>&#x2026;<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>main</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>main</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Main<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>MainContent<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>&#x2026;<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>main</span><span class="token punctuation">&gt;</span></span>
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">&gt;</span></span></code>
 </pre>
@@ -63,16 +55,12 @@
                         <p>Certainly when you are prototyping as a UX designer, but it will otherwise depend on your technology stack (since this may not a good fit for all frameworks) and on your requirements. If you app features highly dynamic navigation,
                             it may be easier to approach this kind of multi-page layout <a data-ts="Button" href="/dist/components/bars/topbar.html">programatically</a> instead of declaratively.</p>
                         <!--
-						If you are working in an Angular app that has a single controller and a single view, perhaps it is easier to create layouts programatically as seen in the <a>Bars</a> documentation.</p>
-						-->
+							If you are working in an Angular app that has a single controller and a single view, perhaps it is easier to create layouts programatically as seen in the <a>Bars</a> documentation.</p>
+							-->
                         <h3><span>History support</span></h3>
                         <p>To avoid conflicts with your favorite routing library, Tradeshift UI will not attempt to update the history (via the address bar). You can however add history support if you manually intercept tab selection like this.</p>
                         <figure data-ts="DoxScript" data-ts.code="ts.ui.TopBar.tabs().onselect%20%3D%20function(newindex%2C%20oldindex)%20%7B%0A%09%2F%2F%20update%20history%20here%0A%7D%3B">
-                            <script type="text/javascript">
-                                ts.ui.TopBar.tabs().onselect = function(newindex, oldindex) {
-                                    // update history here
-                                };
-                            </script><input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
+                            <input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
                             <div class="tabpanels">
                                 <pre class="prism language-javascript">
 <code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>TopBar<span class="token punctuation">.</span><span class="token function">tabs<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">.</span>onselect <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span>newindex<span class="token punctuation">,</span> oldindex<span class="token punctuation">)</span> <span class="token punctuation">{</span>
@@ -82,12 +70,12 @@
                             </div>
                         </figure>
                         <!--
-						<p>If the developers wants to reflect the selected tab in the URL (for history support), he must add some custom functionality to the <code>onselect</code> method of each (individual) Tab in the TopBar. But this should be made easier, see note below.</p>
-						<div data-ts="Note">
-							<i class="ts-icon-todo"></i>
-							<p>We should implement <code>onselect</code> as a configurable method on the TopBar API so that this becomes easier to setup. The method could pass the selected Tab and/or selected index as an argument.</p>
-						</div>
-						-->
+							<p>If the developers wants to reflect the selected tab in the URL (for history support), he must add some custom functionality to the <code>onselect</code> method of each (individual) Tab in the TopBar. But this should be made easier, see note below.</p>
+							<div data-ts="Note">
+								<i class="ts-icon-todo"></i>
+								<p>We should implement <code>onselect</code> as a configurable method on the TopBar API so that this becomes easier to setup. The method could pass the selected Tab and/or selected index as an argument.</p>
+							</div>
+							-->
                     </section>
                 </article>
             </div>
@@ -102,15 +90,17 @@
                         <section>
                             <p>In this <code class="attr-pair"><span>Panel</span></code>, the nested <code class="attr-pair"><span>Main</span></code> contains two additional <code class="attr-pair"><span>Panel</span></code> elements to automatically generate
                                 the <a data-ts="Button" href="/dist/components/bars/tabbar.html">TabBar</a> seen above.</p>
-                            <figure data-ts="DoxMarkup" data-ts.code="%3Cbody%3E%0A%09%3C!--%20Panel%20One%20--%3E%0A%09%3Cdiv%20data-ts%3D%22Panel%22%20data-ts.label%3D%22Panel%20Two%22%3E%0A%09%09%3Cmain%20data-ts%3D%22Main%22%3E%0A%09%09%09%3Cdiv%20data-ts%3D%22Panel%22%20data-ts.label%3D%22Panel%20Two%20A%22%3E%E2%80%A6%3C%2Fdiv%3E%0A%09%09%09%3Cdiv%20data-ts%3D%22Panel%22%20data-ts.label%3D%22Panel%20Two%20B%22%3E%E2%80%A6%3C%2Fdiv%3E%0A%09%09%3C%2Fmain%3E%0A%09%3Cdiv%3E%0A%09%3C!--%20Panel%20Three%20--%3E%0A%3C%2Fbody%3E">
+                            <figure data-ts="DoxMarkup" data-ts.code="%3Cbody%3E%0A%09%3C!--%20Panel%20One%20--%3E%0A%09%3Cdiv%20data-ts%3D%22Panel%22%20data-ts.label%3D%22Panel%20Two%22%3E%0A%09%09%3Cmain%20data-ts%3D%22Main%22%3E%0A%09%09%09%3Cdiv%20data-ts%3D%22MainContent%22%3E%0A%09%09%09%09%3Cdiv%20data-ts%3D%22Panel%22%20data-ts.label%3D%22Panel%20Two%20A%22%3E%E2%80%A6%3C%2Fdiv%3E%0A%09%09%09%09%3Cdiv%20data-ts%3D%22Panel%22%20data-ts.label%3D%22Panel%20Two%20B%22%3E%E2%80%A6%3C%2Fdiv%3E%0A%09%09%09%3C%2Fdiv%3E%0A%09%09%3C%2Fmain%3E%0A%09%3Cdiv%3E%0A%09%3C!--%20Panel%20Three%20--%3E%0A%3C%2Fbody%3E">
                                 <script type="text/html">
 
                                     <body>
                                         <!-- Panel One -->
                                         <div data-ts="Panel" data-ts.label="Panel Two">
                                             <main data-ts="Main">
-                                                <div data-ts="Panel" data-ts.label="Panel Two A">…</div>
-                                                <div data-ts="Panel" data-ts.label="Panel Two B">…</div>
+                                                <div data-ts="MainContent">
+                                                    <div data-ts="Panel" data-ts.label="Panel Two A">…</div>
+                                                    <div data-ts="Panel" data-ts.label="Panel Two B">…</div>
+                                                </div>
                                             </main>
                                             <div>
                                                 <!-- Panel Three -->
@@ -122,8 +112,10 @@
 	<span class="token comment" spellcheck="true">&lt;!-- Panel One --&gt;</span>
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Panel<span class="token punctuation">&quot;</span></span> <span class="token attr-name">data-ts</span>.<span class="token attr-name">label</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Panel Two<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
 		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>main</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Main<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
-			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Panel<span class="token punctuation">&quot;</span></span> <span class="token attr-name">data-ts</span>.<span class="token attr-name">label</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Panel Two A<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>&#x2026;<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
-			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Panel<span class="token punctuation">&quot;</span></span> <span class="token attr-name">data-ts</span>.<span class="token attr-name">label</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Panel Two B<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>&#x2026;<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>MainContent<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+				<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Panel<span class="token punctuation">&quot;</span></span> <span class="token attr-name">data-ts</span>.<span class="token attr-name">label</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Panel Two A<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>&#x2026;<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+				<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Panel<span class="token punctuation">&quot;</span></span> <span class="token attr-name">data-ts</span>.<span class="token attr-name">label</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Panel Two B<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>&#x2026;<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
 		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>main</span><span class="token punctuation">&gt;</span></span>
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">&gt;</span></span>
 	<span class="token comment" spellcheck="true">&lt;!-- Panel Three --&gt;</span>
@@ -149,8 +141,6 @@ tabs<span class="token punctuation">[</span><span class="token number">1</span><
                                 </div>
                             </figure>
                         </section>
-                        <article>
-                        </article>
                     </article>
                     </div>
                     <div data-ts="Panel" data-ts.label="Panel Two B">
@@ -167,8 +157,6 @@ tabs<span class="token punctuation">[</span><span class="token number">1</span><
                                 <p>Doner cow chicken, rump swine flank salami. Pork belly bacon tenderloin tongue cow, tri-tip alcatra short ribs turducken chicken biltong drumstick meatball. Drumstick frankfurter shank sausage andouille shankle. Strip steak
                                     flank brisket ham pastrami, shoulder hamburger chicken drumstick meatball tail. Brisket drumstick meatball leberkas beef ribs. Prosciutto bacon pork shoulder salami. Meatloaf salami beef chuck biltong.</p>
                             </section>
-                            <article>
-                            </article>
                         </article>
                     </div>
                     </div>
@@ -185,19 +173,7 @@ tabs<span class="token punctuation">[</span><span class="token number">1</span><
                         <section>
                             <p>In this <code class="attr-pair"><span>Panel</span></code>, we have a nested <a data-ts="Button" href="/dist/components/sidebars/">SideBar</a> just to show that it must be positioned either before or after the <code class="attr-pair"><span>Main</span></code>                                element.</p>
                             <figure data-ts="DoxMarkup" data-ts.code="%3Cbody%3E%0A%09%3C!--%20Panel%20One%20--%3E%0A%09%3C!--%20Panel%20Two%20--%3E%0A%09%3Cdiv%20data-ts%3D%22Panel%22%20data-ts.label%3D%22Panel%20Three%22%3E%0A%09%09%3Caside%20data-ts%3D%22SideBar%22%20data-ts.title%3D%22SideBar%22%3E%0A%09%09%09%3Cdiv%20data-ts%3D%22Panel%22%3E%3C%2Fdiv%3E%0A%09%09%3C%2Faside%3E%0A%09%09%3Cmain%20data-ts%3D%22Main%22%3E%E2%80%A6%3C%2Fmain%3E%0A%09%3C%2Fdiv%3E%0A%3C%2Fbody%3E">
-                                <script type="text/html">
-
-                                    <body>
-                                        <!-- Panel One -->
-                                        <!-- Panel Two -->
-                                        <div data-ts="Panel" data-ts.label="Panel Three">
-                                            <aside data-ts="SideBar" data-ts.title="SideBar">
-                                                <div data-ts="Panel"></div>
-                                            </aside>
-                                            <main data-ts="Main">…</main>
-                                        </div>
-                                    </body>
-                                </script><input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
+                                <input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
                                 <div class="tabpanels">
                                     <pre class="prism language-markup">
 <code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">&gt;</span></span>

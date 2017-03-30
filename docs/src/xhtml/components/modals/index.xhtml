@@ -16,17 +16,33 @@
 
 					<p>Modals are declared in HTML much like an Aside.</p>
 					<figure data-ts="DoxMarkup">
-						<script>
-							<div data-ts="Modal" id="mymodal" data-ts.title="Your Details">
+						<script type="text/html">
+							<dialog data-ts="Modal" id="example1" data-ts.title="Example Modal">
 								<div data-ts="Panel">
-									<p>Modal content goes here. The buttons are configured with JS.</p>
+									<main data-ts="Main">
+										<h1>The Modal</h1>
+										<p>Modal content goes here.</p>
+										<p>
+											<button onclick="ts.ui.get('#example1').close()" class="ts-primary">
+												<span>Got it!</span>
+											</button>
+										</p>
+									</main>
 								</div>
-							</div>
+							</dialog>
 						</script>
 					</figure>
 
-					<p>The buttons are configured much like in a ToolBar. Note that you must manually <code>open</code> and <code>close</code> the Modal.</p>
 					<figure data-ts="DoxScript" class="attention">
+						<script type="runnable">
+							ts.ui.get('#example1').open();
+						</script>
+					</figure>
+
+					<p>$('#example1').attr('data-ts.open', true);</p>
+
+					<p>The buttons are configured much like in a ToolBar. Note that you must manually <code>open</code> and <code>close</code> the Modal.</p>
+					<figure data-ts="DoxScript">
 						<script type="runnable">
 							var modal = ts.ui.get('#mymodal');
 							modal.buttons([
@@ -34,8 +50,9 @@
 									label: 'OK',
 									type: 'ts-primary',
 									onclick: function() {
+										var message = this.label;
 										modal.close().then(function onfadeout() {
-											ts.ui.Notification.success('Success!');
+											ts.ui.Notification.success(message);
 										});
 									}
 								}
@@ -91,41 +108,87 @@
 				</section>
 			</article>
 		</main>
-		<div data-ts="Modal" id="mymodal" data-ts.title="Your Details">
+
+		<dialog data-ts="Modal" id="example1" data-ts.title="Example Modal">
 			<div data-ts="Panel">
-
-				<form data-ts="Form">
-					<fieldset>
-						<label>
-							<span>Name</span>
-							<input autofocus/>
-						</label>
-					</fieldset>
-					<fieldset>
-						<label>
-							<span>Age</span>
-							<input/>
-						</label>
-					</fieldset>
-					<fieldset>
-						<label>
-							<span>Description</span>
-							<textarea></textarea>
-						</label>
-					</fieldset>
-				</form>
-
-				<!--				
-				<p>Bacon ipsum dolor amet jerky sausage pork belly tenderloin burgdoggen kevin prosciutto beef ribs shoulder tri-tip salami ribeye turducken rump. Rump prosciutto ham, kevin picanha drumstick chuck pork chop. Short ribs tail shank, alcatra kevin spare ribs meatloaf beef. Pork loin salami flank andouille prosciutto chuck bresaola sirloin ribeye. Bacon picanha salami filet mignon capicola beef ribs. Venison jowl meatloaf jerky porchetta, brisket shank picanha drumstick capicola frankfurter tail chuck sausage.</p>
-
-				<p>Jowl ground round corned beef ham hock. Picanha cow porchetta, pork belly tri-tip pork ribeye ham hock kielbasa sausage boudin fatback venison short ribs. Strip steak bresaola pastrami sausage andouille frankfurter. Shankle hamburger turkey salami alcatra meatball. Venison rump tail bacon ball tip sirloin spare ribs. Fatback picanha venison rump. Beef ribs short ribs ball tip, hamburger bacon leberkas ham hock burgdoggen meatball venison rump pork loin tenderloin tri-tip bresaola.</p>
-
-				<p>Pig turkey tail, swine frankfurter venison capicola shank salami pork loin. Pork belly beef turkey sausage, tongue jowl ground round leberkas brisket strip steak. Tenderloin shoulder pork ground round drumstick burgdoggen, chuck kielbasa jowl meatball turducken short loin andouille. Andouille kevin shoulder, alcatra shankle short loin bacon. Ham hock tail chuck pork belly, swine kielbasa bresaola. Jowl flank cow, tenderloin salami filet mignon picanha beef ribs.</p>
-
-				<p>Cupim t-bone jerky brisket biltong pancetta. Hamburger biltong pig drumstick. Fatback rump ball tip beef turkey pork loin. Pancetta beef ribs tri-tip short ribs short loin, porchetta ham chuck pastrami flank leberkas tenderloin. Chicken sausage cow tri-tip, burgdoggen chuck shank ribeye porchetta andouille swine turducken pork chop pastrami beef.</p>
-				-->
-				
+				<main data-ts="Main">
+					<h1>The Modal</h1>
+					<p>Modal content goes here.</p>
+					<p>
+						<button onclick="ts.ui.get('#example1').close()" data-ts="Button" class="ts-primary">
+							<span>Got it!</span>
+						</button>
+					</p>
+				</main>
 			</div>
-		</div>
+		</dialog>
+
+		<dialog data-ts="Modal" id="mymodal" data-ts.title="Your Details">
+			<div data-ts="Panel" data-ts.label="Tab One">
+				<main data-ts="Main">
+					<h1>User details</h1>
+					<form data-ts="Form">
+						<fieldset>
+							<label>
+								<span>Name</span>
+								<input autofocus/>
+							</label>
+						</fieldset>
+						<fieldset>
+							<label>
+								<span>Age</span>
+								<input/>
+							</label>
+						</fieldset>
+						<fieldset>
+							<label>
+								<span>Description</span>
+								<textarea></textarea>
+							</label>
+						</fieldset>
+					</form>
+					<p>
+						<button onclick="alert('TODO')" class="ts-primary">
+							<span>Next?</span>
+						</button>
+					</p>
+				</main>
+			</div>
+			<div data-ts="Panel" data-ts.label="Tab One">
+				<main data-ts="Main">
+					<h1>More details</h1>
+					<p>
+						<button onclick="alert('TODO')" class="ts-primary">
+							<span>Next?</span>
+						</button>
+					</p>
+				</main>
+			</div>
+		</dialog>
+
+					<!--
+					<p>Bacon ipsum dolor amet jerky sausage pork belly tenderloin burgdoggen kevin prosciutto beef ribs shoulder tri-tip salami ribeye turducken rump. Rump prosciutto ham, kevin picanha drumstick chuck pork chop. Short ribs tail shank, alcatra kevin spare ribs meatloaf beef. Pork loin salami flank andouille prosciutto chuck bresaola sirloin ribeye. Bacon picanha salami filet mignon capicola beef ribs. Venison jowl meatloaf jerky porchetta, brisket shank picanha drumstick capicola frankfurter tail chuck sausage.</p>
+
+					<p>Jowl ground round corned beef ham hock. Picanha cow porchetta, pork belly tri-tip pork ribeye ham hock kielbasa sausage boudin fatback venison short ribs. Strip steak bresaola pastrami sausage andouille frankfurter. Shankle hamburger turkey salami alcatra meatball. Venison rump tail bacon ball tip sirloin spare ribs. Fatback picanha venison rump. Beef ribs short ribs ball tip, hamburger bacon leberkas ham hock burgdoggen meatball venison rump pork loin tenderloin tri-tip bresaola.</p>
+
+					<p>Pig turkey tail, swine frankfurter venison capicola shank salami pork loin. Pork belly beef turkey sausage, tongue jowl ground round leberkas brisket strip steak. Tenderloin shoulder pork ground round drumstick burgdoggen, chuck kielbasa jowl meatball turducken short loin andouille. Andouille kevin shoulder, alcatra shankle short loin bacon. Ham hock tail chuck pork belly, swine kielbasa bresaola. Jowl flank cow, tenderloin salami filet mignon picanha beef ribs.</p>
+
+					<p>Cupim t-bone jerky brisket biltong pancetta. Hamburger biltong pig drumstick. Fatback rump ball tip beef turkey pork loin. Pancetta beef ribs tri-tip short ribs short loin, porchetta ham chuck pastrami flank leberkas tenderloin. Chicken sausage cow tri-tip, burgdoggen chuck shank ribeye porchetta andouille swine turducken pork chop pastrami beef.</p>
+					<p>Bacon ipsum dolor amet jerky sausage pork belly tenderloin burgdoggen kevin prosciutto beef ribs shoulder tri-tip salami ribeye turducken rump. Rump prosciutto ham, kevin picanha drumstick chuck pork chop. Short ribs tail shank, alcatra kevin spare ribs meatloaf beef. Pork loin salami flank andouille prosciutto chuck bresaola sirloin ribeye. Bacon picanha salami filet mignon capicola beef ribs. Venison jowl meatloaf jerky porchetta, brisket shank picanha drumstick capicola frankfurter tail chuck sausage.</p>
+
+					<p>Jowl ground round corned beef ham hock. Picanha cow porchetta, pork belly tri-tip pork ribeye ham hock kielbasa sausage boudin fatback venison short ribs. Strip steak bresaola pastrami sausage andouille frankfurter. Shankle hamburger turkey salami alcatra meatball. Venison rump tail bacon ball tip sirloin spare ribs. Fatback picanha venison rump. Beef ribs short ribs ball tip, hamburger bacon leberkas ham hock burgdoggen meatball venison rump pork loin tenderloin tri-tip bresaola.</p>
+
+					<p>Pig turkey tail, swine frankfurter venison capicola shank salami pork loin. Pork belly beef turkey sausage, tongue jowl ground round leberkas brisket strip steak. Tenderloin shoulder pork ground round drumstick burgdoggen, chuck kielbasa jowl meatball turducken short loin andouille. Andouille kevin shoulder, alcatra shankle short loin bacon. Ham hock tail chuck pork belly, swine kielbasa bresaola. Jowl flank cow, tenderloin salami filet mignon picanha beef ribs.</p>
+
+					<p>Cupim t-bone jerky brisket biltong pancetta. Hamburger biltong pig drumstick. Fatback rump ball tip beef turkey pork loin. Pancetta beef ribs tri-tip short ribs short loin, porchetta ham chuck pastrami flank leberkas tenderloin. Chicken sausage cow tri-tip, burgdoggen chuck shank ribeye porchetta andouille swine turducken pork chop pastrami beef.</p>
+					<p>Bacon ipsum dolor amet jerky sausage pork belly tenderloin burgdoggen kevin prosciutto beef ribs shoulder tri-tip salami ribeye turducken rump. Rump prosciutto ham, kevin picanha drumstick chuck pork chop. Short ribs tail shank, alcatra kevin spare ribs meatloaf beef. Pork loin salami flank andouille prosciutto chuck bresaola sirloin ribeye. Bacon picanha salami filet mignon capicola beef ribs. Venison jowl meatloaf jerky porchetta, brisket shank picanha drumstick capicola frankfurter tail chuck sausage.</p>
+
+					<p>Jowl ground round corned beef ham hock. Picanha cow porchetta, pork belly tri-tip pork ribeye ham hock kielbasa sausage boudin fatback venison short ribs. Strip steak bresaola pastrami sausage andouille frankfurter. Shankle hamburger turkey salami alcatra meatball. Venison rump tail bacon ball tip sirloin spare ribs. Fatback picanha venison rump. Beef ribs short ribs ball tip, hamburger bacon leberkas ham hock burgdoggen meatball venison rump pork loin tenderloin tri-tip bresaola.</p>
+
+					<p>Pig turkey tail, swine frankfurter venison capicola shank salami pork loin. Pork belly beef turkey sausage, tongue jowl ground round leberkas brisket strip steak. Tenderloin shoulder pork ground round drumstick burgdoggen, chuck kielbasa jowl meatball turducken short loin andouille. Andouille kevin shoulder, alcatra shankle short loin bacon. Ham hock tail chuck pork belly, swine kielbasa bresaola. Jowl flank cow, tenderloin salami filet mignon picanha beef ribs.</p>
+
+					<p>Cupim t-bone jerky brisket biltong pancetta. Hamburger biltong pig drumstick. Fatback rump ball tip beef turkey pork loin. Pancetta beef ribs tri-tip short ribs short loin, porchetta ham chuck pastrami flank leberkas tenderloin. Chicken sausage cow tri-tip, burgdoggen chuck shank ribeye porchetta andouille swine turducken pork chop pastrami beef.</p>
+					-->
+		
 	</body>
 </html>

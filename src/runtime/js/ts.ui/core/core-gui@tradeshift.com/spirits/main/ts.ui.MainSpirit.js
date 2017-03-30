@@ -104,14 +104,6 @@ ts.ui.MainSpirit = (function using(Type, PANEL_ATTACH, PANEL_DETACH) {
 		},
 
 		/**
-		 *
-		 */
-		onready: function() {
-			this.super.onready();
-			this.dom.after(ts.ui.MatrixSpirit.summon());
-		},
-
-		/**
 		 * Handle action: Panel added or removed.
 		 * TODO: Validate the the Panel is a direct child of Main.
 		 * @param {gui.Action} a

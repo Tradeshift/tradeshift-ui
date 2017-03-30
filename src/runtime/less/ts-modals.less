@@ -1,22 +1,24 @@
 .ts-modal {
 	z-index: @ts-zindex-dialog;
-	position: absolute;
-	width: 480px;
-	height: 320px;
-	left: 50%;
-	top: 20%;
-	margin-left: -220px;
-	border-radius: @ts-radius;
+	position: absolute;	
 	box-shadow: 2px 2px 8px rgba(0,0,0,0.75);
-	> header {
-		border-radius: @ts-radius @ts-radius 0 0;
-		button.ts-tertiary { // probably the closing X
-			border-color: transparent !important;
+	&.ts-inscreen {
+		width: 480px;
+		height: 320px;
+		left: 50%;
+		top: 20%;
+		margin-left: -220px;
+		border-radius: @ts-radius;
+		> header {
+			border-radius: @ts-radius @ts-radius 0 0;
+		}
+		> footer {
+			border-radius: 0 0 @ts-radius @ts-radius;
 		}
 	}
+	&.ts-fullscreen {}
 	> .ts-panel {
 		.ts-mixin-maximize();
-		padding: @ts-unit;
 		padding-bottom: 0;
 		background-color: @ts-white;
 		overflow: hidden;
@@ -25,15 +27,25 @@
 			display: block;
 			visibility: hidden;
 		}
+		> .ts-main {
+			max-width: (@ts-width-aside + @ts-unit-plus) * 2; // 640px usable
+			padding: 0 @ts-unit-plus;
+			text-align: center;
+			overflow-x: visible;
+			overflow-y: visible;
+			background-color: transparent;
+			margin-left: auto;
+			margin-right: auto;
+			bottom: auto;
+		}
 	}
 	&.ts-overflow {
 		> .ts-panel {
-			overflow-y: scroll;
+			overflow-y: auto;
 			overflow-x: hidden;
 		}
 	}
 	> footer {
-		border-radius: 0 0 @ts-radius @ts-radius;
 		position: absolute;
 		bottom: 0;
 		width: 100%;

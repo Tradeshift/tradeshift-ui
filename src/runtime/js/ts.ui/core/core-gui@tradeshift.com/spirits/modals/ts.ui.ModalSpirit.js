@@ -1,11 +1,10 @@
 /**
  * Spirit of the Modal.
- * @using {ts.ui.ts.ui.ToolBarSpirit} ToolBarSpirit
  * @using {gui.Client} Client
  * @using {boolean} transition
  * @using {function} gui.Combo.chained
  */
-ts.ui.ModalSpirit = (function using(ToolBarSpirit, Client, transition, chained) {
+ts.ui.ModalSpirit = (function using(Client, transition, chained) {
 	var willopen = ts.ui.BROADCAST_MODAL_WILL_OPEN,
 		didopen = ts.ui.BROADCAST_MODAL_DID_OPEN,
 		willclose = ts.ui.BROADCAST_MODAL_WILL_CLOSE,
@@ -49,7 +48,7 @@ ts.ui.ModalSpirit = (function using(ToolBarSpirit, Client, transition, chained) 
 		onready: function() {
 			this.super.onready();
 			this.dom.hide();
-			this._setup(this._panel());
+			this._setup(this.panels.current());
 			this.css.shift(transition, 'ts-transition');
 		},
 
@@ -61,6 +60,10 @@ ts.ui.ModalSpirit = (function using(ToolBarSpirit, Client, transition, chained) 
 		open: function(opt_open) {
 			var then = this._then = new gui.Then();
 			opt_open = arguments.length ? opt_open : true;
+			this.css
+				.shift(this.$fullscreen, 'ts-fullscreen')
+				.shift(!this.$fullscreen, 'ts-inscreen')
+				.shift(this.$fullscreen, 'ts-overflow');
 			if (opt_open !== this.isOpen) {
 				if (opt_open) {
 					if (this._execute('onopen') && this._confirmposition()) {
@@ -147,23 +150,47 @@ ts.ui.ModalSpirit = (function using(ToolBarSpirit, Client, transition, chained) 
 		 */
 		onflex: function(callback, thisp) {
 			var avail = window.innerHeight;
-			if (!this._fullscreen) {
-				this._autosize(avail).then(function(height, breaks) {
-					this._position(height, avail, breaks);
-					if (callback) {
-						callback.call(thisp);
-					}
-				}, this);
+			var xxxxx = window.innerWidth;
+			this._autosize(avail, xxxxx).then(function(height, breaks) {
+				this._position(height, avail, breaks);
+				if (callback) {
+					callback.call(thisp);
+				}
+			}, this);
+		},
+
+		// Privileged ..............................................................
+
+		/**
+		 * Open fullscreen? We can just hardcode this for now.
+		 * @type {boolean}
+		 */
+		$fullscreen: true,
+
+		/**
+		 * Called by the {ts.ui.PanelsPlugin} to append a tab.
+		 * @param {Object} json
+		 * @param {number} index
+		 */
+		$insertTab: function(json, index) {
+			var tabs = this._header().tabs();
+			if (this.$fullscreen) {
+				tabs.splice(index, 0, json);
+			} else {
+				throw new Error('Tabs reserved for fullscreen modals :/');
 			}
 		},
 
-		// Private .................................................................
-
 		/**
-		 * Open fullscreen?
-		 * @type {boolean}
+		 * Called by the {ts.ui.PanelsPlugin} when a tab is selected.
+		 * @param {ts.ui.TabPanel} panel The corresponding panel
 		 */
-		_fullscreen: true,
+		$selectTab: function(panel) {
+			this._autocenter();
+			this._focus();
+		},
+
+		// Private .................................................................
 
 		/**
 		 * Promise-like object for intercepting fadeIn/fadeOut setup.
@@ -182,11 +209,18 @@ ts.ui.ModalSpirit = (function using(ToolBarSpirit, Client, transition, chained) 
 				this._execute('onopened');
 				this.broadcast.dispatch(didopen);
 				this._then.now();
-				this._focus();
+				this.tick.time(function() {
+					this._focus();
+				});
 			} else {
 				this.dom.show();
+				this.panels.init();
 				this._cloak(true);
 				this.broadcast.dispatch(willopen);
+				this.att.set('data-ts.open', true);
+				if (this.dom.tag() === 'dialog') {
+					this.att.set('open', 'open');
+				}
 				this.onflex(function() {
 					this._cloak(false);
 					if (transition) {
@@ -209,6 +243,10 @@ ts.ui.ModalSpirit = (function using(ToolBarSpirit, Client, transition, chained) 
 				this.css.remove('ts-closing');
 				this._execute('onclosed');
 				this.broadcast.dispatch(didclose);
+				this.att.set('data-ts.open', false);
+				if (this.dom.tag() === 'dialog') {
+					this.att.del('open');
+				}
 				this._then.now();
 			} else {
 				this.key.remove('Esc');
@@ -241,12 +279,64 @@ ts.ui.ModalSpirit = (function using(ToolBarSpirit, Client, transition, chained) 
 		},
 
 		/**
+		 * Size the Modal just before we show it.
+		 * @param {number} avail
+		 * @param {number} xxxxx
 		 * @returns {gui.Then}
 		 */
-		_autosize: function(avail) {
-			this.css.remove('ts-overflow');
+		_autosize: function(avail, xxxxx) {
 			var then = new gui.Then();
-			var height = this._panel().naturalHeight() +
+			if (this.$fullscreen) {
+				this._autosizefullscreen(then, avail, xxxxx);
+			} else {
+				this._autosizeinscreen(then, avail, xxxxx);
+			}
+			return then;
+		},
+
+		/**
+		 * Size the modal to fill the screen, obviously.
+		 * TODO: We might get away with pure CSS for this.
+		 * @param {gui.Then} then
+		 * @param {number} avail
+		 * @param {number} xxxxx
+		 */
+		_autosizefullscreen: function(then, avail, xxxxx) {
+			this.css.height = avail;
+			this.css.width = xxxxx;
+			this._autocenter();
+			this.tick.time(function unflicker() {
+				then.now(avail, false);
+			}, Client.isWebKit ? 100 : 200);
+		},
+
+		/**
+		 * Center main in panel.
+		 * @param {ts.ui.MainSpirit} main
+		 * @param {ts.ui.PanelSpirit} panel
+		 */
+		_autocenter: function() {
+			var GOLDEN = 0.382;
+			var panel = this.panels.current();
+			var main = panel.childMain();
+			if (main) {
+				var height = main.box.height;
+				var avails = panel.box.height;
+				var offset = (avails * GOLDEN) - (height * 0.5);
+				main.css.top = offset > 0 ? offset : 0;
+			}
+		},
+
+		/**
+		 * If we should ever need non-fullscreen Modals,
+		 * this will position the Modal centered on screen.
+		 * @param {gui.Then} then
+		 * @param {number} avail
+		 * @param {number} xxxxx
+		 */
+		_autosizeinscreen: function(then, avail, xxxxx) {
+			this.css.remove('ts-overflow');
+			var height = this.panels.current().naturalHeight() +
 				(this.css.contains('ts-hasheader') ? 66 : 0) +
 				(this.css.contains('ts-hasheader') ? 66 : 0);
 			var breaks = height > avail;
@@ -256,7 +346,6 @@ ts.ui.ModalSpirit = (function using(ToolBarSpirit, Client, transition, chained) 
 			this.tick.time(function unflicker() {
 				then.now(height, breaks);
 			}, Client.isWebKit ? 100 : 200);
-			return then;
 		},
 
 		/**
@@ -288,22 +377,14 @@ ts.ui.ModalSpirit = (function using(ToolBarSpirit, Client, transition, chained) 
 		},
 
 		/**
-		 * Get spirit of the panel.
-		 * @returns {ts.ui.PanelSpirit}
-		 */
-		_panel: function() {
-			return this.dom.q('.ts-panel', ts.ui.PanelSpirit);
-		},
-
-		/**
 		 * Get spirit of the header.
 		 * @returns {ts.ui.ToolBarSpirit}
 		 */
 		_header: function() {
-			var theToolBarSpirit = ts.ui.ToolBarSpirit; // TODO: Load this after!
+			var ToolBar = ts.ui.ToolBarSpirit;
 			this.css.add('ts-hasheader');
-			return this.dom.q('header.ts-toolbar', theToolBarSpirit) ||
-				this.dom.prepend(theToolBarSpirit.summon('header', 'ts-bg-blue'));
+			return this.dom.q('header.ts-toolbar', ToolBar) ||
+				this.dom.prepend(ToolBar.summon('header', 'ts-bg-blue').white());
 		},
 
 		/**
@@ -312,9 +393,9 @@ ts.ui.ModalSpirit = (function using(ToolBarSpirit, Client, transition, chained) 
 		 */
 		_footer: function() {
 			this.css.add('ts-hasfooter');
-			var theToolBarSpirit = ts.ui.ToolBarSpirit; // TODO: Load this after!
-			return this.dom.q('footer.ts-toolbar', theToolBarSpirit) ||
-				this.dom.append(theToolBarSpirit.summon('footer'));
+			var ToolBar = ts.ui.ToolBarSpirit;
+			return this.dom.q('footer.ts-toolbar', ToolBar) ||
+				this.dom.append(ToolBar.summon('footer'));
 		},
 
 		/**
@@ -352,4 +433,4 @@ ts.ui.ModalSpirit = (function using(ToolBarSpirit, Client, transition, chained) 
 		}
 
 	});
-}(ts.ui.ToolBarSpirit, gui.Client, gui.Client.hasTransitions, gui.Combo.chained));
+}(gui.Client, gui.Client.hasTransitions, gui.Combo.chained));

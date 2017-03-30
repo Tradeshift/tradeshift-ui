@@ -6,6 +6,7 @@
 	"plugins/common/ts.ui.StatusPlugin.js",
 	"plugins/common/ts.ui.LayoutPlugin.js",
 	"plugins/common/ts.ui.AttentionPlugin.js",
+	"plugins/common/ts.ui.PanelsPlugin.js",
 	"plugins/document/ts.ui.DocumentLayoutPlugin.js",
 	"plugins/document/ts.ui.DocumentDialogPlugin.js",
 	"plugins/document/ts.ui.DocumentAsidePlugin.js",

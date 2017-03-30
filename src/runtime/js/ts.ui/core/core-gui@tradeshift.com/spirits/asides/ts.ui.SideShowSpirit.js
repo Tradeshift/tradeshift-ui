@@ -644,7 +644,7 @@ ts.ui.SideShowSpirit = (function using(chained, Client, Parser, GuiObject, Color
 		 * If more than one panel next to aside, generate the tabbar automaticly
 		 */
 		_inittabs: function() {
-			var panels = this.dom.qall('this > .ts-panel', ts.ui.PanelSpirit);
+			var panels = this.dom.children(ts.ui.PanelSpirit);
 			if (panels.length > 1) {
 				if (panels.every(function(panel) {
 					return !!panel.label;
@@ -672,7 +672,7 @@ ts.ui.SideShowSpirit = (function using(chained, Client, Parser, GuiObject, Color
 					selected: index === 0,
 					$onselect: function() {
 						if (!that.$destructed) {
-							that.dom.qall('this > .ts-panel', ts.ui.PanelSpirit).forEach(function(p) {
+							that.dom.children(ts.ui.PanelSpirit).forEach(function(p) {
 								if (p === panel) {
 									p.show();
 									p.$onselect();
@@ -710,10 +710,8 @@ ts.ui.SideShowSpirit = (function using(chained, Client, Parser, GuiObject, Color
 		 * @param {ts.ui.PanelSpirit} panel
 		 */
 		_updatetab: function(panel, added) {
-			var css = 'this > .ts-panel';
-			var bar = this._tabbar;
-			var dom = this.dom;
-			var index = dom.qall(css, ts.ui.PanelSpirit).indexOf(panel);
+			var bar = this._tabbar, dom = this.dom;
+			var index = dom.children(ts.ui.PanelSpirit).indexOf(panel);
 			if (!bar) {
 				return;
 			}
@@ -725,7 +723,7 @@ ts.ui.SideShowSpirit = (function using(chained, Client, Parser, GuiObject, Color
 					label: panel.label,
 					selected: panel.selected,
 					$onselect: function() {
-						dom.qall(css, ts.ui.PanelSpirit).forEach(function(p) {
+						dom.children(ts.ui.PanelSpirit).forEach(function(p) {
 							if (p === panel) {
 								p.show();
 								p.$onselect();

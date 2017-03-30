@@ -39,6 +39,12 @@ ts.ui.PanelSpirit = (function using(ACTION_ATTACH, ACTION_DETACH, ACTION_SHOW, A
 		onselect: null,
 
 		/**
+		 * Open for implementation.
+		 * @type {function}
+		 */
+		onunselect: null,
+
+		/**
 		 * Setup.
 		 */
 		onconfigure: function() {
@@ -128,19 +134,56 @@ ts.ui.PanelSpirit = (function using(ACTION_ATTACH, ACTION_DETACH, ACTION_SHOW, A
 			return this.naturalHeight() > this.element.offsetHeight;
 		},
 
+		/**
+		 * Get the MainSpirit nested directly inside this panel, if it exists.
+		 * @returns {ts.ui.MainSpirit}
+		 */
+		childMain: function() {
+			return this.dom.child(ts.ui.MainSpirit);
+		},
+
+		/**
+		 * Get the MainSpirit found above this panel, if it exists.
+		 * (using ancestor, not parent, because of MainContenSpirit).
+		 * @returns {ts.ui.MainSpirit}
+		 */
+		parentMain: function() {
+			return this.dom.ancestor(ts.ui.MainSpirit);
+		},
+
 		// Privileged ..............................................................
 
 		/**
 		 *
 		 */
 		$onselect: function() {
-			switch (gui.Type.of(this.onselect)) {
-				case 'function':
-					this.onselect();
-					break;
-				case 'string':
-					new Function(this.onselect).call(this);
-					break;
+			if (!this.selected) {
+				this.selected = true;
+				switch (gui.Type.of(this.onselect)) {
+					case 'function':
+						this.onselect();
+						break;
+					case 'string':
+						new Function(this.onselect).call(this);
+						break;
+				}
+			}
+		},
+
+		/**
+		 *
+		 */
+		$onunselect: function() {
+			if (this.selected) {
+				this.selected = false;
+				switch (gui.Type.of(this.onunselect)) {
+					case 'function':
+						this.onunselect();
+						break;
+					case 'string':
+						new Function(this.onunselect).call(this);
+						break;
+				}
 			}
 		},
 

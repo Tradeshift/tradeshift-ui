@@ -66,10 +66,9 @@ ts.ui.SpotlightModel = (function using(CoverSpirit, chained, Type, GuiObject, Co
 			}
 
 			var content = document.createElement('div');
-			content.className = 'ts-spotlight-content';
 			content.style.position = 'absolute';
 			content.style.color = 'white';
-			content.style.opacity = 1;
+			content.className = 'ts-spotlight-content ts-transition';
 
 			content.style.left = targetPos.x + radius + 22 + 'px';
 			content.style.top = targetPos.y + (radius / 6) + 'px';
@@ -134,8 +133,9 @@ ts.ui.SpotlightModel = (function using(CoverSpirit, chained, Type, GuiObject, Co
 
 			cover.fadeIn();
 
+			content.className = 'ts-spotlight-content ts-transition ts-visible';
+
 			window.addEventListener('keydown', function(e) {
-				console.log('keydown');
 				if ((e.key === 'Escape' || e.key === 'Esc' || e.keyCode === 27)) {
 					cover.fadeOut();
 					content.parentNode.removeChild(content);
@@ -143,6 +143,18 @@ ts.ui.SpotlightModel = (function using(CoverSpirit, chained, Type, GuiObject, Co
 					e.preventDefault();
 					return false;
 				}
+			}, true);
+
+			window.addEventListener('click', function(e) {
+				cover.fadeOut();
+				if (content.parentNode) {
+					content.parentNode.removeChild(content);
+				}
+				if (closeButton.parentNode) {
+					closeButton.parentNode.removeChild(closeButton);
+				}
+				e.preventDefault();
+				return false;
 			}, true);
 
 			return this;
@@ -161,11 +173,6 @@ ts.ui.SpotlightModel = (function using(CoverSpirit, chained, Type, GuiObject, Co
 				x: xPos,
 				y: yPos
 			};
-		},
-
-		onevent: function(e) {
-			this.super.onevent(e);
-			console.log(e);
 		}
 
 	});

@@ -36,12 +36,22 @@
 		position:absolute;
 
 		&.ts-transition {
+			.ts-mixin-transition(transform, @ts-transition-fast, @ts-timing-easeoutquint);
 			transform: scale(0);
-			.ts-mixin-transition(transform, @ts-transition-fast, @ts-timing-easeoutquint);
+
+			&.ts-visible {
+				transform: scale(1);
+			}
 		}
+	}
+}
+
+.ts-spotlight-content {
+	&.ts-transition {
+		.ts-mixin-transition(opacity, @ts-transition-slow, @ts-timing-easeoutquint);
+		opacity: 0;
 		&.ts-visible {
-			.ts-mixin-transition(transform, @ts-transition-fast, @ts-timing-easeoutquint);
-			transform: scale(1);
+			opacity: 1;
 		}
 	}
 }

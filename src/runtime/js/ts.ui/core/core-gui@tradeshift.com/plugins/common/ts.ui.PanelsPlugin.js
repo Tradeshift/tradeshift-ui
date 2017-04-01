@@ -1,5 +1,7 @@
 /**
- * Must implement `$insertTab`.
+ * Note that the user spirit must implement `$insertTab(json, index)`.
+ * TODO: Finalize setup for tabs added or removed post initialization.
+ * TODO: Refactor the `SideShowSpirit` and `MainSpirit` to use this!
  */
 ts.ui.PanelsPlugin = (function using(PANEL_ATTACH, PANEL_DETACH) {
 	/**
@@ -44,9 +46,13 @@ ts.ui.PanelsPlugin = (function using(PANEL_ATTACH, PANEL_DETACH) {
 		 */
 		init: function() {
 			if (!this._initialized) {
-				this._initialized = true;
-				this._index(this.spirit.dom.children(ts.ui.PanelSpirit));
-				this.spirit.action.add([PANEL_ATTACH, PANEL_DETACH], this);
+				if (this.spirit.$insertTab) {
+					this._initialized = true;
+					this._index(this.spirit.dom.children(ts.ui.PanelSpirit));
+					this.spirit.action.add([PANEL_ATTACH, PANEL_DETACH], this);
+				} else {
+					throw new Error('$insertTab :(');
+				}
 			}
 		},
 
@@ -122,7 +128,7 @@ ts.ui.PanelsPlugin = (function using(PANEL_ATTACH, PANEL_DETACH) {
 				if (!panel.selected) {
 					panel.hide();
 				}
-			} else {
+			} else { // TODO: Fix this - the panel was removed!
 				/*
 				bar.tabs().splice(index, 1).forEach(function(tab) {
 					if (tab.selected) {

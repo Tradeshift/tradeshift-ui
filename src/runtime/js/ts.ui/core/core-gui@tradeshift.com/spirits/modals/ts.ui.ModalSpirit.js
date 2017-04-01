@@ -48,7 +48,7 @@ ts.ui.ModalSpirit = (function using(Client, transition, chained) {
 		onready: function() {
 			this.super.onready();
 			this.dom.hide();
-			this._setup(this.panels.current());
+			this._setup(this._panel());
 			this.css.shift(transition, 'ts-transition');
 		},
 
@@ -129,16 +129,22 @@ ts.ui.ModalSpirit = (function using(Client, transition, chained) {
 		}),
 
 		/**
-		 * Get or set the buttons.
+		 * Get or set the buttons in the statusbar, though not in fullscreen
+		 * modals (because on a big screen, the user will never notice them).
+		 * so will simply not allow that.
 		 * @param @optional {Array<Object>} json
 		 * @returns {ts.ui.ButtonsCollection|ts.ui.ModalSpirit}
 		 */
 		buttons: chained(function(json) {
-			var footer = this._footer();
-			if (arguments.length) {
-				footer.buttons(json);
+			if (!this.$fullscreen) {
+				var footer = this._footer();
+				if (arguments.length) {
+					footer.buttons(json);
+				} else {
+					return footer.buttons();
+				}
 			} else {
-				return footer.buttons();
+				throw new Error('No buttons in a fullscren Modal :/');
 			}
 		}),
 
@@ -173,7 +179,7 @@ ts.ui.ModalSpirit = (function using(Client, transition, chained) {
 		 * @param {number} index
 		 */
 		$insertTab: function(json, index) {
-			var tabs = this._header().tabs();
+			var tabs = this._tabbar().tabs();
 			if (this.$fullscreen) {
 				tabs.splice(index, 0, json);
 			} else {
@@ -209,9 +215,7 @@ ts.ui.ModalSpirit = (function using(Client, transition, chained) {
 				this._execute('onopened');
 				this.broadcast.dispatch(didopen);
 				this._then.now();
-				this.tick.time(function() {
-					this._focus();
-				});
+				this._focus();
 			} else {
 				this.dom.show();
 				this.panels.init();
@@ -248,6 +252,11 @@ ts.ui.ModalSpirit = (function using(Client, transition, chained) {
 					this.att.del('open');
 				}
 				this._then.now();
+				this.tick.time(function() {
+					if (!this.$disposed) {
+						(this._main() || this).attention.exit();
+					}
+				});
 			} else {
 				this.key.remove('Esc');
 				this.broadcast.dispatch(willclose);
@@ -265,9 +274,10 @@ ts.ui.ModalSpirit = (function using(Client, transition, chained) {
 		 * (having allowed the dev to focus something first)
 		 */
 		_focus: function() {
-			var focused = document.activeElement;
-			if (!focused || !this.dom.contains(focused)) {
-				this.attention.enter();
+			var panel = this._panel();
+			var focus = document.activeElement;
+			if (!focus || !panel.dom.contains(focus)) {
+				(this._main() || this).attention.enter();
 			}
 		},
 
@@ -317,7 +327,7 @@ ts.ui.ModalSpirit = (function using(Client, transition, chained) {
 		 */
 		_autocenter: function() {
 			var GOLDEN = 0.382;
-			var panel = this.panels.current();
+			var panel = this._panel();
 			var main = panel.childMain();
 			if (main) {
 				var height = main.box.height;
@@ -336,7 +346,7 @@ ts.ui.ModalSpirit = (function using(Client, transition, chained) {
 		 */
 		_autosizeinscreen: function(then, avail, xxxxx) {
 			this.css.remove('ts-overflow');
-			var height = this.panels.current().naturalHeight() +
+			var height = this._panel().naturalHeight() +
 				(this.css.contains('ts-hasheader') ? 66 : 0) +
 				(this.css.contains('ts-hasheader') ? 66 : 0);
 			var breaks = height > avail;
@@ -377,14 +387,25 @@ ts.ui.ModalSpirit = (function using(Client, transition, chained) {
 		},
 
 		/**
-		 * Get spirit of the header.
+		 * Get spirit of the header (titlebar).
 		 * @returns {ts.ui.ToolBarSpirit}
 		 */
 		_header: function() {
 			var ToolBar = ts.ui.ToolBarSpirit;
 			this.css.add('ts-hasheader');
 			return this.dom.q('header.ts-toolbar', ToolBar) ||
-				this.dom.prepend(ToolBar.summon('header', 'ts-bg-blue').white());
+				this.dom.prepend(ToolBar.summon('header', 'ts-bg-white'));
+		},
+
+		/**
+		 * Get spirit of the tabbar.
+		 * @returns {ts.ui.ToolBarSpirit}
+		 */
+		_tabbar: function() {
+			var TabBar = ts.ui.TabBarSpirit;
+			this.css.add('ts-hastabs');
+			return this.dom.q('header.ts-tabbar', TabBar) ||
+				this._header().dom.after(TabBar.summon('header', 'ts-bg-white'));
 		},
 
 		/**
@@ -411,6 +432,20 @@ ts.ui.ModalSpirit = (function using(Client, transition, chained) {
 					this + ' must be positioned outside Main', this.element
 				);
 			}
+		},
+
+		/**
+		 * @returns {ts.ui.PanelSpirit}
+		 */
+		_panel: function() {
+			return this.panels.current();
+		},
+
+		/**
+		 *
+		 */
+		_main: function() {
+			return this._panel().childMain();
 		},
 
 		/**

@@ -1,5 +1,5 @@
 .ts-modal {
-	z-index: @ts-zindex-dialog;
+	z-index: @ts-zindex-modal;
 	position: absolute;	
 	box-shadow: 2px 2px 8px rgba(0,0,0,0.75);
 	&.ts-inscreen {
@@ -22,8 +22,8 @@
 		padding-bottom: 0;
 		background-color: @ts-white;
 		overflow: hidden;
-		&:after {
-			content: '!'; // firefix dysfunction :(
+		&:after { // firefox dysfunction :(
+			content: '!';
 			display: block;
 			visibility: hidden;
 		}
@@ -50,9 +50,17 @@
 		bottom: 0;
 		width: 100%;
 	}
+	&.ts-hastabs {
+		top: @ts-unit-double;
+	}
 	&.ts-hasheader {
 		> .ts-panel {
 			top: @ts-unit-triple;
+		}
+		&.ts-hastabs {
+			> .ts-panel {
+				top: @ts-unit-triple + @ts-unit-double;
+			}
 		}
 	}
 	&.ts-hasfooter {

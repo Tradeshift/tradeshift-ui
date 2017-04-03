@@ -10,21 +10,46 @@
 			<article id="panel1">
 				<h1>Modal</h1>
 				<section class="desc">
-					<p>The Modal is a <strong>secret</strong> component for use in the Chrome only!</p>
+					<p>The fullscreen Modal can be used for stuff that doesn't really fit in an Aside.</p>
 				</section>
 				<section>
 
-					<p>Modals are declared in HTML much like an Aside.</p>
+					<p>The <val>Modal</val> component <em>must</em> be created with a child component <val>Panel</val>.</p>
 					<figure data-ts="DoxMarkup">
 						<script type="text/html">
-							<dialog data-ts="Modal" id="example1" data-ts.title="Example Modal">
+							<dialog data-ts="Modal">
+								<div data-ts="Panel">
+									<p>Modal content.</p>
+								</div>
+							</dialog>
+						</script>
+					</figure>
+					<p>You can create the <val>Modal</val> wherever you like, just make sure that it's positioned outside of the <val>Main</val> element when it opens.</p>
+					<figure data-ts="DoxMarkup">
+						<script type="text/html">
+							<main data-ts="Main">
+								<p>Main content.</p>
+							</main>
+							<dialog data-ts="Modal" data-ts.title="Example Modal">
+								<div data-ts="Panel">
+									<p>Modal content.</p>
+								</div>
+							</dialog>
+						</script>
+					</figure>
+
+					<h3>Title and layout</h3>
+					<p>The <att>data-ts.title</att> attribute configures the Modal title. You can also choose to add a <val>Main</val> element to center the content.</p>
+					<figure data-ts="DoxMarkup">
+						<script type="text/html">
+							<dialog data-ts="Modal" id="example1">
 								<div data-ts="Panel">
 									<main data-ts="Main">
-										<h1>The Modal</h1>
-										<p>Modal content goes here.</p>
+										<h1>A Modal Example</h1>
+										<p>…</p>
 										<p>
 											<button onclick="ts.ui.get('#example1').close()" class="ts-primary">
-												<span>Got it!</span>
+												<span>Close the Modal</span>
 											</button>
 										</p>
 									</main>
@@ -32,15 +57,69 @@
 							</dialog>
 						</script>
 					</figure>
+					<p>Let's see how that looks. To open the Modal, you can either set the <att>data-ts.open</att> attribute to <val>true</val> (using jQuery or something like that) or you can use the following API.</p>
 
 					<figure data-ts="DoxScript" class="attention">
 						<script type="runnable">
-							ts.ui.get('#example1').open();
+							ts.ui.get('#example1').open(); // you can pass an element instead of an ID
 						</script>
 					</figure>
 
-					<p>$('#example1').attr('data-ts.open', true);</p>
+					<h3>Adding some buttons</h3>
+					<p>Buttons can be added as part of the content, but some Modals work better when the buttons are presented in a fixed StatusBar (for example when there is a lot of content). These buttons can be added using the API we know from the <a data-ts="Button" href="/#components/bars/toolbar.html">ToolBar</a>.</p>
+					<figure data-ts="DoxScript">
+						<script type="runnable">
+						var modal = ts.ui.get('#example2');
+						modal.buttons([{
+							label: 'Close the Modal',
+							type: 'ts-primary',
+							onclick: function() {
+								modal.close();
+							}
+						}]).open();
+						</script>
+					</figure>
 
+					<div data-ts="Note">
+						<i class="ts-icon-todo"></i>
+						<p>TODO: Enable keyboard focus in the Modal StatusBar.</p>
+					</div>
+
+					<h3>Adding some tabs</h3>
+					<p>There's two ways to add tabs and one of them is likely to fit your workflow. First, we will add some tabs to the example modal using the API we know from the <a data-ts="Button" href="/#components/bars/tabbar.html">TabBar</a>.</p>
+					<figure data-ts="DoxScript">
+						<script type="runnable">
+						ts.ui.get('#example1').tabs([
+							{label: 'One'},
+							{label: 'Two'},
+							{label: 'Three', onselect: function() {
+								console.log('Tab three selected!');
+							}},
+						]).open();
+						</script>
+					</figure>
+					<p>The tabs don"t do anything by default, so what happens at <code>onselect</code> is completely up to you. If you decice to go with this approach, you should read the following message.</p>
+					<div data-ts="Note">
+						<i class="ts-icon-todo"></i>
+						<p>Mention <code>modal.reflex()</code> and <code>modal.busy()</code> at this point.</p>
+					</div>
+
+					<p>The other approach is to declare multiple <val>Panel</val> elements with a <att>data-ts.label</att> attribute and this will generate the tabs automatically as seen in <a data-ts="Button" onclick="ts.ui.get('#mymodal').open()">this example</a>.</p>
+
+					<figure data-ts="DoxMarkup">
+						<script type="text/html">
+							<dialog data-ts="Modal">
+								<div data-ts="Panel" data-ts.label="One">
+									<main data-ts="Main">…</main>
+								</div>
+								<div data-ts="Panel" data-ts.label="Two">
+									<main data-ts="Main">…</main>
+								</div>
+							</dialog>
+						</script>
+					</figure>
+
+					<!--
 					<p>The buttons are configured much like in a ToolBar. Note that you must manually <code>open</code> and <code>close</code> the Modal.</p>
 					<figure data-ts="DoxScript">
 						<script type="runnable">
@@ -60,6 +139,7 @@
 							modal.open();
 						</script>
 					</figure>
+					-->
 
 					<p>Here's and overview of the Modal API.</p>
 					<div data-ts="DoxApi">
@@ -67,6 +147,11 @@
 							{
 								name: "ts.ui.ModalSpirit",
 								methods: [
+									{
+										name: "tabs",
+										args: "(array)",
+										desc: "Get or set the tabs."
+									},
 									{
 										name: "buttons",
 										args: "(array)",
@@ -112,28 +197,50 @@
 		<dialog data-ts="Modal" id="example1" data-ts.title="Example Modal">
 			<div data-ts="Panel">
 				<main data-ts="Main">
-					<h1>The Modal</h1>
-					<p>Modal content goes here.</p>
+					<h1>A Modal Example</h1>
+					<p>Bacon ipsum dolor amet jerky sausage pork belly tenderloin burgdoggen kevin prosciutto beef ribs shoulder tri-tip salami ribeye turducken rump. Rump prosciutto ham, kevin picanha drumstick chuck pork chop. Short ribs tail shank, alcatra kevin spare ribs meatloaf beef. Pork loin salami flank andouille prosciutto chuck bresaola sirloin ribeye. Bacon picanha salami filet mignon capicola beef ribs. Venison jowl meatloaf jerky porchetta, brisket shank picanha drumstick capicola frankfurter.</p>
 					<p>
 						<button onclick="ts.ui.get('#example1').close()" data-ts="Button" class="ts-primary">
-							<span>Got it!</span>
+							<span>Close the Modal</span>
 						</button>
 					</p>
 				</main>
 			</div>
 		</dialog>
 
-		<dialog data-ts="Modal" id="mymodal" data-ts.title="Your Details">
-			<div data-ts="Panel" data-ts.label="Tab One">
+		<dialog data-ts="Modal" id="example2" data-ts.title="Example Modal">
+			<div data-ts="Panel">
+				<main data-ts="Main">
+					<h1>A Modal Example</h1>
+					<p>Bacon ipsum dolor amet jerky sausage pork belly tenderloin burgdoggen kevin prosciutto beef ribs shoulder tri-tip salami ribeye turducken rump. Rump prosciutto ham, kevin picanha drumstick chuck pork chop. Short ribs tail shank, alcatra kevin spare ribs meatloaf beef. Pork loin salami flank andouille prosciutto chuck bresaola sirloin ribeye. Bacon picanha salami filet mignon capicola beef ribs. Venison jowl meatloaf jerky porchetta, brisket shank picanha drumstick capicola frankfurter.</p>
+				</main>
+			</div>
+		</dialog>
+
+		<dialog data-ts="Modal" id="mymodal" data-ts.title="Example Tabs">
+			<div data-ts="Panel" data-ts.label="One">
 				<main data-ts="Main">
 					<h1>User details</h1>
 					<form data-ts="Form">
 						<fieldset>
 							<label>
-								<span>Name</span>
-								<input autofocus/>
+								<span>Real name</span>
+								<input/>
 							</label>
 						</fieldset>
+						<fieldset>
+							<label>
+								<span>Username</span>
+								<input/>
+							</label>
+						</fieldset>
+					</form>
+				</main>
+			</div>
+			<div data-ts="Panel" data-ts.label="Two">
+				<main data-ts="Main">
+					<h1>More details</h1>
+					<form data-ts="Form">
 						<fieldset>
 							<label>
 								<span>Age</span>
@@ -142,26 +249,11 @@
 						</fieldset>
 						<fieldset>
 							<label>
-								<span>Description</span>
-								<textarea></textarea>
+								<span>Hobby</span>
+								<input/>
 							</label>
 						</fieldset>
 					</form>
-					<p>
-						<button onclick="alert('TODO')" class="ts-primary">
-							<span>Next?</span>
-						</button>
-					</p>
-				</main>
-			</div>
-			<div data-ts="Panel" data-ts.label="Tab One">
-				<main data-ts="Main">
-					<h1>More details</h1>
-					<p>
-						<button onclick="alert('TODO')" class="ts-primary">
-							<span>Next?</span>
-						</button>
-					</p>
 				</main>
 			</div>
 		</dialog>

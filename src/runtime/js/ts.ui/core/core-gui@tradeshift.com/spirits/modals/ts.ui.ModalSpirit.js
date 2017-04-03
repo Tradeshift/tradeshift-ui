@@ -118,6 +118,7 @@ ts.ui.ModalSpirit = (function using(Client, transition, chained) {
 		/**
 		 * Get or set the title.
 		 * @param @optional {string} title
+		 * @returns {String|ts.ui.ModalSpirit}
 		 */
 		title: chained(function(title) {
 			var header = this._header();
@@ -129,6 +130,20 @@ ts.ui.ModalSpirit = (function using(Client, transition, chained) {
 		}),
 
 		/**
+		 * Get or set the tabs.
+		 * @param @optional {Array<Object>} json
+		 * @returns {Array<ts.ui.TabModel>|ts.ui.ModalSpirit}
+		 */
+		tabs: chained(function(json) {
+			var tabbar = this._tabbar();
+			if (arguments.length) {
+				tabbar.tabs(json);
+			} else {
+				return tabbar.tabs();
+			}
+		}),
+
+		/**
 		 * Get or set the buttons in the statusbar, though not in fullscreen
 		 * modals (because on a big screen, the user will never notice them).
 		 * so will simply not allow that.
@@ -136,15 +151,11 @@ ts.ui.ModalSpirit = (function using(Client, transition, chained) {
 		 * @returns {ts.ui.ButtonsCollection|ts.ui.ModalSpirit}
 		 */
 		buttons: chained(function(json) {
-			if (!this.$fullscreen) {
-				var footer = this._footer();
-				if (arguments.length) {
-					footer.buttons(json);
-				} else {
-					return footer.buttons();
-				}
+			var footer = this._footer();
+			if (arguments.length) {
+				footer.buttons(json);
 			} else {
-				throw new Error('No buttons in a fullscren Modal :/');
+				return footer.buttons();
 			}
 		}),
 

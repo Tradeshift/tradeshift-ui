@@ -223,7 +223,7 @@ ts.ui.ToolBarSpirit = (function using(chained, confirmed, Client, Type, guiArray
 		 */
 		macro: chained(function() {
 			this.css.remove(ts.ui.CLASS_MICRO).add(ts.ui.CLASS_MACRO);
-			if (this._outsidemain()) {
+			if (this._outsidemain() && this._outsidemodal()) {
 				this.guilayout.shiftGlobal(false, 'ts-has-toolbar-first-ts-micro');
 				this.guilayout.shiftGlobal(true, 'ts-has-toolbar-first-ts-macro');
 				this.guilayout.flexGlobal();
@@ -236,7 +236,7 @@ ts.ui.ToolBarSpirit = (function using(chained, confirmed, Client, Type, guiArray
 		 */
 		micro: chained(function() {
 			this.css.remove(ts.ui.CLASS_MACRO).add(ts.ui.CLASS_MICRO);
-			if (this._outsidemain()) {
+			if (this._outsidemain() && this._outsidemodal()) {
 				this.guilayout.shiftGlobal(false, 'ts-has-toolbar-first-ts-macro');
 				this.guilayout.shiftGlobal(true, 'ts-has-toolbar-first-ts-micro');
 				this.guilayout.flexGlobal();
@@ -511,7 +511,9 @@ ts.ui.ToolBarSpirit = (function using(chained, confirmed, Client, Type, guiArray
 			this.css.shift(show, 'ts-toolbar-first');
 			var micro = this.css.contains(ts.ui.CLASS_MICRO);
 			var klass = 'ts-has-toolbar-first-' + (micro ? 'ts-micro' : 'ts-macro');
-			this.guilayout.shiftGlobal(show, klass);
+			if (this._outsidemodal()) {
+				this.guilayout.shiftGlobal(show, klass);
+			}
 		},
 
 		/**
@@ -519,7 +521,9 @@ ts.ui.ToolBarSpirit = (function using(chained, confirmed, Client, Type, guiArray
 		 */
 		_layoutafter: function(show) {
 			this.css.shift(show, 'ts-toolbar-last');
-			this.guilayout.shiftGlobal(show, 'ts-has-toolbar-last');
+			if (this._outsidemodal()) {
+				this.guilayout.shiftGlobal(show, 'ts-has-toolbar-last');
+			}
 		},
 
 		/**
@@ -530,6 +534,15 @@ ts.ui.ToolBarSpirit = (function using(chained, confirmed, Client, Type, guiArray
 			return ['ts-toolbar-first', 'ts-toolbar-last'].some(function(cname) {
 				return this.css.contains(cname);
 			}, this);
+		},
+
+		/**
+		 * Is positioned inside some kind of Modal?
+		 * TODO: We should probably also confirm that we are not in an Aside...
+		 * @returns {boolean}
+		 */
+		_outsidemodal: function() {
+			return !this.css.matches('.ts-modal .ts-toolbar');
 		},
 
 		/**

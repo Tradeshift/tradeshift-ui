@@ -29,7 +29,7 @@
 		}
 		> .ts-main {
 			max-width: (@ts-width-aside + @ts-unit-plus) * 2; // 640px usable
-			padding: 0 @ts-unit-plus;
+			padding: @ts-unit-plus;
 			text-align: center;
 			overflow-x: visible;
 			overflow-y: visible;
@@ -49,6 +49,18 @@
 		position: absolute;
 		bottom: 0;
 		width: 100%;
+		&.ts-bg-lite {
+
+			&:after {
+				content: '';
+				top: -5px;
+				height: 5px;
+				width: 100%;
+				position: absolute;
+				pointer-events: none;
+				background: linear-gradient(0deg, rgba(0,0,0,0.35), rgba(0,0,0,0));
+			}
+		}
 	}
 	&.ts-hastabs {
 		top: @ts-unit-double;

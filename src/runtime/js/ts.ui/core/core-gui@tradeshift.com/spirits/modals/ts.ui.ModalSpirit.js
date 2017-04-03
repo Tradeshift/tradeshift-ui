@@ -394,7 +394,7 @@ ts.ui.ModalSpirit = (function using(Client, transition, chained) {
 			var ToolBar = ts.ui.ToolBarSpirit;
 			this.css.add('ts-hasheader');
 			return this.dom.q('header.ts-toolbar', ToolBar) ||
-				this.dom.prepend(ToolBar.summon('header', 'ts-bg-white'));
+				this.dom.prepend(ToolBar.summon('header', 'ts-bg-blue'));
 		},
 
 		/**

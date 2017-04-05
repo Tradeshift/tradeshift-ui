@@ -1,6 +1,6 @@
 {
   "name": "tradeshift-ui",
-  "version": "7.1.0",
+  "version": "7.2.0-alpha.1",
   "description": "The Tradeshift UI Library & Framework",
   "homepage": "https://ui.tradeshift.com/",
   "bugs": {
@@ -18,7 +18,7 @@
     "node": "6.10.0"
   },
   "scripts": {
-  	"postinstall": "cd docs && npm install",
+    "postinstall": "cd docs && npm install",
     "lint": "./node_modules/.bin/eslint --fix --config ./.eslintrc.json .",
     "test": "npm run lint && ./node_modules/.bin/grunt jasmine && echo 'Running tests on https://www.browserstack.com/automate' && ./node_modules/.bin/browserstack-runner",
     "http": "static spec/jasmine -H '{\"Cache-Control\": \"no-cache, must-revalidate\"}'",

@@ -38,6 +38,28 @@ ts.ui.CoverSpirit = (function using(chained, Client) {
 		}),
 
 		/**
+		 * Start spinning (on a transparent background, unless you CSS this).
+		 * @param @optional {string} message
+		 * @returns {ts.ui.CoverSpirit}
+		 */
+		spin: chained(function(message) {
+			this._spinner = this._spinner || ts.ui.SpinnerSpirit.summon();
+			this._spinner.spin(this.element, {
+				message: message || ''
+			});
+		}),
+
+		/**
+		 * Stop spinning.
+		 * @return {ts.ui.CoverSpirit}
+		 */
+		stop: chained(function() {
+			if (this._spinner) {
+				this._spinner.stop();
+			}
+		}),
+
+		/**
 		 * Show or hide the cover.
 		 * @param {boolean} show
 		 * @return {ts.ui.CoverSpirit}
@@ -130,6 +152,12 @@ ts.ui.CoverSpirit = (function using(chained, Client) {
 		},
 
 		// Private .................................................................
+
+		/**
+		 * Spirit of the Spinner.
+		 * @type {ts.ui.SpinnerSpirit}
+		 */
+		_spinner: null,
 
 		/**
 		 * Fade around with CSS transitions?

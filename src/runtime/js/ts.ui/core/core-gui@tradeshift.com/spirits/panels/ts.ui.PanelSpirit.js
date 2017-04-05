@@ -1,11 +1,12 @@
 /**
  * Something that scrolls with a scrollbar.
+ * @using {gui.Combo#chained} chained
  * @using {string} ACTION_ATTACH
  * @using {string} ACTION_DETACH
  * @using {string} ACTION_SHOW
  * @using {string} ACTION_HIDE
  */
-ts.ui.PanelSpirit = (function using(ACTION_ATTACH, ACTION_DETACH, ACTION_SHOW, ACTION_HIDE, ACTION_CLASS) {
+ts.ui.PanelSpirit = (function using(chained, ACTION_ATTACH, ACTION_DETACH, ACTION_SHOW, ACTION_HIDE, ACTION_CLASS) {
 	return ts.ui.Spirit.extend({
 
 		/**
@@ -151,6 +152,38 @@ ts.ui.PanelSpirit = (function using(ACTION_ATTACH, ACTION_DETACH, ACTION_SHOW, A
 			return this.dom.ancestor(ts.ui.MainSpirit);
 		},
 
+		/**
+		 *
+		 */
+		busy: chained(function() {
+			console.log('busy', this._cover().$instanceid);
+			this._cover().show();
+		}),
+
+		/**
+		 *
+		 */
+		done: chained(function() {
+			console.log('Done', this._cover().$instanceid);
+			this._cover().hide();
+		}),
+
+		/**
+		 * @param @optional {string} message
+		 */
+		spin: chained(function(message) {
+			this._cover().spin(message);
+			this.busy();
+		}),
+
+		/**
+		 *
+		 */
+		stop: chained(function() {
+			this._cover().stop();
+			this.done();
+		}),
+
 		// Privileged ..............................................................
 
 		/**
@@ -190,6 +223,14 @@ ts.ui.PanelSpirit = (function using(ACTION_ATTACH, ACTION_DETACH, ACTION_SHOW, A
 		// Private .................................................................
 
 		/**
+		 * @returns {ts.ui.CoverSpirit}
+		 */
+		_cover: function() {
+			var Cover = ts.ui.CoverSpirit;
+			return this.dom.child(Cover) || this.dom.append(Cover.summon());
+		},
+
+		/**
 		 * Is root level panel?
 		 * @returns {boolean}
 		 */
@@ -199,6 +240,7 @@ ts.ui.PanelSpirit = (function using(ACTION_ATTACH, ACTION_DETACH, ACTION_SHOW, A
 
 	});
 }(
+	gui.Combo.chained,
 	ts.ui.ACTION_PANEL_ATTACH,
 	ts.ui.ACTION_PANEL_DETACH,
 	ts.ui.ACTION_PANEL_SHOW,

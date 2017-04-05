@@ -3,6 +3,7 @@
 	border-radius: 3px;
 	padding: @ts-unit-half;
 	margin-bottom: @ts-unit;
+	text-align: left;
 	a {
 		color: @ts-blue;
 	}
@@ -53,11 +54,14 @@
 
 .ts-tablet {
 	.ts-main > .ts-note {
-		position: absolute;
-		left: 0;
-		right: 0;
-		top: 0;
+		.ts-mixin-maximize();
+		bottom: auto;
 		min-height: @ts-unit-double;
 		z-index: @ts-zindex-main + 1;
+	}
+	.ts-modal {
+		.ts-main > .ts-note {
+			position: relative;
+		}
 	}
 }

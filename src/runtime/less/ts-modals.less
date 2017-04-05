@@ -79,6 +79,18 @@
 		> .ts-panel {
 			bottom: @ts-unit-triple;
 		}
+		&.ts-level-1-5 > .ts-panel { 
+			bottom: (@ts-unit-triple * 1.5);
+		}
+		&.ts-level-2 > .ts-panel {
+			bottom: @ts-unit-triple * 2;
+		}
+		&.ts-level-2-5 > .ts-panel {
+			bottom: @ts-unit-triple * 2.5;
+		}
+		&.ts-level-3 > .ts-panel {
+			bottom: @ts-unit-triple * 3;
+		}
 	}
 	&.ts-transition {
 		will-change: transform;

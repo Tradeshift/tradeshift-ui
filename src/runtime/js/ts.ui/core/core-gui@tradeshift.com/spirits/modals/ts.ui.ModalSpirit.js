@@ -53,6 +53,20 @@ ts.ui.ModalSpirit = (function using(Client, transition, chained) {
 		},
 
 		/**
+		 * Handle action.
+		 * @param {gui.Action} a
+		 */
+		onaction: function(a) {
+			this.super.onaction(a);
+			switch (a.type) {
+				case ts.ui.ACTION_STATUSBAR_LEVEL:
+					this.guilayout.gotoLevel(a.data);
+					this.reflex();
+					break;
+			}
+		},
+
+		/**
 		 * Open AND close the Modal (setup to support the
 		 * HTML attribute: `data-ts.open="true|false"`)
 		 * @param @optional {boolean} opt_open Omit to simply open
@@ -87,6 +101,55 @@ ts.ui.ModalSpirit = (function using(Client, transition, chained) {
 		close: function() {
 			return this.open(false);
 		},
+
+		/**
+		 * Cloak the content (to obscure whatever messy Angular loading sequence).
+		 * @param @optional {string} message
+		 */
+		busy: chained(function() {
+			this._panel().busy();
+		}),
+
+		/**
+		 * Show the content once again.
+		 */
+		done: chained(function() {
+			this.reflex();
+			this._panel().done();
+		}),
+
+		/**
+		 * Show a spinner while hiding the content, for mobiles and slow servers.
+		 * @param @optional {string} message
+		 */
+		spin: chained(function(message) {
+			this._panel().spin(message);
+			this.busy();
+		}),
+
+		/**
+		 * Stop the spinner and show the content.
+		 */
+		stop: chained(function() {
+			this._panel().stop();
+			this.done();
+		}),
+
+		/**
+		 * Inject HTML into the Main or Panel (that
+		 * is currently selected, in case of tabs).
+		 * This serves an example in the Docs, mostly.
+		 * @param @optional {string} markup
+		 * @returns {string|ts.ui.ModalSpirit}
+		 */
+		html: chained(function(markup) {
+			var target = this._main() || this._panel();
+			if (arguments.length) {
+				target.dom.html(markup);
+			} else {
+				return target.dom.html();
+			}
+		}),
 
 		/**
 		 * Handle event.
@@ -126,6 +189,34 @@ ts.ui.ModalSpirit = (function using(Client, transition, chained) {
 				header.title(title);
 			} else {
 				return header.title();
+			}
+		}),
+
+		/**
+		 * Get or set the statusbar message.
+		 * @param @optional {string} message
+		 * @returns {String|ts.ui.ModalSpirit}
+		 */
+		status: chained(function(message) {
+			var footer = this._footer();
+			if (arguments.length) {
+				footer.message(message);
+			} else {
+				return footer.message();
+			}
+		}),
+
+		/**
+		 * Get or set the statusbar Pager.
+		 * @param @optional {Object} json
+		 * @returns {ts.ui.PageModel|ts.ui.ModalSpirit}
+		 */
+		pager: chained(function(json) {
+			var footer = this._footer();
+			if (arguments.length) {
+				footer.pager(json);
+			} else {
+				return footer.pager();
 			}
 		}),
 
@@ -214,6 +305,21 @@ ts.ui.ModalSpirit = (function using(Client, transition, chained) {
 		 * @type {gui.Then}
 		 */
 		_then: null,
+
+		/**
+		 * Get the Panel (currently selected, in case of tabs).
+		 * @returns {ts.ui.PanelSpirit}
+		 */
+		_panel: function() {
+			return this.panels.current();
+		},
+
+		/**
+		 * Get the Main, if any (in the currently selected Panel, in case of tabs).
+		 */
+		_main: function() {
+			return this._panel().childMain();
+		},
 
 		/**
 		 * Fade in (start and done).
@@ -425,9 +531,10 @@ ts.ui.ModalSpirit = (function using(Client, transition, chained) {
 		 */
 		_footer: function() {
 			this.css.add('ts-hasfooter');
-			var ToolBar = ts.ui.ToolBarSpirit;
-			return this.dom.q('footer.ts-toolbar', ToolBar) ||
-				this.dom.append(ToolBar.summon('footer'));
+			var StatusBar = ts.ui.StatusBarSpirit;
+			this.action.add(ts.ui.ACTION_STATUSBAR_LEVEL);
+			return this.dom.q('footer.ts-toolbar', StatusBar) ||
+				this.dom.append(StatusBar.summon('footer'));
 		},
 
 		/**
@@ -443,20 +550,6 @@ ts.ui.ModalSpirit = (function using(Client, transition, chained) {
 					this + ' must be positioned outside Main', this.element
 				);
 			}
-		},
-
-		/**
-		 * @returns {ts.ui.PanelSpirit}
-		 */
-		_panel: function() {
-			return this.panels.current();
-		},
-
-		/**
-		 *
-		 */
-		_main: function() {
-			return this._panel().childMain();
 		},
 
 		/**

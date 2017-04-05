@@ -21,11 +21,6 @@ If you'd like to submit a feature request or report a bug, go to our [issues pag
 1. Install the dependencies of this project.
 	- `npm install`
 
-### Optional steps to set up the documentation site locally
-
-1. Install the dependencies inside the `docs/` folder.
-	- `cd docs; npm install`
-
 ## Usage (Local Development)
 
 1. Start the `grunt` script in the root of the repository.

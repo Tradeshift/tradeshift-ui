@@ -42,7 +42,7 @@ module.exports = {
 // Private .....................................................................
 
 function maincontent($) {
-	$('main').each(function(i, main) {
+	$('body > main').each(function(i, main) {
 		main = $(main);
 		var mainContent = $('<div data-ts="MainContent"></div>');
 		mainContent.append(main.children());

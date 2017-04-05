@@ -1,51 +1,95 @@
 .ts-modal {
-	z-index: @ts-zindex-dialog;
-	position: absolute;
-	width: 480px;
-	height: 320px;
-	left: 50%;
-	top: 20%;
-	margin-left: -220px;
-	border-radius: @ts-radius;
+	z-index: @ts-zindex-modal;
+	position: absolute;	
 	box-shadow: 2px 2px 8px rgba(0,0,0,0.75);
-	> header {
-		border-radius: @ts-radius @ts-radius 0 0;
-		button.ts-tertiary { // probably the closing X
-			border-color: transparent !important;
+	&.ts-inscreen {
+		width: 480px;
+		height: 320px;
+		left: 50%;
+		top: 20%;
+		margin-left: -220px;
+		border-radius: @ts-radius;
+		> header {
+			border-radius: @ts-radius @ts-radius 0 0;
+		}
+		> footer {
+			border-radius: 0 0 @ts-radius @ts-radius;
 		}
 	}
+	&.ts-fullscreen {}
 	> .ts-panel {
 		.ts-mixin-maximize();
-		padding: @ts-unit;
 		padding-bottom: 0;
 		background-color: @ts-white;
 		overflow: hidden;
-		&:after {
-			content: '!'; // firefix dysfunction :(
+		&:after { // firefox dysfunction :(
+			content: '!';
 			display: block;
 			visibility: hidden;
+		}
+		> .ts-main {
+			max-width: (@ts-width-aside + @ts-unit-plus) * 2; // 640px usable
+			padding: @ts-unit-plus;
+			text-align: center;
+			overflow-x: visible;
+			overflow-y: visible;
+			background-color: transparent;
+			margin-left: auto;
+			margin-right: auto;
+			bottom: auto;
 		}
 	}
 	&.ts-overflow {
 		> .ts-panel {
-			overflow-y: scroll;
+			overflow-y: auto;
 			overflow-x: hidden;
 		}
 	}
 	> footer {
-		border-radius: 0 0 @ts-radius @ts-radius;
 		position: absolute;
 		bottom: 0;
 		width: 100%;
+		&.ts-bg-lite {
+
+			&:after {
+				content: '';
+				top: -5px;
+				height: 5px;
+				width: 100%;
+				position: absolute;
+				pointer-events: none;
+				background: linear-gradient(0deg, rgba(0,0,0,0.35), rgba(0,0,0,0));
+			}
+		}
+	}
+	&.ts-hastabs {
+		top: @ts-unit-double;
 	}
 	&.ts-hasheader {
 		> .ts-panel {
 			top: @ts-unit-triple;
 		}
+		&.ts-hastabs {
+			> .ts-panel {
+				top: @ts-unit-triple + @ts-unit-double;
+			}
+		}
 	}
 	&.ts-hasfooter {
 		> .ts-panel {
 			bottom: @ts-unit-triple;
+		}
+		&.ts-level-1-5 > .ts-panel { 
+			bottom: (@ts-unit-triple * 1.5);
+		}
+		&.ts-level-2 > .ts-panel {
+			bottom: @ts-unit-triple * 2;
+		}
+		&.ts-level-2-5 > .ts-panel {
+			bottom: @ts-unit-triple * 2.5;
+		}
+		&.ts-level-3 > .ts-panel {
+			bottom: @ts-unit-triple * 3;
 		}
 	}
 	&.ts-transition {

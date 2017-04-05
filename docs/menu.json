@@ -95,9 +95,8 @@
 			},
 			{
 				"label": "Modal",
-				"icon": "docs-icon-navigation-drawer-2",
-				"path": "components/modals/",
-				"hidden": true
+				"icon": "docs-icon-chat-bubble-square-alert-2",
+				"path": "components/modals/"
 			},
 			{
 				"label": "Note",

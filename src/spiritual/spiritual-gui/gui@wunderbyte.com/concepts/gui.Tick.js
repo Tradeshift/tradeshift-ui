@@ -28,6 +28,20 @@
 		}
 	};
 
+	/**
+	 * Let's not attempt to invoke any method that applies the `this` keyword
+	 * to spirits (or plugins or models) that have been marked as destructed.
+	 * TODO: We can in theory remove numerous manual checks for this now!
+	 * @param {Object} thisp
+	 * @returns {boolean}
+	 */
+	function safeapply(thisp) {
+		if (thisp) {
+			return thisp.$destructed === undefined || !thisp.$destructed;
+		}
+		return true;
+	}
+
 	// Static ....................................................................
 
 	gui.Object.extend(gui.Tick, {
@@ -86,7 +100,9 @@
 		 */
 		next: function(action, thisp) {
 			setImmediate(function() {
-				action.call(thisp);
+				if (safeapply(thisp)) {
+					action.call(thisp);
+				}
 			});
 		},
 
@@ -99,7 +115,9 @@
 		 */
 		nextFrame: function(action, thisp) {
 			return requestAnimationFrame(function(timestamp) {
-				action.call(thisp, timestamp);
+				if (safeapply(thisp)) {
+					action.call(thisp, timestamp);
+				}
 			});
 		},
 
@@ -121,7 +139,9 @@
 		time: confirmed('function', '(number)', '(function|object)')(
 			function(action, time, thisp) {
 				return setTimeout(function() {
-					action.call(thisp);
+					if (safeapply(thisp)) {
+						action.call(thisp);
+					}
 				}, time || 0);
 			}
 		),

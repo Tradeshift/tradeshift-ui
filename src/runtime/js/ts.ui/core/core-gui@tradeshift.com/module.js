@@ -63,6 +63,7 @@ ts.ui.CoreModule = gui.module('core-gui@tradeshift.com', {
 	 */
 	oncontextinitialize: function() {
 		this._commonplugins();
+		this._specialplugins();
 		this._documentplugins();
 		this._guiattributes();
 		this._defaultcolors();
@@ -120,6 +121,13 @@ ts.ui.CoreModule = gui.module('core-gui@tradeshift.com', {
 	_commonplugins: function() {
 		var override = true;
 		ts.ui.Spirit.plugin('event', ts.ui.EventPlugin, override);
+	},
+
+	/**
+	 * Hm...
+	 */
+	_specialplugins: function() {
+		ts.ui.ModalSpirit.plugin('panels', ts.ui.PanelsPlugin);
 	},
 
 	/**

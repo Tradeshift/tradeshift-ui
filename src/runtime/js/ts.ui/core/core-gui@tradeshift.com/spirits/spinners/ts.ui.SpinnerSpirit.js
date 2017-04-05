@@ -1,8 +1,9 @@
 /**
  * Spirit of the spin.
+ * @using {gui.Combo#chained} chained
  * @extends {ts.ui.Spirit}
  */
-ts.ui.SpinnerSpirit = (function using() {
+ts.ui.SpinnerSpirit = (function using(chained) {
 	return ts.ui.Spirit.extend({
 
 		/**
@@ -22,8 +23,9 @@ ts.ui.SpinnerSpirit = (function using() {
 		 * Start spinning.
 		 * @param @optional {element} element
 		 * @param @optional {object} options
+		 * @returns {ts.ui.SpinnerSpirit}
 		 */
-		spin: function(element, options) {
+		spin: chained(function(element, options) {
 			element = element || this.element;
 			var opts = ts.ui.SpinnerSpirit.defaults(options);
 			if (this._spinner) {
@@ -42,12 +44,13 @@ ts.ui.SpinnerSpirit = (function using() {
 			if (opts.cover) {
 				this._updateblocking(true);
 			}
-		},
+		}),
 
 		/**
 		 * Stop spinning.
+		 * @returns {ts.ui.SpinnerSpirit}
 		 */
-		stop: function() {
+		stop: chained(function() {
 			this._updateblocking(false);
 			if (this._spinner) {
 				this._spinner.stop();
@@ -57,7 +60,7 @@ ts.ui.SpinnerSpirit = (function using() {
 				this._textelement.parentNode.removeChild(this._textelement);
 				this._textelement = null;
 			}
-		},
+		}),
 
 		// Private .................................................................
 
@@ -133,7 +136,7 @@ ts.ui.SpinnerSpirit = (function using() {
 				fps: 12, // Frames per second when using setTimeout() as a fallback for CSS
 				zIndex: 40000, // The z-index (defaults to 4000)
 				className: 'spinner', // The CSS class to assign to the spinner
-				top: '50%', // Top position relative to parent
+				top: '50%', // Top position relative to parent TODO: Let's move to golden ratio!
 				left: '50%', // Left position relative to parent
 				shadow: false, // Whether to render a shadow
 				hwaccel: true, // Whether to use hardware acceleration
@@ -162,4 +165,4 @@ ts.ui.SpinnerSpirit = (function using() {
 		}
 
 	});
-}());
+}(gui.Combo.chained));

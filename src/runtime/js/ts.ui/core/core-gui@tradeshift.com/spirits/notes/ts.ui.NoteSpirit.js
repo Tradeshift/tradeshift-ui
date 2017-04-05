@@ -1,9 +1,4 @@
 /**
- * @todo
- * - use css for icon shit instead of crappy JS
- */
-
-/**
  * Spirit of the dialog.
  * @extends {ts.ui.Spirit}
  * @using {ts.ui.Note} Note
@@ -11,6 +6,8 @@
  * @using {gui.Client} Client
  * @using {gui.Combo#chained} chained
  * @using {gui.Arguments#confirmed} confirmed
+ * TODO: Make sure that Note text never collides with Note buttons (mobile)!
+ * TODO: use css for icon shit instead of crappy JS (still relevant?)
  */
 ts.ui.NoteSpirit = (function using(Note, Type, Client, chained, confirmed) {
 	var CLASS_CLOSING = ts.ui.CLASS_CLOSING;

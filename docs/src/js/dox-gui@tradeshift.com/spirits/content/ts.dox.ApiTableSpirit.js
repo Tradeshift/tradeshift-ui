@@ -6,6 +6,12 @@
  */
 ts.dox.ApiTableSpirit = (function using(Type, GuiObject, GuiArray, Markdown) {
 	/**
+	 * Handle markdown links.
+	 * @type {string}
+	 */
+	var ACTION_LINK = 'ts-action-safe-link';
+
+	/**
 	 * Parse strings for markdown content and
 	 * support at least the `code` syntax....
 	 */
@@ -52,9 +58,25 @@ ts.dox.ApiTableSpirit = (function using(Type, GuiObject, GuiArray, Markdown) {
 		 */
 		onconfigure: function() {
 			this.super.onconfigure();
+			this.action.add(ACTION_LINK);
 			if (this.code) {
 				this.script.load(ts.dox.ApiTableSpirit.edbml);
 				this.script.run(minimalmarkdown(this.code));
+			}
+		},
+
+		/**
+		 * Handle action.
+		 * TODO: Make link loading work when page is not inside the chrome iframe!
+		 * @param {gui.Action} a
+		 */
+		onaction: function(a) {
+			this.super.onaction(a);
+			if (a.type === ACTION_LINK && a.data.startsWith('/#')) {
+				a.consume();
+				this.action.dispatchGlobal(ts.ui.ACTION_GLOBAL_LOAD, {
+					href: a.data
+				});
 			}
 		}
 

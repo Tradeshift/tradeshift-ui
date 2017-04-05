@@ -1,10 +1,11 @@
 /**
  * Spirit of the main element.
  * @using {gui.Type} Type
+ * @using {gui.Combo#chained} chained
  * @using {string} PANEL_ATTACH
  * @using {string} PANEL_DETACH
  */
-ts.ui.MainSpirit = (function using(Type, PANEL_ATTACH, PANEL_DETACH) {
+ts.ui.MainSpirit = (function using(Type, chained, PANEL_ATTACH, PANEL_DETACH) {
 	/**
 	 * The TopBar and ToolBar and TabBar share inheritance chain,
 	 * se we'll need an elaborate setup to distinguish them apart.
@@ -57,7 +58,7 @@ ts.ui.MainSpirit = (function using(Type, PANEL_ATTACH, PANEL_DETACH) {
 		/**
 		 * @param {string} busy
 		 */
-		busy: function(busy) {
+		busy: chained(function(busy) {
 			var opts = {
 				message: gui.Type.isString(busy) ? busy : ''
 			};
@@ -71,12 +72,16 @@ ts.ui.MainSpirit = (function using(Type, PANEL_ATTACH, PANEL_DETACH) {
 					this._isbusy = false;
 				}
 			}
-		},
+		}),
+
+		done: chained(function() {
+			this.busy(false);
+		}),
 
 		/**
 		 * @param {string} busyblocking
 		 */
-		blocking: function(busyblocking) {
+		blocking: chained(function(busyblocking) {
 			var opts = {
 				message: busyblocking,
 				cover: true,
@@ -88,7 +93,14 @@ ts.ui.MainSpirit = (function using(Type, PANEL_ATTACH, PANEL_DETACH) {
 			} else {
 				this.guistatus.done(this.$instanceid);
 			}
-		},
+		}),
+
+		/**
+		 *
+		 */
+		doneBlocking: chained(function() {
+			this.blocking(false);
+		}),
 
 		/**
 		 * Configure.
@@ -219,7 +231,7 @@ ts.ui.MainSpirit = (function using(Type, PANEL_ATTACH, PANEL_DETACH) {
 				}
 				bar.tabs().splice(index, 0, {
 					label: panel.label,
-					selected: panel.selected || index === 0,
+					selected: panel.selected,
 					$onselect: function() {
 						dom.qall(css, ts.ui.PanelSpirit).forEach(function(p) {
 							if (p === panel) {
@@ -257,4 +269,4 @@ ts.ui.MainSpirit = (function using(Type, PANEL_ATTACH, PANEL_DETACH) {
 		}
 
 	});
-}(gui.Type, ts.ui.ACTION_PANEL_ATTACH, ts.ui.ACTION_PANEL_DETACH));
+}(gui.Type, gui.Combo.chained, ts.ui.ACTION_PANEL_ATTACH, ts.ui.ACTION_PANEL_DETACH));

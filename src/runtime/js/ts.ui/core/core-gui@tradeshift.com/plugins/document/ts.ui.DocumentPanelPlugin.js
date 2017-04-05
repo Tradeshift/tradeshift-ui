@@ -178,7 +178,7 @@ ts.ui.DocumentPanelPlugin = (function using(MapList, GuiArray) {
 			haspanels = true;
 			classnames.set(panel.$instanceid, []);
 			var index = panel.dom.ordinal();
-			var shown = index === 0;
+			var shown = panel.selected;
 			if (shown) {
 				shownpanel = panel;
 			} else {

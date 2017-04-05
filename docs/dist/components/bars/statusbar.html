@@ -4,7 +4,7 @@
 <head>
     <title>StatusBar</title>
     <meta name="viewport" content="width=device-width">
-    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-7.1.0.min.js"></script>
+    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-7.2.0-alpha.1.min.js"></script>
     <script src="/dist/assets/dox.min.js"></script>
     <script src="/dist/assets/mark.min.js"></script>
     <script src="/dist/assets/jquery-2.2.4.min.js"></script>
@@ -13,18 +13,6 @@
     <link rel="prefetch" title="TabBar" href="tabbar.html">
     <link rel="prefetch" title="ToolBar" href="toolbar.html">
     <link rel="prefetch" title="StatusBar" href="statusbar.html">
-    <script>
-        ts.ui.ready(function() { // support color scheme links in API table
-            var method;
-            ts.ui.get('html').action.add('ts-action-safe-link', {
-                onaction: function(a) {
-                    if ((method = ts.ui.ToolBar[a.data])) {
-                        method.call(ts.ui.ToolBar);
-                    }
-                }
-            })
-        });
-    </script>
     <script>
         ts.dox.tabs()
     </script>

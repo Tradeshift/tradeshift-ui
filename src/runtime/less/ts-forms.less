@@ -462,11 +462,11 @@
 			}
 		}
 	}
-	.ts-fakelabel { // open-aside-triangle
+	.ts-fakelabel { // open-select-menu
 		&:not(.ts-disabled):not(.ts-readonly) {
 			&:before {
-				.ts-mixin-icon(@ts-fontsize-small);
-				content: 'l';
+				.ts-mixin-icon(@ts-fontsize-medium);
+				content: '}';
 				position: absolute;
 				right: @ts-unit-half;
 				left: auto;
@@ -479,6 +479,13 @@
 					bottom: 27px;
 				}
 			}
+		}
+	}
+	.ts-datelabel {
+		&:not(.ts-disabled):not(.ts-readonly) {
+				&:before {
+						content: '\00a9';
+				}
 		}
 	}
 	.ts-select,
@@ -709,7 +716,7 @@
 				overflow: hidden;
 			}
 			&:not(.ts-option):not(.ts-switchlabel):after {
-				.ts-mixin-icon();
+				.ts-mixin-icon(@ts-fontsize-medium);
 				content: 'V'; // lock icon
 				position: absolute;
 				top: @ts-unit-plus;
@@ -717,7 +724,6 @@
 				width: @ts-unit-plus;
 				height: @ts-unit-plus;
 				line-height: @ts-unit-plus;
-				font-size: @ts-fontsize-medium;
 				pointer-events: none;
 			}
 		}
@@ -741,7 +747,7 @@
 .ts-form {
 	label.ts-customiconlabel:not(.ts-option):not(.ts-switchlabel) {
 		&:after {
-			.ts-mixin-icon(@ts-fontsize-small);
+			.ts-mixin-icon(@ts-fontsize-medium);
 			content: ~"attr(data-ts-icon)";
 			position: absolute;
 			right: @ts-unit-half;

@@ -1,0 +1,5 @@
+#!/usr/bin/env sh
+# Generate GitHub Pages ready documentation files
+grunt dist
+# Stage them all!
+git add -A docs/index.html && git add -A docs/dist/*

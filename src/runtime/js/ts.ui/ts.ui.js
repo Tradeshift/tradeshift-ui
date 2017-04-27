@@ -689,7 +689,9 @@ ts.ui.ICONS = {
 	'ts-icon-pin': '∫',
 	'ts-icon-previously-requested': '∞',
 	'ts-icon-archive': '÷',
-	'ts-icon-add-to-archive': '∅'
+	'ts-icon-add-to-archive': '∅',
+	'ts-icon-calendar': '©',
+	'ts-icon-select': '}'
 };
 
 /**

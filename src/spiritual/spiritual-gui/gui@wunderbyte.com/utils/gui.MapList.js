@@ -11,7 +11,6 @@ gui.MapList = (function using(confirmed, GuiArray) {
 	}
 
 	MapList.prototype = {
-
 		/**
 		 * Get list indexed by key.
 		 * @param {string} key
@@ -45,7 +44,7 @@ gui.MapList = (function using(confirmed, GuiArray) {
 		 * TODO: Support function arg for destructing members of the list?
 		 * @param {string} key
 		 */
-		'delete': function(key) {
+		delete: function(key) {
 			this._map[key] = null;
 			delete this._map[key];
 		},
@@ -107,8 +106,7 @@ gui.MapList = (function using(confirmed, GuiArray) {
 		 * @type {constructor}
 		 */
 		_fit: null
-
 	};
 
 	return MapList;
-}(gui.Arguments.confirmed, gui.Array));
+})(gui.Arguments.confirmed, gui.Array);

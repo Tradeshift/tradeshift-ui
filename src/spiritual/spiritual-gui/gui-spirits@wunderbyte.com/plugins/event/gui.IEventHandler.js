@@ -3,7 +3,6 @@
  *
  */
 gui.IEventHandler = {
-
 	/**
 	 * Identification.
 	 * @returns {String}

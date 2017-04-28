@@ -10,7 +10,6 @@ ts.ui.DateInputSpirit = (function(tick, time) {
 	var EMPTYVALUE = ''; // invalid dates will not be displayed
 
 	return ts.ui.InputSpirit.extend({
-
 		/**
 		 * Min date.
 		 * @type {string}
@@ -38,9 +37,7 @@ ts.ui.DateInputSpirit = (function(tick, time) {
 		onready: function() {
 			this.super.onready();
 			this.tick.add(tick).start(tick, time);
-			this._createfake(
-				ts.ui.FakeDateInputSpirit
-			).proxy(this.element);
+			this._createfake(ts.ui.FakeDateInputSpirit).proxy(this.element);
 		},
 
 		/**
@@ -122,16 +119,14 @@ ts.ui.DateInputSpirit = (function(tick, time) {
 		_evaluated: function(value) {
 			if (isNaN(new Date(value).getTime())) {
 				console.warn(
-					"The specified value '" + value + "' does not " +
-					"conform to the required format, 'yyyy-MM-dd'."
+					"The specified value '" +
+						value +
+						"' does not " +
+						"conform to the required format, 'yyyy-MM-dd'."
 				);
 				return EMPTYVALUE;
 			}
 			return value;
 		}
-
 	});
-}(
-	ts.ui.FieldSpirit.TICK_SYNC,
-	ts.ui.FieldSpirit.TICK_TIME
-));
+})(ts.ui.FieldSpirit.TICK_SYNC, ts.ui.FieldSpirit.TICK_TIME);

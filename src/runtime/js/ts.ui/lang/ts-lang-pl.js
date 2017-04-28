@@ -29,32 +29,8 @@ if (window.ts && ts.ui && ts.ui.DatePicker) {
 			'Lis',
 			'Gru'
 		],
-		dayNames: [
-			'Niedziela',
-			'Poniedziałek',
-			'Wtorek',
-			'Środa',
-			'Czwartek',
-			'Piątek',
-			'Sobota'
-		],
-		dayNamesShort: [
-			'Nie',
-			'Pon',
-			'Wto',
-			'Śro',
-			'Czw',
-			'Pią',
-			'Sob'
-		],
-		dayNamesMin: [
-			'Ni',
-			'Po',
-			'Wt',
-			'Śr',
-			'Cz',
-			'Pi',
-			'So'
-		]
+		dayNames: ['Niedziela', 'Poniedziałek', 'Wtorek', 'Środa', 'Czwartek', 'Piątek', 'Sobota'],
+		dayNamesShort: ['Nie', 'Pon', 'Wto', 'Śro', 'Czw', 'Pią', 'Sob'],
+		dayNamesMin: ['Ni', 'Po', 'Wt', 'Śr', 'Cz', 'Pi', 'So']
 	});
 }

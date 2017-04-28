@@ -2,13 +2,10 @@
  * Tables GUI module.
  */
 gui.module('tables-gui@tradeshift.com', {
-
 	/**
 	 * Channeling spirits to CSS selectors.
 	 */
-	channel: [
-		['[data-ts=Table]', ts.ui.TableSpirit]
-	],
+	channel: [['[data-ts=Table]', ts.ui.TableSpirit]],
 
 	/**
 	 * Setup some special plugins for the Table
@@ -20,7 +17,6 @@ gui.module('tables-gui@tradeshift.com', {
 			.plugin('layoutplugin', ts.ui.TableLayoutPlugin)
 			.plugin('queryplugin', ts.ui.TableQueryPlugin);
 	}
-
 });
 
 /*

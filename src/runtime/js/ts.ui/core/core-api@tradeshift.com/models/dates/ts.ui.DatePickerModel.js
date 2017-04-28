@@ -5,7 +5,6 @@
  */
 ts.ui.DatePickerModel = (function using(chained) {
 	return ts.ui.Model.extend({
-
 		/**
 		 * Friendly name.
 		 * @type {string}
@@ -92,9 +91,11 @@ ts.ui.DatePickerModel = (function using(chained) {
 			if (this.onselect) {
 				changes.forEach(function(c) {
 					if (c.name === 'value') {
-						setTimeout(function unfreeze() {
-							this.onselect(c.newValue, c.oldValue);
-						}.bind(this));
+						setTimeout(
+							function unfreeze() {
+								this.onselect(c.newValue, c.oldValue);
+							}.bind(this)
+						);
 					}
 				}, this);
 			}
@@ -107,6 +108,5 @@ ts.ui.DatePickerModel = (function using(chained) {
 		render: function() {
 			return ts.ui.datepicker.edbml(this);
 		}
-
 	});
-}(gui.Combo.chained));
+})(gui.Combo.chained);

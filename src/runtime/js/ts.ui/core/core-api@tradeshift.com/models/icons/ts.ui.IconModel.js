@@ -3,7 +3,6 @@
  */
 ts.ui.IconModel = (function() {
 	return ts.ui.Model.extend({
-
 		/**
 		 * The classname of the rendered `<i>` element.
 		 * @type {string}
@@ -23,6 +22,5 @@ ts.ui.IconModel = (function() {
 		render: function() {
 			return ts.ui.icononly.edbml(this);
 		}
-
 	});
-}());
+})();

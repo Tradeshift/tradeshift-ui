@@ -3,7 +3,6 @@
  */
 edb.Change = function() {};
 edb.Change.prototype = {
-
 	/**
 	 * Type that changed.
 	 * @type {edb.Object|edb.Array}

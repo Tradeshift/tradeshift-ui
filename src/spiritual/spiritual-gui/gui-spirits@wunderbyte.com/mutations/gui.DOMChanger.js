@@ -2,7 +2,6 @@
  * Spiritualizing documents by overloading DOM methods.
  */
 gui.DOMChanger = {
-
 	/**
 	 * Declare `spirit` as a fundamental property of things.
 	 * @param {Window} win
@@ -58,13 +57,11 @@ gui.DOMChanger = {
 	 */
 	_fragmethods: function(combos) {
 		var frag = document.createDocumentFragment();
-		return gui.Object.map(combos,
-			function fragmentmethod(key, value) {
-				if (frag[key]) {
-					return value;
-				}
+		return gui.Object.map(combos, function fragmentmethod(key, value) {
+			if (frag[key]) {
+				return value;
 			}
-		);
+		});
 	},
 
 	/**
@@ -76,9 +73,13 @@ gui.DOMChanger = {
 	_change: function(proto, combos) {
 		var root = document.documentElement;
 		var isok = gui.Client.hasAttributesOnPrototype;
-		gui.Object.each(combos, function(name, combo) {
-			this._docombo(proto, name, combo, root, isok);
-		}, this);
+		gui.Object.each(
+			combos,
+			function(name, combo) {
+				this._docombo(proto, name, combo, root, isok);
+			},
+			this
+		);
 	},
 
 	/**
@@ -91,7 +92,8 @@ gui.DOMChanger = {
 		this._tags().forEach(function(tag) {
 			var e = document.createElement(tag);
 			var p = e.constructor.prototype;
-			if (p !== Object.prototype) { // excluding object and embed tags
+			if (p !== Object.prototype) {
+				// excluding object and embed tags
 				if (did.indexOf(p) === -1) {
 					this._change(p, combos);
 					did.push(p); // some elements share the same prototype
@@ -177,7 +179,8 @@ gui.DOMChanger = {
 					base.set.call(this, value);
 				})
 			});
-		} else if (!once) { // textContent hotfix (is on different prototype)
+		} else if (!once) {
+			// textContent hotfix (is on different prototype)
 			this._doaccessor(Node.prototype, name, combo, true);
 		}
 	},
@@ -217,14 +220,19 @@ gui.DOMChanger = {
 	_dolegacyaccessor: function(proto, name, combo, root) {
 		var getter = root.__lookupGetter__(name);
 		var setter = root.__lookupSetter__(name);
-		if (getter) { // firefox 20 needs a getter for this to work
+		if (getter) {
+			// firefox 20 needs a getter for this to work
 			proto.__defineGetter__(name, function() {
 				return getter.apply(this, arguments);
 			});
-			proto.__defineSetter__(name, combo(function() {
-				setter.apply(this, arguments);
-			}));
-		} else { // textContent hotfix
+			proto.__defineSetter__(
+				name,
+				combo(function() {
+					setter.apply(this, arguments);
+				})
+			);
+		} else {
+			// textContent hotfix
 			this._doaccessor(Node.prototype, name, combo, root);
 		}
 	},
@@ -245,5 +253,4 @@ gui.DOMChanger = {
 			'source span strong style submark summary sup table tbody td textarea tfoot ' +
 			'th thead time title tr track ul unknown var video wbr').split(' ');
 	}
-
 };

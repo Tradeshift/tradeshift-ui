@@ -6,7 +6,6 @@
  */
 ts.ui.ObjectModel = (function using(confirmed) {
 	return ts.ui.Model.extend({
-
 		/**
 		 * Typically a GUID from the database.
 		 * @type {string}
@@ -39,13 +38,9 @@ ts.ui.ObjectModel = (function using(confirmed) {
 		 * @param @optional {string} classconfig The spirits classname may serve as config
 		 * @returns {string}
 		 */
-		render: confirmed('(boolean)', '(string)')(
-			function(contentonly, classconfig) {
-				return this._edbml()(
-					this, contentonly || false, classconfig || 'ts-default'
-				);
-			}
-		),
+		render: confirmed('(boolean)', '(string)')(function(contentonly, classconfig) {
+			return this._edbml()(this, contentonly || false, classconfig || 'ts-default');
+		}),
 
 		/**
 		 * We should probably insist on the ID.
@@ -68,6 +63,5 @@ ts.ui.ObjectModel = (function using(confirmed) {
 		_edbml: function() {
 			console.error(this + ' needs an EDBML function');
 		}
-
 	});
-}(gui.Arguments.confirmed));
+})(gui.Arguments.confirmed);

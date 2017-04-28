@@ -24,21 +24,15 @@ ts.ui.DocumentDialogPlugin = (function() {
 	}
 
 	return ts.ui.Plugin.extend({
-
 		/**
 		 * Manage the flow of dialogs.
 		 */
 		managedialogs: function() {
 			this._dialogs = [];
-			gui.Broadcast.add([
-				willopen,
-				goopen,
-				goopen,
-				willclose,
-				didclose,
-				modal_willopen,
-				modal_willclose
-			], this);
+			gui.Broadcast.add(
+				[willopen, goopen, goopen, willclose, didclose, modal_willopen, modal_willclose],
+				this
+			);
 		},
 
 		/**
@@ -134,6 +128,5 @@ ts.ui.DocumentDialogPlugin = (function() {
 		_cover: function() {
 			return ts.ui.CoverSpirit.getCover(this._coverid);
 		}
-
 	});
-}());
+})();

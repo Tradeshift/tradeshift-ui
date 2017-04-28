@@ -4,7 +4,6 @@
  * subclassed by both top.js and sub.js, so we're stashing it here for now.
  */
 ts.ui.MainFrameSpirit = ts.ui.Spirit.extend({
-
 	/**
 	 * True while loading our new app.
 	 * Two iframes exist at this point.
@@ -19,12 +18,14 @@ ts.ui.MainFrameSpirit = ts.ui.Spirit.extend({
 		this.super.onconfigure();
 		this.event.add('message', window);
 		this.css.add(ts.ui.CLASS_MAINFRAME);
-		this.action.add([
-			ts.ui.ACTION_FRAME_ONDOM,
-			ts.ui.ACTION_FRAME_ONLOAD,
-			ts.ui.ACTION_FRAME_ONHASH,
-			ts.ui.ACTION_FRAME_UNLOAD
-		]).addGlobal(ts.ui.ACTION_GLOBAL_DOCUMENT_TITLE);
+		this.action
+			.add([
+				ts.ui.ACTION_FRAME_ONDOM,
+				ts.ui.ACTION_FRAME_ONLOAD,
+				ts.ui.ACTION_FRAME_ONHASH,
+				ts.ui.ACTION_FRAME_UNLOAD
+			])
+			.addGlobal(ts.ui.ACTION_GLOBAL_DOCUMENT_TITLE);
 
 		// we're using the `ts-mainframe` class in the apps window now...
 		this.css.remove('ts-mainframe').add('ts-mainframe-renamed');
@@ -213,7 +214,7 @@ ts.ui.MainFrameSpirit = ts.ui.Spirit.extend({
 	 * The frames will not *visibly* toggle until newframe is loaded.
 	 */
 	_switchframes: function() {
-		var oldframe = this._oldframe = this._newframe;
+		var oldframe = (this._oldframe = this._newframe);
 		this._newframe = this._createframe();
 		if (oldframe) {
 			oldframe.action.descendGlobal(ts.ui.ACTION_GLOBAL_TERMINATE);
@@ -266,10 +267,14 @@ ts.ui.MainFrameSpirit = ts.ui.Spirit.extend({
 			this.guistatus.busyBlocking(status);
 			this.css.remove(classn);
 		} else {
-			gui.Tick.time(function() {
-				this.guistatus.doneBlocking(status);
-				this.css.add(classn);
-			}, 100, this);
+			gui.Tick.time(
+				function() {
+					this.guistatus.doneBlocking(status);
+					this.css.add(classn);
+				},
+				100,
+				this
+			);
 		}
 	},
 
@@ -302,10 +307,9 @@ ts.ui.MainFrameSpirit = ts.ui.Spirit.extend({
 				var iframe = oldframe.element;
 				gui.materialize(iframe);
 				iframe.parentNode.removeChild(iframe);
-			}());
+			})();
 		} else {
 			oldframe.dom.remove();
 		}
 	}
-
 });

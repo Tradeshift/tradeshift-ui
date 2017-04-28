@@ -55,9 +55,9 @@ edb.ArrayPopulator = (function using(Type) {
 			t = constructas(t, o);
 		}
 		// else { // if (edb.Type.is(t) || t === null)
-			// TODO: Support $of simple object/array here!
-			// TODO: At least make sure not `undefined`!
-			// t = t;
+		// TODO: Support $of simple object/array here!
+		// TODO: At least make sure not `undefined`!
+		// t = t;
 		// }
 		/*
 		 else {
@@ -79,8 +79,7 @@ edb.ArrayPopulator = (function using(Type) {
 	 */
 	function fail(expected, received, message) {
 		throw new TypeError(
-			'$of expected ' + expected + ', got ' + received +
-			(message ? ' (' + message + ')' : '')
+			'$of expected ' + expected + ', got ' + received + (message ? ' (' + message + ')' : '')
 		);
 	}
 
@@ -126,7 +125,8 @@ edb.ArrayPopulator = (function using(Type) {
 		});
 	}
 
-	return { // Public ...........................................................
+	return {
+		// Public ...........................................................
 
 		/**
 		 * Populate {edb.Array} from constructor arguments. This works like normal
@@ -144,9 +144,7 @@ edb.ArrayPopulator = (function using(Type) {
 				if (!oflist(array) && islist(first)) {
 					args = first;
 				}
-				Array.prototype.push.apply(array,
-					this.convert(array, args)
-				);
+				Array.prototype.push.apply(array, this.convert(array, args));
 			}
 		},
 
@@ -169,6 +167,5 @@ edb.ArrayPopulator = (function using(Type) {
 				return autoconvert(args);
 			}
 		}
-
 	};
-}(gui.Type));
+})(gui.Type);

@@ -1,4 +1,3 @@
-
 /**
  * Spirit of the time.
  * @extends {ts.ui.Spirit}
@@ -11,7 +10,6 @@ ts.ui.TimeSpirit = (function using(chained) {
 	var firsttime = null;
 
 	return ts.ui.Spirit.extend({
-
 		/**
 		 * Setup on enter.
 		 */
@@ -111,6 +109,5 @@ ts.ui.TimeSpirit = (function using(chained) {
 			newdatetime = ts.ui.moment(datetime).add(timespan).subtract(duration);
 			return ts.ui.moment(newdatetime).fromNow();
 		}
-
 	});
-}(gui.Combo.chained));
+})(gui.Combo.chained);

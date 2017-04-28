@@ -4,7 +4,6 @@
  * @see https://github.com/raganwald/homoiconic/blob/master/2012/09/precondition-and-postcondition.md
  */
 gui.Combo = {
-
 	/**
 	 * Decorate function before.
 	 * @param {function} decoration
@@ -116,5 +115,4 @@ gui.Combo = {
 	identity: function(subject) {
 		return subject;
 	}
-
 };

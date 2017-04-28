@@ -29,32 +29,8 @@ if (window.ts && ts.ui && ts.ui.DatePicker) {
 			'Nov',
 			'Dic'
 		],
-		dayNames: [
-			'Domenica',
-			'Lunedi',
-			'Martedì',
-			'Mercoledì',
-			'Gioverdi',
-			'Venerdì',
-			'Sabato'
-		],
-		dayNamesShort: [
-			'Dom',
-			'Lun',
-			'Mar',
-			'Mer',
-			'Gio',
-			'Ven',
-			'Sab'
-		],
-		dayNamesMin: [
-			'Do',
-			'Lu',
-			'Ma',
-			'Me',
-			'Gi',
-			'Ve',
-			'Sa'
-		]
+		dayNames: ['Domenica', 'Lunedi', 'Martedì', 'Mercoledì', 'Gioverdi', 'Venerdì', 'Sabato'],
+		dayNamesShort: ['Dom', 'Lun', 'Mar', 'Mer', 'Gio', 'Ven', 'Sab'],
+		dayNamesMin: ['Do', 'Lu', 'Ma', 'Me', 'Gi', 'Ve', 'Sa']
 	});
 }

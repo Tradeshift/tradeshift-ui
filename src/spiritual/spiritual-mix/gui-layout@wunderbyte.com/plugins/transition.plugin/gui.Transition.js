@@ -9,7 +9,6 @@ gui.Transition = function(propertyName, elapsedTime) {
 };
 
 gui.Transition.prototype = {
-
 	/**
 	 * Property that finished transitioning ("width","height").
 	 * @TODO un-camelcase this to CSS syntax.

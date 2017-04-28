@@ -42,12 +42,12 @@ gui.Document = (function() {
 	 * Create the class already.
 	 */
 	return gui.Class.create(Object.prototype, {
-
 		/**
 		 * Setup loads of event listeners.
 		 */
 		onconstruct: function() {
-			var that = this, add = function(target, events, capture) {
+			var that = this,
+				add = function(target, events, capture) {
 					events.split(' ').forEach(function(type) {
 						target.addEventListener(type, that, capture);
 					});
@@ -140,7 +140,7 @@ gui.Document = (function() {
 				} else {
 					setTimeout(onlayoutready); // wait for this iframe to be displayed...
 				}
-			}());
+			})();
 		},
 
 		/**
@@ -176,11 +176,14 @@ gui.Document = (function() {
 		 * @param {Event} e
 		 */
 		_onmouseevent: function(e) {
-			gui.broadcastGlobal(({
-				click: gui.BROADCAST_MOUSECLICK,
-				mousedown: gui.BROADCAST_MOUSEDOWN,
-				mouseup: gui.BROADCAST_MOUSEUP
-			})[e.type], gui.$contextid);
+			gui.broadcastGlobal(
+				{
+					click: gui.BROADCAST_MOUSECLICK,
+					mousedown: gui.BROADCAST_MOUSEDOWN,
+					mouseup: gui.BROADCAST_MOUSEUP
+				}[e.type],
+				gui.$contextid
+			);
 		},
 
 		/**
@@ -232,9 +235,7 @@ gui.Document = (function() {
 					if (prop.startsWith(ns + '.')) {
 						def = gui.Object.lookup(prop);
 						if (gui.Type.isDefined(def)) {
-							gui.Object.assert(prop,
-								gui.Type.cast(meta.getAttribute('content'))
-							);
+							gui.Object.assert(prop, gui.Type.cast(meta.getAttribute('content')));
 						} else {
 							console.error('No definition for "' + prop + '"');
 						}
@@ -242,9 +243,8 @@ gui.Document = (function() {
 				});
 			});
 		}
-
 	});
-}());
+})();
 
 /**
  * Here we go.

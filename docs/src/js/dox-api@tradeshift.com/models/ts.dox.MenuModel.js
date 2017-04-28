@@ -3,7 +3,6 @@
  * @extends {ts.dox.ItemModel}
  */
 ts.dox.MenuModel = ts.dox.ItemModel.extend({
-
 	/**
 	 * Search query, yes.
 	 * @type {string}
@@ -20,5 +19,4 @@ ts.dox.MenuModel = ts.dox.ItemModel.extend({
 			selected: false
 		})
 	})
-
 });

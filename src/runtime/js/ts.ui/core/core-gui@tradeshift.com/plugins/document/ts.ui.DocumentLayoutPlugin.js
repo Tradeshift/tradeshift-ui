@@ -6,7 +6,6 @@
  * @see {ts.ui.DocumentSpirit#_outputmodels}
  */
 ts.ui.DocumentLayoutPlugin = ts.ui.Plugin.extend({
-
 	/**
 	 * The window width is currently zero in Frankenstein
 	 * so we will have to go about it in a delicate way.
@@ -54,11 +53,13 @@ ts.ui.DocumentLayoutPlugin = ts.ui.Plugin.extend({
 	 */
 	_computepoints: function() {
 		var points = ts.ui.LayoutModel.BREAKPOINTS;
-		return Object.keys(points).map(function(point) {
-			return parseInt(point, 10);
-		}).sort(function(a, b) {
-			return a - b;
-		});
+		return Object.keys(points)
+			.map(function(point) {
+				return parseInt(point, 10);
+			})
+			.sort(function(a, b) {
+				return a - b;
+			});
 	},
 
 	/**
@@ -103,5 +104,4 @@ ts.ui.DocumentLayoutPlugin = ts.ui.Plugin.extend({
 		model.breakpoint = layout.breakpoint;
 		model.breakpoints = layout.breakpoints;
 	}
-
 });

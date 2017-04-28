@@ -7,16 +7,12 @@
  */
 ts.ui.SwitchSpirit = (function using(tick, time) {
 	return ts.ui.FieldSpirit.extend({
-
 		/**
 		 * Setup the stuff.
 		 */
 		onenter: function() {
 			this.super.onenter();
-			this._confirmbasic(
-				this.element.localName,
-				this.element.type
-			);
+			this._confirmbasic(this.element.localName, this.element.type);
 		},
 
 		/**
@@ -25,7 +21,8 @@ ts.ui.SwitchSpirit = (function using(tick, time) {
 		onattach: function() {
 			this.super.onattach();
 			this.event.add('change');
-			this.css.add([ // TODO: update these classnames what with the new stylee!
+			this.css.add([
+				// TODO: update these classnames what with the new stylee!
 				ts.ui.CLASS_SWITCHBOX,
 				ts.ui.CLASS_ENGINE
 			]);
@@ -104,11 +101,7 @@ ts.ui.SwitchSpirit = (function using(tick, time) {
 			if (oldswitch && oldswitch.css.contains('ts-switcher')) {
 				oldswitch.dom.remove();
 			}
-			return ts.ui.get(this.dom.after(
-				this.dom.parseToNode(
-					ts.ui.switchonly.edbml()
-				)
-			));
+			return ts.ui.get(this.dom.after(this.dom.parseToNode(ts.ui.switchonly.edbml())));
 		},
 
 		/**
@@ -141,6 +134,5 @@ ts.ui.SwitchSpirit = (function using(tick, time) {
 				}
 			}
 		}
-
 	});
-}(ts.ui.FieldSpirit.TICK_SYNC, ts.ui.FieldSpirit.TICK_TIME));
+})(ts.ui.FieldSpirit.TICK_SYNC, ts.ui.FieldSpirit.TICK_TIME);

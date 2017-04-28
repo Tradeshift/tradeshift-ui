@@ -109,19 +109,21 @@ ts.ui.DocumentPanelPlugin = (function using(MapList, GuiArray) {
 	}
 
 	return ts.ui.Plugin.extend({
-
 		/**
 		 * Setup panel management. If no root level panels can be
 		 * found, we'll treat the root element as a panel (internally).
 		 */
 		managepanels: function() {
 			classnames.set(this.spirit.$instanceid, []);
-			this.spirit.action.add([
-				ts.ui.ACTION_PANEL_ATTACH,
-				ts.ui.ACTION_PANEL_SHOW,
-				ts.ui.ACTION_PANEL_HIDE,
-				ts.ui.ACTION_ROOT_CLASSNAMES
-			], this);
+			this.spirit.action.add(
+				[
+					ts.ui.ACTION_PANEL_ATTACH,
+					ts.ui.ACTION_PANEL_SHOW,
+					ts.ui.ACTION_PANEL_HIDE,
+					ts.ui.ACTION_ROOT_CLASSNAMES
+				],
+				this
+			);
 		},
 
 		/**
@@ -148,11 +150,7 @@ ts.ui.DocumentPanelPlugin = (function using(MapList, GuiArray) {
 					break;
 				case ts.ui.ACTION_ROOT_CLASSNAMES:
 					var data = a.data;
-					this._togglecss(
-						data.enabled,
-						data.classes,
-						data.relatedPanel
-					);
+					this._togglecss(data.enabled, data.classes, data.relatedPanel);
 					break;
 			}
 		},
@@ -205,7 +203,7 @@ ts.ui.DocumentPanelPlugin = (function using(MapList, GuiArray) {
 		 * @param {ts.ui.PanelSpirit} panel
 		 */
 		_hidepanel: function(panel) {
-			shownpanel = (shownpanel === panel ? null : shownpanel);
+			shownpanel = shownpanel === panel ? null : shownpanel;
 			this.spirit.css.remove(classnames.get(panel.$instanceid));
 		},
 
@@ -223,9 +221,11 @@ ts.ui.DocumentPanelPlugin = (function using(MapList, GuiArray) {
 			classes.forEach(function(c) {
 				updatelist(list, c, on);
 			});
-			list = on ? list : snap.filter(function(clas) {
-				return list.indexOf(clas) === -1;
-			});
+			list = on
+				? list
+				: snap.filter(function(clas) {
+						return list.indexOf(clas) === -1;
+					});
 			if (panel) {
 				if (panel === shownpanel) {
 					root.css.shift(on, list);
@@ -262,6 +262,5 @@ ts.ui.DocumentPanelPlugin = (function using(MapList, GuiArray) {
 		_quickfixlayout: function() {
 			this.spirit.css.add('ts-has-topbar ts-has-topbar-tabs');
 		}
-
 	});
-}(gui.MapList, gui.Array));
+})(gui.MapList, gui.Array);

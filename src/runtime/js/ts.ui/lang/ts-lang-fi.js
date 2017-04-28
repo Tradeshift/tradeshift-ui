@@ -38,23 +38,7 @@ if (window.ts && ts.ui && ts.ui.DatePicker) {
 			'Perjantai',
 			'Lauantai'
 		],
-		dayNamesShort: [
-			'Sun',
-			'Maa',
-			'Tii',
-			'Kes',
-			'Tor',
-			'Per',
-			'Lau'
-		],
-		dayNamesMin: [
-			'Su',
-			'Ma',
-			'Ti',
-			'Ke',
-			'To',
-			'Pe',
-			'La'
-		]
+		dayNamesShort: ['Sun', 'Maa', 'Tii', 'Kes', 'Tor', 'Per', 'Lau'],
+		dayNamesMin: ['Su', 'Ma', 'Ti', 'Ke', 'To', 'Pe', 'La']
 	});
 }

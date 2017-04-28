@@ -4,7 +4,6 @@
  * TODO: Support globalX, globalY, screenX, screenY
  */
 gui.BoxPlugin = gui.Plugin.extend({
-
 	width: 0, // width
 	height: 0, // height
 	localX: 0, // X relative to positioned ancestor
@@ -26,12 +25,11 @@ gui.BoxPlugin = gui.Plugin.extend({
 			} else {
 				return doc.body;
 			}
-		}(this.spirit.document));
+		})(this.spirit.document);
 	}
 });
 
 Object.defineProperties(gui.BoxPlugin.prototype, {
-
 	/**
 	 * Width.
 	 * @type {number}

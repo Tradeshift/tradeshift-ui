@@ -16,4 +16,4 @@ ts.ui.FormSupportSpirit = (function() {
 			module.channelComplexSelectors(enable);
 		}
 	});
-}());
+})();

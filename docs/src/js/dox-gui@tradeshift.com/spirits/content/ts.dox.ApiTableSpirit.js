@@ -42,7 +42,6 @@ ts.dox.ApiTableSpirit = (function using(Type, GuiObject, GuiArray, Markdown) {
 	}
 
 	return ts.ui.Spirit.extend({
-
 		/**
 		 * This gets converted from inline script to some kind of attribute by the
 		 * Grunt task called "processor.js" because another subtask, the beautifier,
@@ -79,6 +78,5 @@ ts.dox.ApiTableSpirit = (function using(Type, GuiObject, GuiArray, Markdown) {
 				});
 			}
 		}
-
 	});
-}(gui.Type, gui.Object, gui.Array, ts.ui.Markdown));
+})(gui.Type, gui.Object, gui.Array, ts.ui.Markdown);

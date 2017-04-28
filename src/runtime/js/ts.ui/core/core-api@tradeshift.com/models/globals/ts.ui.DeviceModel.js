@@ -2,24 +2,25 @@
  * Global device model (TODO).
  * @extends {ts.ui.GlobalModel}
  */
-ts.ui.DeviceModel = ts.ui.Model.extend({
-
-	/**
+ts.ui.DeviceModel = ts.ui.Model.extend(
+	{
+		/**
 	 * Friendly name.
 	 * @type {string}
 	 */
-	item: 'device',
+		item: 'device',
 
-	/**
+		/**
 	 * Matches "portrait" or "landscape".
 	 * Defaults to landscape for desktop.
 	 * @type {string}
 	 */
-	orientation: 'landscape'
+		orientation: 'landscape'
+	},
+	{
+		// Static .................................................................
 
-}, { // Static .................................................................
-
-	ORIENTATION_LANDSCAPE: 'landscape',
-	ORIENTATION_PORTRAIT: 'portrait'
-
-});
+		ORIENTATION_LANDSCAPE: 'landscape',
+		ORIENTATION_PORTRAIT: 'portrait'
+	}
+);

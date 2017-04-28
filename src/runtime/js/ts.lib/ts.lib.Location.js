@@ -8,12 +8,10 @@ ts.lib.Location = (function() {
 	 * @param {string=} opt_target
 	 */
 	function dohref(href, opt_target) {
-		ts.ui.get('html').action.dispatchGlobal(
-			ts.ui.ACTION_GLOBAL_LOAD, {
-				target: opt_target || null,
-				href: href
-			}
-		);
+		ts.ui.get('html').action.dispatchGlobal(ts.ui.ACTION_GLOBAL_LOAD, {
+			target: opt_target || null,
+			href: href
+		});
 	}
 
 	/**
@@ -28,7 +26,8 @@ ts.lib.Location = (function() {
 		location.replace('#' + hash);
 	}
 
-	return { // Public ...............................
+	return {
+		// Public ...............................
 
 		/**
 		 * Identification.
@@ -59,4 +58,4 @@ ts.lib.Location = (function() {
 			console.error('todo');
 		}
 	};
-}());
+})();

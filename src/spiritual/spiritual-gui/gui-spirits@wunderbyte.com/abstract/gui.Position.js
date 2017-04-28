@@ -11,7 +11,6 @@ gui.Position = function(x, y, z) {
 };
 
 gui.Position.prototype = {
-
 	/**
 	 * X position.
 	 * @type {number}
@@ -56,5 +55,5 @@ gui.Position.prototype = {
  * @return {boolean}
  */
 gui.Position.isEqual = function(p1, p2) {
-	return (p1.x === p2.x) && (p1.y === p2.y);
+	return p1.x === p2.x && p1.y === p2.y;
 };

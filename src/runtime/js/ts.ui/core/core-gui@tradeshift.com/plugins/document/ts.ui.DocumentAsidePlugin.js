@@ -44,23 +44,24 @@ ts.ui.DocumentAsidePlugin = (function using(Tick) {
 	}
 
 	return ts.ui.Plugin.extend({
-
 		/**
 		 * Start managing asides.
 		 */
 		manageasides: function() {
 			this._flipins = [];
 			this._flipout = [];
-			this.spirit.action.add([ // TODO(jmo@): gui.Action.add() doesn't work :/
-				willopen,
-				didopen,
-				willclose,
-				didclose,
-				willflip
-			], this);
-			gui.Broadcast.addGlobal([
-				globaltouchcover
-			], this);
+			this.spirit.action.add(
+				[
+					// TODO(jmo@): gui.Action.add() doesn't work :/
+					willopen,
+					didopen,
+					willclose,
+					didclose,
+					willflip
+				],
+				this
+			);
+			gui.Broadcast.addGlobal([globaltouchcover], this);
 		},
 
 		/**
@@ -152,6 +153,5 @@ ts.ui.DocumentAsidePlugin = (function using(Tick) {
 		_cover: function() {
 			return ts.ui.CoverSpirit.getCover(this._coverid);
 		}
-
 	});
-}(gui.Tick));
+})(gui.Tick);

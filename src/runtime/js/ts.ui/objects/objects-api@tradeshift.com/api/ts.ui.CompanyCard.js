@@ -2,7 +2,6 @@
  * API.
  */
 ts.ui.CompanyCard = {
-
 	/**
 	 * @param {object|array} arg
 	 */
@@ -47,15 +46,7 @@ ts.ui.CompanyCard = {
 	 * Company sizes.
 	 * @type {Array<string>}
 	 */
-	companySizes: [
-		'1',
-		'1–10',
-		'1–100',
-		'100–249',
-		'250-500',
-		'500-1000'
-	]
-
+	companySizes: ['1', '1–10', '1–100', '100–249', '250-500', '500-1000']
 };
 
 // Implementation ..............................................................
@@ -68,7 +59,6 @@ ts.ui.CompanyCard = {
 	var collection = null;
 
 	GuiObject.extend(ts.ui.CompanyCard, {
-
 		/**
 		 * Render cards for argument.
 		 * @param {object|array} arg
@@ -97,6 +87,5 @@ ts.ui.CompanyCard = {
 		get: function(id) {
 			return collection ? collection.get(id) : null;
 		}
-
 	});
-}(gui.Array, gui.Object));
+})(gui.Array, gui.Object);

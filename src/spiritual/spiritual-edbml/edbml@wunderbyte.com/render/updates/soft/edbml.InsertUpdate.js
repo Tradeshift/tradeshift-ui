@@ -3,7 +3,6 @@
  * @extends {edbml.SoftUpdate}
  */
 edbml.InsertUpdate = edbml.SoftUpdate.extend({
-
 	/**
 	 * Update type.
 	 * @type {String}

@@ -7,7 +7,6 @@
  */
 gui.TickPlugin = (function using(chained, guiArray) {
 	return gui.TrackerPlugin.extend({
-
 		/**
 		 * Setup to clear timeouts when destructed.
 		 */
@@ -251,4 +250,4 @@ gui.TickPlugin = (function using(chained, guiArray) {
 			}
 		}
 	});
-}(gui.Combo.chained, gui.Array));
+})(gui.Combo.chained, gui.Array);

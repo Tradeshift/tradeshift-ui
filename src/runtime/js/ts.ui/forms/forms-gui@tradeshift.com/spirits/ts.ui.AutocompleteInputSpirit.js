@@ -4,7 +4,6 @@
  */
 ts.ui.AutocompleteInputSpirit = (function using(chained) {
 	return ts.ui.TextInputSpirit.extend({
-
 		/**
 		 * Get ready.
 		 */
@@ -59,6 +58,4 @@ ts.ui.AutocompleteInputSpirit = (function using(chained) {
 			}
 		}
 	});
-})(
-	gui.Combo.chained
-);
+})(gui.Combo.chained);

@@ -5,7 +5,6 @@
  */
 window.gui = (function using(Namespace, Timer) {
 	return new Namespace('gui', {
-
 		/**
 		 * Export as `gui.Namespace`.
 		 * @type {constructor}
@@ -266,7 +265,8 @@ window.gui = (function using(Namespace, Timer) {
 		_exist: function() {
 			this.hosted = window !== parent;
 			this.$contextid = 'key' + Math.random().toString().slice(2, 11);
-			if (this.hosted) { // TODO: get rid of this stuff!
+			if (this.hosted) {
+				// TODO: get rid of this stuff!
 				this.xhost = '*';
 			}
 			return this;
@@ -339,80 +339,80 @@ window.gui = (function using(Namespace, Timer) {
 		$measurements: function() {
 			return Timer.measurements() || [];
 		}
-
 	})._exist();
-}((function() {
- // ad hoc namespace mechanism ..................................
+})(
+	(function() {
+		// ad hoc namespace mechanism ..................................
 
-	/**
+		/**
 	 * When the first namespace `gui` has been instantiated,
 	 * this will become exposed publically as `gui.Namespace`.
 	 * TODO: Let's remember to check for namespace collions!
 	 * @param {string} ns
 	 * @param @optional {object} members
 	 */
-	function Namespace(ns, members) {
-		Namespace.namespaces.push(this);
-		this.$ns = ns;
-		if (members) {
-			Object.keys(members).forEach(function(key) {
-				Object.defineProperty(this, key,
-					Object.getOwnPropertyDescriptor(members, key)
-				);
-			}, this);
+		function Namespace(ns, members) {
+			Namespace.namespaces.push(this);
+			this.$ns = ns;
+			if (members) {
+				Object.keys(members).forEach(function(key) {
+					Object.defineProperty(this, key, Object.getOwnPropertyDescriptor(members, key));
+				}, this);
+			}
 		}
-	}
 
-	Namespace.namespaces = [];
-	Namespace.prototype = {
-
-		/**
+		Namespace.namespaces = [];
+		Namespace.prototype = {
+			/**
 		 * Namespace string.
 		 * @type {String}
 		 */
-		$ns: null,
+			$ns: null,
 
-		/**
+			/**
 		 * Identification.
 		 * @returns {String}
 		 */
-		toString: function() {
-			return '[namespace ' + this.$ns + ']';
-		},
+			toString: function() {
+				return '[namespace ' + this.$ns + ']';
+			},
 
-		/**
+			/**
 		 * Compute classnames for class-type members.
 		 * @returns {gui.Namespace}
 		 */
-		spacename: function() {
-			this._spacename(this, this.$ns);
-			return this;
-		},
+			spacename: function() {
+				this._spacename(this, this.$ns);
+				return this;
+			},
 
-		/**
+			/**
 		 * Name members recursively.
 		 * @param {object|function} o
 		 * @param {String} name
 		 */
-		_spacename: function(o, name) {
-			gui.Object.each(o, function(key, value) {
-				if (key !== '$superclass' && gui.Type.isConstructor(value)) {
-					if (value.$classname === gui.Class.ANONYMOUS) {
-						Object.defineProperty(value, '$classname', {
-							value: name + '.' + key,
-							enumerable: true,
-							writable: false
-						});
-						this._spacename(value, name + '.' + key);
-					}
-				}
-			}, this);
-		}
-	};
+			_spacename: function(o, name) {
+				gui.Object.each(
+					o,
+					function(key, value) {
+						if (key !== '$superclass' && gui.Type.isConstructor(value)) {
+							if (value.$classname === gui.Class.ANONYMOUS) {
+								Object.defineProperty(value, '$classname', {
+									value: name + '.' + key,
+									enumerable: true,
+									writable: false
+								});
+								this._spacename(value, name + '.' + key);
+							}
+						}
+					},
+					this
+				);
+			}
+		};
 
-	return Namespace;
-}()),
-
+		return Namespace;
+	})(),
 	/*
 	 * Ad hoc timing device to investigate the timing of all the things.
 	 * TODO: check out `performance.setResourceTimingBufferSize(10000);`
@@ -446,7 +446,6 @@ window.gui = (function using(Namespace, Timer) {
 		}
 
 		return {
-
 			/**
 			 * Begin measurement.
 			 * @param {string} key
@@ -501,15 +500,15 @@ window.gui = (function using(Namespace, Timer) {
 				}
 			}
 		};
-	}(!!(window.performance &&
+	})(
+		!!(window.performance &&
 			performance.mark &&
 			performance.measure &&
 			performance.getEntriesByName &&
 			performance.getEntriesByType),
 		!!(location.port === '10114' || location.host === 'ui.tradeshift.com')
-	))
-
-));
+	)
+);
 
 /*
  * Start the measurements.

@@ -49,4 +49,4 @@ ts.ui.Note.toString = function() {
 		 */
 		onchange: function() {}
 	});
-}());
+})();

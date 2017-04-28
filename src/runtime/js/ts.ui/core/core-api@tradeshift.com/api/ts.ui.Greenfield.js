@@ -73,7 +73,8 @@ ts.ui.Greenfield = (function using(up, down) {
 		// console.debug('Applied ' + summary + ' in ' + document.title);
 	}
 
-	return { // Public ...........................................................
+	return {
+		// Public ...........................................................
 
 		/**
 		 * Identification.
@@ -124,15 +125,7 @@ ts.ui.Greenfield = (function using(up, down) {
 		 * @param {gui.Action} a
 		 */
 		$applyhere: function(a) {
-			applyhere(
-				a.data.target,
-				a.data.method,
-				a.data.params
-			);
+			applyhere(a.data.target, a.data.method, a.data.params);
 		}
-
 	};
-}(
-	ts.ui.ACTION_GLOBAL_MESSAGE_UP,
-	ts.ui.ACTION_GLOBAL_MESSAGE_DOWN
-));
+})(ts.ui.ACTION_GLOBAL_MESSAGE_UP, ts.ui.ACTION_GLOBAL_MESSAGE_DOWN);

@@ -4,7 +4,6 @@
  */
 ts.ui.FieldSetSpirit = (function() {
 	return ts.ui.FormSupportSpirit.extend({
-
 		/**
 		 * Attach to the DOM.
 		 */
@@ -21,17 +20,17 @@ ts.ui.FieldSetSpirit = (function() {
 		onevent: function(e) {
 			this.super.onevent(e);
 			switch (e.type) {
-				case 'focusin' :
-				case 'focusout' :
-				case 'focus' :
-				case 'blur' :
+				case 'focusin':
+				case 'focusout':
+				case 'focus':
+				case 'blur':
 					switch (e.target.type) {
-						case 'radio' :
+						case 'radio':
 							this._focus(e.type === 'focusin' || e.type === 'focus');
 							break;
 					}
 					break;
-				case 'mousedown' :
+				case 'mousedown':
 					if (this._focusradio() || this._focusbox()) {
 						e.preventDefault();
 					}
@@ -99,6 +98,5 @@ ts.ui.FieldSetSpirit = (function() {
 		_focus: function(is) {
 			this.css.shift(is, ts.ui.CLASS_FOCUS);
 		}
-
 	});
-}());
+})();

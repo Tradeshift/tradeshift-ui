@@ -10,7 +10,6 @@
  */
 gui.EventPlugin = (function using(chained, guiArray, DOMPlugin, Interface, Type) {
 	return gui.TrackerPlugin.extend({
-
 		/**
 		 * Add one or more DOM event handlers.
 		 * TODO: Don't assume spirit handler
@@ -34,9 +33,7 @@ gui.EventPlugin = (function using(chained, guiArray, DOMPlugin, Interface, Type)
 					}, this);
 				}
 			} else {
-				throw new TypeError(
-					'Invalid target: ' + target + ' (' + this.spirit.$classname + ')'
-				);
+				throw new TypeError('Invalid target: ' + target + ' (' + this.spirit.$classname + ')');
 			}
 		}),
 
@@ -62,9 +59,7 @@ gui.EventPlugin = (function using(chained, guiArray, DOMPlugin, Interface, Type)
 					}, this);
 				}
 			} else {
-				throw new TypeError(
-					'Invalid target: ' + target + ' (' + this.spirit.$classname + ')'
-				);
+				throw new TypeError('Invalid target: ' + target + ' (' + this.spirit.$classname + ')');
 			}
 		}),
 
@@ -102,9 +97,9 @@ gui.EventPlugin = (function using(chained, guiArray, DOMPlugin, Interface, Type)
 		 * @returns {boolean} True if the event was cancelled (prevetDefaulted)
 		 */
 		dispatch: function(type, params) {
-			var elm = this.spirit.element,
-				evt = null;
-			if (window.CustomEvent && !gui.Client.isExplorer) { // TODO: IE version???
+			var elm = this.spirit.element, evt = null;
+			if (window.CustomEvent && !gui.Client.isExplorer) {
+				// TODO: IE version???
 				evt = new CustomEvent(type, params);
 			} else {
 				params = params || {
@@ -133,21 +128,16 @@ gui.EventPlugin = (function using(chained, guiArray, DOMPlugin, Interface, Type)
 		handleEvent: function(e) {
 			var related = e.relatedTarget;
 			var element = this.spirit.element;
-			var inorout = related && related !== element &&
-				!DOMPlugin.contains(element, related);
+			var inorout = related && related !== element && !DOMPlugin.contains(element, related);
 			switch (e.type) {
 				case 'mouseover':
 					if (inorout && this._mouseenter) {
-						this.spirit.onevent(
-							this._getfakeevent(e, 'mouseenter')
-						);
+						this.spirit.onevent(this._getfakeevent(e, 'mouseenter'));
 					}
 					break;
 				case 'mouseout':
 					if (inorout && this._mouseleave) {
-						this.spirit.onevent(
-							this._getfakeevent(e, 'mouseleave')
-						);
+						this.spirit.onevent(this._getfakeevent(e, 'mouseleave'));
 					}
 					break;
 			}
@@ -212,7 +202,7 @@ gui.EventPlugin = (function using(chained, guiArray, DOMPlugin, Interface, Type)
 		 */
 		_getelementtarget: function(target) {
 			target = target || this.spirit.element;
-			return (target instanceof gui.Spirit ? target.element : target);
+			return target instanceof gui.Spirit ? target.element : target;
 		},
 
 		/**
@@ -279,12 +269,5 @@ gui.EventPlugin = (function using(chained, guiArray, DOMPlugin, Interface, Type)
 				return 'webkitTransitionEnd';
 			}
 		}
-
 	});
-}(
-	gui.Combo.chained,
-	gui.Array,
-	gui.DOMPlugin,
-	gui.Interface,
-	gui.Type
-));
+})(gui.Combo.chained, gui.Array, gui.DOMPlugin, gui.Interface, gui.Type);

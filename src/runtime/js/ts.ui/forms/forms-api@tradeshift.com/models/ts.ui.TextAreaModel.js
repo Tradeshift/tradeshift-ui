@@ -4,7 +4,6 @@
  */
 ts.ui.TextAreaModel = (function() {
 	return ts.ui.InputModel.extend({
-
 		/**
 		 * Friendly name.
 		 */
@@ -23,6 +22,5 @@ ts.ui.TextAreaModel = (function() {
 		 * @type {number}
 		 */
 		rows: 3
-
 	});
-}());
+})();

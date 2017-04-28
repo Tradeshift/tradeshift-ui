@@ -12,7 +12,6 @@
 	};
 
 	gui.Tick.prototype = {
-
 		/**
 		 * Tick type.
 		 * @type {String}
@@ -45,7 +44,6 @@
 	// Static ....................................................................
 
 	gui.Object.extend(gui.Tick, {
-
 		/**
 		 * Identification.
 		 * @returns {String}
@@ -68,7 +66,8 @@
 		 * @param @optional {boolean} one Remove handler after on tick of this type?
 		 * @returns {function}
 		 */
-		add: function(type, handler, sig) { // confirmed("string|array", "object|function", "(string)")(
+		add: function(type, handler, sig) {
+			// confirmed("string|array", "object|function", "(string)")(
 			return this._add(type, handler, false, sig || gui.$contextid);
 		},
 
@@ -78,7 +77,8 @@
 		 * @param {object} handler
 		 * @returns {function}
 		 */
-		remove: function(type, handler, sig) { // confirmed("string|array", "object|function", "(string)")(
+		remove: function(type, handler, sig) {
+			// confirmed("string|array", "object|function", "(string)")(
 			return this._remove(type, handler, sig || gui.$contextid);
 		},
 
@@ -88,7 +88,8 @@
 		 * @param {object} handler
 		 * @returns {function}
 		 */
-		one: function(type, handler, sig) { // confirmed("string|array", "object|function", "(string)")(
+		one: function(type, handler, sig) {
+			// confirmed("string|array", "object|function", "(string)")(
 			return this._add(type, handler, true, sig || gui.$contextid);
 		},
 
@@ -136,15 +137,13 @@
 		 * @param @optional {object} thisp
 		 * returns {number}
 		 */
-		time: confirmed('function', '(number)', '(function|object)')(
-			function(action, time, thisp) {
-				return setTimeout(function() {
-					if (safeapply(thisp)) {
-						action.call(thisp);
-					}
-				}, time || 0);
-			}
-		),
+		time: confirmed('function', '(number)', '(function|object)')(function(action, time, thisp) {
+			return setTimeout(function() {
+				if (safeapply(thisp)) {
+					action.call(thisp);
+				}
+			}, time || 0);
+		}),
 
 		/**
 		 * Cancel timeout by index.
@@ -161,33 +160,32 @@
 		 * @param {number} time Time in milliseconds
 		 * @returns {function}
 		 */
-		start: confirmed('string', 'number')(
-			function(type, time) {
-				var map = this._intervals;
-				if (!map[type]) {
-					var tick = new gui.Tick(type);
-					map[type] = setInterval(function() {
+		start: confirmed('string', 'number')(function(type, time) {
+			var map = this._intervals;
+			if (!map[type]) {
+				var tick = new gui.Tick(type);
+				map[type] = setInterval(
+					function() {
 						this._doit(tick);
-					}.bind(this), time);
-				}
+					}.bind(this),
+					time
+				);
 			}
-		),
+		}),
 
 		/**
 		 * Stop repeated tick of given type.
 		 * @param {String} type Tick type
 		 * @returns {function}
 		 */
-		stop: confirmed('string')(
-			function(type) {
-				var map = this._intervals;
-				var id = map[type];
-				if (id) {
-					clearInterval(id);
-					delete map[type];
-				}
+		stop: confirmed('string')(function(type) {
+			var map = this._intervals;
+			var id = map[type];
+			if (id) {
+				clearInterval(id);
+				delete map[type];
 			}
-		),
+		}),
 
 		/**
 		 * Dispatch tick now or in specified time. Omit time to
@@ -265,7 +263,8 @@
 					this._remove(t, handler, sig);
 				}, this);
 			} else {
-				if (Array.isArray(handler)) { // The weird bug just happened!
+				if (Array.isArray(handler)) {
+					// The weird bug just happened!
 					handler = handler[0]; // hacky workaround :/
 				}
 				var map = this._tempname;
@@ -321,20 +320,22 @@
 			var list = this._tempname.handlers[tick.type];
 			if (list) {
 				var mishandlers = [];
-				list.filter(function(handler) {
-					if (handler.$destructed) {
-						mishandlers.push(handler);
-						return false;
-					}
-					return true;
-				}).forEach(function(handler) {
-					handler.ontick(tick);
-				});
-				mishandlers.forEach(function(handler) { // symptom treatment!
+				list
+					.filter(function(handler) {
+						if (handler.$destructed) {
+							mishandlers.push(handler);
+							return false;
+						}
+						return true;
+					})
+					.forEach(function(handler) {
+						handler.ontick(tick);
+					});
+				mishandlers.forEach(function(handler) {
+					// symptom treatment!
 					gui.Array.remove(list, list.indexOf(handler));
 				});
 			}
 		}
-
 	});
-}(gui.Arguments.confirmed));
+})(gui.Arguments.confirmed);

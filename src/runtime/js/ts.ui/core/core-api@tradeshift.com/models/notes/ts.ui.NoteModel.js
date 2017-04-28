@@ -69,6 +69,5 @@ ts.ui.NoteModel = (function using() {
 		 * @type {boolean}
 		 */
 		$isTopNote: false
-
 	});
-}());
+})();

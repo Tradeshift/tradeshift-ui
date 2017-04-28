@@ -63,9 +63,11 @@ ts.ui.PanelsPlugin = (function using(PANEL_ATTACH, PANEL_DETACH) {
 		 */
 		current: function() {
 			var panels = this._panels();
-			return panels.find(function(p) {
-				return p.selected;
-			}) || panels[0];
+			return (
+				panels.find(function(p) {
+					return p.selected;
+				}) || panels[0]
+			);
 		},
 
 		/**
@@ -102,15 +104,19 @@ ts.ui.PanelsPlugin = (function using(PANEL_ATTACH, PANEL_DETACH) {
 		_index: function(panels) {
 			var spirit = this.spirit;
 			if (panels.length > 1) {
-				if (panels.every(function(panel) {
-					return !!panel.label;
-				})) {
+				if (
+					panels.every(function(panel) {
+						return !!panel.label;
+					})
+				) {
 					panels.forEach(function(panel, index) {
 						var json = gettab(spirit, panel);
 						spirit.$insertTab(json, panels.length);
 					});
 				} else {
-					throw new Error('Multiple panels inside the ' + this.spirit.$classname + ' must have a label');
+					throw new Error(
+						'Multiple panels inside the ' + this.spirit.$classname + ' must have a label'
+					);
 				}
 			}
 		},
@@ -128,7 +134,8 @@ ts.ui.PanelsPlugin = (function using(PANEL_ATTACH, PANEL_DETACH) {
 				if (!panel.selected) {
 					panel.hide();
 				}
-			} else { // TODO: Fix this - the panel was removed!
+			} else {
+				// TODO: Fix this - the panel was removed!
 				/*
 				bar.tabs().splice(index, 1).forEach(function(tab) {
 					if (tab.selected) {
@@ -144,6 +151,5 @@ ts.ui.PanelsPlugin = (function using(PANEL_ATTACH, PANEL_DETACH) {
 			}
 			// bar.$hascontent(); // for the tabbar to render instantly
 		}
-
 	});
-}(ts.ui.ACTION_PANEL_ATTACH, ts.ui.ACTION_PANEL_DETACH));
+})(ts.ui.ACTION_PANEL_ATTACH, ts.ui.ACTION_PANEL_DETACH);

@@ -1,9 +1,9 @@
 /**
  * Support spirits.
  */
-gui.Module.mixin({
-
-	/**
+gui.Module.mixin(
+	{
+		/**
 	 * Plugins for all spirits.
 	 * @type {Map<String,gui.Plugin>}
 	 *
@@ -22,21 +22,21 @@ gui.Module.mixin({
 	channel: null,
 	*/
 
-	/**
+		/**
 	 * Called before spirits kick in.
 	 * @return {Window} context
 	 */
-	onbeforespiritualize: function() {},
+		onbeforespiritualize: function() {},
 
-	/**
+		/**
 	 * Called after spirits kicked in.
 	 * @return {Window} context
 	 */
-	onafterspiritualize: function() {},
+		onafterspiritualize: function() {},
 
-	// Privileged ................................................................
+		// Privileged ................................................................
 
-	/**
+		/**
 	 * Secret constructor.
 	 *
 	 * 1. Extend {gui.Spirit} with mixins
@@ -44,45 +44,48 @@ gui.Module.mixin({
 	 * 3. Assign plugins to all {gui.Spirit}
 	 * @overwrites {gui.Module.$onconstruct}
 	 */
-	$onconstruct: function(name) {
-		this.$modname = name;
-		gui.Module.$init(this);
-		this.toString = function() {
-			return '[module ' + name + ']';
-		};
-	}
+		$onconstruct: function(name) {
+			this.$modname = name;
+			gui.Module.$init(this);
+			this.toString = function() {
+				return '[module ' + name + ']';
+			};
+		}
+	},
+	{},
+	{
+		// Static .............................................................
 
-}, {}, { // Static .............................................................
-
-	/**
+		/**
 	 * @param {gui.Module} module
 	 */
-	$init: function(module) {
-		if (gui.Type.isObject(module.mixin)) {
-			gui.Spirit.mixin(module.mixin);
-		}
-		if (gui.Type.isArray(module.channel)) {
-			gui.channel(module.channel);
-		}
-		if (gui.Type.isObject(module.plugin)) {
-			gui.Object.each(module.plugin, function(prefix, Plugin) {
-				if (gui.Type.isDefined(Plugin)) {
-					gui.Spirit.plugin(prefix, Plugin);
-				} else { // TODO: move check into gui.Spirit.plugin
-					console.error('Undefined plugin for prefix: ' + prefix);
-				}
-			});
+		$init: function(module) {
+			if (gui.Type.isObject(module.mixin)) {
+				gui.Spirit.mixin(module.mixin);
+			}
+			if (gui.Type.isArray(module.channel)) {
+				gui.channel(module.channel);
+			}
+			if (gui.Type.isObject(module.plugin)) {
+				gui.Object.each(module.plugin, function(prefix, Plugin) {
+					if (gui.Type.isDefined(Plugin)) {
+						gui.Spirit.plugin(prefix, Plugin);
+					} else {
+						// TODO: move check into gui.Spirit.plugin
+						console.error('Undefined plugin for prefix: ' + prefix);
+					}
+				});
+			}
 		}
 	}
-
-});
+);
 
 /**
  * @param {Array<gui.Module>} modules
  */
 (function catchup(modules) {
 	modules.forEach(gui.Module.$init);
-}(gui.Module._modules));
+})(gui.Module._modules);
 
 /**
  * Hookup modules to spirits lifecycle.
@@ -90,16 +93,19 @@ gui.Module.mixin({
  * @param {Array<gui.Module>} modules
  */
 (function hookup(modules) {
-	gui.Object.each({
-		onbeforespiritualize: gui.BROADCAST_WILL_SPIRITUALIZE,
-		onafterspiritualize: gui.BROADCAST_DID_SPIRITUALIZE
-	}, function associate(action, broadcast) {
-		gui.Broadcast.add(broadcast, {
-			onbroadcast: function() {
-				modules.forEach(function(module) {
-					module[action]();
-				});
-			}
-		});
-	});
-}(gui.Module._modules));
+	gui.Object.each(
+		{
+			onbeforespiritualize: gui.BROADCAST_WILL_SPIRITUALIZE,
+			onafterspiritualize: gui.BROADCAST_DID_SPIRITUALIZE
+		},
+		function associate(action, broadcast) {
+			gui.Broadcast.add(broadcast, {
+				onbroadcast: function() {
+					modules.forEach(function(module) {
+						module[action]();
+					});
+				}
+			});
+		}
+	);
+})(gui.Module._modules);

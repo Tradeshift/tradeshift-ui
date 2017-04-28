@@ -4,7 +4,6 @@
  */
 gui.Assistant = (function using(Crawler) {
 	return {
-
 		/**
 		 * Associate element to new instance of Spirit.
 		 * @param {Element} elm
@@ -13,16 +12,11 @@ gui.Assistant = (function using(Crawler) {
 		 */
 		$possess: function(elm, Spirit) {
 			if (elm.spirit) {
-				throw new Error(
-					'Cannot repossess element with spirit ' +
-					elm.spirit + ' (exorcise first)'
-				);
+				throw new Error('Cannot repossess element with spirit ' + elm.spirit + ' (exorcise first)');
 			} else if (!gui.debug || gui.Type.isSpiritConstructor(Spirit)) {
 				elm.spirit = new Spirit(elm);
 			} else {
-				throw new Error(
-					'Not a spirit constructor (' + gui.Type.of(Spirit) + ')'
-				);
+				throw new Error('Not a spirit constructor (' + gui.Type.of(Spirit) + ')');
 			}
 			return elm.spirit;
 		},
@@ -102,18 +96,21 @@ gui.Assistant = (function using(Crawler) {
 		 */
 		_maybepossess: function(elm, channels) {
 			var res = null;
-			var experimentalattribute = 'data-ts';	// TRADESHIFT HOTFIX
+			var experimentalattribute = 'data-ts'; // TRADESHIFT HOTFIX
 			if (elm.nodeType === Node.ELEMENT_NODE) {
-				if (gui.attributes.every(function(fix) {
-					if (fix === experimentalattribute) {
-						return true;
-					} else {
-						res = this._maybepossessinline(elm, fix);
-						return res === null;
-					}
-				}, this)) {
+				if (
+					gui.attributes.every(function(fix) {
+						if (fix === experimentalattribute) {
+							return true;
+						} else {
+							res = this._maybepossessinline(elm, fix);
+							return res === null;
+						}
+					}, this)
+				) {
 					if (channels) {
-						channels.every(function(def) { // TODO!!!!!!!!!!!!!!!!!!
+						channels.every(function(def) {
+							// TODO!!!!!!!!!!!!!!!!!!
 							var select = def[0];
 							var spirit = def[1];
 							if (gui.CSSPlugin.matches(elm, select)) {
@@ -151,4 +148,4 @@ gui.Assistant = (function using(Crawler) {
 			return res;
 		}
 	};
-}(gui.Crawler));
+})(gui.Crawler);

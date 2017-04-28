@@ -29,32 +29,8 @@ if (window.ts && ts.ui && ts.ui.DatePicker) {
 			'Nov',
 			'Dic'
 		],
-		dayNames: [
-			'Domingo',
-			'Lunes',
-			'Martes',
-			'Miércoles',
-			'Jueves',
-			'Viernes',
-			'Sábado'
-		],
-		dayNamesShort: [
-			'Dom',
-			'Lun',
-			'Mar',
-			'Mie',
-			'Jue',
-			'Vie',
-			'Sab'
-		],
-		dayNamesMin: [
-			'Do',
-			'Lu',
-			'Ma',
-			'Mi',
-			'Ju',
-			'Vi',
-			'Sa'
-		]
+		dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+		dayNamesShort: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'],
+		dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sa']
 	});
 }

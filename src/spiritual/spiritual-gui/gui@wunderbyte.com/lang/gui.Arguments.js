@@ -2,7 +2,6 @@
  * Function argument type checking studio.
  */
 gui.Arguments = {
-
 	/**
 	 * Forgiving arguments matcher.
 	 * Ignores action if no match.
@@ -97,14 +96,15 @@ gui.Arguments = {
 		var needs = !xpect.startsWith('(');
 		var split = this._xtract(xpect, !needs).split('|');
 		var input = gui.Type.of(arg);
-		var match = (xpect === '*' ||
+		var match =
+			xpect === '*' ||
 			(xpect === 'node' && arg && arg.nodeType) ||
 			(xpect === 'constructor' && arg && gui.Type.isConstructor(arg)) ||
 			(xpect === 'element' && arg && arg.nodeType === Node.ELEMENT_NODE) ||
 			(xpect === 'spirit' && arg && arg.$instanceid && arg.element) ||
 			(!needs && input === 'undefined') ||
 			(!needs && split.indexOf('*') > -1) ||
-			split.indexOf(input) > -1);
+			split.indexOf(input) > -1;
 		if (!match && this._validating) {
 			if (input === 'string') {
 				arg = '"' + arg + '"';
@@ -123,10 +123,14 @@ gui.Arguments = {
 	_abort: function(that) {
 		var summ = this._bugsummary;
 		var name = that.constructor.$classname || String(that);
-		console.error([
-			'Spiritual GUI: Bad argument ' + summ.shift(),
-			'for ' + name + ':', 'Expected ' + summ.shift() + ',',
-			'got ' + summ.shift() + ':', summ.shift()
-		].join(' '));
+		console.error(
+			[
+				'Spiritual GUI: Bad argument ' + summ.shift(),
+				'for ' + name + ':',
+				'Expected ' + summ.shift() + ',',
+				'got ' + summ.shift() + ':',
+				summ.shift()
+			].join(' ')
+		);
 	}
 };

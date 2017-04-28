@@ -2,7 +2,6 @@
  * API.
  */
 ts.ui.Notification = {
-
 	/**
 	 * Identification.
 	 * @returns {string}
@@ -38,7 +37,6 @@ ts.ui.Notification = {
 	 * @returns {ts.ui.DialogModel}
 	 */
 	error: function(text) {}
-
 };
 
 // Implementation ..............................................................
@@ -69,7 +67,6 @@ ts.ui.Notification = {
 	}
 
 	GuiObject.extend(ts.ui.Notification, {
-
 		/**
 		 * Arguments order here is *fuzzy*: One string will specify the message,
 		 * another potential string will specify the button text and an object
@@ -78,9 +75,11 @@ ts.ui.Notification = {
 		 * @param @optional {object} config
 		 * @returns {ts.ui.Notification}
 		 */
-		success: confirm(function(/* ...args */) {
-			return getdialog(Dialog.SUCCESS, arguments);
-		}),
+		success: confirm(
+			function(/* ...args */) {
+				return getdialog(Dialog.SUCCESS, arguments);
+			}
+		),
 
 		/**
 		 * @param {string} text
@@ -88,9 +87,11 @@ ts.ui.Notification = {
 		 * @param @optional {object} config
 		 * @returns {ts.ui.Notification}
 		 */
-		info: confirm(function(/* ...args */) {
-			return getdialog(Dialog.INFO, arguments);
-		}),
+		info: confirm(
+			function(/* ...args */) {
+				return getdialog(Dialog.INFO, arguments);
+			}
+		),
 
 		/**
 		 * @param {string} text
@@ -98,9 +99,11 @@ ts.ui.Notification = {
 		 * @param @optional {object} config
 		 * @returns {ts.ui.Notification}
 		 */
-		warning: confirm(function(/* ...args */) {
-			return getdialog(Dialog.WARNING, arguments);
-		}),
+		warning: confirm(
+			function(/* ...args */) {
+				return getdialog(Dialog.WARNING, arguments);
+			}
+		),
 
 		/**
 		 * @param {string} text
@@ -108,9 +111,10 @@ ts.ui.Notification = {
 		 * @param @optional {object} config
 		 * @returns {ts.ui.Notification}
 		 */
-		error: confirm(function(/* ...args */) {
-			return getdialog(Dialog.ERROR, arguments);
-		})
-
+		error: confirm(
+			function(/* ...args */) {
+				return getdialog(Dialog.ERROR, arguments);
+			}
+		)
 	});
-}(ts.ui.Dialog, gui.Object, gui.Combo.chained, gui.Arguments.confirmed));
+})(ts.ui.Dialog, gui.Object, gui.Combo.chained, gui.Arguments.confirmed);

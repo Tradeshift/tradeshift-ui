@@ -10,9 +10,17 @@
  * @using {gui.DOMPlugin} DOMPlugin
  * @using {gui.Broadcast} Broadcast
  */
-edbml.ScriptPlugin = (function using(chained, confirmed, Type, Tick, guiObject, guiArray, DOMPlugin, Broadcast) {
+edbml.ScriptPlugin = (function using(
+	chained,
+	confirmed,
+	Type,
+	Tick,
+	guiObject,
+	guiArray,
+	DOMPlugin,
+	Broadcast
+) {
 	return gui.Plugin.extend({
-
 		/**
 		 * Script has been loaded?
 		 * @type {boolean}
@@ -56,7 +64,8 @@ edbml.ScriptPlugin = (function using(chained, confirmed, Type, Tick, guiObject, 
 				Tick.cancelFrame(this._frameindex);
 				this.spirit.life.remove(gui.LIFE_ENTER, this);
 				Broadcast.remove(edb.BROADCAST_ACCESS, this);
-				if (this.$input) { // TODO: interface for this (dispose)
+				if (this.$input) {
+					// TODO: interface for this (dispose)
 					this.$input.ondestruct();
 					this.$input.$ondestruct();
 				}
@@ -64,7 +73,8 @@ edbml.ScriptPlugin = (function using(chained, confirmed, Type, Tick, guiObject, 
 				Object.keys(oldprops).forEach(function(id) {
 					try {
 						oldprops[id].object.removeObserver(this);
-					} catch (exception) { // could this possibly fail?
+					} catch (exception) {
+						// could this possibly fail?
 						console.error('Please tell jmo@ that you got this exception');
 					}
 				}, this);
@@ -76,18 +86,20 @@ edbml.ScriptPlugin = (function using(chained, confirmed, Type, Tick, guiObject, 
 		 * @param {function|String} script
 		 * @returns {edb.ScriptPlugin}
 		 */
-		load: chained(confirmed('function|string')(function(script) {
-			script = Type.isFunction(script) ? script : guiObject.lookup(script);
-			if (script) {
-				this.loaded = true;
-				this._script = script;
-				this._updater = new edbml.UpdateManager(this.spirit);
-				this._process(script.$instructions);
-				if (!this.$input) {
-					this.run();
+		load: chained(
+			confirmed('function|string')(function(script) {
+				script = Type.isFunction(script) ? script : guiObject.lookup(script);
+				if (script) {
+					this.loaded = true;
+					this._script = script;
+					this._updater = new edbml.UpdateManager(this.spirit);
+					this._process(script.$instructions);
+					if (!this.$input) {
+						this.run();
+					}
 				}
-			}
-		})),
+			})
+		),
 
 		/**
 		 * Handle input.
@@ -195,9 +207,7 @@ edbml.ScriptPlugin = (function using(chained, confirmed, Type, Tick, guiObject, 
 		revoke: function(/* arguments */) {
 			guiArray.make(arguments).forEach(function(type) {
 				var edbType = edb.Type.is(type) ? type.constructor : type;
-				this.$input.$oninput(
-					new edb.Input(edbType, null)
-				);
+				this.$input.$oninput(new edb.Input(edbType, null));
 			}, this);
 		},
 
@@ -232,30 +242,34 @@ edbml.ScriptPlugin = (function using(chained, confirmed, Type, Tick, guiObject, 
 		 * @param {Array<edb.Change>} changes
 		 */
 		onchange: function(changes) {
-			if (changes.some(function(c) {
-				var id = c.object.$instanceid,
-					clas = c.object.$classname,
-					name = c.name;
-				if (edbml.$rendering && edbml.$rendering[id]) {
-					console.error(
-						'Don\'t update "' + name + '" of the ' + clas + ' while ' +
-						'rendering, it will cause the rendering to run in an endless loop. '
-					);
-				} else if (this._oldprops[id]) {
-					var props = this._oldprops[id].properties;
-					try {
-						if (!name || props[name]) {
-							return true;
+			if (
+				changes.some(function(c) {
+					var id = c.object.$instanceid, clas = c.object.$classname, name = c.name;
+					if (edbml.$rendering && edbml.$rendering[id]) {
+						console.error(
+							'Don\'t update "' +
+								name +
+								'" of the ' +
+								clas +
+								' while ' +
+								'rendering, it will cause the rendering to run in an endless loop. '
+						);
+					} else if (this._oldprops[id]) {
+						var props = this._oldprops[id].properties;
+						try {
+							if (!name || props[name]) {
+								return true;
+							}
+						} catch (todoexception) {
+							// console.error(this._oldprops[id].toString(), name);
+							// TODO: fix sceario with selectedIndex................
 						}
-					} catch (todoexception) {
-						// console.error(this._oldprops[id].toString(), name);
-						// TODO: fix sceario with selectedIndex................
+						return false;
+					} else {
+						console.error('Out of synch: ' + id);
 					}
-					return false;
-				} else {
-					console.error('Out of synch: ' + id);
-				}
-			}, this)) {
+				}, this)
+			) {
 				this._schedule();
 			}
 		},
@@ -266,7 +280,8 @@ edbml.ScriptPlugin = (function using(chained, confirmed, Type, Tick, guiObject, 
 		 */
 		onlife: function(l) {
 			if (l.type === gui.LIFE_ENTER) {
-				if (!this.spirit.life.rendered) { // spirit did a manual run?
+				if (!this.spirit.life.rendered) {
+					// spirit did a manual run?
 					this.run.apply(this, this._arguments || []);
 				}
 				this.spirit.life.remove(l.type, this);
@@ -360,17 +375,19 @@ edbml.ScriptPlugin = (function using(chained, confirmed, Type, Tick, guiObject, 
 			if (pis) {
 				var optional = [];
 				var required = [];
-				if (pis.reduce(function(hasinput, pi) {
-					var keys = Object.keys(pi);
-					var name = keys[0];
-					var atts = pi[name];
-					if (name === 'input') {
-						var list = atts.required === false ? optional : required;
-						list.push(guiObject.lookup(atts.type));
-						return true;
-					}
-					return hasinput;
-				}, false)) {
+				if (
+					pis.reduce(function(hasinput, pi) {
+						var keys = Object.keys(pi);
+						var name = keys[0];
+						var atts = pi[name];
+						if (name === 'input') {
+							var list = atts.required === false ? optional : required;
+							list.push(guiObject.lookup(atts.type));
+							return true;
+						}
+						return hasinput;
+					}, false)
+				) {
 					this.$input = new edb.InputPlugin();
 					this.$input.connect(required, this, true);
 					this.$input.connect(optional, this, false);
@@ -392,8 +409,7 @@ edbml.ScriptPlugin = (function using(chained, confirmed, Type, Tick, guiObject, 
 		 * Stop it.
 		 */
 		_stop: function() {
-			var oldprops = this._oldprops,
-				newprops = this._newprops;
+			var oldprops = this._oldprops, newprops = this._newprops;
 			edbml.$rendering = null;
 			Broadcast.remove(edb.BROADCAST_ACCESS, this);
 			edb.$accessaware = false;
@@ -448,7 +464,8 @@ edbml.ScriptPlugin = (function using(chained, confirmed, Type, Tick, guiObject, 
 		 */
 		_status: function(spirit) {
 			spirit.life.rendered = true;
-			spirit.onrender({ // TODO: some kind of RenderSummary...
+			spirit.onrender({
+				// TODO: some kind of RenderSummary...
 				first: !this.ran
 			});
 			spirit.life.dispatch(gui.LIFE_RENDER); // TODO: move to `edbml` namespace
@@ -475,13 +492,10 @@ edbml.ScriptPlugin = (function using(chained, confirmed, Type, Tick, guiObject, 
 		 * waiting script).
 		 */
 		_notready: function() {
-			var input = this.$input,
-				type;
+			var input = this.$input, type;
 			(input._watches || []).forEach(function(edbType) {
 				if ((type = edb.get(edbType))) {
-					input.$oninput(
-						new edb.Input(edbType, type)
-					);
+					input.$oninput(new edb.Input(edbType, type));
 				}
 			}, this);
 			/*
@@ -518,10 +532,12 @@ edbml.ScriptPlugin = (function using(chained, confirmed, Type, Tick, guiObject, 
 			var focused;
 			try {
 				focused = document.activeElement;
-			} catch (ieException) { // Occasional IE failure
+			} catch (ieException) {
+				// Occasional IE failure
 				focused = null;
 			}
-			if (focused && Type.isElement(focused)) { // Ridiculous IE 11 failure
+			if (focused && Type.isElement(focused)) {
+				// Ridiculous IE 11 failure
 				if (DOMPlugin.contains(this.spirit.element, focused)) {
 					return this._focusselector(focused);
 				}
@@ -575,22 +591,20 @@ edbml.ScriptPlugin = (function using(chained, confirmed, Type, Tick, guiObject, 
 			var focus;
 			try {
 				focus = document.activeElement;
-			} catch (ieException) { // Occasional IE failure
+			} catch (ieException) {
+				// Occasional IE failure
 				focus = null;
 			}
-			if (field && field !== focus) { // Occasional IE error
+			if (field && field !== focus) {
+				// Occasional IE error
 				field.focus();
 				if (gui.CSSPlugin.matches(field, texts)) {
-					field.setSelectionRange(
-						field.value.length,
-						field.value.length
-					);
+					field.setSelectionRange(field.value.length, field.value.length);
 				}
 			}
 		}
-
 	});
-}(
+})(
 	gui.Combo.chained,
 	gui.Arguments.confirmed,
 	gui.Type,
@@ -599,4 +613,4 @@ edbml.ScriptPlugin = (function using(chained, confirmed, Type, Tick, guiObject, 
 	gui.Array,
 	gui.DOMPlugin,
 	gui.Broadcast
-));
+);

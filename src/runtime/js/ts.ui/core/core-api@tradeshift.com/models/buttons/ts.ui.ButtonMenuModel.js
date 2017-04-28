@@ -1,6 +1,5 @@
 ts.ui.ButtonMenuModel = (function() {
 	return ts.ui.Model.extend({
-
 		/**
 		 * Friendly name.
 		 * @type {string}
@@ -21,4 +20,4 @@ ts.ui.ButtonMenuModel = (function() {
 			return ts.ui.buttonsmenu.edbml(this);
 		}
 	});
-}());
+})();

@@ -4,12 +4,12 @@
  * @TODO: support non-px units
  */
 gui.SpritePlugin = (function() {
-	function total(a, b) { // eslint-disable-line no-unused-vars
+	function total(a, b) {
+		// eslint-disable-line no-unused-vars
 		return (a || 0) + b;
 	}
 
 	return gui.Plugin.extend({
-
 		/**
 		 * X position.
 		 * @type {number}
@@ -92,10 +92,13 @@ gui.SpritePlugin = (function() {
 		 * @returns {gui.Position}
 		 */
 		_defpos: function(css) {
-			return this._def || (this._def = new gui.Position(
-				parseInt(css.compute('left'), 10),
-				parseInt(css.compute('top'), 10)
-			));
+			return (
+				this._def ||
+				(this._def = new gui.Position(
+					parseInt(css.compute('left'), 10),
+					parseInt(css.compute('top'), 10)
+				))
+			);
 		},
 
 		/**
@@ -109,9 +112,7 @@ gui.SpritePlugin = (function() {
 			// 	this.reset(); // DISABLED FOR NOW!
 			// } else {
 			if (gui.Client.has3D) {
-				css.set('-beta-transform',
-					'translate3d(' + set.join('px,') + 'px)'
-				);
+				css.set('-beta-transform', 'translate3d(' + set.join('px,') + 'px)');
 			} else {
 				var def = this._defpos(css);
 				css.left = def.x + set[0];
@@ -120,4 +121,4 @@ gui.SpritePlugin = (function() {
 			// }
 		}
 	});
-}());
+})();

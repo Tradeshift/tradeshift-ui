@@ -14,7 +14,20 @@
  * @using {ts.ui.ButtonSpiri	t} ButtonSpirit
  * @using {ts.ui.PagerModel} pager
  */
-ts.ui.TableSpirit = (function using(Type, Client, guiArray, DOMPlugin, CSSPlugin, ConfigPlugin, Position, chained, confirmed, TableRowModel, ButtonSpirit, PagerModel) {
+ts.ui.TableSpirit = (function using(
+	Type,
+	Client,
+	guiArray,
+	DOMPlugin,
+	CSSPlugin,
+	ConfigPlugin,
+	Position,
+	chained,
+	confirmed,
+	TableRowModel,
+	ButtonSpirit,
+	PagerModel
+) {
 	var UNIT = 22;
 	var UNIT_DOUBLE = UNIT * 2;
 	var ICON_OFF = 'ts-icon-checkbox';
@@ -52,12 +65,14 @@ ts.ui.TableSpirit = (function using(Type, Client, guiArray, DOMPlugin, CSSPlugin
 				label: x
 			};
 		}
-		if (!x.search) { // can't NOT have a search because EDB wrongful convention :/
+		if (!x.search) {
+			// can't NOT have a search because EDB wrongful convention :/
 			x.search = {
 				hidden: true
 			};
 		}
-		if (!x.button) { // can't NOT have a button because EDB wrongful convention :/
+		if (!x.button) {
+			// can't NOT have a button because EDB wrongful convention :/
 			x.button = {
 				hidden: true
 			};
@@ -73,7 +88,8 @@ ts.ui.TableSpirit = (function using(Type, Client, guiArray, DOMPlugin, CSSPlugin
 	 * @param {object} x
 	 * @returns {boolean}
 	 */
-	function selected(x) { // eslint-disable-line no-unused-vars
+	function selected(x) {
+		// eslint-disable-line no-unused-vars
 		return !!x.selected;
 	}
 
@@ -101,9 +117,7 @@ ts.ui.TableSpirit = (function using(Type, Client, guiArray, DOMPlugin, CSSPlugin
 	 * TODO: More error info goes here...
 	 */
 	function maxerror() {
-		throw new Error([
-			'You shouldn\'t set max() rows when the table is maximized.'
-		].join(''));
+		throw new Error(["You shouldn't set max() rows when the table is maximized."].join(''));
 	}
 
 	/**
@@ -141,19 +155,18 @@ ts.ui.TableSpirit = (function using(Type, Client, guiArray, DOMPlugin, CSSPlugin
 		if (required) {
 			console.warn(
 				'The client will freeze while we sort this many ' +
-				'rows. If you see this warning, please remind ' +
-				'us to sort the data in a Worker process.'
+					'rows. If you see this warning, please remind ' +
+					'us to sort the data in a Worker process.'
 			);
 		}
 	}
 
 	return ts.ui.Spirit.extend({
-
 		/**
 		 * @param {string} busy
 		 */
 		busy: function(busy) {
-			var opts = {message: busy, position: 'absolute'};
+			var opts = { message: busy, position: 'absolute' };
 			var that = this;
 			if (this.box.height && this.dom.q('.ts-table-body')) {
 				this._initspin(opts);
@@ -162,7 +175,8 @@ ts.ui.TableSpirit = (function using(Type, Client, guiArray, DOMPlugin, CSSPlugin
 				} else {
 					this.guistatus.done(this.$instanceid);
 				}
-			} else { // not rendered, we'll try again when something has changed...
+			} else {
+				// not rendered, we'll try again when something has changed...
 				this.life.add(gui.LIFE_RENDER, {
 					onlife: function() {
 						that.life.remove(gui.LIFE_RENDER);
@@ -248,10 +262,7 @@ ts.ui.TableSpirit = (function using(Type, Client, guiArray, DOMPlugin, CSSPlugin
 		 */
 		onconfigure: function() {
 			this.super.onconfigure();
-			this.action.add([
-				ts.ui.ACTION_CLICK,
-				ts.ui.ACTION_SWITCH
-			]);
+			this.action.add([ts.ui.ACTION_CLICK, ts.ui.ACTION_SWITCH]);
 			this.event.add('click');
 			this._rowsadd = [];
 			this._rowsoff = [];
@@ -264,7 +275,7 @@ ts.ui.TableSpirit = (function using(Type, Client, guiArray, DOMPlugin, CSSPlugin
 			if (this.dom.tag() === 'table') {
 				throw new SyntaxError(
 					'Contrary to common belief, the ts.ui.Table ' +
-					'component must not be attached to a TABLE.'
+						'component must not be attached to a TABLE.'
 				);
 			}
 		},
@@ -299,7 +310,8 @@ ts.ui.TableSpirit = (function using(Type, Client, guiArray, DOMPlugin, CSSPlugin
 					this._onclick(elm);
 					break;
 				case 'scroll':
-					if (!this._noscrolling) { // WebKit scroll-collapse workaround :/
+					if (!this._noscrolling) {
+						// WebKit scroll-collapse workaround :/
 						this._hackscrolling();
 					} else if (this._scrollfixing) {
 						this.queryplugin.getrows().querySelector('table').style.left = 0;
@@ -397,9 +409,7 @@ ts.ui.TableSpirit = (function using(Type, Client, guiArray, DOMPlugin, CSSPlugin
 							value = ConfigPlugin.jsonvaluate(value);
 						}
 					}
-					action.apply(this,
-						[name, value || undefined].concat(args).concat([posi.y, posi.x])
-					);
+					action.apply(this, [name, value || undefined].concat(args).concat([posi.y, posi.x]));
 				}
 			}
 		},
@@ -538,7 +548,8 @@ ts.ui.TableSpirit = (function using(Type, Client, guiArray, DOMPlugin, CSSPlugin
 		invalid: confirmed('number', 'number', '(string)')(
 			chained(function(rowindex, cellindex, message) {
 				this._model.setvalidity(false, rowindex, cellindex, message);
-				if (this._model.editable) { // attach the classname max pronto
+				if (this._model.editable) {
+					// attach the classname max pronto
 					this.editorplugin.failfast(rowindex, cellindex);
 				}
 			})
@@ -777,9 +788,11 @@ ts.ui.TableSpirit = (function using(Type, Client, guiArray, DOMPlugin, CSSPlugin
 		 * @param @optional {number|Array<number>}
 		 */
 		select: confirmed('(number|array)')(
-			chained(function(/* ...indexes */) {
-				this._select(true, this._rowsadd, arguments);
-			})
+			chained(
+				function(/* ...indexes */) {
+					this._select(true, this._rowsadd, arguments);
+				}
+			)
 		),
 
 		/**
@@ -787,9 +800,11 @@ ts.ui.TableSpirit = (function using(Type, Client, guiArray, DOMPlugin, CSSPlugin
 		 * @param @optional {number|Array<number>}
 		 */
 		unselect: confirmed('(number|array)')(
-			chained(function(/* ...indexes */) {
-				this._select(false, this._rowsoff, arguments);
-			})
+			chained(
+				function(/* ...indexes */) {
+					this._select(false, this._rowsoff, arguments);
+				}
+			)
 		),
 
 		/**
@@ -797,18 +812,20 @@ ts.ui.TableSpirit = (function using(Type, Client, guiArray, DOMPlugin, CSSPlugin
 		 * @param @optional {number|Array<number>}
 		 */
 		toggle: confirmed('(number|array)')(
-			chained(function(/* ...indexes */) {
-				var given = arguments;
-				var model = this._model;
-				var indxs = given.length ? given : model.rows.map(indexes);
-				makearray(indxs).forEach(function(i) {
-					if (model.rowselected(i)) {
-						this.unselect(i);
-					} else {
-						this.select(i);
-					}
-				}, this);
-			})
+			chained(
+				function(/* ...indexes */) {
+					var given = arguments;
+					var model = this._model;
+					var indxs = given.length ? given : model.rows.map(indexes);
+					makearray(indxs).forEach(function(i) {
+						if (model.rowselected(i)) {
+							this.unselect(i);
+						} else {
+							this.select(i);
+						}
+					}, this);
+				}
+			)
 		),
 
 		// Searching ...............................................................
@@ -919,10 +936,7 @@ ts.ui.TableSpirit = (function using(Type, Client, guiArray, DOMPlugin, CSSPlugin
 						col.selected = true;
 					});
 				} else {
-					throw new Error(
-						'Could not sort column at ' +
-						colindex + '. Does it exist?'
-					);
+					throw new Error('Could not sort column at ' + colindex + '. Does it exist?');
 				}
 			} else {
 				throw new Error('Table must be sortable()');
@@ -953,7 +967,8 @@ ts.ui.TableSpirit = (function using(Type, Client, guiArray, DOMPlugin, CSSPlugin
 		onrender: function(summary) {
 			this.super.onrender(summary);
 			this._layouteverything();
-			if (summary.first) { // lock keyboard navigation to rows (when editing)
+			if (summary.first) {
+				// lock keyboard navigation to rows (when editing)
 				if (!this.attention.trapping) {
 					this.attention.trap(this.queryplugin.getrows());
 				}
@@ -1199,12 +1214,7 @@ ts.ui.TableSpirit = (function using(Type, Client, guiArray, DOMPlugin, CSSPlugin
 				this.layoutplugin.flex(this, model);
 			}
 			this._flush();
-			this._cnames(
-				model,
-				model.cols,
-				model.rows,
-				model.toolbar
-			);
+			this._cnames(model, model.cols, model.rows, model.toolbar);
 		},
 
 		/**
@@ -1214,7 +1224,7 @@ ts.ui.TableSpirit = (function using(Type, Client, guiArray, DOMPlugin, CSSPlugin
 		 */
 		_crashproof: function() {
 			var rows = this.queryplugin.getrows();
-			return !rows || (!!rows.offsetHeight);
+			return !rows || !!rows.offsetHeight;
 		},
 
 		/**
@@ -1289,11 +1299,14 @@ ts.ui.TableSpirit = (function using(Type, Client, guiArray, DOMPlugin, CSSPlugin
 			var menu = this.queryplugin.getmenu(true);
 			var buts = guts.dom.qall(path);
 			var butt = menu.dom.qall(path);
-			buts.concat(butt).map(function(but) {
-				return but.querySelector('i');
-			}).forEach(function(icon) {
-				icon.className = ICON_OFF;
-			});
+			buts
+				.concat(butt)
+				.map(function(but) {
+					return but.querySelector('i');
+				})
+				.forEach(function(icon) {
+					icon.className = ICON_OFF;
+				});
 		},
 
 		/**
@@ -1495,9 +1508,12 @@ ts.ui.TableSpirit = (function using(Type, Client, guiArray, DOMPlugin, CSSPlugin
 		 * @returns {boolean}
 		 */
 		_editable: function(model) {
-			return model.editable && model.cols.some(function(col) {
-				return col.editable !== false;
-			});
+			return (
+				model.editable &&
+				model.cols.some(function(col) {
+					return col.editable !== false;
+				})
+			);
 		},
 
 		/**
@@ -1566,10 +1582,10 @@ ts.ui.TableSpirit = (function using(Type, Client, guiArray, DOMPlugin, CSSPlugin
 			this._scroll.x = x;
 			this._scroll.y = y;
 			if (cols) {
-				cols.sprite.x = (0 - x);
+				cols.sprite.x = 0 - x;
 			}
 			if (guts) {
-				guts.sprite.y = (0 - y);
+				guts.sprite.y = 0 - y;
 			}
 		},
 
@@ -1657,7 +1673,8 @@ ts.ui.TableSpirit = (function using(Type, Client, guiArray, DOMPlugin, CSSPlugin
 		 */
 		_onrowsclick: function(elem, editable) {
 			var area, pos = this.queryplugin.getpos(elem);
-			if (pos) { // abort when non-floating gutter is clicked
+			if (pos) {
+				// abort when non-floating gutter is clicked
 				if (this.onclick) {
 					this.onclick(pos.y, pos.x);
 				}
@@ -1805,11 +1822,7 @@ ts.ui.TableSpirit = (function using(Type, Client, guiArray, DOMPlugin, CSSPlugin
 		 * @returns {boolean}
 		 */
 		_floatgutter: function() {
-			return (
-				!Client.isExplorer9 &&
-				this._model.selectable &&
-				this.css.contains('ts-scroll-x')
-			);
+			return !Client.isExplorer9 && this._model.selectable && this.css.contains('ts-scroll-x');
 		},
 
 		/**
@@ -1879,7 +1892,7 @@ ts.ui.TableSpirit = (function using(Type, Client, guiArray, DOMPlugin, CSSPlugin
 			this._cover = cover;
 		}
 	});
-}(
+})(
 	gui.Type,
 	gui.Client,
 	gui.Array,
@@ -1892,4 +1905,4 @@ ts.ui.TableSpirit = (function using(Type, Client, guiArray, DOMPlugin, CSSPlugin
 	ts.ui.TableRowModel,
 	ts.ui.ButtonSpirit,
 	ts.ui.PagerModel
-));
+);

@@ -5,7 +5,6 @@
  */
 ts.ui.TableRowModel = (function using() {
 	return ts.ui.Model.extend({
-
 		/**
 		 * Friendly name.
 		 * @type {string}
@@ -22,7 +21,7 @@ ts.ui.TableRowModel = (function using() {
 		 * Row is new?
 		 * @type {boolean}
 		 */
-		'new': false,
+		new: false,
 
 		/**
 		 * Row is selectable? (only works when the table is selectable)
@@ -50,6 +49,5 @@ ts.ui.TableRowModel = (function using() {
 		 * @type {Array}
 		 */
 		cells: Array
-
 	});
-}());
+})();

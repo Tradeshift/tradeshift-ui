@@ -7,7 +7,6 @@ ts.ui.SwitchModel = (function() {
 	 * TODO: Create an `OptionModel` to extend from!
 	 */
 	return ts.ui.InputModel.extend({
-
 		/**
 		 * Friendly name.
 		 * @type {string}
@@ -33,4 +32,4 @@ ts.ui.SwitchModel = (function() {
 			return ts.ui.switch.edbml(this);
 		}
 	});
-}());
+})();

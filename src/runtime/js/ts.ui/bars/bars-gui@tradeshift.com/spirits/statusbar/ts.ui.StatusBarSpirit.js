@@ -7,7 +7,6 @@
  */
 ts.ui.StatusBarSpirit = (function using(PagerModel, Type, chained, confirmed) {
 	return ts.ui.ToolBarSpirit.extend({
-
 		/**
 		 * Open for implementation: Called when message link is clicked.
 		 * @type {function}
@@ -86,7 +85,7 @@ ts.ui.StatusBarSpirit = (function using(PagerModel, Type, chained, confirmed) {
 		 * @overwrites {ts.ui.ToolBar#title}
 		 */
 		tabs: function() {
-			throw new Error('The StatusBar doesn\'t support tabs :(');
+			throw new Error("The StatusBar doesn't support tabs :(");
 		},
 
 		/**
@@ -118,9 +117,7 @@ ts.ui.StatusBarSpirit = (function using(PagerModel, Type, chained, confirmed) {
 		 */
 		_docss: function(css, small, lefts, right, extra, search) {
 			this.super._docss(css, small, lefts, right, extra, search);
-			this._gotoLevel(
-				small ? this._computelevel(lefts, right, extra, search) : 1
-			);
+			this._gotoLevel(small ? this._computelevel(lefts, right, extra, search) : 1);
 		},
 
 		/**
@@ -159,11 +156,5 @@ ts.ui.StatusBarSpirit = (function using(PagerModel, Type, chained, confirmed) {
 			}
 			return 1;
 		}
-
 	});
-}(
-	ts.ui.PagerModel,
-	gui.Type,
-	gui.Combo.chained,
-	gui.Arguments.confirmed
-));
+})(ts.ui.PagerModel, gui.Type, gui.Combo.chained, gui.Arguments.confirmed);

@@ -65,7 +65,6 @@ ts.ui.TableColModel = (function using(chained) {
 	}
 
 	return ts.ui.Model.extend({
-
 		/**
 		 * Friendly name
 		 * @type {string}
@@ -184,11 +183,9 @@ ts.ui.TableColModel = (function using(chained) {
 			if (type === 'text' || type === 'number') {
 				this.type = 'ts-' + type;
 				console.warn(
-					'The column `type` property must be changed ' +
-					'from "' + type + '" to "ts-' + type + '"'
+					'The column `type` property must be changed ' + 'from "' + type + '" to "ts-' + type + '"'
 				);
 			}
 		}
-
 	});
-}(gui.Combo.chained));
+})(gui.Combo.chained);

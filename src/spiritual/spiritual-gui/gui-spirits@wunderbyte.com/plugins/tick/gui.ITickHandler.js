@@ -2,7 +2,6 @@
  * Interface TickHandler.
  */
 gui.ITickHandler = {
-
 	/**
 	 * Identification.
 	 * @returns {String}

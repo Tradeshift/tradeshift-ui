@@ -4,7 +4,6 @@
  */
 edbml.HardUpdate = (function using(DOMPlugin) {
 	return edbml.Update.extend({
-
 		/**
 		 * Update type.
 		 * @type {String}
@@ -60,4 +59,4 @@ edbml.HardUpdate = (function using(DOMPlugin) {
 			this.super._report(message);
 		}
 	});
-}(gui.DOMPlugin));
+})(gui.DOMPlugin);

@@ -63,11 +63,14 @@ ts.ui.Dialog.DEFAULT_TIME = 1500;
 	 */
 	function getspirit(model) {
 		var id = model.$instanceid;
-		return gui.get('#' + id) || (function() {
-			var spirit = ts.ui.DialogSpirit.summon(model);
-			spirit.dom.id(id).appendTo(document.body);
-			return spirit;
-		}());
+		return (
+			gui.get('#' + id) ||
+			(function() {
+				var spirit = ts.ui.DialogSpirit.summon(model);
+				spirit.dom.id(id).appendTo(document.body);
+				return spirit;
+			})()
+		);
 	}
 
 	/**
@@ -135,10 +138,7 @@ ts.ui.Dialog.DEFAULT_TIME = 1500;
 	 * @param {Arguments} args
 	 */
 	function getdialog(type, args, note) {
-		var dialog = getmodel(type, note || false,
-			extractstring(args),
-			extractobject(args)
-		);
+		var dialog = getmodel(type, note || false, extractstring(args), extractobject(args));
 		dialog.open();
 		return dialog;
 	}
@@ -158,17 +158,28 @@ ts.ui.Dialog.DEFAULT_TIME = 1500;
 			GuiObject.extendmissing(config, {
 				type: type,
 				icon: geticon(type),
-				items: [{
-					item: 'text',
-					text: tostring(strings[0])
-				}]
+				items: [
+					{
+						item: 'text',
+						text: tostring(strings[0])
+					}
+				]
 			})
-			).acceptButton(type === Dialog.SUCCESS ? null : {
-				label: tostring(strings[1])
-			}).cancelButton(note ? null : {
-				label: tostring(strings[2])
-			}
-		);
+		)
+			.acceptButton(
+				type === Dialog.SUCCESS
+					? null
+					: {
+							label: tostring(strings[1])
+						}
+			)
+			.cancelButton(
+				note
+					? null
+					: {
+							label: tostring(strings[2])
+						}
+			);
 	}
 
 	/**
@@ -198,7 +209,6 @@ ts.ui.Dialog.DEFAULT_TIME = 1500;
 	 * API methods.
 	 */
 	GuiObject.extend(Dialog, {
-
 		/*
 		 * Dialog types. Note that some of these should
 		 * be considered like {ts.ui.Notification} types.
@@ -226,7 +236,8 @@ ts.ui.Dialog.DEFAULT_TIME = 1500;
 						if (!ts.ui.greenfield) {
 							var spirit = gui.get('#' + model.$instanceid);
 							if (spirit) {
-								gui.Tick.time(function() { // TODO (jmo@): why otherwise error?
+								gui.Tick.time(function() {
+									// TODO (jmo@): why otherwise error?
 									spirit.dom.remove();
 								}, 100);
 							}
@@ -241,30 +252,41 @@ ts.ui.Dialog.DEFAULT_TIME = 1500;
 	 * GUI extras.
 	 */
 	GuiObject.extend(Dialog, {
-
 		/**
 		 * Launch confirm dialog.
 		 * @returns {ts.ui.DialogModel}
 		 */
-		confirm: chained(api(function(/* ...args */) {
-			return getdialog(this.CONFIRM, arguments);
-		})),
+		confirm: chained(
+			api(
+				function(/* ...args */) {
+					return getdialog(this.CONFIRM, arguments);
+				}
+			)
+		),
 
 		/**
 		 * Launch dangerous dialog.
 		 * @returns {ts.ui.DialogModel}
 		 */
-		warning: chained(api(function(/* ...args */) {
-			return getdialog(this.WARNING, arguments);
-		})),
+		warning: chained(
+			api(
+				function(/* ...args */) {
+					return getdialog(this.WARNING, arguments);
+				}
+			)
+		),
 
 		/**
 		 * Launch dangerous dialog.
 		 * @returns {ts.ui.DialogModel}
 		 */
-		danger: chained(api(function(/* ...args */) {
-			return getdialog(this.DANGER, arguments);
-		})),
+		danger: chained(
+			api(
+				function(/* ...args */) {
+					return getdialog(this.DANGER, arguments);
+				}
+			)
+		),
 
 		// Privileged ..............................................................
 
@@ -275,29 +297,35 @@ ts.ui.Dialog.DEFAULT_TIME = 1500;
 		 * @param @optional {boolean} note
 		 * @returns {ts.ui.DialogModel}
 		 */
-		$getdialog: hidden(api(function(type, args, note) {
-			return getdialog(type, args, note);
-		})),
+		$getdialog: hidden(
+			api(function(type, args, note) {
+				return getdialog(type, args, note);
+			})
+		),
 
 		/*
 		 * Open dialog in this context.
 		 * @param {JSONObject} json
 		 */
-		$open: hidden(api(function(json) {
-			var model = Dialog(json);
-			var spirit = getspirit(model);
-			spirit.open();
-		})),
+		$open: hidden(
+			api(function(json) {
+				var model = Dialog(json);
+				var spirit = getspirit(model);
+				spirit.open();
+			})
+		),
 
 		/*
 		 * Close dialog in this context.
 		 * @param {string} id
 		 */
-		$close: hidden(api(function(id) {
-			var spirit = gui.get('#' + id);
-			if (spirit && spirit.isOpen) {
-				spirit.close();
-			}
-		}))
+		$close: hidden(
+			api(function(id) {
+				var spirit = gui.get('#' + id);
+				if (spirit && spirit.isOpen) {
+					spirit.close();
+				}
+			})
+		)
 	});
-}(ts.ui.Greenfield.api, gui.Combo.chained, gui.Object.hidden, gui.Array, gui.Object, gui.Type));
+})(ts.ui.Greenfield.api, gui.Combo.chained, gui.Object.hidden, gui.Array, gui.Object, gui.Type);

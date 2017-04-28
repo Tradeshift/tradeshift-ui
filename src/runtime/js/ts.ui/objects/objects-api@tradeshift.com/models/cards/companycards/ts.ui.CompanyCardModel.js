@@ -45,7 +45,6 @@ ts.ui.CompanyCardModel = (function using(Type, Card) {
 	}
 
 	return ts.ui.CardModel.extend({
-
 		/**
 		 * Friendly name.
 		 */
@@ -129,6 +128,5 @@ ts.ui.CompanyCardModel = (function using(Type, Card) {
 		_edbml: function() {
 			return ts.ui.companycard.edbml;
 		}
-
 	});
-}(gui.Type, ts.ui.CompanyCard));
+})(gui.Type, ts.ui.CompanyCard);

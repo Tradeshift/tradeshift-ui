@@ -5,7 +5,6 @@
  */
 gui.BroadcastPlugin = (function using(chained, confirmed) {
 	return gui.TrackerPlugin.extend({
-
 		/**
 		 * Add one or more broadcast handlers.
 		 * @param {object} arg
@@ -56,23 +55,21 @@ gui.BroadcastPlugin = (function using(chained, confirmed) {
 		 * @param @optional {object} data
 		 * @returns {gui.Broadcast}
 		 */
-		dispatch: confirmed('string|array')(
-			function(arg, data) {
-				var result = null;
-				var global = this._global;
-				var sig = global ? null : this._sig;
-				this._global = false;
-				gui.Array.make(arg).forEach(function(type) {
-					gui.Broadcast.$target = this.spirit;
-					if (global) {
-						result = gui.Broadcast.dispatchGlobal(type, data);
-					} else {
-						result = gui.Broadcast.dispatch(type, data, sig);
-					}
-				}, this);
-				return result;
-			}
-		),
+		dispatch: confirmed('string|array')(function(arg, data) {
+			var result = null;
+			var global = this._global;
+			var sig = global ? null : this._sig;
+			this._global = false;
+			gui.Array.make(arg).forEach(function(type) {
+				gui.Broadcast.$target = this.spirit;
+				if (global) {
+					result = gui.Broadcast.dispatchGlobal(type, data);
+				} else {
+					result = gui.Broadcast.dispatch(type, data, sig);
+				}
+			}, this);
+			return result;
+		}),
 
 		/**
 		 * Add handlers for global broadcast(s).
@@ -130,14 +127,12 @@ gui.BroadcastPlugin = (function using(chained, confirmed) {
 		 * @param {Array<object>} checks
 		 */
 		_cleanup: function(type, checks) {
-			var handler = checks[0],
-				global = checks[1];
+			var handler = checks[0], global = checks[1];
 			if (global) {
 				gui.Broadcast.removeGlobal(type, handler);
 			} else {
 				gui.Broadcast.remove(type, handler, this._sig);
 			}
 		}
-
 	});
-}(gui.Combo.chained, gui.Arguments.confirmed));
+})(gui.Combo.chained, gui.Arguments.confirmed);

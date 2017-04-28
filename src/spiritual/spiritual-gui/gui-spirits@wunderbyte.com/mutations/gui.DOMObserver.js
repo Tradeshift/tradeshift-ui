@@ -101,7 +101,6 @@ gui.DOMObserver = (function using(Type, GuiArray) {
 	}
 
 	return {
-
 		/**
 		 * Enabled?
 		 * @type {boolean}
@@ -121,10 +120,7 @@ gui.DOMObserver = (function using(Type, GuiArray) {
 					subtree: true
 				});
 			} else {
-				throw new Error(
-					'MutationObserver no such thing: ' +
-					'Browser (version) not supported'
-				);
+				throw new Error('MutationObserver no such thing: ' + 'Browser (version) not supported');
 			}
 		},
 
@@ -172,12 +168,7 @@ gui.DOMObserver = (function using(Type, GuiArray) {
 		 * @returns {constructor}
 		 */
 		_mutationobserver: function() {
-			return (
-				window.MutationObserver ||
-				window.WebKitMutationObserver ||
-				window.MozMutationObserver
-			);
+			return window.MutationObserver || window.WebKitMutationObserver || window.MozMutationObserver;
 		}
-
 	};
-}(gui.Type, gui.Array));
+})(gui.Type, gui.Array);

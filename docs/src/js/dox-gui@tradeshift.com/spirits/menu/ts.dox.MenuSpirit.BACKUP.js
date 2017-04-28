@@ -5,7 +5,6 @@
  */
 ts.dox.MenuSpirit = (function using(isInView, goIntoView) {
 	return ts.ui.Spirit.extend({
-
 		/**
 		 * Setup much.
 		 */
@@ -40,25 +39,27 @@ ts.dox.MenuSpirit = (function using(isInView, goIntoView) {
 				return full.replace(/[^\/]*$/, ''); // eslint-disable-line no-useless-escape
 			}
 			(function loop(items, container) {
-				items.filter(function(item) {
-					return !item.hidden;
-				}).forEach(function(item) {
-					if (item.items) {
-						loop(item.items, item);
-					} else if (item.path) {
-						var match = folder(item.path) === path;
-						var state = item.selected;
-						if ((item.selected = match)) {
-							if (match !== state) {
-								that._newselection = true;
-							}
-							if (container) {
-								container.open = true;
+				items
+					.filter(function(item) {
+						return !item.hidden;
+					})
+					.forEach(function(item) {
+						if (item.items) {
+							loop(item.items, item);
+						} else if (item.path) {
+							var match = folder(item.path) === path;
+							var state = item.selected;
+							if ((item.selected = match)) {
+								if (match !== state) {
+									that._newselection = true;
+								}
+								if (container) {
+									container.open = true;
+								}
 							}
 						}
-					}
-				});
-			}(this._model.items));
+					});
+			})(this._model.items);
 		},
 
 		// Private .................................................................
@@ -89,10 +90,8 @@ ts.dox.MenuSpirit = (function using(isInView, goIntoView) {
 				goIntoView(checked);
 			}
 		}
-
 	});
-}(
-
+})(
 	/**
 	 * Element is visible?
 	 * @param {Element} el
@@ -102,7 +101,6 @@ ts.dox.MenuSpirit = (function using(isInView, goIntoView) {
 		var rect = el.getBoundingClientRect();
 		return rect.top >= 0 && rect.bottom <= window.innerHeight;
 	},
-
 	/**
 	 * NOTE: Firefox supports this animated, see http://mdn.io/scrollIntoView,
 	 * however this kind of animation should not happen on initial page load.
@@ -111,4 +109,4 @@ ts.dox.MenuSpirit = (function using(isInView, goIntoView) {
 	function intoView(el) {
 		el.scrollIntoView(false);
 	}
-));
+);

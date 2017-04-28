@@ -35,7 +35,6 @@ ts.ui.LabelSpirit = (function using(Client, FieldSpirit, chained, tick, time, co
 	}
 
 	return ts.ui.FormSupportSpirit.extend({
-
 		/**
 		 * Setup for hotfix.
 		 */
@@ -74,17 +73,17 @@ ts.ui.LabelSpirit = (function using(Client, FieldSpirit, chained, tick, time, co
 		onevent: function(e) {
 			this.super.onevent(e);
 			switch (e.type) {
-				case 'focus' :
-				case 'blur' :
+				case 'focus':
+				case 'blur':
 					switch (e.target.type) {
-						case 'radio' :
+						case 'radio':
 							break;
-						default :
+						default:
 							this._focus(e.type === 'focus');
 							break;
 					}
 					break;
-				case 'mousedown' :
+				case 'mousedown':
 					var boxes = this.dom.qall('input[type=checkbox]');
 					if (boxes.length) {
 						boxes[0].focus();
@@ -256,13 +255,12 @@ ts.ui.LabelSpirit = (function using(Client, FieldSpirit, chained, tick, time, co
 		$empty: chained(function(empty) {
 			this.css.shift(empty, class_empty);
 		})
-
 	});
-}(
+})(
 	gui.Client,
 	ts.ui.FieldSpirit,
 	gui.Combo.chained,
 	ts.ui.FieldSpirit.TICK_SYNC,
 	ts.ui.FieldSpirit.TICK_TIME,
 	ts.ui.CLASS_FIELDLABEL
-));
+);

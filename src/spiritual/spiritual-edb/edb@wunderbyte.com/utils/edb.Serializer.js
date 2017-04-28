@@ -1,7 +1,6 @@
 edb.Serializer = (function scoped() {
 	function Serializer() {}
 	Serializer.prototype = {
-
 		/**
 		 * Serialize type.
 		 * @param {edb.Object|edb.Array} type
@@ -57,11 +56,14 @@ edb.Serializer = (function scoped() {
 	function asObject(type) {
 		var map = gui.Object.map(type, mapObject, type);
 		return {
-			$object: gui.Object.extend({
-				$classname: type.$classname,
-				$instanceid: type.$instanceid,
-				$originalid: type.$originalid
-			}, map)
+			$object: gui.Object.extend(
+				{
+					$classname: type.$classname,
+					$instanceid: type.$instanceid,
+					$originalid: type.$originalid
+				},
+				map
+			)
 		};
 	}
 
@@ -124,4 +126,4 @@ edb.Serializer = (function scoped() {
 	}
 
 	return Serializer;
-}());
+})();

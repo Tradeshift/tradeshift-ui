@@ -5,45 +5,45 @@
  * support, strategy here would be to createElement('input') with
  * specified attributes and perform `checkValidity` on that element.
  */
-ts.ui.ValidityChecker = gui.Class.create(Object.prototype, {
-
-	/**
+ts.ui.ValidityChecker = gui.Class.create(
+	Object.prototype,
+	{
+		/**
 	 * Check element validity and update validation state.
 	 * TODO: Release the regexpert!
 	 * @param {HTMLInputElement|ts.ui.InputModel} element
 	 * @param {ts.ui.ValidityStateModel} state
 	 * @returns {boolean}
 	 */
-	checkValidity: function(input, state) {
-		state.valid = true;
-		if (input.required) {
-			if (input.value === '') {
-				state.valid = false;
-				state.valueMissing = true;
-			}
-		}
-		switch (input.type) {
-			case 'number':
-				if (isNaN(input.value)) {
+		checkValidity: function(input, state) {
+			state.valid = true;
+			if (input.required) {
+				if (input.value === '') {
 					state.valid = false;
-					state.badInput = true;
+					state.valueMissing = true;
 				}
-				break;
-			case 'email':
-
-				break;
-			case 'url':
-
-				break;
+			}
+			switch (input.type) {
+				case 'number':
+					if (isNaN(input.value)) {
+						state.valid = false;
+						state.badInput = true;
+					}
+					break;
+				case 'email':
+					break;
+				case 'url':
+					break;
+			}
+			return state.valid;
 		}
-		return state.valid;
-	}
+	},
+	{
+		// Static .................................................................
 
-}, { // Static .................................................................
-
-	/**
+		/**
 	 * @type {RegExp}
 	 */
-	EMAIL: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,6}$./
-
-});
+		EMAIL: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,6}$./
+	}
+);

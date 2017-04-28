@@ -2,7 +2,6 @@
  * Working with arrays.
  */
 gui.Array = {
-
 	/**
 	 * Takes a variable number of arguments and produces
 	 * an instance of Array containing those elements.
@@ -11,10 +10,13 @@ gui.Array = {
 	 */
 	of: (function() {
 		var slice = Array.prototype.slice;
-		return (Array.of) || function() {
-			return slice.call(arguments);
-		};
-	}()),
+		return (
+			Array.of ||
+			function() {
+				return slice.call(arguments);
+			}
+		);
+	})(),
 
 	/**
 	 * Converts a single argument that is an array-like
@@ -24,19 +26,22 @@ gui.Array = {
 	 * @returns {Array}
 	 */
 	from: (function() {
-		return (Array.from) || function(arg) {
-			var array = [];
-			var object = Object(arg);
-			var len = object.length >>> 0;
-			var i = 0;
-			while (i < len) {
-				if (i in object) {
-					array[i] = object[i];
+		return (
+			Array.from ||
+			function(arg) {
+				var array = [];
+				var object = Object(arg);
+				var len = object.length >>> 0;
+				var i = 0;
+				while (i < len) {
+					if (i in object) {
+						array[i] = object[i];
+					}
+					i++;
 				}
-				i++;
+				return array;
 			}
-			return array;
-		};
+		);
 	})(),
 
 	/**
@@ -79,14 +84,19 @@ gui.Array = {
 	remove: function(array, from, to) {
 		var markers = gui.Array.from(arguments).slice(1);
 		if (markers.some(isNaN)) {
-			return this.remove.apply(this, [array].concat(
-				markers.map(function toindex(m) {
-					return isNaN(m) ? array.indexOf(m) : m;
-				})
-			));
+			return this.remove.apply(
+				this,
+				[array].concat(
+					markers.map(function toindex(m) {
+						return isNaN(m) ? array.indexOf(m) : m;
+					})
+				)
+			);
 		} else {
-			array.splice(from, !to || 1 + to - from + (!(to < 0 ^ from >= 0) &&
-				(to < 0 || -1) * array.length));
+			array.splice(
+				from,
+				!to || 1 + to - from + (!((to < 0) ^ (from >= 0)) && (to < 0 || -1) * array.length)
+			);
 			return array.length;
 		}
 	}

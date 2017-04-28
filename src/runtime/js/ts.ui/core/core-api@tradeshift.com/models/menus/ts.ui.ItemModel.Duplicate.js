@@ -5,7 +5,6 @@
  */
 ts.ui.ItemModel = (function using(chained) {
 	return ts.ui.Model.extend({
-
 		/**
 		 * Friendly name.
 		 * @type {string}
@@ -69,9 +68,11 @@ ts.ui.ItemModel = (function using(chained) {
 					if (c.name === 'clicked' && c.newValue) {
 						this.clicked = false;
 						if (!this.selected) {
-							gui.Tick.time(function unfreeze() {
-								this.onselect();
-							}.bind(this));
+							gui.Tick.time(
+								function unfreeze() {
+									this.onselect();
+								}.bind(this)
+							);
 						} else {
 							console.log('TODO: implement onunselect?');
 						}
@@ -105,6 +106,5 @@ ts.ui.ItemModel = (function using(chained) {
 		render: function() {
 			return ts.ui.item.edbml(this);
 		}
-
 	});
-}(gui.Combo.chained));
+})(gui.Combo.chained);

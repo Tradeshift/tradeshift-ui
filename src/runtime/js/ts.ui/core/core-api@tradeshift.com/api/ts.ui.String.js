@@ -4,7 +4,6 @@
  * TODO: At least localize strings!
  */
 ts.ui.String = {
-
 	/*
 	 * Buttons and what not.
 	 */
@@ -29,11 +28,11 @@ ts.ui.String = {
 	 */
 	ERROR_PATTERNMISMATCH: 'The value does not match the specified pattern',
 	ERROR_RANGEOVERFLOW: 'Too much',
-	ERROR_RANGEUNDERFLOW:	'Not too much',
-	ERROR_STEPMISTMATCH:	'Abnormal step',
+	ERROR_RANGEUNDERFLOW: 'Not too much',
+	ERROR_STEPMISTMATCH: 'Abnormal step',
 	ERROR_TOOLONG: 'The value exceeds the specified maxlength',
 	ERROR_TYPEMISMATCH: 'The value is not in the required syntax',
-	ERROR_BADINPUT: 'That\'s just plain wrong.',
+	ERROR_BADINPUT: "That's just plain wrong.",
 	ERROR_VALUEMISSING: 'Please type something here',
 
 	/**

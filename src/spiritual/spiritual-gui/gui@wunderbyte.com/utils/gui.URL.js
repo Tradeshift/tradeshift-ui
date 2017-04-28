@@ -7,7 +7,8 @@
 gui.URL = function(doc, href) {
 	if (doc && doc.nodeType === Node.DOCUMENT_NODE) {
 		var val, link = gui.URL._createLink(doc, href);
-		Object.keys(gui.URL.prototype).forEach(function(key) { // TODO: exclude toString somehow...
+		Object.keys(gui.URL.prototype).forEach(function(key) {
+			// TODO: exclude toString somehow...
 			if (gui.Type.isString((val = link[key]))) {
 				if (key === 'pathname' && !val.startsWith('/')) {
 					val = '/' + val; // http://stackoverflow.com/questions/956233/javascript-pathname-ie-quirk
@@ -33,7 +34,8 @@ gui.URL.prototype = {
 	search: null, // ?q=devmo
 	id: null, // test,
 	external: false, // external relative to the *document*, not the server host!!! (rename "outbound" to clear this up?)
-	toString: function() { // behave somewhat like window.location ....
+	toString: function() {
+		// behave somewhat like window.location ....
 		return this.href;
 	}
 };
@@ -47,7 +49,8 @@ gui.URL.prototype = {
  * @param {String} href
  * @returns {String}
  */
-gui.URL.absolute = function(base, href) { // return /(^data:)|(^http[s]?:)|(^\/)/.test(inUrl);
+gui.URL.absolute = function(base, href) {
+	// return /(^data:)|(^http[s]?:)|(^\/)/.test(inUrl);
 	href = href || '';
 	if (base.nodeType === Node.DOCUMENT_NODE) {
 		return new gui.URL(base, href).href;
@@ -102,8 +105,7 @@ gui.URL.getParam = function(url, name) {
  * @returns {String} String
  */
 gui.URL.setParam = function(url, name, value) {
-	var params = [],
-		cut, index = -1;
+	var params = [], cut, index = -1;
 	var path = url.split('#')[0];
 	var hash = url.split('#')[1];
 	if (path.indexOf('?') > -1) {
@@ -145,9 +147,11 @@ gui.URL.parametrize = function(baseurl, params) {
 			baseurl += baseurl.includes('?') ? '&' : '?';
 			switch (gui.Type.of(value)) {
 				case 'array':
-					baseurl += value.map(function(member) {
-						return key + '=' + String(member);
-					}).join('&');
+					baseurl += value
+						.map(function(member) {
+							return key + '=' + String(member);
+						})
+						.join('&');
 					break;
 				default:
 					baseurl += key + '=' + String(value);
@@ -175,7 +179,8 @@ gui.URL.origin = function(win) {
 gui.URL._createLink = function(doc, href) {
 	var link = doc.createElement('a');
 	link.href = href || '';
-	if (gui.Client.isExplorer) { // IE9???
+	if (gui.Client.isExplorer) {
+		// IE9???
 		var uri = gui.URL.parseUri(link.href);
 		Object.keys(uri).forEach(function(key) {
 			if (!link[key]) {
@@ -215,7 +220,22 @@ gui.URL.parseUri = function(str) {
  */
 gui.URL.parseOptions = {
 	strictMode: true,
-	key: ['source', 'protocol', 'authority', 'userInfo', 'user', 'password', 'host', 'port', 'relative', 'path', 'directory', 'file', 'query', 'anchor'],
+	key: [
+		'source',
+		'protocol',
+		'authority',
+		'userInfo',
+		'user',
+		'password',
+		'host',
+		'port',
+		'relative',
+		'path',
+		'directory',
+		'file',
+		'query',
+		'anchor'
+	],
 	q: {
 		name: 'queryKey',
 		parser: /(?:^|&)([^&=]*)=?([^&]*)/g

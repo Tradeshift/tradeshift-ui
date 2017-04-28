@@ -2,7 +2,6 @@
  * Interface KeyHandler
  */
 gui.IKeyHandler = {
-
 	/**
 	 * Identification.
 	 * @returns {String}

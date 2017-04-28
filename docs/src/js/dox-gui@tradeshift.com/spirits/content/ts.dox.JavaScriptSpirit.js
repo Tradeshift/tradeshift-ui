@@ -2,7 +2,6 @@
  * Spirit of the script snippet.
  */
 ts.dox.JavaScriptSpirit = ts.dox.PrismSpirit.extend({
-
 	/**
 	 * Handle event.
 	 */
@@ -68,11 +67,14 @@ ts.dox.JavaScriptSpirit = ts.dox.PrismSpirit.extend({
 			if (this._editor) {
 				ts.ui.Notification.error(exception.message);
 			} else {
-				ts.ui.Notification.warning([
-					'Script error! Sometimes a snippet depends on a previous ',
-					'snippet. If there are other snippets on the page, try ',
-					'running them in a different order.'
-				].join(''), 'Alrighty');
+				ts.ui.Notification.warning(
+					[
+						'Script error! Sometimes a snippet depends on a previous ',
+						'snippet. If there are other snippets on the page, try ',
+						'running them in a different order.'
+					].join(''),
+					'Alrighty'
+				);
 			}
 		}
 	},
@@ -82,7 +84,7 @@ ts.dox.JavaScriptSpirit = ts.dox.PrismSpirit.extend({
 	 * @param {ts.ui.ButtonSpirit} button
 	 */
 	_edit: function() {
-		var area = this._editor = ts.ui.TextAreaSpirit.summon();
+		var area = (this._editor = ts.ui.TextAreaSpirit.summon());
 		var pane = this.dom.q('.tabpanels');
 		area.css.add('editcode');
 		area.value = this.code;
@@ -100,15 +102,17 @@ ts.dox.JavaScriptSpirit = ts.dox.PrismSpirit.extend({
 	_attention: function(yes) {
 		if (yes) {
 			this.dom.append(
-				gui.HTMLParser.parseToNode([
-					'<div class="message">',
-					'<p>',
-					'<i class="ts-icon-arrowleft"></i>',
-					'<strong>Interactive time</strong><br/>',
-					'Please <code>Run this code</code>',
-					'</p>',
-					'</div>'
-				].join('\n'))
+				gui.HTMLParser.parseToNode(
+					[
+						'<div class="message">',
+						'<p>',
+						'<i class="ts-icon-arrowleft"></i>',
+						'<strong>Interactive time</strong><br/>',
+						'Please <code>Run this code</code>',
+						'</p>',
+						'</div>'
+					].join('\n')
+				)
 			);
 		}
 		return yes;
@@ -122,24 +126,28 @@ ts.dox.JavaScriptSpirit = ts.dox.PrismSpirit.extend({
 	_makeeditor: function(area) {
 		var value = area.value;
 		var buttons = this._toolbar.buttons();
-		$(area.element).keypress(function(e) {
-			if (e.keyCode === 9) {
-				var myValue = '\t';
-				var startPos = this.selectionStart;
-				var endPos = this.selectionEnd;
-				var scrollTop = this.scrollTop;
-				this.value = this.value.substring(0, startPos) + myValue + this.value.substring(endPos, this.value.length);
-				this.focus();
-				this.selectionStart = startPos + myValue.length;
-				this.selectionEnd = startPos + myValue.length;
-				this.scrollTop = scrollTop;
-				e.preventDefault();
-			}
-		}).keyup(function() {
-			if (value !== null && area.value !== value) {
-				buttons.get('button-revert').show();
-			}
-		});
+		$(area.element)
+			.keypress(function(e) {
+				if (e.keyCode === 9) {
+					var myValue = '\t';
+					var startPos = this.selectionStart;
+					var endPos = this.selectionEnd;
+					var scrollTop = this.scrollTop;
+					this.value =
+						this.value.substring(0, startPos) +
+						myValue +
+						this.value.substring(endPos, this.value.length);
+					this.focus();
+					this.selectionStart = startPos + myValue.length;
+					this.selectionEnd = startPos + myValue.length;
+					this.scrollTop = scrollTop;
+					e.preventDefault();
+				}
+			})
+			.keyup(function() {
+				if (value !== null && area.value !== value) {
+					buttons.get('button-revert').show();
+				}
+			});
 	}
-
 });

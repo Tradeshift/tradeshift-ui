@@ -3,7 +3,6 @@
  * @extends {ts.ui.InputModel}
  */
 ts.ui.SearchModel = ts.ui.InputModel.extend({
-
 	/**
 	 * Friendly name.
 	 * @type {string}
@@ -54,9 +53,7 @@ ts.ui.SearchModel = ts.ui.InputModel.extend({
 		},
 		setter: function(value) {
 			this.info = value;
-			console.warn(
-				'SearchModel.tip: Deprecated API is deprecated. Please use `info`'
-			);
+			console.warn('SearchModel.tip: Deprecated API is deprecated. Please use `info`');
 		}
 	},
 
@@ -97,5 +94,4 @@ ts.ui.SearchModel = ts.ui.InputModel.extend({
 			this._maybeinvoke(this.onidle, value);
 		}
 	}
-
 });

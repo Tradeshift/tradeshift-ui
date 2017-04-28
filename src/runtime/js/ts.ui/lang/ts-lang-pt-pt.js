@@ -38,23 +38,7 @@ if (window.ts && ts.ui && ts.ui.DatePicker) {
 			'Sexta-feira',
 			'Sábado'
 		],
-		dayNamesShort: [
-			'Dom',
-			'Seg',
-			'Ter',
-			'Qua',
-			'Qui',
-			'Sex',
-			'Sáb'
-		],
-		dayNamesMin: [
-			'Dom',
-			'Seg',
-			'Ter',
-			'Qua',
-			'Qui',
-			'Sex',
-			'Sáb'
-		]
+		dayNamesShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'],
+		dayNamesMin: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb']
 	});
 }

@@ -10,7 +10,6 @@
  */
 ts.ui.FakeDateInputSpirit = (function using(chained, tick, time) {
 	return ts.ui.FakeInputSpirit.extend({
-
 		/**
 		 * Attached the DOM.
 		 */
@@ -82,21 +81,23 @@ ts.ui.FakeDateInputSpirit = (function using(chained, tick, time) {
 			var title = this._label(function(label) {
 				return label.text();
 			});
-			ts.ui.DatePicker({
-				title: title || ts.ui.String.LABEL_DATEPICK,
-				value: real.value,
-				min: real.min,
-				max: real.max,
-				onselect: function(value) {
-					spirit._syncreal(value);
-					spirit._syncfake();
-					this.close();
-				},
-				onclosed: function() {
-					onclosed.call(spirit);
-					this.dispose();
-				}
-			}).open();
+			ts.ui
+				.DatePicker({
+					title: title || ts.ui.String.LABEL_DATEPICK,
+					value: real.value,
+					min: real.min,
+					max: real.max,
+					onselect: function(value) {
+						spirit._syncreal(value);
+						spirit._syncfake();
+						this.close();
+					},
+					onclosed: function() {
+						onclosed.call(spirit);
+						this.dispose();
+					}
+				})
+				.open();
 		},
 
 		/**
@@ -126,10 +127,5 @@ ts.ui.FakeDateInputSpirit = (function using(chained, tick, time) {
 				this.element.placeholder = realspirit.element.placeholder;
 			}
 		}
-
 	});
-}(
-	gui.Combo.chained,
-	ts.ui.FieldSpirit.TICK_SYNC,
-	ts.ui.FieldSpirit.TICK_TIME
-));
+})(gui.Combo.chained, ts.ui.FieldSpirit.TICK_SYNC, ts.ui.FieldSpirit.TICK_TIME);

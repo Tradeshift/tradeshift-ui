@@ -5,7 +5,6 @@
  */
 edbml.AttsUpdate = (function using(CSSPlugin) {
 	return edbml.Update.extend({
-
 		/**
 		 * Update type.
 		 * @type {String}
@@ -71,33 +70,44 @@ edbml.AttsUpdate = (function using(CSSPlugin) {
 		 * @param {HTMLElement} element
 		 */
 		_update: function(element) {
-			Array.forEach(this._xnew.attributes, function(newatt) {
-				var oldatt = this._xold.getAttribute(newatt.name);
-				if (oldatt === null || oldatt !== newatt.value) {
-					if (newatt.name === 'class') {
-						this._classlist(element, this._xold, newatt.value);
-					} else {
-						this._set(element, newatt.name, newatt.value);
+			Array.forEach(
+				this._xnew.attributes,
+				function(newatt) {
+					var oldatt = this._xold.getAttribute(newatt.name);
+					if (oldatt === null || oldatt !== newatt.value) {
+						if (newatt.name === 'class') {
+							this._classlist(element, this._xold, newatt.value);
+						} else {
+							this._set(element, newatt.name, newatt.value);
+						}
+						this._summary.push(
+							'@' +
+								newatt.name +
+								'="' +
+								newatt.value +
+								'"' +
+								(element.id ? ' (#' + element.id + ')' : '')
+						);
 					}
-					this._summary.push(
-						'@' + newatt.name + '="' + newatt.value + '"' +
-						(element.id ? ' (#' + element.id + ')' : '')
-					);
-				}
-			}, this);
-			Array.forEach(this._xold.attributes, function(oldatt) {
-				if (!this._xnew.hasAttribute(oldatt.name)) {
-					if (oldatt.name === 'class') {
-						this._classlist(element, this._xold, '');
-					} else {
-						this._del(element, oldatt.name, null);
+				},
+				this
+			);
+			Array.forEach(
+				this._xold.attributes,
+				function(oldatt) {
+					if (!this._xnew.hasAttribute(oldatt.name)) {
+						if (oldatt.name === 'class') {
+							this._classlist(element, this._xold, '');
+						} else {
+							this._del(element, oldatt.name, null);
+						}
+						this._summary.push(
+							'removed @' + oldatt.name + (element.id ? ' (#' + element.id + ')' : '')
+						);
 					}
-					this._summary.push(
-						'removed @' + oldatt.name +
-						(element.id ? ' (#' + element.id + ')' : '')
-					);
-				}
-			}, this);
+				},
+				this
+			);
 		},
 
 		/**
@@ -181,6 +191,5 @@ edbml.AttsUpdate = (function using(CSSPlugin) {
 			var message = 'edbml.AttsUpdate "#' + this.id + '" ' + summary;
 			this.super._report(message);
 		}
-
 	});
-}(gui.CSSPlugin));
+})(gui.CSSPlugin);

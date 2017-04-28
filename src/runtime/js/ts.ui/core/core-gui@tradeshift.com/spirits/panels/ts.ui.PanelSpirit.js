@@ -6,9 +6,15 @@
  * @using {string} ACTION_SHOW
  * @using {string} ACTION_HIDE
  */
-ts.ui.PanelSpirit = (function using(chained, ACTION_ATTACH, ACTION_DETACH, ACTION_SHOW, ACTION_HIDE, ACTION_CLASS) {
+ts.ui.PanelSpirit = (function using(
+	chained,
+	ACTION_ATTACH,
+	ACTION_DETACH,
+	ACTION_SHOW,
+	ACTION_HIDE,
+	ACTION_CLASS
+) {
 	return ts.ui.Spirit.extend({
-
 		/**
 		 * For when the panel is used to generate tabs.
 		 * @type {string}
@@ -50,12 +56,7 @@ ts.ui.PanelSpirit = (function using(chained, ACTION_ATTACH, ACTION_DETACH, ACTIO
 		 */
 		onconfigure: function() {
 			this.super.onconfigure();
-			this.action.add([
-				ACTION_ATTACH,
-				ACTION_SHOW,
-				ACTION_HIDE,
-				ACTION_CLASS
-			]);
+			this.action.add([ACTION_ATTACH, ACTION_SHOW, ACTION_HIDE, ACTION_CLASS]);
 		},
 
 		/**
@@ -93,7 +94,8 @@ ts.ui.PanelSpirit = (function using(chained, ACTION_ATTACH, ACTION_DETACH, ACTIO
 					}
 					break;
 				case ts.ui.ACTION_STATUSBAR_LEVEL:
-					if (a.target.guilayout.outsideMain()) { // TODO: CSS FOR THIS!
+					if (a.target.guilayout.outsideMain()) {
+						// TODO: CSS FOR THIS!
 						this.guilayout.gotolevel(a.data);
 					}
 					break;
@@ -237,13 +239,12 @@ ts.ui.PanelSpirit = (function using(chained, ACTION_ATTACH, ACTION_DETACH, ACTIO
 		_isroot: function() {
 			return this.dom.parent() === document.body;
 		}
-
 	});
-}(
+})(
 	gui.Combo.chained,
 	ts.ui.ACTION_PANEL_ATTACH,
 	ts.ui.ACTION_PANEL_DETACH,
 	ts.ui.ACTION_PANEL_SHOW,
 	ts.ui.ACTION_PANEL_HIDE,
 	ts.ui.ACTION_ROOT_CLASSNAMES
-));
+);

@@ -15,12 +15,14 @@ edb.ObjectPopulator = (function using(isdefined, iscomplex, isfunction, isconstr
 	function definitions(handler) {
 		var Type = edb.Object.is(handler) ? edb.Object : edb.Array;
 		var Base = edb.Object.is(handler) ? Object : Array;
-		var keys = [],
-			classes = [edb.Type, Type, Base];
+		var keys = [], classes = [edb.Type, Type, Base];
 		gui.Object.all(handler, function(key) {
-			if (isregular(key) && classes.every(function(o) {
-				return o.prototype[key] === undefined;
-			})) {
+			if (
+				isregular(key) &&
+				classes.every(function(o) {
+					return o.prototype[key] === undefined;
+				})
+			) {
 				keys.push(key);
 			}
 		});
@@ -37,9 +39,13 @@ edb.ObjectPopulator = (function using(isdefined, iscomplex, isfunction, isconstr
 		delete json.$instanceid;
 		delete json.$originalid;
 		if (id) {
-			Object.defineProperty(type, '$originalid', gui.Property.nonenumerable({
-				value: id
-			}));
+			Object.defineProperty(
+				type,
+				'$originalid',
+				gui.Property.nonenumerable({
+					value: id
+				})
+			);
 		}
 	}
 
@@ -49,9 +55,7 @@ edb.ObjectPopulator = (function using(isdefined, iscomplex, isfunction, isconstr
 	 * @param {String} key
 	 */
 	function faildefined(name, key) {
-		throw new TypeError(
-			name + ' declares "' + key + '" as something undefined'
-		);
+		throw new TypeError(name + ' declares "' + key + '" as something undefined');
 	}
 
 	/**
@@ -60,9 +64,7 @@ edb.ObjectPopulator = (function using(isdefined, iscomplex, isfunction, isconstr
 	 * @param {String} key
 	 */
 	function failconstructor(name, key) {
-		throw new TypeError(
-			name + ' "' + key + '" must resolve to a constructor'
-		);
+		throw new TypeError(name + ' "' + key + '" must resolve to a constructor');
 	}
 
 	/**
@@ -90,7 +92,8 @@ edb.ObjectPopulator = (function using(isdefined, iscomplex, isfunction, isconstr
 		}
 	}
 
-	return { // Public ...............................................................
+	return {
+		// Public ...............................................................
 
 		/**
 		 * Populate object properties of type instance.
@@ -162,22 +165,20 @@ edb.ObjectPopulator = (function using(isdefined, iscomplex, isfunction, isconstr
 						break;
 				}
 			});
-			gui.Object.nonmethods(json).filter(function(key) {
-				return pure.indexOf(key) === -1;
-			}).forEach(function(key) {
-				var def_ = json[key];
-				if (isregular(key) && gui.Type.isComplex(def_)) {
-					if (!types[key]) {
-						types[key] = edb.Type.cast(def_);
+			gui.Object
+				.nonmethods(json)
+				.filter(function(key) {
+					return pure.indexOf(key) === -1;
+				})
+				.forEach(function(key) {
+					var def_ = json[key];
+					if (isregular(key) && gui.Type.isComplex(def_)) {
+						if (!types[key]) {
+							types[key] = edb.Type.cast(def_);
+						}
 					}
-				}
-			});
+				});
 			return types;
 		}
 	};
-})(
-	gui.Type.isDefined,
-	gui.Type.isComplex,
-	gui.Type.isFunction,
-	gui.Type.isConstructor
-);
+})(gui.Type.isDefined, gui.Type.isComplex, gui.Type.isFunction, gui.Type.isConstructor);

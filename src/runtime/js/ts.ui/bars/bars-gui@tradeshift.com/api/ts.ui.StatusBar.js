@@ -4,7 +4,7 @@
  * @using {Array<string>} methods
  */
 ts.ui.StatusBar = (function using(methods) {
-	var statics = {$bars: []};
+	var statics = { $bars: [] };
 	var xstatics = ts.ui.Bar.$staticmethods(methods);
 	var protos = gui.Object.extend(ts.ui.Bar.$protomethods(methods), {
 		$getbar: function() {
@@ -12,4 +12,4 @@ ts.ui.StatusBar = (function using(methods) {
 		}
 	});
 	return ts.ui.ToolBar.extend(protos, xstatics, statics);
-}(['message', 'linkable', 'pager']));
+})(['message', 'linkable', 'pager']);

@@ -41,7 +41,6 @@ ts.ui.TableLayoutPlugin = (function using(Client, Tick) {
 	}
 
 	return ts.ui.Plugin.extend({
-
 		/**
 		 * @param {ts.ui.TableSpirit} spirit
 		 * @param {ts.ui.TableModel} model
@@ -80,7 +79,7 @@ ts.ui.TableLayoutPlugin = (function using(Client, Tick) {
 		_layout1: function(spirit, model, cols, rows, guts) {
 			spirit.event.add('scroll', rows); // TODO: WHAT ABOUT THIS?
 			var fixed = model.maxrows && spirit.$fixedsize;
-			rows.style.height = fixed ? (UNIT_DOUBLE * model.maxrows) + 'px' : '';
+			rows.style.height = fixed ? UNIT_DOUBLE * model.maxrows + 'px' : '';
 			if (model.isWrapping()) {
 				cols.style.paddingRight = Client.scrollBarSize + 'px';
 			}
@@ -96,9 +95,12 @@ ts.ui.TableLayoutPlugin = (function using(Client, Tick) {
 		 * @param {ts.ui.TableColCollection} cols
 		 */
 		_layout2: function(spirit, cols) {
-			spirit.css.shift(cols.some(function(col) {
-				return col.wrap;
-			}), 'ts-wrapping');
+			spirit.css.shift(
+				cols.some(function(col) {
+					return col.wrap;
+				}),
+				'ts-wrapping'
+			);
 		},
 
 		/**
@@ -252,11 +254,7 @@ ts.ui.TableLayoutPlugin = (function using(Client, Tick) {
 			var edits = model.editable;
 			var plug = spirit.queryplugin;
 			if (floats || edits) {
-				this._vfix2(
-					plug.getrows(true),
-					plug.getguts(true),
-					floats, edits
-				);
+				this._vfix2(plug.getrows(true), plug.getguts(true), floats, edits);
 			}
 		},
 
@@ -289,22 +287,23 @@ ts.ui.TableLayoutPlugin = (function using(Client, Tick) {
 		_vfix3: function(rows, guts, floats, edits) {
 			rows = rows.dom.qall('tr');
 			guts = floats ? guts.dom.qall('tr') : null;
-			rows.map(function readheight(row, index) {
-				var border = index ? 1 : (Client.isGecko ? 1 : 0);
-				var height = getheight(row) - border;
-				return height;
-			}).forEach(function writeheight(height, index) {
-				var row = rows[index];
-				if (floats) {
-					setheight(guts[index], height);
-				}
-				if (edits) {
-					Array.forEach(row.cells, function(td) {
-						setheight(td, height);
-					});
-				}
-			});
+			rows
+				.map(function readheight(row, index) {
+					var border = index ? 1 : Client.isGecko ? 1 : 0;
+					var height = getheight(row) - border;
+					return height;
+				})
+				.forEach(function writeheight(height, index) {
+					var row = rows[index];
+					if (floats) {
+						setheight(guts[index], height);
+					}
+					if (edits) {
+						Array.forEach(row.cells, function(td) {
+							setheight(td, height);
+						});
+					}
+				});
 		}
-
 	});
-}(gui.Client, gui.Tick));
+})(gui.Client, gui.Tick);

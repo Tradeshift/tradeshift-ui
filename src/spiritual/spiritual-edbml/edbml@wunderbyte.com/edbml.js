@@ -2,7 +2,6 @@
  * Namepspace object.
  */
 window.edbml = gui.namespace('edbml', {
-
 	/**
 	 * Spirits will dispatch this action when EDBML has rendered.
 	 */
@@ -133,7 +132,7 @@ window.edbml = gui.namespace('edbml', {
 				return res;
 			};
 		};
-	}()),
+	})(),
 
 	// Private ...................................................................
 
@@ -179,7 +178,8 @@ window.edbml = gui.namespace('edbml', {
 	 */
 	_request: function(key, sig) {
 		var func;
-		if (sig) { // TODO: this
+		if (sig) {
+			// TODO: this
 			console.error('Not supported');
 		} else {
 			if ((func = this._invokables[key])) {
@@ -189,5 +189,4 @@ window.edbml = gui.namespace('edbml', {
 			}
 		}
 	}
-
 });

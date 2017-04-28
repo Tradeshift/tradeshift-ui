@@ -6,7 +6,6 @@
 	*/
 ts.ui.TabBarSpirit = (function(CLASS_MACRO, CLASS_MICRO) {
 	return ts.ui.ToolBarSpirit.extend({
-
 		/**
 		 * Set `ts-micro` for the default style.
 		 */
@@ -22,8 +21,7 @@ ts.ui.TabBarSpirit = (function(CLASS_MACRO, CLASS_MICRO) {
 		 * @overwrites {ts.ui.ToolBar#title}
 		 */
 		title: function() {
-			console.error('The TabBar doesn\'t support a title :(');
+			console.error("The TabBar doesn't support a title :(");
 		}
-
 	});
-}(ts.ui.CLASS_MACRO, ts.ui.CLASS_MICRO));
+})(ts.ui.CLASS_MACRO, ts.ui.CLASS_MICRO);

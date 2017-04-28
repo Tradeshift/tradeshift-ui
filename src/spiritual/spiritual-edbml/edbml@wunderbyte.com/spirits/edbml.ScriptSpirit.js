@@ -3,7 +3,6 @@
  * contains the (compiled) EDBML.
  */
 edbml.ScriptSpirit = gui.Spirit.extend({
-
 	/**
 	 * Configured via inline HTML (so by Grunt).
 	 * @type {string}
@@ -23,5 +22,4 @@ edbml.ScriptSpirit = gui.Spirit.extend({
 			}
 		}
 	}
-
 });

@@ -2,12 +2,10 @@
  * Forms GUI module.
  */
 ts.ui.FormsModule = gui.module('forms-gui@tradeshift.com', {
-
 	/**
 	 * Channeling spirits to CSS selectors.
 	 */
 	channel: [
-
 		['[data-ts=Form]', ts.ui.FormSpirit],
 		['[data-ts=FieldSet]', ts.ui.FieldSetSpirit],
 		['[data-ts=Label]', ts.ui.LabelSpirit],
@@ -68,5 +66,4 @@ ts.ui.FormsModule = gui.module('forms-gui@tradeshift.com', {
 	 * @type {boolean}
 	 */
 	_channeled: false
-
 });

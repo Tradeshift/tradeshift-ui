@@ -3,7 +3,6 @@
  * @extends {ts.ui.Spirit}
  */
 ts.ui.ButtonMenuSpirit = ts.ui.Spirit.extend({
-
 	/**
 	 * Channel spirits for complex selectors as soon as the
 	 * first `Buttons` component is encountered on the page
@@ -11,9 +10,6 @@ ts.ui.ButtonMenuSpirit = ts.ui.Spirit.extend({
 	 */
 	onconstruct: function() {
 		this.super.onconstruct();
-		ts.ui.CoreModule.channelComplexSelectors(
-			!this.css.contains(ts.ui.CLASS_OPTIMIZED)
-		);
+		ts.ui.CoreModule.channelComplexSelectors(!this.css.contains(ts.ui.CLASS_OPTIMIZED));
 	}
-
 });

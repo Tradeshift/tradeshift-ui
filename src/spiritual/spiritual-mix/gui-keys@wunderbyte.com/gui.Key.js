@@ -13,7 +13,6 @@ gui.Key = function Key(down, type, isglobal) {
 };
 
 gui.Key.prototype = {
-
 	/**
 	 * Key down? Otherwise up.
 	 * @type {boolean}
@@ -44,48 +43,52 @@ gui.Key.prototype = {
  * @TODO Update from http://askubuntu.com/questions/19558/what-are-the-meta-super-and-hyper-keys
  */
 (function keymodifiers() {
-	gui.Object.each({
-		shiftDown: false, // The Shift key.
-		ctrlDown: false, // The Control key.
-		altDown: false, // The Alt key. On the Macintosh, this is the Option key
-		metaDown: false, // The Meta key. On the Macintosh, this is the Command key.
-		accelDown: false, // The key used for keyboard shortcuts on the user's platform. Usually, this would be the value you would use.
-		accessDown: false // The access key for activating menus and other elements. On Windows, this is the Alt key, used in conjuction with an element's accesskey.
-	}, function(key, value) {
-		gui.Key[key] = value;
-	});
-}());
+	gui.Object.each(
+		{
+			shiftDown: false, // The Shift key.
+			ctrlDown: false, // The Control key.
+			altDown: false, // The Alt key. On the Macintosh, this is the Option key
+			metaDown: false, // The Meta key. On the Macintosh, this is the Command key.
+			accelDown: false, // The key used for keyboard shortcuts on the user's platform. Usually, this would be the value you would use.
+			accessDown: false // The access key for activating menus and other elements. On Windows, this is the Alt key, used in conjuction with an element's accesskey.
+		},
+		function(key, value) {
+			gui.Key[key] = value;
+		}
+	);
+})();
 
 /**
  * Mapping DOM0 key codes to DOM3 key values. Note that keycodes aren't used on an API level.
  * @see http://www.w3.org/TR/DOM-Level-3-Events/#key-values
  */
 (function keymappings() {
-	gui.Key.$key = gui.Object.extend({
+	gui.Key.$key = gui.Object.extend(
+		{
+			// navigation
 
-		// navigation
+			33: 'PageUp',
+			34: 'PageDown',
+			38: 'Up',
+			40: 'Down',
+			37: 'Left',
+			39: 'Right',
 
-		33: 'PageUp',
-		34: 'PageDown',
-		38: 'Up',
-		40: 'Down',
-		37: 'Left',
-		39: 'Right',
+			// modifiers
 
-		// modifiers
+			18: 'Alt',
+			17: 'Control',
+			16: 'Shift',
+			32: 'Space',
 
-		18: 'Alt',
-		17: 'Control',
-		16: 'Shift',
-		32: 'Space',
+			// extras
 
-		// extras
-
-		27: 'Esc',
-		13: 'Enter'
-
-	}, Object.create(null));
-}());
+			27: 'Esc',
+			13: 'Enter'
+		},
+		Object.create(null)
+	);
+})();
 
 /*
 "Alt"
@@ -111,7 +114,7 @@ gui.Key.prototype = {
 	gui.Object.each(gui.Key.$key, function(key, value) {
 		gui.Key[value.toUpperCase()] = value;
 	});
-}());
+})();
 
 /**
  * These key codes "do not usually change" with keyboard layouts.

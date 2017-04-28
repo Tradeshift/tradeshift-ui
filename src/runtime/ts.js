@@ -37,7 +37,8 @@
 	 * @param {HTMLLinkElement} existing
 	 */
 	function stylesheet(existing) {
-		if (!existing) { // testing a theory...
+		if (!existing) {
+			// testing a theory...
 			var oldsheet = document.querySelector('link[rel=stylesheet]');
 			var newsheet = document.createElement('link');
 			newsheet.id = 'ts-css'; // prepare for multiple bundles...
@@ -79,7 +80,7 @@
 			if (--left === 0) {
 				ts.ui.$maybebootstrap(true);
 			}
-		};
+		}
 		function onerror(error) {
 			var src = error.target.src;
 			throw new URIError('The script ' + src + ' is not accessible :/');
@@ -109,7 +110,7 @@
 			});
 		}
 	}
-}({
+})({
 	langbundle: '${langbundle}',
 	runtimecss: '${runtimecss}'
-}));
+});

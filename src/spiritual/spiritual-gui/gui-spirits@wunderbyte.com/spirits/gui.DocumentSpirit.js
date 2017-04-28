@@ -3,7 +3,6 @@
  * @extends {gui.Spirit}
  */
 gui.DocumentSpirit = gui.Spirit.extend({
-
 	/**
 	 * Get ready.
 	 * TODO: think more about late loading (module loading) scenario
@@ -11,7 +10,8 @@ gui.DocumentSpirit = gui.Spirit.extend({
 	 */
 	onready: function() {
 		this.super.onready();
-		if ((this.waiting = gui.hosted)) { // TODO: get rid of this :(
+		if ((this.waiting = gui.hosted)) {
+			// TODO: get rid of this :(
 			this.action.addGlobal(gui.$ACTION_XFRAME_VISIBILITY);
 		}
 		this.action.dispatchGlobal(gui.ACTION_DOC_ONSPIRITUALIZED);
@@ -29,7 +29,8 @@ gui.DocumentSpirit = gui.Spirit.extend({
 		switch (a.type) {
 			case gui.$ACTION_XFRAME_VISIBILITY:
 				this._waiting = false;
-				if (gui.hasModule('gui-layout@wunderbyte.com')) { // TODO: - fix
+				if (gui.hasModule('gui-layout@wunderbyte.com')) {
+					// TODO: - fix
 					if (a.data === true) {
 						this.visibility.on();
 					} else {
@@ -108,5 +109,4 @@ gui.DocumentSpirit = gui.Spirit.extend({
 	 * @type {number}
 	 */
 	_timeout: null
-
 });

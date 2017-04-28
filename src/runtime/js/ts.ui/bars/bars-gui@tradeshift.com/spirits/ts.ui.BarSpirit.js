@@ -11,7 +11,6 @@
  */
 ts.ui.BarSpirit = (function(TopBar, Client, chained, UNIT_DOUBLE, UNIT_TRIPLE) {
 	return ts.ui.Spirit.extend({
-
 		/**
 		 * Scroll the bar whenever MAIN is scrolling. This always applies to the
 		 * TopBar. It applies to the ToolBar (which is different) only in mobile
@@ -59,7 +58,7 @@ ts.ui.BarSpirit = (function(TopBar, Client, chained, UNIT_DOUBLE, UNIT_TRIPLE) {
 		 * @returns {HTMLMainElement}
 		 */
 		$getmain: function() {
-			return this._main || ((this._main = this.dom.qdoc('.ts-main')));
+			return this._main || (this._main = this.dom.qdoc('.ts-main'));
 		},
 
 		// Private .................................................................
@@ -147,9 +146,8 @@ ts.ui.BarSpirit = (function(TopBar, Client, chained, UNIT_DOUBLE, UNIT_TRIPLE) {
 		_offsetLimit: function() {
 			return UNIT_TRIPLE + (TopBar.tabs().length ? UNIT_DOUBLE : 0);
 		}
-
 	});
-}(ts.ui.TopBar, gui.Client, gui.Combo.chained, ts.ui.UNIT_DOUBLE, ts.ui.UNIT_TRIPLE));
+})(ts.ui.TopBar, gui.Client, gui.Combo.chained, ts.ui.UNIT_DOUBLE, ts.ui.UNIT_TRIPLE);
 
 /**
  * Generate methods `blue` `green` `purple` and so
@@ -168,4 +166,4 @@ ts.ui.BarSpirit = (function(TopBar, Client, chained, UNIT_DOUBLE, UNIT_TRIPLE) {
 			return this;
 		};
 	});
-}(ts.ui.BACKGROUND_COLORS));
+})(ts.ui.BACKGROUND_COLORS);

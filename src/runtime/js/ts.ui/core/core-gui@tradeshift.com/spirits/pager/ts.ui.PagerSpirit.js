@@ -7,7 +7,6 @@
  */
 ts.ui.PagerSpirit = (function using(Type, ButtonSpirit, CSSPlugin) {
 	return ts.ui.Spirit.extend({
-
 		/**
 		 * Create the (default) model first so that it's
 		 * ready to be configured via HTML attributes.
@@ -137,7 +136,8 @@ ts.ui.PagerSpirit = (function using(Type, ButtonSpirit, CSSPlugin) {
 			this.page = index;
 			this.action.dispatch(ts.ui.ACTION_PAGER_SELECT, index);
 			if (callb) {
-				if (Type.isString(callb)) { // assigned via HTML attribute?
+				if (Type.isString(callb)) {
+					// assigned via HTML attribute?
 					callb = new Function(['index'], callb);
 				}
 				callb.call(this, this.page);
@@ -157,6 +157,5 @@ ts.ui.PagerSpirit = (function using(Type, ButtonSpirit, CSSPlugin) {
 				model[jump]();
 			}
 		}
-
 	});
-}(gui.Type, ts.ui.ButtonSpirit, gui.CSSPlugin));
+})(gui.Type, ts.ui.ButtonSpirit, gui.CSSPlugin);

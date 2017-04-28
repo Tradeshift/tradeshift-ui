@@ -9,7 +9,7 @@
  * @using {Array<string>} methods
  */
 ts.ui.ToolBar = (function using(methods) {
-	var statics = {$bars: []};
+	var statics = { $bars: [] };
 	var xstatics = ts.ui.Bar.$staticmethods(methods);
 	var protos = gui.Object.extend(ts.ui.Bar.$protomethods(methods), {
 		$getbar: function() {
@@ -17,7 +17,8 @@ ts.ui.ToolBar = (function using(methods) {
 		}
 	});
 	return ts.ui.Bar.extend(protos, xstatics, statics);
-}([ // these methods are mapped directly to the spirits methods!
+})([
+	// these methods are mapped directly to the spirits methods!
 	'title',
 	'buttons',
 	'tabs',
@@ -32,4 +33,4 @@ ts.ui.ToolBar = (function using(methods) {
 	'lite',
 	'showClose',
 	'hideClose'
-]));
+]);

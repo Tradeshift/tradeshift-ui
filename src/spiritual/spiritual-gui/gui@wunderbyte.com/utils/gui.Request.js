@@ -18,7 +18,6 @@ gui.Request = function Request(url, doc) {
  */
 gui.Request.prototype = (function using(chained) {
 	return {
-
 		/**
 		 * Set request address.
 		 * @param {String} url
@@ -100,9 +99,13 @@ gui.Request.prototype = (function using(chained) {
 		 */
 		headers: chained(function(headers) {
 			if (gui.Type.isObject(headers)) {
-				gui.Object.each(headers, function(name, value) {
-					this._headers[name] = String(value);
-				}, this);
+				gui.Object.each(
+					headers,
+					function(name, value) {
+						this._headers[name] = String(value);
+					},
+					this
+				);
 			} else {
 				throw new TypeError('Object expected');
 			}
@@ -146,8 +149,7 @@ gui.Request.prototype = (function using(chained) {
 		 * @param {function} callback
 		 */
 		_request: function(method, payload, callback) {
-			var that = this,
-				request = new XMLHttpRequest();
+			var that = this, request = new XMLHttpRequest();
 			var xtarget = gui.URL.external(this._url, document);
 			request.onreadystatechange = function() {
 				if (this.readyState === XMLHttpRequest.DONE) {
@@ -159,7 +161,8 @@ gui.Request.prototype = (function using(chained) {
 				request.overrideMimeType(this._headers.Accept);
 			}
 			request.open(method.toUpperCase(), this._url, true);
-			if (!xtarget) { // headers not used xdomain per spec
+			if (!xtarget) {
+				// headers not used xdomain per spec
 				gui.Object.each(this._headers, function(name, value) {
 					request.setRequestHeader(name, value, false);
 				});
@@ -185,15 +188,13 @@ gui.Request.prototype = (function using(chained) {
 				}
 			} catch (exception) {
 				if (gui.debug) {
-					console.error(
-						this._headers.Accept + ' dysfunction at ' + this._url
-					);
+					console.error(this._headers.Accept + ' dysfunction at ' + this._url);
 				}
 			}
 			return result;
 		}
 	};
-}(gui.Combo.chained));
+})(gui.Combo.chained);
 
 /**
  * Generating methods for GET PUT POST DELETE.

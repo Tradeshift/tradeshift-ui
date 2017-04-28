@@ -13,7 +13,6 @@ gui.Geometry = function(x, y, w, h) {
 };
 
 gui.Geometry.prototype = {
-
 	/**
 	 * X position.
 	 * @type {number}
@@ -64,12 +63,7 @@ gui.Geometry.prototype = {
  * @returns {boolean}
  */
 gui.Geometry.isEqual = function(geo1, geo2) {
-	return (
-		(geo1.x === geo2.x) &&
-		(geo1.y === geo2.y) &&
-		(geo1.w === geo2.w) &&
-		(geo1.h === geo2.h)
-	);
+	return geo1.x === geo2.x && geo1.y === geo2.y && geo1.w === geo2.w && geo1.h === geo2.h;
 };
 
 /**

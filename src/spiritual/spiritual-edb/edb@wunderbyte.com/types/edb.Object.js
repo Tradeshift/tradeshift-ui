@@ -6,24 +6,27 @@
  */
 edb.Object = (function using(confirmed, chained) {
 	return gui.Class.create(Object.prototype, {
-
 		/**
 		 * Observe object.
 		 * @param @optional {IChangeHandler} handler
 		 * @returns {edb.Object}
 		 */
-		addObserver: confirmed('object|function')(chained(function(handler) {
-			edb.Object.observe(this, handler);
-		})),
+		addObserver: confirmed('object|function')(
+			chained(function(handler) {
+				edb.Object.observe(this, handler);
+			})
+		),
 
 		/**
 		 * Unobserve object.
 		 * @param @optional {IChangeHandler} handler
 		 * @returns {edb.Object}
 		 */
-		removeObserver: confirmed('object|function')(chained(function(handler) {
-			edb.Object.unobserve(this, handler);
-		})),
+		removeObserver: confirmed('object|function')(
+			chained(function(handler) {
+				edb.Object.unobserve(this, handler);
+			})
+		),
 
 		// Privileged ..............................................................
 
@@ -44,7 +47,9 @@ edb.Object = (function using(confirmed, chained) {
 				default:
 					throw new TypeError(
 						'Unexpected edb.Object constructor argument of type ' +
-						gui.Type.of(json) + ': ' + String(json)
+							gui.Type.of(json) +
+							': ' +
+							String(json)
 					);
 			}
 			this.onconstruct();
@@ -72,15 +77,13 @@ edb.Object = (function using(confirmed, chained) {
 				}
 			});
 		}
-
 	});
-}(gui.Arguments.confirmed, gui.Combo.chained));
+})(gui.Arguments.confirmed, gui.Combo.chained);
 
 /**
  * Mixin static methods. Recurring static members mixed in from {edb.Type}.
  */
 edb.Object.mixin(null, edb.Type.$staticmixins(), {
-
 	/**
 	 * Observe.
 	 */
@@ -112,21 +115,24 @@ edb.Object.mixin(null, edb.Type.$staticmixins(), {
 					gui.Object.each(propdef, function(name, change) {
 						changes.push(change);
 					});
-					handlers.filter(function(handler) {
-						if (!(exists = !handler.$destructed)) {
-							mishandlers.push(handler);
-						}
-						return exists;
-					}).forEach(function(handler) {
-						if (!handler.__changes) {
-							handler.__changes = [];
-						}
-						handler.__changes.push(changes);
-						if (changelings.indexOf(handler) === -1) {
-							changelings.push(handler);
-						}
-					});
-					mishandlers.forEach(function(handler) { // symptom treatment!
+					handlers
+						.filter(function(handler) {
+							if (!(exists = !handler.$destructed)) {
+								mishandlers.push(handler);
+							}
+							return exists;
+						})
+						.forEach(function(handler) {
+							if (!handler.__changes) {
+								handler.__changes = [];
+							}
+							handler.__changes.push(changes);
+							if (changelings.indexOf(handler) === -1) {
+								changelings.push(handler);
+							}
+						});
+					mishandlers.forEach(function(handler) {
+						// symptom treatment!
 						var index = handlers.indexOf(handler);
 						gui.Array.remove(handlers, index);
 					});
@@ -134,9 +140,11 @@ edb.Object.mixin(null, edb.Type.$staticmixins(), {
 			});
 			changelings.forEach(function(handler) {
 				var groups = handler.__changes;
-				handler.onchange(groups.reduce(function(sum, changesToReduce) {
-					return sum.concat(changesToReduce);
-				}, []));
+				handler.onchange(
+					groups.reduce(function(sum, changesToReduce) {
+						return sum.concat(changesToReduce);
+					}, [])
+				);
 				delete handler.__changes;
 			});
 		}
@@ -150,9 +158,7 @@ edb.Object.mixin(null, edb.Type.$staticmixins(), {
 	 */
 	$onaccess: function(object, name) {
 		if (edb.$accessaware) {
-			gui.Broadcast.dispatch(edb.BROADCAST_ACCESS, [
-				object, name
-			]);
+			gui.Broadcast.dispatch(edb.BROADCAST_ACCESS, [object, name]);
 		}
 	},
 
@@ -170,7 +176,7 @@ edb.Object.mixin(null, edb.Type.$staticmixins(), {
 			var set = all[id] || (all[id] = Object.create(null));
 			var now = false; // edb.$criticalchange;
 			set[name] = new edb.ObjectChange(object, name, type, oldval, newval);
-			gui.Tick.dispatch(edb.TICK_PUBLISH_CHANGES, (now ? -1 : 0));
+			gui.Tick.dispatch(edb.TICK_PUBLISH_CHANGES, now ? -1 : 0);
 			// edb.$criticalchange = false;
 		}
 	},
@@ -188,7 +194,6 @@ edb.Object.mixin(null, edb.Type.$staticmixins(), {
 	 * @type {Map<String,Array<edb.ObjectChange>>}
 	 */
 	_changes: Object.create(null)
-
 });
 
 /*
@@ -197,4 +202,4 @@ edb.Object.mixin(null, edb.Type.$staticmixins(), {
 (function setup() {
 	gui.Tick.add(edb.TICK_PUBLISH_CHANGES, edb.Object);
 	gui.Object.extendmissing(edb.Object.prototype, edb.Type.prototype);
-}());
+})();

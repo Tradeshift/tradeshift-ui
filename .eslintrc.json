@@ -35,6 +35,7 @@
 		"no-unsafe-finally": 0,
 		"no-useless-call": 0,
 		"no-useless-escape": 0,
-		"standard/computed-property-even-spacing": 0
+		"standard/computed-property-even-spacing": 0,
+		"quote-props": 0
 	}
 }

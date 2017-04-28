@@ -1,6 +1,4 @@
-var lunrindex,
-	$results,
-	pagesindex;
+var lunrindex, $results, pagesindex;
 
 /**
  * Trigger a search in lunr and transform the result
@@ -80,18 +78,22 @@ function search(query) {
  */
 function renderResults(query, results) {
 	if (!results.length) {
-		$results.append($('<p class="content">').html('No results found for <code>' + query + '</code>'));
+		$results.append(
+			$('<p class="content">').html('No results found for <code>' + query + '</code>')
+		);
 		return;
 	}
 
-		// Only show the ten first results
+	// Only show the ten first results
 	results.forEach(function(result) {
 		var $result = $('<li>');
-		$result.append($('<a>', {
-			'data-ts': 'Button',
-			href: '/#' + result.href,
-			text: result.title
-		}));
+		$result.append(
+			$('<a>', {
+				'data-ts': 'Button',
+				href: '/#' + result.href,
+				text: result.title
+			})
+		);
 		$result.append($('<p class="content">').html(getContent(query, result.content.split(' '))));
 		$results.append($result);
 	});

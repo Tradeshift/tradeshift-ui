@@ -6,52 +6,52 @@ gui.Tween = (function using(confirmed, chained) {
 		Object.prototype,
 		{
 			/**
-		 * Tween type.
-		 * @type {string}
-		 */
+			 * Tween type.
+			 * @type {string}
+			 */
 			type: null,
 
 			/**
-		 * Default duration.
-		 * @type {number} Time in in milliseconds.
-		 */
+			 * Default duration.
+			 * @type {number} Time in in milliseconds.
+			 */
 			duration: 200,
 
 			/**
-		 * Equivalent to transition-timing-function.
-		 * @type {number}
-		 */
+			 * Equivalent to transition-timing-function.
+			 * @type {number}
+			 */
 			timing: 'none',
 
 			/**
-		 * Optional tween data.
-		 * @type {object}
-		 */
+			 * Optional tween data.
+			 * @type {object}
+			 */
 			data: null,
 
 			/**
-		 * Between zero and one.
-		 * @type {number}
-		 */
+			 * Between zero and one.
+			 * @type {number}
+			 */
 			value: 0,
 
 			/**
-		 * True when value is zero.
-		 * @type {Boolean}
-		 */
+			 * True when value is zero.
+			 * @type {Boolean}
+			 */
 			init: true,
 
 			/**
-		 * True when value is one.
-		 * @type {boolean}
-		 */
+			 * True when value is one.
+			 * @type {boolean}
+			 */
 			done: false,
 
 			/**
-		 * @param {string} type
-		 * @param @optional {object} config
-		 * @param @optional {object} data
-		 */
+			 * @param {string} type
+			 * @param @optional {object} config
+			 * @param @optional {object} data
+			 */
 			onconstruct: function(type, config, data) {
 				this.type = type;
 				this.data = data !== undefined ? data : null;
@@ -70,12 +70,12 @@ gui.Tween = (function using(confirmed, chained) {
 			// Static ...........................................................
 
 			/**
-		 * Coordinate tween.
-		 * @param {string} type
-		 * @param @optional {object} config
-		 * @param @optional {object} data
-		 * @returns {gui.Tween} but why?
-		 */
+			 * Coordinate tween.
+			 * @param {string} type
+			 * @param @optional {object} config
+			 * @param @optional {object} data
+			 * @returns {gui.Tween} but why?
+			 */
 			dispatch: function(type, config, data) {
 				var tween = new gui.Tween(type, config, data);
 				var timer = gui.Client.hasPerformance ? window.performance : Date;

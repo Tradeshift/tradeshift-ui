@@ -4,46 +4,46 @@
 gui.Module.mixin(
 	{
 		/**
-	 * Plugins for all spirits.
-	 * @type {Map<String,gui.Plugin>}
-	 *
-	plugin: null,
-
-	/**
-	 * Mixins for all spirits.
-	 * @type {Map<String,function>}
-	 *
-	mixin: null,
-
-	/**
-	 * Channeling spirits to CSS selectors.
-	 * @type {Map<Array<Array<String,gui.Spirit>>}
-	 *
-	channel: null,
-	*/
+		 * Plugins for all spirits.
+		 * @type {Map<String,gui.Plugin>}
+		 *
+		 plugin: null,
+		 
+		 /**
+		 * Mixins for all spirits.
+		 * @type {Map<String,function>}
+		 *
+		 mixin: null,
+		 
+		 /**
+		 * Channeling spirits to CSS selectors.
+		 * @type {Map<Array<Array<String,gui.Spirit>>}
+		 *
+		 channel: null,
+		 */
 
 		/**
-	 * Called before spirits kick in.
-	 * @return {Window} context
-	 */
+		 * Called before spirits kick in.
+		 * @return {Window} context
+		 */
 		onbeforespiritualize: function() {},
 
 		/**
-	 * Called after spirits kicked in.
-	 * @return {Window} context
-	 */
+		 * Called after spirits kicked in.
+		 * @return {Window} context
+		 */
 		onafterspiritualize: function() {},
 
 		// Privileged ................................................................
 
 		/**
-	 * Secret constructor.
-	 *
-	 * 1. Extend {gui.Spirit} with mixins
-	 * 2. Channel spirits to CSS selectors
-	 * 3. Assign plugins to all {gui.Spirit}
-	 * @overwrites {gui.Module.$onconstruct}
-	 */
+		 * Secret constructor.
+		 *
+		 * 1. Extend {gui.Spirit} with mixins
+		 * 2. Channel spirits to CSS selectors
+		 * 3. Assign plugins to all {gui.Spirit}
+		 * @overwrites {gui.Module.$onconstruct}
+		 */
 		$onconstruct: function(name) {
 			this.$modname = name;
 			gui.Module.$init(this);
@@ -57,8 +57,8 @@ gui.Module.mixin(
 		// Static .............................................................
 
 		/**
-	 * @param {gui.Module} module
-	 */
+		 * @param {gui.Module} module
+		 */
 		$init: function(module) {
 			if (gui.Type.isObject(module.mixin)) {
 				gui.Spirit.mixin(module.mixin);

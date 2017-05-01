@@ -25,30 +25,30 @@ ts.ui = gui.namespace(
 
 		return {
 			/**
-		 * The tradeshift-ui version goes here (via Gruntfile.js)
-		 * @type {string}
-		 */
+			 * The tradeshift-ui version goes here (via Gruntfile.js)
+			 * @type {string}
+			 */
 			version: '$$VERSION$$',
 
 			/**
-		 * Nothing is "greenfield" now. If we should ever need it, we
-		 * would default to `true` and switch to `false` if and when
-		 * all the tradeshift-ui CSS is loaded into the document.
-		 * Note to new readers: The term "greenfield" here covers a
-		 * scenario where only the JavaScript APIs are loaded into
-		 * the document and the actual UI elements are rendered in
-		 * a separate window (in the chrome or an embedded iframe).
-		 * @type {boolean}
-		 */
+			 * Nothing is "greenfield" now. If we should ever need it, we
+			 * would default to `true` and switch to `false` if and when
+			 * all the tradeshift-ui CSS is loaded into the document.
+			 * Note to new readers: The term "greenfield" here covers a
+			 * scenario where only the JavaScript APIs are loaded into
+			 * the document and the actual UI elements are rendered in
+			 * a separate window (in the chrome or an embedded iframe).
+			 * @type {boolean}
+			 */
 			greenfield: false,
 
 			/**
-		 * Is running inside the Frankenstein chrome? Issue is that Chrome (the
-		 * browser) cannot investigate anything in the containing frame without
-		 * throwing security exceptions *if* indeed it's not in Frankenstein,
-		 * but we can at least inspect the page location href.
-		 * @type {boolean}
-		 */
+			 * Is running inside the Frankenstein chrome? Issue is that Chrome (the
+			 * browser) cannot investigate anything in the containing frame without
+			 * throwing security exceptions *if* indeed it's not in Frankenstein,
+			 * but we can at least inspect the page location href.
+			 * @type {boolean}
+			 */
 			frankenstein: (function(path) {
 				var vendorappid = /[A-Z][A-Za-z]+\.[A-Z][A-Za-z]+/;
 				return !!(window !== top &&
@@ -56,50 +56,50 @@ ts.ui = gui.namespace(
 			})(window.location.pathname),
 
 			/**
-		 * Should only ever be true in the top frame (chrome).
-		 * @type {boolean}
-		 */
+			 * Should only ever be true in the top frame (chrome).
+			 * @type {boolean}
+			 */
 			topframe: false,
 
 			/**
-		 * Should ever only be true inside the second level app host frame.
-		 * That is, NOT inside the innermost app frame or in the top frame.
-		 * @type {boolean}
-		 */
+			 * Should ever only be true inside the second level app host frame.
+			 * That is, NOT inside the innermost app frame or in the top frame.
+			 * @type {boolean}
+			 */
 			subframe: false,
 
 			/**
-		 * Appframe assumed true unless explicitely denied eg. using meta tag:
-		 * <meta name="ts.ui.appframe" content="false"/>
-		 */
+			 * Appframe assumed true unless explicitely denied eg. using meta tag:
+			 * <meta name="ts.ui.appframe" content="false"/>
+			 */
 			appframe: true,
 
 			/**
-		 * Current breakpoint.
-		 * TODO: This remains `null` until window is resized or what?
-		 * @type {string}
-		 */
+			 * Current breakpoint.
+			 * TODO: This remains `null` until window is resized or what?
+			 * @type {string}
+			 */
 			breakpoint: null,
 
 			/**
-		 * Generally use CSS transitions?
-		 * @type {boolean}
-		 */
+			 * Generally use CSS transitions?
+			 * @type {boolean}
+			 */
 			usetransitions: Client.hasTransitions,
 
 			/**
-		 * Use pointerevents? Except for IE9, we have that covered via a polyfill.
-		 * @type {boolean}
-		 */
+			 * Use pointerevents? Except for IE9, we have that covered via a polyfill.
+			 * @type {boolean}
+			 */
 			hasPointers: Client.hasPointers || !Client.isExplorer9,
 
 			// Miscelaneous ............................................................
 
 			/**
-		 * Magic URL substring used on the Dox website
-		 * (so perhaps this constant should be renamed).
-		 * @type {string}
-		 */
+			 * Magic URL substring used on the Dox website
+			 * (so perhaps this constant should be renamed).
+			 * @type {string}
+			 */
 			TRADESHIFT_HOME: '/',
 
 			// Units ...................................................................
@@ -365,63 +365,63 @@ ts.ui = gui.namespace(
 			// Methods .................................................................
 
 			/**
-		 * Facade `gui.get`: Lookup first spirit instance for argument(s).
-		 * @param {String|Element} arg
-		 * @param @optional {function} callback
-		 * @param @optional {object} thisp
-		 * @return {gui.Spirit|gui.Then}
-		 */
+			 * Facade `gui.get`: Lookup first spirit instance for argument(s).
+			 * @param {String|Element} arg
+			 * @param @optional {function} callback
+			 * @param @optional {object} thisp
+			 * @return {gui.Spirit|gui.Then}
+			 */
 			get: function() {
 				return gui.get.apply(gui, arguments);
 			},
 
 			/**
-		 * Facade `gui.init`: Do something before the spirits get
-		 * here. Or if that's already too late, just do it now.
-		 * @param {function} action
-		 * @param {Object=} opt_thisp
-		 * @returns {Namespace}
-		 */
+			 * Facade `gui.init`: Do something before the spirits get
+			 * here. Or if that's already too late, just do it now.
+			 * @param {function} action
+			 * @param {Object=} opt_thisp
+			 * @returns {Namespace}
+			 */
 			init: chained(function(action, opt_thisp) {
 				gui.init(action, opt_thisp);
 			}),
 
 			/**
-		 * Facade `gui.ready`: Do something when everything is spiritualized
-		 * (after `DOMContentLoaded`). Or if that's already too late, just do it.
-		 * @param {function} action
-		 * @param @optional {object} opt_thisp
-		 * @returns {Namespace}
-		 */
+			 * Facade `gui.ready`: Do something when everything is spiritualized
+			 * (after `DOMContentLoaded`). Or if that's already too late, just do it.
+			 * @param {function} action
+			 * @param @optional {object} opt_thisp
+			 * @returns {Namespace}
+			 */
 			ready: chained(function(action, opt_thisp) {
 				gui.ready(action, opt_thisp);
 			}),
 
 			/**
-		 * Open the main navigation menu (up in the chrome somewhere).
-		 * @returns {Namespace}
-		 */
+			 * Open the main navigation menu (up in the chrome somewhere).
+			 * @returns {Namespace}
+			 */
 			openMenu: chained(function() {
 				gui.Broadcast.dispatchGlobal(this.BROADCAST_GLOBAL_MENU_OPEN);
 			}),
 
 			/**
-		 * Close the main navigation menu.
-		 * @returns {Namespace}
-		 */
+			 * Close the main navigation menu.
+			 * @returns {Namespace}
+			 */
 			closeMenu: chained(function() {
 				gui.Broadcast.dispatchGlobal(this.BROADCAST_GLOBAL_MENU_CLOSE);
 			}),
 
 			/**
-		 * @deprecated (but still used in the Client-Docs website, so don't kill).
-		 * Load URL as new app. This implies that we create a new iframe instead
-		 * of reusing the old one, preventing a temporary flash-of-no-content.
-		 * We also get history support (via browsers back and forward buttons).
-		 * TODO(jmo@): Separate "error class" for extra long error messages!
-		 * @param {string} href The href must be formatted as an app URL
-		 * @param @optional {string} target TODO(jmo@): support this argument
-		 */
+			 * @deprecated (but still used in the Client-Docs website, so don't kill).
+			 * Load URL as new app. This implies that we create a new iframe instead
+			 * of reusing the old one, preventing a temporary flash-of-no-content.
+			 * We also get history support (via browsers back and forward buttons).
+			 * TODO(jmo@): Separate "error class" for extra long error messages!
+			 * @param {string} href The href must be formatted as an app URL
+			 * @param @optional {string} target TODO(jmo@): support this argument
+			 */
 			load: function(href, opt_target) {
 				var url = new gui.URL(document, href);
 				this.ready(function spiritualized() {
@@ -433,57 +433,57 @@ ts.ui = gui.namespace(
 			},
 
 			/**
-		 * Reflex everything (to tighten up any JS based layout).
-		 */
+			 * Reflex everything (to tighten up any JS based layout).
+			 */
 			reflex: chained(function() {
 				ts.ui.get(document.documentElement).reflex();
 			}),
 
 			/**
-		 * Is mobile breakpoint?
-		 * @returns {boolean}
-		 */
+			 * Is mobile breakpoint?
+			 * @returns {boolean}
+			 */
 			isMobilePoint: function() {
 				return this._getlayout().isMobilePoint();
 			},
 
 			/**
-		 * Is tablet breakpoint?
-		 * @returns {boolean}
-		 */
+			 * Is tablet breakpoint?
+			 * @returns {boolean}
+			 */
 			isTabletPoint: function() {
 				return this._getlayout().isTabletPoint();
 			},
 
 			/**
-		 * Is desktop breakpoint?
-		 * @returns {boolean}
-		 */
+			 * Is desktop breakpoint?
+			 * @returns {boolean}
+			 */
 			isDesktopPoint: function() {
 				return this._getlayout().isDesktopPoint();
 			},
 
 			/**
-		 * Add breakpoint listener.
-		 * @param {function} callback Two args: newpoint + oldpoint
-		 */
+			 * Add breakpoint listener.
+			 * @param {function} callback Two args: newpoint + oldpoint
+			 */
 			addBreakPointListener: function(callback) {
 				breakpointers.push(callback);
 			},
 
 			/**
-		 * Remove breakpoint listener.
-		 * @param {function} callback
-		 */
+			 * Remove breakpoint listener.
+			 * @param {function} callback
+			 */
 			removeBreakPointListener: function(callback) {
 				gui.Array.remove(breakpointers, breakpointers.indexOf(callback));
 			},
 
 			/**
-		 * Handle model changes.
-		 * // TODO: on breakpoint, also dispatch custom event on document node.
-		 * @param {Array<edb.Change>} changes
-		 */
+			 * Handle model changes.
+			 * // TODO: on breakpoint, also dispatch custom event on document node.
+			 * @param {Array<edb.Change>} changes
+			 */
 			onchange: function(changes) {
 				changes.forEach(function(c) {
 					if (c.object instanceof ts.ui.LayoutModel) {
@@ -500,9 +500,9 @@ ts.ui = gui.namespace(
 			// Private .................................................................
 
 			/**
-		 * Get that layout model.
-		 * @returns {ts.ui.LayoutModel}
-		 */
+			 * Get that layout model.
+			 * @returns {ts.ui.LayoutModel}
+			 */
 			_getlayout: function() {
 				var model = ts.ui.LayoutModel.output.get();
 				if (!model) {
@@ -514,23 +514,23 @@ ts.ui = gui.namespace(
 			// Privileged ..............................................................
 
 			/**
-		 * Toggled on `DOMContentLoaded` at which point we'll attempt to boostrap.
-		 * @type {boolean}
-		 */
+			 * Toggled on `DOMContentLoaded` at which point we'll attempt to boostrap.
+			 * @type {boolean}
+			 */
 			$domloaded: false,
 
 			/**
-		 * Will be set to `true` when all scripts are loaded or when there's no
-		 * additional scripts to load (this is basically the localization script).
-		 * @type {boolean}
-		 */
+			 * Will be set to `true` when all scripts are loaded or when there's no
+			 * additional scripts to load (this is basically the localization script).
+			 * @type {boolean}
+			 */
 			$jsloaded: false,
 
 			/**
-		 * Called twice: Once when when the localization script has been loaded
-		 * and again (or maybe before) when the `DOMContentLoaded` event happens.
-		 * @param @optional {boolean} jsloaded
-		 */
+			 * Called twice: Once when when the localization script has been loaded
+			 * and again (or maybe before) when the `DOMContentLoaded` event happens.
+			 * @param @optional {boolean} jsloaded
+			 */
 			$maybebootstrap: function(jsloaded) {
 				this.$jsloaded = this.$jsloaded || !!jsloaded;
 				if (this.$domloaded && this.$jsloaded) {

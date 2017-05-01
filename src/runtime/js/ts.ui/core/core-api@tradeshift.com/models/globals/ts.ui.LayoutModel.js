@@ -5,66 +5,66 @@
 ts.ui.LayoutModel = ts.ui.Model.extend(
 	{
 		/**
-	 * Friendly name.
-	 * @type {string}
-	 */
+		 * Friendly name.
+		 * @type {string}
+		 */
 		item: 'layout',
 
 		/**
-	 * True until first app loaded and shown.
-	 * @type {boolean}
-	 */
+		 * True until first app loaded and shown.
+		 * @type {boolean}
+		 */
 		booting: true,
 
 		/**
-	 * Current breakpoint. Matches mobile|tablet|desktop.
-	 * @type {string}
-	 */
+		 * Current breakpoint. Matches mobile|tablet|desktop.
+		 * @type {string}
+		 */
 		breakpoint: null,
 
 		/**
-	 * Derived breakponts: Current breakpoint and everything below.
-	 * @type {Array<string>}
-	 */
+		 * Derived breakponts: Current breakpoint and everything below.
+		 * @type {Array<string>}
+		 */
 		breakpoints: null,
 
 		/**
-	 * Menu is open?
-	 * TODO(jmo@): We are currently not maintaining this boolean right.
-	 * @type {boolean}
-	 */
+		 * Menu is open?
+		 * TODO(jmo@): We are currently not maintaining this boolean right.
+		 * @type {boolean}
+		 */
 		menuopen: false,
 
 		/**
-	 * Someone is busy doing something that blocks the UI?
-	 * TODO(jmo@): We are currently not maintaining this boolean right.
-	 * @see {ts.ui.StatusPlugin}
-	 * @type {boolean}
-	 */
+		 * Someone is busy doing something that blocks the UI?
+		 * TODO(jmo@): We are currently not maintaining this boolean right.
+		 * @see {ts.ui.StatusPlugin}
+		 * @type {boolean}
+		 */
 		blocking: false,
 
 		/**
-	 * Tracking open asides by `$instanceid` so we can count them.
-	 * @type {Array<string>}
-	 */
+		 * Tracking open asides by `$instanceid` so we can count them.
+		 * @type {Array<string>}
+		 */
 		asides: edb.Array, // TODO: ts.ui.Collection fails for some reason
 
 		/**
-	 * Tracking open dialogs by `$instanceid` so we can count them.
-	 * TODO(jmo@): We are currently not maintaining this collection right.
-	 * @type {Array<string>}
-	 */
+		 * Tracking open dialogs by `$instanceid` so we can count them.
+		 * TODO(jmo@): We are currently not maintaining this collection right.
+		 * @type {Array<string>}
+		 */
 		dialogs: edb.Array, // TODO: ts.ui.Collection fails for some reason
 
 		/**
-	 * Tracking focused spirits by `$instanceid` so we can restore focus.
-	 * @type {Array<string>}
-	 */
+		 * Tracking focused spirits by `$instanceid` so we can restore focus.
+		 * @type {Array<string>}
+		 */
 		attention: edb.Array, // TODO: ts.ui.Collection (but focus would break)
 
 		/**
-	 * Instantiate collections.
-	 */
+		 * Instantiate collections.
+		 */
 		onconstruct: function() {
 			this.super.onconstruct();
 			this.asides = [];
@@ -73,25 +73,25 @@ ts.ui.LayoutModel = ts.ui.Model.extend(
 		},
 
 		/**
-	 * Is mobile breakpoint?
-	 * @returns {boolean}
-	 */
+		 * Is mobile breakpoint?
+		 * @returns {boolean}
+		 */
 		isMobilePoint: function() {
 			return this.breakpoint === ts.ui.LayoutModel.BREAKPOINT_MOBILE;
 		},
 
 		/**
-	 * Is tablet breakpoint?
-	 * @returns {boolean}
-	 */
+		 * Is tablet breakpoint?
+		 * @returns {boolean}
+		 */
 		isTabletPoint: function() {
 			return this.breakpoint === ts.ui.LayoutModel.BREAKPOINT_TABLET;
 		},
 
 		/**
-	 * Is desktop breakpoint?
-	 * @returns {boolean}
-	 */
+		 * Is desktop breakpoint?
+		 * @returns {boolean}
+		 */
 		isDesktopPoint: function() {
 			return this.breakpoint === ts.ui.LayoutModel.BREAKPOINT_DESKTOP;
 		}

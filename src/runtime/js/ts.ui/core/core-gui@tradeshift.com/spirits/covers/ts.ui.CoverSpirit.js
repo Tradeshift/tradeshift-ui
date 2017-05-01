@@ -10,38 +10,38 @@ ts.ui.CoverSpirit = (function using(chained, Client) {
 	return ts.ui.Spirit.extend(
 		{
 			/**
-		 * Pending a current glitch in Chrome where multiple simultaneous
-		 * transitions freak out, we have disabled cover fades in WebKit.
-		 * UPDATE: We're pushing our luck with WebKit again...
-		 */
+			 * Pending a current glitch in Chrome where multiple simultaneous
+			 * transitions freak out, we have disabled cover fades in WebKit.
+			 * UPDATE: We're pushing our luck with WebKit again...
+			 */
 			onconfigure: function() {
 				this.super.onconfigure();
 				this.css.add(ts.ui.CLASS_COVER);
 			},
 
 			/**
-		 * Show the cover.
-		 * @return {ts.ui.CoverSpirit}
-		 */
+			 * Show the cover.
+			 * @return {ts.ui.CoverSpirit}
+			 */
 			show: chained(function() {
 				this.event.add(MOUSE_EVENTS);
 				this.dom.show();
 			}),
 
 			/**
-		 * Hide the cover.
-		 * @return {ts.ui.CoverSpirit}
-		 */
+			 * Hide the cover.
+			 * @return {ts.ui.CoverSpirit}
+			 */
 			hide: chained(function() {
 				this.event.remove(MOUSE_EVENTS);
 				this.dom.hide();
 			}),
 
 			/**
-		 * Start spinning (on a transparent background, unless you CSS this).
-		 * @param @optional {string} message
-		 * @returns {ts.ui.CoverSpirit}
-		 */
+			 * Start spinning (on a transparent background, unless you CSS this).
+			 * @param @optional {string} message
+			 * @returns {ts.ui.CoverSpirit}
+			 */
 			spin: chained(function(message) {
 				this._spinner = this._spinner || ts.ui.SpinnerSpirit.summon();
 				this._spinner.spin(this.element, {
@@ -50,9 +50,9 @@ ts.ui.CoverSpirit = (function using(chained, Client) {
 			}),
 
 			/**
-		 * Stop spinning.
-		 * @return {ts.ui.CoverSpirit}
-		 */
+			 * Stop spinning.
+			 * @return {ts.ui.CoverSpirit}
+			 */
 			stop: chained(function() {
 				if (this._spinner) {
 					this._spinner.stop();
@@ -60,10 +60,10 @@ ts.ui.CoverSpirit = (function using(chained, Client) {
 			}),
 
 			/**
-		 * Show or hide the cover.
-		 * @param {boolean} show
-		 * @return {ts.ui.CoverSpirit}
-		 */
+			 * Show or hide the cover.
+			 * @param {boolean} show
+			 * @return {ts.ui.CoverSpirit}
+			 */
 			shift: chained(function(show) {
 				if (show) {
 					this.show();
@@ -73,10 +73,10 @@ ts.ui.CoverSpirit = (function using(chained, Client) {
 			}),
 
 			/**
-		 * Position the cover.
-		 * @param {gui.Geometry|object} geo
-		 * @return {ts.ui.CoverSpirit}
-		 */
+			 * Position the cover.
+			 * @param {gui.Geometry|object} geo
+			 * @return {ts.ui.CoverSpirit}
+			 */
 			position: chained(function(geo) {
 				this.css.style({
 					top: geo.y,
@@ -87,8 +87,8 @@ ts.ui.CoverSpirit = (function using(chained, Client) {
 			}),
 
 			/**
-		 * Show and fade to no opacity.
-		 */
+			 * Show and fade to no opacity.
+			 */
 			fadeIn: function() {
 				this.show();
 				this._shouldbevisible = true;
@@ -102,8 +102,8 @@ ts.ui.CoverSpirit = (function using(chained, Client) {
 			},
 
 			/**
-		 * Fade to full opacity and hide.
-		 */
+			 * Fade to full opacity and hide.
+			 */
 			fadeOut: function() {
 				this._shouldbevisible = false;
 				if (this._usetransitions) {
@@ -117,10 +117,10 @@ ts.ui.CoverSpirit = (function using(chained, Client) {
 			},
 
 			/**
-		 * Closeing all ASIDEs when cover is clicked.
-		 * Also maintaining ASIDE class and display.
-		 * @param {Event} e
-		 */
+			 * Closeing all ASIDEs when cover is clicked.
+			 * Also maintaining ASIDE class and display.
+			 * @param {Event} e
+			 */
 			onevent: function(e) {
 				this.super.onevent(e);
 				var id = this.element.id;
@@ -150,31 +150,31 @@ ts.ui.CoverSpirit = (function using(chained, Client) {
 			// Private .................................................................
 
 			/**
-		 * Spirit of the Spinner.
-		 * @type {ts.ui.SpinnerSpirit}
-		 */
+			 * Spirit of the Spinner.
+			 * @type {ts.ui.SpinnerSpirit}
+			 */
 			_spinner: null,
 
 			/**
-		 * Fade around with CSS transitions?
-		 * @type {boolean}
-		 */
+			 * Fade around with CSS transitions?
+			 * @type {boolean}
+			 */
 			_usetransitions: ts.ui.usetransitions,
 
 			/**
-		 * Tracking a transitional state.
-		 * @type {boolean}
-		 */
+			 * Tracking a transitional state.
+			 * @type {boolean}
+			 */
 			_shouldbevisible: false
 		},
 		{
 			// Static ...............................................................
 
 			/**
-		 * Summon spirit.
-		 * @param @optional {gui.Geometry|object} opt_geo
-		 * @returns {gui.CoverSpirit}
-		 */
+			 * Summon spirit.
+			 * @param @optional {gui.Geometry|object} opt_geo
+			 * @returns {gui.CoverSpirit}
+			 */
 			summon: function(opt_geo) {
 				var spirit = this.possess(document.createElement('div'));
 				spirit.css.add(ts.ui.CLASS_COVER);
@@ -185,12 +185,12 @@ ts.ui.CoverSpirit = (function using(chained, Client) {
 			},
 
 			/**
-		 * Get-create CoverSpirit with ID and classname. First
-		 * run creates the spirit and appends it to the BODY.
-		 * @param {string} token For both ID and classname
-		 * @param @optional {Element} target Where to append the cover
-		 * @returns {ts.ui.CoverSpirit}
-		 */
+			 * Get-create CoverSpirit with ID and classname. First
+			 * run creates the spirit and appends it to the BODY.
+			 * @param {string} token For both ID and classname
+			 * @param @optional {Element} target Where to append the cover
+			 * @returns {ts.ui.CoverSpirit}
+			 */
 			getCover: function(token, target) {
 				return (
 					gui.DOMPlugin.qdoc('.' + token, this) ||

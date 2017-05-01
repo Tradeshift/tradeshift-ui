@@ -1,9 +1,9 @@
 /**
-	* Spirit of the tabbar.
-	* @extends {ts.ui.ToolBarSpirit}
-	* @using {string} CLASS_MACRO
-	* @using {string} CLASS_MICRO
-	*/
+ * Spirit of the tabbar.
+ * @extends {ts.ui.ToolBarSpirit}
+ * @using {string} CLASS_MACRO
+ * @using {string} CLASS_MICRO
+ */
 ts.ui.TabBarSpirit = (function(CLASS_MACRO, CLASS_MICRO) {
 	return ts.ui.ToolBarSpirit.extend({
 		/**

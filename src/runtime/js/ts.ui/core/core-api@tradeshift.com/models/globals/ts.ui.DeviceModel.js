@@ -5,16 +5,16 @@
 ts.ui.DeviceModel = ts.ui.Model.extend(
 	{
 		/**
-	 * Friendly name.
-	 * @type {string}
-	 */
+		 * Friendly name.
+		 * @type {string}
+		 */
 		item: 'device',
 
 		/**
-	 * Matches "portrait" or "landscape".
-	 * Defaults to landscape for desktop.
-	 * @type {string}
-	 */
+		 * Matches "portrait" or "landscape".
+		 * Defaults to landscape for desktop.
+		 * @type {string}
+		 */
 		orientation: 'landscape'
 	},
 	{

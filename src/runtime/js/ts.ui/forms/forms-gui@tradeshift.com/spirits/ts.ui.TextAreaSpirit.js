@@ -17,18 +17,18 @@ ts.ui.TextAreaSpirit = (function using(Type, Client, unit, tick, time) {
 	return ts.ui.TextInputSpirit.extend(
 		{
 			/**
-		 * When false, ENTER will make the textarea grow (to a certain limit).
-		 * When true, only SHIFT+ENTER will do that (chat comment style) and
-		 * the ENTER key can be freed up to other purposes (eg. submit comment).
-		 * In HTML, this can also be adjusted by setting the `type` to `submit`.
-		 * TODO: It's not really possible to hold SHIFT while pressing ENTER in iOS.
-		 * @type {boolean}
-		 */
+			 * When false, ENTER will make the textarea grow (to a certain limit).
+			 * When true, only SHIFT+ENTER will do that (chat comment style) and
+			 * the ENTER key can be freed up to other purposes (eg. submit comment).
+			 * In HTML, this can also be adjusted by setting the `type` to `submit`.
+			 * TODO: It's not really possible to hold SHIFT while pressing ENTER in iOS.
+			 * @type {boolean}
+			 */
 			entershift: false,
 
 			/**
-		 * Setup on enter.
-		 */
+			 * Setup on enter.
+			 */
 			onenter: function() {
 				this.super.onenter();
 				this.css.add(ts.ui.CLASS_TEXTAREA);
@@ -40,9 +40,9 @@ ts.ui.TextAreaSpirit = (function using(Type, Client, unit, tick, time) {
 			},
 
 			/**
-		 * Form in ASIDE scenario.
-		 * TODO: remove all visibility stuff since nobody knows how to use it :/
-		 */
+			 * Form in ASIDE scenario.
+			 * TODO: remove all visibility stuff since nobody knows how to use it :/
+			 */
 			onvisible: function() {
 				this.super.onvisible();
 				if (this.css.get('height') === 'auto') {
@@ -51,9 +51,9 @@ ts.ui.TextAreaSpirit = (function using(Type, Client, unit, tick, time) {
 			},
 
 			/**
-		 * Handle attribute (change). In Angular, attributes change chaotically.
-		 * @param {gui.Att} att
-		 */
+			 * Handle attribute (change). In Angular, attributes change chaotically.
+			 * @param {gui.Att} att
+			 */
 			onatt: function(att) {
 				this.super.onatt(att);
 				if (att.name === 'rows') {
@@ -69,9 +69,9 @@ ts.ui.TextAreaSpirit = (function using(Type, Client, unit, tick, time) {
 			},
 
 			/**
-		 * Handle event.
-		 * @param {Event} e
-		 */
+			 * Handle event.
+			 * @param {Event} e
+			 */
 			onevent: function(e) {
 				var was = this._suspendenterkey;
 				switch (e.type) {
@@ -105,11 +105,11 @@ ts.ui.TextAreaSpirit = (function using(Type, Client, unit, tick, time) {
 			},
 
 			/**
-		 * Autosize whenever `textarea.value` was changed programatically.
-		 * TODO: Account for scenario where textarea is in a `display:none`
-		 * part of the screen...
-		 * @param {gui.Tick} t
-		 */
+			 * Autosize whenever `textarea.value` was changed programatically.
+			 * TODO: Account for scenario where textarea is in a `display:none`
+			 * part of the screen...
+			 * @param {gui.Tick} t
+			 */
 			ontick: function(t) {
 				this.super.ontick(t);
 				if (t.type === tick) {
@@ -132,19 +132,19 @@ ts.ui.TextAreaSpirit = (function using(Type, Client, unit, tick, time) {
 			// Private .................................................................
 
 			/**
-		 * Setup the model (and unsetup any potential old model).
-		 * @param {ts.ui.InputModel} model
-		 * @param {boolean} setup Setup or unsetup?
-		 */
+			 * Setup the model (and unsetup any potential old model).
+			 * @param {ts.ui.InputModel} model
+			 * @param {boolean} setup Setup or unsetup?
+			 */
 			_setupmodel: function(model, setup) {
 				this.super._setupmodel(model, setup);
 				this.entershift = setup ? model.entershift : false;
 			},
 
 			/**
-		 * Adjust height. Snap to line height. Abort in case we are display:none.
-		 * If the height changed, dispatch action to any containing layout managers.
-		 */
+			 * Adjust height. Snap to line height. Abort in case we are display:none.
+			 * If the height changed, dispatch action to any containing layout managers.
+			 */
 			_autosize: function() {
 				var target, padding = unit * 0.5;
 				var current = this.css.height || this.box.height;
@@ -162,10 +162,10 @@ ts.ui.TextAreaSpirit = (function using(Type, Client, unit, tick, time) {
 			},
 
 			/**
-		 * Force repaint to fix a rendering dysfunction in newer versions
-		 * of Google Chrome (appears not needed when the scrollbar is shown).
-		 * @param {Element} elm
-		 */
+			 * Force repaint to fix a rendering dysfunction in newer versions
+			 * of Google Chrome (appears not needed when the scrollbar is shown).
+			 * @param {Element} elm
+			 */
 			_hotfixchrome: function(elm) {
 				if (Client.isChrome && elm.scrollHeight <= elm.offsetHeight) {
 					this.tick.nextFrame(function() {
@@ -179,9 +179,9 @@ ts.ui.TextAreaSpirit = (function using(Type, Client, unit, tick, time) {
 			// Static ...............................................................
 
 			/**
-		 * Summon spirit.
-		 * @returns {ts.ui.TextAreaSpirit}
-		 */
+			 * Summon spirit.
+			 * @returns {ts.ui.TextAreaSpirit}
+			 */
 			summon: function() {
 				return this.possess(document.createElement('textarea'));
 			}

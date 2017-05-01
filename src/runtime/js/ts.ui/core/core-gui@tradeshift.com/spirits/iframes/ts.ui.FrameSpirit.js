@@ -5,9 +5,9 @@
 ts.ui.FrameSpirit = gui.IframeSpirit.extend(
 	{
 		/**
-	 * Setup listeners for navigation going
-	 * on inside the hosted iframe and stuff.
-	 */
+		 * Setup listeners for navigation going
+		 * on inside the hosted iframe and stuff.
+		 */
 		onenter: function() {
 			this.super.onenter();
 			this._models = [];
@@ -21,10 +21,10 @@ ts.ui.FrameSpirit = gui.IframeSpirit.extend(
 		},
 
 		/**
-	 * Translate life events (non-bubbling) to actions (bubbling).
-	 * Actions are intended for the {ts.top.RootSpirit} to intecept.
-	 * @param {gui.Life} l
-	 */
+		 * Translate life events (non-bubbling) to actions (bubbling).
+		 * Actions are intended for the {ts.top.RootSpirit} to intecept.
+		 * @param {gui.Life} l
+		 */
 		onlife: function(l) {
 			this.super.onlife(l);
 			switch (l.type) {
@@ -44,9 +44,9 @@ ts.ui.FrameSpirit = gui.IframeSpirit.extend(
 		},
 
 		/**
-	 * Handle input.
-	 * @param {edb.Input} input
-	 */
+		 * Handle input.
+		 * @param {edb.Input} input
+		 */
 		oninput: function(input) {
 			this.super.oninput(input);
 			switch (input.type) {
@@ -58,11 +58,11 @@ ts.ui.FrameSpirit = gui.IframeSpirit.extend(
 		},
 
 		/**
-	 * Load src. If the src starts with a #hash, we'll
-	 * try to update the hosted document without reload.
-	 * @param {String} url
-	 * @return {gui.Then}
-	 */
+		 * Load src. If the src starts with a #hash, we'll
+		 * try to update the hosted document without reload.
+		 * @param {String} url
+		 * @return {gui.Then}
+		 */
 		load: function(src) {
 			var then = new gui.Then();
 			if (src.startsWith('#')) {
@@ -76,29 +76,29 @@ ts.ui.FrameSpirit = gui.IframeSpirit.extend(
 		// Private .............................................
 
 		/**
-	 * @type {Array<edb.Object>}
-	 */
+		 * @type {Array<edb.Object>}
+		 */
 		_models: null,
 
 		/**
-	 * Load new src, nuke existing iframe page.
-	 * TODO (jmo@):: The machine would AJAX about now.
-	 * @param {String} src
-	 * @param {gui.Then} then
-	 */
+		 * Load new src, nuke existing iframe page.
+		 * TODO (jmo@):: The machine would AJAX about now.
+		 * @param {String} src
+		 * @param {gui.Then} then
+		 */
 		_loadnewsrc: function(src, then) {
 			this.src(src);
 			then.now();
 		},
 
 		/**
-	 * Update hash inside the iframe. We can't do this
-	 * reliably from the outside without nuking the
-	 * (xorigin) iframe page, but we can transmit the
-	 * instruction to the contained document(spirit).
-	 * @param {string} hash
-	 * @param {gui.Then} then
-	 */
+		 * Update hash inside the iframe. We can't do this
+		 * reliably from the outside without nuking the
+		 * (xorigin) iframe page, but we can transmit the
+		 * instruction to the contained document(spirit).
+		 * @param {string} hash
+		 * @param {gui.Then} then
+		 */
 		_updatehash: function(hash, then) {
 			var action = ts.ui.ACTION_GLOBAL_LOCATION_CHANGEHASH;
 			this.action.descendGlobal(action, hash);
@@ -106,28 +106,28 @@ ts.ui.FrameSpirit = gui.IframeSpirit.extend(
 		},
 
 		/**
-	 * Content document spiritualized. Important: This can be used to relay
-	 * models "globally" from the chrome to the content, but we're not using
-	 * this kind of (Greenfield) stuff now. Since it might still come in
-	 * handy, perhaps we better leave this commented code around for a while...
-	 * @override {gui.IframeSpirit#_onspiritualized}
-	 *
-	_onspiritualized: function() {
-		this.super._onspiritualized();
-		this.action.descendGlobal(
-			ts.ui.ACTION_GLOBAL_MODELS_INITIALIZE,
-			this._mapmodels(this._models)
-		);
-	},
-	*/
+		 * Content document spiritualized. Important: This can be used to relay
+		 * models "globally" from the chrome to the content, but we're not using
+		 * this kind of (Greenfield) stuff now. Since it might still come in
+		 * handy, perhaps we better leave this commented code around for a while...
+		 * @override {gui.IframeSpirit#_onspiritualized}
+		 *
+		 _onspiritualized: function() {
+		 this.super._onspiritualized();
+		 this.action.descendGlobal(
+		 ts.ui.ACTION_GLOBAL_MODELS_INITIALIZE,
+		 this._mapmodels(this._models)
+		 );
+		 },
+		 */
 
 		/**
-	 * Prepare collected models for cross frame posting. Returns
-	 * a map indexing the model classname to a serialized model.
-	 * @see {ts.ui.DocumentSpirit#_outputmodels}
-	 * @param {Array<edb.Object>} models
-	 * @return {Map<String,object>}
-	 */
+		 * Prepare collected models for cross frame posting. Returns
+		 * a map indexing the model classname to a serialized model.
+		 * @see {ts.ui.DocumentSpirit#_outputmodels}
+		 * @param {Array<edb.Object>} models
+		 * @return {Map<String,object>}
+		 */
 		_mapmodels: function(models) {
 			var map = Object.create(null);
 			this._models.forEach(function(model) {
@@ -140,17 +140,17 @@ ts.ui.FrameSpirit = gui.IframeSpirit.extend(
 		// Static .................................................................
 
 		/**
-	 * Note: We're not just this thing just now.
-	 * TODO (jmo@): Eventually *don't* allow same origin!
-	 * @type {String}
-	 */
+		 * Note: We're not just this thing just now.
+		 * TODO (jmo@): Eventually *don't* allow same origin!
+		 * @type {String}
+		 */
 		SANDBOX: 'allow-scripts allow-forms allow-same-origin',
 
 		/**
-	 * Summon spirit.
-	 * @param @optional {string} opt_src
-	 * @param @optional {string} opt_box
-	 */
+		 * Summon spirit.
+		 * @param @optional {string} opt_src
+		 * @param @optional {string} opt_box
+		 */
 		summon: function(opt_src, opt_box) {
 			var iframe = document.createElement('iframe');
 			var spirit = this.possess(iframe);

@@ -7,8 +7,8 @@ ts.ui.UserCardSpirit = (function(UserCard) {
 	return ts.ui.CardSpirit.extend(
 		{
 			/**
-		 * Show the user details in an aside.
-		 */
+			 * Show the user details in an aside.
+			 */
 			open: function() {
 				var clone = ts.ui.UserCardModel.from(this._model);
 				clone.type = 'ts-details';
@@ -27,17 +27,17 @@ ts.ui.UserCardSpirit = (function(UserCard) {
 			// Static ..............................................................
 
 			/**
-		 * Convert injected JSON to this kind of model.
-		 * @see {ts.ui.ObjectSpirit}
-		 * @type {constructor}
-		 */
+			 * Convert injected JSON to this kind of model.
+			 * @see {ts.ui.ObjectSpirit}
+			 * @type {constructor}
+			 */
 			model: ts.ui.UserCardModel,
 
 			/**
-		 * Fetch the model from this kind of collection.
-		 * @see {ts.ui.ObjectSpirit}
-		 * @type {constructor}
-		 */
+			 * Fetch the model from this kind of collection.
+			 * @see {ts.ui.ObjectSpirit}
+			 * @type {constructor}
+			 */
 			collection: ts.ui.UserCardCollection
 		}
 	);

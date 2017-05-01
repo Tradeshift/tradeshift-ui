@@ -132,8 +132,8 @@ ts.ui.ImageSpirit = (function using(fontcss) {
 	return ts.ui.Spirit.extend(
 		{
 			/**
-		 * Setup load handler (dependant on cache status).
-		 */
+			 * Setup load handler (dependant on cache status).
+			 */
 			onconfigure: function() {
 				this.super.onconfigure();
 				var src = this.att.get('src');
@@ -155,9 +155,9 @@ ts.ui.ImageSpirit = (function using(fontcss) {
 			},
 
 			/**
-		 * Handle event.
-		 * @param {Event} e
-		 */
+			 * Handle event.
+			 * @param {Event} e
+			 */
 			onevent: function(e) {
 				this.super.onevent(e);
 				switch (e.type) {
@@ -173,10 +173,10 @@ ts.ui.ImageSpirit = (function using(fontcss) {
 			},
 
 			/**
-		 * The ALT attribute will be used to generate a fallback
-		 * image: We generate an SVG which we then Base64 encode.
-		 * @param {gui.Att} att
-		 */
+			 * The ALT attribute will be used to generate a fallback
+			 * image: We generate an SVG which we then Base64 encode.
+			 * @param {gui.Att} att
+			 */
 			onatt: function(att) {
 				this.super.onatt(att);
 				if (att.name === 'alt') {
@@ -198,22 +198,22 @@ ts.ui.ImageSpirit = (function using(fontcss) {
 			// Private .................................................................
 
 			/**
-		 * We've set the `opacity` to `0` while loading the image just
-		 * in case the browser flashes some kind of strange symbol. But
-		 * this is perhaps not needed nowadays, must check slow connection.
-		 */
+			 * We've set the `opacity` to `0` while loading the image just
+			 * in case the browser flashes some kind of strange symbol. But
+			 * this is perhaps not needed nowadays, must check slow connection.
+			 */
 			_onload: function() {
 				this.css.add('ts-loaded');
 				this.action.dispatch(ts.ui.ACTION_DID_LOAD);
 			},
 
 			/**
-		 * Compute fallback image source. Note that we don't read `offsetWidth`
-		 * because that will force the browser the repaint mid-rendering, we'll
-		 * suggest that the `width` attribute is specified (for best quality).
-		 * @param {string} name
-		 * @returns {string}
-		 */
+			 * Compute fallback image source. Note that we don't read `offsetWidth`
+			 * because that will force the browser the repaint mid-rendering, we'll
+			 * suggest that the `width` attribute is specified (for best quality).
+			 * @param {string} name
+			 * @returns {string}
+			 */
 			_computesource: function(name) {
 				var w = this.att.get('width');
 				var h = this.att.get('height');
@@ -227,11 +227,11 @@ ts.ui.ImageSpirit = (function using(fontcss) {
 			// Static ...............................................................
 
 			/**
-		 * Compute consistantly pleasent color for given string.
-		 * Exposing this in case the color needs to be replicated.
-		 * @param {string} str
-		 * @returns {string}
-		 */
+			 * Compute consistantly pleasent color for given string.
+			 * Exposing this in case the color needs to be replicated.
+			 * @param {string} str
+			 * @returns {string}
+			 */
 			getColorForString: function(str) {
 				return getcolorval(str);
 			}

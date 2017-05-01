@@ -9,38 +9,38 @@ ts.ui.InputSpirit = (function using(chained, Type, Client) {
 	return ts.ui.FieldSpirit.extend(
 		{
 			/**
-		 * @type {ts.ui.ValidityModel}
-		 */
+			 * @type {ts.ui.ValidityModel}
+			 */
 			validity: null,
 
 			/**
-		 * Icon to use, overriding the default (date, select, disabled, etc.)
-		 * @type {String|function}
-		 */
+			 * Icon to use, overriding the default (date, select, disabled, etc.)
+			 * @type {String|function}
+			 */
 			icon: null,
 
 			/**
-		 * Function to execute on idle (pause).
-		 * @type {string|function}
-		 */
+			 * Function to execute on idle (pause).
+			 * @type {string|function}
+			 */
 			onidle: null,
 
 			/**
-		 * Time before user is considered idle.
-		 * @type {number} Timeout in milliseconds
-		 */
+			 * Time before user is considered idle.
+			 * @type {number} Timeout in milliseconds
+			 */
 			idletime: Client.isTouchDevice ? 750 : 500,
 
 			/**
-		 * Function to execute on ENTER key.
-		 * @type {string|function}
-		 */
+			 * Function to execute on ENTER key.
+			 * @type {string|function}
+			 */
 			onenterkey: null,
 
 			/**
-		 * Shortcut to 'this.element.disabled'.
-		 * @type {boolean}
-		 */
+			 * Shortcut to 'this.element.disabled'.
+			 * @type {boolean}
+			 */
 			disabled: {
 				getter: function() {
 					return this.att.has('disabled');
@@ -51,9 +51,9 @@ ts.ui.InputSpirit = (function using(chained, Type, Client) {
 			},
 
 			/**
-		 * Shortcut to 'this.element.readonly'.
-		 * @type {boolean}
-		 */
+			 * Shortcut to 'this.element.readonly'.
+			 * @type {boolean}
+			 */
 			readonly: {
 				getter: function() {
 					return this.att.has('readonly');
@@ -64,8 +64,8 @@ ts.ui.InputSpirit = (function using(chained, Type, Client) {
 			},
 
 			/**
-		 * Observe that model.
-		 */
+			 * Observe that model.
+			 */
 			onconfigure: function() {
 				this.super.onconfigure();
 				if (this._ismodelled()) {
@@ -74,8 +74,8 @@ ts.ui.InputSpirit = (function using(chained, Type, Client) {
 			},
 
 			/**
-		 * Release the validity checker.
-		 */
+			 * Release the validity checker.
+			 */
 			ondestruct: function() {
 				this.super.ondestruct();
 				this._discount();
@@ -85,8 +85,8 @@ ts.ui.InputSpirit = (function using(chained, Type, Client) {
 			},
 
 			/**
-		 * Attach to the DOM.
-		 */
+			 * Attach to the DOM.
+			 */
 			onattach: function() {
 				this.super.onattach();
 				this.element.spellcheck = false;
@@ -97,9 +97,9 @@ ts.ui.InputSpirit = (function using(chained, Type, Client) {
 			},
 
 			/**
-		 * Handle event.
-		 * @param {Event} e
-		 */
+			 * Handle event.
+			 * @param {Event} e
+			 */
 			onevent: function(e) {
 				this.super.onevent(e);
 				var model = this._model;
@@ -134,9 +134,9 @@ ts.ui.InputSpirit = (function using(chained, Type, Client) {
 			},
 
 			/**
-		 * Handle model changes.
-		 * @param {Array<edb.Change>} changes
-		 */
+			 * Handle model changes.
+			 * @param {Array<edb.Change>} changes
+			 */
 			onchange: function(changes) {
 				this.super.onchange(changes);
 				changes.forEach(function(c) {
@@ -145,9 +145,9 @@ ts.ui.InputSpirit = (function using(chained, Type, Client) {
 			},
 
 			/**
-		 * Handle attribute change (or listener added).
-		 * @param {gui.Att} att
-		 */
+			 * Handle attribute change (or listener added).
+			 * @param {gui.Att} att
+			 */
 			onatt: function(att) {
 				this.super.onatt(att);
 				switch (att.name) {
@@ -158,35 +158,35 @@ ts.ui.InputSpirit = (function using(chained, Type, Client) {
 			},
 
 			/**
-		 * Sugar not disabled.
-		 * @returns {ts.ui.InputSpirit}
-		 */
+			 * Sugar not disabled.
+			 * @returns {ts.ui.InputSpirit}
+			 */
 			enable: chained(function() {
 				this.disabled = false;
 			}),
 
 			/**
-		 * Sugar disabled.
-		 * @returns {ts.ui.InputSpirit}
-		 */
+			 * Sugar disabled.
+			 * @returns {ts.ui.InputSpirit}
+			 */
 			disable: chained(function() {
 				this.disabled = true;
 			}),
 
 			/**
-		 * Clear the input.
-		 * @returns {ts.ui.SearchSpirit}
-		 */
+			 * Clear the input.
+			 * @returns {ts.ui.SearchSpirit}
+			 */
 			clear: chained(function() {
 				this.value = '';
 			}),
 
 			/**
-		 * Set or get the model.
-		 * TODO: Move all this to ancestor spirit (ts.ui.Spirit)?
-		 * @param {ts.ui.InputModel} model
-		 * @returns {ts.ui.InputSpirit|ts.ui.InputModel}
-		 */
+			 * Set or get the model.
+			 * TODO: Move all this to ancestor spirit (ts.ui.Spirit)?
+			 * @param {ts.ui.InputModel} model
+			 * @returns {ts.ui.InputSpirit|ts.ui.InputModel}
+			 */
 			model: chained(function(model) {
 				if (arguments.length) {
 					if (ts.ui.InputModel.is(model)) {
@@ -209,8 +209,8 @@ ts.ui.InputSpirit = (function using(chained, Type, Client) {
 			// Privileged ..............................................................
 
 			/**
-		 * Style the form.
-		 */
+			 * Style the form.
+			 */
 			$updatestyling: function() {
 				this.super.$updatestyling();
 				this._label(function(label) {
@@ -222,35 +222,35 @@ ts.ui.InputSpirit = (function using(chained, Type, Client) {
 			// private .................................................................
 
 			/**
-		 * Optional model thing.
-		 * @type {ts.ui.InputModel}
-		 */
+			 * Optional model thing.
+			 * @type {ts.ui.InputModel}
+			 */
 			_model: null,
 
 			/**
-		 * Tracking the value to detect actual value-changes (ex. arrow keys etc).
-		 * @type {string}
-		 */
+			 * Tracking the value to detect actual value-changes (ex. arrow keys etc).
+			 * @type {string}
+			 */
 			_snapshot: null,
 
 			/**
-		 * Timeout key.
-		 * @type {number}
-		 */
+			 * Timeout key.
+			 * @type {number}
+			 */
 			_timeout: -1,
 
 			/**
-		 * Temporarily suspending evaluation of `onenterkey` (if assigned)?
-		 * @see {ts.ui.TextAreaSpirit} Can be setup to require SHIFT+ENTER.
-		 * @type {boolean}
-		 */
+			 * Temporarily suspending evaluation of `onenterkey` (if assigned)?
+			 * @see {ts.ui.TextAreaSpirit} Can be setup to require SHIFT+ENTER.
+			 * @type {boolean}
+			 */
 			_suspendenterkey: false,
 
 			/**
-		 * Setup the model (and unsetup any potential old model).
-		 * @param {ts.ui.InputModel} model
-		 * @param {boolean} setup Setup or unsetup?
-		 */
+			 * Setup the model (and unsetup any potential old model).
+			 * @param {ts.ui.InputModel} model
+			 * @param {boolean} setup Setup or unsetup?
+			 */
 			_setupmodel: function(model, setup) {
 				if (setup) {
 					model.addObserver(this);
@@ -278,8 +278,8 @@ ts.ui.InputSpirit = (function using(chained, Type, Client) {
 			},
 
 			/**
-		 * Countdown on idle.
-		 */
+			 * Countdown on idle.
+			 */
 			_countdown: function() {
 				this._discount();
 				this._timeout = this.tick.time(function() {
@@ -288,25 +288,25 @@ ts.ui.InputSpirit = (function using(chained, Type, Client) {
 			},
 
 			/**
-		 * Compile and invoke idle function.
-		 */
+			 * Compile and invoke idle function.
+			 */
 			_oncount: function() {
 				this._discount();
 				this._maybeinvoke(this.onidle, this.value);
 			},
 
 			/**
-		 * Clear the idle timeout.
-		 */
+			 * Clear the idle timeout.
+			 */
 			_discount: function() {
 				clearTimeout(this._timeout);
 				this._timeout = -1;
 			},
 
 			/**
-		 * Input value changed.
-		 * @param {string} value
-		 */
+			 * Input value changed.
+			 * @param {string} value
+			 */
 			_oninput: function(value) {
 				this._label(function(label) {
 					label.$empty(!value);
@@ -320,13 +320,13 @@ ts.ui.InputSpirit = (function using(chained, Type, Client) {
 			},
 
 			/**
-		 * Handle model change. Some of this can be moved to EDBML pending
-		 * https://github.com/wunderbyte/spiritual-edbml/issues/4 (NOW FIXED!).
-		 * @param {ts.ui.Model} model
-		 * @param {string} name
-		 * @param {object} value
-		 * @param {object} oldvalue
-		 */
+			 * Handle model change. Some of this can be moved to EDBML pending
+			 * https://github.com/wunderbyte/spiritual-edbml/issues/4 (NOW FIXED!).
+			 * @param {ts.ui.Model} model
+			 * @param {string} name
+			 * @param {object} value
+			 * @param {object} oldvalue
+			 */
 			_onmodelchange: function(model, name, value, oldvalue) {
 				if (model === this._model) {
 					switch (name) {
@@ -350,12 +350,12 @@ ts.ui.InputSpirit = (function using(chained, Type, Client) {
 			},
 
 			/**
-		 * Note that a 'preventDefault()' will prevent IE10 from clearing
-		 * the value of the input for reasons that remain a mystery. This
-		 * will however prevent buttons in forms from submittin, so let's
-		 * think about this some more.
-		 * @param {KeyEvent} e
-		 */
+			 * Note that a 'preventDefault()' will prevent IE10 from clearing
+			 * the value of the input for reasons that remain a mystery. This
+			 * will however prevent buttons in forms from submittin, so let's
+			 * think about this some more.
+			 * @param {KeyEvent} e
+			 */
 			_onenterkey: function(e) {
 				if (!this._suspendenterkey) {
 					if (this._maybeinvoke(this.onenterkey, this.value)) {
@@ -371,9 +371,9 @@ ts.ui.InputSpirit = (function using(chained, Type, Client) {
 			// Static ...............................................................
 
 			/**
-		 * Summon spirit.
-		 * @return {ts.ui.InputSpirit}
-		 */
+			 * Summon spirit.
+			 * @return {ts.ui.InputSpirit}
+			 */
 			summon: function() {
 				return this.possess(document.createElement('input'));
 			}

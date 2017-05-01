@@ -345,12 +345,12 @@ window.gui = (function using(Namespace, Timer) {
 		// ad hoc namespace mechanism ..................................
 
 		/**
-	 * When the first namespace `gui` has been instantiated,
-	 * this will become exposed publically as `gui.Namespace`.
-	 * TODO: Let's remember to check for namespace collions!
-	 * @param {string} ns
-	 * @param @optional {object} members
-	 */
+		 * When the first namespace `gui` has been instantiated,
+		 * this will become exposed publically as `gui.Namespace`.
+		 * TODO: Let's remember to check for namespace collions!
+		 * @param {string} ns
+		 * @param @optional {object} members
+		 */
 		function Namespace(ns, members) {
 			Namespace.namespaces.push(this);
 			this.$ns = ns;
@@ -364,33 +364,33 @@ window.gui = (function using(Namespace, Timer) {
 		Namespace.namespaces = [];
 		Namespace.prototype = {
 			/**
-		 * Namespace string.
-		 * @type {String}
-		 */
+			 * Namespace string.
+			 * @type {String}
+			 */
 			$ns: null,
 
 			/**
-		 * Identification.
-		 * @returns {String}
-		 */
+			 * Identification.
+			 * @returns {String}
+			 */
 			toString: function() {
 				return '[namespace ' + this.$ns + ']';
 			},
 
 			/**
-		 * Compute classnames for class-type members.
-		 * @returns {gui.Namespace}
-		 */
+			 * Compute classnames for class-type members.
+			 * @returns {gui.Namespace}
+			 */
 			spacename: function() {
 				this._spacename(this, this.$ns);
 				return this;
 			},
 
 			/**
-		 * Name members recursively.
-		 * @param {object|function} o
-		 * @param {String} name
-		 */
+			 * Name members recursively.
+			 * @param {object|function} o
+			 * @param {String} name
+			 */
 			_spacename: function(o, name) {
 				gui.Object.each(
 					o,

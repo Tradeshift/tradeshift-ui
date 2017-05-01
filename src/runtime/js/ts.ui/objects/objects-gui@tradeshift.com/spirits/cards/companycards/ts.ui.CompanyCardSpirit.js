@@ -5,17 +5,17 @@
 ts.ui.CompanyCardSpirit = ts.ui.CardSpirit.extend(
 	{
 		/**
-	 * TODO: Maybe add logic here to hide
-	 * the logo until it's fully loaded?
-	 */
+		 * TODO: Maybe add logic here to hide
+		 * the logo until it's fully loaded?
+		 */
 		onrender: function() {
 			this.super.onrender();
 		},
 
 		/**
-	 * @experimental
-	 * From the future.
-	 */
+		 * @experimental
+		 * From the future.
+		 */
 		open: function() {
 			if (this._model) {
 				this._openaside(ts.ui.CompanyCardModel.from(this._model));
@@ -26,9 +26,9 @@ ts.ui.CompanyCardSpirit = ts.ui.CardSpirit.extend(
 		},
 
 		/**
-	 * TODO: This is just mockup stuff, don't use it yet!
-	 * @param {ts.ui.CompanyCardModel} model
-	 */
+		 * TODO: This is just mockup stuff, don't use it yet!
+		 * @param {ts.ui.CompanyCardModel} model
+		 */
 		_openaside: function(clone) {
 			clone.type = 'ts-details';
 			var aside = ts.ui
@@ -78,24 +78,24 @@ ts.ui.CompanyCardSpirit = ts.ui.CardSpirit.extend(
 		// Static .................................................................
 
 		/**
-	 * Convert injected JSON to this kind of model.
-	 * @see {ts.ui.ObjectSpirit}
-	 * @type {constructor}
-	 */
+		 * Convert injected JSON to this kind of model.
+		 * @see {ts.ui.ObjectSpirit}
+		 * @type {constructor}
+		 */
 		model: ts.ui.CompanyCardModel,
 
 		/**
-	 * Fetch the model from this kind of collection.
-	 * @see {ts.ui.ObjectSpirit}
-	 * @type {constructor}
-	 */
+		 * Fetch the model from this kind of collection.
+		 * @see {ts.ui.ObjectSpirit}
+		 * @type {constructor}
+		 */
 		collection: ts.ui.CompanyCardCollection,
 
 		/**
-	 * Dummy model used to render a preloader-layout.
-	 * No real data in it, so all can share the same.
-	 * @type {ts.ui.CompanyCardModel}
-	 */
+		 * Dummy model used to render a preloader-layout.
+		 * No real data in it, so all can share the same.
+		 * @type {ts.ui.CompanyCardModel}
+		 */
 		MOCK_MODEL: new ts.ui.CompanyCardModel({
 			id: gui.KeyMaster.generateGUID(),
 			mock: true,

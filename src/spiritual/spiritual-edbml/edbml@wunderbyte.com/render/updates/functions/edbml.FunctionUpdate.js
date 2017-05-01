@@ -5,16 +5,16 @@
 edbml.FunctionUpdate = edbml.Update.extend(
 	{
 		/**
-	 * Update type.
-	 * @type {String}
-	 */
+		 * Update type.
+		 * @type {String}
+		 */
 		type: edbml.Update.TYPE_FUNCTION,
 
 		/**
-	 * Setup update.
-	 * @param {String} id
-	 * @param @optional {Map<String,String>} map
-	 */
+		 * Setup update.
+		 * @param {String} id
+		 * @param @optional {Map<String,String>} map
+		 */
 		onconstruct: function(id, map) {
 			this.super.onconstruct();
 			this.id = id;
@@ -22,8 +22,8 @@ edbml.FunctionUpdate = edbml.Update.extend(
 		},
 
 		/**
-	 * Do the update.
-	 */
+		 * Do the update.
+		 */
 		update: function() {
 			var count = 0;
 			this.element(function(elm) {
@@ -42,9 +42,9 @@ edbml.FunctionUpdate = edbml.Update.extend(
 		// Private ...................................................................
 
 		/**
-	 * Report the update.
-	 * @param {String} report
-	 */
+		 * Report the update.
+		 * @param {String} report
+		 */
 		_report: function(report) {
 			var message = 'edbml.FunctionUpdate ' + report + ' (' + this.$instanceid + ')';
 			this.super._report(message);
@@ -54,8 +54,8 @@ edbml.FunctionUpdate = edbml.Update.extend(
 		// Static .................................................................
 
 		/**
-	 * @param {Element} element
-	 */
+		 * @param {Element} element
+		 */
 		_revoke: function(element) {
 			var att, count = 0, keys;
 			this._getatts(element).forEach(function(x) {
@@ -72,9 +72,9 @@ edbml.FunctionUpdate = edbml.Update.extend(
 		},
 
 		/**
-	 * @param {Element} element
-	 * @param {Map<String,String>} map
-	 */
+		 * @param {Element} element
+		 * @param {Map<String,String>} map
+		 */
 		_remap: function(element, map) {
 			var count = 0, oldkeys, newkey, newval;
 			if (Object.keys(map).length) {
@@ -97,10 +97,10 @@ edbml.FunctionUpdate = edbml.Update.extend(
 		},
 
 		/**
-	 * Collect attributes from DOM subtree that
-	 * somewhat resemble EDBML poke statements.
-	 * @returns {Array<Array<Node>>}
-	 */
+		 * Collect attributes from DOM subtree that
+		 * somewhat resemble EDBML poke statements.
+		 * @returns {Array<Array<Node>>}
+		 */
 		_getatts: function(element) {
 			var val, atts = [];
 			new gui.Crawler('edbml-crawler-functionupdate').descend(element, {

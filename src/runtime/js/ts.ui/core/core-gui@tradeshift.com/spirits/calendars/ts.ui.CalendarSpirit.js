@@ -154,31 +154,31 @@ ts.ui.CalendarSpirit = (function() {
 	return ts.ui.Spirit.extend(
 		{
 			/**
-		 * Selected date in the form of YYYY-MM-DD (as defined in RFC3339.)
-		 * @type {string}
-		 */
+			 * Selected date in the form of YYYY-MM-DD (as defined in RFC3339.)
+			 * @type {string}
+			 */
 			value: null,
 
 			/**
-		 * Min date in YYYY-MM-DD.
-		 * @type {string}
-		 */
+			 * Min date in YYYY-MM-DD.
+			 * @type {string}
+			 */
 			min: null,
 
 			/**
-		 * Max date in YYYY-MM-DD.
-		 * @type {string}
-		 */
+			 * Max date in YYYY-MM-DD.
+			 * @type {string}
+			 */
 			max: null,
 
 			/**
-		 * @type {function}
-		 */
+			 * @type {function}
+			 */
 			onselect: null,
 
 			/**
-		 * Load default template and
-		 */
+			 * Load default template and
+			 */
 			onconfigure: function() {
 				this.super.onconfigure();
 				this.event.add('click');
@@ -215,9 +215,9 @@ ts.ui.CalendarSpirit = (function() {
 			},
 
 			/**
-		 * Handle event.
-		 * @param {Event} e
-		 */
+			 * Handle event.
+			 * @param {Event} e
+			 */
 			onevent: function(e) {
 				this.super.onevent(e);
 				var node = e.target;
@@ -232,55 +232,55 @@ ts.ui.CalendarSpirit = (function() {
 			// Private .................................................................
 
 			/**
-		 * Optional model.
-		 * @type {ts.ui.DatePickerModel}
-		 */
+			 * Optional model.
+			 * @type {ts.ui.DatePickerModel}
+			 */
 			_model: null,
 
 			/**
-		 * Tracking the zero-based month.
-		 * @type {number}
-		 */
+			 * Tracking the zero-based month.
+			 * @type {number}
+			 */
 			_month: -1,
 
 			/**
-		 * Tracking the year.
-		 * @type {number}
-		 */
+			 * Tracking the year.
+			 * @type {number}
+			 */
 			_year: -1,
 
 			/**
-		 * Short weekday names.
-		 * @type {Array<string>}
-		 */
+			 * Short weekday names.
+			 * @type {Array<string>}
+			 */
 			_labels: null,
 
 			/**
-		 * Today is the day (as an object).
-		 * @type {Map}
-		 */
+			 * Today is the day (as an object).
+			 * @type {Map}
+			 */
 			_today: null,
 
 			/**
-		 * @type {Map}
-		 */
+			 * @type {Map}
+			 */
 			_current: null,
 
 			/**
-		 * @type {Map}
-		 */
+			 * @type {Map}
+			 */
 			_min: null,
 
 			/**
-		 * @type {Map}
-		 */
+			 * @type {Map}
+			 */
 			_max: null,
 
 			/**
-		 * Perhaps execute action for something that was clickped upon.
-		 * @param {Element} parent
-		 * @param {Element} child
-		 */
+			 * Perhaps execute action for something that was clickped upon.
+			 * @param {Element} parent
+			 * @param {Element} child
+			 */
 			_doaction: function(parent, child) {
 				var testnode = parent.localName === 'button' ? parent : child;
 				switch (testnode.name) {
@@ -306,9 +306,9 @@ ts.ui.CalendarSpirit = (function() {
 			},
 
 			/**
-		 * Select cell. Called fromt the EDBML template.
-		 * @param {Cell} cell
-		 */
+			 * Select cell. Called fromt the EDBML template.
+			 * @param {Cell} cell
+			 */
 			_select: function(cell) {
 				var month = cell.month + 1;
 				var day = cell.day;
@@ -337,8 +337,8 @@ ts.ui.CalendarSpirit = (function() {
 			},
 
 			/**
-		 * View previous month.
-		 */
+			 * View previous month.
+			 */
 			_prevMonth: function() {
 				var newDate = getRelativeMonth(this._year, this._month, -1);
 				this._month = newDate.month;
@@ -347,8 +347,8 @@ ts.ui.CalendarSpirit = (function() {
 			},
 
 			/**
-		 * View next month.
-		 */
+			 * View next month.
+			 */
 			_nextMonth: function() {
 				var newDate = getRelativeMonth(this._year, this._month, 1);
 				this._month = newDate.month;
@@ -357,26 +357,26 @@ ts.ui.CalendarSpirit = (function() {
 			},
 
 			/**
-		 * View previous year.
-		 */
+			 * View previous year.
+			 */
 			_prevYear: function() {
 				this._year = getRelativeYear(this._year, -1);
 				this._render();
 			},
 
 			/**
-		 * View next year.
-		 */
+			 * View next year.
+			 */
 			_nextYear: function() {
 				this._year = getRelativeYear(this._year, 1);
 				this._render();
 			},
 
 			/**
-		 * Generate short weekday names starting from locale first.
-		 * TODO (jmo@): Move to static variable since it's always the same.
-		 * @return {Array<string>}
-		 */
+			 * Generate short weekday names starting from locale first.
+			 * TODO (jmo@): Move to static variable since it's always the same.
+			 * @return {Array<string>}
+			 */
 			_generateLabels: function() {
 				var labels = [], i;
 				for (i = 0; i < 7; ++i) {
@@ -386,8 +386,8 @@ ts.ui.CalendarSpirit = (function() {
 			},
 
 			/**
-		 * @return {Array<Cell>}
-		 */
+			 * @return {Array<Cell>}
+			 */
 			_generateDays: function(year, month) {
 				return ts.ui.__generateDays(
 					year,
@@ -399,11 +399,11 @@ ts.ui.CalendarSpirit = (function() {
 			},
 
 			/**
-		 * Compute minimum day.
-		 * @param {object} min
-		 * @param {number} year
-		 * @param {number} month
-		 */
+			 * Compute minimum day.
+			 * @param {object} min
+			 * @param {number} year
+			 * @param {number} month
+			 */
 			_minDay: function(min, year, month) {
 				var day = 0;
 				if (min && year === min.year) {
@@ -419,11 +419,11 @@ ts.ui.CalendarSpirit = (function() {
 			},
 
 			/**
-		 * Compute maximum day.
-		 * @param {object} max
-		 * @param {number} year
-		 * @param {number} month
-		 */
+			 * Compute maximum day.
+			 * @param {object} max
+			 * @param {number} year
+			 * @param {number} month
+			 */
 			_maxDay: function(max, year, month) {
 				var day = 0;
 				if (max && year === max.year) {
@@ -439,8 +439,8 @@ ts.ui.CalendarSpirit = (function() {
 			},
 
 			/**
-		 * Run EDBML with computed arguments.
-		 */
+			 * Run EDBML with computed arguments.
+			 */
 			_render: function() {
 				var names = getLocale().monthNamesShort,
 					year = this._year,
@@ -476,9 +476,9 @@ ts.ui.CalendarSpirit = (function() {
 			// Static ...............................................................
 
 			/**
-		 * Summon spirit.
-		 * @param {ts.ui.DatePickerModel} opt_model
-		 */
+			 * Summon spirit.
+			 * @param {ts.ui.DatePickerModel} opt_model
+			 */
 			summon: function(opt_model) {
 				var html = ts.ui.datepicker.edbml(opt_model);
 				var elem = gui.HTMLParser.parse(html);

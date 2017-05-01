@@ -17,28 +17,28 @@ edb.Input = (function using(chained, memoized, Interface, GuiType, GuiClass) {
 	return gui.Class.create(
 		{
 			/**
-		 * Input Type (function constructor)
-		 * @type {function}
-		 */
+			 * Input Type (function constructor)
+			 * @type {function}
+			 */
 			type: null,
 
 			/**
-		 * Input instance (instance of this.Type)
-		 * @type {object|edb.Type} data
-		 */
+			 * Input instance (instance of this.Type)
+			 * @type {object|edb.Type} data
+			 */
 			data: null,
 
 			/**
-		 * Mark as revoked.
-		 * @type {boolean}
-		 */
+			 * Mark as revoked.
+			 * @type {boolean}
+			 */
 			revoked: false,
 
 			/**
-		 * Construction time again.
-		 * @param {constructor} Type
-		 * @param {edb.Object|edb.Array} type
-		 */
+			 * Construction time again.
+			 * @param {constructor} Type
+			 * @param {edb.Object|edb.Array} type
+			 */
 			onconstruct: function(Type, type) {
 				if (edb.Type.is(type) || type === null) {
 					this.type = Type;
@@ -53,8 +53,8 @@ edb.Input = (function using(chained, memoized, Interface, GuiType, GuiClass) {
 			// Static ...........................................................
 
 			/**
-		 * Input handler interface.
-		 */
+			 * Input handler interface.
+			 */
 			IInputHandler: {
 				oninput: function(i) {},
 				toString: function() {
@@ -65,10 +65,10 @@ edb.Input = (function using(chained, memoized, Interface, GuiType, GuiClass) {
 			// Privileged static .......................................................
 
 			/**
-		 * Add input handler for Type(s).
-		 * @param {constructor|Array<constructor>} Types
-		 * @param {IInputHandler} handler
-		 */
+			 * Add input handler for Type(s).
+			 * @param {constructor|Array<constructor>} Types
+			 * @param {IInputHandler} handler
+			 */
 			$connect: chained(function(Types, handler) {
 				Types = this.$breakdown(Types);
 				if (Interface.validate(this.IInputHandler, handler)) {
@@ -79,10 +79,10 @@ edb.Input = (function using(chained, memoized, Interface, GuiType, GuiClass) {
 			}),
 
 			/**
-		 * Remove input handler for Type(s).
-		 * @param {constructor|Array<constructor>} Types
-		 * @param {IInputHandler} handler
-		 */
+			 * Remove input handler for Type(s).
+			 * @param {constructor|Array<constructor>} Types
+			 * @param {IInputHandler} handler
+			 */
 			$disconnect: chained(function(Types, handler) {
 				Types = this.$breakdown(Types);
 				if (Interface.validate(this.IInputHandler, handler)) {
@@ -94,11 +94,11 @@ edb.Input = (function using(chained, memoized, Interface, GuiType, GuiClass) {
 			}),
 
 			/**
-		 * Breakdown complicated argument into an
-		 * array of one or more type constructors.
-		 * @param {object} arg
-		 * @returns {constructor|Array<constructor>|string|object}
-		 */
+			 * Breakdown complicated argument into an
+			 * array of one or more type constructors.
+			 * @param {object} arg
+			 * @returns {constructor|Array<constructor>|string|object}
+			 */
 			$breakdown: function(arg) {
 				if (GuiType.isArray(arg)) {
 					return this._breakarray(arg);
@@ -108,9 +108,9 @@ edb.Input = (function using(chained, memoized, Interface, GuiType, GuiClass) {
 			},
 
 			/**
-		 * Handle output.
-		 * @param {edb.Input} input
-		 */
+			 * Handle output.
+			 * @param {edb.Input} input
+			 */
 			$onoutput: function(input) {
 				var Type, type = input.data;
 				if (type === null) {
@@ -128,13 +128,13 @@ edb.Input = (function using(chained, memoized, Interface, GuiType, GuiClass) {
 			},
 
 			/**
-		 * Lookup identical or ancestor/descandant constructor.
-		 * This will come in handy for the {edb.InputPlugin}.
-		 * @param {constructor} target type constructor
-		 * @param {Array<constructor>} types type constructors
-		 * @param {boolean} up Lookup ancestor?
-		 * @returns {constructor} edb.Type class
-		 */
+			 * Lookup identical or ancestor/descandant constructor.
+			 * This will come in handy for the {edb.InputPlugin}.
+			 * @param {constructor} target type constructor
+			 * @param {Array<constructor>} types type constructors
+			 * @param {boolean} up Lookup ancestor?
+			 * @returns {constructor} edb.Type class
+			 */
 			$bestmatch: function(target, types, up) {
 				return this._bestmatch(
 					target.$classid,
@@ -146,12 +146,12 @@ edb.Input = (function using(chained, memoized, Interface, GuiType, GuiClass) {
 			},
 
 			/**
-		 * Rate all types.
-		 * @param {function} t
-		 * @param {Array<function>} types
-		 * @param {boolean} up Rate ancestor?
-		 * @param {function} action
-		 */
+			 * Rate all types.
+			 * @param {function} t
+			 * @param {Array<function>} types
+			 * @param {boolean} up Rate ancestor?
+			 * @param {function} action
+			 */
 			$rateall: function(target, types, up, action) {
 				types.forEach(function(type) {
 					action(type, this.$rateone(up ? target : type, up ? type : target));
@@ -159,11 +159,11 @@ edb.Input = (function using(chained, memoized, Interface, GuiType, GuiClass) {
 			},
 
 			/**
-		 * Rate single type. This will come in handy for the {edb.InputPlugin}.
-		 * @type {constructor} target
-		 * @type {constructor} type
-		 * @returns {number} The degree of ancestral separation (-1 for no relation)
-		 */
+			 * Rate single type. This will come in handy for the {edb.InputPlugin}.
+			 * @type {constructor} target
+			 * @type {constructor} type
+			 * @returns {number} The degree of ancestral separation (-1 for no relation)
+			 */
 			$rateone: function(target, type) {
 				return this._rateone(target.$classid, type.$classid);
 			},
@@ -171,10 +171,10 @@ edb.Input = (function using(chained, memoized, Interface, GuiType, GuiClass) {
 			// Private static ..........................................................
 
 			/**
-		 * Breakdown array.
-		 * @param {Array<function|string|object>}
-		 * @returns {Array<constructor>}
-		 */
+			 * Breakdown array.
+			 * @param {Array<function|string|object>}
+			 * @returns {Array<constructor>}
+			 */
 			_breakarray: function(array) {
 				return array.map(function(o) {
 					switch (GuiType.of(o)) {
@@ -189,10 +189,10 @@ edb.Input = (function using(chained, memoized, Interface, GuiType, GuiClass) {
 			},
 
 			/**
-		 * Breakdown not array.
-		 * @param {function|String|object} arg
-		 * @returns {Array<constructor>}
-		 */
+			 * Breakdown not array.
+			 * @param {function|String|object} arg
+			 * @returns {Array<constructor>}
+			 */
 			_breakother: function(arg) {
 				switch (GuiType.of(arg)) {
 					case 'function':
@@ -205,10 +205,10 @@ edb.Input = (function using(chained, memoized, Interface, GuiType, GuiClass) {
 			},
 
 			/**
-		 * Add input handler for types.
-		 * @param {Array<constructor>} Types
-		 * @param {IInputHandler} handler
-		 */
+			 * Add input handler for types.
+			 * @param {Array<constructor>} Types
+			 * @param {IInputHandler} handler
+			 */
 			_add: function(Types, handler) {
 				Types.filter(function(Type) {
 					return handlers.add(Type.$classid, handler);
@@ -227,10 +227,10 @@ edb.Input = (function using(chained, memoized, Interface, GuiType, GuiClass) {
 			},
 
 			/**
-		 * Remove input handler for types.
-		 * @param {Array<constructor>} Types
-		 * @param {IInputHandler} handler
-		 */
+			 * Remove input handler for types.
+			 * @param {Array<constructor>} Types
+			 * @param {IInputHandler} handler
+			 */
 			_remove: function(Types, handler) {
 				Types.forEach(function(Type) {
 					handlers.remove(Type.$classid, handler);
@@ -238,10 +238,10 @@ edb.Input = (function using(chained, memoized, Interface, GuiType, GuiClass) {
 			},
 
 			/**
-		 * At least confirm that the Type exists.
-		 * @param {constructor} Type
-		 * @returns {boolean}
-		 */
+			 * At least confirm that the Type exists.
+			 * @param {constructor} Type
+			 * @returns {boolean}
+			 */
 			_check: function(Type) {
 				if (!GuiType.isDefined(Type)) {
 					throw new TypeError('Could not register input for undefined Type');
@@ -250,12 +250,12 @@ edb.Input = (function using(chained, memoized, Interface, GuiType, GuiClass) {
 			},
 
 			/**
-		 * Get identical or ancestor/descandant constructor
-		 * by `$classid` and memoize the return value.
-		 * @param {string} targetid
-		 * @param {Array<string>} typeid
-		 * @returns {constructor}
-		 */
+			 * Get identical or ancestor/descandant constructor
+			 * by `$classid` and memoize the return value.
+			 * @param {string} targetid
+			 * @param {Array<string>} typeid
+			 * @returns {constructor}
+			 */
 			_bestmatch: memoized(function(targetid, typeids, up) {
 				var best = null,
 					rating = Number.MAX_VALUE,
@@ -273,12 +273,12 @@ edb.Input = (function using(chained, memoized, Interface, GuiType, GuiClass) {
 			}),
 
 			/**
-		 * Rate the degree of separation between classes
-		 * by `$classid` and memoize the return value.
-		 * @param {string} targetid
-		 * @param {string} typeid
-		 * @returns {number}
-		 */
+			 * Rate the degree of separation between classes
+			 * by `$classid` and memoize the return value.
+			 * @param {string} targetid
+			 * @param {string} typeid
+			 * @returns {number}
+			 */
 			_rateone: memoized(function(targetid, typeid) {
 				var target = gui.Class.get(targetid);
 				var type = gui.Class.get(typeid);
@@ -300,34 +300,34 @@ edb.Input = (function using(chained, memoized, Interface, GuiType, GuiClass) {
 			// Deprecated ..............................................................
 
 			/**
-		 * @deprecated
-		 */
+			 * @deprecated
+			 */
 			add: function() {
 				console.error('Deprecated API is deprecated: edb.Input.add()');
 			},
 
 			/**
-		 * @deprecated
-		 */
+			 * @deprecated
+			 */
 			remove: function() {
 				console.error('Deprecated API is deprecated: edb.Input.remove()');
 			},
 
 			/**
-		 * Add input handler for type(s).
-		 * @param {constructor|Array<constructor>} Types
-		 * @param {IInputHandler} handler
-		 */
+			 * Add input handler for type(s).
+			 * @param {constructor|Array<constructor>} Types
+			 * @param {IInputHandler} handler
+			 */
 			$add: function() {
 				console.error('Deprecated API is deprecated: edb.Input.$add(). Use edb.Input.$connect()');
 				return this.$connect.apply(this, arguments);
 			},
 
 			/**
-		 * Add input handler for type(s).
-		 * @param {constructor|Array<constructor>} Types
-		 * @param {IInputHandler} handler
-		 */
+			 * Add input handler for type(s).
+			 * @param {constructor|Array<constructor>} Types
+			 * @param {IInputHandler} handler
+			 */
 			$remove: function() {
 				console.error(
 					'Deprecated API is deprecated: edb.Input.$remove(). Use edb.Input.$disconnect()'

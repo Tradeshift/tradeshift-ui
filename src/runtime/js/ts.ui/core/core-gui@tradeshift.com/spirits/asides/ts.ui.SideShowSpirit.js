@@ -53,49 +53,49 @@ ts.ui.SideShowSpirit = (function using(
 	return ts.ui.Spirit.extend(
 		{
 			/**
-		 * Open?
-		 * @type {boolean}
-		 */
+			 * Open?
+			 * @type {boolean}
+			 */
 			isOpen: false,
 
 			/**
-		 * Open for implementation.
-		 * @type {string|function}
-		 */
+			 * Open for implementation.
+			 * @type {string|function}
+			 */
 			onopen: null,
 
 			/**
-		 * Open for implementation.
-		 * @type {string|function}
-		 */
+			 * Open for implementation.
+			 * @type {string|function}
+			 */
 			onopened: null,
 
 			/**
-		 * Open for implementation.
-		 * @type {string|function}
-		 */
+			 * Open for implementation.
+			 * @type {string|function}
+			 */
 			onclose: null,
 
 			/**
-		 * Open for implementation.
-		 * @type {string|function}
-		 */
+			 * Open for implementation.
+			 * @type {string|function}
+			 */
 			onclosed: null,
 
 			/**
-		 *(work in progress)
-		 * @type {boolean}
-		 */
+			 *(work in progress)
+			 * @type {boolean}
+			 */
 			flipped: false,
 
 			/**
-		 * ts.ui.SpinnerSpirit.
-		 */
+			 * ts.ui.SpinnerSpirit.
+			 */
 			spin: null,
 
 			/**
-		 * @param {boolean} busy
-		 */
+			 * @param {boolean} busy
+			 */
 			busy: function(busy) {
 				this._initspin(busy);
 				if (busy) {
@@ -106,16 +106,16 @@ ts.ui.SideShowSpirit = (function using(
 			},
 
 			/**
-		 *
-		 */
+			 *
+			 */
 			onconfigure: function() {
 				this.super.onconfigure();
 				this.action.add([PANEL_ATTACH, PANEL_DETACH]);
 			},
 
 			/**
-		 * Setup.
-		 */
+			 * Setup.
+			 */
 			onenter: function() {
 				this.super.onenter();
 				if (this.flipped) {
@@ -129,16 +129,16 @@ ts.ui.SideShowSpirit = (function using(
 			},
 
 			/**
-		 * Fix the color scheme.
-		 */
+			 * Fix the color scheme.
+			 */
 			onasync: function() {
 				this.super.onasync();
 				this._fixappearance();
 			},
 
 			/**
-		 * Get ready.
-		 */
+			 * Get ready.
+			 */
 			onready: function() {
 				this.super.onready();
 				this._confirmpanel();
@@ -148,16 +148,16 @@ ts.ui.SideShowSpirit = (function using(
 			},
 
 			/**
-		 * Reflex also when moved to another position (V4 scenario)
-		 */
+			 * Reflex also when moved to another position (V4 scenario)
+			 */
 			onattach: function() {
 				this.super.onattach();
 				this._reflex();
 			},
 
 			/**
-		 * Detach hacky mutation observer.
-		 */
+			 * Detach hacky mutation observer.
+			 */
 			ondestruct: function() {
 				this.super.ondestruct();
 				if (this._observer) {
@@ -166,8 +166,8 @@ ts.ui.SideShowSpirit = (function using(
 			},
 
 			/**
-		 * On EDBML rendered.
-		 */
+			 * On EDBML rendered.
+			 */
 			onrender: function() {
 				this.super.onrender();
 				this._confirmpanel(true);
@@ -175,17 +175,17 @@ ts.ui.SideShowSpirit = (function using(
 			},
 
 			/**
-		 * Window resized (probably).
-		 */
+			 * Window resized (probably).
+			 */
 			onflex: function() {
 				this.super.onflex();
 				this._reflex();
 			},
 
 			/**
-		 * Handle tick.
-		 * @param {gui.Tick} t
-		 */
+			 * Handle tick.
+			 * @param {gui.Tick} t
+			 */
 			ontick: function(t) {
 				this.super.ontick(t);
 				if (!this.$destructed && t.type === 'ts-sideshow-theme' && this.dom.embedded()) {
@@ -197,9 +197,9 @@ ts.ui.SideShowSpirit = (function using(
 			},
 
 			/**
-		 * Handle event.
-		 * @param {Event} e
-		 */
+			 * Handle event.
+			 * @param {Event} e
+			 */
 			onevent: function(e) {
 				this.super.onevent(e);
 				switch (e.type) {
@@ -215,11 +215,11 @@ ts.ui.SideShowSpirit = (function using(
 			},
 
 			/**
-		 * We'll need to support that the tabbar auto-updates whenever a panel gets
-		 * added or removed (like we do in the Main TabBar) but for now, we'll just
-		 * make sure that these actions (dispatched from the Panel) are contained.
-		 * @param {gui.Action} a
-		 */
+			 * We'll need to support that the tabbar auto-updates whenever a panel gets
+			 * added or removed (like we do in the Main TabBar) but for now, we'll just
+			 * make sure that these actions (dispatched from the Panel) are contained.
+			 * @param {gui.Action} a
+			 */
 			onaction: function(a) {
 				this.super.onaction(a);
 				switch (a.type) {
@@ -237,9 +237,9 @@ ts.ui.SideShowSpirit = (function using(
 			},
 
 			/**
-		 * Observing the tabbar tabs.
-		 * @param {Array<edb.Change>} changes
-		 */
+			 * Observing the tabbar tabs.
+			 * @param {Array<edb.Change>} changes
+			 */
 			onchange: function(changes) {
 				this.super.onchange(changes);
 				var splice = edb.ArrayChange.TYPE_SPLICE;
@@ -255,10 +255,10 @@ ts.ui.SideShowSpirit = (function using(
 			},
 
 			/**
-		 * Set or get header title.
-		 * @param {string} title
-		 * @return {ts.ui.AsideSpirit|string}
-		 */
+			 * Set or get header title.
+			 * @param {string} title
+			 * @return {ts.ui.AsideSpirit|string}
+			 */
 			title: chained(function(title) {
 				var header = this._headerspirit();
 				if (arguments.length) {
@@ -271,10 +271,10 @@ ts.ui.SideShowSpirit = (function using(
 			}),
 
 			/**
-		 * Get or set the titlebar search model.
-		 * @param {Object|ts.ui.SearchModel} search
-		 * @returns {ts.ui.SearchModel|ts.ui.SideShowSpirit}
-		 */
+			 * Get or set the titlebar search model.
+			 * @param {Object|ts.ui.SearchModel} search
+			 * @returns {ts.ui.SearchModel|ts.ui.SideShowSpirit}
+			 */
 			search: chained(function(search) {
 				var header = this._headerspirit();
 				if (arguments.length) {
@@ -285,20 +285,20 @@ ts.ui.SideShowSpirit = (function using(
 			}),
 
 			/**
-		 * Get or set header model. TODO: Should be private, huh?
-		 * @param @optional {object} opt_json
-		 * @returns {ts.ui.ToolBarModel}
-		 */
+			 * Get or set header model. TODO: Should be private, huh?
+			 * @param @optional {object} opt_json
+			 * @returns {ts.ui.ToolBarModel}
+			 */
 			header: function(opt_json) {
 				return this._headerspirit().model(opt_json);
 			},
 
 			/**
-		 * Open AND close the aside (setup to support the HTML
-		 * attribute: `data-ts.open="true|false"`)
-		 * @param @optional {boolean} opt_open Omit to simply open.
-		 * @return {ts.ui.AsideSpirit}
-		 */
+			 * Open AND close the aside (setup to support the HTML
+			 * attribute: `data-ts.open="true|false"`)
+			 * @param @optional {boolean} opt_open Omit to simply open.
+			 * @return {ts.ui.AsideSpirit}
+			 */
 			open: chained(function(opt_open) {
 				if (!gui.Type.isBoolean(opt_open)) {
 					opt_open = true;
@@ -320,32 +320,32 @@ ts.ui.SideShowSpirit = (function using(
 			}),
 
 			/**
-		 * Close the aside.
-		 * @return {ts.ui.AsideSpirit}
-		 */
+			 * Close the aside.
+			 * @return {ts.ui.AsideSpirit}
+			 */
 			close: chained(function() {
 				this.open(false);
 			}),
 
 			/**
-		 * Toggle the aside.
-		 * @return {ts.ui.AsideSpirit}
-		 */
+			 * Toggle the aside.
+			 * @return {ts.ui.AsideSpirit}
+			 */
 			toggle: chained(function() {
 				this.open(!this.isOpen);
 			}),
 
 			/**
-		 * Announce to the {ts.ui.DocumentAsidePlugin} that we intend to flip.
-		 */
+			 * Announce to the {ts.ui.DocumentAsidePlugin} that we intend to flip.
+			 */
 			flip: function() {
 				this.action.dispatch('FLIP', this.flipped);
 			},
 
 			/**
-		 * Programatically create those tabs (or modify some declarative tabs).
-		 * @returns {ts.ui.TabCollection|ts.ui.SideShowSpirit}
-		 */
+			 * Programatically create those tabs (or modify some declarative tabs).
+			 * @returns {ts.ui.TabCollection|ts.ui.SideShowSpirit}
+			 */
 			tabs: chained(function() {
 				var tabbar = this._tabbarspirit();
 				if (arguments.length) {
@@ -358,9 +358,9 @@ ts.ui.SideShowSpirit = (function using(
 			// Privileged ..............................................................
 
 			/**
-		 * Actually flip the thing.
-		 * @returns {gui.Then} Some kind of Promise-like object
-		 */
+			 * Actually flip the thing.
+			 * @returns {gui.Then} Some kind of Promise-like object
+			 */
 			$flip: function() {
 				if (!this._flipping) {
 					this._flipping = new gui.Then();
@@ -376,55 +376,55 @@ ts.ui.SideShowSpirit = (function using(
 			// Private .................................................................
 
 			/**
-		 * Snapshot the color scheme asigned via model.
-		 * @type {string}
-		 */
+			 * Snapshot the color scheme asigned via model.
+			 * @type {string}
+			 */
 			_theme: null,
 
 			/**
-		 * The Main tabbar.
-		 * @type {ts.ui.TabBarSpirit}
-		 */
+			 * The Main tabbar.
+			 * @type {ts.ui.TabBarSpirit}
+			 */
 			_tabbar: null,
 
 			/**
-		 * Monitor footer updates until we can enable CSS layout again.
-		 * @type {MutationObserver}
-		 */
+			 * Monitor footer updates until we can enable CSS layout again.
+			 * @type {MutationObserver}
+			 */
 			_observer: null,
 
 			/**
-		 * We can think of this as a Promise (code is old).
-		 * @type {gui.Then}
-		 */
+			 * We can think of this as a Promise (code is old).
+			 * @type {gui.Then}
+			 */
 			flipping: false,
 
 			/**
-		 * Configured with the closing "X" button?
-		 * @type {boolean}
-		 */
+			 * Configured with the closing "X" button?
+			 * @type {boolean}
+			 */
 			_canclose: false,
 
 			/**
-		 * @deprecated
-		 * The classname `ts-internal` will make this thing not behave
-		 * much like an Aside because that was needed for teams that
-		 * didn't want to use Asides. The classname affects both JS
-		 * behavior and CSS styling. When we get support for different
-		 * versions of UI Components (in V4), we should see if this
-		 * can be deprecated in favor of standard UI Components.
-		 * @returns {boolean}
-		 */
+			 * @deprecated
+			 * The classname `ts-internal` will make this thing not behave
+			 * much like an Aside because that was needed for teams that
+			 * didn't want to use Asides. The classname affects both JS
+			 * behavior and CSS styling. When we get support for different
+			 * versions of UI Components (in V4), we should see if this
+			 * can be deprecated in favor of standard UI Components.
+			 * @returns {boolean}
+			 */
 			_isinternal: function() {
 				return this.css.contains('ts-internal');
 			},
 
 			/**
-		 * Using JS instead of CSS flex because Chrome has a nasty public breakdown.
-		 * TODO: Setup to only reflex if the height of header or footer has changed.
-		 * @param @optional {function} action Optionally flex after executing this.
-		 * @returns {object}
-		 */
+			 * Using JS instead of CSS flex because Chrome has a nasty public breakdown.
+			 * TODO: Setup to only reflex if the height of header or footer has changed.
+			 * @param @optional {function} action Optionally flex after executing this.
+			 * @returns {object}
+			 */
 			_reflex: function(action) {
 				var panel, avail = this.box.height, height = 0, thing = action ? action.call(this) : null;
 				if (this.isOpen && avail) {
@@ -452,10 +452,10 @@ ts.ui.SideShowSpirit = (function using(
 			},
 
 			/**
-		 * Confirm and setup the panel.
-		 * @param {boolean} insist
-		 * @return {ts.ui.Spirit}
-		 */
+			 * Confirm and setup the panel.
+			 * @param {boolean} insist
+			 * @return {ts.ui.Spirit}
+			 */
 			_confirmpanel: function(insist) {
 				if (insist || !this._isinternal()) {
 					var panel = this.dom.q('.ts-panel', ts.ui.PanelSpirit);
@@ -467,11 +467,11 @@ ts.ui.SideShowSpirit = (function using(
 			},
 
 			/**
-		 * Confirm that we're not nested inside MAIN.
-		 * - The {ts.ui.AsideSpirit} does this when it opens
-		 * - The {ts.ui.SideShowSpirit} does it after a second
-		 * - The {ts.ui.CollaborationSpirit} doesn't do this because of politics.
-		 */
+			 * Confirm that we're not nested inside MAIN.
+			 * - The {ts.ui.AsideSpirit} does this when it opens
+			 * - The {ts.ui.SideShowSpirit} does it after a second
+			 * - The {ts.ui.CollaborationSpirit} doesn't do this because of politics.
+			 */
 			_confirmposition: function() {
 				if (!this._isinternal()) {
 					if (!this.guilayout.outsideMain()) {
@@ -481,13 +481,13 @@ ts.ui.SideShowSpirit = (function using(
 			},
 
 			/**
-		 * Runs on open and close. If the state changes:
-		 *
-		 * 1. Fire custom DOM event
-		 * 2. Return whether or not this was preventDefaulted.
-		 * @param {boolean} open
-		 * @returns {boolean}
-		 */
+			 * Runs on open and close. If the state changes:
+			 *
+			 * 1. Fire custom DOM event
+			 * 2. Return whether or not this was preventDefaulted.
+			 * @param {boolean} open
+			 * @returns {boolean}
+			 */
 			_shouldtoggle: function(open) {
 				if (open !== this.isOpen) {
 					return this.event.dispatch(open ? domevent.WILLOPEN : domevent.WILLCLOSE, {
@@ -499,9 +499,9 @@ ts.ui.SideShowSpirit = (function using(
 			},
 
 			/**
-		 * Get the header (and create the header if it doesn't already exist).
-		 * @returns {ts.ui.ToolBarSpirit}
-		 */
+			 * Get the header (and create the header if it doesn't already exist).
+			 * @returns {ts.ui.ToolBarSpirit}
+			 */
 			_headerspirit: function() {
 				return (
 					this.dom.q('this > .ts-header', ts.ui.ToolBarSpirit) ||
@@ -515,9 +515,9 @@ ts.ui.SideShowSpirit = (function using(
 			},
 
 			/**
-		 * Get the tabbar (and create the tabbar if it doesn't already exist).
-		 * @returns {ts.ui.TabBarSpirit}
-		 */
+			 * Get the tabbar (and create the tabbar if it doesn't already exist).
+			 * @returns {ts.ui.TabBarSpirit}
+			 */
 			_tabbarspirit: function() {
 				return (
 					this._tabbar ||
@@ -535,16 +535,16 @@ ts.ui.SideShowSpirit = (function using(
 			},
 
 			/**
-		 * The footer versus panel layout was originally implemented using
-		 * flexbox but there was a problem with this whenever CSS transitions
-		 * and transform were added, so we've switched to JS layout. This means
-		 * that we have to recalculate the layout whenever content is changed
-		 * in the footer, but fortunately that's cost-effective nowadays.
-		 * TODO: We should at some point attempt to go back to CSS layout,
-		 * but note that the problem (in Chrome only!) is only apparent
-		 * in a production/sandbox environment. They are however easy to spot.
-		 * @param {constructor} Observer Which is undefined in old IE versions
-		 */
+			 * The footer versus panel layout was originally implemented using
+			 * flexbox but there was a problem with this whenever CSS transitions
+			 * and transform were added, so we've switched to JS layout. This means
+			 * that we have to recalculate the layout whenever content is changed
+			 * in the footer, but fortunately that's cost-effective nowadays.
+			 * TODO: We should at some point attempt to go back to CSS layout,
+			 * but note that the problem (in Chrome only!) is only apparent
+			 * in a production/sandbox environment. They are however easy to spot.
+			 * @param {constructor} Observer Which is undefined in old IE versions
+			 */
 			_initfooter: function(Observer) {
 				var footer = this.dom.q('.ts-footer');
 				if (footer) {
@@ -568,9 +568,9 @@ ts.ui.SideShowSpirit = (function using(
 			},
 
 			/**
-		 * (work in progress)
-		 * @param {ts.ui.Spirit} spirit
-		 */
+			 * (work in progress)
+			 * @param {ts.ui.Spirit} spirit
+			 */
 			_ontransitionend: function(spirit) {
 				if (ts.ui.PanelSpirit.is(spirit)) {
 					this.event.remove('transitionend');
@@ -587,9 +587,9 @@ ts.ui.SideShowSpirit = (function using(
 			},
 
 			/**
-		 * Add or remove the closing "X" button in the titlebar.
-		 * @param @optional {boolean} show
-		 */
+			 * Add or remove the closing "X" button in the titlebar.
+			 * @param @optional {boolean} show
+			 */
 			_closebutton: function(show) {
 				var that = this;
 				var tool = this._headerspirit();
@@ -616,28 +616,28 @@ ts.ui.SideShowSpirit = (function using(
 			},
 
 			/**
-		 * Opening scene implemented by subclass(es).
-		 * Except for the coloring stuff, apparently.
-		 * @param {boolean} animated
-		 * @returns {boolean}
-		 */
+			 * Opening scene implemented by subclass(es).
+			 * Except for the coloring stuff, apparently.
+			 * @param {boolean} animated
+			 * @returns {boolean}
+			 */
 			_open: function(animated) {
 				return this._execute('onopen') !== false;
 			},
 
 			/**
-		 * Closing stuff implemented by subclass(es).
-		 * @param {boolean} animated
-		 * @returns {boolean}
-		 */
+			 * Closing stuff implemented by subclass(es).
+			 * @param {boolean} animated
+			 * @returns {boolean}
+			 */
 			_close: function(animated) {
 				return this._execute('onclose') !== false;
 			},
 
 			/**
-		 * If you set the attribute ts.busy is true, you will see the spinner in the main
-		 * param {boolean} busy
-		 */
+			 * If you set the attribute ts.busy is true, you will see the spinner in the main
+			 * param {boolean} busy
+			 */
 			_initspin: function(busy) {
 				if (!this.spin) {
 					this.spin = ts.ui.SpinnerSpirit.summon();
@@ -654,8 +654,8 @@ ts.ui.SideShowSpirit = (function using(
 			},
 
 			/**
-		 * If more than one panel next to aside, generate the tabbar automaticly
-		 */
+			 * If more than one panel next to aside, generate the tabbar automaticly
+			 */
 			_inittabs: function() {
 				var panels = this.dom.children(ts.ui.PanelSpirit);
 				if (panels.length > 1) {
@@ -674,10 +674,10 @@ ts.ui.SideShowSpirit = (function using(
 			},
 
 			/**
-		 * Multiple panels found, setup the tabbar to switch between them.
-		 * @param {Array<ts.ui.PanelSpirit>} panels
-		 * @param {ts.ui.SideBarSpirit} that
-		 */
+			 * Multiple panels found, setup the tabbar to switch between them.
+			 * @param {Array<ts.ui.PanelSpirit>} panels
+			 * @param {ts.ui.SideBarSpirit} that
+			 */
 			_setuptabs: function(panels, that) {
 				var tabbar = this._tabbarspirit();
 				panels.forEach(function(panel, index) {
@@ -703,8 +703,8 @@ ts.ui.SideShowSpirit = (function using(
 			},
 
 			/**
-		 * Remove the tabbar.
-		 */
+			 * Remove the tabbar.
+			 */
 			_removetabbar: function() {
 				var bar = this._tabbar;
 				if (bar) {
@@ -718,11 +718,11 @@ ts.ui.SideShowSpirit = (function using(
 			},
 
 			/**
-		 * Added or remove tab for Panel at given index.
-		 * TODO: Support a `selected` property in the {ts.ui.PanelSpirit}
-		 * TODO: When all panels are done, somehow force `tabbar.script.run()` ...
-		 * @param {ts.ui.PanelSpirit} panel
-		 */
+			 * Added or remove tab for Panel at given index.
+			 * TODO: Support a `selected` property in the {ts.ui.PanelSpirit}
+			 * TODO: When all panels are done, somehow force `tabbar.script.run()` ...
+			 * @param {ts.ui.PanelSpirit} panel
+			 */
 			_updatetab: function(panel, added) {
 				var bar = this._tabbar, dom = this.dom;
 				var index = dom.children(ts.ui.PanelSpirit).indexOf(panel);
@@ -764,24 +764,24 @@ ts.ui.SideShowSpirit = (function using(
 			},
 
 			/**
-		 * Manage background colors and dropshadows. The tick mechanism
-		 * schedules the operation at the end of the execution stack so
-		 * that it only runs *once* even if called multiple times over.
-		 * @see {ts.ui.SideShowSpirit#ontick}
-		 */
+			 * Manage background colors and dropshadows. The tick mechanism
+			 * schedules the operation at the end of the execution stack so
+			 * that it only runs *once* even if called multiple times over.
+			 * @see {ts.ui.SideShowSpirit#ontick}
+			 */
 			_fixappearance: function fix() {
 				var tick = 'ts-sideshow-theme';
 				this.tick.add(tick).dispatch(tick);
 			},
 
 			/**
-		 * If spirit was created via a model, return the model color.
-		 * Otherwise return any bg-color classname found in the HTML
-		 * and also *remove it* (it will soon be applied elsewhere)
-		 * so that (in a future project) we can flip the Aside nicely.
-		 * @param {string} color Fallback color!
-		 * @returns {string}
-		 */
+			 * If spirit was created via a model, return the model color.
+			 * Otherwise return any bg-color classname found in the HTML
+			 * and also *remove it* (it will soon be applied elsewhere)
+			 * so that (in a future project) we can flip the Aside nicely.
+			 * @param {string} color Fallback color!
+			 * @returns {string}
+			 */
 			_extractcolor: function(color) {
 				function fixweirdlooking(c) {
 					return c.match(/ts-bg-lite|ts-bg-white/) ? 'ts-bg-blue' : c;
@@ -803,11 +803,11 @@ ts.ui.SideShowSpirit = (function using(
 			},
 
 			/**
-		 * Transform background color to members (unless it
-		 * already has a background color classname given).
-		 * @param {string} color
-		 * @param {Array<string>} selectors
-		 */
+			 * Transform background color to members (unless it
+			 * already has a background color classname given).
+			 * @param {string} color
+			 * @param {Array<string>} selectors
+			 */
 			_transfercolor: function(color, selectors) {
 				var dom = this.dom;
 				selectors.forEach(function(selector) {
@@ -837,11 +837,11 @@ ts.ui.SideShowSpirit = (function using(
 			},
 
 			/**
-		 * Apply color theme extras. The dropshadows are done with DIVs (instead
-		 * of using CSS box-shadow) to keep them under control without using any
-		 * kind of z-index, since this would mess up the general page layout.
-		 * @param {gui.DOMPlugin} dom
-		 */
+			 * Apply color theme extras. The dropshadows are done with DIVs (instead
+			 * of using CSS box-shadow) to keep them under control without using any
+			 * kind of z-index, since this would mess up the general page layout.
+			 * @param {gui.DOMPlugin} dom
+			 */
 			_themesupport: function(dom) {
 				var shade = Parser.parseToNode('<div class="ts-shadow"></div>');
 				var panel = dom.q('this > .ts-panel', ts.ui.PanelSpirit);
@@ -870,12 +870,12 @@ ts.ui.SideShowSpirit = (function using(
 			},
 
 			/**
-		 * Execute callback configured via HTML attribute or via JS property.
-		 * The 'this' keyword points to the element or the spirit respectively.
-		 * TODO (jmo@): convert potential string to function sometimes sooner...
-		 * @type {String|function}
-		 * @returns {boolean}
-		 */
+			 * Execute callback configured via HTML attribute or via JS property.
+			 * The 'this' keyword points to the element or the spirit respectively.
+			 * TODO (jmo@): convert potential string to function sometimes sooner...
+			 * @type {String|function}
+			 * @returns {boolean}
+			 */
 			_execute: function(callback) {
 				if ((callback = this[callback])) {
 					switch (gui.Type.of(callback)) {
@@ -892,9 +892,9 @@ ts.ui.SideShowSpirit = (function using(
 			// Xstatic ..............................................................
 
 			/**
-		 * List of members that should inherit any assigned background color.
-		 * @type {Array<string>}
-		 */
+			 * List of members that should inherit any assigned background color.
+			 * @type {Array<string>}
+			 */
 			$bgmembers: ['.ts-header']
 		}
 	);

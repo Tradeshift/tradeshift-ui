@@ -8,43 +8,43 @@ gui.Crawler = (function using(Type) {
 		Object.prototype,
 		{
 			/**
-		 * Identifies the crawler.
-		 * @type {String}
-		 */
+			 * Identifies the crawler.
+			 * @type {String}
+			 */
 			type: null,
 
 			/**
-		 * Direction "ascending" or "descending".
-		 * @type {String}
-		 */
+			 * Direction "ascending" or "descending".
+			 * @type {String}
+			 */
 			direction: null,
 
 			/**
-		 * @type {Boolean}
-		 */
+			 * @type {Boolean}
+			 */
 			global: false,
 
 			/**
-		 * Identification.
-		 * @returns {String}
-		 */
+			 * Identification.
+			 * @returns {String}
+			 */
 			toString: function() {
 				return '[object gui.Crawler]';
 			},
 
 			/**
-		 * Constructor.
-		 * @param {String} type
-		 */
+			 * Constructor.
+			 * @param {String} type
+			 */
 			onconstruct: function(type) {
 				this.type = type || null;
 			},
 
 			/**
-		 * Crawl DOM ascending.
-		 * @param {Element|gui.Spirit} start
-		 * @param {object} handler
-		 */
+			 * Crawl DOM ascending.
+			 * @param {Element|gui.Spirit} start
+			 * @param {object} handler
+			 */
 			ascend: function(start, handler) {
 				this._stopped = false;
 				this.direction = gui.Crawler.ASCENDING;
@@ -91,10 +91,10 @@ gui.Crawler = (function using(Type) {
 			},
 
 			/**
-		 * Crawl DOM ascending, transcend into ancestor frames.
-		 * @param {Element|gui.Spirit} start
-		 * @param {object} handler
-		 */
+			 * Crawl DOM ascending, transcend into ancestor frames.
+			 * @param {Element|gui.Spirit} start
+			 * @param {object} handler
+			 */
 			ascendGlobal: function(start, handler) {
 				this.global = true;
 				this.ascend(start, handler);
@@ -102,11 +102,11 @@ gui.Crawler = (function using(Type) {
 			},
 
 			/**
-		 * Crawl DOM descending.
-		 * @param {object} start Spirit or Element
-		 * @param {object} handler
-		 * @param @optional {object} arg @TODO: is this even supported?
-		 */
+			 * Crawl DOM descending.
+			 * @param {object} start Spirit or Element
+			 * @param {object} handler
+			 * @param @optional {object} arg @TODO: is this even supported?
+			 */
 			descend: function(start, handler, arg) {
 				this._stopped = false;
 				this.direction = gui.Crawler.DESCENDING;
@@ -118,11 +118,11 @@ gui.Crawler = (function using(Type) {
 			},
 
 			/**
-		 * Crawl DOM descending, transcend into iframes.
-		 * @param {object} start Spirit or Element
-		 * @param {object} handler
-		 * @param @optional {object} arg @TODO: is this even supported?
-		 */
+			 * Crawl DOM descending, transcend into iframes.
+			 * @param {object} start Spirit or Element
+			 * @param {object} handler
+			 * @param @optional {object} arg @TODO: is this even supported?
+			 */
 			descendGlobal: function(start, handler, arg) {
 				this.global = true;
 				this.descend(start, handler, arg);
@@ -132,17 +132,17 @@ gui.Crawler = (function using(Type) {
 			// Private ...................................................................
 
 			/**
-		 * Crawler was stopped?
-		 * @type {boolean}
-		 */
+			 * Crawler was stopped?
+			 * @type {boolean}
+			 */
 			_stopped: false,
 
 			/**
-		 * Iterate descending.
-		 * @param {Element} elm
-		 * @param {object} handler
-		 * @param {boolean} start
-		 */
+			 * Iterate descending.
+			 * @param {Element} elm
+			 * @param {object} handler
+			 * @param {boolean} start
+			 */
 			_descend: function(elm, handler, arg, start) {
 				var next, spirit, directive = this._handleElement(elm, handler, arg);
 				switch (directive) {
@@ -175,11 +175,11 @@ gui.Crawler = (function using(Type) {
 			},
 
 			/**
-		 * Handle element. Invoked by both ascending and descending crawler.
-		 * @param {Element} element
-		 * @param {object} handler
-		 * @returns {number} directive
-		 */
+			 * Handle element. Invoked by both ascending and descending crawler.
+			 * @param {Element} element
+			 * @param {object} handler
+			 * @returns {number} directive
+			 */
 			_handleElement: function(element, handler, arg) {
 				var hasspirit = gui.hasModule('gui-spirits@wunderbyte.com');
 				var directive = gui.Crawler.CONTINUE;
@@ -206,11 +206,11 @@ gui.Crawler = (function using(Type) {
 			},
 
 			/**
-		 * Handle Spirit.
-		 * @param {Spirit} spirit
-		 * @param {object} handler
-		 * @returns {number}
-		 */
+			 * Handle Spirit.
+			 * @param {Spirit} spirit
+			 * @param {object} handler
+			 * @returns {number}
+			 */
 			_handleSpirit: function(spirit, handler) {
 				return handler.handleSpirit(spirit);
 			}

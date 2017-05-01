@@ -9,20 +9,20 @@ gui.AttPlugin = (function using(confirmed, chained, Client) {
 	return gui.TrackerPlugin.extend(
 		{
 			/**
-		 * Get single element attribute cast to an inferred type.
-		 * @param {String} att
-		 * @returns {String|number|boolean} Autoconverted
-		 */
+			 * Get single element attribute cast to an inferred type.
+			 * @param {String} att
+			 * @returns {String|number|boolean} Autoconverted
+			 */
 			get: function(name) {
 				return gui.AttPlugin.get(this.spirit.element, name);
 			},
 
 			/**
-		 * Set single element attribute (use null to remove).
-		 * @param {String} name
-		 * @param {String|number|boolean} value
-		 * @returns {gui.AttPlugin}
-		 */
+			 * Set single element attribute (use null to remove).
+			 * @param {String} name
+			 * @param {String|number|boolean} value
+			 * @returns {gui.AttPlugin}
+			 */
 			set: chained(function(name, value) {
 				if (!this.$suspended) {
 					gui.AttPlugin.set(this.spirit.element, name, value);
@@ -30,20 +30,20 @@ gui.AttPlugin = (function using(confirmed, chained, Client) {
 			}),
 
 			/**
-		 * Element has attribute?
-		 * @param {String|number|boolean} att
-		 * @returns {boolean}
-		 */
+			 * Element has attribute?
+			 * @param {String|number|boolean} att
+			 * @returns {boolean}
+			 */
 			has: function(name) {
 				return gui.AttPlugin.has(this.spirit.element, name);
 			},
 
 			/**
-		 * Remove element attribute.
-		 * @TODO: Rename "remove" ???
-		 * @param {String} att
-		 * @returns {gui.AttPlugin}
-		 */
+			 * Remove element attribute.
+			 * @TODO: Rename "remove" ???
+			 * @param {String} att
+			 * @returns {gui.AttPlugin}
+			 */
 			del: chained(function(name) {
 				if (!this.$suspended) {
 					gui.AttPlugin.del(this.spirit.element, name);
@@ -51,20 +51,20 @@ gui.AttPlugin = (function using(confirmed, chained, Client) {
 			}),
 
 			/**
-		 * Collect attributes as an array (of DOMAttributes).
-		 * @returns {Array<Attr>}
-		 */
+			 * Collect attributes as an array (of DOMAttributes).
+			 * @returns {Array<Attr>}
+			 */
 			all: function() {
 				return gui.AttPlugin.all(this.spirit.element);
 			},
 
 			/**
-		 * Set attribute or remove the attribute alltogether.
-		 * @param {boolean} on
-		 * @param {string} name
-		 * @param {string|number|boolean} value
-		 * @returns {gui.AttPlugin}
-		 */
+			 * Set attribute or remove the attribute alltogether.
+			 * @param {boolean} on
+			 * @param {string} name
+			 * @param {string|number|boolean} value
+			 * @returns {gui.AttPlugin}
+			 */
 			shift: confirmed('boolean', 'string')(
 				chained(function(on, name, value) {
 					if (on) {
@@ -80,29 +80,29 @@ gui.AttPlugin = (function using(confirmed, chained, Client) {
 			),
 
 			/**
-		 * Get all attributes as hashmap type object.
-		 * Values are converted to an inferred type.
-		 * @returns {Map<String,String>}
-		 */
+			 * Get all attributes as hashmap type object.
+			 * Values are converted to an inferred type.
+			 * @returns {Map<String,String>}
+			 */
 			getmap: function() {
 				return gui.AttPlugin.getmap(this.spirit.element);
 			},
 
 			/**
-		 * Invoke multiple attributes update via hashmap
-		 * argument. Use null value to remove an attribute.
-		 * @param {Map<String,String>}
-		 */
+			 * Invoke multiple attributes update via hashmap
+			 * argument. Use null value to remove an attribute.
+			 * @param {Map<String,String>}
+			 */
 			setmap: function(map) {
 				gui.AttPlugin.setmap(this.spirit.element, map);
 			},
 
 			/**
-		 * Add one or more attribute listeners.
-		 * @param {array|string} arg
-		 * @param @optional {object|function} handler
-		 * @returns {gui.AttPlugin}
-		 */
+			 * Add one or more attribute listeners.
+			 * @param {array|string} arg
+			 * @param @optional {object|function} handler
+			 * @returns {gui.AttPlugin}
+			 */
 			add: confirmed('array|string', '(object|function)')(
 				chained(function(arg, handler) {
 					handler = handler || this.spirit;
@@ -120,11 +120,11 @@ gui.AttPlugin = (function using(confirmed, chained, Client) {
 			),
 
 			/**
-		 * Remove one or more attribute listeners.
-		 * @param {object} arg
-		 * @param @optional {object} handler
-		 * @returns {gui.AttPlugin}
-		 */
+			 * Remove one or more attribute listeners.
+			 * @param {object} arg
+			 * @param @optional {object} handler
+			 * @returns {gui.AttPlugin}
+			 */
 			remove: confirmed('array|string', '(object|function)')(
 				chained(function(arg, handler) {
 					handler = handler || this.spirit;
@@ -142,10 +142,10 @@ gui.AttPlugin = (function using(confirmed, chained, Client) {
 			),
 
 			/**
-		 * Handle that mutation event for IE9. Other browsers will be
-		 * covered with an override of `className` in {gui.DOMCombos}.
-		 * @param {MutationEvent} e
-		 */
+			 * Handle that mutation event for IE9. Other browsers will be
+			 * covered with an override of `className` in {gui.DOMCombos}.
+			 * @param {MutationEvent} e
+			 */
 			handleEvent: function(e) {
 				if (e.type === 'DOMAttrModified' && e.attrName === 'class') {
 					this.$onatt('class', e.newValue);
@@ -153,11 +153,11 @@ gui.AttPlugin = (function using(confirmed, chained, Client) {
 			},
 
 			/**
-		 * Cleanup weird event listener. The DOMAttrModified event
-		 * is by the way not exactly great for overall performance.
-		 * @param {String} type
-		 * @param {Array<object>} checks
-		 */
+			 * Cleanup weird event listener. The DOMAttrModified event
+			 * is by the way not exactly great for overall performance.
+			 * @param {String} type
+			 * @param {Array<object>} checks
+			 */
 			_cleanup: function(type, checks) {
 				this.super._cleanup(type, checks);
 				if (type === 'class' && Client.isExplorer9) {
@@ -168,17 +168,17 @@ gui.AttPlugin = (function using(confirmed, chained, Client) {
 			// Privileged ..............................................................
 
 			/**
-		 * Attribute updates disabled?
-		 * @type {boolean}
-		 */
+			 * Attribute updates disabled?
+			 * @type {boolean}
+			 */
 			$suspended: false,
 
 			/**
-		 * Suspend attribute updates for the duration of the
-		 * action. This to prevent endless attribute updates.
-		 * @param {function} action
-		 * @retruns {object}
-		 */
+			 * Suspend attribute updates for the duration of the
+			 * action. This to prevent endless attribute updates.
+			 * @param {function} action
+			 * @retruns {object}
+			 */
 			$suspend: function(action) {
 				this.$suspended = true;
 				var res = action();
@@ -187,10 +187,10 @@ gui.AttPlugin = (function using(confirmed, chained, Client) {
 			},
 
 			/**
-		 * Trigger potential handlers for attribute update.
-		 * @param {String} name
-		 * @param {String} value
-		 */
+			 * Trigger potential handlers for attribute update.
+			 * @param {String} name
+			 * @param {String} value
+			 */
 			$onatt: function(name, value) {
 				var list, att, handler, trigger;
 				var triggers = !gui.attributes.every(function(prefix) {
@@ -211,9 +211,9 @@ gui.AttPlugin = (function using(confirmed, chained, Client) {
 			// Private .................................................................
 
 			/**
-		 * Resolve attribute listeners immediately when added.
-		 * @param {String} name
-		 */
+			 * Resolve attribute listeners immediately when added.
+			 * @param {String} name
+			 */
 			_onadd: function(name) {
 				if (this.has(name)) {
 					var value = this.get(name);
@@ -230,11 +230,11 @@ gui.AttPlugin = (function using(confirmed, chained, Client) {
 			// Static ...........................................................
 
 			/**
-		 * Get single element attribute cast to an inferred type.
-		 * @param {Element} elm
-		 * @param {String} name
-		 * @returns {object} String, boolean or number
-		 */
+			 * Get single element attribute cast to an inferred type.
+			 * @param {Element} elm
+			 * @param {String} name
+			 * @returns {object} String, boolean or number
+			 */
 			get: function(elm, name) {
 				switch (name) {
 					case 'disabled':
@@ -247,13 +247,13 @@ gui.AttPlugin = (function using(confirmed, chained, Client) {
 			},
 
 			/**
-		 * Set single element attribute (use null to remove).
-		 * @param {Element} elm
-		 * @param {String} name
-		 * @param {String} value
-		 * @param @optional @internal {boolean} $hotfix
-		 * @returns {function}
-		 */
+			 * Set single element attribute (use null to remove).
+			 * @param {Element} elm
+			 * @param {String} name
+			 * @param {String} value
+			 * @param @optional @internal {boolean} $hotfix
+			 * @returns {function}
+			 */
 			set: chained(function(elm, name, value, $hotfix) {
 				var spirit = elm.spirit;
 				var change = false;
@@ -304,35 +304,35 @@ gui.AttPlugin = (function using(confirmed, chained, Client) {
 			}),
 
 			/**
-		 * @returns {boolean}
-		 */
+			 * @returns {boolean}
+			 */
 			_ischecked: function(elm, name) {
 				return elm.type && elm.checked !== undefined && name === 'checked';
 			},
 
 			/**
-		 * @returns {boolean}
-		 */
+			 * @returns {boolean}
+			 */
 			_isvalue: function(elm, name) {
 				return elm.value !== undefined && name === 'value';
 			},
 
 			/**
-		 * Element has attribute?
-		 * @param {Element} elm
-		 * @param {String} name
-		 * @returns {boolean}
-		 */
+			 * Element has attribute?
+			 * @param {Element} elm
+			 * @param {String} name
+			 * @returns {boolean}
+			 */
 			has: function(elm, name) {
 				return elm.hasAttribute(name);
 			},
 
 			/**
-		 * Remove element attribute.
-		 * @param {Element} elm
-		 * @param {String} att
-		 * @returns {function}
-		 */
+			 * Remove element attribute.
+			 * @param {Element} elm
+			 * @param {String} att
+			 * @returns {function}
+			 */
 			del: chained(function(elm, name) {
 				var spirit = elm.spirit;
 				if (this._ischecked(elm, name)) {
@@ -354,20 +354,20 @@ gui.AttPlugin = (function using(confirmed, chained, Client) {
 			}),
 
 			/**
-		 * Collect attributes as an array (of DOMAttributes).
-		 * @param {Element} elm
-		 * @returns {Array<Attr>}
-		 */
+			 * Collect attributes as an array (of DOMAttributes).
+			 * @param {Element} elm
+			 * @returns {Array<Attr>}
+			 */
 			all: function(elm) {
 				return gui.Array.from(elm.attributes);
 			},
 
 			/**
-		 * Get all attributes as hashmap type object.
-		 * Values are converted to an inferred type.
-		 * @param {Element} elm
-		 * @returns {Map<String,String>}
-		 */
+			 * Get all attributes as hashmap type object.
+			 * Values are converted to an inferred type.
+			 * @param {Element} elm
+			 * @returns {Map<String,String>}
+			 */
 			getmap: function(elm) {
 				var map = Object.create(null);
 				this.all(elm).forEach(function(att) {
@@ -377,12 +377,12 @@ gui.AttPlugin = (function using(confirmed, chained, Client) {
 			},
 
 			/**
-		 * Invoke multiple attributes update via hashmap
-		 * argument. Use null value to remove an attribute.
-		 * @param {Element} elm
-		 * @param {Map<String,String>}
-		 * @returns {function}
-		 */
+			 * Invoke multiple attributes update via hashmap
+			 * argument. Use null value to remove an attribute.
+			 * @param {Element} elm
+			 * @param {Map<String,String>}
+			 * @returns {function}
+			 */
 			setmap: chained(function(elm, map) {
 				gui.Object.each(
 					map,

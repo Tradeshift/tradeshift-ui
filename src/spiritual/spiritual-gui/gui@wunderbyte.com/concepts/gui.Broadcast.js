@@ -22,47 +22,47 @@ gui.Broadcast = (function using(confirmed, chained) {
 		Object.prototype,
 		{
 			/**
-		 * Broadcast target.
-		 * @type {gui.Spirit}
-		 */
+			 * Broadcast target.
+			 * @type {gui.Spirit}
+			 */
 			target: null,
 
 			/**
-		 * Broadcast type.
-		 * @type {String}
-		 */
+			 * Broadcast type.
+			 * @type {String}
+			 */
 			type: null,
 
 			/**
-		 * Broadcast data.
-		 * @type {object}
-		 */
+			 * Broadcast data.
+			 * @type {object}
+			 */
 			data: null,
 
 			/**
-		 * Global broadcast?
-		 * @type {boolean}
-		 */
+			 * Global broadcast?
+			 * @type {boolean}
+			 */
 			global: false,
 
 			/**
-		 * Signature of dispatching context.
-		 * Unimportant for global broadcasts.
-		 * @type {String}
-		 */
+			 * Signature of dispatching context.
+			 * Unimportant for global broadcasts.
+			 * @type {String}
+			 */
 			$contextid: null,
 
 			/**
-		 * Experimental...
-		 * TODO: Still used?
-		 * @type {Array<String>}
-		 */
+			 * Experimental...
+			 * TODO: Still used?
+			 * @type {Array<String>}
+			 */
 			$contextids: null,
 
 			/**
-		 * Constructor.
-		 * @param {Map<String,object>} defs
-		 */
+			 * Constructor.
+			 * @param {Map<String,object>} defs
+			 */
 			$onconstruct: function(defs) {
 				gui.Object.extend(this, defs);
 				this.$contextids = this.$contextids || [];
@@ -73,8 +73,8 @@ gui.Broadcast = (function using(confirmed, chained) {
 			// Static ...........................................................
 
 			/**
-		 * Broadcast handler interface.
-		 */
+			 * Broadcast handler interface.
+			 */
 			IBroadcastHandler: {
 				onbroadcast: function(b) {},
 				toString: function() {
@@ -83,76 +83,76 @@ gui.Broadcast = (function using(confirmed, chained) {
 			},
 
 			/**
-		 * @type {gui.Spirit}
-		 */
+			 * @type {gui.Spirit}
+			 */
 			$target: null,
 
 			/**
-		 * TODO: Ths can be deprecated now(?)
-		 * Tracking global handlers (mapping broadcast types to list of handlers).
-		 * @type {Map<String,<Array<object>>}
-		 */
+			 * TODO: Ths can be deprecated now(?)
+			 * Tracking global handlers (mapping broadcast types to list of handlers).
+			 * @type {Map<String,<Array<object>>}
+			 */
 			_globals: Object.create(null),
 
 			/**
-		 * TODO: Ths can be deprecated now!
-		 * Tracking local handlers (mapping gui.$contextids
-		 * to broadcast types to list of handlers).
-		 * @type {Map<String,Map<String,Array<object>>>}
-		 */
+			 * TODO: Ths can be deprecated now!
+			 * Tracking local handlers (mapping gui.$contextids
+			 * to broadcast types to list of handlers).
+			 * @type {Map<String,Map<String,Array<object>>>}
+			 */
 			_locals: Object.create(null),
 
 			/**
-		 * mapcribe handler to message.
-		 * @param {object} message String or array of strings
-		 * @param {object} handler Implements `onbroadcast`
-		 * @param @optional {String} sig
-		 * @returns {function}
-		 */
+			 * mapcribe handler to message.
+			 * @param {object} message String or array of strings
+			 * @param {object} handler Implements `onbroadcast`
+			 * @param @optional {String} sig
+			 * @returns {function}
+			 */
 			add: chained(function(message, handler, sig) {
 				this._add(message, handler, sig || gui.$contextid);
 			}),
 
 			/**
-		 * Unmapcribe handler from broadcast.
-		 * @param {object} message String or array of strings
-		 * @param {object} handler
-		 * @param @optional {String} sig
-		 * @returns {function}
-		 */
+			 * Unmapcribe handler from broadcast.
+			 * @param {object} message String or array of strings
+			 * @param {object} handler
+			 * @param @optional {String} sig
+			 * @returns {function}
+			 */
 			remove: chained(function(message, handler, sig) {
 				this._remove(message, handler, sig || gui.$contextid);
 			}),
 
 			/**
-		 * mapcribe handler to message globally.
-		 * @param {object} message String or array of strings
-		 * @param {object} handler Implements `onbroadcast`
-		 * @returns {function}
-		 */
+			 * mapcribe handler to message globally.
+			 * @param {object} message String or array of strings
+			 * @param {object} handler Implements `onbroadcast`
+			 * @returns {function}
+			 */
 			addGlobal: chained(function(message, handler) {
 				this._add(message, handler);
 			}),
 
 			/**
-		 * Unmapcribe handler from global broadcast.
-		 * @param {object} message String or array of strings
-		 * @param {object} handler
-		 * @returns {function}
-		 */
+			 * Unmapcribe handler from global broadcast.
+			 * @param {object} message String or array of strings
+			 * @param {object} handler
+			 * @returns {function}
+			 */
 			removeGlobal: chained(function(message, handler) {
 				this._remove(message, handler);
 			}),
 
 			/**
-		 * Publish broadcast in specific window scope (defaults to this window)
-		 * TODO: queue for incoming dispatch (finish current message first).
-		 * @param {Spirit} target
-		 * @param {String} type
-		 * @param {object} data
-		 * @param {String} contextid
-		 * @returns {gui.Broadcast}
-		 */
+			 * Publish broadcast in specific window scope (defaults to this window)
+			 * TODO: queue for incoming dispatch (finish current message first).
+			 * @param {Spirit} target
+			 * @param {String} type
+			 * @param {object} data
+			 * @param {String} contextid
+			 * @returns {gui.Broadcast}
+			 */
 			dispatch: function(type, data) {
 				if (gui.Type.isString(type)) {
 					return this._dispatch({
@@ -169,14 +169,14 @@ gui.Broadcast = (function using(confirmed, chained) {
 			},
 
 			/**
-		 * Dispatch broadcast in global scope (all windows).
-		 * TODO: queue for incoming dispatch (finish current first).
-		 * TODO: Handle remote domain iframes ;)
-		 * @param {Spirit} target
-		 * @param {String} type
-		 * @param {object} data
-		 * @returns {gui.Broadcast}
-		 */
+			 * Dispatch broadcast in global scope (all windows).
+			 * TODO: queue for incoming dispatch (finish current first).
+			 * TODO: Handle remote domain iframes ;)
+			 * @param {Spirit} target
+			 * @param {String} type
+			 * @param {object} data
+			 * @returns {gui.Broadcast}
+			 */
 			dispatchGlobal: function(type, data) {
 				if (gui.Type.isString(type)) {
 					return this._dispatch({
@@ -194,10 +194,10 @@ gui.Broadcast = (function using(confirmed, chained) {
 			},
 
 			/**
-		 * Encode broadcast to be posted xdomain.
-		 * @param {gui.Broacast} b
-		 * @returns {String}
-		 */
+			 * Encode broadcast to be posted xdomain.
+			 * @param {gui.Broacast} b
+			 * @returns {String}
+			 */
 			stringify: function(b) {
 				var prefix = 'spiritual-broadcast:';
 				return (
@@ -224,10 +224,10 @@ gui.Broadcast = (function using(confirmed, chained) {
 			},
 
 			/**
-		 * Decode broadcast posted from xdomain and return a broadcast-like object.
-		 * @param {String} msg
-		 * @returns {object}
-		 */
+			 * Decode broadcast posted from xdomain and return a broadcast-like object.
+			 * @param {String} msg
+			 * @returns {object}
+			 */
 			parse: function(msg) {
 				var prefix = 'spiritual-broadcast:';
 				if (msg.startsWith(prefix)) {
@@ -238,11 +238,11 @@ gui.Broadcast = (function using(confirmed, chained) {
 			// Privileged static .......................................................
 
 			/**
-		 * Parse postmessage into broadcast in this window?
-		 * Broadcasts propagate over-agressively, so perhaps
-		 * the broadcast has already bypassed this context.
-		 * @param {string} postmessage
-		 */
+			 * Parse postmessage into broadcast in this window?
+			 * Broadcasts propagate over-agressively, so perhaps
+			 * the broadcast has already bypassed this context.
+			 * @param {string} postmessage
+			 */
 			$maybeBroadcastGlobal: function(postmessage) {
 				var b = gui.Broadcast.parse(postmessage);
 				if (b.$contextids.indexOf(gui.$contextid) === -1) {
@@ -253,11 +253,11 @@ gui.Broadcast = (function using(confirmed, chained) {
 			// Private .................................................................
 
 			/**
-		 * Subscribe handler to message(s).
-		 * @param {Array<string>|string} type
-		 * @param {object|function} handler Implements `onbroadcast`
-		 * @param @optional {String} sig
-		 */
+			 * Subscribe handler to message(s).
+			 * @param {Array<string>|string} type
+			 * @param {object|function} handler Implements `onbroadcast`
+			 * @param @optional {String} sig
+			 */
 			_add: confirmed('array|string', 'object|function', '(string)')(function(type, handler, sig) {
 				// var interfais = gui.Broadcast.IBroadcastHandler;
 				// if (true || gui.Interface.validate(interfais, handler)) {
@@ -287,11 +287,11 @@ gui.Broadcast = (function using(confirmed, chained) {
 			}),
 
 			/**
-		 * Hello.
-		 * @param {object} message String or array of strings
-		 * @param {object} handler
-		 * @param @optional {String} sig
-		 */
+			 * Hello.
+			 * @param {object} message String or array of strings
+			 * @param {object} handler
+			 * @param @optional {String} sig
+			 */
 			_remove: function(message, handler, sig) {
 				// var interfais = gui.Broadcast.IBroadcastHandler;
 				// if (true || gui.Interface.validate(interfais, handler)) {
@@ -321,9 +321,9 @@ gui.Broadcast = (function using(confirmed, chained) {
 			},
 
 			/**
-		 * Dispatch broadcast.
-		 * @param {gui.Broadcast|Map<String,object>} b
-		 */
+			 * Dispatch broadcast.
+			 * @param {gui.Broadcast|Map<String,object>} b
+			 */
 			_dispatch: function(b) {
 				var map = b.global ? this._globals : this._locals[gui.$contextid];
 				if (gui.hasModule('gui-spirits@wunderbyte.com')) {
@@ -357,13 +357,13 @@ gui.Broadcast = (function using(confirmed, chained) {
 			},
 
 			/**
-		 * Propagate broadcast xframe.
-		 *
-		 * 1. Propagate descending
-		 * 2. Propagate ascending
-		 * TODO: Don't post to universal domain "*"
-		 * @param {gui.Broadcast} b
-		 */
+			 * Propagate broadcast xframe.
+			 *
+			 * 1. Propagate descending
+			 * 2. Propagate ascending
+			 * TODO: Don't post to universal domain "*"
+			 * @param {gui.Broadcast} b
+			 */
 			_propagate: function(b) {
 				var postmessage = (function stamp() {
 					b.$contextids.push(gui.$contextid);
@@ -374,12 +374,12 @@ gui.Broadcast = (function using(confirmed, chained) {
 			},
 
 			/**
-		 * Propagate broadcast to sub documents.
-		 * TODO: implement something similar to {gui.IframeSpirit._postbox}
-		 * but without expecting the bundle gui-spirits@wunderbyte.com
-		 * (it would in that case involve onload instead of onspiritualized)
-		 * @param {string} postmessage
-		 */
+			 * Propagate broadcast to sub documents.
+			 * TODO: implement something similar to {gui.IframeSpirit._postbox}
+			 * but without expecting the bundle gui-spirits@wunderbyte.com
+			 * (it would in that case involve onload instead of onspiritualized)
+			 * @param {string} postmessage
+			 */
 			_propagateDown: function(postmessage) {
 				var iframes = document.querySelectorAll('iframe');
 				Array.forEach(iframes, function(iframe) {
@@ -388,9 +388,9 @@ gui.Broadcast = (function using(confirmed, chained) {
 			},
 
 			/**
-		 * Propagate broadcast to parent document.
-		 * @param {string} postmessage
-		 */
+			 * Propagate broadcast to parent document.
+			 * @param {string} postmessage
+			 */
 			_propagateUp: function(postmessage) {
 				if (window !== top) {
 					parent.postMessage(postmessage, '*');

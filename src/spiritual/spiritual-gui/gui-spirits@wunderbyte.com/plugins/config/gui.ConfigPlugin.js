@@ -6,15 +6,15 @@
 gui.ConfigPlugin = gui.Plugin.extend(
 	{
 		/**
-	 * Invoked by the {gui.Spirit} once all plugins have been plugged in.
-	 *
-	 * - Simple properties (booleans etc) will run at {gui.Spirit#onconfigure}
-	 * - Methods calls of any kind will be invoked at {gui.Spirit#onready}
-	 *
-	 * TODO: Simple props with no setter does nothing when updated now.
-	 * Perhaps it would be possible to somehow configure those *first*?
-	 * TODO: Figure out what the TODO above is supposed to mean
-	 */
+		 * Invoked by the {gui.Spirit} once all plugins have been plugged in.
+		 *
+		 * - Simple properties (booleans etc) will run at {gui.Spirit#onconfigure}
+		 * - Methods calls of any kind will be invoked at {gui.Spirit#onready}
+		 *
+		 * TODO: Simple props with no setter does nothing when updated now.
+		 * Perhaps it would be possible to somehow configure those *first*?
+		 * TODO: Figure out what the TODO above is supposed to mean
+		 */
 		configureall: function() {
 			var atts = this.spirit.element.attributes;
 			Array.forEach(
@@ -27,9 +27,9 @@ gui.ConfigPlugin = gui.Plugin.extend(
 		},
 
 		/**
-	 * Evaluate method updates at {gui.Spirit#onready}.
-	 * @param {gui.Life} l
-	 */
+		 * Evaluate method updates at {gui.Spirit#onready}.
+		 * @param {gui.Life} l
+		 */
 		onlife: function(l) {
 			var update;
 			if (l.type === gui.LIFE_READY) {
@@ -40,11 +40,11 @@ gui.ConfigPlugin = gui.Plugin.extend(
 		},
 
 		/**
-	 * Setup configuration (if applicable) after an attribute update.
-	 * This should probably only ever be invoked by the {gui.AttPlugin}.
-	 * @param {string} name
-	 * @param {string} value
-	 */
+		 * Setup configuration (if applicable) after an attribute update.
+		 * This should probably only ever be invoked by the {gui.AttPlugin}.
+		 * @param {string} name
+		 * @param {string} value
+		 */
 		configureone: function(name, value) {
 			var hit, gux = this.spirit.window.gui;
 			var dot = gui.ConfigPlugin.SEPARATOR;
@@ -59,20 +59,20 @@ gui.ConfigPlugin = gui.Plugin.extend(
 		// Private ...................................................................
 
 		/**
-	 * Collecting method-type updates during spirit initialization.
-	 * @type {Array<function>}
-	 */
+		 * Collecting method-type updates during spirit initialization.
+		 * @type {Array<function>}
+		 */
 		_onready: null,
 
 		/**
-	 * Evaluate single attribute in search for "gui." prefix.
-	 * The string value will be autocast to an inferred type.
-	 * "false" becomes a boolean while "23" becomes a number.
-	 * @param {string} name
-	 * @param {string} value
-	 * @param {string} fix
-	 * @param {string} dot
-	 */
+		 * Evaluate single attribute in search for "gui." prefix.
+		 * The string value will be autocast to an inferred type.
+		 * "false" becomes a boolean while "23" becomes a number.
+		 * @param {string} name
+		 * @param {string} value
+		 * @param {string} fix
+		 * @param {string} dot
+		 */
 		_evaluate: function(name, value, fix, dot) {
 			var struct = this.spirit, success = true, prop = null, cuts = null;
 			name = prop = name.split(fix + dot)[1];
@@ -99,12 +99,12 @@ gui.ConfigPlugin = gui.Plugin.extend(
 		},
 
 		/**
-	 * Schedule update. Simple properties (strings, booleans, numbers) will be
-	 * updated during `onconfigure` while methods will be invoked at `onready`.
-	 * @param {object} struct What to update
-	 * @param {string} prop Property or method name
-	 * @param {object} value Property value or method argument
-	 */
+		 * Schedule update. Simple properties (strings, booleans, numbers) will be
+		 * updated during `onconfigure` while methods will be invoked at `onready`.
+		 * @param {object} struct What to update
+		 * @param {string} prop Property or method name
+		 * @param {object} value Property value or method argument
+		 */
 		_schedule: function(struct, prop, value) {
 			if (gui.Type.isFunction(struct[prop])) {
 				if (this.spirit.life.ready) {
@@ -132,11 +132,11 @@ gui.ConfigPlugin = gui.Plugin.extend(
 		},
 
 		/**
-	 * Typecast the value.
-	 * TODO: Move the EDB hack into EDBML module somehow.
-	 * @param {object} value
-	 * @returns {object}
-	 */
+		 * Typecast the value.
+		 * TODO: Move the EDB hack into EDBML module somehow.
+		 * @param {object} value
+		 * @returns {object}
+		 */
 		_revaluate: function(value) {
 			if (gui.Type.isString(value)) {
 				if (gui.hasModule('edbml@wunderbyte.com') && value.startsWith('edbml.$get')) {
@@ -155,25 +155,25 @@ gui.ConfigPlugin = gui.Plugin.extend(
 		// Static .................................................................
 
 		/**
-	 * Run on spirit startup (don't wait for implementation to require it).
-	 * @type {boolean}
-	 */
+		 * Run on spirit startup (don't wait for implementation to require it).
+		 * @type {boolean}
+		 */
 		lazy: false,
 
 		/**
-	 * Use dots to separate object-path style attributes.
-	 * Isolated so that you can overwrite it if you like.
-	 * @type {string}
-	 */
+		 * Use dots to separate object-path style attributes.
+		 * Isolated so that you can overwrite it if you like.
+		 * @type {string}
+		 */
 		SEPARATOR: '.',
 
 		/**
-	 * Hack to parse invalid JSON (with no quotes on keys)
-	 * as valid JSON, so basically a relaxed `JSON.parse`.
-	 * TODO: Now validate that we actually get an object!
-	 * @param {string} json
-	 * @returns {object}
-	 */
+		 * Hack to parse invalid JSON (with no quotes on keys)
+		 * as valid JSON, so basically a relaxed `JSON.parse`.
+		 * TODO: Now validate that we actually get an object!
+		 * @param {string} json
+		 * @returns {object}
+		 */
 		jsonify: (function(div) {
 			return function(json) {
 				div.setAttribute('onclick', 'this.json = ' + json);
@@ -183,11 +183,11 @@ gui.ConfigPlugin = gui.Plugin.extend(
 		})(document.createElement('div')),
 
 		/**
-	 * JSONArray or JSONObject scrambled with encodeURIComponent?
-	 * If so, let's decode and parse this into an array or object.
-	 * @param {string} value
-	 * @returns {Array|Object>}
-	 */
+		 * JSONArray or JSONObject scrambled with encodeURIComponent?
+		 * If so, let's decode and parse this into an array or object.
+		 * @param {string} value
+		 * @returns {Array|Object>}
+		 */
 		jsonvaluate: function(value) {
 			if (
 				[['%5B', '%5D'], ['%7B', '%7D']].some(function isencoded(tokens) {

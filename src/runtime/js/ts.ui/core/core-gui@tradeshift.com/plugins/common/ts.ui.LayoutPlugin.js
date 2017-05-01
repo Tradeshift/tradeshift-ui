@@ -9,20 +9,20 @@ ts.ui.LayoutPlugin = (function using(GuiArray, DOMPlugin, CSSPlugin, chained) {
 	return ts.ui.Plugin.extend(
 		{
 			/**
-		 * Spirit is positioned before or after Main (not inside)?
-		 * TODO(jmo@): could not use classname `ts-main` because of
-		 * timing	conflicts in tests, must investigate performance
-		 * of the selector used instead.
-		 * @returns {boolean}
-		 */
+			 * Spirit is positioned before or after Main (not inside)?
+			 * TODO(jmo@): could not use classname `ts-main` because of
+			 * timing	conflicts in tests, must investigate performance
+			 * of the selector used instead.
+			 * @returns {boolean}
+			 */
 			outsideMain: function() {
 				return !this.spirit.css.matches('[data-ts=Main] *');
 			},
 
 			/**
-		 * Spirit is positoned before Main (and not inside an Aside)?
-		 * @returns {boolean}
-		 */
+			 * Spirit is positoned before Main (and not inside an Aside)?
+			 * @returns {boolean}
+			 */
 			beforeMain: function() {
 				var is = false, elm = this.spirit.element;
 				if (!this._isinaside() && !this._isinmain()) {
@@ -34,9 +34,9 @@ ts.ui.LayoutPlugin = (function using(GuiArray, DOMPlugin, CSSPlugin, chained) {
 			},
 
 			/**
-		 * Spirit is positoned after Main (and not inside an Aside)?
-		 * @returns {boolean}
-		 */
+			 * Spirit is positoned after Main (and not inside an Aside)?
+			 * @returns {boolean}
+			 */
 			afterMain: function() {
 				var is = false, elm = this.spirit.element;
 				if (!this._isinaside() && !this._isinmain()) {
@@ -48,11 +48,11 @@ ts.ui.LayoutPlugin = (function using(GuiArray, DOMPlugin, CSSPlugin, chained) {
 			},
 
 			/**
-		 * Add or remove classname(s) on the HTML element.
-		 * @param {truthy} on
-		 * @param {string|Array<string>} cnames
-		 * @returns {ts.ui.LayoutPlugin}
-		 */
+			 * Add or remove classname(s) on the HTML element.
+			 * @param {truthy} on
+			 * @param {string|Array<string>} cnames
+			 * @returns {ts.ui.LayoutPlugin}
+			 */
 			shiftGlobal: chained(function(on, cnames) {
 				this.spirit.action.dispatch(ts.ui.ACTION_ROOT_CLASSNAMES, {
 					classes: GuiArray.make(cnames),
@@ -61,20 +61,20 @@ ts.ui.LayoutPlugin = (function using(GuiArray, DOMPlugin, CSSPlugin, chained) {
 			}),
 
 			/**
-		 * Flex everything (because of JavaScript based layout).
-		 * @returns {ts.ui.LayoutPlugin}
-		 */
+			 * Flex everything (because of JavaScript based layout).
+			 * @returns {ts.ui.LayoutPlugin}
+			 */
 			flexGlobal: chained(function() {
 				ts.ui.get(document.documentElement).reflex();
 			}),
 
 			/**
-		 * Apply classname based on the current height of some
-		 * descendant StatusBarSpirit. This is known to affect
-		 * TableSpirit, PanelSpirit and DocumentSpirit (and it
-		 * also runs on the StatusBarSpirit itself).
-		 * @param {number} level
-		 */
+			 * Apply classname based on the current height of some
+			 * descendant StatusBarSpirit. This is known to affect
+			 * TableSpirit, PanelSpirit and DocumentSpirit (and it
+			 * also runs on the StatusBarSpirit itself).
+			 * @param {number} level
+			 */
 			gotoLevel: function(level) {
 				var css = this.spirit.css;
 				[1, 1.5, 2, 2.5, 3].forEach(function(number) {
@@ -86,17 +86,17 @@ ts.ui.LayoutPlugin = (function using(GuiArray, DOMPlugin, CSSPlugin, chained) {
 			// Private .................................................................
 
 			/**
-		 * Spirit is inside some kind of Aside?
-		 * @returns {boolean}
-		 */
+			 * Spirit is inside some kind of Aside?
+			 * @returns {boolean}
+			 */
 			_isinaside: function() {
 				return this.spirit.css.matches('.ts-sideshow *');
 			},
 
 			/**
-		 * Spirit is inside Main?
-		 * @returns {boolean}
-		 */
+			 * Spirit is inside Main?
+			 * @returns {boolean}
+			 */
 			_isinmain: function() {
 				return this.spirit.css.matches('.ts-main *');
 			}
@@ -105,20 +105,20 @@ ts.ui.LayoutPlugin = (function using(GuiArray, DOMPlugin, CSSPlugin, chained) {
 			// Static ...............................................................
 
 			/**
-		 * @deprecated
-		 * @param {truthy} on
-		 * @param {string|Array<string>} cnames
-		 * @returns {constructor}
-		 */
+			 * @deprecated
+			 * @param {truthy} on
+			 * @param {string|Array<string>} cnames
+			 * @returns {constructor}
+			 */
 			shift: chained(function(on, cnames) {
 				console.error('Deprecated API is deprecated: LayoutPlugin.shift');
 			}),
 
 			/**
-		 * HTML element has given classname?
-		 * TODO: Move to prototype and rename `containsGlobal`
-		 * @returns {boolean}
-		 */
+			 * HTML element has given classname?
+			 * TODO: Move to prototype and rename `containsGlobal`
+			 * @returns {boolean}
+			 */
 			contains: function(cname) {
 				if (gui.debug) {
 					console.log('TODO: this must be synced to root panels setup');

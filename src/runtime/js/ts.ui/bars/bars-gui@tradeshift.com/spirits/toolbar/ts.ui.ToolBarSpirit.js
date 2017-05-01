@@ -64,14 +64,14 @@ ts.ui.ToolBarSpirit = (function using(
 	return ts.ui.BarSpirit.extend(
 		{
 			/**
-		 * Bar is visible?
-		 * @type {boolean}
-		 */
+			 * Bar is visible?
+			 * @type {boolean}
+			 */
 			visible: true,
 
 			/**
-		 * @see https://github.com/wunderbyte/spiritual-gui/issues/109
-		 */
+			 * @see https://github.com/wunderbyte/spiritual-gui/issues/109
+			 */
 			onenter: function() {
 				this._validate();
 				this.super.onenter();
@@ -82,25 +82,25 @@ ts.ui.ToolBarSpirit = (function using(
 			},
 
 			/**
-		 * Further hotfix for situation explained in previous comment.
-		 */
+			 * Further hotfix for situation explained in previous comment.
+			 */
 			onattach: function() {
 				this.super.onattach();
 				this._layoutmain(true);
 			},
 
 			/**
-		 * Remove assistant classnames.
-		 */
+			 * Remove assistant classnames.
+			 */
 			ondetach: function() {
 				this.super.ondetach();
 				this._layoutmain(false);
 			},
 
 			/**
-		 * Handle action.
-		 * @param {gui.Action} a
-		 */
+			 * Handle action.
+			 * @param {gui.Action} a
+			 */
 			onaction: function(a) {
 				this.super.onaction(a);
 				switch (a.type) {
@@ -116,9 +116,9 @@ ts.ui.ToolBarSpirit = (function using(
 			},
 
 			/**
-		 * Handle event. Focus the search when the title is clicked.
-		 * @param {Event} e
-		 */
+			 * Handle event. Focus the search when the title is clicked.
+			 * @param {Event} e
+			 */
 			onevent: function(e) {
 				this.super.onevent(e);
 				var title = this.dom.q('.ts-toolbar-title');
@@ -129,9 +129,9 @@ ts.ui.ToolBarSpirit = (function using(
 			},
 
 			/**
-		 * Handle model changes.
-		 * @param {Array<edb.Change>} changes
-		 */
+			 * Handle model changes.
+			 * @param {Array<edb.Change>} changes
+			 */
 			onchange: function(changes) {
 				this.super.onchange(changes);
 				changes.forEach(function(c) {
@@ -142,9 +142,9 @@ ts.ui.ToolBarSpirit = (function using(
 			},
 
 			/**
-		 * Clean up.
-		 * TODO: Again, this should be handled automatically some day.
-		 */
+			 * Clean up.
+			 * TODO: Again, this should be handled automatically some day.
+			 */
 			ondestruct: function() {
 				this.super.ondestruct();
 				if (this._ismodelled()) {
@@ -153,11 +153,11 @@ ts.ui.ToolBarSpirit = (function using(
 			},
 
 			/**
-		 * Show tabs as menu in aside (this gets invoked by the EDBML template).
-		 * @see ts.ui.TopBarSpirit.edbml
-		 * @param {Array<ts.ui.TabModel>} tabs
-		 * @param {string} color
-		 */
+			 * Show tabs as menu in aside (this gets invoked by the EDBML template).
+			 * @see ts.ui.TopBarSpirit.edbml
+			 * @param {Array<ts.ui.TabModel>} tabs
+			 * @param {string} color
+			 */
 			puttabs: function(tabs) {
 				var self = this;
 				var model = this._model;
@@ -196,12 +196,12 @@ ts.ui.ToolBarSpirit = (function using(
 			},
 
 			/**
-		 * Show buttons as menu in aside (this gets invoked by the EDBML template).
-		 * TODO: Button groups now expands to normal buttons (they get ungrouped)!
-		 * @see ts.ui.ToolBarSpirit.edbml
-		 * @param {Array<ts.ui.ButtonModel>} buttons
-		 * @param {string} color Copy from Tobbar. Now useless(@leo)
-		 */
+			 * Show buttons as menu in aside (this gets invoked by the EDBML template).
+			 * TODO: Button groups now expands to normal buttons (they get ungrouped)!
+			 * @see ts.ui.ToolBarSpirit.edbml
+			 * @param {Array<ts.ui.ButtonModel>} buttons
+			 * @param {string} color Copy from Tobbar. Now useless(@leo)
+			 */
 			putaside: function(buttons, color) {
 				var selected = null, morphed = [];
 				buttons.forEach(function transmorph(button) {
@@ -236,9 +236,9 @@ ts.ui.ToolBarSpirit = (function using(
 			},
 
 			/**
-		 * Set the toolbar to macro.
-		 * @returns {ts.ui.ToolBarSpirit}
-		 */
+			 * Set the toolbar to macro.
+			 * @returns {ts.ui.ToolBarSpirit}
+			 */
 			macro: chained(function() {
 				this.css.remove(ts.ui.CLASS_MICRO).add(ts.ui.CLASS_MACRO);
 				if (this._outsidemain() && this._outsidemodal()) {
@@ -249,9 +249,9 @@ ts.ui.ToolBarSpirit = (function using(
 			}),
 
 			/**
-		 * Set the toolbar to micro.
-		 * @returns {ts.ui.ToolBarSpirit}
-		 */
+			 * Set the toolbar to micro.
+			 * @returns {ts.ui.ToolBarSpirit}
+			 */
 			micro: chained(function() {
 				this.css.remove(ts.ui.CLASS_MACRO).add(ts.ui.CLASS_MICRO);
 				if (this._outsidemain() && this._outsidemodal()) {
@@ -262,11 +262,11 @@ ts.ui.ToolBarSpirit = (function using(
 			}),
 
 			/**
-		 * Get or set the title (aborting weird Moustache syntax).
-		 * Support also `null` because of some flaky Jasmine test.
-		 * @param @optional {string|null} title
-		 * @returns {string|ts.ui.ToolBarSpirit}
-		 */
+			 * Get or set the title (aborting weird Moustache syntax).
+			 * Support also `null` because of some flaky Jasmine test.
+			 * @param @optional {string|null} title
+			 * @returns {string|ts.ui.ToolBarSpirit}
+			 */
 			title: confirmed('(string|null)')(
 				chained(function(opt_title) {
 					var model = this.model();
@@ -284,10 +284,10 @@ ts.ui.ToolBarSpirit = (function using(
 			),
 
 			/**
-		 * Get or set the search (getter will *create* the search).
-		 * @param @optional {object|ts.ui.SearchModel} opt_json
-		 * @returns {ts.ui.SearchModel|ts.ui.ToolBarSpirit}
-		 */
+			 * Get or set the search (getter will *create* the search).
+			 * @param @optional {object|ts.ui.SearchModel} opt_json
+			 * @returns {ts.ui.SearchModel|ts.ui.ToolBarSpirit}
+			 */
 			search: confirmed('(object)')(
 				chained(function(opt_json) {
 					var model = this.model();
@@ -308,10 +308,10 @@ ts.ui.ToolBarSpirit = (function using(
 			),
 
 			/**
-		 * Get or set the buttons.
-		 * @param @optional {Array<object>} opt_json
-		 * @returns {ts.ui.ButtonCollection|ts.ui.ToolBarSpirit}
-		 */
+			 * Get or set the buttons.
+			 * @param @optional {Array<object>} opt_json
+			 * @returns {ts.ui.ButtonCollection|ts.ui.ToolBarSpirit}
+			 */
 			buttons: confirmed('(array)')(
 				chained(function(opt_json) {
 					var buttons = this.model().buttons;
@@ -328,10 +328,10 @@ ts.ui.ToolBarSpirit = (function using(
 			),
 
 			/**
-		 * Get or set the tabs.
-		 * @param @optional {Array<object>} opt_json
-		 * @returns {ts.ui.TabCollection|ts.ui.ToolBarSpirit}
-		 */
+			 * Get or set the tabs.
+			 * @param @optional {Array<object>} opt_json
+			 * @returns {ts.ui.TabCollection|ts.ui.ToolBarSpirit}
+			 */
 			tabs: confirmed('(array)')(
 				chained(function(opt_json) {
 					var tabs = this.model().tabs;
@@ -348,31 +348,31 @@ ts.ui.ToolBarSpirit = (function using(
 			),
 
 			/**
-		 * Attempt to economize space by automatically transferring
-		 * any assigned buttons (especially tertiary) into an Aside.
-		 * Note that this is `true` by defult (make space for tabs).
-		 * @param {boolean} compact
-		 * @returns {ts.ui.TableSpirit|boolean}
-		 */
+			 * Attempt to economize space by automatically transferring
+			 * any assigned buttons (especially tertiary) into an Aside.
+			 * Note that this is `true` by defult (make space for tabs).
+			 * @param {boolean} compact
+			 * @returns {ts.ui.TableSpirit|boolean}
+			 */
 			compact: chained(function() {
 				this.model().compact = true;
 			}),
 
 			/**
-		 * Don't attempt to economize space by automatically
-		 * moving buttons (especially tertiary) into an Aside.
-		 * @returns {ts.ui.TableSpirit|boolean}
-		 */
+			 * Don't attempt to economize space by automatically
+			 * moving buttons (especially tertiary) into an Aside.
+			 * @returns {ts.ui.TableSpirit|boolean}
+			 */
 			uncompact: chained(function() {
 				this.model().compact = false;
 			}),
 
 			/**
-		 * TODO: Can this be privatized?
-		 * Get or set the model. Not recommended.
-		 * @param {object|ts.ui.ToolBarModel} model
-		 * @returns {ts.ui.ToolBarModel|ts.ui.ToolBarSpirit}
-		 */
+			 * TODO: Can this be privatized?
+			 * Get or set the model. Not recommended.
+			 * @param {object|ts.ui.ToolBarModel} model
+			 * @returns {ts.ui.ToolBarModel|ts.ui.ToolBarSpirit}
+			 */
 			model: ts.ui.Spirit.createModelMethod(
 				ts.ui.ToolBarModel,
 				'ts.ui.ToolBarSpirit.edbml',
@@ -382,27 +382,27 @@ ts.ui.ToolBarSpirit = (function using(
 			),
 
 			/**
-		 * Handle EDBML rendered.
-		 * TODO(jmo@): Called twice (on first render)???
-		 * @param {TODOType} summary
-		 */
+			 * Handle EDBML rendered.
+			 * TODO(jmo@): Called twice (on first render)???
+			 * @param {TODOType} summary
+			 */
 			onrender: function(summary) {
 				this.super.onrender(summary);
 				this._layout();
 			},
 
 			/**
-		 * Window was resized.
-		 */
+			 * Window was resized.
+			 */
 			onflex: function() {
 				this.super.onflex();
 				this._layout();
 			},
 
 			/**
-		 * Hide the ToolBar.
-		 * @returns {ts.ui.ToolBarSpirit}
-		 */
+			 * Hide the ToolBar.
+			 * @returns {ts.ui.ToolBarSpirit}
+			 */
 			hide: chained(function() {
 				if (this.visible) {
 					this.dom.hide();
@@ -412,9 +412,9 @@ ts.ui.ToolBarSpirit = (function using(
 			}),
 
 			/**
-		 * Show the ToolBar.
-		 * @returns {ts.ui.ToolBarSpirit}
-		 */
+			 * Show the ToolBar.
+			 * @returns {ts.ui.ToolBarSpirit}
+			 */
 			show: chained(function() {
 				if (!this.visible) {
 					this.dom.show();
@@ -424,9 +424,9 @@ ts.ui.ToolBarSpirit = (function using(
 			}),
 
 			/**
-		 * Clear the ToolBar.
-		 * TODO: Do we really want to clear the title?
-		 */
+			 * Clear the ToolBar.
+			 * TODO: Do we really want to clear the title?
+			 */
 			clear: chained(function() {
 				var model = this.model();
 				model.buttons.clear();
@@ -437,10 +437,10 @@ ts.ui.ToolBarSpirit = (function using(
 			}),
 
 			/**
-		 * Show the close button "X".
-		 * @param @optional {Function} onclose
-		 * @returns {ts.ui.ToolBarSpirit}
-		 */
+			 * Show the close button "X".
+			 * @param @optional {Function} onclose
+			 * @returns {ts.ui.ToolBarSpirit}
+			 */
 			showClose: confirmed('(function)')(
 				chained(function(onclose) {
 					this.model().closebutton = new ts.ui.ButtonModel({
@@ -452,9 +452,9 @@ ts.ui.ToolBarSpirit = (function using(
 			),
 
 			/**
-		 * Hide the close button.
-		 * @returns {ts.ui.ToolBarSpirit}
-		 */
+			 * Hide the close button.
+			 * @returns {ts.ui.ToolBarSpirit}
+			 */
 			hideClose: chained(function() {
 				this.model().closebutton = null;
 			}),
@@ -462,14 +462,14 @@ ts.ui.ToolBarSpirit = (function using(
 			// Privileged ..............................................................
 
 			/**
-		 * EDB model observers are always triggered async and this may cause the
-		 * (main) toolbars to flicker into existence on page load. When you know
-		 * that an operation will cause the toolbar to have content, please make
-		 * sure to call this method manually.
-		 * TODO(jmo@): Some kind of synchronous observer setup to mitigate this.
-		 * @param @optional {boolean} hascontent
-		 * @see {ts.ui.ToolBarModel#hascontent} Defaults to `true`
-		 */
+			 * EDB model observers are always triggered async and this may cause the
+			 * (main) toolbars to flicker into existence on page load. When you know
+			 * that an operation will cause the toolbar to have content, please make
+			 * sure to call this method manually.
+			 * TODO(jmo@): Some kind of synchronous observer setup to mitigate this.
+			 * @param @optional {boolean} hascontent
+			 * @see {ts.ui.ToolBarModel#hascontent} Defaults to `true`
+			 */
 			$hascontent: function(has) {
 				this.life.hascontent = has = arguments.length ? has : true;
 				this.life.dispatch(has ? 'ts-life-toolbar-hascontent' : 'ts-life-toolbar-nocontent');
@@ -478,10 +478,10 @@ ts.ui.ToolBarSpirit = (function using(
 			// Private .................................................................
 
 			/**
-		 * Confirm that we don't have hardcoded HTML content,
-		 * because the HTML will just be nuked when we render.
-		 * TODO: Upgrade this to a `throw` in future version.
-		 */
+			 * Confirm that we don't have hardcoded HTML content,
+			 * because the HTML will just be nuked when we render.
+			 * TODO: Upgrade this to a `throw` in future version.
+			 */
 			_validate: function() {
 				if (this.element.childElementCount) {
 					console.error('The ' + this.$classname + ' should not have HTML content.');
@@ -489,9 +489,9 @@ ts.ui.ToolBarSpirit = (function using(
 			},
 
 			/**
-		 * Compute flex (relative widths) of all members.
-		 * Figure out if all tabs can fit inside the bar.
-		 */
+			 * Compute flex (relative widths) of all members.
+			 * Figure out if all tabs can fit inside the bar.
+			 */
 			_layout: function() {
 				if (this.element.offsetWidth) {
 					this._flex();
@@ -502,9 +502,9 @@ ts.ui.ToolBarSpirit = (function using(
 			},
 
 			/**
-		 * Layout the Main section.
-		 * @param {boolean} show
-		 */
+			 * Layout the Main section.
+			 * @param {boolean} show
+			 */
 			_layoutmain: function(show) {
 				if (this.guilayout.outsideMain()) {
 					if (this.guilayout.beforeMain()) {
@@ -519,8 +519,8 @@ ts.ui.ToolBarSpirit = (function using(
 			},
 
 			/**
-		 * @param {boolean} show
-		 */
+			 * @param {boolean} show
+			 */
 			_layoutbefore: function(show) {
 				this.css.shift(show, 'ts-toolbar-first');
 				var micro = this.css.contains(ts.ui.CLASS_MICRO);
@@ -531,8 +531,8 @@ ts.ui.ToolBarSpirit = (function using(
 			},
 
 			/**
-		 * @param {boolean} show
-		 */
+			 * @param {boolean} show
+			 */
 			_layoutafter: function(show) {
 				this.css.shift(show, 'ts-toolbar-last');
 				if (this._outsidemodal()) {
@@ -541,9 +541,9 @@ ts.ui.ToolBarSpirit = (function using(
 			},
 
 			/**
-		 * Is positioned outside the Main section? Must be called after init phase.
-		 * @returns {boolean}
-		 */
+			 * Is positioned outside the Main section? Must be called after init phase.
+			 * @returns {boolean}
+			 */
 			_outsidemain: function() {
 				return ['ts-toolbar-first', 'ts-toolbar-last'].some(function(cname) {
 					return this.css.contains(cname);
@@ -551,19 +551,19 @@ ts.ui.ToolBarSpirit = (function using(
 			},
 
 			/**
-		 * Is positioned inside some kind of Modal?
-		 * TODO: We should probably also confirm that we are not in an Aside...
-		 * @returns {boolean}
-		 */
+			 * Is positioned inside some kind of Modal?
+			 * TODO: We should probably also confirm that we are not in an Aside...
+			 * @returns {boolean}
+			 */
 			_outsidemodal: function() {
 				return !this.css.matches('.ts-modal .ts-toolbar');
 			},
 
 			/**
-		 * When fixed to top or bottom, the Toolbar covers the MAIN scrollbar.
-		 * Let's offset it some pixels to the left so that it looks OK again.
-		 * @param {gui.CSSPlugin} css
-		 */
+			 * When fixed to top or bottom, the Toolbar covers the MAIN scrollbar.
+			 * Let's offset it some pixels to the left so that it looks OK again.
+			 * @param {gui.CSSPlugin} css
+			 */
 			_looknormal: function(css) {
 				var mobile = ts.ui.isMobilePoint();
 				if (
@@ -576,11 +576,11 @@ ts.ui.ToolBarSpirit = (function using(
 			},
 
 			/**
-		 * Match spirit color to model color (we use it for the Asides).
-		 * @param {ts.ui.Spirit} spirit (implements color scheme methods).
-		 * @param {ts.ui.ToolBarModel} model
-		 * @returns {ts.ui.Spirit}
-		 */
+			 * Match spirit color to model color (we use it for the Asides).
+			 * @param {ts.ui.Spirit} spirit (implements color scheme methods).
+			 * @param {ts.ui.ToolBarModel} model
+			 * @returns {ts.ui.Spirit}
+			 */
 			_matchcolor: function(spirit, model) {
 				gui.Object.each(bgcolors, function(methodname, classname) {
 					if (classname === model.color) {
@@ -591,8 +591,8 @@ ts.ui.ToolBarSpirit = (function using(
 			},
 
 			/**
-		 * Flex toolbar items (step one).
-		 */
+			 * Flex toolbar items (step one).
+			 */
 			_flex: function() {
 				var avail = this.box.width;
 				var lefts = this.dom.qall('.ts-left > li');
@@ -616,10 +616,10 @@ ts.ui.ToolBarSpirit = (function using(
 			},
 
 			/**
-		 * Flex toolbar items (step two).
-		 * @param {number} avail
-		 * @param {Array<HTMLLiElement>} items
-		 */
+			 * Flex toolbar items (step two).
+			 * @param {number} avail
+			 * @param {Array<HTMLLiElement>} items
+			 */
 			_flexnext: function(avail, items) {
 				var flexitems = items.filter(hasflex);
 				var fixtitems = items.filter(nonflex);
@@ -635,9 +635,9 @@ ts.ui.ToolBarSpirit = (function using(
 			},
 
 			/**
-		 * Cleanup all existing flexiness.
-		 * @param {Array<HTMLLiElement>} items
-		 */
+			 * Cleanup all existing flexiness.
+			 * @param {Array<HTMLLiElement>} items
+			 */
 			_flexnone: function(items) {
 				items.forEach(function(item) {
 					item.style.width = '';
@@ -645,28 +645,28 @@ ts.ui.ToolBarSpirit = (function using(
 			},
 
 			/**
-		 * Toggle some classnames. Mostly relevant for
-		 * statusbar rendering in the mobile breakpoint.
-		 * @param {boolean} small
-		 * @param {Array} lefts
-		 * @param {Array} right
-		 * @param {Array} extra
-		 * @returns {Array<Any>}
-		 */
+			 * Toggle some classnames. Mostly relevant for
+			 * statusbar rendering in the mobile breakpoint.
+			 * @param {boolean} small
+			 * @param {Array} lefts
+			 * @param {Array} right
+			 * @param {Array} extra
+			 * @returns {Array<Any>}
+			 */
 			_cnames: function(small, lefts, right, extra) {
 				var search = this.dom.q('.ts-toolbar-search');
 				this._docss(this.css, small, lefts.length, right.length, extra.length, search);
 			},
 
 			/**
-		 * General styling hooks.
-		 * @param {gui.CSSPlugin} css
-		 * @param {boolean} small
-		 * @param {truthy} lefts
-		 * @param {truthy} right
-		 * @param {truthy} extra
-		 * @param {truthy} search
-		 */
+			 * General styling hooks.
+			 * @param {gui.CSSPlugin} css
+			 * @param {boolean} small
+			 * @param {truthy} lefts
+			 * @param {truthy} right
+			 * @param {truthy} extra
+			 * @param {truthy} search
+			 */
 			_docss: function(css, small, lefts, right, extra, search) {
 				css
 					.shift(small, 'ts-small')
@@ -678,18 +678,18 @@ ts.ui.ToolBarSpirit = (function using(
 			},
 
 			/**
-		 * Breakpoint changed.
-		 */
+			 * Breakpoint changed.
+			 */
 			_onbreakpoint: function() {
 				this.super._onbreakpoint();
 				this._looknormal(this.css);
 			},
 
 			/**
-		 * Hide tabs that won't fit (and show the More-tab). Note
-		 * that the More-tab is not rendered in mobile breakpoint.
-		 * @param {Array<ts.ui.TabCollection>} tabs
-		*/
+			 * Hide tabs that won't fit (and show the More-tab). Note
+			 * that the More-tab is not rendered in mobile breakpoint.
+			 * @param {Array<ts.ui.TabCollection>} tabs
+			 */
 			_calculate: function calculate(tabs) {
 				var moretab, gonetab, avail, width, dofit;
 				if (tabs && tabs.getLength()) {
@@ -715,9 +715,9 @@ ts.ui.ToolBarSpirit = (function using(
 			},
 
 			/**
-		 * Set the max-width, let the tabbar shows at least two tabs
-		 * @param {number} avail
-		*/
+			 * Set the max-width, let the tabbar shows at least two tabs
+			 * @param {number} avail
+			 */
 			_setmaxwidth: function(avail) {
 				var maxwidth = (avail - 95) / 2; // 88 means the width of more tab(44), two tabs of padding left and right(2 * 2 * 11) and the buffer(7)
 				this.dom.qall('.ts-tab-label').forEach(function(tab) {
@@ -726,11 +726,11 @@ ts.ui.ToolBarSpirit = (function using(
 			},
 
 			/**
-		 * move an item whoes id is {id} to {toIndex} and then select it.
-		 * @param {Array}
-		 * @param {String} id
-		 * @param {Number} toIndex
-		 */
+			 * move an item whoes id is {id} to {toIndex} and then select it.
+			 * @param {Array}
+			 * @param {String} id
+			 * @param {Number} toIndex
+			 */
 			_arraymove: function(arr, id, toIndex) {
 				var fromIndex = -1;
 				var element = arr.find(function(item, index) {
@@ -743,12 +743,12 @@ ts.ui.ToolBarSpirit = (function using(
 			},
 
 			/**
-		 * Toggle tabs that won't fit in the topbar.
-		 * @param {Array<ts.ui.TabModel>} tabs
-		 * @param {number} moreoffset Width of the More tab
-		 * @param {number} availwidth Width of the tabs area
-		 * @returns {boolean} True if all tabs can fit
-		 */
+			 * Toggle tabs that won't fit in the topbar.
+			 * @param {Array<ts.ui.TabModel>} tabs
+			 * @param {number} moreoffset Width of the More tab
+			 * @param {number} availwidth Width of the tabs area
+			 * @returns {boolean} True if all tabs can fit
+			 */
 			_toggletabs: function(tabs, moreoffset, availwidth) {
 				var that = this, tabspirit, taboffset, tabsoffset = 0;
 				var oldie = Client.isExplorer9 || Client.isExplorer10;
@@ -778,9 +778,9 @@ ts.ui.ToolBarSpirit = (function using(
 			},
 
 			/**
-		 * Get the tab container maximum length (allowing for the buttons).
-		 * @returns {number}
-		 */
+			 * Get the tab container maximum length (allowing for the buttons).
+			 * @returns {number}
+			 */
 			_getavailwidth: function(buffer) {
 				var right = this.dom.q('.ts-right');
 				var center = this.dom.q('.ts-center');
@@ -796,10 +796,10 @@ ts.ui.ToolBarSpirit = (function using(
 			// Static ...............................................................
 
 			/**
-		 * Summon spirit.
-		 * @param @optional {string} tagname (eg. MENU, HEADER, FOOTER)
-		 * @param @optional {string} classname (eg. ts-header, ts-footer)
-		 */
+			 * Summon spirit.
+			 * @param @optional {string} tagname (eg. MENU, HEADER, FOOTER)
+			 * @param @optional {string} classname (eg. ts-header, ts-footer)
+			 */
 			summon: function(tagname, classname) {
 				var tag = tagname ? tagname.toLowerCase() : 'menu';
 				var elm = document.createElement(tag);

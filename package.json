@@ -26,7 +26,8 @@
     "test": "npm run lint && ./node_modules/.bin/grunt jasmine && echo 'Running tests on https://www.browserstack.com/automate' && ./node_modules/.bin/browserstack-runner",
     "http": "static spec/jasmine -H '{\"Cache-Control\": \"no-cache, must-revalidate\"}'",
     "deploy-s3": "node tasks/deploy.js",
-    "precommit": "lint-staged && grunt dist && git add -A docs/index.html && git add -A docs/dist/*"
+    "precommit": "lint-staged && grunt dist && git add -A docs/index.html && git add -A docs/dist/*",
+    "fixcomments": "node ./tasks/fixcomments.js"
   },
   "lint-staged": {
     "*.js": [
@@ -43,9 +44,10 @@
     "css-parse": "^2.0.0",
     "eslint": "^3.8.1",
     "eslint-config-prettier": "^1.7.0",
-    "eslint-plugin-prettier": "^2.0.1",
     "eslint-config-tradeshift": "next",
     "eslint-plugin-jasmine": "^2.2.0",
+    "eslint-plugin-prettier": "^2.0.1",
+    "glob": "^7.1.1",
     "grunt": "^1.0.1",
     "grunt-asciify": "^0.2.2",
     "grunt-concurrent": "^2.3.1",

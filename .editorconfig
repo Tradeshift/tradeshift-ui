@@ -10,6 +10,6 @@ trim_trailing_whitespace = false
 insert_final_newline = true
 
 
-[package.json]
+[{package.json,.travis.yml}]
 indent_style = space
 indent_size = 2

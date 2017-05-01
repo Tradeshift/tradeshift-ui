@@ -7,23 +7,23 @@ gui = gui.Object.extend(
 	gui,
 	{
 		/**
-	 * Robot mode: Automatically spiritualize and
-	 * materialize by overriding native DOM methods.
-	 * @type {string}
-	 */
+		 * Robot mode: Automatically spiritualize and
+		 * materialize by overriding native DOM methods.
+		 * @type {string}
+		 */
 		MODE_ROBOT: 'robot',
 
 		/**
-	 * Human mode: Spiritualize and materialize at own risk.
-	 * @type {string}
-	 */
+		 * Human mode: Spiritualize and materialize at own risk.
+		 * @type {string}
+		 */
 		MODE_HUMAN: 'human',
 
 		/**
-	 * Funny mode: Spiritualize manually, materialize automatically.
-	 * TODO: Remove all traces of this. It is not funny.
-	 * @type {string}
-	 */
+		 * Funny mode: Spiritualize manually, materialize automatically.
+		 * TODO: Remove all traces of this. It is not funny.
+		 * @type {string}
+		 */
 		MODE_FUNNY: 'funny',
 
 		// broadcasts
@@ -73,59 +73,59 @@ gui = gui.Object.extend(
 		CRAWLER_REFLEX: 'gui-crawler-reflex',
 
 		/**
-	 * CSS classnames
-	 */
+		 * CSS classnames
+		 */
 		CLASS_NOSPIRITS: 'gui-nospirits', // declare spirit-free zone (performance)
 		CLASS_INVISIBLE: '_gui-invisible',
 		CLASS_HIDDEN: '_gui-hidden',
 
 		/**
-	 * Spirit management mode. Matches 'robot' or 'human' (or 'funny' perhaps).
-	 * @type {String}
-	 */
+		 * Spirit management mode. Matches 'robot' or 'human' (or 'funny' perhaps).
+		 * @type {String}
+		 */
 		mode: 'robot',
 
 		/**
-	 * Automatically run on DOMContentLoaded?
-	 * @TODO: rename this to something
-	 * @type {boolean}
-	 */
+		 * Automatically run on DOMContentLoaded?
+		 * @TODO: rename this to something
+		 * @type {boolean}
+		 */
 		autostrap: true,
 
 		/**
-	 * Delay boostrap by some milliseconds as a "catch all" for
-	 * frameworks that do something to the DOM without exposing
-	 * lifecycle events that tell us *when* it's done (Angular).
-	 * @type {number}
-	 */
+		 * Delay boostrap by some milliseconds as a "catch all" for
+		 * frameworks that do something to the DOM without exposing
+		 * lifecycle events that tell us *when* it's done (Angular).
+		 * @type {number}
+		 */
 		bootstrapdelay: -1,
 
 		/**
-	 * True (only) while initial spiritualization is in progress.
-	 * @type {boolean}
-	 */
+		 * True (only) while initial spiritualization is in progress.
+		 * @type {boolean}
+		 */
 		spiritualizing: false,
 
 		/**
-	 * Flipped by the {gui.Guide} after initial spiritualization
-	 * @type {boolean}
-	 */
+		 * Flipped by the {gui.Guide} after initial spiritualization
+		 * @type {boolean}
+		 */
 		spiritualized: false,
 
 		/**
-	 * Magic attributes to trigger spirit association and configuration.
-	 * By default we support 'gui' but you may prefer to use 'data-gui'.
-	 * @type {Array<string>}
-	 */
+		 * Magic attributes to trigger spirit association and configuration.
+		 * By default we support 'gui' but you may prefer to use 'data-gui'.
+		 * @type {Array<string>}
+		 */
 		attributes: null,
 
 		/**
-	 * Boostrap Spiritual. Unless `autostrap` is set to `false`, this
-	 * happens automatically at `DOMContentLoaded`. You can nudge the
-	 * `boostrapdelay` to accomodate for cornercase framework behavior,
-	 * ie. allow Angular to parse the DOM for template elements first
-	 * (this to avoid HTML from initialized spirits in the tempaltes!).
-	 */
+		 * Boostrap Spiritual. Unless `autostrap` is set to `false`, this
+		 * happens automatically at `DOMContentLoaded`. You can nudge the
+		 * `boostrapdelay` to accomodate for cornercase framework behavior,
+		 * ie. allow Angular to parse the DOM for template elements first
+		 * (this to avoid HTML from initialized spirits in the tempaltes!).
+		 */
 		bootstrap: function() {
 			gui.bootstrap = function notagain() {};
 			var delay = gui.bootstrapdelay;
@@ -144,59 +144,59 @@ gui = gui.Object.extend(
 		},
 
 		/**
-	 * Possess element and descendants.
-	 * TODO: Jump detached spirit if matching id (!)
-	 * @param {Element} target
-	 */
+		 * Possess element and descendants.
+		 * TODO: Jump detached spirit if matching id (!)
+		 * @param {Element} target
+		 */
 		spiritualize: function(target) {
 			gui.Guide.$spiritualize(target || document);
 		},
 
 		/**
-	 * Possess descendants.
-	 * @param {Element|gui.Spirit} target
-	 */
+		 * Possess descendants.
+		 * @param {Element|gui.Spirit} target
+		 */
 		spiritualizeSub: function(target) {
 			gui.Guide.$spiritualizeSub(target || document);
 		},
 
 		/**
-	 * Possess one element non-crawling.
-	 * @param {Element|gui.Spirit} target
-	 */
+		 * Possess one element non-crawling.
+		 * @param {Element|gui.Spirit} target
+		 */
 		spiritualizeOne: function(target) {
 			gui.Guide.$spiritualizeOne(target || document);
 		},
 
 		/**
-	 * Dispell spirits from element and descendants.
-	 * @param {Element|gui.Spirit} target
-	 * @param @optional {boolean} webkithack (not an official thing!)
-	 */
+		 * Dispell spirits from element and descendants.
+		 * @param {Element|gui.Spirit} target
+		 * @param @optional {boolean} webkithack (not an official thing!)
+		 */
 		materialize: function(target, webkithack) {
 			gui.Guide.$materialize(target || document, webkithack);
 		},
 
 		/**
-	 * Dispell spirits for descendants.
-	 * @param {Element|gui.Spirit} target
-	 */
+		 * Dispell spirits for descendants.
+		 * @param {Element|gui.Spirit} target
+		 */
 		materializeSub: function(target) {
 			gui.Guide.$materializeSub(target || document);
 		},
 
 		/**
-	 * Dispell one spirit non-crawling.
-	 * @param {Element|gui.Spirit} target
-	 */
+		 * Dispell one spirit non-crawling.
+		 * @param {Element|gui.Spirit} target
+		 */
 		materializeOne: function(target) {
 			gui.Guide.$materializeOne(target || document);
 		},
 
 		/**
-	 * Don't materialize and spiritualize during given operation.
-	 * @param {funtion} operation
-	 */
+		 * Don't materialize and spiritualize during given operation.
+		 * @param {funtion} operation
+		 */
 		suspend: function(operation) {
 			return gui.DOMObserver.suspend(function() {
 				return gui.Guide.suspend(operation);
@@ -204,13 +204,13 @@ gui = gui.Object.extend(
 		},
 
 		/**
-	 * Get spirit for fuzzy argument.
-	 * TODO: Perhaps delegate this to {gui.DOMPlugin}?
-	 * @param {String|Element} arg
-	 * @param @optional {function} callback
-	 * @param @optional {object} thisp
-	 * @returns {gui.Spirit}
-	 */
+		 * Get spirit for fuzzy argument.
+		 * TODO: Perhaps delegate this to {gui.DOMPlugin}?
+		 * @param {String|Element} arg
+		 * @param @optional {function} callback
+		 * @param @optional {object} thisp
+		 * @returns {gui.Spirit}
+		 */
 		get: function(arg, callback, thisp) {
 			var spirit;
 			switch (arguments.length) {
@@ -237,47 +237,47 @@ gui = gui.Object.extend(
 		},
 
 		/**
-	 * @TODO
-	 */
+		 * @TODO
+		 */
 		getAll: function(arg) {
 			console.error('TODO: gui.getAll');
 		},
 
 		/**
-	 * Channel spirits to CSS selectors.
-	 * TODO: explain args
-	 */
+		 * Channel spirits to CSS selectors.
+		 * TODO: explain args
+		 */
 		channel: function() {
 			gui.Guide.$channel.apply(gui.Guide, arguments);
 		},
 
 		/**
-	 * Has channels?
-	 * TODO: rebrand as 'channelings'
-	 * @returns {boolean}
-	 */
+		 * Has channels?
+		 * TODO: rebrand as 'channelings'
+		 * @returns {boolean}
+		 */
 		hasChannels: function() {
 			return gui.Guide.$hasChannels();
 		},
 
 		/**
-	 * Get channels (read only).
-	 * TODO: rebrand as 'channelings'
-	 * @type {Array<Array<String,function>>}
-	 */
+		 * Get channels (read only).
+		 * TODO: rebrand as 'channelings'
+		 * @type {Array<Array<String,function>>}
+		 */
 		getChannels: function() {
 			return gui.Guide.$getChannels();
 		},
 
 		/**
-	 * Do something when everything is spiritualized (synchronously after
-	 * DOMContentLoaded). Or if that's already too late, just do it now.
-	 * TODO: support `onready` object handler
-	 * @overwrites {gui#ready} A stub implementation
-	 * @param @optional {function} action
-	 * @param @optional {object} thisp
-	 * @returns {boolean} True when ready already
-	 */
+		 * Do something when everything is spiritualized (synchronously after
+		 * DOMContentLoaded). Or if that's already too late, just do it now.
+		 * TODO: support `onready` object handler
+		 * @overwrites {gui#ready} A stub implementation
+		 * @param @optional {function} action
+		 * @param @optional {object} thisp
+		 * @returns {boolean} True when ready already
+		 */
 		ready: function(action, thisp) {
 			var is = this.spiritualized;
 			if (arguments.length) {
@@ -296,15 +296,15 @@ gui = gui.Object.extend(
 		// Private ...................................................................
 
 		/**
-	 * @type {Array<function>}
-	 */
+		 * @type {Array<function>}
+		 */
 		_readycallbacks: null,
 
 		/**
-	 * Setup a broadcast listener to bootstrap Spiritual
-	 * after any other potential framework initialization.
-	 * @returns {gui.Namespace} myself
-	 */
+		 * Setup a broadcast listener to bootstrap Spiritual
+		 * after any other potential framework initialization.
+		 * @returns {gui.Namespace} myself
+		 */
 		_initialize: function() {
 			this.attributes = ['gui'];
 			gui.Broadcast.add(gui.BROADCAST_TODOM, {
@@ -318,9 +318,9 @@ gui = gui.Object.extend(
 		},
 
 		/**
-	 * Initial spirits are ready.
-	 * Run accumulated callbacks.
-	 */
+		 * Initial spirits are ready.
+		 * Run accumulated callbacks.
+		 */
 		_nowready: function() {
 			this.spiritualized = true;
 			var list = this._readycallbacks;
@@ -333,10 +333,10 @@ gui = gui.Object.extend(
 		},
 
 		/**
-	 * Get spirit for fuzzy argument.
-	 * @param {String|Element} arg
-	 * @returns {gui.Spirit}
-	 */
+		 * Get spirit for fuzzy argument.
+		 * @param {String|Element} arg
+		 * @returns {gui.Spirit}
+		 */
 		_getspirit: function(arg) {
 			var spirit = null, element, doc = document;
 			switch (gui.Type.of(arg)) {
@@ -378,9 +378,9 @@ gui = gui.Object.extend(
 		},
 
 		/**
-	 * TODO: Support custom namespace to replace `gui` here.
-	 * @returns {string}
-	 */
+		 * TODO: Support custom namespace to replace `gui` here.
+		 * @returns {string}
+		 */
 		_guigetmessage: function() {
 			return [
 				"gui.get() failed because we're not initialized just yet.",

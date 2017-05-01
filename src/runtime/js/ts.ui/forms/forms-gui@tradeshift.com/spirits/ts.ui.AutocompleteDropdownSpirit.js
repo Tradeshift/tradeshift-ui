@@ -29,17 +29,17 @@ ts.ui.AutocompleteDropdownSpirit = (function using(Client) {
 	return ts.ui.Spirit.extend(
 		{
 			/**
-		 * Should we show the dropdown?
-		 * @type {Boolean}
-		 */
+			 * Should we show the dropdown?
+			 * @type {Boolean}
+			 */
 			_isActive: false,
 
 			// Proxying from another input field here ..................................
 
 			/**
-		 * Bind to all important events of the original input fields
-		 * @param {HTMLElement} element
-		 */
+			 * Bind to all important events of the original input fields
+			 * @param {HTMLElement} element
+			 */
 			proxy: function(element) {
 				this._proxyelement = element;
 				this._proxyspirit = ts.ui.get(element);
@@ -49,9 +49,9 @@ ts.ui.AutocompleteDropdownSpirit = (function using(Client) {
 			},
 
 			/**
-		 * Load list of all possible items
-		 * @type {Array.<{key: String, value: String}>}
-		 */
+			 * Load list of all possible items
+			 * @type {Array.<{key: String, value: String}>}
+			 */
 			data: function(d) {
 				this._model.autocompleteList = d;
 			},
@@ -67,8 +67,8 @@ ts.ui.AutocompleteDropdownSpirit = (function using(Client) {
 			// Lifecycle ...............................................................
 
 			/**
-		 * Create the model.
-		 */
+			 * Create the model.
+			 */
 			onconstruct: function() {
 				this.super.onconstruct();
 				this._model = new ts.ui.AutocompleteDropdownModel();
@@ -76,8 +76,8 @@ ts.ui.AutocompleteDropdownSpirit = (function using(Client) {
 			},
 
 			/**
-		 * Render the EDBML
-		 */
+			 * Render the EDBML
+			 */
 			onenter: function() {
 				this.super.onenter();
 				this.script.load(ts.ui.AutocompleteDropdownSpirit.edbml);
@@ -85,8 +85,8 @@ ts.ui.AutocompleteDropdownSpirit = (function using(Client) {
 			},
 
 			/**
-		 * Clean up potential memory leaks
-		 */
+			 * Clean up potential memory leaks
+			 */
 			ondestuct: function() {
 				this.super.prototype.ondestruct();
 				delete this._model.autocompleteList;
@@ -97,9 +97,9 @@ ts.ui.AutocompleteDropdownSpirit = (function using(Client) {
 			// Events ..................................................................
 
 			/**
-		 * Call the on`eventname` fn's from the spirit
-		 * @param e
-		 */
+			 * Call the on`eventname` fn's from the spirit
+			 * @param e
+			 */
 			onevent: function(e) {
 				this.super.onevent(e);
 				var events = ['keyup', 'keydown', 'focus', 'input', 'blur'];
@@ -110,8 +110,8 @@ ts.ui.AutocompleteDropdownSpirit = (function using(Client) {
 			},
 
 			/**
-		 * Handle up/down/enter/tab keys
-		 */
+			 * Handle up/down/enter/tab keys
+			 */
 			onkeydown: function(e) {
 				var autocompleteElem = this._getelem();
 				if (!autocompleteElem) {
@@ -139,8 +139,8 @@ ts.ui.AutocompleteDropdownSpirit = (function using(Client) {
 			},
 
 			/**
-		 * Capture esc/up/down keyup before they get to the input field
-		 */
+			 * Capture esc/up/down keyup before they get to the input field
+			 */
 			onkeyup: function(e) {
 				if (this._getelem() && this._isActive && this._model.filteredAutocompleteList.length) {
 					var keyCode = KeyCodes.getKeyCode(e);
@@ -151,28 +151,28 @@ ts.ui.AutocompleteDropdownSpirit = (function using(Client) {
 			},
 
 			/**
-		 * On focus, activate the field and filter
-		 */
+			 * On focus, activate the field and filter
+			 */
 			onfocus: function() {
 				this._isActive = true;
 				this._render();
 			},
 
 			/**
-		 * When typing, render filter results
-		 */
+			 * When typing, render filter results
+			 */
 			oninput: function() {
 				this.onfocus();
 			},
 
 			/**
-		 * On blur, hide the field
-		 * isNow should be false, when clicking on the field because the focus
-		 * would be lost from the input before the click event can capture the
-		 * item being clicked.
-		 * @param e
-		 * @param {boolean} isNow should we hide it now, or in a few milliseconds?
-		 */
+			 * On blur, hide the field
+			 * isNow should be false, when clicking on the field because the focus
+			 * would be lost from the input before the click event can capture the
+			 * item being clicked.
+			 * @param e
+			 * @param {boolean} isNow should we hide it now, or in a few milliseconds?
+			 */
 			onblur: function(e, isNow) {
 				var onblurAction = function() {
 					this._isActive = false;
@@ -189,27 +189,27 @@ ts.ui.AutocompleteDropdownSpirit = (function using(Client) {
 			// Private .................................................................
 
 			/**
-		 * Get the autocomplete dropdown element
-		 * @returns {HTMLElement} div
-		 * @private
-		 */
+			 * Get the autocomplete dropdown element
+			 * @returns {HTMLElement} div
+			 * @private
+			 */
 			_getelem: function() {
 				return document.getElementById(this._model.$instanceid + '-list');
 			},
 
 			/**
-		 * Get selected element
-		 * @returns {HTMLElement} li
-		 * @private
-		 */
+			 * Get selected element
+			 * @returns {HTMLElement} li
+			 * @private
+			 */
 			_getselected: function() {
 				return this._getelem().querySelector('.' + CLASS_ITEM_SELECTED);
 			},
 
 			/**
-		 * Scroll the suggestion dropdown so that the elem appears as the first item
-		 * @param {HTMLElement} elem
-		 */
+			 * Scroll the suggestion dropdown so that the elem appears as the first item
+			 * @param {HTMLElement} elem
+			 */
 			_scroll: function(elem) {
 				if (elem) {
 					var elemRect = elem.getBoundingClientRect();
@@ -225,10 +225,10 @@ ts.ui.AutocompleteDropdownSpirit = (function using(Client) {
 			},
 
 			/**
-		 * Select previous or next sibling and scroll the autocomplete to it
-		 * @param direction 'previous' or 'next'
-		 * @private
-		 */
+			 * Select previous or next sibling and scroll the autocomplete to it
+			 * @param direction 'previous' or 'next'
+			 * @private
+			 */
 			_select: function(direction) {
 				var selectedElem = this._getselected();
 				this._unselect();
@@ -238,9 +238,9 @@ ts.ui.AutocompleteDropdownSpirit = (function using(Client) {
 			},
 
 			/**
-		 * Remove selection from all items
-		 * @private
-		 */
+			 * Remove selection from all items
+			 * @private
+			 */
 			_unselect: function() {
 				var childrenItems = this._getelem().children;
 				if (childrenItems.length > 1) {
@@ -254,10 +254,10 @@ ts.ui.AutocompleteDropdownSpirit = (function using(Client) {
 			},
 
 			/**
-		 * Select DOM Element and parse the value from it
-		 * @param {HTMLElement} elem
-		 * @private
-		 */
+			 * Select DOM Element and parse the value from it
+			 * @param {HTMLElement} elem
+			 * @private
+			 */
 			_selectelem: function(elem) {
 				var item = {
 					key: '',
@@ -272,11 +272,11 @@ ts.ui.AutocompleteDropdownSpirit = (function using(Client) {
 			},
 
 			/**
-		 * Call the model's onselect and blur the field if necessary
-		 * @param {Object} item
-		 * @param {boolean} noBlur if true, the field won't blur
-		 * @private
-		 */
+			 * Call the model's onselect and blur the field if necessary
+			 * @param {Object} item
+			 * @param {boolean} noBlur if true, the field won't blur
+			 * @private
+			 */
 			_onselect: function(item, noBlur) {
 				this._proxyelement.value = this._model.onselect(item);
 				if (!noBlur) {
@@ -285,11 +285,11 @@ ts.ui.AutocompleteDropdownSpirit = (function using(Client) {
 			},
 
 			/**
-		 * Filter results and render the list
-		 * Also select the first item in the list when searching and scroll to it
-		 * @TODO @dsp maybe debounce the filtering
-		 * @private
-		 */
+			 * Filter results and render the list
+			 * Also select the first item in the list when searching and scroll to it
+			 * @TODO @dsp maybe debounce the filtering
+			 * @private
+			 */
 			_render: function() {
 				var filter = this._proxyelement.value;
 

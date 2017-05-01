@@ -6,48 +6,48 @@ gui.Module = gui.Class.create(
 	Object.prototype,
 	{
 		/**
-	 * Called immediately. Other modules may not be parsed yet.
-	 * TODO: Migrate to 'onrun' in the long run.
-	 * @return {Window} context
-	 */
+		 * Called immediately. Other modules may not be parsed yet.
+		 * TODO: Migrate to 'onrun' in the long run.
+		 * @return {Window} context
+		 */
 		oncontextinitialize: function() {},
 
 		/**
-	 * Called immediately. Other modules may not be parsed yet.
-	 * @type {function}
-	 */
+		 * Called immediately. Other modules may not be parsed yet.
+		 * @type {function}
+		 */
 		onrun: function() {},
 
 		/**
-	 * Called on DOMContentLoaded.
-	 * @type {function}
-	 */
+		 * Called on DOMContentLoaded.
+		 * @type {function}
+		 */
 		ondom: function() {},
 
 		/**
-	 * Called on load.
-	 * @type {function}
-	 */
+		 * Called on load.
+		 * @type {function}
+		 */
 		onload: function() {},
 
 		/**
-	 * Called on unload.
-	 * @type {function}
-	 */
+		 * Called on unload.
+		 * @type {function}
+		 */
 		onunload: function() {},
 
 		// Privileged ................................................................
 
 		/**
-	 * Module identity token.
-	 * @type {string}
-	 */
+		 * Module identity token.
+		 * @type {string}
+		 */
 		$modname: null,
 
 		/**
-	 * Secret constructor.
-	 * @param {string} name
-	 */
+		 * Secret constructor.
+		 * @param {string} name
+		 */
 		$onconstruct: function(name) {
 			this.$modname = name;
 			this.toString = function() {
@@ -60,11 +60,11 @@ gui.Module = gui.Class.create(
 		// Static .............................................................
 
 		/**
-	 * Register module, although please use 'gui.module()' to do so.
-	 * TODO: deprecate oncontextinitialize!
-	 * @param {gui.Module} module
-	 * @returns {gui.Module}
-	 */
+		 * Register module, although please use 'gui.module()' to do so.
+		 * TODO: deprecate oncontextinitialize!
+		 * @param {gui.Module} module
+		 * @returns {gui.Module}
+		 */
 		$register: function(module) {
 			var name = module.$modname;
 			if (!this.$hasModule(name)) {
@@ -82,10 +82,10 @@ gui.Module = gui.Class.create(
 		},
 
 		/**
-	 * Module registered by name?
-	 * @param {string} name
-	 * @returns {boolean}
-	 */
+		 * Module registered by name?
+		 * @param {string} name
+		 * @returns {boolean}
+		 */
 		$hasModule: function(name) {
 			return this._modules.some(function(module) {
 				return module.$modname === name;
@@ -93,9 +93,9 @@ gui.Module = gui.Class.create(
 		},
 
 		/**
-	 * Collecting modules.
-	 * @type {Array<gui.Module>}
-	 */
+		 * Collecting modules.
+		 * @type {Array<gui.Module>}
+		 */
 		_modules: []
 	}
 );

@@ -115,28 +115,28 @@ ts.ui.Collection = (function using(chained, guiArray) {
 	return edb.Array.extend(
 		{
 			/**
-		 * Friendly name.
-		 * @type {string}
-		 */
+			 * Friendly name.
+			 * @type {string}
+			 */
 			item: 'collection',
 
 			/**
-		 * Disposed? Flagged by a boolean so that this may be synchronized xframe.
-		 * @type {boolean}
-		 */
+			 * Disposed? Flagged by a boolean so that this may be synchronized xframe.
+			 * @type {boolean}
+			 */
 			disposed: false,
 
 			/**
-		 * Match the incoming JSONs `item` property to a set of
-		 * known model constructors and parse to an appropriate type.
-		 * The collection can declare (in the `Static` section):
-		 *
-		 * 1) Which kind of `item` it is ready to accept
-		 * 2) What model should be assumed when `item` is missing
-		 *
-		 * @param {JSONObject|ts.ui.Model} thing
-		 * @return {constructor|ts.ui.Model}
-		 */
+			 * Match the incoming JSONs `item` property to a set of
+			 * known model constructors and parse to an appropriate type.
+			 * The collection can declare (in the `Static` section):
+			 *
+			 * 1) Which kind of `item` it is ready to accept
+			 * 2) What model should be assumed when `item` is missing
+			 *
+			 * @param {JSONObject|ts.ui.Model} thing
+			 * @return {constructor|ts.ui.Model}
+			 */
 			$of: function(input) {
 				var allowed = this.constructor.allow;
 				var assumed = this.constructor.assume;
@@ -149,10 +149,10 @@ ts.ui.Collection = (function using(chained, guiArray) {
 			},
 
 			/**
-		 * Get model by ID or index.
-		 * @overides {edb.Array#get}
-		 * @param {string|number} id
-		 */
+			 * Get model by ID or index.
+			 * @overides {edb.Array#get}
+			 * @param {string|number} id
+			 */
 			get: function(id) {
 				switch (gui.Type.of(id)) {
 					case 'number':
@@ -165,9 +165,9 @@ ts.ui.Collection = (function using(chained, guiArray) {
 			},
 
 			/**
-		 * Bounce collection to HTML string.
-		 * @return {string}
-		 */
+			 * Bounce collection to HTML string.
+			 * @return {string}
+			 */
 			render: function() {
 				return this.map(function(model) {
 					return model.render();
@@ -175,29 +175,29 @@ ts.ui.Collection = (function using(chained, guiArray) {
 			},
 
 			/**
-		 * Remove AND dispose that model.
-		 * TODO(jmo@): Support multiple arguments
-		 * @returns {ts.ui.Collection} (not the model, since that gets disposed)
-		 */
+			 * Remove AND dispose that model.
+			 * TODO(jmo@): Support multiple arguments
+			 * @returns {ts.ui.Collection} (not the model, since that gets disposed)
+			 */
 			remove: chained(function(model) {
 				guiArray.remove(this, model);
 				model.dispose();
 			}),
 
 			/**
-		 * Contains model?
-		 * @param {ts.ui.Model|ts.ui.Collection} model
-		 */
+			 * Contains model?
+			 * @param {ts.ui.Model|ts.ui.Collection} model
+			 */
 			contains: function(model) {
 				return this.indexOf(model) > -1;
 			},
 
 			/**
-		 * Clear this collection. It's always a good idea to reuse a collection
-		 * instead of creating a new one, because the existing collection might
-		 * have observers attached. @neal: Is this a good name for this method?
-		 * @returns {ts.ui.Collection}
-		 */
+			 * Clear this collection. It's always a good idea to reuse a collection
+			 * instead of creating a new one, because the existing collection might
+			 * have observers attached. @neal: Is this a good name for this method?
+			 * @returns {ts.ui.Collection}
+			 */
 			clear: chained(function() {
 				while (this.length) {
 					this.pop();
@@ -205,9 +205,9 @@ ts.ui.Collection = (function using(chained, guiArray) {
 			}),
 
 			/**
-		 * Flag as disposed. This would allow associated spirit to dispose
-		 * (flagged by a boolean so that this may be synchronized xframe).
-		 */
+			 * Flag as disposed. This would allow associated spirit to dispose
+			 * (flagged by a boolean so that this may be synchronized xframe).
+			 */
 			dispose: function() {
 				this.disposed = true;
 				this.super.dispose();
@@ -217,15 +217,15 @@ ts.ui.Collection = (function using(chained, guiArray) {
 			// Static ...............................................................
 
 			/**
-		 * Allowed content models (by `item` property).
-		 * @type {Array<string>}
-		 */
+			 * Allowed content models (by `item` property).
+			 * @type {Array<string>}
+			 */
 			allow: null,
 
 			/**
-		 * Assumed content model (if 'item' property was undeclared).
-		 * @type {string}
-		 */
+			 * Assumed content model (if 'item' property was undeclared).
+			 * @type {string}
+			 */
 			assume: null
 		}
 	);

@@ -16,29 +16,29 @@ ts.ui.DialogSpirit = (function using(Dialog, Client, chained, Type) {
 	return ts.ui.Spirit.extend(
 		{
 			/**
-		 * Is open?
-		 * @type {boolean}
-		 */
+			 * Is open?
+			 * @type {boolean}
+			 */
 			isOpen: false,
 
 			/**
-		 * If (and only if) there's no dialog buttons,
-		 * automatically fade away at specified time.
-		 * @type {number} in milliseconds
-		 */
+			 * If (and only if) there's no dialog buttons,
+			 * automatically fade away at specified time.
+			 * @type {number} in milliseconds
+			 */
 			time: Dialog.DEFAULT_TIME,
 
 			/**
-		 * Big icon goes here.
-		 * @see `ts-icons.less`
-		 * @type {string}
-		 */
+			 * Big icon goes here.
+			 * @see `ts-icons.less`
+			 * @type {string}
+			 */
 			icon: null,
 
 			/**
-		 * Should block modal stylee?
-		 * @type {boolean}
-		 */
+			 * Should block modal stylee?
+			 * @type {boolean}
+			 */
 			blocking: {
 				getter: function() {
 					return !!this._buttons();
@@ -46,8 +46,8 @@ ts.ui.DialogSpirit = (function using(Dialog, Client, chained, Type) {
 			},
 
 			/**
-		 * Classname the dialog. Hide on startup.
-		 */
+			 * Classname the dialog. Hide on startup.
+			 */
 			onconfigure: function() {
 				this.super.onconfigure();
 				this.css.add(ts.ui.CLASS_DIALOG);
@@ -58,8 +58,8 @@ ts.ui.DialogSpirit = (function using(Dialog, Client, chained, Type) {
 			},
 
 			/**
-		 * Sync the {ts.ui.DocumentDialogPlugin}
-		 */
+			 * Sync the {ts.ui.DocumentDialogPlugin}
+			 */
 			ondestruct: function() {
 				this.super.ondestruct();
 				if (this.isOpen) {
@@ -68,9 +68,9 @@ ts.ui.DialogSpirit = (function using(Dialog, Client, chained, Type) {
 			},
 
 			/**
-		 * Forcefully open the dialog in case `isOpen`
-		 * was transferred here from a model property.
-		 */
+			 * Forcefully open the dialog in case `isOpen`
+			 * was transferred here from a model property.
+			 */
 			onready: function() {
 				this.super.onready();
 				if (this._ismodelled()) {
@@ -82,9 +82,9 @@ ts.ui.DialogSpirit = (function using(Dialog, Client, chained, Type) {
 			},
 
 			/**
-		 * Handle action.
-		 * @param {gui.Action} a
-		 */
+			 * Handle action.
+			 * @param {gui.Action} a
+			 */
 			onaction: function(a) {
 				this.super.onaction(a);
 				switch (a.type) {
@@ -101,12 +101,12 @@ ts.ui.DialogSpirit = (function using(Dialog, Client, chained, Type) {
 			},
 
 			/**
-		 * Open AND close the dialog. Setup to support the HTML
-		 * attribute: gui.open="true|false".
-		 * @param @optional {boolean} opt_open Omit to simply open.
-		 * @param @optional {boolean} opt_force Force dialog open.
-		 * @return {ts.ui.AsideSpirit}
-		 */
+			 * Open AND close the dialog. Setup to support the HTML
+			 * attribute: gui.open="true|false".
+			 * @param @optional {boolean} opt_open Omit to simply open.
+			 * @param @optional {boolean} opt_force Force dialog open.
+			 * @return {ts.ui.AsideSpirit}
+			 */
 			open: chained(function(opt_open, opt_force) {
 				if (!Type.isBoolean(opt_open) || opt_force) {
 					opt_open = true;
@@ -126,17 +126,17 @@ ts.ui.DialogSpirit = (function using(Dialog, Client, chained, Type) {
 			}),
 
 			/**
-		 * Close that dialog.
-		 * @returns {ts.ui.DialogSpirit}
-		 */
+			 * Close that dialog.
+			 * @returns {ts.ui.DialogSpirit}
+			 */
 			close: chained(function() {
 				this.open(false);
 			}),
 
 			/**
-		 * Cancel that dialog. Defaults
-		 * to simply closing the dialog.
-		 */
+			 * Cancel that dialog. Defaults
+			 * to simply closing the dialog.
+			 */
 			cancel: chained(function() {
 				var model = this._model;
 				if (model && model.oncancel) {
@@ -147,10 +147,10 @@ ts.ui.DialogSpirit = (function using(Dialog, Client, chained, Type) {
 			}),
 
 			/**
-		 * The {ts.ui.Dialog} will now synchronize
-		 * the click event across iframes, if needed.
-		 * @param {Event} e
-		 */
+			 * The {ts.ui.Dialog} will now synchronize
+			 * the click event across iframes, if needed.
+			 * @param {Event} e
+			 */
 			onevent: function(e) {
 				this.super.onevent(e);
 				switch (e.type) {
@@ -175,26 +175,26 @@ ts.ui.DialogSpirit = (function using(Dialog, Client, chained, Type) {
 			},
 
 			/**
-		 * Called by the {ts.ui.DocumentDialogPlugin}
-		 * if other dialogs are currently in progress.
-		 */
+			 * Called by the {ts.ui.DocumentDialogPlugin}
+			 * if other dialogs are currently in progress.
+			 */
 			suspend: function() {
 				this._suspended = true;
 			},
 
 			/**
-		 * Called by the {ts.ui.DocumentDialogPlugin}
-		 * when no other dialogs are in progress no more.
-		 */
+			 * Called by the {ts.ui.DocumentDialogPlugin}
+			 * when no other dialogs are in progress no more.
+			 */
 			unsuspend: function() {
 				this._suspended = false;
 				this._goopen();
 			},
 
 			/**
-		 * Handle key.
-		 * @param {gui.Key} k
-		 */
+			 * Handle key.
+			 * @param {gui.Key} k
+			 */
 			onkey: function(k) {
 				this.super.onkey(k);
 				if (k.down && k.type === 'Esc') {
@@ -214,33 +214,33 @@ ts.ui.DialogSpirit = (function using(Dialog, Client, chained, Type) {
 			// Private .................................................................
 
 			/**
-		 * Potential model going on.
-		 * @type {ts.ui.DialogModel}
-		 */
+			 * Potential model going on.
+			 * @type {ts.ui.DialogModel}
+			 */
 			_model: null,
 
 			/**
-		 * Timeout ID for autofadeout scenario.
-		 * @type {number}
-		 */
+			 * Timeout ID for autofadeout scenario.
+			 * @type {number}
+			 */
 			_timeout: -1,
 
 			/**
-		 * Waiting for other dialogs to close?
-		 * @type {boolean}
-		 */
+			 * Waiting for other dialogs to close?
+			 * @type {boolean}
+			 */
 			_suspended: false,
 
 			/**
-		 * Use fancy transitions?
-		 * @type {boolean}
-		 */
+			 * Use fancy transitions?
+			 * @type {boolean}
+			 */
 			_transition: gui.Client.hasTransitions,
 
 			/**
-		 * Do something with the model.
-		 * TODO (jmo@): Perhaps support injection of new model.
-		 */
+			 * Do something with the model.
+			 * TODO (jmo@): Perhaps support injection of new model.
+			 */
 			_setupmodel: function() {
 				// copy matching properties from model onto spirit
 				// TODO(jmo@): just manually stamp relevant properties
@@ -254,9 +254,9 @@ ts.ui.DialogSpirit = (function using(Dialog, Client, chained, Type) {
 			},
 
 			/**
-		 * Open it.
-		 * @param {boolean} animated (TODO)
-		 */
+			 * Open it.
+			 * @param {boolean} animated (TODO)
+			 */
 			_open: chained(function(animated) {
 				var oldie = Client.isExplorer9 || Client.isExplorer10;
 				if (!this.blocking) {
@@ -272,16 +272,16 @@ ts.ui.DialogSpirit = (function using(Dialog, Client, chained, Type) {
 			}),
 
 			/**
-		 * Close it.
-		 * @param {boolean} animated (TODO)
-		 */
+			 * Close it.
+			 * @param {boolean} animated (TODO)
+			 */
 			_close: chained(function(animated) {
 				this._willclose();
 			}),
 
 			/**
-		 * About to open.
-		 */
+			 * About to open.
+			 */
 			_willopen: function() {
 				this._trapattention();
 				if (this._ismodelled()) {
@@ -309,8 +309,8 @@ ts.ui.DialogSpirit = (function using(Dialog, Client, chained, Type) {
 			},
 
 			/**
-		 * Let's open it.
-		 */
+			 * Let's open it.
+			 */
 			_goopen: function() {
 				var model = this._model;
 				this.broadcast.dispatch(goopen);
@@ -331,10 +331,10 @@ ts.ui.DialogSpirit = (function using(Dialog, Client, chained, Type) {
 			},
 
 			/**
-		 * It managed to open. If there's no buttons, setup to
-		 * automatically close after a timeout; and also to
-		 * close when the dialog is clicked.
-		 */
+			 * It managed to open. If there's no buttons, setup to
+			 * automatically close after a timeout; and also to
+			 * close when the dialog is clicked.
+			 */
 			_didopen: function() {
 				this.css.remove(ts.ui.CLASS_OPENING).add(ts.ui.CLASS_OPEN);
 				this.broadcast.dispatch(didopen);
@@ -352,8 +352,8 @@ ts.ui.DialogSpirit = (function using(Dialog, Client, chained, Type) {
 			},
 
 			/**
-		 * About to close.
-		 */
+			 * About to close.
+			 */
 			_willclose: function() {
 				this.tick.cancelTime(this._timeout);
 				this.broadcast.dispatch(willclose);
@@ -371,9 +371,9 @@ ts.ui.DialogSpirit = (function using(Dialog, Client, chained, Type) {
 			},
 
 			/**
-		 * It really did close. Remove and dispose
-		 * so that it's not possible to reuse this.
-		 */
+			 * It really did close. Remove and dispose
+			 * so that it's not possible to reuse this.
+			 */
 			_didclose: function() {
 				this.broadcast.dispatch(didclose);
 				this.css.remove([ts.ui.CLASS_OPEN, ts.ui.CLASS_CLOSING]);
@@ -389,8 +389,8 @@ ts.ui.DialogSpirit = (function using(Dialog, Client, chained, Type) {
 			},
 
 			/**
-		 * Transition has ended. No more fun.
-		 */
+			 * Transition has ended. No more fun.
+			 */
 			_ontransitionend: function() {
 				if (this.isOpen) {
 					this._didopen();
@@ -400,11 +400,11 @@ ts.ui.DialogSpirit = (function using(Dialog, Client, chained, Type) {
 			},
 
 			/**
-		 * Setup bonus classnames to make the LESS more manageable.
-		 * @param {string} type
-		 * @param {string} icon
-		 * @param {ts.ui.ButtonCollection} buttons
-		 */
+			 * Setup bonus classnames to make the LESS more manageable.
+			 * @param {string} type
+			 * @param {string} icon
+			 * @param {ts.ui.ButtonCollection} buttons
+			 */
 			_doclassnames: function(model) {
 				var count = model.buttons.length;
 				this.css
@@ -415,8 +415,8 @@ ts.ui.DialogSpirit = (function using(Dialog, Client, chained, Type) {
 			},
 
 			/**
-		 * Lock the keyboard navigation to the buttons area.
-		 */
+			 * Lock the keyboard navigation to the buttons area.
+			 */
 			_trapattention: function() {
 				var buttons = this._buttons();
 				if (buttons && !this.attention.trapping) {
@@ -425,9 +425,9 @@ ts.ui.DialogSpirit = (function using(Dialog, Client, chained, Type) {
 			},
 
 			/**
-		 * Autofocus the default button.
-		 * @param {HTMLMenuElement} buttons
-		 */
+			 * Autofocus the default button.
+			 * @param {HTMLMenuElement} buttons
+			 */
 			_focusdefault: function(buttons) {
 				var button;
 				if (buttons && (button = buttons.querySelector('[autofocus]'))) {
@@ -436,10 +436,10 @@ ts.ui.DialogSpirit = (function using(Dialog, Client, chained, Type) {
 			},
 
 			/**
-		 * Lookup buttons menu OR button at given index.
-		 * @param @optional {number} index
-		 * @returns {HTMLMenuElement|HTMLButtonElement}
-		 */
+			 * Lookup buttons menu OR button at given index.
+			 * @param @optional {number} index
+			 * @returns {HTMLMenuElement|HTMLButtonElement}
+			 */
 			_buttons: function(index) {
 				var result = this.dom.q('.ts-dialog-buttons .ts-buttons');
 				if (result && arguments.length) {
@@ -452,10 +452,10 @@ ts.ui.DialogSpirit = (function using(Dialog, Client, chained, Type) {
 			// Static ...............................................................
 
 			/**
-		 * Summon spirit.
-		 * @param @optional {ts.ui.DialogModel} opt_model
-		 * @return {ts.ui.DialogSpirit}
-		 */
+			 * Summon spirit.
+			 * @param @optional {ts.ui.DialogModel} opt_model
+			 * @return {ts.ui.DialogSpirit}
+			 */
 			summon: function(opt_model) {
 				var spirit = this.possess(document.createElement('div'));
 				spirit._model = opt_model || null;

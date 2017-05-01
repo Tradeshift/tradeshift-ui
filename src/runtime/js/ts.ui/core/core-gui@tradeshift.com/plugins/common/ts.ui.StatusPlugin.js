@@ -13,16 +13,16 @@ ts.ui.StatusPlugin = (function using(confirmed) {
 	return ts.ui.Plugin.extend(
 		{
 			/**
-		 * Tracking busy things.
-		 */
+			 * Tracking busy things.
+			 */
 			onconstruct: function() {
 				this.super.onconstruct();
 				this._bookmarks = {};
 			},
 
 			/**
-		 * Release busy stuff when destructed.
-		 */
+			 * Release busy stuff when destructed.
+			 */
 			ondestruct: function() {
 				this.super.ondestruct();
 				var exit = {};
@@ -37,10 +37,10 @@ ts.ui.StatusPlugin = (function using(confirmed) {
 			},
 
 			/**
-		 * Is busy?
-		 * @param @optional {string} doingwhat
-		 * @type {boolean}
-		 */
+			 * Is busy?
+			 * @param @optional {string} doingwhat
+			 * @type {boolean}
+			 */
 			isBusy: function(doingwhat) {
 				if (arguments.length) {
 					return Object.keys(this._bookmarks).some(function(activity) {
@@ -52,33 +52,33 @@ ts.ui.StatusPlugin = (function using(confirmed) {
 			},
 
 			/**
-		 * Report busy.
-		 * @param {String} message
-		 */
+			 * Report busy.
+			 * @param {String} message
+			 */
 			busy: function(message) {
 				this._busy(BUSY1, message);
 			},
 
 			/**
-		 * Report done.
-		 * @param {String} message
-		 */
+			 * Report done.
+			 * @param {String} message
+			 */
 			done: function(message) {
 				this._done(DONE1, message);
 			},
 
 			/**
-		 * Block while busy.
-		 * @param {String} message
-		 */
+			 * Block while busy.
+			 * @param {String} message
+			 */
 			busyBlocking: function(message) {
 				this._busy(BUSY2, message);
 			},
 
 			/**
-		 * Unblock when done.
-		 * @param {String} message
-		 */
+			 * Unblock when done.
+			 * @param {String} message
+			 */
 			doneBlocking: function(message) {
 				this._done(DONE2, message);
 			},
@@ -86,31 +86,31 @@ ts.ui.StatusPlugin = (function using(confirmed) {
 			// Private .................................................................
 
 			/**
-		 * Separates the broadcast from the message in a bookmark key.
-		 * @type {string}
-		 */
+			 * Separates the broadcast from the message in a bookmark key.
+			 * @type {string}
+			 */
 			_SEPARATOR: ':::',
 
 			/**
-		 * Tracking busy status.
-		 * @type {Map<string,boolean>}
-		 */
+			 * Tracking busy status.
+			 * @type {Map<string,boolean>}
+			 */
 			_bookmarks: null,
 
 			/**
-		 * Non-anonymize the message.
-		 * @param {String} message
-		 * @return {String}
-		 */
+			 * Non-anonymize the message.
+			 * @param {String} message
+			 * @return {String}
+			 */
 			_stamp: function(message) {
 				return '[' + this.spirit.constructor.$classname + '] ' + message;
 			},
 
 			/**
-		 * Go busy.
-		 * @param {String} broadcast
-		 * @param {String} message
-		 */
+			 * Go busy.
+			 * @param {String} broadcast
+			 * @param {String} message
+			 */
 			_busy: confirmed('string')(function(broadcast, message) {
 				this._bookmarks[broadcast + this._SEPARATOR + message] = true;
 				message = this._stamp(message);
@@ -119,10 +119,10 @@ ts.ui.StatusPlugin = (function using(confirmed) {
 			}),
 
 			/**
-		 * Now done.
-		 * @param {String} broadcast
-		 * @param {String} message
-		 */
+			 * Now done.
+			 * @param {String} broadcast
+			 * @param {String} message
+			 */
 			_done: confirmed('string')(function(broadcast, message) {
 				delete this._bookmarks[broadcast + this._SEPARATOR + message];
 				message = this._stamp(message);
@@ -139,17 +139,17 @@ ts.ui.StatusPlugin = (function using(confirmed) {
 			// Static ........................................................
 
 			/**
-		 * Report busy.
-		 * @param {String} message
-		 */
+			 * Report busy.
+			 * @param {String} message
+			 */
 			busy: confirmed('string')(function(message) {
 				gui.Broadcast.dispatchGlobal(BUSY1, message);
 			}),
 
 			/**
-		 * Report done.
-		 * @param {String} message
-		 */
+			 * Report done.
+			 * @param {String} message
+			 */
 			done: confirmed('string')(function(message) {
 				gui.Tick.next(function() {
 					gui.Broadcast.dispatchGlobal(DONE1, message);
@@ -157,17 +157,17 @@ ts.ui.StatusPlugin = (function using(confirmed) {
 			}),
 
 			/**
-		 * Report busy blocking.
-		 * @param {String} message
-		 */
+			 * Report busy blocking.
+			 * @param {String} message
+			 */
 			busyBlocking: confirmed('string')(function(message) {
 				gui.Broadcast.dispatchGlobal(BUSY2, message);
 			}),
 
 			/**
-		 * Report done blocking.
-		 * @param {String} message
-		 */
+			 * Report done blocking.
+			 * @param {String} message
+			 */
 			doneBlocking: confirmed('string')(function(message) {
 				gui.Tick.next(function() {
 					gui.Broadcast.dispatchGlobal(DONE2, message);

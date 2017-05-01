@@ -5,9 +5,9 @@
 ts.ui.EventPlugin = gui.EventPlugin.extend(
 	{
 		/**
-	 * Handle event.
-	 * @param {Event} e
-	 */
+		 * Handle event.
+		 * @param {Event} e
+		 */
 		handleEvent: function(e) {
 			this.super.handleEvent(e);
 			var fake, time, spirit = this.spirit;
@@ -31,26 +31,26 @@ ts.ui.EventPlugin = gui.EventPlugin.extend(
 		// Private ...................................................................
 
 		/**
-	 * Tracking hoverintent?
-	 * @type {boolean}
-	 */
+		 * Tracking hoverintent?
+		 * @type {boolean}
+		 */
 		_hoverintent: false,
 
 		/**
-	 * Hoverintent timeout index.
-	 * @type {number}
-	 */
+		 * Hoverintent timeout index.
+		 * @type {number}
+		 */
 		_hovercountdown: -1,
 
 		/**
-	 * Support mysterious 'hoverintent', though maybe that's not needed no more.
-	 * @overrides {gui.EventPlugin._shiftEventListener}
-	 * @param {boolean} add
-	 * @param {Node} target
-	 * @param {string} type
-	 * @param {object} handler
-	 * @param {boolean} capture
-	 */
+		 * Support mysterious 'hoverintent', though maybe that's not needed no more.
+		 * @overrides {gui.EventPlugin._shiftEventListener}
+		 * @param {boolean} add
+		 * @param {Node} target
+		 * @param {string} type
+		 * @param {object} handler
+		 * @param {boolean} capture
+		 */
 		_shiftEventListener: function(add, target, type, handler, capture) {
 			switch (type) {
 				case 'hoverintent':
@@ -91,10 +91,10 @@ ts.ui.EventPlugin = gui.EventPlugin.extend(
 		//	Static ............................................................
 
 		/**
-	 * Timeout in milliseconds before we assume
-	 * that the user intends to hover something.
-	 * @type {number}
-	 */
+		 * Timeout in milliseconds before we assume
+		 * that the user intends to hover something.
+		 * @type {number}
+		 */
 		HOVER_INTENT_TIME: 123
 	}
 );

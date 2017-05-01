@@ -15,17 +15,17 @@ gui.VisibilityPlugin = (function using(chained) {
 	return gui.Plugin.extend(
 		{
 			/**
-		 * Mark spirit visible.
-		 * @returns {gui.VisibilityPlugin}
-		 */
+			 * Mark spirit visible.
+			 * @returns {gui.VisibilityPlugin}
+			 */
 			on: chained(function() {
 				gui.VisibilityPlugin.on(this.spirit);
 			}),
 
 			/**
-		 * Mark spirit invisible.
-		 * @returns {gui.VisibilityPlugin}
-		 */
+			 * Mark spirit invisible.
+			 * @returns {gui.VisibilityPlugin}
+			 */
 			off: chained(function() {
 				gui.VisibilityPlugin.off(this.spirit);
 			})
@@ -35,12 +35,12 @@ gui.VisibilityPlugin = (function using(chained) {
 			// Static ...........................................................
 
 			/**
-		 * Mark spirit visible. This will remove the `._gui-invisible`
-		 * classname and invoke `onvisible` on spirit and descendants.
-		 * Once visibility has been resolved on startup, the target
-		 * spirit must be marked invisible for this to have effect.
-		 * @param {gui.Spirit} spirit
-		 */
+			 * Mark spirit visible. This will remove the `._gui-invisible`
+			 * classname and invoke `onvisible` on spirit and descendants.
+			 * Once visibility has been resolved on startup, the target
+			 * spirit must be marked invisible for this to have effect.
+			 * @param {gui.Spirit} spirit
+			 */
 			on: function(spirit) {
 				var classname = gui.CLASS_INVISIBLE;
 				if (spirit.life.visible === undefined || spirit.css.contains(classname)) {
@@ -50,10 +50,10 @@ gui.VisibilityPlugin = (function using(chained) {
 			},
 
 			/**
-		 * Mark spirit invisible. This will append the `._gui-invisible`
-		 * classname and invoke `oninvisible` on spirit and descendants.
-		 * @param {gui.Spirit} spirit
-		 */
+			 * Mark spirit invisible. This will append the `._gui-invisible`
+			 * classname and invoke `oninvisible` on spirit and descendants.
+			 * @param {gui.Spirit} spirit
+			 */
 			off: function(spirit) {
 				var classname = gui.CLASS_INVISIBLE;
 				switch (spirit.life.visible) {
@@ -68,11 +68,11 @@ gui.VisibilityPlugin = (function using(chained) {
 			// Privileged static .......................................................
 
 			/**
-		 * Initialize spirit visibility.
-		 * @TODO again after `appendChild` to another position.
-		 * Invoked by the {gui.Guide}.
-		 * @param {gui.Spirit} spirit
-		 */
+			 * Initialize spirit visibility.
+			 * @TODO again after `appendChild` to another position.
+			 * Invoked by the {gui.Guide}.
+			 * @param {gui.Spirit} spirit
+			 */
 			$init: function(spirit) {
 				if (!spirit.$destructed) {
 					this._go(spirit, !this._invisible(spirit));
@@ -82,12 +82,12 @@ gui.VisibilityPlugin = (function using(chained) {
 			// Private static ..........................................................
 
 			/**
-		 * Spirit is invisible? The point here is to not evaluate these potentially
-		 * costly selectors for all new spirits, so do prefer not to use this method.
-		 * Wait instread for methods `onvisible` and `oninvisible` to be invoked.
-		 * @param {gui.Spirit} spirit
-		 * @returns {boolean}
-		 */
+			 * Spirit is invisible? The point here is to not evaluate these potentially
+			 * costly selectors for all new spirits, so do prefer not to use this method.
+			 * Wait instread for methods `onvisible` and `oninvisible` to be invoked.
+			 * @param {gui.Spirit} spirit
+			 * @returns {boolean}
+			 */
 			_invisible: function(spirit) {
 				return (
 					spirit.css.contains(gui.CLASS_INVISIBLE) ||
@@ -96,10 +96,10 @@ gui.VisibilityPlugin = (function using(chained) {
 			},
 
 			/**
-		 * Recursively update spirit and descendants visibility.
-		 * @param {gui.Spirit} first
-		 * @param {boolean} show
-		 */
+			 * Recursively update spirit and descendants visibility.
+			 * @param {gui.Spirit} first
+			 * @param {boolean} show
+			 */
 			_go: function(first, visible) {
 				var type = visible ? gui.CRAWLER_VISIBLE : gui.CRAWLER_INVISIBLE;
 				new gui.Crawler(type).descendGlobal(first, {

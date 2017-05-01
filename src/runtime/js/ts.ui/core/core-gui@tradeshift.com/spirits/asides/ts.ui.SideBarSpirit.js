@@ -18,16 +18,16 @@ ts.ui.SideBarSpirit = (function using(chained, Type, Client, GuiObject, Colors) 
 	return ts.ui.SideShowSpirit.extend(
 		{
 			/**
-		 * Open by default.
-		 * @type {boolean}
-		 */
+			 * Open by default.
+			 * @type {boolean}
+			 */
 			isOpen: true,
 
 			/**
-		 * Automatically close the SideBar in mobile breakpoint?
-		 * Note that the SideBar must then be *manually* opened.
-		 * @type {boolean}
-		 */
+			 * Automatically close the SideBar in mobile breakpoint?
+			 * Note that the SideBar must then be *manually* opened.
+			 * @type {boolean}
+			 */
 			autoclose: {
 				getter: function() {
 					return this._autoclose;
@@ -54,16 +54,16 @@ ts.ui.SideBarSpirit = (function using(chained, Type, Client, GuiObject, Colors) 
 			},
 
 			/**
-		 * Setup to consume actions from nested Asides.
-		 */
+			 * Setup to consume actions from nested Asides.
+			 */
 			onconfigure: function() {
 				this.super.onconfigure();
 				this.action.add([willopen, didopen, willclose, didclose]);
 			},
 
 			/**
-		 * Add assistant classnames and fix the layout.
-		 */
+			 * Add assistant classnames and fix the layout.
+			 */
 			onattach: function() {
 				this.super.onattach();
 				this.action.dispatch('ts-action-attach');
@@ -76,8 +76,8 @@ ts.ui.SideBarSpirit = (function using(chained, Type, Client, GuiObject, Colors) 
 			},
 
 			/**
-		 * Setup the stuff.
-		 */
+			 * Setup the stuff.
+			 */
 			onenter: function() {
 				this.super.onenter();
 				this._breakpointwatch();
@@ -85,18 +85,18 @@ ts.ui.SideBarSpirit = (function using(chained, Type, Client, GuiObject, Colors) 
 			},
 
 			/**
-		 * Remove assistant classnames.
-		 */
+			 * Remove assistant classnames.
+			 */
 			ondetach: function() {
 				this.super.ondetach();
 				this._layoutmain(false);
 			},
 
 			/**
-		 * Give'm a second to move the SideBar into it's designated
-		 * position (immediately before or after the '.ts-main' element)
-		 * if for some reason the portal server didn't place it there.
-		 */
+			 * Give'm a second to move the SideBar into it's designated
+			 * position (immediately before or after the '.ts-main' element)
+			 * if for some reason the portal server didn't place it there.
+			 */
 			onready: function() {
 				this.super.onready();
 				this.input.connect(ts.ui.TopBarModel);
@@ -106,9 +106,9 @@ ts.ui.SideBarSpirit = (function using(chained, Type, Client, GuiObject, Colors) 
 			},
 
 			/**
-		 * Handle input. Watching that TopBar.
-		 * @param {gui.Input} input
-		 */
+			 * Handle input. Watching that TopBar.
+			 * @param {gui.Input} input
+			 */
 			oninput: function(i) {
 				this.super.oninput(i);
 				if (i.type === ts.ui.TopBarModel) {
@@ -117,11 +117,11 @@ ts.ui.SideBarSpirit = (function using(chained, Type, Client, GuiObject, Colors) 
 			},
 
 			/**
-		 * Handle changes. Reflex the layout when TopBar toggles
-		 * and hope this fixes the height measurement in Safari.
-		 * UPDATE: It worked - now do this with a simple broadcast!!!!!!!!!!!!!!!!!!
-		 * @param {Array<edb.Change>} changes
-		 */
+			 * Handle changes. Reflex the layout when TopBar toggles
+			 * and hope this fixes the height measurement in Safari.
+			 * UPDATE: It worked - now do this with a simple broadcast!!!!!!!!!!!!!!!!!!
+			 * @param {Array<edb.Change>} changes
+			 */
 			onchange: function(changes) {
 				this.super.onchange(changes);
 				changes.forEach(function(change) {
@@ -134,10 +134,10 @@ ts.ui.SideBarSpirit = (function using(chained, Type, Client, GuiObject, Colors) 
 			},
 
 			/**
-		 * Consume all nested aside actions
-		 * so as not to trigger the cover.
-		 * @param {gui.Action} a
-		 */
+			 * Consume all nested aside actions
+			 * so as not to trigger the cover.
+			 * @param {gui.Action} a
+			 */
 			onaction: function(a) {
 				this.super.onaction(a);
 				switch (a.type) {
@@ -154,8 +154,8 @@ ts.ui.SideBarSpirit = (function using(chained, Type, Client, GuiObject, Colors) 
 			},
 
 			/**
-		 * Cleanup (using a temporary API that should be refactored).
-		 */
+			 * Cleanup (using a temporary API that should be refactored).
+			 */
 			ondestruct: function() {
 				this.super.ondestruct();
 				ts.ui.removeBreakPointListener(this);
@@ -164,14 +164,14 @@ ts.ui.SideBarSpirit = (function using(chained, Type, Client, GuiObject, Colors) 
 			// Private .................................................................
 
 			/**
-		 * Automatically close the SideBar in mobile breakpoint?
-		 * @type {boolean}
-		 */
+			 * Automatically close the SideBar in mobile breakpoint?
+			 * @type {boolean}
+			 */
 			_autoclose: true,
 
 			/**
-		 * This classname has to do with flipping, it's a future project.
-		 */
+			 * This classname has to do with flipping, it's a future project.
+			 */
 			_fixappearance: function() {
 				this.super._fixappearance();
 				var has3D = gui.Client.has3D;
@@ -179,10 +179,10 @@ ts.ui.SideBarSpirit = (function using(chained, Type, Client, GuiObject, Colors) 
 			},
 
 			/**
-		 * Add/remove classnames on the HTML element so we can style the MAIN.
-		 * TODO: This should probably all be maintained somewhat more modelled...
-		 * @param {boolean} attaching This is `false' when SideBar gets removed.
-		 */
+			 * Add/remove classnames on the HTML element so we can style the MAIN.
+			 * TODO: This should probably all be maintained somewhat more modelled...
+			 * @param {boolean} attaching This is `false' when SideBar gets removed.
+			 */
 			_layoutmain: function(attaching) {
 				var layout = this.guilayout;
 				if (layout.outsideMain()) {
@@ -201,9 +201,9 @@ ts.ui.SideBarSpirit = (function using(chained, Type, Client, GuiObject, Colors) 
 			},
 
 			/**
-		 * Watch for breakpoint changes (using some
-		 * temporary API that should be refactored).
-		 */
+			 * Watch for breakpoint changes (using some
+			 * temporary API that should be refactored).
+			 */
 			_breakpointwatch: function() {
 				ts.ui.addBreakPointListener(
 					function() {
@@ -213,10 +213,10 @@ ts.ui.SideBarSpirit = (function using(chained, Type, Client, GuiObject, Colors) 
 			},
 
 			/**
-		 * Collapse the SideBar on mobile breakpoint.
-		 * Setup to avoid CSS transition on collapse.
-		 * @param {boolean} go
-		 */
+			 * Collapse the SideBar on mobile breakpoint.
+			 * Setup to avoid CSS transition on collapse.
+			 * @param {boolean} go
+			 */
 			_breakpoint: function() {
 				var go = ts.ui.isMobilePoint();
 				if (this._autoclose) {
@@ -236,8 +236,8 @@ ts.ui.SideBarSpirit = (function using(chained, Type, Client, GuiObject, Colors) 
 			},
 
 			/**
-		 * Show the SideBar (now that it's hidden in mobile view).
-		 */
+			 * Show the SideBar (now that it's hidden in mobile view).
+			 */
 			_open: function() {
 				if (this.super._open()) {
 					this.css.add('ts-will-open');
@@ -249,8 +249,8 @@ ts.ui.SideBarSpirit = (function using(chained, Type, Client, GuiObject, Colors) 
 			},
 
 			/**
-		 * Don't show the SideBar.
-		 */
+			 * Don't show the SideBar.
+			 */
 			_close: function() {
 				if (this.super._close()) {
 					this.css.remove(ts.ui.CLASS_OPEN);
@@ -261,10 +261,10 @@ ts.ui.SideBarSpirit = (function using(chained, Type, Client, GuiObject, Colors) 
 			},
 
 			/**
-		 * Fit nested aside inside the panel (footer scenario).
-		 * @param {ts.ui.AsideSpirit} aside
-		 * @param {Array<ts.ui.FooterSpirit>} footers List of bonus footers
-		 */
+			 * Fit nested aside inside the panel (footer scenario).
+			 * @param {ts.ui.AsideSpirit} aside
+			 * @param {Array<ts.ui.FooterSpirit>} footers List of bonus footers
+			 */
 			_fitaside: function(aside, footers) {
 				if (footers.length) {
 					aside.css.bottom = footers.reduce(function(totalheight, footer) {
@@ -277,11 +277,11 @@ ts.ui.SideBarSpirit = (function using(chained, Type, Client, GuiObject, Colors) 
 			// Xstatic ..............................................................
 
 			/**
-		 * List of members that should inherit any assigned background color.
-		 * In the SideBar, all members get the same color (unless explicitly
-		 * given a bg-color classname in the HTML).
-		 * @type {Array<string>}
-		 */
+			 * List of members that should inherit any assigned background color.
+			 * In the SideBar, all members get the same color (unless explicitly
+			 * given a bg-color classname in the HTML).
+			 * @type {Array<string>}
+			 */
 			$bgmembers: ['.ts-header', '.ts-tabbar', '.ts-panel', '.ts-footer']
 		}
 	);

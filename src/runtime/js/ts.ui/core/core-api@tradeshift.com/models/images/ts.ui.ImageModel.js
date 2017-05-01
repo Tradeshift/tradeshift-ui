@@ -7,39 +7,39 @@ ts.ui.ImageModel = (function() {
 	return ts.ui.Model.extend(
 		{
 			/**
-		 * The image URL.
-		 * @type {string}
-		 */
+			 * The image URL.
+			 * @type {string}
+			 */
 			src: BLANK,
 
 			/**
-		 * Optional ALT text.
-		 * @type {string}
-		 */
+			 * Optional ALT text.
+			 * @type {string}
+			 */
 			alt: '',
 
 			/**
-		 * The image width.
-		 * @type {number}
-		 */
+			 * The image width.
+			 * @type {number}
+			 */
 			width: 0,
 
 			/**
-		 * The image height.
-		 * @type {number}
-		 */
+			 * The image height.
+			 * @type {number}
+			 */
 			height: 0,
 
 			/**
-		 * Render as `background-image` for enhanced image processing via CSS?
-		 * @type {boolean}
-		 */
+			 * Render as `background-image` for enhanced image processing via CSS?
+			 * @type {boolean}
+			 */
 			background: false,
 
 			/**
-		 * Confirm dimensions. We'll render all images with a fixed size
-		 * so that the page doesn't jump around when the images are loaded.
-		 */
+			 * Confirm dimensions. We'll render all images with a fixed size
+			 * so that the page doesn't jump around when the images are loaded.
+			 */
 			onconstruct: function() {
 				this.super.onconstruct();
 				if (!this.width || !this.height) {
@@ -48,9 +48,9 @@ ts.ui.ImageModel = (function() {
 			},
 
 			/**
-		 * Bounce model to HTML.
-		 * @returns {string}
-		 */
+			 * Bounce model to HTML.
+			 * @returns {string}
+			 */
 			render: function() {
 				return ts.ui.image.edbml(this);
 			}
@@ -59,9 +59,9 @@ ts.ui.ImageModel = (function() {
 			// Static ...............................................................
 
 			/**
-		 * For anyone else who might like a 20x20 blank PNG.
-		 * @type {string}
-		 */
+			 * For anyone else who might like a 20x20 blank PNG.
+			 * @type {string}
+			 */
 			BLANK: BLANK
 		}
 	);

@@ -17,9 +17,9 @@ ts.ui.ObjectSpirit = (function using(Type, chained, confirmed) {
 	return ts.ui.Spirit.extend(
 		{
 			/**
-		 * Set the GUID (via HTML attribute ts.id="myguid").
-		 * @type {string}
-		 */
+			 * Set the GUID (via HTML attribute ts.id="myguid").
+			 * @type {string}
+			 */
 			id: {
 				getter: function() {
 					return this._guid;
@@ -32,9 +32,9 @@ ts.ui.ObjectSpirit = (function using(Type, chained, confirmed) {
 			},
 
 			/**
-		 * Show details on click (via HTML attribute ts.details="true").
-		 * @type {boolean}
-		 */
+			 * Show details on click (via HTML attribute ts.details="true").
+			 * @type {boolean}
+			 */
 			details: {
 				getter: function() {
 					return this._details;
@@ -52,11 +52,11 @@ ts.ui.ObjectSpirit = (function using(Type, chained, confirmed) {
 			},
 
 			/**
-		 * Scenario 1: The model is extracted from embedded JSON.
-		 * There's no code to support the scenario where JSON is
-		 * injected via the `ts.render` attribute because that's
-		 * just built into spirits via the {gui.ConfigPlugin}.
-		 */
+			 * Scenario 1: The model is extracted from embedded JSON.
+			 * There's no code to support the scenario where JSON is
+			 * injected via the `ts.render` attribute because that's
+			 * just built into spirits via the {gui.ConfigPlugin}.
+			 */
 			onconfigure: function() {
 				this.super.onconfigure();
 				var script, path = 'script[type="application/json"]';
@@ -71,10 +71,10 @@ ts.ui.ObjectSpirit = (function using(Type, chained, confirmed) {
 			},
 
 			/**
-		 * If the element wraped by button or a link without a `href`,
-		 * The component should detail itself in an Aside when clicked.
-		 * TODO: Make sure that ENTER key also works!
-		 */
+			 * If the element wraped by button or a link without a `href`,
+			 * The component should detail itself in an Aside when clicked.
+			 * TODO: Make sure that ENTER key also works!
+			 */
 			onevent: function(e) {
 				this.super.onevent(e);
 				switch (e.type) {
@@ -87,10 +87,10 @@ ts.ui.ObjectSpirit = (function using(Type, chained, confirmed) {
 			},
 
 			/**
-		 * Scenario 2: The model is injected manually by some guy.
-		 * @param {JSONObject|ts.ui.ObjectModel} json
-		 * @returns {ts.ui.ObjectSpirit}
-		 */
+			 * Scenario 2: The model is injected manually by some guy.
+			 * @param {JSONObject|ts.ui.ObjectModel} json
+			 * @returns {ts.ui.ObjectSpirit}
+			 */
 			render: confirmed('object')(
 				chained(function(json) {
 					if (this._assignmodel(json)) {
@@ -101,17 +101,17 @@ ts.ui.ObjectSpirit = (function using(Type, chained, confirmed) {
 			),
 
 			/**
-		 * The sub-class should implented the function
-		 * May be we implented it here
-		 * Open an aside to show some details
-		 */
+			 * The sub-class should implented the function
+			 * May be we implented it here
+			 * Open an aside to show some details
+			 */
 			open: function() {},
 
 			/**
-		 * Assign new model from argument, disposing any old model.
-		 * @param {JSONObject|ts.ui.CompanyCardModel} data
-		 * @returns {boolean} True if a model was assigned
-		 */
+			 * Assign new model from argument, disposing any old model.
+			 * @param {JSONObject|ts.ui.CompanyCardModel} data
+			 * @returns {boolean} True if a model was assigned
+			 */
 			_assignmodel: function(data) {
 				var Model = this.constructor.model;
 				if (data) {
@@ -124,10 +124,10 @@ ts.ui.ObjectSpirit = (function using(Type, chained, confirmed) {
 			},
 
 			/**
-		 * Scenario 3: The model is retrieved from public output
-		 * (The listener is setup when someone changes the `id`).
-		 * @param {edb.Input} input
-		 */
+			 * Scenario 3: The model is retrieved from public output
+			 * (The listener is setup when someone changes the `id`).
+			 * @param {edb.Input} input
+			 */
 			oninput: function(input) {
 				this.super.oninput(input);
 				var Collection = this.constructor.collection;
@@ -146,28 +146,28 @@ ts.ui.ObjectSpirit = (function using(Type, chained, confirmed) {
 			// Private .................................................................
 
 			/**
-		 * Model GUID.
-		 * @type {string}
-		 */
+			 * Model GUID.
+			 * @type {string}
+			 */
 			_guid: null,
 
 			/**
-		 * The model itself.
-		 * @type {ts.ui.ObjectModel}
-		 */
+			 * The model itself.
+			 * @type {ts.ui.ObjectModel}
+			 */
 			_model: null,
 
 			/**
-		 * Show details view on click?
-		 * @type {boolean}
-		 */
+			 * Show details view on click?
+			 * @type {boolean}
+			 */
 			_details: false,
 
 			/**
-		 * Setup to show details in Aside.
-		 * @param {boolean} on
-		 * @param {Element} elm
-		 */
+			 * Setup to show details in Aside.
+			 * @param {boolean} on
+			 * @param {Element} elm
+			 */
 			_toggledetails: function(on, elm) {
 				this.css.shift(on, 'ts-has-details');
 				this.event.shift(on, 'click');
@@ -180,17 +180,17 @@ ts.ui.ObjectSpirit = (function using(Type, chained, confirmed) {
 			// Static ...............................................................
 
 			/**
-		 * Scenario 1 and 2: Convert injected JSON to this
-		 * kind of model. The subclass should define this.
-		 * @type {constructor}
-		 */
+			 * Scenario 1 and 2: Convert injected JSON to this
+			 * kind of model. The subclass should define this.
+			 * @type {constructor}
+			 */
 			model: ts.ui.ObjectModel,
 
 			/**
-		 * Scenario 3: Fetch the model from public output of
-		 * this collection.	The subclass should define this.
-		 * @type {constructor}
-		 */
+			 * Scenario 3: Fetch the model from public output of
+			 * this collection.	The subclass should define this.
+			 * @type {constructor}
+			 */
 			collection: ts.ui.ObjectCollection
 		}
 	);

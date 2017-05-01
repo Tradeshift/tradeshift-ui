@@ -182,10 +182,10 @@
 	}
 
 	/**
-	* Windows Phone 8.1 fakes user agent string to look like Android and iPhone.
-	*
-	* @type boolean
-	*/
+	 * Windows Phone 8.1 fakes user agent string to look like Android and iPhone.
+	 *
+	 * @type boolean
+	 */
 	var deviceIsWindowsPhone = navigator.userAgent.indexOf('Windows Phone') >= 0;
 
 	/**

@@ -7,38 +7,38 @@ ts.ui.Bar = (function using(DOMPlugin, MainSpirit) {
 		Object,
 		{
 			/**
-		 * Associate this instance to Main component of given ordinal index.
-		 * @param {number} index
-		 */
+			 * Associate this instance to Main component of given ordinal index.
+			 * @param {number} index
+			 */
 			onconstruct: function(index) {
 				this._main = DOMPlugin.qall(document, '.ts-main', MainSpirit)[index];
 			},
 
 			/**
-		 * Subclass must implement! Get the ToolBarSpirit (via the
-		 * Main component that this instance has been associated to).
-		 * @returns {ts.ui.ToolBarSpirit}
-		 */
+			 * Subclass must implement! Get the ToolBarSpirit (via the
+			 * Main component that this instance has been associated to).
+			 * @returns {ts.ui.ToolBarSpirit}
+			 */
 			$getbar: function() {}
 		},
 		{
 			// Xstatic ..............................................................
 
 			/**
-		 * Get Bar instance by index of associated Main.
-		 * This will be created if it doesn't yet exist.
-		 * @returns {ts.ui.Bar}
-		 */
+			 * Get Bar instance by index of associated Main.
+			 * This will be created if it doesn't yet exist.
+			 * @returns {ts.ui.Bar}
+			 */
 			get: function(index) {
 				var Bar = this, all = this.$bars;
 				return all[index] || (all[index] = new Bar(index));
 			},
 
 			/**
-		 * Apply method to the Bar instance associated to the first Main.
-		 * Make sure that chained returns this (constructor, not instance).
-		 * @returns {ts.ui.Bar}
-		 */
+			 * Apply method to the Bar instance associated to the first Main.
+			 * Make sure that chained returns this (constructor, not instance).
+			 * @returns {ts.ui.Bar}
+			 */
 			first: function(method, args) {
 				var bar = this.get(0);
 				var res = bar[method].apply(bar, args);
@@ -49,16 +49,16 @@ ts.ui.Bar = (function using(DOMPlugin, MainSpirit) {
 			// Static ...............................................................
 
 			/**
-		 * Listing Bar instances.
-		 * @type {Array<ts.ui.Bar>}
-		 */
+			 * Listing Bar instances.
+			 * @type {Array<ts.ui.Bar>}
+			 */
 			$bars: [],
 
 			/**
-		 * Generate methods to go on the Bar prototype (instance methods).
-		 * @param {Array<string>} names
-		 * @returns {Object<string, Function>}
-		 */
+			 * Generate methods to go on the Bar prototype (instance methods).
+			 * @param {Array<string>} names
+			 * @returns {Object<string, Function>}
+			 */
 			$protomethods: function(names) {
 				var protos = Object.create(null);
 				names.forEach(function(name) {
@@ -68,10 +68,10 @@ ts.ui.Bar = (function using(DOMPlugin, MainSpirit) {
 			},
 
 			/**
-		 * Generate methods to go on the Bar constructor (static methods).
-		 * @param {Array<string>} names
-		 * @returns {Object}
-		 */
+			 * Generate methods to go on the Bar constructor (static methods).
+			 * @param {Array<string>} names
+			 * @returns {Object}
+			 */
 			$staticmethods: function(names) {
 				var statix = Object.create(null);
 				names.forEach(function(name) {
@@ -81,10 +81,10 @@ ts.ui.Bar = (function using(DOMPlugin, MainSpirit) {
 			},
 
 			/**
-		 * Generate single instance method.
-		 * @param {string} name
-		 * @returns {Function}
-		 */
+			 * Generate single instance method.
+			 * @param {string} name
+			 * @returns {Function}
+			 */
 			$protomethod: function(name) {
 				return function() {
 					var bar = this.$getbar();
@@ -94,10 +94,10 @@ ts.ui.Bar = (function using(DOMPlugin, MainSpirit) {
 			},
 
 			/**
-		 * Generate single static method.
-		 * @param {string} name
-		 * @returns {Function}
-		 */
+			 * Generate single static method.
+			 * @param {string} name
+			 * @returns {Function}
+			 */
 			$staticmethod: function(name) {
 				return function() {
 					return this.first(name, arguments);

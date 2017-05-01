@@ -33,50 +33,50 @@ ts.ui.CalendarModel = (function() {
 	return ts.ui.Model.extend(
 		{
 			/**
-		 * Friendly name.
-		 * @type {string}
-		 */
+			 * Friendly name.
+			 * @type {string}
+			 */
 			item: 'calendar',
 
 			/**
-		 * [now description]
-		 * @type {String}
-		 */
+			 * [now description]
+			 * @type {String}
+			 */
 			now: null,
 
 			/**
-		 * TODO (jmo@):
-		 * @type {string}
-		 */
+			 * TODO (jmo@):
+			 * @type {string}
+			 */
 			min: null,
 
 			/**
-		 * TODO (jmo@):
-		 * @type {string}
-		 */
+			 * TODO (jmo@):
+			 * @type {string}
+			 */
 			max: null,
 
 			/**
-		 * @type {number}
-		 */
+			 * @type {number}
+			 */
 			year: 0,
 
 			/**
-		 * @type {string}
-		 */
+			 * @type {string}
+			 */
 			month: null,
 
 			/**
-		 * @type {Array<object>}
-		 */
+			 * @type {Array<object>}
+			 */
 			view: null,
 
 			/**
-		 * All arguments take the form YYYY-MM-DD as defined in RFC3339.
-		 * @param {string=} opt_now
-		 * @param {string=} opt_min
-		 * @param {string=} opt_max
-		 */
+			 * All arguments take the form YYYY-MM-DD as defined in RFC3339.
+			 * @param {string=} opt_now
+			 * @param {string=} opt_min
+			 * @param {string=} opt_max
+			 */
 			onconstruct: function() {
 				this.super.onconstruct();
 				if (ts.lib.Date) {
@@ -93,8 +93,8 @@ ts.ui.CalendarModel = (function() {
 			},
 
 			/**
-		 *
-		 */
+			 *
+			 */
 			prevMonth: function() {
 				var newDate = this._getRelativeMonth(this.year, this._month, -1);
 				this._month = newDate.month;
@@ -113,25 +113,25 @@ ts.ui.CalendarModel = (function() {
 			},
 
 			/**
-		 *
-		 */
+			 *
+			 */
 			prevYear: function() {
 				this.year = this._getRelativeYear(this.year, -1);
 				this.regenerate();
 			},
 
 			/**
-		 *
-		 */
+			 *
+			 */
 			nextYear: function() {
 				this.year = this._getRelativeYear(this.year, 1);
 				this.regenerate();
 			},
 
 			/**
-		 * Select cell.
-		 * @param {Cell} cell
-		 */
+			 * Select cell.
+			 * @param {Cell} cell
+			 */
 			select: function(cell) {
 				var month = cell.month + 1, day = cell.day;
 				if (month < 10) {
@@ -154,21 +154,21 @@ ts.ui.CalendarModel = (function() {
 			// Private ....................................................
 
 			/**
-		 * Tracking month.
-		 * @type {number}
-		 */
+			 * Tracking month.
+			 * @type {number}
+			 */
 			_month: -1,
 
 			/**
-		 *
-		 */
+			 *
+			 */
 			_getRelativeYear: function(year, diff) {
 				return parseInt(year, 10) + diff;
 			},
 
 			/**
-		 *
-		 */
+			 *
+			 */
 			_getRelativeMonth: function(year, month, diff) {
 				month = parseInt(month, 10) + diff;
 				year = parseInt(year, 10);
@@ -187,8 +187,8 @@ ts.ui.CalendarModel = (function() {
 			},
 
 			/**
-		 *
-		 */
+			 *
+			 */
 			_generateLabels: function(year, month) {
 				var dayLabels = [], i;
 				for (i = 0; i < 7; ++i) {
@@ -198,8 +198,8 @@ ts.ui.CalendarModel = (function() {
 			},
 
 			/**
-		 *
-		 */
+			 *
+			 */
 			_generateDays: function(year, month) {
 				year = parseInt(year, 10);
 				month = parseInt(month, 10);
@@ -259,8 +259,8 @@ ts.ui.CalendarModel = (function() {
 			},
 
 			/**
-		 *
-		 */
+			 *
+			 */
 			regenerate: function() {
 				this.month = ts.ui.CalendarModel.MONTH_NAMES_SHORT[this._month];
 				this.view = this._generateDays(this.year, this._month);
@@ -270,15 +270,15 @@ ts.ui.CalendarModel = (function() {
 			// Static .........................................
 
 			/**
-		 * IMPORTANT! This must be localized!
-		 * @type {number}
-		 */
+			 * IMPORTANT! This must be localized!
+			 * @type {number}
+			 */
 			firstDay: 1,
 
 			/**
-		 * Months of the year. How many do you know?
-		 * @type {Array<string>}
-		 */
+			 * Months of the year. How many do you know?
+			 * @type {Array<string>}
+			 */
 			MONTH_NAMES: [
 				t('January'),
 				t('February'),
@@ -295,9 +295,9 @@ ts.ui.CalendarModel = (function() {
 			],
 
 			/**
-		 * Shorter months for more deadlines.
-		 * @type {Array<string>}
-		 */
+			 * Shorter months for more deadlines.
+			 * @type {Array<string>}
+			 */
 			MONTH_NAMES_SHORT: [
 				t('Jan'),
 				t('Feb'),
@@ -314,9 +314,9 @@ ts.ui.CalendarModel = (function() {
 			],
 
 			/**
-		 * Day names.
-		 * @type {Array<string>}
-		 */
+			 * Day names.
+			 * @type {Array<string>}
+			 */
 			DAY_NAMES: [
 				t('Sunday'),
 				t('Monday'),
@@ -328,15 +328,15 @@ ts.ui.CalendarModel = (function() {
 			],
 
 			/**
-		 * Short day names.
-		 * @type {Array<string>}
-		 */
+			 * Short day names.
+			 * @type {Array<string>}
+			 */
 			DAY_NAMES_SHORT: [t('Sun'), t('Mon'), t('Tue'), t('Wed'), t('Thu'), t('Fri'), t('Sat')],
 
 			/**
-		 * Compact day names.
-		 * @type {Array<string>}
-		 */
+			 * Compact day names.
+			 * @type {Array<string>}
+			 */
 			DAY_NAMES_MIN: [t('Su'), t('Mo'), t('Tu'), t('We'), t('Th'), t('Fr'), t('Sa')]
 		}
 	);

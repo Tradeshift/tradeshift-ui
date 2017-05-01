@@ -1,6 +1,6 @@
 /**
-	* Spirit of the topbar tabs.
-	*/
+ * Spirit of the topbar tabs.
+ */
 ts.ui.TopBarTabsSpirit = ts.ui.Spirit.extend({
 	/**
 	 * Tabs are open (in mobile breakpoint)?

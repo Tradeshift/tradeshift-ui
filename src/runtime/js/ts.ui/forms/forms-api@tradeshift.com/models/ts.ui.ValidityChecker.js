@@ -9,12 +9,12 @@ ts.ui.ValidityChecker = gui.Class.create(
 	Object.prototype,
 	{
 		/**
-	 * Check element validity and update validation state.
-	 * TODO: Release the regexpert!
-	 * @param {HTMLInputElement|ts.ui.InputModel} element
-	 * @param {ts.ui.ValidityStateModel} state
-	 * @returns {boolean}
-	 */
+		 * Check element validity and update validation state.
+		 * TODO: Release the regexpert!
+		 * @param {HTMLInputElement|ts.ui.InputModel} element
+		 * @param {ts.ui.ValidityStateModel} state
+		 * @returns {boolean}
+		 */
 		checkValidity: function(input, state) {
 			state.valid = true;
 			if (input.required) {
@@ -42,8 +42,8 @@ ts.ui.ValidityChecker = gui.Class.create(
 		// Static .................................................................
 
 		/**
-	 * @type {RegExp}
-	 */
+		 * @type {RegExp}
+		 */
 		EMAIL: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,6}$./
 	}
 );

@@ -7,8 +7,8 @@ ts.ui.SpinnerSpirit = (function using(chained) {
 	return ts.ui.Spirit.extend(
 		{
 			/**
-		 * Support `data-ts.spinning="boolean"` attribute.
-		 */
+			 * Support `data-ts.spinning="boolean"` attribute.
+			 */
 			spinning: function(is) {
 				if (is) {
 					var opt = ts.ui.SpinnerSpirit.topbar();
@@ -19,12 +19,12 @@ ts.ui.SpinnerSpirit = (function using(chained) {
 				}
 			},
 			/**
-
-		 * Start spinning.
-		 * @param @optional {element} element
-		 * @param @optional {object} options
-		 * @returns {ts.ui.SpinnerSpirit}
-		 */
+			 
+			 * Start spinning.
+			 * @param @optional {element} element
+			 * @param @optional {object} options
+			 * @returns {ts.ui.SpinnerSpirit}
+			 */
 			spin: chained(function(element, options) {
 				element = element || this.element;
 				var opts = ts.ui.SpinnerSpirit.defaults(options);
@@ -47,9 +47,9 @@ ts.ui.SpinnerSpirit = (function using(chained) {
 			}),
 
 			/**
-		 * Stop spinning.
-		 * @returns {ts.ui.SpinnerSpirit}
-		 */
+			 * Stop spinning.
+			 * @returns {ts.ui.SpinnerSpirit}
+			 */
 			stop: chained(function() {
 				this._updateblocking(false);
 				if (this._spinner) {
@@ -65,31 +65,31 @@ ts.ui.SpinnerSpirit = (function using(chained) {
 			// Private .................................................................
 
 			/**
-		 * ts.ui.Spinner
-		 */
+			 * ts.ui.Spinner
+			 */
 			_spinner: null,
 
 			/**
-		 * html element
-		 */
+			 * html element
+			 */
 			_textelement: null,
 
 			/**
-		 * ID (and classname) of the spinner cover.
-		 * @type {string}
-		 */
+			 * ID (and classname) of the spinner cover.
+			 * @type {string}
+			 */
 			_coverid: 'ts-spinnercover',
 
 			/**
-		 * Current dialog blocks?
-		 * @type {number}
-		 */
+			 * Current dialog blocks?
+			 * @type {number}
+			 */
 			_blocking: false,
 
 			/**
-		 * Update blocking status.
-		 * @param {boolean} blocking
-		 */
+			 * Update blocking status.
+			 * @param {boolean} blocking
+			 */
 			_updateblocking: function(blocking) {
 				if (blocking) {
 					if (!this._blocking) {
@@ -105,10 +105,10 @@ ts.ui.SpinnerSpirit = (function using(chained) {
 			},
 
 			/**
-		 * Get-create CoverSpirit for dialog things. First
-		 * run creates the spirit and appends it to BODY.
-		 * @returns {ts.ui.CoverSpirit}
-		 */
+			 * Get-create CoverSpirit for dialog things. First
+			 * run creates the spirit and appends it to BODY.
+			 * @returns {ts.ui.CoverSpirit}
+			 */
 			_cover: function() {
 				return ts.ui.CoverSpirit.getCover(this._coverid);
 			}
@@ -117,9 +117,9 @@ ts.ui.SpinnerSpirit = (function using(chained) {
 			// Static ...............................................................
 
 			/**
-		 * Default or modified configuration.
-		 * @param @optional {object} options
-		 */
+			 * Default or modified configuration.
+			 * @param @optional {object} options
+			 */
 			defaults: function(options) {
 				var opts = {
 					lines: 12, // The number of lines to draw
@@ -152,9 +152,9 @@ ts.ui.SpinnerSpirit = (function using(chained) {
 			},
 
 			/**
-		 * TopBar spinner modifications.
-		 * @returns {object}
-		 */
+			 * TopBar spinner modifications.
+			 * @returns {object}
+			 */
 			topbar: function() {
 				return {
 					radius: 5,

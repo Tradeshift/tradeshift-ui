@@ -5,27 +5,27 @@
 gui.IframeSpirit = gui.Spirit.extend(
 	{
 		/**
-	 * Flipped when the *hosted* document is loaded and spiritualized.
-	 * @type {boolean}
-	 */
+		 * Flipped when the *hosted* document is loaded and spiritualized.
+		 * @type {boolean}
+		 */
 		spiritualized: false,
 
 		/**
-	 * Fit height to contained document height (seamless style)?
-	 * @type {boolean}
-	 */
+		 * Fit height to contained document height (seamless style)?
+		 * @type {boolean}
+		 */
 		fit: false,
 
 		/**
-	 * Cross domain origin of hosted document (if that's the case).
-	 * @type {String} `http://iframehost.com:8888`
-	 */
+		 * Cross domain origin of hosted document (if that's the case).
+		 * @type {String} `http://iframehost.com:8888`
+		 */
 		xguest: null,
 
 		/**
-	 * Hosted window.
-	 * @type {Window}
-	 */
+		 * Hosted window.
+		 * @type {Window}
+		 */
 		contentWindow: {
 			getter: function() {
 				return this.element.contentWindow;
@@ -33,9 +33,9 @@ gui.IframeSpirit = gui.Spirit.extend(
 		},
 
 		/**
-	 * Hosted document.
-	 * @type {Document}
-	 */
+		 * Hosted document.
+		 * @type {Document}
+		 */
 		contentDocument: {
 			getter: function() {
 				return this.element.contentDocument;
@@ -43,14 +43,14 @@ gui.IframeSpirit = gui.Spirit.extend(
 		},
 
 		/**
-	 * URL details for hosted document.
-	 * @type {gui.URL}
-	 */
+		 * URL details for hosted document.
+		 * @type {gui.URL}
+		 */
 		contentLocation: null,
 
 		/**
-	 * Construction time.
-	 */
+		 * Construction time.
+		 */
 		onconstruct: function() {
 			this.super.onconstruct();
 			this.event.add('message', window);
@@ -58,10 +58,10 @@ gui.IframeSpirit = gui.Spirit.extend(
 		},
 
 		/**
-	 * Stamp SRC on startup.
-	 * Configure content document events in order of
-	 * appearance and resolve current contentLocation.
-	 */
+		 * Stamp SRC on startup.
+		 * Configure content document events in order of
+		 * appearance and resolve current contentLocation.
+		 */
 		onenter: function() {
 			this.super.onenter();
 			this.event.add('load');
@@ -86,9 +86,9 @@ gui.IframeSpirit = gui.Spirit.extend(
 		},
 
 		/**
-	 * Handle action.
-	 * @param {gui.Action} a
-	 */
+		 * Handle action.
+		 * @param {gui.Action} a
+		 */
 		onaction: function(a) {
 			this.super.onaction(a);
 			this.action.$handleownaction = false;
@@ -133,9 +133,9 @@ gui.IframeSpirit = gui.Spirit.extend(
 		},
 
 		/**
-	 * Handle event.
-	 * @param {Event} e
-	 */
+		 * Handle event.
+		 * @param {Event} e
+		 */
 		onevent: function(e) {
 			this.super.onevent(e);
 			switch (e.type) {
@@ -149,8 +149,8 @@ gui.IframeSpirit = gui.Spirit.extend(
 		},
 
 		/**
-	 * Status visible.
-	 */
+		 * Status visible.
+		 */
 		onvisible: function() {
 			this.super.onvisible();
 			if (this.spiritualized) {
@@ -169,11 +169,11 @@ gui.IframeSpirit = gui.Spirit.extend(
 		},
 
 		/**
-	 * Get and set the iframe source. Set in markup using <iframe gui.src="x"/>
-	 * if you need to postpone iframe loading until the spirit gets initialized.
-	 * @param @optional {String} src
-	 * @returns @optional {String} src
-	 */
+		 * Get and set the iframe source. Set in markup using <iframe gui.src="x"/>
+		 * if you need to postpone iframe loading until the spirit gets initialized.
+		 * @param @optional {String} src
+		 * @returns @optional {String} src
+		 */
 		src: function(src) {
 			if (src) {
 				this._setupsrc(src);
@@ -183,10 +183,10 @@ gui.IframeSpirit = gui.Spirit.extend(
 		},
 
 		/**
-	 * Experimentally load some kind of blob.
-	 * @param @optional {URL} url
-	 * @param @optional {String} src
-	 */
+		 * Experimentally load some kind of blob.
+		 * @param @optional {URL} url
+		 * @param @optional {String} src
+		 */
 		url: function(url, src) {
 			if (src) {
 				this._setupsrc(src);
@@ -198,12 +198,12 @@ gui.IframeSpirit = gui.Spirit.extend(
 		},
 
 		/**
-	 * Post message to content window. This method assumes
-	 * that we are messaging Spiritual components and will
-	 * buffer the messages for bulk dispatch once Spiritual
-	 * is known to run inside the iframe.
-	 * @param {String} msg
-	 */
+		 * Post message to content window. This method assumes
+		 * that we are messaging Spiritual components and will
+		 * buffer the messages for bulk dispatch once Spiritual
+		 * is known to run inside the iframe.
+		 * @param {String} msg
+		 */
 		postMessage: function(msg) {
 			if (this.spiritualized) {
 				this.contentWindow.postMessage(msg, '*');
@@ -215,8 +215,8 @@ gui.IframeSpirit = gui.Spirit.extend(
 		// Private ...................................................................
 
 		/**
-	 * @param {String} src
-	 */
+		 * @param {String} src
+		 */
 		_setupsrc: function(src) {
 			var doc = document;
 			this.contentLocation = new gui.URL(doc, src);
@@ -232,9 +232,9 @@ gui.IframeSpirit = gui.Spirit.extend(
 		},
 
 		/**
-	 * Hosted document spiritualized.
-	 * Dispatching buffered messages.
-	 */
+		 * Hosted document spiritualized.
+		 * Dispatching buffered messages.
+		 */
 		_onspiritualized: function() {
 			this.spiritualized = true;
 			while (this._postbox.length) {
@@ -244,10 +244,10 @@ gui.IframeSpirit = gui.Spirit.extend(
 		},
 
 		/**
-	 * Hosted document changed size. Resize to fit?
-	 * Dispatching an action to {gui.DocumentSpirit}
-	 * @param {number} height
-	 */
+		 * Hosted document changed size. Resize to fit?
+		 * Dispatching an action to {gui.DocumentSpirit}
+		 * @param {number} height
+		 */
 		_onfit: function(height) {
 			if (this.fit) {
 				this.css.height = height;
@@ -256,8 +256,8 @@ gui.IframeSpirit = gui.Spirit.extend(
 		},
 
 		/**
-	 * Hosted document unloading.
-	 */
+		 * Hosted document unloading.
+		 */
 		_onunload: function() {
 			this.spiritualized = false;
 			if (this.fit) {
@@ -266,12 +266,12 @@ gui.IframeSpirit = gui.Spirit.extend(
 		},
 
 		/**
-	 * Handle posted message, scanning for ascending actions.
-	 * Descending actions are handled by the documentspirit.
-	 * TODO: Don't claim this as action target!
-	 * @see {gui.DocumentSpirit._onmessage}
-	 * @param {String} msg
-	 */
+		 * Handle posted message, scanning for ascending actions.
+		 * Descending actions are handled by the documentspirit.
+		 * TODO: Don't claim this as action target!
+		 * @see {gui.DocumentSpirit._onmessage}
+		 * @param {String} msg
+		 */
 		_onmessage: function(msg, origin, source) {
 			if (source === this.contentWindow) {
 				if (msg.startsWith('spiritual-action:')) {
@@ -285,18 +285,18 @@ gui.IframeSpirit = gui.Spirit.extend(
 		},
 
 		/**
-	 * Iframe is sandboxed? Returns `true` even for "allow-same-origin" setting.
-	 * @returns {boolean}
-	 */
+		 * Iframe is sandboxed? Returns `true` even for "allow-same-origin" setting.
+		 * @returns {boolean}
+		 */
 		_sandboxed: function() {
 			var sandbox = this.element.sandbox;
 			return sandbox && sandbox.length; // && !sandbox.includes ( "allow-same-origin" );
 		},
 
 		/**
-	 * Teleport visibility crawler to hosted document.
-	 * Action intercepted by the {gui.DocumentSpirit}.
-	 */
+		 * Teleport visibility crawler to hosted document.
+		 * Action intercepted by the {gui.DocumentSpirit}.
+		 */
 		_visibility: function() {
 			if (gui.hasModule('gui-layout@wunderbyte.com')) {
 				// TODO: - fix
@@ -310,13 +310,13 @@ gui.IframeSpirit = gui.Spirit.extend(
 		// Recurring static .......................................................
 
 		/**
-	 * Summon spirit.
-	 * TODO: why does spirit.src method fail strangely
-	 *			 just now? using iframe.src instead...
-	 * @param {Document} doc
-	 * @param @optional {String} src
-	 * @returns {gui.IframeSpirit}
-	 */
+		 * Summon spirit.
+		 * TODO: why does spirit.src method fail strangely
+		 *			 just now? using iframe.src instead...
+		 * @param {Document} doc
+		 * @param @optional {String} src
+		 * @returns {gui.IframeSpirit}
+		 */
 		summon: function(doc, src) {
 			var iframe = doc.createElement('iframe');
 			var spirit = this.possess(iframe);
@@ -341,10 +341,10 @@ gui.IframeSpirit = gui.Spirit.extend(
 		// Static .................................................................
 
 		/**
-	 * Presumably harmless iframe source. The issue here is that "about:blank"
-	 * may raise security concerns for some browsers when running HTTPS setup.
-	 * @type {String}
-	 */
+		 * Presumably harmless iframe source. The issue here is that "about:blank"
+		 * may raise security concerns for some browsers when running HTTPS setup.
+		 * @type {String}
+		 */
 		SRC_DEFAULT: 'javascript:void(false);'
 	}
 );

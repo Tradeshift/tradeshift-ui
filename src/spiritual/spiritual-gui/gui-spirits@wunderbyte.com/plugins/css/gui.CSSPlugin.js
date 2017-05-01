@@ -8,10 +8,10 @@ gui.CSSPlugin = (function using(chained, confirmed) {
 	return gui.Plugin.extend(
 		{
 			/**
-		 * Add classname(s).
-		 * @param {string|Array<string>} name
-		 * @returns {gui.CSSPlugin}
-		 */
+			 * Add classname(s).
+			 * @param {string|Array<string>} name
+			 * @returns {gui.CSSPlugin}
+			 */
 			add: confirmed('string|array')(
 				chained(function(name) {
 					var elm = this.spirit.element;
@@ -22,10 +22,10 @@ gui.CSSPlugin = (function using(chained, confirmed) {
 			),
 
 			/**
-		 * Remove classname(s).
-		 * @param {String} name
-		 * @returns {gui.CSSPlugin}
-		 */
+			 * Remove classname(s).
+			 * @param {String} name
+			 * @returns {gui.CSSPlugin}
+			 */
 			remove: confirmed('string|array')(
 				chained(function(name) {
 					var elm = this.spirit.element;
@@ -36,10 +36,10 @@ gui.CSSPlugin = (function using(chained, confirmed) {
 			),
 
 			/**
-		 * Toggle classname(s).
-		 * @param {String} name
-		 * @returns {gui.CSSPlugin}
-		 */
+			 * Toggle classname(s).
+			 * @param {String} name
+			 * @returns {gui.CSSPlugin}
+			 */
 			toggle: confirmed('string|array')(
 				chained(function(name) {
 					var elm = this.spirit.element;
@@ -50,11 +50,11 @@ gui.CSSPlugin = (function using(chained, confirmed) {
 			),
 
 			/**
-		 * Add or remove classname(s) according to first argument.
-		 * @param {boolean|object} on
-		 * @param {String} name
-		 * @returns {gui.CSSPlugin}
-		 */
+			 * Add or remove classname(s) according to first argument.
+			 * @param {boolean|object} on
+			 * @param {String} name
+			 * @returns {gui.CSSPlugin}
+			 */
 			shift: confirmed('*', 'string|array')(
 				chained(function(on, name) {
 					var elm = this.spirit.element;
@@ -65,56 +65,56 @@ gui.CSSPlugin = (function using(chained, confirmed) {
 			),
 
 			/**
-		 * Contains classname?
-		 * @param {String} name
-		 * @returns {boolean}
-		 */
+			 * Contains classname?
+			 * @param {String} name
+			 * @returns {boolean}
+			 */
 			contains: confirmed('string')(function(name) {
 				return gui.CSSPlugin.contains(this.spirit.element, name);
 			}),
 
 			/**
-		 * Set single element.style.
-		 * @param {String} prop
-		 * @param {String} val
-		 * @returns {gui.CSSPlugin}
-		 */
+			 * Set single element.style.
+			 * @param {String} prop
+			 * @param {String} val
+			 * @returns {gui.CSSPlugin}
+			 */
 			set: chained(function(prop, val) {
 				gui.CSSPlugin.set(this.spirit.element, prop, val);
 			}),
 
 			/**
-		 * Set multiple styles via key value map.
-		 * @param {Map<String,String>} map
-		 * @returns {gui.CSSPlugin}
-		 */
+			 * Set multiple styles via key value map.
+			 * @param {Map<String,String>} map
+			 * @returns {gui.CSSPlugin}
+			 */
 			style: chained(function(map) {
 				gui.CSSPlugin.style(this.spirit.element, map);
 			}),
 
 			/**
-		 * Get single element.style; see also compute method.
-		 * @param {String} prop
-		 * @returns {String}
-		 */
+			 * Get single element.style; see also compute method.
+			 * @param {String} prop
+			 * @returns {String}
+			 */
 			get: function(prop) {
 				return gui.CSSPlugin.get(this.spirit.element, prop);
 			},
 
 			/**
-		 * Compute runtime style.
-		 * @param {String} prop
-		 * @returns {String}
-		 */
+			 * Compute runtime style.
+			 * @param {String} prop
+			 * @returns {String}
+			 */
 			compute: function(prop) {
 				return gui.CSSPlugin.compute(this.spirit.element, prop);
 			},
 
 			/**
-		 * Get or set (full) className.
-		 * @param @optional {String} name
-		 * @returns {String|gui.CSSPlugin}
-		 */
+			 * Get or set (full) className.
+			 * @param @optional {String} name
+			 * @returns {String|gui.CSSPlugin}
+			 */
 			name: chained(function(name) {
 				var result = this.spirit.element.className;
 				if (name !== undefined) {
@@ -125,11 +125,11 @@ gui.CSSPlugin = (function using(chained, confirmed) {
 			}),
 
 			/**
-		 * Spirit element mathes selector?
-		 * @TODO: move to gui.DOMPlugin!
-		 * @param {String} selector
-		 * @returns {boolean}
-		 */
+			 * Spirit element mathes selector?
+			 * @TODO: move to gui.DOMPlugin!
+			 * @param {String} selector
+			 * @returns {boolean}
+			 */
 			matches: function(selector) {
 				return gui.CSSPlugin.matches(this.spirit.element, selector);
 			}
@@ -139,11 +139,11 @@ gui.CSSPlugin = (function using(chained, confirmed) {
 			// Static ...........................................................
 
 			/**
-		 * classList.add
-		 * @param {Element} element
-		 * @param {String} names
-		 * @returns {function}
-		 */
+			 * classList.add
+			 * @param {Element} element
+			 * @param {String} names
+			 * @returns {function}
+			 */
 			add: chained(function(element, name) {
 				if (gui.Type.isString(name)) {
 					if (name.indexOf(' ') > -1) {
@@ -170,11 +170,11 @@ gui.CSSPlugin = (function using(chained, confirmed) {
 			}),
 
 			/**
-		 * classList.remove
-		 * @param {Element} element
-		 * @param {String} name
-		 * @returns {function}
-		 */
+			 * classList.remove
+			 * @param {Element} element
+			 * @param {String} name
+			 * @returns {function}
+			 */
 			remove: chained(function(element, name) {
 				if (gui.Type.isString(name)) {
 					name = name || '';
@@ -201,11 +201,11 @@ gui.CSSPlugin = (function using(chained, confirmed) {
 			}),
 
 			/**
-		 * classList.toggle
-		 * @param {Element} element
-		 * @param {String} name
-		 * @returns {function}
-		 */
+			 * classList.toggle
+			 * @param {Element} element
+			 * @param {String} name
+			 * @returns {function}
+			 */
 			toggle: chained(function(element, name) {
 				if (gui.Type.isString(name)) {
 					if (this._supports) {
@@ -221,13 +221,13 @@ gui.CSSPlugin = (function using(chained, confirmed) {
 			}),
 
 			/**
-		 * Add or remove classname according to second argument.
-		 * TODO: for consistancy, the boolean arg must go first!
-		 * @param {Element} element
-		 * @param {truthy} on
-		 * @param {String} name
-		 * @returns {function}
-		 */
+			 * Add or remove classname according to second argument.
+			 * TODO: for consistancy, the boolean arg must go first!
+			 * @param {Element} element
+			 * @param {truthy} on
+			 * @param {String} name
+			 * @returns {function}
+			 */
 			shift: chained(function(element, on, name) {
 				if (on) {
 					// coerce to boolean
@@ -238,11 +238,11 @@ gui.CSSPlugin = (function using(chained, confirmed) {
 			}),
 
 			/**
-		 * classList.contains
-		 * @param {Element} element
-		 * @param {String} name
-		 * @returns {boolean}
-		 */
+			 * classList.contains
+			 * @param {Element} element
+			 * @param {String} name
+			 * @returns {boolean}
+			 */
 			contains: function(element, name) {
 				if (this._supports) {
 					return element.classList.contains(name);
@@ -253,12 +253,12 @@ gui.CSSPlugin = (function using(chained, confirmed) {
 			},
 
 			/**
-		 * Set single CSS property. Use style() for multiple properties.
-		 * TODO: also automate shorthands such as "10px 20px 10px 20px"
-		 * @param {Element}
-		 * @param {String} prop
-		 * @returns {function}
-		 */
+			 * Set single CSS property. Use style() for multiple properties.
+			 * TODO: also automate shorthands such as "10px 20px 10px 20px"
+			 * @param {Element}
+			 * @param {String} prop
+			 * @returns {function}
+			 */
 			set: chained(function(element, prop, value) {
 				value = this._shorthand(prop, value);
 				if (prop === 'float') {
@@ -271,24 +271,24 @@ gui.CSSPlugin = (function using(chained, confirmed) {
 			}),
 
 			/**
-		 * TODO: Get element.style property; if this has been set.
-		 * Not to be confused with compute() for computedStyle!!!
-		 * @param {Element}
-		 * @param {String} prop
-		 * @returns {String}
-		 */
+			 * TODO: Get element.style property; if this has been set.
+			 * Not to be confused with compute() for computedStyle!!!
+			 * @param {Element}
+			 * @param {String} prop
+			 * @returns {String}
+			 */
 			get: function(element, prop) {
 				prop = this._jsproperty(prop);
 				return this._jsvalue(element.style[prop]);
 			},
 
 			/**
-		 * Set multiple element.style properties via hashmap. Note that
-		 * this method returns the element (ie. it is not chainable).
-		 * @param {Element|gui.Spirit} thing Spirit or element.
-		 * @param {Map<String,String>} styles
-		 * @returns {Element|gui.Spirit}
-		 */
+			 * Set multiple element.style properties via hashmap. Note that
+			 * this method returns the element (ie. it is not chainable).
+			 * @param {Element|gui.Spirit} thing Spirit or element.
+			 * @param {Map<String,String>} styles
+			 * @returns {Element|gui.Spirit}
+			 */
 			style: function(thing, styles) {
 				var element = thing instanceof gui.Spirit ? thing.element : thing;
 				gui.Object.each(
@@ -302,11 +302,11 @@ gui.CSSPlugin = (function using(chained, confirmed) {
 			},
 
 			/**
-		 * Compute runtime style.
-		 * @param {Element|gui.Spirit} thing
-		 * @param {String} prop
-		 * @returns {String}
-		 */
+			 * Compute runtime style.
+			 * @param {Element|gui.Spirit} thing
+			 * @param {String} prop
+			 * @returns {String}
+			 */
 			compute: function(thing, prop) {
 				var element = thing instanceof gui.Spirit ? thing.element : thing;
 				prop = this._standardcase(this._jsproperty(prop));
@@ -314,11 +314,11 @@ gui.CSSPlugin = (function using(chained, confirmed) {
 			},
 
 			/**
-		 * Node matches CSS selector?
-		 * @param {Node} node
-		 * @param {String} selector
-		 * @returns {boolean}
-		 */
+			 * Node matches CSS selector?
+			 * @param {Node} node
+			 * @param {String} selector
+			 * @returns {boolean}
+			 */
 			matches: function(node, selector) {
 				var matches = false;
 				try {
@@ -334,24 +334,24 @@ gui.CSSPlugin = (function using(chained, confirmed) {
 			// Private static ..........................................................
 
 			/**
-		 * Non-matching vendors removed after first run. First entry
-		 * gets to stay since it represents the unprefixed property.
-		 * @type {Array<String>}
-		 */
+			 * Non-matching vendors removed after first run. First entry
+			 * gets to stay since it represents the unprefixed property.
+			 * @type {Array<String>}
+			 */
 			_vendors: ['', '-webkit-', '-moz-', '-ms-', '-o-'],
 
 			/**
-		 * _supports Element.classList?
-		 * @type {boolean}
-		 */
+			 * _supports Element.classList?
+			 * @type {boolean}
+			 */
 			_supports: document.documentElement.classList !== undefined,
 
 			/**
-		 * Resolve shorthands for value.
-		 * @param {string} prop
-		 * @param {number|string} value
-		 * @returns {string}
-		 */
+			 * Resolve shorthands for value.
+			 * @param {string} prop
+			 * @param {number|string} value
+			 * @returns {string}
+			 */
 			_shorthand: function(prop, value) {
 				var short;
 				switch (gui.Type.of(value)) { // not much of a difference (just yet)
@@ -370,10 +370,10 @@ gui.CSSPlugin = (function using(chained, confirmed) {
 			},
 
 			/**
-		 * CamelCase string.
-		 * @param {String} string
-		 * @returns {String}
-		 */
+			 * CamelCase string.
+			 * @param {String} string
+			 * @returns {String}
+			 */
 			_camelcase: function(string) {
 				return string.replace(/-([a-z])/gi, function(all, letter) {
 					return letter.toUpperCase();
@@ -381,10 +381,10 @@ gui.CSSPlugin = (function using(chained, confirmed) {
 			},
 
 			/**
-		 * standard-css-notate CamelCased string.
-		 * @param {String} string
-		 * @returns {String}
-		 */
+			 * standard-css-notate CamelCased string.
+			 * @param {String} string
+			 * @returns {String}
+			 */
 			_standardcase: function(string) {
 				return string.replace(/[A-Z]/g, function(all, letter) {
 					return '-' + string.charAt(letter).toLowerCase();
@@ -392,10 +392,10 @@ gui.CSSPlugin = (function using(chained, confirmed) {
 			},
 
 			/**
-		 * Normalize declaration property for use in element.style scenario.
-		 * @param {String} prop
-		 * @returns {String}
-		 */
+			 * Normalize declaration property for use in element.style scenario.
+			 * @param {String} prop
+			 * @returns {String}
+			 */
 			_jsproperty: function(prop) {
 				var vendors = this._vendors, fixt = prop;
 				var element = document.documentElement;
@@ -416,10 +416,10 @@ gui.CSSPlugin = (function using(chained, confirmed) {
 			},
 
 			/**
-		 * Normalize declaration value for use in element.style scenario.
-		 * @param {String} value
-		 * @returns {String}
-		 */
+			 * Normalize declaration value for use in element.style scenario.
+			 * @param {String} value
+			 * @returns {String}
+			 */
 			_jsvalue: function(value) {
 				var vendors = this._vendors;
 				var element = document.documentElement;
@@ -446,30 +446,30 @@ gui.CSSPlugin = (function using(chained, confirmed) {
 			},
 
 			/**
-		 * Normalize declaration property for use in CSS text.
-		 * @param {String} prop
-		 * @returns {String}
-		 */
+			 * Normalize declaration property for use in CSS text.
+			 * @param {String} prop
+			 * @returns {String}
+			 */
 			_cssproperty: function(prop) {
 				return this._standardcase(this._jsproperty(prop));
 			},
 
 			/**
-		 * Normalize declaration value for use in CSS text.
-		 * @param {String} prop
-		 * @returns {String}
-		 */
+			 * Normalize declaration value for use in CSS text.
+			 * @param {String} prop
+			 * @returns {String}
+			 */
 			_cssvalue: function(value) {
 				return this._standardcase(this._jsvalue(value));
 			},
 
 			/**
-		 * Number shorthands will autosuffix properties that require units
-		 * in support of the syntax: this.css.width = 300 (no method call)
-		 * TODO: add more properties
-		 * TODO: getters as well as setters
-		 * @type {Map<String,String>
-		 */
+			 * Number shorthands will autosuffix properties that require units
+			 * in support of the syntax: this.css.width = 300 (no method call)
+			 * TODO: add more properties
+			 * TODO: getters as well as setters
+			 * @type {Map<String,String>
+			 */
 			_numbershorthands: {
 				top: '@px',
 				right: '@px',
@@ -498,8 +498,8 @@ gui.CSSPlugin = (function using(chained, confirmed) {
 			},
 
 			/**
-		 *
-		 */
+			 *
+			 */
 			_stringshorthands: {
 				backgroundImage: 'url("@")',
 				position: '@',
@@ -508,9 +508,9 @@ gui.CSSPlugin = (function using(chained, confirmed) {
 			},
 
 			/**
-		 * Lookup vendors "matchesSelector" method.
-		 * @type {String}
-		 */
+			 * Lookup vendors "matchesSelector" method.
+			 * @type {String}
+			 */
 			_matchmethod: (function() {
 				var match = null, root = document.documentElement;
 				[

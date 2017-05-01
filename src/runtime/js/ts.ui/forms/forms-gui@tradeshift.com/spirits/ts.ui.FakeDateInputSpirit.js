@@ -1,12 +1,12 @@
 /**
-	* Appears in the place of <input type="date"/>.
-	* The original type="date" has too much browser-specific baggage, so we
-	* replace it with a text input. This is that text input. The original date
-	* input stays in the DOM, but is	hidden. That allows most bindings that
-	* the user have used to keep working.
-	* @extends {ts.ui.FakeInputSpirit}
-	* @using {string} tick
-	* @using {number} time
+ * Appears in the place of <input type="date"/>.
+ * The original type="date" has too much browser-specific baggage, so we
+ * replace it with a text input. This is that text input. The original date
+ * input stays in the DOM, but is	hidden. That allows most bindings that
+ * the user have used to keep working.
+ * @extends {ts.ui.FakeInputSpirit}
+ * @using {string} tick
+ * @using {number} time
  */
 ts.ui.FakeDateInputSpirit = (function using(chained, tick, time) {
 	return ts.ui.FakeInputSpirit.extend({

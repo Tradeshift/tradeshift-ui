@@ -1,6 +1,7 @@
 /**
  * DOM decoration time.
  * TODO: Standard DOM exceptions (at our level) for missing arguments and so on.
+ * TODO: insertAdjacentElement and insertAdjacentText
  * TODO: DOM4 methods
  * @using {gui.Combo.before} beforeype
  * @using {gui.Combo.after} after

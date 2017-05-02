@@ -182,9 +182,9 @@ gui.DOMCombos = (function using(before, after, around, provided, Type, guiArray,
 			case 'afterbegin':
 			case 'beforeend':
 				elm = this.firstElementChild;
-				elms.push(elm);
-				while ((elm = elm.nextElementSibling)) {
+				while (elm) {
 					elms.push(elm);
+					elm = elm.nextElementSibling;
 				}
 				break;
 			case 'afterend':

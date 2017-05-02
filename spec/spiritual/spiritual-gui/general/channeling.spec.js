@@ -105,6 +105,24 @@ describe('Channeling and exorcising spirits', function likethis() {
 		});
 	});
 
+	it('should possess on insertAdjacenElement', function() {
+		var box = this.sandbox;
+		var elm = box.appendChild(document.createElement('section'));
+		['beforebegin', 'afterbegin', 'beforeend', 'afterend'].forEach(function(pos) {
+			elm.insertAdjacentElement(pos, getSpiritElm());
+		});
+		expect(box.childNodes.length).toBe(3);
+		expect(elm.childNodes.length).toBe(2);
+		[
+			elm.previousElementSibling,
+			elm.nextElementSibling,
+			elm.firstElementChild,
+			elm.lastElementChild
+		].forEach(function(other) {
+			expect(hasSpirit(other)).toBe(true);
+		});
+	});
+
 	describe('replaceChild', function() {
 		beforeEach(function() {
 			this.newelm = getSpiritElm();

@@ -1,7 +1,6 @@
 /**
  * DOM decoration time.
  * TODO: Standard DOM exceptions (at our level) for missing arguments and so on.
- * TODO: insertAdjacentElement and insertAdjacentText
  * TODO: DOM4 methods
  * @using {gui.Combo.before} beforeype
  * @using {gui.Combo.after} after
@@ -202,6 +201,13 @@ gui.DOMCombos = (function using(before, after, around, provided, Type, guiArray,
 	});
 
 	/**
+	 * Spiritualize adjacent element.
+	 */
+	var spiritualizeAdjacentElementAfter = after(function(position, element) {
+		gui.spiritualize(element);
+	});
+
+	/**
 	 * Abstract HTMLDocument might adopt DOM combos :/
 	 * @returns {boolean}
 	 */
@@ -248,6 +254,12 @@ gui.DOMCombos = (function using(before, after, around, provided, Type, guiArray,
 		insertAdjacentHTML: function(base) {
 			return ifEnabled(
 				ifEmbedded(spiritualizeAdjacentAfter(suspending(base)), otherwise(base)),
+				otherwise(base)
+			);
+		},
+		insertAdjacentElement: function(base) {
+			return ifEnabled(
+				ifEmbedded(spiritualizeAdjacentElementAfter(suspending(base)), otherwise(base)),
 				otherwise(base)
 			);
 		},

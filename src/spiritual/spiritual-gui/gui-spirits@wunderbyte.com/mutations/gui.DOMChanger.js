@@ -125,7 +125,7 @@ gui.DOMChanger = {
 	},
 
 	/**
-	 * Is method? (non-crashing Firefox version)
+	 * Is method? (non-crashing Firefox version, probably not crashing no more)
 	 * @returns {boolean}
 	 */
 	_ismethod: function(name) {
@@ -137,6 +137,7 @@ gui.DOMChanger = {
 			case 'setAttribute':
 			case 'removeAttribute':
 			case 'insertAdjacentHTML':
+			case 'insertAdjacentElement':
 			case 'remove':
 				return true;
 		}

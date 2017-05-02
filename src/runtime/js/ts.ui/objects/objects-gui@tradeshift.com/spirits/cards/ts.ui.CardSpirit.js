@@ -9,14 +9,9 @@ ts.ui.CardSpirit = (function(Card) {
 	 * If these classes are not found,
 	 * we'll add a default classname.
 	 */
-	var specialclasses = [
-		Card.TYPE_COMPACT,
-		Card.TYPE_INLINE,
-		Card.TYPE_DETAILS
-	];
+	var specialclasses = [Card.TYPE_COMPACT, Card.TYPE_INLINE, Card.TYPE_DETAILS];
 
 	return ts.ui.ObjectSpirit.extend({
-
 		/**
 		 * Stub myself with a potential mock model so that we can
 		 * show a default rendering before some real data arrives.
@@ -46,12 +41,13 @@ ts.ui.CardSpirit = (function(Card) {
 		 */
 		_classnames: function(css) {
 			css.add('ts-card');
-			if (!specialclasses.some(function(cname) {
-				return css.contains(cname);
-			})) {
+			if (
+				!specialclasses.some(function(cname) {
+					return css.contains(cname);
+				})
+			) {
 				css.add(Card.TYPE_DEFAULT);
 			}
 		}
-
 	});
-}(ts.ui.Card));
+})(ts.ui.Card);

@@ -36,7 +36,7 @@ edb.SyncTransmitter = (function using(confirmed) {
 			syncdone.push(type);
 		} else {
 			setupsync(change);
-			var changes = dispatch[targetid] = (dispatch[targetid] || []);
+			var changes = (dispatch[targetid] = dispatch[targetid] || []);
 			changes.push(getchange(change, sourceid));
 		}
 	}
@@ -62,10 +62,7 @@ edb.SyncTransmitter = (function using(confirmed) {
 	function setupsync(change) {
 		function maybesync(thing) {
 			if (edb.Type.is(thing)) {
-				edb.Synchronizer.sync(thing,
-					change.object.$synchronizity,
-					change.object.$synchglobally
-				);
+				edb.Synchronizer.sync(thing, change.object.$synchronizity, change.object.$synchglobally);
 			}
 		}
 		switch (change.type) {
@@ -78,7 +75,8 @@ edb.SyncTransmitter = (function using(confirmed) {
 		}
 	}
 
-	return { // Public ...........................................................
+	return {
+		// Public ...........................................................
 
 		/**
 		 * Synchronization broadcast to be suffixed with `$instanceid`
@@ -95,4 +93,4 @@ edb.SyncTransmitter = (function using(confirmed) {
 			onchange(changes);
 		}
 	};
-}(gui.Arguments.confirmed));
+})(gui.Arguments.confirmed);

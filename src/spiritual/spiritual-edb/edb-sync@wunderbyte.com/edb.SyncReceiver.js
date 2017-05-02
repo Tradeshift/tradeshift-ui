@@ -7,7 +7,6 @@ edb.SyncReceiver = function(type) {
 };
 
 edb.SyncReceiver.prototype = {
-
 	/**
 	 * Each type associated to an instance of {edb.SyncReceiver}
 	 * @type {edb.Type}
@@ -21,9 +20,11 @@ edb.SyncReceiver.prototype = {
 	onbroadcast: function(b) {
 		var type = this.type;
 		var changes = b.data;
-		if (changes.some(function(c) {
-			return c.$instanceid !== type.$instanceid;
-		})) {
+		if (
+			changes.some(function(c) {
+				return c.$instanceid !== type.$instanceid;
+			})
+		) {
 			changes.forEach(function(c) {
 				this._change(type, c);
 			}, this);
@@ -52,10 +53,10 @@ edb.SyncReceiver.prototype = {
 	 * @param {edb.ObjectSync} c
 	 */
 	_objectchange: function(type, c) {
-		var name = c.name,
-			value = c.newValue;
+		var name = c.name, value = c.newValue;
 		if (type[name] !== value) {
-			if (value && (value.$object || value.$array)) { // TODO is-abstract-edb-tree somehow...
+			if (value && (value.$object || value.$array)) {
+				// TODO is-abstract-edb-tree somehow...
 				value = JSON.stringify(value);
 				value = new edb.Parser().parseFromString(value);
 				edb.Synchronizer.sync(value, c.$synchronizity, c.$synchglobally);

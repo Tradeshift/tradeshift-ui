@@ -16,7 +16,6 @@ ts.ui.Markdown = (function using(linkparser) {
 	 * @type Map<string, function>
 	 */
 	var parsers = {
-
 		// headers H1-H4
 		h: blockfunction([
 			[/^####/, '<h4>$</h4>'],
@@ -42,24 +41,16 @@ ts.ui.Markdown = (function using(linkparser) {
 		]),
 
 		// bold text
-		strong: inlinefunction([
-			[/\*\*(.*?)\*\*/g, '<strong>$1</strong>']
-		]),
+		strong: inlinefunction([[/\*\*(.*?)\*\*/g, '<strong>$1</strong>']]),
 
 		// italic text
-		em: inlinefunction([
-			[/\*(.*?)\*/g, '<em>$1</em>']
-		]),
+		em: inlinefunction([[/\*(.*?)\*/g, '<em>$1</em>']]),
 
 		// strike text
-		strike: inlinefunction([
-			[/~~(.*?)~~/g, '<del>$1</del>']
-		]),
+		strike: inlinefunction([[/~~(.*?)~~/g, '<del>$1</del>']]),
 
 		// code and tech terms (TODO: also support blockcode ```)
-		code: inlinefunction([
-			[/`(.*?)`/g, '<code>$1</code>']
-		]),
+		code: inlinefunction([[/`(.*?)`/g, '<code>$1</code>']]),
 
 		// links (scroll down for implementation)
 		a: linkparser
@@ -163,9 +154,7 @@ ts.ui.Markdown = (function using(linkparser) {
 	 */
 	function eachline(string, action, doubles) {
 		var x2 = /\n{2,}/;
-		return string.split(
-			doubles ? x2 : '\n'
-		).map(action).join('\n');
+		return string.split(doubles ? x2 : '\n').map(action).join('\n');
 	}
 
 	/**
@@ -187,11 +176,17 @@ ts.ui.Markdown = (function using(linkparser) {
 	 */
 	function paragraphs(html) {
 		var doubles = true, exclude = /^<(h|ul|ol|li|pre)/;
-		return eachline(html, function(section) {
-			return unhack(eachline(linehack(section), function(line) {
-				return exclude.test(line) ? line : enclose('<p>$</p>', unhack(line, true));
-			}));
-		}, doubles);
+		return eachline(
+			html,
+			function(section) {
+				return unhack(
+					eachline(linehack(section), function(line) {
+						return exclude.test(line) ? line : enclose('<p>$</p>', unhack(line, true));
+					})
+				);
+			},
+			doubles
+		);
 	}
 
 	/**
@@ -227,12 +222,17 @@ ts.ui.Markdown = (function using(linkparser) {
 		parse: function(markdown, tagnames) {
 			var allParsers = getparsers(validate(tagnames));
 			var safetxt = edbml.safetext(markdown);
-			return paragraphs(sanitize(eachline(safetxt, function(line) {
-				return parseline(line, allParsers);
-			})));
+			return paragraphs(
+				sanitize(
+					eachline(safetxt, function(line) {
+						return parseline(line, allParsers);
+					})
+				)
+			);
 		}
 	};
-}( // LINKS ..................................................................
+})(
+	// LINKS ..................................................................
 
 	/**
 	 * Routine to parse links in the format init(text)[href]post.
@@ -251,11 +251,11 @@ ts.ui.Markdown = (function using(linkparser) {
 		}
 
 		function parsecut(cut, idx, all) {
-			var ends = (all.length - 1) === idx;
+			var ends = all.length - 1 === idx;
 			if (url.test(cut)) {
 				href = gethref(cut.replace(txt, ''), ends);
 			}
-			var res = (text && href) ? donecut() : '';
+			var res = text && href ? donecut() : '';
 			if (txt.test(cut)) {
 				text = gettext(cut.replace(url, ''));
 			}
@@ -289,8 +289,7 @@ ts.ui.Markdown = (function using(linkparser) {
 
 		return function linkparser(line) {
 			reset();
-			return (line.split(')[').map(parsecut).join('')) || line;
+			return line.split(')[').map(parsecut).join('') || line;
 		};
-	}(/\(.+$/, /^.+\]/))
-
-));
+	})(/\(.+$/, /^.+\]/)
+);

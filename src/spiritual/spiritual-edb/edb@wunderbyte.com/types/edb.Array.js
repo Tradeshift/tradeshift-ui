@@ -8,7 +8,6 @@
 	 * @extends {edb.Type} (although not really)
 	 */
 	edb.Array = gui.Class.create(proto, {
-
 		/**
 		 * Push.
 		 */
@@ -193,7 +192,6 @@
 				return thing;
 			});
 		}
-
 	});
 
 	// Helpers ...................................................................
@@ -228,13 +226,12 @@
 		var key = array.$instanceid;
 		return !!edb.Array._observers[key];
 	}
-}(Array.prototype, gui.Combo.chained));
+})(Array.prototype, gui.Combo.chained);
 
 /**
  * Mixin static methods. Recurring static members mixed in from {edb.Type}.
  */
 edb.Array.mixin(null, edb.Type.$staticmixins(), {
-
 	/**
 	 * Observe.
 	 */
@@ -250,8 +247,7 @@ edb.Array.mixin(null, edb.Type.$staticmixins(), {
 	 * TODO: let's generalize this facility in {gui.Class}
 	 */
 	isConstructor: function(o) {
-		return gui.Type.isConstructor(o) &&
-			gui.Class.ancestorsAndSelf(o).indexOf(edb.Array) > -1;
+		return gui.Type.isConstructor(o) && gui.Class.ancestorsAndSelf(o).indexOf(edb.Array) > -1;
 	},
 
 	/**
@@ -317,7 +313,6 @@ edb.Array.mixin(null, edb.Type.$staticmixins(), {
 		gui.Tick.dispatch(edb.TICK_PUBLISH_CHANGES, now ? -1 : 0);
 		// edb.$criticalchange = false;
 	}
-
 });
 
 /*
@@ -360,7 +355,7 @@ edb.Array.mixin(null, edb.Type.$staticmixins(), {
 		'slice' // hm,
 		// TODO: REDUCE!
 	]);
-}(edb.Array.prototype));
+})(edb.Array.prototype);
 
 /*
  * Mixin methods and properties common
@@ -369,7 +364,7 @@ edb.Array.mixin(null, edb.Type.$staticmixins(), {
 (function setup() {
 	gui.Tick.add(edb.TICK_PUBLISH_CHANGES, edb.Array);
 	gui.Object.extendmissing(edb.Array.prototype, edb.Type.prototype);
-}());
+})();
 
 // BACKUP ......................................................................
 

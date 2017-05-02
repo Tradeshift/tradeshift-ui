@@ -29,20 +29,22 @@ ts.ui.Autocomplete.localize = function(config) {};
 	var locale = null;
 
 	gui.Object.extend(ts.ui.Autocomplete, {
-
 		/**
 		 * Localize.
 		 * @param {object} newlocale
 		 */
 		localize: function(newlocale) {
 			if (arguments.length) {
-				if (!locale || Object.keys(locale).every(function(key) {
-					var has = newlocale.hasOwnProperty(key);
-					if (!has) {
-						console.error('Missing translations for ' + key);
-					}
-					return has;
-				})) {
+				if (
+					!locale ||
+					Object.keys(locale).every(function(key) {
+						var has = newlocale.hasOwnProperty(key);
+						if (!has) {
+							console.error('Missing translations for ' + key);
+						}
+						return has;
+					})
+				) {
 					locale = newlocale;
 				}
 			} else {
@@ -50,7 +52,7 @@ ts.ui.Autocomplete.localize = function(config) {};
 			}
 		}
 	});
-}());
+})();
 
 /**
  * Default-localize the Autocomplete.

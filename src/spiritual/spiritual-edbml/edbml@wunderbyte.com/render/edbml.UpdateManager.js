@@ -10,9 +10,18 @@
  * @using {gui.Object} GuiObject
  * @using {gui.KeyMaster} KeyMaster
  */
-edbml.UpdateManager = (function using(UpdateCollector, HardUpdate, AttsUpdate, InsertUpdate, RemoveUpdate, AppendUpdate, FunctionUpdate, GuiObject, KeyMaster) {
+edbml.UpdateManager = (function using(
+	UpdateCollector,
+	HardUpdate,
+	AttsUpdate,
+	InsertUpdate,
+	RemoveUpdate,
+	AppendUpdate,
+	FunctionUpdate,
+	GuiObject,
+	KeyMaster
+) {
 	return gui.Class.create(Object.prototype, {
-
 		/**
 		 * @param {gui.Spirit} spirit
 		 */
@@ -33,15 +42,14 @@ edbml.UpdateManager = (function using(UpdateCollector, HardUpdate, AttsUpdate, I
 					this._first(html);
 				} else {
 					this._next(html);
-					this._updates.collect(
-						new FunctionUpdate(this._keyid, this._functions)
-					);
+					this._updates.collect(new FunctionUpdate(this._keyid, this._functions));
 				}
 				this._updates.eachRelevant(function(update) {
 					update.update();
 					update.dispose();
 				});
-				if (this._updates) { // huh? how can it be null?
+				if (this._updates) {
+					// huh? how can it be null?
 					this._updates.dispose();
 				}
 				this._updates = null;
@@ -100,9 +108,7 @@ edbml.UpdateManager = (function using(UpdateCollector, HardUpdate, AttsUpdate, I
 		 */
 		_first: function(html) {
 			this._olddom = this._parse(html);
-			this._updates.collect(
-				new HardUpdate(this._keyid, this._olddom)
-			);
+			this._updates.collect(new HardUpdate(this._keyid, this._olddom));
 		},
 
 		/**
@@ -205,7 +211,8 @@ edbml.UpdateManager = (function using(UpdateCollector, HardUpdate, AttsUpdate, I
 									}
 									result = false; // crawling continued in _updatesoft
 								} else {
-									if (oldnode.localName !== 'textarea') { // TODO: better forms support!
+									if (oldnode.localName !== 'textarea') {
+										// TODO: better forms support!
 										result = newnode.childNodes.length === oldnode.childNodes.length;
 										if (!result && oldnode.id) {
 											lastnode = newnode;
@@ -274,11 +281,17 @@ edbml.UpdateManager = (function using(UpdateCollector, HardUpdate, AttsUpdate, I
 		_attschanged: function(newatts, oldatts, ids) {
 			var changed = newatts.length !== oldatts.length;
 			if (!changed) {
-				changed = !Array.every(newatts, function ischanged(newatt) {
-					var oldatt = oldatts.getNamedItem(newatt.name);
-					return oldatt && (oldatt.value === newatt.value ||
-						this._onlyedbmlchange(newatt.value, oldatt.value));
-				}, this);
+				changed = !Array.every(
+					newatts,
+					function ischanged(newatt) {
+						var oldatt = oldatts.getNamedItem(newatt.name);
+						return (
+							oldatt &&
+							(oldatt.value === newatt.value || this._onlyedbmlchange(newatt.value, oldatt.value))
+						);
+					},
+					this
+				);
 			}
 			return changed;
 		},
@@ -290,9 +303,11 @@ edbml.UpdateManager = (function using(UpdateCollector, HardUpdate, AttsUpdate, I
 		 * @returns {boolean}
 		 */
 		_onlyedbmlchange: function(newval, oldval) {
-			if ([newval, oldval].every(function(val) {
-				return val.includes('edbml.$');
-			})) {
+			if (
+				[newval, oldval].every(function(val) {
+					return val.includes('edbml.$');
+				})
+			) {
 				var newkey;
 				var newkeys = KeyMaster.extractKey(newval);
 				var oldkeys = KeyMaster.extractKey(oldval);
@@ -320,22 +335,29 @@ edbml.UpdateManager = (function using(UpdateCollector, HardUpdate, AttsUpdate, I
 		 */
 		_maybesoft: function(newnode, oldnode) {
 			if (newnode && oldnode) {
-				return newnode.id && newnode.id === oldnode.id &&
+				return (
+					newnode.id &&
+					newnode.id === oldnode.id &&
 					this._maybesoft(newnode) &&
-					this._maybesoft(oldnode);
+					this._maybesoft(oldnode)
+				);
 			} else {
-				return Array.every(newnode.childNodes, function(node) {
-					var res = true;
-					switch (node.nodeType) {
-						case Node.TEXT_NODE:
-							res = node.data.trim() === '';
-							break;
-						case Node.ELEMENT_NODE:
-							res = node.id !== '';
-							break;
-					}
-					return res;
-				}, this);
+				return Array.every(
+					newnode.childNodes,
+					function(node) {
+						var res = true;
+						switch (node.nodeType) {
+							case Node.TEXT_NODE:
+								res = node.data.trim() === '';
+								break;
+							case Node.ELEMENT_NODE:
+								res = node.id !== '';
+								break;
+						}
+						return res;
+					},
+					this
+				);
 			}
 		},
 
@@ -350,19 +372,22 @@ edbml.UpdateManager = (function using(UpdateCollector, HardUpdate, AttsUpdate, I
 		 * @returns {boolean}
 		 */
 		_confirmsoft: function(newnode, oldnode) {
-			var res = true,
-				prev = null;
+			var res = true, prev = null;
 			var oldorder = this._assistant.order(oldnode.childNodes);
-			return Array.every(newnode.childNodes, function(node, index) {
-				if (node.nodeType === Node.ELEMENT_NODE) {
-					var id = node.id;
-					if (oldorder.hasOwnProperty(id) && oldorder.hasOwnProperty(prev)) {
-						res = oldorder[id] > oldorder[prev];
+			return Array.every(
+				newnode.childNodes,
+				function(node, index) {
+					if (node.nodeType === Node.ELEMENT_NODE) {
+						var id = node.id;
+						if (oldorder.hasOwnProperty(id) && oldorder.hasOwnProperty(prev)) {
+							res = oldorder[id] > oldorder[prev];
+						}
+						prev = id;
 					}
-					prev = id;
-				}
-				return res;
-			}, this);
+					return res;
+				},
+				this
+			);
 		},
 
 		/**
@@ -378,21 +403,14 @@ edbml.UpdateManager = (function using(UpdateCollector, HardUpdate, AttsUpdate, I
 			var olds = this._assistant.index(oldnode.childNodes);
 
 			// add elements?
-			var child = newnode.lastElementChild,
-				topid = oldnode.id,
-				oldid = null,
-				newid = null;
+			var child = newnode.lastElementChild, topid = oldnode.id, oldid = null, newid = null;
 			while (child) {
 				newid = child.id;
 				if (!olds[newid]) {
 					if (oldid) {
-						updates.push(
-							new InsertUpdate(oldid, child)
-						);
+						updates.push(new InsertUpdate(oldid, child));
 					} else {
-						updates.push(
-							new AppendUpdate(topid, child)
-						);
+						updates.push(new AppendUpdate(topid, child));
 					}
 				} else {
 					oldid = newid;
@@ -403,13 +421,10 @@ edbml.UpdateManager = (function using(UpdateCollector, HardUpdate, AttsUpdate, I
 			// remove elements?
 			Object.keys(olds).forEach(function(id) {
 				if (!news[id]) {
-					updates.push(
-						new RemoveUpdate(id)
-					);
-					updates.push(
-						new FunctionUpdate(id)
-					);
-				} else { // note that crawling continues here...
+					updates.push(new RemoveUpdate(id));
+					updates.push(new FunctionUpdate(id));
+				} else {
+					// note that crawling continues here...
 					var n1 = news[id];
 					var n2 = olds[id];
 					this._scan(n1, n2, n1, id, ids);
@@ -421,9 +436,8 @@ edbml.UpdateManager = (function using(UpdateCollector, HardUpdate, AttsUpdate, I
 				this._updates.collect(update, ids);
 			}, this);
 		}
-
 	});
-}(
+})(
 	edbml.UpdateCollector,
 	edbml.HardUpdate,
 	edbml.AttsUpdate,
@@ -433,4 +447,4 @@ edbml.UpdateManager = (function using(UpdateCollector, HardUpdate, AttsUpdate, I
 	edbml.FunctionUpdate,
 	gui.Object,
 	gui.KeyMaster
-));
+);

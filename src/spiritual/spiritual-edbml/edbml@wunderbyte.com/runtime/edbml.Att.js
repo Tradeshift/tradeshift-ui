@@ -11,7 +11,6 @@ edbml.Att = function Att(atts) {
 };
 
 edbml.Att.prototype = gui.Object.create(null, {
-
 	/**
 	 * Identification.
 	 * @returns {String}
@@ -28,8 +27,7 @@ edbml.Att.prototype = gui.Object.create(null, {
 	 * @returns {String}
 	 */
 	$: function(att) {
-		var val = this[att],
-			html = '';
+		var val = this[att], html = '';
 		switch (gui.Type.of(val)) {
 			case 'null':
 			case 'undefined':
@@ -63,7 +61,6 @@ edbml.Att.prototype = gui.Object.create(null, {
 		}, this);
 		return html;
 	}
-
 });
 
 // Static privileged ...........................................................

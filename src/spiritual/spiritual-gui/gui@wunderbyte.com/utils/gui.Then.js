@@ -12,7 +12,6 @@ gui.Then = function Then(callback, thisp) {
 };
 
 gui.Then.prototype = {
-
 	/**
 	 * Identification.
 	 * @returns {String}
@@ -70,5 +69,4 @@ gui.Then.prototype = {
 	 * @type {boolean}
 	 */
 	_now: false
-
 };

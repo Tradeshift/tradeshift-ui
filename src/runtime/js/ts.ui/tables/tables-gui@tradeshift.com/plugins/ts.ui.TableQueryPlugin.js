@@ -6,7 +6,6 @@
  */
 ts.ui.TableQueryPlugin = (function(Type) {
 	return ts.ui.Plugin.extend({
-
 		/**
 		 * Get the rows element or spirit.
 		 * @param {boolean} getspirit
@@ -120,8 +119,7 @@ ts.ui.TableQueryPlugin = (function(Type) {
 		 */
 		_get: function(selector, getspirit) {
 			var elem = this.spirit.dom.q(selector);
-			return getspirit ? (elem ? ts.ui.get(elem) : null) : elem;
+			return getspirit ? elem ? ts.ui.get(elem) : null : elem;
 		}
-
 	});
-}(gui.Type));
+})(gui.Type);

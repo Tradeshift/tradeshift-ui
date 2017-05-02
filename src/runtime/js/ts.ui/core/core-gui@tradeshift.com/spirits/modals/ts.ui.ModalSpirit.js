@@ -11,7 +11,6 @@ ts.ui.ModalSpirit = (function using(Client, transition, chained) {
 		didclose = ts.ui.BROADCAST_MODAL_DID_CLOSE;
 
 	return ts.ui.Spirit.extend({
-
 		/**
 		 * Modal is open?
 		 * @type {boolean}
@@ -72,7 +71,7 @@ ts.ui.ModalSpirit = (function using(Client, transition, chained) {
 		 * @param @optional {boolean} opt_open Omit to simply open
 		 */
 		open: function(opt_open) {
-			var then = this._then = new gui.Then();
+			var then = (this._then = new gui.Then());
 			opt_open = arguments.length ? opt_open : true;
 			this.css
 				.shift(this.$fullscreen, 'ts-fullscreen')
@@ -449,7 +448,7 @@ ts.ui.ModalSpirit = (function using(Client, transition, chained) {
 			if (main) {
 				var height = main.box.height;
 				var avails = panel.box.height;
-				var offset = (avails * GOLDEN) - (height * 0.5);
+				var offset = avails * GOLDEN - height * 0.5;
 				main.css.top = offset > 0 ? offset : 0;
 			}
 		},
@@ -463,7 +462,8 @@ ts.ui.ModalSpirit = (function using(Client, transition, chained) {
 		 */
 		_autosizeinscreen: function(then, avail, xxxxx) {
 			this.css.remove('ts-overflow');
-			var height = this._panel().naturalHeight() +
+			var height =
+				this._panel().naturalHeight() +
 				(this.css.contains('ts-hasheader') ? 66 : 0) +
 				(this.css.contains('ts-hasheader') ? 66 : 0);
 			var breaks = height > avail;
@@ -510,8 +510,10 @@ ts.ui.ModalSpirit = (function using(Client, transition, chained) {
 		_header: function() {
 			var ToolBar = ts.ui.ToolBarSpirit;
 			this.css.add('ts-hasheader');
-			return this.dom.q('header.ts-toolbar', ToolBar) ||
-				this.dom.prepend(ToolBar.summon('header', 'ts-bg-blue'));
+			return (
+				this.dom.q('header.ts-toolbar', ToolBar) ||
+				this.dom.prepend(ToolBar.summon('header', 'ts-bg-blue'))
+			);
 		},
 
 		/**
@@ -521,8 +523,10 @@ ts.ui.ModalSpirit = (function using(Client, transition, chained) {
 		_tabbar: function() {
 			var TabBar = ts.ui.TabBarSpirit;
 			this.css.add('ts-hastabs');
-			return this.dom.q('header.ts-tabbar', TabBar) ||
-				this._header().dom.after(TabBar.summon('header', 'ts-bg-white'));
+			return (
+				this.dom.q('header.ts-tabbar', TabBar) ||
+				this._header().dom.after(TabBar.summon('header', 'ts-bg-white'))
+			);
 		},
 
 		/**
@@ -533,8 +537,9 @@ ts.ui.ModalSpirit = (function using(Client, transition, chained) {
 			this.css.add('ts-hasfooter');
 			var StatusBar = ts.ui.StatusBarSpirit;
 			this.action.add(ts.ui.ACTION_STATUSBAR_LEVEL);
-			return this.dom.q('footer.ts-toolbar', StatusBar) ||
-				this.dom.append(StatusBar.summon('footer'));
+			return (
+				this.dom.q('footer.ts-toolbar', StatusBar) || this.dom.append(StatusBar.summon('footer'))
+			);
 		},
 
 		/**
@@ -546,9 +551,7 @@ ts.ui.ModalSpirit = (function using(Client, transition, chained) {
 			if (this.guilayout.outsideMain()) {
 				return true;
 			} else {
-				throw new Error(
-					this + ' must be positioned outside Main', this.element
-				);
+				throw new Error(this + ' must be positioned outside Main', this.element);
 			}
 		},
 
@@ -570,6 +573,5 @@ ts.ui.ModalSpirit = (function using(Client, transition, chained) {
 			}
 			return true;
 		}
-
 	});
-}(gui.Client, gui.Client.hasTransitions, gui.Combo.chained));
+})(gui.Client, gui.Client.hasTransitions, gui.Combo.chained);

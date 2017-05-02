@@ -4,7 +4,6 @@
  * @TODO Just add the transitonend listener on construct?
  */
 gui.TransitionPlugin = gui.Plugin.extend({
-
 	/**
 	 * Handle event.
 	 * @type {TransitionEvent} e
@@ -115,15 +114,19 @@ gui.TransitionPlugin = gui.Plugin.extend({
 	run: function(config) {
 		var css = Object.create(null);
 		this._count = 0;
-		gui.Object.each(config, function(key, value) {
-			if (gui.Type.isFunction(this[key])) {
-				this[key](value);
-			} else {
-				css[key] = value;
-			}
-		}, this);
+		gui.Object.each(
+			config,
+			function(key, value) {
+				if (gui.Type.isFunction(this[key])) {
+					this[key](value);
+				} else {
+					css[key] = value;
+				}
+			},
+			this
+		);
 		var now = this.spirit.css.compute('-beta-transition-property') === 'none';
-		var then = this._then = new gui.Then();
+		var then = (this._then = new gui.Then());
 		// Firefox needs a break before setting the styles.
 		// http://stackoverflow.com/questions/6700137/css-3-transitions-with-opacity-chrome-and-firefox
 		var spirit = this.spirit;
@@ -220,7 +223,6 @@ gui.TransitionPlugin = gui.Plugin.extend({
 	 */
 	_convert: function(ms) {
 		ms = ms || this._default;
-		return (ms / 1000) + 's';
+		return ms / 1000 + 's';
 	}
-
 });

@@ -3,7 +3,6 @@
  */
 ts.dox.ItemSpirit = (function using() {
 	return ts.ui.Spirit.extend({
-
 		/**
 		 * Assign delta, prepare for tween.
 		 * @param {number} delta
@@ -41,6 +40,5 @@ ts.dox.ItemSpirit = (function using() {
 		 * @type {number}
 		 */
 		_delta: 0
-
 	});
-}());
+})();

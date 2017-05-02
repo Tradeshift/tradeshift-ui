@@ -4,7 +4,6 @@
  * reduce the collected updates to the minimum required subset.
  */
 edbml.UpdateCollector = gui.Class.create(Object.prototype, {
-
 	/**
 	 * Setup.
 	 */
@@ -47,16 +46,18 @@ edbml.UpdateCollector = gui.Class.create(Object.prototype, {
 	 */
 	eachRelevant: function(action) {
 		var hardupdates = this._hardupdates;
-		this._updates.filter(function(update) {
-			return (
-				update.type === edbml.Update.TYPE_HARD ||
-				Object.keys(update.ids).every(function(id) {
-					return !hardupdates.hasOwnProperty(id);
-				})
-			);
-		}).forEach(function(update) {
-			action(update);
-		});
+		this._updates
+			.filter(function(update) {
+				return (
+					update.type === edbml.Update.TYPE_HARD ||
+					Object.keys(update.ids).every(function(id) {
+						return !hardupdates.hasOwnProperty(id);
+					})
+				);
+			})
+			.forEach(function(update) {
+				action(update);
+			});
 	},
 
 	/**
@@ -80,5 +81,4 @@ edbml.UpdateCollector = gui.Class.create(Object.prototype, {
 	 * @type {Set<String>}
 	 */
 	_hardupdates: null
-
 });

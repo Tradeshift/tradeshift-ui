@@ -3,7 +3,6 @@
  * @extends {gui.Plugin}
  */
 gui.TrackerPlugin = gui.Plugin.extend({
-
 	/**
 	 * Construction time.
 	 * @param {Spirit} spirit
@@ -21,11 +20,15 @@ gui.TrackerPlugin = gui.Plugin.extend({
 	 */
 	ondestruct: function() {
 		this.super.ondestruct();
-		gui.Object.each(this._trackedtypes, function(type, list) {
-			list.slice().forEach(function(checks) {
-				this._cleanup(type, checks);
-			}, this);
-		}, this);
+		gui.Object.each(
+			this._trackedtypes,
+			function(type, list) {
+				list.slice().forEach(function(checks) {
+					this._cleanup(type, checks);
+				}, this);
+			},
+			this
+		);
 	},
 
 	/**
@@ -177,9 +180,11 @@ gui.TrackerPlugin = gui.Plugin.extend({
 		var result = !checks || false;
 		if (!result) {
 			list.every(function(a) {
-				if (a.every(function(b, i) {
-					return b === checks[i];
-				})) {
+				if (
+					a.every(function(b, i) {
+						return b === checks[i];
+					})
+				) {
 					result = true;
 				}
 				return !result;
@@ -205,9 +210,11 @@ gui.TrackerPlugin = gui.Plugin.extend({
 	_checksindex: function(list, checks) {
 		var result = -1;
 		list.every(function(a, index) {
-			if (a.every(function(b, i) {
-				return b === checks[i];
-			})) {
+			if (
+				a.every(function(b, i) {
+					return b === checks[i];
+				})
+			) {
 				result = index;
 			}
 			return result === -1;
@@ -226,5 +233,4 @@ gui.TrackerPlugin = gui.Plugin.extend({
 			// this to perform _removechecks elsewhere)
 		}
 	}
-
 });

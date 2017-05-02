@@ -5,7 +5,6 @@
  */
 ts.dox.MenuSpirit = (function using(isInView, goIntoView) {
 	return ts.ui.Spirit.extend({
-
 		/**
 		 * Setup much.
 		 */
@@ -114,15 +113,17 @@ ts.dox.MenuSpirit = (function using(isInView, goIntoView) {
 			function visible(item) {
 				return !item.hidden;
 			}
-			(function closeall(items) { // reset previous run
+			(function closeall(items) {
+				// reset previous run
 				items.filter(visible).forEach(function(item) {
 					item.open = false;
 					if (item.items) {
 						closeall(item.items);
 					}
 				});
-			}(this._model.items));
-			(function loop(items, container) { // do current run
+			})(this._model.items);
+			(function loop(items, container) {
+				// do current run
 				items.filter(visible).forEach(function(item) {
 					if (item.path) {
 						var match = folder(item.path) === path;
@@ -144,7 +145,7 @@ ts.dox.MenuSpirit = (function using(isInView, goIntoView) {
 						loop(item.items, item);
 					}
 				});
-			}(this._model.items));
+			})(this._model.items);
 		},
 
 		/**
@@ -167,15 +168,17 @@ ts.dox.MenuSpirit = (function using(isInView, goIntoView) {
 			if (this._model.searchresults) {
 				return false; // (search results banner is not an item)
 			} else {
-				return items.indexOf(items.find(function(item) {
-					return item.selected;
-				})) === 0;
+				return (
+					items.indexOf(
+						items.find(function(item) {
+							return item.selected;
+						})
+					) === 0
+				);
 			}
 		}
-
 	});
-}(
-
+})(
 	/**
 	 * Element is visible?
 	 * @param {Element} el
@@ -185,7 +188,6 @@ ts.dox.MenuSpirit = (function using(isInView, goIntoView) {
 		var rect = el.getBoundingClientRect();
 		return rect.top >= 0 && rect.bottom <= window.innerHeight;
 	},
-
 	/**
 	 * NOTE: Firefox supports this animated, see http://mdn.io/scrollIntoView,
 	 * however this kind of animation should not happen on initial page load.
@@ -194,4 +196,4 @@ ts.dox.MenuSpirit = (function using(isInView, goIntoView) {
 	function intoView(el) {
 		el.scrollIntoView(false);
 	}
-));
+);

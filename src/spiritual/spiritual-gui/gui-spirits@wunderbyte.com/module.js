@@ -2,7 +2,6 @@
  * Spirits module.
  */
 gui.module('gui-spirits@wunderbyte.com', {
-
 	/**
 	 * Channel spirits for CSS selectors.
 	 */
@@ -16,7 +15,7 @@ gui.module('gui-spirits@wunderbyte.com', {
 	 * Assign plugins to property names.
 	 */
 	plugin: {
-		'super': gui.SuperPlugin, // TODO: for all gui.Class things!
+		super: gui.SuperPlugin, // TODO: for all gui.Class things!
 		action: gui.ActionPlugin,
 		broadcast: gui.BroadcastPlugin,
 		tick: gui.TickPlugin,
@@ -34,7 +33,6 @@ gui.module('gui-spirits@wunderbyte.com', {
 	 * Add methods to (all) spirits.
 	 */
 	mixin: {
-
 		/**
 		 * Handle action.
 		 * @param {gui.Action} action
@@ -78,7 +76,8 @@ gui.module('gui-spirits@wunderbyte.com', {
 		 * @param {Event} e
 		 */
 		handleEvent: function(e) {
-			if (e.type === 'webkitTransitionEnd') { // TODO: move to {gui.EventPlugin}
+			if (e.type === 'webkitTransitionEnd') {
+				// TODO: move to {gui.EventPlugin}
 				e = {
 					type: 'transitionend',
 					target: e.target,
@@ -97,5 +96,4 @@ gui.module('gui-spirits@wunderbyte.com', {
 			this.handleEvent = function() {};
 		})(gui.Spirit.prototype.$ondestruct)
 	}
-
 });

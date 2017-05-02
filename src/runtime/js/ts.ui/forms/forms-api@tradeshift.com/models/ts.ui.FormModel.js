@@ -4,7 +4,6 @@
  */
 ts.ui.FormModel = (function using(chained) {
 	return ts.ui.Model.extend({
-
 		/**
 		 * Friendly name.
 		 * @type {string}
@@ -115,6 +114,5 @@ ts.ui.FormModel = (function using(chained) {
 				}
 			});
 		}
-
 	});
-}(gui.Combo.chained));
+})(gui.Combo.chained);

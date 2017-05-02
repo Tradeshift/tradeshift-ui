@@ -1,7 +1,6 @@
 edb.Parser = (function() {
 	function Parser() {}
 	Parser.prototype = {
-
 		/**
 		 * @param {String} json
 		 * @param @optional {function} type
@@ -27,7 +26,8 @@ edb.Parser = (function() {
 	 */
 	function parse(json, type) {
 		var Type, name;
-		if (type === null) { // eslint-disable-line no-empty
+		if (type === null) {
+			// eslint-disable-line no-empty
 		} else if (type) {
 			name = type.$classname || name;
 			Type = name ? type : gui.Object.lookup(name);
@@ -45,8 +45,10 @@ edb.Parser = (function() {
 			if (name === gui.Class.ANONYMOUS) {
 				console.error(
 					'TODO: Spiritual should make sure ' +
-					'that nothing is ever "' + name + '"\n' +
-					JSON.stringify(json, null, 4)
+						'that nothing is ever "' +
+						name +
+						'"\n' +
+						JSON.stringify(json, null, 4)
 				);
 			}
 			throw error;
@@ -107,4 +109,4 @@ edb.Parser = (function() {
 	}
 
 	return Parser;
-}());
+})();

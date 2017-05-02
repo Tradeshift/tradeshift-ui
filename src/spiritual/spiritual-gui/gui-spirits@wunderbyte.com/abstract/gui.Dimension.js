@@ -9,7 +9,6 @@ gui.Dimension = function(w, h) {
 };
 
 gui.Dimension.prototype = {
-
 	/**
 	 * Width.
 	 * @type {number}
@@ -40,5 +39,5 @@ gui.Dimension.prototype = {
  * @return {boolean}
  */
 gui.Dimension.isEqual = function(dim1, dim2) {
-	return (dim1.w === dim2.w) && (dim1.h === dim2.h);
+	return dim1.w === dim2.w && dim1.h === dim2.h;
 };

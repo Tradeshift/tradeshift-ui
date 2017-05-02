@@ -4,7 +4,6 @@
  * @extends {gui.TrackerPlugin}
  */
 gui.LifePlugin = gui.TrackerPlugin.extend({
-
 	/**
 	 * Spirit is constructed? This is almost certainly true by
 	 * the time you address the spirit.
@@ -126,7 +125,8 @@ gui.LifePlugin = gui.TrackerPlugin.extend({
 		handler = handler || this.spirit;
 		gui.Array.make(arg).forEach(function(type) {
 			if (this._removechecks(type, [handler])) {
-				if (this._handlers[type]) { // weirdo Gecko condition...
+				if (this._handlers[type]) {
+					// weirdo Gecko condition...
 					var index = this._handlers[type].indexOf(type);
 					gui.Array.remove(this._handlers[type], index);
 					if (this._handlers[type].length === 0) {
@@ -178,5 +178,4 @@ gui.LifePlugin = gui.TrackerPlugin.extend({
 		var handler = checks[0];
 		this.remove(type, handler);
 	}
-
 });

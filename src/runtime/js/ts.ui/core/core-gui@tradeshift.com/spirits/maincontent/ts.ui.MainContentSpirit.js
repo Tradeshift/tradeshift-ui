@@ -2,7 +2,6 @@
  * Spirit of the main element.
  */
 ts.ui.MainContentSpirit = ts.ui.Spirit.extend({
-
 	/**
 	 * Configure.
 	 */

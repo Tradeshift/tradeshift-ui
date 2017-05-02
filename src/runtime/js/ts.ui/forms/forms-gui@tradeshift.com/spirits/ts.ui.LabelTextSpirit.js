@@ -39,4 +39,4 @@ ts.ui.LabelTextSpirit = (function() {
 			classname(this, false);
 		}
 	});
-}());
+})();

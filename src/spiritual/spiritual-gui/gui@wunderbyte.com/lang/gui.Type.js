@@ -2,7 +2,6 @@
  * Type checking studio. All checks are string based.
  */
 gui.Type = {
-
 	/**
 	 * Get type of argument. Note that response may differ between user agents.
 	 * @see	http://javascriptweblog.wordpress.com/2011/08/08/fixing-the-javascript-typeof-operator
@@ -10,7 +9,7 @@ gui.Type = {
 	 * @returns {String}
 	 */
 	of: function(o) {
-		var type = ({}).toString.call(o).match(this._typeexp)[1].toLowerCase();
+		var type = {}.toString.call(o).match(this._typeexp)[1].toLowerCase();
 		if (type === 'domwindow' && String(typeof o) === 'undefined') {
 			type = 'undefined'; // some kind of degenerate bug in Safari on iPad
 		}
@@ -95,8 +94,9 @@ gui.Type = {
 	 * @return {boolean}
 	 */
 	isMethod: function(o) {
-		return o && this.isFunction(o) && !this.isConstructor(o) &&
-			!String(o).includes('[native code]'); // hotfix 'Array' and 'Object' ...
+		return (
+			o && this.isFunction(o) && !this.isConstructor(o) && !String(o).includes('[native code]')
+		); // hotfix 'Array' and 'Object' ...
 	},
 
 	/**
@@ -104,7 +104,7 @@ gui.Type = {
 	 * @returns {boolean}
 	 */
 	isSpirit: function(o) {
-		return o && (o instanceof gui.Spirit);
+		return o && o instanceof gui.Spirit;
 	},
 
 	/**
@@ -114,9 +114,9 @@ gui.Type = {
 	 * @returns {boolean}
 	 */
 	isConstructor: function(what) {
-		return this.isFunction(what) &&
-			this.isObject(what.prototype) &&
-			Object.keys(what.prototype).length;
+		return (
+			this.isFunction(what) && this.isObject(what.prototype) && Object.keys(what.prototype).length
+		);
 	},
 
 	/**
@@ -160,7 +160,7 @@ gui.Type = {
 				break;
 			case 'true':
 			case 'false':
-				result = (result === 'true');
+				result = result === 'true';
 				break;
 			default:
 				if (String(parseInt(result, 10)) === result) {
@@ -180,7 +180,6 @@ gui.Type = {
 	 * @type {RegExp}
 	 */
 	_typeexp: /\s([a-zA-Z]+)/
-
 };
 
 /**
@@ -188,7 +187,8 @@ gui.Type = {
  * TODO: can we do an "isError" here?
  */
 (function generatecode() {
-	['array',
+	[
+		'array',
 		'function',
 		'object',
 		'string',
@@ -202,7 +202,7 @@ gui.Type = {
 			return this.of(o) === type;
 		};
 	}, this);
-}).call(gui.Type);
+}.call(gui.Type));
 
 /**
  * Bind the "this" keyword for all methods.

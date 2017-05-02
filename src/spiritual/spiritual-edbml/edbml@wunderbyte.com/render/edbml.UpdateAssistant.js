@@ -2,7 +2,6 @@
  * Utilities for the {edbml.UpdateManager}.
  */
 edbml.UpdateAssistant = {
-
 	/**
 	 * Parse markup to element.
 	 * TODO: Use DOMParser versus "text/html" for browsers that support it?
@@ -13,7 +12,8 @@ edbml.UpdateAssistant = {
 	 * @param {Element} element
 	 * @returns {Element}
 	 */
-	parse: function(markup, id, element) { // gonna need to know the parent element type here...
+	parse: function(markup, id, element) {
+		// gonna need to know the parent element type here...
 		/*
 		 * TODO: run this by the gui.HTMLParser for maximum backwards lameness with TABLE and friends
 		 */
@@ -52,11 +52,15 @@ edbml.UpdateAssistant = {
 	 */
 	order: function(nodes) {
 		var order = {};
-		Array.forEach(nodes, function(node, index) {
-			if (node.nodeType === Node.ELEMENT_NODE) {
-				order[node.id] = index;
-			}
-		}, this);
+		Array.forEach(
+			nodes,
+			function(node, index) {
+				if (node.nodeType === Node.ELEMENT_NODE) {
+					order[node.id] = index;
+				}
+			},
+			this
+		);
 		return order;
 	},
 
@@ -67,11 +71,15 @@ edbml.UpdateAssistant = {
 	 */
 	index: function(nodes) {
 		var result = Object.create(null);
-		Array.forEach(nodes, function(node, index) {
-			if (node.nodeType === Node.ELEMENT_NODE) {
-				result[node.id] = node;
-			}
-		}, this);
+		Array.forEach(
+			nodes,
+			function(node, index) {
+				if (node.nodeType === Node.ELEMENT_NODE) {
+					result[node.id] = node;
+				}
+			},
+			this
+		);
 		return result;
 	}
 };

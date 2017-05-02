@@ -9,7 +9,6 @@ ts.ui.DocumentSpirit = (function using(Client) {
 	var APP_COMPLETE = ts.ui.BROADCAST_GLOBAL_APP_COMPLETE;
 
 	return gui.DocumentSpirit.extend({
-
 		/**
 		 * Kickstart the plugins that manage layout, asides and dialogs.
 		 * Prepare to parse global models posted from the parent frame.
@@ -22,21 +21,21 @@ ts.ui.DocumentSpirit = (function using(Client) {
 			this.asideplugin.manageasides();
 			this.panelplugin.managepanels();
 			this.input.connect(ts.ui.LayoutModel);
-			this.broadcast.addGlobal([
-				APP_LOADING,
-				APP_ABORTED,
-				APP_COMPLETE
-			]);
-			this.action.add(ts.ui.ACTION_STATUSBAR_LEVEL).addGlobal([
-				ts.ui.ACTION_GLOBAL_MODELS_INITIALIZE,
-				ts.ui.ACTION_GLOBAL_LOCATION_CHANGEHASH,
-				ts.ui.ACTION_GLOBAL_LOCATION_HASHCHANGE,
-				ts.ui.ACTION_GLOBAL_COMPLETED,
-				ts.ui.ACTION_GLOBAL_TERMINATE
-			]).dispatchGlobal(
-				// TODO: this doesn't do nothing; but it should also hook into menu instead...
-				ts.ui.ACTION_GLOBAL_DOCUMENT_TITLE, document.title
-			);
+			this.broadcast.addGlobal([APP_LOADING, APP_ABORTED, APP_COMPLETE]);
+			this.action
+				.add(ts.ui.ACTION_STATUSBAR_LEVEL)
+				.addGlobal([
+					ts.ui.ACTION_GLOBAL_MODELS_INITIALIZE,
+					ts.ui.ACTION_GLOBAL_LOCATION_CHANGEHASH,
+					ts.ui.ACTION_GLOBAL_LOCATION_HASHCHANGE,
+					ts.ui.ACTION_GLOBAL_COMPLETED,
+					ts.ui.ACTION_GLOBAL_TERMINATE
+				])
+				.dispatchGlobal(
+					// TODO: this doesn't do nothing; but it should also hook into menu instead...
+					ts.ui.ACTION_GLOBAL_DOCUMENT_TITLE,
+					document.title
+				);
 		},
 
 		/**
@@ -44,7 +43,8 @@ ts.ui.DocumentSpirit = (function using(Client) {
 		 */
 		onconfigure: function() {
 			this.super.onconfigure();
-			this.css.add('ts-engine-' + Client.agent)
+			this.css
+				.add('ts-engine-' + Client.agent)
 				.shift(gui.hosted, 'ts-iframe-hosted')
 				.shift(Client.isExplorer9, 'ts-engine-explorer9')
 				.shift(Client.isTouchDevice, 'ts-device-touch')
@@ -167,12 +167,7 @@ ts.ui.DocumentSpirit = (function using(Client) {
 		onchange: function(changes) {
 			this.super.onchange(changes);
 			changes.forEach(function(c) {
-				this._onmodelchange(
-					c.object,
-					c.name,
-					c.newValue,
-					c.oldValue
-				);
+				this._onmodelchange(c.object, c.name, c.newValue, c.oldValue);
 			}, this);
 		},
 
@@ -206,10 +201,14 @@ ts.ui.DocumentSpirit = (function using(Client) {
 		 * @param {Map.<String|object>} models
 		 */
 		_outputmodels: function(models) {
-			gui.Object.each(models, function(name, json) {
-				var Model = gui.Object.lookup(name);
-				Model.syncGlobal(json).output();
-			}, this);
+			gui.Object.each(
+				models,
+				function(name, json) {
+					var Model = gui.Object.lookup(name);
+					Model.syncGlobal(json).output();
+				},
+				this
+			);
 		},
 
 		/**
@@ -235,13 +234,13 @@ ts.ui.DocumentSpirit = (function using(Client) {
 		 */
 		_onlayoutchange: function(prop, newval, oldval) {
 			switch (prop) {
-				case 'breakpoints' :
+				case 'breakpoints':
 					this._breakpoints(newval, oldval);
 					break;
-				case 'breakpoint' :
+				case 'breakpoint':
 					this._breakpoint(newval, oldval);
 					break;
-				case 'menuopen' :
+				case 'menuopen':
 					this.css.shift(newval, 'ts-menu-open');
 					break;
 			}
@@ -254,10 +253,12 @@ ts.ui.DocumentSpirit = (function using(Client) {
 		 * @param {string=} opt_oldpoint
 		 */
 		_breakpoint: function(newpoint, opt_oldpoint) {
-			function fix(p) { return 'ts-' + p + '-only'; }
+			function fix(p) {
+				return 'ts-' + p + '-only';
+			}
 			this.css.remove('ts-mobile-only ts-tablet-only ts-desktop-only');
 			this.css.add(fix(newpoint));
-			this.event.dispatch('ts-breakpoint', {bubbles: true});
+			this.event.dispatch('ts-breakpoint', { bubbles: true });
 		},
 
 		/**
@@ -267,7 +268,9 @@ ts.ui.DocumentSpirit = (function using(Client) {
 		 */
 		_breakpoints: function(newpoints, opt_oldpoints) {
 			var css = this.css;
-			function fix(p) { return 'ts-' + p; }
+			function fix(p) {
+				return 'ts-' + p;
+			}
 			(opt_oldpoints || []).forEach(function(val) {
 				css.remove(fix(val));
 			});
@@ -275,6 +278,5 @@ ts.ui.DocumentSpirit = (function using(Client) {
 				css.add(fix(val));
 			});
 		}
-
 	});
-}(gui.Client));
+})(gui.Client);

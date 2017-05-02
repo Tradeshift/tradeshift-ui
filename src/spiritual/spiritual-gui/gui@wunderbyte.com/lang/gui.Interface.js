@@ -2,7 +2,6 @@
  * Checks an object for required methods and properties.
  */
 gui.Interface = {
-
 	/**
 	 * Check object interface. Throw exception on fail.
 	 * @param {object} interfais
@@ -22,15 +21,16 @@ gui.Interface = {
 				throw new Error('Expected ' + expected + ', got ' + type + ': ' + object);
 			default:
 				try {
-					var missing = null,
-						t = null;
+					var missing = null, t = null;
 					is = Object.keys(interfais).every(function(name) {
 						missing = name;
 						t = gui.Type.of(interfais[name]);
 						return gui.Type.of(object[name]) === t;
 					});
 					if (!is) {
-						throw new Error('Expected ' + expected + '. A required ' + type + ' "' + missing + '" is missing');
+						throw new Error(
+							'Expected ' + expected + '. A required ' + type + ' "' + missing + '" is missing'
+						);
 					}
 				} catch (exception) {
 					throw new Error('Expected ' + expected);

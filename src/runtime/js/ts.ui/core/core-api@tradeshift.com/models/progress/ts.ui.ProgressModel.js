@@ -5,7 +5,6 @@
  * TODO (jmo@): Get this out of here
  */
 ts.ui.ProgressModel = ts.ui.Model.extend({
-
 	/**
 	 * Friendly name.
 	 * @type {string}
@@ -60,5 +59,4 @@ ts.ui.ProgressModel = ts.ui.Model.extend({
 			value: this.value
 		});
 	}
-
 });

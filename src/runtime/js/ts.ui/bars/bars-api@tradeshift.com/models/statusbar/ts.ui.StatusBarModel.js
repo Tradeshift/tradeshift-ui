@@ -4,7 +4,6 @@
  */
 ts.ui.StatusBarModel = (function using(chained) {
 	return ts.ui.ToolBarModel.extend({
-
 		/**
 		 * @type {ts.ui.PagerModel}
 		 */
@@ -48,6 +47,5 @@ ts.ui.StatusBarModel = (function using(chained) {
 			}
 			return this.hascontent;
 		}
-
 	});
-}());
+})();

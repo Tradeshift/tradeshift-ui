@@ -49,8 +49,11 @@
 				var i = this.lastIndexOf(sub);
 				return i >= 0 && i === this.length - sub.length;
 			},
-			contains: function() { // they changed it :/
-				console.warn('String.prototype.contains is deprecated. You can use String.prototype.includes');
+			contains: function() {
+				// they changed it :/
+				console.warn(
+					'String.prototype.contains is deprecated. You can use String.prototype.includes'
+				);
 				return this.includes.apply(this, arguments);
 			},
 			includes: function() {
@@ -89,8 +92,7 @@
 		});
 		extend(Array, {
 			every: function every(array, fun, thisp) {
-				var res = true,
-					len = array.length >>> 0;
+				var res = true, len = array.length >>> 0;
 				for (var i = 0; i < len; i++) {
 					if (array[i] !== undefined) {
 						if (!fun.call(thisp, array[i], i, array)) {
@@ -110,8 +112,7 @@
 				}
 			},
 			map: function map(array, fun, thisp) {
-				var m = [],
-					len = array.length >>> 0;
+				var m = [], len = array.length >>> 0;
 				for (var i = 0; i < len; i++) {
 					if (array[i] !== undefined) {
 						m.push(fun.call(thisp, array[i], i, array));
@@ -196,12 +197,11 @@
 							var timeToCall = Math.max(0, 16 - (currTime - lastTime));
 							var id = window.setTimeout(function() {
 								callback(currTime + timeToCall);
-							},
-								timeToCall);
+							}, timeToCall);
 							lastTime = currTime + timeToCall;
 							return id;
 						};
-					}());
+					})();
 				return func;
 			})(),
 			cancelAnimationFrame: (function() {
@@ -213,21 +213,24 @@
 					window.msCancelAnimationFrame ||
 					clearTimeout
 				);
-			}()),
+			})(),
 			/*
 			 * TODO: Internalize into gui.Tick
 			 * TODO: Move to MessageChannel!!!
 			 */
 			setImmediate: (function() {
-				var list = [],
-					handle = 1;
+				var list = [], handle = 1;
 				var name = 'spiritual:emulated:setimmediate';
-				window.addEventListener('message', function(e) {
-					if (e.data === name && list.length) {
-						list.shift().apply(window);
-						e.stopPropagation();
-					}
-				}, false);
+				window.addEventListener(
+					'message',
+					function(e) {
+						if (e.data === name && list.length) {
+							list.shift().apply(window);
+							e.stopPropagation();
+						}
+					},
+					false
+				);
 				return function emulated(func) {
 					list.push(func);
 					window.postMessage(name, '*');
@@ -268,5 +271,5 @@
 		if (!isWorker) {
 			effects();
 		}
-	}(false));
-}());
+	})(false);
+})();

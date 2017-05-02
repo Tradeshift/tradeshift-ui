@@ -9,8 +9,7 @@ edb.ArraySync = function(change, instanceid) {
 	this.$synchglobally = array.$synchglobally;
 	this.type = edb.ArrayChange.TYPE_SPLICE;
 	change.added = change.added.map(function(thing) {
-		return edb.Type.is(thing) ?
-			JSON.parse(thing.serializeToString()) : thing;
+		return edb.Type.is(thing) ? JSON.parse(thing.serializeToString()) : thing;
 	});
 	this.args = edb.ArrayChange.toSpliceParams(change);
 	this.$instanceid = instanceid;

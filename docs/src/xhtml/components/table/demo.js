@@ -45,9 +45,7 @@ $.getJSON('assets/rowdata.json', function(json) {
 		});
 		*/
 
-		ts.ui.Notification.success(
-			'Note that this is really more of a test page than a demo.'
-		);
+		ts.ui.Notification.success('Note that this is really more of a test page than a demo.');
 	});
 });
 
@@ -255,21 +253,25 @@ function generatedata(rows) {
 	return {
 		times: function(mult, debug) {
 			var mults = 'x'.repeat(mult).split('');
-			rows = rows.map(function(row) { // make more cells
+			rows = rows.map(function(row) {
+				// make more cells
 				return row.concat(row); // .concat(rows).concat(rows);
 			});
-			mults.forEach(function() { // make more rows
+			mults.forEach(function() {
+				// make more rows
 				rows = rows.concat(rows);
 			});
 			// make all arrays unique and not duplicates
 			// because stuff like `indexOf` would fail
-			return rows.map(function(row, index) {
-				return row.map(function(text) {
-					return text + (debug ? ' (' + index + ')' : '');
+			return rows
+				.map(function(row, index) {
+					return row.map(function(text) {
+						return text + (debug ? ' (' + index + ')' : '');
+					});
+				})
+				.sort(function random() {
+					return Math.random() > 0.5;
 				});
-			}).sort(function random() {
-				return Math.random() > 0.5;
-			});
 		}
 	};
 }

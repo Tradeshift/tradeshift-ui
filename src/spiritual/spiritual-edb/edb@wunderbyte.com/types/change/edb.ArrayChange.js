@@ -11,7 +11,6 @@ edb.ArrayChange = function(array, index, removed, added) {
 };
 
 edb.ArrayChange.prototype = gui.Object.create(edb.Change.prototype, {
-
 	/**
 	 * Index of change.
 	 * @type {}
@@ -30,7 +29,6 @@ edb.ArrayChange.prototype = gui.Object.create(edb.Change.prototype, {
 	 * @type {Array}
 	 */
 	added: null
-
 });
 
 /*

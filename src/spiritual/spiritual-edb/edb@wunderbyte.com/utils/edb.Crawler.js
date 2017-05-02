@@ -5,7 +5,6 @@
 edb.Crawler = (function() {
 	function Crawler() {}
 	Crawler.prototype = {
-
 		/**
 		 *
 		 */
@@ -23,12 +22,10 @@ edb.Crawler = (function() {
 	 * Note to self: This also crawls array members (via index keys).
 	 */
 	function crawl(type, handler) {
-		gui.Object.each(type, istype).forEach(
-			function(oneType) {
-				handle(oneType, handler);
-				crawl(oneType, handler);
-			}
-		);
+		gui.Object.each(type, istype).forEach(function(oneType) {
+			handle(oneType, handler);
+			crawl(oneType, handler);
+		});
 	}
 
 	function istype(key, value) {
@@ -54,4 +51,4 @@ edb.Crawler = (function() {
 	}
 
 	return Crawler;
-}());
+})();

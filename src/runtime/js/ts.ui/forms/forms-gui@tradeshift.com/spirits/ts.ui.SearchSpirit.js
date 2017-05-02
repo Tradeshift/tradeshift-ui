@@ -13,7 +13,6 @@ ts.ui.SearchSpirit = (function using(ButtonSpirit, CSSPlugin, Type, chained) {
 	var methodnames = ['onsearch', 'onidle', 'onfocus', 'onblur'];
 
 	return ts.ui.Spirit.extend({
-
 		/**
 		 * Setup. If no model is assigned via standard configuration
 		 * (framework-internal usecase), we'll create the default model.
@@ -40,7 +39,7 @@ ts.ui.SearchSpirit = (function using(ButtonSpirit, CSSPlugin, Type, chained) {
 					break;
 				case 'click':
 					var button = ButtonSpirit.getButton(e.target);
-					if (button && CSSPlugin.contains(button, 'ts-button-clear'))	{
+					if (button && CSSPlugin.contains(button, 'ts-button-clear')) {
 						this.dom.q('.ts-input').blur(); // IE dysfunction
 						this.tick.time(function() {
 							this._clear(this._model);
@@ -55,7 +54,8 @@ ts.ui.SearchSpirit = (function using(ButtonSpirit, CSSPlugin, Type, chained) {
 		 * @param {ts.ui.SearchModel} model
 		 */
 		model: function(model) {
-			if (model !== this._model) { // TODO(jmo@): edbml.$get should fix this: https://github.com/wunderbyte/spiritual-edbml/issues/14
+			if (model !== this._model) {
+				// TODO(jmo@): edbml.$get should fix this: https://github.com/wunderbyte/spiritual-edbml/issues/14
 				if (this._model) {
 					this._model.removeObserver(this);
 				}
@@ -217,7 +217,8 @@ ts.ui.SearchSpirit = (function using(ButtonSpirit, CSSPlugin, Type, chained) {
 		 * @param {ts.ui.SearchModel} model
 		 */
 		_clear: function(model) {
-			if (!model.flex) { // hack for the ToolBar here...
+			if (!model.flex) {
+				// hack for the ToolBar here...
 				this.action.dispatch('ts-action-search', false);
 				this.css.remove('ts-searching');
 			}
@@ -228,6 +229,5 @@ ts.ui.SearchSpirit = (function using(ButtonSpirit, CSSPlugin, Type, chained) {
 				model.addObserver(this);
 			});
 		}
-
 	});
-}(ts.ui.ButtonSpirit, gui.CSSPlugin, gui.Type, gui.Combo.chained));
+})(ts.ui.ButtonSpirit, gui.CSSPlugin, gui.Type, gui.Combo.chained);

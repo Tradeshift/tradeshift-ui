@@ -35,7 +35,8 @@ edb.ObjectProxy = (function scoped() {
 			suspend = true;
 			var oldval = this[key];
 			base.apply(this, arguments);
-			if ((newval = this[key]) !== oldval) { // TODO: somehow also check `target` for diff!
+			if ((newval = this[key]) !== oldval) {
+				// TODO: somehow also check `target` for diff!
 				edb.Object.$onchange(this, key, oldval, newval);
 			}
 			suspend = false;
@@ -58,7 +59,8 @@ edb.ObjectProxy = (function scoped() {
 		return thing;
 	}
 
-	return { // Public ...........................................................
+	return {
+		// Public ...........................................................
 
 		/**
 		 * Simplistic proxy mechanism to dispatch broadcasts on getters and setters.
@@ -139,7 +141,8 @@ edb.ObjectProxy = (function scoped() {
 										}
 									}
 									edb.Object.$onchange(handler, key, type, types[key]);
-								} else { // TODO: Clean this up :/
+								} else {
+									// TODO: Clean this up :/
 									var oldval = target[key];
 									Type = handler.constructor;
 									var cast = Type.prototype[key];
@@ -148,7 +151,8 @@ edb.ObjectProxy = (function scoped() {
 										case Array:
 											if (gui.Type.isNull(value) || gui.Type.isComplex(value)) {
 												target[key] = deepclone(value); // right?
-												if (oldval !== value) { // because clone, this is now always true :/
+												if (oldval !== value) {
+													// because clone, this is now always true :/
 													// not caught by the setter, let's refactor later
 													edb.Object.$onchange(handler, key, oldval, value);
 												}
@@ -168,4 +172,4 @@ edb.ObjectProxy = (function scoped() {
 			});
 		}
 	};
-}());
+})();

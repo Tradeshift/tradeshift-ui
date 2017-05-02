@@ -3,7 +3,9 @@
  * The "?internal" flag will also load the CSS.
  */
 (function boostrap(sources) {
-	var intern, script, scripts = document.querySelectorAll('script'),
+	var intern,
+		script,
+		scripts = document.querySelectorAll('script'),
 		head = document.querySelector('head');
 
 	// fix relative protocols in blob
@@ -24,7 +26,8 @@
 	 * (which now depends or IP adresses on localhost) must be refactored anyhow.
 	 */
 	script = scripts[scripts.length - 1];
-	if ((intern = script.src.indexOf('?') > -1)) { // ?internal
+	if ((intern = script.src.indexOf('?') > -1)) {
+		// ?internal
 		stylesheet();
 	}
 
@@ -64,14 +67,18 @@
 		if (lang) {
 			lang = lang.toLowerCase().replace('_', '-');
 			gui.push(sources.langbundle.replace('<LANG>', lang));
-		} else if (!document.all && window.console && console.log) { // !
+		} else if (!document.all && window.console && console.log) {
+			// !
 			console.log('No lang given. Will default to en-us');
 		}
 
 		document.write(
-			api.concat(intern ? gui : []).map(function(src) {
-				return '<script src="' + src + '"></script>';
-			}).join('\n')
+			api
+				.concat(intern ? gui : [])
+				.map(function(src) {
+					return '<script src="' + src + '"></script>';
+				})
+				.join('\n')
 		);
 	}
 
@@ -89,11 +96,11 @@
 			});
 		});
 	}
-}({
+})({
 	langbundle: '${langbundle}',
 	spiritsapi: '${spiritsapi}',
 	runtimeapi: '${runtimeapi}',
 	spiritsgui: '${spiritsgui}',
 	runtimegui: '${runtimegui}',
 	runtimecss: '${runtimecss}'
-}));
+});

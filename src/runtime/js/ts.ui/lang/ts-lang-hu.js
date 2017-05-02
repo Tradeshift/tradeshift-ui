@@ -29,33 +29,9 @@ if (window.ts && ts.ui && ts.ui.DatePicker) {
 			'Nov',
 			'Dec'
 		],
-		dayNames: [
-			'Vasárnap',
-			'Hétfő',
-			'Kedd',
-			'Szerda',
-			'Csütörtök',
-			'Péntek',
-			'Szombat'
-		],
-		dayNamesShort: [
-			'Vas',
-			'Hét',
-			'Ked',
-			'Sze',
-			'Csü',
-			'Pén',
-			'Szo'
-		],
-		dayNamesMin: [
-			'Va',
-			'Hé',
-			'Ke',
-			'Sze',
-			'Cs',
-			'Pé',
-			'Szo'
-		]
+		dayNames: ['Vasárnap', 'Hétfő', 'Kedd', 'Szerda', 'Csütörtök', 'Péntek', 'Szombat'],
+		dayNamesShort: ['Vas', 'Hét', 'Ked', 'Sze', 'Csü', 'Pén', 'Szo'],
+		dayNamesMin: ['Va', 'Hé', 'Ke', 'Sze', 'Cs', 'Pé', 'Szo']
 	});
 }
 

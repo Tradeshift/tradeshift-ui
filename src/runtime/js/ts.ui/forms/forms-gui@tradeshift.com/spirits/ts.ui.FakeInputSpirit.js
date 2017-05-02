@@ -9,7 +9,6 @@ ts.ui.FakeInputSpirit = (function() {
 	var KEY_SPACE = 32;
 
 	return ts.ui.TextInputSpirit.extend({
-
 		onconfigure: function() {
 			this.super.onconfigure();
 			this.css.add(ts.ui.CLASS_FAKE);
@@ -78,8 +77,7 @@ ts.ui.FakeInputSpirit = (function() {
 					}
 					break;
 				case 'keydown':
-
-				/*
+					/*
 				 * All attempts to open the aside would fail :/
 				 * Keyboard handling simply disabled for the time
 				 * being, but we also need to `preventDefault` the
@@ -148,18 +146,22 @@ ts.ui.FakeInputSpirit = (function() {
 		 * Dispatch `input` event (used for <input />) from the proxied element.
 		 */
 		_triggerinput: function() {
-			this._proxyelement.dispatchEvent(new Event('input', {
-				bubbles: true
-			}));
+			this._proxyelement.dispatchEvent(
+				new Event('input', {
+					bubbles: true
+				})
+			);
 		},
 
 		/**
 		 * Dispatch `change` event (used for <select />) from the proxied element.
 		 */
 		_triggerchange: function() {
-			this._proxyelement.dispatchEvent(new Event('change', {
-				bubbles: true
-			}));
+			this._proxyelement.dispatchEvent(
+				new Event('change', {
+					bubbles: true
+				})
+			);
 		},
 
 		/**
@@ -168,6 +170,5 @@ ts.ui.FakeInputSpirit = (function() {
 		_restorefocus: function() {
 			this._proxyelement.focus();
 		}
-
 	});
-}());
+})();

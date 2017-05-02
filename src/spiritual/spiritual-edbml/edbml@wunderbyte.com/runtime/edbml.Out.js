@@ -6,7 +6,6 @@
 edbml.Out = function Out() {};
 
 edbml.Out.prototype = {
-
 	/**
 	 * HTML string (not well-formed while parsing).
 	 * @type {String}

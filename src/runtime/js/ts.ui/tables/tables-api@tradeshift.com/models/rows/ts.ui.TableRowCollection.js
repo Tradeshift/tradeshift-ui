@@ -22,17 +22,14 @@ ts.ui.TableRowCollection = (function using(Collection, GuiArray, confirmed) {
 	}
 
 	return Collection.extend({
-
 		/**
 		 * Need to do this because we can accept both objects and
 		 * arrays and I guess we never though about that before.
 		 * TODO(jmo@): verify that this is needed and fix it in {edb.ArrayPopulator}
 		 */
-		$of: confirmed('object|array')(
-			function(json) {
-				return json;
-			}
-		),
+		$of: confirmed('object|array')(function(json) {
+			return json;
+		}),
 
 		/**
 		 * Deepclone before adding.
@@ -63,9 +60,12 @@ ts.ui.TableRowCollection = (function using(Collection, GuiArray, confirmed) {
 				Super.splice.apply(this, arguments);
 			} else {
 				var args = GuiArray.from(arguments);
-				return Super.splice.apply(this, args.map(function(arg, index) {
-					return index > 1 ? deepclone(arg) : arg;
-				}));
+				return Super.splice.apply(
+					this,
+					args.map(function(arg, index) {
+						return index > 1 ? deepclone(arg) : arg;
+					})
+				);
 			}
 		},
 
@@ -93,6 +93,5 @@ ts.ui.TableRowCollection = (function using(Collection, GuiArray, confirmed) {
 		 * @type {boolean}
 		 */
 		_suspended: false
-
 	});
-}(ts.ui.Collection, gui.Array, gui.Arguments.confirmed));
+})(ts.ui.Collection, gui.Array, gui.Arguments.confirmed);

@@ -4,7 +4,6 @@
  */
 ts.ui.ToolBarModel = (function using(chained) {
 	return ts.ui.BarModel.extend({
-
 		/**
 		 * Friendly name.
 		 * @type {string}
@@ -98,9 +97,11 @@ ts.ui.ToolBarModel = (function using(chained) {
 					return c.name === has && c.newValue;
 				});
 			}
-			if (changes.some(function(c) {
-				return c.name !== has && c.name !== had;
-			}, this)) {
+			if (
+				changes.some(function(c) {
+					return c.name !== has && c.name !== had;
+				}, this)
+			) {
 				this._updatehascontent();
 			}
 		},
@@ -147,15 +148,12 @@ ts.ui.ToolBarModel = (function using(chained) {
 		 * @returns {boolean} True when there's content...
 		 */
 		_updatehascontent: function() {
-			this.hascontent = !!(
-				this.tabs.length ||
+			this.hascontent = !!(this.tabs.length ||
 				this.buttons.length ||
 				this.title ||
 				this.search ||
-				this.closebutton
-			);
+				this.closebutton);
 			return this.hascontent;
 		}
-
 	});
-}(gui.Combo.chained));
+})(gui.Combo.chained);

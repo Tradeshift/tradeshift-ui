@@ -5,7 +5,6 @@
  */
 ts.ui.Model = (function using(Type) {
 	return edb.Object.extend({
-
 		/**
 		 * @optional
 		 * @type {string}
@@ -62,9 +61,13 @@ ts.ui.Model = (function using(Type) {
 		dispose: function() {
 			this.disposed = true;
 			// this.super.dispose(); // hotfix: not enough time to sync the status!
-			gui.Tick.time(function() {
-				edb.Type.$destruct(this);
-			}, 0, this);
+			gui.Tick.time(
+				function() {
+					edb.Type.$destruct(this);
+				},
+				0,
+				this
+			);
 		},
 
 		// Privileged ..............................................................
@@ -100,6 +103,5 @@ ts.ui.Model = (function using(Type) {
 			}
 			return !!action;
 		}
-
 	});
-}(gui.Type));
+})(gui.Type);

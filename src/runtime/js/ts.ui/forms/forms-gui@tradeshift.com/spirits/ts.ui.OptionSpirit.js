@@ -3,7 +3,6 @@
  * @extends {ts.ui.FieldSpirit}
  */
 ts.ui.OptionSpirit = ts.ui.FieldSpirit.extend({
-
 	/**
 	 * Validate much.
 	 */
@@ -56,5 +55,4 @@ ts.ui.OptionSpirit = ts.ui.FieldSpirit.extend({
 			}
 		}
 	}
-
 });

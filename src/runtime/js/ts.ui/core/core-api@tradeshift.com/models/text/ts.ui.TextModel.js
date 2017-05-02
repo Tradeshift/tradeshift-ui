@@ -5,7 +5,6 @@
  */
 ts.ui.TextModel = (function using(Markdown) {
 	return ts.ui.Model.extend({
-
 		/**
 		 * Friendly name.
 		 * @type {string}
@@ -27,6 +26,5 @@ ts.ui.TextModel = (function using(Markdown) {
 		render: function(tags) {
 			return Markdown.parse(this.text, tags || null);
 		}
-
 	});
-}(ts.ui.Markdown));
+})(ts.ui.Markdown);

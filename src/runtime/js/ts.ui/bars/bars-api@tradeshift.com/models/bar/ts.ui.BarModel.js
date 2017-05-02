@@ -6,7 +6,6 @@
  */
 ts.ui.BarModel = (function using(ButtonCollection) {
 	return ts.ui.Model.extend({
-
 		// Privileged ................................................................
 
 		/**
@@ -66,6 +65,5 @@ ts.ui.BarModel = (function using(ButtonCollection) {
 				}
 			});
 		}
-
 	});
-}(ts.ui.ButtonCollection));
+})(ts.ui.ButtonCollection);

@@ -7,7 +7,6 @@
  */
 gui.ActionPlugin = (function using(confirmed, chained) {
 	return gui.TrackerPlugin.extend({
-
 		/**
 		 * Free slot for spirit to define any single type of action to dispatch.
 		 * @type {String}
@@ -149,8 +148,7 @@ gui.ActionPlugin = (function using(confirmed, chained) {
 		 * @param {Array<object>} checks
 		 */
 		_cleanup: function(type, checks) {
-			var handler = checks[0],
-				global = checks[1];
+			var handler = checks[0], global = checks[1];
 			if (global) {
 				this.removeGlobal(type, handler);
 			} else {
@@ -187,6 +185,5 @@ gui.ActionPlugin = (function using(confirmed, chained) {
 				}, this);
 			}
 		}
-
 	});
-}(gui.Arguments.confirmed, gui.Combo.chained));
+})(gui.Arguments.confirmed, gui.Combo.chained);

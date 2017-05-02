@@ -5,7 +5,6 @@
  */
 ts.ui.InputModel = (function using(Client, chained) {
 	return ts.ui.Model.extend({
-
 		/**
 		 * Friendly name.
 		 * @type {string}
@@ -64,7 +63,7 @@ ts.ui.InputModel = (function using(Client, chained) {
 		 * Time before user is considered idle.
 		 * @type {number} Timeout in milliseconds
 		 */
-		idletime: (Client.isTouchDevice ? 750 : 500),
+		idletime: Client.isTouchDevice ? 750 : 500,
 
 		/**
 		 * Open for implementation.
@@ -239,7 +238,7 @@ ts.ui.InputModel = (function using(Client, chained) {
 		 * @param {string|boolean} value
 		 */
 		_onpropertychange: function(name, value) {
-			var isTrue = (value === true);
+			var isTrue = value === true;
 			switch (name) {
 				case 'idle':
 					if (isTrue) {
@@ -268,6 +267,5 @@ ts.ui.InputModel = (function using(Client, chained) {
 					break;
 			}
 		}
-
 	});
-}(gui.Client, gui.Combo.chained));
+})(gui.Client, gui.Combo.chained);

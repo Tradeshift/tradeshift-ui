@@ -3,7 +3,6 @@
  * @extends {gui.Spirit}
  */
 ts.ui.SelectSpirit = ts.ui.FieldSpirit.extend({
-
 	/**
 	 * Attribute `ts.debugsync` can be toggled to induce random selections.
 	 * This will come in handy when we attempt to synchronize everything.
@@ -18,9 +17,7 @@ ts.ui.SelectSpirit = ts.ui.FieldSpirit.extend({
 		this.super.onready();
 		this._debugsync(this.debugsync);
 		this.css.add(ts.ui.CLASS_SELECT);
-		this._createfake(
-			ts.ui.FakeSelectInputSpirit
-		).proxy(this.element);
+		this._createfake(ts.ui.FakeSelectInputSpirit).proxy(this.element);
 	},
 
 	// Private ...................................................................
@@ -56,14 +53,18 @@ ts.ui.SelectSpirit = ts.ui.FieldSpirit.extend({
 		if (enabled) {
 			setInterval(function updaterandomly() {
 				if (elm.multiple) {
-					console.log('indexes: ' + gui.Array.from(ops).map(
-						function(o, i) {
-							o.selected = Math.random() > 0.5;
-							return o.selected ? i : null;
-						}
-					).filter(function(index) {
-						return index !== null;
-					}));
+					console.log(
+						'indexes: ' +
+							gui.Array
+								.from(ops)
+								.map(function(o, i) {
+									o.selected = Math.random() > 0.5;
+									return o.selected ? i : null;
+								})
+								.filter(function(index) {
+									return index !== null;
+								})
+					);
 				} else {
 					elm.selectedIndex = Math.floor(Math.random() * ops.length);
 					console.log('index: ' + elm.selectedIndex);
@@ -73,5 +74,4 @@ ts.ui.SelectSpirit = ts.ui.FieldSpirit.extend({
 			}, 2000);
 		}
 	}
-
 });

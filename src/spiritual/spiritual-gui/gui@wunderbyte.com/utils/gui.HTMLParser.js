@@ -3,7 +3,6 @@
  * DOMParser, but that's just plain wrong because it doesn't parse DOM elements.
  */
 gui.HTMLParser = {
-
 	/**
 	 * Identification.
 	 * @returns {String}
@@ -51,8 +50,8 @@ gui.HTMLParser = {
 	 * @returns {Array<Node>}
 	 */
 	parseToNodes: function(markup, targetdoc) {
-		var elm, doc = this._document ||
-			(this._document = document.implementation.createHTMLDocument(''));
+		var elm,
+			doc = this._document || (this._document = document.implementation.createHTMLDocument(''));
 		return gui.Guide.suspend(function() {
 			doc.body.innerHTML = this._unsanitize(markup);
 			elm = doc.querySelector('.' + this._classname) || doc.body;
@@ -127,9 +126,7 @@ gui.HTMLParser = {
 		markup = markup.trim().replace(this._comments, '');
 		if ((match = markup.match(this._firsttag))) {
 			if ((fix = this._unsanestructures[match[1]])) {
-				markup = fix
-				.replace('${class}', this._classname)
-				.replace('${markup}', markup);
+				markup = fix.replace('${class}', this._classname).replace('${markup}', markup);
 			}
 		}
 		return markup;
@@ -155,5 +152,5 @@ gui.HTMLParser = {
 			map[tag] = map.tbody;
 		});
 		return map;
-	}())
+	})()
 };

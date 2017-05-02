@@ -2,7 +2,6 @@
  * Working with properties.
  */
 gui.Property = {
-
 	/**
 	 * Clone properties from source to target.
 	 * @param {object} source
@@ -38,10 +37,13 @@ gui.Property = {
 	 * @returns {object}
 	 */
 	nonenumerable: function(desc) {
-		return gui.Object.extendmissing({
-			configurable: true,
-			enumerable: false
-		}, desc);
+		return gui.Object.extendmissing(
+			{
+				configurable: true,
+				enumerable: false
+			},
+			desc
+		);
 	},
 
 	/**

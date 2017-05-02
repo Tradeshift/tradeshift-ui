@@ -4,7 +4,6 @@
  */
 edb.Type = (function using(chained) {
 	return gui.Class.create(null, {
-
 		/**
 		 * Called after $onconstruct (by `gui.Class` convention).
 		 */
@@ -91,14 +90,12 @@ edb.Type = (function using(chained) {
 				this.persist();
 			}
 		}
-
 	});
-}(gui.Combo.chained));
+})(gui.Combo.chained);
 
 // Static ......................................................................
 
 edb.Type.mixin(null, null, {
-
 	/**
 	 * Something is an instance of {edb.Object} or {edb.Array}?
 	 * @param {object} o
@@ -114,10 +111,12 @@ edb.Type.mixin(null, null, {
 	 * @returns {boolean}
 	 */
 	isConstructor: function(o) {
-		return gui.Type.isGuiClass(o) &&
+		return (
+			gui.Type.isGuiClass(o) &&
 			gui.Class.ancestorsAndSelf(o).some(function(C) {
 				return C === edb.Object || C === edb.Array;
-			});
+			})
+		);
 	},
 
 	/**
@@ -230,7 +229,6 @@ edb.Type.mixin(null, null, {
 			}
 		});
 	}
-
 });
 
 // Mixins ......................................................................
@@ -240,7 +238,8 @@ edb.Type.mixin(null, null, {
  * @using {gui.Arguments.confirmed}
  */
 (function using(confirmed) {
-	var iomixins = { // input-output methods
+	var iomixins = {
+		// input-output methods
 
 		/**
 		 * Instance of this Type has been output (in public context)?
@@ -263,33 +262,29 @@ edb.Type.mixin(null, null, {
 		revokeOutput: function() {
 			console.error('Deprecated API is deprecated: revokeOutput()');
 		}
-
 	};
 
 	var spassermixins = {
-
 		/**
 		 * Create *new* instance from argument of fuzzy type.
 		 * All nested models will also be instanced as *new*.
 		 * @param {String|object|Array|edb.Object|edb.Array} json
 		 * @return {edb.Object|edb.Array}
 		 */
-		from: gui.Arguments.confirmed('(string|object|array|null)')(
-			function(json) {
-				var Type = this;
-				if (json) {
-					if (edb.Type.is(json)) {
-						json = new edb.Serializer().serializeToString(json);
-					}
-					if (gui.Type.isString(json)) {
-						if (json.includes('$object') || json.includes('$array')) {
-							json = new edb.Parser().parseFromString(json, null);
-						}
+		from: gui.Arguments.confirmed('(string|object|array|null)')(function(json) {
+			var Type = this;
+			if (json) {
+				if (edb.Type.is(json)) {
+					json = new edb.Serializer().serializeToString(json);
+				}
+				if (gui.Type.isString(json)) {
+					if (json.includes('$object') || json.includes('$array')) {
+						json = new edb.Parser().parseFromString(json, null);
 					}
 				}
-				return new Type(json); // TODO: should `null` even do this?
 			}
-		),
+			return new Type(json); // TODO: should `null` even do this?
+		}),
 
 		/**
 		 * Create the `Type.output` object along with the Type.
@@ -300,7 +295,6 @@ edb.Type.mixin(null, null, {
 			C.output = new edb.Output(C); // TODO: make readonly!
 			return C;
 		}
-
 	};
 
 	/**
@@ -325,4 +319,4 @@ edb.Type.mixin(null, null, {
 		}, this);
 		return mixins;
 	};
-}(gui.Arguments.confirmed));
+})(gui.Arguments.confirmed);

@@ -1,6 +1,5 @@
 ts.dox.MenuCoverSpirit = (function() {
 	return ts.dox.ItemSpirit.extend({
-
 		onasync: function() {
 			this.super.onasync();
 			if (gui.Client.isWebKit) {
@@ -23,6 +22,5 @@ ts.dox.MenuCoverSpirit = (function() {
 				}
 			}
 		}
-
 	});
-}());
+})();

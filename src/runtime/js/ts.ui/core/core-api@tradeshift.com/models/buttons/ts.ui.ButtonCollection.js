@@ -6,7 +6,6 @@
  */
 ts.ui.ButtonCollection = (function using(confirmed, chained) {
 	return ts.ui.Collection.extend({
-
 		/**
 		 * Friendly name.
 		 * @type {string}
@@ -48,9 +47,14 @@ ts.ui.ButtonCollection = (function using(confirmed, chained) {
 		 * @return {Array<object>} Collect action results.
 		 */
 		ascending: function(action, opt_thisp) {
-			return this._eachOrdered(true, action || function(button) {
-				return button;
-			}, opt_thisp);
+			return this._eachOrdered(
+				true,
+				action ||
+					function(button) {
+						return button;
+					},
+				opt_thisp
+			);
 		},
 
 		/**
@@ -60,9 +64,14 @@ ts.ui.ButtonCollection = (function using(confirmed, chained) {
 		 * @return {Array<object>} Collect action results.
 		 */
 		descending: function(action, opt_thisp) {
-			return this._eachOrdered(false, action || function(button) {
-				return button;
-			}, opt_thisp);
+			return this._eachOrdered(
+				false,
+				action ||
+					function(button) {
+						return button;
+					},
+				opt_thisp
+			);
 		},
 
 		/**
@@ -158,6 +167,5 @@ ts.ui.ButtonCollection = (function using(confirmed, chained) {
 				}
 			});
 		}
-
 	});
-}(gui.Arguments.confirmed, gui.Combo.chained));
+})(gui.Arguments.confirmed, gui.Combo.chained);

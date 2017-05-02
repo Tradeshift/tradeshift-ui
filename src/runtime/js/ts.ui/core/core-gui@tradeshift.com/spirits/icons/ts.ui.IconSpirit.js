@@ -11,7 +11,6 @@ ts.ui.IconSpirit = (function using() {
 	};
 
 	return ts.ui.Spirit.extend({
-
 		/**
 		 * Setup on enter.
 		 */
@@ -46,7 +45,8 @@ ts.ui.IconSpirit = (function using() {
 			if (gui.Client.isExplorer9) {
 				ajax = new window.XDomainRequest();
 				ajax.open('get', SVG_LINK + encodeURIComponent(icon) + '.svg', true);
-				setTimeout(function() { // why need to do like this https://developer.mozilla.org/en-US/docs/Web/API/XDomainRequest
+				setTimeout(function() {
+					// why need to do like this https://developer.mozilla.org/en-US/docs/Web/API/XDomainRequest
 					ajax.send();
 				}, 0);
 			} else {
@@ -99,4 +99,4 @@ ts.ui.IconSpirit = (function using() {
 			svgElem.setAttribute('height', fontSize);
 		}
 	});
-}());
+})();

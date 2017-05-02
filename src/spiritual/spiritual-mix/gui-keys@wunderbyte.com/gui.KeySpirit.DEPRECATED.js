@@ -3,7 +3,6 @@
  * <meta content="key" value="Control s" onkey="alert(this)"/>
  */
 gui.KeySpirit = gui.Spirit.extend({
-
 	/**
 	 * Get ready.
 	 */
@@ -22,10 +21,12 @@ gui.KeySpirit = gui.Spirit.extend({
 		console.log(key.type);
 		var map = this._map;
 		map[key.type] = key.down;
-		if (Object.keys(map).every(function(type) {
-			// console.log ( type + ": " + map [ type ]);
-			return map[type] === true;
-		})) {
+		if (
+			Object.keys(map).every(function(type) {
+				// console.log ( type + ": " + map [ type ]);
+				return map[type] === true;
+			})
+		) {
 			console.log('fis!');
 		}
 	},

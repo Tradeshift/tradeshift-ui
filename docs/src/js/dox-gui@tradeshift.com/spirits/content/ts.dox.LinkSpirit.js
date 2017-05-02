@@ -4,7 +4,6 @@
  */
 ts.dox.LinkSpirit = (function() {
 	return ts.ui.ButtonSpirit.extend({
-
 		/**
 		 * If in the iframe, change the link back to chrome-loading mode
 		 * (as originally authored in the source XHTML file). Otherwise
@@ -45,14 +44,16 @@ ts.dox.LinkSpirit = (function() {
 		_dispatchaction: function() {
 			if (this._chromelink) {
 				var action = ts.ui.ACTION_GLOBAL_LOAD;
-				this.action.dispatchGlobal(action, this.data || {
-					href: this.element.href,
-					target: this.element.target
-				});
+				this.action.dispatchGlobal(
+					action,
+					this.data || {
+						href: this.element.href,
+						target: this.element.target
+					}
+				);
 			} else {
 				this.super._dispatchaction();
 			}
 		}
-
 	});
-}());
+})();

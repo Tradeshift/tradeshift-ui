@@ -2,7 +2,6 @@
  * Working with objects.
  */
 gui.Object = {
-
 	/**
 	 * Object.create with default property descriptors.
 	 * @see http://wiki.ecmascript.org/doku.php?id=strawman:define_properties_operator
@@ -79,11 +78,13 @@ gui.Object = {
 	 * @param @optional {object} thisp
 	 */
 	each: function(object, func, thisp) {
-		return Object.keys(object).map(function(key) {
-			return func.call(thisp, key, object[key]);
-		}).filter(function(result) {
-			return result !== undefined;
-		});
+		return Object.keys(object)
+			.map(function(key) {
+				return func.call(thisp, key, object[key]);
+			})
+			.filter(function(result) {
+				return result !== undefined;
+			});
 	},
 
 	/**
@@ -113,8 +114,7 @@ gui.Object = {
 	 * @returns {object}
 	 */
 	map: function(source, domap, thisp) {
-		var result = {},
-			mapping;
+		var result = {}, mapping;
 		this.each(source, function(key, value) {
 			mapping = domap.call(thisp, key, value);
 			if (mapping !== undefined) {
@@ -179,8 +179,7 @@ gui.Object = {
 	 * @return {Array<String>}
 	 */
 	methods: function(object) {
-		var name, value, desc, obj = object,
-			result = [];
+		var name, value, desc, obj = object, result = [];
 		for (name in object) {
 			// make sure that we don't poke any getter type properties...
 			while (!(desc = Object.getOwnPropertyDescriptor(obj, name))) {
@@ -201,11 +200,13 @@ gui.Object = {
 	 * @return {Array<String>}
 	 */
 	ownmethods: function(object) {
-		return Object.keys(object).filter(function(key) {
-			return gui.Type.isMethod(object[key]);
-		}).map(function(key) {
-			return key;
-		});
+		return Object.keys(object)
+			.filter(function(key) {
+				return gui.Type.isMethod(object[key]);
+			})
+			.map(function(key) {
+				return key;
+			});
 	},
 
 	/**

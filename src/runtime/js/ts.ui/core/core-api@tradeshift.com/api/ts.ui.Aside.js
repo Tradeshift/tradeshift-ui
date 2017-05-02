@@ -23,9 +23,7 @@ ts.ui.Aside.toString = function() {
  * TODO: Return some kind of Promise here
  */
 ts.ui.Aside.closeAll = function() {
-	gui.Broadcast.dispatchGlobal(
-		ts.ui.BROADCAST_GLOBAL_ASIDES_DO_CLOSE
-	);
+	gui.Broadcast.dispatchGlobal(ts.ui.BROADCAST_GLOBAL_ASIDES_DO_CLOSE);
 };
 
 // Implementation ..............................................................
@@ -42,15 +40,18 @@ ts.ui.Aside.closeAll = function() {
 	 */
 	function getspirit(model) {
 		var id = model.$instanceid;
-		return gui.get('#' + id) || (function() {
-			var spirit = ts.ui.AsideSpirit.summon(model);
-			document.body.appendChild(spirit.element);
-			spirit.element.id = id;
-			spirit.onclosed = function() {
-				model.isOpen = false;
-			};
-			return spirit;
-		}());
+		return (
+			gui.get('#' + id) ||
+			(function() {
+				var spirit = ts.ui.AsideSpirit.summon(model);
+				document.body.appendChild(spirit.element);
+				spirit.element.id = id;
+				spirit.onclosed = function() {
+					model.isOpen = false;
+				};
+				return spirit;
+			})()
+		);
 	}
 
 	/**
@@ -91,7 +92,6 @@ ts.ui.Aside.closeAll = function() {
 	 * API methods.
 	 */
 	gui.Object.extend(ts.ui.Aside, {
-
 		/**
 		 * Handler changes.
 		 * @param {Array<gui.Change>} changes
@@ -100,13 +100,14 @@ ts.ui.Aside.closeAll = function() {
 			changes.forEach(function(c) {
 				var model = c.object;
 				switch (c.name) {
-					case 'isOpen' :
+					case 'isOpen':
 						toggle(model, c.newValue);
 						break;
-					case 'disposed' :
+					case 'disposed':
 						var spirit = gui.get('#' + model.$instanceid);
 						if (spirit) {
-							gui.Tick.time(function() { // TODO (jmi@): why otherwise error?
+							gui.Tick.time(function() {
+								// TODO (jmi@): why otherwise error?
 								spirit.dom.remove();
 							}, 100);
 						}
@@ -120,28 +121,31 @@ ts.ui.Aside.closeAll = function() {
 	 * GUI extras.
 	 */
 	gui.Object.extend(ts.ui.Aside, {
-
 		/*
 		 * Open aside in this context.
 		 * @param {JSONObject} json
 		 */
-		$open: hidden(api(function(json) {
-			var model = ts.ui.Aside(json);
-			var spirit = getspirit(model);
-			model.addObserver(ts.ui.Aside);
-			alert('open');
-			spirit.open();
-		})),
+		$open: hidden(
+			api(function(json) {
+				var model = ts.ui.Aside(json);
+				var spirit = getspirit(model);
+				model.addObserver(ts.ui.Aside);
+				alert('open');
+				spirit.open();
+			})
+		),
 
 		/*
 		 * Close aside in this context.
 		 * @param {string} id
 		 */
-		$close: hidden(api(function(id) {
-			var spirit = gui.get('#' + id);
-			if (spirit && spirit.isOpen) {
-				spirit.close();
-			}
-		}))
+		$close: hidden(
+			api(function(id) {
+				var spirit = gui.get('#' + id);
+				if (spirit && spirit.isOpen) {
+					spirit.close();
+				}
+			})
+		)
 	});
-}(ts.ui.Greenfield.api, gui.Object.hidden));
+})(ts.ui.Greenfield.api, gui.Object.hidden);

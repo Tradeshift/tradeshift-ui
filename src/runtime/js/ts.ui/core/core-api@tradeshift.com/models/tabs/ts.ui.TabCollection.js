@@ -8,7 +8,6 @@
  */
 ts.ui.TabCollection = (function using(chained, confirmed, Type) {
 	return ts.ui.Collection.extend({
-
 		/**
 		 * Content model constructor.
 		 * @type {function}
@@ -107,10 +106,10 @@ ts.ui.TabCollection = (function using(chained, confirmed, Type) {
 		onchange: function(changes) {
 			changes.forEach(function(c) {
 				switch (c.object.item) {
-					case 'tab' :
+					case 'tab':
 						this._ontabchange(c);
 						break;
-					case 'tabs' :
+					case 'tabs':
 						this._onthischange(c);
 						break;
 				}
@@ -184,12 +183,14 @@ ts.ui.TabCollection = (function using(chained, confirmed, Type) {
 			var that = this, current = this._current;
 			if (removed.length) {
 				gui.Tick.next(function allow_multiple_operations() {
-					removed.filter(function really_removed(tab) {
-						return tabs.indexOf(tab) === -1;
-					}).forEach(function(tab) {
-						tab.removeObserver(that);
-						tab.dispose();
-					});
+					removed
+						.filter(function really_removed(tab) {
+							return tabs.indexOf(tab) === -1;
+						})
+						.forEach(function(tab) {
+							tab.removeObserver(that);
+							tab.dispose();
+						});
 				});
 			}
 			added.forEach(function(tab) {
@@ -203,9 +204,11 @@ ts.ui.TabCollection = (function using(chained, confirmed, Type) {
 			 * TODO: Make us not depend on this timeout,
 			 * hacking it now for the Client-Docs stuff.
 			 */
-			setTimeout(function butwhy() {
-				this._fallback();
-			}.bind(this));
+			setTimeout(
+				function butwhy() {
+					this._fallback();
+				}.bind(this)
+			);
 		},
 
 		/**
@@ -230,4 +233,4 @@ ts.ui.TabCollection = (function using(chained, confirmed, Type) {
 			}
 		}
 	});
-}(gui.Combo.chained, gui.Arguments.confirmed, gui.Type));
+})(gui.Combo.chained, gui.Arguments.confirmed, gui.Type);

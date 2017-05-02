@@ -17,7 +17,8 @@ gui.Guide = (function using(
 	DOMPlugin,
 	Spirit,
 	Tick,
-	Crawler) {
+	Crawler
+) {
 	/**
 	 * Tracking spirits inside and outside the DOM.
 	 * Spirits not in the DOM are scheduled to die.
@@ -29,7 +30,6 @@ gui.Guide = (function using(
 	};
 
 	return {
-
 		/**
 		 * Identification.
 		 * @returns {String}
@@ -60,10 +60,14 @@ gui.Guide = (function using(
 			gui.$stop('- idle time ...');
 			this._startGuiding();
 			Broadcast.dispatch(gui.BROADCAST_WILL_SPIRITUALIZE);
-			gui.$measure('- spiritualize initially', function() {
-				this._spiritualizeinitially();
-				gui.$stop('boostrap everything');
-			}, this);
+			gui.$measure(
+				'- spiritualize initially',
+				function() {
+					this._spiritualizeinitially();
+					gui.$stop('boostrap everything');
+				},
+				this
+			);
 			Broadcast.dispatch(gui.BROADCAST_DID_SPIRITUALIZE);
 		},
 
@@ -189,9 +193,11 @@ gui.Guide = (function using(
 		 * TODO: create {gui.Developer}
 		 */
 		$debug: function() {
-			console.log(this._channels.reduce(function(log, channel) {
-				return log + '\n\n' + channel[0] + ' : ' + channel[1];
-			}, location.href));
+			console.log(
+				this._channels.reduce(function(log, channel) {
+					return log + '\n\n' + channel[0] + ' : ' + channel[1];
+				}, location.href)
+			);
 		},
 
 		/**
@@ -344,8 +350,9 @@ gui.Guide = (function using(
 		 * @returns {boolean}
 		 */
 		_handles: function(node, webkithack) {
-			return node && Type.isElement(node) && !this._suspended &&
-				(webkithack || DOMPlugin.embedded(node));
+			return (
+				node && Type.isElement(node) && !this._suspended && (webkithack || DOMPlugin.embedded(node))
+			);
 		},
 
 		/**
@@ -432,17 +439,9 @@ gui.Guide = (function using(
 				}
 			}
 			return function(spirits) {
-				spirits.map(
-					configure
-				).map(
-					enter
-				).map(
-					attach
-				).reverse().forEach(
-					ready
-				);
+				spirits.map(configure).map(enter).map(attach).reverse().forEach(ready);
 			};
-		}()),
+		})(),
 
 		/**
 		 * Destruct spirits from element and subtree. Using a two-phased destruction sequence
@@ -470,15 +469,18 @@ gui.Guide = (function using(
 		 * @param {boolean} one Skip the subtree?
 		 */
 		_materialize: function(element, skip, one) {
-			this._collect(element, skip, gui.CRAWLER_MATERIALIZE).reverse().filter(function(spirit) {
-				if (spirit.life.attached && !spirit.life.destructed) {
-					Spirit.$destruct(spirit);
-					return true; // @TODO: handle 'one' arg!
-				}
-				return false;
-			}).forEach(function(spirit) {
-				Spirit.$dispose(spirit);
-			});
+			this._collect(element, skip, gui.CRAWLER_MATERIALIZE)
+				.reverse()
+				.filter(function(spirit) {
+					if (spirit.life.attached && !spirit.life.destructed) {
+						Spirit.$destruct(spirit);
+						return true; // @TODO: handle 'one' arg!
+					}
+					return false;
+				})
+				.forEach(function(spirit) {
+					Spirit.$dispose(spirit);
+				});
 		},
 
 		/**
@@ -512,7 +514,8 @@ gui.Guide = (function using(
 				} else {
 					console.error('Bad spirit for selector "' + select + '": ' + spirit);
 				}
-			} else { // wait for method ready to invoke.
+			} else {
+				// wait for method ready to invoke.
 				this._todochannels = this._todochannels || [];
 				this._todochannels.push([select, klass]);
 			}
@@ -593,7 +596,7 @@ gui.Guide = (function using(
 			}
 		}
 	};
-}(
+})(
 	gui.Assistant,
 	gui.Type,
 	gui.Array,
@@ -602,4 +605,4 @@ gui.Guide = (function using(
 	gui.Spirit,
 	gui.Tick,
 	gui.Crawler
-));
+);

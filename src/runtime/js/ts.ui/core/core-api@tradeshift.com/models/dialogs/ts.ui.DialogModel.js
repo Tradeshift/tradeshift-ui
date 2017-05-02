@@ -10,7 +10,16 @@
  * @using {string} secondary
  * @using {string} tertiary
  */
-ts.ui.DialogModel = (function using(Dialog, chained, Type, GuiObject, Constants, primary, secondary, tertiary) {
+ts.ui.DialogModel = (function using(
+	Dialog,
+	chained,
+	Type,
+	GuiObject,
+	Constants,
+	primary,
+	secondary,
+	tertiary
+) {
 	/**
 	 * Get JSON for button where the properties of the passed
 	 * JSON will overwrite the given (default) label and type.
@@ -31,7 +40,6 @@ ts.ui.DialogModel = (function using(Dialog, chained, Type, GuiObject, Constants,
 	}
 
 	return ts.ui.Model.extend({
-
 		/**
 		 * Friendly name.
 		 * @type {string}
@@ -181,9 +189,11 @@ ts.ui.DialogModel = (function using(Dialog, chained, Type, GuiObject, Constants,
 			this.items = this.items || [];
 			this.buttons = this.buttons || [];
 			this.addObserver(this);
-			this.time = this._computetime(this.items.find(function(item) {
-				return ts.ui.TextModel.is(item);
-			}));
+			this.time = this._computetime(
+				this.items.find(function(item) {
+					return ts.ui.TextModel.is(item);
+				})
+			);
 		},
 
 		/**
@@ -256,9 +266,11 @@ ts.ui.DialogModel = (function using(Dialog, chained, Type, GuiObject, Constants,
 		 */
 		open: function() {
 			var then = new gui.Then();
-			ts.ui.ready(function() { // TODO: this would not exist in "Greenfield" :/
+			ts.ui.ready(function() {
+				// TODO: this would not exist in "Greenfield" :/
 				this.isOpen = true;
-				gui.Tick.time(function transitiondone() { // TODO(jmo@): hook up right!
+				gui.Tick.time(function transitiondone() {
+					// TODO(jmo@): hook up right!
 					then.now();
 				}, ts.ui.TRANSITION_FAST);
 			}, this);
@@ -345,16 +357,20 @@ ts.ui.DialogModel = (function using(Dialog, chained, Type, GuiObject, Constants,
 			var that = this;
 			var maxi = this.buttons.length - 1;
 			index = index > maxi ? maxi : index;
-			this.buttons.splice(index, 0, GuiObject.extend(json, {
-				onclick: function() {
-					var action = that['on' + json.id];
-					that._close().then(function onfadeout() {
-						if (action) {
-							action.call(that);
-						}
-					});
-				}
-			}));
+			this.buttons.splice(
+				index,
+				0,
+				GuiObject.extend(json, {
+					onclick: function() {
+						var action = that['on' + json.id];
+						that._close().then(function onfadeout() {
+							if (action) {
+								action.call(that);
+							}
+						});
+					}
+				})
+			);
 			return index;
 		},
 
@@ -382,9 +398,11 @@ ts.ui.DialogModel = (function using(Dialog, chained, Type, GuiObject, Constants,
 		 */
 		_optimusprime: function(buttons, userset) {
 			var primaryType = 'ts-primary';
-			if (!buttons.some(function(b) {
-				return b.type === primaryType;
-			})) {
+			if (
+				!buttons.some(function(b) {
+					return b.type === primaryType;
+				})
+			) {
 				var b = buttons.get(userset);
 				if (!b && buttons.length === 1) {
 					b = buttons.get(0);
@@ -415,9 +433,8 @@ ts.ui.DialogModel = (function using(Dialog, chained, Type, GuiObject, Constants,
 		_validatestuff: function() {
 			return true;
 		}
-
 	});
-}(
+})(
 	ts.ui.Dialog,
 	gui.Combo.chained,
 	gui.Type,
@@ -426,4 +443,4 @@ ts.ui.DialogModel = (function using(Dialog, chained, Type, GuiObject, Constants,
 	ts.ui.CLASS_PRIMARY,
 	ts.ui.CLASS_SECONDARY,
 	ts.ui.CLASS_TERTIARY
-));
+);

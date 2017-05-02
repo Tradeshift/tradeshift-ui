@@ -2,7 +2,6 @@
  * It's the layout module.
  */
 gui.module('gui-layout@wunderbyte.com', {
-
 	/**
 	 * Assign plugins to prefixes for all {gui.Spirit}.
 	 */
@@ -16,7 +15,6 @@ gui.module('gui-layout@wunderbyte.com', {
 	 * Methods added to {gui.Spirit.prototype}
 	 */
 	mixin: {
-
 		/**
 		 * Handle tween.
 		 * @param {gui.Tween}
@@ -39,5 +37,4 @@ gui.module('gui-layout@wunderbyte.com', {
 		 */
 		oninvisible: function() {}
 	}
-
 });

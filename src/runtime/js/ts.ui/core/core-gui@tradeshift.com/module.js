@@ -2,12 +2,10 @@
  * Core GUI module.
  */
 ts.ui.CoreModule = gui.module('core-gui@tradeshift.com', {
-
 	/**
 	 * Channeling spirits to CSS selectors.
 	 */
 	channel: [
-
 		// stuff that the framework uses
 		['html', ts.ui.DocumentSpirit],
 
@@ -41,9 +39,7 @@ ts.ui.CoreModule = gui.module('core-gui@tradeshift.com', {
 	channelComplexSelectors: function(enabled) {
 		if (enabled && !this._channeled) {
 			this._channeled = true;
-			gui.channel([
-				['.ts-buttons button, .ts-buttons a', ts.ui.ButtonSpirit]
-			]);
+			gui.channel([['.ts-buttons button, .ts-buttons a', ts.ui.ButtonSpirit]]);
 		}
 	},
 
@@ -78,32 +74,42 @@ ts.ui.CoreModule = gui.module('core-gui@tradeshift.com', {
 		var ATTRIBUTE = /^\[data-ts=[a-zA-Z]+\]$/;
 
 		function allcssnames(constructor) {
-			return gui.Class.ancestorsAndSelf(constructor).map(function(c) {
-				return c.$cssname || undefined;
-			}).filter(function(cssname) {
-				return !!cssname;
-			}).join(' ');
+			return gui.Class
+				.ancestorsAndSelf(constructor)
+				.map(function(c) {
+					return c.$cssname || undefined;
+				})
+				.filter(function(cssname) {
+					return !!cssname;
+				})
+				.join(' ');
 		}
 
-		gui.getChannels().map(function(channel) {
-			var cssselector = channel[0];
-			var constructor = channel[1];
-			if (cssselector.trim().match(ATTRIBUTE)) {
-				if (constructor.$cssname) {
-					throw new Error(constructor + ' appears to be channeled twice? ' + constructor.$cssname);
-				} else {
-					var attval = cssselector.replace('data-ts=', '').slice(1, -1);
-					var fixval = 'ts-' + attval.toLowerCase();
-					constructor.$nicename = attval;
-					constructor.$cssname = fixval;
+		gui
+			.getChannels()
+			.map(function(channel) {
+				var cssselector = channel[0];
+				var constructor = channel[1];
+				if (cssselector.trim().match(ATTRIBUTE)) {
+					if (constructor.$cssname) {
+						throw new Error(
+							constructor + ' appears to be channeled twice? ' + constructor.$cssname
+						);
+					} else {
+						var attval = cssselector.replace('data-ts=', '').slice(1, -1);
+						var fixval = 'ts-' + attval.toLowerCase();
+						constructor.$nicename = attval;
+						constructor.$cssname = fixval;
+					}
+					return constructor;
 				}
-				return constructor;
-			}
-		}).filter(function(constructor) {
-			return !!constructor;
-		}).forEach(function(constructor) {
-			constructor.$cssnames = allcssnames(constructor);
-		});
+			})
+			.filter(function(constructor) {
+				return !!constructor;
+			})
+			.forEach(function(constructor) {
+				constructor.$cssnames = allcssnames(constructor);
+			});
 	},
 
 	// Private ...................................................................
@@ -163,5 +169,4 @@ ts.ui.CoreModule = gui.module('core-gui@tradeshift.com', {
 			cssp.add(html, 'ts-bg-lite');
 		}
 	}
-
 });

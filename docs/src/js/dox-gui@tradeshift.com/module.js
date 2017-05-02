@@ -43,7 +43,6 @@
 	 * Declare the module alreay.
 	 */
 	gui.module('dox-gui@tradeshift.com', {
-
 		/**
 		 * Channeling spirits to CSS selectors.
 		 */
@@ -74,9 +73,14 @@
 		onafterspiritualize: function() {
 			if (gui.hosted) {
 				this._hilitesearch('?query=');
-				gui.Tick.time(function postponed() { // make sure we catch all metrics
-					this._debugmetrics('metrics');
-				}, 0, this);
+				gui.Tick.time(
+					function postponed() {
+						// make sure we catch all metrics
+						this._debugmetrics('metrics');
+					},
+					0,
+					this
+				);
 			}
 		},
 
@@ -124,20 +128,25 @@
 				if (times.length) {
 					console.debug('\n' + document.title);
 					if (console.table) {
-						console.table(times.map(function(m) {
-							return {
-								'What happened': m.name,
-								'For how long': m.duration
-							};
-						}));
+						console.table(
+							times.map(function(m) {
+								return {
+									'What happened': m.name,
+									'For how long': m.duration
+								};
+							})
+						);
 					} else {
-						console.log(times.map(function(m) {
-							return '	' + m.name + ': ' + m.duration;
-						}).join('\n'));
+						console.log(
+							times
+								.map(function(m) {
+									return '	' + m.name + ': ' + m.duration;
+								})
+								.join('\n')
+						);
 					}
 				}
 			}
 		}
-
 	});
-}());
+})();

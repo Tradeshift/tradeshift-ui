@@ -1,5 +1,4 @@
 ts.dox.PrismSpirit = ts.ui.Spirit.extend({
-
 	/**
 	 * Source code (encoded via encodeURIComponent).
 	 * This get's set in the HTML by some Grunt task.
@@ -37,5 +36,4 @@ ts.dox.PrismSpirit = ts.ui.Spirit.extend({
 			this._toolbar.uncompact();
 		}
 	}
-
 });

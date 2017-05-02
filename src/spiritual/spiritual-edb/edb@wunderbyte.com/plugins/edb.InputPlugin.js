@@ -8,7 +8,6 @@
  */
 edb.InputPlugin = (function using(chained, Input) {
 	return gui.TrackerPlugin.extend({
-
 		/**
 		 * True when one of each expected input type has been collected.
 		 * @type {boolean}
@@ -97,9 +96,13 @@ edb.InputPlugin = (function using(chained, Input) {
 				return input.data.constructor;
 			});
 			var best = Input.$bestmatch(Type, Types, false);
-			var input = best ? this._matches.filter(function(inputMatch) {
-				return inputMatch.type === best;
-			}).shift() : null;
+			var input = best
+				? this._matches
+						.filter(function(inputMatch) {
+							return inputMatch.type === best;
+						})
+						.shift()
+				: null;
 			return input ? input.data : null;
 		},
 
@@ -117,9 +120,12 @@ edb.InputPlugin = (function using(chained, Input) {
 		 */
 		match: function(input) {
 			var needstesting = !this._matches.length;
-			if (needstesting || this._matches.every(function(match) {
-				return match.$instanceid !== input.$instanceid;
-			})) {
+			if (
+				needstesting ||
+				this._matches.every(function(match) {
+					return match.$instanceid !== input.$instanceid;
+				})
+			) {
 				return this._maybeinput(input);
 			}
 			return false;
@@ -157,7 +163,8 @@ edb.InputPlugin = (function using(chained, Input) {
 				} else {
 					return this.match(input);
 				}
-			} else { // debugging...
+			} else {
+				// debugging...
 				throw new TypeError('Bad input: ' + input + ' ' + (this.spirit || ''));
 			}
 		},
@@ -247,15 +254,19 @@ edb.InputPlugin = (function using(chained, Input) {
 		 * @param {Input} input
 		 */
 		_updatehandlers: function(input) {
-			gui.Class.ancestorsAndSelf(input.type, function(Type) {
-				var list = this._trackedtypes[Type.$classid];
-				if (list) {
-					list.forEach(function(checks) {
-						var handler = checks[0];
-						handler.oninput(input);
-					});
-				}
-			}, this);
+			gui.Class.ancestorsAndSelf(
+				input.type,
+				function(Type) {
+					var list = this._trackedtypes[Type.$classid];
+					if (list) {
+						list.forEach(function(checks) {
+							var handler = checks[0];
+							handler.oninput(input);
+						});
+					}
+				},
+				this
+			);
 		},
 
 		/**
@@ -267,7 +278,7 @@ edb.InputPlugin = (function using(chained, Input) {
 			var haves = this._matches;
 			return needs.every(function(Type) {
 				return haves.some(function(input) {
-					return (input.data instanceof Type);
+					return input.data instanceof Type;
 				});
 			});
 		},
@@ -283,6 +294,5 @@ edb.InputPlugin = (function using(chained, Input) {
 				Input.$disconnect(Type, this);
 			}
 		}
-
 	});
-}(gui.Combo.chained, edb.Input));
+})(gui.Combo.chained, edb.Input);

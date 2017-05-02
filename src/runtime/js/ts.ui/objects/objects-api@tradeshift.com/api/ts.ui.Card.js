@@ -3,7 +3,6 @@
  * moved from {ts.ui.CompanyCard} to here!!!
  */
 ts.ui.Card = {
-
 	/**
 	 * Default rendering (cardlike).
 	 * @type {string}
@@ -27,5 +26,4 @@ ts.ui.Card = {
 	 * @type {string}
 	 */
 	TYPE_INLINE: 'ts-inline'
-
 };

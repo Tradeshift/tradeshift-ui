@@ -14,12 +14,14 @@ gui.SuperPlugin = (function using(suber) {
 	return gui.Plugin.extend({
 		onconstruct: function() {
 			suber.onconstruct.call(this);
-			console.error([
-				"Note that 'this.super' doesn't really exist. You can either:",
-				"1) compile the script serverside using 'grunt-spiritual-build' or",
-				"2) use the pattern 'SuperClass.prototype.methodname.apply(this)'",
-				'(the Grunt task basically just applies this pattern to the code)'
-			].join('\n'));
+			console.error(
+				[
+					"Note that 'this.super' doesn't really exist. You can either:",
+					"1) compile the script serverside using 'grunt-spiritual-build' or",
+					"2) use the pattern 'SuperClass.prototype.methodname.apply(this)'",
+					'(the Grunt task basically just applies this pattern to the code)'
+				].join('\n')
+			);
 		}
 	});
-}(gui.Plugin.prototype));
+})(gui.Plugin.prototype);

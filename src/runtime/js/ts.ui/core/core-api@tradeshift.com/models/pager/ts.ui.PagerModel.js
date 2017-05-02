@@ -3,7 +3,6 @@
  */
 ts.ui.PagerModel = (function() {
 	return ts.ui.Model.extend({
-
 		/**
 		 * Friendly name.
 		 * @type {string}
@@ -84,7 +83,7 @@ ts.ui.PagerModel = (function() {
 		 * Goto next.
 		 */
 		next: function() {
-			this.page ++;
+			this.page++;
 			this._initup();
 		},
 
@@ -92,7 +91,7 @@ ts.ui.PagerModel = (function() {
 		 * Goto previous.
 		 */
 		prev: function() {
-			this.page --;
+			this.page--;
 			this._initdown();
 		},
 
@@ -130,16 +129,15 @@ ts.ui.PagerModel = (function() {
 			var page = this.page;
 			var pages = this.pages;
 			while (page >= this.init + max && this.init <= pages - max) {
-				this.init ++;
+				this.init++;
 			}
 		},
 
 		_initdown: function() {
 			var page = this.page;
 			while (page < this.init && this.init > 0) {
-				this.init --;
+				this.init--;
 			}
 		}
-
 	});
-}());
+})();

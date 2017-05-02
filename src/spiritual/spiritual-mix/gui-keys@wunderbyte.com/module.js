@@ -9,7 +9,6 @@ gui.$stop('- parse spiritual');
  * @TODO http://dev.opera.com/articles/view/functional-key-handling-in-opera-tv-store-applications/
  */
 gui.KeysModule = gui.module('gui-keys@wunderbyte.com', {
-
 	/*
 	 * Plugins (for all spirits).
 	 * @TODO: combo
@@ -22,7 +21,6 @@ gui.KeysModule = gui.module('gui-keys@wunderbyte.com', {
 	 * Mixins (for all spirits).
 	 */
 	mixin: {
-
 		/**
 		 * Handle key.
 		 * @param {gui.Key} key
@@ -87,8 +85,7 @@ gui.KeysModule = gui.module('gui-keys@wunderbyte.com', {
 	 * @param {Event} e
 	 */
 	_oldschool: function(e) {
-		var n = e.keyCode,
-			c = this._keymap[n];
+		var n = e.keyCode, c = this._keymap[n];
 		var id = e.currentTarget.defaultView.gui.$contextid;
 
 		/*
@@ -182,12 +179,12 @@ gui.KeysModule = gui.module('gui-keys@wunderbyte.com', {
 	_keychar: function(n, c, which) {
 		if (which === null || which === undefined) {
 			return String.fromCharCode(n); // IE (below 9 or what?)
-		} else if (which !== 0 && c) { // c != 0
+		} else if (which !== 0 && c) {
+			// c != 0
 			return String.fromCharCode(which); // the rest
 		}
 		return null;
 	}
-
 });
 
 /*

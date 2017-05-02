@@ -24,9 +24,7 @@ edb.ObjectSync.experimental = function(change) {
 	if (edb.Type.is(old)) {
 		change.$synchronizity = old.$synchronizity;
 		change.$synchglobally = old.$synchglobally;
-		change.newValue = JSON.parse(
-			neu.serializeToString()
-		);
+		change.newValue = JSON.parse(neu.serializeToString());
 	}
 	return change;
 };

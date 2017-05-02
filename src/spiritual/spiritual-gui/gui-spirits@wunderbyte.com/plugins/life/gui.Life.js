@@ -10,7 +10,6 @@ gui.Life = function Life(target, type) {
 };
 
 gui.Life.prototype = {
-
 	/**
 	 * @type {gui.Spirit}
 	 */

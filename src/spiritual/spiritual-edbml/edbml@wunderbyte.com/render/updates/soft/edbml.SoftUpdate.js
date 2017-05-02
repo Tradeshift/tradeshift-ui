@@ -3,7 +3,6 @@
  * @extends {edbml.Update}
  */
 edbml.SoftUpdate = edbml.Update.extend({
-
 	/**
 	 * XML element stuff (not used by edbml.RemoveUpdate).
 	 * @type {Element}

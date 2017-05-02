@@ -6,7 +6,6 @@
  */
 gui.KeyPlugin = (function using(confirmed, chained) {
 	return gui.TrackerPlugin.extend({
-
 		/**
 		 * Add one or more action handlers.
 		 * @param {Array<String,Number>|String|number} arg @TODO Strings!
@@ -78,9 +77,8 @@ gui.KeyPlugin = (function using(confirmed, chained) {
 		onbroadcast: function(b) {
 			var list, handler, isglobal;
 			if (b.type === gui.BROADCAST_KEYEVENT) {
-				var down = b.data.down,
-					type = b.data.type;
-				if ((list = (this._trackedtypes[type]))) {
+				var down = b.data.down, type = b.data.type;
+				if ((list = this._trackedtypes[type])) {
 					list.forEach(function(checks) {
 						handler = checks[0];
 						isglobal = checks[1];
@@ -115,14 +113,12 @@ gui.KeyPlugin = (function using(confirmed, chained) {
 		 * @TODO same as in gui.ActionPlugin, perhaps superize this stuff somehow...
 		 */
 		_cleanup: function(type, checks) {
-			var handler = checks[0],
-				global = checks[1];
+			var handler = checks[0], global = checks[1];
 			if (global) {
 				this.removeGlobal(type, handler);
 			} else {
 				this.remove(type, handler);
 			}
 		}
-
 	});
-}(gui.Arguments.confirmed, gui.Combo.chained));
+})(gui.Arguments.confirmed, gui.Combo.chained);

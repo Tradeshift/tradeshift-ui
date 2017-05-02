@@ -9,7 +9,6 @@ gui.Att = function Att(name, value) {
 };
 
 gui.Att.prototype = {
-
 	/**
 	 * Attribute name.
 	 * @type {String}

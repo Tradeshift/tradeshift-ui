@@ -3,7 +3,6 @@
  * @extends {ts.ui.Model}
  */
 ts.ui.SelectModel = ts.ui.Model.extend({
-
 	/**
 	 * Friendly name.
 	 * @type {string}
@@ -23,10 +22,10 @@ ts.ui.SelectModel = ts.ui.Model.extend({
 	 */
 	select: function(what) {
 		switch (gui.Type.of(what)) {
-			case 'number' :
+			case 'number':
 				this.options.selectedIndex = what;
 				break;
-			default :
+			default:
 				console.error('TODO: select option by value');
 				break;
 		}
@@ -54,5 +53,4 @@ ts.ui.SelectModel = ts.ui.Model.extend({
 			value: null
 		})
 	})
-
 });

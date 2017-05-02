@@ -38,7 +38,6 @@ ts.ui.TableEditPlugin = (function(CSSPlugin, DOMPlugin, Position, Client, Key) {
 	}
 
 	return ts.ui.Plugin.extend({
-
 		/**
 		 * Prepare (and unprepare) for editing going on
 		 * @param {boolean} on
@@ -170,7 +169,8 @@ ts.ui.TableEditPlugin = (function(CSSPlugin, DOMPlugin, Position, Client, Key) {
 		onlife: function(life) {
 			if (life.type === gui.LIFE_RENDER) {
 				this._syncinvalid();
-				if (this._cell) { // catch scenario: ENTER on edited cell
+				if (this._cell) {
+					// catch scenario: ENTER on edited cell
 					this._resolveinvalid(this._cell);
 				}
 			}
@@ -349,7 +349,8 @@ ts.ui.TableEditPlugin = (function(CSSPlugin, DOMPlugin, Position, Client, Key) {
 		_goeditmode: function(spirit) {
 			var cell = this._cell;
 			var area = query(cell, CLASS_TEXTAREA);
-			if (area) { // otherwise not editable
+			if (area) {
+				// otherwise not editable
 				this._resetall(spirit);
 				area.focus();
 			}
@@ -365,7 +366,7 @@ ts.ui.TableEditPlugin = (function(CSSPlugin, DOMPlugin, Position, Client, Key) {
 		_evalchange: function(area, newval, oldval) {
 			var spirit = this.spirit;
 			var onedit = spirit.onedit;
-			if (onedit && (newval !== oldval)) {
+			if (onedit && newval !== oldval) {
 				var pos = spirit.queryplugin.getpos(area);
 				onedit.call(spirit, pos.y, pos.x, newval, oldval);
 			}
@@ -379,9 +380,7 @@ ts.ui.TableEditPlugin = (function(CSSPlugin, DOMPlugin, Position, Client, Key) {
 		 */
 		_scrollsuppress: function(enabled) {
 			var events = 'keypress keydown'; // browser specific :/
-			this.spirit.event.shift(
-				(this._noscroll = enabled), events, document, this
-			);
+			this.spirit.event.shift((this._noscroll = enabled), events, document, this);
 		},
 
 		/**
@@ -396,7 +395,7 @@ ts.ui.TableEditPlugin = (function(CSSPlugin, DOMPlugin, Position, Client, Key) {
 		 */
 		_sync: function(sync, area, cont, height) {
 			height = (height || area.offsetHeight) - 1;
-			height = (Math.round(height / 22) * 22) - 1;
+			height = Math.round(height / 22) * 22 - 1;
 			if (sync) {
 				cont.style.minHeight = height + 'px';
 				this._shrink(area, height);
@@ -513,6 +512,5 @@ ts.ui.TableEditPlugin = (function(CSSPlugin, DOMPlugin, Position, Client, Key) {
 				console.error('Out of synch');
 			}
 		}
-
 	});
-}(gui.CSSPlugin, gui.DOMPlugin, gui.Position, gui.Client, gui.Key));
+})(gui.CSSPlugin, gui.DOMPlugin, gui.Position, gui.Client, gui.Key);

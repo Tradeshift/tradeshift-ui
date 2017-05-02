@@ -6,7 +6,6 @@ ts.ui.TopBarModel = (function using(chained) {
 	var UPDATE_DEFAULT_TITLE = ts.ui.BROADCAST_GLOBAL_TOPBAR_UPDATE_DEFAULT_TITLE;
 
 	return ts.ui.ToolBarModel.extend({
-
 		/**
 		 * Monitored by the {ts.ui.TopBar}. Remember, we're setting a property
 		 * instead of calling a method so that this can be syncrhonized xframe
@@ -46,9 +45,7 @@ ts.ui.TopBarModel = (function using(chained) {
 		onconstruct: function() {
 			this.navigation = this.navigaton || [];
 			this.super.onconstruct();
-			gui.Broadcast.addGlobal([
-				UPDATE_DEFAULT_TITLE
-			], this);
+			gui.Broadcast.addGlobal([UPDATE_DEFAULT_TITLE], this);
 			this.menubutton = {
 				id: 'ts-button-menuswitch',
 				icon: 'ts-icon-menuswitch',
@@ -80,9 +77,11 @@ ts.ui.TopBarModel = (function using(chained) {
 		 */
 		onchange: function(changes) {
 			this.super.onchange(changes);
-			if (changes.some(function(c) {
-				return c.name === 'defaultTitle';
-			})) {
+			if (
+				changes.some(function(c) {
+					return c.name === 'defaultTitle';
+				})
+			) {
 				this._updatehascontent();
 			}
 		},
@@ -119,11 +118,10 @@ ts.ui.TopBarModel = (function using(chained) {
 		 * @returns {boolean} True when there's content
 		 */
 		_updatehascontent: function() {
-			if (!(this.super._updatehascontent())) {
-				this.hascontent = !!(this.navigation.length);
+			if (!this.super._updatehascontent()) {
+				this.hascontent = !!this.navigation.length;
 			}
 			return this.hascontent;
 		}
-
 	});
-}(gui.Combo.chained));
+})(gui.Combo.chained);

@@ -12,7 +12,6 @@ ts.ui.TopBarSpirit = (function(TopBar, Client, chained, confirmed) {
 	var CLASS_HIDDEN = ts.ui.CLASS_HIDDEN;
 
 	return ts.ui.ToolBarSpirit.extend({
-
 		/**
 		 * Always be using this particular model. The model
 		 * may have been configured before this spirit exists.
@@ -247,13 +246,8 @@ ts.ui.TopBarSpirit = (function(TopBar, Client, chained, confirmed) {
 			if (breakpoint === 'mobile') {
 				return true;
 			} else {
-				return tbar.visible && (
-					this.life.hascontent ||
-					tbar.hascontent ||
-					tbar.hadcontent
-				);
+				return tbar.visible && (this.life.hascontent || tbar.hascontent || tbar.hadcontent);
 			}
 		}
-
 	});
-}(ts.ui.TopBar, gui.Client, gui.Combo.chained, gui.Arguments.confirmed));
+})(ts.ui.TopBar, gui.Client, gui.Combo.chained, gui.Arguments.confirmed);

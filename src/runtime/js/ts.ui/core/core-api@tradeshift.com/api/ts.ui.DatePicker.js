@@ -45,19 +45,22 @@ ts.ui.DatePicker.localize = function(config) {};
 	function toggle(model, open) {
 		var aside, id = model.$instanceid;
 		if (open) {
-			asides[id] = (asides[id] || ts.ui.Aside({
-				title: model.title,
-				items: [model],
-				onclosed: function() {
-					if (gui.Type.isFunction(model.onclosed)) {
-						model.onclosed();
+			asides[id] = (asides[id] ||
+				ts.ui.Aside({
+					title: model.title,
+					items: [model],
+					onclosed: function() {
+						if (gui.Type.isFunction(model.onclosed)) {
+							model.onclosed();
+						}
+						model.isOpen = false;
 					}
-					model.isOpen = false;
-				}
-			})).open();
+				}))
+				.open();
 		} else {
 			if ((aside = asides[id])) {
-				gui.Tick.time(function() { // allow user to percieve the update...
+				gui.Tick.time(function() {
+					// allow user to percieve the update...
 					aside.close();
 				}, 100);
 			}
@@ -66,7 +69,6 @@ ts.ui.DatePicker.localize = function(config) {};
 	}
 
 	gui.Object.extend(ts.ui.DatePicker, {
-
 		/**
 		 * Localize. Note that this stuff has NOT been
 		 * rigged up for xframe (Greenfield) support.
@@ -74,13 +76,16 @@ ts.ui.DatePicker.localize = function(config) {};
 		 */
 		localize: function(newlocale) {
 			if (arguments.length) {
-				if (!locale || Object.keys(locale).every(function(key) {
-					var has = newlocale.hasOwnProperty(key);
-					if (!has) {
-						console.error('Missing translations for ' + key);
-					}
-					return has;
-				})) {
+				if (
+					!locale ||
+					Object.keys(locale).every(function(key) {
+						var has = newlocale.hasOwnProperty(key);
+						if (!has) {
+							console.error('Missing translations for ' + key);
+						}
+						return has;
+					})
+				) {
 					locale = newlocale;
 				}
 			} else {
@@ -96,10 +101,10 @@ ts.ui.DatePicker.localize = function(config) {};
 			changes.forEach(function(c) {
 				var model = c.object;
 				switch (c.name) {
-					case 'isOpen' :
+					case 'isOpen':
 						toggle(model, c.newValue);
 						break;
-					case 'disposed' : // TODO (jmo@): automate this
+					case 'disposed': // TODO (jmo@): automate this
 						model.removeObserver(ts.ui.DatePicker);
 						var aside = asides[model.$instanceid];
 						if (aside) {
@@ -110,9 +115,8 @@ ts.ui.DatePicker.localize = function(config) {};
 				}
 			});
 		})
-
 	});
-}(ts.ui.Greenfield.api, gui.Object.hidden));
+})(ts.ui.Greenfield.api, gui.Object.hidden);
 
 /**
  * Default-localize the DatePicker. We don't yet use
@@ -120,7 +124,6 @@ ts.ui.DatePicker.localize = function(config) {};
  * tooltips and quick-select-menus (in the future).
  */
 ts.ui.DatePicker.localize({
-
 	/**
 	 * The first is always the worst.
 	 * @type {number}
@@ -169,42 +172,17 @@ ts.ui.DatePicker.localize({
 	 * Day names.
 	 * @type {Array<string>}
 	 */
-	dayNames: [
-		'Sunday',
-		'Monday',
-		'Tuesday',
-		'Wednesday',
-		'Thursday',
-		'Friday',
-		'Saturday'
-	],
+	dayNames: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
 
 	/**
 	 * Short day names.
 	 * @type {Array<string>}
 	 */
-	dayNamesShort: [
-		'Sun',
-		'Mon',
-		'Tue',
-		'Wed',
-		'Thu',
-		'Fri',
-		'Sat'
-	],
+	dayNamesShort: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
 
 	/**
 	 * Compact day names.
 	 * @type {Array<string>}
 	 */
-	dayNamesMin: [
-		'Su',
-		'Mo',
-		'Tu',
-		'We',
-		'Th',
-		'Fr',
-		'Sa'
-	]
-
+	dayNamesMin: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa']
 });

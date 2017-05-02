@@ -3,7 +3,6 @@
  * @extends {ts.ui.InputSpirit}
  */
 ts.ui.TextInputSpirit = ts.ui.InputSpirit.extend({
-
 	/**
 	 * Attach to the DOM.
 	 */
@@ -23,5 +22,4 @@ ts.ui.TextInputSpirit = ts.ui.InputSpirit.extend({
 			label.$textlabel();
 		});
 	}
-
 });

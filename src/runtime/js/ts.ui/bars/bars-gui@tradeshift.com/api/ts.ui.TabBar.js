@@ -4,7 +4,7 @@
  * @using {Array<string>} methods (no special methods here just yet!)
  */
 ts.ui.TabBar = (function using(methods) {
-	var statics = {$bars: []};
+	var statics = { $bars: [] };
 	var xstatics = ts.ui.Bar.$staticmethods(methods);
 	var protos = gui.Object.extend(ts.ui.Bar.$protomethods(methods), {
 		$getbar: function() {
@@ -12,4 +12,4 @@ ts.ui.TabBar = (function using(methods) {
 		}
 	});
 	return ts.ui.ToolBar.extend(protos, xstatics, statics);
-}([]));
+})([]);

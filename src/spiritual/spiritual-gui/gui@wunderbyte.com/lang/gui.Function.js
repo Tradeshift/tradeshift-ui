@@ -2,7 +2,6 @@
  * Working with functions.
  */
 gui.Function = {
-
 	/**
 	 * Create named function. This may not be the most optimized thing to compile.
 	 * @see https://mail.mozilla.org/pipermail/es-discuss/2009-March/008954.html
@@ -18,9 +17,7 @@ gui.Function = {
 		name = this.safename(name);
 		params = params ? params.join(',') : '';
 		body = body || '';
-		return new F(
-			'return function ' + name + ' ( ' + params + ' ) {' + body + '}'
-		)();
+		return new F('return function ' + name + ' ( ' + params + ' ) {' + body + '}')();
 	},
 
 	/**
@@ -30,11 +27,13 @@ gui.Function = {
 	 * @param {function} decorator
 	 * @returns {object}
 	 */
-	decorateBefore: gui.Arguments.confirmed('object|function', 'string', 'function')(
-		function(target, name, decorator) {
-			return this._decorate('before', target, name, decorator);
-		}
-	),
+	decorateBefore: gui.Arguments.confirmed('object|function', 'string', 'function')(function(
+		target,
+		name,
+		decorator
+	) {
+		return this._decorate('before', target, name, decorator);
+	}),
 
 	/**
 	 * Decorate object method after.
@@ -43,11 +42,13 @@ gui.Function = {
 	 * @param {function} decorator
 	 * @returns {object}
 	 */
-	decorateAfter: gui.Arguments.confirmed('object|function', 'string', 'function')(
-		function(target, name, decorator) {
-			return this._decorate('after', target, name, decorator);
-		}
-	),
+	decorateAfter: gui.Arguments.confirmed('object|function', 'string', 'function')(function(
+		target,
+		name,
+		decorator
+	) {
+		return this._decorate('after', target, name, decorator);
+	}),
 
 	/**
 	 * TODO: Decorate object method around.
@@ -87,5 +88,4 @@ gui.Function = {
 		target[name] = gui.Combo[position](decorator)(target[name]);
 		return target;
 	}
-
 };

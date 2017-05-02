@@ -2,7 +2,6 @@
  * Interface AttHandler.
  */
 gui.IAttHandler = {
-
 	/**
 	 * Identification.
 	 * @returns {String}

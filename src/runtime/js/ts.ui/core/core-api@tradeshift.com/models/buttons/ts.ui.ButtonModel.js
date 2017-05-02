@@ -7,7 +7,6 @@
  */
 ts.ui.ButtonModel = (function using(chained, confirmed, Type) {
 	return ts.ui.Model.extend({
-
 		/**
 		 * Friendly name.
 		 * @type {string}
@@ -119,9 +118,12 @@ ts.ui.ButtonModel = (function using(chained, confirmed, Type) {
 		 */
 		click: chained(function() {
 			if (Type.isFunction(this.onclick)) {
-				setTimeout(function unfreeze() {
-					this.onclick();
-				}.bind(this), 50);
+				setTimeout(
+					function unfreeze() {
+						this.onclick();
+					}.bind(this),
+					50
+				);
 			}
 		}),
 
@@ -162,9 +164,11 @@ ts.ui.ButtonModel = (function using(chained, confirmed, Type) {
 		 * @param @optional {string} label
 		 * @returns {ts.ui.ButtonModel}
 		 */
-		busy: confirmed('(string)')(chained(function(label) {
-			this.busystatus = label || true;
-		})),
+		busy: confirmed('(string)')(
+			chained(function(label) {
+				this.busystatus = label || true;
+			})
+		),
 
 		/**
 		 * Mark as done.
@@ -189,6 +193,5 @@ ts.ui.ButtonModel = (function using(chained, confirmed, Type) {
 		 *
 		 */
 		_oldlabel: null
-
 	});
-}(gui.Combo.chained, gui.Arguments.confirmed, gui.Type));
+})(gui.Combo.chained, gui.Arguments.confirmed, gui.Type);

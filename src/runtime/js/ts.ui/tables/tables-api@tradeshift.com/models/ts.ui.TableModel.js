@@ -21,7 +21,7 @@ ts.ui.TableModel = (function using(RowCollection, Type, Model) {
 	 * @returns {boolean}
 	 */
 	function validcell(thing) {
-		var is = (thing !== undefined && thing !== null);
+		var is = thing !== undefined && thing !== null;
 		if (!is) {
 			console.error('Cell content cannot be of type ' + Type.of(thing));
 		}
@@ -112,18 +112,21 @@ ts.ui.TableModel = (function using(RowCollection, Type, Model) {
 	 * @return {Constructor}
 	 */
 	function getmodel(item) {
-		return {
-			// 'select': ts.ui.SelectModel, // TODO: support
-			// 'date': ts.ui.DatePickerModel, // TODO: support
-			image: ts.ui.ImageModel,
-			button: ts.ui.ButtonModel,
-			'switch': ts.ui.SwitchModel,
-			userimage: ts.ui.UserImageModel,
-			icon: ts.ui.IconModel
-		}[item.toLowerCase()] || (function nomatch() {
-			console.error('"' + item + '" not matched to nothing');
-			return null;
-		}());
+		return (
+			{
+				// 'select': ts.ui.SelectModel, // TODO: support
+				// 'date': ts.ui.DatePickerModel, // TODO: support
+				image: ts.ui.ImageModel,
+				button: ts.ui.ButtonModel,
+				switch: ts.ui.SwitchModel,
+				userimage: ts.ui.UserImageModel,
+				icon: ts.ui.IconModel
+			}[item.toLowerCase()] ||
+			(function nomatch() {
+				console.error('"' + item + '" not matched to nothing');
+				return null;
+			})()
+		);
 	}
 
 	/**
@@ -167,7 +170,6 @@ ts.ui.TableModel = (function using(RowCollection, Type, Model) {
 	}
 
 	return ts.ui.Model.extend({
-
 		/**
 		 * Friendly name.
 		 * @type {string}
@@ -290,13 +292,16 @@ ts.ui.TableModel = (function using(RowCollection, Type, Model) {
 			var fix = this.maxrows > 0;
 			var min = this.maxrows * this.page;
 			var max = min + this.maxrows;
-			return vis.filter(function(row, i) {
-				return fix ? (i >= min && i < max) : true;
-			}).map(function(row) {
-				return rowify(row, all.indexOf(row));
-			}).map(function(row) {
-				return modelify(this, row);
-			}, this);
+			return vis
+				.filter(function(row, i) {
+					return fix ? i >= min && i < max : true;
+				})
+				.map(function(row) {
+					return rowify(row, all.indexOf(row));
+				})
+				.map(function(row) {
+					return modelify(this, row);
+				}, this);
 		},
 
 		/**
@@ -335,9 +340,11 @@ ts.ui.TableModel = (function using(RowCollection, Type, Model) {
 		 * @returns {boolean}
 		 */
 		isVisibleRowSelected: function() {
-			return this.visibleRows().filter(function(row) {
-				return row.selectable !== false;
-			}).some(selected);
+			return this.visibleRows()
+				.filter(function(row) {
+					return row.selectable !== false;
+				})
+				.some(selected);
 		},
 
 		/**
@@ -555,7 +562,7 @@ ts.ui.TableModel = (function using(RowCollection, Type, Model) {
 			var cell = row.cells[cellindex];
 			var now = !!cell.valid;
 			if (valid !== now) {
-				cell.message = valid ? null : (message || null);
+				cell.message = valid ? null : message || null;
 				cell.valid = valid;
 				this.$dirty();
 			}
@@ -573,9 +580,7 @@ ts.ui.TableModel = (function using(RowCollection, Type, Model) {
 					this.position = arg;
 					break;
 				case 'string':
-					this._moverelative(
-						arg.toLowerCase()
-					);
+					this._moverelative(arg.toLowerCase());
 					break;
 				case 'null':
 					this.position = null;
@@ -630,9 +635,11 @@ ts.ui.TableModel = (function using(RowCollection, Type, Model) {
 		_sort: function(rows, col) {
 			if (col) {
 				var i = col.$index;
-				var n = !rows.map(function columnvalue(r) {
-					return getsortvalue(r, i);
-				}).some(isNaN);
+				var n = !rows
+					.map(function columnvalue(r) {
+						return getsortvalue(r, i);
+					})
+					.some(isNaN);
 				rows.sort(function(r1, r2) {
 					var c1 = getsortvalue(r1, i);
 					var c2 = getsortvalue(r2, i);
@@ -690,6 +697,5 @@ ts.ui.TableModel = (function using(RowCollection, Type, Model) {
 			var text = String(is ? cell : cell.value).toLowerCase();
 			return text.includes(value);
 		}
-
 	});
-}(ts.ui.TableRowCollection, gui.Type, ts.ui.Model));
+})(ts.ui.TableRowCollection, gui.Type, ts.ui.Model);

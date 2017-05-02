@@ -1,6 +1,5 @@
-;(function() {
+(function() {
 	'use strict';
-
 	/**
 	 * @preserve FastClick: polyfill to remove click delays on browsers with touch UIs.
 	 *
@@ -100,10 +99,19 @@
 
 		// Some old versions of Android don't have Function.prototype.bind
 		function bind(method, context) {
-			return function() { return method.apply(context, arguments); };
+			return function() {
+				return method.apply(context, arguments);
+			};
 		}
 
-		var methods = ['onMouse', 'onClick', 'onTouchStart', 'onTouchMove', 'onTouchEnd', 'onTouchCancel'];
+		var methods = [
+			'onMouse',
+			'onClick',
+			'onTouchStart',
+			'onTouchMove',
+			'onTouchEnd',
+			'onTouchCancel'
+		];
 		var context = this;
 		for (var i = 0, l = methods.length; i < l; i++) {
 			context[methods[i]] = bind(context[methods[i]], context);
@@ -138,11 +146,17 @@
 			layer.addEventListener = function(type, callback, capture) {
 				var adv = Node.prototype.addEventListener;
 				if (type === 'click') {
-					adv.call(layer, type, callback.hijacked || (callback.hijacked = function(event) {
-						if (!event.propagationStopped) {
-							callback(event);
-						}
-					}), capture);
+					adv.call(
+						layer,
+						type,
+						callback.hijacked ||
+							(callback.hijacked = function(event) {
+								if (!event.propagationStopped) {
+									callback(event);
+								}
+							}),
+						capture
+					);
 				} else {
 					adv.call(layer, type, callback, capture);
 				}
@@ -156,18 +170,22 @@
 			// Android browser on at least 3.2 requires a new reference to the function in layer.onclick
 			// - the old one won't work if passed to addEventListener directly.
 			oldOnClick = layer.onclick;
-			layer.addEventListener('click', function(event) {
-				oldOnClick(event);
-			}, false);
+			layer.addEventListener(
+				'click',
+				function(event) {
+					oldOnClick(event);
+				},
+				false
+			);
 			layer.onclick = null;
 		}
 	}
 
 	/**
-	* Windows Phone 8.1 fakes user agent string to look like Android and iPhone.
-	*
-	* @type boolean
-	*/
+	 * Windows Phone 8.1 fakes user agent string to look like Android and iPhone.
+	 *
+	 * @type boolean
+	 */
 	var deviceIsWindowsPhone = navigator.userAgent.indexOf('Windows Phone') >= 0;
 
 	/**
@@ -189,14 +207,14 @@
 	 *
 	 * @type boolean
 	 */
-	var deviceIsIOS4 = deviceIsIOS && (/OS 4_\d(_\d)?/).test(navigator.userAgent);
+	var deviceIsIOS4 = deviceIsIOS && /OS 4_\d(_\d)?/.test(navigator.userAgent);
 
 	/**
 	 * iOS 6.0-7.* requires the target element to be manually derived
 	 *
 	 * @type boolean
 	 */
-	var deviceIsIOSWithBadTarget = deviceIsIOS && (/OS [6-7]_\d/).test(navigator.userAgent);
+	var deviceIsIOSWithBadTarget = deviceIsIOS && /OS [6-7]_\d/.test(navigator.userAgent);
 
 	/**
 	 * BlackBerry requires exceptions.
@@ -213,8 +231,7 @@
 	 */
 	FastClick.prototype.needsClick = function(target) {
 		switch (target.nodeName.toLowerCase()) {
-
-		// Don't send a synthetic click to disabled inputs (issue #62)
+			// Don't send a synthetic click to disabled inputs (issue #62)
 			case 'button':
 			case 'select':
 			case 'textarea':
@@ -224,8 +241,7 @@
 
 				break;
 			case 'input':
-
-			// File inputs need real clicks on iOS 6 due to a browser bug (issue #68)
+				// File inputs need real clicks on iOS 6 due to a browser bug (issue #68)
 				if ((deviceIsIOS && target.type === 'file') || target.disabled) {
 					return true;
 				}
@@ -237,7 +253,7 @@
 				return true;
 		}
 
-		return (/\bneedsclick\b/).test(target.className);
+		return /\bneedsclick\b/.test(target.className);
 	};
 
 	/**
@@ -263,10 +279,10 @@
 						return false;
 				}
 
-			// No point in attempting to focus disabled inputs
+				// No point in attempting to focus disabled inputs
 				return !target.disabled && !target.readOnly;
 			default:
-				return (/\bneedsfocus\b/).test(target.className);
+				return /\bneedsfocus\b/.test(target.className);
 		}
 	};
 
@@ -288,7 +304,23 @@
 
 		// Synthesise a click event, with an extra attribute so it can be tracked
 		clickEvent = document.createEvent('MouseEvents');
-		clickEvent.initMouseEvent(this.determineEventType(targetElement), true, true, window, 1, touch.screenX, touch.screenY, touch.clientX, touch.clientY, false, false, false, false, 0, null);
+		clickEvent.initMouseEvent(
+			this.determineEventType(targetElement),
+			true,
+			true,
+			window,
+			1,
+			touch.screenX,
+			touch.screenY,
+			touch.clientX,
+			touch.clientY,
+			false,
+			false,
+			false,
+			false,
+			0,
+			null
+		);
 		clickEvent.forwardedTouchEvent = true;
 		targetElement.dispatchEvent(clickEvent);
 	};
@@ -309,7 +341,13 @@
 		var length;
 
 		// Issue #160: on iOS 7, some input elements (e.g. date datetime month) throw a vague TypeError on setSelectionRange. These elements don't have an integer value for the selectionStart and selectionEnd properties, but unfortunately that can't be used for detection because accessing the properties also throws a TypeError. Just check the type instead. Filed as Apple bug #15122724.
-		if (deviceIsIOS && targetElement.setSelectionRange && targetElement.type.indexOf('date') !== 0 && targetElement.type !== 'time' && targetElement.type !== 'month') {
+		if (
+			deviceIsIOS &&
+			targetElement.setSelectionRange &&
+			targetElement.type.indexOf('date') !== 0 &&
+			targetElement.type !== 'time' &&
+			targetElement.type !== 'month'
+		) {
 			length = targetElement.value.length;
 			targetElement.setSelectionRange(length, length);
 		} else {
@@ -419,7 +457,7 @@
 		this.touchStartY = touch.pageY;
 
 		// Prevent phantom clicks on fast double-tap (issue #36)
-		if ((event.timeStamp - this.lastClickTime) < this.tapDelay) {
+		if (event.timeStamp - this.lastClickTime < this.tapDelay) {
 			event.preventDefault();
 		}
 
@@ -435,7 +473,10 @@
 	FastClick.prototype.touchHasMoved = function(event) {
 		var touch = event.changedTouches[0], boundary = this.touchBoundary;
 
-		if (Math.abs(touch.pageX - this.touchStartX) > boundary || Math.abs(touch.pageY - this.touchStartY) > boundary) {
+		if (
+			Math.abs(touch.pageX - this.touchStartX) > boundary ||
+			Math.abs(touch.pageY - this.touchStartY) > boundary
+		) {
 			return true;
 		}
 
@@ -454,7 +495,10 @@
 		}
 
 		// If the touch has moved, cancel the click tracking
-		if (this.targetElement !== this.getTargetElementFromEventTarget(event.target) || this.touchHasMoved(event)) {
+		if (
+			this.targetElement !== this.getTargetElementFromEventTarget(event.target) ||
+			this.touchHasMoved(event)
+		) {
 			this.trackingClick = false;
 			this.targetElement = null;
 		}
@@ -481,7 +525,9 @@
 
 		// If no for attribute exists, attempt to retrieve the first labellable descendant element
 		// the list of which is defined here: http://www.w3.org/TR/html5/forms.html#category-label
-		return labelElement.querySelector('button, input:not([type=hidden]), keygen, meter, output, progress, select, textarea');
+		return labelElement.querySelector(
+			'button, input:not([type=hidden]), keygen, meter, output, progress, select, textarea'
+		);
 	};
 
 	/**
@@ -491,19 +537,24 @@
 	 * @returns {boolean}
 	 */
 	FastClick.prototype.onTouchEnd = function(event) {
-		var forElement, trackingClickStart, targetTagName, scrollParent, touch, targetElement = this.targetElement;
+		var forElement,
+			trackingClickStart,
+			targetTagName,
+			scrollParent,
+			touch,
+			targetElement = this.targetElement;
 
 		if (!this.trackingClick) {
 			return true;
 		}
 
 		// Prevent phantom clicks on fast double-tap (issue #36)
-		if ((event.timeStamp - this.lastClickTime) < this.tapDelay) {
+		if (event.timeStamp - this.lastClickTime < this.tapDelay) {
 			this.cancelNextClick = true;
 			return true;
 		}
 
-		if ((event.timeStamp - this.trackingClickStart) > this.tapTimeout) {
+		if (event.timeStamp - this.trackingClickStart > this.tapTimeout) {
 			return true;
 		}
 
@@ -524,7 +575,11 @@
 			touch = event.changedTouches[0];
 
 			// In certain cases arguments of elementFromPoint can be negative, so prevent setting targetElement to null
-			targetElement = document.elementFromPoint(touch.pageX - window.pageXOffset, touch.pageY - window.pageYOffset) || targetElement;
+			targetElement =
+				document.elementFromPoint(
+					touch.pageX - window.pageXOffset,
+					touch.pageY - window.pageYOffset
+				) || targetElement;
 			targetElement.fastClickScrollParent = this.targetElement.fastClickScrollParent;
 		}
 
@@ -542,7 +597,10 @@
 		} else if (this.needsFocus(targetElement)) {
 			// Case 1: If the touch started a while ago (best guess is 100ms based on tests for issue #36) then focus will be triggered anyway. Return early and unset the target element reference so that the subsequent click will be allowed through.
 			// Case 2: Without this exception for input elements tapped when the document is contained in an iframe, then any inputted text won't be visible even though the value attribute is updated as the user types (issue #37).
-			if ((event.timeStamp - trackingClickStart) > 100 || (deviceIsIOS && window.top !== window && targetTagName === 'input')) {
+			if (
+				event.timeStamp - trackingClickStart > 100 ||
+				(deviceIsIOS && window.top !== window && targetTagName === 'input')
+			) {
 				this.targetElement = null;
 				return false;
 			}
@@ -722,7 +780,7 @@
 					}
 				}
 
-			// Chrome desktop doesn't need FastClick (issue #15)
+				// Chrome desktop doesn't need FastClick (issue #15)
 			} else {
 				return true;
 			}
@@ -761,7 +819,11 @@
 			// Firefox 27+ does not have tap delay if the content is not zoomable - https://bugzilla.mozilla.org/show_bug.cgi?id=922896
 
 			metaViewport = document.querySelector('meta[name=viewport]');
-			if (metaViewport && (metaViewport.content.indexOf('user-scalable=no') !== -1 || document.documentElement.scrollWidth <= window.outerWidth)) {
+			if (
+				metaViewport &&
+				(metaViewport.content.indexOf('user-scalable=no') !== -1 ||
+					document.documentElement.scrollWidth <= window.outerWidth)
+			) {
 				return true;
 			}
 		}
@@ -796,4 +858,4 @@
 	} else {
 		window.FastClick = FastClick;
 	}
-}());
+})();

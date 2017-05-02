@@ -2,12 +2,10 @@
  * Register module.
  */
 gui.module('edbml@wunderbyte.com', {
-
 	/*
 	 * Mixin properties and method.
 	 */
 	mixin: {
-
 		/**
 		 * TODO: support accessor and implement as property
 		 * @param {String|function} script
@@ -67,9 +65,7 @@ gui.module('edbml@wunderbyte.com', {
 	/*
 	 * Channeling spirits to CSS selectors.
 	 */
-	channel: [
-		['.gui-script', 'edbml.ScriptSpirit']
-	],
+	channel: [['.gui-script', 'edbml.ScriptSpirit']],
 
 	/**
 	 * Setup environment.
@@ -100,5 +96,4 @@ gui.module('edbml@wunderbyte.com', {
 			} catch (ieexception) {}
 		}
 	}
-
 });

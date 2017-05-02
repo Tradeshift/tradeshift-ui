@@ -6,7 +6,6 @@
  */
 ts.ui.MenuModel = (function using(Type, chained) {
 	return ts.ui.Model.extend({
-
 		/**
 		 * Friendly name.
 		 * @type {string}
@@ -172,10 +171,12 @@ ts.ui.MenuModel = (function using(Type, chained) {
 		},
 
 		open: function() {
-			ts.ui.Aside({
-				title: 'Test',
-				items: [this]
-			}).open();
+			ts.ui
+				.Aside({
+					title: 'Test',
+					items: [this]
+				})
+				.open();
 		},
 
 		/**
@@ -230,6 +231,5 @@ ts.ui.MenuModel = (function using(Type, chained) {
 		_forcerefresh: function() {
 			this.random = Math.random();
 		}
-
 	});
-}(gui.Type, gui.Combo.chained));
+})(gui.Type, gui.Combo.chained);

@@ -18,9 +18,11 @@ gui.DOMCombos = (function using(before, after, around, provided, Type, guiArray,
 	 */
 	var ifEmbedded = provided(function(newnode, oldnode) {
 		if (Type.isDocumentFragment(this)) {
-			return DOMPlugin.embedded(this) ||
+			return (
+				DOMPlugin.embedded(this) ||
 				(newnode && DOMPlugin.embedded(newnode)) ||
-				(oldnode && DOMPlugin.embedded(oldnode));
+				(oldnode && DOMPlugin.embedded(oldnode))
+			);
 		} else {
 			return DOMPlugin.embedded(this);
 		}
@@ -116,7 +118,8 @@ gui.DOMCombos = (function using(before, after, around, provided, Type, guiArray,
 	 * so other workarounds are needed (Mutation Events in {gui.AttPlugin}).
 	 * @param {string} name
 	 */
-	var setClassBefore = before(function(name) { // eslint-disable-line no-unused-vars
+	var setClassBefore = before(function(name) {
+		// eslint-disable-line no-unused-vars
 		gui.get(this).att.set('class', name);
 	});
 
@@ -189,7 +192,7 @@ gui.DOMCombos = (function using(before, after, around, provided, Type, guiArray,
 	 * @returns {boolean}
 	 */
 	var ifEnabled = provided(function() {
-		return !!(this.ownerDocument.defaultView);
+		return !!this.ownerDocument.defaultView;
 	});
 
 	/**
@@ -207,98 +210,77 @@ gui.DOMCombos = (function using(before, after, around, provided, Type, guiArray,
 		return action;
 	};
 
-	return { // Public ...........................................................
+	return {
+		// Public ...........................................................
 
 		appendChild: function(base) {
-			return (
-				ifEnabled(
-					ifEmbedded(detachBefore(spiritualizeAfter(suspending(base))),
-					otherwise(base)),
-				otherwise(base))
-			);
-		},
-		insertBefore: function(base) {
-			return (
-				ifEnabled(
-					ifEmbedded(detachBefore(spiritualizeAfter(suspending(base))),
-					otherwise(base)),
-				otherwise(base))
-			);
-		},
-		replaceChild: function(base) { // TODO: detach instead
-			return (
-				ifEnabled(
-					ifEmbedded(detachOldBefore(spiritualizeAfter(suspending(base))),
-					otherwise(base)),
-				otherwise(base))
-			);
-		},
-		insertAdjacentHTML: function(base) {
-			return (
-				ifEnabled(
-					ifEmbedded(spiritualizeAdjacentAfter(suspending(base))),
-					otherwise(base)),
+			return ifEnabled(
+				ifEmbedded(detachBefore(spiritualizeAfter(suspending(base))), otherwise(base)),
 				otherwise(base)
 			);
 		},
+		insertBefore: function(base) {
+			return ifEnabled(
+				ifEmbedded(detachBefore(spiritualizeAfter(suspending(base))), otherwise(base)),
+				otherwise(base)
+			);
+		},
+		replaceChild: function(base) {
+			// TODO: detach instead
+			return ifEnabled(
+				ifEmbedded(detachOldBefore(spiritualizeAfter(suspending(base))), otherwise(base)),
+				otherwise(base)
+			);
+		},
+		insertAdjacentHTML: function(base) {
+			return ifEnabled(
+				ifEmbedded(spiritualizeAdjacentAfter(suspending(base))),
+				otherwise(base)
+			), otherwise(base);
+		},
 		removeChild: function(base) {
-			return (
-				ifEnabled(
-					ifEmbedded(detachBefore(suspending(base)),
-					otherwise(base)),
-				otherwise(base))
+			return ifEnabled(
+				ifEmbedded(detachBefore(suspending(base)), otherwise(base)),
+				otherwise(base)
 			);
 		},
 		remove: function(base) {
-			return (
-				ifEnabled(
-					ifEmbedded(detachBefore(suspending(base)),
-					otherwise(base)),
-				otherwise(base))
+			return ifEnabled(
+				ifEmbedded(detachBefore(suspending(base)), otherwise(base)),
+				otherwise(base)
 			);
 		},
 		setAttribute: function(base) {
-			return (
-				ifEnabled(
-					ifEmbedded(
-						ifSpirit(setAttBefore(base),
-						otherwise(base)),
-					otherwise(base)),
-				otherwise(base))
+			return ifEnabled(
+				ifEmbedded(ifSpirit(setAttBefore(base), otherwise(base)), otherwise(base)),
+				otherwise(base)
 			);
 		},
 		removeAttribute: function(base) {
-			return (
-				ifEnabled(
-					ifEmbedded(
-						ifSpirit(delAttBefore(base),
-						otherwise(base)),
-					otherwise(base)),
-				otherwise(base))
+			return ifEnabled(
+				ifEmbedded(ifSpirit(delAttBefore(base), otherwise(base)), otherwise(base)),
+				otherwise(base)
 			);
 		},
 		innerHTML: function(base) {
-			return (
-				ifEnabled(
-					ifEmbedded(detachSubBefore(spiritualizeSubAfter(suspending(base))),
-					otherwise(base)),
-				otherwise(base))
+			return ifEnabled(
+				ifEmbedded(detachSubBefore(spiritualizeSubAfter(suspending(base))), otherwise(base)),
+				otherwise(base)
 			);
 		},
 		outerHTML: function(base) {
-			return (
-				ifEnabled(
-					ifEmbedded(materializeThisBefore(detachBefore(spiritualizeParentAfter(suspending(base)))),
-					otherwise(base)),
-				otherwise(base))
+			return ifEnabled(
+				ifEmbedded(
+					materializeThisBefore(detachBefore(spiritualizeParentAfter(suspending(base)))),
+					otherwise(base)
+				),
+				otherwise(base)
 			);
 		},
 		textContent: function(base) {
-			return (
-				ifEnabled(
-					ifEmbedded(detachSubBefore(suspending(base)),
-					otherwise(base)),
-				otherwise(base))
+			return ifEnabled(
+				ifEmbedded(detachSubBefore(suspending(base)), otherwise(base)),
+				otherwise(base)
 			);
 		}
 		/*
@@ -319,7 +301,7 @@ gui.DOMCombos = (function using(before, after, around, provided, Type, guiArray,
 		}
 		*/
 	};
-}(
+})(
 	gui.Combo.before,
 	gui.Combo.after,
 	gui.Combo.around,
@@ -327,4 +309,4 @@ gui.DOMCombos = (function using(before, after, around, provided, Type, guiArray,
 	gui.Type,
 	gui.Array,
 	gui.DOMPlugin
-));
+);

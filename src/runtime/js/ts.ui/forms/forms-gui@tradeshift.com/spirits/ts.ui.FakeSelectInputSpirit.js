@@ -36,7 +36,6 @@ ts.ui.FakeSelectInputSpirit = (function using(chained, confirmed, tick, time, gu
 	}
 
 	return ts.ui.FakeInputSpirit.extend({
-
 		/**
 		 * Proxy the actual SELECT element.
 		 * @param {HTMLSelectElement} select
@@ -52,7 +51,8 @@ ts.ui.FakeSelectInputSpirit = (function using(chained, confirmed, tick, time, gu
 			if (select.spirit) {
 				var spirit = this;
 				select.spirit.att.add('disabled', {
-					onatt: function(att) { // TODO (jmo@): check that this is "live"
+					onatt: function(att) {
+						// TODO (jmo@): check that this is "live"
 						spirit.disabled = select.disabled;
 					}
 				});
@@ -67,10 +67,7 @@ ts.ui.FakeSelectInputSpirit = (function using(chained, confirmed, tick, time, gu
 			this.super.ontick(t);
 			if (t.type === tick) {
 				if (!this._proxyspirit.$destructed) {
-					this._syncfake(
-						this._proxyelement,
-						this._menumodel
-					);
+					this._syncfake(this._proxyelement, this._menumodel);
 				}
 			}
 		},
@@ -156,10 +153,10 @@ ts.ui.FakeSelectInputSpirit = (function using(chained, confirmed, tick, time, gu
 			if (multiple) {
 				var indexes = this._getindexes(options);
 				length = arguments.length ? length : indexes.length;
-				this.value = (length + ' selected'); // TODO: Localization needed!!!!!!!!!
+				this.value = length + ' selected'; // TODO: Localization needed!!!!!!!!!
 				this._selectedIndexes = indexes;
 			} else {
-				var index = this._selectedIndex = this._proxyelement.selectedIndex;
+				var index = (this._selectedIndex = this._proxyelement.selectedIndex);
 				this.value = options[index] ? options[index].text : '';
 			}
 		},
@@ -199,7 +196,7 @@ ts.ui.FakeSelectInputSpirit = (function using(chained, confirmed, tick, time, gu
 			var changed = options.reduce(function(result, option, index) {
 				var was = option.selected;
 				option.selected = indexes.indexOf(index) > -1;
-				return result || (option.selected !== was);
+				return result || option.selected !== was;
 			}, false);
 			if (changed) {
 				this._triggerchange();
@@ -278,12 +275,13 @@ ts.ui.FakeSelectInputSpirit = (function using(chained, confirmed, tick, time, gu
 
 			// create the menu (setup to show only some items while opening)
 			menu = this._menumodel = ts.ui.Menu({
-				select: (multiple ? 'many' : 'one'),
+				select: multiple ? 'many' : 'one',
 				items: this._computemodelitems(select),
-				selectedIndex: (multiple ? -1 : oldindex),
+				selectedIndex: multiple ? -1 : oldindex,
 				selectedIndexes: this._getindexes(options),
 				maxItemsShown: this._getminimumitemscount(),
-				search: function(item, value) { // TODO: will be moved to the Aside?
+				search: function(item, value) {
+					// TODO: will be moved to the Aside?
 					var label = item.label.toLowerCase();
 					return label.startsWith(value.toLowerCase());
 				}
@@ -351,9 +349,11 @@ ts.ui.FakeSelectInputSpirit = (function using(chained, confirmed, tick, time, gu
 		 * @return {string}
 		 */
 		_labeltitle: function() {
-			return this._label(function(label) {
-				return label.text();
-			}) || '';
+			return (
+				this._label(function(label) {
+					return label.text();
+				}) || ''
+			);
 		},
 
 		/**
@@ -418,13 +418,16 @@ ts.ui.FakeSelectInputSpirit = (function using(chained, confirmed, tick, time, gu
 			var cornercase = select.options.length && !this.element.value;
 			this.element.placeholder = select.getAttribute('placeholder') || '';
 			this.element.disabled = !!select.disabled;
-			if (cornercase || [
-				this._changedlength(select, this._optionslength, model),
-				this._changedindex(select, this._selectedIndex, model),
-				this._changedindexes(select, this._selectedIndexes, model)
-			].some(function something(didchange) {
-				return didchange;
-			})) {
+			if (
+				cornercase ||
+				[
+					this._changedlength(select, this._optionslength, model),
+					this._changedindex(select, this._selectedIndex, model),
+					this._changedindexes(select, this._selectedIndexes, model)
+				].some(function something(didchange) {
+					return didchange;
+				})
+			) {
 				this._updatestatus();
 			}
 		},
@@ -455,7 +458,7 @@ ts.ui.FakeSelectInputSpirit = (function using(chained, confirmed, tick, time, gu
 			var did = false, newindex;
 			if (!select.multiple) {
 				newindex = select.selectedIndex;
-				if ((did = (newindex !== oldindex))) {
+				if ((did = newindex !== oldindex)) {
 					if (model) {
 						model.selectedIndex = newindex;
 					}
@@ -475,9 +478,11 @@ ts.ui.FakeSelectInputSpirit = (function using(chained, confirmed, tick, time, gu
 			var did = false, newindexes;
 			if (select.multiple) {
 				newindexes = this._getindexes(select.options);
-				if (newindexes.some(function(i, x) {
-					return oldindexes[x] !== i;
-				})) {
+				if (
+					newindexes.some(function(i, x) {
+						return oldindexes[x] !== i;
+					})
+				) {
 					did = true;
 					if (model) {
 						// make sure not to reassign the list (this would kill the observer)
@@ -493,12 +498,11 @@ ts.ui.FakeSelectInputSpirit = (function using(chained, confirmed, tick, time, gu
 			}
 			return did;
 		}
-
 	});
-}(
+})(
 	gui.Combo.chained,
 	gui.Arguments.confirmed,
 	ts.ui.FieldSpirit.TICK_SYNC,
 	ts.ui.FieldSpirit.TICK_TIME,
 	gui.Array
-));
+);

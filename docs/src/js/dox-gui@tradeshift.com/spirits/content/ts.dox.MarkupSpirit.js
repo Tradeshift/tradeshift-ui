@@ -2,17 +2,13 @@
  * Spirit of the markup snippet.
  */
 ts.dox.MarkupSpirit = ts.dox.PrismSpirit.extend({
-
 	/**
 	 * Special setup for markup the tabs a rendering.
 	 */
 	onenter: function() {
 		this.super.onenter();
 		if (this.dom.q('.output')) {
-			this._initialize(
-				this.dom.q('.tabpanels'),
-				this.dom.qall('.tabpanels > *')
-			);
+			this._initialize(this.dom.q('.tabpanels'), this.dom.qall('.tabpanels > *'));
 		}
 	},
 
@@ -31,20 +27,14 @@ ts.dox.MarkupSpirit = ts.dox.PrismSpirit.extend({
 					label: 'Markup',
 					selected: !config.flip,
 					onselect: function() {
-						that._togglepanels(
-							flip ? 0 : 1,
-							flip ? 1 : 0
-						);
+						that._togglepanels(flip ? 0 : 1, flip ? 1 : 0);
 					}
 				},
 				{
 					label: 'Render',
 					selected: config.flip,
 					onselect: function() {
-						that._togglepanels(
-							flip ? 1 : 0,
-							flip ? 0 : 1
-						);
+						that._togglepanels(flip ? 1 : 0, flip ? 0 : 1);
 					}
 				}
 			];
@@ -62,11 +52,12 @@ ts.dox.MarkupSpirit = ts.dox.PrismSpirit.extend({
 	 * @param {Array<HTMLElement>} panels
 	 */
 	_initialize: function(parent, panels) {
-		parent.style.minHeight = panels.reduce(function(max, panel, index) {
-			var height = panel.offsetHeight;
-			panel.style.display = index > 0 ? 'none' : 'block';
-			return height > max ? height : max;
-		}, 0) + 'px';
+		parent.style.minHeight =
+			panels.reduce(function(max, panel, index) {
+				var height = panel.offsetHeight;
+				panel.style.display = index > 0 ? 'none' : 'block';
+				return height > max ? height : max;
+			}, 0) + 'px';
 	},
 
 	/**
@@ -79,5 +70,4 @@ ts.dox.MarkupSpirit = ts.dox.PrismSpirit.extend({
 		panels[oldindex].style.display = 'none';
 		panels[newindex].style.display = 'block';
 	}
-
 });

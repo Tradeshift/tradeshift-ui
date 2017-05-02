@@ -7,32 +7,35 @@
  */
 gui.TweenPlugin = (function using(chained, confirmed) {
 	return gui.TrackerPlugin.extend({
-
 		/**
 		 * Add tween listener(s).
 		 * @param {String|Array<String>} type
 		 * @returns {gui.TweenPlugin}
 		 */
-		add: chained(confirmed('string')(function(type) {
-			gui.Array.make(type).forEach(function(_type) {
-				if (this._addchecks(_type)) {
-					gui.Broadcast.add(gui.BROADCAST_TWEEN, this);
-				}
-			}, this);
-		})),
+		add: chained(
+			confirmed('string')(function(type) {
+				gui.Array.make(type).forEach(function(_type) {
+					if (this._addchecks(_type)) {
+						gui.Broadcast.add(gui.BROADCAST_TWEEN, this);
+					}
+				}, this);
+			})
+		),
 
 		/**
 		 * Remove tween listener(s).
 		 * @param {String|Array<String>} type
 		 * @returns {gui.TweenPlugin}
 		 */
-		remove: chained(confirmed('string')(function(type) {
-			gui.Array.make(type).forEach(function(_type) {
-				if (this._removechecks(_type)) {
-					gui.Broadcast.remove(gui.BROADCAST_TWEEN, this);
-				}
-			}, this);
-		})),
+		remove: chained(
+			confirmed('string')(function(type) {
+				gui.Array.make(type).forEach(function(_type) {
+					if (this._removechecks(_type)) {
+						gui.Broadcast.remove(gui.BROADCAST_TWEEN, this);
+					}
+				}, this);
+			})
+		),
 
 		/**
 		 * Dispatch tween(s).
@@ -87,6 +90,5 @@ gui.TweenPlugin = (function using(chained, confirmed) {
 			gui.Broadcast.remove(gui.BROADCAST_TWEEN, this);
 			this.super.ondestruct();
 		}
-
 	});
-}(gui.Combo.chained, gui.Arguments.confirmed));
+})(gui.Combo.chained, gui.Arguments.confirmed);

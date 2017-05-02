@@ -12,7 +12,7 @@ ts.ui.Main = (function using(confirmed) {
 		if (main) {
 			return main;
 		} else {
-			throw new Error('The Main component either doesn\'t exist or it is not initialized yet.');
+			throw new Error("The Main component either doesn't exist or it is not initialized yet.");
 		}
 	}
 
@@ -32,7 +32,6 @@ ts.ui.Main = (function using(confirmed) {
 	}
 
 	return {
-
 		/**
 		 * Identification.
 		 * @returns {string}
@@ -74,6 +73,5 @@ ts.ui.Main = (function using(confirmed) {
 				return getmain().statusbar();
 			}, cb);
 		})
-
 	};
-}(gui.Arguments.confirmed));
+})(gui.Arguments.confirmed);

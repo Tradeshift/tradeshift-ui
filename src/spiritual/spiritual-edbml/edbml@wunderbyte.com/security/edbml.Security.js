@@ -6,7 +6,6 @@
  */
 edbml.Security = (function using(safeelm, safemap, unsafexp) {
 	return {
-
 		/**
 		 * Escape potentially unsafe string for use in HTML element context.
 		 * @param {string} string
@@ -30,7 +29,8 @@ edbml.Security = (function using(safeelm, safemap, unsafexp) {
 			});
 		}
 	};
-}( // Using ....................................................................
+})(
+	// Using ....................................................................
 
 	/*
 	 * Creates an element for escaping
@@ -41,8 +41,7 @@ edbml.Security = (function using(safeelm, safemap, unsafexp) {
 		var txt = document.createTextNode('');
 		div.appendChild(txt);
 		return div;
-	}()),
-
+	})(),
 	/*
 	 * Creates a basic (UNSAFE) map for escaping
 	 * text that goes into HTML attribute context.
@@ -56,12 +55,10 @@ edbml.Security = (function using(safeelm, safemap, unsafexp) {
 			'"': '&quot;',
 			"'": '&#39;'
 		};
-	}()),
-
+	})(),
 	/*
 	 * (UNSAFE) regular expression to figure out some basic
 	 * entities that should be escaped in HTML attributes.
 	 */
 	/[&<>'"]/g
-
-));
+);

@@ -7,7 +7,6 @@
  * TODO: Assign uppercase properties as constants
  */
 gui.Class = {
-
 	/**
 	 * Create constructor. Use method `extend` on
 	 * the constructor to subclass further.
@@ -102,15 +101,13 @@ gui.Class = {
 	_BODY: (function($name) {
 		var body = $name.toString().trim();
 		return body.slice(body.indexOf('{') + 1, -1);
-	}(
-		function $name() {
-			if (this instanceof $name) {
-				return gui.Class.$constructor.apply(this, arguments);
-			} else {
-				return $name.extend.apply($name, arguments);
-			}
+	})(function $name() {
+		if (this instanceof $name) {
+			return gui.Class.$constructor.apply(this, arguments);
+		} else {
+			return $name.extend.apply($name, arguments);
 		}
-	)),
+	}),
 
 	/**
 	 * Breakdown arguments for base exemplar only (has one extra argument).
@@ -183,13 +180,7 @@ gui.Class = {
 	 */
 	_createsubclass: function(SuperC, args) {
 		args = this._breakdown_subs(args);
-		return this._extendclass(
-			SuperC,
-			args.protos,
-			args.recurring,
-			args.statics,
-			args.name
-		);
+		return this._extendclass(SuperC, args.protos, args.recurring, args.statics, args.name);
 	},
 
 	/**
@@ -227,8 +218,7 @@ gui.Class = {
 		C.$super = null; // what's this?
 		C.$subclasses = [];
 		C.$superclass = SuperC || null;
-		C.$recurring = SuperC ?
-			gui.Object.copy(SuperC.$recurring) : Object.create(null);
+		C.$recurring = SuperC ? gui.Object.copy(SuperC.$recurring) : Object.create(null);
 		if (SuperC) {
 			SuperC.$subclasses.push(C);
 		}
@@ -282,10 +272,7 @@ gui.Class = {
 	 * @return {[type]}			[description]
 	 */
 	_namedbody: function(name) {
-		return this._BODY.replace(
-			new RegExp('\\$name', 'gm'),
-			gui.Function.safename(name)
-		);
+		return this._BODY.replace(new RegExp('\\$name', 'gm'), gui.Function.safename(name));
 	}
 
 	/**
@@ -312,7 +299,6 @@ gui.Class = {
 // Class members ...............................................................
 
 gui.Object.extend(gui.Class, {
-
 	/**
 	 * Create subclass. To be called on the class constructor: MyClass.extend()
 	 * @param @optional {String} name
@@ -322,7 +308,8 @@ gui.Object.extend(gui.Class, {
 	 * @param {object} statics Constructor extensions
 	 * @returns {function} Constructor
 	 */
-	extend: function() { // protos, recurring, statics
+	extend: function() {
+		// protos, recurring, statics
 		return gui.Class._createsubclass(this, arguments);
 	},
 
@@ -334,21 +321,30 @@ gui.Object.extend(gui.Class, {
 	 * @returns {function}
 	 */
 	mixin: function(proto, recurring, statics) {
-		Array.forEach(arguments, function(mixins, i) {
-			if (mixins) {
-				gui.Object.each(mixins, function(name, value) {
-					if (i === 0) {
-						// TODO: something more elaborate (like defineProperty)
-						this.prototype[name] = value;
-					} else { // TODO: only at index 1 right?
-						gui.Class.descendantsAndSelf(this, function(C) {
-							C.$recurring[name] = value;
-							C[name] = value;
-						});
-					}
-				}, this);
-			}
-		}, this);
+		Array.forEach(
+			arguments,
+			function(mixins, i) {
+				if (mixins) {
+					gui.Object.each(
+						mixins,
+						function(name, value) {
+							if (i === 0) {
+								// TODO: something more elaborate (like defineProperty)
+								this.prototype[name] = value;
+							} else {
+								// TODO: only at index 1 right?
+								gui.Class.descendantsAndSelf(this, function(C) {
+									C.$recurring[name] = value;
+									C[name] = value;
+								});
+							}
+						},
+						this
+					);
+				}
+			},
+			this
+		);
 		return this;
 	},
 
@@ -358,7 +354,7 @@ gui.Object.extend(gui.Class, {
 	 * @returns {boolean}
 	 */
 	is: function(object) {
-		return gui.Type.isObject(object) && (object instanceof this);
+		return gui.Type.isObject(object) && object instanceof this;
 	},
 
 	/**
@@ -367,13 +363,11 @@ gui.Object.extend(gui.Class, {
 	isInstance: function() {
 		console.error('Deprecated API is derecated');
 	}
-
 });
 
 // Class navigation ............................................................
 
 gui.Object.extend(gui.Class, {
-
 	/**
 	 * Return superclass. If action is provided, return an array of the results
 	 * of executing the action for each subclass with the subclass as argument.
@@ -496,5 +490,4 @@ gui.Object.extend(gui.Class, {
 		}
 		return results;
 	}
-
 });

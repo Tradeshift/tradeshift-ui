@@ -4,8 +4,7 @@
  * @using {gui.Then} Then
  */
 ts.dox.ChromeSpirit = (function using(CSSPlugin, Then) {
-	var
-		BP_TABLET = 600,
+	var BP_TABLET = 600,
 		SIDEBAR_MACRO = 320,
 		GLOBALTITLE = 'Tradeshift UI',
 		ONSEARCH = 'ts-action-search',
@@ -25,7 +24,6 @@ ts.dox.ChromeSpirit = (function using(CSSPlugin, Then) {
 		DIALOGSOFF = ts.ui.BROADCAST_GLOBAL_DIALOGS_DID_UNBLOCK;
 
 	return ts.ui.Spirit.extend({
-
 		/**
 		 * Get ready.
 		 */
@@ -37,12 +35,10 @@ ts.dox.ChromeSpirit = (function using(CSSPlugin, Then) {
 			this._menu.life.add(gui.LIFE_RENDER, this);
 			this.event.add('hashchange', window);
 			this.event.add('transitionend', this._main);
-			this.action.add([ONDOM, ONSEARCH, MENUOPEN, MENUCLOSE])
-				.addGlobal([TITLE, DOLOAD]);
-			this.broadcast.addGlobal([
-				TITLE, MENUON, ONROTATE,
-				ASIDESON, ASIDESOFF, DIALOGSON, DIALOGSOFF
-			]).add(ONRESIZE);
+			this.action.add([ONDOM, ONSEARCH, MENUOPEN, MENUCLOSE]).addGlobal([TITLE, DOLOAD]);
+			this.broadcast
+				.addGlobal([TITLE, MENUON, ONROTATE, ASIDESON, ASIDESOFF, DIALOGSON, DIALOGSOFF])
+				.add(ONRESIZE);
 			if (location.hash.length > 1) {
 				this._onhashchange(location.hash);
 			} else {
@@ -351,9 +347,11 @@ ts.dox.ChromeSpirit = (function using(CSSPlugin, Then) {
 			this.css.shift(uncollapse, 'uncollapse');
 			this.key.shift(uncollapse, 'Esc');
 			this._sbar.open(uncollapse);
-			this._sbar.onclose = uncollapse ? function() {
-				this._openmenu(false);
-			}.bind(this) : null;
+			this._sbar.onclose = uncollapse
+				? function() {
+						this._openmenu(false);
+					}.bind(this)
+				: null;
 		},
 
 		/**
@@ -402,7 +400,7 @@ ts.dox.ChromeSpirit = (function using(CSSPlugin, Then) {
 			if (title === GLOBALTITLE) {
 				document.title = GLOBALTITLE;
 			} else {
-				document.title = (title + ' — ' + GLOBALTITLE);
+				document.title = title + ' — ' + GLOBALTITLE;
 			}
 		},
 
@@ -439,9 +437,8 @@ ts.dox.ChromeSpirit = (function using(CSSPlugin, Then) {
 				}
 			}
 		}
-
 	});
-}(gui.CSSPlugin, gui.Then));
+})(gui.CSSPlugin, gui.Then);
 
 // LUNR ........................................................................
 
@@ -453,23 +450,25 @@ var lunrindex, pagesindex;
  * @return {Array}	results
  */
 function initlunr() {
-	$.getJSON('/dist/lunr.json').done(function(index) {
-		pagesindex = index;
-		lunrindex = lunr(function() {
-			this.field('title', {boost: 10});
-			this.field('tags', {boost: 5});
-			this.field('content');
-			this.ref('href');
+	$.getJSON('/dist/lunr.json')
+		.done(function(index) {
+			pagesindex = index;
+			lunrindex = lunr(function() {
+				this.field('title', { boost: 10 });
+				this.field('tags', { boost: 5 });
+				this.field('content');
+				this.ref('href');
+			});
+			pagesindex.forEach(function(page) {
+				if (page) {
+					lunrindex.add(page);
+				}
+			});
+		})
+		.fail(function(jqxhr, textStatus, error) {
+			var err = textStatus + ', ' + error;
+			console.error('Error getting index flie:', err);
 		});
-		pagesindex.forEach(function(page) {
-			if (page) {
-				lunrindex.add(page);
-			}
-		});
-	}).fail(function(jqxhr, textStatus, error) {
-		var err = textStatus + ', ' + error;
-		console.error('Error getting index flie:', err);
-	});
 }
 
 /**

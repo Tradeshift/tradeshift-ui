@@ -10,30 +10,35 @@ function Controller($scope) {
 	};
 
 	function getRows() {
-		var rows = [],
-			i, n;
+		var rows = [], i, n;
 		for (i = 0; i < model.pageSize; i++) {
-			n = (model.page * model.pageSize) + i + 1;
+			n = model.page * model.pageSize + i + 1;
 			if (n > model.total) break;
 			rows.push({
 				selected: selectedModel.all || selectedModel.items[n - 1],
-				cells: [{
-					text: 'cell ' + n + '-1'
-				}, {
-					text: 'cell ' + n + '-2'
-				}]
+				cells: [
+					{
+						text: 'cell ' + n + '-1'
+					},
+					{
+						text: 'cell ' + n + '-2'
+					}
+				]
 			});
 		}
 		return rows;
 	}
 
-	var cols = [{
-		label: 'column 1',
-		flex: 5,
-		wrap: true
-	}, {
-		label: 'column 2'
-	}];
+	var cols = [
+		{
+			label: 'column 1',
+			flex: 5,
+			wrap: true
+		},
+		{
+			label: 'column 2'
+		}
+	];
 
 	ts.ui.ready(function() {
 		var table = ts.ui.get('grid');
@@ -49,13 +54,15 @@ function Controller($scope) {
 		});
 		table.rows(getRows());
 
-		$scope.$watch(angular.bind(this, function() {
-			return model;
-		}),
-
-		function() {
-			table.rows(getRows());
-		}, true);
+		$scope.$watch(
+			angular.bind(this, function() {
+				return model;
+			}),
+			function() {
+				table.rows(getRows());
+			},
+			true
+		);
 
 		table.selectable(
 			function onselect(selected, unselected) {
@@ -71,19 +78,19 @@ function Controller($scope) {
 	});
 
 	function selectOffers(selectedOrSelectAll, unselected) {
-		if (typeof (selectedOrSelectAll) === 'boolean') {
+		if (typeof selectedOrSelectAll === 'boolean') {
 			selectedModel.all = selectedOrSelectAll;
 		} else {
 			selectedModel.all = false;
 			var selected = selectedOrSelectAll;
 			if (selected) {
 				selected.forEach(function(i) {
-					selectedModel.items[(model.page * model.pageSize) + i] = 1;
+					selectedModel.items[model.page * model.pageSize + i] = 1;
 				});
 			}
 			if (unselected) {
 				unselected.forEach(function(i) {
-					delete selectedModel.items[(model.page * model.pageSize) + i];
+					delete selectedModel.items[model.page * model.pageSize + i];
 				});
 			}
 		}

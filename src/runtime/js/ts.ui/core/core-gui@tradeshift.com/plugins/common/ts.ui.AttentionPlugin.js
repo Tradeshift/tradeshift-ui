@@ -7,7 +7,6 @@
  */
 ts.ui.AttentionPlugin = (function using(GuiArray, chained, notontouch) {
 	return ts.ui.Plugin.extend({
-
 		/**
 		 * Trapping the focus already?
 		 * @type {Boolean}
@@ -32,14 +31,16 @@ ts.ui.AttentionPlugin = (function using(GuiArray, chained, notontouch) {
 		 * @param @optional {Element|gui.Spirit} opt_elm
 		 * @returns {ts.ui.AttentionPlugin}
 		 */
-		trap: chained(notontouch(function(opt_elm) {
-			var elm = this._getelement(opt_elm);
-			if (!this.trapping) {
-				this.trapping = true;
-				this._listen(true);
-				this._trap(elm);
-			}
-		})),
+		trap: chained(
+			notontouch(function(opt_elm) {
+				var elm = this._getelement(opt_elm);
+				if (!this.trapping) {
+					this.trapping = true;
+					this._listen(true);
+					this._trap(elm);
+				}
+			})
+		),
 
 		/**
 		 * Forcibly focus the first focusable thing.
@@ -63,7 +64,7 @@ ts.ui.AttentionPlugin = (function using(GuiArray, chained, notontouch) {
 			if ((hit = find(true) || find(false))) {
 				hit.focus();
 			}
-			return (hit !== null);
+			return hit !== null;
 		}),
 
 		/**
@@ -179,17 +180,19 @@ ts.ui.AttentionPlugin = (function using(GuiArray, chained, notontouch) {
 		 * @param {HTMLElement} elm
 		 */
 		_trap: function(elm) {
-			[true, false].map(function(before) {
-				return elm.parentNode.insertBefore(
-					document.createElement('kbd'),
-					before ? elm : elm.nextElementSibling
-				);
-			}).forEach(function(kbd, last) {
-				kbd.tabIndex = 0;
-				kbd.onfocus = function() {
-					this._tryfocus(elm, !last);
-				}.bind(this);
-			}, this);
+			[true, false]
+				.map(function(before) {
+					return elm.parentNode.insertBefore(
+						document.createElement('kbd'),
+						before ? elm : elm.nextElementSibling
+					);
+				})
+				.forEach(function(kbd, last) {
+					kbd.tabIndex = 0;
+					kbd.onfocus = function() {
+						this._tryfocus(elm, !last);
+					}.bind(this);
+				}, this);
 		},
 
 		/**
@@ -198,13 +201,14 @@ ts.ui.AttentionPlugin = (function using(GuiArray, chained, notontouch) {
 		 * @returns {boolean} True when something was focused
 		 */
 		_tryfocus: function(elm, reverse) {
-			var did = false,
-				elms = elm.getElementsByTagName('*');
+			var did = false, elms = elm.getElementsByTagName('*');
 			if ((elms = GuiArray.from(elms)).length) {
 				elms = reverse ? elms.reverse() : elms;
-				did = this._didfocus(elms.filter(function(elem) {
-					return elem.tabIndex > -1 && !elem.disabled;
-				}));
+				did = this._didfocus(
+					elms.filter(function(elem) {
+						return elem.tabIndex > -1 && !elem.disabled;
+					})
+				);
 			}
 			return did;
 		},
@@ -256,7 +260,8 @@ ts.ui.AttentionPlugin = (function using(GuiArray, chained, notontouch) {
 				}
 				if (elm.tabIndex > -1) {
 					// in IE9/IE10 it appears *everything* has tabIndex zero ...
-					if (elm.hasAttribute('tabindex')) { // so we'll make extra sure!
+					if (elm.hasAttribute('tabindex')) {
+						// so we'll make extra sure!
 						return true;
 					}
 				}
@@ -286,7 +291,8 @@ ts.ui.AttentionPlugin = (function using(GuiArray, chained, notontouch) {
 			clearTimeout(this._timeout);
 			this._focused = true;
 			this._latest = elm;
-			if (!this._entered) { // trap just entered?
+			if (!this._entered) {
+				// trap just entered?
 				this._entered = true;
 				this._attention('enter');
 			}
@@ -299,11 +305,15 @@ ts.ui.AttentionPlugin = (function using(GuiArray, chained, notontouch) {
 		 */
 		_onblur: function() {
 			this._focused = false;
-			this._timeout = gui.Tick.time(function() {
-				if (!this._focused) {
-					this._entered = false;
-				}
-			}, 0, this);
+			this._timeout = gui.Tick.time(
+				function() {
+					if (!this._focused) {
+						this._entered = false;
+					}
+				},
+				0,
+				this
+			);
 		},
 
 		/**
@@ -349,10 +359,10 @@ ts.ui.AttentionPlugin = (function using(GuiArray, chained, notontouch) {
 			}
 		}
 	});
-}(gui.Array, gui.Combo.chained, function notontouch(base) {
+})(gui.Array, gui.Combo.chained, function notontouch(base) {
 	return function() {
 		if (!gui.Client.isTouchDevice) {
 			return base.apply(this, arguments);
 		}
 	};
-}));
+});

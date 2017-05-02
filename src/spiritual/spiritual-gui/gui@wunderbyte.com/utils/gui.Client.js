@@ -32,13 +32,13 @@ gui.Client = (function() {
 		this.isSafari = !this.isExplorer && this.isWebKit && !this.isChrome && agent.includes('safari');
 		this.isGecko = !this.isExplorer && !this.isWebKit && !this.isOpera && agent.includes('gecko');
 		this.isBlink = agent.includes('blink');
-		this.isChromeApp = !!((window.chrome && window.chrome.app && window.chrome.app.runtime));
+		this.isChromeApp = !!(window.chrome && window.chrome.app && window.chrome.app.runtime);
 
 		/**
 		 * Agent is one of "webkit" "firefox" "opera" or "explorer"
 		 * @type {String}
 		 */
-		this.agent = (function() {
+		this.agent = function() {
 			if (this.isWebKit) {
 				return 'webkit';
 			} else if (this.isGecko) {
@@ -47,7 +47,7 @@ gui.Client = (function() {
 				return 'opera';
 			}
 			return 'explorer';
-		}.call(this));
+		}.call(this);
 
 		/**
 		 * System is "linux" "osx" "ios" "windows" "windowsmobile" "haiku" or "amiga".
@@ -65,23 +65,14 @@ gui.Client = (function() {
 				return os === null;
 			});
 			return os;
-		}([
-			'window mobile',
-			'windows',
-			'ipad',
-			'iphone',
-			'os x',
-			'linux',
-			'haiku',
-			'amiga'
-		]));
+		})(['window mobile', 'windows', 'ipad', 'iphone', 'os x', 'linux', 'haiku', 'amiga']);
 
 		/**
 		 * Has touch support? Note that desktop Chrome has this.
 		 * @TODO Investigate this in desktop IE10.
 		 * @type {boolean}
 		 */
-		this.hasTouch = (window.ontouchstart !== undefined || this.isChrome);
+		this.hasTouch = window.ontouchstart !== undefined || this.isChrome;
 
 		/**
 		 * Has native pointer events? Seems to work best if we hardcode `false`.
@@ -94,13 +85,13 @@ gui.Client = (function() {
 		 * Supports file blob?
 		 * @type {boolean}
 		 */
-		this.hasBlob = (window.Blob && (window.URL || window.webkitURL));
+		this.hasBlob = window.Blob && (window.URL || window.webkitURL);
 
 		/**
 		 * Supports the History API?
 		 * @type {boolean}
 		 */
-		this.hasHistory = !!((window.history && window.history.pushState));
+		this.hasHistory = !!(window.history && window.history.pushState);
 
 		/**
 		 * Is touch device? Not to be confused with {gui.Client#hasTouch}
@@ -110,15 +101,7 @@ gui.Client = (function() {
 			return shortlist.some(function(system) {
 				return agent.includes(system);
 			});
-		}([
-			'android',
-			'webos',
-			'iphone',
-			'ipad',
-			'ipod',
-			'blackberry',
-			'windows phone'
-		]));
+		})(['android', 'webos', 'iphone', 'ipad', 'ipod', 'blackberry', 'windows phone']);
 
 		/**
 		 * Supports CSS transitions?
@@ -155,13 +138,13 @@ gui.Client = (function() {
 		 * http://wiki.ecmascript.org/doku.php?id=harmony:proxies
 		 * @type {boolean}
 		 */
-		this.hasProxies = (window.Proxy && window.Proxy.create);
+		this.hasProxies = window.Proxy && window.Proxy.create;
 
 		/**
 		 * Has Performance API?
 		 * @type {boolean}
 		 */
-		this.hasPerformance = (window.performance && window.performance.now);
+		this.hasPerformance = window.performance && window.performance.now;
 
 		/**
 		 * Temp...
@@ -178,14 +161,12 @@ gui.Client = (function() {
 		 */
 		this.hasAnimationFrame = (function() {
 			var win = window;
-			return !!((
-				win.requestAnimationFrame ||
+			return !!(win.requestAnimationFrame ||
 				win.webkitRequestAnimationFrame ||
 				win.mozRequestAnimationFrame ||
 				win.msRequestAnimationFrame ||
-				win.oRequestAnimationFrame
-			));
-		}());
+				win.oRequestAnimationFrame);
+		})();
 
 		/**
 		 * Supports HTMLTemplateElement?
@@ -193,7 +174,7 @@ gui.Client = (function() {
 		 */
 		this.hasTemplates = (function(template) {
 			return 'content' in template;
-		}(document.createElement('template')));
+		})(document.createElement('template'));
 
 		/**
 		 * Supports HTML imports?
@@ -201,7 +182,7 @@ gui.Client = (function() {
 		 */
 		this.hasImports = (function(link) {
 			return 'import' in link;
-		}(document.createElement('link')));
+		})(document.createElement('link'));
 
 		/**
 		 * Supports MutationObserver feature?
@@ -211,7 +192,7 @@ gui.Client = (function() {
 			return !['', 'WebKit', 'Moz', 'O', 'Ms'].every(function(vendor) {
 				return !gui.Type.isDefined(window[vendor + 'MutationObserver']);
 			});
-		}());
+		})();
 
 		/**
 		 * DOM attributes have been moved to prototype chains
@@ -230,7 +211,7 @@ gui.Client = (function() {
 				return !ver || ver >= 44; // 43 should be ok, but still...
 			}
 			return true;
-		}(this));
+		})(this);
 
 		/**
 		 * Browsers disagree on the primary scrolling element.
@@ -261,11 +242,7 @@ gui.Client = (function() {
 			if (!gui.CSSPlugin) {
 				return;
 			}
-			var win = window,
-				doc = document,
-				html = doc.documentElement,
-				body = doc.body,
-				root = null;
+			var win = window, doc = document, html = doc.documentElement, body = doc.body, root = null;
 
 			// make sure window is scrollable
 			var temp = body.appendChild(
@@ -326,4 +303,4 @@ gui.Client = (function() {
 	}
 
 	return new Client();
-}());
+})();

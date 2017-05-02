@@ -7,7 +7,6 @@
  * @see {gui.Guide#materializeSub}
  */
 gui.Garbage = {
-
 	/**
 	 * To identify our exception in a try-catch scenario, look for
 	 * this string in the *beginning* of the exception message
@@ -32,7 +31,8 @@ gui.Garbage = {
 	 */
 	ontick: function(t) {
 		if (t.type === 'gui-tick-garbage-empty') {
-			if (window.gui) { // hotfix IE window unloaded scenario (TODO: still?)
+			if (window.gui) {
+				// hotfix IE window unloaded scenario (TODO: still?)
 				this._nukemnow();
 			}
 		}
@@ -64,8 +64,7 @@ gui.Garbage = {
 	 * @param {gui.Spirit} spirit
 	 */
 	$nuke: function(spirit) {
-		var prefixes = [],
-			plugins = spirit.life.plugins;
+		var prefixes = [], plugins = spirit.life.plugins;
 		gui.Object.each(plugins, function(prefix, instantiated) {
 			if (instantiated) {
 				if (prefix !== 'life') {
@@ -85,7 +84,8 @@ gui.Garbage = {
 		}, this);
 		if (!gui.unloading) {
 			this.$nukeplugins(plugins, false);
-			gui.Tick.next(function() { // TODO: organize this at some point...
+			gui.Tick.next(function() {
+				// TODO: organize this at some point...
 				this.$nukeplugins(plugins, true);
 				this.$nukeelement(spirit);
 				this.$nukeallofit(spirit);
@@ -105,12 +105,14 @@ gui.Garbage = {
 				this.$nukeallofit(plugin);
 			}, this);
 		} else {
-			plugins.map(function(plugin) {
-				plugin.ondestruct();
-				return plugin;
-			}).forEach(function(plugin) {
-				plugin.$ondestruct();
-			});
+			plugins
+				.map(function(plugin) {
+					plugin.ondestruct();
+					return plugin;
+				})
+				.forEach(function(plugin) {
+					plugin.$ondestruct();
+				});
 		}
 	},
 
@@ -177,15 +179,14 @@ gui.Garbage = {
 	 * @param @optional {string} message
 	 */
 	DENY: function(message) {
-		var stack, e = new Error(
-			gui.Garbage.DENIAL + (message ? ': ' + message : '')
-		);
+		var stack, e = new Error(gui.Garbage.DENIAL + (message ? ': ' + message : ''));
 		if (!gui.Client.isExplorer && (stack = e.stack)) {
 			if (gui.Client.isWebKit) {
-				stack = stack.replace(/^[^\(]+?[\n$]/gm, '')
-				.replace(/^\s+at\s+/gm, '')
-				.replace(/^Object.<anonymous>\s*\(/gm, '{anonymous}()@')
-				.split('\n');
+				stack = stack
+					.replace(/^[^\(]+?[\n$]/gm, '')
+					.replace(/^\s+at\s+/gm, '')
+					.replace(/^Object.<anonymous>\s*\(/gm, '{anonymous}()@')
+					.split('\n');
 			} else {
 				stack = stack.split('\n');
 			}
@@ -228,14 +229,14 @@ gui.Garbage = {
 	 */
 	_nukemnow: function() {
 		var spirit, spirits = this._spirits.slice();
-		if (window.gui) { // hotfix IE window unloaded scenario...
+		if (window.gui) {
+			// hotfix IE window unloaded scenario...
 			while ((spirit = spirits.shift())) {
 				this.$nuke(spirit);
 			}
 			this._spirits = [];
 		}
 	}
-
 };
 
 gui.Tick.add('gui-tick-garbage-empty', gui.Garbage);

@@ -49,7 +49,6 @@ ts.ui.MainSpirit = (function using(Type, chained, PANEL_ATTACH, PANEL_DETACH) {
 	}
 
 	return ts.ui.Spirit.extend({
-
 		/**
 		 * ts.ui.SpinnerSpirit.
 		 */
@@ -109,10 +108,7 @@ ts.ui.MainSpirit = (function using(Type, chained, PANEL_ATTACH, PANEL_DETACH) {
 			this.super.onconfigure();
 			this.element.tabIndex = -1;
 			this.attention.trap();
-			this.action.add([
-				PANEL_ATTACH,
-				PANEL_DETACH
-			]);
+			this.action.add([PANEL_ATTACH, PANEL_DETACH]);
 		},
 
 		/**
@@ -128,7 +124,8 @@ ts.ui.MainSpirit = (function using(Type, chained, PANEL_ATTACH, PANEL_DETACH) {
 					var panel = a.target;
 					var index = panel.dom.ordinal();
 					var added = a.type === PANEL_ATTACH;
-					if (panel.label) { // otherwise just ignore
+					if (panel.label) {
+						// otherwise just ignore
 						this._updatetab(panel, index, added);
 					}
 					a.consume();
@@ -156,11 +153,19 @@ ts.ui.MainSpirit = (function using(Type, chained, PANEL_ATTACH, PANEL_DETACH) {
 		 */
 		tabbar: function() {
 			var TabBar = ts.ui.TabBarSpirit;
-			return this._tabbar || (this._tabbar = preceding(this, TabBar) ||
-				suspended(TabBar.summon('header').lite(), function oncontent(tabbar) {
-					var toolbar = preceding(this, ts.ui.ToolBarSpirit);
-					(toolbar || this).dom.before(tabbar);
-				}, this));
+			return (
+				this._tabbar ||
+				(this._tabbar =
+					preceding(this, TabBar) ||
+					suspended(
+						TabBar.summon('header').lite(),
+						function oncontent(tabbar) {
+							var toolbar = preceding(this, ts.ui.ToolBarSpirit);
+							(toolbar || this).dom.before(tabbar);
+						},
+						this
+					))
+			);
 		},
 
 		/**
@@ -170,14 +175,23 @@ ts.ui.MainSpirit = (function using(Type, chained, PANEL_ATTACH, PANEL_DETACH) {
 		 */
 		toolbar: function() {
 			var ToolBar = ts.ui.ToolBarSpirit;
-			return this._toolbar || (this._toolbar = preceding(this, ToolBar) || suspended(ToolBar.summon('header'), function oncontent(toolbar) {
-				var tabbar = preceding(this, ts.ui.TabBarSpirit);
-				if (tabbar) {
-					tabbar.dom.after(toolbar);
-				} else {
-					this.dom.before(toolbar);
-				}
-			}, this));
+			return (
+				this._toolbar ||
+				(this._toolbar =
+					preceding(this, ToolBar) ||
+					suspended(
+						ToolBar.summon('header'),
+						function oncontent(toolbar) {
+							var tabbar = preceding(this, ts.ui.TabBarSpirit);
+							if (tabbar) {
+								tabbar.dom.after(toolbar);
+							} else {
+								this.dom.before(toolbar);
+							}
+						},
+						this
+					))
+			);
 		},
 
 		/**
@@ -187,10 +201,18 @@ ts.ui.MainSpirit = (function using(Type, chained, PANEL_ATTACH, PANEL_DETACH) {
 		 */
 		statusbar: function() {
 			var StatusBar = ts.ui.StatusBarSpirit;
-			return this._statusbar || (this._statusbar = following(this, StatusBar) ||
-			suspended(StatusBar.summon('footer'), function oncontent(statusbar) {
-				this.dom.after(statusbar);
-			}, this));
+			return (
+				this._statusbar ||
+				(this._statusbar =
+					following(this, StatusBar) ||
+					suspended(
+						StatusBar.summon('footer'),
+						function oncontent(statusbar) {
+							this.dom.after(statusbar);
+						},
+						this
+					))
+			);
 		},
 
 		// Private .................................................................
@@ -267,6 +289,5 @@ ts.ui.MainSpirit = (function using(Type, chained, PANEL_ATTACH, PANEL_DETACH) {
 				this.spin.stop();
 			}
 		}
-
 	});
-}(gui.Type, gui.Combo.chained, ts.ui.ACTION_PANEL_ATTACH, ts.ui.ACTION_PANEL_DETACH));
+})(gui.Type, gui.Combo.chained, ts.ui.ACTION_PANEL_ATTACH, ts.ui.ACTION_PANEL_DETACH);

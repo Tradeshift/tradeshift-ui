@@ -5,7 +5,6 @@
  */
 ts.ui.AsideModel = (function using(chained) {
 	return ts.ui.Model.extend({
-
 		/**
 		 * Friendly name.
 		 * @type {string}
@@ -156,9 +155,8 @@ ts.ui.AsideModel = (function using(chained) {
 		unsuspendopen: chained(function() {
 			this.suspendopen = false;
 		})
-
 	});
-}(gui.Combo.chained));
+})(gui.Combo.chained);
 
 /**
  * Generate methods `blue` `green` `purple` and so
@@ -174,4 +172,4 @@ ts.ui.AsideModel = (function using(chained) {
 			return this;
 		};
 	});
-}(ts.ui.BACKGROUND_COLORS));
+})(ts.ui.BACKGROUND_COLORS);

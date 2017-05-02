@@ -24,7 +24,6 @@ ts.ui.NextIconSpirit = (function(URL, Request, Client, Parser) {
 	var queues = {};
 
 	return ts.ui.Spirit.extend({
-
 		/**
 		 * Monitor the `src` attribute.
 		 */
@@ -88,7 +87,7 @@ ts.ui.NextIconSpirit = (function(URL, Request, Client, Parser) {
 		 */
 		_getexternal: function getexternal(path, hash, then) {
 			var exist = bundles[path];
-			var loads = exist && (exist instanceof Request);
+			var loads = exist && exist instanceof Request;
 			if (!exist || loads) {
 				this._loadexternal(path, loads, function onload() {
 					getexternal(path, hash, then);
@@ -115,7 +114,7 @@ ts.ui.NextIconSpirit = (function(URL, Request, Client, Parser) {
 			var queue = queues[path] || (queues[path] = []);
 			queue.push(callback);
 			if (!loads) {
-				var request = bundles[path] = new Request(path);
+				var request = (bundles[path] = new Request(path));
 				request.accept('image/svg+xml').get().then(function(status, svg) {
 					if (status === 200) {
 						bundles[path] = Parser.parseToDocument(svg);
@@ -128,6 +127,5 @@ ts.ui.NextIconSpirit = (function(URL, Request, Client, Parser) {
 				}, this);
 			}
 		}
-
 	});
-}(gui.URL, gui.Request, gui.Client, gui.HTMLParser));
+})(gui.URL, gui.Request, gui.Client, gui.HTMLParser);

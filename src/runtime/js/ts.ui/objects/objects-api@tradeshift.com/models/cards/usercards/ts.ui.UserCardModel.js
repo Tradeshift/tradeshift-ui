@@ -6,7 +6,6 @@
  */
 ts.ui.UserCardModel = (function using(Card, CardModel) {
 	return CardModel.extend({
-
 		/**
 		 * the type of the user component.
 		 * the value of the type: ts-default, ts-inline, ts-details
@@ -58,6 +57,5 @@ ts.ui.UserCardModel = (function using(Card, CardModel) {
 		_edbml: function() {
 			return ts.ui.usercard.edbml;
 		}
-
 	});
-}(ts.ui.Card, ts.ui.CardModel));
+})(ts.ui.Card, ts.ui.CardModel);

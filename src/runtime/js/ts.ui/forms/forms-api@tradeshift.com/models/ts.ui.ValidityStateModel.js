@@ -3,7 +3,6 @@
  * @extends {edb.Object}
  */
 ts.ui.ValidityStateModel = edb.Object.extend({
-
 	// Matching HTML specification: Do not rename (see custom stuff below) .......
 
 	/**
@@ -35,13 +34,13 @@ ts.ui.ValidityStateModel = edb.Object.extend({
 	/**
 	 * The value is less than the minimum specified by the min attribute.
 	 */
-	rangeUnderflow:	false,
+	rangeUnderflow: false,
 
 	/**
 	 * The value does not fit the rules determined by the step attribute
 	 * (that is, it's not evenly divisible by the step value).
 	 */
-	stepMismatch:	false,
+	stepMismatch: false,
 
 	/**
 	 * The value exceeds the specified maxlength. Some browsers block
@@ -73,5 +72,4 @@ ts.ui.ValidityStateModel = edb.Object.extend({
 	/*
 	 * Custom stuff goes here....
 	 */
-
 });

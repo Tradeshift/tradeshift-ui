@@ -2,7 +2,6 @@
  * Sync module.
  */
 gui.module('edb-sync@wunderbyte.com', {
-
 	oncontextinitialize: function() {
 		/**
 		 * Create synchronized instance of Type from source.
@@ -19,74 +18,77 @@ gui.module('edb-sync@wunderbyte.com', {
 		/**
 		 * Hello.
 		 */
-		edb.Type.mixin({ // Instance properties ....................................
+		edb.Type.mixin(
+			{
+				// Instance properties ....................................
 
-			/**
-			 *
-			 */
-			$synchronizity: edb.SyncTransmitter.$NONE,
+				/**
+				 *
+				 */
+				$synchronizity: edb.SyncTransmitter.$NONE,
 
-			/**
-			 *
-			 */
-			$synchglobally: false
-
-		}, { // Recurring static ...................................................
-
-			/**
-			 * Create out-synchronized instance from source.
-			 * @param {edb.Type|String} source
-			 * @returns {edb.Type}
-			 */
-			syncAs: function(source) {
-				return sync(this, source, edb.Synchronizer.$SYNC_AS);
+				/**
+				 *
+				 */
+				$synchglobally: false
 			},
+			{
+				// Recurring static ...................................................
 
-			/**
-			 * Create in-synchronized instance from source.
-			 * @param {edb.Type|String} source
-			 * @returns {edb.Type}
-			 */
-			syncTo: function(source) {
-				return sync(this, source, edb.Synchronizer.$SYNC_TO);
-			},
+				/**
+				 * Create out-synchronized instance from source.
+				 * @param {edb.Type|String} source
+				 * @returns {edb.Type}
+				 */
+				syncAs: function(source) {
+					return sync(this, source, edb.Synchronizer.$SYNC_AS);
+				},
 
-			/**
-			 * Create synchronized instance from source.
-			 * @param {edb.Type|String} source
-			 * @returns {edb.Type}
-			 */
-			sync: function(source) {
-				return sync(this, source, edb.Synchronizer.$SYNC);
-			},
+				/**
+				 * Create in-synchronized instance from source.
+				 * @param {edb.Type|String} source
+				 * @returns {edb.Type}
+				 */
+				syncTo: function(source) {
+					return sync(this, source, edb.Synchronizer.$SYNC_TO);
+				},
 
-			/**
-			 * Create global out-synchronized instance from source.
-			 * @param {edb.Type|String} source
-			 * @returns {edb.Type}
-			 */
-			syncGlobalAs: function(source) {
-				return sync(this, source, edb.Synchronizer.$SYNC_AS, true);
-			},
+				/**
+				 * Create synchronized instance from source.
+				 * @param {edb.Type|String} source
+				 * @returns {edb.Type}
+				 */
+				sync: function(source) {
+					return sync(this, source, edb.Synchronizer.$SYNC);
+				},
 
-			/**
-			 * Create global in-synchronized instance from source.
-			 * @param {edb.Type|String} source
-			 * @returns {edb.Type}
-			 */
-			syncGlobalTo: function(source) {
-				return sync(this, source, edb.Synchronizer.$SYNC_TO, true);
-			},
+				/**
+				 * Create global out-synchronized instance from source.
+				 * @param {edb.Type|String} source
+				 * @returns {edb.Type}
+				 */
+				syncGlobalAs: function(source) {
+					return sync(this, source, edb.Synchronizer.$SYNC_AS, true);
+				},
 
-			/**
-			 * Create global synchronized instance from source.
-			 * @param {edb.Type|String} source
-			 * @returns {edb.Type}
-			 */
-			syncGlobal: function(source) {
-				return sync(this, source, edb.Synchronizer.$SYNC, true);
+				/**
+				 * Create global in-synchronized instance from source.
+				 * @param {edb.Type|String} source
+				 * @returns {edb.Type}
+				 */
+				syncGlobalTo: function(source) {
+					return sync(this, source, edb.Synchronizer.$SYNC_TO, true);
+				},
+
+				/**
+				 * Create global synchronized instance from source.
+				 * @param {edb.Type|String} source
+				 * @returns {edb.Type}
+				 */
+				syncGlobal: function(source) {
+					return sync(this, source, edb.Synchronizer.$SYNC, true);
+				}
 			}
-
-		});
+		);
 	}
 });

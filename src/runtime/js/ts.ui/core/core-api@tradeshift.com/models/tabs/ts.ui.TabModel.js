@@ -5,7 +5,6 @@
  */
 ts.ui.TabModel = (function using(chained) {
 	return ts.ui.Model.extend({
-
 		/**
 		 * Friendly name.
 		 * @type {string}
@@ -152,15 +151,21 @@ ts.ui.TabModel = (function using(chained) {
 		_doselect: function() {
 			if (this.onselect || this.$onselect) {
 				gui.Tick.cancelTime(this._timeout);
-				this._timeout = gui.Tick.time(function unfreeze() {
-					if (this.$onselect) { // system implementation
-						this.$onselect();
-					}
-					if (this.onselect) { // user configurable
-						this.onselect();
-					}
-				}, 25, this);
+				this._timeout = gui.Tick.time(
+					function unfreeze() {
+						if (this.$onselect) {
+							// system implementation
+							this.$onselect();
+						}
+						if (this.onselect) {
+							// user configurable
+							this.onselect();
+						}
+					},
+					25,
+					this
+				);
 			}
 		}
 	});
-}(gui.Combo.chained));
+})(gui.Combo.chained);

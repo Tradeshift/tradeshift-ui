@@ -38,7 +38,8 @@
 						</li>
 					}
 					if(title && (!search || !using(search))) {
-						@class = klass('ts-toolbar-title');
+						var model = {flex: 1};
+						@class = klass('ts-toolbar-title', model);
 						<li id="${id}-title" @class>
 							if(statusbar) {
 								<label>

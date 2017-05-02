@@ -1,6 +1,7 @@
 /**
  * DOM decoration time.
  * TODO: Standard DOM exceptions (at our level) for missing arguments and so on.
+ * TODO: insertAdjacentElement and insertAdjacentText
  * TODO: DOM4 methods
  * @using {gui.Combo.before} beforeype
  * @using {gui.Combo.after} after
@@ -162,7 +163,8 @@ gui.DOMCombos = (function using(before, after, around, provided, Type, guiArray,
 	});
 
 	/**
-	 * Spiritualize adjecant.
+	 * Spiritualize adjacent.
+	 * TODO: Index elements *before* so that we only spiritualize *new* elements
 	 * @param {string} position
 	 *		 beforebegin: Before the element itself
 	 *		 afterbegin: Just inside the element, before its first child
@@ -171,20 +173,32 @@ gui.DOMCombos = (function using(before, after, around, provided, Type, guiArray,
 	 * @param {string} html
 	 */
 	var spiritualizeAdjacentAfter = after(function(position, html) {
-		switch (position) {
+		var elm = this, elms = [];
+		switch (position.toLowerCase()) {
 			case 'beforebegin':
-				console.warn('TODO: Spiritualize previous siblings');
+				while ((elm = elm.previousElementSibling)) {
+					elms.push(elm);
+				}
 				break;
 			case 'afterbegin':
-				console.warn('TODO: Spiritualize first children');
-				break;
 			case 'beforeend':
-				console.warn('TODO: Spiritualize last children');
+				elm = this.firstElementChild;
+				elms.push(elm);
+				while ((elm = elm.nextElementSibling)) {
+					elms.push(elm);
+				}
 				break;
 			case 'afterend':
-				console.warn('TODO: Spiritualize following children');
+				while ((elm = elm.nextElementSibling)) {
+					elms.push(elm);
+				}
 				break;
 		}
+		elms.forEach(function(next) {
+			if (!gui.get(next)) {
+				gui.spiritualize(next);
+			}
+		});
 	});
 
 	/**
@@ -226,7 +240,6 @@ gui.DOMCombos = (function using(before, after, around, provided, Type, guiArray,
 			);
 		},
 		replaceChild: function(base) {
-			// TODO: detach instead
 			return ifEnabled(
 				ifEmbedded(detachOldBefore(spiritualizeAfter(suspending(base))), otherwise(base)),
 				otherwise(base)
@@ -234,9 +247,9 @@ gui.DOMCombos = (function using(before, after, around, provided, Type, guiArray,
 		},
 		insertAdjacentHTML: function(base) {
 			return ifEnabled(
-				ifEmbedded(spiritualizeAdjacentAfter(suspending(base))),
+				ifEmbedded(spiritualizeAdjacentAfter(suspending(base)), otherwise(base)),
 				otherwise(base)
-			), otherwise(base);
+			);
 		},
 		removeChild: function(base) {
 			return ifEnabled(

@@ -75,7 +75,7 @@ describe('Channeling and exorcising spirits', function likethis() {
 		expect(hasSpirit(elm)).toBe(true);
 	});
 
-	it('possesses on insertBefore of document fragment', function() {
+	it('should posses on insertBefore of document fragment', function() {
 		var frag = document.createDocumentFragment();
 		var spirits = [getSpiritElm(), getSpiritElm()];
 		spirits.forEach(function(e) {
@@ -84,6 +84,24 @@ describe('Channeling and exorcising spirits', function likethis() {
 		this.sandbox.insertBefore(frag, this.sandbox.firstElementChild);
 		spirits.forEach(function(e) {
 			expect(hasSpirit(e)).toBe(true);
+		});
+	});
+
+	it('should possess on insertAdjacentHTML', function() {
+		var box = this.sandbox;
+		var elm = box.appendChild(document.createElement('section'));
+		['beforebegin', 'afterbegin', 'beforeend', 'afterend'].forEach(function(pos) {
+			elm.insertAdjacentHTML(pos, '<div class="gui-spirit"></div>');
+		});
+		expect(box.childNodes.length).toBe(3);
+		expect(elm.childNodes.length).toBe(2);
+		[
+			elm.previousElementSibling,
+			elm.nextElementSibling,
+			elm.firstElementChild,
+			elm.lastElementChild
+		].forEach(function(other) {
+			expect(hasSpirit(other)).toBe(true);
 		});
 	});
 

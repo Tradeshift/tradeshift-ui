@@ -130,6 +130,7 @@ gui.DOMChanger = {
 	 */
 	_ismethod: function(name) {
 		switch (name) {
+			case 'remove':
 			case 'appendChild':
 			case 'removeChild':
 			case 'insertBefore':
@@ -138,7 +139,6 @@ gui.DOMChanger = {
 			case 'removeAttribute':
 			case 'insertAdjacentHTML':
 			case 'insertAdjacentElement':
-			case 'remove':
 				return true;
 		}
 		return false;

@@ -11,8 +11,7 @@ describe('Channeling and exorcising spirits', function likethis() {
 	 * Before test.
 	 */
 	beforeEach(function() {
-		this.sandbox = document.createElement('div');
-		document.body.appendChild(this.sandbox);
+		this.sandbox = document.body.appendChild(document.createElement('div'));
 	});
 
 	/**
@@ -87,7 +86,8 @@ describe('Channeling and exorcising spirits', function likethis() {
 		});
 	});
 
-	it('should possess on insertAdjacentHTML', function() {
+	// "eventually" because Safari 10 cannot patch the method properly :/
+	it('should (eventually) possess on insertAdjacentHTML', function(done) {
 		var box = this.sandbox;
 		var elm = box.appendChild(document.createElement('section'));
 		['beforebegin', 'afterbegin', 'beforeend', 'afterend'].forEach(function(pos) {
@@ -95,17 +95,21 @@ describe('Channeling and exorcising spirits', function likethis() {
 		});
 		expect(box.childNodes.length).toBe(3);
 		expect(elm.childNodes.length).toBe(2);
-		[
-			elm.previousElementSibling,
-			elm.nextElementSibling,
-			elm.firstElementChild,
-			elm.lastElementChild
-		].forEach(function(other) {
-			expect(hasSpirit(other)).toBe(true);
+		sometime(function later() {
+			[
+				elm.previousElementSibling,
+				elm.nextElementSibling,
+				elm.firstElementChild,
+				elm.lastElementChild
+			].forEach(function(other) {
+				expect(hasSpirit(other)).toBe(true);
+			});
+			done();
 		});
 	});
 
-	it('should possess on insertAdjacenElement', function() {
+	// "eventually" because Safari 10 cannot patch the method properly :/
+	it('should (eventually) possess on insertAdjacentElement', function(done) {
 		var box = this.sandbox;
 		var elm = box.appendChild(document.createElement('section'));
 		['beforebegin', 'afterbegin', 'beforeend', 'afterend'].forEach(function(pos) {
@@ -113,13 +117,16 @@ describe('Channeling and exorcising spirits', function likethis() {
 		});
 		expect(box.childNodes.length).toBe(3);
 		expect(elm.childNodes.length).toBe(2);
-		[
-			elm.previousElementSibling,
-			elm.nextElementSibling,
-			elm.firstElementChild,
-			elm.lastElementChild
-		].forEach(function(other) {
-			expect(hasSpirit(other)).toBe(true);
+		sometime(function later() {
+			[
+				elm.previousElementSibling,
+				elm.nextElementSibling,
+				elm.firstElementChild,
+				elm.lastElementChild
+			].forEach(function(other) {
+				expect(hasSpirit(other)).toBe(true);
+			});
+			done();
 		});
 	});
 

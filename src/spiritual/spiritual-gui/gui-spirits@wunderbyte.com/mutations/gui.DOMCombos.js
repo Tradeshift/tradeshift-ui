@@ -251,12 +251,14 @@ gui.DOMCombos = (function using(before, after, around, provided, Type, guiArray,
 				otherwise(base)
 			);
 		},
+		// not applied in Safari 10 (fallback mutation observers) :/
 		insertAdjacentHTML: function(base) {
 			return ifEnabled(
 				ifEmbedded(spiritualizeAdjacentAfter(suspending(base)), otherwise(base)),
 				otherwise(base)
 			);
 		},
+		// not applied in Safari 10 (fallback mutation observers) :/
 		insertAdjacentElement: function(base) {
 			return ifEnabled(
 				ifEmbedded(spiritualizeAdjacentElementAfter(suspending(base)), otherwise(base)),

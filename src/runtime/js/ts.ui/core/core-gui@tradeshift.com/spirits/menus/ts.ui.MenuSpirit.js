@@ -63,11 +63,6 @@ ts.ui.MenuSpirit = (function using(Type, ButtonSpirit) {
 						this._movefocus(item, e.keyCode === 40);
 						e.preventDefault(); // don't scroll!
 						break;
-						// case 13: //disabled because ENTER on a button already automatically calls button.onclick
-						// 	if (this._ismodelled()) {
-						// 		this._onclick(button);
-						// 	}
-						break;
 				}
 			},
 

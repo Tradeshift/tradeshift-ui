@@ -1,6 +1,5 @@
 /**
  * TODO: Test DOM exceptions
- * TODO: Support and test insertAdjecantHTML
  * TODO: Support and test DOM4 methods
  */
 describe('Regular DOM mutations (without spirits)', function likethis() {

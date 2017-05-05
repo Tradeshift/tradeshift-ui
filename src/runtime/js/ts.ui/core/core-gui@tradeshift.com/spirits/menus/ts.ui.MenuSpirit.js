@@ -63,11 +63,6 @@ ts.ui.MenuSpirit = (function using(Type, ButtonSpirit) {
 						this._movefocus(item, e.keyCode === 40);
 						e.preventDefault(); // don't scroll!
 						break;
-					case 13:
-						if (this._ismodelled()) {
-							this._onclick(button);
-						}
-						break;
 				}
 			},
 
@@ -118,6 +113,7 @@ ts.ui.MenuSpirit = (function using(Type, ButtonSpirit) {
 				var current, idx;
 				switch (model.select) {
 					case 'one':
+						// Deselect the item when select could be null
 						if (model.selectedIndex === index && this._hasplaceholder(model)) {
 							model.selectedIndex = 0;
 						} else {

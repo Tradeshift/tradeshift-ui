@@ -146,22 +146,14 @@ ts.ui.FakeInputSpirit = (function() {
 		 * Dispatch `input` event (used for <input />) from the proxied element.
 		 */
 		_triggerinput: function() {
-			this._proxyelement.dispatchEvent(
-				new Event('input', {
-					bubbles: true
-				})
-			);
+			this._proxyelement.dispatchEvent(this._createEvent('input', true));
 		},
 
 		/**
 		 * Dispatch `change` event (used for <select />) from the proxied element.
 		 */
 		_triggerchange: function() {
-			this._proxyelement.dispatchEvent(
-				new Event('change', {
-					bubbles: true
-				})
-			);
+			this._proxyelement.dispatchEvent(this._createEvent('change', true));
 		},
 
 		/**
@@ -169,6 +161,23 @@ ts.ui.FakeInputSpirit = (function() {
 		 */
 		_restorefocus: function() {
 			this._proxyelement.focus();
+		},
+
+		/**
+		 * Create event works in IE http://stackoverflow.com/questions/26596123/internet-explorer-9-10-11-event-constructor-doesnt-work
+		 * @param {string} event name
+		 * @param {boolean} bubbles
+		 * @returns {object} event
+		 */
+		_createEvent: function(eventName, bubbles) {
+			var event = null;
+			if (typeof Event === 'function') {
+				event = new Event(eventName, { bubbles: bubbles });
+			} else {
+				event = document.createEvent('Event');
+				event.initEvent(eventName, bubbles, true);
+			}
+			return event;
 		}
 	});
 })();

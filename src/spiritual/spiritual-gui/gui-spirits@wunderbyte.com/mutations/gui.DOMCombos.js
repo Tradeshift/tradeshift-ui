@@ -2,7 +2,10 @@
  * DOM decoration time.
  * TODO: Standard DOM exceptions (at our level) for missing arguments and so on.
  * TODO: DOM4 methods
- * @using {gui.Combo.before} beforeype
+ *       http://mdn.io/ChildNode/before
+ *       http://mdn.io/ChildNode/after
+ *       http://mdn.io/ParentNode/append
+ * @using {gui.Combo.before} befor
  * @using {gui.Combo.after} after
  * @using {gui.Combo.around} around
  * @using {gui.Combo.provided} provided

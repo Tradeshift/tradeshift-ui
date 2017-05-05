@@ -848,24 +848,27 @@ ts.ui.SideShowSpirit = (function using(
 				var headr = dom.q('this > .ts-header', ts.ui.ToolBarSpirit);
 				var footr = dom.q('this > .ts-footer', ts.ui.FooterSpirit);
 				var tabbs = dom.q('this > .ts-tabbar', ts.ui.TabBarSpirit);
-				var color = getcolor(panel) || 'ts-bg-white';
-				dom.qall('.ts-shadow').forEach(function dontduplicate(shadow) {
-					shadow.parentNode.removeChild(shadow);
-				});
-				if (tabbs && getcolor(tabbs) !== color) {
-					tabbs.white();
-				} else if (
-					[tabbs, headr].every(function(thing) {
-						return thing && getcolor(thing) === color;
-					})
-				) {
-					panel.dom.before(shade.cloneNode());
-					headr.css.add('ts-inset');
-				} else if (headr && getcolor(headr) === color) {
-					panel.dom.before(shade.cloneNode());
-				}
-				if (footr && getcolor(footr) === color) {
-					footr.dom.before(shade.cloneNode());
+				if (panel) {
+					// hotfix issue in React pending investigation
+					var color = getcolor(panel) || 'ts-bg-white';
+					dom.qall('.ts-shadow').forEach(function dontduplicate(shadow) {
+						shadow.parentNode.removeChild(shadow);
+					});
+					if (tabbs && getcolor(tabbs) !== color) {
+						tabbs.white();
+					} else if (
+						[tabbs, headr].every(function(thing) {
+							return thing && getcolor(thing) === color;
+						})
+					) {
+						panel.dom.before(shade.cloneNode());
+						headr.css.add('ts-inset');
+					} else if (headr && getcolor(headr) === color) {
+						panel.dom.before(shade.cloneNode());
+					}
+					if (footr && getcolor(footr) === color) {
+						footr.dom.before(shade.cloneNode());
+					}
 				}
 			},
 

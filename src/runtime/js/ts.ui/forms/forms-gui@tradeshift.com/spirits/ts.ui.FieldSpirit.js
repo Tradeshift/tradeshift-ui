@@ -29,7 +29,8 @@ ts.ui.FieldSpirit = (function using(chained) {
 						idx = elm.value.slice(0, elm.selectionStart).length;
 					}
 					elm.value = value;
-					if (idx > -1) {
+					if (idx > -1 && elm.type !== 'date') {
+						// can't select in date inputs
 						elm.setSelectionRange(idx, idx);
 					}
 					if (!this.$destructed) {

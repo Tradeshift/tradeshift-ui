@@ -12,7 +12,7 @@
 					<p>If the user didn't upload a photo, the UserImage will generate a fallback image based on his or her name.</p>
 				</section>
 				<section>
-					<p>You can initialize a UserImage by assigning <att>data-ts="UserImage"</att> to an <elm>img</elm> element. A fallback image will be generated based on the users name if the image has no <att>src</att> attribute or if the image somehow failed to load.</p>
+					<p>You can initialize a UserImage by assigning <att>data-ts="UserImage"</att> to an <elm>img</elm> element. A fallback image will be generated based on the users name if the image has no <att>src</att> attribute or if the image somehow failed to load. You also can define initials in parentheses. For example:Ray Chavez(Ra), you will get RA as an initials</p>
 					<figure data-ts="DoxMarkup">
 						<output/>
 						<script type="text/html">
@@ -25,7 +25,7 @@
 							<img data-ts="UserImage" alt="Mae Schultz"/>
 							<img data-ts="UserImage" alt="Jimmie Edwards"/>
 							<img data-ts="UserImage" alt="Cindy Jordan"/>
-							<img data-ts="UserImage" alt="Ray Chavez"/>
+							<img data-ts="UserImage" alt="Ray Chavez(Ra)"/>
 						</script>
 					</figure>
 					<p>The image defaults to a size of <code>44x44</code> pixels. If you prefer a different size, you'll need to specify both <code>width</code> and <code>height</code> as attributes in the HTML.</p>

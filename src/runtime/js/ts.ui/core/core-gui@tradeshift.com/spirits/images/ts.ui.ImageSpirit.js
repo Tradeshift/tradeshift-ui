@@ -65,10 +65,15 @@ ts.ui.ImageSpirit = (function using(fontcss) {
 
 	/**
 	 * Get initials for name.
+	 * If the name is Karl Benson(Ka), It will return KA
 	 * @param {string} name
 	 * @returns {string}
 	 */
 	function getinitials(name) {
+		var regExp = /\(([^)]+)\)/;
+		if (regExp.test(name)) {
+			return regExp.exec(name)[1].toUpperCase();
+		}
 		var names = name.split(/\s+/);
 		var first = names.shift();
 		var last = names.pop() || '';

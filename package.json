@@ -1,6 +1,7 @@
 {
   "name": "tradeshift-ui",
-  "version": "7.2.1",
+  "version": "8.0.0-alpha.1",
+  "private": true,
   "description": "The Tradeshift UI Library & Framework",
   "homepage": "https://ui.tradeshift.com/",
   "bugs": {
@@ -26,7 +27,9 @@
     "test": "npm run lint && ./node_modules/.bin/grunt jasmine && echo 'Running tests on https://www.browserstack.com/automate' && ./node_modules/.bin/browserstack-runner",
     "http": "static spec/jasmine -H '{\"Cache-Control\": \"no-cache, must-revalidate\"}'",
     "deploy-s3": "node tasks/deploy.js",
-    "precommit": "lint-staged && grunt dist && git add -A docs/index.html && git add -A docs/dist/*"
+    "precommit": "lint-staged && grunt dist && git add -A docs/index.html && git add -A docs/dist/*",
+    "release": "release-it --interactive",
+    "prerelease": "release-it --interactive --prereleaseId='beta' --github.preRelease=true"
   },
   "lint-staged": {
     "*.js": [
@@ -60,7 +63,6 @@
     "grunt-contrib-watch": "^1.0.0",
     "grunt-devserver": "^0.6.0",
     "grunt-exec": "^2.0.0",
-    "grunt-release-ts": "^0.14.3",
     "grunt-spiritual-build": "^0.1.18",
     "grunt-spiritual-dox": "^0.1.1",
     "grunt-spiritual-edbml": "^0.3.0",
@@ -69,6 +71,7 @@
     "load-grunt-tasks": "^3.5.2",
     "node-static": "^0.7.9",
     "prettier": "^1.2.2",
+    "release-it": "^2.7.3",
     "s3": "^4.4.0"
   },
   "keywords": [

@@ -1,0 +1,43 @@
+{
+	"non-interactive": false,
+	"verbose": true,
+	"pkgFiles": ["package.json"],
+	"increment": "patch",
+	"changelogCommand": "git log --pretty=format:'* %s (%h)' [REV_RANGE]",
+	"requireCleanWorkingDir": false,
+	"src": {
+		"commitMessage": "Release v%s",
+		"tagName": "v%s",
+		"tagAnnotation": "Release v%s",
+		"beforeStageCommand": "grunt release-deploy"
+	},
+	"dist": {
+		"repo": false
+	},
+	"npm": {
+		"publish": false
+	},
+	"github": {
+		"release": true,
+		"releaseName": "Release v%s",
+		"tokenRef": "GH_ACCESS_TOK"
+	},
+	"prompt": {
+		"src": {
+			"status": false,
+			"commit": true,
+			"tag": true,
+			"push": true,
+			"release": true,
+			"publish": false
+		},
+		"dist": {
+			"status": false,
+			"commit": true,
+			"tag": true,
+			"push": true,
+			"release": true,
+			"publish": false
+		}
+	}
+}

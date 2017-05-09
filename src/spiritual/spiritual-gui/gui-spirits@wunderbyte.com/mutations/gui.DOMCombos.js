@@ -121,8 +121,8 @@ gui.DOMCombos = (function using(before, after, around, provided, Type, guiArray,
 	 * so other workarounds are needed (Mutation Events in {gui.AttPlugin}).
 	 * @param {string} name
 	 */
+	// eslint-disable-next-line no-unused-vars
 	var setClassBefore = before(function(name) {
-		// eslint-disable-line no-unused-vars
 		gui.get(this).att.set('class', name);
 	});
 

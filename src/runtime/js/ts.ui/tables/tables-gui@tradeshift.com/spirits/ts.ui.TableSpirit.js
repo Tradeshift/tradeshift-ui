@@ -88,8 +88,8 @@ ts.ui.TableSpirit = (function using(
 	 * @param {object} x
 	 * @returns {boolean}
 	 */
+	// eslint-disable-next-line no-unused-vars
 	function selected(x) {
-		// eslint-disable-line no-unused-vars
 		return !!x.selected;
 	}
 

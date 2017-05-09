@@ -122,8 +122,8 @@ ts.ui.CalendarSpirit = (function() {
 	 * @param {string} term
 	 * @return {string}
 	 */
+	// eslint-disable-next-line no-unused-vars
 	function t(term) {
-		// eslint-disable-line no-unused-vars
 		return term;
 	}
 

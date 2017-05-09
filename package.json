@@ -36,7 +36,7 @@
     "****** NODE *****": "",
     "postcheckout": "yarn upgrade",
     "postinstall": "cd docs && yarn upgrade",
-    "precommit": "lint-staged && grunt dist && git add -A docs/index.html && git add -A docs/dist/*"
+    "precommit": "lint-staged && yarn run eslint && grunt exec:docs_dist && git add -A docs/{index.html,dist/**/*}"
   },
   "lint-staged": {
     "*.js": [

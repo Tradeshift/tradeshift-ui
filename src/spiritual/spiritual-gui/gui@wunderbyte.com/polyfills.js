@@ -196,6 +196,7 @@
 							var currTime = new Date().getTime();
 							var timeToCall = Math.max(0, 16 - (currTime - lastTime));
 							var id = window.setTimeout(function() {
+								// eslint-disable-next-line standard/no-callback-literal
 								callback(currTime + timeToCall);
 							}, timeToCall);
 							lastTime = currTime + timeToCall;

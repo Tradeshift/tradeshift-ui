@@ -4,8 +4,8 @@
  * @TODO: support non-px units
  */
 gui.SpritePlugin = (function() {
+	// eslint-disable-next-line no-unused-vars
 	function total(a, b) {
-		// eslint-disable-line no-unused-vars
 		return (a || 0) + b;
 	}
 

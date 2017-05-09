@@ -546,7 +546,7 @@
 			zerosToFill = targetLength - absNumber.length,
 			sign = number >= 0;
 		return (
-			(sign ? forceSign ? '+' : '' : '-') +
+			(sign ? (forceSign ? '+' : '') : '-') +
 			Math.pow(10, Math.max(0, zerosToFill)).toString().substr(1) +
 			absNumber
 		);
@@ -1313,7 +1313,7 @@
 
 		// Zero out whatever was not defaulted, including time
 		for (; i < 7; i++) {
-			config._a[i] = input[i] = config._a[i] == null ? i === 2 ? 1 : 0 : config._a[i];
+			config._a[i] = input[i] = config._a[i] == null ? (i === 2 ? 1 : 0) : config._a[i];
 		}
 
 		// Check for 24:00:00.000

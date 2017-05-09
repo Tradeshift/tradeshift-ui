@@ -361,7 +361,7 @@ module.exports = function(grunt) {
 				stdout: 'inherit'
 			},
 			eslint: {
-				command: 'npm run lint',
+				command: 'npm run eslint',
 				stdout: 'inherit'
 			},
 			docs_dist: {

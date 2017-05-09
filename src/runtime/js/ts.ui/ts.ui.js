@@ -217,6 +217,7 @@ ts.ui = gui.namespace(
 			CLASS_BG_BLUE: 'ts-bg-blue',
 			CLASS_BG_GREEN: 'ts-bg-green',
 			CLASS_BG_YELLOW: 'ts-bg-yellow',
+			CLASS_BG_ORANGE: 'ts-bg-orange',
 			CLASS_BG_RED: 'ts-bg-red',
 			CLASS_BG_PURPLE: 'ts-bg-purple',
 
@@ -229,6 +230,7 @@ ts.ui = gui.namespace(
 			CLASS_BLUE: 'ts-color-blue',
 			CLASS_GREEN: 'ts-color-green',
 			CLASS_YELLOW: 'ts-color-yellow',
+			CLASS_ORANGE: 'ts-color-orange',
 			CLASS_RED: 'ts-color-red',
 			CLASS_PURPLE: 'ts-color-purple',
 
@@ -554,6 +556,7 @@ ts.ui.BACKGROUND_COLORS = {
 	green: ts.ui.CLASS_BG_GREEN,
 	purple: ts.ui.CLASS_BG_PURPLE,
 	yellow: ts.ui.CLASS_BG_YELLOW,
+	orange: ts.ui.CLASS_BG_ORANGE,
 	red: ts.ui.CLASS_BG_RED
 };
 
@@ -571,6 +574,7 @@ ts.ui.COLORS = {
 	green: ts.ui.CLASS_GREEN,
 	purple: ts.ui.CLASS_PURPLE,
 	yellow: ts.ui.CLASS_YELLOW,
+	orange: ts.ui.CLASS_ORANGE,
 	red: ts.ui.CLASS_RED
 };
 

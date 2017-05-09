@@ -16,10 +16,11 @@ If you'd like to submit a feature request or report a bug, go to our [issues pag
 
 1. Clone this repository
 1. Install [NodeJS](https://nodejs.org/), either LTS or current.
+1. Install [yarn](https://yarnpkg.com/en/docs/install), a nice package manager.
 1. Install the Grunt Command Line Utility globally.
-	- `npm install -g grunt-cli`
+	- `yarn global add grunt-cli`
 1. Install the dependencies of this project.
-	- `npm install`
+	- `yarn upgrade`
 
 ## Usage (Local Development)
 
@@ -49,8 +50,8 @@ export AWS_ACCESS_KEY_ID=[Your AWS Access Key ID]
 export AWS_SECRET_ACCESS_KEY=[Your AWS Secret Access Key]
 ```
 
-If you have the correct AWS access keys to release a new version of tradeshift-ui, you can do so using the `grunt release` command.
-It will bump the version inside `package.json`, commit, tag release, upload to CloudFront and push to GitHub. Make sure to not do this on the `master` branch because it is protected from being pushed to directly.
+If you have the correct AWS access keys to release a new version of tradeshift-ui, you can do so using the `yarn run release` or `yarn run prerelease` commands.
+It will bump the version inside `package.json`, commit, tag release, upload to S3/CloudFront and push to GitHub. Make sure to not do this on the `master` branch because it is protected from being pushed to directly.
 
 ## Running tests
 
@@ -62,7 +63,7 @@ export BROWSERSTACK_KEY=[Your BrowserStack key]
 
 Then feel free to start running the tests as such:
 
-`npm test`
+`yarn test`
 
 This command will run all the Jasmine tests for all UI Components through BrowserStack.
 

@@ -3,12 +3,19 @@ const browserstackRunner = require('browserstack-runner');
 
 const config = require('../browserstack.json');
 
-const parseBrowserStackJSON = function(json) {
+const didWeFail = function(report) {
 	var out = [];
 	var errOut = [];
+
+	if (!report.length) {
+		console.log('No report received, probably everything is ok.');
+		succ();
+		return false;
+	}
+
 	out.push('');
 	out.push('');
-	json.forEach(function(browserRes) {
+	report.forEach(function(browserRes) {
 		out.push('____________________________________________________________');
 		out.push(chalk.white.bgBlack('Browser: ') + chalk.white.bold.bgBlack(browserRes.browser));
 		browserRes.tests.forEach(function(test) {
@@ -43,10 +50,8 @@ const parseBrowserStackJSON = function(json) {
 	}
 	console.log(errOut.join('\n'));
 
-	return !errOut.length;
+	return errOut.length;
 };
-
-global.logLevel = 0;
 
 const tsui = function() {
 	console.log(
@@ -138,6 +143,7 @@ const runr = function() {
 		'                                  ░░   ░  ░░░ ░ ░    ░   ░ ░    ░   ░ ░    ░     ░░   ░'
 	);
 	console.log('                                  ░        ░              ░          ░    ░  ░   ░');
+	console.log('');
 };
 
 const fail = function() {
@@ -166,6 +172,7 @@ const fail = function() {
 		'                               ░ ░     ░   ▒    ▒ ░  ░ ░    ░░░ ░ ░   ░░   ░    ░       ░'
 	);
 	console.log('                               ░  ░ ░      ░  ░   ░        ░        ░  ░ ░');
+	console.log('');
 };
 const succ = function() {
 	console.log(
@@ -196,23 +203,26 @@ const succ = function() {
 		'                             ░     ░     ░ ░      ░ ░         ░  ░      ░        ░   ░'
 	);
 	console.log('                             ░        ░');
+	console.log('');
 };
+
+global.logLevel = 0;
 
 tsui();
 brst();
 runr();
 
-browserstackRunner.run(config, function(error, report) {
+browserstackRunner.run(config, function(err, report) {
 	global.logLevel = 6;
-	if (error) {
+	if (err) {
 		console.log('Something went wrong with BrowserStack!');
-		console.log('Error:' + error);
+		console.log('Error:' + err);
 		process.exit(2);
 	}
 
-	if (parseBrowserStackJSON(report)) {
-		process.exit(0);
-	} else {
+	if (didWeFail(report)) {
 		process.exit(1);
+	} else {
+		process.exit(0);
 	}
 });

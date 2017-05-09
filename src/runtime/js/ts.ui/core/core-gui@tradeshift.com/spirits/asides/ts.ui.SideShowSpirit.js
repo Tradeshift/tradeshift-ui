@@ -170,7 +170,7 @@ ts.ui.SideShowSpirit = (function using(
 			 */
 			onrender: function() {
 				this.super.onrender();
-				this._confirmpanel(true);
+				this._confirmpanel();
 				this._reflex();
 			},
 
@@ -304,15 +304,12 @@ ts.ui.SideShowSpirit = (function using(
 					opt_open = true;
 				}
 				if (this._shouldtoggle(opt_open)) {
-					this.att.set('data-ts.open', opt_open);
 					if (opt_open) {
 						if (!this.isOpen) {
-							this.isOpen = true;
 							this._open(this.life.async);
 						}
 					} else {
 						if (this.isOpen) {
-							this.isOpen = false;
 							this._close(this.life.async);
 						}
 					}
@@ -406,20 +403,6 @@ ts.ui.SideShowSpirit = (function using(
 			_canclose: false,
 
 			/**
-			 * @deprecated
-			 * The classname `ts-internal` will make this thing not behave
-			 * much like an Aside because that was needed for teams that
-			 * didn't want to use Asides. The classname affects both JS
-			 * behavior and CSS styling. When we get support for different
-			 * versions of UI Components (in V4), we should see if this
-			 * can be deprecated in favor of standard UI Components.
-			 * @returns {boolean}
-			 */
-			_isinternal: function() {
-				return this.css.contains('ts-internal');
-			},
-
-			/**
 			 * Using JS instead of CSS flex because Chrome has a nasty public breakdown.
 			 * TODO: Setup to only reflex if the height of header or footer has changed.
 			 * @param @optional {function} action Optionally flex after executing this.
@@ -452,17 +435,13 @@ ts.ui.SideShowSpirit = (function using(
 			},
 
 			/**
-			 * Confirm and setup the panel.
-			 * @param {boolean} insist
+			 * Confirm and setup the panel. We'll skip this in IE where 
+			 * React is known to render the DOM tree in reverse sometimes.
 			 * @return {ts.ui.Spirit}
 			 */
-			_confirmpanel: function(insist) {
-				if (insist || !this._isinternal()) {
-					var panel = this.dom.q('.ts-panel', ts.ui.PanelSpirit);
-					if (!panel) {
-						throw new Error('Expected a Panel');
-					}
-					return panel;
+			_confirmpanel: function() {
+				if (!this.dom.q('.ts-panel', ts.ui.PanelSpirit)) {
+					throw new Error('Expected a Panel');
 				}
 			},
 
@@ -473,10 +452,8 @@ ts.ui.SideShowSpirit = (function using(
 			 * - The {ts.ui.CollaborationSpirit} doesn't do this because of politics.
 			 */
 			_confirmposition: function() {
-				if (!this._isinternal()) {
-					if (!this.guilayout.outsideMain()) {
-						throw new Error(this + ' must be positioned outside Main', this.element);
-					}
+				if (!this.guilayout.outsideMain()) {
+					throw new Error(this + ' must be positioned outside Main', this.element);
 				}
 			},
 
@@ -622,7 +599,12 @@ ts.ui.SideShowSpirit = (function using(
 			 * @returns {boolean}
 			 */
 			_open: function(animated) {
-				return this._execute('onopen') !== false;
+				var success = this._execute('onopen') !== false;
+				if (success) {
+					this.isOpen = true;
+					this.att.set('data-ts.open', true);
+				}
+				return success;
 			},
 
 			/**
@@ -631,7 +613,12 @@ ts.ui.SideShowSpirit = (function using(
 			 * @returns {boolean}
 			 */
 			_close: function(animated) {
-				return this._execute('onclose') !== false;
+				var success = this._execute('onclose') !== false;
+				if (success) {
+					this.isOpen = false;
+					this.att.set('data-ts.open', false);
+				}
+				return success;
 			},
 
 			/**

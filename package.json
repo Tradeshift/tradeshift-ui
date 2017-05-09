@@ -15,14 +15,14 @@
   ],
   "license": "SEE LICENSE IN LICENSE.md",
   "engines": {
-    "node": "6.10.0"
+    "node": "6.10.3"
   },
   "scripts": {
     "postinstall": "cd docs && npm install",
     "lint": "npm run prettier && npm run eslint",
     "eslint": "eslint --config ./.eslintrc.json .",
-    "prettier": "./node_modules/.bin/prettier --write --use-tabs --single-quote --print-width 100 \"{src,docs/src/{js/{dox-api@tradeshift.com,dox-gui@tradeshift.com},xhtml}}/**/*.js\"",
-    "build": "./node_modules/.bin/grunt dist",
+    "prettier": "prettier --write --use-tabs --single-quote --print-width 100 \"{src,docs/src/{js/{dox-api@tradeshift.com,dox-gui@tradeshift.com},xhtml}}/**/*.js\"",
+    "build": "grunt dist",
     "test": "npm run lint && ./node_modules/.bin/grunt jasmine && echo 'Running tests on https://www.browserstack.com/automate' && ./node_modules/.bin/browserstack-runner",
     "http": "static spec/jasmine -H '{\"Cache-Control\": \"no-cache, must-revalidate\"}'",
     "deploy-s3": "node tasks/deploy.js",
@@ -30,8 +30,8 @@
   },
   "lint-staged": {
     "*.js": [
-      "./node_modules/.bin/prettier --write --use-tabs --single-quote --print-width 100",
-      "./node_modules/.bin/eslint --config ./.eslintrc.json",
+      "prettier --write --use-tabs --single-quote --print-width 100",
+      "eslint --config ./.eslintrc.json",
       "git add"
     ]
   },

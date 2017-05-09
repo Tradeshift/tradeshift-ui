@@ -8,9 +8,12 @@ const didWeFail = function(report) {
 	var errOut = [];
 
 	if (!report.length) {
-		console.log('No report received, probably everything is ok.');
-		succ();
-		return false;
+		console.log('No report received, probably because the build has been terminated...');
+		console.log(
+			'Check the tests runs! https://travis-ci.org/Tradeshift/tradeshift-ui/pull_requests'
+		);
+		fail();
+		return true;
 	}
 
 	out.push('');

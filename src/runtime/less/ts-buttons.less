@@ -588,7 +588,8 @@
 .ts-bg-dark,
 .ts-bg-red,
 .ts-bg-green,
-.ts-bg-purple {
+.ts-bg-purple,
+.ts-bg-orange {
 	.ts-button.ts-active:not(:disabled):not(.ts-nofocus) {
 		&:active {
 			&.ts-tertiary {
@@ -601,7 +602,8 @@
 .ts-bg-blue,
 .ts-bg-red,
 .ts-bg-green,
-.ts-bg-purple {
+.ts-bg-purple,
+.ts-bg-orange {
 	.ts-button:not(:disabled) {
 		&.ts-primary {
 			.mixin-button-light(
@@ -625,7 +627,8 @@
 .ts-bg-dark,
 .ts-bg-red,
 .ts-bg-green,
-.ts-bg-purple {
+.ts-bg-purple,
+.ts-bg-orange {
 	.ts-button {
 		&:disabled,
 		&.ts-tertiary {
@@ -683,11 +686,22 @@
 		}
 	}	
 }
+.ts-bg-orange {
+	.ts-button:not(:disabled) {
+		&.ts-primary {
+			color: @ts-orange;
+			&:focus:before {
+				border-color: @ts-orange-darker;
+			}
+		}
+	}
+}
 .ts-bg-blue,
 .ts-bg-dark,
 .ts-bg-red,
 .ts-bg-green,
-.ts-bg-purple {
+.ts-bg-purple,
+.ts-bg-orange {
 	.ts-bg-white, // ouch, expensive :/
 	.ts-bg-lite {
 		.ts-button:not(:disabled) {

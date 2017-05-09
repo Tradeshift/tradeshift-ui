@@ -26,8 +26,8 @@
     "****** DIST *****": "",
     "build": "grunt dist",
     "deploy-s3": "node tasks/deploy.js",
-    "release": "release-it --interactive ",
-    "prerelease": "release-it --github.preRelease='true'",
+    "release": "release-it --github.preRelease=\"false\" --interactive",
+    "prerelease": "release-it prerelease --prereleaseId=\"beta\"",
     "****** TEST *****": "",
     "test": "yarn run eslint && yarn run build-jasmine && yarn run browserstack",
     "build-jasmine": "grunt jasmine",
@@ -36,7 +36,7 @@
     "****** NODE *****": "",
     "postcheckout": "yarn upgrade",
     "postinstall": "cd docs && yarn upgrade",
-    "precommit": "lint-staged && yarn run eslint && grunt exec:docs_dist && git add -A docs/{index.html,dist/**/*}"
+    "precommit": "lint-staged && yarn run eslint && grunt exec:docs_dist && git add -A docs/index.html && git add -A docs/dist/**/*"
   },
   "lint-staged": {
     "*.js": [

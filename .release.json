@@ -1,0 +1,17 @@
+{
+	"non-interactive": true,
+	"verbose": true,
+	"requireCleanWorkingDir": true,
+	"src": {
+		"commitMessage": "Release v%s",
+		"tagName": "v%s",
+		"tagAnnotation": "Tradeshift UI v%s",
+		"beforeStageCommand": "grunt release-deploy"
+	},
+	"github": {
+		"release": true,
+		"releaseName": "v%s",
+		"preRelease": true,
+		"tokenRef": "GH_ACCESS_TOK"
+	}
+}

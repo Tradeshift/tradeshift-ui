@@ -6,7 +6,6 @@
  */
 module.exports = function(grunt) {
 	'use strict';
-
 	// load grunt tasks
 	require('load-grunt-tasks')(grunt);
 
@@ -14,39 +13,22 @@ module.exports = function(grunt) {
 	grunt.file.defaultEncoding = 'utf8';
 
 	// import custom tasks (to keep this file somewhat readable)
-	[
-		'tsjs',
-		'tsless',
-		'touchfriendly',
-		'check_cdn'
-	].forEach(function(task) {
+	['tsjs', 'tsless', 'touchfriendly', 'check_cdn'].forEach(function(task) {
 		require('./tasks/' + task).init(grunt);
 	});
 
 	// read config and apply local overrides (gitignored!)
-	var config = require('./tasks/config').init(grunt).merge(
-		'config.json',
-		'config.local.json'
-	);
+	var config = require('./tasks/config').init(grunt).merge('config.json', 'config.local.json');
 
 	// Config ....................................................................
 	grunt.initConfig({
-
 		config: config,
 		pkg: grunt.file.readJSON('package.json'),
 
 		// nuke previous build
 		clean: {
-			all: [
-				'temp/**',
-				'dist/**',
-				'public/**'
-			],
-			cdn: [
-				'temp/**',
-				'dist/cdn/**',
-				'public/**'
-			]
+			all: ['temp/**', 'dist/**', 'public/**'],
+			cdn: ['temp/**', 'dist/cdn/**', 'public/**']
 		},
 
 		// setup 'ts.js' for local development
@@ -103,8 +85,12 @@ module.exports = function(grunt) {
 			},
 			prod: {
 				options: {
-					'${runtimecss}': '<%= config.cdn_live %>' + config.folder_prod + '/ts-<%= pkg.version %>.min.css',
-					'${langbundle}': '<%= config.cdn_live %>' + config.folder_prod + '/ts-lang-<LANG>-<%= pkg.version %>.js'
+					'${runtimecss}': '<%= config.cdn_live %>' +
+						config.folder_prod +
+						'/ts-<%= pkg.version %>.min.css',
+					'${langbundle}': '<%= config.cdn_live %>' +
+						config.folder_prod +
+						'/ts-lang-<LANG>-<%= pkg.version %>.js'
 				},
 				files: {
 					'temp/ts.js': 'src/runtime/ts.js'
@@ -136,7 +122,8 @@ module.exports = function(grunt) {
 
 		// concatenate those files
 		concat: {
-			loose: { // stuff that isn't necessarily "use strict"
+			loose: {
+				// stuff that isn't necessarily "use strict"
 				options: {
 					separator: '\n\n',
 					banner: '(function(window) {\n\n',
@@ -185,7 +172,6 @@ module.exports = function(grunt) {
 
 		// build spiritual bundles
 		guibundles: {
-
 			// spiritual (core) modules
 			spiritualgui: bundle('temp/module-gui.js', [
 				'src/spiritual/spiritual-gui/gui@wunderbyte.com/build.json'
@@ -283,12 +269,7 @@ module.exports = function(grunt) {
 				},
 				expand: true,
 				cwd: 'dist/cdn/',
-				src: [
-					'**/*.map',
-					'**/*.js',
-					'**/*.css',
-					'**/*.less'
-				],
+				src: ['**/*.map', '**/*.js', '**/*.css', '**/*.less'],
 				dest: 'public/'
 			}
 		},
@@ -304,13 +285,7 @@ module.exports = function(grunt) {
 				files: ['src/runtime/less/**/*.less']
 			},
 			edbml: {
-				tasks: [
-					'edbml',
-					'concat:loose',
-					'guibundles',
-					'concat:dev',
-					'uglify:dev'
-				],
+				tasks: ['edbml', 'concat:loose', 'guibundles', 'concat:dev', 'uglify:dev'],
 				files: ['src/runtime/edbml/**/*.edbml'],
 				options: { interval: 5000 }
 			}
@@ -326,7 +301,8 @@ module.exports = function(grunt) {
 		},
 
 		// local dev server
-		devserver: { // kill -9 $(lsof -t -i :10111)
+		devserver: {
+			// kill -9 $(lsof -t -i :10111)
 			server: {},
 			options: {
 				base: '.',
@@ -364,6 +340,10 @@ module.exports = function(grunt) {
 				command: 'npm run eslint',
 				stdout: 'inherit'
 			},
+			release: {
+				command: 'npm run release',
+				stdout: 'inherit'
+			},
 			docs_dist: {
 				command: 'cd docs && grunt dist',
 				stdout: 'inherit'
@@ -371,33 +351,6 @@ module.exports = function(grunt) {
 			docs_grunt: {
 				command: 'cd docs && grunt',
 				stdout: 'inherit'
-			}
-		},
-
-		release: {
-			options: {
-				bump: true, // enable bumping the version
-				silent: false, // display the output of git and other grunt tasks
-				commit: true, // commit changes to git
-				commitMessage: '[bump] v<%= version %>',
-				push: true, // push your commits to git
-				tag: true, // add a new tag based on the release
-				tagName: 'v<%= version %>',
-				tagMessage: 'v<%= version %>',
-				pushTags: true, // push the new tag to git
-				npm: false, // this isn't an npm module
-				afterBump: [
-					'release-deploy' // deploy to S3 after everything is done
-				],
-				github: {
-					repo: 'Tradeshift/tradeshift-ui',
-					/**
-					 * don't forget to create a GitHub Access Token here:
-					 * https://help.github.com/articles/creating-an-access-token-for-command-line-use
-					 * And set it as an ENV VAR
-					 */
-					accessTokenVar: 'GH_ACCESS_TOK'
-				}
 			}
 		},
 
@@ -441,7 +394,8 @@ module.exports = function(grunt) {
 			'src/runtime/js/ts-polyfilla.js',
 			'src/runtime/js/ts-namespace.js',
 			'src/runtime/js/ts.ui/ts.ui.js'
-		].map(validated)
+		]
+			.map(validated)
 			.concat(getbuild('src/runtime/js/ts.lib/build.json'))
 			.concat(build('core/core-api@tradeshift.com/build.json'))
 			.concat(build('forms/forms-api@tradeshift.com/build.json'))
@@ -468,9 +422,7 @@ module.exports = function(grunt) {
 	 * @returns {Array<string>}
 	 */
 	function getcombobuilds() {
-		return ['temp/ts.js']
-			.concat(getapibuilds())
-			.concat(getguibuilds());
+		return ['temp/ts.js'].concat(getapibuilds()).concat(getguibuilds());
 	}
 
 	/**
@@ -607,25 +559,22 @@ module.exports = function(grunt) {
 
 	// BUILD FOR PRODUCTION! RUN THIS BEFORE PULL REQUEST!
 	// NOTE: Duplicate steps going on, should be optimized
-	grunt.registerTask('dist', ['exec:eslint']
-		.concat(buildlocal('jasmine'))
-		.concat(['concat:jasmine', 'copy:jasmine'])
-		.concat(buildcdn('prod'))
-		.concat(['exec:docs_dist'])
+	grunt.registerTask(
+		'dist',
+		['exec:eslint']
+			.concat(buildlocal('jasmine'))
+			.concat(['concat:jasmine', 'copy:jasmine'])
+			.concat(buildcdn('prod'))
+			.concat(['exec:docs_dist'])
 	);
 
 	// while developing, build the Jasmine test suite like this:
-	grunt.registerTask('jasmine', buildlocal('jasmine').concat([
-		'concat:jasmine',
-		'copy:jasmine'
-	]));
+	grunt.registerTask('jasmine', buildlocal('jasmine').concat(['concat:jasmine', 'copy:jasmine']));
 
-	// never called directly, grunt-release will do that for us
-	grunt.registerTask('release-deploy', [
-		'check_cdn:prod',
-		'dist',
-		'exec:s3_upload'
-	]);
+	grunt.registerTask('release', 'exec:release');
+
+	// never called directly, release-it will do that for us
+	grunt.registerTask('release-deploy', ['check_cdn:prod', 'dist', 'exec:s3_upload']);
 
 	// compile that CSS
 	grunt.registerTask('css', 'Compiles CSS', [

@@ -1212,6 +1212,30 @@ article {
   background-color: #7f7348;
   color: #fdfed5;
 }
+#doc-colors-demo .ts-orange-liter {
+  background-color: #faecd9;
+  color: #e69900;
+}
+#doc-colors-demo .ts-orange-lite {
+  background-color: #f2dcb1;
+  color: #c77b00;
+}
+#doc-colors-demo .ts-orange {
+  background-color: #e69900;
+  color: #ffffff;
+}
+#doc-colors-demo .ts-orange-dark {
+  background-color: #c77b00;
+  color: #ffffff;
+}
+#doc-colors-demo .ts-orange-darker {
+  background-color: #422800;
+  color: #ffffff;
+}
+#doc-colors-demo .ts-orange-text {
+  background-color: #ffffff;
+  color: #e69900;
+}
 #doc-colors-demo .ts-purple {
   background-color: #9434c8;
   color: #ffffff;

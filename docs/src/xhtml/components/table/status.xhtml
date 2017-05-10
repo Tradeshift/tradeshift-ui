@@ -15,13 +15,14 @@
 						<li>
 							<figure data-ts="DoxScript">
 								<script type="runnable">
-									var table = ts.ui.get('#table1');
-									table.status('This is the message.');
-									table.rows([
-										[1, 4, 7],
-										[2, 5, 8],
-										[3, 6, 9]
-									]);
+									ts.ui.get('#table1', table => {
+										table.status('This is the message.');
+										table.rows([
+											[1, 4, 7],
+											[2, 5, 8],
+											[3, 6, 9]
+										]);
+									});
 								</script>
 							</figure>
 						</li>
@@ -32,9 +33,10 @@
 					<p>In a small Table such as this one, which spans the width of an iPhone 6, the message will be presented on a separate line when we add more features.</p>
 					<figure data-ts="DoxScript">
 						<script type="runnable">
-							var table = ts.ui.get('#table1');
-							table.configurable().pager({
-								pages: 23
+							ts.ui.get('#table1', table => {
+								table.configurable().pager({
+									pages: 23
+								});
 							});
 						</script>
 					</figure>

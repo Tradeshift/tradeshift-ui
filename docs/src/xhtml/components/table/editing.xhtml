@@ -15,15 +15,16 @@
 						<li>
 							<figure data-ts="DoxScript">
 								<script type="runnable">
-									var table = ts.ui.get('#table1');
-									table.rows([
-										['Single asterisks is used for *italic text*'],
-										['Double asterisks is used for **strong text**'],
-										['Single backtick is used for `monotype text`'],
-										['Double tilde can be used to ~~Strike text~~']
-									]).editable(function onedit(rowindex, cellindex, value) {
-										console.log('Send to backend: ' + value);
-										table.cell(rowindex, cellindex, value);
+									ts.ui.get('#table1', table => {
+										table.rows([
+											['Single asterisks is used for *italic text*'],
+											['Double asterisks is used for **strong text**'],
+											['Single backtick is used for `monotype text`'],
+											['Double tilde can be used to ~~Strike text~~']
+										]).editable(function onedit(rowindex, cellindex, value) {
+											console.log('Send to backend: ' + value);
+											table.cell(rowindex, cellindex, value);
+										});
 									});
 								</script>
 							</figure>
@@ -37,14 +38,16 @@
 						<li>
 							<figure data-ts="DoxScript">
 								<script type="runnable">
-									ts.ui.get('#table6').cols([
-										{label: 'Edit'},
-										{label: 'Edit'},
-										{label: 'Don\'t edit!', editable: false}
-									]).rows([
-										['V', 'V', 'X']
-									]).editable(function onedit(ri, ci, value) {
-										this.cell(ri, ci, value);
+									ts.ui.get('#table6', table => {
+										table.cols([
+											{label: 'Edit'},
+											{label: 'Edit'},
+											{label: 'Don\'t edit!', editable: false}
+										]).rows([
+											['V', 'V', 'X']
+										]).editable(function onedit(ri, ci, value) {
+											this.cell(ri, ci, value);
+										});
 									});
 								</script>
 							</figure>
@@ -58,12 +61,14 @@
 						<li>
 							<figure data-ts="DoxScript">
 								<script type="runnable">
-									ts.ui.get('#table7').rows([
-										{ cells: ['X', 'X', 'X'], editable: false},
-										{ cells: ['V', 'V', 'V']},
-										{ cells: ['V', 'V', 'V']}
-									]).editable(function onedit(ri, ci, value) {
-										this.cell(ri, ci, value);
+									ts.ui.get('#table7', table => {
+										table.rows([
+											{ cells: ['X', 'X', 'X'], editable: false},
+											{ cells: ['V', 'V', 'V']},
+											{ cells: ['V', 'V', 'V']}
+										]).editable(function onedit(ri, ci, value) {
+											this.cell(ri, ci, value);
+										});
 									});
 								</script>
 							</figure>
@@ -80,18 +85,19 @@
 						<li>
 							<figure data-ts="DoxScript">
 								<script type="runnable">
-									var table = ts.ui.get('#table8');
 									var popup = ts.ui.Notification;
-									table.cols([
-										{label: 'Wrapped column', wrap: true},
-										{label: 'Unwrapped column'}
-									]).rows([
-										[
-											'Hold `SHIFT` while pressing `ENTER` to add a second paragraph.',
-											'New paragraph ignored!'
-										]
-									]).editable(function onedit(ri, ci, value) {
-										table.cell(ri, ci, value);
+									ts.ui.get('#table8', table => {
+										table.cols([
+											{label: 'Wrapped column', wrap: true},
+											{label: 'Unwrapped column'}
+										]).rows([
+											[
+												'Hold `SHIFT` while pressing `ENTER` to add a second paragraph.',
+												'New paragraph ignored!'
+											]
+										]).editable(function onedit(ri, ci, value) {
+											table.cell(ri, ci, value);
+										});
 									});
 								</script>
 							</figure>
@@ -107,24 +113,25 @@
 						<li>
 							<figure data-ts="DoxScript">
 								<script type="runnable">
-									var table = ts.ui.get('#table2');
 									var popup = ts.ui.Notification;
-									table.rows([
-										[1, 1, 2, 3, 5],
-										[8, 13, 21, 34, 55]
-									]).editable(function onedit(ri, ci, value) {
-										value = Number(value);
-										if(isNaN(value)) {
-											table.invalid(ri, ci);
-											popup.error('Please type a number.', {
-												onaccept: function() {
-													table.focus(ri, ci);
-												}
-											});
-										} else {
-											console.log('Send to backend: ' + value);
-											table.cell(ri, ci, value);
-										}
+									ts.ui.get('#table2', table => {
+										table.rows([
+											[1, 1, 2, 3, 5],
+											[8, 13, 21, 34, 55]
+										]).editable(function onedit(ri, ci, value) {
+											value = Number(value);
+											if(isNaN(value)) {
+												table.invalid(ri, ci);
+												popup.error('Please type a number.', {
+													onaccept: function() {
+														table.focus(ri, ci);
+													}
+												});
+											} else {
+												console.log('Send to backend: ' + value);
+												table.cell(ri, ci, value);
+											}
+										});
 									});
 								</script>
 							</figure>
@@ -144,22 +151,23 @@
 									function valid(value) {
 										return !isNaN(new Date(value).getTime());
 									}
-									var table = ts.ui.get('#table3');
-									table.status('').rows([
-										[{ value: '1985-10-26', text: format('1985-10-26') }],
-										[{ value: '2015-10-21', text: format('2015-10-26') }],
-										[{ value: '1955-11-12', text: format('1955-11-12') }]
-									]).editable(function onedit(ri, ci, value) {
-										if(valid(value)) {
-											console.log('Send to backend: ' + value);
-											table.cell(ri, ci, {
-												value: value,
-												text: format(value),
-											});
-										} else {
-											var message = 'Please use the format *YYYY-MM-DD*';
-											table.invalid(ri, ci, message);
-										}
+									ts.ui.get('#table3', table => {
+										table.status('').rows([
+											[{ value: '1985-10-26', text: format('1985-10-26') }],
+											[{ value: '2015-10-21', text: format('2015-10-26') }],
+											[{ value: '1955-11-12', text: format('1955-11-12') }]
+										]).editable(function onedit(ri, ci, value) {
+											if(valid(value)) {
+												console.log('Send to backend: ' + value);
+												table.cell(ri, ci, {
+													value: value,
+													text: format(value),
+												});
+											} else {
+												var message = 'Please use the format *YYYY-MM-DD*';
+												table.invalid(ri, ci, message);
+											}
+										});
 									});
 								</script>
 							</figure>
@@ -176,13 +184,15 @@
 						<li>
 							<figure data-ts="DoxScript">
 								<script type="runnable">
-									ts.ui.get('#table4').rows([
-										[
-											{ value: 1000, text: '$1,000.00'},
-											{ value: 2000, text: '$2,000.00'},
-											{ value: 3000, text: '$3,000.00'}
-										]
-									]).editable();
+									ts.ui.get('#table4', table => {
+										table.rows([
+											[
+												{ value: 1000, text: '$1,000.00'},
+												{ value: 2000, text: '$2,000.00'},
+												{ value: 3000, text: '$3,000.00'}
+											]
+										]).editable();
+									});
 								</script>
 							</figure>
 						</li>
@@ -207,20 +217,21 @@
 									function format(n) {
 										return '$' + n.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",")
 									}
-									var table = ts.ui.get('#table5');
-									table.rows([
-										[
-											{ value: 1000, text: format(1000)},
-											{ value: 2000, text: format(2000)},
-											{ value: 3000, text: format(1000)}
-										]
-									]).editable(function(ri, ci, value) {
-										value = Number(value);
-										if(isNaN(value)) {
-											table.invalid(ri, ci);
-										} else {
-											table.cell(ri, ci, {value: value, text: format(value)});
-										}
+									ts.ui.get('#table5', table => {
+										table.rows([
+											[
+												{ value: 1000, text: format(1000)},
+												{ value: 2000, text: format(2000)},
+												{ value: 3000, text: format(1000)}
+											]
+										]).editable(function(ri, ci, value) {
+											value = Number(value);
+											if(isNaN(value)) {
+												table.invalid(ri, ci);
+											} else {
+												table.cell(ri, ci, {value: value, text: format(value)});
+											}
+										});
 									});
 								</script>
 							</figure>

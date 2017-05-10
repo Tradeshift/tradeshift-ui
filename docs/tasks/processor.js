@@ -1,15 +1,15 @@
-var cheerio = require('cheerio');
-var path = require('path');
-var fs = require('fs');
-var prism = require('./prism');
-var publisher = require('./publisher');
-var beautify = require('js-beautify').html;
+const cheerio = require('cheerio');
+const path = require('path');
+const fs = require('fs');
+const prism = require('./prism');
+const publisher = require('./publisher');
+const beautify = require('js-beautify').html;
+const compile = require('es6-arrow-function').compile;
 
 /*
  * Hello
  */
 module.exports = {
-
 	/**
 	 *
 	 * @param {string} html
@@ -33,9 +33,7 @@ module.exports = {
 		$ = stickys($);
 		$('html').addClass('ts-docs');
 		$('html').attr('spellcheck', false);
-		return publisher.publish(
-			beautify($.html().replace(EMPTYLINE, ''))
-		);
+		return publisher.publish(beautify($.html().replace(EMPTYLINE, '')));
 	}
 };
 
@@ -95,9 +93,13 @@ function prettyprint(tag, i) {
  */
 function unindent(code) {
 	var tabs = /^\n+\s+/.exec(code)[0].replace(/\n/g, '');
-	return code.split('\n').map(function(line, i) {
-		return line.replace(tabs, '');
-	}).join('\n').trim();
+	return code
+		.split('\n')
+		.map(function(line, i) {
+			return line.replace(tabs, '');
+		})
+		.join('\n')
+		.trim();
 }
 
 // Formatting code snippets ....................................................
@@ -119,6 +121,7 @@ function highlite($) {
 				gram = prism.languages[lang];
 				code = unindent(script.text()).replace(/scrxpt/g, 'script');
 				setup($, figure, script, klass, type, lang, gram, code);
+				code = klass === 'language-javascript' ? compile(code).code : code;
 				figure.attr('data-ts.code', encodeURIComponent(code));
 			}
 		});
@@ -153,7 +156,7 @@ function setup($, figure, script, klass, type, lang, gram, code) {
 	var edit = type.indexOf('editable') > -1;
 	var xxxx = figure.find('output')[0];
 	var outs = !!xxxx;
-	var flip = outs && !!($(xxxx).next('script')[0]); // output before script?
+	var flip = outs && !!$(xxxx).next('script')[0]; // output before script?
 	var elem = $.parseHTML(getelement(klass, html, code, runs, edit, outs, flip));
 	if (runs) {
 		figure.addClass('runnable');
@@ -187,11 +190,11 @@ function getelement(klass, html, code, runs, edit, outs, flip) {
 	return [
 		'<input type="hidden" value="' + encodeURIComponent(JSON.stringify(x)) + '"/>',
 		'<div class="tabpanels">',
-			[outs ? (flip ? output : '') : ''],
+		[outs ? (flip ? output : '') : ''],
 		'<pre class="prism ' + klass + '">',
 		'<code>' + html + '</code>',
 		'</pre>',
-			[outs ? (flip ? '' : output) : ''],
+		[outs ? (flip ? '' : output) : ''],
 		'</div>'
 	].join('\n');
 }
@@ -227,7 +230,8 @@ function localization($) {
  * @returns {$}
  */
 function headertags($) {
-	var i = 1; while (i <= 6) {
+	var i = 1;
+	while (i <= 6) {
 		headertype($, $('h' + i));
 		i++;
 	}
@@ -276,7 +280,7 @@ function includetags($, source) {
 
  */
 function fetchinclude(file, id, preparsersArray, postparsersArray) {
-	var src = fs.readFileSync(file, {encoding: 'UTF-8'});
+	var src = fs.readFileSync(file, { encoding: 'UTF-8' });
 	var $ = cheerio.load(src);
 	var clone, html;
 	if (id) {
@@ -382,9 +386,11 @@ function specialtags($) {
 		var val = txt.split('="')[1];
 		$(tag).replaceWith(
 			'<code class="attr-pair">' +
-			'<span>' + att + '</span>' +
-			(val ? '="<span>' + val.slice(0, -1) + '</span>"' : '') +
-			'</code>'
+				'<span>' +
+				att +
+				'</span>' +
+				(val ? '="<span>' + val.slice(0, -1) + '</span>"' : '') +
+				'</code>'
 		);
 	});
 	$('elm').each(function(i, tag) {
@@ -454,7 +460,8 @@ function chromelinks($) {
 
 // Stickys .....................................................................
 
-function stickys($) { // eslint-disable-line no-unused-vars
+function stickys($) {
+	// eslint-disable-line no-unused-vars
 	const newissue = 'https://github.com/Tradeshift/tradeshift-ui/issues/new';
 	const tooltip = 'Submit new issue';
 	const body = $('body');
@@ -469,7 +476,8 @@ function stickys($) { // eslint-disable-line no-unused-vars
 		        </a>
 		      </li>
 			  </menu>
-			</aside>`);
+			</aside>`
+		);
 	}
 	return $;
 }

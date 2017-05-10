@@ -188,6 +188,17 @@ ast-types@~0.5.7:
   dependencies:
     depd "~1.0.0"
 
+ast-types@~0.6.1, ast-types@~0.6.7:
+  version "0.6.16"
+  resolved "https://registry.yarnpkg.com/ast-types/-/ast-types-0.6.16.tgz#04205b72eddd195a8feaa081f11d0294a24ded93"
+
+ast-util@^0.6.0:
+  version "0.6.0"
+  resolved "https://registry.yarnpkg.com/ast-util/-/ast-util-0.6.0.tgz#0d913d04f0e9831e53f9991dc99009e2da774810"
+  dependencies:
+    ast-types "~0.6.7"
+    private "~0.1.6"
+
 async-each@~0.1.5:
   version "0.1.6"
   resolved "https://registry.yarnpkg.com/async-each/-/async-each-0.1.6.tgz#b67e99edcddf96541e44af56290cd7d5c6e70439"
@@ -633,7 +644,7 @@ decamelize@^1.0.0, decamelize@^1.1.2:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/decamelize/-/decamelize-1.2.0.tgz#f6534d15148269b20352e7bee26f501f9a191290"
 
-deep-is@~0.1.2, deep-is@~0.1.3:
+deep-is@~0.1.2:
   version "0.1.3"
   resolved "https://registry.yarnpkg.com/deep-is/-/deep-is-0.1.3.tgz#b369d6fb5dbc13eecf524f91b070feedc357cf34"
 
@@ -791,6 +802,14 @@ es5-ext@^0.10.14, es5-ext@^0.10.9, es5-ext@~0.10.14, es5-ext@~0.10.2, es5-ext@~0
     es6-iterator "2"
     es6-symbol "~3.1"
 
+es6-arrow-function@^0.6.6:
+  version "0.6.6"
+  resolved "https://registry.yarnpkg.com/es6-arrow-function/-/es6-arrow-function-0.6.6.tgz#36546f8bf2a825ac541c0fb733f2dee4f573f92c"
+  dependencies:
+    ast-util "^0.6.0"
+    recast "^0.9.11"
+    through "~2.3.6"
+
 es6-iterator@2:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/es6-iterator/-/es6-iterator-2.0.1.tgz#8e319c9f0453bf575d374940a655920e59ca5512"
@@ -825,7 +844,7 @@ escape-string-regexp@^1.0.0, escape-string-regexp@^1.0.2, escape-string-regexp@^
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/escape-string-regexp/-/escape-string-regexp-1.0.5.tgz#1b61c0562190a8dff6ae3bb2cf0200ca130b86d4"
 
-escodegen@1.6.x:
+escodegen@1.6.x, escodegen@^1.6.1:
   version "1.6.1"
   resolved "https://registry.yarnpkg.com/escodegen/-/escodegen-1.6.1.tgz#367de17d8510540d12bc6dcb8b3f918391265815"
   dependencies:
@@ -835,17 +854,6 @@ escodegen@1.6.x:
     optionator "^0.5.0"
   optionalDependencies:
     source-map "~0.1.40"
-
-escodegen@^1.6.1:
-  version "1.8.1"
-  resolved "https://registry.yarnpkg.com/escodegen/-/escodegen-1.8.1.tgz#5a5b53af4693110bebb0867aa3430dd3b70a1018"
-  dependencies:
-    esprima "^2.7.1"
-    estraverse "^1.9.1"
-    esutils "^2.0.2"
-    optionator "^0.8.1"
-  optionalDependencies:
-    source-map "~0.2.0"
 
 escope@1.0.x:
   version "1.0.3"
@@ -861,6 +869,10 @@ esformatter@0.0.6:
     mout "~0.5"
     rocambole "~0.2"
 
+esprima-fb@~10001.1.0-dev-harmony-fb:
+  version "10001.1.0-dev-harmony-fb"
+  resolved "https://registry.yarnpkg.com/esprima-fb/-/esprima-fb-10001.1.0-dev-harmony-fb.tgz#f7efb452d3c8006dde6b3c59678604f7114a882c"
+
 esprima-fb@~7001.1.0-dev-harmony-fb:
   version "7001.1.0-dev-harmony-fb"
   resolved "https://registry.yarnpkg.com/esprima-fb/-/esprima-fb-7001.1.0-dev-harmony-fb.tgz#907e20919575a667dd1b42335de00cf6646d77b3"
@@ -869,7 +881,7 @@ esprima@^1.2.0, esprima@^1.2.2:
   version "1.2.5"
   resolved "https://registry.yarnpkg.com/esprima/-/esprima-1.2.5.tgz#0993502feaf668138325756f30f9a51feeec11e9"
 
-esprima@^2.6.0, esprima@^2.7.1:
+esprima@^2.6.0:
   version "2.7.3"
   resolved "https://registry.yarnpkg.com/esprima/-/esprima-2.7.3.tgz#96e3b70d5779f6ad49cd032673d1c312767ba581"
 
@@ -892,10 +904,6 @@ estraverse@^2.0.0:
 esutils@1.1.6, esutils@^1.1.6:
   version "1.1.6"
   resolved "https://registry.yarnpkg.com/esutils/-/esutils-1.1.6.tgz#c01ccaa9ae4b897c6d0c3e210ae52f3c7a844375"
-
-esutils@^2.0.2:
-  version "2.0.2"
-  resolved "https://registry.yarnpkg.com/esutils/-/esutils-2.0.2.tgz#0abf4f1caa5bcb1f7a9d8acc6dea4faaa04bac9b"
 
 etag@~1.8.0:
   version "1.8.0"
@@ -920,10 +928,6 @@ extsprintf@1.0.2:
 fast-levenshtein@~1.0.0:
   version "1.0.7"
   resolved "https://registry.yarnpkg.com/fast-levenshtein/-/fast-levenshtein-1.0.7.tgz#0178dcdee023b92905193af0959e8a7639cfdcb9"
-
-fast-levenshtein@~2.0.4:
-  version "2.0.6"
-  resolved "https://registry.yarnpkg.com/fast-levenshtein/-/fast-levenshtein-2.0.6.tgz#3d8a5c66883a16a30ca8643e851f19baa7797917"
 
 faye-websocket@~0.10.0:
   version "0.10.0"
@@ -1596,13 +1600,6 @@ levn@~0.2.5:
     prelude-ls "~1.1.0"
     type-check "~0.3.1"
 
-levn@~0.3.0:
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/levn/-/levn-0.3.0.tgz#3b09924edf9f083c0490fdd4c0bc4421e04764ee"
-  dependencies:
-    prelude-ls "~1.1.2"
-    type-check "~0.3.2"
-
 livereload-js@^2.2.0:
   version "2.2.2"
   resolved "https://registry.yarnpkg.com/livereload-js/-/livereload-js-2.2.2.tgz#6c87257e648ab475bc24ea257457edcc1f8d0bc2"
@@ -1968,17 +1965,6 @@ optionator@^0.5.0:
     type-check "~0.3.1"
     wordwrap "~0.0.2"
 
-optionator@^0.8.1:
-  version "0.8.2"
-  resolved "https://registry.yarnpkg.com/optionator/-/optionator-0.8.2.tgz#364c5e409d3f4d6301d6c0b4c05bba50180aeb64"
-  dependencies:
-    deep-is "~0.1.3"
-    fast-levenshtein "~2.0.4"
-    levn "~0.3.0"
-    prelude-ls "~1.1.2"
-    type-check "~0.3.2"
-    wordwrap "~1.0.0"
-
 os-tmpdir@~1.0.1:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/os-tmpdir/-/os-tmpdir-1.0.2.tgz#bbe67406c79aa85c5cfec766fe5734555dfa1274"
@@ -2078,7 +2064,7 @@ pretty-bytes@^1.0.0:
     get-stdin "^4.0.1"
     meow "^3.1.0"
 
-private@0.1.6, private@~0.1.5:
+private@0.1.6, private@~0.1.5, private@~0.1.6:
   version "0.1.6"
   resolved "https://registry.yarnpkg.com/private/-/private-0.1.6.tgz#55c6a976d0f9bafb9924851350fe47b9b5fbb7c1"
 
@@ -2223,6 +2209,15 @@ recast@^0.8.0:
     esprima-fb "~7001.1.0-dev-harmony-fb"
     private "~0.1.5"
     source-map "0.1.32"
+
+recast@^0.9.11:
+  version "0.9.18"
+  resolved "https://registry.yarnpkg.com/recast/-/recast-0.9.18.tgz#f70921bb9f737d8e1fb06a440315bd7ec14587c9"
+  dependencies:
+    ast-types "~0.6.1"
+    esprima-fb "~10001.1.0-dev-harmony-fb"
+    private "~0.1.5"
+    source-map "~0.1.40"
 
 redent@^1.0.0:
   version "1.0.0"
@@ -2462,12 +2457,6 @@ source-map@^0.5.3, source-map@~0.5.1:
   version "0.5.6"
   resolved "https://registry.yarnpkg.com/source-map/-/source-map-0.5.6.tgz#75ce38f52bf0733c5a7f0c118d81334a2bb5f412"
 
-source-map@~0.2.0:
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/source-map/-/source-map-0.2.0.tgz#dab73fbcfc2ba819b4de03bd6f6eaa48164b3f9d"
-  dependencies:
-    amdefine ">=0.0.4"
-
 spdx-correct@~1.0.0:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/spdx-correct/-/spdx-correct-1.0.2.tgz#4b3073d933ff51f3912f03ac5519498a4150db40"
@@ -2590,6 +2579,10 @@ through2@^2.0.0, through2@~2.0.0:
     readable-stream "^2.1.5"
     xtend "~4.0.1"
 
+through@~2.3.6:
+  version "2.3.8"
+  resolved "https://registry.yarnpkg.com/through/-/through-2.3.8.tgz#0dd4c9ffaabc357960b1b724115d7e0e86a2e1f5"
+
 tiny-lr@^0.2.1:
   version "0.2.1"
   resolved "https://registry.yarnpkg.com/tiny-lr/-/tiny-lr-0.2.1.tgz#b3fdba802e5d56a33c2f6f10794b32e477ac729d"
@@ -2639,7 +2632,7 @@ tweetnacl@^0.14.3, tweetnacl@~0.14.0:
   version "0.14.5"
   resolved "https://registry.yarnpkg.com/tweetnacl/-/tweetnacl-0.14.5.tgz#5ae68177f192d4456269d108afa93ff8743f4f64"
 
-type-check@~0.3.1, type-check@~0.3.2:
+type-check@~0.3.1:
   version "0.3.2"
   resolved "https://registry.yarnpkg.com/type-check/-/type-check-0.3.2.tgz#5884cab512cf1d355e3fb784f30804b2b520db72"
   dependencies:
@@ -2775,10 +2768,6 @@ wordwrap@0.0.2:
 wordwrap@~0.0.2:
   version "0.0.3"
   resolved "https://registry.yarnpkg.com/wordwrap/-/wordwrap-0.0.3.tgz#a3d5da6cd5c0bc0008d37234bbaf1bed63059107"
-
-wordwrap@~1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/wordwrap/-/wordwrap-1.0.0.tgz#27584810891456a4171c8d0226441ade90cbcaeb"
 
 wrappy@1:
   version "1.0.2"

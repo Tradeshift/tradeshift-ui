@@ -15,15 +15,16 @@
 						<li>
 							<figure data-ts="DoxScript">
 								<script type="runnable">
-									var table = ts.ui.get('#example8');
 									var popup = ts.ui.Notification;
-									table.rows([
-										['A', 'D', 'G'],
-										['B', 'E', 'H'],
-										['C', 'F', 'I']
-									]);
-									table.clickable(function(rowindex, cellindex) {
-										popup.success('Row ' + rowindex + ', Cell ' + cellindex);
+									ts.ui.get('#example8', table => {
+										table.rows([
+											['A', 'D', 'G'],
+											['B', 'E', 'H'],
+											['C', 'F', 'I']
+										]);
+										table.clickable(function(rowindex, cellindex) {
+											popup.success('Row ' + rowindex + ', Cell ' + cellindex);
+										});
 									});
 								</script>
 							</figure>

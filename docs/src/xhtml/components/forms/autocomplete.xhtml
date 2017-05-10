@@ -19,19 +19,20 @@
 						<li>
 							<figure data-ts="DoxScript" class="attention">
 								<script type="runnable">
-									var autocomplete = ts.ui.get('#mystaticautocomplete');
-									autocomplete.data([
-										{ key: 0, value: 'zero' },
-										{ key: 1, value: 'one' },
-										{ key: 2, value: 'two' },
-										{ key: 3, value: 'three' },
-										{ key: 4, value: 'four' },
-										{ key: 5, value: 'five' },
-										{ key: 6, value: 'six' },
-										{ key: 7, value: 'seven' },
-										{ key: 8, value: 'eight' },
-										{ key: 9, value: 'nine' }
-									]);
+									ts.ui.get('#mystaticautocomplete', autocomplete => {
+										autocomplete.data([
+											{ key: 0, value: 'zero' },
+											{ key: 1, value: 'one' },
+											{ key: 2, value: 'two' },
+											{ key: 3, value: 'three' },
+											{ key: 4, value: 'four' },
+											{ key: 5, value: 'five' },
+											{ key: 6, value: 'six' },
+											{ key: 7, value: 'seven' },
+											{ key: 8, value: 'eight' },
+											{ key: 9, value: 'nine' }
+										]);
+									});
 								</script>
 							</figure>
 						</li>
@@ -58,9 +59,10 @@
 						<li>
 							<figure data-ts="DoxScript">
 								<script type="runnable">
-									var autocomplete = ts.ui.get('#myadvancedautocomplete');
-									$.getJSON('assets/autocomplete.json', function(json) {
-										autocomplete.data(json);
+									ts.ui.get('#myadvancedautocomplete', autocomplete => {
+										$.getJSON('assets/autocomplete.json', function(json) {
+											autocomplete.data(json);
+										});
 									});
 								</script>
 							</figure>
@@ -88,16 +90,17 @@
 						<li>
 							<figure data-ts="DoxScript">
 								<script type="runnable">
-									var autocomplete = ts.ui.get('#myfancyautocomplete');
-									autocomplete.onfilter(function(filter) {
-										var output = [];
-										for (var i = parseInt(Math.random() * 10 + 1, 10); i >= 0; i--) {
-											output.push({
-												key: i,
-												value: Math.random().toString(36).substr(2, 5)
-											});
-										}
-										return output;
+									ts.ui.get('#myfancyautocomplete', autocomplete => {
+										autocomplete.onfilter(function(filter) {
+											var output = [];
+											for (var i = parseInt(Math.random() * 10 + 1, 10); i >= 0; i--) {
+												output.push({
+													key: i,
+													value: Math.random().toString(36).substr(2, 5)
+												});
+											}
+											return output;
+										});
 									});
 								</script>
 							</figure>
@@ -126,14 +129,15 @@
 						<li>
 							<figure data-ts="DoxScript">
 								<script type="runnable">
-									var autocomplete = ts.ui.get('#myspecialautocomplete');
-									autocomplete.data([
-										{ key: 0, value: 'zero' },
-										{ key: 1, value: 'one' }
-									]);
-									autocomplete.onselect(function(item) {
-										ts.ui.Notification.success('"' + item.value + '" selected');
-										return item.value;
+									ts.ui.get('#myspecialautocomplete', autocomplete => {
+										autocomplete.data([
+											{ key: 0, value: 'zero' },
+											{ key: 1, value: 'one' }
+										]);
+										autocomplete.onselect(function(item) {
+											ts.ui.Notification.success('"' + item.value + '" selected');
+											return item.value;
+										});
 									});
 								</script>
 							</figure>

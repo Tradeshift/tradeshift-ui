@@ -100,17 +100,18 @@
 						<li>
 							<figure data-ts="DoxScript">
 								<script type="runnable">
-									var table = ts.ui.get('#mytable');
-									table.cols(['One', 'Two', 'Tree']);
-									table.rows([
-										['A', 'D', 'G'],
-										['B', 'E', 'H'],
-										['C', 'F', 'I']
-									]);
-									$('#mytable').attr('data-ts.busy', 'Loading');
-									setTimeout(function() {
-										$('#mytable').attr('data-ts.busy', '');
-									}, 1500);
+									ts.ui.get('#mytable', table => {
+										table.cols(['One', 'Two', 'Tree']);
+										table.rows([
+											['A', 'D', 'G'],
+											['B', 'E', 'H'],
+											['C', 'F', 'I']
+										]);
+										$('#mytable').attr('data-ts.busy', 'Loading');
+										setTimeout(function() {
+											$('#mytable').attr('data-ts.busy', '');
+										}, 1500);
+									});
 								</script>
 							</figure>
 						</li>

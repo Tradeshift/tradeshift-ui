@@ -13,7 +13,9 @@
 					<p>You can get a hold of the <code class="attr-name">ts-aside</code> component and control it with JavaScript.</p>
 					<figure data-ts="DoxScript">
 						<script>
-							var aside = ts.ui.get('#myaside');
+							ts.ui.get('#myaside', aside => {
+								// control the aside
+							});
 						</script>
 					</figure>
 

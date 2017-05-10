@@ -104,14 +104,15 @@
 						<p>You can get a hold of the component using a CSS selector and call any of the methods we've seen applicable to the Main ToolBar. Notice what happens when we add content.</p>
 						<figure data-ts="DoxScript" class="attention">
 							<script type="runnable">
-								var toolbar = ts.ui.get('#mystatusbar'); // or pass an element
-								toolbar.buttons([
-									{label: 'One', type: 'ts-primary'},
-									{label: 'Two', type: 'ts-secondary'},
-									{label: 'Three'}
-								]).pager({
-									pages: 23
-								}).message('The layout has changed!');
+								ts.ui.get('#mystatusbar', statusbar => {
+									statusbar.buttons([
+										{label: 'One', type: 'ts-primary'},
+										{label: 'Two', type: 'ts-secondary'},
+										{label: 'Three'}
+									]).pager({
+										pages: 23
+									}).message('The layout has changed!');
+								});
 							</script>
 						</figure>
 						<p>Because there is limited horizontal space available, the StatusBar has snapped into a layout that is optimized for mobile phones. The exact layout depends on the features you enable, but you can in any case intercept this change with the <code>onlayout</code> callback.</p>

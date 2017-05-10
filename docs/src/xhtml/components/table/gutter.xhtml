@@ -17,12 +17,14 @@
 							<figure data-ts="DoxScript">
 								<script type="runnable">
 									$.getJSON('assets/rowdata.json', function(json) {
-										var table = ts.ui.get('#table').selectable();
-										table.cols([
-											{label: 'ID', minwidth: 300},
-											{label: 'Name',minwidth: 300},
-											{label: 'Price', minwidth: 300}
-										]).rows(json).max(5);
+										ts.ui.get('#table', table => {
+											table.selectable();
+											table.cols([
+												{label: 'ID', minwidth: 300},
+												{label: 'Name',minwidth: 300},
+												{label: 'Price', minwidth: 300}
+											]).rows(json).max(5);
+										})
 									});
 								</script>
 							</figure>

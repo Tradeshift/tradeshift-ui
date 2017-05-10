@@ -102,14 +102,15 @@
 					<p>Buttons can be added as part of the content, but some Modals work better when the buttons are presented in a fixed StatusBar, for example when there is a lot of content (and scrolling). These buttons can be added using the API we know from the <a data-ts="Button" href="/#components/bars/toolbar.html">ToolBar</a>.</p>
 					<figure data-ts="DoxScript">
 						<script type="runnable">
-						var modal = ts.ui.get('#example2');
-						modal.buttons([{
-							label: 'Close the Modal',
-							type: 'ts-primary',
-							onclick: function() {
-								modal.close();
-							}
-						}]).open();
+						ts.ui.get('#example2', modal => {
+							modal.buttons([{
+								label: 'Close the Modal',
+								type: 'ts-primary',
+								onclick: function() {
+									modal.close();
+								}
+							}]).open();
+						});
 						</script>
 					</figure>
 					<div data-ts="Note">
@@ -128,13 +129,15 @@
 					<p>There's two ways to add tabs and one of them is likely to fit your workflow. First, we will add some tabs to the example modal using the API we know from the <a data-ts="Button" href="/#components/bars/tabbar.html">TabBar</a>.</p>
 					<figure data-ts="DoxScript">
 						<script type="runnable">
-						ts.ui.get('#example1').tabs([
-							{label: 'One'},
-							{label: 'Two'},
-							{label: 'Three', onselect: function() {
-								console.log('Tab three selected!');
-							}},
-						]).open();
+						ts.ui.get('#example1', modal => {
+							modal.tabs([
+								{label: 'One'},
+								{label: 'Two'},
+								{label: 'Three', onselect: function() {
+									console.log('Tab three selected!');
+								}},
+							]).open();
+						});
 						</script>
 					</figure>
 					<p>The tabs don"t do anything by default, so what happens at <code>onselect</code> is completely up to you. If you decice to go with this approach, you should make sure to read the section on <a href="#busy-and-done">busy and done</a> further down the page.</p>
@@ -154,9 +157,11 @@
 					<p>Note that even if the tabs are automatically generated via <val>Panel</val> elements, it is still possible to manipulate the tabs programatically.</p>
 					<figure data-ts="DoxScript">
 						<script type="text/plain">
-							var tabs = ts.ui.get('#mymodal').tabs();
-							tabs[0].select();
-							tabs.reverse();
+							ts.ui.get('#mymodal', modal => {
+								var tabs = modal.tabs();
+								tabs[0].select();
+								tabs.reverse();
+							});
 						</script>
 					</figure>
 					<section>
@@ -170,23 +175,24 @@
 					<p>If you are loading the Modal tabs incrementally (so that the content is not hardcoded inside <val>Panels</val>), you may want to mark the Modal as <code>busy()</code> and <code>done()</code> to hide the content while loading. Importantly, if you are using <val>Main</val> to center the content, this will also instruct the Modal to center the the newly loaded content all over again.</p>
 					<figure data-ts="DoxScript">
 						<script type="runnable">
-							var modal = ts.ui.get('#example4')
-							function load(page) {
-								modal.busy();
-								setTimeout(function throttle() {
-									$.get(page, function(html) {
-										modal.html(html).done();
-									});
-								}, 200);
-							}
-							modal.tabs([
-								{label: 'Page One', onselect: function() {
-									load('page1.html');
-								}},
-								{label: 'Page Two',  onselect: function() {
-									load('page2.html');
-								}},
-							]).open();
+							ts.ui.get('#example4', modal => {
+								function load(page) {
+									modal.busy();
+									setTimeout(function throttle() {
+										$.get(page, function(html) {
+											modal.html(html).done();
+										});
+									}, 200);
+								}
+								modal.tabs([
+									{label: 'Page One', onselect: function() {
+										load('page1.html');
+									}},
+									{label: 'Page Two',  onselect: function() {
+										load('page2.html');
+									}},
+								]).open();
+							});
 						</script>
 					</figure>
 					<p>Note that you can also call <code>modal.reflex()</code> to center the <val>Main</val> at any point in time.</p>

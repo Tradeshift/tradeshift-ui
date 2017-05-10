@@ -213,25 +213,20 @@ gui = gui.Object.extend(
 		 */
 		get: function(arg, callback, thisp) {
 			var spirit;
-			switch (arguments.length) {
-				case 1:
-					if (this.spiritualizing || this.spiritualized) {
-						spirit = this._getspirit(arg);
-					} else if (window.console && console.warn && console.error) {
-						var message = this._guigetmessage();
-						if (location.hostname === 'localhost') {
-							console.error(message); // stacktrace version
-						} else {
-							console.warn(message);
-						}
+			if (arguments.length === 1) {
+				if (this.spiritualizing || this.spiritualized) {
+					spirit = this._getspirit(arg);
+				} else if (window.console && console.warn && console.error) {
+					var message = this._guigetmessage();
+					if (location.hostname === 'localhost') {
+						console.error(message); // stacktrace version
+					} else {
+						console.warn(message);
 					}
-					break;
-				case 2:
-					this.ready(function onready() {
-						spirit = gui._getspirit(arg);
-						callback.call(thisp, spirit);
-					});
-					break;
+				}
+			} else {
+				var elm = this._getelement(arg);
+				this._getmanaged(elm, callback, thisp);
 			}
 			return spirit || null;
 		},
@@ -293,12 +288,67 @@ gui = gui.Object.extend(
 			return is;
 		},
 
-		// Private ...................................................................
+		// Privileged ..............................................................
 
 		/**
+		 * Called on `Spirit.onready()` to eval callbacks accumulated 
+		 * via `ts.ui.get(elm, callback)` (used in an async scenario).
+		 * @param {Element} elm
+		 */
+		$getnow: function(elm) {
+			var list = this._managedgetters;
+			if (list.length) {
+				var entries = [];
+				this._managedgetters = list.filter(function(entry) {
+					if (entry[0] === elm) {
+						entries.push(entry);
+						return false;
+					}
+					return true;
+				});
+				entries.forEach(function(entry) {
+					var elm = entry[0];
+					var fun = entry[1];
+					var dat = entry[2];
+					if (fun) {
+						fun.call(dat, elm.spirit);
+					}
+				});
+			}
+		},
+
+		// Private .................................................................
+
+		/**
+		 * Callbacks to trigger when the document is (initially) spiritualized.
 		 * @type {Array<function>}
 		 */
 		_readycallbacks: null,
+
+		/**
+		 * Used to resolve async `ts.ui.get(elm, callback)`
+		 * @type {Array<Array<Element|Function|Object>>}
+		 */
+		_managedgetters: [],
+
+		/**
+		 * If the spirit is ready, we'll just call that callback straight away. 
+		 * Otherwise monitor the element until the spirit is ready. This element 
+		 * will never be garbage collected unless at some point it gets a spirit :/
+		 * @param {Element} elm
+		 * @param {Function} callback
+		 * @param {Object} thisp
+		 */
+		_getmanaged: function(elm, callback, thisp) {
+			var list = this._managedgetters;
+			if (elm) {
+				if (elm.spirit) {
+					callback.call(thisp, elm.spirit);
+				} else {
+					list.push([elm, callback, thisp]);
+				}
+			}
+		},
 
 		/**
 		 * Setup a broadcast listener to bootstrap Spiritual
@@ -338,43 +388,34 @@ gui = gui.Object.extend(
 		 * @returns {gui.Spirit}
 		 */
 		_getspirit: function(arg) {
-			var spirit = null, element, doc = document;
-			switch (gui.Type.of(arg)) {
-				case 'string':
-					arg = arg.trim();
-					if (gui.KeyMaster.isKey(arg)) {
-						spirit = gui.Guide.$getSpiritById(arg); // TODO!!!!!!!!!!!!!!!!!!!!!!
-					}
-					if (!spirit) {
-						try {
-							element = arg.match(/[^a-zA-Z\d]/)
-								? doc.querySelector(arg) // lookup selector in document
-								: doc.getElementById(arg) || doc.querySelector(arg); // lookup by ID in document // lookup by tagname in document
-						} catch (badselector) {
-							console.warn(badselector.message, arg);
-						} finally {
-							spirit = element ? element.spirit : null;
-						}
-					}
-					break;
-				case 'function':
-					var sp, spirits = this._spirits.inside;
-					if (gui.Type.isSpiritConstructor(arg)) {
-						Object.keys(this._spirits.inside).some(function(key) {
-							if ((sp = spirits[key]).constructor === arg) {
-								spirit = sp;
-								return true;
-							}
-						});
-					}
-					break;
-				default:
-					if (gui.Type.isElement(arg)) {
-						spirit = arg.spirit || null;
-					}
-					break;
+			if (gui.Type.isString(arg) && gui.KeyMaster.isKey(arg)) {
+				return gui.Guide.$getSpiritById(arg);
+			} else {
+				var elm = this._getelement(arg);
+				return elm ? elm.spirit : null;
 			}
-			return spirit;
+		},
+
+		/**
+		 * Get element for fuzzy argument.
+		 * @param {String|Element} arg
+		 * @returns {Element}
+		 */
+		_getelement: function(arg) {
+			var elm = null, doc = document;
+			if (gui.Type.isString(arg)) {
+				arg = arg.trim();
+				try {
+					elm = arg.match(/[^a-zA-Z\d]/)
+						? doc.querySelector(arg) // lookup selector in document
+						: doc.getElementById(arg) || doc.querySelector(arg); // lookup by ID in document // lookup by tagname in document
+				} catch (badselector) {
+					console.warn(badselector.message, arg);
+				}
+			} else if (gui.Type.isElement(arg)) {
+				elm = arg;
+			}
+			return elm;
 		},
 
 		/**
@@ -383,9 +424,9 @@ gui = gui.Object.extend(
 		 */
 		_guigetmessage: function() {
 			return [
-				"gui.get() failed because we're not initialized just yet.",
+				"ts.ui.get() failed because we're not initialized just yet.",
 				'You can supply a callback function as the second argument',
-				'or you can wrap your existing code in gui.ready(mycallback).'
+				'or you can wrap your existing code in ts.ui.ready(mycallback).'
 			].join(' ');
 		}
 	}._initialize()

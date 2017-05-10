@@ -112,24 +112,24 @@
                     <div class="splitscreen-container">
                         <ul class="splitscreen">
                             <li>
-                                <figure data-ts="DoxScript" class="runnable" data-ts.code="var%20card%20%3D%20ts.ui.get(&apos;%23mycard&apos;)%3B%20%2F%2F%20or%20pass%20an%20element%0Acard.render(%7B%0A%09id%3A%20%226bf17754-f9de-4e31-aa31-bd3ff765b9c2%22%2C%0A%09data%3A%20%7B%0A%09%09name%3A%20%22Tradeshift%22%2C%0A%09%09logo%3A%20%22assets%2Flogo.png%22%2C%0A%09%09size%3A%20&apos;100%E2%80%93249&apos;%2C%0A%09%09location%3A%20%22San%20Francisco%2C%20California%22%2C%0A%09%09industry%3A%20&apos;Software%20%26%20IT&apos;%2C%0A%09%09connection%3A%202%0A%09%7D%0A%7D)%3B">
+                                <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.get(&apos;%23mycard&apos;%2C%20function(card)%20%7B%0A%09card.render(%7B%0A%09%09id%3A%20%226bf17754-f9de-4e31-aa31-bd3ff765b9c2%22%2C%0A%09%09data%3A%20%7B%0A%09%09%09name%3A%20%22Tradeshift%22%2C%0A%09%09%09logo%3A%20%22assets%2Flogo.png%22%2C%0A%09%09%09size%3A%20&apos;100%E2%80%93249&apos;%2C%0A%09%09%09location%3A%20%22San%20Francisco%2C%20California%22%2C%0A%09%09%09industry%3A%20&apos;Software%20%26%20IT&apos;%2C%0A%09%09%09connection%3A%202%0A%09%09%7D%0A%09%7D)%3B%0A%7D)%3B">
                                     <script type="runnable">
-                                        var card = ts.ui.get('#mycard'); // or pass an element card.render({ id: "6bf17754-f9de-4e31-aa31-bd3ff765b9c2", data: { name: "Tradeshift", logo: "assets/logo.png", size: '100–249', location: "San Francisco, California", industry: 'Software & IT', connection:
-                                        2 } });
+                                        ts.ui.get('#mycard', card => { card.render({ id: "6bf17754-f9de-4e31-aa31-bd3ff765b9c2", data: { name: "Tradeshift", logo: "assets/logo.png", size: '100–249', location: "San Francisco, California", industry: 'Software & IT', connection: 2 } }); });
                                     </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                                     <div class="tabpanels">
                                         <pre class="prism language-javascript">
-<code><span class="token keyword">var</span> card <span class="token operator">=</span> ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#mycard&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// or pass an element
-</span>card<span class="token punctuation">.</span><span class="token function">render<span class="token punctuation">(</span></span><span class="token punctuation">{</span>
-	id<span class="token punctuation">:</span> <span class="token string">&quot;6bf17754-f9de-4e31-aa31-bd3ff765b9c2&quot;</span><span class="token punctuation">,</span>
-	data<span class="token punctuation">:</span> <span class="token punctuation">{</span>
-		name<span class="token punctuation">:</span> <span class="token string">&quot;Tradeshift&quot;</span><span class="token punctuation">,</span>
-		logo<span class="token punctuation">:</span> <span class="token string">&quot;assets/logo.png&quot;</span><span class="token punctuation">,</span>
-		size<span class="token punctuation">:</span> <span class="token string">&apos;100&#x2013;249&apos;</span><span class="token punctuation">,</span>
-		location<span class="token punctuation">:</span> <span class="token string">&quot;San Francisco, California&quot;</span><span class="token punctuation">,</span>
-		industry<span class="token punctuation">:</span> <span class="token string">&apos;Software &amp; IT&apos;</span><span class="token punctuation">,</span>
-		connection<span class="token punctuation">:</span> <span class="token number">2</span>
-	<span class="token punctuation">}</span>
+<code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#mycard&apos;</span><span class="token punctuation">,</span> card <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+	card<span class="token punctuation">.</span><span class="token function">render<span class="token punctuation">(</span></span><span class="token punctuation">{</span>
+		id<span class="token punctuation">:</span> <span class="token string">&quot;6bf17754-f9de-4e31-aa31-bd3ff765b9c2&quot;</span><span class="token punctuation">,</span>
+		data<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+			name<span class="token punctuation">:</span> <span class="token string">&quot;Tradeshift&quot;</span><span class="token punctuation">,</span>
+			logo<span class="token punctuation">:</span> <span class="token string">&quot;assets/logo.png&quot;</span><span class="token punctuation">,</span>
+			size<span class="token punctuation">:</span> <span class="token string">&apos;100&#x2013;249&apos;</span><span class="token punctuation">,</span>
+			location<span class="token punctuation">:</span> <span class="token string">&quot;San Francisco, California&quot;</span><span class="token punctuation">,</span>
+			industry<span class="token punctuation">:</span> <span class="token string">&apos;Software &amp; IT&apos;</span><span class="token punctuation">,</span>
+			connection<span class="token punctuation">:</span> <span class="token number">2</span>
+		<span class="token punctuation">}</span>
+	<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
 </pre>
                                     </div>

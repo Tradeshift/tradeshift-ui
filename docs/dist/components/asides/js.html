@@ -25,11 +25,13 @@
                 <section>
                     <h1><span>Asides JS</span></h1>
                     <p>You can get a hold of the <code class="attr-name">ts-aside</code> component and control it with JavaScript.</p>
-                    <figure data-ts="DoxScript" data-ts.code="var%20aside%20%3D%20ts.ui.get(&apos;%23myaside&apos;)%3B">
+                    <figure data-ts="DoxScript" data-ts.code="ts.ui.get(&apos;%23myaside&apos;%2C%20function(aside)%20%7B%0A%09%2F%2F%20control%20the%20aside%0A%7D)%3B">
                         <input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
                         <div class="tabpanels">
                             <pre class="prism language-javascript">
-<code><span class="token keyword">var</span> aside <span class="token operator">=</span> ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#myaside&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
+<code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#myaside&apos;</span><span class="token punctuation">,</span> aside <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+	<span class="token comment" spellcheck="true">// control the aside
+</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
 </pre>
                         </div>
                     </figure>

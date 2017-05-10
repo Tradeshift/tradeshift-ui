@@ -29,13 +29,11 @@
     "release": "release-it --github.preRelease=\"false\" --interactive",
     "prerelease": "release-it prerelease --prereleaseId=\"beta\"",
     "****** TEST *****": "",
-    "test": "yarn run eslint && yarn run build-jasmine && yarn run browserstack",
-    "build-jasmine": "grunt jasmine",
-    "browserstack": "node tasks/browserstack.js",
+    "test": "yarn run eslint & grunt jasmine & wait && node tasks/browserstack.js",
     "http": "static spec/jasmine -H '{\"Cache-Control\": \"no-cache, must-revalidate\"}'",
     "****** NODE *****": "",
     "postinstall": "cd docs && yarn",
-    "precommit": "lint-staged && yarn run eslint && grunt exec:docs_dist && git add -A docs/dist/index.html && git add -A docs/dist/**/*"
+    "precommit": "lint-staged & grunt exec:docs_dist & wait && git add -A docs/dist/index.html && git add -A docs/dist/**/*"
   },
   "lint-staged": {
     "*.js": [

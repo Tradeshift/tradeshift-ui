@@ -327,47 +327,9 @@ module.exports = function(grunt) {
 					// add prefixes
 					require('autoprefixer')(),
 					// minify
-					require('cssnano')({
-						sourcemap: true,
-
-						// Optimizations from http://cssnano.co/optimisations/
-						colormin: true,
-						core: true,
-						discardDuplicates: true,
-						discardOverridden: true,
-						filterOptimiser: true,
-						functionOptimiser: true,
-						mergeLonghand: true,
-						minifyFontValues: false,
-						minifyParams: true,
-						normalizeCharset: true,
-						normalizeUnicode: true,
-						orderedValues: false,
-						reduceDisplayValues: false,
-						reduceInitial: false,
-						reduceTimingFunctions: true,
-						styleCache: true,
-						uniqueSelectors: true,
-						calc: true,
-						convertValues: true,
-						discardComments: true,
-						discardEmpty: true,
-						discardUnused: false,
-						filterPlugins: false,
-						mergeIdents: false,
-						mergeRules: true,
-						minifyGradients: true,
-						minifySelectors: true,
-						normalizeString: {
-							preferredQuote: 'single'
-						},
-						normalizeUrl: true,
-						reduceBackgroundRepeat: true,
-						reduceIdents: false,
-						reducePositions: true,
-						reduceTransforms: true,
-						svgo: false,
-						zindex: false
+					require('postcss-clean')({
+						mergeIntoShorthands: false,
+						sourceMap: true
 					})
 				]
 			},

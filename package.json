@@ -75,6 +75,7 @@
     "grunt-devserver": "^0.6.0",
     "grunt-exec": "^2.0.0",
     "grunt-postcss": "^0.8.0",
+    "grunt-size-report": "^0.1.4",
     "grunt-spiritual-build": "^0.1.18",
     "grunt-spiritual-dox": "^0.1.1",
     "grunt-spiritual-edbml": "^0.3.0",

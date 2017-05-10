@@ -24,13 +24,16 @@ module.exports = function(grunt) {
 	// Tasks .....................................................................
 
 	// setup for local development (no docs)
-	grunt.registerTask('default', [].concat(build('dev'), ['concurrent:nodocs']));
+	grunt.registerTask('default', [].concat(build('dev'), sizeReport('dev'), ['concurrent:nodocs']));
 
 	// setup for local development (with docs)
-	grunt.registerTask('dev', [].concat(build('dev'), ['concurrent:docs']));
+	grunt.registerTask('dev', [].concat(build('dev'), sizeReport('dev'), ['concurrent:docs']));
 
 	// build for CDN
-	grunt.registerTask('dist', [].concat(['exec:eslint'], build('cdn'), ['exec:docs_dist']));
+	grunt.registerTask(
+		'dist',
+		[].concat(['exec:eslint'], build('cdn'), sizeReport('cdn'), ['exec:docs_dist'])
+	);
 
 	// build for jasmine tests
 	grunt.registerTask('jasmine', [].concat(build('jasmine'), ['concat:jasmine', 'copy:jasmine']));
@@ -375,6 +378,56 @@ module.exports = function(grunt) {
 			}
 		},
 
+		// check some filesizes
+		size_report: {
+			// gzipped js vs normal
+			cdn_gzip_vs_normal: {
+				files: {
+					list: ['dist/cdn/ts-*.min.js', 'public/ts-*.min.js']
+				}
+			},
+			// minified js vs normal (gzipped)
+			cdn_js_minified_vs_normal: {
+				files: {
+					list: ['public/ts-<%= pkg.version %>.js', 'public/ts-<%= pkg.version %>.min.js']
+				}
+			},
+			// minified css vs normal (gzipped)
+			cdn_css_minified_vs_normal: {
+				files: {
+					list: ['public/ts-<%= pkg.version %>.css', 'public/ts-<%= pkg.version %>.min.css']
+				}
+			},
+			// data loaded in the browser
+			cdn_loaded: {
+				files: {
+					list: [
+						'public/ts-<%= pkg.version %>.min.js',
+						'public/ts-<%= pkg.version %>.min.css',
+						'public/ts-lang-en-<%= pkg.version %>.js'
+					]
+				}
+			},
+			// minified js vs normal
+			dev_js_minified_vs_normal: {
+				files: {
+					list: ['dist/ts.js', 'dist/ts.min.js']
+				}
+			},
+			// minified css vs normal
+			dev_css_minified_vs_normal: {
+				files: {
+					list: ['dist/ts.css', 'dist/ts.min.css']
+				}
+			},
+			// data loaded in the browser
+			dev_loaded: {
+				files: {
+					list: ['dist/ts.min.js', 'dist/ts.min.css', 'dist/ts-lang-en.js']
+				}
+			}
+		},
+
 		// gzip everything
 		compress: {
 			main: {
@@ -557,6 +610,19 @@ module.exports = function(grunt) {
 		if (target === 'cdn') {
 			out.push('compress'); // gzip everything
 		}
+		return out;
+	}
+
+	function sizeReport(target = 'cdn') {
+		let out = [];
+		if (target === 'cdn') {
+			out.push('size_report:cdn_gzip_vs_normal');
+		}
+		out = out.concat([
+			`size_report:${target}_js_minified_vs_normal`,
+			`size_report:${target}_css_minified_vs_normal`,
+			`size_report:${target}_loaded`
+		]);
 		return out;
 	}
 

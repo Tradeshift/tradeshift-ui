@@ -159,20 +159,21 @@
                     <h3><span>Adding some buttons</span></h3>
                     <p>Buttons can be added as part of the content, but some Modals work better when the buttons are presented in a fixed StatusBar, for example when there is a lot of content (and scrolling). These buttons can be added using the API we know
                         from the <a data-ts="Button" href="/dist/components/bars/toolbar.html">ToolBar</a>.</p>
-                    <figure data-ts="DoxScript" class="runnable" data-ts.code="var%20modal%20%3D%20ts.ui.get(&apos;%23example2&apos;)%3B%0Amodal.buttons(%5B%7B%0A%09label%3A%20&apos;Close%20the%20Modal&apos;%2C%0A%09type%3A%20&apos;ts-primary&apos;%2C%0A%09onclick%3A%20function()%20%7B%0A%09%09modal.close()%3B%0A%09%7D%0A%7D%5D).open()%3B">
+                    <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.get(&apos;%23example2&apos;%2C%20function(modal)%20%7B%0A%09modal.buttons(%5B%7B%0A%09%09label%3A%20&apos;Close%20the%20Modal&apos;%2C%0A%09%09type%3A%20&apos;ts-primary&apos;%2C%0A%09%09onclick%3A%20function()%20%7B%0A%09%09%09modal.close()%3B%0A%09%09%7D%0A%09%7D%5D).open()%3B%0A%7D)%3B">
                         <script type="runnable">
-                            var modal = ts.ui.get('#example2'); modal.buttons([{ label: 'Close the Modal', type: 'ts-primary', onclick: function() { modal.close(); } }]).open();
+                            ts.ui.get('#example2', modal => { modal.buttons([{ label: 'Close the Modal', type: 'ts-primary', onclick: function() { modal.close(); } }]).open(); });
                         </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                         <div class="tabpanels">
                             <pre class="prism language-javascript">
-<code><span class="token keyword">var</span> modal <span class="token operator">=</span> ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#example2&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-modal<span class="token punctuation">.</span><span class="token function">buttons<span class="token punctuation">(</span></span><span class="token punctuation">[</span><span class="token punctuation">{</span>
-	label<span class="token punctuation">:</span> <span class="token string">&apos;Close the Modal&apos;</span><span class="token punctuation">,</span>
-	type<span class="token punctuation">:</span> <span class="token string">&apos;ts-primary&apos;</span><span class="token punctuation">,</span>
-	onclick<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-		modal<span class="token punctuation">.</span><span class="token function">close<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-	<span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">open<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
+<code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#example2&apos;</span><span class="token punctuation">,</span> modal <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+	modal<span class="token punctuation">.</span><span class="token function">buttons<span class="token punctuation">(</span></span><span class="token punctuation">[</span><span class="token punctuation">{</span>
+		label<span class="token punctuation">:</span> <span class="token string">&apos;Close the Modal&apos;</span><span class="token punctuation">,</span>
+		type<span class="token punctuation">:</span> <span class="token string">&apos;ts-primary&apos;</span><span class="token punctuation">,</span>
+		onclick<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+			modal<span class="token punctuation">.</span><span class="token function">close<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token punctuation">}</span>
+	<span class="token punctuation">}</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">open<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
 </pre>
                         </div>
                     </figure>
@@ -191,19 +192,21 @@ modal<span class="token punctuation">.</span><span class="token function">button
                 <section>
                     <h3><span>Adding some tabs</span></h3>
                     <p>There&apos;s two ways to add tabs and one of them is likely to fit your workflow. First, we will add some tabs to the example modal using the API we know from the <a data-ts="Button" href="/dist/components/bars/tabbar.html">TabBar</a>.</p>
-                    <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.get(&apos;%23example1&apos;).tabs(%5B%0A%09%7Blabel%3A%20&apos;One&apos;%7D%2C%0A%09%7Blabel%3A%20&apos;Two&apos;%7D%2C%0A%09%7Blabel%3A%20&apos;Three&apos;%2C%20onselect%3A%20function()%20%7B%0A%09%09console.log(&apos;Tab%20three%20selected!&apos;)%3B%0A%09%7D%7D%2C%0A%5D).open()%3B">
+                    <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.get(&apos;%23example1&apos;%2C%20function(modal)%20%7B%0A%09modal.tabs(%5B%0A%09%09%7Blabel%3A%20&apos;One&apos;%7D%2C%0A%09%09%7Blabel%3A%20&apos;Two&apos;%7D%2C%0A%09%09%7Blabel%3A%20&apos;Three&apos;%2C%20onselect%3A%20function()%20%7B%0A%09%09%09console.log(&apos;Tab%20three%20selected!&apos;)%3B%0A%09%09%7D%7D%2C%0A%09%5D).open()%3B%0A%7D)%3B">
                         <script type="runnable">
-                            ts.ui.get('#example1').tabs([ {label: 'One'}, {label: 'Two'}, {label: 'Three', onselect: function() { console.log('Tab three selected!'); }}, ]).open();
+                            ts.ui.get('#example1', modal => { modal.tabs([ {label: 'One'}, {label: 'Two'}, {label: 'Three', onselect: function() { console.log('Tab three selected!'); }}, ]).open(); });
                         </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                         <div class="tabpanels">
                             <pre class="prism language-javascript">
-<code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#example1&apos;</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">tabs<span class="token punctuation">(</span></span><span class="token punctuation">[</span>
-	<span class="token punctuation">{</span>label<span class="token punctuation">:</span> <span class="token string">&apos;One&apos;</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
-	<span class="token punctuation">{</span>label<span class="token punctuation">:</span> <span class="token string">&apos;Two&apos;</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
-	<span class="token punctuation">{</span>label<span class="token punctuation">:</span> <span class="token string">&apos;Three&apos;</span><span class="token punctuation">,</span> onselect<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-		console<span class="token punctuation">.</span><span class="token function">log<span class="token punctuation">(</span></span><span class="token string">&apos;Tab three selected!&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-	<span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
-<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">open<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
+<code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#example1&apos;</span><span class="token punctuation">,</span> modal <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+	modal<span class="token punctuation">.</span><span class="token function">tabs<span class="token punctuation">(</span></span><span class="token punctuation">[</span>
+		<span class="token punctuation">{</span>label<span class="token punctuation">:</span> <span class="token string">&apos;One&apos;</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+		<span class="token punctuation">{</span>label<span class="token punctuation">:</span> <span class="token string">&apos;Two&apos;</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+		<span class="token punctuation">{</span>label<span class="token punctuation">:</span> <span class="token string">&apos;Three&apos;</span><span class="token punctuation">,</span> onselect<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+			console<span class="token punctuation">.</span><span class="token function">log<span class="token punctuation">(</span></span><span class="token string">&apos;Tab three selected!&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+	<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">open<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
 </pre>
                         </div>
                     </figure>
@@ -235,13 +238,15 @@ modal<span class="token punctuation">.</span><span class="token function">button
                         </div>
                     </figure>
                     <p>Note that even if the tabs are automatically generated via <code class="attr-value">Panel</code> elements, it is still possible to manipulate the tabs programatically.</p>
-                    <figure data-ts="DoxScript" data-ts.code="var%20tabs%20%3D%20ts.ui.get(&apos;%23mymodal&apos;).tabs()%3B%0Atabs%5B0%5D.select()%3B%0Atabs.reverse()%3B">
+                    <figure data-ts="DoxScript" data-ts.code="ts.ui.get(&apos;%23mymodal&apos;%2C%20function(modal)%20%7B%0A%09var%20tabs%20%3D%20modal.tabs()%3B%0A%09tabs%5B0%5D.select()%3B%0A%09tabs.reverse()%3B%0A%7D)%3B">
                         <input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
                         <div class="tabpanels">
                             <pre class="prism language-javascript">
-<code><span class="token keyword">var</span> tabs <span class="token operator">=</span> ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#mymodal&apos;</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">tabs<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-tabs<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">select<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-tabs<span class="token punctuation">.</span><span class="token function">reverse<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
+<code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#mymodal&apos;</span><span class="token punctuation">,</span> modal <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+	<span class="token keyword">var</span> tabs <span class="token operator">=</span> modal<span class="token punctuation">.</span><span class="token function">tabs<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	tabs<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">select<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	tabs<span class="token punctuation">.</span><span class="token function">reverse<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
 </pre>
                         </div>
                     </figure>
@@ -257,30 +262,31 @@ tabs<span class="token punctuation">.</span><span class="token function">reverse
                     <h3><span>Busy and done</span></h3>
                     <p>If you are loading the Modal tabs incrementally (so that the content is not hardcoded inside <code class="attr-value">Panels</code>), you may want to mark the Modal as <code>busy()</code> and <code>done()</code> to hide the content
                         while loading. Importantly, if you are using <code class="attr-value">Main</code> to center the content, this will also instruct the Modal to center the the newly loaded content all over again.</p>
-                    <figure data-ts="DoxScript" class="runnable" data-ts.code="var%20modal%20%3D%20ts.ui.get(&apos;%23example4&apos;)%0Afunction%20load(page)%20%7B%0A%09modal.busy()%3B%0A%09setTimeout(function%20throttle()%20%7B%0A%09%09%24.get(page%2C%20function(html)%20%7B%0A%09%09%09modal.html(html).done()%3B%0A%09%09%7D)%3B%0A%09%7D%2C%20200)%3B%0A%7D%0Amodal.tabs(%5B%0A%09%7Blabel%3A%20&apos;Page%20One&apos;%2C%20onselect%3A%20function()%20%7B%0A%09%09load(&apos;page1.html&apos;)%3B%0A%09%7D%7D%2C%0A%09%7Blabel%3A%20&apos;Page%20Two&apos;%2C%20%20onselect%3A%20function()%20%7B%0A%09%09load(&apos;page2.html&apos;)%3B%0A%09%7D%7D%2C%0A%5D).open()%3B">
+                    <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.get(&apos;%23example4&apos;%2C%20function(modal)%20%7B%0A%09function%20load(page)%20%7B%0A%09%09modal.busy()%3B%0A%09%09setTimeout(function%20throttle()%20%7B%0A%09%09%09%24.get(page%2C%20function(html)%20%7B%0A%09%09%09%09modal.html(html).done()%3B%0A%09%09%09%7D)%3B%0A%09%09%7D%2C%20200)%3B%0A%09%7D%0A%09modal.tabs(%5B%0A%09%09%7Blabel%3A%20&apos;Page%20One&apos;%2C%20onselect%3A%20function()%20%7B%0A%09%09%09load(&apos;page1.html&apos;)%3B%0A%09%09%7D%7D%2C%0A%09%09%7Blabel%3A%20&apos;Page%20Two&apos;%2C%20%20onselect%3A%20function()%20%7B%0A%09%09%09load(&apos;page2.html&apos;)%3B%0A%09%09%7D%7D%2C%0A%09%5D).open()%3B%0A%7D)%3B">
                         <script type="runnable">
-                            var modal = ts.ui.get('#example4') function load(page) { modal.busy(); setTimeout(function throttle() { $.get(page, function(html) { modal.html(html).done(); }); }, 200); } modal.tabs([ {label: 'Page One', onselect: function() { load('page1.html'); }},
-                            {label: 'Page Two', onselect: function() { load('page2.html'); }}, ]).open();
+                            ts.ui.get('#example4', modal => { function load(page) { modal.busy(); setTimeout(function throttle() { $.get(page, function(html) { modal.html(html).done(); }); }, 200); } modal.tabs([ {label: 'Page One', onselect: function() { load('page1.html'); }},
+                            {label: 'Page Two', onselect: function() { load('page2.html'); }}, ]).open(); });
                         </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                         <div class="tabpanels">
                             <pre class="prism language-javascript">
-<code><span class="token keyword">var</span> modal <span class="token operator">=</span> ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#example4&apos;</span><span class="token punctuation">)</span>
-<span class="token keyword">function</span> <span class="token function">load<span class="token punctuation">(</span></span>page<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-	modal<span class="token punctuation">.</span><span class="token function">busy<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-	<span class="token function">setTimeout<span class="token punctuation">(</span></span><span class="token keyword">function</span> <span class="token function">throttle<span class="token punctuation">(</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-		$<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span>page<span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span>html<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-			modal<span class="token punctuation">.</span><span class="token function">html<span class="token punctuation">(</span></span>html<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">done<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-		<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-	<span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token number">200</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-modal<span class="token punctuation">.</span><span class="token function">tabs<span class="token punctuation">(</span></span><span class="token punctuation">[</span>
-	<span class="token punctuation">{</span>label<span class="token punctuation">:</span> <span class="token string">&apos;Page One&apos;</span><span class="token punctuation">,</span> onselect<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-		<span class="token function">load<span class="token punctuation">(</span></span><span class="token string">&apos;page1.html&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-	<span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
-	<span class="token punctuation">{</span>label<span class="token punctuation">:</span> <span class="token string">&apos;Page Two&apos;</span><span class="token punctuation">,</span>  onselect<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-		<span class="token function">load<span class="token punctuation">(</span></span><span class="token string">&apos;page2.html&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-	<span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
-<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">open<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
+<code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#example4&apos;</span><span class="token punctuation">,</span> modal <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+	<span class="token keyword">function</span> <span class="token function">load<span class="token punctuation">(</span></span>page<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		modal<span class="token punctuation">.</span><span class="token function">busy<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token function">setTimeout<span class="token punctuation">(</span></span><span class="token keyword">function</span> <span class="token function">throttle<span class="token punctuation">(</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+			$<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span>page<span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span>html<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+				modal<span class="token punctuation">.</span><span class="token function">html<span class="token punctuation">(</span></span>html<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">done<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+			<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token number">200</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+	modal<span class="token punctuation">.</span><span class="token function">tabs<span class="token punctuation">(</span></span><span class="token punctuation">[</span>
+		<span class="token punctuation">{</span>label<span class="token punctuation">:</span> <span class="token string">&apos;Page One&apos;</span><span class="token punctuation">,</span> onselect<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+			<span class="token function">load<span class="token punctuation">(</span></span><span class="token string">&apos;page1.html&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+		<span class="token punctuation">{</span>label<span class="token punctuation">:</span> <span class="token string">&apos;Page Two&apos;</span><span class="token punctuation">,</span>  onselect<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+			<span class="token function">load<span class="token punctuation">(</span></span><span class="token string">&apos;page2.html&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+	<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">open<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
 </pre>
                         </div>
                     </figure>

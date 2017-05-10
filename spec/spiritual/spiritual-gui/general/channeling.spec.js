@@ -208,6 +208,27 @@ describe('Channeling and exorcising spirits', function likethis() {
 				});
 			});
 		});
+
+		it('should support (an optional) callback in gui.get', function(done) {
+			var button = document.createElement('button');
+			var counter = 0;
+			button.setAttribute('data-ts', 'Button');
+			ts.ui.get(button, function(spirit) {
+				counter += 1;
+			});
+			ts.ui.get(button, function(spirit) {
+				counter += 1;
+			});
+			ts.ui.get(button, function(spirit) {
+				counter += 1;
+			});
+			setTimeout(() => {
+				document.body.appendChild(button);
+				expect(counter).toBe(3);
+				document.body.removeChild(button);
+				done();
+			}, 1000);
+		});
 	}
 
 	if (!gui.Client.isExplorer) {

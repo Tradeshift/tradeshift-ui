@@ -380,18 +380,19 @@ search<span class="token punctuation">.</span>value <span class="token operator"
                         <p>The ToolBar has no default outline, so we&apos;ve fitted ours with a dropshadow. In your app, any such outlining should be done under consideration of the neighboring elements.</p>
                         <menu data-ts="ToolBar" id="mytoolbar" data-ts.title="My ToolBar" class="dox-dropshadow"></menu>
                         <p>You can get a hold of the component using a CSS selector and call any of the methods we&apos;ve seen applicable to the Main ToolBar.</p>
-                        <figure data-ts="DoxScript" class="attention runnable" data-ts.code="var%20toolbar%20%3D%20ts.ui.get(&apos;%23mytoolbar&apos;)%3B%20%2F%2F%20or%20pass%20an%20element%0Atoolbar.buttons(%5B%0A%09%7Blabel%3A%20&apos;One&apos;%2C%20type%3A%20&apos;ts-primary&apos;%7D%2C%0A%09%7Blabel%3A%20&apos;Two&apos;%2C%20type%3A%20&apos;ts-secondary&apos;%7D%2C%0A%09%7Blabel%3A%20&apos;Three&apos;%7D%0A%5D)%3B">
+                        <figure data-ts="DoxScript" class="attention runnable" data-ts.code="ts.ui.get(&apos;%23mytoolbar&apos;%2C%20function(toolbar)%20%7B%0A%09toolbar.buttons(%5B%0A%09%09%7Blabel%3A%20&apos;One&apos;%2C%20type%3A%20&apos;ts-primary&apos;%7D%2C%0A%09%09%7Blabel%3A%20&apos;Two&apos;%2C%20type%3A%20&apos;ts-secondary&apos;%7D%2C%0A%09%09%7Blabel%3A%20&apos;Three&apos;%7D%0A%09%5D)%3B%0A%7D)%3B">
                             <script type="runnable">
-                                var toolbar = ts.ui.get('#mytoolbar'); // or pass an element toolbar.buttons([ {label: 'One', type: 'ts-primary'}, {label: 'Two', type: 'ts-secondary'}, {label: 'Three'} ]);
+                                ts.ui.get('#mytoolbar', toolbar => { toolbar.buttons([ {label: 'One', type: 'ts-primary'}, {label: 'Two', type: 'ts-secondary'}, {label: 'Three'} ]); });
                             </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                             <div class="tabpanels">
                                 <pre class="prism language-javascript">
-<code><span class="token keyword">var</span> toolbar <span class="token operator">=</span> ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#mytoolbar&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// or pass an element
-</span>toolbar<span class="token punctuation">.</span><span class="token function">buttons<span class="token punctuation">(</span></span><span class="token punctuation">[</span>
-	<span class="token punctuation">{</span>label<span class="token punctuation">:</span> <span class="token string">&apos;One&apos;</span><span class="token punctuation">,</span> type<span class="token punctuation">:</span> <span class="token string">&apos;ts-primary&apos;</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
-	<span class="token punctuation">{</span>label<span class="token punctuation">:</span> <span class="token string">&apos;Two&apos;</span><span class="token punctuation">,</span> type<span class="token punctuation">:</span> <span class="token string">&apos;ts-secondary&apos;</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
-	<span class="token punctuation">{</span>label<span class="token punctuation">:</span> <span class="token string">&apos;Three&apos;</span><span class="token punctuation">}</span>
-<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
+<code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#mytoolbar&apos;</span><span class="token punctuation">,</span> toolbar <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+	toolbar<span class="token punctuation">.</span><span class="token function">buttons<span class="token punctuation">(</span></span><span class="token punctuation">[</span>
+		<span class="token punctuation">{</span>label<span class="token punctuation">:</span> <span class="token string">&apos;One&apos;</span><span class="token punctuation">,</span> type<span class="token punctuation">:</span> <span class="token string">&apos;ts-primary&apos;</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+		<span class="token punctuation">{</span>label<span class="token punctuation">:</span> <span class="token string">&apos;Two&apos;</span><span class="token punctuation">,</span> type<span class="token punctuation">:</span> <span class="token string">&apos;ts-secondary&apos;</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+		<span class="token punctuation">{</span>label<span class="token punctuation">:</span> <span class="token string">&apos;Three&apos;</span><span class="token punctuation">}</span>
+	<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
 </pre>
                             </div>
                         </figure>
@@ -407,17 +408,19 @@ search<span class="token punctuation">.</span>value <span class="token operator"
                             </div>
                         </figure>
                         <p>The ToolBar will economize horizonatal space by collecting multiple tertiaray buttons in a menu (when you <code>Run This Code</code>, you may need to scroll the page back up to see it).</p>
-                        <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.get(&apos;%23mytoolbar&apos;).buttons().push(%0A%09%7Blabel%3A%20&apos;Four&apos;%7D%2C%0A%09%7Blabel%3A%20&apos;Five&apos;%7D%2C%0A%09%7Blabel%3A%20&apos;Six&apos;%7D%0A)%3B">
+                        <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.get(&apos;%23mytoolbar&apos;%2C%20function(toolbar)%20%7B%0A%09toolbar.buttons().push(%0A%09%09%7Blabel%3A%20&apos;Four&apos;%7D%2C%0A%09%09%7Blabel%3A%20&apos;Five&apos;%7D%2C%0A%09%09%7Blabel%3A%20&apos;Six&apos;%7D%0A%09)%3B%0A%7D)%3B">
                             <script type="runnable">
-                                ts.ui.get('#mytoolbar').buttons().push( {label: 'Four'}, {label: 'Five'}, {label: 'Six'} );
+                                ts.ui.get('#mytoolbar', toolbar => { toolbar.buttons().push( {label: 'Four'}, {label: 'Five'}, {label: 'Six'} ); });
                             </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                             <div class="tabpanels">
                                 <pre class="prism language-javascript">
-<code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#mytoolbar&apos;</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">buttons<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">push<span class="token punctuation">(</span></span>
-	<span class="token punctuation">{</span>label<span class="token punctuation">:</span> <span class="token string">&apos;Four&apos;</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
-	<span class="token punctuation">{</span>label<span class="token punctuation">:</span> <span class="token string">&apos;Five&apos;</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
-	<span class="token punctuation">{</span>label<span class="token punctuation">:</span> <span class="token string">&apos;Six&apos;</span><span class="token punctuation">}</span>
-<span class="token punctuation">)</span><span class="token punctuation">;</span></code>
+<code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#mytoolbar&apos;</span><span class="token punctuation">,</span> toolbar <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+	toolbar<span class="token punctuation">.</span><span class="token function">buttons<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">push<span class="token punctuation">(</span></span>
+		<span class="token punctuation">{</span>label<span class="token punctuation">:</span> <span class="token string">&apos;Four&apos;</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+		<span class="token punctuation">{</span>label<span class="token punctuation">:</span> <span class="token string">&apos;Five&apos;</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+		<span class="token punctuation">{</span>label<span class="token punctuation">:</span> <span class="token string">&apos;Six&apos;</span><span class="token punctuation">}</span>
+	<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
 </pre>
                             </div>
                         </figure>

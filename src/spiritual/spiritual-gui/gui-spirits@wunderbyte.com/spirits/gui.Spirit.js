@@ -387,6 +387,7 @@ gui.Spirit = gui.Class.create(
 			spirit.life.ready = true;
 			spirit.onready();
 			spirit.life.dispatch(gui.LIFE_READY);
+			gui.$getnow(spirit.element);
 		},
 
 		/**

@@ -347,11 +347,6 @@ ts.dox.ChromeSpirit = (function using(CSSPlugin, Then) {
 			this.css.shift(uncollapse, 'uncollapse');
 			this.key.shift(uncollapse, 'Esc');
 			this._sbar.open(uncollapse);
-			this._sbar.onclose = uncollapse
-				? function() {
-						this._openmenu(false);
-					}.bind(this)
-				: null;
 		},
 
 		/**

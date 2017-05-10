@@ -1,51 +1,31 @@
-var path = require('path');
-var chalk = require('chalk');
-
-var comment = false;
-var underline = '', it = 80;
-while (it) { underline += '.'; it--; }
+const path = require('path');
+const chalk = require('chalk');
 
 /**
- * Publish some LESS for public consumption (variables and mixins for now),
- * so that devs can copy-paste these things into their own LESS setup.
+ * Used in the state-machine
+ * @see noBlockComment()
+ * @type {boolean}
  */
-module.exports = {
-	init: function(grunt) {
-		grunt.registerMultiTask('tsless', 'concat less files', function() {
-			var file, folder, less;
-			this.files.forEach(function(pair) {
-				file = pair.src[0];
-				folder = path.dirname(file);
-				less = grunt.file.read(file);
-				grunt.file.write(pair.dest, (
-					[
-						'@import "ts-variables.less";',
-						'@import "ts-mixins.less";'
-					].concat(
-						less.split('\n')
-					).map(
-						importurl
-					).reduce(function(all, src) {
-						return all + (src ? getless(grunt, folder + '/' + src) : '');
-					}, '')
-				));
-				grunt.log.writeln('File ' + chalk.cyan(pair.dest) + ' created');
-			});
-		});
-	}
-};
+let commentState = false;
+
+/**
+ * Underline used for styling cool comments 
+ * @type {string}
+ */
+const EIGHTY_WIDE_UNDERLINE =
+	'................................................................................';
 
 /**
  * Extract @import URL from line.
- * @param {string} less
+ * @param {string} line
  * @returns {string}
  */
-function importurl(line) {
-	var match;
-	if ((match = line.match(/".+"/))) {
+const importURL = line => {
+	const match = line.match(/".+"/);
+	if (match) {
 		return match.shift().replace(/"/g, '');
 	}
-}
+};
 
 /**
  * Read and format less.
@@ -53,74 +33,88 @@ function importurl(line) {
  * @param {string} src
  * @returns {string}
  */
-function getless(grunt, src) {
-	var file, less, head;
-	file = path.basename(src);
-	less = grunt.file.read(src);
-	less = clean(less);
-	head = '// ' + file + ' ';
+const getLESS = (grunt, src) => {
+	const file = path.basename(src);
+	const less = clean(grunt.file.read(src));
+	const head = '// ' + file + ' ';
 	return format(head, less);
-}
+};
 
 /**
  * Cleanup that less.
  * @param {string} less
  * @returns {string}
  */
-function clean(less) {
-	return less.split('\n')
-		.filter(nofancystuff)
-		.filter(noblockcomment)
-		.map(nocomment)
-		.join('\n');
-}
+const clean = less =>
+	less.split('\n').filter(noFancyStuff).filter(noBlockComment).map(noComment).join('\n');
 
 /**
  * Nice header to separate less from different files.
+ * @param {string} head
  * @param {string} less
  * @returns {string}
  */
-function format(head, less) {
-	return head + underline.substring(head.length) + '\n\n' + less + '\n\n\n';
-}
+const format = (head, less) =>
+	head + EIGHTY_WIDE_UNDERLINE.substring(head.length) + '\n\n' + less + '\n\n\n';
 
 /**
  * Filter @import statements and some other stuff.
  * @param {string} line
  * @returns {boolean}
  */
-function nofancystuff(line) {
-	var trim = line.trim();
-	return trim.length &&
-		trim.indexOf('//') !== 0 &&
-		trim.indexOf('@import') !== 0;
-}
+const noFancyStuff = line => {
+	const trim = line.trim();
+	return trim.indexOf('@import') !== 0;
+};
 
 /**
  * Remove trailing comment.
  * @param {string} line
- * @returns {strig}
+ * @returns {string}
  */
-function nocomment(line) {
-	return line.replace(/ \/\/.+$/, '').trimRight();
-}
+const noComment = line => line.replace(/ \/\/.+$/, '').trimRight();
 
 /**
  * Filter stuff in block comments.
  * @param {string} line
  * @returns {boolean}
  */
-function noblockcomment(line) {
-	var trim = line.trim();
-	if (!comment && trim.startsWith('/*')) {
+const noBlockComment = line => {
+	const trim = line.trim();
+	if (!commentState && trim.startsWith('/*')) {
 		if (!trim.endsWith('*/')) {
-			comment = true;
+			commentState = true;
 		}
 		return false;
 	}
-	if (comment && trim.startsWith('*/')) {
-		comment = false;
+	if (commentState && trim.startsWith('*/')) {
+		commentState = false;
 		return false;
 	}
-	return !comment;
-}
+	return !commentState;
+};
+
+/**
+ * Publish some LESS for public consumption (variables and mixins for now),
+ * so that devs can copy-paste these things into their own LESS setup.
+ */
+module.exports = {
+	init: grunt => {
+		grunt.registerMultiTask('tsless', 'concat less files', function tsless() {
+			this.files.forEach(pair => {
+				const file = pair.src[0];
+				const folder = path.dirname(file);
+				const less = grunt.file.read(file);
+				grunt.file.write(
+					pair.dest,
+					less
+						.split('\n')
+						.map(importURL)
+						.filter(e => e)
+						.reduce((all, src) => all + getLESS(grunt, folder + '/' + src), '')
+				);
+				grunt.log.writeln('File ' + chalk.cyan(pair.dest) + ' created');
+			});
+		});
+	}
+};

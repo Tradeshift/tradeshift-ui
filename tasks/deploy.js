@@ -39,7 +39,7 @@ fs.readdir(params.localDir, (readErr, items) => {
 	if (readErr) {
 		console.error(JSON.stringify(readErr, null, 4));
 	}
-	items.forEach((file) => {
+	items.forEach(file => {
 		const fileParams = Object.assign({}, params, {
 			localFile: `${params.localDir}/${file}`,
 			s3Params: Object.assign({}, params.s3Params, {
@@ -52,17 +52,25 @@ fs.readdir(params.localDir, (readErr, items) => {
 		const uploader = client.uploadFile(fileParams);
 
 		console.log(chalk.magenta(`[${file}] `) + 'Uploading...');
-		uploader.on('error', (uploadErr) => {
-			console.error(chalk.magenta(`[${file}] `) + 'S3 uploading ' + chalk.red('failed') + '\n' + JSON.stringify(uploadErr, null, 4));
+		uploader.on('error', uploadErr => {
+			console.error(
+				chalk.magenta(`[${file}] `) +
+					'S3 uploading ' +
+					chalk.red('failed') +
+					'\n' +
+					JSON.stringify(uploadErr, null, 4)
+			);
 		});
 		uploader.on('progress', () => {
 			if (uploader.progressTotal > 0) {
-				const percentage = (uploader.progressAmount / uploader.progressTotal) * 100;
+				const percentage = uploader.progressAmount / uploader.progressTotal * 100;
 				console.log(chalk.magenta(`[${file}] `) + chalk.magenta(`${percentage || 0}%`));
 			}
 		});
 		uploader.on('end', () => {
-			console.log(chalk.magenta(`[${file}] `) + `Uploaded ` + chalk.green('successfully') + ' to S3!');
+			console.log(
+				chalk.magenta(`[${file}] `) + `Uploaded ` + chalk.green('successfully') + ' to S3!'
+			);
 		});
 	});
 });

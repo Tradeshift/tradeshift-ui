@@ -10,8 +10,7 @@ module.exports = {
 		grunt.registerMultiTask('tsjs', 'ts.js for cdn', function() {
 			var options = this.options();
 			Object.keys(options).forEach(function(key) {
-				options[key] = grunt.template.process(options[key])
-					.replace(localhost, publichost);
+				options[key] = grunt.template.process(options[key]).replace(localhost, publichost);
 			});
 			this.files.forEach(function(pair) {
 				tsjs(grunt, pair.src[0], pair.dest, options);

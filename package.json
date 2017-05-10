@@ -22,7 +22,7 @@
     "****** LINT *****": "",
     "lint": "yarn run prettier && yarn run eslint",
     "eslint": "eslint --cache --config ./.eslintrc.json {src,docs/src/{js/{dox-{api,gui}@tradeshift.com},xhtml}}/**/*.js",
-    "prettier": "prettier --write --use-tabs --single-quote --print-width 100 \"{src,docs/src/{js/{dox-{api,gui}@tradeshift.com'},xhtml}}/**/*.js\"",
+    "prettier": "prettier --write --use-tabs --single-quote --print-width 100 \"{{src,tasks,docs/src/{js/{dox-{api,gui}@tradeshift.com'},xhtml}}/**/*.js,Gruntfile.js}\"",
     "****** DIST *****": "",
     "build": "grunt dist",
     "deploy-s3": "node tasks/deploy.js",

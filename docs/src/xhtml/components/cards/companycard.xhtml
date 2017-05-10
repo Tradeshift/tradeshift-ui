@@ -88,17 +88,18 @@
 						<li>
 							<figure data-ts="DoxScript">
 								<script type="runnable">
-									var card = ts.ui.get('#mycard'); // or pass an element
-									card.render({
-										id: "6bf17754-f9de-4e31-aa31-bd3ff765b9c2",
-										data: {
-											name: "Tradeshift",
-											logo: "assets/logo.png",
-											size: '100–249',
-											location: "San Francisco, California",
-											industry: 'Software & IT',
-											connection: 2
-										}
+									ts.ui.get('#mycard', card => {
+										card.render({
+											id: "6bf17754-f9de-4e31-aa31-bd3ff765b9c2",
+											data: {
+												name: "Tradeshift",
+												logo: "assets/logo.png",
+												size: '100–249',
+												location: "San Francisco, California",
+												industry: 'Software & IT',
+												connection: 2
+											}
+										});
 									});
 								</script>
 							</figure>

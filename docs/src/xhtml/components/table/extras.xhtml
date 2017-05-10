@@ -83,18 +83,19 @@
             <li>
               <figure data-ts="DoxScript">
                 <script type="runnable">
-								var table = ts.ui.get('#table1');
-								table.rows([
-									['Apple', getbutton('Buy this Apple', 'buy', '#123')],
-									['Orange', getbutton('Buy that Orange', 'buy', '#456')],
-									['Banana', getbutton('Buy the Banana', 'buy', '#789')]
-								]);
-								table.onbutton = function(name, value, rowindex, cellindex) {
-									if(name === 'buy') {
-										ts.ui.Notification.success('Product ' + value + ' ordered!');
-										table.cell(rowindex, cellindex, getbutton('Cancel order'));
-									}
-								};
+								ts.ui.get('#table1', table => {
+									table.rows([
+										['Apple', getbutton('Buy this Apple', 'buy', '#123')],
+										['Orange', getbutton('Buy that Orange', 'buy', '#456')],
+										['Banana', getbutton('Buy the Banana', 'buy', '#789')]
+									]);
+									table.onbutton = function(name, value, rowindex, cellindex) {
+										if(name === 'buy') {
+											ts.ui.Notification.success('Product ' + value + ' ordered!');
+											table.cell(rowindex, cellindex, getbutton('Cancel order'));
+										}
+									};
+								});
                 </script>
               </figure>
             </li>
@@ -168,17 +169,18 @@
             <li>
               <figure data-ts="DoxScript">
                 <script type="runnable">
-								var table = ts.ui.get('#table3');
-								table.rows([
-									[
-										geticon('ts-icon-sales'),
-										geticon('ts-icon-cancel', 'medium'),
-										geticon('ts-icon-error', 'red'),
-										geticon('ts-icon-accept', 'green'),
-										geticon('ts-icon-info', 'blue'),
-										geticon('ts-icon-favorites', 'purple')
-									]
-								]);
+								ts.ui.get('#table3', table => {
+									table.rows([
+										[
+											geticon('ts-icon-sales'),
+											geticon('ts-icon-cancel', 'medium'),
+											geticon('ts-icon-error', 'red'),
+											geticon('ts-icon-accept', 'green'),
+											geticon('ts-icon-info', 'blue'),
+											geticon('ts-icon-favorites', 'purple')
+										]
+									]);
+								});
                 </script>
               </figure>
             </li>
@@ -232,15 +234,16 @@
 	          <li>
 	            <figure data-ts="DoxScript">
 	              <script type="runnable">
-								var table = ts.ui.get('#table4');
-								table.rows([
-									[
-										getimage('assets/image-1.jpg'),
-										getimage('assets/image-2.jpg'),
-										getimage('assets/image-3.jpg'),
-										getimage('assets/image-4.jpg')
-									]
-								]);
+								ts.ui.get('#table4', table => {
+									table.rows([
+										[
+											getimage('assets/image-1.jpg'),
+											getimage('assets/image-2.jpg'),
+											getimage('assets/image-3.jpg'),
+											getimage('assets/image-4.jpg')
+										]
+									]);
+								});
 	              </script>
 	            </figure>
 	          </li>
@@ -305,18 +308,19 @@
             <li>
               <figure data-ts="DoxScript">
                 <script type="runnable">
-								var table = ts.ui.get('#table2');
-								table.rows([
-									['Spam mails', getswitch('toggle', '#123', true)],
-									['Prank calls', getswitch('toggle', '#456', true)],
-									['House visits', getswitch('toggle', '#789', false)]
-								]);
-								table.onswitch = function(name, value, checked, rowindex, cellindex) {
-									if(name === 'toggle') {
-										var status = checked ? 'enabled' : 'disabled';
-										ts.ui.Notification.success('Service ' + value + ' ' + status);
-									}
-								};
+								ts.ui.get('#table2', table => {
+									table.rows([
+										['Spam mails', getswitch('toggle', '#123', true)],
+										['Prank calls', getswitch('toggle', '#456', true)],
+										['House visits', getswitch('toggle', '#789', false)]
+									]);
+									table.onswitch = function(name, value, checked, rowindex, cellindex) {
+										if(name === 'toggle') {
+											var status = checked ? 'enabled' : 'disabled';
+											ts.ui.Notification.success('Service ' + value + ' ' + status);
+										}
+									};
+								});								
                 </script>
               </figure>
             </li>
@@ -374,15 +378,16 @@
 	          <li>
 	            <figure data-ts="DoxScript">
 	              <script type="runnable">
-								var table = ts.ui.get('#table5');
-								table.rows([
-									[
-										getuserimage('Jim Bob Johnson', 'assets/jim.png'),
-										getuserimage('Karl Benson'),
-										getuserimage('Marshall Garrett'),
-										getuserimage('Kelvin Castro')
-									]
-								]);
+								ts.ui.get('#table5', table => {
+									table.rows([
+										[
+											getuserimage('Jim Bob Johnson', 'assets/jim.png'),
+											getuserimage('Karl Benson'),
+											getuserimage('Marshall Garrett'),
+											getuserimage('Kelvin Castro')
+										]
+									]);
+								});
 	              </script>
 	            </figure>
 	          </li>

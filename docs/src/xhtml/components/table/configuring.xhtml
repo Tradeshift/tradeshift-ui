@@ -15,15 +15,16 @@
 						<li>
 							<figure data-ts="DoxScript">
 								<script type="runnable">
-									var table = ts.ui.get('#table1');
 									var popup = ts.ui.Notification;
-									table.configurable(function onclick() {
-										popup.success('Go configure!');
-									}).cols(['A', 'B', 'C', 'D']).rows([
-										[1, 4, 7, 10],
-										[2, 5, 8, 11],
-										[3, 6, 9, 12]
-									]);
+									ts.ui.get('#table1', table => {
+										table.configurable(function onclick() {
+											popup.success('Go configure!');
+										}).cols(['A', 'B', 'C', 'D']).rows([
+											[1, 4, 7, 10],
+											[2, 5, 8, 11],
+											[3, 6, 9, 12]
+										]);
+									});
 								</script>
 							</figure>
 						</li>
@@ -34,15 +35,17 @@
 					<p>The button triggers a callback, but there is otherwise no default UI associated. The <code>ColModel</code> supports a <code>visible</code> property that can be used to hide columns.</p>
 					<figure data-ts="DoxScript">
 						<script type="runnable">
-							var cols = ts.ui.get('#table1').cols();
-							(function hide(index) {
-								cols[index].visible = false;
-								if(index) {
-									setTimeout(function next() {
-										hide(--index);
-									}, 1000);
-								}
-							}(3));
+							ts.ui.get('#table1', table => {
+								var cols = table.cols();
+								(function hide(index) {
+									cols[index].visible = false;
+									if(index) {
+										setTimeout(function next() {
+											hide(--index);
+										}, 1000);
+									}
+								}(3));
+							});
 						</script>
 					</figure>
 					<p>Here's a summary of these things.</p>

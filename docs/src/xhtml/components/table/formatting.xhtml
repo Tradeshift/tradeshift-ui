@@ -15,13 +15,14 @@
 						<li>
 							<figure data-ts="DoxScript">
 								<script type="runnable">
-									var table = ts.ui.get('#table1');
-									table.rows([
-										['*Italic text*'],
-										['**Strong text**'],
-										['~~Strike text~~'],
-										['`monotype text`']
-									]);
+									ts.ui.get('#table1', table => {
+										table.rows([
+											['*Italic text*'],
+											['**Strong text**'],
+											['~~Strike text~~'],
+											['`monotype text`']
+										]);
+									});
 								</script>
 							</figure>
 						</li>
@@ -34,11 +35,12 @@
 						<li>
 							<figure data-ts="DoxScript">
 								<script type="runnable">
-									var table = ts.ui.get('#table2');
-									table.rows([
-										['Para 1\n\n\Para 2\n\nPara 3'],
-										['* Item 1\n* Item 2\n* Item 3']
-									]);
+									ts.ui.get('#table2', table => {
+										table.rows([
+											['Para 1\n\n\Para 2\n\nPara 3'],
+											['* Item 1\n* Item 2\n* Item 3']
+										]);
+									});
 								</script>
 							</figure>
 						</li>
@@ -51,11 +53,12 @@
 						<li>
 							<figure data-ts="DoxScript">
 								<script type="runnable">
-									var table = ts.ui.get('#table3');
-									table.linkable();
-									table.rows([
-										['Please visit (Tradeshift)[http://www.tradeshift.com]']
-									]);
+									ts.ui.get('#table3', table => {
+										table.linkable();
+										table.rows([
+											['Please visit (Tradeshift)[http://www.tradeshift.com]']
+										]);
+									});
 								</script>
 							</figure>
 						</li>
@@ -69,13 +72,14 @@
 						<li>
 							<figure data-ts="DoxScript">
 								<script type="runnable">
-									var table = ts.ui.get('#table4');
 									var popup = ts.ui.Notification;
-									table.linkable(function onlink(anystring) {
-										popup.success(anystring);
-									}).rows([
-										['Choose link (one)[ONE] or (two)[TWO] or (three)[THREE].']
-									]);
+									ts.ui.get('#table4', table => {
+										table.linkable(function onlink(anystring) {
+											popup.success(anystring);
+										}).rows([
+											['Choose link (one)[ONE] or (two)[TWO] or (three)[THREE].']
+										]);
+									});
 								</script>
 							</figure>
 						</li>

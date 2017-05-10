@@ -15,13 +15,14 @@
 						<li>
 							<figure data-ts="DoxScript" class="attention">
 								<script type="runnable">
-									var table = ts.ui.get('#mytable');
-									table.cols(['One', 'Two', 'Tree']);
-									table.rows([
-										['A', 'D', 'G'],
-										['B', 'E', 'H'],
-										['C', 'F', 'I']
-									]);
+									ts.ui.get('#mytable', table => {
+										table.cols(['One', 'Two', 'Tree']);
+										table.rows([
+											['A', 'D', 'G'],
+											['B', 'E', 'H'],
+											['C', 'F', 'I']
+										]);
+									});
 								</script>
 							</figure>
 						</li>
@@ -34,12 +35,13 @@
 						<li>
 							<figure data-ts="DoxScript">
 								<script type="runnable">
-									var table = ts.ui.get('#example1');
-									table.cols([
-										{label: 'One'},
-										{label: 'Two'},
-										{label: 'Three'}
-									]);
+									ts.ui.get('#example1', table => {
+										table.cols([
+											{label: 'One'},
+											{label: 'Two'},
+											{label: 'Three'}
+										]);
+									});
 								</script>
 							</figure>
 						</li>
@@ -56,14 +58,15 @@
 						<li>
 							<figure data-ts="DoxScript">
 								<script type="runnable">
-									var table = ts.ui.get('#example2');
-									table.cols([
-										{ label: 'Type' },
-										{ label: 'Value', type: 'ts-number'}
-									]);
-									table.rows([
-										['Random number', Math.random()]
-									]);
+									ts.ui.get('#example2', table => {
+										table.cols([
+											{ label: 'Type' },
+											{ label: 'Value', type: 'ts-number'}
+										]);
+										table.rows([
+											['Random number', Math.random()]
+										]);
+									});
 								</script>
 							</figure>
 						</li>
@@ -76,12 +79,13 @@
 						<li>
 							<figure data-ts="DoxScript">
 								<script type="runnable">
-									var table = ts.ui.get('#example3');
-									table.selectable().rows([
-										{ cells: ['A', 'D', 'G'], selected: true},
-										{ cells: ['B', 'E', 'H']},
-										{ cells: ['C', 'F', 'I']},
-									]);
+									ts.ui.get('#example3', table => {
+										table.selectable().rows([
+											{ cells: ['A', 'D', 'G'], selected: true},
+											{ cells: ['B', 'E', 'H']},
+											{ cells: ['C', 'F', 'I']},
+										]);
+									});
 								</script>
 							</figure>
 						</li>
@@ -94,16 +98,17 @@
 						<li>
 							<figure data-ts="DoxScript">
 								<script type="runnable">
-									var table = ts.ui.get('#example4');
-									table.rows([
-										{
-											cells: [
-												{value: 1, text: 'One'},
-												{value: 2, text: 'Two'},
-												{value: 3, text: 'Three'}
-											]
-										}
-									]);
+									ts.ui.get('#example4', table => {
+										table.rows([
+											{
+												cells: [
+													{value: 1, text: 'One'},
+													{value: 2, text: 'Two'},
+													{value: 3, text: 'Three'}
+												]
+											}
+										]);
+									});
 								</script>
 							</figure>
 						</li>
@@ -116,16 +121,17 @@
 						<li>
 							<figure data-ts="DoxScript">
 								<script type="runnable">
-									var table = ts.ui.get('#example5');
-									table.rows([
-										['A', 'B', 'C'],
-										['D', 'E', 'F']
-									]);
-									table.row(1, [
-										Math.random(),
-										Math.random(),
-										Math.random()
-									]);
+									ts.ui.get('#example5', table => {
+										table.rows([
+											['A', 'B', 'C'],
+											['D', 'E', 'F']
+										]);
+										table.row(1, [
+											Math.random(),
+											Math.random(),
+											Math.random()
+										]);
+									});
 								</script>
 							</figure>
 						</li>
@@ -138,12 +144,13 @@
 						<li>
 							<figure data-ts="DoxScript">
 								<script type="runnable">
-									var table = ts.ui.get('#example6');
-									table.rows([
-										['A', 'B', 'C'],
-										['D', 'E', 'F']
-									]);
-									table.cell(1, 1, Math.random());
+									ts.ui.get('#example6', table => {
+										table.rows([
+											['A', 'B', 'C'],
+											['D', 'E', 'F']
+										]);
+										table.cell(1, 1, Math.random());
+									});
 								</script>
 							</figure>
 						</li>
@@ -156,12 +163,13 @@
 						<li>
 							<figure data-ts="DoxScript">
 								<script type="runnable">
-									var table = ts.ui.get('#example7');
-									var rows = table.rows();
-									rows.push([1, 2, 3]);
-									rows.unshift([4, 5, 6]);
-									rows.splice(0, 0, [7, 8, 9]);
-									rows.reverse();
+									ts.ui.get('#example7', table => {
+										var rows = table.rows();
+										rows.push([1, 2, 3]);
+										rows.unshift([4, 5, 6]);
+										rows.splice(0, 0, [7, 8, 9]);
+										rows.reverse();
+									});
 								</script>
 							</figure>
 						</li>

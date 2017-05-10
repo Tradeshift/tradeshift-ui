@@ -16,13 +16,14 @@
 						<figure data-ts="DoxScript" class="attention">
 							<script type="runnable">
 								$.getJSON('assets/rowdata.json', function(json) {
-									var table = ts.ui.get('#example9');
-									table.cols([
-										{ label: 'ID', type: 'ts-number' },
-										{ label: 'Name', flex: 2 },
-										{ label: 'Price', type: 'ts-number'}
-									]);
-									table.rows(json).max(5);
+									ts.ui.get('#example9', table => {
+										table.cols([
+											{ label: 'ID', type: 'ts-number' },
+											{ label: 'Name', flex: 2 },
+											{ label: 'Price', type: 'ts-number'}
+										]);
+										table.rows(json).max(5);
+									});
 								});
 							</script>
 						</figure>
@@ -36,27 +37,28 @@
 					<li>
 						<figure data-ts="DoxScript">
 							<script type="runnable">
-								var table = ts.ui.get('#big-data-table');
 								var popup = ts.ui.Notification;
-								table.max(10).cols([
-									{ label: 'ID', type: 'ts-number' },
-									{ label: 'Name', flex: 2 },
-									{ label: 'Price', type: 'ts-number'}
-								]);
-								table.pager({
-									pages: 5,
-									page: 0,
-									onselect: loadpage
-								});
-								function loadpage(index) {
-									var url = 'assets/page-' + index + '.json';
-									$.getJSON(url, function(json) {
-										var n = json.length;
-										popup.success('Loaded ' + n + ' rows');
-										table.rows(json);
+								ts.ui.get('#big-data-table', table => {
+									table.max(10).cols([
+										{ label: 'ID', type: 'ts-number' },
+										{ label: 'Name', flex: 2 },
+										{ label: 'Price', type: 'ts-number'}
+									]);
+									table.pager({
+										pages: 5,
+										page: 0,
+										onselect: loadpage
 									});
-								}
-								loadpage(0);
+									function loadpage(index) {
+										var url = 'assets/page-' + index + '.json';
+										$.getJSON(url, function(json) {
+											var n = json.length;
+											popup.success('Loaded ' + n + ' rows');
+											table.rows(json);
+										});
+									}
+									loadpage(0);
+								});
 							</script>
 						</figure>
 					</li>

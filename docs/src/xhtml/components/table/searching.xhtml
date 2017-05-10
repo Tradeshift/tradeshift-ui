@@ -16,21 +16,22 @@
 							<figure data-ts="DoxScript">
 								<script type="runnable">
 									$.getJSON('assets/rowdata.json', function(json) {
-										var table = ts.ui.get('#example10');
-										table.rows(json).max(4).cols([
-											{ label: 'ID', type: 'ts-number', search: {
-												tip: 'Search product ID',
-												onidle: function(value) {
-													table.search(0, value);
-												}
-											}},
-											{ label: 'Product Name', flex: 1, search: {
-												tip: 'Search product names',
-												onidle: function(value) {
-													table.search(1, value);
-												}
-											}}
-										]);
+										ts.ui.get('#example10', table => {
+											table.rows(json).max(4).cols([
+												{ label: 'ID', type: 'ts-number', search: {
+													tip: 'Search product ID',
+													onidle: function(value) {
+														table.search(0, value);
+													}
+												}},
+												{ label: 'Product Name', flex: 1, search: {
+													tip: 'Search product names',
+													onidle: function(value) {
+														table.search(1, value);
+													}
+												}}
+											]);
+										});
 									});
 								</script>
 							</figure>

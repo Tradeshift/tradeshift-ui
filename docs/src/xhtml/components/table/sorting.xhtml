@@ -15,18 +15,19 @@
 						<li>
 							<figure data-ts="DoxScript">
 								<script type="runnable">
-									var table = ts.ui.get('#example6');
-									table.cols(
-										['Animal', {label: 'Price', type: 'ts-number'}]
-									).rows([
-										['Donkey', 700],
-										['Baboon', 1500],
-										['Coyote', 250],
-										['Albatross', 50]
-									]).sortable(function(index, ascending) {
-										table.sort(index, ascending);
+									ts.ui.get('#example6', table => {
+										table.cols(
+											['Animal', {label: 'Price', type: 'ts-number'}]
+										).rows([
+											['Donkey', 700],
+											['Baboon', 1500],
+											['Coyote', 250],
+											['Albatross', 50]
+										]).sortable(function(index, ascending) {
+											table.sort(index, ascending);
+										});
+										table.sort(0, true);
 									});
-									table.sort(0, true);
 								</script>
 							</figure>
 						</li>
@@ -39,20 +40,21 @@
 						<li>
 							<figure data-ts="DoxScript">
 								<script type="runnable">
-									var table = ts.ui.get('#example12');
-									table.cols([
-										{
-											label: 'Example',
-											selected: true,
-											ascending: false
-										}
-									]);
-									setInterval(function() {
-										var col = table.cols()[0];
-										if((col.selected = !col.selected)) {
-											col.ascending = !col.ascending;
-										}
-									}, 1000);
+									ts.ui.get('#example12', table => {
+										table.cols([
+											{
+												label: 'Example',
+												selected: true,
+												ascending: false
+											}
+										]);
+										setInterval(function() {
+											var col = table.cols()[0];
+											if((col.selected = !col.selected)) {
+												col.ascending = !col.ascending;
+											}
+										}, 1000);
+									});
 								</script>
 							</figure>
 						</li>

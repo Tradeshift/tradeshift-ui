@@ -15,17 +15,18 @@
 						<li>
 							<figure data-ts="DoxScript">
 								<script type="runnable">
-									var table = ts.ui.get('#example4');
-									table.cols([
-										{label: 'Level', type: 'ts-number'},
-										{label: 'Character', flex: 2},
-										{label: 'Alignment', flex: 2},
-									]);
-									table.rows([
-										[21, 'Paladin Knight', 'Lawful Good'],
-										[13, 'Barbarian Queen', 'Neutral Evil'],
-										[11, 'Global Senior Vice President of Sales', 'Chaotic Evil']
-									]);
+									ts.ui.get('#example4', table => {
+										table.cols([
+											{label: 'Level', type: 'ts-number'},
+											{label: 'Character', flex: 2},
+											{label: 'Alignment', flex: 2},
+										]);
+										table.rows([
+											[21, 'Paladin Knight', 'Lawful Good'],
+											[13, 'Barbarian Queen', 'Neutral Evil'],
+											[11, 'Global Senior Vice President of Sales', 'Chaotic Evil']
+										]);
+									});
 								</script>
 							</figure>
 						</li>
@@ -38,17 +39,18 @@
 						<li>
 							<figure data-ts="DoxScript">
 								<script type="runnable">
-									var table = ts.ui.get('#example5');
-									table.cols([
-										{label: 'Level', type: 'ts-number'},
-										{label: 'Character', flex: 2, wrap: true},
-										{label: 'Alignment', flex: 2},
-									]);
-									table.rows([
-										[21, 'Paladin Knight', 'Lawful Good'],
-										[13, 'Barbarian Queen', 'Neutral Evil'],
-										[11, 'Global Senior Vice President of Sales', 'Chaotic Evil']
-									]);
+									ts.ui.get('#example5', table => {
+										table.cols([
+											{label: 'Level', type: 'ts-number'},
+											{label: 'Character', flex: 2, wrap: true},
+											{label: 'Alignment', flex: 2},
+										]);
+										table.rows([
+											[21, 'Paladin Knight', 'Lawful Good'],
+											[13, 'Barbarian Queen', 'Neutral Evil'],
+											[11, 'Global Senior Vice President of Sales', 'Chaotic Evil']
+										]);
+									});
 								</script>
 							</figure>
 						</li>
@@ -61,17 +63,18 @@
 						<li>
 							<figure data-ts="DoxScript">
 								<script type="runnable">
-									var table = ts.ui.get('#example6');
-									table.cols([
-										{label: 'Level', type: 'ts-number', minwidth: 60},
-										{label: 'Character', flex: 2, minwidth: 300},
-										{label: 'Alignment', flex: 2, minwidh: 300},
-									]);
-									table.rows([
-										[21, 'Paladin Knight', 'Lawful Good'],
-										[13, 'Barbarian Queen', 'Neutral Evil'],
-										[11, 'Global Senior Vice President of Sales', 'Chaotic Evil']
-									]);
+									ts.ui.get('#example6', table => {
+										table.cols([
+											{label: 'Level', type: 'ts-number', minwidth: 60},
+											{label: 'Character', flex: 2, minwidth: 300},
+											{label: 'Alignment', flex: 2, minwidh: 300},
+										]);
+										table.rows([
+											[21, 'Paladin Knight', 'Lawful Good'],
+											[13, 'Barbarian Queen', 'Neutral Evil'],
+											[11, 'Global Senior Vice President of Sales', 'Chaotic Evil']
+										]);
+									});
 								</script>
 							</figure>
 						</li>

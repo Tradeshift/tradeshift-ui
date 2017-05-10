@@ -6,7 +6,9 @@
 		<script>
 			function toggle(/*...selectors*/) {
 				Array.forEach(arguments, function(selector) {
-					ts.ui.get(selector).toggle();
+					ts.ui.get(selector, function(spirit) {
+						spirit.toggle();
+					});
 				});
 			}
 		</script>
@@ -111,29 +113,35 @@
 					<p>The tabs can also be created programatically. In that case, the panel switching mechanism must be implemented manually somehow.</p>
 					<figure data-ts="DoxScript">
 						<script type="runnable">
-							ts.ui.get('#aside3').tabs([
-								{label: 'Tab 1', onselect: function() {
-									console.log('Panel one');
-								}},
-								{label: 'Tab 2', onselect: function() {
-									console.log('Panel two');
-								}}
-							]).open();
+							ts.ui.get('#aside3', aside => {
+								aside.tabs([
+									{label: 'Tab 1', onselect: function() {
+										console.log('Panel one');
+									}},
+									{label: 'Tab 2', onselect: function() {
+										console.log('Panel two');
+									}}
+								]).open();
+							});
 						</script>
 					</figure>
 					<p>You can also mix the two approaches to dynamically update tabs that were created with <att>Panel</att> elements. This will for example assign an <code>onselect</code> callback to the third tab.</p>
 					<figure data-ts="DoxScript">
 						<script type="text/html">
-							var tabs = ts.ui.get('#myaside').tabs();
-							tabs[2].onselect = function() {
-								console.log('selected');
-							};
+							ts.ui.get('#myaside', aside => {
+								var tabs = aside.tabs();
+								tabs[2].onselect = function() {
+									console.log('selected');
+								};
+							});
 						</script>
 					</figure>
 					<p>To remove all dynamically created tabs, you can simply clear the tab collection.</p>
 					<figure data-ts="DoxScript">
 						<script type="text/html">
-							ts.ui.get('#myaside').tabs().clear();
+							ts.ui.get('#myaside', aside => {
+								aside.tabs().clear();
+							});
 						</script>
 					</figure>
 				</section>

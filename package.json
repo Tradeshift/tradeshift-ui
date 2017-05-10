@@ -34,8 +34,7 @@
     "browserstack": "node tasks/browserstack.js",
     "http": "static spec/jasmine -H '{\"Cache-Control\": \"no-cache, must-revalidate\"}'",
     "****** NODE *****": "",
-    "postcheckout": "yarn upgrade",
-    "postinstall": "cd docs && yarn upgrade",
+    "postinstall": "cd docs && yarn",
     "precommit": "lint-staged && yarn run eslint && grunt exec:docs_dist && git add -A docs/dist/index.html && git add -A docs/dist/**/*"
   },
   "lint-staged": {

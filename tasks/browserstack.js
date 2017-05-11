@@ -193,8 +193,8 @@ const succ = function() {
  * @returns {boolean} true on success, false on failure
  */
 const checkReport = function(report) {
-	var out = [];
-	var errOut = [];
+	let out = [];
+	let errOut = [];
 
 	if (!report.length) {
 		console.log('No report received, probably because the build has been terminated...');
@@ -210,28 +210,35 @@ const checkReport = function(report) {
 	report.forEach(function(browserRes) {
 		out.push('____________________________________________________________');
 		out.push(chalk.white.bgBlack('Browser: ') + chalk.white.bold.bgBlack(browserRes.browser));
-		browserRes.tests.forEach(function(test) {
-			var timeString = ' (' + test.runtime + 'ms)';
-			if (test.runtime > 500) {
-				timeString = chalk.red(timeString);
-			} else if (test.runtime < 100) {
-				timeString = chalk.green(timeString);
-			}
+		if (browserRes.tests && browserRes.tests.length) {
+			browserRes.tests.forEach(function(test) {
+				let timeString = ' (' + test.runtime + 'ms)';
+				if (test.runtime > 500) {
+					timeString = chalk.red(timeString);
+				} else if (test.runtime < 100) {
+					timeString = chalk.green(timeString);
+				}
 
-			if (test.status === 'failed') {
-				out.push(chalk.red(test.suiteName + ' > ' + test.name) + timeString);
+				if (test.status === 'failed') {
+					out.push(chalk.red(test.suiteName + ' > ' + test.name) + timeString);
 
-				errOut.push('');
-				errOut.push('Browser: ' + chalk.red.bold(browserRes.browser));
-				errOut.push(chalk.white.bgRed.bold(test.suiteName + ' > ' + test.name));
-				test.errors.forEach(function(err) {
-					errOut.push(chalk.red(err.stack.replace('/\\n/i', '\n')));
 					errOut.push('');
-				});
-			} else {
-				out.push(chalk.green(test.suiteName + ' > ' + test.name) + timeString);
-			}
-		});
+					errOut.push('Browser: ' + chalk.red.bold(browserRes.browser));
+					errOut.push(chalk.white.bgRed.bold(test.suiteName + ' > ' + test.name));
+					test.errors.forEach(function(err) {
+						errOut.push(chalk.red(err.stack.replace('/\\n/i', '\n')));
+						errOut.push('');
+					});
+				} else {
+					out.push(chalk.green(test.suiteName + ' > ' + test.name) + timeString);
+				}
+			});
+		} else {
+			errOut.push('');
+			errOut.push('Browser: ' + chalk.red.bold(browserRes.browser));
+			errOut.push(chalk.white.bgRed.bold('No tests ran, something went horribly wrong!'));
+			out.push(chalk.white.bgRed.bold('No tests ran, something went horribly wrong!'));
+		}
 	});
 
 	console.log(out.join('\n'));

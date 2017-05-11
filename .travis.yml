@@ -1,17 +1,14 @@
-sudo: required
 dist: trusty
+sudo: false
 language: node_js
 node_js:
 - 6
 branches:
   only:
   - master
-sudo: required
 before_install:
-- sudo apt-key adv --fetch-keys http://dl.yarnpkg.com/debian/pubkey.gpg
-- echo "deb http://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
-- sudo apt-get update -qq
-- sudo apt-get install -y -qq yarn
+- curl -o- -L https://yarnpkg.com/install.sh | bash -s
+- export PATH=$HOME/.yarn/bin:$PATH
 install:
 - yarn global add grunt-cli
 - yarn
@@ -21,15 +18,6 @@ cache:
   yarn: true
   directories:
   - node_modules
-notifications:
-  webhooks:
-    urls:
-    - https://webhooks.gitter.im/e/78a9fadbca7e126c06bc
-    on_success: change
-    on_failure: always
-    on_start: never
-  slack:
-    secure: TxxWTobQykhm6zyUD0v3OOkf44QNWaNchgj0A6zVpvAMZH6tOS3w1F7ddYRNKAf+4gyH4u1g0w8/dDFjP8ZTf0zJRkHad8dFK1VTXCn7s2wc20v3NSZ7WLB9x1Kg2EgPAuvcLYSZaHZ7J5RLAcylz/Fd5wYE2RS98WVTzzxQjwfSA0Qcs23dPVnaxV2Ot4Jcbmg1YnaNc4d3VazG6KDRc8CCf/gQ9lnRtPLR6A0iD9wgpyz/sFWqam5wSfU8zPVVhrssCqyVA7nFeW1SyjiYLuLAT6qIoJP8zWTljjOEeIkOWcNOYDX9KYNDmdsfqAfY8Bbr3m40hQvkpTyIWFerTznRUhTi45qo5zVq+KB1RyJw3tUQASTh0ZkJkIoXieZVRQZ8ALMHVwmA4bzF+lKYC/kdcakuTxMduSiS79LzF+potMxWldrLMFUswSTMdGeUMfEKe9FpDF6J+NXjrkQi980nz8RT7GwIfirxZQaBXmJY4wQ9TY/itTqsRjWCG5wo+NCbmRvWK7x6yryXHFvoQXrJRvwKo2khq6IhET1jfGa/5pkU7xouuu1Fa97pyKHA7XJwHz+eXjn16eHYDb2zUdMkRxvKLg8TkPx1Kghjo/ey/lJHg/MJDgXvBn5KkSGTvPtDM5PfxETQUQMaXqmnDTlFuvS2AJPKvkIcirTj3dM=
 env:
   global:
   - secure: xUMTjdzkHzVplE5sYXjENqs9VyCdqzel/WmjneGUXG6hp8Ztr8iLmAX7blPLox//LUvhMNJ7xj/BrpF2b8ZKaipL1CALmztPQXzKaisQD5J+Xpyn1NDN75WdGlAiq126SNeyVMtZUWuC5f7mXFufwspeYCn+vw/6yE9eM5XZs8w6O/EbAuXz8HsTxDJ1cmvj1EpvQ3avVIvE9gHhMHEBJSWXvpOE+VzbrtrsVdkITiRswif6l7g7GHiPjJZXY3AGHQ7jfiiJWgxJaIfYjT8GaxLL5qFCJWz/fBmzzfMqvjgONtOI/y5YoBdDhct+3XO1ZP8KUScBDm9nHvtnMijv3Ssg4plu20d2QukIEPUBu6XuT5b8cJkpkenW+NXi4QlNbZwIygAgblvdVidIAQCGNjneaZJHAnuBx9N9hjlN31Xo8WGLzV0L8ttrddBS8z7jD79wQW0dg0jz82IGt45ZKPGNfpfeYYfDXf3f8R/i+9M5nkgW3qfw98cXkwRkWDIYrNkRLLrDqG5JGDceIShyB+nI+39okVRDoyDMmiPZayvu9oXqIm1dwW/bge2EpRxzXjLgfK2PHerRu/VrWdUUSgwf1+erP4SVDR2PwW8g/YgF9S1BTrrZobX2Dp4rtF+l1sG4FD8jzmfDYVS/ts74ZP2/5ei6lhsbiahV2HUAxYc=

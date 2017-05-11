@@ -1,14 +1,10 @@
 {
-	"//": "S3 bucket",
+	"// S3 bucket": "",
 	"cdn_base": "http://s3.amazonaws.com/tsresources/",
 
-	"//": "Cloudfront Root",
+	"// Cloudfront Root": "",
 	"cdn_live": "//d5wfroyti11sa.cloudfront.net/",
 
-	"//": "Cloudfront Directories",
-	"folder_prod": "prod/client",
-	"folder_dev": "dev/client",
-
-	"//": "CloudFront cutting edge development",
-	"folder_temp": "dev/client/temp"
+	"// Cloudfront Directory": "",
+	"cdn_folder": "prod/client"
 }

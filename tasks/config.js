@@ -41,10 +41,7 @@ module.exports = {
  * @returns {string}
  */
 function read(file) {
-	return alce.parse(
-		fs.readFileSync(path.join(ROOT, file)),
-		{meta: false}
-	);
+	return alce.parse(fs.readFileSync(path.join(ROOT, file)), { meta: false });
 }
 
 /**

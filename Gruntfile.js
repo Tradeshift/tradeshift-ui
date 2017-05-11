@@ -1,4 +1,5 @@
 /* global process */
+const path = require('path');
 
 /**
  * TODO (jmo@): node --max-old-space-size=4096 /usr/local/bin/grunt ci
@@ -13,58 +14,102 @@ module.exports = function(grunt) {
 	grunt.file.defaultEncoding = 'utf8';
 
 	// import custom tasks (to keep this file somewhat readable)
-	['tsjs', 'tsless', 'touchfriendly', 'check_cdn'].forEach(function(task) {
+	['tsjs', 'tsless', 'check_cdn'].forEach(function(task) {
 		require('./tasks/' + task).init(grunt);
 	});
 
 	// read config and apply local overrides (gitignored!)
-	var config = require('./tasks/config').init(grunt).merge('config.json', 'config.local.json');
+	const config = require('./tasks/config').init(grunt).merge('config.json', 'config.local.json');
+
+	// Tasks .....................................................................
+
+	// setup for local development (no docs)
+	grunt.registerTask('default', [].concat(build('dev'), sizeReport('dev'), ['concurrent:nodocs']));
+
+	// setup for local development (with docs)
+	grunt.registerTask('dev', [].concat(build('dev'), sizeReport('dev'), ['concurrent:docs']));
+
+	// build for CDN
+	grunt.registerTask(
+		'dist',
+		[].concat(['exec:eslint'], build('cdn'), sizeReport('cdn'), ['exec:docs_dist'])
+	);
+
+	// build for jasmine tests
+	grunt.registerTask('jasmine', [].concat(build('jasmine'), ['concat:jasmine', 'copy:jasmine']));
+
+	// never called directly, release-it will do that for us
+	grunt.registerTask('release-deploy', ['concurrent:check_cdn_while_dist', 'exec:s3_upload']);
 
 	// Config ....................................................................
+
 	grunt.initConfig({
 		config: config,
 		pkg: grunt.file.readJSON('package.json'),
 
 		// nuke previous build
 		clean: {
-			all: ['temp/**', 'dist/**', 'public/**'],
+			dev: ['temp/**', 'dist/**', 'public/**'],
+			jasmine: ['temp/**', 'dist/**', 'public/**'],
 			cdn: ['temp/**', 'dist/cdn/**', 'public/**']
 		},
 
-		// setup 'ts.js' for local development
 		copy: {
-			dev: {
-				src: 'src/runtime/js/ts-dev.js',
-				dest: 'dist/ts.js'
+			// setup ts-runtime.less for the docs site
+			docs_dev: {
+				src: 'dist/ts-runtime.less',
+				dest: 'docs/src/less/ts-runtime.less'
 			},
+			// setup ts-runtime.less for the docs site
+			docs_cdn: {
+				src: 'dist/ts-runtime.less',
+				dest: 'dist/cdn/ts-runtime-<%= pkg.version %>.less'
+			},
+			// setup 'ts.js' for jasmine tests
 			jasmine: {
 				flatten: true,
 				expand: true,
 				src: ['dist/ts.js', 'dist/ts.css', 'dist/ts-lang-en.js'],
 				dest: 'spec/jasmine/'
 			},
+
+			// setup language files for local development
 			lang_dev: {
 				flatten: true,
 				expand: true,
 				src: 'src/runtime/js/ts.ui/lang/*',
 				dest: 'dist/'
 			},
+
+			// setup language files for CDN
 			lang_cdn: {
 				flatten: true,
 				expand: true,
 				src: 'src/runtime/js/ts.ui/lang/*',
 				dest: 'dist/cdn/',
 				rename: function(dest, src) {
-					var path = require('path');
-					var ext = path.extname(src);
-					var filename = path.basename(src, ext) + '-<%= pkg.version %>' + ext;
+					const ext = path.extname(src);
+					const filename = path.basename(src, ext) + '-<%= pkg.version %>' + ext;
 					return dest + '/' + grunt.template.process(filename);
 				}
+			},
+
+			css_cdn: {
+				files: [
+					{
+						src: 'dist/ts.css',
+						dest: 'dist/cdn/ts-<%= pkg.version %>.css'
+					},
+					{
+						src: 'dist/ts.min.css',
+						dest: 'dist/cdn/ts-<%= pkg.version %>.min.css'
+					}
+				]
 			}
 		},
 
-		// setup 'ts.js'
 		tsjs: {
+			// setup 'ts.js'
 			dev: {
 				options: {
 					'${runtimecss}': '//127.0.0.1:10111/dist/ts.min.css',
@@ -74,6 +119,7 @@ module.exports = function(grunt) {
 					'temp/ts.js': 'src/runtime/ts.js'
 				}
 			},
+			// setup 'ts.js' for jasmine tests
 			jasmine: {
 				options: {
 					'${runtimecss}': 'ts.css',
@@ -83,13 +129,15 @@ module.exports = function(grunt) {
 					'temp/ts.js': 'src/runtime/ts.js'
 				}
 			},
-			prod: {
+
+			// setup 'ts.js' for CDN
+			cdn: {
 				options: {
 					'${runtimecss}': '<%= config.cdn_live %>' +
-						config.folder_prod +
+						config.cdn_folder +
 						'/ts-<%= pkg.version %>.min.css',
 					'${langbundle}': '<%= config.cdn_live %>' +
-						config.folder_prod +
+						config.cdn_folder +
 						'/ts-lang-<LANG>-<%= pkg.version %>.js'
 				},
 				files: {
@@ -98,12 +146,13 @@ module.exports = function(grunt) {
 			}
 		},
 
-		// concatante the LESS (so that devs may copy-paste it from the web)
 		tsless: {
+			// concatenate the LESS (so that devs may copy-paste it from the web)
 			cdn: {
 				src: 'src/runtime/less/include.less',
 				dest: 'dist/cdn/ts-runtime-<%= pkg.version %>.less'
 			},
+			// concatenate the LESS (so a local dev can see what's going in the file)
 			dev: {
 				src: 'src/runtime/less/include.less',
 				dest: 'dist/ts-runtime.less'
@@ -122,18 +171,17 @@ module.exports = function(grunt) {
 
 		// concatenate those files
 		concat: {
-			loose: {
+			fastclick: {
 				// stuff that isn't necessarily "use strict"
 				options: {
 					separator: '\n\n',
 					banner: '(function(window) {\n\n',
 					footer: '\n\n}(self));'
 				},
-				dest: 'temp/js-loose-compiled.js',
-				src: ['fastclick.js'].map(function(src) {
-					return 'src/runtime/js/ts.ui/core/core-gui@tradeshift.com/dependencies/' + src;
-				})
+				dest: 'temp/fastclick.js',
+				src: 'src/runtime/js/ts.ui/core/core-gui@tradeshift.com/dependencies/fastclick.js'
 			},
+			// moment.js
 			moment: {
 				options: {
 					separator: '\n\n',
@@ -143,6 +191,7 @@ module.exports = function(grunt) {
 				dest: 'temp/moment.js',
 				src: 'src/third-party/moment.js'
 			},
+			// spin.js
 			spin: {
 				options: {
 					separator: '\n\n',
@@ -152,18 +201,21 @@ module.exports = function(grunt) {
 				dest: 'temp/spin.js',
 				src: 'src/third-party/spin.js'
 			},
+			// all the ts js files
 			dev: {
 				options: getbuildoptions(),
 				files: {
 					'dist/ts.js': getcombobuilds()
 				}
 			},
+			// all the ts js files
 			cdn: {
 				options: getbuildoptions(),
 				files: {
 					'dist/cdn/ts-<%= pkg.version %>.js': getcombobuilds()
 				}
 			},
+			// all the ts js spec files
 			jasmine: {
 				src: ['spec/spiritual/**/*.spec.js', 'spec/runtime/**/*.spec.js'],
 				dest: 'spec/jasmine/specs.js'
@@ -199,9 +251,11 @@ module.exports = function(grunt) {
 		// crunch to minified JS
 		uglify: {
 			options: {
-				beautify: false,
 				mangle: false,
-				sourceMap: true
+				beautify: false,
+				sourceMap: true,
+				ASCIIOnly: true,
+				preserveComments: false
 			},
 			dev: {
 				files: {
@@ -215,53 +269,93 @@ module.exports = function(grunt) {
 			}
 		},
 
-		// compile LESS to CSS
-		less: {
-			before: {
+		postcss: {
+			compile_less_to_css: {
 				options: {
-					relativeUrls: true,
-					cleancss: false
+					// parse less
+					parser: require('postcss-less-engine').parser,
+					processors: [
+						// understand less
+						require('postcss-less-engine')({
+							relativeUrls: true,
+							cleancss: false
+						})
+					]
 				},
-				files: {
-					'temp/css-compiled.css': 'src/runtime/less/build.less'
-				}
-			}
-		},
-
-		// CSS post-parsing will optimize for mobile
-		// (only do :hover on devices with a mouse!)
-		touchfriendly: {
-			dev: {
-				files: {
-					'dist/ts.css': 'temp/css-compiled.css'
-				}
+				files: { 'dist/ts.css': 'src/runtime/less/build.less' }
 			},
-			cdn: {
-				files: {
-					'dist/cdn/ts-<%= pkg.version %>.css': 'temp/css-compiled.css'
-				}
-			}
-		},
 
-		// crunch to minified CSS
-		cssmin: {
 			options: {
-				shorthandCompacting: false,
-				roundingPrecision: -1,
-				sourceMap: true
+				processors: [
+					// add .ts-device-mouse to all rules with :hover
+					require('./tasks/touchfriendly')(),
+					// add prefixes
+					require('autoprefixer')(),
+					// minify
+					require('postcss-clean')({
+						mergeIntoShorthands: false,
+						sourceMap: true
+					})
+				]
 			},
-			dev: {
+			generate_minified_css: {
 				files: {
 					'dist/ts.min.css': 'dist/ts.css'
 				}
-			},
-			cdn: {
+			}
+		},
+
+		// check some filesizes
+		size_report: {
+			// gzipped js vs normal
+			cdn_gzip_vs_normal: {
 				files: {
-					'dist/cdn/ts-<%= pkg.version %>.min.css': 'dist/cdn/ts-<%= pkg.version %>.css'
+					list: ['dist/cdn/ts-*.min.js', 'public/ts-*.min.js']
+				}
+			},
+			// minified js vs normal (gzipped)
+			cdn_js_minified_vs_normal: {
+				files: {
+					list: ['public/ts-<%= pkg.version %>.js', 'public/ts-<%= pkg.version %>.min.js']
+				}
+			},
+			// minified css vs normal (gzipped)
+			cdn_css_minified_vs_normal: {
+				files: {
+					list: ['public/ts-<%= pkg.version %>.css', 'public/ts-<%= pkg.version %>.min.css']
+				}
+			},
+			// data loaded in the browser
+			cdn_loaded: {
+				files: {
+					list: [
+						'public/ts-<%= pkg.version %>.min.js',
+						'public/ts-<%= pkg.version %>.min.css',
+						'public/ts-lang-en-<%= pkg.version %>.js'
+					]
+				}
+			},
+			// minified js vs normal
+			dev_js_minified_vs_normal: {
+				files: {
+					list: ['dist/ts.js', 'dist/ts.min.js']
+				}
+			},
+			// minified css vs normal
+			dev_css_minified_vs_normal: {
+				files: {
+					list: ['dist/ts.css', 'dist/ts.min.css']
+				}
+			},
+			// data loaded in the browser
+			dev_loaded: {
+				files: {
+					list: ['dist/ts.min.js', 'dist/ts.min.css', 'dist/ts-lang-en.js']
 				}
 			}
 		},
 
+		// gzip everything
 		compress: {
 			main: {
 				options: {
@@ -277,26 +371,21 @@ module.exports = function(grunt) {
 		// repeat these steps when needed
 		watch: {
 			js: {
-				tasks: ['concat:loose', 'guibundles', 'concat:dev', 'uglify:dev'],
+				tasks: concatAndUglifyJs('dev'),
 				files: ['src/**/*.js', 'src/**/*.json']
 			},
 			less: {
-				tasks: ['less:before', 'touchfriendly', 'cssmin:dev', 'tsless:dev'],
+				tasks: [].concat(compileAndMinifyLess('dev'), ['tsless:dev']),
 				files: ['src/runtime/less/**/*.less']
 			},
 			edbml: {
-				tasks: ['edbml', 'concat:loose', 'guibundles', 'concat:dev', 'uglify:dev'],
+				tasks: [].concat('edbml', concatAndUglifyJs('dev')),
 				files: ['src/runtime/edbml/**/*.edbml'],
-				options: { interval: 5000 }
-			}
-		},
-
-		// serve and watch
-		concurrent: {
-			docs: ['devserver', 'watch', 'exec:docs_grunt'],
-			nodocs: ['devserver', 'watch', 'asciify:banner'],
-			options: {
-				logConcurrentOutput: true
+				options: {
+					spawn: false,
+					debounceDelay: 250,
+					interval: 100
+				}
 			}
 		},
 
@@ -312,23 +401,14 @@ module.exports = function(grunt) {
 
 		// version already uploaded?
 		check_cdn: {
-			prod: {
+			cdn: {
 				urls: [
-					'<%= config.cdn_base %>' + config.folder_prod + '/ts-<%= pkg.version %>.js',
-					'<%= config.cdn_base %>' + config.folder_prod + '/ts-<%= pkg.version %>.min.js',
-					'<%= config.cdn_base %>' + config.folder_prod + '/ts-<%= pkg.version %>.min.js.map'
+					'<%= config.cdn_base %>' + config.cdn_folder + '/ts-<%= pkg.version %>.js',
+					'<%= config.cdn_base %>' + config.cdn_folder + '/ts-<%= pkg.version %>.min.js',
+					'<%= config.cdn_base %>' + config.cdn_folder + '/ts-<%= pkg.version %>.min.js.map'
 				]
 			}
 		},
-
-		// hooked
-		gitadd: {},
-
-		// hooked
-		gitcommit: {},
-
-		// hooked again
-		gitpush: {},
 
 		// execute command line stuff
 		exec: {
@@ -338,10 +418,6 @@ module.exports = function(grunt) {
 			},
 			eslint: {
 				command: 'npm run eslint',
-				stdout: 'inherit'
-			},
-			release: {
-				command: 'npm run release',
 				stdout: 'inherit'
 			},
 			docs_dist: {
@@ -362,10 +438,120 @@ module.exports = function(grunt) {
 					log: true
 				}
 			}
+		},
+
+		// serve, watch, generate concurrently
+		concurrent: {
+			docs: ['devserver', 'watch', 'exec:docs_grunt'],
+			nodocs: ['devserver', 'watch', 'asciify:banner'],
+			// Build for CDN
+			cdn_generate_js: {
+				tasks: generateJsConcurrent('cdn')
+			},
+			cdn_generate_css_and_copy_lang_and_concat_js: {
+				tasks: generateCssAndCopyLangAndConcatJsConcurrent('cdn')
+			},
+			// Build for dev
+			dev_generate_js: {
+				tasks: generateJsConcurrent('dev')
+			},
+			dev_generate_css_and_copy_lang_and_concat_js: {
+				tasks: generateCssAndCopyLangAndConcatJsConcurrent('dev')
+			},
+			// Build for Jasmine
+			jasmine_generate_js: {
+				tasks: generateJsConcurrent('jasmine')
+			},
+			jasmine_generate_css_and_copy_lang_and_concat_js: {
+				tasks: generateCssAndCopyLangAndConcatJsConcurrent('jasmine')
+			},
+			// Check for existing files on CDN while building dist
+			check_cdn_while_dist: {
+				tasks: ['check_cdn:cdn', 'dist']
+			},
+			options: {
+				logConcurrentOutput: true,
+				limit: 16
+			}
 		}
 	});
 
 	// Utility functions .........................................................
+
+	function returnDevForJasmine(target) {
+		if (target === 'jasmine') {
+			return 'dev';
+		}
+		return target;
+	}
+
+	function generateJsConcurrent(target = 'cdn') {
+		return [
+			'edbml', // edbml -> js
+			`tsjs:${target}`,
+			[
+				// generate ts.js
+				`tsless:${returnDevForJasmine(target)}`, // generate ts.less
+				`copy:docs_${returnDevForJasmine(target)}` // copy ts-runtime.less over to the docs
+			],
+
+			'concat:fastclick', // generate fastclick.js
+			'concat:moment', // generate moment.js
+			'concat:spin', // generate spin.js
+			'guibundles' // generate ts-runtime-{api,gui}.js
+		];
+	}
+
+	function concatAndUglifyJs(target = 'cdn') {
+		return [
+			`concat:${returnDevForJasmine(target)}`, // concat all files generated above
+			`uglify:${returnDevForJasmine(target)}` // uglify
+		];
+	}
+
+	function compileAndMinifyLess(target = 'cdn') {
+		let out = [
+			'postcss:compile_less_to_css', // less -> css
+			'postcss:generate_minified_css' // css -> min.css
+		];
+		if (target === 'cdn') {
+			out.push('copy:css_cdn');
+		}
+		return out;
+	}
+
+	function generateCssAndCopyLangAndConcatJsConcurrent(target = 'cdn') {
+		return [
+			concatAndUglifyJs(target),
+			compileAndMinifyLess(target),
+			`copy:lang_${returnDevForJasmine(target)}` // copy lang files
+		];
+	}
+
+	function build(target = 'cdn') {
+		let out = [
+			`clean:${target}`, // remove files
+			`concurrent:${target}_generate_js`,
+			`concurrent:${target}_generate_css_and_copy_lang_and_concat_js`
+		];
+		if (target === 'cdn') {
+			out.push('compress'); // gzip everything
+		}
+		return out;
+	}
+
+	function sizeReport(target = 'cdn') {
+		let out = [];
+		if (target === 'cdn') {
+			out.push('size_report:cdn_gzip_vs_normal');
+		}
+		out = out.concat([
+			`size_report:${target}_js_minified_vs_normal`,
+			`size_report:${target}_css_minified_vs_normal`,
+			`size_report:${target}_loaded`
+		]);
+		return out;
+	}
 
 	/**
 	 * Get task config for building a Spiritual bundle (still known as 'module').
@@ -374,7 +560,7 @@ module.exports = function(grunt) {
 	 * @returns {object}
 	 */
 	function bundle(target, sources) {
-		var bundleConfig = {
+		const bundleConfig = {
 			options: {
 				min: false
 			},
@@ -449,7 +635,7 @@ module.exports = function(grunt) {
 	 */
 	function getguibuilds() {
 		return [
-			'temp/js-loose-compiled.js',
+			'temp/fastclick.js',
 			'temp/modules-mix.js',
 			'temp/module-edbml.js',
 			'temp/ts-runtime-gui.js',
@@ -464,7 +650,7 @@ module.exports = function(grunt) {
 		return {
 			process: function(src, path) {
 				if (path === 'temp/ts-runtime-api.js') {
-					var version = grunt.template.process('<%= pkg.version %>');
+					const version = grunt.template.process('<%= pkg.version %>');
 					return src.replace('$$VERSION$$', version);
 				}
 				return src;
@@ -474,12 +660,11 @@ module.exports = function(grunt) {
 
 	/**
 	 * Lookup scripts as JSON array.
-	 * @param {string} path
+	 * @param {string} file path
 	 * @returns {Array<string>}
 	 */
 	function getbuild(file) {
-		var path = require('path');
-		var folder = path.dirname(file);
+		const folder = path.dirname(file);
 		return grunt.file.readJSON(file).map(function(src) {
 			return validated(path.normalize(folder + '/' + src));
 		});
@@ -488,7 +673,7 @@ module.exports = function(grunt) {
 	/**
 	 * File exists?
 	 * @param {string} src
-	 * @returns {boolean}
+	 * @returns {string}
 	 */
 	function validated(src) {
 		if (!grunt.file.exists(src)) {
@@ -496,102 +681,4 @@ module.exports = function(grunt) {
 		}
 		return src;
 	}
-
-	/**
-	 * Build for local development. This assumes that
-	 * tradeshift-ui runs on localhost
-	 * @returns {Array<string>}
-	 */
-	function buildlocal(target) {
-		target = target || 'dev';
-		return [
-			'clean:all',
-			'edbml',
-			'tsjs:' + target,
-			'concat:loose',
-			'concat:moment',
-			'concat:spin',
-			'guibundles',
-			'concat:dev',
-			'uglify:dev',
-			'less:before',
-			'touchfriendly:dev',
-			'cssmin:dev',
-			'tsless:dev',
-			'copy:lang_dev'
-		];
-	}
-
-	/**
-	 * Build for CDN upload.
-	 * @param {string} target
-	 * @returns {Array<string>}
-	 */
-	function buildcdn(target) {
-		return [
-			'clean:cdn',
-			'edbml',
-			'tsjs:' + target,
-			'tsless:cdn',
-			'concat:loose',
-			'concat:moment',
-			'concat:spin',
-			'guibundles',
-			'concat:cdn',
-			'uglify:cdn',
-			'less:before',
-			'touchfriendly:cdn',
-			'cssmin:cdn',
-			'copy:lang_cdn',
-			'compress',
-			'concat:jasmine',
-			'copy:jasmine'
-		];
-	}
-
-	// Tasks .....................................................................
-
-	// setup for local develmopment (no docs)
-	grunt.registerTask('default', buildlocal().concat(['concurrent:nodocs']));
-
-	// setup for local develmopment (with docs)
-	grunt.registerTask('dev', buildlocal().concat(['concurrent:docs']));
-
-	// BUILD FOR PRODUCTION! RUN THIS BEFORE PULL REQUEST!
-	// NOTE: Duplicate steps going on, should be optimized
-	grunt.registerTask(
-		'dist',
-		['exec:eslint']
-			.concat(buildlocal('jasmine'))
-			.concat(['concat:jasmine', 'copy:jasmine'])
-			.concat(buildcdn('prod'))
-			.concat(['exec:docs_dist'])
-	);
-
-	// while developing, build the Jasmine test suite like this:
-	grunt.registerTask('jasmine', buildlocal('jasmine').concat(['concat:jasmine', 'copy:jasmine']));
-
-	grunt.registerTask('release', 'exec:release');
-
-	// never called directly, release-it will do that for us
-	grunt.registerTask('release-deploy', ['check_cdn:prod', 'dist', 'exec:s3_upload']);
-
-	// compile that CSS
-	grunt.registerTask('css', 'Compiles CSS', [
-		'less:before',
-		'touchfriendly:dev',
-		'cssmin:dev',
-		'tsless:dev'
-	]);
-
-	// compile that JS
-	grunt.registerTask('js', 'Compiles JS', [
-		'edbml',
-		'concat:loose',
-		'concat:moment',
-		'concat:spin',
-		'guibundles',
-		'concat:dev',
-		'uglify:dev'
-	]);
 };

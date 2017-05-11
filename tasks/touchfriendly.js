@@ -1,36 +1,32 @@
-var cssp = require('css-parse');
+const postcss = require('postcss');
 
 /**
  * Supress CSS :hover states on mobile devices. The class
  * 'ts-device-mouse' gets added over on the clientside.
  */
-module.exports = {
-	init: function(grunt) {
-		grunt.registerMultiTask('touchfriendly', 'Touch optimize CSS', function() {
-			var files = this.data.files;
-			Object.keys(files).forEach(function(target) {
-				var input = grunt.file.read(files[target]);
-				var sheet = cssp(input).stylesheet;
-				var hacks = [];
-				sheet.rules.forEach(function(rule) {
-					if (rule.selectors) {
-						rule.selectors.forEach(function(s) {
-							if (s.contains(':hover')) {
-								hacks.push(s);
-							}
-						});
-					}
-				});
-				target = grunt.template.process(target);
-				grunt.log.writeln('Created 1 file');
-				grunt.file.write(target, hacks.reduce(function(output, selector) {
-					var mouse = '.ts-device-mouse', selec = mouse + ' ' + selector;
-					['.ts-mobile', '.ts-tablet', '.ts-desktop'].forEach(function(fix) {
-						selec = selec.replace(mouse + ' ' + fix, mouse + fix);
-					});
-					return output.replace(selector, selec);
-				}, input));
+const touchfriendly = postcss.plugin('postcss-ts-touch-friendly', (options = {}) => {
+	return root => {
+		let numSelectors = 0;
+		let numModifiedSelectors = 0;
+		let numRules = 0;
+		root.walkRules(decl => {
+			++numRules;
+			let newSelectors = [];
+			decl.selector.split(',').forEach(selector => {
+				++numSelectors;
+				if (selector.indexOf(':hover') !== -1) {
+					++numModifiedSelectors;
+					newSelectors.push(`.ts-device-mouse ${selector}`);
+				} else {
+					newSelectors.push(selector);
+				}
 			});
+			decl.selector = newSelectors.join(',\n');
 		});
-	}
-};
+		console.log(
+			`Converted ${numModifiedSelectors} / ${numSelectors} selectors in ${numRules} rules.`
+		);
+	};
+});
+
+module.exports = touchfriendly;

@@ -222,7 +222,7 @@ describe('Channeling and exorcising spirits', function likethis() {
 			ts.ui.get(button, function(spirit) {
 				counter += 1;
 			});
-			setTimeout(() => {
+			setTimeout(function() {
 				document.body.appendChild(button);
 				expect(counter).toBe(3);
 				document.body.removeChild(button);

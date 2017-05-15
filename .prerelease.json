@@ -1,6 +1,8 @@
 {
 	"verbose": true,
 	"requireCleanWorkingDir": true,
+	"increment": "prerelease",
+	"prereleaseId": "beta",
 	"src": {
 		"commitMessage": "Release v%s",
 		"tagName": "v%s",
@@ -10,7 +12,7 @@
 	"github": {
 		"release": true,
 		"releaseName": "v%s",
-		"preRelease": false,
+		"preRelease": true,
 		"tokenRef": "GH_ACCESS_TOK"
 	}
 }

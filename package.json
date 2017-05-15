@@ -26,14 +26,14 @@
     "****** DIST *****": "",
     "build": "grunt dist",
     "deploy-s3": "node tasks/deploy.js",
-    "release": "release-it --github.preRelease=\"false\" --interactive",
-    "prerelease": "release-it prerelease --prereleaseId=\"beta\"",
+    "release": "release-it --config=.release.json",
+    "prelease": "release-it --config=.prerelease.json",
     "****** TEST *****": "",
     "test": "yarn run eslint & grunt jasmine & wait && node tasks/browserstack.js",
     "http": "static spec/jasmine -H '{\"Cache-Control\": \"no-cache, must-revalidate\"}'",
     "****** NODE *****": "",
     "postinstall": "cd docs && yarn",
-    "precommit": "lint-staged & grunt exec:docs_dist & wait && git add -A docs/dist/index.html && git add -A docs/dist/**/*"
+    "precommit": "lint-staged & grunt exec:docs_dist & wait && git add -A docs/{index.html,dist/**/*}"
   },
   "lint-staged": {
     "*.js": [

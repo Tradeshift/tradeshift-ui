@@ -254,8 +254,10 @@ module.exports = function(grunt) {
 				mangle: false,
 				beautify: false,
 				sourceMap: true,
-				ASCIIOnly: true,
-				preserveComments: false
+				output: {
+					ascii_only: true,
+					comments: false
+				}
 			},
 			dev: {
 				files: {

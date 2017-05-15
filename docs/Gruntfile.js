@@ -16,22 +16,17 @@ var stackconf = {
  */
 module.exports = function(grunt) {
 	'use strict';
-
 	// autoload everything that looks like Grunt tasks
 	require('load-grunt-tasks')(grunt);
 
 	// read config and apply local overrides (gitignored!)
-	var config = require('./tasks/config').init(grunt).merge(
-		'config.json',
-		'config.local.json'
-	);
+	var config = require('./tasks/config').init(grunt).merge('config.json', 'config.local.json');
 	// get version number directly from the package.json of the runtime
 	config.runtime_version = require('../package.json').version;
 
 	// Config ....................................................................
 
 	grunt.config.init({
-
 		// for grunt template.process()
 		config: config,
 
@@ -112,12 +107,7 @@ module.exports = function(grunt) {
 						expand: true,
 						cwd: 'src/js/',
 						dest: 'dist/assets/',
-						src: [
-							'angular-1.3.6.min.js',
-							'jquery-2.2.4.min.js',
-							'lunr.min.js',
-							'mark.min.js'
-						]
+						src: ['angular-1.3.6.min.js', 'jquery-2.2.4.min.js', 'lunr.min.js', 'mark.min.js']
 					}
 				]
 			},
@@ -127,11 +117,7 @@ module.exports = function(grunt) {
 						expand: true,
 						cwd: 'src/xhtml/',
 						dest: 'dist/',
-						src: [
-							'**',
-							'!**/*.xhtml',
-							'!**/*.less'
-						]
+						src: ['**', '!**/*.xhtml', '!**/*.less']
 					}
 				]
 			}
@@ -140,15 +126,15 @@ module.exports = function(grunt) {
 		uglify: {
 			options: {
 				sourceMap: true,
-				mangle: false
+				mangle: false,
+				output: {
+					ascii_only: true,
+					comments: false
+				}
 			},
 			dox: {
 				files: {
-					'dist/assets/dox.min.js': [
-						'temp/dox-api.js',
-						'temp/dox-gui.js',
-						'temp/dox-edbml.js'
-					]
+					'dist/assets/dox.min.js': ['temp/dox-api.js', 'temp/dox-gui.js', 'temp/dox-edbml.js']
 				}
 			}
 		},
@@ -163,13 +149,15 @@ module.exports = function(grunt) {
 				options: {
 					paths: 'src/less' // not working :/
 				},
-				files: [{
-					expand: true,
-					cwd: 'src/xhtml/',
-					src: ['**/*.less'],
-					dest: 'dist',
-					ext: '.css'
-				}]
+				files: [
+					{
+						expand: true,
+						cwd: 'src/xhtml/',
+						src: ['**/*.less'],
+						dest: 'dist',
+						ext: '.css'
+					}
+				]
 			}
 		},
 
@@ -177,32 +165,32 @@ module.exports = function(grunt) {
 			js_global: {
 				files: 'src/js/**/*.js',
 				tasks: ['guibundles', 'uglify'],
-				options: {debounceDelay: 250}
+				options: { debounceDelay: 250 }
 			},
 			js_local: {
 				files: 'src/xhtml/**/*.js',
 				tasks: ['copy:pageassets'],
-				options: {debounceDelay: 250}
+				options: { debounceDelay: 250 }
 			},
 			css: {
 				files: 'src/less/**/*.less',
 				tasks: ['less'],
-				options: {debounceDelay: 250}
+				options: { debounceDelay: 250 }
 			},
 			edbml: {
 				files: 'src/edbml/**/*.edbml',
 				tasks: ['edbml:outline', 'uglify'],
-				options: {debounceDelay: 250}
+				options: { debounceDelay: 250 }
 			},
 			xhtml: {
 				files: ['src/xhtml/**/*', 'tasks/processor.js'],
 				tasks: ['copy:target_local', 'edbml:target_local', 'less:local'],
-				options: {debounceDelay: 250}
+				options: { debounceDelay: 250 }
 			},
 			json: {
 				files: 'menu.json',
 				tasks: ['copy:target_local'],
-				options: {debounceDelay: 250}
+				options: { debounceDelay: 250 }
 			}
 		},
 
@@ -285,7 +273,6 @@ module.exports = function(grunt) {
 				}
 			}
 		}
-
 	});
 
 	/**
@@ -298,10 +285,7 @@ module.exports = function(grunt) {
 			expand: true,
 			dest: 'dist',
 			cwd: 'src/xhtml',
-			src: [
-				'**/*.xhtml',
-				'!assets/**'
-			],
+			src: ['**/*.xhtml', '!assets/**'],
 			options: {
 				inline: true,
 				beautify: true,
@@ -378,10 +362,20 @@ module.exports = function(grunt) {
 	grunt.registerTask('links', ['linkChecker']);
 
 	// local screenshots (compare current code with the latest release)
-	grunt.task.registerTask('screenshots:local', ['clean:screenshots_local', 'tunneler', 'shooter:local', 'tunneler:stop']);
+	grunt.task.registerTask('screenshots:local', [
+		'clean:screenshots_local',
+		'tunneler',
+		'shooter:local',
+		'tunneler:stop'
+	]);
 
 	// add new screenshot "benchmark" TODO: hook this into the `grunt:release` system
-	grunt.task.registerTask('screenshots:release', ['clean:screenshots_release', 'tunneler', 'shooter:release', 'tunneler:stop']);
+	grunt.task.registerTask('screenshots:release', [
+		'clean:screenshots_release',
+		'tunneler',
+		'shooter:release',
+		'tunneler:stop'
+	]);
 
 	// begin screenshots
 	grunt.task.registerTask('tunneler', 'Start BrowserStackTunnel', function() {
@@ -413,14 +407,14 @@ module.exports = function(grunt) {
 				pagesIndex.push(processFile(abspath, filename));
 			});
 			return pagesIndex;
-		};
+		}
 		function processFile(abspath, filename) {
 			var pageIndex;
 			if (S(filename).endsWith('.html')) {
 				pageIndex = processHTMLFile(abspath, filename);
 			}
 			return pageIndex;
-		};
+		}
 		function ignoreHTML(raw) {
 			var ix1 = raw.indexOf('<body>');
 			var ix2 = raw.indexOf('</body>') + '</body>'.length;
@@ -439,7 +433,7 @@ module.exports = function(grunt) {
 					content: S(content).trim().stripTags().stripPunctuation().s
 				};
 			}
-		};
+		}
 		grunt.file.write('dist/lunr.json', JSON.stringify(indexPages()));
 		grunt.log.ok('Index built');
 	});

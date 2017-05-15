@@ -469,7 +469,7 @@ module.exports = function(grunt) {
 			},
 			// Check for existing files on CDN while building dist
 			check_cdn_while_dist: {
-				tasks: ['check_cdn:cdn', 'dist']
+				tasks: ['dist']
 			},
 			options: {
 				logConcurrentOutput: true,

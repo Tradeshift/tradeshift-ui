@@ -1,6 +1,7 @@
 {
 	"verbose": true,
 	"requireCleanWorkingDir": true,
+	"changelogCommand": "echo '### Commits' && git log --pretty=format:'* %h - %s%n```%n%b%n```' [REV_RANGE] | cat; echo ",
 	"src": {
 		"commitMessage": "Release v%s",
 		"tagName": "v%s",

@@ -715,16 +715,21 @@
 			> textarea {
 				overflow: hidden;
 			}
-			&:not(.ts-option):not(.ts-switchlabel):after {
-				.ts-mixin-icon(@ts-fontsize-medium);
-				content: 'V'; // lock icon
-				position: absolute;
-				top: @ts-unit-plus;
-				right: @ts-unit-half;
-				width: @ts-unit-plus;
-				height: @ts-unit-plus;
-				line-height: @ts-unit-plus;
-				pointer-events: none;
+			&:not(.ts-option):not(.ts-switchlabel) {
+				&:after {
+					.ts-mixin-icon(@ts-fontsize-medium);
+					content: 'V'; // lock icon
+					position: absolute;
+					top: @ts-unit-plus;
+					right: @ts-unit-half;
+					width: @ts-unit-plus;
+					height: @ts-unit-plus;
+					line-height: @ts-unit-plus;
+					pointer-events: none;
+				}
+				&:not(.ts-haslabel):after {
+					top: 0;
+				}
 			}
 		}
 		&.ts-disabled {

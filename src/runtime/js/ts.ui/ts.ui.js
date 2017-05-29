@@ -335,6 +335,9 @@ ts.ui = gui.namespace(
 
 			// Events ..................................................................
 
+			/*
+			 * TODO: These are now used in SideBars and Modals and should be renamed
+			 */
 			EVENT_ASIDE_WILL_OPEN: 'ts-open',
 			EVENT_ASIDE_DID_OPEN: 'ts-opened',
 			EVENT_ASIDE_WILL_CLOSE: 'ts-close',

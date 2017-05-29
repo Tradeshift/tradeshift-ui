@@ -20,14 +20,6 @@ ts.ui.SideShowSpirit = (function using(
 	PANEL_ATTACH,
 	PANEL_DETACH
 ) {
-	// custom dom events (for public consumption)
-	var domevent = {
-		WILLOPEN: ts.ui.EVENT_ASIDE_WILL_OPEN,
-		DIDOPEN: ts.ui.EVENT_ASIDE_DID_OPEN,
-		WILLCLOSE: ts.ui.EVENT_ASIDE_WILL_CLOSE,
-		DIDCLOSE: ts.ui.EVENT_ASIDE_DID_CLOSE
-	};
-
 	// when synchronizing the colors, make sure to remove all existing colors...
 	var BGCOLORS = (function(colors) {
 		return Object.keys(colors).map(function(key) {
@@ -294,26 +286,12 @@ ts.ui.SideShowSpirit = (function using(
 			},
 
 			/**
-			 * Open AND close the aside (setup to support the HTML
-			 * attribute: `data-ts.open="true|false"`)
+			 * Open AND close the Aside (setup to support HTML `data-ts.open="true|false"`)
 			 * @param @optional {boolean} opt_open Omit to simply open.
 			 * @return {ts.ui.AsideSpirit}
 			 */
 			open: chained(function(opt_open) {
-				if (!gui.Type.isBoolean(opt_open)) {
-					opt_open = true;
-				}
-				if (this._shouldtoggle(opt_open)) {
-					if (opt_open) {
-						if (!this.isOpen) {
-							this._open(this.life.async);
-						}
-					} else {
-						if (this.isOpen) {
-							this._close(this.life.async);
-						}
-					}
-				}
+				this.doorman.open(opt_open);
 			}),
 
 			/**
@@ -321,7 +299,7 @@ ts.ui.SideShowSpirit = (function using(
 			 * @return {ts.ui.AsideSpirit}
 			 */
 			close: chained(function() {
-				this.open(false);
+				this.doorman.open(false);
 			}),
 
 			/**
@@ -352,7 +330,17 @@ ts.ui.SideShowSpirit = (function using(
 				}
 			}),
 
-			// Privileged ..............................................................
+			// Privileged ............................................................
+
+			/**
+			 * Required by the {DoorManPlugin}.
+			 */
+			$onopen: function() {},
+
+			/**
+			 * Required by the {DoorManPlugin}.
+			 */
+			$onclose: function() {},
 
 			/**
 			 * Actually flip the thing.
@@ -370,7 +358,7 @@ ts.ui.SideShowSpirit = (function using(
 				return this._flipping;
 			},
 
-			// Private .................................................................
+			// Private ...............................................................
 
 			/**
 			 * Snapshot the color scheme asigned via model.
@@ -455,24 +443,6 @@ ts.ui.SideShowSpirit = (function using(
 				if (!this.guilayout.outsideMain()) {
 					throw new Error(this + ' must be positioned outside Main', this.element);
 				}
-			},
-
-			/**
-			 * Runs on open and close. If the state changes:
-			 *
-			 * 1. Fire custom DOM event
-			 * 2. Return whether or not this was preventDefaulted.
-			 * @param {boolean} open
-			 * @returns {boolean}
-			 */
-			_shouldtoggle: function(open) {
-				if (open !== this.isOpen) {
-					return this.event.dispatch(open ? domevent.WILLOPEN : domevent.WILLCLOSE, {
-						bubbles: true,
-						cancelable: true
-					});
-				}
-				return false;
 			},
 
 			/**
@@ -590,35 +560,6 @@ ts.ui.SideShowSpirit = (function using(
 						}
 					}, 50);
 				}
-			},
-
-			/**
-			 * Opening scene implemented by subclass(es).
-			 * Except for the coloring stuff, apparently.
-			 * @param {boolean} animated
-			 * @returns {boolean}
-			 */
-			_open: function(animated) {
-				var success = this._execute('onopen') !== false;
-				if (success) {
-					this.isOpen = true;
-					this.att.set('data-ts.open', true);
-				}
-				return success;
-			},
-
-			/**
-			 * Closing stuff implemented by subclass(es).
-			 * @param {boolean} animated
-			 * @returns {boolean}
-			 */
-			_close: function(animated) {
-				var success = this._execute('onclose') !== false;
-				if (success) {
-					this.isOpen = false;
-					this.att.set('data-ts.open', false);
-				}
-				return success;
 			},
 
 			/**

@@ -130,10 +130,12 @@ ts.ui.CoreModule = gui.module('core-gui@tradeshift.com', {
 	},
 
 	/**
-	 * Hm...
+	 * TODO: SideShowSpirit should also refactor to use the PanelsPlugin
 	 */
 	_specialplugins: function() {
 		ts.ui.ModalSpirit.plugin('panels', ts.ui.PanelsPlugin);
+		ts.ui.ModalSpirit.plugin('doorman', ts.ui.DoorManPlugin);
+		ts.ui.SideShowSpirit.plugin('doorman', ts.ui.DoorManPlugin);
 	},
 
 	/**

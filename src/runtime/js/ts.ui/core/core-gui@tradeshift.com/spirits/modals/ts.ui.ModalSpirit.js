@@ -72,23 +72,8 @@ ts.ui.ModalSpirit = (function using(Client, transition, chained) {
 		 */
 		open: function(opt_open) {
 			var then = (this._then = new gui.Then());
-			opt_open = arguments.length ? opt_open : true;
-			this.css
-				.shift(this.$fullscreen, 'ts-fullscreen')
-				.shift(!this.$fullscreen, 'ts-inscreen')
-				.shift(this.$fullscreen, 'ts-overflow');
-			if (opt_open !== this.isOpen) {
-				if (opt_open) {
-					if (this._execute('onopen') && this._confirmposition()) {
-						this.isOpen = true;
-						this._fadeIn();
-					}
-				} else {
-					if (this._execute('onclose')) {
-						this.isOpen = false;
-						this._fadeOut();
-					}
-				}
+			if (!this.doorman.open(opt_open)) {
+				then.now(false); // TODO: such a good idea to return a "promise", then?
 			}
 			return then;
 		},
@@ -234,8 +219,7 @@ ts.ui.ModalSpirit = (function using(Client, transition, chained) {
 		}),
 
 		/**
-		 * Get or set the buttons in the statusbar, though not in fullscreen
-		 * modals (because on a big screen, the user will never notice them).
+		 * Get or set the buttons in the statusbar.
 		 * so will simply not allow that.
 		 * @param @optional {Array<Object>} json
 		 * @returns {ts.ui.ButtonsCollection|ts.ui.ModalSpirit}
@@ -267,6 +251,24 @@ ts.ui.ModalSpirit = (function using(Client, transition, chained) {
 		},
 
 		// Privileged ..............................................................
+
+		/**
+		 * Called by the {DoorManPlugin} when the modal opens.
+		 */
+		$onopen: function() {
+			this.css
+				.shift(this.$fullscreen, 'ts-fullscreen')
+				.shift(!this.$fullscreen, 'ts-inscreen')
+				.shift(this.$fullscreen, 'ts-overflow');
+			this._fadeIn();
+		},
+
+		/**
+		 * Called by the {DoorManPlugin}.
+		 */
+		$onclose: function() {
+			this._fadeOut();
+		},
 
 		/**
 		 * Open fullscreen? We can just hardcode this for now.
@@ -328,9 +330,8 @@ ts.ui.ModalSpirit = (function using(Client, transition, chained) {
 			if (done) {
 				this.key.add('Esc');
 				this.css.remove('ts-opening').add('ts-open');
-				this._execute('onopened');
 				this.broadcast.dispatch(didopen);
-				this._then.now();
+				this._then.now(true);
 				this._focus();
 			} else {
 				this.dom.show();
@@ -361,7 +362,6 @@ ts.ui.ModalSpirit = (function using(Client, transition, chained) {
 			if (done) {
 				this.dom.hide();
 				this.css.remove('ts-closing');
-				this._execute('onclosed');
 				this.broadcast.dispatch(didclose);
 				this.att.set('data-ts.open', false);
 				if (this.dom.tag() === 'dialog') {
@@ -553,25 +553,6 @@ ts.ui.ModalSpirit = (function using(Client, transition, chained) {
 			} else {
 				throw new Error(this + ' must be positioned outside Main', this.element);
 			}
-		},
-
-		/**
-		 * Execute callback configured via HTML attribute or via JS property.
-		 * The 'this' keyword points to the element or the spirit respectively.
-		 * TODO (jmo@): convert potential string to function sometimes sooner...
-		 * @type {String|function}
-		 * @returns {boolean}
-		 */
-		_execute: function(callback) {
-			if ((callback = this[callback])) {
-				switch (gui.Type.of(callback)) {
-					case 'string':
-						return new Function(callback).call(this);
-					case 'function':
-						return callback.call(this);
-				}
-			}
-			return true;
 		}
 	});
 })(gui.Client, gui.Client.hasTransitions, gui.Combo.chained);

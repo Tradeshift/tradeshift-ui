@@ -161,7 +161,32 @@ ts.ui.SideBarSpirit = (function using(chained, Type, Client, GuiObject, Colors) 
 				ts.ui.removeBreakPointListener(this);
 			},
 
-			// Private .................................................................
+			// Privileged ............................................................
+
+			/**
+			 * Show the SideBar (now that it's hidden in mobile view).
+			 * TODO: Call `DoorManPlugin.didopen() when transition is done!
+			 */
+			$onopen: function() {
+				this.css.add('ts-will-open');
+				this._reflex();
+				this.tick.time(function slide() {
+					this.css.add(ts.ui.CLASS_OPEN);
+				});
+			},
+
+			/**
+			 * Don't show the SideBar.
+			 * TODO: Call `DoorManPlugin.didopen() when transition is done!
+			 */
+			$onclose: function() {
+				this.css.remove(ts.ui.CLASS_OPEN);
+				this.tick.time(function undisplay() {
+					this.css.remove('ts-will-open');
+				}, ts.ui.TRANSITION_FAST);
+			},
+
+			// Private ...............................................................
 
 			/**
 			 * Automatically close the SideBar in mobile breakpoint?
@@ -232,31 +257,6 @@ ts.ui.SideBarSpirit = (function using(chained, Type, Client, GuiObject, Colors) 
 							this.guilayout.flexGlobal();
 						}
 					}
-				}
-			},
-
-			/**
-			 * Show the SideBar (now that it's hidden in mobile view).
-			 */
-			_open: function() {
-				if (this.super._open()) {
-					this.css.add('ts-will-open');
-					this._reflex();
-					this.tick.time(function slide() {
-						this.css.add(ts.ui.CLASS_OPEN);
-					});
-				}
-			},
-
-			/**
-			 * Don't show the SideBar.
-			 */
-			_close: function() {
-				if (this.super._close()) {
-					this.css.remove(ts.ui.CLASS_OPEN);
-					this.tick.time(function undisplay() {
-						this.css.remove('ts-will-open');
-					}, ts.ui.TRANSITION_FAST);
 				}
 			},
 

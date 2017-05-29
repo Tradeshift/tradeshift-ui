@@ -8,14 +8,6 @@
  * @using {ts.ui.LayoutModel} LayoutModel
  */
 ts.ui.AsideSpirit = (function using(chained, confirmed, Client, LayoutModel, notontouch) {
-	// custom dom events (for public implementation)
-	var domevent = {
-		WILLOPEN: ts.ui.EVENT_ASIDE_WILL_OPEN,
-		DIDOPEN: ts.ui.EVENT_ASIDE_DID_OPEN,
-		WILLCLOSE: ts.ui.EVENT_ASIDE_WILL_CLOSE,
-		DIDCLOSE: ts.ui.EVENT_ASIDE_DID_CLOSE
-	};
-
 	// actions and broadcasts (for behind-the-scenes implementation)
 	var willopen = ts.ui.ACTION_ASIDE_WILL_OPEN,
 		didopen = ts.ui.ACTION_ASIDE_DID_OPEN,
@@ -372,33 +364,28 @@ ts.ui.AsideSpirit = (function using(chained, confirmed, Client, LayoutModel, not
 			 * TODO: Validate that we are not opening inside .ts-main
 			 * @param {boolean} animated (not supported just yet)
 			 */
-			_open: function(animated) {
-				if (this.super._open(animated)) {
-					this.super._open(animated);
-					this._delayedAngularInitialization();
-					this._trapattention();
-					this._willopen();
-					this._slideopen(true).then(
-						function done() {
-							this._ontransitionend();
-						}.bind(this)
-					);
-				}
+			$onopen: function(animated) {
+				this._delayedAngularInitialization();
+				this._trapattention();
+				this._willopen();
+				this._slideopen(true).then(
+					function done() {
+						this._ontransitionend();
+					}.bind(this)
+				);
 			},
 
 			/**
 			 * Close.
 			 * @param {boolean} animated (not supported)
 			 */
-			_close: function(animated) {
-				if (this.super._close(animated)) {
-					this._willclose();
-					this._slideopen(false).then(
-						function done() {
-							this._ontransitionend();
-						}.bind(this)
-					);
-				}
+			$onclose: function(animated) {
+				this._willclose();
+				this._slideopen(false).then(
+					function done() {
+						this._ontransitionend();
+					}.bind(this)
+				);
 			},
 
 			/**
@@ -497,10 +484,7 @@ ts.ui.AsideSpirit = (function using(chained, confirmed, Client, LayoutModel, not
 				this.key.addGlobal('Esc');
 				this.css.add(ts.ui.CLASS_OPEN);
 				this.guistatus.done('opening aside');
-				this._execute('onopened');
-				this.event.dispatch(domevent.DIDOPEN, {
-					bubbles: true
-				});
+				this.doorman.didopen();
 
 				/**
 				 * It would be nice to do this before the Aside opens,
@@ -555,11 +539,8 @@ ts.ui.AsideSpirit = (function using(chained, confirmed, Client, LayoutModel, not
 				this.guistatus.done('closing aside');
 				this.att.del('data-ts-offset');
 				this.attention.exit(panel);
-				this._execute('onclosed');
 				this.css.remove(ts.ui.CLASS_SECONDARY);
-				this.event.dispatch(domevent.DIDCLOSE, {
-					bubbles: true
-				});
+				this.doorman.didclose();
 				if (this._ismodelled()) {
 					this._model.status = 'onclosed';
 				}

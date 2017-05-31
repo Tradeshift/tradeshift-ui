@@ -297,6 +297,65 @@
                     <p>If you expect the server to respond particularly slowly today, you can also use the equivalent methods <code>spin()</code> and <code>stop()</code> to <a onclick="spinner()">display a spinner</a> while loading.</p>
                 </section>
                 <section>
+                    <h3><span>Tracking the state</span></h3>
+                    <p>You can implement the methods <code>onopen</code>, <code>onopened</code>, <code>onclose</code> and <code>onclosed</code> to do something whenever the Modal changes state.
+                        <figure data-ts="DoxScript" data-ts.code="ts.ui.get(myelement%2C%20function(modal)%20%7B%0A%09Object.assign(modal%2C%20%7B%0A%09%09onopen%3A%20function()%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20return%20console.log(&apos;Will%20open&apos;)%3B%0A%20%20%20%20%20%20%20%20%7D%2C%0A%09%09onopened%3A%20function()%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20return%20console.log(&apos;Did%20open&apos;)%3B%0A%20%20%20%20%20%20%20%20%7D%2C%0A%09%09onclose%3A%20function()%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20return%20console.log(&apos;Will%20close&apos;)%3B%0A%20%20%20%20%20%20%20%20%7D%2C%0A%09%09onclosed%3A%20function()%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20return%20console.log(&apos;Did%20close&apos;)%3B%0A%20%20%20%20%20%20%20%20%7D%0A%09%7D)%3B%0A%7D)%3B">
+                            <input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
+                            <div class="tabpanels">
+                                <pre class="prism language-javascript">
+<code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span>myelement<span class="token punctuation">,</span> modal <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+	Object<span class="token punctuation">.</span><span class="token function">assign<span class="token punctuation">(</span></span>modal<span class="token punctuation">,</span> <span class="token punctuation">{</span>
+		onopen<span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">&gt;</span> console<span class="token punctuation">.</span><span class="token function">log<span class="token punctuation">(</span></span><span class="token string">&apos;Will open&apos;</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+		onopened<span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">&gt;</span> console<span class="token punctuation">.</span><span class="token function">log<span class="token punctuation">(</span></span><span class="token string">&apos;Did open&apos;</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+		onclose<span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">&gt;</span> console<span class="token punctuation">.</span><span class="token function">log<span class="token punctuation">(</span></span><span class="token string">&apos;Will close&apos;</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+		onclosed<span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">&gt;</span> console<span class="token punctuation">.</span><span class="token function">log<span class="token punctuation">(</span></span><span class="token string">&apos;Did close&apos;</span><span class="token punctuation">)</span>
+	<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
+</pre>
+                            </div>
+                        </figure>
+                    </p>
+                    <p>If you return <code>false</code> in methods <code>onopen</code> and <code>onclose</code>, the Modal will respect that. You can also setup inline callbacks to be invoked when the Modal changes state.</p>
+                    <figure data-ts="DoxMarkup" data-ts.code="%3Cdialog%20data-ts%3D%22Modal%22%0A%09data-ts.onopen%3D%22console.log(&apos;Will%20open&apos;)%22%0A%09data-ts.onopened%3D%22console.log(&apos;Did%20open&apos;)%22%0A%09data-ts.onclose%3D%22console.log(&apos;Will%20close&apos;)%22%0A%09data-ts.onclosed%3D%22console.log(&apos;Did%20close&apos;)%22%3E%0A%09%3Cdiv%20data-ts%3D%22Panel%22%3E%0A%09%09%3Cp%3EModal%20content.%3C%2Fp%3E%0A%09%3C%2Fdiv%3E%0A%3C%2Fdialog%3E">
+                        <script type="text/html">
+                            <dialog data-ts="Modal" data-ts.onopen="console.log('Will open')" data-ts.onopened="console.log('Did open')" data-ts.onclose="console.log('Will close')" data-ts.onclosed="console.log('Did close')">
+                                <div data-ts="Panel">
+                                    <p>Modal content.</p>
+                                </div>
+                            </dialog>
+                        </script><input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
+                        <div class="tabpanels">
+                            <pre class="prism language-markup">
+<code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dialog</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Modal<span class="token punctuation">&quot;</span></span>
+	<span class="token attr-name">data-ts</span>.<span class="token attr-name">onopen</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>console.log(&apos;Will open&apos;)<span class="token punctuation">&quot;</span></span>
+	<span class="token attr-name">data-ts</span>.<span class="token attr-name">onopened</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>console.log(&apos;Did open&apos;)<span class="token punctuation">&quot;</span></span>
+	<span class="token attr-name">data-ts</span>.<span class="token attr-name">onclose</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>console.log(&apos;Will close&apos;)<span class="token punctuation">&quot;</span></span>
+	<span class="token attr-name">data-ts</span>.<span class="token attr-name">onclosed</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>console.log(&apos;Did close&apos;)<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Panel<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>Modal content.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dialog</span><span class="token punctuation">&gt;</span></span></code>
+</pre>
+                        </div>
+                    </figure>
+                    <p>Finally, you can also track the state with some custom DOM events if you like.</p>
+                    <figure data-ts="DoxScript" data-ts.code="function%20debug(e)%20%7B%0A%09console.log(e.type%2C%20e.target)%3B%0A%7D%0Adocument.addEventListener(&apos;ts-open&apos;%2C%20debug)%3B%0Adocument.addEventListener(&apos;ts-opened&apos;%2C%20debug)%3B%0Adocument.addEventListener(&apos;ts-close&apos;%2C%20debug)%3B%0Adocument.addEventListener(&apos;ts-closed&apos;%2C%20debug)%3B">
+                        <input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
+                        <div class="tabpanels">
+                            <pre class="prism language-javascript">
+<code><span class="token keyword">function</span> <span class="token function">debug<span class="token punctuation">(</span></span>e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	console<span class="token punctuation">.</span><span class="token function">log<span class="token punctuation">(</span></span>e<span class="token punctuation">.</span>type<span class="token punctuation">,</span> e<span class="token punctuation">.</span>target<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+document<span class="token punctuation">.</span><span class="token function">addEventListener<span class="token punctuation">(</span></span><span class="token string">&apos;ts-open&apos;</span><span class="token punctuation">,</span> debug<span class="token punctuation">)</span><span class="token punctuation">;</span>
+document<span class="token punctuation">.</span><span class="token function">addEventListener<span class="token punctuation">(</span></span><span class="token string">&apos;ts-opened&apos;</span><span class="token punctuation">,</span> debug<span class="token punctuation">)</span><span class="token punctuation">;</span>
+document<span class="token punctuation">.</span><span class="token function">addEventListener<span class="token punctuation">(</span></span><span class="token string">&apos;ts-close&apos;</span><span class="token punctuation">,</span> debug<span class="token punctuation">)</span><span class="token punctuation">;</span>
+document<span class="token punctuation">.</span><span class="token function">addEventListener<span class="token punctuation">(</span></span><span class="token string">&apos;ts-closed&apos;</span><span class="token punctuation">,</span> debug<span class="token punctuation">)</span><span class="token punctuation">;</span></code>
+</pre>
+                        </div>
+                    </figure>
+                    <p>The events <code>ts-open</code> and <code>ts-close</code> can be blocked with <code>e.preventDefault()</code> to prevent the Modal from changing state.</p>
+                </section>
+                <section>
                     <p>Here&apos;s finally an overview of the Modal API.</p>
                     <div data-ts="DoxApi" data-ts.code="%7B%0A%09name%3A%20%22ts.ui.ModalSpirit%22%2C%0A%09methods%3A%20%5B%0A%09%09%7B%0A%09%09%09name%3A%20%22tabs%22%2C%0A%09%09%09args%3A%20%22(array)%22%2C%0A%09%09%09desc%3A%20%22Get%20or%20set%20the%20tabs.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20%22buttons%22%2C%0A%09%09%09args%3A%20%22(array)%22%2C%0A%09%09%09desc%3A%20%22Get%20or%20set%20the%20buttons.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20%22title%22%2C%0A%09%09%09args%3A%20%22(array)%22%2C%0A%09%09%09desc%3A%20%22Get%20or%20set%20the%20title.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20%22open%22%2C%0A%09%09%09desc%3A%20%22Open%20the%20Modal.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20%22close%22%2C%0A%09%09%09desc%3A%20%22Close%20the%20Modal.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20%22busy%22%2C%0A%09%09%09desc%3A%20%22Hide%20the%20content%20(while%20loading%20new%20content).%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20%22done%22%2C%0A%09%09%09desc%3A%20%22Show%20the%20content.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20%22spin%22%2C%0A%09%09%09desc%3A%20%22Hide%20the%20content%20while%20showing%20a%20spinner.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20%22stop%22%2C%0A%09%09%09desc%3A%20%22Stop%20that%20spinner%20and%20show%20the%20content.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20%22status%22%2C%0A%09%09%09args%3A%20%22string%22%2C%0A%09%09%09desc%3A%20%22Show%20a%20message%20in%20the%20StatusBar.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20%22pager%22%2C%0A%09%09%09args%3A%20%22object%22%2C%0A%09%09%09desc%3A%20%22Get%20or%20set%20the%20(Pager)%5B%2F%23components%2Fpager%2F%5D%20in%20the%20StatusBar.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20%22reflex%22%2C%0A%09%09%09desc%3A%20%22Run%20JS%20based%20layout%2C%20usually%20to%20center%20the%20%60Main%60%20vertically.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20%22onopen%22%2C%0A%09%09%09desc%3A%20%22Called%20when%20the%20Modal%20is%20about%20to%20open%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20%22onopened%22%2C%0A%09%09%09desc%3A%20%22Called%20when%20the%20Modal%20is%20fully%20opened%20(animation%20done)%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20%22onclose%22%2C%0A%09%09%09desc%3A%20%22Called%20when%20the%20Modal%20is%20about%20to%20closed%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20%22onclosed%22%2C%0A%09%09%09desc%3A%20%22Called%20when%20the%20Modal%20is%20fully%20closed%20(animation%20done)%22%0A%09%09%7D%0A%09%5D%0A%7D">
                         <div>
@@ -306,6 +365,7 @@
             </article>
         </div>
     </main>
+    <!-- Modals ............................................................. -->
     <dialog data-ts="Modal" id="example1" data-ts.title="Example Modal">
         <div data-ts="Panel">
             <main data-ts="Main">

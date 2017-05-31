@@ -203,6 +203,52 @@
 					<p>If you expect the server to respond particularly slowly today, you can also use the equivalent methods <code>spin()</code> and <code>stop()</code> to <a onclick="spinner()">display a spinner</a> while loading.</p>
 				</section>
 
+				
+				<section>
+					<h3>Tracking the state</h3>
+					<p>You can implement the methods <code>onopen</code>, <code>onopened</code>, <code>onclose</code> and <code>onclosed</code> to do something whenever the Modal changes state.
+
+					<figure data-ts="DoxScript">
+						<script>
+							ts.ui.get(myelement, modal => {
+								Object.assign(modal, {
+									onopen: () => console.log('Will open'),
+									onopened: () => console.log('Did open'),
+									onclose: () => console.log('Will close'),
+									onclosed: () => console.log('Did close')
+								});
+							});
+						</script>
+					</figure>
+					<p>If you return <code>false</code> in methods <code>onopen</code> and <code>onclose</code>, the Modal will respect that. You can also setup inline callbacks to be invoked when the Modal changes state.</p>
+					<figure data-ts="DoxMarkup">
+						<script type="text/html">
+							<dialog data-ts="Modal"
+								data-ts.onopen="console.log('Will open')"
+								data-ts.onopened="console.log('Did open')"
+								data-ts.onclose="console.log('Will close')"
+								data-ts.onclosed="console.log('Did close')">
+								<div data-ts="Panel">
+									<p>Modal content.</p>
+								</div>
+							</dialog>
+						</script>
+					</figure>
+					<p>Finally, you can also track the state with some custom DOM events if you like.</p>
+					<figure data-ts="DoxScript">
+						<script>
+							function debug(e) {
+								console.log(e.type, e.target);
+							}
+							document.addEventListener('ts-open', debug);
+							document.addEventListener('ts-opened', debug);
+							document.addEventListener('ts-close', debug);
+							document.addEventListener('ts-closed', debug);
+						</script>
+					</figure>
+					<p>The events <code>ts-open</code> and <code>ts-close</code> can  be blocked with <code>e.preventDefault()</code> to prevent the Modal from changing state.</p>
+				</section>
+
 				<section>
 					<p>Here's finally an overview of the Modal API.</p>
 					<div data-ts="DoxApi">
@@ -286,6 +332,8 @@
 				</section>
 			</article>
 		</main>
+
+		<!-- Modals ............................................................. -->
 
 		<dialog data-ts="Modal" id="example1" data-ts.title="Example Modal">
 			<div data-ts="Panel">

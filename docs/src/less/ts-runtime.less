@@ -127,7 +127,7 @@
 // orange
 @ts-orange-text: @ts-white;
 @ts-orange-liter: rgb(250, 236, 217);
-@ts-orange-lite: rgb(245, 224, 184);
+@ts-orange-lite: rgb(245, 225, 184);
 @ts-orange: rgb(230, 153, 0);
 @ts-orange-dark: rgb(209, 91, 0);
 @ts-orange-darker: rgb(66, 40, 0);
@@ -357,7 +357,7 @@
 }
 
 // Animations .......................................................................
-.ts-mixin-animation(@name, @duration: 250ms, @ease, @delay: 0) {
+.ts-mixin-animation(@name, @duration: 250ms, @ease: ease, @delay: 0) {
 	animation: @name @duration @ease @delay;
 }
 
@@ -453,3 +453,6 @@
 		@color2
 	);
 }
+
+
+

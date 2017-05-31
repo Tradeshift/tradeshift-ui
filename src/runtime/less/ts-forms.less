@@ -133,10 +133,11 @@
 				position: absolute;
 				line-height: @ts-unit;
 				font-family: @ts-fontstack-icon;
-				font-size: 20px;
+				font-size: 27px;
 				font-weight: normal;
-				top: @ts-unit-quarter - 1px;
-				left: 0;
+				top: @ts-unit-quarter;
+				left: -@ts-unit-quarter;
+				color: @ts-lite-darker;
 			}
 			+ span:after {
 				top: 50%;
@@ -150,6 +151,7 @@
 					+ span:before {
 						line-height: @ts-unit;
 						content: ":";
+						color: @ts-blue;
 					}
 				}
 			}
@@ -162,6 +164,7 @@
 					+ span:before {
 						line-height: @ts-unit;
 						content: "\"";
+						color: @ts-blue;
 					}
 				}
 			}

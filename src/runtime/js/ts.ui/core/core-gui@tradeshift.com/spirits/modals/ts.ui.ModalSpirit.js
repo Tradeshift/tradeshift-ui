@@ -332,6 +332,7 @@ ts.ui.ModalSpirit = (function using(Client, transition, chained) {
 				this.css.remove('ts-opening').add('ts-open');
 				this.broadcast.dispatch(didopen);
 				this._then.now(true);
+				this.doorman.didopen();
 				this._focus();
 			} else {
 				this.dom.show();
@@ -371,6 +372,7 @@ ts.ui.ModalSpirit = (function using(Client, transition, chained) {
 				this.tick.time(function() {
 					if (!this.$disposed) {
 						(this._main() || this).attention.exit();
+						this.doorman.didclose();
 					}
 				});
 			} else {

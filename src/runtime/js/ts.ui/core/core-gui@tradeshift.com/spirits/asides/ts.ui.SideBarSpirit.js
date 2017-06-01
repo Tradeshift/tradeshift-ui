@@ -168,7 +168,7 @@ ts.ui.SideBarSpirit = (function using(chained, Type, Client, GuiObject, Colors) 
 			 * TODO: Call `DoorManPlugin.didopen() when transition is done!
 			 */
 			$onopen: function() {
-				this.css.add('ts-will-open');
+				this.css.add(ts.ui.CLASS_OPENING);
 				this._reflex();
 				this.tick.time(function slide() {
 					this.css.add(ts.ui.CLASS_OPEN);
@@ -182,7 +182,7 @@ ts.ui.SideBarSpirit = (function using(chained, Type, Client, GuiObject, Colors) 
 			$onclose: function() {
 				this.css.remove(ts.ui.CLASS_OPEN);
 				this.tick.time(function undisplay() {
-					this.css.remove('ts-will-open');
+					this.css.remove(ts.ui.CLASS_OPENING);
 				}, ts.ui.TRANSITION_FAST);
 			},
 

@@ -226,7 +226,11 @@ const checkReport = function(report) {
 					errOut.push('Browser: ' + chalk.red.bold(browserRes.browser));
 					errOut.push(chalk.white.bgRed.bold(test.suiteName + ' > ' + test.name));
 					test.errors.forEach(function(err) {
-						errOut.push(chalk.red(err.stack.replace('/\\n/i', '\n')));
+						if (err.stack) {
+							errOut.push(chalk.red(err.stack.replace('/\\n/i', '\n')));
+						} else {
+							errOut.push(chalk.red('No stacktrace supplied :('));
+						}
 						errOut.push('');
 					});
 				} else {
@@ -241,13 +245,13 @@ const checkReport = function(report) {
 		}
 	});
 
-	console.log(out.join('\n'));
+	out.forEach(line => console.log(line));
 	if (!errOut.length) {
 		succ();
 	} else {
 		fail();
 	}
-	console.log(errOut.join('\n'));
+	errOut.forEach(line => console.log(line));
 
 	return !errOut.length;
 };

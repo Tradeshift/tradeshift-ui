@@ -16,19 +16,16 @@ gui.debug = true;
 window.sometime = function(later, thisp) {
 	setTimeout(function() {
 		later.call(thisp);
-	}, gui.Client.isExplorer ? 500 : 250);
+	}, 500);
 };
 
 window.helper = {
-
 	/**
 	 * Create an element to conduct tests within.
 	 * @param @optional {constructor} Spirit Optionally append a spirit here
 	 */
 	createTestDom: function(Spirit) {
-		var main = document.body.appendChild(
-			document.createElement('main')
-		);
+		var main = document.body.appendChild(document.createElement('main'));
 		main.className = 'ts-main';
 		if (Spirit) {
 			var spirit = Spirit.summon();

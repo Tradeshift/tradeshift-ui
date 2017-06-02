@@ -121,6 +121,12 @@ ts.ui.TableColModel = (function using(chained) {
 		minwidth: 0,
 
 		/**
+		 * Fixed width in pixels (zero means no such).
+		 * @type {number}
+		 */
+		width: 0,
+
+		/**
 		 * Search config.
 		 * @type {ts.ui.SearchModel}
 		 */

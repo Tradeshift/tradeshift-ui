@@ -11,6 +11,7 @@ ts.ui.TableLayoutPlugin = (function using(Client, Tick) {
 	var ROW_CELLS = '.ts-table-rows tr:first-child td:not(.ts-table-addition)';
 
 	/**
+	 * Get element height.
 	 * @param {Element} elm
 	 * @returns {number}
 	 */
@@ -19,6 +20,7 @@ ts.ui.TableLayoutPlugin = (function using(Client, Tick) {
 	}
 
 	/**
+	 * Set cell height.
 	 * TODO(jmo@): Only fix the height of editable cells!
 	 * @param {HTMLTableCellElement} td
 	 * @param {number} height
@@ -158,10 +160,11 @@ ts.ui.TableLayoutPlugin = (function using(Client, Tick) {
 		 * @param {Array<HTMLTableCellElement>} tds
 		 */
 		_hflex1: function(spirit, model, width, cols, ths, tds) {
+			var avail = this._hflexavail(cols, width);
 			var total = this._hflextotal(cols);
 			var adjust = this._hflexadjust(model);
-			var correct = (width - adjust) / total;
-			var sum = this._hflex2(cols, ths, tds, correct);
+			var unit = (avail - adjust) / total;
+			var sum = this._hflex2(cols, ths, tds, unit);
 			spirit.css.shift(sum + adjust > width, 'ts-scroll-x');
 		},
 
@@ -169,14 +172,17 @@ ts.ui.TableLayoutPlugin = (function using(Client, Tick) {
 		 * Flex step two.
 		 * @param {Array<ts.ui.TableColModel>} cols
 		 * @param {Array<HTMLTableCellElement>} cells
-		 * @param {number} xxxxx
+		 * @param {number} unit
 		 */
-		_hflex2: function(cols, ths, tds, xxxxx) {
+		_hflex2: function(cols, ths, tds, unit) {
 			return cols.reduce(function(sum, col, i) {
 				var td, th, flex = col.flex;
-				var span = flex * xxxxx;
+				var span = flex * unit;
+				var fixt = col.width;
 				var mins = col.minwidth;
-				if (mins && span < mins) {
+				if (fixt) {
+					span = fixt;
+				} else if (mins && span < mins) {
 					span = mins;
 				}
 				if ((th = ths[i])) {
@@ -190,12 +196,14 @@ ts.ui.TableLayoutPlugin = (function using(Client, Tick) {
 		},
 
 		/**
-		 * First we flex and then we minwidth. We should probably do it
-		 * the other way around, because the flex should account for the
-		 * minwidth, but it's easier now to simply flex *again* with
-		 * a new width (accounting for how much "too big" the table
-		 * has now become). The variable `STRANGE_NUMBER` seems to make
-		 * it work as expected, but not really sure why this is needed.
+		 * At this point the `min-width` values may have been applied (if indeed 
+		 * the table was so small that it was needed) and so we might need to flex 
+		 * *again* with a new baseline width, accounting for how much "too big" 
+		 * the table has now become. It is possible that we still see a horizontal 
+		 * scrollbar after this operation, but chances are better that the columns
+		 * will fit. TODO: Potentially calculate all this before we start flexing.
+		 * The variable `STRANGE_NUMBER` seems to make it work as expected, but 
+		 * not really sure why this is needed.
 		 * @param {ts.ui.TableSpirit} spirit
 		 * @param {ts.ui.TableModel} model
 		 * @param {number} width
@@ -216,18 +224,33 @@ ts.ui.TableLayoutPlugin = (function using(Client, Tick) {
 		},
 
 		/**
-		 * Compute summed flex values.
+		 * Before computing base flex unit, substract
+		 * from total width all fixed `width` columns.
+		 * @param {Array<ts.ui.TableColModel} cols
+		 * @param {number} width
+		 * @returns {number}
+		 */
+		_hflexavail: function(cols, width) {
+			return cols.reduce(function(result, col) {
+				return result - col.width;
+			}, width);
+		},
+
+		/**
+		 * Compute summed flex values. We can exclude the fixed `width` 
+		 * columns from this, but the `minwidth` columns should still 
+		 * behave flexed (if there is room enough for them to do so). 
 		 * @param {Array<ts.ui.TableColModel} cols
 		 * @returns {number}
 		 */
 		_hflextotal: function(cols) {
 			return cols.reduce(function(sum, col) {
-				return sum + col.flex;
+				return sum + (col.width ? 0 : col.flex);
 			}, 0);
 		},
 
 		/**
-		 * Compute width calc adjustment.
+		 * Returns width of potential select column (gutter) and scrollbar.
 		 * @param {ts.ui.TableModel} model
 		 * @returns {number}
 		 */

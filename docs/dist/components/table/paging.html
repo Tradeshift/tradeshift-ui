@@ -70,6 +70,17 @@
                             </li>
                         </ul>
                     </div>
+                    <p>You can track the page with the <code>onpage</code> method, if for some reason you need that.</p>
+                    <figure data-ts="DoxScript" data-ts.code="table.onpage%20%3D%20function(index)%20%7B%0A%09console.log(index)%3B%20%2F%2F%20called%20whenever%20the%20user%20changes%20page%0A%7D%3B">
+                        <input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
+                        <div class="tabpanels">
+                            <pre class="prism language-javascript">
+<code>table<span class="token punctuation">.</span>onpage <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span>index<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	console<span class="token punctuation">.</span><span class="token function">log<span class="token punctuation">(</span></span>index<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// called whenever the user changes page
+</span><span class="token punctuation">}</span><span class="token punctuation">;</span></code>
+</pre>
+                        </div>
+                    </figure>
                     <p>If you would like to manage paging yourself, because you have a billion products and don&apos;t want to fetch them all at once, you can create your own pager.</p>
                     <div class="splitscreen-container">
                         <ul class="splitscreen">

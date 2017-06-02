@@ -31,6 +31,7 @@ ts.ui.ToolBar = (function using(methods) {
 	'purple',
 	'dark',
 	'lite',
+	'white',
 	'showClose',
 	'hideClose'
 ]);

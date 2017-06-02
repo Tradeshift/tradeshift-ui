@@ -383,7 +383,7 @@ module.exports = function (grunt) {
 		// repeat these steps when needed
 		watch: {
 			js: {
-				tasks: [].concat[('concurrent:dev_generate_js', concatAndUglifyJs('dev'))],
+				tasks: [].concat(['concurrent:dev_generate_js'], concatAndUglifyJs('dev')),
 				files: ['src/**/*.js', 'src/**/*.json']
 			},
 			less: {

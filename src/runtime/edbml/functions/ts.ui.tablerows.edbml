@@ -37,7 +37,6 @@
 				} else {
 					renderHilt(table, row);	
 				}
-				
 			}
 			row.cells.forEach(function(cell, i) {
 				if(!colcount || i < colcount) {
@@ -81,7 +80,7 @@
 
 	function renderEditor(value) {
 		<textarea rows="1" data-ts="TextArea" class="ts-table-input" type="submit">
-			out.html += value;
+			out.html += edbml.safetext(value);
 		</textarea>
 	}
 

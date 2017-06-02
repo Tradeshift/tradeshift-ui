@@ -238,6 +238,14 @@ ts.ui.TableSpirit = (function using(
 		onedit: null,
 
 		/**
+		 * Open for implementation: Called when a new page is selected in Pager.
+		 * This is mostly relevant for "clientside" tables (mounting all pages) 
+		 * where the Pager is not created and handled by the developer himself.
+		 * @type {function}
+		 */
+		onpage: null,
+
+		/**
 		 * Open for implementation: Called whenever headers are clicked.
 		 * @param {number} index
 		 * @param {boolean} ascending
@@ -1428,6 +1436,9 @@ ts.ui.TableSpirit = (function using(
 			if (this.script.suspended) {
 				this.script.unsuspend();
 				this.script.run();
+			}
+			if (this.onpage) {
+				this.onpage.call(this, index);
 			}
 		},
 

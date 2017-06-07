@@ -37,6 +37,12 @@ ts.ui.ImageModel = (function() {
 			background: false,
 
 			/**
+			 * Used for sorting (in the Table).
+			 * @type {string|number}
+			 */
+			value: null,
+
+			/**
 			 * Confirm dimensions. We'll render all images with a fixed size
 			 * so that the page doesn't jump around when the images are loaded.
 			 */

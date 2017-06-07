@@ -635,16 +635,23 @@ ts.ui.TableModel = (function using(RowCollection, Type, Model) {
 		_sort: function(rows, col) {
 			if (col) {
 				var i = col.$index;
-				var n = !rows
-					.map(function columnvalue(r) {
-						return getsortvalue(r, i);
-					})
-					.some(isNaN);
-				rows.sort(function(r1, r2) {
-					var c1 = getsortvalue(r1, i);
-					var c2 = getsortvalue(r2, i);
-					return col.sort(c1, c2, n);
+				var vals = rows.map(function columnvalue(r) {
+					return getsortvalue(r, i);
 				});
+				if (
+					vals.some(function(v) {
+						return v === undefined || v === null;
+					})
+				) {
+					throw new Error('Expected all columns cells to have a `value` or `text` property');
+				} else {
+					var n = !vals.some(isNaN);
+					rows.sort(function(r1, r2) {
+						var c1 = getsortvalue(r1, i);
+						var c2 = getsortvalue(r2, i);
+						return col.sort(c1, c2, n);
+					});
+				}
 			}
 			return rows;
 		},

@@ -25,6 +25,12 @@ ts.ui.SwitchModel = (function() {
 		checked: false,
 
 		/**
+		 * Used to handle the switch in a Table. Also used for sorting.
+		 * @type {string|number}
+		 */
+		value: null,
+
+		/**
 		 * Bounce model to HTML.
 		 * @returns {string}
 		 */

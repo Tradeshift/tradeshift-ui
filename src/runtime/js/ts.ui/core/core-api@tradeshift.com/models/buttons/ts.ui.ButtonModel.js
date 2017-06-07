@@ -95,7 +95,7 @@ ts.ui.ButtonModel = (function using(chained, confirmed, Type) {
 		name: null,
 
 		/**
-		 * Button value.
+		 * Button value. Also used for sorting (in the Table).
 		 * @type {Any}
 		 */
 		value: null,

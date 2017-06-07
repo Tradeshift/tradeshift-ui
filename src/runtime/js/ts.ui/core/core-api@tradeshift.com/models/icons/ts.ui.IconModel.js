@@ -16,6 +16,12 @@ ts.ui.IconModel = (function() {
 		color: 'dark',
 
 		/**
+		 * Used for sorting (in the Table).
+		 * @type {string|number}
+		 */
+		value: null,
+
+		/**
 		 * Bounce model to HTML.
 		 * @returns {string}
 		 */

@@ -1,0 +1,19 @@
+{
+  "name": "tradeshift-ui-ts-app",
+  "version": "1.0.0",
+  "private": true,
+  "main": "index.js",
+  "babel": {
+    "presets": [
+      "env"
+    ]
+  },
+  "scripts": {
+    "build": "babel src -d temp && browserify temp/ts.app.js -o dist/ts.app.js --standalone 'ts.app'"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-preset-env": "^1.5.1",
+    "browserify": "^14.4.0"
+  }
+}

@@ -123,29 +123,41 @@
 </pre>
                         </div>
                     </figure>
-                    <!-- This hits into a specificatin bug in Spiritual (in edb.ObjectPopulator), so well keep it on the TODO list...
-					<h3>Custom sort</h3>
-					<p>Standard sorting only deals with numbers and strings. If you need some kind of more advanced sorting, for example if the <code>value</code> contains arrays or objects, you can implement custom sort per column if you implement the <code>sort</code> method for that particular column.</p>
-					<ul class="splitscreen">
-						<li>
-						</li>
-						<li>
-							<div data-ts="Table" id="example7"></div>
-						</li>
-					</ul>
-					<script>
-						ts.ui.get('#example7', table => {
-							table.cols([
-								{
-									label: 'Fruit',
-									sort: function() {
-										return Math.random() > 0.5 ? 1 : 0;
-									}
-								}
-							]).rows([['Banana'], ['Apple'], ['Grape'], ['Pear']]);
-						});
-					</script>
-					-->
+                    <h3><span>Custom sort</span></h3>
+                    <p>Standard sorting only deals with numbers and strings. If you need some kind of more advanced sorting, for example if the <code>value</code> contains arrays or objects, you can implement custom sort per column via the <code>sort</code>                        method.</p>
+                    <div class="splitscreen-container">
+                        <ul class="splitscreen">
+                            <li>
+                                <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.get(&apos;%23example7&apos;%2C%20function(table)%20%7B%0A%09table.cols(%5B%0A%09%09%7B%0A%09%09%09label%3A%20&apos;Fruit&apos;%2C%0A%09%09%09sort%3A%20function(val1%2C%20val2%2C%20ascending)%20%7B%20%2F%2F%20sort%20random!%0A%09%09%09%09return%20Math.random()%20%3E%200.5%20%3F%201%20%3A%20-1%3B%0A%09%09%09%7D%0A%09%09%7D%0A%09%5D)%0A%09.rows(%5B%5B&apos;Banana&apos;%5D%2C%20%5B&apos;Apple&apos;%5D%2C%20%5B&apos;Grape&apos;%5D%2C%20%5B&apos;Pear&apos;%5D%5D)%0A%09.sortable(function(index%2C%20ascending)%20%7B%0A%09%09table.sort(index%2C%20ascending)%3B%0A%09%7D)%3B%0A%7D)%3B">
+                                    <script type="runnable">
+                                        ts.ui.get('#example7', table => { table.cols([ { label: 'Fruit', sort: function(val1, val2, ascending) { // sort random! return Math.random() > 0.5 ? 1 : -1; } } ]) .rows([['Banana'], ['Apple'], ['Grape'], ['Pear']]) .sortable(function(index, ascending)
+                                        { table.sort(index, ascending); }); });
+                                    </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                                    <div class="tabpanels">
+                                        <pre class="prism language-javascript">
+<code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#example7&apos;</span><span class="token punctuation">,</span> table <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+	table<span class="token punctuation">.</span><span class="token function">cols<span class="token punctuation">(</span></span><span class="token punctuation">[</span>
+		<span class="token punctuation">{</span>
+			label<span class="token punctuation">:</span> <span class="token string">&apos;Fruit&apos;</span><span class="token punctuation">,</span>
+			sort<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span>val1<span class="token punctuation">,</span> val2<span class="token punctuation">,</span> ascending<span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token comment" spellcheck="true">// sort random!
+</span>				<span class="token keyword">return</span> Math<span class="token punctuation">.</span><span class="token function">random<span class="token punctuation">(</span></span><span class="token punctuation">)</span> <span class="token operator">&gt;</span> <span class="token number">0.5</span> <span class="token operator">?</span> <span class="token number">1</span> <span class="token punctuation">:</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+			<span class="token punctuation">}</span>
+		<span class="token punctuation">}</span>
+	<span class="token punctuation">]</span><span class="token punctuation">)</span>
+	<span class="token punctuation">.</span><span class="token function">rows<span class="token punctuation">(</span></span><span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token string">&apos;Banana&apos;</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token string">&apos;Apple&apos;</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token string">&apos;Grape&apos;</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token string">&apos;Pear&apos;</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+	<span class="token punctuation">.</span><span class="token function">sortable<span class="token punctuation">(</span></span><span class="token keyword">function</span><span class="token punctuation">(</span>index<span class="token punctuation">,</span> ascending<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		table<span class="token punctuation">.</span><span class="token function">sort<span class="token punctuation">(</span></span>index<span class="token punctuation">,</span> ascending<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
+</pre>
+                                    </div>
+                                </figure>
+                            </li>
+                            <li>
+                                <div data-ts="Table" id="example7"></div>
+                            </li>
+                        </ul>
+                    </div>
                 </section>
             </article>
         </div>

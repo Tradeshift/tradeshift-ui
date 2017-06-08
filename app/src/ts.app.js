@@ -8,8 +8,7 @@
  * * 'Tradeshift.*' (matches all Tradeshift apps)
  * * 'Tradeshift.??Y' (matches Tradeshift.Buy, Tradeshift.Pay, etc.)
  * @param {string} key The key/subject of the event
- * @param {object} data Data to be sent with the event, has to support the structured clone algorithm
- * @see https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Structured_clone_algorithm
+ * @param {object} data Data to be sent with the event
  */
 export function broadcast(appIds, key, data) {
 	const content = stringify(appIds, key, data);
@@ -32,13 +31,9 @@ const BROADCAST_PREFIX = 'app-broadcast:';
  */
 class Listener {
 	/**
-	 * Create the listener.
-	 * @param {array|string} appIds 
+	 * The map of the events
 	 */
-	constructor(appIds) {
-		this.appIds = appIds;
-		this.events = new Map();
-	}
+	events = new Map();
 
 	/**
 	 * Listen to message and call handler.
@@ -52,7 +47,7 @@ class Listener {
 			return this;
 		}
 		if (this.events.has(key)) {
-			console.warn(`You have listened the message of ${key}`);
+			this.off(key);
 			return this;
 		}
 		const handler = e => {
@@ -83,13 +78,11 @@ class Listener {
 			console.warn(`We need the parameter of key`);
 			return this;
 		}
-		if (!this.events.has(key)) {
-			console.warn(`Can\'t find the message of ${key}`);
-			return this;
+		if (this.events.has(key)) {
+			const handler = this.events.get(key);
+			window.removeEventListener('message', handler);
+			this.events.delete(key);
 		}
-		const handler = this.events.get(key);
-		window.removeEventListener('message', handler);
-		this.events.delete(key);
 		return this;
 	}
 
@@ -148,7 +141,7 @@ class Listener {
  * Encode broadcast to be posted.
  * @param {array|string} appIds List of apps to receive the message, supports glob
  * @param {string} key The key/subject of the event
- * @param {object} data Data to be sent with the event, has to support the structured clone algorithm
+ * @param {object} data Data to be sent with the event
  * @return {string} message
  */
 const stringify = (appIds, key, data) => {

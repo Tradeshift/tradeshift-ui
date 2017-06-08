@@ -22,8 +22,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
  * * 'Tradeshift.*' (matches all Tradeshift apps)
  * * 'Tradeshift.??Y' (matches Tradeshift.Buy, Tradeshift.Pay, etc.)
  * @param {string} key The key/subject of the event
- * @param {object} data Data to be sent with the event, has to support the structured clone algorithm
- * @see https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Structured_clone_algorithm
+ * @param {object} data Data to be sent with the event
  */
 function broadcast(appIds, key, data) {
 	var content = stringify(appIds, key, data);
@@ -46,27 +45,28 @@ var BROADCAST_PREFIX = 'app-broadcast:';
  */
 
 var Listener = function () {
+	function Listener() {
+		_classCallCheck(this, Listener);
+
+		this.events = new Map();
+	}
 	/**
   * Create the listener.
   * @param {array|string} appIds 
   */
-	function Listener(appIds) {
-		_classCallCheck(this, Listener);
-
-		this.appIds = appIds;
-		this.events = new Map();
-	}
-
-	/**
-  * Listen to message and call handler.
-  * @param {string} key The key/subject of the event.
-  * @param {function} callback The handler of the event.
-  * @return {Listener} Listener object
-  */
+	// appIds = appIds;
 
 
 	_createClass(Listener, [{
 		key: 'on',
+
+
+		/**
+   * Listen to message and call handler.
+   * @param {string} key The key/subject of the event.
+   * @param {function} callback The handler of the event.
+   * @return {Listener} Listener object
+   */
 		value: function on(key, callback) {
 			var _this = this;
 
@@ -75,7 +75,7 @@ var Listener = function () {
 				return this;
 			}
 			if (this.events.has(key)) {
-				console.warn('You have listened the message of ' + key);
+				this.off(key);
 				return this;
 			}
 			var handler = function handler(e) {
@@ -109,13 +109,11 @@ var Listener = function () {
 				console.warn('We need the parameter of key');
 				return this;
 			}
-			if (!this.events.has(key)) {
-				console.warn('Can\'t find the message of ' + key);
-				return this;
+			if (this.events.has(key)) {
+				var handler = this.events.get(key);
+				window.removeEventListener('message', handler);
+				this.events.delete(key);
 			}
-			var handler = this.events.get(key);
-			window.removeEventListener('message', handler);
-			this.events.delete(key);
 			return this;
 		}
 
@@ -208,7 +206,7 @@ var Listener = function () {
  * Encode broadcast to be posted.
  * @param {array|string} appIds List of apps to receive the message, supports glob
  * @param {string} key The key/subject of the event
- * @param {object} data Data to be sent with the event, has to support the structured clone algorithm
+ * @param {object} data Data to be sent with the event
  * @return {string} message
  */
 

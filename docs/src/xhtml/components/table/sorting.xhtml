@@ -75,30 +75,33 @@
 						</script>
 					</figure>
 
-					<!-- This hits into a specificatin bug in Spiritual (in edb.ObjectPopulator), so well keep it on the TODO list...
 					<h3>Custom sort</h3>
-					<p>Standard sorting only deals with numbers and strings. If you need some kind of more advanced sorting, for example if the <code>value</code> contains arrays or objects, you can implement custom sort per column if you implement the <code>sort</code> method for that particular column.</p>
+					<p>Standard sorting only deals with numbers and strings. If you need some kind of more advanced sorting, for example if the <code>value</code> contains arrays or objects, you can implement custom sort per column via the  <code>sort</code> method.</p>
 					<ul class="splitscreen">
 						<li>
-							
+							<figure data-ts="DoxScript">
+								<script type="runnable">
+									ts.ui.get('#example7', table => {
+										table.cols([
+											{
+												label: 'Fruit',
+												sort: function(val1, val2, ascending) { // sort random!
+													return Math.random() > 0.5 ? 1 : -1;
+												}
+											}
+										])
+										.rows([['Banana'], ['Apple'], ['Grape'], ['Pear']])
+										.sortable(function(index, ascending) {
+											table.sort(index, ascending);
+										});
+									});
+								</script>
+							</figure>
 						</li>
 						<li>
 							<div data-ts="Table" id="example7"></div>
 						</li>
 					</ul>
-					<script>
-						ts.ui.get('#example7', table => {
-							table.cols([
-								{
-									label: 'Fruit',
-									sort: function() {
-										return Math.random() > 0.5 ? 1 : 0;
-									}
-								}
-							]).rows([['Banana'], ['Apple'], ['Grape'], ['Pear']]);
-						});
-					</script>
-					-->
 				</section>
 			</article>
 		</main>

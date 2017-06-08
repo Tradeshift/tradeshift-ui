@@ -54,13 +54,12 @@ class Listener {
 			if (typeof e.data !== 'string' || !e.data.includes(BROADCAST_PREFIX) || !e.data.includes(key)) {
 				return this;
 			}
-			let content = e.data.replace(BROADCAST_PREFIX, '');
-			let data = JSON.parse(content);
-			if (data.key !== key) {
+			let content = JSON.parse(e.data.replace(BROADCAST_PREFIX, ''));
+			if (content.key !== key) {
 				return this;
 			}
 			if (callback) {
-				callback(data);
+				callback(content.data);
 			}
 		}
 		window.addEventListener('message', handler);

@@ -51,10 +51,8 @@ var Listener = function () {
 		this.events = new Map();
 	}
 	/**
-  * Create the listener.
-  * @param {array|string} appIds 
+  * The map of the events
   */
-	// appIds = appIds;
 
 
 	_createClass(Listener, [{
@@ -82,13 +80,12 @@ var Listener = function () {
 				if (typeof e.data !== 'string' || !e.data.includes(BROADCAST_PREFIX) || !e.data.includes(key)) {
 					return _this;
 				}
-				var content = e.data.replace(BROADCAST_PREFIX, '');
-				var data = JSON.parse(content);
-				if (data.key !== key) {
+				var content = JSON.parse(e.data.replace(BROADCAST_PREFIX, ''));
+				if (content.key !== key) {
 					return _this;
 				}
 				if (callback) {
-					callback(data);
+					callback(content.data);
 				}
 			};
 			window.addEventListener('message', handler);

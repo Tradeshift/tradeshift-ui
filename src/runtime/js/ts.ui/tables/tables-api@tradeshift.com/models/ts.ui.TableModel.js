@@ -649,7 +649,11 @@ ts.ui.TableModel = (function using(RowCollection, Type, Model) {
 					rows.sort(function(r1, r2) {
 						var c1 = getsortvalue(r1, i);
 						var c2 = getsortvalue(r2, i);
-						return col.sort(c1, c2, n);
+						if (col.sort) {
+							return col.sort(c1, c2, col.ascending);
+						} else {
+							return col.$sort(c1, c2, n);
+						}
 					});
 				}
 			}

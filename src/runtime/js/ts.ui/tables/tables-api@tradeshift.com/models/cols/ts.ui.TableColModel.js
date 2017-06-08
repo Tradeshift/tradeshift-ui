@@ -155,21 +155,12 @@ ts.ui.TableColModel = (function using(chained) {
 		}),
 
 		/**
-		 * Default sort mechanism.
-		 * TODO: Perhaps we should document the fact that you can overwrite this?
-		 * @param {string|number} val1
-		 * @param {string|number} val2
-		 * @param {boolean} numberically
-		 * @returns {number}
+		 * Open for implementation: Function used to sort the column cells by `value`.
+		 * This should work much like an array sort that returns `1` or `-1` or `0`.
+		 * If this is not specified, we sort via the fallback `$sort` method below.
+		 * @type {function}
 		 */
-		sort: function(val1, val2, numerically) {
-			var ascending = this.ascending;
-			if (numerically) {
-				return sortnum(val1, val2, ascending);
-			} else {
-				return sortalpha(val1, val2, ascending);
-			}
-		},
+		sort: null,
 
 		/**
 		 * Is (cell content) of type number?
@@ -191,6 +182,24 @@ ts.ui.TableColModel = (function using(chained) {
 				console.warn(
 					'The column `type` property must be changed ' + 'from "' + type + '" to "ts-' + type + '"'
 				);
+			}
+		},
+
+		// Privileged ..............................................................
+
+		/**
+		 * Fallback sort mechanism (if method `sort` is not implemented).
+		 * @param {string|number} val1
+		 * @param {string|number} val2
+		 * @param {boolean} numberically
+		 * @returns {number}
+		 */
+		$sort: function(val1, val2, numerically) {
+			var ascending = this.ascending;
+			if (numerically) {
+				return sortnum(val1, val2, ascending);
+			} else {
+				return sortalpha(val1, val2, ascending);
 			}
 		}
 	});

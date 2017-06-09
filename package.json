@@ -16,7 +16,7 @@
   ],
   "license": "SEE LICENSE IN LICENSE.md",
   "engines": {
-    "node": "6.10.3"
+    "node": "6.11.0"
   },
   "scripts": {
     "****** LINT *****": "",

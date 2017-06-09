@@ -1,6 +1,6 @@
 {
   "name": "tradeshift-ui",
-  "version": "8.0.4",
+  "version": "8.1.2",
   "private": true,
   "description": "The Tradeshift UI Library & Framework",
   "homepage": "https://ui.tradeshift.com/",
@@ -16,7 +16,7 @@
   ],
   "license": "SEE LICENSE IN LICENSE.md",
   "engines": {
-    "node": "6.10.3"
+    "node": ">=6.0.0"
   },
   "scripts": {
     "****** LINT *****": "",

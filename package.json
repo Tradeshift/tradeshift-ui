@@ -33,7 +33,7 @@
     "http": "static spec/jasmine -H '{\"Cache-Control\": \"no-cache, must-revalidate\"}'",
     "****** NODE *****": "",
     "postinstall": "cd docs && yarn",
-    "precommit": "lint-staged && grunt exec:docs_dist && git add -A docs/{index.html,src/less/ts-runtime.less,dist/**/*}"
+    "precommit": "lint-staged && grunt exec:docs_dist && git add -A docs"
   },
   "lint-staged": {
     "*.js": [

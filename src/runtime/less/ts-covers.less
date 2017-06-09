@@ -29,4 +29,29 @@
 		z-index: @ts-zindex-main + 1;
 		background-color: rgba(255,255,255,0.8);
 	}
+	&.ts-spotlightcover {
+		z-index: @ts-zindex-spin-cover;
+		border-radius:50%;
+		box-shadow:0 0 0 9999px rgba(0,0,0,.8);
+		position:absolute;
+
+		&.ts-transition {
+			.ts-mixin-transition(transform, @ts-transition-fast, @ts-timing-easeoutquint);
+			transform: scale(0);
+
+			&.ts-visible {
+				transform: scale(1);
+			}
+		}
+	}
+}
+
+.ts-spotlight-content {
+	&.ts-transition {
+		.ts-mixin-transition(opacity, @ts-transition-slow, @ts-timing-easeoutquint);
+		opacity: 0;
+		&.ts-visible {
+			opacity: 1;
+		}
+	}
 }

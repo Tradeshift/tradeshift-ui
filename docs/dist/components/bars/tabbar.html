@@ -280,13 +280,13 @@ tabs<span class="token punctuation">.</span><span class="token function">showNew
                             </div>
                         </figure>
                         <p>All features are controlled through a JavaScript API. You can get a hold of the component using a CSS selector and call any of the methods we&apos;ve seen applicable to the Main TabBar.</p>
-                        <figure data-ts="DoxScript" class="runnable" data-ts.code="s.ui.get(&apos;%23mytabbar&apos;%2C%20function(tabbar)%20%7B%0A%09tabbar.tabs(%5B%0A%09%09%7Blabel%3A%20&apos;One&apos;%7D%2C%0A%09%09%7Blabel%3A%20&apos;Two&apos;%7D%2C%0A%09%09%7Blabel%3A%20&apos;Three&apos;%7D%0A%09%5D)%3B%0A%7D)%3B">
+                        <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.get(&apos;%23mytabbar&apos;%2C%20function(tabbar)%20%7B%0A%09tabbar.tabs(%5B%0A%09%09%7Blabel%3A%20&apos;One&apos;%7D%2C%0A%09%09%7Blabel%3A%20&apos;Two&apos;%7D%2C%0A%09%09%7Blabel%3A%20&apos;Three&apos;%7D%0A%09%5D)%3B%0A%7D)%3B">
                             <script type="runnable">
-                                s.ui.get('#mytabbar', tabbar => { tabbar.tabs([ {label: 'One'}, {label: 'Two'}, {label: 'Three'} ]); });
+                                ts.ui.get('#mytabbar', tabbar => { tabbar.tabs([ {label: 'One'}, {label: 'Two'}, {label: 'Three'} ]); });
                             </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                             <div class="tabpanels">
                                 <pre class="prism language-javascript">
-<code>s<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#mytabbar&apos;</span><span class="token punctuation">,</span> tabbar <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+<code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#mytabbar&apos;</span><span class="token punctuation">,</span> tabbar <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
 	tabbar<span class="token punctuation">.</span><span class="token function">tabs<span class="token punctuation">(</span></span><span class="token punctuation">[</span>
 		<span class="token punctuation">{</span>label<span class="token punctuation">:</span> <span class="token string">&apos;One&apos;</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
 		<span class="token punctuation">{</span>label<span class="token punctuation">:</span> <span class="token string">&apos;Two&apos;</span><span class="token punctuation">}</span><span class="token punctuation">,</span>

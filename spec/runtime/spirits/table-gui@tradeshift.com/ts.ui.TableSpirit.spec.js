@@ -21,11 +21,7 @@ describe('ts.ui.TableSpirit', function likethis() {
 		it('should contain rows and columns', function(done) {
 			setup(function(spirit, dom) {
 				spirit.cols(['One', 'Two', 'Three']);
-				spirit.rows([
-					['A', 'D', 'G'],
-					['B', 'E', 'H'],
-					['C', 'F', 'I']
-				]);
+				spirit.rows([['A', 'D', 'G'], ['B', 'E', 'H'], ['C', 'F', 'I']]);
 				sometime(function later() {
 					expect(spirit.element.innerHTML).toContain('One');
 					expect(spirit.element.innerHTML).toContain('A');
@@ -36,7 +32,7 @@ describe('ts.ui.TableSpirit', function likethis() {
 
 		it('should declare columns as objects', function(done) {
 			setup(function(spirit, dom) {
-				spirit.cols([{label: 'Moth'}, {label: 'Daniel'}, {label: 'Leo'}]);
+				spirit.cols([{ label: 'Moth' }, { label: 'Daniel' }, { label: 'Leo' }]);
 				sometime(function later() {
 					expect(spirit.element.innerHTML).toContain('Moth');
 					expect(spirit.element.innerHTML).toContain('Daniel');
@@ -48,7 +44,7 @@ describe('ts.ui.TableSpirit', function likethis() {
 
 		it('should set the type property to ts-number', function(done) {
 			setup(function(spirit, dom) {
-				spirit.cols([{label: 'Type'}, {label: 'Value', type: 'ts-number'}]);
+				spirit.cols([{ label: 'Type' }, { label: 'Value', type: 'ts-number' }]);
 				spirit.rows([['Random number', Math.random()]]);
 				sometime(function later() {
 					expect(spirit.element.innerHTML).toContain('ts-number');
@@ -59,11 +55,13 @@ describe('ts.ui.TableSpirit', function likethis() {
 
 		it('should mark the row as selected and then unselect', function(done) {
 			setup(function(spirit, dom) {
-				spirit.selectable().rows([
-					{cells: ['A', 'D', 'G'], selected: true},
-					{cells: ['B', 'E', 'H']},
-					{cells: ['C', 'F', 'I']}
-				]);
+				spirit
+					.selectable()
+					.rows([
+						{ cells: ['A', 'D', 'G'], selected: true },
+						{ cells: ['B', 'E', 'H'] },
+						{ cells: ['C', 'F', 'I'] }
+					]);
 				sometime(function later() {
 					expect(spirit.element.innerHTML).toContain('ts-icon-checkboxon');
 					var icon = spirit.element.querySelector('.ts-icon-checkboxon');
@@ -79,13 +77,15 @@ describe('ts.ui.TableSpirit', function likethis() {
 
 		it('should show the displayed text', function(done) {
 			setup(function(spirit, dom) {
-				spirit.rows([{
-					cells: [
-						{value: 1, text: 'One'},
-						{value: 2, text: 'Two'},
-						{value: 3, text: 'Three'}
-					]
-				}]);
+				spirit.rows([
+					{
+						cells: [
+							{ value: 1, text: 'One' },
+							{ value: 2, text: 'Two' },
+							{ value: 3, text: 'Three' }
+						]
+					}
+				]);
 				sometime(function later() {
 					expect(spirit.element.innerHTML).toContain('One');
 					expect(spirit.element.innerHTML).toContain('Two');
@@ -97,10 +97,7 @@ describe('ts.ui.TableSpirit', function likethis() {
 
 		it('should update a single row', function(done) {
 			setup(function(spirit, dom) {
-				spirit.rows([
-					['One', 'Two', 'Three'],
-					['Four', 'Five', 'Six']
-				]);
+				spirit.rows([['One', 'Two', 'Three'], ['Four', 'Five', 'Six']]);
 				spirit.row(1, ['Moth', 'Daniel', 'Leo']);
 				sometime(function later() {
 					expect(spirit.element.innerHTML).toContain('Moth');
@@ -116,10 +113,7 @@ describe('ts.ui.TableSpirit', function likethis() {
 
 		it('should update a single cell', function(done) {
 			setup(function(spirit, dom) {
-				spirit.rows([
-					['A', 'B', 'C'],
-					['D', 'E', 'F']
-				]);
+				spirit.rows([['A', 'B', 'C'], ['D', 'E', 'F']]);
 				spirit.cell(1, 1, 'Moth');
 				sometime(function later() {
 					expect(spirit.element.innerHTML).toContain('Moth');
@@ -145,10 +139,7 @@ describe('ts.ui.TableSpirit', function likethis() {
 	describe('Layout', function() {
 		it('should flex relative to other columns', function(done) {
 			setup(function(spirit, dom) {
-				spirit.cols([
-					{label: 'Level', type: 'ts-number'},
-					{label: 'Character', flex: 2}
-				]);
+				spirit.cols([{ label: 'Level', type: 'ts-number' }, { label: 'Character', flex: 2 }]);
 				spirit.rows([
 					[21, 'Paladin Knight', 'Lawful Good'],
 					[13, 'Barbarian Queen', 'Neutral Evil']
@@ -165,8 +156,8 @@ describe('ts.ui.TableSpirit', function likethis() {
 		it('should run into truncated text', function(done) {
 			setup(function(spirit, dom) {
 				spirit.cols([
-					{label: 'Level', type: 'ts-number'},
-					{label: 'Character', flex: 2, wrap: true}
+					{ label: 'Level', type: 'ts-number' },
+					{ label: 'Character', flex: 2, wrap: true }
 				]);
 				spirit.rows([
 					[21, 'Paladin Knight', 'Lawful Good'],
@@ -181,10 +172,7 @@ describe('ts.ui.TableSpirit', function likethis() {
 
 		it('should assign it a minsize in pixels', function(done) {
 			setup(function(spirit, dom) {
-				spirit.cols([
-					{label: 'Level', type: 'ts-number', minwidth: 200},
-					{label: 'Character'}
-				]);
+				spirit.cols([{ label: 'Level', type: 'ts-number', minwidth: 200 }, { label: 'Character' }]);
 				spirit.rows([
 					[21, 'Paladin Knight', 'Lawful Good'],
 					[13, 'Global Senior Vice President of Sales', 'Neutral Evil']
@@ -201,13 +189,10 @@ describe('ts.ui.TableSpirit', function likethis() {
 		it('type property should works as a classname for toth header and cells', function(done) {
 			setup(function(spirit, dom) {
 				spirit.cols([
-					{label: 'Level', type: 'ts-number your-class'},
-					{label: 'Character', type: 'ts-number your-class'}
+					{ label: 'Level', type: 'ts-number your-class' },
+					{ label: 'Character', type: 'ts-number your-class' }
 				]);
-				spirit.rows([
-					[21, 22],
-					[13, 22]
-				]);
+				spirit.rows([[21, 22], [13, 22]]);
 				sometime(function later() {
 					expect(spirit.element.innerHTML).toContain('your-class');
 					done();
@@ -218,9 +203,9 @@ describe('ts.ui.TableSpirit', function likethis() {
 		it('should works for the rows', function(done) {
 			setup(function(spirit, dom) {
 				spirit.rows([
-					{cells: ['A', 'D', 'G'], type: 'pale-red'},
-					{cells: ['B', 'E', 'H'], type: 'pale-green'},
-					{cells: ['C', 'F', 'I'], type: 'pale-blue'}
+					{ cells: ['A', 'D', 'G'], type: 'pale-red' },
+					{ cells: ['B', 'E', 'H'], type: 'pale-green' },
+					{ cells: ['C', 'F', 'I'], type: 'pale-blue' }
 				]);
 				sometime(function later() {
 					expect(spirit.element.innerHTML).toContain('pale-red');
@@ -233,13 +218,15 @@ describe('ts.ui.TableSpirit', function likethis() {
 
 		it('should works for the cells', function(done) {
 			setup(function(spirit, dom) {
-				spirit.rows([{
-					cells: [
-						{text: 'Normal'},
-						{text: 'Normal'},
-						{text: 'Special', type: 'very-special'}
-					]
-				}]);
+				spirit.rows([
+					{
+						cells: [
+							{ text: 'Normal' },
+							{ text: 'Normal' },
+							{ text: 'Special', type: 'very-special' }
+						]
+					}
+				]);
 				sometime(function later() {
 					expect(spirit.element.innerHTML).toContain('very-special');
 					done();
@@ -252,18 +239,10 @@ describe('ts.ui.TableSpirit', function likethis() {
 		it('should create the page automatically', function(done) {
 			setup(function(spirit, dom) {
 				spirit.cols([
-					{label: 'Level', type: 'ts-number your-class'},
-					{label: 'Character', type: 'ts-number your-class'}
+					{ label: 'Level', type: 'ts-number your-class' },
+					{ label: 'Character', type: 'ts-number your-class' }
 				]);
-				spirit.rows([
-					[21, 22],
-					[21, 22],
-					[21, 22],
-					[21, 22],
-					[21, 22],
-					[21, 22],
-					[13, 22]
-				]).max(5);
+				spirit.rows([[21, 22], [21, 22], [21, 22], [21, 22], [21, 22], [21, 22], [13, 22]]).max(5);
 				sometime(function later() {
 					expect(spirit.element.innerHTML).toContain('ts-toolbar-pager');
 					done();
@@ -273,10 +252,12 @@ describe('ts.ui.TableSpirit', function likethis() {
 
 		it('should create the page by api', function(done) {
 			setup(function(spirit, dom) {
-				spirit.max(3).cols([
-					{label: 'Level', type: 'ts-number your-class'},
-					{label: 'Character', type: 'ts-number your-class'}
-				]);
+				spirit
+					.max(3)
+					.cols([
+						{ label: 'Level', type: 'ts-number your-class' },
+						{ label: 'Character', type: 'ts-number your-class' }
+					]);
 				spirit.pager({
 					pages: 5,
 					page: 0
@@ -311,9 +292,7 @@ describe('ts.ui.TableSpirit', function likethis() {
 		it('should support link', function(done) {
 			setup(function(spirit, dom) {
 				spirit.linkable();
-				spirit.rows([
-					['Please visit (Tradeshift)[http://www.tradeshift.com]']
-				]);
+				spirit.rows([['Please visit (Tradeshift)[http://www.tradeshift.com]']]);
 				sometime(function later() {
 					expect(spirit.element.innerHTML).toContain('Tradeshift</a>');
 					done();
@@ -323,18 +302,14 @@ describe('ts.ui.TableSpirit', function likethis() {
 	});
 
 	describe('Sort', function() {
-		it('should sortable', function(done) {
+		it('should be sortable', function(done) {
 			setup(function(spirit, dom) {
-				spirit.cols(
-					['Animal', {label: 'Price', type: 'ts-number'}]
-				).rows([
-					['Donkey', 700],
-					['Baboon', 1500],
-					['Coyote', 250],
-					['Albatross', 50]
-				]).sortable(function(index, ascending) {
-					spirit.sort(index, ascending);
-				});
+				spirit
+					.cols(['Animal', { label: 'Price', type: 'ts-number' }])
+					.rows([['Donkey', 700], ['Baboon', 1500], ['Coyote', 250], ['Albatross', 50]])
+					.sortable(function(index, ascending) {
+						spirit.sort(index, ascending);
+					});
 				spirit.sort(0, true);
 				sometime(function later() {
 					expect(spirit.element.innerHTML).toContain('ts-icon-triangledown');
@@ -342,18 +317,41 @@ describe('ts.ui.TableSpirit', function likethis() {
 				});
 			});
 		});
+		it('should sort table extras', function(done) {
+			function indexes(spirit) {
+				var table = spirit.dom.q('.ts-table-body table');
+				return gui.Array.from(table.rows).map(function(row) {
+					return row.cells[0].textContent;
+				});
+			}
+			setup(function(spirit, dom) {
+				spirit
+					.cols(['Letters', 'Extras'])
+					.rows([
+						['A', geticon('ts-icon-sales', 3)],
+						['B', getswitch('toggle', 1)],
+						['C', getuserimage('Jim Bob Johnson', 4)],
+						['D', geticon('ts-icon-sales', 2)]
+					])
+					.sortable();
+				spirit.sort(1, true);
+				sometime(function later() {
+					expect(indexes(spirit)).toEqual(['B', 'D', 'A', 'C']);
+					spirit.sort(1, false);
+					sometime(function later() {
+						expect(indexes(spirit)).toEqual(['C', 'A', 'D', 'B']);
+						done();
+					});
+				});
+			});
+		});
 	});
 
 	describe('Select', function() {
-		it('should clickable', function(done) {
+		it('should be clickable', function(done) {
 			var select = null;
 			setup(function(spirit, dom) {
-				spirit.rows([
-					['A', 'E', 'I'],
-					['B', 'F', 'J'],
-					['C', 'G', 'K'],
-					['D', 'H', 'L']
-				]);
+				spirit.rows([['A', 'E', 'I'], ['B', 'F', 'J'], ['C', 'G', 'K'], ['D', 'H', 'L']]);
 				spirit.selectable(function(selected, unselected) {
 					select = selected;
 				});
@@ -365,14 +363,14 @@ describe('ts.ui.TableSpirit', function likethis() {
 			});
 		});
 
-		it('should clickable', function(done) {
+		it('should be clickable', function(done) {
 			var select = null;
 			var unselect = null;
 			setup(function(spirit, dom) {
 				spirit.rows([
-					{cells: ['A', 'D', 'G'], selected: true},
-					{cells: ['B', 'E', 'H']},
-					{cells: ['C', 'F', 'I']}
+					{ cells: ['A', 'D', 'G'], selected: true },
+					{ cells: ['B', 'E', 'H'] },
+					{ cells: ['C', 'F', 'I'] }
 				]);
 				spirit.selectable(function(selected, unselected) {
 					select = selected;
@@ -387,13 +385,17 @@ describe('ts.ui.TableSpirit', function likethis() {
 			});
 		});
 
-		it('should retrieve the selected indexes (as an array) with the selected method', function(done) {
+		it('should retrieve the selected indexes (as an array) with the selected method', function(
+			done
+		) {
 			setup(function(spirit, dom) {
-				spirit.selectable().rows([
-					{cells: ['A', 'D', 'G'], selected: true},
-					{cells: ['B', 'E', 'H'], selected: true},
-					{cells: ['C', 'F', 'I']}
-				]);
+				spirit
+					.selectable()
+					.rows([
+						{ cells: ['A', 'D', 'G'], selected: true },
+						{ cells: ['B', 'E', 'H'], selected: true },
+						{ cells: ['C', 'F', 'I'] }
+					]);
 
 				sometime(function later() {
 					expect(spirit.selected()).toEqual([0, 1]);
@@ -404,11 +406,13 @@ describe('ts.ui.TableSpirit', function likethis() {
 
 		it('should confirm selection by passing one or more indexes (or an array)', function(done) {
 			setup(function(spirit, dom) {
-				spirit.selectable().rows([
-					{cells: ['A', 'D', 'G'], selected: true},
-					{cells: ['B', 'E', 'H'], selected: true},
-					{cells: ['C', 'F', 'I']}
-				]);
+				spirit
+					.selectable()
+					.rows([
+						{ cells: ['A', 'D', 'G'], selected: true },
+						{ cells: ['B', 'E', 'H'], selected: true },
+						{ cells: ['C', 'F', 'I'] }
+					]);
 
 				sometime(function later() {
 					expect(spirit.selected([0, 1])).toEqual(true);
@@ -419,11 +423,13 @@ describe('ts.ui.TableSpirit', function likethis() {
 
 		it('should get a selection menu in the header', function(done) {
 			setup(function(spirit, dom) {
-				spirit.selectable().rows([
-					{cells: ['A', 'D', 'G']},
-					{cells: ['B', 'E', 'H']},
-					{cells: ['C', 'F', 'I']}
-				]);
+				spirit
+					.selectable()
+					.rows([
+						{ cells: ['A', 'D', 'G'] },
+						{ cells: ['B', 'E', 'H'] },
+						{ cells: ['C', 'F', 'I'] }
+					]);
 
 				spirit.cols(['One', 'Two', 'Three']);
 
@@ -438,18 +444,18 @@ describe('ts.ui.TableSpirit', function likethis() {
 	describe('Search', function() {
 		it('should setup a SearchModel for any column via the search property', function(done) {
 			setup(function(spirit, dom) {
-				spirit.cols(
-					['Animal', {label: 'Price',
-						type: 'ts-number',
-						search: {
-							info: 'Leo'
-						}}]
-				).rows([
-					['Donkey', 700],
-					['Baboon', 1500],
-					['Coyote', 250],
-					['Albatross', 50]
-				]);
+				spirit
+					.cols([
+						'Animal',
+						{
+							label: 'Price',
+							type: 'ts-number',
+							search: {
+								info: 'Leo'
+							}
+						}
+					])
+					.rows([['Donkey', 700], ['Baboon', 1500], ['Coyote', 250], ['Albatross', 50]]);
 				sometime(function later() {
 					expect(spirit.element.innerHTML).toContain('data-ts="Search"');
 					expect(spirit.element.innerHTML).toContain('Leo');
@@ -462,12 +468,14 @@ describe('ts.ui.TableSpirit', function likethis() {
 	describe('Edit', function() {
 		it('should editable', function(done) {
 			setup(function(spirit, dom) {
-				spirit.rows([
-					['Single asterisks is used for *italic text*'],
-					['Double asterisks is used for **strong text**'],
-					['Single backtick is used for `monotype text`'],
-					['Double tilde can be used to ~~Strike text~~']
-				]).editable();
+				spirit
+					.rows([
+						['Single asterisks is used for *italic text*'],
+						['Double asterisks is used for **strong text**'],
+						['Single backtick is used for `monotype text`'],
+						['Double tilde can be used to ~~Strike text~~']
+					])
+					.editable();
 				sometime(function later() {
 					expect(spirit.element.innerHTML).toContain('textarea');
 					done();
@@ -477,11 +485,7 @@ describe('ts.ui.TableSpirit', function likethis() {
 
 		it('All cells are assumed editable unless negated in the column definition', function(done) {
 			setup(function(spirit, dom) {
-				spirit.cols([
-					{label: 'Don\'t edit!', editable: false}
-				]).rows([
-					['X']
-				]).editable();
+				spirit.cols([{ label: "Don't edit!", editable: false }]).rows([['X']]).editable();
 				sometime(function later() {
 					expect(spirit.element.innerHTML).not.toContain('textarea');
 					done();
@@ -491,9 +495,7 @@ describe('ts.ui.TableSpirit', function likethis() {
 
 		it('disable editing per row', function(done) {
 			setup(function(spirit, dom) {
-				spirit.rows([
-					{cells: ['X', 'X', 'X'], editable: false}
-				]).editable();
+				spirit.rows([{ cells: ['X', 'X', 'X'], editable: false }]).editable();
 				sometime(function later() {
 					expect(spirit.element.innerHTML).not.toContain('textarea');
 					done();
@@ -503,7 +505,9 @@ describe('ts.ui.TableSpirit', function likethis() {
 	});
 
 	describe('Filter', function() {
-		it('should support a button which can be assigned an icon and an onclick method', function(done) {
+		it('should support a button which can be assigned an icon and an onclick method', function(
+			done
+		) {
 			setup(function(spirit, dom) {
 				spirit.cols([
 					{
@@ -511,8 +515,7 @@ describe('ts.ui.TableSpirit', function likethis() {
 						type: 'ts-number',
 						button: {
 							icon: 'ts-icon-addfilter',
-							onclick: function() {
-							}
+							onclick: function() {}
 						}
 					}
 				]);
@@ -531,8 +534,7 @@ describe('ts.ui.TableSpirit', function likethis() {
 						type: 'ts-number',
 						button: {
 							icon: 'ts-icon-addfilter',
-							onclick: function() {
-							}
+							onclick: function() {}
 						}
 					}
 				]);
@@ -549,12 +551,10 @@ describe('ts.ui.TableSpirit', function likethis() {
 	describe('Config', function() {
 		it('should make the table configurable by a button in the statusbar', function(done) {
 			setup(function(spirit, dom) {
-				spirit.configurable(function onclick() {
-				}).cols(['A', 'B', 'C', 'D']).rows([
-					[1, 4, 7, 10],
-					[2, 5, 8, 11],
-					[3, 6, 9, 12]
-				]);
+				spirit
+					.configurable(function onclick() {})
+					.cols(['A', 'B', 'C', 'D'])
+					.rows([[1, 4, 7, 10], [2, 5, 8, 11], [3, 6, 9, 12]]);
 				sometime(function later() {
 					expect(spirit.element.innerHTML).toContain('ts-icon-settings');
 					done();
@@ -566,11 +566,7 @@ describe('ts.ui.TableSpirit', function likethis() {
 	describe('Status', function() {
 		it('should show a message in the lower left corner', function(done) {
 			setup(function(spirit, dom) {
-				spirit.rows([
-					[1, 4, 7],
-					[2, 5, 8],
-					[3, 6, 9]
-				]);
+				spirit.rows([[1, 4, 7], [2, 5, 8], [3, 6, 9]]);
 				spirit.status('leo');
 				sometime(function later() {
 					expect(spirit.element.innerHTML).toContain('leo');
@@ -580,3 +576,25 @@ describe('ts.ui.TableSpirit', function likethis() {
 		});
 	});
 });
+
+function geticon(type, value) {
+	return {
+		item: 'Icon',
+		type: type,
+		value: value
+	};
+}
+function getswitch(name, value) {
+	return {
+		item: 'Switch',
+		name: name,
+		value: value
+	};
+}
+function getuserimage(name, value) {
+	return {
+		item: 'UserImage',
+		name: name,
+		value: value
+	};
+}

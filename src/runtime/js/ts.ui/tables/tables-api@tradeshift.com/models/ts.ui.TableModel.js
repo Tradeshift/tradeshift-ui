@@ -159,12 +159,15 @@ ts.ui.TableModel = (function using(RowCollection, Type, Model) {
 	 * @eeturns {string|number} (or anything really!)
 	 */
 	function getsortvalue(row, index) {
-		if (Array.isArray(row)) {
-			return row[index];
+		var cel, txt, val;
+		if (Type.isArray(row)) {
+			cel = row[index];
+			val = Type.isObject(cel) ? cel.value : cel;
+			return val;
 		} else {
-			var cel = row.cells[index];
-			var txt = cel.text;
-			var val = cel.value;
+			cel = row.cells[index];
+			txt = cel.text;
+			val = cel.value;
 			return val !== undefined ? val : txt;
 		}
 	}
@@ -643,7 +646,7 @@ ts.ui.TableModel = (function using(RowCollection, Type, Model) {
 						return v === undefined || v === null;
 					})
 				) {
-					throw new Error('Expected all columns cells to have a `value` or `text` property');
+					throw new Error('Expected all columns cells to have a `value` or `text`');
 				} else {
 					var n = !vals.some(isNaN);
 					rows.sort(function(r1, r2) {

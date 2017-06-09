@@ -45,11 +45,21 @@ var BROADCAST_PREFIX = 'app-broadcast:';
  */
 
 var Listener = function () {
-	function Listener() {
+	function Listener(appIds) {
 		_classCallCheck(this, Listener);
 
 		this.events = new Map();
+
+		this.appIds = appIds;
 	}
+
+	/**
+  * Listen to message and call handler.
+  * @param {string} key The key/subject of the event.
+  * @param {function} callback The handler of the event.
+  * @return {Listener} Listener object
+  */
+
 	/**
   * The map of the events
   */
@@ -57,14 +67,6 @@ var Listener = function () {
 
 	_createClass(Listener, [{
 		key: 'on',
-
-
-		/**
-   * Listen to message and call handler.
-   * @param {string} key The key/subject of the event.
-   * @param {function} callback The handler of the event.
-   * @return {Listener} Listener object
-   */
 		value: function on(key, callback) {
 			var _this = this;
 
@@ -81,7 +83,7 @@ var Listener = function () {
 					return _this;
 				}
 				var content = JSON.parse(e.data.replace(BROADCAST_PREFIX, ''));
-				if (content.key !== key) {
+				if (content.key !== key || content.appIds !== _this.appIds) {
 					return _this;
 				}
 				if (callback) {

@@ -206,7 +206,7 @@ module.exports = function(grunt) {
 				options: {
 					separator: '\n\n',
 					banner: '(function() {\n\n',
-					footer: '\n\n}).call(ts.app);'
+					footer: '\n\n}).call(ts.xapp);'
 				},
 				dest: 'temp/ts.app.js',
 				src: 'app/dist/ts.app.js'

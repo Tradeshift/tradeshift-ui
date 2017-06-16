@@ -58,7 +58,7 @@ class Listener {
 				return this;
 			}
 			let content = JSON.parse(e.data.replace(BROADCAST_PREFIX, ''));
-			if (content.key !== key || content.appIds !== this.appIds) {
+			if (content.key !== key || (this.appIds !== '*' && content.appIds !== this.appIds)) {
 				return this;
 			}
 			if (callback) {

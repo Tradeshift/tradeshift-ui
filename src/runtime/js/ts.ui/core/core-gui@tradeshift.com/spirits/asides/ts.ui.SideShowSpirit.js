@@ -774,7 +774,7 @@ ts.ui.SideShowSpirit = (function using(
 				var shade = Parser.parseToNode('<div class="ts-shadow"></div>');
 				var panel = dom.q('this > .ts-panel', ts.ui.PanelSpirit);
 				var headr = dom.q('this > .ts-header', ts.ui.ToolBarSpirit);
-				var footr = dom.q('this > .ts-footer', ts.ui.FooterSpirit);
+				var footr = dom.q('this > .ts-footer', ts.ui.AsideFooterSpirit);
 				var tabbs = dom.q('this > .ts-tabbar', ts.ui.TabBarSpirit);
 				if (panel) {
 					// hotfix issue in React pending investigation

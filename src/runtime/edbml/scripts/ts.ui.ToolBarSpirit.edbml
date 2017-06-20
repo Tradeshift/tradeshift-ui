@@ -3,7 +3,7 @@
 	<?input name="toolbar" type="ts.ui.ToolBarModel"?>
 	<?input name="layout" type="ts.ui.LayoutModel"?>
 	<?function name="renderTabs" src="ts.ui.toolbartabs.edbml"?>
-	
+
 	var spirit = this;
 	var id = toolbar.$instanceid;
 	var mobilos = layout.isMobilePoint();
@@ -12,15 +12,15 @@
 	var mytitle = toolbar.title || (topbar ? toolbar.defaultTitle : '');
 	var hasrealtitle = !!toolbar.title;
 	
-	renderLeft(id, mytitle, toolbar.search, toolbar.tabs, toolbar.navigation);
+	renderLeft(id, mytitle, toolbar.search, toolbar.tabs, toolbar.navigation, toolbar.actions);
 	renderCenter(id, toolbar.pager);
 	renderRight(id, toolbar.$allbuttons());
 	renderSpinner(topbar && mobilos);
-		
-	function renderLeft(id, title, search, tabs, navigation) {
+
+	function renderLeft(id, title, search, tabs, navigation, actions) {
 		var hasnavi = !!(topbar && navigation && navigation.getLength());
 		var hastabs = !!tabs.getLength();
-		if(mobilos || search || hastabs || hasnavi || (topbar ? hasrealtitle : title)) {
+		if(mobilos || search || actions || hastabs || hasnavi || (topbar ? hasrealtitle : title)) {
 			if(mobilos && hastabs) {
 				renderTabs(spirit, tabs, id, mobilos);
 			}
@@ -28,29 +28,33 @@
 				if(topbar) {
 					renderNav(navigation);
 				}
-				if(!mobilos && hastabs && !hasnavi) {
-					renderTabs(spirit, tabs, id, mobilos);
+				if(actions) {
+					actions.forEach(renderbutton);
 				} else {
-				 if(search) {
-						@class = klass('ts-toolbar-search', search);
-						<li id="${id}-search" @class>
-							out.html += search.render();
-						</li>
-					}
-					if(title && (!search || !using(search))) {
-						var model = {flex: 1};
-						@class = klass('ts-toolbar-title', model);
-						<li id="${id}-title" @class>
-							if(statusbar) {
-								<label>
-									var whitelist = ['strong', 'em', 'strike', 'code'];
-									if(toolbar.linkable) whitelist.push('a');
-									out.html += ts.ui.Markdown.parse(title, whitelist);
-								</label>
-							} else {
-								<label>${title}</label>
-							}
-						</li>
+					if(!mobilos && hastabs && !hasnavi) {
+						renderTabs(spirit, tabs, id, mobilos);
+					} else {
+					 if(search) {
+							@class = klass('ts-toolbar-search', search);
+							<li id="${id}-search" @class>
+								out.html += search.render();
+							</li>
+						}
+						if(title && (!search || !using(search))) {
+							var model = {flex: 1};
+							@class = klass('ts-toolbar-title', model);
+							<li id="${id}-title" @class>
+								if(statusbar) {
+									<label>
+										var whitelist = ['strong', 'em', 'strike', 'code'];
+										if(toolbar.linkable) whitelist.push('a');
+										out.html += ts.ui.Markdown.parse(title, whitelist);
+									</label>
+								} else {
+									<label>${title}</label>
+								}
+							</li>
+						}
 					}
 				}
 			</menu>
@@ -78,7 +82,7 @@
 			<menu id="${id}-buttons" class="ts-toolbar-menu ts-right">
 				if(!toolbar.compact) {
 					toolbar.$allbuttons().forEach(renderbutton);
-				} else if (mobilos && buttons.length > 1) {
+				} else if (mobilos && buttons.length > 1 && !hasicons(buttons)) {
 					renderasidebutton(function onclick() {
 						spirit.putaside(toolbar.$allbuttons());
 					});
@@ -93,6 +97,13 @@
 				}
 			</menu>
 		}
+	}
+
+	// all buttons has icons (or is primary) so that we can keep them in mobile?
+	function hasicons(buttons) {
+		return buttons.every(function(button) {
+			return button.isPrimary() || !!button.icon;
+		});
 	}
 
 	// non-mobile buttons (tertiary buttons are the "normals" here)
@@ -129,7 +140,7 @@
 		var id = button.$instanceid;
 		@class = klass('ts-item', button);
 		<li @class id="${id}-item">
-			out.html += button.render();
+			out.html += button.render(false, mobilos);
 		</li>
 	}
 	

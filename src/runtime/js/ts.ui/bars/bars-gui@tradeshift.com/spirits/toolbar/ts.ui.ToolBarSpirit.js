@@ -348,6 +348,20 @@ ts.ui.ToolBarSpirit = (function using(
 			),
 
 			/**
+			 * Get or set the actions.
+			 * @param @optional {Array<object>} [json]
+			 * @returns {this|ts.ui.ButtonCollection}
+			 */
+			actions: chained(function(json) {
+				var model = this.model();
+				if (arguments.length) {
+					model.actions = json;
+				} else {
+					return model.actions();
+				}
+			}),
+
+			/**
 			 * Attempt to economize space by automatically transferring
 			 * any assigned buttons (especially tertiary) into an Aside.
 			 * Note that this is `true` by defult (make space for tabs).

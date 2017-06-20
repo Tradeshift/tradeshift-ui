@@ -23,7 +23,8 @@ ts.ui.DocumentSpirit = (function using(Client) {
 			this.input.connect(ts.ui.LayoutModel);
 			this.broadcast.addGlobal([APP_LOADING, APP_ABORTED, APP_COMPLETE]);
 			this.action
-				.add(ts.ui.ACTION_STATUSBAR_LEVEL)
+				// .add(ts.ui.ACTION_STATUSBAR_LEVEL)
+				.add(ts.ui.ACTION_FOOTER_LEVEL)
 				.addGlobal([
 					ts.ui.ACTION_GLOBAL_MODELS_INITIALIZE,
 					ts.ui.ACTION_GLOBAL_LOCATION_CHANGEHASH,
@@ -114,11 +115,17 @@ ts.ui.DocumentSpirit = (function using(Client) {
 				case ts.ui.ACTION_GLOBAL_TERMINATE:
 					this.broadcast.dispatch(ts.ui.BROADCAST_TERMINATE);
 					break;
+				/*
 				// statusbar changed height on window resize
 				case ts.ui.ACTION_STATUSBAR_LEVEL:
 					if (a.target.guilayout.outsideMain()) {
 						this.guilayout.gotoLevel(a.data);
 					}
+					break;
+				*/
+				// footer initialized or changed height
+				case ts.ui.ACTION_FOOTER_LEVEL:
+					this.guilayout.gotoLevel(a.data, 'ts-footer-level');
 					break;
 			}
 		},

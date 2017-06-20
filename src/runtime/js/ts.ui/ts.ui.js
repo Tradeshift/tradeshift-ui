@@ -263,6 +263,7 @@ ts.ui = gui.namespace(
 			ACTION_PANEL_HIDE: 'ts-action-panel-hide',
 			ACTION_PAGER_SELECT: 'ts-action-pager-select',
 			ACTION_STATUSBAR_LEVEL: 'ts-action-statusbar-level',
+			ACTION_FOOTER_LEVEL: 'ts-action-footer-level',
 			ACTION_ROOT_CLASSNAMES: 'ts-action-root-classnames',
 
 			// postmessages

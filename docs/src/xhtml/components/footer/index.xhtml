@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Footer</title>
+	</head>
+	<body>
+		<header data-ts="TopBar"></header>
+		<main data-ts="Main">
+			<article>
+				<h1>Footer</h1>
+				<section class="desc">
+					<p>Go go gadget Footer.</p>
+				</section>
+				<section>
+					<p>Here we goat!</p>
+
+					<figure data-ts="DoxScript">
+						<script type="runnable">
+							ts.ui.Footer.buttons([
+								{ label: 'Button 1', icon: 'ts-icon-todo', type: 'ts-primary' },
+								{ label: 'Button 2', icon: 'ts-icon-todo', type: 'ts-secondary' },
+								{ label: 'Button 3', icon: 'ts-icon-todo', type: 'ts-tertiary' }
+							]);
+						</script>
+					</figure>
+
+					<figure data-ts="DoxScript">
+						<script type="runnable">
+							ts.ui.Footer.actions([
+								{ label: 'Hans', icon: 'ts-icon-todo' },
+								{ label: 'Jens', icon: 'ts-icon-todo' },
+								{ label: 'John', icon: 'ts-icon-todo' },
+							]);
+						</script>
+					</figure>
+
+					<figure data-ts="DoxScript">
+						<script type="runnable">
+							ts.ui.Footer.selectable(
+								function onselectall() {
+									ts.ui.Footer.selected = true;
+								},
+								function onselectall() {
+									ts.ui.Footer.selected = false;
+								}
+							);
+						</script>
+					</figure>
+
+					<figure data-ts="DoxScript">
+						<script type="runnable">
+							ts.ui.Footer.pager({
+								pages: 23,
+								page: 0,
+								onselect: function(index) {
+									console.log(index);
+								}
+							});
+						</script>
+					</figure>
+				</section>
+			</article>
+		</main>
+	</body>
+<html>

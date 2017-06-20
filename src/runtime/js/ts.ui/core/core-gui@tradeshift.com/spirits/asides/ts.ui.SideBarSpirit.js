@@ -142,7 +142,7 @@ ts.ui.SideBarSpirit = (function using(chained, Type, Client, GuiObject, Colors) 
 				this.super.onaction(a);
 				switch (a.type) {
 					case willopen:
-						this._fitaside(a.target, this.dom.qall('.ts-footer', ts.ui.FooterSpirit));
+						this._fitaside(a.target, this.dom.qall('.ts-footer', ts.ui.AsideFooterSpirit));
 						a.consume();
 						break;
 					case didopen:
@@ -263,7 +263,7 @@ ts.ui.SideBarSpirit = (function using(chained, Type, Client, GuiObject, Colors) 
 			/**
 			 * Fit nested aside inside the panel (footer scenario).
 			 * @param {ts.ui.AsideSpirit} aside
-			 * @param {Array<ts.ui.FooterSpirit>} footers List of bonus footers
+			 * @param {Array<ts.ui.AsideFooterSpirit>} footers List of bonus footers
 			 */
 			_fitaside: function(aside, footers) {
 				if (footers.length) {

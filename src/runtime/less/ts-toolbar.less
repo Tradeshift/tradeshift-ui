@@ -42,6 +42,13 @@
 	}
 	&.ts-left {
 		left: 0;
+		&, & > li {
+			.ts-mixin-fixheight(@ts-unit-double);
+			.ts-action {
+				display: inline-block;
+				.ts-mixin-fixheight(@ts-unit-plus);
+			}
+		}
 	}
 	&.ts-right {
 		right: 0;
@@ -350,10 +357,10 @@
 		}
 	}
 	&.ts-small {
-		&.ts-level-1-5,
-		&.ts-level-2,
-		&.ts-level-2-5,
-		&.ts-level-3 {
+		&.ts-level-4-5,
+		&.ts-level-6,
+		&.ts-level-7-5,
+		&.ts-level-9 {
 			.ts-toolbar-menu {
 				display: block;
 				width: 100%;
@@ -368,8 +375,8 @@
 				bottom: 0;
 			}
 		}
-		&.ts-level-1-5,
-		&.ts-level-2-5 {
+		&.ts-level-4-5,
+		&.ts-level-7-5 {
 			.ts-left {
 				.ts-toolbar-item {
 					padding: 0;
@@ -381,16 +388,16 @@
 				}
 			}
 		}
-		&.ts-level-1-5 {
+		&.ts-level-4-5 {
 			.ts-mixin-fixheight((@ts-unit-triple * 1.5) + @ts-unit-quarter);
 		}
-		&.ts-level-2 {
+		&.ts-level-6 {
 			.ts-mixin-fixheight(@ts-unit-triple * 2);
 		}
-		&.ts-level-2-5 {
+		&.ts-level-7-5 {
 			.ts-mixin-fixheight(@ts-unit-triple * 2.5);
 		}
-		&.ts-level-3 {
+		&.ts-level-9 {
 			.ts-mixin-fixheight(@ts-unit-triple * 3);
 		}
 	}
@@ -413,6 +420,15 @@
 					font-size: @ts-fontsize;
 				}
 			}
+			.ts-action {
+
+			}
+			/*
+			.ts-action {
+				padding-top: @ts-unit-half;
+				padding-top: @ts-unit-half;
+			}
+			*/
 		}
 	}
 	.ts-toolbar-tabs,

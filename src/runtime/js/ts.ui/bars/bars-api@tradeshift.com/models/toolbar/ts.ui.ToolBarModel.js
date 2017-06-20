@@ -54,6 +54,12 @@ ts.ui.ToolBarModel = (function using(chained) {
 		tabs: ts.ui.TabCollection,
 
 		/**
+		 * Toolbar actions collection.
+		 * @type {ts.ui.ActionCollection<ts.ui.ButtonModel>}
+		 */
+		actions: ts.ui.ActionCollection,
+
+		/**
 		 * Toolbar button collection.
 		 * @type {ts.ui.ButtonCollection<ts.ui.ButtonModel>}
 		 */

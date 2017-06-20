@@ -79,6 +79,11 @@
 				"path": "components/dialogs/"
 			},
 			{
+				"label": "Footer",
+				"icon": "docs-icon-video-games-space-invaders-1",
+				"path": "components/footer/"
+			},
+			{
 				"label": "Forms",
 				"icon": "docs-icon-pencil-fill",
 				"path": "components/forms/"

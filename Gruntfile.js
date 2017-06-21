@@ -5,7 +5,7 @@ const path = require('path');
  * TODO (jmo@): node --max-old-space-size=4096 /usr/local/bin/grunt ci
  * @param {Grunt} grunt
  */
-module.exports = function(grunt) {
+module.exports = function (grunt) {
 	'use strict';
 	// load grunt tasks
 	require('load-grunt-tasks')(grunt);
@@ -14,7 +14,7 @@ module.exports = function(grunt) {
 	grunt.file.defaultEncoding = 'utf8';
 
 	// import custom tasks (to keep this file somewhat readable)
-	['tsjs', 'tsless', 'check_cdn'].forEach(function(task) {
+	['tsjs', 'tsless', 'check_cdn'].forEach(function (task) {
 		require('./tasks/' + task).init(grunt);
 	});
 
@@ -32,7 +32,7 @@ module.exports = function(grunt) {
 	// build for CDN
 	grunt.registerTask(
 		'dist',
-		[].concat(['exec:eslint'], build('cdn'), sizeReport('cdn'), ['exec:docs_dist'])
+		[].concat(['exec:eslint'], build('cdn'), sizeReport('cdn'), ['exec:docs_dist', 'exec:app_grunt'])
 	);
 
 	// build for jasmine tests
@@ -87,7 +87,7 @@ module.exports = function(grunt) {
 				expand: true,
 				src: 'src/runtime/js/ts.ui/lang/*',
 				dest: 'dist/cdn/',
-				rename: function(dest, src) {
+				rename: function (dest, src) {
 					const ext = path.extname(src);
 					const filename = path.basename(src, ext) + '-<%= pkg.version %>' + ext;
 					return dest + '/' + grunt.template.process(filename);
@@ -134,11 +134,11 @@ module.exports = function(grunt) {
 			cdn: {
 				options: {
 					'${runtimecss}': '<%= config.cdn_live %>' +
-						config.cdn_folder +
-						'/ts-<%= pkg.version %>.min.css',
+					config.cdn_folder +
+					'/ts-<%= pkg.version %>.min.css',
 					'${langbundle}': '<%= config.cdn_live %>' +
-						config.cdn_folder +
-						'/ts-lang-<LANG>-<%= pkg.version %>.js'
+					config.cdn_folder +
+					'/ts-lang-<LANG>-<%= pkg.version %>.js'
 				},
 				files: {
 					'temp/ts.js': 'src/runtime/ts.js'
@@ -436,6 +436,10 @@ module.exports = function(grunt) {
 				command: 'cd docs && grunt dist',
 				stdout: 'inherit'
 			},
+			app_grunt: {
+				command: 'cd app && npm run build',
+				stdout: 'inherit'
+			},
 			docs_grunt: {
 				command: 'cd docs && grunt',
 				stdout: 'inherit'
@@ -454,8 +458,8 @@ module.exports = function(grunt) {
 
 		// serve, watch, generate concurrently
 		concurrent: {
-			docs: ['devserver', 'watch', 'exec:docs_grunt'],
-			nodocs: ['devserver', 'watch', 'asciify:banner'],
+			docs: ['devserver', 'watch', 'exec:docs_grunt', 'exec:app_grunt'],
+			nodocs: ['devserver', 'watch', 'exec:app_grunt', 'asciify:banner'],
 			// Build for CDN
 			cdn_generate_js: {
 				tasks: generateJsConcurrent('cdn')
@@ -662,7 +666,7 @@ module.exports = function(grunt) {
 	 */
 	function getbuildoptions() {
 		return {
-			process: function(src, path) {
+			process: function (src, path) {
 				if (path === 'temp/ts-runtime-api.js') {
 					const version = grunt.template.process('<%= pkg.version %>');
 					return src.replace('$$VERSION$$', version);
@@ -679,7 +683,7 @@ module.exports = function(grunt) {
 	 */
 	function getbuild(file) {
 		const folder = path.dirname(file);
-		return grunt.file.readJSON(file).map(function(src) {
+		return grunt.file.readJSON(file).map(function (src) {
 			return validated(path.normalize(folder + '/' + src));
 		});
 	}

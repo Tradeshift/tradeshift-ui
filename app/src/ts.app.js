@@ -34,6 +34,9 @@ class Listener {
 	 * The map of the events
 	 */
 	events = new Map();
+	constructor(appIds) {
+		this.appIds = appIds;
+	}
 
 	/**
 	 * Listen to message and call handler.
@@ -55,7 +58,7 @@ class Listener {
 				return this;
 			}
 			let content = JSON.parse(e.data.replace(BROADCAST_PREFIX, ''));
-			if (content.key !== key) {
+			if (content.key !== key || (this.appIds !== '*' && content.appIds !== this.appIds)) {
 				return this;
 			}
 			if (callback) {

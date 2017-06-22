@@ -12,15 +12,16 @@
 	var mytitle = toolbar.title || (topbar ? toolbar.defaultTitle : '');
 	var hasrealtitle = !!toolbar.title;
 	
-	renderLeft(id, mytitle, toolbar.search, toolbar.tabs, toolbar.navigation, toolbar.actions);
-	renderCenter(id, toolbar.pager);
-	renderRight(id, toolbar.$allbuttons());
-	renderSpinner(topbar && mobilos);
+	renderleft(id, mytitle, toolbar.search, toolbar.tabs, toolbar.navigation, toolbar.checkbox, toolbar.actions);
+	rendercenter(id, toolbar.pager);
+	renderright(id, toolbar.$allbuttons());
+	renderspinner(topbar && mobilos);
 
-	function renderLeft(id, title, search, tabs, navigation, actions) {
+	function renderleft(id, title, search, tabs, navigation, checkbox, actions) {
 		var hasnavi = !!(topbar && navigation && navigation.getLength());
 		var hastabs = !!tabs.getLength();
-		if(mobilos || search || actions || hastabs || hasnavi || (topbar ? hasrealtitle : title)) {
+		var hasactions = !!actions.getLength();
+		if(mobilos || search || checkbox || hasactions || hastabs || hasnavi || (topbar ? hasrealtitle : title)) {
 			if(mobilos && hastabs) {
 				renderTabs(spirit, tabs, id, mobilos);
 			}
@@ -28,40 +29,39 @@
 				if(topbar) {
 					renderNav(navigation);
 				}
-				if(actions) {
-					actions.forEach(renderbutton);
+				if(!mobilos && hastabs && !hasnavi) {
+					renderTabs(spirit, tabs, id, mobilos);
 				} else {
-					if(!mobilos && hastabs && !hasnavi) {
-						renderTabs(spirit, tabs, id, mobilos);
-					} else {
-					 if(search) {
-							@class = klass('ts-toolbar-search', search);
-							<li id="${id}-search" @class>
-								out.html += search.render();
-							</li>
-						}
-						if(title && (!search || !using(search))) {
-							var model = {flex: 1};
-							@class = klass('ts-toolbar-title', model);
-							<li id="${id}-title" @class>
-								if(statusbar) {
-									<label>
-										var whitelist = ['strong', 'em', 'strike', 'code'];
-										if(toolbar.linkable) whitelist.push('a');
-										out.html += ts.ui.Markdown.parse(title, whitelist);
-									</label>
-								} else {
-									<label>${title}</label>
-								}
-							</li>
-						}
+				 if(search) {
+						@class = klass('ts-toolbar-search', search);
+						<li id="${id}-search" @class>
+							out.html += search.render();
+						</li>
 					}
+					if(checkbox) {
+						rendercheckbox(checkbox);
+					}
+					if(title && (!search || !using(search))) {
+						@class = klass('ts-toolbar-title', hasactions ? {} : {flex: 1});
+						<li id="${id}-title" @class>
+							if(statusbar) {
+								<label>
+									var whitelist = ['strong', 'em', 'strike', 'code'];
+									if(toolbar.linkable) whitelist.push('a');
+									out.html += ts.ui.Markdown.parse(title, whitelist);
+								</label>
+							} else {
+								<label>${title}</label>
+							}
+						</li>
+					}
+					actions.forEach(renderbutton);
 				}
 			</menu>
 		}
 	}
 
-	function renderCenter(id, pager) {
+	function rendercenter(id, pager) {
 		if(showPager()) {
 			<menu id="${id}-extras" class="ts-toolbar-menu ts-center">
 				@class = klass('ts-toolbar-pager', pager);
@@ -77,7 +77,7 @@
 		return !!(statusbar && pager && pager.pages);
 	}
 
-	function renderRight(id, buttons) {
+	function renderright(id, buttons) {
 		if(buttons.length || toolbar.closebutton) {
 			<menu id="${id}-buttons" class="ts-toolbar-menu ts-right">
 				if(!toolbar.compact) {
@@ -155,6 +155,18 @@
 		</li>
 	}
 
+	// checkbox (for selections in the actionbar)
+	function rendercheckbox(box) {
+		@class = klass('ts-toolbar-checkbox', box);
+		@title = box.info || null;
+		<li @class id="${id}-checkbox">
+			<button data-ts="Button" onclick="#{box.onclick()}" @title>
+				@class = box.checked ? 'ts-icon-checkboxon' : 'ts-icon-checkbox';
+				<i @class></i>
+			</button>
+		</li>
+	}
+
 	function klass(cname, model) {
 		var flex = model && model.flex;
 		return [
@@ -172,7 +184,7 @@
 	// SPINNER ...................................................................
 	
 	// in the TopBar, we'll render the Spinner in mobile brakpoint.
-	function renderSpinner(on) {
+	function renderspinner(on) {
 		@id = id + '-spinner';
 		@class = 'ts-topbarspinner';
 		if(on) {

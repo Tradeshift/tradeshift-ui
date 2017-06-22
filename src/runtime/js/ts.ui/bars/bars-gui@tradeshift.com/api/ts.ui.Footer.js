@@ -18,41 +18,25 @@ ts.ui.Footer = (function using(chained) {
 	/*
 	 * Public methods ............................................................
 	 */
-	return {
+	var Footer = {
 		/**
-		 * Something has selection somewhere?
-		 * @type {boolean}
+		 * Identification.
+		 * @returns {string}
 		 */
-		selected: false,
+		toString: function() {
+			return '[object ts.ui.Footer]';
+		},
 
 		/**
-		 * Open for implementation.
-		 * @type {Function}
+		 * @param {Object|null} [json]
+		 * @returns {this|ts.ui.Model}
 		 */
-		onselectall: null,
-
-		/**
-		 * Open for implementation.
-		 * @type {Function}
-		 */
-		onunselectall: null,
-
-		/**
-		 * 
-		 */
-		selectable: chained(function(onselectall, onunselectall) {
-			this.onselectall = onselectall || null;
-			this.onunselectall = onunselectall || null;
-			footer().selectable();
-		}),
-
-		/**
-		 *
-		 */
-		unselectable: chained(function() {
-			this.onselectall = null;
-			this.onunselectall = null;
-			footer().unselectable();
+		checkbox: chained(function(json) {
+			if (arguments.length) {
+				footer().checkbox(json);
+			} else {
+				return footer().checkbox();
+			}
 		}),
 
 		/**
@@ -102,24 +86,55 @@ ts.ui.Footer = (function using(chained) {
 			}
 		}),
 
+		/**
+		 * Hide the whole footer.
+		 * @returns {this}
+		 */
+		hide: chained(function() {
+			footer().hide();
+		}),
+
+		/**
+		 * Show that footer.
+		 * @returns {this}
+		 */
+		show: chained(function() {
+			footer().show();
+		}),
+
 		// Privileged ..............................................................
 
 		/**
-		 * Mark something as selected (somewhere).
-		 * @param {boolean} selected
+		 * Toggle the checkbox to indicate something or nothing selected.
+		 * @param {boolean} checked
 		 */
-		$select: function(selected) {
-			footer().selected(selected);
+		$check: function(checked) {
+			footer().checkbox().checked = checked;
 		}
 	};
+
+	[
+		'hideActions',
+		'showActions',
+		'hidePager',
+		'showPager',
+		'hideButtons',
+		'showButtons'
+	].forEach(function generate(method) {
+		Footer[method] = chained(function() {
+			footer()[method]();
+		});
+	});
+
+	return Footer;
 })(gui.Combo.chained);
 
 /**
  * This thing should be implemented as an accessor because 
  * some API with a single boolean argument just aint right.
- */
+ *
 (function scoped(now) {
-	Object.defineProperty(ts.ui.Footer, 'selected', {
+	Object.defineProperty(ts.ui.Footer, 'checked', {
 		get: function() {
 			return now;
 		},
@@ -127,8 +142,9 @@ ts.ui.Footer = (function using(chained) {
 			var was = now;
 			now = !!value;
 			if (now !== was) {
-				this.$select(now);
+				this.$check(now);
 			}
 		}
 	});
 })(ts.ui.Footer.selected);
+*/

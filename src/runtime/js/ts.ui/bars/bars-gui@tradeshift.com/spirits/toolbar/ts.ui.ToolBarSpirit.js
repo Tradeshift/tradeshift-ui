@@ -357,7 +357,7 @@ ts.ui.ToolBarSpirit = (function using(
 				if (arguments.length) {
 					model.actions = json;
 				} else {
-					return model.actions();
+					return model.actions;
 				}
 			}),
 
@@ -421,7 +421,7 @@ ts.ui.ToolBarSpirit = (function using(
 				if (this.visible) {
 					this.dom.hide();
 					this.visible = false;
-					this._layoutmain(false);
+					this._layoutmain(false); // TODO: THIS MUST GO!
 				}
 			}),
 
@@ -433,7 +433,7 @@ ts.ui.ToolBarSpirit = (function using(
 				if (!this.visible) {
 					this.dom.show();
 					this.visible = true;
-					this._layoutmain(true);
+					this._layoutmain(true); // TODO: THIS MUST GO!
 				}
 			}),
 

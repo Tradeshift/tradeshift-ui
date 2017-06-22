@@ -43,10 +43,10 @@
 	&.ts-left {
 		left: 0;
 		&, & > li {
-			.ts-mixin-fixheight(@ts-unit-double);
-			.ts-action {
+			.ts-mixin-fixheight(@ts-unit-triple);
+			.ts-button {
 				display: inline-block;
-				.ts-mixin-fixheight(@ts-unit-plus);
+				.ts-mixin-fixheight(@ts-unit-triple);
 			}
 		}
 	}
@@ -307,9 +307,6 @@
 		}
 	}
 }
-
-
-
 .ts-toolbar {
 	&.ts-bg-dark .ts-toolbar-tabs {
 		.ts-button {
@@ -345,6 +342,7 @@
 		.mixin-temp(@ts-purple);
 	}
 }
+
 
 // Statusbar ...................................................................
 
@@ -408,6 +406,15 @@
 .ts-toolbar.ts-micro {
 	.ts-mixin-fixheight(@ts-unit-double);
 	.ts-left {
+		&, & > li {
+			.ts-mixin-fixheight(@ts-unit-plus);
+			.ts-button {
+				display: inline-block;
+				.ts-mixin-fixheight(@ts-unit-plus);
+			}
+		}
+	}
+	.ts-left {
 		.ts-toolbar-item {
 			padding: @ts-unit-quarter;
 			&.ts-toolbar-title {
@@ -430,6 +437,7 @@
 			}
 			*/
 		}
+
 	}
 	.ts-toolbar-tabs,
 	.ts-tab {

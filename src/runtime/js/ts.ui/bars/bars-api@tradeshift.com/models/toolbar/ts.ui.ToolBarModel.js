@@ -72,11 +72,30 @@ ts.ui.ToolBarModel = (function using(chained) {
 		closebutton: ts.ui.ButtonModel,
 
 		/**
+		 * Some kind of checkbox (for the actionbar selections).
+		 * TODO: Perhaps move this thing out into external file.
+		 * @type {ts.ui.Model}
+		 */
+		checkbox: ts.ui.Model.extend({
+			info: '',
+			checked: false,
+			visible: true,
+			onclick: null,
+			hide: function() {
+				this.visible = false;
+			},
+			show: function() {
+				this.visible = true;
+			}
+		}),
+
+		/**
 		 * Newup defaults.
 		 */
 		onconstruct: function() {
 			this.super.onconstruct();
 			this.buttons = this.buttons || [];
+			this.actions = this.actions || [];
 			this.tabs = this.tabs || [];
 			this._watchmodels(true);
 			this._updatehascontent();

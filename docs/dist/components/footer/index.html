@@ -36,37 +36,6 @@
 </pre>
                         </div>
                     </figure>
-                    <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.Footer.actions(%5B%0A%09%7B%20label%3A%20&apos;Hans&apos;%2C%20icon%3A%20&apos;ts-icon-todo&apos;%20%7D%2C%0A%09%7B%20label%3A%20&apos;Jens&apos;%2C%20icon%3A%20&apos;ts-icon-todo&apos;%20%7D%2C%0A%09%7B%20label%3A%20&apos;John&apos;%2C%20icon%3A%20&apos;ts-icon-todo&apos;%20%7D%2C%0A%5D)%3B">
-                        <script type="runnable">
-                            ts.ui.Footer.actions([ { label: 'Hans', icon: 'ts-icon-todo' }, { label: 'Jens', icon: 'ts-icon-todo' }, { label: 'John', icon: 'ts-icon-todo' }, ]);
-                        </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
-                        <div class="tabpanels">
-                            <pre class="prism language-javascript">
-<code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Footer<span class="token punctuation">.</span><span class="token function">actions<span class="token punctuation">(</span></span><span class="token punctuation">[</span>
-	<span class="token punctuation">{</span> label<span class="token punctuation">:</span> <span class="token string">&apos;Hans&apos;</span><span class="token punctuation">,</span> icon<span class="token punctuation">:</span> <span class="token string">&apos;ts-icon-todo&apos;</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
-	<span class="token punctuation">{</span> label<span class="token punctuation">:</span> <span class="token string">&apos;Jens&apos;</span><span class="token punctuation">,</span> icon<span class="token punctuation">:</span> <span class="token string">&apos;ts-icon-todo&apos;</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
-	<span class="token punctuation">{</span> label<span class="token punctuation">:</span> <span class="token string">&apos;John&apos;</span><span class="token punctuation">,</span> icon<span class="token punctuation">:</span> <span class="token string">&apos;ts-icon-todo&apos;</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
-<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
-</pre>
-                        </div>
-                    </figure>
-                    <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.Footer.selectable(%0A%09function%20onselectall()%20%7B%0A%09%09ts.ui.Footer.selected%20%3D%20true%3B%0A%09%7D%2C%0A%09function%20onselectall()%20%7B%0A%09%09ts.ui.Footer.selected%20%3D%20false%3B%0A%09%7D%0A)%3B">
-                        <script type="runnable">
-                            ts.ui.Footer.selectable( function onselectall() { ts.ui.Footer.selected = true; }, function onselectall() { ts.ui.Footer.selected = false; } );
-                        </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
-                        <div class="tabpanels">
-                            <pre class="prism language-javascript">
-<code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Footer<span class="token punctuation">.</span><span class="token function">selectable<span class="token punctuation">(</span></span>
-	<span class="token keyword">function</span> <span class="token function">onselectall<span class="token punctuation">(</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-		ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Footer<span class="token punctuation">.</span>selected <span class="token operator">=</span> <span class="token keyword">true</span><span class="token punctuation">;</span>
-	<span class="token punctuation">}</span><span class="token punctuation">,</span>
-	<span class="token keyword">function</span> <span class="token function">onselectall<span class="token punctuation">(</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-		ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Footer<span class="token punctuation">.</span>selected <span class="token operator">=</span> <span class="token keyword">false</span><span class="token punctuation">;</span>
-	<span class="token punctuation">}</span>
-<span class="token punctuation">)</span><span class="token punctuation">;</span></code>
-</pre>
-                        </div>
-                    </figure>
                     <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.Footer.pager(%7B%0A%09pages%3A%2023%2C%0A%09page%3A%200%2C%0A%09onselect%3A%20function(index)%20%7B%0A%09%09console.log(index)%3B%0A%09%7D%0A%7D)%3B">
                         <script type="runnable">
                             ts.ui.Footer.pager({ pages: 23, page: 0, onselect: function(index) { console.log(index); } });
@@ -83,6 +52,165 @@
 </pre>
                         </div>
                     </figure>
+                    <h3><span>Selection and actions</span></h3>
+                    <p>Hello my friend.</p>
+                    <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.Footer.actions(%5B%0A%09%7B%20label%3A%20&apos;Move%20Up&apos;%2C%20icon%3A%20&apos;ts-icon-triangleup&apos;%20%7D%2C%0A%09%7B%20label%3A%20&apos;Move%20Down&apos;%2C%20icon%3A%20&apos;ts-icon-triangledown&apos;%20%7D%2C%0A%09%7B%20label%3A%20&apos;Move%20Left&apos;%2C%20icon%3A%20&apos;ts-icon-triangleleft&apos;%20%7D%2C%0A%09%7B%20label%3A%20&apos;Move%20Right&apos;%2C%20icon%3A%20&apos;ts-icon-triangleright&apos;%20%7D%2C%0A%5D)%3B">
+                        <script type="runnable">
+                            ts.ui.Footer.actions([ { label: 'Move Up', icon: 'ts-icon-triangleup' }, { label: 'Move Down', icon: 'ts-icon-triangledown' }, { label: 'Move Left', icon: 'ts-icon-triangleleft' }, { label: 'Move Right', icon: 'ts-icon-triangleright' }, ]);
+                        </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                        <div class="tabpanels">
+                            <pre class="prism language-javascript">
+<code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Footer<span class="token punctuation">.</span><span class="token function">actions<span class="token punctuation">(</span></span><span class="token punctuation">[</span>
+	<span class="token punctuation">{</span> label<span class="token punctuation">:</span> <span class="token string">&apos;Move Up&apos;</span><span class="token punctuation">,</span> icon<span class="token punctuation">:</span> <span class="token string">&apos;ts-icon-triangleup&apos;</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+	<span class="token punctuation">{</span> label<span class="token punctuation">:</span> <span class="token string">&apos;Move Down&apos;</span><span class="token punctuation">,</span> icon<span class="token punctuation">:</span> <span class="token string">&apos;ts-icon-triangledown&apos;</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+	<span class="token punctuation">{</span> label<span class="token punctuation">:</span> <span class="token string">&apos;Move Left&apos;</span><span class="token punctuation">,</span> icon<span class="token punctuation">:</span> <span class="token string">&apos;ts-icon-triangleleft&apos;</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+	<span class="token punctuation">{</span> label<span class="token punctuation">:</span> <span class="token string">&apos;Move Right&apos;</span><span class="token punctuation">,</span> icon<span class="token punctuation">:</span> <span class="token string">&apos;ts-icon-triangleright&apos;</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
+</pre>
+                        </div>
+                    </figure>
+                    <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.Footer.status(&apos;X%20items%20selected&apos;)%3B">
+                        <script type="runnable">
+                            ts.ui.Footer.status('X items selected');
+                        </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                        <div class="tabpanels">
+                            <pre class="prism language-javascript">
+<code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Footer<span class="token punctuation">.</span><span class="token function">status<span class="token punctuation">(</span></span><span class="token string">&apos;X items selected&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
+</pre>
+                        </div>
+                    </figure>
+                    <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.Footer.checkbox(%7B%0A%09onclick%3A%20function()%20%7B%0A%09%09this.checked%20%3D%20!this.checked%3B%0A%09%7D%0A%7D)%3B">
+                        <script type="runnable">
+                            ts.ui.Footer.checkbox({ onclick: function() { this.checked = !this.checked; } });
+                        </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                        <div class="tabpanels">
+                            <pre class="prism language-javascript">
+<code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Footer<span class="token punctuation">.</span><span class="token function">checkbox<span class="token punctuation">(</span></span><span class="token punctuation">{</span>
+	onclick<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		<span class="token keyword">this</span><span class="token punctuation">.</span>checked <span class="token operator">=</span> <span class="token operator">!</span><span class="token keyword">this</span><span class="token punctuation">.</span>checked<span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
+</pre>
+                        </div>
+                    </figure>
+                    <figure data-ts="DoxScript" class="runnable" data-ts.code="var%20Footer%20%3D%20ts.ui.Footer%3B%0AFooter.checkbox(%7B%0A%09checked%3A%20false%2C%0A%09onclick%3A%20function()%20%7B%0A%09%09if(this.checked)%20%7B%0A%09%09%09ts.ui.Dialog.confirm(&apos;Unselect%20123456%20items%3F&apos;%2C%20%7B%0A%09%09%09%09onaccept%3A%20reset%0A%09%09%09%7D)%3B%0A%09%09%7D%20else%20%7B%0A%09%09%09showactions()%3B%0A%09%09%7D%0A%09%7D%0A%7D)%3B%0Afunction%20showactions()%20%7B%0A%09Footer.checkbox().checked%20%3D%20true%3B%0A%09Footer.status(&apos;123456%20items%20selected&apos;).actions(%5B%0A%09%09%7B%20label%3A%20&apos;Delete&apos;%2C%20icon%3A%20&apos;ts-icon-delete&apos;%2C%20onclick%3A%20function()%20%7B%0A%09%09%09ts.ui.Notification.success(&apos;Deleted%20123456%20items&apos;)%3B%0A%09%09%09reset()%3B%0A%09%09%7D%7D%0A%09%5D)%3B%0A%7D%0Afunction%20reset()%20%7B%0A%09Footer.checkbox().checked%20%3D%20false%3B%0A%09Footer.status(&apos;0%20items%20selected&apos;)%3B%0A%09Footer.actions().clear()%3B%0A%7D%0Areset()%3B">
+                        <script type="runnable">
+                            var Footer = ts.ui.Footer; Footer.checkbox({ checked: false, onclick: function() { if(this.checked) { ts.ui.Dialog.confirm('Unselect 123456 items?', { onaccept: reset }); } else { showactions(); } } }); function showactions() { Footer.checkbox().checked
+                            = true; Footer.status('123456 items selected').actions([ { label: 'Delete', icon: 'ts-icon-delete', onclick: () => { ts.ui.Notification.success('Deleted 123456 items'); reset(); }} ]); } function reset() { Footer.checkbox().checked
+                            = false; Footer.status('0 items selected'); Footer.actions().clear(); } reset();
+                        </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                        <div class="tabpanels">
+                            <pre class="prism language-javascript">
+<code><span class="token keyword">var</span> Footer <span class="token operator">=</span> ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Footer<span class="token punctuation">;</span>
+Footer<span class="token punctuation">.</span><span class="token function">checkbox<span class="token punctuation">(</span></span><span class="token punctuation">{</span>
+	checked<span class="token punctuation">:</span> <span class="token keyword">false</span><span class="token punctuation">,</span>
+	onclick<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		<span class="token keyword">if</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>checked<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+			ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Dialog<span class="token punctuation">.</span><span class="token function">confirm<span class="token punctuation">(</span></span><span class="token string">&apos;Unselect 123456 items?&apos;</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+				onaccept<span class="token punctuation">:</span> reset
+			<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+			<span class="token function">showactions<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token punctuation">}</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">function</span> <span class="token function">showactions<span class="token punctuation">(</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	Footer<span class="token punctuation">.</span><span class="token function">checkbox<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">.</span>checked <span class="token operator">=</span> <span class="token keyword">true</span><span class="token punctuation">;</span>
+	Footer<span class="token punctuation">.</span><span class="token function">status<span class="token punctuation">(</span></span><span class="token string">&apos;123456 items selected&apos;</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">actions<span class="token punctuation">(</span></span><span class="token punctuation">[</span>
+		<span class="token punctuation">{</span> label<span class="token punctuation">:</span> <span class="token string">&apos;Delete&apos;</span><span class="token punctuation">,</span> icon<span class="token punctuation">:</span> <span class="token string">&apos;ts-icon-delete&apos;</span><span class="token punctuation">,</span> onclick<span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+			ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Notification<span class="token punctuation">.</span><span class="token function">success<span class="token punctuation">(</span></span><span class="token string">&apos;Deleted 123456 items&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+			<span class="token function">reset<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token punctuation">}</span><span class="token punctuation">}</span>
+	<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">function</span> <span class="token function">reset<span class="token punctuation">(</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	Footer<span class="token punctuation">.</span><span class="token function">checkbox<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">.</span>checked <span class="token operator">=</span> <span class="token keyword">false</span><span class="token punctuation">;</span>
+	Footer<span class="token punctuation">.</span><span class="token function">status<span class="token punctuation">(</span></span><span class="token string">&apos;0 items selected&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	Footer<span class="token punctuation">.</span><span class="token function">actions<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">clear<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token function">reset<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
+</pre>
+                        </div>
+                    </figure>
+                    <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.Footer.hideActions()%3B">
+                        <script type="runnable">
+                            ts.ui.Footer.hideActions();
+                        </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                        <div class="tabpanels">
+                            <pre class="prism language-javascript">
+<code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Footer<span class="token punctuation">.</span><span class="token function">hideActions<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
+</pre>
+                        </div>
+                    </figure>
+                    <p>Remember to show it again next time you need it!</p>
+                    <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.Footer.showActions()%3B">
+                        <script type="runnable">
+                            ts.ui.Footer.showActions();
+                        </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                        <div class="tabpanels">
+                            <pre class="prism language-javascript">
+<code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Footer<span class="token punctuation">.</span><span class="token function">showActions<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
+</pre>
+                        </div>
+                    </figure>
+                    <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.Footer.hide()%3B">
+                        <script type="runnable">
+                            ts.ui.Footer.hide();
+                        </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                        <div class="tabpanels">
+                            <pre class="prism language-javascript">
+<code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Footer<span class="token punctuation">.</span><span class="token function">hide<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
+</pre>
+                        </div>
+                    </figure>
+                    <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.Footer.show()%3B">
+                        <script type="runnable">
+                            ts.ui.Footer.show();
+                        </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                        <div class="tabpanels">
+                            <pre class="prism language-javascript">
+<code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Footer<span class="token punctuation">.</span><span class="token function">show<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
+</pre>
+                        </div>
+                    </figure>
+                    <!--
+					<figure data-ts="DoxScript">
+						<script type="runnable">
+							ts.ui.Footer.status('None selected').checkbox(function onclick() {
+								if((this.checked = !this.checked)) {
+									this.status('All selected');
+									this.actions([
+										{ label: 'Delete', icon: 'ts-icon-delete', onclick: () => {
+											ts.ui.Notification.success('Thanks for deleting.');
+										}}
+									])
+								} else {
+									this.status('None selected');
+									this.actions().clear();
+								}
+							});
+						</script>
+					</figure>
+					<p>Hello</p>
+					<figure data-ts="DoxScript">
+						<script type="runnable">
+							ts.ui.Footer.checked = true;
+							ts.ui.Footer.status('All selected').checkbox(function onclick() {
+								if(this.checked) {
+									ts.ui.Dialog.confirm('Unselect 123456 items?', {
+										onaccept: function() {
+											ts.ui.Footer.checked = false;
+											ts.ui.Footer.status('None selected');
+										}
+									});
+								} else {
+									this.checked = true;
+									this.status('All selected')
+								}
+							});
+						</script>
+					</figure>
+					-->
                 </section>
             </article>
         </div>

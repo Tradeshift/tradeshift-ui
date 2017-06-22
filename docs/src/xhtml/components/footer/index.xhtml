@@ -24,28 +24,7 @@
 						</script>
 					</figure>
 
-					<figure data-ts="DoxScript">
-						<script type="runnable">
-							ts.ui.Footer.actions([
-								{ label: 'Hans', icon: 'ts-icon-todo' },
-								{ label: 'Jens', icon: 'ts-icon-todo' },
-								{ label: 'John', icon: 'ts-icon-todo' },
-							]);
-						</script>
-					</figure>
-
-					<figure data-ts="DoxScript">
-						<script type="runnable">
-							ts.ui.Footer.selectable(
-								function onselectall() {
-									ts.ui.Footer.selected = true;
-								},
-								function onselectall() {
-									ts.ui.Footer.selected = false;
-								}
-							);
-						</script>
-					</figure>
+					
 
 					<figure data-ts="DoxScript">
 						<script type="runnable">
@@ -58,7 +37,144 @@
 							});
 						</script>
 					</figure>
+
+
+					<h3>Selection and actions</h3>
+
+					<p>Hello my friend.</p>
+
+					<figure data-ts="DoxScript">
+						<script type="runnable">
+							ts.ui.Footer.actions([
+								{ label: 'Move Up', icon: 'ts-icon-triangleup' },
+								{ label: 'Move Down', icon: 'ts-icon-triangledown' },
+								{ label: 'Move Left', icon: 'ts-icon-triangleleft' },
+								{ label: 'Move Right', icon: 'ts-icon-triangleright' },
+							]);
+						</script>
+					</figure>
+
+					<figure data-ts="DoxScript">
+						<script type="runnable">
+							ts.ui.Footer.status('X items selected');
+						</script>
+					</figure>
+
+					<figure data-ts="DoxScript">
+						<script type="runnable">
+						ts.ui.Footer.checkbox({
+							onclick: function() {
+								this.checked = !this.checked;
+							}
+						});
+						</script>
+					</figure>
+
+					<figure data-ts="DoxScript">
+						<script type="runnable">
+							var Footer = ts.ui.Footer;
+							Footer.checkbox({
+								checked: false,
+								onclick: function() {
+									if(this.checked) {
+										ts.ui.Dialog.confirm('Unselect 123456 items?', {
+											onaccept: reset
+										});
+									} else {
+										showactions();
+									}
+								}
+							});
+							function showactions() {
+								Footer.checkbox().checked = true;
+								Footer.status('123456 items selected').actions([
+									{ label: 'Delete', icon: 'ts-icon-delete', onclick: () => {
+										ts.ui.Notification.success('Deleted 123456 items');
+										reset();
+									}}
+								]);
+							}
+							function reset() {
+								Footer.checkbox().checked = false;
+								Footer.status('0 items selected');
+								Footer.actions().clear();
+							}
+							reset();
+						</script>
+					</figure>
+
+					<figure data-ts="DoxScript">
+						<script type="runnable">
+							ts.ui.Footer.hideActions();
+						</script>
+					</figure>
+
+					<p>Remember to show it again next time you need it!</p>
+
+					<figure data-ts="DoxScript">
+						<script type="runnable">
+							ts.ui.Footer.showActions();
+						</script>
+					</figure>
+
+					<figure data-ts="DoxScript">
+						<script type="runnable">
+							ts.ui.Footer.hide();
+						</script>
+					</figure>
+
+					<figure data-ts="DoxScript">
+						<script type="runnable">
+							ts.ui.Footer.show();
+						</script>
+					</figure>
+
+					<!--
+
+					<figure data-ts="DoxScript">
+						<script type="runnable">
+							ts.ui.Footer.status('None selected').checkbox(function onclick() {
+								if((this.checked = !this.checked)) {
+									this.status('All selected');
+									this.actions([
+										{ label: 'Delete', icon: 'ts-icon-delete', onclick: () => {
+											ts.ui.Notification.success('Thanks for deleting.');
+										}}
+									])
+								} else {
+									this.status('None selected');
+									this.actions().clear();
+								}
+							});
+						</script>
+					</figure>
+
+					<p>Hello</p>
+
+					<figure data-ts="DoxScript">
+						<script type="runnable">
+							ts.ui.Footer.checked = true;
+							ts.ui.Footer.status('All selected').checkbox(function onclick() {
+								if(this.checked) {
+									ts.ui.Dialog.confirm('Unselect 123456 items?', {
+										onaccept: function() {
+											ts.ui.Footer.checked = false;
+											ts.ui.Footer.status('None selected');
+										}
+									});
+								} else {
+									this.checked = true;
+									this.status('All selected')
+								}
+							});
+						</script>
+					</figure>
+
+					-->
+
+
 				</section>
+
 			</article>
 		</main>
 	</body>

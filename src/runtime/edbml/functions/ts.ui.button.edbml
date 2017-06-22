@@ -5,7 +5,7 @@
 	<?param name="isMobile" type="boolean" required="false"?>
 	@id = 'button' + button.$instanceid;
 	@title = button.info || null;
-	@class = (button.action ? 'ts-action ' : '') + (button.type || '');
+	@class = (button.isAction ? 'ts-action ' : '') + (button.type || '');
 	@name = button.name || '';
 	@value = button.value || '';
 	@autofocus = button.autofocus ? 'autofocus' : null;
@@ -20,14 +20,14 @@
 		if(isMobile && button.icon && !button.isPrimary()) {
 			<i class="${button.icon}"></i>
 		} else {
-			if(button.action && button.icon) {
+			if(button.isAction && button.icon) {
 				<i class="${button.icon}"></i>
 			}
 			if (button.label) {
 				<span>${button.label}</span>
 			} else if(isButtonMenu && button.info) {
 				<span>${button.info}</span>
-			} else if (button.icon && !button.action) {
+			} else if (button.icon && !button.isAction) {
 				<i class="${button.icon}"></i>
 			}
 		}

@@ -29,6 +29,19 @@ ts.ui.StatusBarSpirit = (function using(PagerModel, Type, chained, confirmed) {
 		}),
 
 		/**
+		 * @param {Object|null} [json]
+		 * @returns {this|ts.ui.Model}
+		 */
+		checkbox: chained(function(json) {
+			var model = this.model();
+			if (arguments.length) {
+				model.checkbox = json;
+			} else {
+				return model.checkbox;
+			}
+		}),
+
+		/**
 		 * Get or set the pager. Pass `null` to remove the pager (via bad API :/)
 		 * @param @optional {object|ts.ui.PagerModel|null} opt_json
 		 * @returns {ts.ui.PagerModel|ts.ui.ToolBarSpirit}

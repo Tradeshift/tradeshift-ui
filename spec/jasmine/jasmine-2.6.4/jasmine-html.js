@@ -88,7 +88,8 @@ jasmineRequire.HtmlReporter = function(j$) {
 
 		var summary = createDom('div', { className: 'jasmine-summary' });
 
-		var topResults = new j$.ResultsNode({}, '', null), currentParent = topResults;
+		var topResults = new j$.ResultsNode({}, '', null),
+			currentParent = topResults;
 
 		this.suiteStarted = function(result) {
 			currentParent.addChild(result, 'suite');
@@ -573,7 +574,9 @@ jasmineRequire.QueryString = function() {
 		}
 
 		function queryStringToParamMap() {
-			var paramStr = options.getWindowLocation().search.substring(1), params = [], paramMap = {};
+			var paramStr = options.getWindowLocation().search.substring(1),
+				params = [],
+				paramMap = {};
 
 			if (paramStr.length > 0) {
 				params = paramStr.split('&');

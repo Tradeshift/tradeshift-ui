@@ -53,20 +53,79 @@ gui.SpritePlugin = (function() {
 		},
 
 		/**
+		 * Scale.
+		 * @type {number}
+		 */
+		scale: {
+			getter: function() {
+				return this._gro;
+			},
+			setter: function(scale) {
+				this._gro = scale;
+				this._apply();
+			}
+		},
+
+		/**
+		 * X Offset.
+		 * @type {number}
+		 */
+		xoffset: {
+			getter: function() {
+				return this._org.x;
+			},
+			setter: function(x) {
+				this._org.x = x;
+				this._apply();
+			}
+		},
+
+		/**
+		 * Y Offset.
+		 * @type {number}
+		 */
+		yoffset: {
+			getter: function() {
+				return this._org.y;
+			},
+			setter: function(y) {
+				this._org.y = y;
+				this._apply();
+			}
+		},
+
+		/**
+		 * Z Offset.
+		 * @type {number}
+		 */
+		zoffset: {
+			getter: function() {
+				return this._org.z;
+			},
+			setter: function(z) {
+				this._org.z = z;
+				this._apply();
+			}
+		},
+
+		/**
 		 * Construction time.
 		 */
 		onconstruct: function() {
 			this.super.onconstruct();
 			this._pos = new gui.Position();
+			this._org = new gui.Position();
+			this._gro = 1;
 		},
 
 		/**
 		 * Reset transformations.
+		 * @TODO Should reset to CSS values, not remove them
 		 */
 		reset: function() {
-			if (gui.Client.has3D) {
-				this.spirit.css.set('-beta-transform', '');
-			} else {
+			this.spirit.css.set('-beta-transform', '');
+			this.spirit.css.set('-beta-transform-origin', '');
+			if (!gui.Client.has3D) {
 				this.spirit.css.left = '';
 				this.spirit.css.top = '';
 			}
@@ -79,6 +138,18 @@ gui.SpritePlugin = (function() {
 		 * @type {gui.Position}
 		 */
 		_pos: null,
+
+		/**
+		 * Scale.
+		 * @type {number}
+		 */
+		_gro: null,
+
+		/**
+		 * Origin offset tracking.
+		 * @type {gui.Position}
+		 */
+		_org: null,
 
 		/**
 		 * Default position as assigned by stylesheet (for IE9).
@@ -105,20 +176,29 @@ gui.SpritePlugin = (function() {
 		 * Go ahead.
 		 */
 		_apply: function() {
-			var pos = this._pos;
-			var set = [pos.x, pos.y, pos.z].map(Math.round);
-			var css = this.spirit.css;
-			// if (false && set.reduce(total) === 0) {
-			// 	this.reset(); // DISABLED FOR NOW!
-			// } else {
+			var coords = this._pos;
+			var origin = this._org;
+			var scaled = parseFloat(this._gro);
+			var tforms = [coords.x, coords.y, coords.z].map(Math.round);
+			var offset = [origin.x, origin.y, origin.z].map(Math.round);
+			var plugin = this.spirit.css;
+			// if (set.reduce(total) === 0) {
+			// 	this.reset(); // Should reset to CSS values, not remove them
+			// } else {}
 			if (gui.Client.has3D) {
-				css.set('-beta-transform', 'translate3d(' + set.join('px,') + 'px)');
+				plugin.style({
+					'-beta-transform-origin': offset.join('px ') + 'px',
+					'-beta-transform': 'translate3d(' + tforms.join('px,') + 'px) scale(' + scaled + ')'
+				});
 			} else {
-				var def = this._defpos(css);
-				css.left = def.x + set[0];
-				css.top = def.y + set[1];
+				var iepos = this._defpos(plugin);
+				plugin.style({
+					left: iepos.x + tforms[0] + offset[0],
+					top: iepos.y + tforms[1] + offset[1],
+					msTransformOrigin: offset[0] + 'px' + ' ' + offset[1] + 'px',
+					msTransform: 'scale(' + scaled + ')'
+				});
 			}
-			// }
 		}
 	});
 })();

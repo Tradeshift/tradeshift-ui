@@ -347,11 +347,22 @@
 // Statusbar ...................................................................
 
 .ts-toolbar.ts-statusbar {
-	.ts-toolbar-title {
-		label {
-			font-size: @ts-fontsize;
-			padding: @ts-unit-half 0;
-			top: 0;	
+	&.ts-micro,
+	&.ts-macro {
+		.ts-toolbar-item.ts-action:first-child {
+			padding-left: @ts-unit;
+		}
+		.ts-toolbar-title {
+			&:first-child {
+				padding-left: @ts-unit-plus;
+			}
+			&:not(:first-child) {
+				padding-left: 0 !important;
+			}
+			label {
+				font-size: @ts-fontsize;
+				top: 0;	
+			}
 		}
 	}
 	&.ts-small {
@@ -406,17 +417,13 @@
 .ts-toolbar.ts-micro {
 	.ts-mixin-fixheight(@ts-unit-double);
 	.ts-left {
-		&, & > li {
-			.ts-mixin-fixheight(@ts-unit-plus);
-			.ts-button {
-				display: inline-block;
-				.ts-mixin-fixheight(@ts-unit-plus);
-			}
-		}
-	}
-	.ts-left {
 		.ts-toolbar-item {
 			padding: @ts-unit-quarter;
+			.ts-mixin-fixheight(@ts-unit-double);
+			.ts-button {
+				.ts-mixin-fixheight(@ts-unit-plus);
+				display: inline-block;
+			}
 			&.ts-toolbar-title {
 				&:first-child {
 					padding-left: @ts-unit - @ts-unit-quarter;
@@ -425,6 +432,12 @@
 					padding-top: @ts-unit-quarter;
 					padding-bottom: @ts-unit-quarter;
 					font-size: @ts-fontsize;
+				}
+			}
+			&.ts-toolbar-checkbox {
+				padding: 0 !important;
+				.ts-button {
+					.ts-mixin-fix(@ts-unit-double, @ts-unit-double);
 				}
 			}
 			.ts-action {

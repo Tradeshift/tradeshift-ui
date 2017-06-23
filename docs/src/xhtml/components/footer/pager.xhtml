@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Footer Pager</title>
+		<object data="tabs.xhtml"></object>
+	</head>
+	<body>
+		<header data-ts="TopBar"></header>
+		<main data-ts="Main">
+			<article>
+				<h1>Footer pager</h1>
+				<section class="desc">
+					<p>Go go gadget Footer.</p>
+				</section>
+				<section>
+
+					<p>Pager is very nice.</p>
+
+					<figure data-ts="DoxScript">
+						<script type="runnable">
+							ts.ui.Footer.pager({
+								pages: 23,
+								page: 0,
+								onselect: function(index) {
+									console.log(index);
+								}
+							});
+						</script>
+					</figure>
+
+				</section>
+
+			</article>
+		</main>
+	</body>
+<html>

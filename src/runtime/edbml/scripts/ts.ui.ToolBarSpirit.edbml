@@ -139,6 +139,7 @@
 	function renderbutton(button) {
 		var id = button.$instanceid;
 		@class = klass('ts-item', button);
+		@class += button.isAction ? ' ts-action' : '';
 		<li @class id="${id}-item">
 			out.html += button.render(false, mobilos);
 		</li>

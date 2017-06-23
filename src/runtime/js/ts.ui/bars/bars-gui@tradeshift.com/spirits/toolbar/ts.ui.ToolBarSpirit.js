@@ -82,6 +82,21 @@ ts.ui.ToolBarSpirit = (function using(
 			},
 
 			/**
+			 * Allow subclass to add classname (in `onenter` or 
+			 * `oncofigure`) before we fall back to `ts-macro`.
+			 */
+			onready: function() {
+				this.super.onready();
+				if (
+					![ts.ui.CLASS_MICRO, ts.ui.CLASS_MACRO].some(function(cname) {
+						return this.css.contains(cname);
+					}, this)
+				) {
+					this.macro();
+				}
+			},
+
+			/**
 			 * Further hotfix for situation explained in previous comment.
 			 */
 			onattach: function() {

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Footer Actions</title>
+		<object data="tabs.xhtml"></object>
+	</head>
+	<body>
+		<header data-ts="TopBar"></header>
+		<main data-ts="Main">
+			<article>
+				<h1>Footer actions</h1>
+				<section class="desc">
+					<p>The Footer actions are reserved for selections or something.</p>
+				</section>
+				<section>
+
+					<p>Hello my friend.</p>
+
+					<figure data-ts="DoxScript">
+						<script type="runnable">
+							ts.ui.Footer.actions([
+								{ label: 'Move Up', icon: 'ts-icon-triangleup' },
+								{ label: 'Move Down', icon: 'ts-icon-triangledown' },
+								{ label: 'Move Left', icon: 'ts-icon-triangleleft' },
+								{ label: 'Move Right', icon: 'ts-icon-triangleright' },
+								{ label: 'Don\'t Move', icon: 'ts-icon-halt', onclick: () => {
+									ts.ui.Footer.actions().clear();
+								}}
+							]);
+						</script>
+					</figure>
+
+					<figure data-ts="DoxScript">
+						<script type="runnable">
+							ts.ui.Footer.status('X items selected');
+						</script>
+					</figure>
+
+					<figure data-ts="DoxScript">
+						<script type="runnable">
+						ts.ui.Footer.checkbox({
+							onclick: function() {
+								this.checked = !this.checked;
+							}
+						});
+						</script>
+					</figure>
+
+					<figure data-ts="DoxScript">
+						<script type="runnable">
+							var Footer = ts.ui.Footer;
+							var Dialog = ts.ui.Dialog;
+							var Notification = ts.ui.Notification;
+							Footer.checkbox({
+								checked: false,
+								info: 'Toggle selection',
+								onclick: function() {
+									if(this.checked) {
+										Dialog.confirm('Unselect 123456 items?', {
+											onaccept: reset
+										});
+									} else {
+										showactions();
+									}
+								}
+							});
+							function showactions() {
+								Footer.checkbox().checked = true;
+								Footer.status('123456 items selected').actions([
+									{ label: 'Delete', icon: 'ts-icon-delete', onclick: () => {
+										Dialog.confirm('Deleted 123456 items?', 'Delete', {
+											onaccept: () => {
+												Notification.success('123456 items deleted');
+												reset();
+											}
+										});
+									}}
+								]);
+							}
+							function reset() {
+								Footer.checkbox().checked = false;
+								Footer.status('0 items selected');
+								Footer.actions().clear();
+							}
+							reset();
+						</script>
+					</figure>
+
+					<p>When you are done with the actions, you can hide them away. Remember to show them again before you need them next time!</p>
+
+					<figure data-ts="DoxScript">
+						<script type="runnable">
+							ts.ui.Footer.hideActions();
+						</script>
+					</figure>
+
+					<p>Here's an overview of the methods related to actions.</p>
+
+					<div data-ts="DoxApi">
+						<script type="application/json">
+							{
+								name: "ts.ui.Footer",
+								methods: [
+									{
+										name: 'checkbox',
+										args: '(object)',
+										desc: 'Get or set the checkbox'
+									},
+									{
+										name: 'status',
+										args: '(string)',
+										desc: 'Get or set the status message'
+									},
+									{
+										name: "actions",
+										args: "(array)",
+										desc: "Get or set the actions."
+									},
+									{
+										name: 'hideActions',
+										desc: 'Hide the whole actions-bar'
+									},
+									{
+										name: 'showActions',
+										desc: 'Show the (hidden) actions-bar'
+									},
+								]
+							}
+						</script>
+					<div>
+
+				</section>
+			</article>
+		</main>
+	</body>
+<html>

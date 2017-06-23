@@ -37,7 +37,8 @@ ts.ui.MainFrameSpirit = ts.ui.Spirit.extend({
 	 * @param {gui.Action} a
 	 */
 	onaction: function(a) {
-		var target = a.target, newframe = this._newframe;
+		var target = a.target,
+			newframe = this._newframe;
 		this.super.onaction(a);
 		switch (a.type) {
 			case ts.ui.ACTION_GLOBAL_DOCUMENT_TITLE:

@@ -24,7 +24,8 @@ ts.ui.LayoutPlugin = (function using(GuiArray, DOMPlugin, CSSPlugin, chained) {
 			 * @returns {boolean}
 			 */
 			beforeMain: function() {
-				var is = false, elm = this.spirit.element;
+				var is = false,
+					elm = this.spirit.element;
 				if (!this._isinaside() && !this._isinmain()) {
 					while (!is && (elm = elm.nextElementSibling)) {
 						is = CSSPlugin.contains(elm, 'ts-main');
@@ -38,7 +39,8 @@ ts.ui.LayoutPlugin = (function using(GuiArray, DOMPlugin, CSSPlugin, chained) {
 			 * @returns {boolean}
 			 */
 			afterMain: function() {
-				var is = false, elm = this.spirit.element;
+				var is = false,
+					elm = this.spirit.element;
 				if (!this._isinaside() && !this._isinmain()) {
 					while (!is && (elm = elm.previousElementSibling)) {
 						is = CSSPlugin.contains(elm, 'ts-main');

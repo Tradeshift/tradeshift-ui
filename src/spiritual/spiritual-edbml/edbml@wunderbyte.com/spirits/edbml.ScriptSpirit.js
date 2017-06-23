@@ -16,7 +16,8 @@ edbml.ScriptSpirit = gui.Spirit.extend({
 	onconfigure: function() {
 		this.super.onconfigure();
 		if (this.dom.embedded()) {
-			var id, parent = this.dom.parent(gui.Spirit);
+			var id,
+				parent = this.dom.parent(gui.Spirit);
 			if (parent && (id = this.scriptid)) {
 				parent.script.load(gui.Object.lookup(id));
 			}

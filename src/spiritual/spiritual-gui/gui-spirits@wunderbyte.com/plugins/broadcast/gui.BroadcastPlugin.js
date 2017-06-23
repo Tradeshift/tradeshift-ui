@@ -127,7 +127,8 @@ gui.BroadcastPlugin = (function using(chained, confirmed) {
 		 * @param {Array<object>} checks
 		 */
 		_cleanup: function(type, checks) {
-			var handler = checks[0], global = checks[1];
+			var handler = checks[0],
+				global = checks[1];
 			if (global) {
 				gui.Broadcast.removeGlobal(type, handler);
 			} else {

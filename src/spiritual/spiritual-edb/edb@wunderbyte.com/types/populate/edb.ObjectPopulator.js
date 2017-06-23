@@ -15,7 +15,8 @@ edb.ObjectPopulator = (function using(isdefined, iscomplex, isfunction, isconstr
 	function definitions(handler) {
 		var Type = edb.Object.is(handler) ? edb.Object : edb.Array;
 		var Base = edb.Object.is(handler) ? Object : Array;
-		var keys = [], classes = [edb.Type, Type, Base];
+		var keys = [],
+			classes = [edb.Type, Type, Base];
 		gui.Object.all(handler, function(key) {
 			if (
 				isregular(key) &&
@@ -102,7 +103,11 @@ edb.ObjectPopulator = (function using(isdefined, iscomplex, isfunction, isconstr
 		 * @return {Map<String,edb.Object|edb.Array>} types
 		 */
 		populate: function(json, type) {
-			var Def, def, val, desc, types = Object.create(null);
+			var Def,
+				def,
+				val,
+				desc,
+				types = Object.create(null);
 			var base = type.constructor.prototype;
 			var name = type.constructor.$classname;
 			var pure = [];

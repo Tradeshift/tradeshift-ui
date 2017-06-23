@@ -228,7 +228,9 @@ gui.Document = (function() {
 		 * @param {Array<string>} spaces
 		 */
 		_configure: function(spaces) {
-			var prop, def, metas = document.querySelectorAll('meta[name]');
+			var prop,
+				def,
+				metas = document.querySelectorAll('meta[name]');
 			Array.forEach(metas, function(meta) {
 				prop = meta.getAttribute('name');
 				spaces.forEach(function(ns) {

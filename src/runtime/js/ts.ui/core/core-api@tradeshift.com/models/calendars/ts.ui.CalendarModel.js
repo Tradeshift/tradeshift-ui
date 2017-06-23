@@ -133,7 +133,8 @@ ts.ui.CalendarModel = (function() {
 			 * @param {Cell} cell
 			 */
 			select: function(cell) {
-				var month = cell.month + 1, day = cell.day;
+				var month = cell.month + 1,
+					day = cell.day;
 				if (month < 10) {
 					month = '0' + month;
 				}
@@ -190,7 +191,8 @@ ts.ui.CalendarModel = (function() {
 			 *
 			 */
 			_generateLabels: function(year, month) {
-				var dayLabels = [], i;
+				var dayLabels = [],
+					i;
 				for (i = 0; i < 7; ++i) {
 					dayLabels.push(ts.ui.CalendarModel.DAY_NAMES_MIN[(i + ts.ui.CalendarModel.firstDay) % 7]);
 				}
@@ -219,7 +221,10 @@ ts.ui.CalendarModel = (function() {
 				// days[row][col] = {...}
 				for (row = 0; row < numRows; ++row) {
 					for (col = 0; col < 7; ++col) {
-						var i = row * 7 + col, day = i - startDay + 1, tempRow = null, newDate;
+						var i = row * 7 + col,
+							day = i - startDay + 1,
+							tempRow = null,
+							newDate;
 						if (col === 0) {
 							days[row] = [];
 						}

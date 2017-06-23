@@ -64,7 +64,8 @@ gui.Garbage = {
 	 * @param {gui.Spirit} spirit
 	 */
 	$nuke: function(spirit) {
-		var prefixes = [], plugins = spirit.life.plugins;
+		var prefixes = [],
+			plugins = spirit.life.plugins;
 		gui.Object.each(plugins, function(prefix, instantiated) {
 			if (instantiated) {
 				if (prefix !== 'life') {
@@ -179,7 +180,8 @@ gui.Garbage = {
 	 * @param @optional {string} message
 	 */
 	DENY: function(message) {
-		var stack, e = new Error(gui.Garbage.DENIAL + (message ? ': ' + message : ''));
+		var stack,
+			e = new Error(gui.Garbage.DENIAL + (message ? ': ' + message : ''));
 		if (!gui.Client.isExplorer && (stack = e.stack)) {
 			if (gui.Client.isWebKit) {
 				stack = stack
@@ -228,7 +230,8 @@ gui.Garbage = {
 	 * Nuke spirits now.
 	 */
 	_nukemnow: function() {
-		var spirit, spirits = this._spirits.slice();
+		var spirit,
+			spirits = this._spirits.slice();
 		if (window.gui) {
 			// hotfix IE window unloaded scenario...
 			while ((spirit = spirits.shift())) {

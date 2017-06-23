@@ -114,7 +114,8 @@ gui.Object = {
 	 * @returns {object}
 	 */
 	map: function(source, domap, thisp) {
-		var result = {}, mapping;
+		var result = {},
+			mapping;
 		this.each(source, function(key, value) {
 			mapping = domap.call(thisp, key, value);
 			if (mapping !== undefined) {
@@ -131,7 +132,8 @@ gui.Object = {
 	 * @returns {object}
 	 */
 	lookup: function(opath, context) {
-		var result, struct = context || self;
+		var result,
+			struct = context || self;
 		if (gui.Type.isString(opath)) {
 			if (!opath.includes('.')) {
 				result = struct[opath];
@@ -158,7 +160,8 @@ gui.Object = {
 	 * @returns {object}
 	 */
 	assert: function(opath, value, context) {
-		var prop, struct = context || self;
+		var prop,
+			struct = context || self;
 		if (opath.includes('.')) {
 			var parts = opath.split('.');
 			prop = parts.pop();
@@ -179,7 +182,11 @@ gui.Object = {
 	 * @return {Array<String>}
 	 */
 	methods: function(object) {
-		var name, value, desc, obj = object, result = [];
+		var name,
+			value,
+			desc,
+			obj = object,
+			result = [];
 		for (name in object) {
 			// make sure that we don't poke any getter type properties...
 			while (!(desc = Object.getOwnPropertyDescriptor(obj, name))) {

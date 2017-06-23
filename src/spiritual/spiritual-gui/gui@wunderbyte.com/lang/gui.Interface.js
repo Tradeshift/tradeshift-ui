@@ -21,7 +21,8 @@ gui.Interface = {
 				throw new Error('Expected ' + expected + ', got ' + type + ': ' + object);
 			default:
 				try {
-					var missing = null, t = null;
+					var missing = null,
+						t = null;
 					is = Object.keys(interfais).every(function(name) {
 						missing = name;
 						t = gui.Type.of(interfais[name]);

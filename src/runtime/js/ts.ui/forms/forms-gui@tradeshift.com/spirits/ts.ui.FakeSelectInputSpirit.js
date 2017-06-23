@@ -455,7 +455,8 @@ ts.ui.FakeSelectInputSpirit = (function using(chained, confirmed, tick, time, gu
 		 * @returns {boolean}
 		 */
 		_changedindex: function(select, oldindex, model) {
-			var did = false, newindex;
+			var did = false,
+				newindex;
 			if (!select.multiple) {
 				newindex = select.selectedIndex;
 				if ((did = newindex !== oldindex)) {
@@ -475,7 +476,8 @@ ts.ui.FakeSelectInputSpirit = (function using(chained, confirmed, tick, time, gu
 		 * @returns {boolean}
 		 */
 		_changedindexes: function(select, oldindexes, model) {
-			var did = false, newindexes;
+			var did = false,
+				newindexes;
 			if (select.multiple) {
 				newindexes = this._getindexes(select.options);
 				if (

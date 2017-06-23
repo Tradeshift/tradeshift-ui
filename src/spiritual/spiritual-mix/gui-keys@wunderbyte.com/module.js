@@ -85,7 +85,8 @@ gui.KeysModule = gui.module('gui-keys@wunderbyte.com', {
 	 * @param {Event} e
 	 */
 	_oldschool: function(e) {
-		var n = e.keyCode, c = this._keymap[n];
+		var n = e.keyCode,
+			c = this._keymap[n];
 		var id = e.currentTarget.defaultView.gui.$contextid;
 
 		/*

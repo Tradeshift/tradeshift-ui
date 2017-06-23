@@ -26,7 +26,8 @@ ts.ui.FormSpirit = (function() {
 			 */
 			onconfigure: function() {
 				this.super.onconfigure();
-				var elm = this.element, method = (elm.method || '').toLowerCase();
+				var elm = this.element,
+					method = (elm.method || '').toLowerCase();
 				if (elm.localName === 'form' && !elm.action && method !== 'post') {
 					elm.action = ts.ui.FormSpirit.ACTION_DEFAULT;
 				}

@@ -43,7 +43,8 @@ ts.ui.DatePicker.localize = function(config) {};
 	 * @return {ts.ui.DatePickerModel}
 	 */
 	function toggle(model, open) {
-		var aside, id = model.$instanceid;
+		var aside,
+			id = model.$instanceid;
 		if (open) {
 			asides[id] = (asides[id] ||
 				ts.ui.Aside({

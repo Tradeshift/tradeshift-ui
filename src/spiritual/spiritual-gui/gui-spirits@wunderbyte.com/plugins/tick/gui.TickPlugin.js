@@ -223,7 +223,8 @@ gui.TickPlugin = (function using(chained, guiArray) {
 		 * @param @optional {number} time
 		 */
 		_dispatch: function(type, time) {
-			var tick, sig = this.spirit.$contextid;
+			var tick,
+				sig = this.spirit.$contextid;
 			if (this._global) {
 				tick = gui.Tick.dispatchGlobal(type, time);
 			} else {

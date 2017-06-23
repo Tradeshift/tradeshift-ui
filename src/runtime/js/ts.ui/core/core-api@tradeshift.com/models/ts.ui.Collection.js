@@ -71,7 +71,8 @@ ts.ui.Collection = (function using(chained, guiArray) {
 	 * @return {constructor|ts.ui.Model}
 	 */
 	function something(collection, input, allowed, assumed) {
-		var Model, item = input.item;
+		var Model,
+			item = input.item;
 		if (item) {
 			if (
 				ts.ui.Model.is(input) &&

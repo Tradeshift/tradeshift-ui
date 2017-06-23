@@ -272,7 +272,10 @@ gui.Action = (function using(confirmed, chained) {
 			 * @param {string} postmessage
 			 */
 			$maybeDescendGlobal: function(postmessage) {
-				var data = postmessage, action, root, handlers;
+				var data = postmessage,
+					action,
+					root,
+					handlers;
 				if (gui.Type.isString(data) && data.startsWith('spiritual-action:')) {
 					action = gui.Action.parse(data);
 					if (action.direction === gui.Action.DESCEND) {

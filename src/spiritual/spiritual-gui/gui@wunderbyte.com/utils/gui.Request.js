@@ -149,7 +149,8 @@ gui.Request.prototype = (function using(chained) {
 		 * @param {function} callback
 		 */
 		_request: function(method, payload, callback) {
-			var that = this, request = new XMLHttpRequest();
+			var that = this,
+				request = new XMLHttpRequest();
 			var xtarget = gui.URL.external(this._url, document);
 			request.onreadystatechange = function() {
 				if (this.readyState === XMLHttpRequest.DONE) {

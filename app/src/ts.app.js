@@ -54,7 +54,11 @@ class Listener {
 			return this;
 		}
 		const handler = e => {
-			if (typeof e.data !== 'string' || !e.data.includes(BROADCAST_PREFIX) || !e.data.includes(key)) {
+			if (
+				typeof e.data !== 'string' ||
+				!e.data.includes(BROADCAST_PREFIX) ||
+				!e.data.includes(key)
+			) {
 				return this;
 			}
 			let content = JSON.parse(e.data.replace(BROADCAST_PREFIX, ''));
@@ -64,7 +68,7 @@ class Listener {
 			if (callback) {
 				callback(content.data);
 			}
-		}
+		};
 		window.addEventListener('message', handler);
 		this.events.set(key, handler);
 		return this;
@@ -159,5 +163,4 @@ const stringify = (appIds, key, data) => {
 		console.warn(e);
 	}
 	return prefix + subfix;
-}
-
+};

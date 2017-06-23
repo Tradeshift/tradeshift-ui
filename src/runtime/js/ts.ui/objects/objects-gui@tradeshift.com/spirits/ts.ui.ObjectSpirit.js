@@ -59,7 +59,8 @@ ts.ui.ObjectSpirit = (function using(Type, chained, confirmed) {
 			 */
 			onconfigure: function() {
 				this.super.onconfigure();
-				var script, path = 'script[type="application/json"]';
+				var script,
+					path = 'script[type="application/json"]';
 				this.css.add('ts-object');
 				this.script.load(ts.ui.ObjectSpirit.edbml);
 				if ((script = this.dom.q(path))) {

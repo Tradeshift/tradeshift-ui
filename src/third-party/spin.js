@@ -50,7 +50,8 @@
 	 * a DIV is created. Optionally properties can be passed.
 	 */
 	function createEl(tag, prop) {
-		var el = document.createElement(tag || 'div'), n;
+		var el = document.createElement(tag || 'div'),
+			n;
 
 		for (n in prop) el[n] = prop[n];
 		return el;
@@ -116,7 +117,9 @@
 	 * Tries various vendor prefixes and returns the first supported property.
 	 */
 	function vendor(el, prop) {
-		var s = el.style, pp, i;
+		var s = el.style,
+			pp,
+			i;
 
 		prop = prop.charAt(0).toUpperCase() + prop.slice(1);
 		if (s[prop] !== undefined) return prop;
@@ -199,7 +202,9 @@
 		spin: function(target) {
 			this.stop();
 
-			var self = this, o = self.opts, el = (self.el = createEl(null, { className: o.className }));
+			var self = this,
+				o = self.opts,
+				el = (self.el = createEl(null, { className: o.className }));
 
 			css(el, {
 				position: o.position,
@@ -256,7 +261,9 @@
 		 * in VML fallback mode below.
 		 */
 		lines: function(el, o) {
-			var i = 0, start = (o.lines - 1) * (1 - o.direction) / 2, seg;
+			var i = 0,
+				start = (o.lines - 1) * (1 - o.direction) / 2,
+				seg;
 
 			function fill(color, shadow) {
 				return css(createEl(), {
@@ -266,12 +273,13 @@
 					background: color,
 					boxShadow: shadow,
 					transformOrigin: 'left',
-					transform: 'rotate(' +
-						~~(360 / o.lines * i + o.rotate) +
-						'deg) translate(' +
-						o.scale * o.radius +
-						'px' +
-						',0)',
+					transform:
+						'rotate(' +
+							~~(360 / o.lines * i + o.rotate) +
+							'deg) translate(' +
+							o.scale * o.radius +
+							'px' +
+							',0)',
 					borderRadius: ((o.corners * o.scale * o.width) >> 1) + 'px'
 				});
 			}
@@ -282,11 +290,12 @@
 					top: 1 + ~(o.scale * o.width / 2) + 'px',
 					transform: o.hwaccel ? 'translate3d(0,0,0)' : '',
 					opacity: o.opacity,
-					animation: useCssAnimations &&
-						addAnimation(o.opacity, o.trail, start + i * o.direction, o.lines) +
-							' ' +
-							1 / o.speed +
-							's linear infinite'
+					animation:
+						useCssAnimations &&
+							addAnimation(o.opacity, o.trail, start + i * o.direction, o.lines) +
+								' ' +
+								1 / o.speed +
+								's linear infinite'
 				});
 
 				if (o.shadow) ins(seg, css(fill('#000', '0 0 4px #000'), { top: '2px' }));
@@ -314,7 +323,8 @@
 		sheet.addRule('.spin-vml', 'behavior:url(#default#VML)');
 
 		Spinner.prototype.lines = function(el, o) {
-			var r = o.scale * (o.length + o.width), s = o.scale * 2 * r;
+			var r = o.scale * (o.length + o.width),
+				s = o.scale * 2 * r;
 
 			function grp() {
 				return css(
@@ -360,8 +370,7 @@
 				}
 			}
 
-			for (i = 1; i <= o.lines; i++)
-				seg(i);
+			for (i = 1; i <= o.lines; i++) seg(i);
 			return ins(el, g);
 		};
 

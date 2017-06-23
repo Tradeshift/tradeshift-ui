@@ -210,7 +210,8 @@ function buildIncrementally(table, rows) {
 	 */
 	function getpage(index) {
 		var pagesize = maxrows;
-		var page = 0, iter = 0;
+		var page = 0,
+			iter = 0;
 		while ((iter += pagesize) <= index) {
 			page++;
 		}

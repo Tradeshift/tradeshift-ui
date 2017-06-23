@@ -76,7 +76,8 @@ gui.MapList = (function using(confirmed, GuiArray) {
 		 * @param {object} val
 		 */
 		remove: confirmed('string')(function(key, val) {
-			var length, list = this.get(key);
+			var length,
+				list = this.get(key);
 			if (list) {
 				length = GuiArray.remove(list, val);
 				if (length === 0) {

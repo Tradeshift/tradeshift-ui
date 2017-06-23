@@ -77,7 +77,8 @@ gui.KeyPlugin = (function using(confirmed, chained) {
 		onbroadcast: function(b) {
 			var list, handler, isglobal;
 			if (b.type === gui.BROADCAST_KEYEVENT) {
-				var down = b.data.down, type = b.data.type;
+				var down = b.data.down,
+					type = b.data.type;
 				if ((list = this._trackedtypes[type])) {
 					list.forEach(function(checks) {
 						handler = checks[0];
@@ -97,7 +98,8 @@ gui.KeyPlugin = (function using(confirmed, chained) {
 		 * @param {boolean} add
 		 */
 		_setupbroadcast: function(add) {
-			var act, sig = this.context.gui.$contextid;
+			var act,
+				sig = this.context.gui.$contextid;
 			var type = gui.BROADCAST_KEYEVENT;
 			if (this._global) {
 				act = add ? 'addGlobal' : 'removeGlobal';
@@ -113,7 +115,8 @@ gui.KeyPlugin = (function using(confirmed, chained) {
 		 * @TODO same as in gui.ActionPlugin, perhaps superize this stuff somehow...
 		 */
 		_cleanup: function(type, checks) {
-			var handler = checks[0], global = checks[1];
+			var handler = checks[0],
+				global = checks[1];
 			if (global) {
 				this.removeGlobal(type, handler);
 			} else {

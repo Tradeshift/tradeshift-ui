@@ -42,7 +42,10 @@ gui.Combo = {
 		var slice = [].slice;
 		return function(base) {
 			return function() {
-				var argv, callback, result, that = this;
+				var argv,
+					callback,
+					result,
+					that = this;
 				argv = arguments.length >= 1 ? slice.call(arguments, 0) : [];
 				result = void 0;
 				callback = function() {

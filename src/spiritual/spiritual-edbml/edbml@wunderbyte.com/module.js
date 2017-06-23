@@ -75,7 +75,8 @@ gui.module('edbml@wunderbyte.com', {
 		 * Automatically load spirit scripts by naming convention?
 		 * ns.MySpirit would automatically load ns.MySpirit.edbml
 		 */
-		var edbmlscript, basespirit = gui.Spirit.prototype;
+		var edbmlscript,
+			basespirit = gui.Spirit.prototype;
 		gui.Function.decorateAfter(basespirit, 'onconfigure', function() {
 			if (edbml.bootload && !this.script.loaded) {
 				edbmlscript = gui.Object.lookup(this.$classname + '.edbml');

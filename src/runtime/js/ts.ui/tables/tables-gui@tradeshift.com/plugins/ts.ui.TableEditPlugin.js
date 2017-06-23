@@ -43,7 +43,8 @@ ts.ui.TableEditPlugin = (function(CSSPlugin, DOMPlugin, Position, Client, Key) {
 		 * @param {boolean} on
 		 */
 		init: function(on) {
-			var spirit = this.spirit, element = spirit.element;
+			var spirit = this.spirit,
+				element = spirit.element;
 			spirit.event.shift(on, 'focus blur', element, this, true);
 			spirit.action.shift(on, ts.ui.ACTION_CHANGED, this);
 			spirit.life.shift(on, gui.LIFE_RENDER, this);

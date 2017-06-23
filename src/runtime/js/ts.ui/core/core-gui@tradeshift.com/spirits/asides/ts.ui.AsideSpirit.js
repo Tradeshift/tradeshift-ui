@@ -579,7 +579,8 @@ ts.ui.AsideSpirit = (function using(chained, confirmed, Client, LayoutModel, not
 			 * TODO: This obviously needs an overhaul.
 			 */
 			_focusbest: notontouch(function() {
-				var elm, best = ['[autofocus]', '.ts-checked button'];
+				var elm,
+					best = ['[autofocus]', '.ts-checked button'];
 				if (
 					!best.some(function(selector) {
 						if ((elm = this.dom.q(selector))) {

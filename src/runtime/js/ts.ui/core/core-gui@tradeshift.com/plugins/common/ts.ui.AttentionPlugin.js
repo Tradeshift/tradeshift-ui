@@ -201,7 +201,8 @@ ts.ui.AttentionPlugin = (function using(GuiArray, chained, notontouch) {
 		 * @returns {boolean} True when something was focused
 		 */
 		_tryfocus: function(elm, reverse) {
-			var did = false, elms = elm.getElementsByTagName('*');
+			var did = false,
+				elms = elm.getElementsByTagName('*');
 			if ((elms = GuiArray.from(elms)).length) {
 				elms = reverse ? elms.reverse() : elms;
 				did = this._didfocus(

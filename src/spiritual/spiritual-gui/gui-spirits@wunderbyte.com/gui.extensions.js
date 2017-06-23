@@ -402,7 +402,8 @@ gui = gui.Object.extend(
 		 * @returns {Element}
 		 */
 		_getelement: function(arg) {
-			var elm = null, doc = document;
+			var elm = null,
+				doc = document;
 			if (gui.Type.isString(arg)) {
 				arg = arg.trim();
 				try {

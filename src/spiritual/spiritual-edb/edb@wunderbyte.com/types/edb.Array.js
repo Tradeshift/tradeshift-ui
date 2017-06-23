@@ -255,7 +255,9 @@ edb.Array.mixin(null, edb.Type.$staticmixins(), {
 	 * @param {gui.Tick} tick
 	 */
 	ontick: function(tick) {
-		var snapshot, handlers, observers = this._observers;
+		var snapshot,
+			handlers,
+			observers = this._observers;
 		if (tick.type === edb.TICK_PUBLISH_CHANGES) {
 			snapshot = gui.Object.copy(this._changes);
 			this._changes = Object.create(null);

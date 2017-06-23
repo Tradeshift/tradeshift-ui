@@ -77,7 +77,8 @@ ts.ui.MenuSpirit = (function using(Type, ButtonSpirit) {
 					return;
 				}
 				if (this._ismodelled()) {
-					var item = elm, model = this._model;
+					var item = elm,
+						model = this._model;
 					while (item && item.localName !== 'li') {
 						item = item.parentNode;
 					}
@@ -149,7 +150,9 @@ ts.ui.MenuSpirit = (function using(Type, ButtonSpirit) {
 			 * @param {boolean} down
 			 */
 			_movefocus: function(source, down) {
-				var target, button, elm = this.element;
+				var target,
+					button,
+					elm = this.element;
 				if (source && source.localName === 'li') {
 					if (down) {
 						target = source.nextElementSibling || elm.querySelector('li:first-child');

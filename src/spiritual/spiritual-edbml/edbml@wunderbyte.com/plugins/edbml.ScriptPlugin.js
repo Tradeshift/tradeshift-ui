@@ -244,7 +244,9 @@ edbml.ScriptPlugin = (function using(
 		onchange: function(changes) {
 			if (
 				changes.some(function(c) {
-					var id = c.object.$instanceid, clas = c.object.$classname, name = c.name;
+					var id = c.object.$instanceid,
+						clas = c.object.$classname,
+						name = c.name;
 					if (edbml.$rendering && edbml.$rendering[id]) {
 						console.error(
 							'Don\'t update "' +
@@ -409,7 +411,8 @@ edbml.ScriptPlugin = (function using(
 		 * Stop it.
 		 */
 		_stop: function() {
-			var oldprops = this._oldprops, newprops = this._newprops;
+			var oldprops = this._oldprops,
+				newprops = this._newprops;
 			edbml.$rendering = null;
 			Broadcast.remove(edb.BROADCAST_ACCESS, this);
 			edb.$accessaware = false;
@@ -492,7 +495,8 @@ edbml.ScriptPlugin = (function using(
 		 * waiting script).
 		 */
 		_notready: function() {
-			var input = this.$input, type;
+			var input = this.$input,
+				type;
 			(input._watches || []).forEach(function(edbType) {
 				if ((type = edb.get(edbType))) {
 					input.$oninput(new edb.Input(edbType, type));

@@ -112,7 +112,8 @@ edb.Input = (function using(chained, memoized, Interface, GuiType, GuiClass) {
 			 * @param {edb.Input} input
 			 */
 			$onoutput: function(input) {
-				var Type, type = input.data;
+				var Type,
+					type = input.data;
 				if (type === null) {
 					// TODO: Figure out what to do with revoked output :/
 				} else {
@@ -282,7 +283,9 @@ edb.Input = (function using(chained, memoized, Interface, GuiType, GuiClass) {
 			_rateone: memoized(function(targetid, typeid) {
 				var target = gui.Class.get(targetid);
 				var type = gui.Class.get(typeid);
-				var r = 0, rating = -1, parent = target;
+				var r = 0,
+					rating = -1,
+					parent = target;
 				if (target === type) {
 					rating = 0;
 				} else {

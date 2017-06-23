@@ -471,7 +471,8 @@
 	 * @returns {boolean}
 	 */
 	FastClick.prototype.touchHasMoved = function(event) {
-		var touch = event.changedTouches[0], boundary = this.touchBoundary;
+		var touch = event.changedTouches[0],
+			boundary = this.touchBoundary;
 
 		if (
 			Math.abs(touch.pageX - this.touchStartX) > boundary ||

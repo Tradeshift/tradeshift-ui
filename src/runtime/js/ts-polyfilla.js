@@ -48,7 +48,13 @@
 
 	root.btoa = function(string) {
 		string = String(string);
-		var bitmap, a, b, c, result = '', i = 0, rest = string.length % 3; // To determine the final padding
+		var bitmap,
+			a,
+			b,
+			c,
+			result = '',
+			i = 0,
+			rest = string.length % 3; // To determine the final padding
 
 		for (; i < string.length; ) {
 			if (
@@ -84,7 +90,11 @@
 
 		// Adding the padding if missing, for semplicity
 		string += '=='.slice(2 - (string.length & 3));
-		var bitmap, result = '', r1, r2, i = 0;
+		var bitmap,
+			result = '',
+			r1,
+			r2,
+			i = 0;
 		for (; i < string.length; ) {
 			bitmap =
 				(b64.indexOf(string.charAt(i++)) << 18) |
@@ -95,8 +105,8 @@
 			result += r1 === 64
 				? String.fromCharCode((bitmap >> 16) & 255)
 				: r2 === 64
-						? String.fromCharCode((bitmap >> 16) & 255, (bitmap >> 8) & 255)
-						: String.fromCharCode((bitmap >> 16) & 255, (bitmap >> 8) & 255, bitmap & 255);
+					? String.fromCharCode((bitmap >> 16) & 255, (bitmap >> 8) & 255)
+					: String.fromCharCode((bitmap >> 16) & 255, (bitmap >> 8) & 255, bitmap & 255);
 		}
 		return result;
 	};

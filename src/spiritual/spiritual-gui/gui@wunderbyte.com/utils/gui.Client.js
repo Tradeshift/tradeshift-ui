@@ -161,11 +161,13 @@ gui.Client = (function() {
 		 */
 		this.hasAnimationFrame = (function() {
 			var win = window;
-			return !!(win.requestAnimationFrame ||
+			return !!(
+				win.requestAnimationFrame ||
 				win.webkitRequestAnimationFrame ||
 				win.mozRequestAnimationFrame ||
 				win.msRequestAnimationFrame ||
-				win.oRequestAnimationFrame);
+				win.oRequestAnimationFrame
+			);
 		})();
 
 		/**
@@ -242,7 +244,11 @@ gui.Client = (function() {
 			if (!gui.CSSPlugin) {
 				return;
 			}
-			var win = window, doc = document, html = doc.documentElement, body = doc.body, root = null;
+			var win = window,
+				doc = document,
+				html = doc.documentElement,
+				body = doc.body,
+				root = null;
 
 			// make sure window is scrollable
 			var temp = body.appendChild(

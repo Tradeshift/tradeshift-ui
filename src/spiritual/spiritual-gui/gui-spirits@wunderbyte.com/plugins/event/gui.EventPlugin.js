@@ -97,7 +97,8 @@ gui.EventPlugin = (function using(chained, guiArray, DOMPlugin, Interface, Type)
 		 * @returns {boolean} True if the event was cancelled (prevetDefaulted)
 		 */
 		dispatch: function(type, params) {
-			var elm = this.spirit.element, evt = null;
+			var elm = this.spirit.element,
+				evt = null;
 			if (window.CustomEvent && !gui.Client.isExplorer) {
 				// TODO: IE version???
 				evt = new CustomEvent(type, params);
@@ -214,7 +215,8 @@ gui.EventPlugin = (function using(chained, guiArray, DOMPlugin, Interface, Type)
 		 * @returns {object}
 		 */
 		_getfakeevent: function(realevent, newtype) {
-			var prop, fakeevent = Object.create(null);
+			var prop,
+				fakeevent = Object.create(null);
 			for (prop in realevent) {
 				switch (prop) {
 					case 'webkitMovementX':

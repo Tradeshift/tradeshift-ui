@@ -50,7 +50,8 @@ gui.Crawler = (function using(Type) {
 				this.direction = gui.Crawler.ASCENDING;
 				var supports = gui.hasModule('gui-spirits@wunderbyte.com');
 				var isspirit = supports && start instanceof gui.Spirit;
-				var win, elm = isspirit ? start.element : start;
+				var win,
+					elm = isspirit ? start.element : start;
 				do {
 					if (elm.nodeType === Node.DOCUMENT_NODE) {
 						if (this.global) {
@@ -144,7 +145,9 @@ gui.Crawler = (function using(Type) {
 			 * @param {boolean} start
 			 */
 			_descend: function(elm, handler, arg, start) {
-				var next, spirit, directive = this._handleElement(elm, handler, arg);
+				var next,
+					spirit,
+					directive = this._handleElement(elm, handler, arg);
 				switch (directive) {
 					case gui.Crawler.STOP:
 						this._stopped = true;

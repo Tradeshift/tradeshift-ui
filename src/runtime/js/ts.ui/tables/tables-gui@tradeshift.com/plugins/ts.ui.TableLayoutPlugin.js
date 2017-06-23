@@ -176,7 +176,9 @@ ts.ui.TableLayoutPlugin = (function using(Client, Tick) {
 		 */
 		_hflex2: function(cols, ths, tds, unit) {
 			return cols.reduce(function(sum, col, i) {
-				var td, th, flex = col.flex;
+				var td,
+					th,
+					flex = col.flex;
 				var span = flex * unit;
 				var fixt = col.width;
 				var mins = col.minwidth;

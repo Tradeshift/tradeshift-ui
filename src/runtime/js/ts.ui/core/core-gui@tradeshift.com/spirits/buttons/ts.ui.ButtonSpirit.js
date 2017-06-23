@@ -291,7 +291,8 @@ ts.ui.ButtonSpirit = (function using(chained, Client, Type, CSSPlugin, ie9) {
 			 * @return {boolean}
 			 */
 			_isnavigatable: function() {
-				var elm = this.element, href = elm.href;
+				var elm = this.element,
+					href = elm.href;
 				return href && !href.startsWith('javascript:') && !elm.download;
 			},
 

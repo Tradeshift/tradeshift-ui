@@ -10,7 +10,9 @@ ts.ui.EventPlugin = gui.EventPlugin.extend(
 		 */
 		handleEvent: function(e) {
 			this.super.handleEvent(e);
-			var fake, time, spirit = this.spirit;
+			var fake,
+				time,
+				spirit = this.spirit;
 			switch (e.type) {
 				case 'mouseenter':
 					if (this._hoverintent) {

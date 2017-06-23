@@ -70,7 +70,8 @@ ts.ui.CompanyCardModel = (function using(Type, Card) {
 		 * @returns {object}
 		 */
 		$computeConnection: function() {
-			var type, index = this.data.connection;
+			var type,
+				index = this.data.connection;
 			if (Type.isDefined(index)) {
 				if (Type.isNumber(index)) {
 					if ((type = connections(index)) && confirm(index, type)) {

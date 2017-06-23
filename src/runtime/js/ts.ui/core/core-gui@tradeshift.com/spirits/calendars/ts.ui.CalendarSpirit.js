@@ -75,10 +75,15 @@ ts.ui.CalendarSpirit = (function() {
 		selectedIsVisible,
 		todayIsVisible
 	) {
-		var row, col, cells = [];
+		var row,
+			col,
+			cells = [];
 		for (row = 0; row < numRows; ++row) {
 			for (col = 0; col < 7; ++col) {
-				var i = row * 7 + col, day = i - startDay + 1, tempRow = null, newDate;
+				var i = row * 7 + col,
+					day = i - startDay + 1,
+					tempRow = null,
+					newDate;
 				if (col === 0) {
 					cells[row] = [];
 				}
@@ -378,7 +383,8 @@ ts.ui.CalendarSpirit = (function() {
 			 * @return {Array<string>}
 			 */
 			_generateLabels: function() {
-				var labels = [], i;
+				var labels = [],
+					i;
 				for (i = 0; i < 7; ++i) {
 					labels.push(getLocale().dayNamesMin[(i + getLocale().firstDay) % 7]);
 				}

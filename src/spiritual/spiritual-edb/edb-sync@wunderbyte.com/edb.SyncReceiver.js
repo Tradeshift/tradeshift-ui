@@ -53,7 +53,8 @@ edb.SyncReceiver.prototype = {
 	 * @param {edb.ObjectSync} c
 	 */
 	_objectchange: function(type, c) {
-		var name = c.name, value = c.newValue;
+		var name = c.name,
+			value = c.newValue;
 		if (type[name] !== value) {
 			if (value && (value.$object || value.$array)) {
 				// TODO is-abstract-edb-tree somehow...

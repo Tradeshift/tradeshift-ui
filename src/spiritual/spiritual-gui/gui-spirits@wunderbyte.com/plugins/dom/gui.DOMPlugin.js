@@ -359,7 +359,8 @@ gui.DOMPlugin = (function using(chained, guide, observer) {
 			 * @returns {Array<Element|gui.Spirit>}
 			 */
 			group: function(nodes) {
-				var node, groups = [];
+				var node,
+					groups = [];
 				function containedby(target, others) {
 					return others.some(function(other) {
 						return gui.DOMPlugin.contains(other, target);
@@ -458,7 +459,10 @@ gui.DOMPlugin = (function using(chained, guide, observer) {
 			 * @returns {object}
 			 */
 			_qualify: function(node, selector, action) {
-				var hadid = true, orig = node, id, regexp = this._thiskeyword;
+				var hadid = true,
+					orig = node,
+					id,
+					regexp = this._thiskeyword;
 				if (node.nodeType === Node.ELEMENT_NODE) {
 					if (regexp.test(selector)) {
 						hadid = node.id;
@@ -547,7 +551,8 @@ gui.DOMPlugin.mixin(
 		},
 		function(name, base) {
 			return function() {
-				var selector = arguments[0], type = arguments[1];
+				var selector = arguments[0],
+					type = arguments[1];
 				if (gui.Type.isString(selector)) {
 					if (arguments.length === 1 || gui.Type.isFunction(type)) {
 						return base.apply(this, arguments);
@@ -578,7 +583,9 @@ gui.DOMPlugin.mixin(
 			 * @returns {Element|gui.Spirit}
 			 */
 			next: function(type) {
-				var result = null, spirit = null, el = this.spirit.element;
+				var result = null,
+					spirit = null,
+					el = this.spirit.element;
 				if (type) {
 					while ((el = el.nextElementSibling) !== null) {
 						spirit = el.spirit;
@@ -599,7 +606,9 @@ gui.DOMPlugin.mixin(
 			 * @returns {Element|gui.Spirit}
 			 */
 			previous: function(type) {
-				var result = null, spirit = null, el = this.spirit.element;
+				var result = null,
+					spirit = null,
+					el = this.spirit.element;
 				if (type) {
 					while ((el = el.previousElementSibling) !== null) {
 						spirit = el.spirit;
@@ -620,7 +629,9 @@ gui.DOMPlugin.mixin(
 			 * @returns {Element|gui.Spirit}
 			 */
 			first: function(type) {
-				var result = null, spirit = null, el = this.spirit.element.firstElementChild;
+				var result = null,
+					spirit = null,
+					el = this.spirit.element.firstElementChild;
 				if (type) {
 					while (result === null && el !== null) {
 						spirit = el.spirit;
@@ -641,7 +652,9 @@ gui.DOMPlugin.mixin(
 			 * @returns {Element|gui.Spirit}
 			 */
 			last: function(type) {
-				var result = null, spirit = null, el = this.spirit.element.lastElementChild;
+				var result = null,
+					spirit = null,
+					el = this.spirit.element.lastElementChild;
 				if (type) {
 					while (result === null && el !== null) {
 						spirit = el.spirit;
@@ -808,7 +821,9 @@ gui.DOMPlugin.mixin(
 			 * @returns {Array<element|gui.Spirit>}
 			 */
 			following: function(type) {
-				var result = [], spirit, el = this.spirit.element;
+				var result = [],
+					spirit,
+					el = this.spirit.element;
 				while ((el = el.nextElementSibling)) {
 					if (type) {
 						if ((spirit = el.spirit) && spirit instanceof type) {
@@ -827,7 +842,9 @@ gui.DOMPlugin.mixin(
 			 * @returns {Array<element|gui.Spirit>}
 			 */
 			preceding: function(type) {
-				var result = [], spirit, el = this.spirit.element;
+				var result = [],
+					spirit,
+					el = this.spirit.element;
 				while ((el = el.previousElementSibling)) {
 					if (type) {
 						if ((spirit = el.spirit) && spirit instanceof type) {
@@ -951,7 +968,8 @@ gui.DOMPlugin.mixin(
 				 * @returns {object} Returns the argument
 				 */
 				append: function(things) {
-					var els = things, element = this.spirit.element;
+					var els = things,
+						element = this.spirit.element;
 					els.forEach(function(el) {
 						element.appendChild(el);
 					});
@@ -963,7 +981,9 @@ gui.DOMPlugin.mixin(
 				 * @returns {object} Returns the argument
 				 */
 				prepend: function(things) {
-					var els = things, element = this.spirit.element, first = element.firstChild;
+					var els = things,
+						element = this.spirit.element,
+						first = element.firstChild;
 					els.reverse().forEach(function(el) {
 						element.insertBefore(el, first);
 					});
@@ -975,7 +995,9 @@ gui.DOMPlugin.mixin(
 				 * @returns {object} Returns the argument
 				 */
 				before: function(things) {
-					var els = things, target = this.spirit.element, parent = target.parentNode;
+					var els = things,
+						target = this.spirit.element,
+						parent = target.parentNode;
 					els.reverse().forEach(function(el) {
 						parent.insertBefore(el, target);
 					});
@@ -987,7 +1009,9 @@ gui.DOMPlugin.mixin(
 				 * @returns {object} Returns the argument
 				 */
 				after: function(things) {
-					var els = things, target = this.spirit.element, parent = target.parentNode;
+					var els = things,
+						target = this.spirit.element,
+						parent = target.parentNode;
 					els.forEach(function(el) {
 						parent.insertBefore(el, target.nextSibling);
 					});

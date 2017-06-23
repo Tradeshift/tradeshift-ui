@@ -401,7 +401,8 @@ gui.Guide = (function using(
 		 * @param {boolean} one Skip the subtree?
 		 */
 		_spiritualize: function(elm, skip, one) {
-			var spirits, channels = this._channels;
+			var spirits,
+				channels = this._channels;
 			skip = false; // until DOM setters can finally replace Mutation Observers
 			spirits = Assistant.$detectspirits(elm, skip, one, channels);
 			this._sequence(spirits);
@@ -502,7 +503,8 @@ gui.Guide = (function using(
 		 * @param {function|String} klass Constructor or name
 		 */
 		_channelOne: function(select, klass) {
-			var spirit, booting = !!this._todochannels;
+			var spirit,
+				booting = !!this._todochannels;
 			if (gui.initialized) {
 				spirit = typeof klass === 'string' ? gui.Object.lookup(klass) : klass;
 				if (!gui.debug || Type.isSpiritConstructor(spirit)) {

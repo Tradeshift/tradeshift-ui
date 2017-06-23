@@ -10,7 +10,9 @@ function Controller($scope) {
 	};
 
 	function getRows() {
-		var rows = [], i, n;
+		var rows = [],
+			i,
+			n;
 		for (i = 0; i < model.pageSize; i++) {
 			n = model.page * model.pageSize + i + 1;
 			if (n > model.total) break;

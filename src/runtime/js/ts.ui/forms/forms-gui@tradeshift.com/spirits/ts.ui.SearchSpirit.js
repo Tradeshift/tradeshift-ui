@@ -183,7 +183,8 @@ ts.ui.SearchSpirit = (function using(ButtonSpirit, CSSPlugin, Type, chained) {
 		 * @returns {ts.ui.SearchModel}
 		 */
 		_defaultmodel: function() {
-			var spirit = this, model = new ts.ui.SearchModel();
+			var spirit = this,
+				model = new ts.ui.SearchModel();
 			methodnames.forEach(function(method) {
 				model[method] = function() {
 					if (Type.isFunction(spirit[method])) {

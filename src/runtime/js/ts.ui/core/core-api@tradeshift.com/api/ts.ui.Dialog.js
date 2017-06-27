@@ -200,7 +200,7 @@ ts.ui.Dialog.DEFAULT_TIME = 1500;
 			case Dialog.DANGER:
 				return 'ts-icon-warning';
 			case Dialog.CONFIRM:
-				return 'ts-icon-todo';
+				return 'ts-icon-question';
 		}
 		return null;
 	}

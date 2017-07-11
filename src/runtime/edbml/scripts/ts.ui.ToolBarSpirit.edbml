@@ -108,9 +108,11 @@
 
 	// non-mobile buttons (tertiary buttons are the "normals" here)
 	function renderbuttons(specials, normals) {
+		/*
 		if(showPager()) {
 			collapsebuttons(specials, normals);
 		}
+		*/
 		if(normals.length === 1) {
 			specials = normals.concat(specials);
 		} else if(shouldrenderaside(normals)) {
@@ -121,12 +123,14 @@
 		specials.forEach(renderbutton);
 	}
 
+	/*
 	// (this should really be done in the model and not the view)
 	function collapsebuttons(specials, normals) {
 		while(specials.length) {
 			normals.push(specials.shift());
 		}
 	}
+	*/
 
 	// we have buttons to put into the aside and they're not all disabled?
 	function shouldrenderaside(buttons) {

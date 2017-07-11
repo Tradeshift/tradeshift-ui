@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Footer Gallery</title>
+		<object data="tabs.xhtml"></object>
+	</head>
+	<body>
+		<header data-ts="TopBar"></header>
+		<main data-ts="Main">
+			<article>
+				<h1>Footer gallery</h1>
+				<section class="desc">
+					<p>Go go gadget Footer.</p>
+				</section>
+				<section>
+
+					<p>Pager is very nice.</p>
+
+					<figure data-ts="DoxScript">
+						<script type="runnable">
+							ts.ui.Footer.pager({
+								pages: 23,
+								page: 0,
+								onselect: function(index) {
+									console.log(index);
+								}
+							});
+						</script>
+					</figure>
+
+					<figure data-ts="DoxScript">
+						<script type="runnable">
+							ts.ui.Footer.actions([
+								{ label: 'Move Up', icon: 'ts-icon-triangleup' },
+								{ label: 'Move Down', icon: 'ts-icon-triangledown' },
+								{ label: 'Move Left', icon: 'ts-icon-triangleleft' },
+								{ label: 'Move Right', icon: 'ts-icon-triangleright' },
+								{ label: 'Don\'t Move', icon: 'ts-icon-halt' }
+							]);
+						</script>
+					</figure>
+
+					<figure data-ts="DoxScript">
+						<script type="runnable">
+							ts.ui.Footer.buttons([
+								{ label: 'Long Button One', type: 'ts-primary' },
+								{ label: 'Long Button Two', type: 'ts-secondary' },
+								{ label: 'Long Button Three' },
+								{ label: 'Long Button Four' },
+								{ label: 'Long Button Five' }
+							]);
+						</script>
+					</figure>
+
+					<figure data-ts="DoxScript">
+						<script type="runnable">
+							ts.ui.Footer.buttons([
+								{ label: 'Short 1', type: 'ts-primary' },
+								{ label: 'Short 2', type: 'ts-secondary' },
+								{ label: 'Short 3' },
+								{ label: 'Short 4' },
+								{ label: 'Short 5' }
+							]);
+						</script>
+					</figure>
+
+					<figure data-ts="DoxScript">
+						<script type="runnable">
+							ts.ui.Footer.buttons().splice(2, 0,
+								{ label: 'Bonus Button', type: 'ts-secondary' }
+							);
+						</script>
+					</figure>					
+
+				</section>
+
+			</article>
+		</main>
+	</body>
+<html>

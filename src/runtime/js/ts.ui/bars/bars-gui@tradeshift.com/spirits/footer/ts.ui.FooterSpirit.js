@@ -3,8 +3,36 @@
  * TODO: Implement `onpage` callback for parity with Table.
  * @extends {ts.ui.Spirit}
  * @using {gui.Combo#chained} chained
+ * @using {gui.Array} GuiArray
  */
-ts.ui.FooterSpirit = (function using(chained) {
+ts.ui.FooterSpirit = (function using(chained, GuiArray) {
+	/**
+	 * @type {boolean}
+	 */
+	var conflict = false;
+
+	/**
+	 * @param {ts.ui.ToolBarSpirit} bar1
+	 * @param {ts.ui.ToolBarSpirit} bar2
+	 * @returns {boolean}
+	 */
+	function hittest(bar1, bar2) {
+		var pager = bar1.dom.q('.ts-toolbar-pager');
+		var butts = bar2.dom.q('.ts-toolbar-menu.ts-right');
+		if (pager && butts) {
+			return box(pager).right > box(butts).left;
+		}
+		return false;
+	}
+
+	/**
+	 * @param {Element} elm
+	 * @returns {object}
+	 */
+	function box(elm) {
+		return elm.getBoundingClientRect();
+	}
+
 	return ts.ui.Spirit.extend({
 		/**
 		 * Footer is visible? Note that even so, it won't show up until populated.
@@ -26,9 +54,10 @@ ts.ui.FooterSpirit = (function using(chained) {
 		 * @returns {this|ts.ui.ButtonCollection}
 		 */
 		buttons: chained(function(buttons) {
-			var bar = this._buttonbar();
+			var bar = conflict ? this._buttonbar() : this._pagerbar();
 			if (arguments.length) {
 				bar.buttons(buttons);
+				bar.dom.show();
 			} else {
 				return bar.buttons();
 			}
@@ -75,7 +104,7 @@ ts.ui.FooterSpirit = (function using(chained) {
 		}),
 
 		/**
-		 *
+		 * Remove that checkbox.
 		 */
 		nocheckbox: chained(function() {
 			this._oncheckboxclick = null;
@@ -105,6 +134,20 @@ ts.ui.FooterSpirit = (function using(chained) {
 				case ts.ui.ACTION_STATUSBAR_LEVEL:
 					this._globallayout(a.data);
 					a.consume();
+					break;
+			}
+		},
+
+		/**
+		 * Handle life (when PagerBar rendered).
+		 * @param {gui.Life} l
+		 */
+		onlife: function(l) {
+			this.super.onlife(l);
+			switch (l.target) {
+				case this._pagerbar.spirit:
+				case this._buttonbar.spirit:
+					this._hittest();
 					break;
 			}
 		},
@@ -195,6 +238,7 @@ ts.ui.FooterSpirit = (function using(chained) {
 		_buttonbar: function buttonbar() {
 			if (!buttonbar.spirit) {
 				buttonbar.spirit = this.dom.append(ts.ui.StatusBarSpirit.summon());
+				buttonbar.spirit.life.add(gui.LIFE_RENDER, this);
 				this.action.add(ts.ui.ACTION_STATUSBAR_LEVEL);
 				this.css.add('has-buttonbar');
 				this._globallayout();
@@ -232,6 +276,7 @@ ts.ui.FooterSpirit = (function using(chained) {
 					this.dom.append(spirit);
 				}
 				this.css.add('has-pagerbar');
+				spirit.life.add(gui.LIFE_RENDER, this);
 				pagerbar.spirit = spirit;
 				this._globallayout();
 			}
@@ -282,6 +327,36 @@ ts.ui.FooterSpirit = (function using(chained) {
 			} else {
 				this.dom.hide();
 			}
+		},
+
+		_hittest: function() {
+			var pbar = this._pagerbar.spirit;
+			var bbar = this._buttonbar.spirit;
+			var list = null;
+			if (pbar) {
+				list = pbar.buttons();
+				if (list.length) {
+					console.log('has buttons in pager');
+					conflict = hittest(pbar, pbar);
+					console.log('conflict', conflict);
+					if (conflict) {
+						this.buttons(GuiArray.from(list));
+						list.clear();
+					}
+				} else if (bbar) {
+					console.log('has buttos in buttons');
+					list = bbar.buttons();
+					if (list.length) {
+						conflict = hittest(pbar, bbar);
+						console.log('conflict', conflict);
+						if (!conflict) {
+							this.buttons(GuiArray.from(list));
+							list.clear();
+							bbar.dom.hide();
+						}
+					}
+				}
+			}
 		}
 	});
-})(gui.Combo.chained);
+})(gui.Combo.chained, gui.Array);

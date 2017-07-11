@@ -91,6 +91,9 @@
 					<figure data-ts="DoxScript">
 						<script type="runnable">
 							ts.ui.Footer.hideActions();
+							setTimeout(function restore() {
+								ts.ui.Footer.showActions();
+							}, 1000);
 						</script>
 					</figure>
 

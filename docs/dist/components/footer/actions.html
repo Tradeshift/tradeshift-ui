@@ -12,6 +12,7 @@
     <link rel="prefetch" title="Buttons" href="index.html">
     <link rel="prefetch" title="Actions" href="actions.html">
     <link rel="prefetch" title="Pager" href="pager.html">
+    <link rel="prefetch" title="Gallery" href="gallery.html" class="hidden">
     <script>
         ts.dox.tabs()
     </script>
@@ -119,13 +120,16 @@ Footer<span class="token punctuation">.</span><span class="token function">check
                         </div>
                     </figure>
                     <p>When you are done with the actions, you can hide them away. Remember to show them again before you need them next time!</p>
-                    <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.Footer.hideActions()%3B">
+                    <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.Footer.hideActions()%3B%0AsetTimeout(function%20restore()%20%7B%0A%09ts.ui.Footer.showActions()%3B%0A%7D%2C%201000)%3B">
                         <script type="runnable">
-                            ts.ui.Footer.hideActions();
+                            ts.ui.Footer.hideActions(); setTimeout(function restore() { ts.ui.Footer.showActions(); }, 1000);
                         </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                         <div class="tabpanels">
                             <pre class="prism language-javascript">
-<code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Footer<span class="token punctuation">.</span><span class="token function">hideActions<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
+<code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Footer<span class="token punctuation">.</span><span class="token function">hideActions<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">setTimeout<span class="token punctuation">(</span></span><span class="token keyword">function</span> <span class="token function">restore<span class="token punctuation">(</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Footer<span class="token punctuation">.</span><span class="token function">showActions<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token number">1000</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
 </pre>
                         </div>
                     </figure>

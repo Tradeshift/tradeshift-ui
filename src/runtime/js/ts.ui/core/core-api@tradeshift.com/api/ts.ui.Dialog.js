@@ -166,20 +166,8 @@ ts.ui.Dialog.DEFAULT_TIME = 1500;
 				]
 			})
 		)
-			.acceptButton(
-				type === Dialog.SUCCESS
-					? null
-					: {
-							label: tostring(strings[1])
-						}
-			)
-			.cancelButton(
-				note
-					? null
-					: {
-							label: tostring(strings[2])
-						}
-			);
+			.acceptButton(type === Dialog.SUCCESS ? null : { label: tostring(strings[1]) })
+			.cancelButton(note ? null : { label: tostring(strings[2]) });
 	}
 
 	/**

@@ -18,6 +18,12 @@ gui.Tween = (function using(confirmed, chained) {
 			duration: 200,
 
 			/**
+			 * Default delay.
+			 * @type {number} Time in milliseconds.
+			 */
+			delay: 0,
+
+			/**
 			 * Equivalent to transition-timing-function.
 			 * Can be an array of 4 numbers to use a custom bezier curve.
 			 * @type {string|array<number>}
@@ -62,6 +68,9 @@ gui.Tween = (function using(confirmed, chained) {
 					}
 					if (config.timing !== undefined) {
 						this.timing = config.timing;
+					}
+					if (config.delay !== undefined) {
+						this.delay = config.delay;
 					}
 				}
 			}
@@ -113,19 +122,30 @@ gui.Tween = (function using(confirmed, chained) {
 				);
 
 				function step() {
-					var t = (timer.now() - start) / tween.duration;
-					if (t < 1) {
-						tween.value = curve.solve(t);
-						requestAnimationFrame(step);
-					} else {
-						tween.done = true;
-						tween.value = 1;
+					var now = timer.now();
+					var progress = now - start;
+
+					if (tween.init && progress > tween.delay) {
+						tween.init = false;
+						start = now;
 					}
 
-					gui.Broadcast.dispatch(gui.BROADCAST_TWEEN, tween);
+					if (!tween.init) {
+						var t = progress / tween.duration;
+						if (t < 1) {
+							tween.value = curve.solve(t);
+						} else {
+							tween.done = true;
+							tween.value = 1;
+						}
+						gui.Broadcast.dispatch(gui.BROADCAST_TWEEN, tween);
+					}
+
+					if (!tween.done) {
+						requestAnimationFrame(step);
+					}
 				}
 
-				tween.init = false;
 				step();
 
 				return tween;

@@ -39,9 +39,9 @@ describe('gui.Sprite', function likethis() {
 			this.sandbox.appendChild(spirit.element);
 			spirit.setSpriteStuff();
 			var cssText = this.sandbox.children[0].style.cssText;
-			expect(cssText.indexOf('transform-origin: 10px 10px 10px;')).toBeGreaterThan(-1);
+			expect(cssText.indexOf('transform-origin: 10.01px 10.01px 10.01px;')).toBeGreaterThan(-1);
 			expect(
-				cssText.indexOf('transform: translate3d(10px, 10px, 10px) scale(10.01);')
+				cssText.indexOf('transform: translate3d(10.01px, 10.01px, 10.01px) scale(10.01);')
 			).toBeGreaterThan(-1);
 		} else {
 			expect("this browser can't test this feature").toBeTruthy();
@@ -56,7 +56,7 @@ describe('gui.Sprite', function likethis() {
 			var cssText = this.sandbox.children[0].style.cssText;
 			expect(cssText.indexOf('left: 20px;')).toBeGreaterThan(-1);
 			expect(cssText.indexOf('top: 20px;')).toBeGreaterThan(-1);
-			expect(cssText.indexOf('-ms-transform-origin: 10px 10px;')).toBeGreaterThan(-1);
+			expect(cssText.indexOf('-ms-transform-origin: 10.01px 10.01px;')).toBeGreaterThan(-1);
 			expect(cssText.indexOf('-ms-transform: scale(10.01);')).toBeGreaterThan(-1);
 		} else {
 			expect("this browser shouldn't test this feature").toBeTruthy();

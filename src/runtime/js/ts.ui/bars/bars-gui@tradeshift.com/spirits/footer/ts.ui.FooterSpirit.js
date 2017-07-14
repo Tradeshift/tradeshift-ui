@@ -12,8 +12,9 @@ ts.ui.FooterSpirit = (function using(chained, GuiArray) {
 	var conflict = false;
 
 	/**
-	 * @param {ts.ui.ToolBarSpirit} bar1
-	 * @param {ts.ui.ToolBarSpirit} bar2
+	 * Pager and (buttons) menu overlap?
+	 * @param {ts.ui.ToolBarSpirit} bar1 - the pagerbar
+	 * @param {ts.ui.ToolBarSpirit} bar2 - the pagerbar OR the bonusbar
 	 * @returns {boolean}
 	 */
 	function hittest(bar1, bar2) {
@@ -26,6 +27,7 @@ ts.ui.FooterSpirit = (function using(chained, GuiArray) {
 	}
 
 	/**
+	 * Get bounding box.
 	 * @param {Element} elm
 	 * @returns {object}
 	 */
@@ -50,14 +52,30 @@ ts.ui.FooterSpirit = (function using(chained, GuiArray) {
 		},
 
 		/**
+		 *
+		 */
+		onflex: function() {
+			this.super.onflex();
+			this._hittest();
+		},
+
+		/**
 		 * @param {ts.ui.ButtonCollection} [buttons]
 		 * @returns {this|ts.ui.ButtonCollection}
 		 */
 		buttons: chained(function(buttons) {
-			var bar = conflict ? this._buttonbar() : this._pagerbar();
+			/*
+			var has = this._pagerbar.spirit && this._pagerbar().pager();
+			var bar = has ? this._renderbar() : this._pagerbar();
+			if (arguments.length) {	
+				bar.buttons(buttons);
+			} else {
+				return bar.buttons();
+			}
+			*/
+			var bar = conflict ? this._bonusbar() : this._pagerbar();
 			if (arguments.length) {
 				bar.buttons(buttons);
-				bar.dom.show();
 			} else {
 				return bar.buttons();
 			}
@@ -139,16 +157,18 @@ ts.ui.FooterSpirit = (function using(chained, GuiArray) {
 		},
 
 		/**
-		 * Handle life (when PagerBar rendered).
+		 * Handle life.
 		 * @param {gui.Life} l
 		 */
 		onlife: function(l) {
 			this.super.onlife(l);
-			switch (l.target) {
-				case this._pagerbar.spirit:
-				case this._buttonbar.spirit:
-					this._hittest();
-					break;
+			if (l.type === gui.LIFE_RENDER) {
+				switch (l.target) {
+					case this._pagerbar.spirit:
+					case this._bonusbar.spirit:
+						this._hittest();
+						break;
+				}
 			}
 		},
 
@@ -180,6 +200,7 @@ ts.ui.FooterSpirit = (function using(chained, GuiArray) {
 		 * @returns {this}
 		 */
 		hideActions: chained(function() {
+			this.css.remove('has-actionbar');
 			this._actionbar().hide();
 			this._globallayout();
 		}),
@@ -188,6 +209,7 @@ ts.ui.FooterSpirit = (function using(chained, GuiArray) {
 		 * @returns {this}
 		 */
 		showActions: chained(function() {
+			this.add.add('has-actionbar');
 			this._actionbar().show();
 			this._globallayout();
 		}),
@@ -196,6 +218,7 @@ ts.ui.FooterSpirit = (function using(chained, GuiArray) {
 		 * @returns {this}
 		 */
 		hidePager: chained(function() {
+			this.css.remove('has-pagerbar');
 			this._pagerbar().hide();
 			this._globallayout();
 		}),
@@ -204,23 +227,8 @@ ts.ui.FooterSpirit = (function using(chained, GuiArray) {
 		 * @returns {this}
 		 */
 		showPager: chained(function() {
+			this.css.add('has-actionbar');
 			this._pagerbar().show();
-			this._globallayout();
-		}),
-
-		/**
-		 * @returns {this}
-		 */
-		hideButtons: chained(function() {
-			this._buttonbar().hide();
-			this._globallayout();
-		}),
-
-		/**
-		 * @returns {this}
-		 */
-		showButtons: chained(function() {
-			this._buttonbar().show();
 			this._globallayout();
 		}),
 
@@ -232,18 +240,18 @@ ts.ui.FooterSpirit = (function using(chained, GuiArray) {
 		_oncheckboxclick: null,
 
 		/**
-		 * Get the buttonbar, at the very bottom (create it if needed).
+		 * Get the bonusbar, at the very bottom (create it if needed).
 		 * @returns {ts.ui.StatusBarSpirit}
 		 */
-		_buttonbar: function buttonbar() {
-			if (!buttonbar.spirit) {
-				buttonbar.spirit = this.dom.append(ts.ui.StatusBarSpirit.summon());
-				buttonbar.spirit.life.add(gui.LIFE_RENDER, this);
+		_bonusbar: function bonusbar() {
+			if (!bonusbar.spirit) {
+				bonusbar.spirit = this.dom.append(ts.ui.StatusBarSpirit.summon());
+				bonusbar.spirit.life.add(gui.LIFE_RENDER, this);
 				this.action.add(ts.ui.ACTION_STATUSBAR_LEVEL);
-				this.css.add('has-buttonbar');
+				this.css.add('has-bonusbar');
 				this._globallayout();
 			}
-			return buttonbar.spirit;
+			return bonusbar.spirit;
 		},
 
 		/** 
@@ -268,7 +276,7 @@ ts.ui.FooterSpirit = (function using(chained, GuiArray) {
 			if (!pagerbar.spirit) {
 				var spirit = ts.ui.StatusBarSpirit.summon();
 				var target = null;
-				if ((target = this._buttonbar.spirit)) {
+				if ((target = this._bonusbar.spirit)) {
 					spirit.dom.insertBefore(target);
 				} else if ((target = this._actionbar.spirit)) {
 					spirit.dom.insertAfter(target);
@@ -283,6 +291,13 @@ ts.ui.FooterSpirit = (function using(chained, GuiArray) {
 			return pagerbar.spirit;
 		},
 
+		_renderbar: function renderbar() {
+			if (!renderbar.spirit) {
+				renderbar.spirit = this.dom.before(ts.ui.ToolBarSpirit.summon());
+				renderbar.spirit.life.add(gui.LIFE_RENDER, this);
+			}
+		},
+
 		/**
 		 * Set classnames on `html` to control the `bottom` position of Main.
 		 * TODO: Once we have the TopBar converted to a Header, we should 
@@ -292,7 +307,7 @@ ts.ui.FooterSpirit = (function using(chained, GuiArray) {
 		 */
 		_globallayout: function(level) {
 			var offset = 0;
-			var footer = this._buttonbar.spirit;
+			var footer = this._bonusbar.spirit;
 			var action = this._actionbar.spirit;
 			var pagerb = this._pagerbar.spirit;
 			if (this.visible) {
@@ -329,32 +344,63 @@ ts.ui.FooterSpirit = (function using(chained, GuiArray) {
 			}
 		},
 
-		_hittest: function() {
-			var pbar = this._pagerbar.spirit;
-			var bbar = this._buttonbar.spirit;
-			var list = null;
-			if (pbar) {
-				list = pbar.buttons();
-				if (list.length) {
-					console.log('has buttons in pager');
-					conflict = hittest(pbar, pbar);
-					console.log('conflict', conflict);
-					if (conflict) {
-						this.buttons(GuiArray.from(list));
-						list.clear();
-					}
-				} else if (bbar) {
-					console.log('has buttos in buttons');
-					list = bbar.buttons();
-					if (list.length) {
-						conflict = hittest(pbar, bbar);
-						console.log('conflict', conflict);
-						if (!conflict) {
-							this.buttons(GuiArray.from(list));
-							list.clear();
-							bbar.dom.hide();
-						}
-					}
+		/**
+		 * Hide the bonus bar.
+		 * @returns {this}
+		 */
+		_hideBonus: chained(function() {
+			this.css.remove('has-bonusbar');
+			this._bonusbar().hide();
+			this._globallayout();
+		}),
+
+		/**
+		 * Show the bonus bar.
+		 * @returns {this}
+		 */
+		_showBonus: chained(function() {
+			this.css.add('has-bonusbar');
+			this._bonusbar().show();
+			this._globallayout();
+		}),
+
+		/**
+		 * TODO: The suspend operation should not really be performed here.
+		 */
+		_hittest: function hittest() {
+			var pager = this._pagerbar.spirit;
+			var bonus = this._bonusbar.spirit;
+			if (pager && pager.pager()) {
+				if (!hittest.suspended) {
+					hittest.suspended = true;
+					this._actuallyhittest(pager, bonus);
+					this.tick.time(function reset() {
+						hittest.suspended = false;
+					}, 50);
+				}
+			}
+		},
+
+		/**
+		 * If conflict, call `buttons` again (this will account for the conflict).
+		 * @param {ts.ui.StatusBarSpirit} pager
+		 * @param {ts.ui.ToolBarSpirit} [bonus]
+		 */
+		_actuallyhittest: function(pager, bonus) {
+			var list = pager.buttons();
+			if (list.length) {
+				conflict = hittest(pager, pager);
+				if (conflict) {
+					this.buttons(GuiArray.from(list));
+					list.clear();
+					this._showBonus();
+				}
+			} else if (bonus && (list = bonus.buttons()).length) {
+				conflict = hittest(pager, bonus);
+				if (!conflict) {
+					this.buttons(GuiArray.from(list));
+					list.clear();
+					this._hideBonus();
 				}
 			}
 		}

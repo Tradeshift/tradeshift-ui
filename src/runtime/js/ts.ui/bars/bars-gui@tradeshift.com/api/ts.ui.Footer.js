@@ -4,6 +4,7 @@
  */
 ts.ui.Footer = (function using(chained) {
 	/**
+	 * Creates the spirit when first invoked.
 	 * @returns {ts.ui.FooterSpirit}
 	 */
 	function footer() {
@@ -113,14 +114,11 @@ ts.ui.Footer = (function using(chained) {
 		}
 	};
 
-	[
-		'hideActions',
-		'showActions',
-		'hidePager',
-		'showPager',
-		'hideButtons',
-		'showButtons'
-	].forEach(function generate(method) {
+	/**
+	 * Generate methods to hide and show the various elements.
+	 * TODO: Think much harder and much much longer about it.
+	 */
+	['hideActions', 'showActions', 'hidePager', 'showPager'].forEach(function generate(method) {
 		Footer[method] = chained(function() {
 			footer()[method]();
 		});
@@ -128,23 +126,3 @@ ts.ui.Footer = (function using(chained) {
 
 	return Footer;
 })(gui.Combo.chained);
-
-/**
- * This thing should be implemented as an accessor because 
- * some API with a single boolean argument just aint right.
- *
-(function scoped(now) {
-	Object.defineProperty(ts.ui.Footer, 'checked', {
-		get: function() {
-			return now;
-		},
-		set: function(value) {
-			var was = now;
-			now = !!value;
-			if (now !== was) {
-				this.$check(now);
-			}
-		}
-	});
-})(ts.ui.Footer.selected);
-*/

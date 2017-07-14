@@ -1,7 +1,8 @@
 // TODO: MOVE THESE ............................................................
 
 .ts-mainheader,
-.ts-mainfooter {
+.ts-mainfooter,
+.ts-mainfooter-buffer {
 	position: absolute;
 	z-index: @ts-zindex-main + 1;
 	top: 0;
@@ -64,6 +65,11 @@
 		}
 	}
 }
+.ts-mainfooter-buffer {
+	bottom: 0 - @ts-unit-triple;
+	visibility: hidden;
+}
+
 
 // Mixins ......................................................................
 

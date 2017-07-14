@@ -12,19 +12,9 @@ ts.ui.FooterSpirit = (function using(chained, GuiArray) {
 	var conflict = false;
 
 	/**
-	 * Pager and (buttons) menu overlap?
-	 * @param {ts.ui.ToolBarSpirit} bar1 - the pagerbar
-	 * @param {ts.ui.ToolBarSpirit} bar2 - the pagerbar OR the bonusbar
-	 * @returns {boolean}
+	 * @type {ts.ui.ButtonCollection}
 	 */
-	function hittest(bar1, bar2) {
-		var pager = bar1.dom.q('.ts-toolbar-pager');
-		var butts = bar2.dom.q('.ts-toolbar-menu.ts-right');
-		if (pager && butts) {
-			return box(pager).right > box(butts).left;
-		}
-		return false;
-	}
+	var buffer = null;
 
 	/**
 	 * Get bounding box.
@@ -52,34 +42,91 @@ ts.ui.FooterSpirit = (function using(chained, GuiArray) {
 		},
 
 		/**
-		 *
+		 * Evaluate conflict between pager and buttons in light of new window size.
 		 */
 		onflex: function() {
 			this.super.onflex();
-			this._hittest();
+			if (this._hasPager() && this._hasButtons()) {
+				var was = conflict;
+				var now = this._hittest();
+				if (was !== now) {
+					this._transfer();
+				}
+			}
 		},
 
 		/**
+		 * Handle changes in observed button collection.
+		 * @param {Array<edb.Change>} changes
+		 */
+		onchange: function(changes) {
+			this.super.onchange(changes);
+			if (
+				buffer &&
+				changes.some(function isbuttons(c) {
+					return c.object === buffer;
+				})
+			) {
+				this._measure();
+				if (!buffer.length) {
+					conflict = false;
+				}
+			}
+		},
+
+		/**
+		 * The buttons may be moved around in three different bars, so we will just 
+		 * use a {ts.ui.ButtonCollection} that isn't attached to anyone in particular.
 		 * @param {ts.ui.ButtonCollection} [buttons]
 		 * @returns {this|ts.ui.ButtonCollection}
 		 */
 		buttons: chained(function(buttons) {
-			/*
-			var has = this._pagerbar.spirit && this._pagerbar().pager();
-			var bar = has ? this._renderbar() : this._pagerbar();
-			if (arguments.length) {	
-				bar.buttons(buttons);
-			} else {
-				return bar.buttons();
+			if (!buffer) {
+				buffer = new ts.ui.ButtonCollection();
+				buffer.addObserver(this);
 			}
-			*/
-			var bar = conflict ? this._bonusbar() : this._pagerbar();
 			if (arguments.length) {
-				bar.buttons(buttons);
+				buffer.clear();
+				buttons.forEach(function(json) {
+					buffer.push(json);
+				});
+				if (this._hasPager()) {
+					this._measure();
+				} else {
+					this._transfer();
+				}
 			} else {
-				return bar.buttons();
+				return buffer;
 			}
 		}),
+
+		/**
+		 * Pager (in the centerbar) and buttons (in the bufferbar) would overlap?
+		 * @returns {boolean}
+		 */
+		_hittest: function() {
+			var pager = this._centerbar.spirit.dom.q('.ts-toolbar-pager');
+			var butts = this._bufferbar.spirit.dom.q('.ts-toolbar-menu.ts-right');
+			if (pager && butts) {
+				return (conflict = box(pager).right > box(butts).left);
+			}
+			return false;
+		},
+
+		/**
+		 * Pager and (buttons) menu overlap?
+		 * @param {ts.ui.ToolBarSpirit} bar1 - the centerbar
+		 * @param {ts.ui.ToolBarSpirit} bar2 - the centerbar OR the backupbar
+		 * @returns {boolean}
+		 */
+		_test: function(bar1, bar2) {
+			var pager = bar1.dom.q('.ts-toolbar-pager');
+			var butts = bar2.dom.q('.ts-toolbar-menu.ts-right');
+			if (pager && butts) {
+				return (conflict = box(pager).right > box(butts).left);
+			}
+			return false;
+		},
 
 		/**
 		 * @param {ts.ui.ButtonCollection} [buttons]
@@ -100,9 +147,15 @@ ts.ui.FooterSpirit = (function using(chained, GuiArray) {
 		 * @returns {ts.ui.PagerModel|ts.ui.ToolBarSpirit}
 		 */
 		pager: chained(function(json) {
-			var bar = this._pagerbar();
+			var bar = this._centerbar();
 			if (arguments.length) {
 				bar.pager(json);
+				if (this._hasButtons() || json === null) {
+					this._pagerchanged = true;
+					if (json === null) {
+						conflict = false;
+					}
+				}
 			} else {
 				return bar.pager();
 			}
@@ -157,16 +210,34 @@ ts.ui.FooterSpirit = (function using(chained, GuiArray) {
 		},
 
 		/**
-		 * Handle life.
+		 * Elaborate setup to ensure that we never hide or show the toolbars 
+		 * until they have been rendered (so that they doen't flicker badly).
 		 * @param {gui.Life} l
 		 */
-		onlife: function(l) {
+		onlife: function xxx(l) {
 			this.super.onlife(l);
+			var bufferbar = this._bufferbar.spirit;
+			var backupbar = this._backupbar.spirit;
+			var centerbar = this._centerbar.spirit;
 			if (l.type === gui.LIFE_RENDER) {
 				switch (l.target) {
-					case this._pagerbar.spirit:
-					case this._bonusbar.spirit:
-						this._hittest();
+					case bufferbar:
+						this._transfer();
+						break;
+					case backupbar:
+						if (backupbar.buttons().length) {
+							this._showbar(backupbar);
+						} else {
+							this._hidebar(backupbar);
+						}
+						break;
+					case centerbar:
+						if (this._pagerchanged) {
+							this._pagerchanged = false;
+							if (this._hasPager()) {
+								this._transfer();
+							}
+						}
 						break;
 				}
 			}
@@ -197,39 +268,35 @@ ts.ui.FooterSpirit = (function using(chained, GuiArray) {
 		}),
 
 		/**
+		 * Hide the actions bar.
 		 * @returns {this}
 		 */
 		hideActions: chained(function() {
-			this.css.remove('has-actionbar');
-			this._actionbar().hide();
-			this._globallayout();
+			this._hidebar(this._actionbar());
 		}),
 
 		/**
+		 * Show the actions bar.
 		 * @returns {this}
 		 */
 		showActions: chained(function() {
-			this.add.add('has-actionbar');
-			this._actionbar().show();
-			this._globallayout();
+			this._showbar(this._actionbar());
 		}),
 
 		/**
+		 * Hide the pager bar (TODO: RENAME! DEPRECATE?)
 		 * @returns {this}
 		 */
 		hidePager: chained(function() {
-			this.css.remove('has-pagerbar');
-			this._pagerbar().hide();
-			this._globallayout();
+			this._hidebar(this._centerbar());
 		}),
 
 		/**
+		 * Hide the pager bar (TODO: RENAME! DEPRECATE?)
 		 * @returns {this}
 		 */
 		showPager: chained(function() {
-			this.css.add('has-actionbar');
-			this._pagerbar().show();
-			this._globallayout();
+			this._hidebar(this._centerpager());
 		}),
 
 		// Private .................................................................
@@ -240,18 +307,23 @@ ts.ui.FooterSpirit = (function using(chained, GuiArray) {
 		_oncheckboxclick: null,
 
 		/**
-		 * Get the bonusbar, at the very bottom (create it if needed).
+		 * Just a flag to indicate that the pager appeared or disappeared.
+		 * @type {boolean}
+		 */
+		_pagerchanged: false,
+
+		/**
+		 * Get the backupbar, at the very bottom (create it if needed).
+		 * The backupbar remains hidden until rendered (with content).
 		 * @returns {ts.ui.StatusBarSpirit}
 		 */
-		_bonusbar: function bonusbar() {
-			if (!bonusbar.spirit) {
-				bonusbar.spirit = this.dom.append(ts.ui.StatusBarSpirit.summon());
-				bonusbar.spirit.life.add(gui.LIFE_RENDER, this);
-				this.action.add(ts.ui.ACTION_STATUSBAR_LEVEL);
-				this.css.add('has-bonusbar');
-				this._globallayout();
+		_backupbar: function backupbar() {
+			if (!backupbar.spirit) {
+				backupbar.spirit = this.dom.append(ts.ui.StatusBarSpirit.summon());
+				backupbar.spirit.life.add(gui.LIFE_RENDER, this);
+				backupbar.spirit.hide();
 			}
-			return bonusbar.spirit;
+			return backupbar.spirit;
 		},
 
 		/** 
@@ -269,33 +341,38 @@ ts.ui.FooterSpirit = (function using(chained, GuiArray) {
 		},
 
 		/**
-		 * Get the pagerbar (create it if needed).
+		 * Get the centerbar (create it if needed).
 		 * @returns {ts.ui.ToolBarSpirit}
 		 */
-		_pagerbar: function pagerbar() {
-			if (!pagerbar.spirit) {
+		_centerbar: function centerbar() {
+			if (!centerbar.spirit) {
 				var spirit = ts.ui.StatusBarSpirit.summon();
+				spirit.life.add(gui.LIFE_RENDER, this);
 				var target = null;
-				if ((target = this._bonusbar.spirit)) {
+				if ((target = this._backupbar.spirit)) {
 					spirit.dom.insertBefore(target);
 				} else if ((target = this._actionbar.spirit)) {
 					spirit.dom.insertAfter(target);
 				} else {
 					this.dom.append(spirit);
 				}
-				this.css.add('has-pagerbar');
-				spirit.life.add(gui.LIFE_RENDER, this);
-				pagerbar.spirit = spirit;
+				this.css.add('has-centerbar');
+				centerbar.spirit = spirit;
 				this._globallayout();
 			}
-			return pagerbar.spirit;
+			return centerbar.spirit;
 		},
 
-		_renderbar: function renderbar() {
-			if (!renderbar.spirit) {
-				renderbar.spirit = this.dom.before(ts.ui.ToolBarSpirit.summon());
-				renderbar.spirit.life.add(gui.LIFE_RENDER, this);
+		/**
+		 * @returns {ts.ui.ToolBarSpirit}
+		 */
+		_bufferbar: function bufferbar() {
+			if (!bufferbar.spirit) {
+				bufferbar.spirit = this.dom.after(ts.ui.ToolBarSpirit.summon());
+				bufferbar.spirit.life.add(gui.LIFE_RENDER, this);
+				bufferbar.spirit.css.add('ts-mainfooter-buffer');
 			}
+			return bufferbar.spirit;
 		},
 
 		/**
@@ -307,9 +384,9 @@ ts.ui.FooterSpirit = (function using(chained, GuiArray) {
 		 */
 		_globallayout: function(level) {
 			var offset = 0;
-			var footer = this._bonusbar.spirit;
+			var footer = this._backupbar.spirit;
 			var action = this._actionbar.spirit;
-			var pagerb = this._pagerbar.spirit;
+			var pagerb = this._centerbar.spirit;
 			if (this.visible) {
 				if (action && action.visible) {
 					offset += 2;
@@ -345,64 +422,75 @@ ts.ui.FooterSpirit = (function using(chained, GuiArray) {
 		},
 
 		/**
-		 * Hide the bonus bar.
-		 * @returns {this}
+		 * Send the buttons to some offscreen toolbar 
+		 * so that we can measure them when rendered.
+		 * @see {ts.ui.FooterSpirit#onlife}
 		 */
-		_hideBonus: chained(function() {
-			this.css.remove('has-bonusbar');
-			this._bonusbar().hide();
-			this._globallayout();
-		}),
+		_measure: function() {
+			this._bufferbar().buttons(JSON.parse(JSON.stringify(buffer)));
+		},
 
 		/**
-		 * Show the bonus bar.
-		 * @returns {this}
+		 * If buttons overlap the pager, transfer them to the backup bar.
+		 * Otherwise, we will transfer them straight to the central bar.
 		 */
-		_showBonus: chained(function() {
-			this.css.add('has-bonusbar');
-			this._bonusbar().show();
-			this._globallayout();
-		}),
-
-		/**
-		 * TODO: The suspend operation should not really be performed here.
-		 */
-		_hittest: function hittest() {
-			var pager = this._pagerbar.spirit;
-			var bonus = this._bonusbar.spirit;
-			if (pager && pager.pager()) {
-				if (!hittest.suspended) {
-					hittest.suspended = true;
-					this._actuallyhittest(pager, bonus);
-					this.tick.time(function reset() {
-						hittest.suspended = false;
-					}, 50);
-				}
+		_transfer: function johnson() {
+			var list = GuiArray.from(buffer);
+			if (this._hasPager()) {
+				this._migrate(list, this._centerbar(), this._backupbar(), this._hittest());
+			} else {
+				this._centerbar().buttons(list);
 			}
 		},
 
 		/**
-		 * If conflict, call `buttons` again (this will account for the conflict).
-		 * @param {ts.ui.StatusBarSpirit} pager
-		 * @param {ts.ui.ToolBarSpirit} [bonus]
+		 * Move list of buttons from one bar to the other depending on the hittest.
+		 * @param {Array.ts.ui.ButtonSpirit}
+		 * @param {ts.ui.ToolBarSpirit} bar1
+		 * @param {ts.ui.ToolBarSpirit} bar2
+		 * @param {boolean} hits
 		 */
-		_actuallyhittest: function(pager, bonus) {
-			var list = pager.buttons();
-			if (list.length) {
-				conflict = hittest(pager, pager);
-				if (conflict) {
-					this.buttons(GuiArray.from(list));
-					list.clear();
-					this._showBonus();
-				}
-			} else if (bonus && (list = bonus.buttons()).length) {
-				conflict = hittest(pager, bonus);
-				if (!conflict) {
-					this.buttons(GuiArray.from(list));
-					list.clear();
-					this._hideBonus();
-				}
+		_migrate: function(list, bar1, bar2, hits) {
+			(hits ? bar1 : bar2).buttons().clear();
+			(hits ? bar2 : bar1).buttons(list);
+		},
+
+		/**
+		 * Show that bar.
+		 * @param {ts.ui.ToolBarSpirit} bar
+		 */
+		_showbar: function(bar) {
+			if (!bar.visible) {
+				bar.show();
+				this._globallayout();
 			}
+		},
+
+		/**
+		 * Hide the bar.
+		 * @param {ts.ui.ToolBarSpirit} bar
+		 */
+		_hidebar: function(bar) {
+			if (bar.visible) {
+				bar.hide();
+				this._globallayout();
+			}
+		},
+
+		/**
+		 * Footer has pager?
+		 * @returns {boolean}
+		 */
+		_hasPager: function() {
+			return !!(this._centerbar.spirit && this._centerbar().pager());
+		},
+
+		/**
+		 * Footer has buttons?
+		 * @returns {boolean}
+		 */
+		_hasButtons: function() {
+			return !!(this._bufferbar.spirit && this._bufferbar().buttons().length);
 		}
 	});
 })(gui.Combo.chained, gui.Array);

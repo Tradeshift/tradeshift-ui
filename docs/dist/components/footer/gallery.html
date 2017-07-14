@@ -14,6 +14,11 @@
     <link rel="prefetch" title="Pager" href="pager.html">
     <link rel="prefetch" title="Gallery" href="gallery.html" class="hidden">
     <script>
+        function debug() {
+            console.log(this.label);
+        }
+    </script>
+    <script>
         ts.dox.tabs()
     </script>
 </head>
@@ -45,6 +50,50 @@
 </pre>
                         </div>
                     </figure>
+                    <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.Footer.buttons(%5B%0A%09%7B%20label%3A%20&apos;Long%20Button%20One&apos;%2C%20type%3A%20&apos;ts-primary&apos;%2C%20onclick%3A%20debug%20%7D%2C%0A%09%7B%20label%3A%20&apos;Long%20Button%20Two&apos;%2C%20type%3A%20&apos;ts-secondary&apos;%2C%20onclick%3A%20debug%20%7D%2C%0A%09%7B%20label%3A%20&apos;Long%20Button%20Three&apos;%20%7D%2C%0A%09%7B%20label%3A%20&apos;Long%20Button%20Four&apos;%20%7D%2C%0A%09%7B%20label%3A%20&apos;Long%20Button%20Five&apos;%20%7D%0A%5D)%3B">
+                        <script type="runnable">
+                            ts.ui.Footer.buttons([ { label: 'Long Button One', type: 'ts-primary', onclick: debug }, { label: 'Long Button Two', type: 'ts-secondary', onclick: debug }, { label: 'Long Button Three' }, { label: 'Long Button Four' }, { label: 'Long Button Five' } ]);
+                        </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                        <div class="tabpanels">
+                            <pre class="prism language-javascript">
+<code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Footer<span class="token punctuation">.</span><span class="token function">buttons<span class="token punctuation">(</span></span><span class="token punctuation">[</span>
+	<span class="token punctuation">{</span> label<span class="token punctuation">:</span> <span class="token string">&apos;Long Button One&apos;</span><span class="token punctuation">,</span> type<span class="token punctuation">:</span> <span class="token string">&apos;ts-primary&apos;</span><span class="token punctuation">,</span> onclick<span class="token punctuation">:</span> debug <span class="token punctuation">}</span><span class="token punctuation">,</span>
+	<span class="token punctuation">{</span> label<span class="token punctuation">:</span> <span class="token string">&apos;Long Button Two&apos;</span><span class="token punctuation">,</span> type<span class="token punctuation">:</span> <span class="token string">&apos;ts-secondary&apos;</span><span class="token punctuation">,</span> onclick<span class="token punctuation">:</span> debug <span class="token punctuation">}</span><span class="token punctuation">,</span>
+	<span class="token punctuation">{</span> label<span class="token punctuation">:</span> <span class="token string">&apos;Long Button Three&apos;</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+	<span class="token punctuation">{</span> label<span class="token punctuation">:</span> <span class="token string">&apos;Long Button Four&apos;</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+	<span class="token punctuation">{</span> label<span class="token punctuation">:</span> <span class="token string">&apos;Long Button Five&apos;</span> <span class="token punctuation">}</span>
+<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
+</pre>
+                        </div>
+                    </figure>
+                    <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.Footer.buttons(%5B%0A%09%7B%20label%3A%20&apos;Short%201&apos;%2C%20type%3A%20&apos;ts-primary&apos;%2C%20onclick%3A%20debug%20%7D%2C%0A%09%7B%20label%3A%20&apos;Short%202&apos;%2C%20type%3A%20&apos;ts-secondary&apos;%2C%20onclick%3A%20debug%20%7D%2C%0A%09%7B%20label%3A%20&apos;Short%203&apos;%20%7D%2C%0A%09%7B%20label%3A%20&apos;Short%204&apos;%20%7D%2C%0A%09%7B%20label%3A%20&apos;Short%205&apos;%20%7D%0A%5D)%3B">
+                        <script type="runnable">
+                            ts.ui.Footer.buttons([ { label: 'Short 1', type: 'ts-primary', onclick: debug }, { label: 'Short 2', type: 'ts-secondary', onclick: debug }, { label: 'Short 3' }, { label: 'Short 4' }, { label: 'Short 5' } ]);
+                        </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                        <div class="tabpanels">
+                            <pre class="prism language-javascript">
+<code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Footer<span class="token punctuation">.</span><span class="token function">buttons<span class="token punctuation">(</span></span><span class="token punctuation">[</span>
+	<span class="token punctuation">{</span> label<span class="token punctuation">:</span> <span class="token string">&apos;Short 1&apos;</span><span class="token punctuation">,</span> type<span class="token punctuation">:</span> <span class="token string">&apos;ts-primary&apos;</span><span class="token punctuation">,</span> onclick<span class="token punctuation">:</span> debug <span class="token punctuation">}</span><span class="token punctuation">,</span>
+	<span class="token punctuation">{</span> label<span class="token punctuation">:</span> <span class="token string">&apos;Short 2&apos;</span><span class="token punctuation">,</span> type<span class="token punctuation">:</span> <span class="token string">&apos;ts-secondary&apos;</span><span class="token punctuation">,</span> onclick<span class="token punctuation">:</span> debug <span class="token punctuation">}</span><span class="token punctuation">,</span>
+	<span class="token punctuation">{</span> label<span class="token punctuation">:</span> <span class="token string">&apos;Short 3&apos;</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+	<span class="token punctuation">{</span> label<span class="token punctuation">:</span> <span class="token string">&apos;Short 4&apos;</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+	<span class="token punctuation">{</span> label<span class="token punctuation">:</span> <span class="token string">&apos;Short 5&apos;</span> <span class="token punctuation">}</span>
+<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
+</pre>
+                        </div>
+                    </figure>
+                    <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.Footer.buttons().splice(2%2C%200%2C%0A%09%7B%20label%3A%20&apos;Bonus%20Button&apos;%2C%20type%3A%20&apos;ts-secondary&apos;%2C%20onclick%3A%20debug%20%7D%0A)%3B">
+                        <script type="runnable">
+                            ts.ui.Footer.buttons().splice(2, 0, { label: 'Bonus Button', type: 'ts-secondary', onclick: debug } );
+                        </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                        <div class="tabpanels">
+                            <pre class="prism language-javascript">
+<code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Footer<span class="token punctuation">.</span><span class="token function">buttons<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">splice<span class="token punctuation">(</span></span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span>
+	<span class="token punctuation">{</span> label<span class="token punctuation">:</span> <span class="token string">&apos;Bonus Button&apos;</span><span class="token punctuation">,</span> type<span class="token punctuation">:</span> <span class="token string">&apos;ts-secondary&apos;</span><span class="token punctuation">,</span> onclick<span class="token punctuation">:</span> debug <span class="token punctuation">}</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span></code>
+</pre>
+                        </div>
+                    </figure>
                     <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.Footer.actions(%5B%0A%09%7B%20label%3A%20&apos;Move%20Up&apos;%2C%20icon%3A%20&apos;ts-icon-triangleup&apos;%20%7D%2C%0A%09%7B%20label%3A%20&apos;Move%20Down&apos;%2C%20icon%3A%20&apos;ts-icon-triangledown&apos;%20%7D%2C%0A%09%7B%20label%3A%20&apos;Move%20Left&apos;%2C%20icon%3A%20&apos;ts-icon-triangleleft&apos;%20%7D%2C%0A%09%7B%20label%3A%20&apos;Move%20Right&apos;%2C%20icon%3A%20&apos;ts-icon-triangleright&apos;%20%7D%2C%0A%09%7B%20label%3A%20&apos;Don%5C&apos;t%20Move&apos;%2C%20icon%3A%20&apos;ts-icon-halt&apos;%20%7D%0A%5D)%3B">
                         <script type="runnable">
                             ts.ui.Footer.actions([ { label: 'Move Up', icon: 'ts-icon-triangleup' }, { label: 'Move Down', icon: 'ts-icon-triangledown' }, { label: 'Move Left', icon: 'ts-icon-triangleleft' }, { label: 'Move Right', icon: 'ts-icon-triangleright' }, { label: 'Don\'t
@@ -59,50 +108,6 @@
 	<span class="token punctuation">{</span> label<span class="token punctuation">:</span> <span class="token string">&apos;Move Right&apos;</span><span class="token punctuation">,</span> icon<span class="token punctuation">:</span> <span class="token string">&apos;ts-icon-triangleright&apos;</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
 	<span class="token punctuation">{</span> label<span class="token punctuation">:</span> <span class="token string">&apos;Don\&apos;t Move&apos;</span><span class="token punctuation">,</span> icon<span class="token punctuation">:</span> <span class="token string">&apos;ts-icon-halt&apos;</span> <span class="token punctuation">}</span>
 <span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
-</pre>
-                        </div>
-                    </figure>
-                    <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.Footer.buttons(%5B%0A%09%7B%20label%3A%20&apos;Long%20Button%20One&apos;%2C%20type%3A%20&apos;ts-primary&apos;%20%7D%2C%0A%09%7B%20label%3A%20&apos;Long%20Button%20Two&apos;%2C%20type%3A%20&apos;ts-secondary&apos;%20%7D%2C%0A%09%7B%20label%3A%20&apos;Long%20Button%20Three&apos;%20%7D%2C%0A%09%7B%20label%3A%20&apos;Long%20Button%20Four&apos;%20%7D%2C%0A%09%7B%20label%3A%20&apos;Long%20Button%20Five&apos;%20%7D%0A%5D)%3B">
-                        <script type="runnable">
-                            ts.ui.Footer.buttons([ { label: 'Long Button One', type: 'ts-primary' }, { label: 'Long Button Two', type: 'ts-secondary' }, { label: 'Long Button Three' }, { label: 'Long Button Four' }, { label: 'Long Button Five' } ]);
-                        </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
-                        <div class="tabpanels">
-                            <pre class="prism language-javascript">
-<code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Footer<span class="token punctuation">.</span><span class="token function">buttons<span class="token punctuation">(</span></span><span class="token punctuation">[</span>
-	<span class="token punctuation">{</span> label<span class="token punctuation">:</span> <span class="token string">&apos;Long Button One&apos;</span><span class="token punctuation">,</span> type<span class="token punctuation">:</span> <span class="token string">&apos;ts-primary&apos;</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
-	<span class="token punctuation">{</span> label<span class="token punctuation">:</span> <span class="token string">&apos;Long Button Two&apos;</span><span class="token punctuation">,</span> type<span class="token punctuation">:</span> <span class="token string">&apos;ts-secondary&apos;</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
-	<span class="token punctuation">{</span> label<span class="token punctuation">:</span> <span class="token string">&apos;Long Button Three&apos;</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
-	<span class="token punctuation">{</span> label<span class="token punctuation">:</span> <span class="token string">&apos;Long Button Four&apos;</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
-	<span class="token punctuation">{</span> label<span class="token punctuation">:</span> <span class="token string">&apos;Long Button Five&apos;</span> <span class="token punctuation">}</span>
-<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
-</pre>
-                        </div>
-                    </figure>
-                    <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.Footer.buttons(%5B%0A%09%7B%20label%3A%20&apos;Short%201&apos;%2C%20type%3A%20&apos;ts-primary&apos;%20%7D%2C%0A%09%7B%20label%3A%20&apos;Short%202&apos;%2C%20type%3A%20&apos;ts-secondary&apos;%20%7D%2C%0A%09%7B%20label%3A%20&apos;Short%203&apos;%20%7D%2C%0A%09%7B%20label%3A%20&apos;Short%204&apos;%20%7D%2C%0A%09%7B%20label%3A%20&apos;Short%205&apos;%20%7D%0A%5D)%3B">
-                        <script type="runnable">
-                            ts.ui.Footer.buttons([ { label: 'Short 1', type: 'ts-primary' }, { label: 'Short 2', type: 'ts-secondary' }, { label: 'Short 3' }, { label: 'Short 4' }, { label: 'Short 5' } ]);
-                        </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
-                        <div class="tabpanels">
-                            <pre class="prism language-javascript">
-<code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Footer<span class="token punctuation">.</span><span class="token function">buttons<span class="token punctuation">(</span></span><span class="token punctuation">[</span>
-	<span class="token punctuation">{</span> label<span class="token punctuation">:</span> <span class="token string">&apos;Short 1&apos;</span><span class="token punctuation">,</span> type<span class="token punctuation">:</span> <span class="token string">&apos;ts-primary&apos;</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
-	<span class="token punctuation">{</span> label<span class="token punctuation">:</span> <span class="token string">&apos;Short 2&apos;</span><span class="token punctuation">,</span> type<span class="token punctuation">:</span> <span class="token string">&apos;ts-secondary&apos;</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
-	<span class="token punctuation">{</span> label<span class="token punctuation">:</span> <span class="token string">&apos;Short 3&apos;</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
-	<span class="token punctuation">{</span> label<span class="token punctuation">:</span> <span class="token string">&apos;Short 4&apos;</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
-	<span class="token punctuation">{</span> label<span class="token punctuation">:</span> <span class="token string">&apos;Short 5&apos;</span> <span class="token punctuation">}</span>
-<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
-</pre>
-                        </div>
-                    </figure>
-                    <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.Footer.buttons().splice(2%2C%200%2C%0A%09%7B%20label%3A%20&apos;Bonus%20Button&apos;%2C%20type%3A%20&apos;ts-secondary&apos;%20%7D%0A)%3B">
-                        <script type="runnable">
-                            ts.ui.Footer.buttons().splice(2, 0, { label: 'Bonus Button', type: 'ts-secondary' } );
-                        </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
-                        <div class="tabpanels">
-                            <pre class="prism language-javascript">
-<code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Footer<span class="token punctuation">.</span><span class="token function">buttons<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">splice<span class="token punctuation">(</span></span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span>
-	<span class="token punctuation">{</span> label<span class="token punctuation">:</span> <span class="token string">&apos;Bonus Button&apos;</span><span class="token punctuation">,</span> type<span class="token punctuation">:</span> <span class="token string">&apos;ts-secondary&apos;</span> <span class="token punctuation">}</span>
-<span class="token punctuation">)</span><span class="token punctuation">;</span></code>
 </pre>
                         </div>
                     </figure>

@@ -540,9 +540,6 @@ ts.ui.ToolBarSpirit = (function using(
 						this._looknormal(this.css);
 						this._layoutbefore(show);
 						this._initbreakpoint(show);
-					} else if (this.guilayout.afterMain()) {
-						this._looknormal(this.css);
-						this._layoutafter(show);
 					}
 				}
 			},
@@ -556,16 +553,6 @@ ts.ui.ToolBarSpirit = (function using(
 				var klass = 'ts-has-toolbar-first-' + (micro ? 'ts-micro' : 'ts-macro');
 				if (this._outsidemodal()) {
 					this.guilayout.shiftGlobal(show, klass);
-				}
-			},
-
-			/**
-			 * @param {boolean} show
-			 */
-			_layoutafter: function(show) {
-				this.css.shift(show, 'ts-toolbar-last');
-				if (this._outsidemodal()) {
-					this.guilayout.shiftGlobal(show, 'ts-has-toolbar-last');
 				}
 			},
 

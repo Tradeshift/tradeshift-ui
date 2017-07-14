@@ -3,6 +3,11 @@
 	<head>
 		<title>Footer Gallery</title>
 		<object data="tabs.xhtml"></object>
+		<script>
+		function debug() {
+			console.log(this.label);
+		}
+		</script>
 	</head>
 	<body>
 		<header data-ts="TopBar"></header>
@@ -30,21 +35,9 @@
 
 					<figure data-ts="DoxScript">
 						<script type="runnable">
-							ts.ui.Footer.actions([
-								{ label: 'Move Up', icon: 'ts-icon-triangleup' },
-								{ label: 'Move Down', icon: 'ts-icon-triangledown' },
-								{ label: 'Move Left', icon: 'ts-icon-triangleleft' },
-								{ label: 'Move Right', icon: 'ts-icon-triangleright' },
-								{ label: 'Don\'t Move', icon: 'ts-icon-halt' }
-							]);
-						</script>
-					</figure>
-
-					<figure data-ts="DoxScript">
-						<script type="runnable">
 							ts.ui.Footer.buttons([
-								{ label: 'Long Button One', type: 'ts-primary' },
-								{ label: 'Long Button Two', type: 'ts-secondary' },
+								{ label: 'Long Button One', type: 'ts-primary', onclick: debug },
+								{ label: 'Long Button Two', type: 'ts-secondary', onclick: debug },
 								{ label: 'Long Button Three' },
 								{ label: 'Long Button Four' },
 								{ label: 'Long Button Five' }
@@ -55,8 +48,8 @@
 					<figure data-ts="DoxScript">
 						<script type="runnable">
 							ts.ui.Footer.buttons([
-								{ label: 'Short 1', type: 'ts-primary' },
-								{ label: 'Short 2', type: 'ts-secondary' },
+								{ label: 'Short 1', type: 'ts-primary', onclick: debug },
+								{ label: 'Short 2', type: 'ts-secondary', onclick: debug },
 								{ label: 'Short 3' },
 								{ label: 'Short 4' },
 								{ label: 'Short 5' }
@@ -67,10 +60,22 @@
 					<figure data-ts="DoxScript">
 						<script type="runnable">
 							ts.ui.Footer.buttons().splice(2, 0,
-								{ label: 'Bonus Button', type: 'ts-secondary' }
+								{ label: 'Bonus Button', type: 'ts-secondary', onclick: debug }
 							);
 						</script>
 					</figure>					
+
+					<figure data-ts="DoxScript">
+						<script type="runnable">
+							ts.ui.Footer.actions([
+								{ label: 'Move Up', icon: 'ts-icon-triangleup' },
+								{ label: 'Move Down', icon: 'ts-icon-triangledown' },
+								{ label: 'Move Left', icon: 'ts-icon-triangleleft' },
+								{ label: 'Move Right', icon: 'ts-icon-triangleright' },
+								{ label: 'Don\'t Move', icon: 'ts-icon-halt' }
+							]);
+						</script>
+					</figure>
 
 				</section>
 

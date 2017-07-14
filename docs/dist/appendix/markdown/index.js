@@ -15,7 +15,9 @@ ts.ui.ready(function() {
 	Array.forEach(document.querySelectorAll('output'), function(output) {
 		var markdown = Tests[output.id];
 		if (markdown) {
-			output.innerHTML = ts.ui.Markdown.parse(markdown);
+			var exampleMarkup = JSON.stringify(markdown).replace(/['"]+/g, '');
+			var exampleCode = '<code>' + exampleMarkup + '</code><br><br>';
+			output.innerHTML = exampleCode + ' ' + ts.ui.Markdown.parse(markdown);
 		} else {
 			console.error('No mapping for "' + output.id + '""');
 		}

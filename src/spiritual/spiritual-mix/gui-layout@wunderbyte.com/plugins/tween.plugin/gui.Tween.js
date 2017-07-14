@@ -28,7 +28,7 @@ gui.Tween = (function using(confirmed, chained) {
 			 * Can be an array of 4 numbers to use a custom bezier curve.
 			 * @type {string|array<number>}
 			 */
-			timing: 'linear',
+			timing: 'ease',
 
 			/**
 			 * Optional tween data.
@@ -105,7 +105,7 @@ gui.Tween = (function using(confirmed, chained) {
 				var timer = gui.Client.hasPerformance ? window.performance : Date;
 				var start = timer.now();
 
-				var easingCurve = gui.Tween.$easing.linear;
+				var easingCurve = gui.Tween.$easing.ease;
 				if (
 					typeof tween.timing === 'string' &&
 					Object.keys(gui.Tween.$easing).includes(tween.timing)
@@ -125,9 +125,12 @@ gui.Tween = (function using(confirmed, chained) {
 					var now = timer.now();
 					var progress = now - start;
 
-					if (tween.init && progress > tween.delay) {
-						tween.init = false;
-						start = now;
+					if (tween.init) {
+						if (progress > tween.delay) {
+							tween.init = false;
+							start = now;
+							progress = 0;
+						}
 					}
 
 					if (!tween.init) {

@@ -125,9 +125,12 @@ gui.Tween = (function using(confirmed, chained) {
 					var now = timer.now();
 					var progress = now - start;
 
-					if (tween.init && progress > tween.delay) {
-						tween.init = false;
-						start = now;
+					if (tween.init) {
+						if (progress > tween.delay) {
+							tween.init = false;
+							start = now;
+							progress = 0;
+						}
 					}
 
 					if (!tween.init) {

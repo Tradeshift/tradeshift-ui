@@ -48,6 +48,7 @@
 </pre>
                         </div>
                     </figure>
+                    <h3><span>Status</span></h3>
                     <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.Footer.status(&apos;X%20items%20selected&apos;)%3B">
                         <script type="runnable">
                             ts.ui.Footer.status('X items selected');
@@ -58,6 +59,7 @@
 </pre>
                         </div>
                     </figure>
+                    <h3><span>Checkbox</span></h3>
                     <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.Footer.checkbox(%7B%0A%09onclick%3A%20function()%20%7B%0A%09%09this.checked%20%3D%20!this.checked%3B%0A%09%7D%0A%7D)%3B">
                         <script type="runnable">
                             ts.ui.Footer.checkbox({ onclick: function() { this.checked = !this.checked; } });
@@ -72,6 +74,10 @@
 </pre>
                         </div>
                     </figure>
+                    <p>Hello?</p>
+                    <div data-ts="DoxApi" data-ts.code="%7B%0A%09name%3A%20%22ts.ui.CheckBoxModel%22%2C%0A%09properties%3A%20%5B%0A%09%09%7B%0A%09%09%09name%3A%20&apos;checked&apos;%2C%0A%09%09%09desc%3A%20&apos;TODO&apos;%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20&apos;visible&apos;%2C%0A%09%09%09desc%3A%20&apos;TODO&apos;%0A%09%09%7D%0A%09%5D%2C%0A%09methods%3A%20%5B%0A%09%09%7B%0A%09%09%09name%3A%20&apos;check&apos;%2C%0A%09%09%09desc%3A%20&apos;TODO&apos;%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20&apos;uncheck&apos;%2C%0A%09%09%09desc%3A%20&apos;TODO&apos;%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20%22hide%22%2C%0A%09%09%09desc%3A%20%22TODO.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20&apos;show&apos;%2C%0A%09%09%09desc%3A%20&apos;TODO&apos;%0A%09%09%7D%0A%09%5D%0A%7D">
+                    </div>
+                    <p>What?</p>
                     <figure data-ts="DoxScript" class="runnable" data-ts.code="var%20Footer%20%3D%20ts.ui.Footer%3B%0Avar%20Dialog%20%3D%20ts.ui.Dialog%3B%0Avar%20Notification%20%3D%20ts.ui.Notification%3B%0AFooter.checkbox(%7B%0A%09checked%3A%20false%2C%0A%09info%3A%20&apos;Toggle%20selection&apos;%2C%0A%09onclick%3A%20function()%20%7B%0A%09%09if(this.checked)%20%7B%0A%09%09%09Dialog.confirm(&apos;Unselect%20123456%20items%3F&apos;%2C%20%7B%0A%09%09%09%09onaccept%3A%20reset%0A%09%09%09%7D)%3B%0A%09%09%7D%20else%20%7B%0A%09%09%09showactions()%3B%0A%09%09%7D%0A%09%7D%0A%7D)%3B%0Afunction%20showactions()%20%7B%0A%09Footer.checkbox().checked%20%3D%20true%3B%0A%09Footer.status(&apos;123456%20items%20selected&apos;).actions(%5B%0A%09%09%7B%20label%3A%20&apos;Delete&apos;%2C%20icon%3A%20&apos;ts-icon-delete&apos;%2C%20onclick%3A%20function()%20%7B%0A%09%09%09Dialog.confirm(&apos;Deleted%20123456%20items%3F&apos;%2C%20&apos;Delete&apos;%2C%20%7B%0A%09%09%09%09onaccept%3A%20function()%20%7B%0A%09%09%09%09%09Notification.success(&apos;123456%20items%20deleted&apos;)%3B%0A%09%09%09%09%09reset()%3B%0A%09%09%09%09%7D%0A%09%09%09%7D)%3B%0A%09%09%7D%7D%0A%09%5D)%3B%0A%7D%0Afunction%20reset()%20%7B%0A%09Footer.checkbox().checked%20%3D%20false%3B%0A%09Footer.status(&apos;0%20items%20selected&apos;)%3B%0A%09Footer.actions().clear()%3B%0A%7D%0Areset()%3B">
                         <script type="runnable">
                             var Footer = ts.ui.Footer; var Dialog = ts.ui.Dialog; var Notification = ts.ui.Notification; Footer.checkbox({ checked: false, info: 'Toggle selection', onclick: function() { if(this.checked) { Dialog.confirm('Unselect 123456 items?', { onaccept: reset

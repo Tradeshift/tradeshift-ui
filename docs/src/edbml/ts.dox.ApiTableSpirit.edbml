@@ -2,6 +2,8 @@
 <script>
 	<?param name="api" type="object"?>
 
+	alert(JSON.stringify(api, 0, 4));
+
 	<table class="api">
 		if(api.name) {
 			renderCaption(api.name);

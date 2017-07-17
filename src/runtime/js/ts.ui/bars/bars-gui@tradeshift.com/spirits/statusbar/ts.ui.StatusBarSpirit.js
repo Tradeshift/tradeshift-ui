@@ -44,7 +44,7 @@ ts.ui.StatusBarSpirit = (function using(PagerModel, Type, chained, confirmed) {
 		/**
 		 * Get or set the pager. Pass `null` to remove the pager (via bad API :/)
 		 * @param @optional {object|ts.ui.PagerModel|null} opt_json
-		 * @returns {ts.ui.PagerModel|ts.ui.ToolBarSpirit}
+		 * @returns {ts.ui.PagerModel|this}
 		 */
 		pager: confirmed('(object|null)')(
 			chained(function(opt_json) {
@@ -59,11 +59,6 @@ ts.ui.StatusBarSpirit = (function using(PagerModel, Type, chained, confirmed) {
 						model.pager = PagerModel.from(opt_json);
 					}
 				} else {
-					/*
-					if (!model.pager) { THIS COULD BREAK SOMETHING :/
-						this.pager({});
-					}
-					*/
 					return model.pager;
 				}
 			})

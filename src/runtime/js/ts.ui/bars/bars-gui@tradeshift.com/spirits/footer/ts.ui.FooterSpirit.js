@@ -7,16 +7,6 @@
  */
 ts.ui.FooterSpirit = (function using(chained, GuiArray) {
 	/**
-	 * @type {boolean}
-	 */
-	var conflict = false;
-
-	/**
-	 * @type {ts.ui.ButtonCollection}
-	 */
-	var buffer = null;
-
-	/**
 	 * Get bounding box.
 	 * @param {Element} elm
 	 * @returns {object}
@@ -33,6 +23,15 @@ ts.ui.FooterSpirit = (function using(chained, GuiArray) {
 		visible: true,
 
 		/**
+		 * Initialize shebang.
+		 */
+		onconfigure: function() {
+			this.super.onconfigure();
+			this._buffer = new ts.ui.ButtonCollection();
+			this._buffer.addObserver(this);
+		},
+
+		/**
 		 * Add local and global classname.
 		 */
 		onenter: function() {
@@ -47,7 +46,7 @@ ts.ui.FooterSpirit = (function using(chained, GuiArray) {
 		onflex: function() {
 			this.super.onflex();
 			if (this._hasPager() && this._hasButtons()) {
-				var was = conflict;
+				var was = this._conflict;
 				var now = this._hittest();
 				if (was !== now) {
 					this._transfer();
@@ -61,15 +60,15 @@ ts.ui.FooterSpirit = (function using(chained, GuiArray) {
 		 */
 		onchange: function(changes) {
 			this.super.onchange(changes);
+			var buffer = this._buffer;
 			if (
-				buffer &&
 				changes.some(function isbuttons(c) {
 					return c.object === buffer;
 				})
 			) {
 				this._measure();
 				if (!buffer.length) {
-					conflict = false;
+					this._conflict = false;
 				}
 			}
 		},
@@ -81,10 +80,7 @@ ts.ui.FooterSpirit = (function using(chained, GuiArray) {
 		 * @returns {this|ts.ui.ButtonCollection}
 		 */
 		buttons: chained(function(buttons) {
-			if (!buffer) {
-				buffer = new ts.ui.ButtonCollection();
-				buffer.addObserver(this);
-			}
+			var buffer = this._buffer;
 			if (arguments.length) {
 				buffer.clear();
 				buttons.forEach(function(json) {
@@ -108,22 +104,7 @@ ts.ui.FooterSpirit = (function using(chained, GuiArray) {
 			var pager = this._centerbar.spirit.dom.q('.ts-toolbar-pager');
 			var butts = this._bufferbar.spirit.dom.q('.ts-toolbar-menu.ts-right');
 			if (pager && butts) {
-				return (conflict = box(pager).right > box(butts).left);
-			}
-			return false;
-		},
-
-		/**
-		 * Pager and (buttons) menu overlap?
-		 * @param {ts.ui.ToolBarSpirit} bar1 - the centerbar
-		 * @param {ts.ui.ToolBarSpirit} bar2 - the centerbar OR the backupbar
-		 * @returns {boolean}
-		 */
-		_test: function(bar1, bar2) {
-			var pager = bar1.dom.q('.ts-toolbar-pager');
-			var butts = bar2.dom.q('.ts-toolbar-menu.ts-right');
-			if (pager && butts) {
-				return (conflict = box(pager).right > box(butts).left);
+				return (this._conflict = box(pager).right > box(butts).left);
 			}
 			return false;
 		},
@@ -153,7 +134,7 @@ ts.ui.FooterSpirit = (function using(chained, GuiArray) {
 				if (this._hasButtons() || json === null) {
 					this._pagerchanged = true;
 					if (json === null) {
-						conflict = false;
+						this._conflict = false;
 					}
 				}
 			} else {
@@ -302,6 +283,19 @@ ts.ui.FooterSpirit = (function using(chained, GuiArray) {
 		// Private .................................................................
 
 		/**
+		 * Since the buttons will be moved around, it's easier if we collect them 
+		 * in an "off-screen" buffer so that they don't belong anywhere in the UI.
+		 * @type {ts.ui.ButtonCollection}
+		 */
+		_buffer: null,
+
+		/**
+		 * There's a conflict in size between pager and buttons (while resizing)?
+		 * @type {boolean}
+		 */
+		_conflict: false,
+
+		/**
 		 * @type {Function}
 		 */
 		_oncheckboxclick: null,
@@ -427,7 +421,7 @@ ts.ui.FooterSpirit = (function using(chained, GuiArray) {
 		 * @see {ts.ui.FooterSpirit#onlife}
 		 */
 		_measure: function() {
-			this._bufferbar().buttons(JSON.parse(JSON.stringify(buffer)));
+			this._bufferbar().buttons(JSON.parse(JSON.stringify(this._buffer)));
 		},
 
 		/**
@@ -435,7 +429,7 @@ ts.ui.FooterSpirit = (function using(chained, GuiArray) {
 		 * Otherwise, we will transfer them straight to the central bar.
 		 */
 		_transfer: function johnson() {
-			var list = GuiArray.from(buffer);
+			var list = GuiArray.from(this._buffer);
 			if (this._hasPager()) {
 				this._migrate(list, this._centerbar(), this._backupbar(), this._hittest());
 			} else {

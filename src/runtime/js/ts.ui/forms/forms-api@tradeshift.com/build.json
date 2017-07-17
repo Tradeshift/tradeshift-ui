@@ -11,5 +11,6 @@
 	"models/ts.ui.FormItemCollection.js",
 	"models/ts.ui.FormModel.js",
 	"models/ts.ui.SwitchModel.js",
+	"models/ts.ui.CheckBoxModel.js",
 	"models/ts.ui.AutocompleteDropdownModel.js"
 ]

@@ -2,7 +2,7 @@
  * Spirit of the header.
  * @extends {ts.ui.Spirit}
  */
-ts.ui.HeaderSpirit = (function() {
+ts.ui.HeaderBarSpirit = (function() {
 	return ts.ui.Spirit.extend({
 		/**
 		 * @type {ts.ui.TopBarSpirit}

@@ -1,8 +1,7 @@
 // TODO: MOVE THESE ............................................................
 
 .ts-mainheader,
-.ts-mainfooter,
-.ts-mainfooter-buffer {
+.ts-mainfooter {
 	position: absolute;
 	z-index: @ts-zindex-main + 1;
 	top: 0;
@@ -41,34 +40,13 @@
 			background: linear-gradient(0deg, rgba(0,0,0,0.25), rgba(0,0,0,0));
 		}
 	}
-	.ts-toolbar {
-		position: relative;
-		&:before, 
-		&:after {
-			content: '';
-			position: absolute;
-			left: 0;
-			right: 0;
-			height: 1px;
-			background-color: red;
-		}
-		&:before {
-			top: 0;
-			background-color: @ts-white;
-		}
-		&:after {
-			bottom: 0;
-			background-color: @ts-lite-darker;
-		}
-		&:last-of-type:after {
-			display: none;
-		}
-	}
 }
+/*
 .ts-mainfooter-buffer {
 	bottom: 0 - @ts-unit-triple;
 	visibility: hidden;
 }
+*/
 
 
 // Mixins ......................................................................

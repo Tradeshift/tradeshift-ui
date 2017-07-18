@@ -130,7 +130,6 @@ ts.ui.Aside.closeAll = function() {
 				var model = ts.ui.Aside(json);
 				var spirit = getspirit(model);
 				model.addObserver(ts.ui.Aside);
-				alert('open');
 				spirit.open();
 			})
 		),

@@ -5,11 +5,11 @@
 ts.ui.Footer = (function using(chained) {
 	/**
 	 * Creates the spirit when first invoked.
-	 * @returns {ts.ui.FooterSpirit}
+	 * @returns {ts.ui.FooterBarSpirit}
 	 */
 	function footer() {
 		if (!footer.spirit) {
-			var spirit = ts.ui.FooterSpirit.summon();
+			var spirit = ts.ui.FooterBarSpirit.summon();
 			spirit.dom.appendTo(document.body);
 			footer.spirit = spirit;
 		}

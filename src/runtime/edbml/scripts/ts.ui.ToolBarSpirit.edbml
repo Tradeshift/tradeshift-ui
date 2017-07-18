@@ -5,7 +5,7 @@
 	<?function name="renderTabs" src="ts.ui.toolbartabs.edbml"?>
 
 	var spirit = this;
-	var id = toolbar.$instanceid;
+	var id = spirit.$instanceid + toolbar.$instanceid;
 	var mobilos = layout.isMobilePoint();
 	var topbar =  ts.ui.TopBarModel.is(toolbar);
 	var statusbar = ts.ui.StatusBarModel.is(toolbar);
@@ -16,7 +16,7 @@
 	rendercenter(id, toolbar.pager);
 	renderright(id, toolbar.$allbuttons());
 	renderspinner(topbar && mobilos);
-
+	
 	function renderleft(id, title, search, tabs, navigation, checkbox, actions) {
 		var hasnavi = !!(topbar && navigation && navigation.getLength());
 		var hastabs = !!tabs.getLength();
@@ -141,7 +141,7 @@
 	
 	// non-mobile single button
 	function renderbutton(button) {
-		var id = button.$instanceid;
+		var id = spirit.$instanceid + button.$instanceid;
 		@class = klass('ts-item', button);
 		@class += button.isAction ? ' ts-action' : '';
 		<li @class id="${id}-item">

@@ -59,6 +59,9 @@ ts.ui.StatusBarSpirit = (function using(PagerModel, Type, chained, confirmed) {
 						model.pager = PagerModel.from(opt_json);
 					}
 				} else {
+					if (!model.pager) {
+						this.pager({});
+					}
 					return model.pager;
 				}
 			})

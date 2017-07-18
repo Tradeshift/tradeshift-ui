@@ -1,0 +1,38 @@
+<!DOCTYPE edbml>
+<script>
+	<?input name="footer" type="ts.ui.FooterModel"?>
+
+	var spirit = this;
+	var myguid = this.$instanceid;
+
+	<ul class="ts-footerbar-bars">
+		bufferbar(footer.bufferbar);
+		actionbar(footer.actionbar);
+		centerbar(footer.centerbar);
+		backupbar(footer.backupbar);
+	</ul>
+
+	function bufferbar(model) {
+		<li class="ts-footerbar-bufferbar" id="${myguid}-bufferbar" +
+			data-ts.model="?{model}" data-ts="ToolBar"></li>
+	}
+
+	function actionbar(model) {
+		@style = spirit.$showActionBar(model) ? null : 'display:none';
+		<li class="ts-footerbar-actionbar ts-micro" id="${myguid}-actionbar" +
+			data-ts.model="?{model}" data-ts="ToolBar" @style></li>
+	}
+
+	function centerbar(model) {
+		@style = spirit.$showCenterBar(model) ? null : 'display:none';
+		<li class="ts-footerbar-centerbar" id="${myguid}-centerbar" +
+			data-ts.model="?{model}" data-ts="StatusBar" @style></li>
+	}
+
+	function backupbar(model) {
+		@style = spirit.$showBackupBar(model) ? null : 'display:none';
+		<li class="ts-footerbar-backupbar" id="${myguid}-backupbar" +
+			data-ts.model="?{model}" data-ts="ToolBar" @style></li>
+	}
+
+</script>

@@ -4,8 +4,9 @@
  * @extends {ts.ui.Spirit}
  * @using {gui.Combo#chained} chained
  * @using {gui.Array} GuiArray
+ * @using {ts.ui.PagerModel} PagerModel
  */
-ts.ui.FooterSpirit = (function using(chained, GuiArray) {
+ts.ui.FooterBarSpirit = (function using(chained, GuiArray, PagerModel) {
 	/**
 	 * Get bounding box.
 	 * @param {Element} elm
@@ -25,10 +26,10 @@ ts.ui.FooterSpirit = (function using(chained, GuiArray) {
 		/**
 		 * Initialize shebang.
 		 */
-		onconfigure: function() {
-			this.super.onconfigure();
-			this._buffer = new ts.ui.ButtonCollection();
-			this._buffer.addObserver(this);
+		onconstruct: function() {
+			this.super.onconstruct();
+			this.script.load(ts.ui.FooterBarSpirit.edbml);
+			this.script.input((this._model = new ts.ui.FooterModel()));
 		},
 
 		/**
@@ -45,6 +46,7 @@ ts.ui.FooterSpirit = (function using(chained, GuiArray) {
 		 */
 		onflex: function() {
 			this.super.onflex();
+			/*
 			if (this._hasPager() && this._hasButtons()) {
 				var was = this._conflict;
 				var now = this._hittest();
@@ -52,12 +54,13 @@ ts.ui.FooterSpirit = (function using(chained, GuiArray) {
 					this._transfer();
 				}
 			}
+			*/
 		},
 
 		/**
 		 * Handle changes in observed button collection.
 		 * @param {Array<edb.Change>} changes
-		 */
+		 *
 		onchange: function(changes) {
 			this.super.onchange(changes);
 			var buffer = this._buffer;
@@ -72,27 +75,18 @@ ts.ui.FooterSpirit = (function using(chained, GuiArray) {
 				}
 			}
 		},
+		*/
 
 		/**
-		 * The buttons may be moved around in three different bars, so we will just 
-		 * use a {ts.ui.ButtonCollection} that isn't attached to anyone in particular.
-		 * @param {ts.ui.ButtonCollection} [buttons]
+		 * @param {Array<object>|ts.ui.ButtonCollection} [json]
 		 * @returns {this|ts.ui.ButtonCollection}
 		 */
-		buttons: chained(function(buttons) {
-			var buffer = this._buffer;
+		buttons: chained(function(json) {
+			var bufferbar = this._model.bufferbar;
 			if (arguments.length) {
-				buffer.clear();
-				buttons.forEach(function(json) {
-					buffer.push(json);
-				});
-				if (this._hasPager()) {
-					this._measure();
-				} else {
-					this._transfer();
-				}
+				bufferbar.buttons = json;
 			} else {
-				return buffer;
+				return bufferbar.buttons;
 			}
 		}),
 
@@ -101,8 +95,8 @@ ts.ui.FooterSpirit = (function using(chained, GuiArray) {
 		 * @returns {boolean}
 		 */
 		_hittest: function() {
-			var pager = this._centerbar.spirit.dom.q('.ts-toolbar-pager');
-			var butts = this._bufferbar.spirit.dom.q('.ts-toolbar-menu.ts-right');
+			var pager = this._centerbar.dom.q('.ts-toolbar-pager');
+			var butts = this._bufferbar.dom.q('.ts-toolbar-menu.ts-right');
 			if (pager && butts) {
 				return (this._conflict = box(pager).right > box(butts).left);
 			}
@@ -110,35 +104,30 @@ ts.ui.FooterSpirit = (function using(chained, GuiArray) {
 		},
 
 		/**
-		 * @param {ts.ui.ButtonCollection} [buttons]
+		 * @param {Array<Object>|ts.ui.ActionsCollection} [json]
 		 * @returns {this|ts.ui.ButtonCollection}
 		 */
-		actions: chained(function(actions) {
-			var bar = this._actionbar();
+		actions: chained(function(json) {
+			var actionbar = this._model.actionbar;
 			if (arguments.length) {
-				bar.actions(actions);
+				actionbar.actions = json;
 			} else {
-				return bar.actions();
+				return actionbar.actions;
 			}
 		}),
 
 		/**
-		 * Get or set the pager. Pass `null` to remove the pager (via bad API :/)
-		 * @param @optional {object|ts.ui.PagerModel|null} [json]
+		 * Get or set the pager. Pass `null` to remove the pager.
+		 * @param @optional {Object|ts.ui.PagerModel|null} [json]
 		 * @returns {ts.ui.PagerModel|ts.ui.ToolBarSpirit}
 		 */
 		pager: chained(function(json) {
-			var bar = this._centerbar();
+			var centerbar = this._model.centerbar;
 			if (arguments.length) {
-				bar.pager(json);
-				if (this._hasButtons() || json === null) {
-					this._pagerchanged = true;
-					if (json === null) {
-						this._conflict = false;
-					}
-				}
+				centerbar.pager = json ? PagerModel.from(json) : null;
+				this._pagerchanged = true;
 			} else {
-				return bar.pager();
+				return centerbar.pager;
 			}
 		}),
 
@@ -147,20 +136,12 @@ ts.ui.FooterSpirit = (function using(chained, GuiArray) {
 		 * @returns {this|ts.ui.Model}
 		 */
 		checkbox: chained(function(json) {
-			var bar = this._actionbar();
+			var actionbar = this._model.actionbar;
 			if (arguments.length) {
-				bar.checkbox(json);
+				actionbar.checkbox = json;
 			} else {
-				return bar.checkbox();
+				return actionbar.checkbox;
 			}
-		}),
-
-		/**
-		 * Remove that checkbox.
-		 */
-		nocheckbox: chained(function() {
-			this._oncheckboxclick = null;
-			this._actionbar().checkbox(null);
 		}),
 
 		/**
@@ -168,11 +149,11 @@ ts.ui.FooterSpirit = (function using(chained, GuiArray) {
 		 * @returns {this|string}
 		 */
 		status: chained(function(message) {
-			var bar = this._actionbar();
+			var actionbar = this._model.actionbar;
 			if (arguments.length) {
-				bar.message(message);
+				actionbar.title = message;
 			} else {
-				return bar.message();
+				return actionbar.title;
 			}
 		}),
 
@@ -191,15 +172,46 @@ ts.ui.FooterSpirit = (function using(chained, GuiArray) {
 		},
 
 		/**
-		 * Elaborate setup to ensure that we never hide or show the toolbars 
-		 * until they have been rendered (so that they doen't flicker badly).
+		 * @param {Object} summary
+		 */
+		onrender: function(summary) {
+			this.super.onrender(summary);
+			if (summary.first) {
+				[
+					(this._actionbar = this.dom.q('.ts-footerbar-actionbar', ts.ui.Spirit)),
+					(this._centerbar = this.dom.q('.ts-footerbar-centerbar', ts.ui.Spirit)),
+					(this._backupbar = this.dom.q('.ts-footerbar-backupbar', ts.ui.Spirit)),
+					(this._bufferbar = this.dom.q('.ts-footerbar-bufferbar', ts.ui.Spirit))
+				].forEach(function(spirit) {
+					spirit.life.add(gui.LIFE_RENDER, this);
+				}, this);
+			}
+		},
+
+		/**
+		 * Handle life.
 		 * @param {gui.Life} l
 		 */
 		onlife: function xxx(l) {
 			this.super.onlife(l);
-			var bufferbar = this._bufferbar.spirit;
-			var backupbar = this._backupbar.spirit;
-			var centerbar = this._centerbar.spirit;
+			if (l.type === gui.LIFE_RENDER) {
+				switch (l.target) {
+					case this._bufferbar:
+						this._heilhitler();
+						break;
+					case this._centerbar:
+						if (this._pagerchanged) {
+							this._pagerchanged = false;
+							this._heilhitler();
+						}
+						break;
+				}
+			}
+
+			/*
+			var bufferbar = this._bufferbarspirit;
+			var backupbar = this._backupbarspirit;
+			var centerbar = this._centerbarspirit;
 			if (l.type === gui.LIFE_RENDER) {
 				switch (l.target) {
 					case bufferbar:
@@ -220,6 +232,21 @@ ts.ui.FooterSpirit = (function using(chained, GuiArray) {
 							}
 						}
 						break;
+				}
+			}
+			*/
+		},
+
+		_heilhitler: function() {
+			var model = this._model;
+			if (model.bufferbar.buttons.length) {
+				var clone = gui.Array.from(model.bufferbar.buttons);
+				if (this._hittest()) {
+					model.backupbar.buttons = clone;
+					model.centerbar.buttons.clear();
+				} else {
+					model.centerbar.buttons = clone;
+					model.backupbar.buttons.clear();
 				}
 			}
 		},
@@ -253,7 +280,7 @@ ts.ui.FooterSpirit = (function using(chained, GuiArray) {
 		 * @returns {this}
 		 */
 		hideActions: chained(function() {
-			this._hidebar(this._actionbar());
+			// this._hidebar(this._actionbar());
 		}),
 
 		/**
@@ -261,7 +288,7 @@ ts.ui.FooterSpirit = (function using(chained, GuiArray) {
 		 * @returns {this}
 		 */
 		showActions: chained(function() {
-			this._showbar(this._actionbar());
+			// this._showbar(this._actionbar());
 		}),
 
 		/**
@@ -269,7 +296,7 @@ ts.ui.FooterSpirit = (function using(chained, GuiArray) {
 		 * @returns {this}
 		 */
 		hidePager: chained(function() {
-			this._hidebar(this._centerbar());
+			// this._hidebar(this._centerbar());
 		}),
 
 		/**
@@ -277,8 +304,34 @@ ts.ui.FooterSpirit = (function using(chained, GuiArray) {
 		 * @returns {this}
 		 */
 		showPager: chained(function() {
-			this._hidebar(this._centerpager());
+			// this._hidebar(this._centerpager());
 		}),
+
+		// Privileged ..............................................................
+
+		/**
+		 * Called from EDBML.
+		 * @returns {boolean}
+		 */
+		$showActionBar: function(model) {
+			return !!(model.actions.getLength() || model.title || model.checkbox);
+		},
+
+		/**
+		 * Called from EDBML.
+		 * @returns {boolean}
+		 */
+		$showCenterBar: function(model) {
+			return !!(model.pager || model.buttons.getLength());
+		},
+
+		/**
+		 * Called from EDBML.
+		 * @returns {boolean}
+		 */
+		$showBackupBar: function(model) {
+			return !!model.buttons.getLength();
+		},
 
 		// Private .................................................................
 
@@ -307,67 +360,92 @@ ts.ui.FooterSpirit = (function using(chained, GuiArray) {
 		_pagerchanged: false,
 
 		/**
+		 * Spirit of the buffer bar.
+		 * @type {ts.ui.ToolBarSpirit}
+		 */
+		_bufferbarspirit: null,
+
+		/**
+		 * Spirit of the backup bar.
+		 * @type {ts.ui.ToolBarSpirit}
+		 */
+		_backupbarspirit: null,
+
+		/**
+		 * Spirit of the action bar.
+		 * @type {ts.ui.ToolBarSpirit}
+		 */
+		_actionbarspirit: null,
+
+		/**
+		 * Spirit of the center bar.
+		 * @type {ts.ui.StatusBarSpirit}
+		 */
+		_centerbarspirit: null,
+
+		/**
 		 * Get the backupbar, at the very bottom (create it if needed).
 		 * The backupbar remains hidden until rendered (with content).
 		 * @returns {ts.ui.StatusBarSpirit}
-		 */
+		 *
 		_backupbar: function backupbar() {
-			if (!backupbar.spirit) {
-				backupbar.spirit = this.dom.append(ts.ui.StatusBarSpirit.summon());
-				backupbar.spirit.life.add(gui.LIFE_RENDER, this);
-				backupbar.spirit.hide();
+			if (!this._backupbarspirit) {
+				this._backupbarspirit = this.dom.append(ts.ui.StatusBarSpirit.summon());
+				this._backupbarspirit.life.add(gui.LIFE_RENDER, this);
+				this._backupbarspirit.hide();
 			}
-			return backupbar.spirit;
+			return this._backupbarspirit;
 		},
 
 		/** 
 		 * Get the actionbar (create it if needed).
 		 * @returns {ts.ui.StatusBarSpirit}
-		 */
+		 *
 		_actionbar: function actionbar() {
-			if (!actionbar.spirit) {
-				actionbar.spirit = this.dom.prepend(ts.ui.StatusBarSpirit.summon());
-				actionbar.spirit.micro();
-				this.css.add('has-actionbar');
+			if (!this._actionbarspirit) {
+				this._actionbarspirit = this.dom.prepend(ts.ui.StatusBarSpirit.summon());
+				this._actionbarspirit.micro();
+				this._actionbarspirit.css.add('has-actionbar'); // NEEDED ?
 				this._globallayout();
 			}
-			return actionbar.spirit;
+			return this._actionbarspirit;
 		},
 
 		/**
 		 * Get the centerbar (create it if needed).
 		 * @returns {ts.ui.ToolBarSpirit}
-		 */
+		 *
 		_centerbar: function centerbar() {
-			if (!centerbar.spirit) {
+			if (!this._centerbarspirit) {
 				var spirit = ts.ui.StatusBarSpirit.summon();
 				spirit.life.add(gui.LIFE_RENDER, this);
 				var target = null;
-				if ((target = this._backupbar.spirit)) {
+				if ((target = this._backupbarspirit)) {
 					spirit.dom.insertBefore(target);
-				} else if ((target = this._actionbar.spirit)) {
+				} else if ((target = this._actionbarspirit)) {
 					spirit.dom.insertAfter(target);
 				} else {
 					this.dom.append(spirit);
 				}
 				this.css.add('has-centerbar');
-				centerbar.spirit = spirit;
+				this._centerbarspirit = spirit;
 				this._globallayout();
 			}
-			return centerbar.spirit;
+			return this._centerbarspirit;
 		},
 
 		/**
 		 * @returns {ts.ui.ToolBarSpirit}
-		 */
-		_bufferbar: function bufferbar() {
-			if (!bufferbar.spirit) {
-				bufferbar.spirit = this.dom.after(ts.ui.ToolBarSpirit.summon());
-				bufferbar.spirit.life.add(gui.LIFE_RENDER, this);
-				bufferbar.spirit.css.add('ts-mainfooter-buffer');
+		 *
+		_bufferbar: function() {
+			if (!this._bufferbarspirit) {
+				this._bufferbarspirit = this.dom.after(ts.ui.ToolBarSpirit.summon());
+				this._bufferbarspirit.life.add(gui.LIFE_RENDER, this);
+				this._bufferbarspirit.css.add('ts-mainfooter-buffer');
 			}
-			return bufferbar.spirit;
+			return this._bufferbarspirit;
 		},
+		*/
 
 		/**
 		 * Set classnames on `html` to control the `bottom` position of Main.
@@ -378,9 +456,9 @@ ts.ui.FooterSpirit = (function using(chained, GuiArray) {
 		 */
 		_globallayout: function(level) {
 			var offset = 0;
-			var footer = this._backupbar.spirit;
-			var action = this._actionbar.spirit;
-			var pagerb = this._centerbar.spirit;
+			var footer = this._backupbarspirit;
+			var action = this._actionbarspirit;
+			var pagerb = this._centerbarspirit;
 			if (this.visible) {
 				if (action && action.visible) {
 					offset += 2;
@@ -418,7 +496,7 @@ ts.ui.FooterSpirit = (function using(chained, GuiArray) {
 		/**
 		 * Send the buttons to some offscreen toolbar 
 		 * so that we can measure them when rendered.
-		 * @see {ts.ui.FooterSpirit#onlife}
+		 * @see {ts.ui.FooterBarSpirit#onlife}
 		 */
 		_measure: function() {
 			this._bufferbar().buttons(JSON.parse(JSON.stringify(this._buffer)));
@@ -472,19 +550,21 @@ ts.ui.FooterSpirit = (function using(chained, GuiArray) {
 		},
 
 		/**
-		 * Footer has pager?
+		 * Has pager?
 		 * @returns {boolean}
 		 */
 		_hasPager: function() {
-			return !!(this._centerbar.spirit && this._centerbar().pager());
+			var bar = this._centerbarspirit;
+			return !!(bar && bar.pager());
 		},
 
 		/**
-		 * Footer has buttons?
+		 * Has buttons?
 		 * @returns {boolean}
 		 */
 		_hasButtons: function() {
-			return !!(this._bufferbar.spirit && this._bufferbar().buttons().length);
+			var bar = this._bufferbarspirit;
+			return !!(bar && bar.buttons().length);
 		}
 	});
-})(gui.Combo.chained, gui.Array);
+})(gui.Combo.chained, gui.Array, ts.ui.PagerModel);

@@ -58,7 +58,6 @@ ts.dox.ApiTableSpirit = (function using(Type, GuiObject, GuiArray, Markdown) {
 		onconfigure: function() {
 			this.super.onconfigure();
 			this.action.add(ACTION_LINK);
-			alert(this.$instanceid);
 			if (this.code) {
 				this.script.load(ts.dox.ApiTableSpirit.edbml);
 				this.script.run(minimalmarkdown(this.code));

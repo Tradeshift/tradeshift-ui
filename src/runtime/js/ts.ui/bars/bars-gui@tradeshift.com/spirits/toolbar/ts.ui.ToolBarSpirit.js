@@ -64,10 +64,24 @@ ts.ui.ToolBarSpirit = (function using(
 	return ts.ui.BarSpirit.extend(
 		{
 			/**
-			 * Bar is visible?
+			 * Get or set visibility.
 			 * @type {boolean}
 			 */
-			visible: true,
+			visible: {
+				getter: function() {
+					return this._visible;
+				},
+				setter: function(is) {
+					if (is !== this._visible) {
+						if ((this._visible = is)) {
+							this.dom.show();
+						} else {
+							this.dom.hide();
+						}
+						this._layoutmain(is); // TODO: THIS MUST GO WHEN HEADER GETS CREATED!
+					}
+				}
+			},
 
 			/**
 			 * @see https://github.com/wunderbyte/spiritual-gui/issues/109
@@ -434,9 +448,7 @@ ts.ui.ToolBarSpirit = (function using(
 			 */
 			hide: chained(function() {
 				if (this.visible) {
-					this.dom.hide();
 					this.visible = false;
-					this._layoutmain(false); // TODO: THIS MUST GO!
 				}
 			}),
 
@@ -446,9 +458,7 @@ ts.ui.ToolBarSpirit = (function using(
 			 */
 			show: chained(function() {
 				if (!this.visible) {
-					this.dom.show();
 					this.visible = true;
-					this._layoutmain(true); // TODO: THIS MUST GO!
 				}
 			}),
 
@@ -488,7 +498,7 @@ ts.ui.ToolBarSpirit = (function using(
 				this.model().closebutton = null;
 			}),
 
-			// Privileged ..............................................................
+			// Privileged ............................................................
 
 			/**
 			 * EDB model observers are always triggered async and this may cause the
@@ -504,7 +514,13 @@ ts.ui.ToolBarSpirit = (function using(
 				this.life.dispatch(has ? 'ts-life-toolbar-hascontent' : 'ts-life-toolbar-nocontent');
 			},
 
-			// Private .................................................................
+			// Private ...............................................................
+
+			/**
+			 * Visible? Please only update this via the `visible` property (no underscore).
+			 * @type {boolean}
+			 */
+			_visible: true,
 
 			/**
 			 * Confirm that we don't have hardcoded HTML content,

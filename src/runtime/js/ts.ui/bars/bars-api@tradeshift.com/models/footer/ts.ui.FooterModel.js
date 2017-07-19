@@ -33,6 +33,14 @@ ts.ui.FooterModel = (function() {
 			this.actionbar = {};
 			this.centerbar = {};
 			this.backupbar = {};
+		},
+
+		/**
+		 * Bounce model to HTML.
+		 * @returns {string}
+		 */
+		render: function() {
+			return ts.ui.footer.edbml(this);
 		}
 	});
 })();

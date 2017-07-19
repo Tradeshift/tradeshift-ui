@@ -117,7 +117,7 @@ ts.ui.StatusBarSpirit = (function using(PagerModel, Type, chained, confirmed) {
 			function observe(model) {
 				model.addObserver(this);
 			}
-		),
+		)
 
 		// Private .................................................................
 
@@ -131,7 +131,7 @@ ts.ui.StatusBarSpirit = (function using(PagerModel, Type, chained, confirmed) {
 		 * @param {truthy} right
 		 * @param {truthy} extra
 		 * @param {truthy} search
-		 */
+		 *
 		_docss: function(css, small, lefts, right, extra, search) {
 			this.super._docss(css, small, lefts, right, extra, search);
 			this._gotoLevel(small ? this._computelevel(lefts, right, extra, search) : 3);
@@ -142,7 +142,7 @@ ts.ui.StatusBarSpirit = (function using(PagerModel, Type, chained, confirmed) {
 		 * This will probably cause an ancestor component to update its classname.
 		 * @see {ts.ui.LayoutPlugin#gotoLevel}
 		 * @param {number} level
-		 */
+		 *
 		_gotoLevel: function(level) {
 			var oldname = this.css.name();
 			this.guilayout.gotoLevel(level);
@@ -161,7 +161,7 @@ ts.ui.StatusBarSpirit = (function using(PagerModel, Type, chained, confirmed) {
 		 * @param {truthy} extra
 		 * @param {truthy} search
 		 * @returns {number}
-		 */
+		 *
 		_computelevel: function(lefts, right, extra, search) {
 			if (lefts && right && !extra) {
 				return search ? 5 : 4.5;

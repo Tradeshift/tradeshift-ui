@@ -200,9 +200,14 @@ gui.Object = {
 	 * @return {Array<String>}
 	 */
 	ownmethods: function(object) {
+		var that = this;
 		return Object.keys(object)
 			.filter(function(key) {
-				return gui.Type.isMethod(object[key]);
+				if (that._isaccessor(object, key)) {
+					return false;
+				} else {
+					return gui.Type.isMethod(object[key]);
+				}
 			})
 			.map(function(key) {
 				return key;
@@ -216,8 +221,13 @@ gui.Object = {
 	nonmethods: function(object) {
 		var result = [];
 		for (var def in object) {
-			if (!gui.Type.isFunction(object[def])) {
-				result.push(def);
+			if (this._isaccessor(object, def)) {
+				void 0;
+			} else {
+				var o = object[def];
+				if (!gui.Type.isFunction(o)) {
+					result.push(def);
+				}
 			}
 		}
 		return result;
@@ -265,6 +275,17 @@ gui.Object = {
 	 * @type {boolean}
 	 */
 	_hiding: false,
+
+	/**
+	 * Property is an accessor? In that case, we probably shouldn't access it here.
+	 * @param {Object} object
+	 * @param {string} key
+	 * @returns {boolean}
+	 */
+	_isaccessor: function(object, key) {
+		var desc = Object.getOwnPropertyDescriptor(object, key);
+		return !!(desc && (desc.get || desc.set));
+	},
 
 	/**
 	 * Modify method descriptor to hide from inspection.

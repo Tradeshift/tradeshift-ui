@@ -38,22 +38,23 @@ ts.ui.FooterBarSpirit = (function using(chained, GuiArray, PagerModel, ToolBarSp
 			}
 		},
 
-		/**
-		 * Initialize the whole shebang.
+		/*
+		 * Get (or set) the model. This will load the EDBML.
+		 * @param {object|ts.ui.ToolBarModel} model
+		 * @returns {ts.ui.ToolBarModel|ts.ui.ToolBarSpirit}
 		 */
-		onconstruct: function() {
-			this.super.onconstruct();
-			this.script.load(ts.ui.FooterBarSpirit.edbml);
-			this.script.input((this._model = new ts.ui.FooterModel()));
-		},
+		model: ts.ui.Spirit.createModelMethod(ts.ui.FooterModel, 'ts.ui.FooterBarSpirit.edbml'),
 
 		/**
 		 * Add local and global classname.
+		 * TODO: Do this stunt elsewhere?
 		 */
 		onenter: function() {
 			this.super.onenter();
-			this.css.add('ts-mainfooter ts-bg-lite');
-			this.guilayout.shiftGlobal(true, 'ts-has-footer');
+			if (this.guilayout.outsideMain()) {
+				this.css.add('ts-mainfooter ts-bg-lite');
+				this.guilayout.shiftGlobal(true, 'ts-has-footer');
+			}
 		},
 
 		/**
@@ -73,69 +74,76 @@ ts.ui.FooterBarSpirit = (function using(chained, GuiArray, PagerModel, ToolBarSp
 		},
 
 		/**
+		 * Get or set the buttons.
+		 * [The buttons will be rendered in the `bufferbar`!]
 		 * @param {Array<object>|ts.ui.ButtonCollection} [json]
 		 * @returns {this|ts.ui.ButtonCollection}
 		 */
 		buttons: chained(function(json) {
-			var bufferbar = this._model.bufferbar;
+			var model = this.model();
 			if (arguments.length) {
-				bufferbar.buttons = json;
+				model.buttons = json;
 			} else {
-				return bufferbar.buttons;
+				return model.buttons;
 			}
 		}),
 
 		/**
+		 * Get or set the actions.
+		 * [The actions will be rendered in the `actionbar`!]
 		 * @param {Array<Object>|ts.ui.ActionsCollection} [json]
 		 * @returns {this|ts.ui.ButtonCollection}
 		 */
 		actions: chained(function(json) {
-			var actionbar = this._model.actionbar;
+			var model = this.model();
 			if (arguments.length) {
-				actionbar.actions = json;
+				model.actions = json;
 			} else {
-				return actionbar.actions;
+				return model.actions;
 			}
 		}),
 
 		/**
 		 * Get or set the pager. Pass `null` to remove the pager.
+		 * [The pager will be rendered in the `centerbar`!]
 		 * @param @optional {Object|ts.ui.PagerModel|null} [json]
 		 * @returns {ts.ui.PagerModel|ts.ui.ToolBarSpirit}
 		 */
 		pager: chained(function(json) {
-			var centerbar = this._model.centerbar;
+			var model = this.model();
 			if (arguments.length) {
-				centerbar.pager = json ? PagerModel.from(json) : null;
+				model.pager = json;
 				this._pagerchanged = true;
 			} else {
-				return centerbar.pager;
+				return model.pager;
 			}
 		}),
 
 		/**
+		 * [The checkbox will be rendered in the `centerbar`!]
 		 * @param {Object|null} [json]
 		 * @returns {this|ts.ui.Model}
 		 */
 		checkbox: chained(function(json) {
-			var actionbar = this._model.actionbar;
+			var model = this.model();
 			if (arguments.length) {
-				actionbar.checkbox = json;
+				model.checkbox = json;
 			} else {
-				return actionbar.checkbox;
+				return model.checkbox;
 			}
 		}),
 
 		/**
-		 * @param {string} [message]
+		 * [The status will be rendered in the `actionbar`!]
+		 * @param {string} [message] 
 		 * @returns {this|string}
 		 */
 		status: chained(function(message) {
-			var actionbar = this._model.actionbar;
+			var model = this.model();
 			if (arguments.length) {
-				actionbar.title = message;
+				model.title = message;
 			} else {
-				return actionbar.title;
+				return model.title;
 			}
 		}),
 
@@ -154,6 +162,7 @@ ts.ui.FooterBarSpirit = (function using(chained, GuiArray, PagerModel, ToolBarSp
 				].forEach(function(spirit) {
 					spirit.life.add(gui.LIFE_RENDER, this);
 				}, this);
+				this._layout();
 			}
 		},
 
@@ -232,6 +241,8 @@ ts.ui.FooterBarSpirit = (function using(chained, GuiArray, PagerModel, ToolBarSp
 		}),
 
 		// Privileged ..............................................................
+
+		// TODO: MOVE THESE INTO THE MODEL!!!
 
 		/**
 		 * Should show the action bar?
@@ -332,7 +343,7 @@ ts.ui.FooterBarSpirit = (function using(chained, GuiArray, PagerModel, ToolBarSp
 		 * Attempt to optimize the vertical height by stacking the bars only when needed.
 		 */
 		_optimize: function() {
-			var model = this._model;
+			var model = this.model();
 			if (model.bufferbar.buttons.length) {
 				var clone = gui.Array.from(model.bufferbar.buttons);
 				if (this._hittest()) {

@@ -5,9 +5,27 @@
 ts.ui.StatusBarModel = (function using(chained) {
 	return ts.ui.ToolBarModel.extend({
 		/**
+		 * It's a long story and it involves a bug in the specification of EDBML. 
+		 * If we don't migrate to Spiritual 2.0 soon, I promise to tell the story.
 		 * @type {ts.ui.PagerModel}
 		 */
-		pager: null,
+		pager: {
+			getter: function() {
+				return this.actualpager;
+			},
+			setter: function(json) {
+				if (json !== null && !ts.ui.PagerModel.is(json)) {
+					json = ts.ui.PagerModel.from(json);
+				}
+				this.actualpager = json;
+			}
+		},
+
+		/**
+		 * This cannot be private (or the EDBML will not pick changes up).
+		 * @type {ts.ui.PagerModel}
+		 */
+		actualpager: null,
 
 		/**
 		 * Status message may contain links?
@@ -37,13 +55,15 @@ ts.ui.StatusBarModel = (function using(chained) {
 			}, this);
 		},
 
+		// Private .................................................................
+
 		/**
 		 * Account for the pager.
 		 * @returns {boolean}
 		 */
 		_updatehascontent: function() {
 			if (!this.super._updatehascontent()) {
-				this.hascontent = !!this.pager;
+				this.hascontent = !!this.actualpager;
 			}
 			return this.hascontent;
 		}

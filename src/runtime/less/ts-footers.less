@@ -9,19 +9,23 @@
 			left: 0;
 			right: 0;
 			height: 1px;
-			background-color: red;
 		}
 		&:before {
 			top: 0;
-			background-color: @ts-white;
+			// background-color: @ts-white;
 		}
 		&:after {
 			bottom: 0;
 			background-color: @ts-lite-darker;
 		}
-		&:last-of-type:after {
+		/*
+		&:first-of-type:before {
 			display: none;
 		}
+		&:last-of-type:after {
+			display: none;		
+		}
+		*/
 	}
 	.ts-footerbar-bufferbar {
 		position: absolute;
@@ -29,7 +33,6 @@
 		right: 0;
 		z-index: 100;
 		visibility: hidden;
-		//position: fixed;
 		bottom: 0 - @ts-unit-triple;
 	}
 }

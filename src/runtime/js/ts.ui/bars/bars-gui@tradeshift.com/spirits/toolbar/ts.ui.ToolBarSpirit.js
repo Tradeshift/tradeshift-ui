@@ -239,7 +239,7 @@ ts.ui.ToolBarSpirit = (function using(
 						button.forEach(transmorph);
 					} else {
 						var data = JSON.parse(JSON.stringify(button));
-						var clone = new ts.ui.ButtonModel(data);
+						var clone = new ButtonModel(data);
 						clone.onclick = function() {
 							selected = button;
 							aside.close();
@@ -476,13 +476,36 @@ ts.ui.ToolBarSpirit = (function using(
 			}),
 
 			/**
+			 * Show the config button.
+			 * @param @optional {Function} onconfig
+			 * @returns {this}
+			 */
+			showConfig: confirmed('(function)')(
+				chained(function(onconfig) {
+					this.model().configbutton = new ButtonModel({
+						icon: 'ts-icon-settings',
+						type: 'ts-tertiary ts-noborder',
+						onclick: onconfig
+					});
+				})
+			),
+
+			/**
+			 * Hide the config button.
+			 * @returns {this}
+			 */
+			hideConfig: chained(function() {
+				this.model().configbutton = null;
+			}),
+
+			/**
 			 * Show the close button "X".
 			 * @param @optional {Function} onclose
-			 * @returns {ts.ui.ToolBarSpirit}
+			 * @returns {this}
 			 */
 			showClose: confirmed('(function)')(
 				chained(function(onclose) {
-					this.model().closebutton = new ts.ui.ButtonModel({
+					this.model().closebutton = new ButtonModel({
 						icon: 'ts-icon-close',
 						type: 'ts-tertiary ts-noborder',
 						onclick: onclose
@@ -492,7 +515,7 @@ ts.ui.ToolBarSpirit = (function using(
 
 			/**
 			 * Hide the close button.
-			 * @returns {ts.ui.ToolBarSpirit}
+			 * @returns {this}
 			 */
 			hideClose: chained(function() {
 				this.model().closebutton = null;

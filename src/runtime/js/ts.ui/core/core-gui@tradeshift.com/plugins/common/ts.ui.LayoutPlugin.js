@@ -6,6 +6,7 @@
  * @using {gui.Combo#chained} chained
  */
 ts.ui.LayoutPlugin = (function using(GuiArray, DOMPlugin, CSSPlugin, chained) {
+	// TODO: this can be shortened now or what?
 	var LEVELS = [1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5, 6, 6.5, 7, 7.5, 8, 8.5, 9];
 
 	return ts.ui.Plugin.extend(

@@ -25,6 +25,8 @@
 	"abstract/gui.Position.js",
 	"abstract/gui.Dimension.js",
 	"abstract/gui.Geometry.js",
+	
+	"abstract/gui.UnitBezier.js",
 
 	"mutations/gui.DOMChanger.js",
 	"mutations/gui.DOMCombos.js",

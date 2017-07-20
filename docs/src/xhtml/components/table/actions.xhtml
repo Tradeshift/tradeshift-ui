@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Table Actions</title>
+		<object data="tabs.xhtml"></object>
+	</head>
+	<body>
+		<header data-ts="TopBar"></header>
+		<main data-ts="Main">
+			<article>
+				<h1>Selection actions</h1>
+				<section>
+					<p>The table <code>actions</code> are reserved for working with selections. They work much like the <a href="">buttons</a> except the <code>icon</code> should never be omitted from an action, since it is always displayed (and not just in mobile breakpoint). You can try to select something in this table.</p>
+					<ul class="splitscreen">
+						<li>							
+							<figure data-ts="DoxScript" class="attention">
+								<script type="runnable">
+										var table = ts.ui.get('#table1');
+										table.rows([
+											{cells: ['A', 'B', 'C']},
+											{cells: ['D', 'E', 'F']},
+											{cells: ['G', 'H', 'I']},
+										]).selectable(function() {
+											var actions = table.actions();
+											var counter = table.selected().length;
+											if(counter > 0) {
+												table.status(counter + ' selected');
+												if(!actions.length) {
+													actions.push(
+														{ label: 'Delete', icon: 'ts-icon-delete' },
+														{ label: 'Report', icon: 'ts-icon-halt' },
+														{ label: 'Revert', icon: 'ts-icon-back', onclick: () => {
+															console.log('The revert action was clicked!');
+														}}
+													);
+												}
+											} else {
+												actions.clear();
+												table.status('');
+											}
+										});
+									</script>
+							</figure>
+						</li>
+						<li>
+							<div data-ts="Table" id="table1"></div>
+						</li>
+					</ul>
+					<div data-ts="Note">
+						<i class="ts-icon-todo"></i>
+						<p>TODO: API table goes here!</p>
+					</div>
+					<!--
+						<div data-ts="DoxApi">
+						<script type="application/json">
+							{
+								name: "ts.ui.ButtonModel",
+								properties: [
+									{
+										name: "id",
+										type: "string",
+										desc: "Optional button `id`."
+									},
+									{
+										name: "label",
+										type: "string",
+										desc: "The buttons label."
+									},
+									{
+										name: "icon",
+										type: "string",
+										desc: "The button icon (label must be `null` or empty)."
+									},
+									{
+										name: "info",
+										type: "string",
+										desc: "The button tooltip (hover text)."
+									},
+									{
+										name: "visible",
+										type: "boolean",
+										desc: "Button is visible?"
+									},
+									{
+										name: "disabled",
+										type: "boolean",
+										desc: "Button is disabled?"
+									}
+								],
+								methods: [
+									{
+										name: "onclick",
+										desc: "Called whenever the button gets clicked."
+									},
+									{
+										name: "busy",
+										args: "(string)",
+										desc: "Mark button busy with optional message."
+									},
+									{
+										name: "done",
+										desc: "Mark the button done (not busy)."
+									},
+									{
+										name: "hide",
+										desc: "Hide the button."
+									},
+									{
+										name: "show",
+										desc: "Show the button."
+									},
+									{
+										name: "disable",
+										desc: "Disable the button."
+									},
+									{
+										name: "enable",
+										desc: "Enable the button."
+									}
+								]
+							}
+						</script>
+					</div>
+					-->
+				</section>
+			</article>
+		</main>
+	</body>
+</html>

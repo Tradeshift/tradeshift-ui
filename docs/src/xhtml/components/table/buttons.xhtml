@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Table Buttons</title>
+		<object data="tabs.xhtml"></object>
+	</head>
+	<body>
+		<header data-ts="TopBar"></header>
+		<main data-ts="Main">
+			<article>
+				<h1>Table buttons</h1>
+				<section>
+					<p>The Table supports <code>buttons</code> and we will soon add some futher documentation. For now we will simply recommend that you don't use buttons unless the Table is <code>maximized</code>. This feature however also doesn't have any documentation 😢</p>
+					<ul class="splitscreen">
+						<li>							
+							<figure data-ts="DoxScript" class="attention">
+								<script type="runnable">
+										var table = ts.ui.get('#table1');
+										table.rows([
+											{cells: ['A', 'B', 'C']},
+											{cells: ['D', 'E', 'F']},
+											{cells: ['G', 'H', 'I']},
+										]).buttons([
+											{ label: 'One', type: 'ts-primary' },
+											{ label: 'Two', type: 'ts-secondary' },
+											{ label: 'Three', onclick: () => {
+												console.log('The tertiary button was clicked!');
+											}}
+										]);
+									</script>
+							</figure>
+						</li>
+						<li>
+							<div data-ts="Table" id="table1"></div>
+						</li>
+					</ul>
+					<div data-ts="Note">
+						<i class="ts-icon-todo"></i>
+						<p>TODO: The Table breakpoint should be local to the Table (not the window) :/</p>
+					</div>
+				</section>
+			</article>
+		</main>
+	</body>
+</html>

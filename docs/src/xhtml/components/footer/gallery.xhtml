@@ -41,6 +41,20 @@
 
 					<figure data-ts="DoxScript">
 						<script type="runnable">
+							ts.ui.Footer.configurable(function() {
+								ts.ui.Notification.success('Go configure!');
+							});
+						</script>
+					</figure>
+
+					<figure data-ts="DoxScript">
+						<script type="runnable">
+							ts.ui.Footer.unconfigurable();
+						</script>
+					</figure>
+
+					<figure data-ts="DoxScript">
+						<script type="runnable">
 							ts.ui.Footer.buttons([
 								{ label: 'Long Button One', type: 'ts-primary', onclick: debug },
 								{ label: 'Long Button Two', type: 'ts-secondary', onclick: debug },

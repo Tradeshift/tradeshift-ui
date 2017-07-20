@@ -12,7 +12,7 @@
 	var css1 = table.selectable ? 'ts-selectable' : '';
 	var css2 = table.isWrapping() ? 'ts-wrapping' : '';
 	var hack = table.tempdirtyflag; // TODO: dirtyflags!
-	var tbar = table.toolbar;
+	var foot = table.toolbar;
 
 	this._onbeforerender(); // TODO: this as default in {edb.ScriptPlugin}
 
@@ -47,20 +47,9 @@
 	if(table.selectable && cols.length) {
 		renderMenu(table);
 	}
-
-	if(showfooter(this.$fixedsize, table.maxrows)) {
-		<footer id="${guid}-foot" class="ts-table-foot">
-			out.html += tbar.render();
-		</footer>
-	}
-	
-	function showfooter(size, max) {
-		if(table.configurable || tbar.title !== null) {
-			return true;
-		} else if(tbar.pager){
-			return size || (max && tbar.pager.pages > 1);
-		}
-		return false;
-	}
+		
+	<div id="${guid}-foot" class="ts-table-foot">
+		out.html += foot.render();
+	</div>
 
 </script>

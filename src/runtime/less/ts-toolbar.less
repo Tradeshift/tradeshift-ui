@@ -97,7 +97,8 @@
 		}
 	}
 }
-.ts-toolbar-title {
+.ts-toolbar-title,
+.ts-toolbar-status {
 	padding-left: 0;
 	padding-right: 0;
 	text-overflow: ellipsis;
@@ -114,6 +115,18 @@
 		top: -1px;
 		overflow: hidden;
 		text-overflow: ellipsis;
+	}
+}
+.ts-toolbar-status {
+	&:first-child {
+		padding-left: @ts-unit-plus;
+	}
+	&:not(:first-child) {
+		padding-left: 0 !important;
+	}
+	label {
+		font-size: @ts-fontsize;
+		top: 0;	
 	}
 }
 .ts-toolbar-search {
@@ -346,12 +359,13 @@
 
 // Statusbar ...................................................................
 
-.ts-toolbar.ts-statusbar {
+.ts-toolbar {
 	&.ts-micro,
 	&.ts-macro {
 		.ts-toolbar-item.ts-action:first-child {
 			padding-left: @ts-unit;
 		}
+		/*
 		.ts-toolbar-title {
 			&:first-child {
 				padding-left: @ts-unit-plus;
@@ -364,7 +378,9 @@
 				top: 0;	
 			}
 		}
+		*/
 	}
+	/*
 	&.ts-small {
 		&.ts-level-4-5,
 		&.ts-level-6,
@@ -410,6 +426,7 @@
 			.ts-mixin-fixheight(@ts-unit-triple * 3);
 		}
 	}
+	*/
 }
 
 // Micro toolbar ...............................................................
@@ -424,7 +441,8 @@
 				.ts-mixin-fixheight(@ts-unit-plus);
 				display: inline-block;
 			}
-			&.ts-toolbar-title {
+			&.ts-toolbar-title,
+			&.ts-toolbar-status {
 				&:first-child {
 					padding-left: @ts-unit - @ts-unit-quarter;
 				}

@@ -88,6 +88,21 @@ ts.ui.Footer = (function using(chained) {
 		}),
 
 		/**
+		 * @param {Function} [onconfig]
+		 * @returns {this}
+		 */
+		configurable: chained(function(onconfig) {
+			footer().configurable(onconfig);
+		}),
+
+		/**
+		 * @returns {this}
+		 */
+		unconfigurable: chained(function() {
+			footer().unconfigurable();
+		}),
+
+		/**
 		 * Hide the whole footer.
 		 * @returns {this}
 		 */

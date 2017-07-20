@@ -689,10 +689,13 @@ ts.ui.TableSpirit = (function using(
 			var model = this._model;
 			var toolb = model.toolbar;
 			if (arguments.length) {
+				toolb.buttons = json;
+				/*
 				toolb.buttons.clear();
 				json.forEach(function(o) {
 					toolb.buttons.push(o);
 				});
+				*/
 			} else {
 				return toolb.buttons;
 			}
@@ -704,7 +707,7 @@ ts.ui.TableSpirit = (function using(
 		 * @returns {this|ts.ui.ButtonCollection}
 		 */
 		actions: chained(function(json) {
-			var model = this.model();
+			var model = this._model;
 			var toolb = model.toolbar;
 			if (arguments.length) {
 				toolb.actions = json;
@@ -727,6 +730,14 @@ ts.ui.TableSpirit = (function using(
 				var toolb = model.toolbar;
 				this.onconf = onconf || this.onconf;
 				model.configurable = true;
+				toolb.configbutton = {
+					onclick: function() {
+						if (table.onconf) {
+							table.onconf.call(this, table);
+						}
+					}
+				};
+				/*
 				if (!toolb.buttons.get('config')) {
 					toolb.buttons.push({
 						id: 'config',
@@ -738,6 +749,7 @@ ts.ui.TableSpirit = (function using(
 						}
 					});
 				}
+				*/
 				model.$dirty(); // TODO: why needed (for the test)?
 			})
 		),
@@ -1064,10 +1076,10 @@ ts.ui.TableSpirit = (function using(
 			if (arguments.length) {
 				this._statusmessage = message;
 				if (!this._errormessage) {
-					toolbar.title = message;
+					toolbar.status = message;
 				}
 			} else {
-				return toolbar.title;
+				return toolbar.status;
 			}
 		}),
 

@@ -482,11 +482,9 @@ ts.ui.ToolBarSpirit = (function using(
 			 */
 			showConfig: confirmed('(function)')(
 				chained(function(onconfig) {
-					this.model().configbutton = new ButtonModel({
-						icon: 'ts-icon-settings',
-						type: 'ts-tertiary ts-noborder',
+					this.model().configbutton = {
 						onclick: onconfig
-					});
+					};
 				})
 			),
 
@@ -505,11 +503,9 @@ ts.ui.ToolBarSpirit = (function using(
 			 */
 			showClose: confirmed('(function)')(
 				chained(function(onclose) {
-					this.model().closebutton = new ButtonModel({
-						icon: 'ts-icon-close',
-						type: 'ts-tertiary ts-noborder',
+					this.model().closebutton = {
 						onclick: onclose
-					});
+					};
 				})
 			),
 

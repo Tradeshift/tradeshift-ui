@@ -141,14 +141,31 @@ ts.ui.FooterBarSpirit = (function using(chained, GuiArray, PagerModel, ToolBarSp
 		status: chained(function(message) {
 			var model = this.model();
 			if (arguments.length) {
-				model.title = message;
+				model.status = message;
 			} else {
-				return model.title;
+				return model.status;
 			}
 		}),
 
 		/**
-		 * TODO: At some point, consider introducing all these toolbars lazily.
+		 * @param {Function} [onconfig]
+		 * @returns {this}
+		 */
+		configurable: chained(function(onconfig) {
+			this.model().configbutton = {
+				onclick: onconfig
+			};
+		}),
+
+		/**
+		 * @returns {this}
+		 */
+		unconfigurable: chained(function() {
+			this.model().configbutton = null;
+		}),
+
+		/**
+		 * Index the various bars and watch for rendering updates.
 		 * @param {Object} summary
 		 */
 		onrender: function(summary) {
@@ -164,6 +181,7 @@ ts.ui.FooterBarSpirit = (function using(chained, GuiArray, PagerModel, ToolBarSp
 				}, this);
 				this._layout();
 			}
+			this._refresh();
 		},
 
 		/**
@@ -239,40 +257,6 @@ ts.ui.FooterBarSpirit = (function using(chained, GuiArray, PagerModel, ToolBarSp
 		showPager: chained(function() {
 			// this._hidebar(this._centerpager());
 		}),
-
-		// Privileged ..............................................................
-
-		// TODO: MOVE THESE INTO THE MODEL!!!
-
-		/**
-		 * Should show the action bar?
-		 * This is called from EDBML.
-		 * @param {ts.ui.ToolBarModel} model
-		 * @returns {boolean}
-		 */
-		$showActionBar: function(model) {
-			return !!(model.actions.getLength() || model.title || model.checkbox);
-		},
-
-		/**
-		 * Should show the center bar?
-		 * This is called from EDBML.
-		 * @param {ts.ui.ToolBarModel} model
-		 * @returns {boolean}
-		 */
-		$showCenterBar: function(model) {
-			return !!(model.pager || model.buttons.getLength());
-		},
-
-		/**
-		 * Should show the backup bar?
-		 * This is called from EDBML.
-		 * @param {ts.ui.ToolBarModel} model
-		 * @returns {boolean}
-		 */
-		$showBackupBar: function(model) {
-			return !!model.buttons.getLength();
-		},
 
 		// Private .................................................................
 
@@ -388,6 +372,19 @@ ts.ui.FooterBarSpirit = (function using(chained, GuiArray, PagerModel, ToolBarSp
 			return bars.reduce(function sum(offset, bar, index) {
 				return offset + (bar.visible ? (index ? 3 : 2) : 0);
 			}, 0);
+		},
+
+		/**
+		 * There's just no way that this can work with pure CSS, so here it is.
+		 */
+		_refresh: function() {
+			console.log(Math.random());
+			[this._centerbar, this._backupbar].reduce(function(was, bar) {
+				var is = bar.visible;
+				bar.css.shift(is && was, 'ts-toolbar-divider');
+				console.log(bar.css.name());
+				return was || is;
+			}, this._actionbar.visible);
 		}
 	});
 })(gui.Combo.chained, gui.Array, ts.ui.PagerModel, ts.ui.ToolBarSpirit);

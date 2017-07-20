@@ -40,15 +40,14 @@ ts.ui.FooterModel = (function using(PagerModel) {
 		},
 
 		/**
-		 * TODO: `title` and `status` should be split into two at some point :/
 		 * @type {string}
 		 */
-		title: {
+		status: {
 			getter: function() {
-				return this.actionbar.title;
+				return this.actionbar.status;
 			},
 			setter: function(string) {
-				this.actionbar.title = string;
+				this.actionbar.status = string;
 			}
 		},
 
@@ -65,7 +64,8 @@ ts.ui.FooterModel = (function using(PagerModel) {
 		},
 
 		/**
-		 * The {ts.ui.FooterBarSpirit} will move the buttons somewhere else!
+		 * Buttons will be rendered at first into the bufferbar for measurements.
+		 * The {ts.ui.FooterBarSpirit} will then move the buttons somewhere else.
 		 * @type {ts.ui.ButtonCollection}
 		 */
 		buttons: {
@@ -89,6 +89,22 @@ ts.ui.FooterModel = (function using(PagerModel) {
 			}
 		},
 
+		/**
+		 * Note: Also inject into bufferbar so that it can affect measurements :)
+		 * Perhaps the right approach is to only render it in the bufferbar and 
+		 * then move it to `center` or `backup` just like we do with the buttons?
+		 * @type {ts.ui.ButtonModel}
+		 */
+		configbutton: {
+			getter: function() {
+				return this.centerbar.configbutton;
+			},
+			setter: function(json) {
+				this.bufferbar.configbutton = json;
+				this.centerbar.configbutton = json;
+			}
+		},
+
 		// Methods .................................................................
 
 		/**
@@ -108,6 +124,47 @@ ts.ui.FooterModel = (function using(PagerModel) {
 		 */
 		render: function() {
 			return ts.ui.footer.edbml(this);
+		},
+
+		// Privileged ..............................................................
+
+		/**
+		 * Show any bars at all (although this method is not really used anywhere)?
+		 * @returns {boolean}
+		 */
+		$show: function() {
+			return (
+				this.$showActionBar(this.actionbar) ||
+				this.$showCenterBar(this.centerbar) ||
+				this.$showBackupBar(this.backupbar)
+			);
+		},
+
+		/**
+		 * Should show the action bar? Called from EDBML.
+		 * @param {ts.ui.ToolBarModel} model
+		 * @returns {boolean}
+		 */
+		$showActionBar: function(model) {
+			return !!(model.actions.getLength() || model.status || model.checkbox);
+		},
+
+		/**
+		 * Should show the center bar? Called from EDBML.
+		 * @param {ts.ui.ToolBarModel} model
+		 * @returns {boolean}
+		 */
+		$showCenterBar: function(model) {
+			return !!(model.pager || model.configbutton || model.buttons.getLength());
+		},
+
+		/**
+		 * Should show the backup bar? Called from EDBML.
+		 * @param {ts.ui.ToolBarModel} model
+		 * @returns {boolean}
+		 */
+		$showBackupBar: function(model) {
+			return !!model.buttons.getLength();
 		}
 	});
 })(ts.ui.PagerModel);

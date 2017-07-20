@@ -10,10 +10,7 @@
 	var topbar =  ts.ui.TopBarModel.is(toolbar);
 	var statusbar = ts.ui.StatusBarModel.is(toolbar);
 	var hasrealtitle = !!toolbar.title;
-
-	console.log(JSON.stringify(toolbar, 0, 4));
-	console.log(toolbar.status, '???????????');
-
+	
 	renderleft(
 		toolbar.title || (topbar ? toolbar.defaultTitle : ''),
 		toolbar.status,

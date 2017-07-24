@@ -18,10 +18,17 @@ gui.Tween = (function using(confirmed, chained) {
 			duration: 200,
 
 			/**
-			 * Equivalent to transition-timing-function.
-			 * @type {number}
+			 * Default delay.
+			 * @type {number} Time in milliseconds.
 			 */
-			timing: 'none',
+			delay: 0,
+
+			/**
+			 * Equivalent to transition-timing-function.
+			 * Can be an array of 4 numbers to use a custom bezier curve.
+			 * @type {string|array<number>}
+			 */
+			timing: 'ease',
 
 			/**
 			 * Optional tween data.
@@ -62,12 +69,29 @@ gui.Tween = (function using(confirmed, chained) {
 					if (config.timing !== undefined) {
 						this.timing = config.timing;
 					}
+					if (config.delay !== undefined) {
+						this.delay = config.delay;
+					}
 				}
 			}
 		},
 		{},
 		{
 			// Static ...........................................................
+			/**
+			 * Bezier curve definitions for easing
+			 */
+			$easing: {
+				linear: [0, 0, 1, 1],
+				ease: [0.25, 0.1, 0.25, 1],
+				'ease-in': [0.42, 0, 1, 1],
+				'ease-out': [0, 0, 0.58, 1],
+				'ease-in-out': [0.42, 0, 0.58, 1],
+
+				'ease-in-back': [0.6, -0.28, 0.735, 0.045],
+				'ease-out-back': [0.175, 0.885, 0.32, 1.275],
+				'ease-in-out-back': [0.68, -0.55, 0.265, 1.55]
+			},
 
 			/**
 			 * Coordinate tween.
@@ -80,44 +104,53 @@ gui.Tween = (function using(confirmed, chained) {
 				var tween = new gui.Tween(type, config, data);
 				var timer = gui.Client.hasPerformance ? window.performance : Date;
 				var start = timer.now();
+
+				var easingCurve = gui.Tween.$easing.ease;
+				if (
+					typeof tween.timing === 'string' &&
+					Object.keys(gui.Tween.$easing).includes(tween.timing)
+				) {
+					easingCurve = gui.Tween.$easing[tween.timing];
+				} else if (Array.isArray(tween.timing)) {
+					easingCurve = tween.timing;
+				}
+				var curve = new gui.UnitBezier(
+					easingCurve[0],
+					easingCurve[1],
+					easingCurve[2],
+					easingCurve[3]
+				);
+
 				function step() {
-					var value = 1;
-					var time = timer.now();
-					var progress = time - start;
-					if (progress < tween.duration) {
-						value = progress / tween.duration;
-						if (tween.timing !== 'none') {
-							value = value * 90 * Math.PI / 180;
-							switch (tween.timing) {
-								case 'ease-in':
-									value = 1 - Math.cos(value);
-									break;
-								case 'ease-out':
-									value = Math.sin(value);
-									break;
-							}
+					var now = timer.now();
+					var progress = now - start;
+
+					if (tween.init) {
+						if (progress > tween.delay) {
+							tween.init = false;
+							start = now;
+							progress = 0;
 						}
 					}
-					/*
-				if (value === 1) {
-					tween.value = 1;
-					tween.done = true;
-				} else {
-					tween.value = value;
-					requestAnimationFrame(step);
-				}
-				*/
-					tween.value = value;
-					if (tween.value === 1) {
-						tween.done = true;
+
+					if (!tween.init) {
+						var t = progress / tween.duration;
+						if (t < 1) {
+							tween.value = curve.solve(t);
+						} else {
+							tween.done = true;
+							tween.value = 1;
+						}
+						gui.Broadcast.dispatch(gui.BROADCAST_TWEEN, tween);
 					}
-					gui.Broadcast.dispatch(gui.BROADCAST_TWEEN, tween);
-					tween.init = false;
+
 					if (!tween.done) {
 						requestAnimationFrame(step);
 					}
 				}
-				step(start);
+
+				step();
+
 				return tween;
 			}
 		}

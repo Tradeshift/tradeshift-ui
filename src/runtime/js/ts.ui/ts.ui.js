@@ -51,10 +51,8 @@ ts.ui = gui.namespace(
 			 */
 			frankenstein: (function(path) {
 				var vendorappid = /[A-Z][A-Za-z]+\.[A-Z][A-Za-z]+/;
-				return !!(
-					window !== top &&
-					(path.includes('/app/') || path.includes('/v4/') || path.match(vendorappid))
-				);
+				return !!(window !== top &&
+					(path.includes('/app/') || path.includes('/v4/') || path.match(vendorappid)));
 			})(window.location.pathname),
 
 			/**
@@ -334,6 +332,9 @@ ts.ui = gui.namespace(
 			BROADCAST_GLOBAL_COVER_HOVER: 'ts-broadcast-global-cover-hover',
 			BROADCAST_GLOBAL_MENU_OPEN: 'ts-broadcast-g-menu-open',
 			BROADCAST_GLOBAL_MENU_CLOSE: 'ts-broadcast-g-menu-close',
+			BROADCAST_TO_CHROME: 'Tradeshift.Chrome',
+			BROADCAST_CHROME_MENU_OPEN: 'ts-broadcast-chrome-menu-open',
+			BROADCAST_CHROME_MENU_CLOSE: 'ts-broadcast-chrome-menu-close',
 
 			// Events ..................................................................
 
@@ -410,6 +411,7 @@ ts.ui = gui.namespace(
 			 */
 			openMenu: chained(function() {
 				gui.Broadcast.dispatchGlobal(this.BROADCAST_GLOBAL_MENU_OPEN);
+				ts.ui.xapp.broadcast(this.BROADCAST_TO_CHROME, this.BROADCAST_CHROME_MENU_OPEN);
 			}),
 
 			/**
@@ -418,6 +420,7 @@ ts.ui = gui.namespace(
 			 */
 			closeMenu: chained(function() {
 				gui.Broadcast.dispatchGlobal(this.BROADCAST_GLOBAL_MENU_CLOSE);
+				ts.ui.xapp.broadcast(this.BROADCAST_TO_CHROME, this.BROADCAST_CHROME_MENU_CLOSE);
 			}),
 
 			/**

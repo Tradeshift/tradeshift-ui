@@ -179,8 +179,8 @@ gui.SpritePlugin = (function() {
 			var coords = this._pos;
 			var origin = this._org;
 			var scaled = parseFloat(this._gro);
-			var tforms = [coords.x, coords.y, coords.z].map(Math.round);
-			var offset = [origin.x, origin.y, origin.z].map(Math.round);
+			var tforms = [coords.x, coords.y, coords.z].map(parseFloat);
+			var offset = [origin.x, origin.y, origin.z].map(parseFloat);
 			var plugin = this.spirit.css;
 			// if (set.reduce(total) === 0) {
 			// 	this.reset(); // Should reset to CSS values, not remove them
@@ -193,8 +193,8 @@ gui.SpritePlugin = (function() {
 			} else {
 				var iepos = this._defpos(plugin);
 				plugin.style({
-					left: iepos.x + tforms[0] + offset[0],
-					top: iepos.y + tforms[1] + offset[1],
+					left: Math.round(iepos.x + tforms[0] + offset[0]),
+					top: Math.round(iepos.y + tforms[1] + offset[1]),
 					msTransformOrigin: offset[0] + 'px' + ' ' + offset[1] + 'px',
 					msTransform: 'scale(' + scaled + ')'
 				});

@@ -108,7 +108,7 @@ gui.Tween = (function using(confirmed, chained) {
 				var easingCurve = gui.Tween.$easing.ease;
 				if (
 					typeof tween.timing === 'string' &&
-					Object.keys(gui.Tween.$easing).includes(tween.timing)
+					Object.keys(gui.Tween.$easing).indexOf(tween.timing) !== -1
 				) {
 					easingCurve = gui.Tween.$easing[tween.timing];
 				} else if (Array.isArray(tween.timing)) {

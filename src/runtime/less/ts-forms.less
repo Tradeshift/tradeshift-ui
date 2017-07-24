@@ -137,7 +137,7 @@
 				font-weight: normal;
 				top: @ts-unit-quarter;
 				left: -@ts-unit-quarter;
-				color: @ts-lite-darker;
+				color: @ts-medium-litest;
 			}
 			+ span:after {
 				top: 50%;
@@ -151,7 +151,6 @@
 					+ span:before {
 						line-height: @ts-unit;
 						content: ":";
-						color: @ts-blue;
 					}
 				}
 			}
@@ -164,9 +163,21 @@
 					+ span:before {
 						line-height: @ts-unit;
 						content: "\"";
-						color: @ts-blue;
-					}
-				}
+					} 
+        } 
+      } 
+      &[type="radio"], 
+      &[type="checkbox"] { 
+        &:checked { 
+          + span:before { 
+            color: @ts-blue; 
+          } 
+        } 
+        &:disabled { 
+          + span:before { 
+            color: @ts-lite; 
+          } 
+        } 
 			}
 		}
 	}
@@ -276,6 +287,24 @@
 			&.ts-text {
 				border-color: transparent !important;
 			}
+			&.ts-option { 
+				+ span:before { 
+					color: rgba(255,255,255,0.6); 
+				} 
+				&[type="radio"], 
+				&[type="checkbox"] { 
+					&:checked { 
+						+ span:before { 
+							color: @ts-white; 
+						} 
+					} 
+					&:disabled { 
+						+ span:before { 
+							color: rgba(255,255,255,0.3); 
+						} 
+					} 
+				} 
+			} 
 		}
 	}
 }

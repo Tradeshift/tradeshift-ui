@@ -301,9 +301,24 @@ gui.Client = (function() {
 			}
 			html.removeChild(outer);
 			this.scrollBarSize = w1 - w2;
-			if (this.isExplorer) {
-				// sad hotfix for IE, but TODO: isn't the scrollbar really big in Windows 10?
-				this.scrollBarSize = 17;
+
+			/**
+			 * Solid values, trust me
+			 * @see https://codepen.io/sambible/post/browser-scrollbar-widths
+			 * @see http://www.textfixer.com/tutorials/scrollbar-pixel-width-test.php
+			 */
+			if (!this.scrollBarSize && !this.isTouchDevice) {
+				if (this.system === 'windows') {
+					if (this.isEdge) {
+						this.scrollBarSize = 12;
+					} else {
+						this.scrollBarSize = 17;
+					}
+				} else if (this.system === 'linux' && this.isGecko) {
+					this.scrollBarSize = 16;
+				} else {
+					this.scrollBarSize = 15;
+				}
 			}
 		};
 	}

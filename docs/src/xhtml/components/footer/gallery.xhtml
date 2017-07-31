@@ -19,6 +19,8 @@
 				</section>
 				<section>
 
+					<h3>Pager</h3>
+
 					<p>Pager is very nice.</p>
 
 					<figure data-ts="DoxScript">
@@ -39,9 +41,11 @@
 						</script>
 					</figure>
 
+					<h3>Config</h3>
+
 					<figure data-ts="DoxScript">
 						<script type="runnable">
-							ts.ui.Footer.configurable(function() {
+							ts.ui.Footer.showConfig(function onclick() {
 								ts.ui.Notification.success('Go configure!');
 							});
 						</script>
@@ -49,9 +53,26 @@
 
 					<figure data-ts="DoxScript">
 						<script type="runnable">
-							ts.ui.Footer.unconfigurable();
+							ts.ui.Footer.hideConfig();
 						</script>
 					</figure>
+
+					<h3>Collaboration</h3>
+
+					<figure data-ts="DoxScript">
+						<script type="runnable">
+							ts.ui.Footer.showCollaboration(function onclick() {
+								ts.ui.Notification.success('Go collaborate!');
+							});
+						</script>
+					</figure>
+
+					<figure data-ts="DoxScript">
+						<script type="runnable">
+							ts.ui.Footer.hideCollaboration();
+						</script>
+					</figure>
+
 
 					<figure data-ts="DoxScript">
 						<script type="runnable">

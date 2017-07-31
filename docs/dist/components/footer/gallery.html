@@ -12,6 +12,8 @@
     <link rel="prefetch" title="Buttons" href="index.html">
     <link rel="prefetch" title="Actions" href="actions.html">
     <link rel="prefetch" title="Pager" href="pager.html">
+    <link rel="prefetch" title="Configuration" href="configuration.html">
+    <link rel="prefetch" title="Collaboration" href="collaboration.html">
     <link rel="prefetch" title="Gallery" href="gallery.html" class="hidden">
     <script>
         function debug() {
@@ -33,6 +35,7 @@
                     <p>Go go gadget Footer.</p>
                 </section>
                 <section>
+                    <h3><span>Pager</span></h3>
                     <p>Pager is very nice.</p>
                     <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.Footer.pager(%7B%0A%09pages%3A%2023%2C%0A%09page%3A%200%2C%0A%09onselect%3A%20function(index)%20%7B%0A%09%09console.log(index)%3B%0A%09%7D%0A%7D)%3B">
                         <script type="runnable">
@@ -60,25 +63,49 @@
 </pre>
                         </div>
                     </figure>
-                    <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.Footer.configurable(function()%20%7B%0A%09ts.ui.Notification.success(&apos;Go%20configure!&apos;)%3B%0A%7D)%3B">
+                    <h3><span>Config</span></h3>
+                    <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.Footer.showConfig(function%20onclick()%20%7B%0A%09ts.ui.Notification.success(&apos;Go%20configure!&apos;)%3B%0A%7D)%3B">
                         <script type="runnable">
-                            ts.ui.Footer.configurable(function() { ts.ui.Notification.success('Go configure!'); });
+                            ts.ui.Footer.showConfig(function onclick() { ts.ui.Notification.success('Go configure!'); });
                         </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                         <div class="tabpanels">
                             <pre class="prism language-javascript">
-<code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Footer<span class="token punctuation">.</span><span class="token function">configurable<span class="token punctuation">(</span></span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Footer<span class="token punctuation">.</span><span class="token function">showConfig<span class="token punctuation">(</span></span><span class="token keyword">function</span> <span class="token function">onclick<span class="token punctuation">(</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
 	ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Notification<span class="token punctuation">.</span><span class="token function">success<span class="token punctuation">(</span></span><span class="token string">&apos;Go configure!&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
 </pre>
                         </div>
                     </figure>
-                    <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.Footer.unconfigurable()%3B">
+                    <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.Footer.hideConfig()%3B">
                         <script type="runnable">
-                            ts.ui.Footer.unconfigurable();
+                            ts.ui.Footer.hideConfig();
                         </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                         <div class="tabpanels">
                             <pre class="prism language-javascript">
-<code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Footer<span class="token punctuation">.</span><span class="token function">unconfigurable<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
+<code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Footer<span class="token punctuation">.</span><span class="token function">hideConfig<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
+</pre>
+                        </div>
+                    </figure>
+                    <h3><span>Collaboration</span></h3>
+                    <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.Footer.showCollaboration(function%20onclick()%20%7B%0A%09ts.ui.Notification.success(&apos;Go%20collaborate!&apos;)%3B%0A%7D)%3B">
+                        <script type="runnable">
+                            ts.ui.Footer.showCollaboration(function onclick() { ts.ui.Notification.success('Go collaborate!'); });
+                        </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                        <div class="tabpanels">
+                            <pre class="prism language-javascript">
+<code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Footer<span class="token punctuation">.</span><span class="token function">showCollaboration<span class="token punctuation">(</span></span><span class="token keyword">function</span> <span class="token function">onclick<span class="token punctuation">(</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Notification<span class="token punctuation">.</span><span class="token function">success<span class="token punctuation">(</span></span><span class="token string">&apos;Go collaborate!&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
+</pre>
+                        </div>
+                    </figure>
+                    <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.Footer.hideCollaboration()%3B">
+                        <script type="runnable">
+                            ts.ui.Footer.hideCollaboration();
+                        </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                        <div class="tabpanels">
+                            <pre class="prism language-javascript">
+<code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Footer<span class="token punctuation">.</span><span class="token function">hideCollaboration<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
 </pre>
                         </div>
                     </figure>

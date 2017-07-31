@@ -4,16 +4,16 @@
  */
 ts.ui.Footer = (function using(chained) {
 	/**
-	 * Creates the spirit when first invoked.
+	 * Creates and appends the {ts.ui.FooterBarSpirit} when first invoked.
 	 * @returns {ts.ui.FooterBarSpirit}
 	 */
-	function footer() {
-		if (!footer.spirit) {
+	function bar() {
+		if (!bar.spirit) {
 			var spirit = ts.ui.FooterBarSpirit.summon();
 			spirit.dom.appendTo(document.body);
-			footer.spirit = spirit;
+			bar.spirit = spirit;
 		}
-		return footer.spirit;
+		return bar.spirit;
 	}
 
 	/*
@@ -34,9 +34,9 @@ ts.ui.Footer = (function using(chained) {
 		 */
 		checkbox: chained(function(json) {
 			if (arguments.length) {
-				footer().checkbox(json);
+				bar().checkbox(json);
 			} else {
-				return footer().checkbox();
+				return bar().checkbox();
 			}
 		}),
 
@@ -45,9 +45,9 @@ ts.ui.Footer = (function using(chained) {
 		 */
 		status: chained(function(message) {
 			if (arguments.length) {
-				footer().status(message);
+				bar().status(message);
 			} else {
-				return footer().status();
+				return bar().status();
 			}
 		}),
 
@@ -57,9 +57,9 @@ ts.ui.Footer = (function using(chained) {
 		 */
 		buttons: chained(function(buttons) {
 			if (arguments.length) {
-				footer().buttons(buttons);
+				bar().buttons(buttons);
 			} else {
-				return footer().buttons();
+				return bar().buttons();
 			}
 		}),
 
@@ -69,9 +69,9 @@ ts.ui.Footer = (function using(chained) {
 		 */
 		actions: chained(function(buttons) {
 			if (arguments.length) {
-				footer().actions(buttons);
+				bar().actions(buttons);
 			} else {
-				return footer().actions();
+				return bar().actions();
 			}
 		}),
 
@@ -81,25 +81,42 @@ ts.ui.Footer = (function using(chained) {
 		 */
 		pager: chained(function(pager) {
 			if (arguments.length) {
-				footer().pager(pager);
+				bar().pager(pager);
 			} else {
-				return footer().pager();
+				return bar().pager();
 			}
 		}),
 
 		/**
-		 * @param {Function} [onconfig]
+		 * @param {Function} [onclick]
 		 * @returns {this}
 		 */
-		configurable: chained(function(onconfig) {
-			footer().configurable(onconfig);
+		showConfig: chained(function(onclick) {
+			bar().showConfig(onclick);
 		}),
 
 		/**
 		 * @returns {this}
 		 */
-		unconfigurable: chained(function() {
-			footer().unconfigurable();
+		hideConfig: chained(function() {
+			bar().hideConfig();
+		}),
+
+		/**
+		 * Show collaboration button.
+		 * @param {Function} [onclick]
+		 * @returns {this}
+		 */
+		showCollaboration: chained(function(onclick) {
+			bar().showCollaboration(onclick);
+		}),
+
+		/**
+		 * Hide collaboration button.
+		 * @returns {this}
+		 */
+		hideCollaboration: chained(function() {
+			bar().hideCollaboration();
 		}),
 
 		/**
@@ -107,7 +124,7 @@ ts.ui.Footer = (function using(chained) {
 		 * @returns {this}
 		 */
 		hide: chained(function() {
-			footer().hide();
+			bar().hide();
 		}),
 
 		/**
@@ -115,7 +132,7 @@ ts.ui.Footer = (function using(chained) {
 		 * @returns {this}
 		 */
 		show: chained(function() {
-			footer().show();
+			bar().show();
 		}),
 
 		// Privileged ..............................................................
@@ -125,7 +142,7 @@ ts.ui.Footer = (function using(chained) {
 		 * @param {boolean} checked
 		 */
 		$check: function(checked) {
-			footer().checkbox().checked = checked;
+			bar().checkbox().checked = checked;
 		}
 	};
 
@@ -135,7 +152,7 @@ ts.ui.Footer = (function using(chained) {
 	 */
 	['hideActions', 'showActions', 'hidePager', 'showPager'].forEach(function generate(method) {
 		Footer[method] = chained(function() {
-			footer()[method]();
+			bar()[method]();
 		});
 	});
 

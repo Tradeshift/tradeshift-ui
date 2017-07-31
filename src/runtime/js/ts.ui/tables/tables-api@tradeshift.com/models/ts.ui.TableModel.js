@@ -253,7 +253,7 @@ ts.ui.TableModel = (function using(RowCollection, Type, Model) {
 		 * TODO: Rename the property `footer` knowing that the Table will need testing!
 		 * @type {ts.ui.FooterModel}
 		 */
-		toolbar: ts.ui.FooterModel,
+		toolbar: ts.ui.FooterBarModel,
 
 		/**
 		 * Selection menu is open?

@@ -43,7 +43,7 @@ ts.ui.FooterBarSpirit = (function using(chained, GuiArray, PagerModel, ToolBarSp
 		 * @param {object|ts.ui.ToolBarModel} model
 		 * @returns {ts.ui.ToolBarModel|ts.ui.ToolBarSpirit}
 		 */
-		model: ts.ui.Spirit.createModelMethod(ts.ui.FooterModel, 'ts.ui.FooterBarSpirit.edbml'),
+		model: ts.ui.Spirit.createModelMethod(ts.ui.FooterBarModel, 'ts.ui.FooterBarSpirit.edbml'),
 
 		/**
 		 * Add local and global classname.
@@ -148,20 +148,44 @@ ts.ui.FooterBarSpirit = (function using(chained, GuiArray, PagerModel, ToolBarSp
 		}),
 
 		/**
-		 * @param {Function} [onconfig]
+		 * Show the dedicated config button.
+		 * @param {Function} [onclick]
 		 * @returns {this}
 		 */
-		configurable: chained(function(onconfig) {
+		showConfig: chained(function(onclick) {
 			this.model().configbutton = {
-				onclick: onconfig
+				onclick: onclick
 			};
 		}),
 
 		/**
+		 * Hide the configbutton.
 		 * @returns {this}
 		 */
-		unconfigurable: chained(function() {
+		hideConfig: chained(function() {
 			this.model().configbutton = null;
+		}),
+
+		/**
+		 * Show the dedicated collaboration button.
+		 * @param {Function} [onclick]
+		 * @returns {this}
+		 */
+		showCollaboration: chained(function(onclick) {
+			this.model().collabbutton = {
+				label: 'Collaborate On This',
+				icon: 'ts-icon-collaboration',
+				onclick: onclick
+			};
+		}),
+
+		/**
+		 * Show the dedicated collaboration button.
+		 * @param {Function} [onclick]
+		 * @returns {this}
+		 */
+		hideCollaboration: chained(function(onclick) {
+			this.model().collabbutton = null;
 		}),
 
 		/**
@@ -327,9 +351,12 @@ ts.ui.FooterBarSpirit = (function using(chained, GuiArray, PagerModel, ToolBarSp
 		 * Attempt to optimize the vertical height by stacking the bars only when needed.
 		 */
 		_optimize: function() {
+			var clone = null;
 			var model = this.model();
-			if (model.bufferbar.buttons.length) {
-				var clone = gui.Array.from(model.bufferbar.buttons);
+			var buttons = model.bufferbar.buttons;
+			var actions = model.bufferbar.actions;
+			if (buttons && buttons.length) {
+				clone = gui.Array.from(buttons);
 				if (this._hittest()) {
 					model.backupbar.buttons = clone;
 					model.centerbar.buttons.clear();
@@ -337,6 +364,11 @@ ts.ui.FooterBarSpirit = (function using(chained, GuiArray, PagerModel, ToolBarSp
 					model.centerbar.buttons = clone;
 					model.backupbar.buttons.clear();
 				}
+			}
+			if (actions && actions.length) {
+				clone = gui.Array.from(actions);
+				model.centerbar.actions.clear();
+				model.centerbar.actions = clone;
 			}
 		},
 
@@ -375,14 +407,13 @@ ts.ui.FooterBarSpirit = (function using(chained, GuiArray, PagerModel, ToolBarSp
 		},
 
 		/**
-		 * There's just no way that this can work with pure CSS, so here it is.
+		 * There's just no way that this can work with pure CSS, so here it is: 
+		 * Style the thing so that there is a 1px border separator between bars.
 		 */
 		_refresh: function() {
-			console.log(Math.random());
 			[this._centerbar, this._backupbar].reduce(function(was, bar) {
 				var is = bar.visible;
 				bar.css.shift(is && was, 'ts-toolbar-divider');
-				console.log(bar.css.name());
 				return was || is;
 			}, this._actionbar.visible);
 		}

@@ -2,8 +2,9 @@
  * Advanced footer model.
  * @extends {ts.ui.Model}
  * @using {Class<PagerModel>} PagerModel
+ * @using {Class<ts.ui.ActionModel>} ActionModel
  */
-ts.ui.FooterModel = (function using(PagerModel) {
+ts.ui.FooterBarModel = (function using(PagerModel, ActionModel) {
 	return ts.ui.Model.extend({
 		/**
 		 * @type {ts.ui.ToolBarModel}
@@ -97,11 +98,23 @@ ts.ui.FooterModel = (function using(PagerModel) {
 		 */
 		configbutton: {
 			getter: function() {
-				return this.centerbar.configbutton;
+				return this.bufferbar.configbutton;
 			},
 			setter: function(json) {
 				this.bufferbar.configbutton = json;
 				this.centerbar.configbutton = json;
+			}
+		},
+
+		/**
+		 * @type {ts.ui.ActionModel}
+		 */
+		collabbutton: {
+			getter: function() {
+				return this.bufferbar.actions ? this.bufferbar.actions[0] : null;
+			},
+			setter: function(json) {
+				this.bufferbar.actions = [json];
 			}
 		},
 
@@ -155,7 +168,10 @@ ts.ui.FooterModel = (function using(PagerModel) {
 		 * @returns {boolean}
 		 */
 		$showCenterBar: function(model) {
-			return !!(model.pager || model.configbutton || model.buttons.getLength());
+			return !!(model.pager ||
+				model.configbutton ||
+				model.collabbutton ||
+				model.buttons.getLength());
 		},
 
 		/**
@@ -167,4 +183,4 @@ ts.ui.FooterModel = (function using(PagerModel) {
 			return !!model.buttons.getLength();
 		}
 	});
-})(ts.ui.PagerModel);
+})(ts.ui.PagerModel, ts.ui.ActionModel);

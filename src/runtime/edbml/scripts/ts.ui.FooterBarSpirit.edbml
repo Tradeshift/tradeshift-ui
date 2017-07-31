@@ -1,6 +1,6 @@
 <!DOCTYPE edbml>
 <script>
-	<?input name="footer" type="ts.ui.FooterModel"?>
+	<?input name="footer" type="ts.ui.FooterBarModel"?>
 
 	var id = (this.$instanceid + footer.$instanceid);
 

@@ -146,7 +146,8 @@ ts.ui.TextAreaSpirit = (function using(Type, Client, unit, tick, time) {
 			 * If the height changed, dispatch action to any containing layout managers.
 			 */
 			_autosize: function() {
-				var target, padding = unit * 0.5;
+				var target,
+					padding = unit * 0.5;
 				var current = this.css.height || this.box.height;
 				this.css.height = 'auto';
 				if ((target = Math.floor(this.element.scrollHeight / unit) * unit) > 0) {

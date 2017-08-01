@@ -92,7 +92,8 @@
 		});
 		extend(Array, {
 			every: function every(array, fun, thisp) {
-				var res = true, len = array.length >>> 0;
+				var res = true,
+					len = array.length >>> 0;
 				for (var i = 0; i < len; i++) {
 					if (array[i] !== undefined) {
 						if (!fun.call(thisp, array[i], i, array)) {
@@ -112,7 +113,8 @@
 				}
 			},
 			map: function map(array, fun, thisp) {
-				var m = [], len = array.length >>> 0;
+				var m = [],
+					len = array.length >>> 0;
 				for (var i = 0; i < len; i++) {
 					if (array[i] !== undefined) {
 						m.push(fun.call(thisp, array[i], i, array));
@@ -220,7 +222,8 @@
 			 * TODO: Move to MessageChannel!!!
 			 */
 			setImmediate: (function() {
-				var list = [], handle = 1;
+				var list = [],
+					handle = 1;
 				var name = 'spiritual:emulated:setimmediate';
 				window.addEventListener(
 					'message',

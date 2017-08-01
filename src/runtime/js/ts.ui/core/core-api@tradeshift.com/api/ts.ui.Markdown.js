@@ -175,7 +175,8 @@ ts.ui.Markdown = (function using(linkparser) {
 	 * @returns {string}
 	 */
 	function paragraphs(html) {
-		var doubles = true, exclude = /^<(h|ul|ol|li|pre)/;
+		var doubles = true,
+			exclude = /^<(h|ul|ol|li|pre)/;
 		return eachline(
 			html,
 			function(section) {

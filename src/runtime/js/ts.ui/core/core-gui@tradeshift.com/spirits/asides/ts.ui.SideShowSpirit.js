@@ -397,7 +397,10 @@ ts.ui.SideShowSpirit = (function using(
 			 * @returns {object}
 			 */
 			_reflex: function(action) {
-				var panel, avail = this.box.height, height = 0, thing = action ? action.call(this) : null;
+				var panel,
+					avail = this.box.height,
+					height = 0,
+					thing = action ? action.call(this) : null;
 				if (this.isOpen && avail) {
 					var asides = [];
 					this.dom.children(gui.Spirit).forEach(function(spirit) {
@@ -652,7 +655,8 @@ ts.ui.SideShowSpirit = (function using(
 			 * @param {ts.ui.PanelSpirit} panel
 			 */
 			_updatetab: function(panel, added) {
-				var bar = this._tabbar, dom = this.dom;
+				var bar = this._tabbar,
+					dom = this.dom;
 				var index = dom.children(ts.ui.PanelSpirit).indexOf(panel);
 				if (!bar) {
 					return;

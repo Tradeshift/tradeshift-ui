@@ -501,11 +501,13 @@ window.gui = (function using(Namespace, Timer) {
 			}
 		};
 	})(
-		!!(window.performance &&
+		!!(
+			window.performance &&
 			performance.mark &&
 			performance.measure &&
 			performance.getEntriesByName &&
-			performance.getEntriesByType),
+			performance.getEntriesByType
+		),
 		!!(location.port === '10114' || location.host === 'ui.tradeshift.com')
 	)
 );

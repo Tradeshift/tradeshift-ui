@@ -57,7 +57,9 @@ edbml.FunctionUpdate = edbml.Update.extend(
 		 * @param {Element} element
 		 */
 		_revoke: function(element) {
-			var att, count = 0, keys;
+			var att,
+				count = 0,
+				keys;
 			this._getatts(element).forEach(function(x) {
 				att = x[1];
 				keys = gui.KeyMaster.extractKey(att.value);
@@ -76,7 +78,10 @@ edbml.FunctionUpdate = edbml.Update.extend(
 		 * @param {Map<String,String>} map
 		 */
 		_remap: function(element, map) {
-			var count = 0, oldkeys, newkey, newval;
+			var count = 0,
+				oldkeys,
+				newkey,
+				newval;
 			if (Object.keys(map).length) {
 				this._getatts(element).forEach(function(x) {
 					var elm = x[0];
@@ -102,7 +107,8 @@ edbml.FunctionUpdate = edbml.Update.extend(
 		 * @returns {Array<Array<Node>>}
 		 */
 		_getatts: function(element) {
-			var val, atts = [];
+			var val,
+				atts = [];
 			new gui.Crawler('edbml-crawler-functionupdate').descend(element, {
 				handleElement: function(elm) {
 					if (elm !== element) {

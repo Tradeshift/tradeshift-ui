@@ -77,7 +77,8 @@ ts.ui.FakeDateInputSpirit = (function using(chained, tick, time) {
 		 * TODO(jmo@): First update fake, then wait for animation, then update real.
 		 */
 		_openaside: function(onclosed) {
-			var spirit = this, real = this._proxyspirit;
+			var spirit = this,
+				real = this._proxyspirit;
 			var title = this._label(function(label) {
 				return label.text();
 			});

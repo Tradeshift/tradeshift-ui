@@ -180,7 +180,8 @@ ts.ui.TabCollection = (function using(chained, confirmed, Type) {
 		 * @param {Array<ts.ui.TabModel} added
 		 */
 		_onsplice: function(tabs, removed, added) {
-			var that = this, current = this._current;
+			var that = this,
+				current = this._current;
 			if (removed.length) {
 				gui.Tick.next(function allow_multiple_operations() {
 					removed

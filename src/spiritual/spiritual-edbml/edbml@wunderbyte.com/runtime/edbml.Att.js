@@ -27,7 +27,8 @@ edbml.Att.prototype = gui.Object.create(null, {
 	 * @returns {String}
 	 */
 	$: function(att) {
-		var val = this[att], html = '';
+		var val = this[att],
+			html = '';
 		switch (gui.Type.of(val)) {
 			case 'null':
 			case 'undefined':

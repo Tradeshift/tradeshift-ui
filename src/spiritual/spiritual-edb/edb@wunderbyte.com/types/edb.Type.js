@@ -200,7 +200,8 @@ edb.Type.mixin(null, null, {
 	$unobserve: function(type, handler) {
 		var id = type.$instanceid;
 		var obs = this._observers;
-		var index, handlers = obs[id];
+		var index,
+			handlers = obs[id];
 		if (handlers) {
 			if ((index = handlers.indexOf(handler)) > -1) {
 				if (gui.Array.remove(handlers, index) === 0) {

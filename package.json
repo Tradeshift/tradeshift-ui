@@ -85,7 +85,7 @@
     "node-static": "^0.7.9",
     "postcss-clean": "^1.0.2",
     "postcss-less-engine": "^0.6.2",
-    "prettier": "^1.2.2",
+    "prettier": "1.4.4",
     "release-it": "^2.7.3",
     "s3": "^4.4.0"
   },

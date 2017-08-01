@@ -166,7 +166,8 @@ edbml.UpdateManager = (function using(
 		 * @returns {boolean}
 		 */
 		_scan: function(newnode, oldnode, lastnode, id, ids) {
-			var result = true, oldid = oldnode.id;
+			var result = true,
+				oldid = oldnode.id;
 			if ((result = this._check(newnode, oldnode, lastnode, id, ids))) {
 				if (oldid) {
 					ids = GuiObject.copy(ids);
@@ -372,7 +373,8 @@ edbml.UpdateManager = (function using(
 		 * @returns {boolean}
 		 */
 		_confirmsoft: function(newnode, oldnode) {
-			var res = true, prev = null;
+			var res = true,
+				prev = null;
 			var oldorder = this._assistant.order(oldnode.childNodes);
 			return Array.every(
 				newnode.childNodes,
@@ -403,7 +405,10 @@ edbml.UpdateManager = (function using(
 			var olds = this._assistant.index(oldnode.childNodes);
 
 			// add elements?
-			var child = newnode.lastElementChild, topid = oldnode.id, oldid = null, newid = null;
+			var child = newnode.lastElementChild,
+				topid = oldnode.id,
+				oldid = null,
+				newid = null;
 			while (child) {
 				newid = child.id;
 				if (!olds[newid]) {

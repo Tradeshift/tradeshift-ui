@@ -133,12 +133,10 @@ module.exports = function(grunt) {
 			// setup 'ts.js' for CDN
 			cdn: {
 				options: {
-					'${runtimecss}': '<%= config.cdn_live %>' +
-						config.cdn_folder +
-						'/ts-<%= pkg.version %>.min.css',
-					'${langbundle}': '<%= config.cdn_live %>' +
-						config.cdn_folder +
-						'/ts-lang-<LANG>-<%= pkg.version %>.js'
+					'${runtimecss}':
+						'<%= config.cdn_live %>' + config.cdn_folder + '/ts-<%= pkg.version %>.min.css',
+					'${langbundle}':
+						'<%= config.cdn_live %>' + config.cdn_folder + '/ts-lang-<LANG>-<%= pkg.version %>.js'
 				},
 				files: {
 					'temp/ts.js': 'src/runtime/ts.js'

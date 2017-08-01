@@ -175,7 +175,8 @@ gui.DOMCombos = (function using(before, after, around, provided, Type, guiArray,
 	 * @param {string} html
 	 */
 	var spiritualizeAdjacentAfter = after(function(position, html) {
-		var elm = this, elms = [];
+		var elm = this,
+			elms = [];
 		switch (position.toLowerCase()) {
 			case 'beforebegin':
 				while ((elm = elm.previousElementSibling)) {

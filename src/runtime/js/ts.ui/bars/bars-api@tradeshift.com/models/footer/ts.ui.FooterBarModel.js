@@ -172,10 +172,12 @@ ts.ui.FooterBarModel = (function using(PagerModel, ActionModel) {
 		 * @returns {boolean}
 		 */
 		$showCenterBar: function(model) {
-			return !!(model.pager ||
+			return !!(
+				model.pager ||
 				model.configbutton ||
 				model.actions.getLength() ||
-				model.buttons.getLength());
+				model.buttons.getLength()
+			);
 		},
 
 		/**

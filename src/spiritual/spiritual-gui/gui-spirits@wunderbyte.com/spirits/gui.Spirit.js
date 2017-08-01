@@ -208,7 +208,8 @@ gui.Spirit = gui.Class.create(
 		 * @TODO: To preserve order, refactor plugins stack from object to array
 		 */
 		$pluginplugins: function() {
-			var Plugin, plugins = this.constructor.$plugins;
+			var Plugin,
+				plugins = this.constructor.$plugins;
 			this.life = new gui.LifePlugin(this);
 			this.config = new gui.ConfigPlugin(this);
 			Object.keys(plugins)
@@ -233,7 +234,8 @@ gui.Spirit = gui.Class.create(
 		 */
 		$debug: function(constructing) {
 			if (gui.debug) {
-				var val, elm = this.element;
+				var val,
+					elm = this.element;
 				var fix = gui.attributes[0]; // by default using `gui`
 				if (constructing) {
 					if (

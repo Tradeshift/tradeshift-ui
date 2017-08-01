@@ -6,7 +6,8 @@
  */
 gui.URL = function(doc, href) {
 	if (doc && doc.nodeType === Node.DOCUMENT_NODE) {
-		var val, link = gui.URL._createLink(doc, href);
+		var val,
+			link = gui.URL._createLink(doc, href);
 		Object.keys(gui.URL.prototype).forEach(function(key) {
 			// TODO: exclude toString somehow...
 			if (gui.Type.isString((val = link[key]))) {
@@ -105,7 +106,9 @@ gui.URL.getParam = function(url, name) {
  * @returns {String} String
  */
 gui.URL.setParam = function(url, name, value) {
-	var params = [], cut, index = -1;
+	var params = [],
+		cut,
+		index = -1;
 	var path = url.split('#')[0];
 	var hash = url.split('#')[1];
 	if (path.indexOf('?') > -1) {

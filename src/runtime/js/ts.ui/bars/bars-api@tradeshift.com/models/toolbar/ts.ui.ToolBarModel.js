@@ -227,12 +227,14 @@ ts.ui.ToolBarModel = (function using(chained, ButtonModel, CheckBoxModel) {
 		 * @returns {boolean} True when there's content...
 		 */
 		_updatehascontent: function() {
-			this.hascontent = !!(this.tabs.length ||
+			this.hascontent = !!(
+				this.tabs.length ||
 				this.buttons.length ||
 				this.title ||
 				this.status ||
 				this.search ||
-				this.closebutton);
+				this.closebutton
+			);
 			return this.hascontent;
 		}
 	});

@@ -24,7 +24,8 @@ ts.lib.Date = (function() {
 		if (typeof date === 'undefined') {
 			date = new Date();
 		}
-		var month = zf(date.getMonth() + 1), day = zf(date.getDate());
+		var month = zf(date.getMonth() + 1),
+			day = zf(date.getDate());
 		return date.getFullYear() + '-' + month + '-' + day;
 	}
 
@@ -32,7 +33,9 @@ ts.lib.Date = (function() {
 		if (typeof date === 'undefined') {
 			date = new Date();
 		}
-		var hour = zf(date.getHours()), min = zf(date.getMinutes()), sec = zf(date.getSeconds());
+		var hour = zf(date.getHours()),
+			min = zf(date.getMinutes()),
+			sec = zf(date.getSeconds());
 		return _getDateString(date) + ' ' + hour + ':' + min + ':' + sec;
 	}
 
@@ -72,7 +75,9 @@ ts.lib.Date = (function() {
 		} else {
 			dateObj = date;
 		}
-		var year = dateObj.year, month = dateObj.month + 1, day = dateObj.day;
+		var year = dateObj.year,
+			month = dateObj.month + 1,
+			day = dateObj.day;
 		if (month < 10) {
 			month = '0' + month;
 		} else {
@@ -84,7 +89,8 @@ ts.lib.Date = (function() {
 			day = '' + day;
 		}
 		year = '' + year;
-		var prevChar = 'x', returnDate = '';
+		var prevChar = 'x',
+			returnDate = '';
 		for (
 			var i = 0, regionalDateFormatLength = regionalDateFormat.length;
 			i < regionalDateFormatLength;

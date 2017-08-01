@@ -30,7 +30,8 @@ ts.ui.Bar = (function using(DOMPlugin, MainSpirit) {
 			 * @returns {ts.ui.Bar}
 			 */
 			get: function(index) {
-				var Bar = this, all = this.$bars;
+				var Bar = this,
+					all = this.$bars;
 				return all[index] || (all[index] = new Bar(index));
 			},
 

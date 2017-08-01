@@ -397,7 +397,8 @@ gui.CSSPlugin = (function using(chained, confirmed) {
 			 * @returns {String}
 			 */
 			_jsproperty: function(prop) {
-				var vendors = this._vendors, fixt = prop;
+				var vendors = this._vendors,
+					fixt = prop;
 				var element = document.documentElement;
 				prop = String(prop);
 				if (prop.startsWith('-beta-')) {
@@ -512,7 +513,8 @@ gui.CSSPlugin = (function using(chained, confirmed) {
 			 * @type {String}
 			 */
 			_matchmethod: (function() {
-				var match = null, root = document.documentElement;
+				var match = null,
+					root = document.documentElement;
 				[
 					'mozMatchesSelector',
 					'webkitMatchesSelector',

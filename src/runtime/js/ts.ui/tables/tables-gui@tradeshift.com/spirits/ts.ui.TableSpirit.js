@@ -406,7 +406,9 @@ ts.ui.TableSpirit = (function using(
 		 * @param {function|null} action
 		 */
 		_onextra: function(action, spirit /* ...rest */) {
-			var name, value, elm = spirit.element;
+			var name,
+				value,
+				elm = spirit.element;
 			if (Type.isFunction(action)) {
 				var args = gui.Array.from(arguments).slice(2);
 				var posi = this.queryplugin.getpos(elm);
@@ -1711,7 +1713,8 @@ ts.ui.TableSpirit = (function using(
 		 * @param {boolean} editable
 		 */
 		_onrowsclick: function(elem, editable) {
-			var area, pos = this.queryplugin.getpos(elem);
+			var area,
+				pos = this.queryplugin.getpos(elem);
 			if (pos) {
 				// abort when non-floating gutter is clicked
 				if (this.onclick) {

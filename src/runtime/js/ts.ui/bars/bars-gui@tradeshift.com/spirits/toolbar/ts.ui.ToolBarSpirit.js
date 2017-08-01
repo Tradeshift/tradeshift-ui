@@ -232,7 +232,8 @@ ts.ui.ToolBarSpirit = (function using(
 			 * @param {string} color Copy from Tobbar. Now useless(@leo)
 			 */
 			putaside: function(buttons, color) {
-				var selected = null, morphed = [];
+				var selected = null,
+					morphed = [];
 				buttons.forEach(function transmorph(button) {
 					if (ts.ui.Collection.is(button)) {
 						// it's a button group!
@@ -801,7 +802,10 @@ ts.ui.ToolBarSpirit = (function using(
 			 * @returns {boolean} True if all tabs can fit
 			 */
 			_toggletabs: function(tabs, moreoffset, availwidth) {
-				var that = this, tabspirit, taboffset, tabsoffset = 0;
+				var that = this,
+					tabspirit,
+					taboffset,
+					tabsoffset = 0;
 				var oldie = Client.isExplorer9 || Client.isExplorer10;
 				var getspirit = function(tabmodel) {
 					return that.dom.q('#' + tabmodel.$instanceid, ts.ui.Spirit);

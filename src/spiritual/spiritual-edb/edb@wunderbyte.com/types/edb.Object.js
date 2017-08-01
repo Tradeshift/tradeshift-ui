@@ -102,7 +102,8 @@ edb.Object.mixin(null, edb.Type.$staticmixins(), {
 	 * @param {gui.Tick} tick
 	 */
 	ontick: function(tick) {
-		var observers = this._observers, exists;
+		var observers = this._observers,
+			exists;
 		var snapshot, changes, handlers, mishandlers;
 		if (tick.type === edb.TICK_PUBLISH_CHANGES) {
 			snapshot = gui.Object.copy(this._changes);
@@ -172,7 +173,8 @@ edb.Object.mixin(null, edb.Type.$staticmixins(), {
 	$onchange: function(object, name, oldval, newval) {
 		if (oldval !== newval) {
 			var type = edb.ObjectChange.TYPE_UPDATE;
-			var all = this._changes, id = object.$instanceid;
+			var all = this._changes,
+				id = object.$instanceid;
 			var set = all[id] || (all[id] = Object.create(null));
 			var now = false; // edb.$criticalchange;
 			set[name] = new edb.ObjectChange(object, name, type, oldval, newval);

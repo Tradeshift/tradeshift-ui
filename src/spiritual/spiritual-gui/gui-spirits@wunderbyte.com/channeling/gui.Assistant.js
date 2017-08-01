@@ -48,7 +48,8 @@ gui.Assistant = (function using(Crawler) {
 		 * @returns {Array<gui.Spirit>} new spirits
 		 */
 		$detectspirits: function(element, skip, one, channels) {
-			var spirit, spirits = []; // classname = gui.CLASS_NOSPIRITS
+			var spirit,
+				spirits = []; // classname = gui.CLASS_NOSPIRITS
 			var Assistant = this;
 			new Crawler(gui.CRAWLER_SPIRITUALIZE).descend(element, {
 				handleElement: function(elm) {

@@ -46,7 +46,8 @@ gui.ConfigPlugin = gui.Plugin.extend(
 		 * @param {string} value
 		 */
 		configureone: function(name, value) {
-			var hit, gux = this.spirit.window.gui;
+			var hit,
+				gux = this.spirit.window.gui;
 			var dot = gui.ConfigPlugin.SEPARATOR;
 			gux.attributes.every(function(fix) {
 				if ((hit = name.startsWith(fix + dot))) {
@@ -74,7 +75,10 @@ gui.ConfigPlugin = gui.Plugin.extend(
 		 * @param {string} dot
 		 */
 		_evaluate: function(name, value, fix, dot) {
-			var struct = this.spirit, success = true, prop = null, cuts = null;
+			var struct = this.spirit,
+				success = true,
+				prop = null,
+				cuts = null;
 			name = prop = name.split(fix + dot)[1];
 			if (name.indexOf(dot) > -1) {
 				cuts = name.split(dot);

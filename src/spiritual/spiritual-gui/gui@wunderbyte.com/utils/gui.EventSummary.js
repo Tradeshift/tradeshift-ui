@@ -50,7 +50,10 @@ gui.EventSummary.prototype = {
 	 * @returns {object}
 	 */
 	_construct: function(e) {
-		var win = null, doc = null, target = e.target, type = target.nodeType;
+		var win = null,
+			doc = null,
+			target = e.target,
+			type = target.nodeType;
 		if (gui.Type.isDefined(type)) {
 			doc = type === Node.DOCUMENT_NODE ? target : target.ownerDocument;
 			win = doc.defaultView;

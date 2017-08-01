@@ -62,7 +62,8 @@ edbml.Update = gui.Class.create(
 		 * @returns {Element}
 		 */
 		element: function(cb, thisp) {
-			var spirit, element = null;
+			var spirit,
+				element = null;
 			if (gui.KeyMaster.isKey(this.id)) {
 				if ((spirit = gui.get(this.id))) {
 					element = spirit.element;

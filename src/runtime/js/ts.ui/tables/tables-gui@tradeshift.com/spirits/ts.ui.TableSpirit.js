@@ -1891,8 +1891,6 @@ ts.ui.TableSpirit = (function using(
 			var show = !cols.length || cols.some(visible);
 			this.css.shift(rows.length && show, 'ts-hasrows');
 			this.css.shift(cols.length && show, 'ts-hascols');
-			// this.css.shift(model.configurable || toolbar.pager, 'ts-hastool');
-			console.log('Should show the footer?', toolbar.$show());
 		},
 
 		/**

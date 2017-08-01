@@ -114,7 +114,11 @@ ts.ui.FooterBarModel = (function using(PagerModel, ActionModel) {
 				return this.bufferbar.actions ? this.bufferbar.actions[0] : null;
 			},
 			setter: function(json) {
-				this.bufferbar.actions = [json];
+				if (json) {
+					this.bufferbar.actions = [json];
+				} else {
+					this.bufferbar.actions.clear();
+				}
 			}
 		},
 
@@ -170,7 +174,7 @@ ts.ui.FooterBarModel = (function using(PagerModel, ActionModel) {
 		$showCenterBar: function(model) {
 			return !!(model.pager ||
 				model.configbutton ||
-				model.collabbutton ||
+				model.actions.getLength() ||
 				model.buttons.getLength());
 		},
 

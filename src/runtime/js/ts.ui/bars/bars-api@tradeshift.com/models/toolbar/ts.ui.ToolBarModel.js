@@ -119,7 +119,7 @@ ts.ui.ToolBarModel = (function using(chained, ButtonModel, CheckBoxModel) {
 				return this.actualcheckbox;
 			},
 			setter: function(json) {
-				this.actualcheckbox = CheckBoxModel.from(json);
+				this.actualcheckbox = json ? CheckBoxModel.from(json) : null;
 			}
 		},
 

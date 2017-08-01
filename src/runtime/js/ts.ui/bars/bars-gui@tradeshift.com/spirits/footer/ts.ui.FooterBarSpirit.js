@@ -355,7 +355,7 @@ ts.ui.FooterBarSpirit = (function using(chained, GuiArray, PagerModel, ToolBarSp
 			var model = this.model();
 			var buttons = model.bufferbar.buttons;
 			var actions = model.bufferbar.actions;
-			if (buttons && buttons.length) {
+			if (buttons) {
 				clone = gui.Array.from(buttons);
 				if (this._hittest()) {
 					model.backupbar.buttons = clone;
@@ -365,7 +365,7 @@ ts.ui.FooterBarSpirit = (function using(chained, GuiArray, PagerModel, ToolBarSp
 					model.backupbar.buttons.clear();
 				}
 			}
-			if (actions && actions.length) {
+			if (actions) {
 				clone = gui.Array.from(actions);
 				model.centerbar.actions.clear();
 				model.centerbar.actions = clone;

@@ -46,7 +46,6 @@
 			.ts-mixin-fixheight(@ts-unit-triple);
 			.ts-button {
 				display: inline-block;
-				//.ts-mixin-fixheight(@ts-unit-triple);
 			}
 			.ts-action {
 				padding-left: 0;
@@ -440,8 +439,9 @@
 	.ts-left {
 		&, & > li {
 			.ts-mixin-fixheight(@ts-unit-double);
-			.ts-button {
-				.ts-mixin-fixheight(@ts-unit-plus);
+			.ts-action {
+				height: @ts-unit-plus;
+				max-height: @ts-unit-plus;
 			}
 		}
 		.ts-toolbar-item {

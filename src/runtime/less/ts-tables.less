@@ -5,8 +5,7 @@
 	position: relative;
 	display: block;
 	&.ts-hascols,
-	&.ts-hasrows,
-	&.ts-hastool {
+	&.ts-hasrows {
 		border: 1px solid @ts-medium-litest;
 	}
 	table {
@@ -23,6 +22,9 @@
 	}
 	td {
 		border: 1px solid @ts-lite-dark;
+		-webkit-user-select: text;
+		-moz-user-select: text;
+		user-select: text;
 		&.ts-has-extra {
 			text-align: center;
 			&.ts-has-button .ts-button {
@@ -422,11 +424,13 @@
 			}
 		}
 	}
+	/*
 	&.ts-hastool:not(.ts-hasrows) {
 		.ts-table-foot {
 			border-top: none;
 		}
 	}
+	*/
 	.ts-table-gutter,
 	.ts-table-menu {
 		overflow: hidden;
@@ -498,7 +502,7 @@
 		.ts-mixin-maximize();
 		margin-bottom: 0;
 		.ts-table-body {
-			.ts-mixin-maximize(@ts-unit-double, 0, @ts-unit-triple, 0);
+			.ts-mixin-maximize(@ts-unit-double, 0, 0, 0);
 			.ts-table-rows {
 				min-height: 100%;
 				max-height: 100% !important;
@@ -506,6 +510,12 @@
 				display: block;
 				overflow-y: scroll !important; // TODO: toogle just-in-time on rowdata
 			}
+		}
+		.ts-table-foot {
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			right: 0;
 		}
 		&.ts-level-3 .ts-table-body {
 			bottom: @ts-unit * 3;
@@ -515,12 +525,6 @@
 		}
 		&.ts-level-8 .ts-table-body {
 			bottom: @ts-unit * 8;
-		}
-		.ts-table-foot {
-			position: absolute;
-			bottom: 0;
-			left: 0;
-			right: 0;
 		}
 	}
 

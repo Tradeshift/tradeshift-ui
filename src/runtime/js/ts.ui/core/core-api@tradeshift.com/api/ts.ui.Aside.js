@@ -34,12 +34,12 @@ ts.ui.Aside.closeAll = function() {
  */
 (function using(api, hidden) {
 	/**
-	 * Get spirit for model.
+	 * Get AsideSpirit for model.
 	 * @param {ts.ui.AsideModel} model
 	 * @return {ts.ui.AsideSpirit}
 	 */
 	function getspirit(model) {
-		var id = model.$instanceid;
+		var id = getid(model);
 		return (
 			gui.get('#' + id) ||
 			(function() {
@@ -52,6 +52,15 @@ ts.ui.Aside.closeAll = function() {
 				return spirit;
 			})()
 		);
+	}
+
+	/**
+	 * Get ID for AsideSpirit associated to model.
+	 * @param {ts.ui.AsideModel} model
+	 * @returns {string};
+	 */
+	function getid(model) {
+		return 'aside-' + (model.id || model.$instanceid);
 	}
 
 	/**
@@ -80,7 +89,7 @@ ts.ui.Aside.closeAll = function() {
 				// rig it for recycling untill `dispose` is called by the user.
 				applyreverse('$open', model.serializeToString());
 			} else {
-				applyreverse('$close', model.$instanceid);
+				applyreverse('$close', getid(model));
 			}
 		} else {
 			getspirit(model).open(open);
@@ -104,7 +113,7 @@ ts.ui.Aside.closeAll = function() {
 						toggle(model, c.newValue);
 						break;
 					case 'disposed':
-						var spirit = gui.get('#' + model.$instanceid);
+						var spirit = gui.get('#' + getid(model));
 						if (spirit) {
 							gui.Tick.time(function() {
 								// TODO (jmi@): why otherwise error?
@@ -130,7 +139,6 @@ ts.ui.Aside.closeAll = function() {
 				var model = ts.ui.Aside(json);
 				var spirit = getspirit(model);
 				model.addObserver(ts.ui.Aside);
-				alert('open');
 				spirit.open();
 			})
 		),

@@ -1,7 +1,7 @@
 <!DOCTYPE edbml>
 <script>
 	<?param name="api" type="object"?>
-
+	
 	<table class="api">
 		if(api.name) {
 			renderCaption(api.name);

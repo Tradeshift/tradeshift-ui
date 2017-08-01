@@ -276,7 +276,7 @@ ts.ui.TableSpirit = (function using(
 			this._rowsoff = [];
 			this._scroll = new Position();
 			this.action.add([
-				ts.ui.ACTION_STATUSBAR_LEVEL,
+				ts.ui.ACTION_FOOTER_LEVEL,
 				ts.ui.ACTION_PAGER_SELECT,
 				ts.ui.ACTION_SAFE_LINK
 			]);
@@ -364,7 +364,7 @@ ts.ui.TableSpirit = (function using(
 		},
 
 		/**
-		 * Account for the statusbar breaking up into multiple
+		 * Account for the footerbar breaking up into multiple
 		 * levels in small table, basically copy the classname
 		 * from the statusbar for the CSS to work with.
 		 * @see {ts.ui.ToolBarSpirit#_specialcnames}
@@ -373,7 +373,7 @@ ts.ui.TableSpirit = (function using(
 		onaction: function(a) {
 			this.super.onaction(a);
 			switch (a.type) {
-				case ts.ui.ACTION_STATUSBAR_LEVEL:
+				case ts.ui.ACTION_FOOTER_LEVEL:
 					this.guilayout.gotoLevel(a.data);
 					this._onafterresize(); // after resize, `onresize` might now be called twice :/
 					a.consume();
@@ -678,10 +678,11 @@ ts.ui.TableSpirit = (function using(
 			}
 		}),
 
-		// Buttons .................................................................
+		// Buttons and actions .....................................................
 
 		/**
-		 * Expose the toolbar buttons collection for that extra,
+		 * Get or set the buttons.
+		 * TODO: The `config` button must somehow become SPECIAL!
 		 * added functionality. This is not officially documented.
 		 * @param @optional {Array<object|ts.ui.ButtonModel>} json
 		 * @returns {ts.ui.ButtonCollection}
@@ -690,12 +691,30 @@ ts.ui.TableSpirit = (function using(
 			var model = this._model;
 			var toolb = model.toolbar;
 			if (arguments.length) {
+				toolb.buttons = json;
+				/*
 				toolb.buttons.clear();
 				json.forEach(function(o) {
 					toolb.buttons.push(o);
 				});
+				*/
 			} else {
 				return toolb.buttons;
+			}
+		}),
+
+		/**
+		 * Get or set the actions.
+		 * @param {Array<Object>|ts.ui.ActionsCollection} [json]
+		 * @returns {this|ts.ui.ButtonCollection}
+		 */
+		actions: chained(function(json) {
+			var model = this._model;
+			var toolb = model.toolbar;
+			if (arguments.length) {
+				toolb.actions = json;
+			} else {
+				return toolb.actions;
 			}
 		}),
 
@@ -713,6 +732,14 @@ ts.ui.TableSpirit = (function using(
 				var toolb = model.toolbar;
 				this.onconf = onconf || this.onconf;
 				model.configurable = true;
+				toolb.configbutton = {
+					onclick: function() {
+						if (table.onconf) {
+							table.onconf.call(this, table);
+						}
+					}
+				};
+				/*
 				if (!toolb.buttons.get('config')) {
 					toolb.buttons.push({
 						id: 'config',
@@ -724,6 +751,7 @@ ts.ui.TableSpirit = (function using(
 						}
 					});
 				}
+				*/
 				model.$dirty(); // TODO: why needed (for the test)?
 			})
 		),
@@ -1050,10 +1078,10 @@ ts.ui.TableSpirit = (function using(
 			if (arguments.length) {
 				this._statusmessage = message;
 				if (!this._errormessage) {
-					toolbar.title = message;
+					toolbar.status = message;
 				}
 			} else {
-				return toolbar.title;
+				return toolbar.status;
 			}
 		}),
 
@@ -1863,7 +1891,8 @@ ts.ui.TableSpirit = (function using(
 			var show = !cols.length || cols.some(visible);
 			this.css.shift(rows.length && show, 'ts-hasrows');
 			this.css.shift(cols.length && show, 'ts-hascols');
-			this.css.shift(model.configurable || toolbar.pager, 'ts-hastool');
+			// this.css.shift(model.configurable || toolbar.pager, 'ts-hastool');
+			console.log('Should show the footer?', toolbar.$show());
 		},
 
 		/**

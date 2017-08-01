@@ -2,9 +2,10 @@
 <script>
 	<?param name="button" type="ts.ui.ButtonModel"?>
 	<?param name="isButtonMenu" type="boolean" required="false"?>
+	<?param name="isMobile" type="boolean" required="false"?>
 	@id = 'button' + button.$instanceid;
 	@title = button.info || null;
-	@class = button.type || '';
+	@class = (button.isAction ? 'ts-action ' : '') + (button.type || '');
 	@name = button.name || '';
 	@value = button.value || '';
 	@autofocus = button.autofocus ? 'autofocus' : null;
@@ -16,12 +17,19 @@
 	$att['data-ts.busy'] = button.busystatus || null;
 	// fiannly render the button
 	<button data-ts="Button" @name @value @title @class @id @tabindex @autofocus @disabled @data-ts.busy @data-ts.type @data-ts.data onclick="#{button.click()}">
-		if (button.label) {
-			<span>${button.label}</span>
-		} else if(isButtonMenu && button.info) {
-			<span>${button.info}</span>
-		} else if (button.icon) {
+		if(isMobile && button.icon && !button.isPrimary()) {
 			<i class="${button.icon}"></i>
+		} else {
+			if(button.isAction && button.icon) {
+				<i class="${button.icon}"></i>
+			}
+			if (button.label) {
+				<span>${button.label}</span>
+			} else if(isButtonMenu && button.info) {
+				<span>${button.info}</span>
+			} else if (button.icon && !button.isAction) {
+				<i class="${button.icon}"></i>
+			}
 		}
 	</button>
 </script>

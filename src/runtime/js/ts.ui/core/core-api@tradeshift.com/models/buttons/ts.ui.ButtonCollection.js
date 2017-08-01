@@ -31,6 +31,9 @@ ts.ui.ButtonCollection = (function using(confirmed, chained) {
 		 * @returns {constructor}
 		 */
 		$of: confirmed('(object|array)')(function(arg) {
+			if (ts.ui.ButtonModel.is(arg) || ts.ui.ButtonCollection.is(arg)) {
+				return arg;
+			}
 			if (Array.isArray(arg)) {
 				return ts.ui.ButtonCollection;
 			} else {

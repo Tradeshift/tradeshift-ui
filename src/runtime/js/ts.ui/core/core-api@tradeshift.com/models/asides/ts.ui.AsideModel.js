@@ -18,6 +18,12 @@ ts.ui.AsideModel = (function using(chained) {
 		items: ts.ui.Collection,
 
 		/**
+		 * Optional ID for any associated AsideSpirit.
+		 * @type {string}
+		 */
+		id: null,
+
+		/**
 		 * Aside title.
 		 * @type {String}
 		 */

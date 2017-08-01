@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Footer Actions</title>
+		<object data="tabs.xhtml"></object>
+	</head>
+	<body>
+		<header data-ts="TopBar"></header>
+		<main data-ts="Main">
+			<article>
+				<h1>Footer actions</h1>
+				<section class="desc">
+					<div data-ts="Note">
+						<i class="ts-icon-info"></i>
+						<p>This is an <strong>alpha</strong> preview. All features and APIs can be expected to change!</p>
+					</div>
+				</section>
+				<!--
+				<section class="desc">
+					<p>Footer <code>actions</code> can be used to manipulate selected objects of any kind. They appear in a separate toolbar, so that they never conflict with the normal <a href="/#components/footer/index.html">buttons</a>. This toolbar can also be configured with a status message and a checkbox.</p>
+				</section>
+				-->
+				<section>
+
+					<p>Whenever a selection offers manipulation options, you can mount the relevant actions much like you would with the buttons. The <code>actions</code> method both sets and gets the actions. If you omit the argument, you"ll get the current actions (jQuery style).</p>
+
+					<figure data-ts="DoxScript" class="attention">
+						<script type="runnable">
+							ts.ui.Footer.actions([
+								{ label: 'Move Up', icon: 'ts-icon-triangleup' },
+								{ label: 'Move Down', icon: 'ts-icon-triangledown' },
+								{ label: 'Move Left', icon: 'ts-icon-triangleleft' },
+								{ label: 'Move Right', icon: 'ts-icon-triangleright' },
+								{ label: 'Don\'t Move', icon: 'ts-icon-halt', onclick: () => {
+									ts.ui.Footer.actions().clear();
+								}}
+							]);
+						</script>
+					</figure>
+
+					<p>In real life, the actions should of course only appear whenever the user has selected something with the mouse or keyboard. We will just have to pretend that he did that.</p>
+
+					<p>You can use array methods like <code>push</code>, <code>pop</code>, <code>shift</code>, <code>unshift</code>, <code>splice</code> and so on to manage tabs, just note that the actions <code>length</code> is a readonly property. For consistency reasons, actions should always have <em>both</em> an icon and a label, much unlike the buttons.</p>
+
+					<h3>Status message</h3>
+
+					<p>We can configure the actionbar with a <code>status</code> message. When a selection is made, the massage could be something like "23 products selected". When nothing is selected, it could perhaps be something like "Showing 10-20 out of 123 products".</p>
+
+					<figure data-ts="DoxScript">
+						<script type="runnable">
+							ts.ui.Footer.status('23% of one million products selected');
+						</script>
+					</figure>
+
+					<h3>Checkbox</h3>
+
+					<p>I can has checkbox. That this is the minimum viable implementation! More info to follow.</p>
+
+					<figure data-ts="DoxScript">
+						<script type="runnable">
+						ts.ui.Footer.checkbox({
+							onclick: function() {
+								this.checked = !this.checked;
+							}
+						});
+						</script>
+					</figure>
+
+					<!--
+					<p>Hello?</p>
+
+					<div data-ts="DoxApi">
+						<script type="application/json">
+							{
+								name: "ts.ui.CheckBoxModel",
+								properties: [
+									{
+										name: 'checked',
+										desc: 'TODO'
+									},
+									{
+										name: 'visible',
+										desc: 'TODO'
+									}
+								],
+								methods: [
+									{
+										name: 'check',
+										desc: 'TODO'
+									},
+									{
+										name: 'uncheck',
+										desc: 'TODO'
+									},
+									{
+										name: "hide",
+										desc: "TODO."
+									},
+									{
+										name: 'show',
+										desc: 'TODO'
+									}
+								]
+							}
+						</script>
+					</div>
+
+					<p>What?</p>
+
+					<figure data-ts="DoxScript">
+						<script type="runnable">
+							var Footer = ts.ui.Footer;
+							var Dialog = ts.ui.Dialog;
+							var Notification = ts.ui.Notification;
+							Footer.checkbox({
+								checked: false,
+								info: 'Toggle selection',
+								onclick: function() {
+									if(this.checked) {
+										Dialog.confirm('Unselect 123456 items?', {
+											onaccept: reset
+										});
+									} else {
+										showactions();
+									}
+								}
+							});
+							function showactions() {
+								Footer.checkbox().checked = true;
+								Footer.status('123456 items selected').actions([
+									{ label: 'Delete', icon: 'ts-icon-delete', onclick: () => {
+										Dialog.confirm('Deleted 123456 items?', 'Delete', {
+											onaccept: () => {
+												Notification.success('123456 items deleted');
+												reset();
+											}
+										});
+									}}
+								]);
+							}
+							function reset() {
+								Footer.checkbox().checked = false;
+								Footer.status('0 items selected');
+								Footer.actions().clear();
+							}
+							reset();
+						</script>
+					</figure>
+
+					<p>When you are done with the actions, you can hide them away. Remember to show them again before you need them next time!</p>
+
+					<figure data-ts="DoxScript">
+						<script type="runnable">
+							ts.ui.Footer.hideActions();
+							setTimeout(function restore() {
+								ts.ui.Footer.showActions();
+							}, 1000);
+						</script>
+					</figure>
+
+					<p>Here's an overview of the methods related to actions.</p>
+
+					<div data-ts="DoxApi">
+						<script type="application/json">
+							{
+								name: "ts.ui.Footer",
+								methods: [
+									{
+										name: 'checkbox',
+										args: '(object)',
+										desc: 'Get or set the checkbox'
+									},
+									{
+										name: 'status',
+										args: '(string)',
+										desc: 'Get or set the status message'
+									},
+									{
+										name: "actions",
+										args: "(array)",
+										desc: "Get or set the actions."
+									},
+									{
+										name: 'hideActions',
+										desc: 'Hide the whole actions-bar'
+									},
+									{
+										name: 'showActions',
+										desc: 'Show the (hidden) actions-bar'
+									},
+								]
+							}
+						</script>
+					<div>
+					-->
+
+				</section>
+			</article>
+		</main>
+	</body>
+<html>

@@ -67,7 +67,7 @@ gui.DOMPlugin = (function using(chained, guide, observer) {
 
 			/**
 			 * Empty spirit subtree.
-			 * @returns {gui.DOMPlugin}
+			 * @returns {this}
 			 */
 			empty: chained(function() {
 				this.html('');
@@ -76,7 +76,7 @@ gui.DOMPlugin = (function using(chained, guide, observer) {
 			/**
 			 * Hide spirit element and mark as invisible.
 			 * Adds the `._gui-hidden` classname.
-			 * @returns {gui.DOMPlugin}
+			 * @returns {this}
 			 */
 			hide: chained(function() {
 				if (!this.spirit.css.contains(gui.CLASS_HIDDEN)) {
@@ -94,7 +94,7 @@ gui.DOMPlugin = (function using(chained, guide, observer) {
 			/**
 			 * Show spirit element and mark as visible.
 			 * Removes the `._gui-hidden` classname.
-			 * @returns {gui.DOMPlugin}
+			 * @returns {this}
 			 */
 			show: chained(function() {
 				if (this.spirit.css.contains(gui.CLASS_HIDDEN)) {
@@ -886,7 +886,7 @@ gui.DOMPlugin.mixin(
 		/**
 		 * Append spirit (element) to another spirit or element.
 		 * @param {object} thing
-		 * @returns {gui.DOMPlugin} or what?
+		 * @returns {this} or what?
 		 */
 		appendTo: function(thing) {
 			var elm = this.spirit.element;
@@ -902,7 +902,7 @@ gui.DOMPlugin.mixin(
 		// /**
 		// * Prepend spirit (element) to another spirit or element.
 		// * @param {object} thing
-		// * @returns {gui.DOMPlugin} or what?
+		// * @returns {this} or what?
 		// */
 		// prependTo: function(thing) {
 		//	var elm = this.spirit.element;
@@ -917,7 +917,7 @@ gui.DOMPlugin.mixin(
 		/**
 		 * Insert spirit (element) before another spirit or element
 		 * @param {object} thing
-		 * @returns {gui.DOMPlugin} or what?
+		 * @returns {this} or what?
 		 */
 		insertBefore: function(thing) {
 			var elm = this.spirit.element;
@@ -925,6 +925,21 @@ gui.DOMPlugin.mixin(
 				thing.dom.before(elm);
 			} else if (gui.Type.isElement(thing)) {
 				thing.parentNode.insertBefore(elm, thing);
+			}
+			return this; // or what?
+		},
+
+		/**
+		 * Insert spirit (element) after another spirit or element
+		 * @param {object} thing
+		 * @returns {this} or what?
+		 */
+		insertAfter: function(thing) {
+			var elm = this.spirit.element;
+			if (gui.Type.isSpirit(thing)) {
+				thing.dom.after(elm);
+			} else if (gui.Type.isElement(thing)) {
+				thing.parentNode.insertBefore(elm.nextSibling, thing);
 			}
 			return this; // or what?
 		},

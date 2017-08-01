@@ -23,6 +23,8 @@
     <link rel="prefetch" title="Filter" href="filtering.html">
     <link rel="prefetch" title="Config" href="configuring.html">
     <link rel="prefetch" title="Status" href="status.html">
+    <link rel="prefetch" title="Actions" href="actions.html">
+    <link rel="prefetch" title="Buttons" href="buttons.html">
     <link rel="prefetch" title="Extras" href="extras.html">
     <link rel="prefetch" title="Demo" href="demo.html">
     <link rel="prefetch" title="Angular" href="angular.html" class="hidden">
@@ -40,7 +42,7 @@
             <article>
                 <h1><span>Status messages</span></h1>
                 <section>
-                    <p>We can show a message in the lower left corner. The message could be something like &quot;Showing 10-20 out of 123 products&quot; or &quot;23 products selected&quot;.</p>
+                    <p>We can show a message in the statusbar. The message could be something like &quot;Showing 10-20 out of 123 products&quot; or &quot;23 products selected&quot;.</p>
                     <div class="splitscreen-container">
                         <ul class="splitscreen">
                             <li>
@@ -67,22 +69,23 @@
                             </li>
                         </ul>
                     </div>
-                    <p>In a small Table such as this one, which spans the width of an iPhone 6, the message will be presented on a separate line when we add more features.</p>
-                    <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.get(&apos;%23table1&apos;%2C%20function(table)%20%7B%0A%09table.configurable().pager(%7B%0A%09%09pages%3A%2023%0A%09%7D)%3B%0A%7D)%3B">
-                        <script type="runnable">
-                            ts.ui.get('#table1', table => { table.configurable().pager({ pages: 23 }); });
-                        </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
-                        <div class="tabpanels">
-                            <pre class="prism language-javascript">
-<code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#table1&apos;</span><span class="token punctuation">,</span> table <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
-	table<span class="token punctuation">.</span><span class="token function">configurable<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">pager<span class="token punctuation">(</span></span><span class="token punctuation">{</span>
-		pages<span class="token punctuation">:</span> <span class="token number">23</span>
-	<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
-</pre>
-                        </div>
-                    </figure>
-                    <p>To avoid clipping, it is generally advised to keep the message nice and short.</p>
+                    <div data-ts="Note">
+                        <i class="ts-icon-todo"></i>
+                        <p>TODO: Note about markdown in the status message!</p>
+                    </div>
+                    <!--
+					<p>In a small Table such as this one, which spans the width of an iPhone 6, the message will be presented on a separate line when we add more features.</p>
+					<figure data-ts="DoxScript">
+						<script type="runnable">
+							ts.ui.get('#table1', table => {
+								table.configurable().pager({
+									pages: 23
+								});
+							});
+						</script>
+					</figure>
+					<p>To avoid clipping, it is generally advised to keep the message nice and short.</p>
+					-->
                 </section>
             </article>
         </div>

@@ -64,10 +64,24 @@ ts.ui.ToolBarSpirit = (function using(
 	return ts.ui.BarSpirit.extend(
 		{
 			/**
-			 * Bar is visible?
+			 * Get or set visibility.
 			 * @type {boolean}
 			 */
-			visible: true,
+			visible: {
+				getter: function() {
+					return this._visible;
+				},
+				setter: function(is) {
+					if (is !== this._visible) {
+						if ((this._visible = is)) {
+							this.dom.show();
+						} else {
+							this.dom.hide();
+						}
+						this._layoutmain(is); // TODO: THIS MUST GO WHEN HEADER GETS CREATED!
+					}
+				}
+			},
 
 			/**
 			 * @see https://github.com/wunderbyte/spiritual-gui/issues/109
@@ -78,6 +92,21 @@ ts.ui.ToolBarSpirit = (function using(
 				this.action.add([edbml.ACTION_RENDER, 'ts-action-search']);
 				if (!this.css.name().includes('ts-bg')) {
 					this.lite();
+				}
+			},
+
+			/**
+			 * Allow subclass to add classname (in `onenter` or 
+			 * `oncofigure`) before we fall back to `ts-macro`.
+			 */
+			onready: function() {
+				this.super.onready();
+				if (
+					![ts.ui.CLASS_MICRO, ts.ui.CLASS_MACRO].some(function(cname) {
+						return this.css.contains(cname);
+					}, this)
+				) {
+					this.macro();
 				}
 			},
 
@@ -211,7 +240,7 @@ ts.ui.ToolBarSpirit = (function using(
 						button.forEach(transmorph);
 					} else {
 						var data = JSON.parse(JSON.stringify(button));
-						var clone = new ts.ui.ButtonModel(data);
+						var clone = new ButtonModel(data);
 						clone.onclick = function() {
 							selected = button;
 							aside.close();
@@ -349,6 +378,20 @@ ts.ui.ToolBarSpirit = (function using(
 			),
 
 			/**
+			 * Get or set the actions.
+			 * @param @optional {Array<object>} [json]
+			 * @returns {this|ts.ui.ButtonCollection}
+			 */
+			actions: chained(function(json) {
+				var model = this.model();
+				if (arguments.length) {
+					model.actions = json;
+				} else {
+					return model.actions;
+				}
+			}),
+
+			/**
 			 * Attempt to economize space by automatically transferring
 			 * any assigned buttons (especially tertiary) into an Aside.
 			 * Note that this is `true` by defult (make space for tabs).
@@ -406,9 +449,7 @@ ts.ui.ToolBarSpirit = (function using(
 			 */
 			hide: chained(function() {
 				if (this.visible) {
-					this.dom.hide();
 					this.visible = false;
-					this._layoutmain(false);
 				}
 			}),
 
@@ -418,9 +459,7 @@ ts.ui.ToolBarSpirit = (function using(
 			 */
 			show: chained(function() {
 				if (!this.visible) {
-					this.dom.show();
 					this.visible = true;
-					this._layoutmain(true);
 				}
 			}),
 
@@ -438,29 +477,48 @@ ts.ui.ToolBarSpirit = (function using(
 			}),
 
 			/**
+			 * Show the config button.
+			 * @param @optional {Function} onconfig
+			 * @returns {this}
+			 */
+			showConfig: confirmed('(function)')(
+				chained(function(onconfig) {
+					this.model().configbutton = {
+						onclick: onconfig
+					};
+				})
+			),
+
+			/**
+			 * Hide the config button.
+			 * @returns {this}
+			 */
+			hideConfig: chained(function() {
+				this.model().configbutton = null;
+			}),
+
+			/**
 			 * Show the close button "X".
 			 * @param @optional {Function} onclose
-			 * @returns {ts.ui.ToolBarSpirit}
+			 * @returns {this}
 			 */
 			showClose: confirmed('(function)')(
 				chained(function(onclose) {
-					this.model().closebutton = new ts.ui.ButtonModel({
-						icon: 'ts-icon-close',
-						type: 'ts-tertiary ts-noborder',
+					this.model().closebutton = {
 						onclick: onclose
-					});
+					};
 				})
 			),
 
 			/**
 			 * Hide the close button.
-			 * @returns {ts.ui.ToolBarSpirit}
+			 * @returns {this}
 			 */
 			hideClose: chained(function() {
 				this.model().closebutton = null;
 			}),
 
-			// Privileged ..............................................................
+			// Privileged ............................................................
 
 			/**
 			 * EDB model observers are always triggered async and this may cause the
@@ -476,7 +534,13 @@ ts.ui.ToolBarSpirit = (function using(
 				this.life.dispatch(has ? 'ts-life-toolbar-hascontent' : 'ts-life-toolbar-nocontent');
 			},
 
-			// Private .................................................................
+			// Private ...............................................................
+
+			/**
+			 * Visible? Please only update this via the `visible` property (no underscore).
+			 * @type {boolean}
+			 */
+			_visible: true,
 
 			/**
 			 * Confirm that we don't have hardcoded HTML content,
@@ -512,9 +576,6 @@ ts.ui.ToolBarSpirit = (function using(
 						this._looknormal(this.css);
 						this._layoutbefore(show);
 						this._initbreakpoint(show);
-					} else if (this.guilayout.afterMain()) {
-						this._looknormal(this.css);
-						this._layoutafter(show);
 					}
 				}
 			},
@@ -528,16 +589,6 @@ ts.ui.ToolBarSpirit = (function using(
 				var klass = 'ts-has-toolbar-first-' + (micro ? 'ts-micro' : 'ts-macro');
 				if (this._outsidemodal()) {
 					this.guilayout.shiftGlobal(show, klass);
-				}
-			},
-
-			/**
-			 * @param {boolean} show
-			 */
-			_layoutafter: function(show) {
-				this.css.shift(show, 'ts-toolbar-last');
-				if (this._outsidemodal()) {
-					this.guilayout.shiftGlobal(show, 'ts-has-toolbar-last');
 				}
 			},
 

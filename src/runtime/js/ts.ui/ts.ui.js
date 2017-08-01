@@ -51,8 +51,10 @@ ts.ui = gui.namespace(
 			 */
 			frankenstein: (function(path) {
 				var vendorappid = /[A-Z][A-Za-z]+\.[A-Z][A-Za-z]+/;
-				return !!(window !== top &&
-					(path.includes('/app/') || path.includes('/v4/') || path.match(vendorappid)));
+				return !!(
+					window !== top &&
+					(path.includes('/app/') || path.includes('/v4/') || path.match(vendorappid))
+				);
 			})(window.location.pathname),
 
 			/**
@@ -263,6 +265,7 @@ ts.ui = gui.namespace(
 			ACTION_PANEL_HIDE: 'ts-action-panel-hide',
 			ACTION_PAGER_SELECT: 'ts-action-pager-select',
 			ACTION_STATUSBAR_LEVEL: 'ts-action-statusbar-level',
+			ACTION_FOOTER_LEVEL: 'ts-action-footer-level',
 			ACTION_ROOT_CLASSNAMES: 'ts-action-root-classnames',
 
 			// postmessages

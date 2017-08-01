@@ -10,23 +10,15 @@
 			<article>
 				<section>
 					<h1>Asides JS</h1>
-					<p>You can get a hold of the <code class="attr-name">ts-aside</code> component and control it with JavaScript.</p>
+					<p>You can get a hold of the <val>Aside</val> component and control it with JavaScript.</p>
 					<figure data-ts="DoxScript">
 						<script>
-							ts.ui.get('#myaside', aside => {
-								// control the aside
+							ts.ui.get('#myaside', aside => { // you can pass an element instead of an ID
+								aside.open();
+								aside.close();
+								aside.toggle();
+								aside.title('Updated title');
 							});
-						</script>
-					</figure>
-
-					<h3>Toggle and title</h3>
-					<p>You can do this.</p>
-					<figure data-ts="DoxScript">
-						<script>
-							aside.open();
-							aside.close();
-							aside.toggle();
-							aside.title('Updated title');
 						</script>
 					</figure>
 

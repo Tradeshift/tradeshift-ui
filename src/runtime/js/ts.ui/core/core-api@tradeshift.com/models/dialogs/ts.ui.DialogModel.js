@@ -212,15 +212,14 @@ ts.ui.DialogModel = (function using(
 		},
 
 		/**
-		 * Adds the cancel button which will cancel the operation. If the focused
-		 * button has not been specified via JSON input, theis button gets focused.
+		 * Adds the OK button which will accept whatever is going on.
 		 * @param {object} json
 		 * @return {ts.ui.DialogModel}
 		 */
-		cancelButton: chained(function(json) {
-			var label = Constants.LABEL_CANCEL;
+		acceptButton: chained(function(json) {
+			var label = Constants.LABEL_ACCEPT;
 			if (json !== null) {
-				this._addButton(0, getbutton(json, 'cancel', label));
+				this._addButton(0, getbutton(json, 'accept', label));
 			}
 		}),
 
@@ -249,14 +248,15 @@ ts.ui.DialogModel = (function using(
 		}),
 
 		/**
-		 * Adds the OK button which will accept whatever is going on.
+		 * Adds the cancel button which will cancel the operation. If the focused
+		 * button has not been specified via JSON input, theis button gets focused.
 		 * @param {object} json
 		 * @return {ts.ui.DialogModel}
 		 */
-		acceptButton: chained(function(json) {
-			var label = Constants.LABEL_ACCEPT;
+		cancelButton: chained(function(json) {
+			var label = Constants.LABEL_CANCEL;
 			if (json !== null) {
-				this._addButton(3, getbutton(json, 'accept', label));
+				this._addButton(3, getbutton(json, 'cancel', label));
 			}
 		}),
 
@@ -355,8 +355,9 @@ ts.ui.DialogModel = (function using(
 		 */
 		_addButton: function(index, json) {
 			var that = this;
-			var maxi = this.buttons.length - 1;
+			var maxi = this.buttons.length;
 			index = index > maxi ? maxi : index;
+			index = index < 0 ? 0 : index;
 			this.buttons.splice(
 				index,
 				0,

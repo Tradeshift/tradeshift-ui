@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Footer Gallery</title>
+		<object data="tabs.xhtml"></object>
+	</head>
+	<body>
+		<header data-ts="TopBar"></header>
+		<main data-ts="Main">
+			<article>
+				<h1>Footer gallery</h1>
+				<section class="desc">
+					<div data-ts="Note">
+						<p>This page is intended for the QA screenshots, but for a limited time, you can use it to test how the Footer behaves when you enable <strong>all</strong> the features.
+					</div>
+				</section>
+				<section>
+
+					<p>Let's first add a pager.</p>
+
+					<figure data-ts="DoxScript">
+						<script type="runnable">
+							ts.ui.Footer.pager({
+								pages: 23,
+								page: 0,
+								onselect: function(index) {
+									console.log(index);
+								}
+							});
+						</script>
+					</figure>
+
+					<p>Next, add some buttons.</p>
+
+					<figure data-ts="DoxScript">
+						<script type="runnable">
+							ts.ui.Footer.buttons([
+								{ label: 'Button 1', type: 'ts-primary' },
+								{ label: 'Button 2', type: 'ts-secondary' },
+								{ label: 'Button 3' },
+								{ label: 'Button 4' },
+								{ label: 'Button 5' }
+							]);
+						</script>
+					</figure>
+
+					<p>Add more buttons until they crash into the Pager. Behold the second toolbar!</p>
+
+					<figure data-ts="DoxScript">
+						<script type="runnable">
+							ts.ui.Footer.buttons().splice(2, 0,
+								{ label: 'Bonus Button', type: 'ts-secondary' }
+							);
+						</script>
+					</figure>
+
+					<p>The actions will appear in yet another toolbar. That's right.</p>
+
+					<figure data-ts="DoxScript">
+						<script type="runnable">
+							ts.ui.Footer.actions([
+								{ label: 'Move Up', icon: 'ts-icon-triangleup' },
+								{ label: 'Move Down', icon: 'ts-icon-triangledown' },
+								{ label: 'Move Left', icon: 'ts-icon-triangleleft' },
+								{ label: 'Move Right', icon: 'ts-icon-triangleright' },
+								{ label: 'Don\'t Move', icon: 'ts-icon-halt' }
+							]).status('Something is selected').checkbox({
+								onclick: function() {
+									this.checked = !this.checked;
+								}
+							});
+						</script>
+					</figure>
+					
+					<p>Let's finally also add the Config and Collaboration buttons.</p>
+
+					<figure data-ts="DoxScript">
+						<script type="runnable">
+							ts.ui.Footer.showConfig(function onclick() {
+								ts.ui.Notification.success('Go configure!');
+							}).showCollaboration(function onclick() {
+								ts.ui.Notification.success('Go collaborate!');
+							});
+						</script>
+					</figure>
+
+					<div data-ts="Note">
+						<i class="ts-icon-todo"></i>
+						<p>If the bottom bar is visible, Collaboration should move into that!</p>
+					</div>
+
+					<h3>Hide the stuff again!</h3>
+
+					<p>Hide the Pager.</p>
+
+					<figure data-ts="DoxScript">
+						<script type="runnable">
+							ts.ui.Footer.pager(null);
+						</script>
+					</figure>
+
+					<p>Hide those buttons.</p>
+					
+					<figure data-ts="DoxScript">
+						<script type="runnable">
+							ts.ui.Footer.buttons().clear();
+						</script>
+					</figure>
+
+					<p>Hide the Config and Collaboration buttons.</p>
+
+					<figure data-ts="DoxScript">
+						<script type="runnable">
+							ts.ui.Footer.hideConfig().hideCollaboration();
+						</script>
+					</figure>
+
+					<p>Hide the actions</p>
+					
+					<figure data-ts="DoxScript">
+						<script type="runnable">
+							ts.ui.Footer.status('');
+							ts.ui.Footer.checkbox(null);
+							ts.ui.Footer.actions().clear();
+						</script>
+					</figure>
+
+					<div data-ts="Note">
+						<i class="ts-icon-todo"></i>
+						<p>Make <code>ts.ui.Footer.hideActions()</code> do all of the above.</p>
+					</div>
+
+				</section>
+
+			</article>
+		</main>
+	</body>
+<html>

@@ -12,7 +12,7 @@
     <link rel="prefetch" title="TopBar" href="topbar.html">
     <link rel="prefetch" title="TabBar" href="tabbar.html">
     <link rel="prefetch" title="ToolBar" href="toolbar.html">
-    <link rel="prefetch" title="StatusBar" href="statusbar.html">
+    <link rel="prefetch" title="StatusBar (DEPRECATED)" href="statusbar.html" class="hidden">
     <script>
         ts.ui.ready(function() { // support color scheme links in API table
             var method;
@@ -325,11 +325,13 @@ button<span class="token punctuation">.</span>type <span class="token operator">
 </pre>
                         </div>
                     </figure>
-                    <h3><span>Icon buttons</span></h3>
-                    <div data-ts="Note">
-                        <i class="ts-icon-todo"></i>
-                        <p>TODO: Note about the <code>info</code> property for view in Aside!</p>
-                    </div>
+                    <!--
+					<h3>Icon buttons</h3>
+					<div data-ts="Note">
+						<i class="ts-icon-todo"></i>
+						<p>TODO: Note about the <code>info</code> property for view in Aside!</p>
+					</div>
+					-->
                     <h3><span>Hide buttons</span></h3>
                     <p>You can <code>hide()</code> and <code>show()</code> buttons. You can also toggle <code>visible</code>.</p>
                     <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.TopBar.buttons().forEach(function(button)%20%7B%0A%09if(button.visible)%20%7B%0A%09%09button.hide()%3B%0A%09%7D%20else%20%7B%0A%09%09button.show()%3B%0A%09%7D%0A%7D)%3B">

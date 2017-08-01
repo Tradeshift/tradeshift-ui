@@ -6,6 +6,9 @@
  * @using {gui.Combo#chained} chained
  */
 ts.ui.LayoutPlugin = (function using(GuiArray, DOMPlugin, CSSPlugin, chained) {
+	// TODO: this can be shortened now or what?
+	var LEVELS = [1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5, 6, 6.5, 7, 7.5, 8, 8.5, 9];
+
 	return ts.ui.Plugin.extend(
 		{
 			/**
@@ -76,12 +79,14 @@ ts.ui.LayoutPlugin = (function using(GuiArray, DOMPlugin, CSSPlugin, chained) {
 			 * TableSpirit, PanelSpirit and DocumentSpirit (and it
 			 * also runs on the StatusBarSpirit itself).
 			 * @param {number} level
+			 * @param {string} [prefix]
 			 */
-			gotoLevel: function(level) {
+			gotoLevel: function(level, prefix) {
 				var css = this.spirit.css;
-				[1, 1.5, 2, 2.5, 3].forEach(function(number) {
+				prefix = prefix || 'ts-level';
+				LEVELS.forEach(function(number) {
 					var string = String(number).replace('.', '-');
-					css.shift(number === level, 'ts-level-' + string);
+					css.shift(number === level, prefix + '-' + string);
 				});
 			},
 

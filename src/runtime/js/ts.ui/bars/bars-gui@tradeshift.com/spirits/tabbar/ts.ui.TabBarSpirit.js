@@ -12,7 +12,7 @@ ts.ui.TabBarSpirit = (function(CLASS_MACRO, CLASS_MICRO) {
 		onconfigure: function() {
 			this.super.onconfigure();
 			if (!this.css.contains(CLASS_MACRO)) {
-				this.css.add(CLASS_MICRO);
+				this.micro();
 			}
 		},
 

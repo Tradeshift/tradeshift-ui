@@ -10,13 +10,21 @@
 			<article>
 				<h1>Footer actions</h1>
 				<section class="desc">
-					<p>The Footer actions are reserved for selections or something.</p>
+					<div data-ts="Note">
+						<i class="ts-icon-info"></i>
+						<p>This is an <strong>alpha</strong> preview. All features and APIs can be expected to change!</p>
+					</div>
 				</section>
+				<!--
+				<section class="desc">
+					<p>Footer <code>actions</code> can be used to manipulate selected objects of any kind. They appear in a separate toolbar, so that they never conflict with the normal <a href="/#components/footer/index.html">buttons</a>. This toolbar can also be configured with a status message and a checkbox.</p>
+				</section>
+				-->
 				<section>
 
-					<p>Hello my friend.</p>
+					<p>Whenever a selection offers manipulation options, you can mount the relevant actions much like you would with the buttons. The <code>actions</code> method both sets and gets the actions. If you omit the argument, you"ll get the current actions (jQuery style).</p>
 
-					<figure data-ts="DoxScript">
+					<figure data-ts="DoxScript" class="attention">
 						<script type="runnable">
 							ts.ui.Footer.actions([
 								{ label: 'Move Up', icon: 'ts-icon-triangleup' },
@@ -30,15 +38,23 @@
 						</script>
 					</figure>
 
-					<h3>Status</h3>
+					<p>In real life, the actions should of course only appear whenever the user has selected something with the mouse or keyboard. We will just have to pretend that he did that.</p>
+
+					<p>You can use array methods like <code>push</code>, <code>pop</code>, <code>shift</code>, <code>unshift</code>, <code>splice</code> and so on to manage tabs, just note that the actions <code>length</code> is a readonly property. For consistency reasons, actions should always have <em>both</em> an icon and a label, much unlike the buttons.</p>
+
+					<h3>Status message</h3>
+
+					<p>We can configure the actionbar with a <code>status</code> message. When a selection is made, the massage could be something like "23 products selected". When nothing is selected, it could perhaps be something like "Showing 10-20 out of 123 products".</p>
 
 					<figure data-ts="DoxScript">
 						<script type="runnable">
-							ts.ui.Footer.status('X items selected');
+							ts.ui.Footer.status('23% of one million products selected');
 						</script>
 					</figure>
 
 					<h3>Checkbox</h3>
+
+					<p>I can has checkbox. That this is the minimum viable implementation! More info to follow.</p>
 
 					<figure data-ts="DoxScript">
 						<script type="runnable">
@@ -50,6 +66,7 @@
 						</script>
 					</figure>
 
+					<!--
 					<p>Hello?</p>
 
 					<div data-ts="DoxApi">
@@ -175,6 +192,7 @@
 							}
 						</script>
 					<div>
+					-->
 
 				</section>
 			</article>

@@ -249,6 +249,7 @@ ts.ui.FakeSelectInputSpirit = (function using(chained, confirmed, tick, time, gu
 
 			// create the aside (setup to show all items when opened)
 			aside = ts.ui.Aside({
+				id: select.id || null,
 				title: this._labeltitle(),
 				autofocus: false,
 				suspendopen: true,

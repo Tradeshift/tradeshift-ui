@@ -10,9 +10,30 @@
 			<article>
 				<h1>Footer collaboration</h1>
 				<section class="desc">
-					<p>Go go gadget Footer.</p>
+					<div data-ts="Note">
+						<i class="ts-icon-info"></i>
+						<p>This is an <strong>alpha</strong> preview. All features and APIs can be expected to change!</p>
+					</div>
 				</section>
 				<section>
+
+					<p>The Footer features a special button which is dedicated to launching the Collaboration panel. It looks like this:</p>
+
+					<figure data-ts="DoxScript">
+						<script type="runnable">
+							ts.ui.Footer.showCollaboration(function onclick() {
+								ts.ui.Notification.success('Go collaborate!');
+							});
+						</script>
+					</figure>
+
+					<p>Note that the Footer doesn't automatically initialize (or resume) the collbaroration. The API for this will be provided elsewhere. Fortunately, you can also hide the collaboration button again.</p>
+
+					<figure data-ts="DoxScript">
+						<script type="runnable">
+							ts.ui.Footer.hideCollaboration();
+						</script>
+					</figure>
 
 					
 				</section>

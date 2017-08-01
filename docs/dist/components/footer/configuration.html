@@ -27,9 +27,36 @@
             <article>
                 <h1><span>Footer configuration</span></h1>
                 <section class="desc">
-                    <p>Go go gadget Footer.</p>
+                    <div data-ts="Note">
+                        <i class="ts-icon-info"></i>
+                        <p>This is an <strong>alpha</strong> preview. All features and APIs can be expected to change!</p>
+                    </div>
                 </section>
                 <section>
+                    <p>There Footer can be fitted with a dedicated configuration button for all kinds of configuration purposes. It looks like this.</p>
+                    <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.Footer.showConfig(function%20onclick()%20%7B%0A%09ts.ui.Notification.success(&apos;Go%20configure!&apos;)%3B%0A%7D)%3B">
+                        <script type="runnable">
+                            ts.ui.Footer.showConfig(function onclick() { ts.ui.Notification.success('Go configure!'); });
+                        </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                        <div class="tabpanels">
+                            <pre class="prism language-javascript">
+<code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Footer<span class="token punctuation">.</span><span class="token function">showConfig<span class="token punctuation">(</span></span><span class="token keyword">function</span> <span class="token function">onclick<span class="token punctuation">(</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Notification<span class="token punctuation">.</span><span class="token function">success<span class="token punctuation">(</span></span><span class="token string">&apos;Go configure!&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
+</pre>
+                        </div>
+                    </figure>
+                    <p>Note that the Footer doesn&apos;t care what happens when you press the button. Fortunately, you can also hide the configuration button again.</p>
+                    <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.Footer.hideConfig()%3B">
+                        <script type="runnable">
+                            ts.ui.Footer.hideConfig();
+                        </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                        <div class="tabpanels">
+                            <pre class="prism language-javascript">
+<code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Footer<span class="token punctuation">.</span><span class="token function">hideConfig<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
+</pre>
+                        </div>
+                    </figure>
                 </section>
             </article>
         </div>

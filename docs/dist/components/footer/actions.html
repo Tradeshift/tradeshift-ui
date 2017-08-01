@@ -27,11 +27,20 @@
             <article>
                 <h1><span>Footer actions</span></h1>
                 <section class="desc">
-                    <p>The Footer actions are reserved for selections or something.</p>
+                    <div data-ts="Note">
+                        <i class="ts-icon-info"></i>
+                        <p>This is an <strong>alpha</strong> preview. All features and APIs can be expected to change!</p>
+                    </div>
                 </section>
+                <!--
+				<section class="desc">
+					<p>Footer <code>actions</code> can be used to manipulate selected objects of any kind. They appear in a separate toolbar, so that they never conflict with the normal <a href="/#components/footer/index.html">buttons</a>. This toolbar can also be configured with a status message and a checkbox.</p>
+				</section>
+				-->
                 <section>
-                    <p>Hello my friend.</p>
-                    <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.Footer.actions(%5B%0A%09%7B%20label%3A%20&apos;Move%20Up&apos;%2C%20icon%3A%20&apos;ts-icon-triangleup&apos;%20%7D%2C%0A%09%7B%20label%3A%20&apos;Move%20Down&apos;%2C%20icon%3A%20&apos;ts-icon-triangledown&apos;%20%7D%2C%0A%09%7B%20label%3A%20&apos;Move%20Left&apos;%2C%20icon%3A%20&apos;ts-icon-triangleleft&apos;%20%7D%2C%0A%09%7B%20label%3A%20&apos;Move%20Right&apos;%2C%20icon%3A%20&apos;ts-icon-triangleright&apos;%20%7D%2C%0A%09%7B%20label%3A%20&apos;Don%5C&apos;t%20Move&apos;%2C%20icon%3A%20&apos;ts-icon-halt&apos;%2C%20onclick%3A%20function()%20%7B%0A%09%09ts.ui.Footer.actions().clear()%3B%0A%09%7D%7D%0A%5D)%3B">
+                    <p>Whenever a selection offers manipulation options, you can mount the relevant actions much like you would with the buttons. The <code>actions</code> method both sets and gets the actions. If you omit the argument, you&quot;ll get the
+                        current actions (jQuery style).</p>
+                    <figure data-ts="DoxScript" class="attention runnable" data-ts.code="ts.ui.Footer.actions(%5B%0A%09%7B%20label%3A%20&apos;Move%20Up&apos;%2C%20icon%3A%20&apos;ts-icon-triangleup&apos;%20%7D%2C%0A%09%7B%20label%3A%20&apos;Move%20Down&apos;%2C%20icon%3A%20&apos;ts-icon-triangledown&apos;%20%7D%2C%0A%09%7B%20label%3A%20&apos;Move%20Left&apos;%2C%20icon%3A%20&apos;ts-icon-triangleleft&apos;%20%7D%2C%0A%09%7B%20label%3A%20&apos;Move%20Right&apos;%2C%20icon%3A%20&apos;ts-icon-triangleright&apos;%20%7D%2C%0A%09%7B%20label%3A%20&apos;Don%5C&apos;t%20Move&apos;%2C%20icon%3A%20&apos;ts-icon-halt&apos;%2C%20onclick%3A%20function()%20%7B%0A%09%09ts.ui.Footer.actions().clear()%3B%0A%09%7D%7D%0A%5D)%3B">
                         <script type="runnable">
                             ts.ui.Footer.actions([ { label: 'Move Up', icon: 'ts-icon-triangleup' }, { label: 'Move Down', icon: 'ts-icon-triangledown' }, { label: 'Move Left', icon: 'ts-icon-triangleleft' }, { label: 'Move Right', icon: 'ts-icon-triangleright' }, { label: 'Don\'t
                             Move', icon: 'ts-icon-halt', onclick: () => { ts.ui.Footer.actions().clear(); }} ]);
@@ -50,18 +59,24 @@
 </pre>
                         </div>
                     </figure>
-                    <h3><span>Status</span></h3>
-                    <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.Footer.status(&apos;X%20items%20selected&apos;)%3B">
+                    <p>In real life, the actions should of course only appear whenever the user has selected something with the mouse or keyboard. We will just have to pretend that he did that.</p>
+                    <p>You can use array methods like <code>push</code>, <code>pop</code>, <code>shift</code>, <code>unshift</code>, <code>splice</code> and so on to manage tabs, just note that the actions <code>length</code> is a readonly property. For
+                        consistency reasons, actions should always have <em>both</em> an icon and a label, much unlike the buttons.</p>
+                    <h3><span>Status message</span></h3>
+                    <p>We can configure the actionbar with a <code>status</code> message. When a selection is made, the massage could be something like &quot;23 products selected&quot;. When nothing is selected, it could perhaps be something like &quot;Showing
+                        10-20 out of 123 products&quot;.</p>
+                    <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.Footer.status(&apos;23%25%20of%20one%20million%20products%20selected&apos;)%3B">
                         <script type="runnable">
-                            ts.ui.Footer.status('X items selected');
+                            ts.ui.Footer.status('23% of one million products selected');
                         </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                         <div class="tabpanels">
                             <pre class="prism language-javascript">
-<code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Footer<span class="token punctuation">.</span><span class="token function">status<span class="token punctuation">(</span></span><span class="token string">&apos;X items selected&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
+<code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Footer<span class="token punctuation">.</span><span class="token function">status<span class="token punctuation">(</span></span><span class="token string">&apos;23% of one million products selected&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
 </pre>
                         </div>
                     </figure>
                     <h3><span>Checkbox</span></h3>
+                    <p>I can has checkbox. That this is the minimum viable implementation! More info to follow.</p>
                     <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.Footer.checkbox(%7B%0A%09onclick%3A%20function()%20%7B%0A%09%09this.checked%20%3D%20!this.checked%3B%0A%09%7D%0A%7D)%3B">
                         <script type="runnable">
                             ts.ui.Footer.checkbox({ onclick: function() { this.checked = !this.checked; } });
@@ -76,76 +91,126 @@
 </pre>
                         </div>
                     </figure>
-                    <p>Hello?</p>
-                    <div data-ts="DoxApi" data-ts.code="%7B%0A%09name%3A%20%22ts.ui.CheckBoxModel%22%2C%0A%09properties%3A%20%5B%0A%09%09%7B%0A%09%09%09name%3A%20&apos;checked&apos;%2C%0A%09%09%09desc%3A%20&apos;TODO&apos;%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20&apos;visible&apos;%2C%0A%09%09%09desc%3A%20&apos;TODO&apos;%0A%09%09%7D%0A%09%5D%2C%0A%09methods%3A%20%5B%0A%09%09%7B%0A%09%09%09name%3A%20&apos;check&apos;%2C%0A%09%09%09desc%3A%20&apos;TODO&apos;%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20&apos;uncheck&apos;%2C%0A%09%09%09desc%3A%20&apos;TODO&apos;%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20%22hide%22%2C%0A%09%09%09desc%3A%20%22TODO.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20&apos;show&apos;%2C%0A%09%09%09desc%3A%20&apos;TODO&apos;%0A%09%09%7D%0A%09%5D%0A%7D">
-                    </div>
-                    <p>What?</p>
-                    <figure data-ts="DoxScript" class="runnable" data-ts.code="var%20Footer%20%3D%20ts.ui.Footer%3B%0Avar%20Dialog%20%3D%20ts.ui.Dialog%3B%0Avar%20Notification%20%3D%20ts.ui.Notification%3B%0AFooter.checkbox(%7B%0A%09checked%3A%20false%2C%0A%09info%3A%20&apos;Toggle%20selection&apos;%2C%0A%09onclick%3A%20function()%20%7B%0A%09%09if(this.checked)%20%7B%0A%09%09%09Dialog.confirm(&apos;Unselect%20123456%20items%3F&apos;%2C%20%7B%0A%09%09%09%09onaccept%3A%20reset%0A%09%09%09%7D)%3B%0A%09%09%7D%20else%20%7B%0A%09%09%09showactions()%3B%0A%09%09%7D%0A%09%7D%0A%7D)%3B%0Afunction%20showactions()%20%7B%0A%09Footer.checkbox().checked%20%3D%20true%3B%0A%09Footer.status(&apos;123456%20items%20selected&apos;).actions(%5B%0A%09%09%7B%20label%3A%20&apos;Delete&apos;%2C%20icon%3A%20&apos;ts-icon-delete&apos;%2C%20onclick%3A%20function()%20%7B%0A%09%09%09Dialog.confirm(&apos;Deleted%20123456%20items%3F&apos;%2C%20&apos;Delete&apos;%2C%20%7B%0A%09%09%09%09onaccept%3A%20function()%20%7B%0A%09%09%09%09%09Notification.success(&apos;123456%20items%20deleted&apos;)%3B%0A%09%09%09%09%09reset()%3B%0A%09%09%09%09%7D%0A%09%09%09%7D)%3B%0A%09%09%7D%7D%0A%09%5D)%3B%0A%7D%0Afunction%20reset()%20%7B%0A%09Footer.checkbox().checked%20%3D%20false%3B%0A%09Footer.status(&apos;0%20items%20selected&apos;)%3B%0A%09Footer.actions().clear()%3B%0A%7D%0Areset()%3B">
-                        <script type="runnable">
-                            var Footer = ts.ui.Footer; var Dialog = ts.ui.Dialog; var Notification = ts.ui.Notification; Footer.checkbox({ checked: false, info: 'Toggle selection', onclick: function() { if(this.checked) { Dialog.confirm('Unselect 123456 items?', { onaccept: reset
-                            }); } else { showactions(); } } }); function showactions() { Footer.checkbox().checked = true; Footer.status('123456 items selected').actions([ { label: 'Delete', icon: 'ts-icon-delete', onclick: () => { Dialog.confirm('Deleted
-                            123456 items?', 'Delete', { onaccept: () => { Notification.success('123456 items deleted'); reset(); } }); }} ]); } function reset() { Footer.checkbox().checked = false; Footer.status('0 items selected'); Footer.actions().clear();
-                            } reset();
-                        </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
-                        <div class="tabpanels">
-                            <pre class="prism language-javascript">
-<code><span class="token keyword">var</span> Footer <span class="token operator">=</span> ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Footer<span class="token punctuation">;</span>
-<span class="token keyword">var</span> Dialog <span class="token operator">=</span> ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Dialog<span class="token punctuation">;</span>
-<span class="token keyword">var</span> Notification <span class="token operator">=</span> ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Notification<span class="token punctuation">;</span>
-Footer<span class="token punctuation">.</span><span class="token function">checkbox<span class="token punctuation">(</span></span><span class="token punctuation">{</span>
-	checked<span class="token punctuation">:</span> <span class="token keyword">false</span><span class="token punctuation">,</span>
-	info<span class="token punctuation">:</span> <span class="token string">&apos;Toggle selection&apos;</span><span class="token punctuation">,</span>
-	onclick<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-		<span class="token keyword">if</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>checked<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-			Dialog<span class="token punctuation">.</span><span class="token function">confirm<span class="token punctuation">(</span></span><span class="token string">&apos;Unselect 123456 items?&apos;</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
-				onaccept<span class="token punctuation">:</span> reset
-			<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-		<span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
-			<span class="token function">showactions<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-		<span class="token punctuation">}</span>
-	<span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token keyword">function</span> <span class="token function">showactions<span class="token punctuation">(</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-	Footer<span class="token punctuation">.</span><span class="token function">checkbox<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">.</span>checked <span class="token operator">=</span> <span class="token keyword">true</span><span class="token punctuation">;</span>
-	Footer<span class="token punctuation">.</span><span class="token function">status<span class="token punctuation">(</span></span><span class="token string">&apos;123456 items selected&apos;</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">actions<span class="token punctuation">(</span></span><span class="token punctuation">[</span>
-		<span class="token punctuation">{</span> label<span class="token punctuation">:</span> <span class="token string">&apos;Delete&apos;</span><span class="token punctuation">,</span> icon<span class="token punctuation">:</span> <span class="token string">&apos;ts-icon-delete&apos;</span><span class="token punctuation">,</span> onclick<span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
-			Dialog<span class="token punctuation">.</span><span class="token function">confirm<span class="token punctuation">(</span></span><span class="token string">&apos;Deleted 123456 items?&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;Delete&apos;</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
-				onaccept<span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
-					Notification<span class="token punctuation">.</span><span class="token function">success<span class="token punctuation">(</span></span><span class="token string">&apos;123456 items deleted&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-					<span class="token function">reset<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-				<span class="token punctuation">}</span>
-			<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-		<span class="token punctuation">}</span><span class="token punctuation">}</span>
-	<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-<span class="token keyword">function</span> <span class="token function">reset<span class="token punctuation">(</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-	Footer<span class="token punctuation">.</span><span class="token function">checkbox<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">.</span>checked <span class="token operator">=</span> <span class="token keyword">false</span><span class="token punctuation">;</span>
-	Footer<span class="token punctuation">.</span><span class="token function">status<span class="token punctuation">(</span></span><span class="token string">&apos;0 items selected&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-	Footer<span class="token punctuation">.</span><span class="token function">actions<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">clear<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-<span class="token function">reset<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
-</pre>
-                        </div>
-                    </figure>
-                    <p>When you are done with the actions, you can hide them away. Remember to show them again before you need them next time!</p>
-                    <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.Footer.hideActions()%3B%0AsetTimeout(function%20restore()%20%7B%0A%09ts.ui.Footer.showActions()%3B%0A%7D%2C%201000)%3B">
-                        <script type="runnable">
-                            ts.ui.Footer.hideActions(); setTimeout(function restore() { ts.ui.Footer.showActions(); }, 1000);
-                        </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
-                        <div class="tabpanels">
-                            <pre class="prism language-javascript">
-<code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Footer<span class="token punctuation">.</span><span class="token function">hideActions<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token function">setTimeout<span class="token punctuation">(</span></span><span class="token keyword">function</span> <span class="token function">restore<span class="token punctuation">(</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-	ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Footer<span class="token punctuation">.</span><span class="token function">showActions<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token number">1000</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
-</pre>
-                        </div>
-                    </figure>
-                    <p>Here&apos;s an overview of the methods related to actions.</p>
-                    <div data-ts="DoxApi" data-ts.code="%7B%0A%09name%3A%20%22ts.ui.Footer%22%2C%0A%09methods%3A%20%5B%0A%09%09%7B%0A%09%09%09name%3A%20&apos;checkbox&apos;%2C%0A%09%09%09args%3A%20&apos;(object)&apos;%2C%0A%09%09%09desc%3A%20&apos;Get%20or%20set%20the%20checkbox&apos;%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20&apos;status&apos;%2C%0A%09%09%09args%3A%20&apos;(string)&apos;%2C%0A%09%09%09desc%3A%20&apos;Get%20or%20set%20the%20status%20message&apos;%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20%22actions%22%2C%0A%09%09%09args%3A%20%22(array)%22%2C%0A%09%09%09desc%3A%20%22Get%20or%20set%20the%20actions.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20&apos;hideActions&apos;%2C%0A%09%09%09desc%3A%20&apos;Hide%20the%20whole%20actions-bar&apos;%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20&apos;showActions&apos;%2C%0A%09%09%09desc%3A%20&apos;Show%20the%20(hidden)%20actions-bar&apos;%0A%09%09%7D%2C%0A%09%5D%0A%7D">
-                        <div>
-                        </div>
-                    </div>
+                    <!--
+					<p>Hello?</p>
+					<div data-ts="DoxApi">
+						<script type="application/json">
+							{
+								name: "ts.ui.CheckBoxModel",
+								properties: [
+									{
+										name: 'checked',
+										desc: 'TODO'
+									},
+									{
+										name: 'visible',
+										desc: 'TODO'
+									}
+								],
+								methods: [
+									{
+										name: 'check',
+										desc: 'TODO'
+									},
+									{
+										name: 'uncheck',
+										desc: 'TODO'
+									},
+									{
+										name: "hide",
+										desc: "TODO."
+									},
+									{
+										name: 'show',
+										desc: 'TODO'
+									}
+								]
+							}
+						</script>
+					</div>
+					<p>What?</p>
+					<figure data-ts="DoxScript">
+						<script type="runnable">
+							var Footer = ts.ui.Footer;
+							var Dialog = ts.ui.Dialog;
+							var Notification = ts.ui.Notification;
+							Footer.checkbox({
+								checked: false,
+								info: 'Toggle selection',
+								onclick: function() {
+									if(this.checked) {
+										Dialog.confirm('Unselect 123456 items?', {
+											onaccept: reset
+										});
+									} else {
+										showactions();
+									}
+								}
+							});
+							function showactions() {
+								Footer.checkbox().checked = true;
+								Footer.status('123456 items selected').actions([
+									{ label: 'Delete', icon: 'ts-icon-delete', onclick: () => {
+										Dialog.confirm('Deleted 123456 items?', 'Delete', {
+											onaccept: () => {
+												Notification.success('123456 items deleted');
+												reset();
+											}
+										});
+									}}
+								]);
+							}
+							function reset() {
+								Footer.checkbox().checked = false;
+								Footer.status('0 items selected');
+								Footer.actions().clear();
+							}
+							reset();
+						</script>
+					</figure>
+					<p>When you are done with the actions, you can hide them away. Remember to show them again before you need them next time!</p>
+					<figure data-ts="DoxScript">
+						<script type="runnable">
+							ts.ui.Footer.hideActions();
+							setTimeout(function restore() {
+								ts.ui.Footer.showActions();
+							}, 1000);
+						</script>
+					</figure>
+					<p>Here's an overview of the methods related to actions.</p>
+					<div data-ts="DoxApi">
+						<script type="application/json">
+							{
+								name: "ts.ui.Footer",
+								methods: [
+									{
+										name: 'checkbox',
+										args: '(object)',
+										desc: 'Get or set the checkbox'
+									},
+									{
+										name: 'status',
+										args: '(string)',
+										desc: 'Get or set the status message'
+									},
+									{
+										name: "actions",
+										args: "(array)",
+										desc: "Get or set the actions."
+									},
+									{
+										name: 'hideActions',
+										desc: 'Hide the whole actions-bar'
+									},
+									{
+										name: 'showActions',
+										desc: 'Show the (hidden) actions-bar'
+									},
+								]
+							}
+						</script>
+					<div>
+					-->
                 </section>
             </article>
         </div>

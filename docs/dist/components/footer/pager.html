@@ -27,10 +27,13 @@
             <article>
                 <h1><span>Footer pager</span></h1>
                 <section class="desc">
-                    <p>Go go gadget Footer.</p>
+                    <div data-ts="Note">
+                        <i class="ts-icon-info"></i>
+                        <p>This is an <strong>alpha</strong> preview. All features and APIs can be expected to change!</p>
+                    </div>
                 </section>
                 <section>
-                    <p>Pager is very nice.</p>
+                    <p>We can have a Pager. Here it is.</p>
                     <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.Footer.pager(%7B%0A%09pages%3A%2023%2C%0A%09page%3A%200%2C%0A%09onselect%3A%20function(index)%20%7B%0A%09%09console.log(index)%3B%0A%09%7D%0A%7D)%3B">
                         <script type="runnable">
                             ts.ui.Footer.pager({ pages: 23, page: 0, onselect: function(index) { console.log(index); } });

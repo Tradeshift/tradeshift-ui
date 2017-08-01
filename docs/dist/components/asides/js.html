@@ -24,27 +24,17 @@
             <article>
                 <section>
                     <h1><span>Asides JS</span></h1>
-                    <p>You can get a hold of the <code class="attr-name">ts-aside</code> component and control it with JavaScript.</p>
-                    <figure data-ts="DoxScript" data-ts.code="ts.ui.get(&apos;%23myaside&apos;%2C%20function(aside)%20%7B%0A%09%2F%2F%20control%20the%20aside%0A%7D)%3B">
+                    <p>You can get a hold of the <code class="attr-value">Aside</code> component and control it with JavaScript.</p>
+                    <figure data-ts="DoxScript" data-ts.code="ts.ui.get(&apos;%23myaside&apos;%2C%20function(aside)%20%7B%20%2F%2F%20you%20can%20pass%20an%20element%20instead%20of%20an%20ID%0A%09aside.open()%3B%0A%09aside.close()%3B%0A%09aside.toggle()%3B%0A%09aside.title(&apos;Updated%20title&apos;)%3B%0A%7D)%3B">
                         <input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
                         <div class="tabpanels">
                             <pre class="prism language-javascript">
-<code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#myaside&apos;</span><span class="token punctuation">,</span> aside <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
-	<span class="token comment" spellcheck="true">// control the aside
-</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
-</pre>
-                        </div>
-                    </figure>
-                    <h3><span>Toggle and title</span></h3>
-                    <p>You can do this.</p>
-                    <figure data-ts="DoxScript" data-ts.code="aside.open()%3B%0Aaside.close()%3B%0Aaside.toggle()%3B%0Aaside.title(&apos;Updated%20title&apos;)%3B">
-                        <input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
-                        <div class="tabpanels">
-                            <pre class="prism language-javascript">
-<code>aside<span class="token punctuation">.</span><span class="token function">open<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-aside<span class="token punctuation">.</span><span class="token function">close<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-aside<span class="token punctuation">.</span><span class="token function">toggle<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-aside<span class="token punctuation">.</span><span class="token function">title<span class="token punctuation">(</span></span><span class="token string">&apos;Updated title&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
+<code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#myaside&apos;</span><span class="token punctuation">,</span> aside <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span> <span class="token comment" spellcheck="true">// you can pass an element instead of an ID
+</span>	aside<span class="token punctuation">.</span><span class="token function">open<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	aside<span class="token punctuation">.</span><span class="token function">close<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	aside<span class="token punctuation">.</span><span class="token function">toggle<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	aside<span class="token punctuation">.</span><span class="token function">title<span class="token punctuation">(</span></span><span class="token string">&apos;Updated title&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
 </pre>
                         </div>
                     </figure>

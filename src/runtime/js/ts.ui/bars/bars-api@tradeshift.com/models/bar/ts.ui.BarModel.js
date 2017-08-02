@@ -13,10 +13,10 @@ ts.ui.BarModel = (function using(ButtonCollection) {
 		 * grouped into primary, sencondary and tertiary button types.
 		 * @returns	 {Array<ts.ui.ButtonModel|ts.ui.ButtonCollection>}
 		 */
-		$allbuttons: function() {
-			return this.buttons.ascending().filter(function(thing) {
+		$allbuttons: function () {
+			return this.buttons.ascending().filter(function (thing) {
 				if (ButtonCollection.is(thing)) {
-					return thing.every(function(button) {
+					return thing.every(function (button) {
 						return button.visible;
 					});
 				} else {
@@ -29,7 +29,7 @@ ts.ui.BarModel = (function using(ButtonCollection) {
 		 * Get primary and secondary buttons (ascending).
 		 * @returns {Array<ts.ui.ButtonModel>}
 		 */
-		$specialbuttons: function() {
+		$specialbuttons: function () {
 			return this._sortbuttons(this.$allbuttons(), true);
 		},
 
@@ -37,7 +37,7 @@ ts.ui.BarModel = (function using(ButtonCollection) {
 		 * Get tertiary buttons (ascending).
 		 * @returns {Array<ts.ui.ButtonModel>}
 		 */
-		$normalbuttons: function() {
+		$normalbuttons: function () {
 			return this._sortbuttons(this.$allbuttons(), false);
 		},
 
@@ -50,13 +50,13 @@ ts.ui.BarModel = (function using(ButtonCollection) {
 		 * @param {boolean} special
 		 * @returns {Array<ts.ui.ButtonModel>}
 		 */
-		_sortbuttons: function(buttons, special) {
-			return buttons.filter(function(thing) {
+		_sortbuttons: function (buttons, special) {
+			return buttons.filter(function (thing) {
 				var button = thing;
 				if (ButtonCollection.is(thing)) {
 					button = thing[0];
 				}
-				if (button.type === ts.ui.CLASS_TERTIARY) {
+				if (button.type.indexOf(ts.ui.CLASS_TERTIARY) > -1) {
 					if (!special) {
 						return true;
 					}

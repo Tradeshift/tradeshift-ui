@@ -12,7 +12,7 @@
 		renderItems(dialog.items);
 	}
 	if(buttons.getLength()) {
-		renderButtons(mobile ? buttons.descending() : buttons);
+		renderButtons(buttons);
 	}
 
 	function renderIcon(icon) {
@@ -37,20 +37,14 @@
 
 	function renderButtons(buttons) {
 		<div class="ts-dialog-buttons">
-			@class = 'ts-buttons';
-			if(!mobile) {
-				switch(buttons.length) {
-					case 2:
-						@class += ' ts-t-t';
-						break;
-				}
-			}
-			<menu data-ts="Buttons" @class>
-				buttons.forEach(function(button) {
-					<li>
-						out.html += button.render();
-					</li>
-				});
+			<menu data-ts="Buttons">
+				<menu data-ts="Buttons">
+					buttons.forEach(function(button) {
+						<li>
+							out.html += button.render();
+						</li>
+					});
+				</menu>
 			</menu>
 		</div>
 	}

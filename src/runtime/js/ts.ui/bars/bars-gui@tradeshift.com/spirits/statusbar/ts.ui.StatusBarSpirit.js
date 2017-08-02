@@ -13,6 +13,10 @@ ts.ui.StatusBarSpirit = (function using(PagerModel, Type, chained, confirmed) {
 		 */
 		onlink: null,
 
+		/**
+		 * Open for implementation: Called when the layout mode shifts (vertically).
+		 * @type {function}
+		 */
 		onlayout: null,
 
 		/**
@@ -25,9 +29,22 @@ ts.ui.StatusBarSpirit = (function using(PagerModel, Type, chained, confirmed) {
 		}),
 
 		/**
+		 * @param {Object|null} [json]
+		 * @returns {this|ts.ui.Model}
+		 */
+		checkbox: chained(function(json) {
+			var model = this.model();
+			if (arguments.length) {
+				model.checkbox = json;
+			} else {
+				return model.checkbox;
+			}
+		}),
+
+		/**
 		 * Get or set the pager. Pass `null` to remove the pager (via bad API :/)
 		 * @param @optional {object|ts.ui.PagerModel|null} opt_json
-		 * @returns {ts.ui.PagerModel|ts.ui.ToolBarSpirit}
+		 * @returns {ts.ui.PagerModel|this}
 		 */
 		pager: confirmed('(object|null)')(
 			chained(function(opt_json) {
@@ -100,7 +117,7 @@ ts.ui.StatusBarSpirit = (function using(PagerModel, Type, chained, confirmed) {
 			function observe(model) {
 				model.addObserver(this);
 			}
-		),
+		)
 
 		// Private .................................................................
 
@@ -114,10 +131,10 @@ ts.ui.StatusBarSpirit = (function using(PagerModel, Type, chained, confirmed) {
 		 * @param {truthy} right
 		 * @param {truthy} extra
 		 * @param {truthy} search
-		 */
+		 *
 		_docss: function(css, small, lefts, right, extra, search) {
 			this.super._docss(css, small, lefts, right, extra, search);
-			this._gotoLevel(small ? this._computelevel(lefts, right, extra, search) : 1);
+			this._gotoLevel(small ? this._computelevel(lefts, right, extra, search) : 3);
 		},
 
 		/**
@@ -125,7 +142,7 @@ ts.ui.StatusBarSpirit = (function using(PagerModel, Type, chained, confirmed) {
 		 * This will probably cause an ancestor component to update its classname.
 		 * @see {ts.ui.LayoutPlugin#gotoLevel}
 		 * @param {number} level
-		 */
+		 *
 		_gotoLevel: function(level) {
 			var oldname = this.css.name();
 			this.guilayout.gotoLevel(level);
@@ -138,12 +155,33 @@ ts.ui.StatusBarSpirit = (function using(PagerModel, Type, chained, confirmed) {
 		},
 
 		/**
+		 * The numbers here translate to "units" which are currently set at `22px`.
 		 * @param {truthy} lefts
 		 * @param {truthy} right
 		 * @param {truthy} extra
 		 * @param {truthy} search
 		 * @returns {number}
-		 */
+		 *
+		_computelevel: function(lefts, right, extra, search) {
+			if (lefts && right && !extra) {
+				return search ? 5 : 4.5;
+			} else if (lefts && extra && !right) {
+				return search ? 5 : 4.5;
+			} else if (right && extra && !lefts) {
+				return 6;
+			} else if (lefts && right && extra) {
+				return search ? 8 : 7.5;
+			}
+			return 3;
+		}
+
+		/**
+		 * @param {truthy} lefts
+		 * @param {truthy} right
+		 * @param {truthy} extra
+		 * @param {truthy} search
+		 * @returns {number}
+		 *
 		_computelevel: function(lefts, right, extra, search) {
 			if (lefts && right && !extra) {
 				return search ? 2 : 1.5;
@@ -156,5 +194,6 @@ ts.ui.StatusBarSpirit = (function using(PagerModel, Type, chained, confirmed) {
 			}
 			return 1;
 		}
+		*/
 	});
 })(ts.ui.PagerModel, gui.Type, gui.Combo.chained, gui.Arguments.confirmed);

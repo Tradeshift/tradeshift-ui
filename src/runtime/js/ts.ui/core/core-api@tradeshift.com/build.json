@@ -23,6 +23,8 @@
 	"models/buttons/ts.ui.ButtonModel.js",
 	"models/buttons/ts.ui.ButtonCollection.js",
 	"models/buttons/ts.ui.ButtonMenuModel.js",
+	"models/buttons/ts.ui.ActionModel.js",
+	"models/buttons/ts.ui.ActionCollection.js",
 	"models/dates/ts.ui.DatePickerModel.js",
 	"models/text/ts.ui.TextModel.js",
 	"models/dialogs/ts.ui.DialogItemCollection.js",

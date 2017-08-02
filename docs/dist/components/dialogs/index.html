@@ -39,8 +39,7 @@
 </pre>
                         </div>
                     </figure>
-                    <p>You are encouraged to specify the text of the OK button. The button should attempt to indicate what happens when you press it. But you should try to keep the text nice and short, because the button really isn&apos;t that big (just
-                        yet!)</p>
+                    <p>You are encouraged to specify the text of the OK button. The button should attempt to indicate what happens when you press it.</p>
                     <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.Dialog.confirm(&apos;Show%20the%20Notification%3F&apos;%2C%20&apos;Show%20It&apos;%2C%20%7B%0A%09onaccept%3A%20function()%20%7B%0A%09%09ts.ui.Notification.success(&apos;Good%20choice&apos;)%3B%0A%09%7D%2C%0A%7D)%3B">
                         <script type="runnable">
                             ts.ui.Dialog.confirm('Show the Notification?', 'Show It', { onaccept: function() { ts.ui.Notification.success('Good choice'); }, });

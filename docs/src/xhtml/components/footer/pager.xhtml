@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Footer Pager</title>
+		<object data="tabs.xhtml"></object>
+	</head>
+	<body>
+		<header data-ts="TopBar"></header>
+		<main data-ts="Main">
+			<article>
+				<h1>Footer pager</h1>
+				<section class="desc">
+					<div data-ts="Note">
+						<i class="ts-icon-info"></i>
+						<p>This is an <strong>alpha</strong> preview. All features and APIs can be expected to change!</p>
+					</div>
+				</section>
+				<section>
+
+					<p>The <val>Footer</val> features a pager and here it is.</p>
+
+					<figure data-ts="DoxScript">
+						<script type="runnable">
+							ts.ui.Footer.pager({
+								pages: 23,
+								page: 0,
+								onselect: function(index) {
+									console.log(index);
+								}
+							});
+						</script>
+					</figure>
+
+				</section>
+
+			</article>
+		</main>
+	</body>
+<html>

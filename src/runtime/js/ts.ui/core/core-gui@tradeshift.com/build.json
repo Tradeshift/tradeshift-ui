@@ -25,7 +25,7 @@
 	"spirits/asides/ts.ui.AsideSpirit.js",
 	"spirits/asides/ts.ui.SideBarSpirit.js",
 	"spirits/panels/ts.ui.PanelSpirit.js",
-	"spirits/footers/ts.ui.FooterSpirit.js",
+	"spirits/footers/ts.ui.AsideFooterSpirit.js",
 	"spirits/buttons/ts.ui.ButtonSpirit.js",
 	"spirits/buttons/ts.ui.ButtonMenuSpirit.js",
 	"spirits/buttons/ts.ui.LinkSpirit.js",

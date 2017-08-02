@@ -5,8 +5,7 @@
 	position: relative;
 	display: block;
 	&.ts-hascols,
-	&.ts-hasrows,
-	&.ts-hastool {
+	&.ts-hasrows {
 		border: 1px solid @ts-medium-litest;
 	}
 	table {
@@ -23,6 +22,9 @@
 	}
 	td {
 		border: 1px solid @ts-lite-dark;
+		-webkit-user-select: text;
+		-moz-user-select: text;
+		user-select: text;
 		&.ts-has-extra {
 			text-align: center;
 			&.ts-has-button .ts-button {
@@ -414,17 +416,21 @@
 		}
 	}
 	.ts-table-foot {
-		border-top: 1px solid @ts-medium-litest;
 		padding: 0;
-		.ts-toolbar {
-			background-color: @ts-lite-lite;
+		.ts-footerbar {
+			border-top: 1px solid @ts-medium-litest;
+			.ts-toolbar {
+				background-color: @ts-lite-lite;
+			}
 		}
 	}
+	/*
 	&.ts-hastool:not(.ts-hasrows) {
 		.ts-table-foot {
 			border-top: none;
 		}
 	}
+	*/
 	.ts-table-gutter,
 	.ts-table-menu {
 		overflow: hidden;
@@ -496,7 +502,7 @@
 		.ts-mixin-maximize();
 		margin-bottom: 0;
 		.ts-table-body {
-			.ts-mixin-maximize(@ts-unit-double, 0, @ts-unit-triple, 0);
+			.ts-mixin-maximize(@ts-unit-double, 0, 0, 0);
 			.ts-table-rows {
 				min-height: 100%;
 				max-height: 100% !important;
@@ -505,23 +511,20 @@
 				overflow-y: scroll !important; // TODO: toogle just-in-time on rowdata
 			}
 		}
-		&.ts-level-1-5 .ts-table-body { // see ts-toolbar.less for these value
-			bottom: (@ts-unit-triple * 1.5) + @ts-unit-quarter;
-		}
-		&.ts-level-2 .ts-table-body {
-			bottom: @ts-unit-triple * 2;
-		}
-		&.ts-level-2-5 .ts-table-body {
-			bottom: @ts-unit-triple * 2.5;
-		}
-		&.ts-level-3 .ts-table-body {
-			bottom: @ts-unit-triple * 3;
-		}
 		.ts-table-foot {
 			position: absolute;
 			bottom: 0;
 			left: 0;
 			right: 0;
+		}
+		&.ts-level-3 .ts-table-body {
+			bottom: @ts-unit * 3;
+		}
+		&.ts-level-5 .ts-table-body {
+			bottom: @ts-unit * 5;
+		}
+		&.ts-level-8 .ts-table-body {
+			bottom: @ts-unit * 8;
 		}
 	}
 

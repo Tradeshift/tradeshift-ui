@@ -46,7 +46,7 @@ class Listener {
 	 */
 	on(key, callback) {
 		if (!key || !callback) {
-			console.warn(`We need two parameters key and callback`);
+			console.warn('We need two parameters key and callback');
 			return this;
 		}
 		if (this.events.has(key)) {
@@ -81,7 +81,7 @@ class Listener {
 	 */
 	off(key) {
 		if (!key) {
-			console.warn(`We need the parameter of key`);
+			console.warn('We need the parameter of key');
 			return this;
 		}
 		if (this.events.has(key)) {
@@ -99,7 +99,7 @@ class Listener {
 	 */
 	pause(key) {
 		if (!key) {
-			console.warn(`We need the parameter of key`);
+			console.warn('We need the parameter of key');
 			return this;
 		}
 		if (!this.events.has(key)) {
@@ -118,7 +118,7 @@ class Listener {
 	 */
 	resume(key) {
 		if (!key) {
-			console.warn(`We need the parameter of key`);
+			console.warn('We need the parameter of key');
 			return this;
 		}
 		if (!this.events.has(key)) {

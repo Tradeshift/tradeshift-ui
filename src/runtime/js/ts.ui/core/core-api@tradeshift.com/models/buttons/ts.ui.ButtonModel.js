@@ -179,12 +179,21 @@ ts.ui.ButtonModel = (function using(chained, confirmed, Type) {
 		}),
 
 		/**
+		 * Is primary button?
+		 * @returns {boolean}
+		 */
+		isPrimary: function() {
+			return this.type.includes(ts.ui.CLASS_PRIMARY);
+		},
+
+		/**
 		 * Bounce model to HTML.
-		 * @param @optional {boolean} Is the button as a menu
+		 * @param {boolean} [isButtonMenu] - Is the button as a menu?
+		 * @param {boolean} [isMobile] - attempt to render the icon only?
 		 * @return {string}
 		 */
-		render: function(isButtonMenu) {
-			return ts.ui.button.edbml(this, isButtonMenu);
+		render: function(isButtonMenu, isMobile) {
+			return ts.ui.button.edbml(this, isButtonMenu, isMobile);
 		},
 
 		// Private .................................................................

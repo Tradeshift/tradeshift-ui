@@ -1,6 +1,57 @@
+// TODO: MOVE THESE ............................................................
+
+.ts-mainheader,
+.ts-mainfooter {
+	position: absolute;
+	z-index: @ts-zindex-main + 1;
+	top: 0;
+	left: 0;
+	right: 0;
+	&:not(.ts-tabbar):after {
+		height: 4px;
+		width: 100%;
+		position: absolute;
+		pointer-events: none;
+	}
+	> menu {
+		margin: 0;
+	}
+}
+.ts-mainheader {
+	&.ts-bg-lite {
+		&:after {
+			content: '';
+			top: 100%;
+			background: linear-gradient(0deg, rgba(0,0,0,0), rgba(0,0,0,0.25));
+		}
+	}
+}
+.ts-table {
+	user-select: text;
+	-webkit-user-select: text;
+}
+.ts-mainfooter {
+	top: auto;
+	bottom: 0;
+	&.ts-bg-lite {
+		&:after {
+			content: '';
+			top: -4px;
+			background: linear-gradient(0deg, rgba(0,0,0,0.25), rgba(0,0,0,0));
+		}
+	}
+}
+/*
+.ts-mainfooter-buffer {
+	bottom: 0 - @ts-unit-triple;
+	visibility: hidden;
+}
+*/
+
+
 // Mixins ......................................................................
 
-.mixin-toolbar-last(@mult : 1) {
+.mixin-footer(@mult : 1) {
 	.ts-maincontent {
 		bottom: @ts-unit-triple * @mult;
 	}
@@ -45,7 +96,25 @@ body > .ts-panel, {
 }
 
 
-// Adjustment time ............................................................
+// Adjustment time .............................................................
+
+&.ts-has-footer {
+	&.ts-footer-level-2 .ts-main {
+		bottom: @ts-unit * 2;
+	}
+	&.ts-footer-level-3 .ts-main {
+		bottom: @ts-unit * 3;
+	}
+	&.ts-footer-level-5 .ts-main {
+		bottom: @ts-unit * 5;
+	}
+	&.ts-footer-level-6 .ts-main {
+		bottom: @ts-unit * 6;
+	}
+	&.ts-footer-level-8 .ts-main {
+		bottom: @ts-unit * 8;
+	}
+}
 
 .ts-tablet {
 	&.ts-has-toolbar-first-ts-macro {
@@ -65,23 +134,6 @@ body > .ts-panel, {
 	}
 	.ts-toolbar.ts-micro + .ts-toolbar.ts-micro + .ts-main { // cornercase :/
 		top: @ts-unit * 4;
-	}
-	&.ts-has-toolbar-last {
-		.ts-main {
-			bottom: @ts-unit-triple;
-		}
-		&.ts-level-1-5 .ts-main {
-			bottom: (@ts-unit-triple * 1.5) + @ts-unit-quarter;
-		}
-		&.ts-level-2 .ts-main {
-			bottom: @ts-unit-triple * 2;
-		}
-		&.ts-level-2-5 .ts-main {
-			bottom: @ts-unit-triple * 2.5;
-		}
-		&.ts-level-3 .ts-main {
-			bottom: @ts-unit-triple * 3;
-		}
 	}
 	&.ts-has-topbar {
 		.ts-main {
@@ -120,16 +172,16 @@ body > .ts-panel, {
 			.mixin-misc(11);
 		}
 	}
-	&.ts-has-toolbar-last {
-		.mixin-toolbar-last();
+	&.ts-has-footer {
+		.mixin-footer();
 		&.ts-level-2 {
-			.mixin-toolbar-last(2);
+			.mixin-footer(2);
 		}
 		&.ts-level-2-5 {
-			.mixin-toolbar-last(2.5);
+			.mixin-footer(2.5);
 		}
 		&.ts-level-3 {
-			.mixin-toolbar-last(3);
+			.mixin-footer(3);
 		}
 	}
 }

@@ -248,12 +248,12 @@ ts.ui.MainSpirit = (function using(Type, chained, PANEL_ATTACH, PANEL_DETACH) {
 			var elm = this.element;
 			var dom = this.dom;
 			if (added) {
-				if (index < 0) {
+				if (index > 0 && !panel.selected) {
 					panel.hide();
 				}
 				bar.tabs().splice(index, 0, {
 					label: panel.label,
-					selected: panel.selected,
+					selected: panel.selected || index === 0,
 					$onselect: function() {
 						dom.qall(css, ts.ui.PanelSpirit).forEach(function(p) {
 							if (p === panel) {

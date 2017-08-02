@@ -1,3 +1,7 @@
+function message(text) {
+	ts.ui.Notification.success(text);
+}
+
 /**
  * Here we go.
  */
@@ -10,10 +14,8 @@ $.getJSON('assets/rowdata.json', function(json) {
 
 		table.maximize();
 		table.selectable();
-		table.configurable();
+		// table.configurable(); TODO!
 		table.cols(gettablecols());
-		table.status('Status message goes here!');
-		table.editable(ontableedit);
 		toolb.title(title).buttons([
 			{
 				label: 'Build Incrementally',
@@ -33,7 +35,41 @@ $.getJSON('assets/rowdata.json', function(json) {
 			}
 		]);
 		function disablebuttons(toolbar) {
-			toolbar.buttons([]); // DOH - disabled buttons not implemented on ToolBar :/
+			toolbar.buttons([
+				{
+					label: 'Make Editable',
+					type: 'ts-secondary',
+					onclick: function() {
+						message('Everything is now editable.\nThis implies slower rendering!');
+						this.hide();
+						setTimeout(function() {
+							table.editable(ontableedit);
+						}, 500);
+					}
+				},
+				{
+					label: 'Show Actions',
+					type: 'ts-secondary',
+					onclick: function() {
+						this.hide();
+						table.actions([
+							{ label: 'Move Up', icon: 'ts-icon-triangleup' },
+							{ label: 'Move Down', icon: 'ts-icon-triangledown' },
+							{ label: 'Move Left', icon: 'ts-icon-triangleleft' },
+							{ label: 'Move Right', icon: 'ts-icon-triangleright' },
+							{ label: "Don't Move", icon: 'ts-icon-halt' }
+						]);
+					}
+				},
+				{
+					label: 'Show Status',
+					type: 'ts-secondary',
+					onclick: function() {
+						this.hide();
+						table.status('Status message goes here!');
+					}
+				}
+			]);
 		}
 
 		/*
@@ -45,7 +81,7 @@ $.getJSON('assets/rowdata.json', function(json) {
 		});
 		*/
 
-		ts.ui.Notification.success('Note that this is really more of a test page than a demo.');
+		message('Note that this is really more of a test page than a demo.');
 	});
 });
 
@@ -65,14 +101,12 @@ function gettablecols() {
 			label: 'Product Name',
 			wrap: true,
 			flex: 2,
-			minwidth: 300,
-			editable: true
+			minwidth: 300
 		},
 		{
 			label: 'Price (USD)',
 			type: 'ts-number',
-			minwidth: 50,
-			editable: true
+			minwidth: 50
 		},
 		{
 			label: 'More Product ID',
@@ -102,6 +136,7 @@ function gettablecols() {
  */
 function buildEverything(table, rows) {
 	table.rows(rows);
+	message('All data is loaded in memory\n(the Pager maintains itself).');
 }
 
 // Build incrementally .........................................................
@@ -113,6 +148,8 @@ function buildEverything(table, rows) {
  * @param {number} limit
  */
 function buildIncrementally(table, rows) {
+	message('The data is now loaded incrementally\n(the Pager must be updated manually).');
+
 	// tracking max rows per page (the table will tell us how many it can fit)
 	var maxrows = -1;
 

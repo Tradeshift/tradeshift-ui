@@ -3,24 +3,32 @@
 	<?input name="toolbar" type="ts.ui.ToolBarModel"?>
 	<?input name="layout" type="ts.ui.LayoutModel"?>
 	<?function name="renderTabs" src="ts.ui.toolbartabs.edbml"?>
-	
+
 	var spirit = this;
-	var id = toolbar.$instanceid;
+	var id = spirit.$instanceid + toolbar.$instanceid;
 	var mobilos = layout.isMobilePoint();
 	var topbar =  ts.ui.TopBarModel.is(toolbar);
 	var statusbar = ts.ui.StatusBarModel.is(toolbar);
-	var mytitle = toolbar.title || (topbar ? toolbar.defaultTitle : '');
 	var hasrealtitle = !!toolbar.title;
 	
-	renderLeft(id, mytitle, toolbar.search, toolbar.tabs, toolbar.navigation);
-	renderCenter(id, toolbar.pager);
-	renderRight(id, toolbar.$allbuttons());
-	renderSpinner(topbar && mobilos);
-		
-	function renderLeft(id, title, search, tabs, navigation) {
+	renderleft(
+		toolbar.title || (topbar ? toolbar.defaultTitle : ''),
+		toolbar.status,
+		toolbar.search,
+		toolbar.tabs,
+		toolbar.navigation,
+		toolbar.checkbox,
+		toolbar.actions
+	);
+	rendercenter(id, toolbar.pager);
+	renderright(id, toolbar.$allbuttons());
+	renderspinner(topbar && mobilos);
+	
+	function renderleft(title, status, search, tabs, navigation, checkbox, actions) {
 		var hasnavi = !!(topbar && navigation && navigation.getLength());
 		var hastabs = !!tabs.getLength();
-		if(mobilos || search || hastabs || hasnavi || (topbar ? hasrealtitle : title)) {
+		var hasactions = !!actions.getLength();
+		if(mobilos || status || search || checkbox || hasactions || hastabs || hasnavi || (topbar ? hasrealtitle : title)) {
 			if(mobilos && hastabs) {
 				renderTabs(spirit, tabs, id, mobilos);
 			}
@@ -37,27 +45,19 @@
 							out.html += search.render();
 						</li>
 					}
-					if(title && (!search || !using(search))) {
-						var model = {flex: 1};
-						@class = klass('ts-toolbar-title', model);
-						<li id="${id}-title" @class>
-							if(statusbar) {
-								<label>
-									var whitelist = ['strong', 'em', 'strike', 'code'];
-									if(toolbar.linkable) whitelist.push('a');
-									out.html += ts.ui.Markdown.parse(title, whitelist);
-								</label>
-							} else {
-								<label>${title}</label>
-							}
-						</li>
+					if(checkbox) {
+						rendercheckbox(checkbox);
 					}
+					if(title || status) {
+						renderlabels(title, status, search, hasactions);
+					}
+					actions.forEach(renderbutton);
 				}
 			</menu>
 		}
 	}
 
-	function renderCenter(id, pager) {
+	function rendercenter(id, pager) {
 		if(showPager()) {
 			<menu id="${id}-extras" class="ts-toolbar-menu ts-center">
 				@class = klass('ts-toolbar-pager', pager);
@@ -73,33 +73,37 @@
 		return !!(statusbar && pager && pager.pages);
 	}
 
-	function renderRight(id, buttons) {
-		if(buttons.length || toolbar.closebutton) {
+	function renderright(id, buttons) {
+		if(buttons.length || toolbar.configbutton || toolbar.closebutton) {
 			<menu id="${id}-buttons" class="ts-toolbar-menu ts-right">
-				if(!toolbar.compact) {
-					toolbar.$allbuttons().forEach(renderbutton);
-				} else if (mobilos && buttons.length > 1) {
-					renderasidebutton(function onclick() {
-						spirit.putaside(toolbar.$allbuttons());
-					});
-				} else {
-					renderbuttons(
-						toolbar.$specialbuttons(),
-						toolbar.$normalbuttons()
-					);
+				if(buttons.length) {
+					if(!toolbar.compact) {
+						toolbar.$allbuttons().forEach(renderbutton);
+					} else if (mobilos && buttons.length > 1 && !hasicons(buttons)) {
+						renderasidebutton(function onclick() {
+							spirit.putaside(toolbar.$allbuttons());
+						});
+					} else {
+						renderbuttons(
+							toolbar.$specialbuttons(),
+							toolbar.$normalbuttons()
+						);
+					}
 				}
-				if(toolbar.closebutton) {
-					renderbutton(toolbar.closebutton);
-				}
+				[toolbar.configbutton, toolbar.closebutton].forEach(renderbutton);
 			</menu>
 		}
 	}
 
+	// all buttons has icons (or is primary) so that we can keep them in mobile?
+	function hasicons(buttons) {
+		return buttons.every(function(button) {
+			return button.isPrimary() || !!button.icon;
+		});
+	}
+
 	// non-mobile buttons (tertiary buttons are the "normals" here)
 	function renderbuttons(specials, normals) {
-		if(showPager()) {
-			collapsebuttons(specials, normals);
-		}
 		if(normals.length === 1) {
 			specials = normals.concat(specials);
 		} else if(shouldrenderaside(normals)) {
@@ -108,13 +112,6 @@
 			});
 		}
 		specials.forEach(renderbutton);
-	}
-
-	// (this should really be done in the model and not the view)
-	function collapsebuttons(specials, normals) {
-		while(specials.length) {
-			normals.push(specials.shift());
-		}
 	}
 
 	// we have buttons to put into the aside and they're not all disabled?
@@ -126,11 +123,14 @@
 	
 	// non-mobile single button
 	function renderbutton(button) {
-		var id = button.$instanceid;
-		@class = klass('ts-item', button);
-		<li @class id="${id}-item">
-			out.html += button.render();
-		</li>
+		if(button) {
+			var id = spirit.$instanceid + button.$instanceid;
+			@class = klass('ts-item', button);
+			@class += button.isAction ? ' ts-action' : '';
+			<li @class id="${id}-item">
+				out.html += button.render(false, mobilos);
+			</li>
+		}
 	}
 	
 	// show-more button (to open remaining buttons in ASIDE)
@@ -144,8 +144,41 @@
 		</li>
 	}
 
-	function klass(cname, model) {
-		var flex = model && model.flex;
+	// checkbox (for selections in the actionbar)
+	function rendercheckbox(box) {
+		@class = klass('ts-toolbar-checkbox', box);
+		@title = box.info || null;
+		<li @class id="${id}-checkbox">
+			<button data-ts="Button" onclick="#{box.onclick()}" @title>
+				@class = box.checked ? 'ts-icon-checkboxon' : 'ts-icon-checkbox';
+				<i @class></i>
+			</button>
+		</li>
+	}
+
+	// title (big text) or status message (with markdown)
+	function renderlabels(title, status, search, hasactions) {
+		if(!search || !using(search)) {
+			if(title) {
+				@class = klass('ts-toolbar-title', null, !hasactions);
+				<li id="${id}-title" @class>
+					<label>${title}</label>
+				</li>
+			} else {
+				@class = klass('ts-toolbar-status', null, !hasactions);
+				<li id="${id}-status" @class>
+					<label>
+						var whitelist = ['strong', 'em', 'strike', 'code'];
+						if(toolbar.linkable) whitelist.push('a');
+						out.html += ts.ui.Markdown.parse(status, whitelist);
+					</label>
+				</li>
+			}
+		}
+	}
+
+	function klass(cname, model, forceflex) {
+		var flex = (model && model.flex) || forceflex;
 		return [
 			'ts-toolbar-item',
 			(cname || ''),
@@ -161,7 +194,7 @@
 	// SPINNER ...................................................................
 	
 	// in the TopBar, we'll render the Spinner in mobile brakpoint.
-	function renderSpinner(on) {
+	function renderspinner(on) {
 		@id = id + '-spinner';
 		@class = 'ts-topbarspinner';
 		if(on) {

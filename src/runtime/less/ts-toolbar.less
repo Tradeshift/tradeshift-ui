@@ -42,6 +42,16 @@
 	}
 	&.ts-left {
 		left: 0;
+		&, & > li {
+			.ts-mixin-fixheight(@ts-unit-triple);
+			.ts-button {
+				display: inline-block;
+			}
+			.ts-action {
+				padding-left: 0;
+				padding-right: 0;
+			}
+		}
 	}
 	&.ts-right {
 		right: 0;
@@ -90,7 +100,8 @@
 		}
 	}
 }
-.ts-toolbar-title {
+.ts-toolbar-title,
+.ts-toolbar-status {
 	padding-left: 0;
 	padding-right: 0;
 	text-overflow: ellipsis;
@@ -107,6 +118,18 @@
 		top: -1px;
 		overflow: hidden;
 		text-overflow: ellipsis;
+	}
+}
+.ts-toolbar-status {
+	&:first-child {
+		padding-left: @ts-unit-plus;
+	}
+	&:not(:first-child) {
+		padding-left: 0 !important;
+	}
+	label {
+		font-size: @ts-fontsize;
+		top: 0;	
 	}
 }
 .ts-toolbar-search {
@@ -300,9 +323,6 @@
 		}
 	}
 }
-
-
-
 .ts-toolbar {
 	&.ts-bg-dark .ts-toolbar-tabs {
 		.ts-button {
@@ -339,21 +359,36 @@
 	}
 }
 
+
 // Statusbar ...................................................................
 
-.ts-toolbar.ts-statusbar {
-	.ts-toolbar-title {
-		label {
-			font-size: @ts-fontsize;
-			padding: @ts-unit-half 0;
-			top: 0;	
+.ts-toolbar {
+	&.ts-micro,
+	&.ts-macro {
+		.ts-toolbar-item.ts-action:first-child {
+			padding-left: @ts-unit;
 		}
+		/*
+		.ts-toolbar-title {
+			&:first-child {
+				padding-left: @ts-unit-plus;
+			}
+			&:not(:first-child) {
+				padding-left: 0 !important;
+			}
+			label {
+				font-size: @ts-fontsize;
+				top: 0;	
+			}
+		}
+		*/
 	}
+	/*
 	&.ts-small {
-		&.ts-level-1-5,
-		&.ts-level-2,
-		&.ts-level-2-5,
-		&.ts-level-3 {
+		&.ts-level-4-5,
+		&.ts-level-6,
+		&.ts-level-7-5,
+		&.ts-level-9 {
 			.ts-toolbar-menu {
 				display: block;
 				width: 100%;
@@ -368,8 +403,8 @@
 				bottom: 0;
 			}
 		}
-		&.ts-level-1-5,
-		&.ts-level-2-5 {
+		&.ts-level-4-5,
+		&.ts-level-7-5 {
 			.ts-left {
 				.ts-toolbar-item {
 					padding: 0;
@@ -381,19 +416,20 @@
 				}
 			}
 		}
-		&.ts-level-1-5 {
+		&.ts-level-4-5 {
 			.ts-mixin-fixheight((@ts-unit-triple * 1.5) + @ts-unit-quarter);
 		}
-		&.ts-level-2 {
+		&.ts-level-6 {
 			.ts-mixin-fixheight(@ts-unit-triple * 2);
 		}
-		&.ts-level-2-5 {
+		&.ts-level-7-5 {
 			.ts-mixin-fixheight(@ts-unit-triple * 2.5);
 		}
-		&.ts-level-3 {
+		&.ts-level-9 {
 			.ts-mixin-fixheight(@ts-unit-triple * 3);
 		}
 	}
+	*/
 }
 
 // Micro toolbar ...............................................................
@@ -401,9 +437,17 @@
 .ts-toolbar.ts-micro {
 	.ts-mixin-fixheight(@ts-unit-double);
 	.ts-left {
+		&, & > li {
+			.ts-mixin-fixheight(@ts-unit-double);
+			.ts-action {
+				height: @ts-unit-plus;
+				max-height: @ts-unit-plus;
+			}
+		}
 		.ts-toolbar-item {
 			padding: @ts-unit-quarter;
-			&.ts-toolbar-title {
+			&.ts-toolbar-title,
+			&.ts-toolbar-status {
 				&:first-child {
 					padding-left: @ts-unit - @ts-unit-quarter;
 				}
@@ -411,6 +455,12 @@
 					padding-top: @ts-unit-quarter;
 					padding-bottom: @ts-unit-quarter;
 					font-size: @ts-fontsize;
+				}
+			}
+			&.ts-toolbar-checkbox {
+				padding: 0 !important;
+				.ts-button {
+					.ts-mixin-fix(@ts-unit-double, @ts-unit-double);
 				}
 			}
 		}

@@ -1,8 +1,11 @@
 /**
  * Advanced toolbar model.
  * @extends {ts.ui.BarModel}
+ * @using {gui.Combo#chained} chained
+ * @using {Class<ts.ui.ButtonModel} ButtonModel
+ * @using {Class<ts.ui.CheckBoxModel} CheckBoxModel
  */
-ts.ui.ToolBarModel = (function using(chained) {
+ts.ui.ToolBarModel = (function using(chained, ButtonModel, CheckBoxModel) {
 	return ts.ui.BarModel.extend({
 		/**
 		 * Friendly name.
@@ -29,10 +32,16 @@ ts.ui.ToolBarModel = (function using(chained) {
 		color: ts.ui.CLASS_BG_LITE,
 
 		/**
-		 * Toolbar title (or statusbar message).
+		 * Toolbar title.
 		 * @type {string}
 		 */
 		title: null,
+
+		/**
+		 * Toolbar status.
+		 * @type {string}
+		 */
+		status: null,
 
 		/**
 		 * Toolbar search model.
@@ -54,16 +63,83 @@ ts.ui.ToolBarModel = (function using(chained) {
 		tabs: ts.ui.TabCollection,
 
 		/**
+		 * Toolbar actions collection.
+		 * @type {ts.ui.ActionCollection<ts.ui.ButtonModel>}
+		 */
+		actions: ts.ui.ActionCollection,
+
+		/**
 		 * Toolbar button collection.
 		 * @type {ts.ui.ButtonCollection<ts.ui.ButtonModel>}
 		 */
 		buttons: ts.ui.ButtonCollection,
 
 		/**
+		 * Reserved for the config button as seen in the Table footer.
+		 * @type {ts.ui.ButtonModel}
+		 */
+		configbutton: {
+			getter: function() {
+				return this.actualconfigbutton;
+			},
+			setter: function(json) {
+				if (json) {
+					json = ButtonModel.from(json);
+					json.icon = 'ts-icon-settings';
+					json.type = 'ts-tertiary ts-noborder';
+				}
+				this.actualconfigbutton = json;
+			}
+		},
+
+		/**
 		 * Reserved for the closing "X" in Aside headers and so forth.
 		 * @type {ts.ui.ButtonModel}
 		 */
-		closebutton: ts.ui.ButtonModel,
+		closebutton: {
+			getter: function() {
+				return this.actualclosebutton;
+			},
+			setter: function(json) {
+				if (json) {
+					json = ButtonModel.from(json);
+					json.icon = 'ts-icon-close';
+					json.type = 'ts-tertiary ts-noborder';
+				}
+				this.actualclosebutton = json;
+			}
+		},
+
+		/**
+		 * Checkbox (mainly to handle the actionbar selections).
+		 * @type {ts.ui.CheckBoxModel}
+		 */
+		checkbox: {
+			getter: function() {
+				return this.actualcheckbox;
+			},
+			setter: function(json) {
+				this.actualcheckbox = json ? CheckBoxModel.from(json) : null;
+			}
+		},
+
+		/**
+		 * (woraround bug in EDBML spec)
+		 * @type {ts.ui.ButtonModel}
+		 */
+		actualconfigbutton: null,
+
+		/**
+		 * (woraround bug in EDBML spec)
+		 * @type {ts.ui.ButtonModel}
+		 */
+		actualclosebutton: null,
+
+		/**
+		 * (woraround bug in EDBML spec)
+		 * @type {ts.ui.CheckBoxModel}
+		 */
+		actualcheckbox: null,
 
 		/**
 		 * Newup defaults.
@@ -71,6 +147,8 @@ ts.ui.ToolBarModel = (function using(chained) {
 		onconstruct: function() {
 			this.super.onconstruct();
 			this.buttons = this.buttons || [];
+			this.actions = this.actions || [];
+			// alert('Hello ' + this + ' ' + this.actions);
 			this.tabs = this.tabs || [];
 			this._watchmodels(true);
 			this._updatehascontent();
@@ -145,6 +223,7 @@ ts.ui.ToolBarModel = (function using(chained) {
 		/**
 		 * Compute the property `hascontent` so that others
 		 * won't have to remember this long list of checks.
+		 * TODO: We will really have to get rid of this !!!
 		 * @returns {boolean} True when there's content...
 		 */
 		_updatehascontent: function() {
@@ -152,10 +231,11 @@ ts.ui.ToolBarModel = (function using(chained) {
 				this.tabs.length ||
 				this.buttons.length ||
 				this.title ||
+				this.status ||
 				this.search ||
 				this.closebutton
 			);
 			return this.hascontent;
 		}
 	});
-})(gui.Combo.chained);
+})(gui.Combo.chained, ts.ui.ButtonModel, ts.ui.CheckBoxModel);

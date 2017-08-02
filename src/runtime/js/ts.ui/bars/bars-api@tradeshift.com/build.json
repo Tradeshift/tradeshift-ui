@@ -3,6 +3,7 @@
 	"models/toolbar/ts.ui.ToolBarModel.js",
 	"models/statusbar/ts.ui.StatusBarModel.js",
 	"models/topbar/ts.ui.TopBarModel.js",
+	"models/footer/ts.ui.FooterBarModel.js",
 	"api/ts.ui.TopBar.js",
 	"module.js"
 ]

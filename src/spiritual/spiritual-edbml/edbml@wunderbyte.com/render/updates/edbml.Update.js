@@ -70,11 +70,18 @@ edbml.Update = gui.Class.create(
 				}
 			}
 			if (!element) {
-				element = document.querySelector('#' + this.id);
+				// updated to return potentially multiple hits :/
+				element = document.querySelectorAll('#' + this.id);
 			}
 			if (element) {
 				if (cb) {
-					cb.call(this, element);
+					if (element.length) {
+						gui.Array.from(element).forEach(function(e) {
+							cb.call(this, e);
+						}, this);
+					} else {
+						cb.call(this, element);
+					}
 				}
 			} else {
 				if (edbml.debug) {

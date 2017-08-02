@@ -14,7 +14,7 @@
     <link rel="prefetch" title="Pager" href="pager.html">
     <link rel="prefetch" title="Configuration" href="configuration.html">
     <link rel="prefetch" title="Collaboration" href="collaboration.html">
-    <link rel="prefetch" title="Gallery" href="gallery.html" class="hidden">
+    <link rel="prefetch" title="Gallery" href="gallery.html">
     <script>
         ts.dox.tabs()
     </script>
@@ -32,14 +32,13 @@
                         <p>This is an <strong>alpha</strong> preview. All features and APIs can be expected to change!</p>
                     </div>
                 </section>
-                <!--
-				<section class="desc">
-					<p>Footer <code>actions</code> can be used to manipulate selected objects of any kind. They appear in a separate toolbar, so that they never conflict with the normal <a href="/#components/footer/index.html">buttons</a>. This toolbar can also be configured with a status message and a checkbox.</p>
-				</section>
-				-->
+                <section class="desc">
+                    <p>Footer <code>actions</code> can be used to manipulate selected objects of any kind. They appear in a separate toolbar, so that they never conflict with the normal <a data-ts="Button" href="/dist/components/footer/index.html">buttons</a>.
+                        This toolbar can also be configured with a status message and a checkbox.</p>
+                </section>
                 <section>
-                    <p>Whenever a selection offers manipulation options, you can mount the relevant actions much like you would with the buttons. The <code>actions</code> method both sets and gets the actions. If you omit the argument, you&quot;ll get the
-                        current actions (jQuery style).</p>
+                    <p>The <code>actions</code> method both sets and gets the actions. If you omit the argument, you&quot;ll get the current actions (jQuery style). In real life, the actions should only appear whenever the user has selected something with
+                        the mouse or keyboard, so we will just have to pretend that something is selected.</p>
                     <figure data-ts="DoxScript" class="attention runnable" data-ts.code="ts.ui.Footer.actions(%5B%0A%09%7B%20label%3A%20&apos;Move%20Up&apos;%2C%20icon%3A%20&apos;ts-icon-triangleup&apos;%20%7D%2C%0A%09%7B%20label%3A%20&apos;Move%20Down&apos;%2C%20icon%3A%20&apos;ts-icon-triangledown&apos;%20%7D%2C%0A%09%7B%20label%3A%20&apos;Move%20Left&apos;%2C%20icon%3A%20&apos;ts-icon-triangleleft&apos;%20%7D%2C%0A%09%7B%20label%3A%20&apos;Move%20Right&apos;%2C%20icon%3A%20&apos;ts-icon-triangleright&apos;%20%7D%2C%0A%09%7B%20label%3A%20&apos;Don%5C&apos;t%20Move&apos;%2C%20icon%3A%20&apos;ts-icon-halt&apos;%2C%20onclick%3A%20function()%20%7B%0A%09%09ts.ui.Footer.actions().clear()%3B%0A%09%7D%7D%0A%5D)%3B">
                         <script type="runnable">
                             ts.ui.Footer.actions([ { label: 'Move Up', icon: 'ts-icon-triangleup' }, { label: 'Move Down', icon: 'ts-icon-triangledown' }, { label: 'Move Left', icon: 'ts-icon-triangleleft' }, { label: 'Move Right', icon: 'ts-icon-triangleright' }, { label: 'Don\'t
@@ -59,9 +58,8 @@
 </pre>
                         </div>
                     </figure>
-                    <p>In real life, the actions should of course only appear whenever the user has selected something with the mouse or keyboard. We will just have to pretend that he did that.</p>
-                    <p>You can use array methods like <code>push</code>, <code>pop</code>, <code>shift</code>, <code>unshift</code>, <code>splice</code> and so on to manage tabs, just note that the actions <code>length</code> is a readonly property. For
-                        consistency reasons, actions should always have <em>both</em> an icon and a label, much unlike the buttons.</p>
+                    <p>You can use array methods like <code>push</code>, <code>pop</code>, <code>shift</code>, <code>unshift</code>, <code>splice</code> and so on to manage tabs, just note that the actions <code>length</code> is a readonly property. To ensure
+                        consistency, actions should always have both an icon and a label, much unlike the buttons.</p>
                     <h3><span>Status message</span></h3>
                     <p>We can configure the actionbar with a <code>status</code> message. When a selection is made, the massage could be something like &quot;23 products selected&quot;. When nothing is selected, it could perhaps be something like &quot;Showing
                         10-20 out of 123 products&quot;.</p>
@@ -76,7 +74,7 @@
                         </div>
                     </figure>
                     <h3><span>Checkbox</span></h3>
-                    <p>I can has checkbox. That this is the minimum viable implementation! More info to follow.</p>
+                    <p>There&apos;s also a checkbox. That this is the minimum viable implementation!</p>
                     <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.Footer.checkbox(%7B%0A%09onclick%3A%20function()%20%7B%0A%09%09this.checked%20%3D%20!this.checked%3B%0A%09%7D%0A%7D)%3B">
                         <script type="runnable">
                             ts.ui.Footer.checkbox({ onclick: function() { this.checked = !this.checked; } });

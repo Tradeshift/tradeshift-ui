@@ -7,6 +7,12 @@
 ts.ui.FooterBarModel = (function using(PagerModel, ActionModel) {
 	return ts.ui.Model.extend({
 		/**
+		 * Friendly name.
+		 * @type {string}
+		 */
+		item: 'footerbar',
+
+		/**
 		 * @type {ts.ui.ToolBarModel}
 		 */
 		bufferbar: ts.ui.ToolBarModel,

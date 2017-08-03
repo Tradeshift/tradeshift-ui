@@ -21,8 +21,9 @@
     <link rel="prefetch" title="Search" href="searching.html">
     <link rel="prefetch" title="Edit" href="editing.html">
     <link rel="prefetch" title="Filter" href="filtering.html">
-    <link rel="prefetch" title="Config" href="configuring.html">
     <link rel="prefetch" title="Status" href="status.html">
+    <link rel="prefetch" title="Config" href="configuring.html">
+    <link rel="prefetch" title="Collab" href="collaborate.html">
     <link rel="prefetch" title="Actions" href="actions.html">
     <link rel="prefetch" title="Buttons" href="buttons.html">
     <link rel="prefetch" title="Extras" href="extras.html">
@@ -42,29 +43,31 @@
             <article>
                 <h1><span>Selection actions</span></h1>
                 <section>
-                    <p>The table <code>actions</code> are reserved for working with selections. They work much like the <a href="">buttons</a> except the <code>icon</code> should never be omitted from an action, since it is always displayed (and not just
-                        in mobile breakpoint). You can try to select something in this table.</p>
+                    <p>The table <code>actions</code> are reserved for working with <em>selections</em>. They work much like the <a href="">buttons</a> except the <code>icon</code> should never be omitted from an action, since it is always displayed (and
+                        not just in mobile breakpoint). You can try to select something in this table.</p>
                     <div class="splitscreen-container">
                         <ul class="splitscreen">
                             <li>
-                                <figure data-ts="DoxScript" class="attention runnable" data-ts.code="var%20table%20%3D%20ts.ui.get(&apos;%23table1&apos;)%3B%0Atable.rows(%5B%0A%09%7Bcells%3A%20%5B&apos;A&apos;%2C%20&apos;B&apos;%2C%20&apos;C&apos;%5D%7D%2C%0A%09%7Bcells%3A%20%5B&apos;D&apos;%2C%20&apos;E&apos;%2C%20&apos;F&apos;%5D%7D%2C%0A%09%7Bcells%3A%20%5B&apos;G&apos;%2C%20&apos;H&apos;%2C%20&apos;I&apos;%5D%7D%2C%0A%5D).selectable(function()%20%7B%0A%09var%20actions%20%3D%20table.actions()%3B%0A%09var%20counter%20%3D%20table.selected().length%3B%0A%09if(counter%20%3E%200)%20%7B%0A%09%09table.status(counter%20%2B%20&apos;%20selected&apos;)%3B%0A%09%09if(!actions.length)%20%7B%0A%09%09%09actions.push(%0A%09%09%09%09%7B%20label%3A%20&apos;Delete&apos;%2C%20icon%3A%20&apos;ts-icon-delete&apos;%20%7D%2C%0A%09%09%09%09%7B%20label%3A%20&apos;Report&apos;%2C%20icon%3A%20&apos;ts-icon-halt&apos;%20%7D%2C%0A%09%09%09%09%7B%20label%3A%20&apos;Revert&apos;%2C%20icon%3A%20&apos;ts-icon-back&apos;%2C%20onclick%3A%20function()%20%7B%0A%09%09%09%09%09console.log(&apos;The%20revert%20action%20was%20clicked!&apos;)%3B%0A%09%09%09%09%7D%7D%0A%09%09%09)%3B%0A%09%09%7D%0A%09%7D%20else%20%7B%0A%09%09actions.clear()%3B%0A%09%09table.status(&apos;&apos;)%3B%0A%09%7D%0A%7D)%3B">
+                                <figure data-ts="DoxScript" class="attention runnable" data-ts.code="var%20table%20%3D%20ts.ui.get(&apos;%23table1&apos;)%3B%0Atable.cols(%5B&apos;One&apos;%2C%20&apos;Two&apos;%2C%20&apos;Three&apos;%5D).rows(%5B%0A%09%5B&apos;A&apos;%2C%20&apos;B&apos;%2C%20&apos;C&apos;%5D%2C%0A%09%5B&apos;D&apos;%2C%20&apos;E&apos;%2C%20&apos;F&apos;%5D%2C%0A%09%5B&apos;G&apos;%2C%20&apos;H&apos;%2C%20&apos;I&apos;%5D%2C%0A%5D).selectable(update)%3B%0Afunction%20update()%20%7B%0A%09var%20actions%20%3D%20table.actions()%3B%0A%09var%20maximum%20%3D%20table.rows().length%3B%0A%09var%20counter%20%3D%20table.selected().length%3B%0A%09if(counter%20%3E%200)%20%7B%0A%09%09table.status(counter%20%2B%20&apos;%20of%20&apos;%20%2B%20maximum%20%2B%20&apos;%20rows%20selected&apos;)%3B%0A%09%09if(!actions.length)%20%7B%0A%09%09%09actions.push(%0A%09%09%09%09%7B%20label%3A%20&apos;Delete&apos;%2C%20icon%3A%20&apos;ts-icon-delete&apos;%20%7D%2C%0A%09%09%09%09%7B%20label%3A%20&apos;Report&apos;%2C%20icon%3A%20&apos;ts-icon-halt&apos;%20%7D%2C%0A%09%09%09%09%7B%20label%3A%20&apos;Revert&apos;%2C%20icon%3A%20&apos;ts-icon-back&apos;%2C%20onclick%3A%20function()%20%7B%0A%09%09%09%09%09console.log(&apos;The%20revert%20action%20was%20clicked!&apos;)%3B%0A%09%09%09%09%7D%7D%0A%09%09%09)%3B%0A%09%09%7D%0A%09%7D%20else%20%7B%0A%09%09actions.clear()%3B%0A%09%09table.status(maximum%20%2B%20&apos;%20rows&apos;)%3B%0A%09%7D%0A%7D%0Aupdate()%3B">
                                     <script type="runnable">
-                                        var table = ts.ui.get('#table1'); table.rows([ {cells: ['A', 'B', 'C']}, {cells: ['D', 'E', 'F']}, {cells: ['G', 'H', 'I']}, ]).selectable(function() { var actions = table.actions(); var counter = table.selected().length; if(counter > 0) { table.status(counter
-                                        + ' selected'); if(!actions.length) { actions.push( { label: 'Delete', icon: 'ts-icon-delete' }, { label: 'Report', icon: 'ts-icon-halt' }, { label: 'Revert', icon: 'ts-icon-back', onclick: () => { console.log('The
-                                        revert action was clicked!'); }} ); } } else { actions.clear(); table.status(''); } });
+                                        var table = ts.ui.get('#table1'); table.cols(['One', 'Two', 'Three']).rows([ ['A', 'B', 'C'], ['D', 'E', 'F'], ['G', 'H', 'I'], ]).selectable(update); function update() { var actions = table.actions(); var maximum = table.rows().length; var counter =
+                                        table.selected().length; if(counter > 0) { table.status(counter + ' of ' + maximum + ' rows selected'); if(!actions.length) { actions.push( { label: 'Delete', icon: 'ts-icon-delete' }, { label: 'Report', icon: 'ts-icon-halt'
+                                        }, { label: 'Revert', icon: 'ts-icon-back', onclick: () => { console.log('The revert action was clicked!'); }} ); } } else { actions.clear(); table.status(maximum + ' rows'); } } update();
                                     </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                                     <div class="tabpanels">
                                         <pre class="prism language-javascript">
 <code><span class="token keyword">var</span> table <span class="token operator">=</span> ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#table1&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-table<span class="token punctuation">.</span><span class="token function">rows<span class="token punctuation">(</span></span><span class="token punctuation">[</span>
-	<span class="token punctuation">{</span>cells<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">&apos;A&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;B&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;C&apos;</span><span class="token punctuation">]</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
-	<span class="token punctuation">{</span>cells<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">&apos;D&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;E&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;F&apos;</span><span class="token punctuation">]</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
-	<span class="token punctuation">{</span>cells<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">&apos;G&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;H&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;I&apos;</span><span class="token punctuation">]</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
-<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">selectable<span class="token punctuation">(</span></span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+table<span class="token punctuation">.</span><span class="token function">cols<span class="token punctuation">(</span></span><span class="token punctuation">[</span><span class="token string">&apos;One&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;Two&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;Three&apos;</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">rows<span class="token punctuation">(</span></span><span class="token punctuation">[</span>
+	<span class="token punctuation">[</span><span class="token string">&apos;A&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;B&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;C&apos;</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+	<span class="token punctuation">[</span><span class="token string">&apos;D&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;E&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;F&apos;</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+	<span class="token punctuation">[</span><span class="token string">&apos;G&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;H&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;I&apos;</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">selectable<span class="token punctuation">(</span></span>update<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">function</span> <span class="token function">update<span class="token punctuation">(</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
 	<span class="token keyword">var</span> actions <span class="token operator">=</span> table<span class="token punctuation">.</span><span class="token function">actions<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token keyword">var</span> maximum <span class="token operator">=</span> table<span class="token punctuation">.</span><span class="token function">rows<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">.</span>length<span class="token punctuation">;</span>
 	<span class="token keyword">var</span> counter <span class="token operator">=</span> table<span class="token punctuation">.</span><span class="token function">selected<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">.</span>length<span class="token punctuation">;</span>
 	<span class="token keyword">if</span><span class="token punctuation">(</span>counter <span class="token operator">&gt;</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-		table<span class="token punctuation">.</span><span class="token function">status<span class="token punctuation">(</span></span>counter <span class="token operator">+</span> <span class="token string">&apos; selected&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		table<span class="token punctuation">.</span><span class="token function">status<span class="token punctuation">(</span></span>counter <span class="token operator">+</span> <span class="token string">&apos; of &apos;</span> <span class="token operator">+</span> maximum <span class="token operator">+</span> <span class="token string">&apos; rows selected&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 		<span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span>actions<span class="token punctuation">.</span>length<span class="token punctuation">)</span> <span class="token punctuation">{</span>
 			actions<span class="token punctuation">.</span><span class="token function">push<span class="token punctuation">(</span></span>
 				<span class="token punctuation">{</span> label<span class="token punctuation">:</span> <span class="token string">&apos;Delete&apos;</span><span class="token punctuation">,</span> icon<span class="token punctuation">:</span> <span class="token string">&apos;ts-icon-delete&apos;</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
@@ -76,9 +79,10 @@ table<span class="token punctuation">.</span><span class="token function">rows<s
 		<span class="token punctuation">}</span>
 	<span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
 		actions<span class="token punctuation">.</span><span class="token function">clear<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-		table<span class="token punctuation">.</span><span class="token function">status<span class="token punctuation">(</span></span><span class="token string">&apos;&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		table<span class="token punctuation">.</span><span class="token function">status<span class="token punctuation">(</span></span>maximum <span class="token operator">+</span> <span class="token string">&apos; rows&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 	<span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
+<span class="token punctuation">}</span>
+<span class="token function">update<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
 </pre>
                                     </div>
                                 </figure>
@@ -88,10 +92,14 @@ table<span class="token punctuation">.</span><span class="token function">rows<s
                             </li>
                         </ul>
                     </div>
-                    <div data-ts="Note">
-                        <i class="ts-icon-todo"></i>
-                        <p>TODO: API table goes here!</p>
-                    </div>
+                    <p>The <code>actions</code> method both sets and gets the actions. If you omit the argument, you&quot;ll get the current actions (jQuery style). You can use array methods like <code>push</code>, <code>pop</code>, <code>shift</code>, <code>unshift</code>,
+                        <code>splice</code> and so on to manage actions, just note that the actions <code>length</code> is a readonly property.</p>
+                    <!--
+					<div data-ts="Note">
+						<i class="ts-icon-todo"></i>
+						<p>TODO: API table goes here!</p>
+					</div>
+					-->
                     <!--
 						<div data-ts="DoxApi">
 						<script type="application/json">

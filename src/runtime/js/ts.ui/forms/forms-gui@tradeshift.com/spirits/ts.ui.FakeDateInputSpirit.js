@@ -109,7 +109,12 @@ ts.ui.FakeDateInputSpirit = (function using(chained, tick, time) {
 			var realspirit = this._proxyspirit;
 			if (realspirit.value !== value) {
 				realspirit.value = value;
-				this._triggerinput();
+				if (gui.Client.isExplorer) {
+					this._triggerchange();
+				} else {
+					this._triggerinput();
+				}
+				
 			}
 		},
 

@@ -62,15 +62,7 @@ ts.ui.FooterBarSpirit = (function using(chained, GuiArray, PagerModel, ToolBarSp
 		 */
 		onflex: function() {
 			this.super.onflex();
-			/*
-			if (this._hasPager() && this._hasButtons()) {
-				var was = this._conflict;
-				var now = this._hittest();
-				if (was !== now) {
-					this._transfer();
-				}
-			}
-			*/
+			this._optimize(true);
 		},
 
 		/**
@@ -167,16 +159,13 @@ ts.ui.FooterBarSpirit = (function using(chained, GuiArray, PagerModel, ToolBarSp
 		}),
 
 		/**
-		 * Show the dedicated collaboration button.
+		 * Show the dedicated collaboration button (which is really just an action 
+		 * in the centerbar). Note that this has not been rigged up for measurement!
 		 * @param {Function} [onclick]
 		 * @returns {this}
 		 */
 		showCollaboration: chained(function(onclick) {
-			this.model().collabbutton = {
-				label: 'Collaborate On This',
-				icon: 'ts-icon-collaboration',
-				onclick: onclick
-			};
+			this.model().showCollaboration(onclick);
 		}),
 
 		/**
@@ -184,8 +173,8 @@ ts.ui.FooterBarSpirit = (function using(chained, GuiArray, PagerModel, ToolBarSp
 		 * @param {Function} [onclick]
 		 * @returns {this}
 		 */
-		hideCollaboration: chained(function(onclick) {
-			this.model().collabbutton = null;
+		hideCollaboration: chained(function() {
+			this.model().hideCollaboration();
 		}),
 
 		/**
@@ -315,16 +304,10 @@ ts.ui.FooterBarSpirit = (function using(chained, GuiArray, PagerModel, ToolBarSp
 		_pagerchanged: false,
 
 		/**
-		 * Spirit of the buffer bar.
+		 * Spirit of the buffer bar (remains invisible at all times).
 		 * @type {ts.ui.ToolBarSpirit}
 		 */
 		_bufferbarspirit: null,
-
-		/**
-		 * Spirit of the backup bar.
-		 * @type {ts.ui.ToolBarSpirit}
-		 */
-		_backupbarspirit: null,
 
 		/**
 		 * Spirit of the action bar.
@@ -333,10 +316,16 @@ ts.ui.FooterBarSpirit = (function using(chained, GuiArray, PagerModel, ToolBarSp
 		_actionbarspirit: null,
 
 		/**
-		 * Spirit of the center bar.
+		 * Spirit of the center bar (usually the bottom bar unless collissions).
 		 * @type {ts.ui.StatusBarSpirit}
 		 */
 		_centerbarspirit: null,
+
+		/**
+		 * Spirit of the backup bar (only visible upon collistions in centerbar).
+		 * @type {ts.ui.ToolBarSpirit}
+		 */
+		_backupbarspirit: null,
 
 		/**
 		 * Lookup ToolBarSpirit by selector.
@@ -348,26 +337,48 @@ ts.ui.FooterBarSpirit = (function using(chained, GuiArray, PagerModel, ToolBarSp
 		},
 
 		/**
-		 * Attempt to optimize the vertical height by stacking the bars only when needed.
+		 * Attempt to optimize the vertical height by stacking the bars when needed.
+		 * @param {boolean} [flexing]
 		 */
-		_optimize: function() {
-			var clone = null;
+		_optimize: function(flexing) {
 			var model = this.model();
 			var buttons = model.bufferbar.buttons;
 			var actions = model.bufferbar.actions;
-			if (buttons) {
-				clone = gui.Array.from(buttons);
-				if (this._hittest()) {
-					model.backupbar.buttons = clone;
-					model.centerbar.buttons.clear();
-				} else {
-					model.centerbar.buttons = clone;
-					model.backupbar.buttons.clear();
-				}
+			if (!flexing || buttons.length) {
+				var hits = this._hittest();
+				this._optimizebuttons(model, gui.Array.from(buttons), hits);
+				this._optimizeactions(model, gui.Array.from(actions), hits);
 			}
-			if (actions) {
-				clone = gui.Array.from(actions);
+		},
+
+		/**
+		 * Teleport buttons between centerbar and backupbar.
+		 * @param {ts.ui.FooterBarModel} model
+		 * @param {Array<ts.ui.ButtonModel>} clone
+		 * @param {boolean} hits
+		 */
+		_optimizebuttons: function(model, clone, hits) {
+			if (hits) {
+				model.backupbar.buttons = clone;
+				model.centerbar.buttons.clear();
+			} else {
+				model.centerbar.buttons = clone;
+				model.backupbar.buttons.clear();
+			}
+		},
+
+		/**
+		 * Teleport actions (collaborationbutton!) between centerbar and backupbar.
+		 * @param {ts.ui.FooterBarModel} model
+		 * @param {Array<ts.ui.ButtonModel>} clone
+		 * @param {boolean} hits
+		 */
+		_optimizeactions: function(model, clone, hits) {
+			if (hits) {
 				model.centerbar.actions.clear();
+				model.backupbar.actions = clone;
+			} else {
+				model.backupbar.actions.clear();
 				model.centerbar.actions = clone;
 			}
 		},

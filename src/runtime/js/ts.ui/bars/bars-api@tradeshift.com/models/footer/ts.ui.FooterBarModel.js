@@ -3,8 +3,9 @@
  * @extends {ts.ui.Model}
  * @using {Class<PagerModel>} PagerModel
  * @using {Class<ts.ui.ActionModel>} ActionModel
+ * @using {gui.Combo#chained} chained
  */
-ts.ui.FooterBarModel = (function using(PagerModel, ActionModel) {
+ts.ui.FooterBarModel = (function using(PagerModel, ActionModel, chained) {
 	return ts.ui.Model.extend({
 		/**
 		 * Friendly name.
@@ -97,7 +98,7 @@ ts.ui.FooterBarModel = (function using(PagerModel, ActionModel) {
 		},
 
 		/**
-		 * Note: Also inject into bufferbar so that it can affect measurements :)
+		 * Note: Also injected into bufferbar so that it can affect measurements.
 		 * Perhaps the right approach is to only render it in the bufferbar and 
 		 * then move it to `center` or `backup` just like we do with the buttons?
 		 * @type {ts.ui.ButtonModel}
@@ -109,22 +110,6 @@ ts.ui.FooterBarModel = (function using(PagerModel, ActionModel) {
 			setter: function(json) {
 				this.bufferbar.configbutton = json;
 				this.centerbar.configbutton = json;
-			}
-		},
-
-		/**
-		 * @type {ts.ui.ActionModel}
-		 */
-		collabbutton: {
-			getter: function() {
-				return this.bufferbar.actions ? this.bufferbar.actions[0] : null;
-			},
-			setter: function(json) {
-				if (json) {
-					this.bufferbar.actions = [json];
-				} else {
-					this.bufferbar.actions.clear();
-				}
 			}
 		},
 
@@ -148,6 +133,30 @@ ts.ui.FooterBarModel = (function using(PagerModel, ActionModel) {
 		render: function() {
 			return ts.ui.footer.edbml(this);
 		},
+
+		/**
+		 * Show the collaboration button (which is really just a centerbar action).
+		 * @param {Function} [onclick]
+		 * @returns {this}
+		 */
+		showCollaboration: chained(function(onclick) {
+			this.bufferbar.actions = [
+				{
+					label: 'Collaborate On This',
+					icon: 'ts-icon-collaboration',
+					onclick: onclick
+				}
+			];
+		}),
+
+		/**
+		 * Show the dedicated collaboration button.
+		 * @param {Function} [onclick]
+		 * @returns {this}
+		 */
+		hideCollaboration: chained(function() {
+			this.bufferbar.actions.clear();
+		}),
 
 		// Privileged ..............................................................
 
@@ -195,4 +204,4 @@ ts.ui.FooterBarModel = (function using(PagerModel, ActionModel) {
 			return !!model.buttons.getLength();
 		}
 	});
-})(ts.ui.PagerModel, ts.ui.ActionModel);
+})(ts.ui.PagerModel, ts.ui.ActionModel, gui.Combo.chained);

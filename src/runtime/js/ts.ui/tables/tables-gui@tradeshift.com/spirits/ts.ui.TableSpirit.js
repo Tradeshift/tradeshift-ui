@@ -1111,6 +1111,25 @@ ts.ui.TableSpirit = (function using(
 			this._model.linkable = false;
 		}),
 
+		// Collaboration ...........................................................
+
+		/**
+		 * Show the collaboration button.
+		 * @param {Function} [onclick]
+		 * @returns {this}
+		 */
+		showCollaboration: chained(function(onclick) {
+			this._model.toolbar.showCollaboration(onclick);
+		}),
+
+		/**
+		 * Hide the collbaboration button.
+		 * @returns {this}
+		 */
+		hideCollaboration: chained(function() {
+			this._model.toolbar.hideCollaboration();
+		}),
+
 		// Privileged ..............................................................
 
 		/**

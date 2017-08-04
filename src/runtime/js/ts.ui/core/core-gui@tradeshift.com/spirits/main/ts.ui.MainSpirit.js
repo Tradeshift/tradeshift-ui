@@ -61,15 +61,13 @@ ts.ui.MainSpirit = (function using(Type, chained, PANEL_ATTACH, PANEL_DETACH) {
 			var opts = {
 				message: gui.Type.isString(busy) ? busy : ''
 			};
-			if (!busy || !this._isbusy) {
-				this._initspin(busy, opts);
-				if (busy) {
-					this.guistatus.busy(this.$instanceid);
-					this._isbusy = true;
-				} else {
-					this.guistatus.done(this.$instanceid);
-					this._isbusy = false;
-				}
+			this._initspin(busy, opts);
+			if (busy) {
+				this.guistatus.busy(this.$instanceid);
+				this._isbusy = true;
+			} else {
+				this.guistatus.done(this.$instanceid);
+				this._isbusy = false;
 			}
 		}),
 

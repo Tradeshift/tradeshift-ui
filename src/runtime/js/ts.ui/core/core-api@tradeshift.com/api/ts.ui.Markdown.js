@@ -236,7 +236,7 @@ ts.ui.Markdown = (function using(linkparser) {
 	// LINKS ..................................................................
 
 	/**
-	 * Routine to parse links in the format init(text)[href]post.
+	 * Routine to parse links in the format init[text](href)post.
 	 * Regexp for this was not really maintainable (extensible).
 	 * @using {RegExp} txt
 	 * @using {RegExp} url
@@ -270,7 +270,7 @@ ts.ui.Markdown = (function using(linkparser) {
 		}
 
 		function gettext(cut) {
-			last = cut.lastIndexOf('(');
+			last = cut.lastIndexOf('[');
 			init = cut.substr(0, last);
 			return cut.slice(last + 1);
 		}
@@ -290,7 +290,7 @@ ts.ui.Markdown = (function using(linkparser) {
 
 		return function linkparser(line) {
 			reset();
-			return line.split(')[').map(parsecut).join('') || line;
+			return line.split('](').map(parsecut).join('') || line;
 		};
-	})(/\(.+$/, /^.+\]/)
+	})(/\[.+$/, /^.+\)/)
 );

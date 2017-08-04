@@ -4,7 +4,7 @@ var Tests = {
 	linebreaks: 'Line One\nLine Two\nLine Three',
 	ordered: '1. One\n2. Two\n3. Three',
 	unordered: '* One\n* Two\n* Three',
-	link: 'This is a (link)[http://www.tradeshift.com]',
+	link: 'This is a [link](http://www.tradeshift.com)',
 	strong: 'This is **strong**',
 	em: 'This is *emphasized*',
 	strike: 'This is ~~strike~~',

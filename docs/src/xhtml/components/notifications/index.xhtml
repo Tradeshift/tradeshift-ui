@@ -11,7 +11,7 @@
 			'Paragraphs with *italic text*.\n',
 			'Paragraphs with `source code`.\n',
 			'## links',
-			'This is (a link)[http://www.tradeshift.com/]',
+			'This is [a link](http://www.tradeshift.com)',
 			'## Unordered lists',
 			'* One',
 			'* Two',
@@ -83,13 +83,13 @@
 					<figure data-ts="DoxMarkup">
 						<script>
 							Markdown for **bold text** and *italic text* and `source code`
-							Markdown for a (hyperlink)[http://www.example.com/]
+							Markdown for a [hyperlink](http://www.example.com/)
 						</script>
 					</figure>
 					<p>When a link is clicked, the URL will be passed along to the <code>onlink</code> method. As you can see below, the URL can be just a key, it doesn't have to be real URL.</p>
 					<figure data-ts="DoxScript">
 						<script type="runnable">
-							var text = 'Choose link (one)[ONE] or (two)[TWO] or (three)[THREE].';
+							var text = 'Choose link [one](ONE) or [two](TWO) or [three](THREE).';
 							ts.ui.Notification.info(text, {
 								onlink: function(url) {
 									this.accept().then(function onfadeout() {
@@ -103,7 +103,7 @@
 					<figure data-ts="DoxScript">
 						<script type="runnable">
 							ts.ui.Notification.info(
-								'Please visit (Tradeshift)[http://www.tradeshift.com]'
+								'Please visit [Tradeshift](http://www.tradeshift.com)'
 							);
 						</script>
 					</figure>

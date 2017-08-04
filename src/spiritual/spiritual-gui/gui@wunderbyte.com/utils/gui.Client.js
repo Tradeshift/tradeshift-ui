@@ -238,6 +238,25 @@ gui.Client = (function() {
 		this.hasPositionFixed = false;
 
 		/**
+		 * Supports `{passive: true}` as the third parameter of an EventListener?
+		 * @see https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener
+		 * @see https://github.com/Modernizr/Modernizr/blob/master/feature-detects/dom/passiveeventlisteners.js
+		 * @type {boolean}
+		 */
+		this.hasPassiveEventListeners = (function() {
+			var supportsPassiveOption = false;
+			try {
+				var opts = Object.defineProperty({}, 'passive', {
+					get: function() {
+						supportsPassiveOption = true;
+					}
+				});
+				window.addEventListener('test', null, opts);
+			} catch (e) {}
+			return supportsPassiveOption;
+		})();
+
+		/**
 		 * Compute some stuff that couldn't be determined parse time.
 		 */
 		this.$init = function() {

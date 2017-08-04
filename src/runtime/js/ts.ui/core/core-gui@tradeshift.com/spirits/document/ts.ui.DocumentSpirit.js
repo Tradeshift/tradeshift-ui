@@ -70,7 +70,11 @@ ts.ui.DocumentSpirit = (function using(Client) {
 			if (ts.ui.appframe) {
 				var main = this.dom.qdoc('.ts-main');
 				if (main) {
-					main.addEventListener('touchstart', function() {});
+					main.addEventListener(
+						'touchstart',
+						function() {},
+						gui.Client.hasPassiveEventListeners ? { passive: true } : false
+					);
 				} else {
 					console.warn('WARNING: This app needs a ts-main');
 				}

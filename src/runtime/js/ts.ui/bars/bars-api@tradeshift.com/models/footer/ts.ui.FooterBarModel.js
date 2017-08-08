@@ -3,8 +3,9 @@
  * @extends {ts.ui.Model}
  * @using {Class<PagerModel>} PagerModel
  * @using {Class<ts.ui.ActionModel>} ActionModel
+ * @using {gui.Combo#chained} chained
  */
-ts.ui.FooterBarModel = (function using(PagerModel, ActionModel) {
+ts.ui.FooterBarModel = (function using(PagerModel, ActionModel, chained) {
 	return ts.ui.Model.extend({
 		/**
 		 * Friendly name.
@@ -96,38 +97,6 @@ ts.ui.FooterBarModel = (function using(PagerModel, ActionModel) {
 			}
 		},
 
-		/**
-		 * Note: Also inject into bufferbar so that it can affect measurements :)
-		 * Perhaps the right approach is to only render it in the bufferbar and 
-		 * then move it to `center` or `backup` just like we do with the buttons?
-		 * @type {ts.ui.ButtonModel}
-		 */
-		configbutton: {
-			getter: function() {
-				return this.bufferbar.configbutton;
-			},
-			setter: function(json) {
-				this.bufferbar.configbutton = json;
-				this.centerbar.configbutton = json;
-			}
-		},
-
-		/**
-		 * @type {ts.ui.ActionModel}
-		 */
-		collabbutton: {
-			getter: function() {
-				return this.bufferbar.actions ? this.bufferbar.actions[0] : null;
-			},
-			setter: function(json) {
-				if (json) {
-					this.bufferbar.actions = [json];
-				} else {
-					this.bufferbar.actions.clear();
-				}
-			}
-		},
-
 		// Methods .................................................................
 
 		/**
@@ -148,6 +117,67 @@ ts.ui.FooterBarModel = (function using(PagerModel, ActionModel) {
 		render: function() {
 			return ts.ui.footer.edbml(this);
 		},
+
+		/**
+		 * Clear everything.
+		 * @returns {this}
+		 */
+		clear: chained(function() {
+			this.pager = null;
+			this.status = null;
+			this.checkbox = null;
+			this.configbutton(null);
+			this.collabbutton(null);
+			this.bufferbar.buttons.clear();
+			this.actionbar.actions.clear();
+			this.centerbar.actions.clear();
+		}),
+
+		/**
+		 * Note: Also injected into bufferbar so that it can affect measurements.
+		 * @returns {this|ts.ui.ButtonModel}
+		 */
+		configbutton: chained(function(onclick) {
+			if (onclick === null) {
+				this.bufferbar.configbutton = this.centerbar.configbutton = null;
+			} else if (onclick) {
+				this.bufferbar.configbutton = this.centerbar.configbutton = {
+					onclick: onclick
+				};
+			} else {
+				return this.centerbar.configbutton;
+			}
+		}),
+
+		/**
+		 * We'll just implement this as a regular `action` for now.
+		 * TODO: Move this thing to the general {ts.ui.ToolBarModel}
+		 * @returns {this|ts.ui.ActionModel}
+		 */
+		collabbutton: chained(function(onclick) {
+			var actions = this.bufferbar.actions;
+			if (arguments.length) {
+				actions.clear();
+				if (onclick !== null) {
+					actions.push({
+						label: 'Collaborate On This',
+						icon: 'ts-icon-collaboration',
+						onclick: onclick
+					});
+				}
+			} else {
+				return actions[0] || null;
+			}
+		}),
+
+		/**
+		 * Enable and disable support for links in status message via Markdown.
+		 * @param {boolean} [is]
+		 * @returns {this}
+		 */
+		linkable: chained(function(is) {
+			this.actionbar.linkable = !!is;
+		}),
 
 		// Privileged ..............................................................
 
@@ -192,7 +222,7 @@ ts.ui.FooterBarModel = (function using(PagerModel, ActionModel) {
 		 * @returns {boolean}
 		 */
 		$showBackupBar: function(model) {
-			return !!model.buttons.getLength();
+			return !!(model.buttons.getLength() || model.actions.getLength());
 		}
 	});
-})(ts.ui.PagerModel, ts.ui.ActionModel);
+})(ts.ui.PagerModel, ts.ui.ActionModel, gui.Combo.chained);

@@ -41,7 +41,7 @@ ts.ui.Footer = (function using(chained) {
 		}),
 
 		/**
-		 * 
+		 * @returns {this|string}
 		 */
 		status: chained(function(message) {
 			if (arguments.length) {
@@ -52,7 +52,24 @@ ts.ui.Footer = (function using(chained) {
 		}),
 
 		/**
-		 * @param {Array<object>|ts.ui.ButtonCollection} [buttons]
+		 * Enable links in the status message via Markdown
+		 * @param {Function} [onlink]
+		 * @returns {this}
+		 */
+		linkable: chained(function(onlink) {
+			bar().linkable(onlink);
+		}),
+
+		/**
+		 * Disable links in the status message via Markdown
+		 * @returns {this}
+		 */
+		unlinkable: chained(function() {
+			bar().unlinkable();
+		}),
+
+		/**
+		 * @param {Array<object>|ts.ui.ButtonCollection|null} [buttons]
 		 * @returns {this|ts.ui.ButtonCollection}
 		 */
 		buttons: chained(function(buttons) {
@@ -64,7 +81,7 @@ ts.ui.Footer = (function using(chained) {
 		}),
 
 		/**
-		 * @param {Array<object>|ts.ui.ActionCollection} [actions]
+		 * @param {Array<object>|ts.ui.ActionCollection|null} [actions]
 		 * @returns {this|ts.ui.ActionCollection}
 		 */
 		actions: chained(function(buttons) {
@@ -91,15 +108,8 @@ ts.ui.Footer = (function using(chained) {
 		 * @param {Function} [onclick]
 		 * @returns {this}
 		 */
-		showConfig: chained(function(onclick) {
-			bar().showConfig(onclick);
-		}),
-
-		/**
-		 * @returns {this}
-		 */
-		hideConfig: chained(function() {
-			bar().hideConfig();
+		configbutton: chained(function(onclick) {
+			return bar().configbutton.apply(bar(), arguments);
 		}),
 
 		/**
@@ -107,16 +117,8 @@ ts.ui.Footer = (function using(chained) {
 		 * @param {Function} [onclick]
 		 * @returns {this}
 		 */
-		showCollaboration: chained(function(onclick) {
-			bar().showCollaboration(onclick);
-		}),
-
-		/**
-		 * Hide collaboration button.
-		 * @returns {this}
-		 */
-		hideCollaboration: chained(function() {
-			bar().hideCollaboration();
+		collabbutton: chained(function(onclick) {
+			return bar().collabbutton.apply(bar(), arguments);
 		}),
 
 		/**
@@ -133,6 +135,14 @@ ts.ui.Footer = (function using(chained) {
 		 */
 		show: chained(function() {
 			bar().show();
+		}),
+
+		/**
+		 * Clear everything (this will automatically hide the Footer).
+		 * @returns {this}
+		 */
+		clear: chained(function() {
+			bar().clear();
 		}),
 
 		// Privileged ..............................................................

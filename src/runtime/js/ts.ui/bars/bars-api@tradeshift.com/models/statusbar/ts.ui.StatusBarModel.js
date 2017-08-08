@@ -1,5 +1,6 @@
 /**
  * Advanced statusbar model.
+ * TODO: Move all this to (super) ToolBarModel and deprecate this thing.
  * @extends {ts.ui.ToolBarModel}
  */
 ts.ui.StatusBarModel = (function using(chained) {
@@ -26,12 +27,6 @@ ts.ui.StatusBarModel = (function using(chained) {
 		 * @type {ts.ui.PagerModel}
 		 */
 		actualpager: null,
-
-		/**
-		 * Status message may contain links?
-		 * @type {boolean}
-		 */
-		linkable: false,
 
 		/**
 		 * Bounce model to HTML.

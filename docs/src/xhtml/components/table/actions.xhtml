@@ -10,21 +10,23 @@
 			<article>
 				<h1>Selection actions</h1>
 				<section>
-					<p>The table <code>actions</code> are reserved for working with selections. They work much like the <a href="">buttons</a> except the <code>icon</code> should never be omitted from an action, since it is always displayed (and not just in mobile breakpoint). You can try to select something in this table.</p>
+					<p>The table <code>actions</code> are reserved for working with <em>selections</em>. They work much like the <a href="">buttons</a> except the <code>icon</code> should never be omitted from an action, since it is always displayed (and not just in mobile breakpoint). You can try to select something in this table.</p>
 					<ul class="splitscreen">
 						<li>							
 							<figure data-ts="DoxScript" class="attention">
 								<script type="runnable">
 										var table = ts.ui.get('#table1');
-										table.rows([
-											{cells: ['A', 'B', 'C']},
-											{cells: ['D', 'E', 'F']},
-											{cells: ['G', 'H', 'I']},
-										]).selectable(function() {
+										table.cols(['One', 'Two', 'Three']).rows([
+											['A', 'B', 'C'],
+											['D', 'E', 'F'],
+											['G', 'H', 'I'],
+										]).selectable(update);
+										function update() {
 											var actions = table.actions();
+											var maximum = table.rows().length;
 											var counter = table.selected().length;
 											if(counter > 0) {
-												table.status(counter + ' selected');
+												table.status(counter + ' of ' + maximum + ' rows selected');
 												if(!actions.length) {
 													actions.push(
 														{ label: 'Delete', icon: 'ts-icon-delete' },
@@ -36,9 +38,10 @@
 												}
 											} else {
 												actions.clear();
-												table.status('');
+												table.status(maximum + ' rows');
 											}
-										});
+										}
+										update();
 									</script>
 							</figure>
 						</li>
@@ -46,82 +49,13 @@
 							<div data-ts="Table" id="table1"></div>
 						</li>
 					</ul>
-					<div data-ts="Note">
-						<i class="ts-icon-todo"></i>
-						<p>TODO: API table goes here!</p>
-					</div>
-					<!--
-						<div data-ts="DoxApi">
-						<script type="application/json">
-							{
-								name: "ts.ui.ButtonModel",
-								properties: [
-									{
-										name: "id",
-										type: "string",
-										desc: "Optional button `id`."
-									},
-									{
-										name: "label",
-										type: "string",
-										desc: "The buttons label."
-									},
-									{
-										name: "icon",
-										type: "string",
-										desc: "The button icon (label must be `null` or empty)."
-									},
-									{
-										name: "info",
-										type: "string",
-										desc: "The button tooltip (hover text)."
-									},
-									{
-										name: "visible",
-										type: "boolean",
-										desc: "Button is visible?"
-									},
-									{
-										name: "disabled",
-										type: "boolean",
-										desc: "Button is disabled?"
-									}
-								],
-								methods: [
-									{
-										name: "onclick",
-										desc: "Called whenever the button gets clicked."
-									},
-									{
-										name: "busy",
-										args: "(string)",
-										desc: "Mark button busy with optional message."
-									},
-									{
-										name: "done",
-										desc: "Mark the button done (not busy)."
-									},
-									{
-										name: "hide",
-										desc: "Hide the button."
-									},
-									{
-										name: "show",
-										desc: "Show the button."
-									},
-									{
-										name: "disable",
-										desc: "Disable the button."
-									},
-									{
-										name: "enable",
-										desc: "Enable the button."
-									}
-								]
-							}
-						</script>
-					</div>
-					-->
+					<p>The <code>actions</code> method both sets and gets the actions. If you omit the argument, you"ll get the current actions (jQuery style). You can use array methods like <code>push</code>, <code>pop</code>, <code>shift</code>, <code>unshift</code>, <code>splice</code> and so on to manage actions, just note that the actions <code>length</code> is a readonly property.</p>
+
+					<object data="../bars/topbar.xhtml#buttons-api">
+						<replace input="Button" output="Action"/>
+						<replace input="button" output="action"/>
+					</object>
+					
 				</section>
 			</article>
 		</main>

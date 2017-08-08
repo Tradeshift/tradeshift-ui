@@ -10,13 +10,7 @@
 			<article>
 				<h1>Footer actions</h1>
 				<section class="desc">
-					<div data-ts="Note">
-						<i class="ts-icon-info"></i>
-						<p>This is an <strong>alpha</strong> preview. All features and APIs can be expected to change!</p>
-					</div>
-				</section>
-				<section class="desc">
-					<p>Footer <code>actions</code> can be used to manipulate selected objects of any kind. They appear in a separate toolbar, so that they never conflict with the normal <a data-ts="Button" href="/#components/footer/index.html">buttons</a>. This toolbar can also be configured with a status message and a checkbox.</p>
+					<p>Footer <code>actions</code> can be used to manipulate selected objects of any kind. They appear in a separate toolbar, so that they never conflict with the normal <a data-ts="Button" href="/#components/footer/index.html">buttons</a>. This toolbar can also be configured with a <a href="#status">status message</a> and this <a href="#checkbox">checkbox</a>.</p>
 				</section>
 				<section>
 					<p>The <code>actions</code> method both sets and gets the actions. If you omit the argument, you"ll get the current actions (jQuery style). In real life, the actions should only appear whenever the user has selected something with the mouse or keyboard, so we will just have to pretend that something is selected.</p>
@@ -35,9 +29,64 @@
 						</script>
 					</figure>
 
-					<p>You can use array methods like <code>push</code>, <code>pop</code>, <code>shift</code>, <code>unshift</code>, <code>splice</code> and so on to manage tabs, just note that the actions <code>length</code> is a readonly property. To ensure consistency, actions should always have both an icon and a label, much unlike the buttons.</p>
+					<p>You can use array methods like <code>push</code>, <code>pop</code>, <code>shift</code>, <code>unshift</code>, <code>splice</code> and so on to manage actions, just note that the actions <code>length</code> is a readonly property. To ensure consistency, actions should always have both an icon and a label, much unlike the buttons.</p>
 
-					<h3>Status message</h3>
+					<h3>Hide actions</h3>
+					<p>You can <code>hide()</code> and <code>show()</code> actions. You can also toggle <code>visible</code>.</p>
+					<figure data-ts="DoxScript">
+						<script type="runnable">
+							ts.ui.Footer.actions().forEach(function(action) {
+								if(action.visible) {
+									action.hide();
+								} else {
+									action.show();
+								}
+							});
+						</script>
+					</figure>
+
+					<h3>Disable actions</h3>					
+					<p>You can <code>disable()</code> and <code>enable()</code> action. You can also toggle <code>disabled</code>.</p>
+					<figure data-ts="DoxScript">
+						<script type="runnable">
+							ts.ui.Footer.actions().forEach(function(action) {
+								if(action.disabled) {
+									action.enable();
+								} else {
+									action.disable();
+								}
+							});
+						</script>
+					</figure>
+					
+					<h3>Busy actions</h3>					
+					<p>We can display a temporary progress indicator with the <code>busy</code> and <code>done</code> methods.</p>	
+					<figure data-ts="DoxScript">
+						<script type="runnable">
+							var action = ts.ui.Footer.actions()[0];
+							action.busy();
+							setTimeout(function() {
+								action.done();
+							}, 1000);
+						</script>
+					</figure>
+					<p>The <code>busy</code> method supports an optional message.</p>
+					<figure data-ts="DoxScript">
+						<script type="runnable">
+							var action = ts.ui.Footer.actions()[0];
+							action.busy('Making progress');
+							setTimeout(function() {
+								action.done();
+							}, 1000);
+						</script>
+					</figure>
+
+					<object data="../bars/topbar.xhtml#buttons-api">
+						<replace input="Button" output="Action"/>
+						<replace input="button" output="action"/>
+					</object>
+
+					<h3 id="status">Status message</h3>
 
 					<p>We can configure the actionbar with a <code>status</code> message. When a selection is made, the massage could be something like "23 products selected". When nothing is selected, it could perhaps be something like "Showing 10-20 out of 123 products".</p>
 
@@ -47,9 +96,51 @@
 						</script>
 					</figure>
 
-					<h3>Checkbox</h3>
+					<p>If you call <code>linkable()</code>, you can also some links in the message. Beware of phishing!</p>
+					<figure data-ts="DoxScript">
+						<script type="runnable">
+							ts.ui.StatusBar.linkable().message(
+								'Please visit (Tradeshift)[http://www.tradeshift.com]'
+							);
+						</script>
+					</figure>
+					<p>You can pass a callback function to be invoked whenever a link is clicked.</p>
+					<figure data-ts="DoxScript">
+						<script type="runnable">
+							ts.ui.StatusBar.linkable(function onclick(url) {
+								ts.ui.Notification.success(url);
+								this.status('Thanks!');
+							}).message('Please (click the link)[The URL can be any string]');
+						</script>
+					</figure>
 
-					<p>There's also a checkbox. That this is the minimum viable implementation!</p>
+					<div data-ts="DoxApi">
+						<script type="application/json">
+							{
+								name: "ts.ui.Footer",
+								methods: [
+									{
+										name: 'status',
+										args: '(string)',
+										desc: 'Get or set the status message.'
+									},
+									{
+										name: 'linkable',
+										args: '(function)',
+										desc: 'Support links via Markdown with optional callback.'
+									},
+									{
+										name: 'unlinkable',
+										desc: 'Disable support for links in the status message.'
+									}
+								]
+							}
+						</script>
+					</div>
+
+					<h3 id="checkbox">Checkbox</h3>
+
+					<p>There's also a checkbox which (conceptually) can be used to manage selections. This is the minimum viable implementation.</p>
 
 					<figure data-ts="DoxScript">
 						<script type="runnable">
@@ -61,8 +152,7 @@
 						</script>
 					</figure>
 
-					<!--
-					<p>Hello?</p>
+					<p>You must manually toggle the <code>checked</code> property. This will give you a chance to let the user confirm if he really intends to select millions of products; or if he really wants to clear a selection that took him hours to complete. Here is the <code>CheckBoxModel</code>.</p>
 
 					<div data-ts="DoxApi">
 						<script type="application/json">
@@ -71,123 +161,41 @@
 								properties: [
 									{
 										name: 'checked',
-										desc: 'TODO'
+										type: 'boolean',
+										desc: 'Checkbox is checked?'
 									},
 									{
 										name: 'visible',
-										desc: 'TODO'
-									}
+										type: 'boolean',
+										desc: 'Checkbox is visible?'
+									},
+									{
+										name: 'info',
+										type: 'string',
+										desc: 'The checkbox title (tooltip).'
+									},
 								],
 								methods: [
 									{
 										name: 'check',
-										desc: 'TODO'
+										desc: 'Check that checkbox.'
 									},
 									{
 										name: 'uncheck',
-										desc: 'TODO'
+										desc: 'Uncheck the checkbox.'
 									},
 									{
-										name: "hide",
-										desc: "TODO."
+										name: 'hide',
+										desc: 'Hide the checkbox.'
 									},
 									{
 										name: 'show',
-										desc: 'TODO'
+										desc: 'Show the (hidden) checkbox.'
 									}
 								]
 							}
 						</script>
 					</div>
-
-					<p>What?</p>
-
-					<figure data-ts="DoxScript">
-						<script type="runnable">
-							var Footer = ts.ui.Footer;
-							var Dialog = ts.ui.Dialog;
-							var Notification = ts.ui.Notification;
-							Footer.checkbox({
-								checked: false,
-								info: 'Toggle selection',
-								onclick: function() {
-									if(this.checked) {
-										Dialog.confirm('Unselect 123456 items?', {
-											onaccept: reset
-										});
-									} else {
-										showactions();
-									}
-								}
-							});
-							function showactions() {
-								Footer.checkbox().checked = true;
-								Footer.status('123456 items selected').actions([
-									{ label: 'Delete', icon: 'ts-icon-delete', onclick: () => {
-										Dialog.confirm('Deleted 123456 items?', 'Delete', {
-											onaccept: () => {
-												Notification.success('123456 items deleted');
-												reset();
-											}
-										});
-									}}
-								]);
-							}
-							function reset() {
-								Footer.checkbox().checked = false;
-								Footer.status('0 items selected');
-								Footer.actions().clear();
-							}
-							reset();
-						</script>
-					</figure>
-
-					<p>When you are done with the actions, you can hide them away. Remember to show them again before you need them next time!</p>
-
-					<figure data-ts="DoxScript">
-						<script type="runnable">
-							ts.ui.Footer.hideActions();
-							setTimeout(function restore() {
-								ts.ui.Footer.showActions();
-							}, 1000);
-						</script>
-					</figure>
-
-					<p>Here's an overview of the methods related to actions.</p>
-
-					<div data-ts="DoxApi">
-						<script type="application/json">
-							{
-								name: "ts.ui.Footer",
-								methods: [
-									{
-										name: 'checkbox',
-										args: '(object)',
-										desc: 'Get or set the checkbox'
-									},
-									{
-										name: 'status',
-										args: '(string)',
-										desc: 'Get or set the status message'
-									},
-									{
-										name: "actions",
-										args: "(array)",
-										desc: "Get or set the actions."
-									},
-									{
-										name: 'hideActions',
-										desc: 'Hide the whole actions-bar'
-									},
-									{
-										name: 'showActions',
-										desc: 'Show the (hidden) actions-bar'
-									},
-								]
-							}
-						</script>
-					<div>
-					-->
 
 				</section>
 			</article>

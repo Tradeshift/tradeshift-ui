@@ -13,10 +13,10 @@ ts.ui.BarModel = (function using(ButtonCollection) {
 		 * grouped into primary, sencondary and tertiary button types.
 		 * @returns	 {Array<ts.ui.ButtonModel|ts.ui.ButtonCollection>}
 		 */
-		$allbuttons: function () {
-			return this.buttons.ascending().filter(function (thing) {
+		$allbuttons: function() {
+			return this.buttons.ascending().filter(function(thing) {
 				if (ButtonCollection.is(thing)) {
-					return thing.every(function (button) {
+					return thing.every(function(button) {
 						return button.visible;
 					});
 				} else {
@@ -26,10 +26,20 @@ ts.ui.BarModel = (function using(ButtonCollection) {
 		},
 
 		/**
+		 * List visible actions (mostly for parity with `$allbuttons` above).
+		 * @returns {Arrray<ts.ui.ActionModel>}
+		 */
+		$allactions: function() {
+			return this.actions.filter(function(action) {
+				return action.visible;
+			});
+		},
+
+		/**
 		 * Get primary and secondary buttons (ascending).
 		 * @returns {Array<ts.ui.ButtonModel>}
 		 */
-		$specialbuttons: function () {
+		$specialbuttons: function() {
 			return this._sortbuttons(this.$allbuttons(), true);
 		},
 
@@ -37,7 +47,7 @@ ts.ui.BarModel = (function using(ButtonCollection) {
 		 * Get tertiary buttons (ascending).
 		 * @returns {Array<ts.ui.ButtonModel>}
 		 */
-		$normalbuttons: function () {
+		$normalbuttons: function() {
 			return this._sortbuttons(this.$allbuttons(), false);
 		},
 
@@ -50,8 +60,8 @@ ts.ui.BarModel = (function using(ButtonCollection) {
 		 * @param {boolean} special
 		 * @returns {Array<ts.ui.ButtonModel>}
 		 */
-		_sortbuttons: function (buttons, special) {
-			return buttons.filter(function (thing) {
+		_sortbuttons: function(buttons, special) {
+			return buttons.filter(function(thing) {
 				var button = thing;
 				if (ButtonCollection.is(thing)) {
 					button = thing[0];

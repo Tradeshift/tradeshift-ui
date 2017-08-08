@@ -1,7 +1,8 @@
 /**
  * Advanced pager model.
+ * @using {gui.Combo#chained}
  */
-ts.ui.PagerModel = (function() {
+ts.ui.PagerModel = (function using(chained) {
 	return ts.ui.Model.extend({
 		/**
 		 * Friendly name.
@@ -39,6 +40,12 @@ ts.ui.PagerModel = (function() {
 		 * @type {number}
 		 */
 		flex: 1,
+
+		/**
+		 * Pager should be visible (in the rendering)?
+		 * @type {boolean}
+		 */
+		visible: true,
 
 		/**
 		 * Open for implementation. Called when the `page` property changes.
@@ -122,6 +129,22 @@ ts.ui.PagerModel = (function() {
 			return ts.ui.pager.edbml(this);
 		},
 
+		/**
+		 * Hide the Pager.
+		 * @returns {this}
+		 */
+		hide: chained(function() {
+			this.visible = false;
+		}),
+
+		/**
+		 * Show the Pager.
+		 * @returns {this}
+		 */
+		show: chained(function() {
+			this.visible = true;
+		}),
+
 		// Private .................................................................
 
 		_initup: function() {
@@ -140,4 +163,4 @@ ts.ui.PagerModel = (function() {
 			}
 		}
 	});
-})();
+})(gui.Combo.chained);

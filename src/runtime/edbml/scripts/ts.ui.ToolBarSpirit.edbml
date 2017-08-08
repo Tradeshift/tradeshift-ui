@@ -18,7 +18,7 @@
 		toolbar.tabs,
 		toolbar.navigation,
 		toolbar.checkbox,
-		toolbar.actions
+		toolbar.$allactions()
 	);
 	rendercenter(id, toolbar.pager);
 	renderright(id, toolbar.$allbuttons());
@@ -27,7 +27,7 @@
 	function renderleft(title, status, search, tabs, navigation, checkbox, actions) {
 		var hasnavi = !!(topbar && navigation && navigation.getLength());
 		var hastabs = !!tabs.getLength();
-		var hasactions = !!actions.getLength();
+		var hasactions = !!actions.length;
 		if(mobilos || status || search || checkbox || hasactions || hastabs || hasnavi || (topbar ? hasrealtitle : title)) {
 			if(mobilos && hastabs) {
 				renderTabs(spirit, tabs, id, mobilos);
@@ -45,7 +45,7 @@
 							out.html += search.render();
 						</li>
 					}
-					if(checkbox) {
+					if(checkbox && checkbox.visible) {
 						rendercheckbox(checkbox);
 					}
 					if(title || status) {
@@ -58,7 +58,7 @@
 	}
 
 	function rendercenter(id, pager) {
-		if(showPager()) {
+		if(showPager(pager)) {
 			<menu id="${id}-extras" class="ts-toolbar-menu ts-center">
 				@class = klass('ts-toolbar-pager', pager);
 				<li id="${id}-pager" @class>
@@ -68,9 +68,8 @@
 		}
 	}
 	
-	function showPager() {
-		var pager = toolbar.pager;
-		return !!(statusbar && pager && pager.pages);
+	function showPager(pager) {
+		return !!(statusbar && pager && pager.pages && pager.visible);
 	}
 
 	function renderright(id, buttons) {
@@ -123,7 +122,7 @@
 	
 	// non-mobile single button
 	function renderbutton(button) {
-		if(button) {
+		if(button && button.visible) {
 			var id = spirit.$instanceid + button.$instanceid;
 			@class = klass('ts-item', button);
 			@class += button.isAction ? ' ts-action' : '';

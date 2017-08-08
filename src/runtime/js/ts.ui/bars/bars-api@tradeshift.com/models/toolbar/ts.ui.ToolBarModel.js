@@ -57,6 +57,12 @@ ts.ui.ToolBarModel = (function using(chained, ButtonModel, CheckBoxModel) {
 		compact: true,
 
 		/**
+		 * Status message may contain links?
+		 * @type {boolean}
+		 */
+		linkable: false,
+
+		/**
 		 * Tabs.
 		 * @type {ts.ui.TabCollection}
 		 */

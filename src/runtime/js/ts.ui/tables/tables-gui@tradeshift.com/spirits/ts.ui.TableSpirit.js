@@ -216,8 +216,9 @@ ts.ui.TableSpirit = (function using(
 		 * Carefully named not to conflict with `onconfigure` which will
 		 * eventually be renamed to `onconfig` in Spiritual core.
 		 * @type {function}
-		 */
+		 *
 		onconf: null,
+		*/
 
 		/**
 		 * Open for implementation: Called when a link is clicked somewhere
@@ -692,12 +693,6 @@ ts.ui.TableSpirit = (function using(
 			var toolb = model.toolbar;
 			if (arguments.length) {
 				toolb.buttons = json;
-				/*
-				toolb.buttons.clear();
-				json.forEach(function(o) {
-					toolb.buttons.push(o);
-				});
-				*/
 			} else {
 				return toolb.buttons;
 			}
@@ -721,52 +716,41 @@ ts.ui.TableSpirit = (function using(
 		// Configure ...............................................................
 
 		/**
-		 * Show the config button. Call the callback when you click it.
+		 * @deprecated
+		 * Show the config button.
 		 * @param @optional {function} onconf
 		 * @returns {ts.ui.TableSpirit}
 		 */
 		configurable: confirmed('(function)')(
 			chained(function(onconf) {
-				var table = this;
-				var model = this._model;
-				var toolb = model.toolbar;
-				this.onconf = onconf || this.onconf;
-				model.configurable = true;
-				toolb.configbutton = {
-					onclick: function() {
-						if (table.onconf) {
-							table.onconf.call(this, table);
-						}
-					}
-				};
-				/*
-				if (!toolb.buttons.get('config')) {
-					toolb.buttons.push({
-						id: 'config',
-						icon: 'ts-icon-settings',
-						onclick: function() {
-							if (table.onconf) {
-								table.onconf.call(this, table);
-							}
-						}
-					});
-				}
-				*/
-				model.$dirty(); // TODO: why needed (for the test)?
+				console.warn(String(this), 'The method `configurable` has been renamed to `configbutton`');
+				return this.configbutton.apply(this, arguments);
 			})
 		),
 
 		/**
+		 * @deprecated
 		 * Hide the config button.
-		 * TODO: Fix the EDBML bug :/
 		 */
-		unconfigurable: chained(function(onconfig) {
-			var model = this._model;
-			var toolb = model.toolbar;
-			model.configurable = false;
-			toolb.buttons.clear();
-			this.onconf = null;
-			model.$dirty(); // BUG: `configurable` not picked up!!!!!!
+		unconfigurable: chained(function() {
+			console.warn(
+				String(this),
+				'"unconfigurable" should now be implemented via `configbutton(null)`'
+			);
+			return this.configbutton.apply(this, null);
+		}),
+
+		/**
+		 * Get or set the collaboration button.
+		 * @param {Function} [onclick]
+		 * @returns {this|ts.ui.ButtonModel}
+		 */
+		configbutton: chained(function(onclick) {
+			var toolb = this._model.toolbar;
+			var value = toolb.configbutton.apply(toolb, arguments);
+			if (!arguments.length) {
+				return value;
+			}
 		}),
 
 		// Selecting ...............................................................
@@ -1114,20 +1098,16 @@ ts.ui.TableSpirit = (function using(
 		// Collaboration ...........................................................
 
 		/**
-		 * Show the collaboration button.
+		 * Get or set the collaboration button.
 		 * @param {Function} [onclick]
-		 * @returns {this}
+		 * @returns {this|ts.ui.ButtonModel}
 		 */
-		showCollaboration: chained(function(onclick) {
-			this._model.toolbar.showCollaboration(onclick);
-		}),
-
-		/**
-		 * Hide the collbaboration button.
-		 * @returns {this}
-		 */
-		hideCollaboration: chained(function() {
-			this._model.toolbar.hideCollaboration();
+		collabbutton: chained(function(onclick) {
+			var toolb = this._model.toolbar;
+			var value = toolb.collabbutton.apply(toolb, arguments);
+			if (!arguments.length) {
+				return value;
+			}
 		}),
 
 		// Privileged ..............................................................

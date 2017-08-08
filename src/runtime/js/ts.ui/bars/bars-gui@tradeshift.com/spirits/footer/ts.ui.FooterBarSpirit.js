@@ -3,11 +3,19 @@
  * TODO: Implement `onpage` callback for parity with Table.
  * @extends {ts.ui.Spirit}
  * @using {gui.Combo#chained} chained
+ * @using {gui.Arguments#confirmed} confirmed
  * @using {gui.Array} GuiArray
  * @using {ts.ui.PagerModel} PagerModel
  * @using {Class<ts.ui.ToolBarSpirit>} ToolBarSpirit
  */
-ts.ui.FooterBarSpirit = (function using(chained, GuiArray, PagerModel, ToolBarSpirit) {
+ts.ui.FooterBarSpirit = (function using(
+	chained,
+	confirmed,
+	GuiArray,
+	PagerModel,
+	ToolBarSpirit,
+	Type
+) {
 	/**
 	 * Get bounding box.
 	 * @param {Element} elm
@@ -38,6 +46,12 @@ ts.ui.FooterBarSpirit = (function using(chained, GuiArray, PagerModel, ToolBarSp
 			}
 		},
 
+		/**
+		 * Open for implementation: Callback for when a link is clicked in status message.
+		 * @type {Function}
+		 */
+		onlink: null,
+
 		/*
 		 * Get (or set) the model. This will load the EDBML.
 		 * @param {object|ts.ui.ToolBarModel} model
@@ -66,15 +80,31 @@ ts.ui.FooterBarSpirit = (function using(chained, GuiArray, PagerModel, ToolBarSp
 		},
 
 		/**
+		 * Handle action.
+		 * @param {gui.Action} a
+		 */
+		onaction: function(a) {
+			this.super.onaction(a);
+			if (a.type === ts.ui.ACTION_SAFE_LINK) {
+				(this.onlink || function() {}).call(this, a.data);
+				a.consume();
+			}
+		},
+
+		/**
 		 * Get or set the buttons.
 		 * [The buttons will be rendered in the `bufferbar`!]
-		 * @param {Array<object>|ts.ui.ButtonCollection} [json]
+		 * @param {Array<object>|ts.ui.ButtonCollection|null} [json]
 		 * @returns {this|ts.ui.ButtonCollection}
 		 */
 		buttons: chained(function(json) {
 			var model = this.model();
 			if (arguments.length) {
-				model.buttons = json;
+				if (json === null) {
+					model.buttons.clear();
+				} else {
+					model.buttons = json;
+				}
 			} else {
 				return model.buttons;
 			}
@@ -83,13 +113,17 @@ ts.ui.FooterBarSpirit = (function using(chained, GuiArray, PagerModel, ToolBarSp
 		/**
 		 * Get or set the actions.
 		 * [The actions will be rendered in the `actionbar`!]
-		 * @param {Array<Object>|ts.ui.ActionsCollection} [json]
+		 * @param {Array<Object>|ts.ui.ActionsCollection|null} [json]
 		 * @returns {this|ts.ui.ButtonCollection}
 		 */
 		actions: chained(function(json) {
 			var model = this.model();
 			if (arguments.length) {
-				model.actions = json;
+				if (json === null) {
+					model.actions.clear();
+				} else {
+					model.actions = json;
+				}
 			} else {
 				return model.actions;
 			}
@@ -140,41 +174,20 @@ ts.ui.FooterBarSpirit = (function using(chained, GuiArray, PagerModel, ToolBarSp
 		}),
 
 		/**
-		 * Show the dedicated config button.
 		 * @param {Function} [onclick]
 		 * @returns {this}
 		 */
-		showConfig: chained(function(onclick) {
-			this.model().configbutton = {
-				onclick: onclick
-			};
+		configbutton: chained(function(onclick) {
+			return this.model().configbutton.apply(this.model(), arguments);
 		}),
 
 		/**
-		 * Hide the configbutton.
-		 * @returns {this}
-		 */
-		hideConfig: chained(function() {
-			this.model().configbutton = null;
-		}),
-
-		/**
-		 * Show the dedicated collaboration button (which is really just an action 
-		 * in the centerbar). Note that this has not been rigged up for measurement!
+		 * Show collaboration button.
 		 * @param {Function} [onclick]
 		 * @returns {this}
 		 */
-		showCollaboration: chained(function(onclick) {
-			this.model().showCollaboration(onclick);
-		}),
-
-		/**
-		 * Show the dedicated collaboration button.
-		 * @param {Function} [onclick]
-		 * @returns {this}
-		 */
-		hideCollaboration: chained(function() {
-			this.model().hideCollaboration();
+		collabbutton: chained(function(onclick) {
+			return this.model().collabbutton.apply(this.model(), arguments);
 		}),
 
 		/**
@@ -220,55 +233,56 @@ ts.ui.FooterBarSpirit = (function using(chained, GuiArray, PagerModel, ToolBarSp
 		},
 
 		/**
-		 * Hide the whole footer.
+		 * Hide the whole footer and *stay hidden* until `show` is called.
 		 * @returns {this}
 		 */
 		hide: chained(function() {
 			if (this.visible) {
+				this._hidden = true;
 				this.visible = false;
 			}
 		}),
 
 		/**
-		 * Show the whole footer.
+		 * Show the footer (when hidden, will otherwise appear when populated).
 		 * @returns {this}
 		 */
 		show: chained(function() {
 			if (!this.visible) {
+				this._hidden = false;
 				this.visible = true;
 			}
 		}),
 
 		/**
-		 * Hide the actions bar.
+		 * Clear everything (this will automatically hide the FooterBar).
 		 * @returns {this}
 		 */
-		hideActions: chained(function() {
-			// this._hidebar(this._actionbar());
+		clear: chained(function() {
+			this.model().clear();
 		}),
 
 		/**
-		 * Show the actions bar.
-		 * @returns {this}
+		 * Manually enable support for links in the status message (just to
+		 * remind yourself that you may now be enncouraging phishing attacks).
+		 * @param @optional {function} onlink
+		 * @returns {ts.ui.StatusBarSpirit}
 		 */
-		showActions: chained(function() {
-			// this._showbar(this._actionbar());
-		}),
+		linkable: confirmed('(function)')(
+			chained(function(onlink) {
+				this.model().linkable(true);
+				this.action.add(ts.ui.ACTION_SAFE_LINK);
+				this.onlink = onlink || null;
+			})
+		),
 
 		/**
-		 * Hide the pager bar (TODO: RENAME! DEPRECATE?)
-		 * @returns {this}
+		 *
 		 */
-		hidePager: chained(function() {
-			// this._hidebar(this._centerbar());
-		}),
-
-		/**
-		 * Hide the pager bar (TODO: RENAME! DEPRECATE?)
-		 * @returns {this}
-		 */
-		showPager: chained(function() {
-			// this._hidebar(this._centerpager());
+		unlinkable: chained(function() {
+			this.model().linkable(false);
+			this.remove.add(ts.ui.ACTION_SAFE_LINK);
+			this.onlink = null;
 		}),
 
 		// Private .................................................................
@@ -278,6 +292,11 @@ ts.ui.FooterBarSpirit = (function using(chained, GuiArray, PagerModel, ToolBarSp
 		 * @type {boolean}
 		 */
 		_visible: true,
+
+		/**
+		 *
+		 */
+		_hidden: false,
 
 		/**
 		 * Since the buttons will be moved around, it's easier if we collect them 
@@ -307,25 +326,25 @@ ts.ui.FooterBarSpirit = (function using(chained, GuiArray, PagerModel, ToolBarSp
 		 * Spirit of the buffer bar (remains invisible at all times).
 		 * @type {ts.ui.ToolBarSpirit}
 		 */
-		_bufferbarspirit: null,
+		_bufferbar: null,
 
 		/**
 		 * Spirit of the action bar.
 		 * @type {ts.ui.ToolBarSpirit}
 		 */
-		_actionbarspirit: null,
+		_actionbar: null,
 
 		/**
 		 * Spirit of the center bar (usually the bottom bar unless collissions).
 		 * @type {ts.ui.StatusBarSpirit}
 		 */
-		_centerbarspirit: null,
+		_centerbar: null,
 
 		/**
 		 * Spirit of the backup bar (only visible upon collistions in centerbar).
 		 * @type {ts.ui.ToolBarSpirit}
 		 */
-		_backupbarspirit: null,
+		_backupbar: null,
 
 		/**
 		 * Lookup ToolBarSpirit by selector.
@@ -401,9 +420,13 @@ ts.ui.FooterBarSpirit = (function using(chained, GuiArray, PagerModel, ToolBarSp
 		 * If no bars are visible, we'll hide ourselves not to show an awkward dropshadow.
 		 */
 		_layout: function() {
-			var offset = this._offset([this._actionbar, this._centerbar, this._backupbar]);
-			this.action.dispatch(ts.ui.ACTION_FOOTER_LEVEL, offset);
-			this.visible = !!offset;
+			if (this._hidden) {
+				this.action.dispatch(ts.ui.ACTION_FOOTER_LEVEL, 0);
+			} else {
+				var offset = this._offset([this._actionbar, this._centerbar, this._backupbar]);
+				this.action.dispatch(ts.ui.ACTION_FOOTER_LEVEL, offset);
+				this.visible = !!offset;
+			}
 		},
 
 		/**
@@ -429,4 +452,11 @@ ts.ui.FooterBarSpirit = (function using(chained, GuiArray, PagerModel, ToolBarSp
 			}, this._actionbar.visible);
 		}
 	});
-})(gui.Combo.chained, gui.Array, ts.ui.PagerModel, ts.ui.ToolBarSpirit);
+})(
+	gui.Combo.chained,
+	gui.Arguments.confirmed,
+	gui.Array,
+	ts.ui.PagerModel,
+	ts.ui.ToolBarSpirit,
+	gui.Type
+);

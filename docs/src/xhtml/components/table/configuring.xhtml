@@ -10,14 +10,14 @@
 			<article>
 				<h1>Configuring the Table</h1>
 				<section>
-					<p>You can make the table <code>configurable</code> by a button in the statusbar.</p>
+					<p>You can make the table <em>configurable</em> by a button in the statusbar.</p>
 					<ul class="splitscreen">
 						<li>
 							<figure data-ts="DoxScript">
 								<script type="runnable">
 									var popup = ts.ui.Notification;
 									ts.ui.get('#table1', table => {
-										table.configurable(function onclick() {
+										table.configbutton(function onclick() {
 											popup.success('Go configure!');
 										}).cols(['A', 'B', 'C', 'D']).rows([
 											[1, 4, 7, 10],
@@ -32,7 +32,7 @@
 							<div data-ts="Table" id="table1"></div>
 						</li>
 					</ul>
-					<p>The button triggers a callback, but there is otherwise no default UI associated. The <code>ColModel</code> supports a <code>visible</code> property that can be used to hide columns.</p>
+					<p>The button triggers a callback, but there is otherwise no default UI associated. Since the visibility of columns is always a candidate for configuration, the <code>ColModel</code> supports a <code>visible</code> property that can be used to hide columns.</p>
 					<figure data-ts="DoxScript">
 						<script type="runnable">
 							ts.ui.get('#table1', table => {

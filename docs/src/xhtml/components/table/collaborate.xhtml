@@ -23,7 +23,7 @@
 								<script type="runnable">
 									var popup = ts.ui.Notification;
 									ts.ui.get('#table1', table => {
-										table.showCollaboration(function onclick() {
+										table.collabbutton(function onclick() {
 											popup.success('Go collaborate!');
 										}).cols(['A', 'B', 'C', 'D']).rows([
 											[1, 4, 7, 10],
@@ -43,7 +43,7 @@
 						<li>
 							<figure data-ts="DoxScript">
 								<script type="runnable">
-									ts.ui.get('#table1').hideCollaboration();
+									ts.ui.get('#table1').collabbutton(null);
 								</script>
 							</figure>
 						</li>
@@ -54,13 +54,9 @@
 								name: "ts.ui.TableSpirit",
 								methods: [
 									{
-										name: "showCollaboration",
-										args: ["(function)"],
-										desc: "Show the collaboration button."
-									},
-									{
-										name: "hideCollaboration",
-										desc: "Hide that collaboration button."
+										name: "collabbutton",
+										args: ["(function|null)"],
+										desc: "Show the collaboration button with given callback. Pass `null` to remove the button."
 									}
 								]
 							}

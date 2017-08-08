@@ -7,7 +7,7 @@ ts.ui.ActionCollection = (function using(confirmed) {
 	return ts.ui.ButtonCollection.extend({
 		/**
 		 * Content model constructor.
-		 * @returns {constructor}
+		 * @returns {Class<ActionModel>}
 		 */
 		$of: confirmed('(object|array)')(function(arg) {
 			return ts.ui.ActionModel;

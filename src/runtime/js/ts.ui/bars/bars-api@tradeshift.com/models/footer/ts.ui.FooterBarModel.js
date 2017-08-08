@@ -97,22 +97,6 @@ ts.ui.FooterBarModel = (function using(PagerModel, ActionModel, chained) {
 			}
 		},
 
-		/**
-		 * Note: Also injected into bufferbar so that it can affect measurements.
-		 * Perhaps the right approach is to only render it in the bufferbar and 
-		 * then move it to `center` or `backup` just like we do with the buttons?
-		 * @type {ts.ui.ButtonModel}
-		 */
-		configbutton: {
-			getter: function() {
-				return this.bufferbar.configbutton;
-			},
-			setter: function(json) {
-				this.bufferbar.configbutton = json;
-				this.centerbar.configbutton = json;
-			}
-		},
-
 		// Methods .................................................................
 
 		/**
@@ -135,27 +119,64 @@ ts.ui.FooterBarModel = (function using(PagerModel, ActionModel, chained) {
 		},
 
 		/**
-		 * Show the collaboration button (which is really just a centerbar action).
-		 * @param {Function} [onclick]
+		 * Clear everything.
 		 * @returns {this}
 		 */
-		showCollaboration: chained(function(onclick) {
-			this.bufferbar.actions = [
-				{
-					label: 'Collaborate On This',
-					icon: 'ts-icon-collaboration',
-					onclick: onclick
-				}
-			];
+		clear: chained(function() {
+			this.pager = null;
+			this.status = null;
+			this.checkbox = null;
+			this.configbutton(null);
+			this.collabbutton(null);
+			this.bufferbar.buttons.clear();
+			this.actionbar.actions.clear();
+			this.centerbar.actions.clear();
 		}),
 
 		/**
-		 * Show the dedicated collaboration button.
-		 * @param {Function} [onclick]
+		 * Note: Also injected into bufferbar so that it can affect measurements.
+		 * @returns {this|ts.ui.ButtonModel}
+		 */
+		configbutton: chained(function(onclick) {
+			if (onclick === null) {
+				this.bufferbar.configbutton = this.centerbar.configbutton = null;
+			} else if (onclick) {
+				this.bufferbar.configbutton = this.centerbar.configbutton = {
+					onclick: onclick
+				};
+			} else {
+				return this.centerbar.configbutton;
+			}
+		}),
+
+		/**
+		 * We'll just implement this as a regular `action` for now.
+		 * TODO: Move this thing to the general {ts.ui.ToolBarModel}
+		 * @returns {this|ts.ui.ActionModel}
+		 */
+		collabbutton: chained(function(onclick) {
+			var actions = this.bufferbar.actions;
+			if (arguments.length) {
+				actions.clear();
+				if (onclick !== null) {
+					actions.push({
+						label: 'Collaborate On This',
+						icon: 'ts-icon-collaboration',
+						onclick: onclick
+					});
+				}
+			} else {
+				return actions[0] || null;
+			}
+		}),
+
+		/**
+		 * Enable and disable support for links in status message via Markdown.
+		 * @param {boolean} [is]
 		 * @returns {this}
 		 */
-		hideCollaboration: chained(function() {
-			this.bufferbar.actions.clear();
+		linkable: chained(function(is) {
+			this.actionbar.linkable = !!is;
 		}),
 
 		// Privileged ..............................................................
@@ -201,7 +222,7 @@ ts.ui.FooterBarModel = (function using(PagerModel, ActionModel, chained) {
 		 * @returns {boolean}
 		 */
 		$showBackupBar: function(model) {
-			return !!model.buttons.getLength();
+			return !!(model.buttons.getLength() || model.actions.getLength());
 		}
 	});
 })(ts.ui.PagerModel, ts.ui.ActionModel, gui.Combo.chained);

@@ -244,31 +244,40 @@ ts.ui.Markdown = (function using(linkparser) {
 	(function using(txt, url) {
 		var init, text, href, post, last, html, test;
 
-		function normalize(line) {
-			if (line.indexOf(')[') < 0) {
+		/**
+		 * We support links of markdown like this (text)[href].
+		 * But it is too late when we realize it is wrong.
+		 * We have to support both,(text)[href] and [text](href).
+		 * We transfer [text](href) to (text)[href] when developer use the right one
+		 * Todo:@Leo Delete the code when we know all developer use the right one.
+		 * @param {string} markdown
+		 * @returns {string} unnormalized link markdown.
+		 */
+		function unnormalize(line) {
+			if (line.indexOf('](') < 0) {
 				return line;
 			}
-			line = line.split(')[').map(function(cut){
+			line = line.split('](').map(function(cut){
 				var normal = cut;
-				if (isunnormaltext(cut)) {
-					var l = normal.lastIndexOf('(');
-					normal = normal.substr(0, l) + normal.substr(l).replace('(', '[');
+				if (isnormaltext(cut)) {
+					var l = normal.lastIndexOf('[');
+					normal = normal.substr(0, l) + normal.substr(l).replace('[', '(');
 				}
-				if (isunnormalurl(cut)) {
-					var f = normal.indexOf(']');
-					normal = normal.substr(0, f+1).replace(']', ')') + normal.substr(f+1);
+				if (isnormalurl(cut)) {
+					var f = normal.indexOf(')');
+					normal = normal.substr(0, f+1).replace(')', ']') + normal.substr(f+1);
 				}
 				return normal;
-			}).join('](');
+			}).join(')[');
 			return line;
 		}
 
-		function isunnormaltext(cut) {
-			return cut.split('(').length > cut.split(')').length;
+		function isnormaltext(cut) {
+			return cut.split('[').length > cut.split(']').length;
 		}
 
-		function isunnormalurl(cut) {
-			return cut.split(']').length > cut.split('[').length;
+		function isnormalurl(cut) {
+			return cut.split(')').length > cut.split('(').length;
 		}
 
 		function link() {
@@ -297,7 +306,7 @@ ts.ui.Markdown = (function using(linkparser) {
 		}
 
 		function gettext(cut) {
-			last = cut.lastIndexOf('[');
+			last = cut.lastIndexOf('(');
 			init = cut.substr(0, last);
 			return cut.slice(last + 1);
 		}
@@ -317,8 +326,8 @@ ts.ui.Markdown = (function using(linkparser) {
 
 		return function linkparser(line) {
 			reset();
-			line = normalize(line);
-			return line.split('](').map(parsecut).join('') || line;
+			line = unnormalize(line);
+			return line.split(')[').map(parsecut).join('') || line;
 		};
-	})(/\[.+$/, /^.+\)/)
+	})(/\(.+$/, /^.+\]/)
 );

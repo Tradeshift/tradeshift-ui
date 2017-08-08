@@ -244,6 +244,33 @@ ts.ui.Markdown = (function using(linkparser) {
 	(function using(txt, url) {
 		var init, text, href, post, last, html, test;
 
+		function normalize(line) {
+			if (line.indexOf(')[') < 0) {
+				return line;
+			}
+			line = line.split(')[').map(function(cut){
+				var normal = cut;
+				if (isunnormaltext(cut)) {
+					var l = normal.lastIndexOf('(');
+					normal = normal.substr(0, l) + normal.substr(l).replace('(', '[');
+				}
+				if (isunnormalurl(cut)) {
+					var f = normal.indexOf(']');
+					normal = normal.substr(0, f+1).replace(']', ')') + normal.substr(f+1);
+				}
+				return normal;
+			}).join('](');
+			return line;
+		}
+
+		function isunnormaltext(cut) {
+			return cut.split('(').length > cut.split(')').length;
+		}
+
+		function isunnormalurl(cut) {
+			return cut.split(']').length > cut.split('[').length;
+		}
+
 		function link() {
 			return '<a data-ts="Button" data-ts.type="$type" data-ts.data="$data">$text</a>'
 				.replace('$type', ts.ui.ACTION_SAFE_LINK)
@@ -290,6 +317,7 @@ ts.ui.Markdown = (function using(linkparser) {
 
 		return function linkparser(line) {
 			reset();
+			line = normalize(line);
 			return line.split('](').map(parsecut).join('') || line;
 		};
 	})(/\[.+$/, /^.+\)/)

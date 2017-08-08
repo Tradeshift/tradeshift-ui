@@ -39,7 +39,7 @@ describe('ts.ui.Notification', function likethis() {
 	});
 
 	it('should support markdown for links', function(done) {
-		var text = 'Markdown for (link text)[and_link_url]';
+		var text = 'Markdown for [link text](and_link_url)';
 		var note = ts.ui.Notification.info(text);
 		waitfordialog(function() {
 			var body = getlatest();
@@ -53,7 +53,7 @@ describe('ts.ui.Notification', function likethis() {
 	});
 
 	it('should support multiple links', function(done) {
-		var text = 'Choose link (one)[ONE] or (two)[TWO] or (three)[THREE].';
+		var text = 'Choose link [one](ONE) or [two](TWO) or [three](THREE).';
 		var note = ts.ui.Notification.info(text);
 		waitfordialog(function() {
 			var body = getlatest();
@@ -66,7 +66,7 @@ describe('ts.ui.Notification', function likethis() {
 
 	it('should block the link text HaCkErZ', function(done) {
 		var hack = '<span onclick="SuCkErZ()">linktext</span>';
-		var text = 'Markdown for (' + hack + ')[mylink]';
+		var text = 'Markdown for [' + hack + '](mylink)';
 		var note = ts.ui.Notification.info(text);
 		waitfordialog(function() {
 			var body = getlatest();

@@ -15,6 +15,10 @@
 		<section>
 			<h3><a data-ts="Button" href="/#components/bars/topbar.html">TopBar</a></h3>
 			<p>The TopBar provides tabs for navigation and buttons for contextual actions.</p>
+			<div data-ts="Note">
+				<i class="ts-icon-warning"></i>
+				<p>Beware that this API will be replaced be the <code>ts.ui.Header</code> in a future release.</p>
+			</div>
 			<figure data-ts="DoxScript">
 				<script type="runnable">
 					ts.ui.TopBar.buttons([
@@ -30,6 +34,10 @@
 		<section>
 			<h3><a data-ts="Button" href="/#components/bars/tabbar.html">Main TabBar</a></h3>
 			<p>The Main TabBar provides second level tabbed navigation.</p>
+			<div data-ts="Note">
+				<i class="ts-icon-warning"></i>
+				<p>Beware that this API will be replaced be the <code>ts.ui.Header</code> in a future release.</p>
+			</div>
 			<figure data-ts="DoxScript">
 				<script type="runnable">
 					ts.ui.TabBar.tabs([
@@ -45,6 +53,10 @@
 		<section>
 			<h3><a data-ts="Button" href="/#components/bars/toolbar.html">Main ToolBar</a></h3>
 			<p>The Main ToolBar features a Search and even more buttons for contextual actions.</p>
+			<div data-ts="Note">
+				<i class="ts-icon-warning"></i>
+				<p>Beware that this API will be replaced be the <code>ts.ui.Header</code> in a future release.</p>
+			</div>
 			<figure data-ts="DoxScript">
 				<script type="runnable">
 					ts.ui.ToolBar.buttons([
@@ -63,17 +75,23 @@
 			</figure>
 		</section>
 		<section>
-			<h3><a data-ts="Button" href="/#components/bars/statusbar.html">Main StatusBar</a></h3>
-			<p>Although the StatusBar can display status messages, it's perfectly alright to use it just to show some buttons. In that case, the difference from the Main ToolBar is simply that it positioned below the Main area.</p>
+			<h3><a data-ts="Button" href="/#components/footer/">Footer</a></h3>
+			<p>The Footer is positioned below the Main area where it usually functions to display some buttons. But the Footer also supports <code>actions</code>, which are reserved for working with selected objects of any kind, as well as a Pager and a dedicated Collaboration button.</p>
 			<figure data-ts="DoxScript">
 				<script type="runnable">
-					ts.ui.StatusBar.buttons([
+					ts.ui.Footer.buttons([
 						{label: 'Button', type: 'ts-primary'},
 						{label: 'Button', type: 'ts-secondary'},
-						{label: 'Button', onclick: function() {
-							console.log('Clicked');
+						{label: 'Button', onclick: () => {
+							console.log('Button clicked');
 						}}
-					]).message('Hello World');
+					]).actions([
+						{label: 'Action', icon: 'ts-icon-followed'},
+						{label: 'Action', icon: 'ts-icon-favorites'},
+						{label: 'Action', icon: 'ts-icon-code', onclick: () => {
+							console.log('Action clicked');
+						}}
+					]).status('Hello World');
 				</script>
 			</figure>
 		</section>

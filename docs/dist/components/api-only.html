@@ -28,6 +28,10 @@
                 <section>
                     <h3><span><a data-ts="Button" href="/dist/components/bars/topbar.html">TopBar</a></span></h3>
                     <p>The TopBar provides tabs for navigation and buttons for contextual actions.</p>
+                    <div data-ts="Note">
+                        <i class="ts-icon-warning"></i>
+                        <p>Beware that this API will be replaced be the <code>ts.ui.Header</code> in a future release.</p>
+                    </div>
                     <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.TopBar.buttons(%5B%0A%09%7Blabel%3A%20&apos;Button&apos;%2C%20type%3A%20&apos;ts-primary&apos;%7D%2C%0A%09%7Blabel%3A%20&apos;Button&apos;%2C%20type%3A%20&apos;ts-secondary&apos;%7D%2C%0A%09%7Blabel%3A%20&apos;Button&apos;%2C%20onclick%3A%20function()%20%7B%0A%09%09console.log(&apos;Clicked&apos;)%3B%0A%09%7D%7D%0A%5D)%3B">
                         <script type="runnable">
                             ts.ui.TopBar.buttons([ {label: 'Button', type: 'ts-primary'}, {label: 'Button', type: 'ts-secondary'}, {label: 'Button', onclick: function() { console.log('Clicked'); }} ]);
@@ -48,6 +52,10 @@
                 <section>
                     <h3><span><a data-ts="Button" href="/dist/components/bars/tabbar.html">Main TabBar</a></span></h3>
                     <p>The Main TabBar provides second level tabbed navigation.</p>
+                    <div data-ts="Note">
+                        <i class="ts-icon-warning"></i>
+                        <p>Beware that this API will be replaced be the <code>ts.ui.Header</code> in a future release.</p>
+                    </div>
                     <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.TabBar.tabs(%5B%0A%09%7Blabel%3A%20&apos;Tab%20One&apos;%7D%2C%0A%09%7Blabel%3A%20&apos;Tab%20Two&apos;%7D%2C%0A%09%7Blabel%3A%20&apos;Tab%20Three&apos;%2C%20onselect%3A%20function()%20%7B%0A%09%09console.log(&apos;Selected&apos;)%3B%0A%09%7D%7D%0A%5D)%3B">
                         <script type="runnable">
                             ts.ui.TabBar.tabs([ {label: 'Tab One'}, {label: 'Tab Two'}, {label: 'Tab Three', onselect: function() { console.log('Selected'); }} ]);
@@ -68,6 +76,10 @@
                 <section>
                     <h3><span><a data-ts="Button" href="/dist/components/bars/toolbar.html">Main ToolBar</a></span></h3>
                     <p>The Main ToolBar features a Search and even more buttons for contextual actions.</p>
+                    <div data-ts="Note">
+                        <i class="ts-icon-warning"></i>
+                        <p>Beware that this API will be replaced be the <code>ts.ui.Header</code> in a future release.</p>
+                    </div>
                     <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.ToolBar.buttons(%5B%0A%09%7Blabel%3A%20&apos;Button&apos;%2C%20type%3A%20&apos;ts-primary&apos;%7D%2C%0A%09%7Blabel%3A%20&apos;Button&apos;%2C%20type%3A%20&apos;ts-secondary&apos;%7D%2C%0A%09%7Blabel%3A%20&apos;Button&apos;%2C%20onclick%3A%20function()%20%7B%0A%09%09console.log(&apos;Clicked&apos;)%3B%0A%09%7D%7D%0A%5D).search(%7B%0A%09info%3A%20&apos;Search%20amongst%20the%20things&apos;%2C%0A%09onsearch%3A%20function(value)%20%7B%0A%09%09console.log(value)%3B%0A%09%7D%0A%7D)%3B%3B">
                         <script type="runnable">
                             ts.ui.ToolBar.buttons([ {label: 'Button', type: 'ts-primary'}, {label: 'Button', type: 'ts-secondary'}, {label: 'Button', onclick: function() { console.log('Clicked'); }} ]).search({ info: 'Search amongst the things', onsearch: function(value) { console.log(value);
@@ -92,21 +104,29 @@
                     </figure>
                 </section>
                 <section>
-                    <h3><span><a data-ts="Button" href="/dist/components/bars/statusbar.html">Main StatusBar</a></span></h3>
-                    <p>Although the StatusBar can display status messages, it&apos;s perfectly alright to use it just to show some buttons. In that case, the difference from the Main ToolBar is simply that it positioned below the Main area.</p>
-                    <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.StatusBar.buttons(%5B%0A%09%7Blabel%3A%20&apos;Button&apos;%2C%20type%3A%20&apos;ts-primary&apos;%7D%2C%0A%09%7Blabel%3A%20&apos;Button&apos;%2C%20type%3A%20&apos;ts-secondary&apos;%7D%2C%0A%09%7Blabel%3A%20&apos;Button&apos;%2C%20onclick%3A%20function()%20%7B%0A%09%09console.log(&apos;Clicked&apos;)%3B%0A%09%7D%7D%0A%5D).message(&apos;Hello%20World&apos;)%3B">
+                    <h3><span><a data-ts="Button" href="/dist/components/footer/">Footer</a></span></h3>
+                    <p>The Footer is positioned below the Main area where it usually functions to display some buttons. But the Footer also supports <code>actions</code>, which are reserved for working with selected objects of any kind, as well as a Pager
+                        and a dedicated Collaboration button.</p>
+                    <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.Footer.buttons(%5B%0A%09%7Blabel%3A%20&apos;Button&apos;%2C%20type%3A%20&apos;ts-primary&apos;%7D%2C%0A%09%7Blabel%3A%20&apos;Button&apos;%2C%20type%3A%20&apos;ts-secondary&apos;%7D%2C%0A%09%7Blabel%3A%20&apos;Button&apos;%2C%20onclick%3A%20function()%20%7B%0A%09%09console.log(&apos;Button%20clicked&apos;)%3B%0A%09%7D%7D%0A%5D).actions(%5B%0A%09%7Blabel%3A%20&apos;Action&apos;%2C%20icon%3A%20&apos;ts-icon-followed&apos;%7D%2C%0A%09%7Blabel%3A%20&apos;Action&apos;%2C%20icon%3A%20&apos;ts-icon-favorites&apos;%7D%2C%0A%09%7Blabel%3A%20&apos;Action&apos;%2C%20icon%3A%20&apos;ts-icon-code&apos;%2C%20onclick%3A%20function()%20%7B%0A%09%09console.log(&apos;Action%20clicked&apos;)%3B%0A%09%7D%7D%0A%5D).status(&apos;Hello%20World&apos;)%3B">
                         <script type="runnable">
-                            ts.ui.StatusBar.buttons([ {label: 'Button', type: 'ts-primary'}, {label: 'Button', type: 'ts-secondary'}, {label: 'Button', onclick: function() { console.log('Clicked'); }} ]).message('Hello World');
+                            ts.ui.Footer.buttons([ {label: 'Button', type: 'ts-primary'}, {label: 'Button', type: 'ts-secondary'}, {label: 'Button', onclick: () => { console.log('Button clicked'); }} ]).actions([ {label: 'Action', icon: 'ts-icon-followed'}, {label: 'Action', icon:
+                            'ts-icon-favorites'}, {label: 'Action', icon: 'ts-icon-code', onclick: () => { console.log('Action clicked'); }} ]).status('Hello World');
                         </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                         <div class="tabpanels">
                             <pre class="prism language-javascript">
-<code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>StatusBar<span class="token punctuation">.</span><span class="token function">buttons<span class="token punctuation">(</span></span><span class="token punctuation">[</span>
+<code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Footer<span class="token punctuation">.</span><span class="token function">buttons<span class="token punctuation">(</span></span><span class="token punctuation">[</span>
 	<span class="token punctuation">{</span>label<span class="token punctuation">:</span> <span class="token string">&apos;Button&apos;</span><span class="token punctuation">,</span> type<span class="token punctuation">:</span> <span class="token string">&apos;ts-primary&apos;</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
 	<span class="token punctuation">{</span>label<span class="token punctuation">:</span> <span class="token string">&apos;Button&apos;</span><span class="token punctuation">,</span> type<span class="token punctuation">:</span> <span class="token string">&apos;ts-secondary&apos;</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
-	<span class="token punctuation">{</span>label<span class="token punctuation">:</span> <span class="token string">&apos;Button&apos;</span><span class="token punctuation">,</span> onclick<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-		console<span class="token punctuation">.</span><span class="token function">log<span class="token punctuation">(</span></span><span class="token string">&apos;Clicked&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">{</span>label<span class="token punctuation">:</span> <span class="token string">&apos;Button&apos;</span><span class="token punctuation">,</span> onclick<span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+		console<span class="token punctuation">.</span><span class="token function">log<span class="token punctuation">(</span></span><span class="token string">&apos;Button clicked&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 	<span class="token punctuation">}</span><span class="token punctuation">}</span>
-<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">message<span class="token punctuation">(</span></span><span class="token string">&apos;Hello World&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
+<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">actions<span class="token punctuation">(</span></span><span class="token punctuation">[</span>
+	<span class="token punctuation">{</span>label<span class="token punctuation">:</span> <span class="token string">&apos;Action&apos;</span><span class="token punctuation">,</span> icon<span class="token punctuation">:</span> <span class="token string">&apos;ts-icon-followed&apos;</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+	<span class="token punctuation">{</span>label<span class="token punctuation">:</span> <span class="token string">&apos;Action&apos;</span><span class="token punctuation">,</span> icon<span class="token punctuation">:</span> <span class="token string">&apos;ts-icon-favorites&apos;</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+	<span class="token punctuation">{</span>label<span class="token punctuation">:</span> <span class="token string">&apos;Action&apos;</span><span class="token punctuation">,</span> icon<span class="token punctuation">:</span> <span class="token string">&apos;ts-icon-code&apos;</span><span class="token punctuation">,</span> onclick<span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+		console<span class="token punctuation">.</span><span class="token function">log<span class="token punctuation">(</span></span><span class="token string">&apos;Action clicked&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span><span class="token punctuation">}</span>
+<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">status<span class="token punctuation">(</span></span><span class="token string">&apos;Hello World&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
 </pre>
                         </div>
                     </figure>

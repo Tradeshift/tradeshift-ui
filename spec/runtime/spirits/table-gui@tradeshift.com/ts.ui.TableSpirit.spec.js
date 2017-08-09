@@ -292,6 +292,17 @@ describe('ts.ui.TableSpirit', function likethis() {
 		it('should support link', function(done) {
 			setup(function(spirit, dom) {
 				spirit.linkable();
+				spirit.rows([['Please visit [Tradeshift](http://www.tradeshift.com)']]);
+				sometime(function later() {
+					expect(spirit.element.innerHTML).toContain('Tradeshift</a>');
+					done();
+				});
+			});
+		});
+
+		it('should support link(old syntax)', function(done) {
+			setup(function(spirit, dom) {
+				spirit.linkable();
 				spirit.rows([['Please visit (Tradeshift)[http://www.tradeshift.com]']]);
 				sometime(function later() {
 					expect(spirit.element.innerHTML).toContain('Tradeshift</a>');

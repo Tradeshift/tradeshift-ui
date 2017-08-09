@@ -65,14 +65,14 @@
                         </div>
                     </figure>
                     <p>You can also add some links via Markdown. When a link is clicked, the URL will be passed along to the <code>onlink</code> method. As you can see below, the URL can be just a key, it doesn&apos;t have to be real URL.
-                        <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.Note(%7B%0A%09text%3A%20&apos;Choose%20link%20(one)%5BONE%5D%20or%20(two)%5BTWO%5D%20or%20(three)%5BTHREE%5D.&apos;%2C%0A%09onlink%3A%20function(url)%20%7B%0A%09%09ts.ui.Notification.success(url)%3B%0A%09%09this.close()%3B%0A%09%7D%0A%7D)%3B">
+                        <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.Note(%7B%0A%09text%3A%20&apos;Choose%20link%20%5Bone%5D(ONE)%20or%20%5Btwo%5D(TWO)%20or%20%5Bthree%5D(THREE).&apos;%2C%0A%09onlink%3A%20function(url)%20%7B%0A%09%09ts.ui.Notification.success(url)%3B%0A%09%09this.close()%3B%0A%09%7D%0A%7D)%3B">
                             <script type="runnable">
-                                ts.ui.Note({ text: 'Choose link (one)[ONE] or (two)[TWO] or (three)[THREE].', onlink: function(url) { ts.ui.Notification.success(url); this.close(); } });
+                                ts.ui.Note({ text: 'Choose link [one](ONE) or [two](TWO) or [three](THREE).', onlink: function(url) { ts.ui.Notification.success(url); this.close(); } });
                             </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                             <div class="tabpanels">
                                 <pre class="prism language-javascript">
 <code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token function">Note<span class="token punctuation">(</span></span><span class="token punctuation">{</span>
-	text<span class="token punctuation">:</span> <span class="token string">&apos;Choose link (one)[ONE] or (two)[TWO] or (three)[THREE].&apos;</span><span class="token punctuation">,</span>
+	text<span class="token punctuation">:</span> <span class="token string">&apos;Choose link [one](ONE) or [two](TWO) or [three](THREE).&apos;</span><span class="token punctuation">,</span>
 	onlink<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span>url<span class="token punctuation">)</span> <span class="token punctuation">{</span>
 		ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Notification<span class="token punctuation">.</span><span class="token function">success<span class="token punctuation">(</span></span>url<span class="token punctuation">)</span><span class="token punctuation">;</span>
 		<span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">close<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>

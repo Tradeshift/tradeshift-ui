@@ -17,7 +17,7 @@
             'Paragraphs with *italic text*.\n',
             'Paragraphs with `source code`.\n',
             '## links',
-            'This is (a link)[http://www.tradeshift.com/]',
+            'This is [a link](http://www.tradeshift.com)',
             '## Unordered lists',
             '* One',
             '* Two',
@@ -107,23 +107,23 @@ ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</s
                         </div>
                     </figure>
                     <p>Notifications support basic markdown for formatting and links.</p>
-                    <figure data-ts="DoxMarkup" data-ts.code="Markdown%20for%20**bold%20text**%20and%20*italic%20text*%20and%20%60source%20code%60%0AMarkdown%20for%20a%20(hyperlink)%5Bhttp%3A%2F%2Fwww.example.com%2F%5D">
+                    <figure data-ts="DoxMarkup" data-ts.code="Markdown%20for%20**bold%20text**%20and%20*italic%20text*%20and%20%60source%20code%60%0AMarkdown%20for%20a%20%5Bhyperlink%5D(http%3A%2F%2Fwww.example.com%2F)">
                         <input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
                         <div class="tabpanels">
                             <pre class="prism language-markup">
 <code>Markdown for **bold text** and *italic text* and `source code`
-Markdown for a (hyperlink)[http://www.example.com/]</code>
+Markdown for a [hyperlink](http://www.example.com/)</code>
 </pre>
                         </div>
                     </figure>
                     <p>When a link is clicked, the URL will be passed along to the <code>onlink</code> method. As you can see below, the URL can be just a key, it doesn&apos;t have to be real URL.</p>
-                    <figure data-ts="DoxScript" class="runnable" data-ts.code="var%20text%20%3D%20&apos;Choose%20link%20(one)%5BONE%5D%20or%20(two)%5BTWO%5D%20or%20(three)%5BTHREE%5D.&apos;%3B%0Ats.ui.Notification.info(text%2C%20%7B%0A%09onlink%3A%20function(url)%20%7B%0A%09%09this.accept().then(function%20onfadeout()%20%7B%0A%09%09%09ts.ui.Notification.success(url)%3B%0A%09%09%7D)%3B%0A%09%7D%0A%7D)%3B">
+                    <figure data-ts="DoxScript" class="runnable" data-ts.code="var%20text%20%3D%20&apos;Choose%20link%20%5Bone%5D(ONE)%20or%20%5Btwo%5D(TWO)%20or%20%5Bthree%5D(THREE).&apos;%3B%0Ats.ui.Notification.info(text%2C%20%7B%0A%09onlink%3A%20function(url)%20%7B%0A%09%09this.accept().then(function%20onfadeout()%20%7B%0A%09%09%09ts.ui.Notification.success(url)%3B%0A%09%09%7D)%3B%0A%09%7D%0A%7D)%3B">
                         <script type="runnable">
-                            var text = 'Choose link (one)[ONE] or (two)[TWO] or (three)[THREE].'; ts.ui.Notification.info(text, { onlink: function(url) { this.accept().then(function onfadeout() { ts.ui.Notification.success(url); }); } });
+                            var text = 'Choose link [one](ONE) or [two](TWO) or [three](THREE).'; ts.ui.Notification.info(text, { onlink: function(url) { this.accept().then(function onfadeout() { ts.ui.Notification.success(url); }); } });
                         </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                         <div class="tabpanels">
                             <pre class="prism language-javascript">
-<code><span class="token keyword">var</span> text <span class="token operator">=</span> <span class="token string">&apos;Choose link (one)[ONE] or (two)[TWO] or (three)[THREE].&apos;</span><span class="token punctuation">;</span>
+<code><span class="token keyword">var</span> text <span class="token operator">=</span> <span class="token string">&apos;Choose link [one](ONE) or [two](TWO) or [three](THREE).&apos;</span><span class="token punctuation">;</span>
 ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Notification<span class="token punctuation">.</span><span class="token function">info<span class="token punctuation">(</span></span>text<span class="token punctuation">,</span> <span class="token punctuation">{</span>
 	onlink<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span>url<span class="token punctuation">)</span> <span class="token punctuation">{</span>
 		<span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">accept<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then<span class="token punctuation">(</span></span><span class="token keyword">function</span> <span class="token function">onfadeout<span class="token punctuation">(</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
@@ -135,14 +135,14 @@ ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</s
                         </div>
                     </figure>
                     <p>If the link should indeed link to something, make sure to provide the full protocol <code>http(s)://</code></p>
-                    <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.Notification.info(%0A%09&apos;Please%20visit%20(Tradeshift)%5Bhttp%3A%2F%2Fwww.tradeshift.com%5D&apos;%0A)%3B">
+                    <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.Notification.info(%0A%09&apos;Please%20visit%20%5BTradeshift%5D(http%3A%2F%2Fwww.tradeshift.com)&apos;%0A)%3B">
                         <script type="runnable">
-                            ts.ui.Notification.info( 'Please visit (Tradeshift)[http://www.tradeshift.com]' );
+                            ts.ui.Notification.info( 'Please visit [Tradeshift](http://www.tradeshift.com)' );
                         </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                         <div class="tabpanels">
                             <pre class="prism language-javascript">
 <code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Notification<span class="token punctuation">.</span><span class="token function">info<span class="token punctuation">(</span></span>
-	<span class="token string">&apos;Please visit (Tradeshift)[http://www.tradeshift.com]&apos;</span>
+	<span class="token string">&apos;Please visit [Tradeshift](http://www.tradeshift.com)&apos;</span>
 <span class="token punctuation">)</span><span class="token punctuation">;</span></code>
 </pre>
                         </div>

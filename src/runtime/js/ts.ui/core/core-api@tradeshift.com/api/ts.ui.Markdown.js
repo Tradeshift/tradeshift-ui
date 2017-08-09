@@ -236,13 +236,49 @@ ts.ui.Markdown = (function using(linkparser) {
 	// LINKS ..................................................................
 
 	/**
-	 * Routine to parse links in the format init(text)[href]post.
+	 * Routine to parse links in the format init[text](href)post.
 	 * Regexp for this was not really maintainable (extensible).
 	 * @using {RegExp} txt
 	 * @using {RegExp} url
 	 */
 	(function using(txt, url) {
 		var init, text, href, post, last, html, test;
+
+		/**
+		 * We support links of markdown like this (text)[href].
+		 * But it is too late when we realize it is wrong.
+		 * We have to support both,(text)[href] and [text](href).
+		 * We transfer [text](href) to (text)[href] when developer use the right one
+		 * Todo:@Leo Delete the code when we know all developer use the right one.
+		 * @param {string} markdown
+		 * @returns {string} unnormalized link markdown.
+		 */
+		function unnormalize(line) {
+			if (line.indexOf('](') < 0) {
+				return line;
+			}
+			line = line.split('](').map(function(cut){
+				var normal = cut;
+				if (isnormaltext(cut)) {
+					var l = normal.lastIndexOf('[');
+					normal = normal.substr(0, l) + normal.substr(l).replace('[', '(');
+				}
+				if (isnormalurl(cut)) {
+					var f = normal.indexOf(')');
+					normal = normal.substr(0, f+1).replace(')', ']') + normal.substr(f+1);
+				}
+				return normal;
+			}).join(')[');
+			return line;
+		}
+
+		function isnormaltext(cut) {
+			return cut.split('[').length > cut.split(']').length;
+		}
+
+		function isnormalurl(cut) {
+			return cut.split(')').length > cut.split('(').length;
+		}
 
 		function link() {
 			return '<a data-ts="Button" data-ts.type="$type" data-ts.data="$data">$text</a>'
@@ -290,6 +326,7 @@ ts.ui.Markdown = (function using(linkparser) {
 
 		return function linkparser(line) {
 			reset();
+			line = unnormalize(line);
 			return line.split(')[').map(parsecut).join('') || line;
 		};
 	})(/\(.+$/, /^.+\]/)

@@ -99,16 +99,16 @@
                     <div class="splitscreen-container">
                         <ul class="splitscreen">
                             <li>
-                                <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.get(&apos;%23table3&apos;%2C%20function(table)%20%7B%0A%09table.linkable()%3B%0A%09table.rows(%5B%0A%09%09%5B&apos;Please%20visit%20(Tradeshift)%5Bhttp%3A%2F%2Fwww.tradeshift.com%5D&apos;%5D%0A%09%5D)%3B%0A%7D)%3B">
+                                <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.get(&apos;%23table3&apos;%2C%20function(table)%20%7B%0A%09table.linkable()%3B%0A%09table.rows(%5B%0A%09%09%5B&apos;Please%20visit%20%5BTradeshift%5D(http%3A%2F%2Fwww.tradeshift.com)&apos;%5D%0A%09%5D)%3B%0A%7D)%3B">
                                     <script type="runnable">
-                                        ts.ui.get('#table3', table => { table.linkable(); table.rows([ ['Please visit (Tradeshift)[http://www.tradeshift.com]'] ]); });
+                                        ts.ui.get('#table3', table => { table.linkable(); table.rows([ ['Please visit [Tradeshift](http://www.tradeshift.com)'] ]); });
                                     </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                                     <div class="tabpanels">
                                         <pre class="prism language-javascript">
 <code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#table3&apos;</span><span class="token punctuation">,</span> table <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
 	table<span class="token punctuation">.</span><span class="token function">linkable<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 	table<span class="token punctuation">.</span><span class="token function">rows<span class="token punctuation">(</span></span><span class="token punctuation">[</span>
-		<span class="token punctuation">[</span><span class="token string">&apos;Please visit (Tradeshift)[http://www.tradeshift.com]&apos;</span><span class="token punctuation">]</span>
+		<span class="token punctuation">[</span><span class="token string">&apos;Please visit [Tradeshift](http://www.tradeshift.com)&apos;</span><span class="token punctuation">]</span>
 	<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
 </pre>
@@ -125,9 +125,9 @@
                     <div class="splitscreen-container">
                         <ul class="splitscreen">
                             <li>
-                                <figure data-ts="DoxScript" class="runnable" data-ts.code="var%20popup%20%3D%20ts.ui.Notification%3B%0Ats.ui.get(&apos;%23table4&apos;%2C%20function(table)%20%7B%0A%09table.linkable(function%20onlink(anystring)%20%7B%0A%09%09popup.success(anystring)%3B%0A%09%7D).rows(%5B%0A%09%09%5B&apos;Choose%20link%20(one)%5BONE%5D%20or%20(two)%5BTWO%5D%20or%20(three)%5BTHREE%5D.&apos;%5D%0A%09%5D)%3B%0A%7D)%3B">
+                                <figure data-ts="DoxScript" class="runnable" data-ts.code="var%20popup%20%3D%20ts.ui.Notification%3B%0Ats.ui.get(&apos;%23table4&apos;%2C%20function(table)%20%7B%0A%09table.linkable(function%20onlink(anystring)%20%7B%0A%09%09popup.success(anystring)%3B%0A%09%7D).rows(%5B%0A%09%09%5B&apos;Choose%20link%20%5Bone%5D(ONE)%20or%20%5Btwo%5D(TWO)%20or%20%5Bthree%5D(THREE).&apos;%5D%0A%09%5D)%3B%0A%7D)%3B">
                                     <script type="runnable">
-                                        var popup = ts.ui.Notification; ts.ui.get('#table4', table => { table.linkable(function onlink(anystring) { popup.success(anystring); }).rows([ ['Choose link (one)[ONE] or (two)[TWO] or (three)[THREE].'] ]); });
+                                        var popup = ts.ui.Notification; ts.ui.get('#table4', table => { table.linkable(function onlink(anystring) { popup.success(anystring); }).rows([ ['Choose link [one](ONE) or [two](TWO) or [three](THREE).'] ]); });
                                     </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                                     <div class="tabpanels">
                                         <pre class="prism language-javascript">
@@ -136,7 +136,7 @@ ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</s
 	table<span class="token punctuation">.</span><span class="token function">linkable<span class="token punctuation">(</span></span><span class="token keyword">function</span> <span class="token function">onlink<span class="token punctuation">(</span></span>anystring<span class="token punctuation">)</span> <span class="token punctuation">{</span>
 		popup<span class="token punctuation">.</span><span class="token function">success<span class="token punctuation">(</span></span>anystring<span class="token punctuation">)</span><span class="token punctuation">;</span>
 	<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">rows<span class="token punctuation">(</span></span><span class="token punctuation">[</span>
-		<span class="token punctuation">[</span><span class="token string">&apos;Choose link (one)[ONE] or (two)[TWO] or (three)[THREE].&apos;</span><span class="token punctuation">]</span>
+		<span class="token punctuation">[</span><span class="token string">&apos;Choose link [one](ONE) or [two](TWO) or [three](THREE).&apos;</span><span class="token punctuation">]</span>
 	<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
 </pre>

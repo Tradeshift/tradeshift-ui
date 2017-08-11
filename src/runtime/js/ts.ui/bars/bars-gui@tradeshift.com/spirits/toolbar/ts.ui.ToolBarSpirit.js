@@ -271,11 +271,6 @@ ts.ui.ToolBarSpirit = (function using(
 			 */
 			macro: chained(function() {
 				this.css.remove(ts.ui.CLASS_MICRO).add(ts.ui.CLASS_MACRO);
-				if (this._outsidemain() && this._outsidemodal()) {
-					this.guilayout.shiftGlobal(false, 'ts-has-toolbar-first-ts-micro');
-					this.guilayout.shiftGlobal(true, 'ts-has-toolbar-first-ts-macro');
-					this.guilayout.flexGlobal();
-				}
 			}),
 
 			/**
@@ -284,11 +279,6 @@ ts.ui.ToolBarSpirit = (function using(
 			 */
 			micro: chained(function() {
 				this.css.remove(ts.ui.CLASS_MACRO).add(ts.ui.CLASS_MICRO);
-				if (this._outsidemain() && this._outsidemodal()) {
-					this.guilayout.shiftGlobal(false, 'ts-has-toolbar-first-ts-macro');
-					this.guilayout.shiftGlobal(true, 'ts-has-toolbar-first-ts-micro');
-					this.guilayout.flexGlobal();
-				}
 			}),
 
 			/**
@@ -576,6 +566,11 @@ ts.ui.ToolBarSpirit = (function using(
 						this._looknormal(this.css);
 						this._layoutbefore(show);
 						this._initbreakpoint(show);
+					} else if (this.guilayout.afterMain()) {
+						if (!this.dom.ancestor(ts.ui.FooterBarSpirit)) {
+							this._looknormal(this.css);
+							this._layoutafter(show);
+						}
 					}
 				}
 			},
@@ -589,6 +584,17 @@ ts.ui.ToolBarSpirit = (function using(
 				var klass = 'ts-has-toolbar-first-' + (micro ? 'ts-micro' : 'ts-macro');
 				if (this._outsidemodal()) {
 					this.guilayout.shiftGlobal(show, klass);
+				}
+			},
+
+			/**
+			 * @param {boolean} show
+			 */
+			_layoutafter: function(show) {
+				this.css.shift(show, 'ts-toolbar-last');
+				if (this._outsidemodal()) {
+					this.guilayout.shiftGlobal(show, 'ts-has-footer');
+					this.action.dispatch(ts.ui.ACTION_FOOTER_LEVEL, show ? 3 : 0);
 				}
 			},
 

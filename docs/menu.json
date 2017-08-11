@@ -182,6 +182,7 @@
 				"path": "appendix/markdown/"
 			},
 			{
+				"hidden": true,
 				"label": "Automated Layout",
 				"icon": "docs-icon-window-application-6",
 				"path": "appendix/autolayout/"

@@ -58,15 +58,17 @@
 								<form data-ts="Form">
 									<fieldset>
 										<span></span>
-										function checkbox(text, prop) {
-											<label>
-												<input type="checkbox" checked="${layout[prop]}" onchange="#{layout[prop] = checked}"/>
-												<span>${text}</span>
-											</label>
+										function checkbox(text, prop, localhost) {
+											if(!localhost || location.hostname === 'localhost') {
+												<label>
+													<input type="checkbox" checked="${layout[prop]}" onchange="#{layout[prop] = checked}"/>
+													<span>${text}</span>
+												</label>
+											}
 										}
 										checkbox('TopBar', 'topBar');
-										checkbox('ToolBar before Main', 'toolBarBefore');
-										checkbox('ToolBar after Main', 'toolBarAfter');
+										checkbox('ToolBar before Main (DEPRECATED)', 'toolBarBefore', true);
+										checkbox('ToolBar after Main (DEPRECATED)', 'toolBarAfter', true);
 										checkbox('SideBar before Main', 'sideBarBefore');
 										checkbox('SideBar after Main', 'sideBarAfter');
 									</fieldset>

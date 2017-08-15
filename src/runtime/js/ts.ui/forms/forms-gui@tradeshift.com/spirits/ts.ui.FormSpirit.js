@@ -48,7 +48,16 @@ ts.ui.FormSpirit = (function() {
 			 * Form model.
 			 * @type {ts.ui.FormModel}
 			 */
-			_model: null
+			_model: null,
+
+			/**
+			* Form fields preview state
+			* @param @optional {boolean} ispreview
+			*/
+			preview: function(ispreview){
+				ispreview = ispreview === 'true';
+				this.css.add(ts.ui.CLASS_PREVIEW);
+			},
 		},
 		{
 			// XStatic ..............................................................

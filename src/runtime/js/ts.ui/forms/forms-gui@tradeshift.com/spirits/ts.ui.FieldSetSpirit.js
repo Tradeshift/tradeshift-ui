@@ -38,6 +38,14 @@ ts.ui.FieldSetSpirit = (function() {
 			}
 		},
 
+		onasync: function() {
+			this.super.onasync();
+			var form = this.dom.parent(ts.ui.FormSpirit);
+			if (form && form.css.contains(ts.ui.CLASS_PREVIEW)) {
+				this.element.setAttribute('disabled', 'disabled');
+			}
+		},
+
 		// Privileged ..............................................................
 
 		/**

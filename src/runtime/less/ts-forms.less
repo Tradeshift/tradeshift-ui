@@ -25,6 +25,7 @@
 // Forms .......................................................................
 
 .ts-form {
+	position: relative;
 	display: block;
 	text-align: left;
 	&.ts-fieldset,
@@ -199,7 +200,7 @@
 	box-shadow: none !important;
 }
 
-.ts-form:not(.ts-nofx) {
+.ts-form:not(.ts-nofx):not(.ts-preview) {
 	.ts-fieldset {
 		label:hover:not(.ts-focus):not(.ts-focus-on) {
 			&:not(.ts-disabled):not(.ts-readonly) {
@@ -862,4 +863,29 @@
 			}
 		}
 	}
+}
+
+// Preview .....................................................................
+
+.ts-form {
+	&.ts-preview {
+		.ts-datelabel,
+		.ts-fakelabel {
+			&:before {
+				display: none !important;
+			}
+		}
+		.ts-field.ts-text,
+		.ts-field.ts-select {
+			border: 1px solid transparent;
+			&.ts-fakeselectinput {
+				display: none;
+			}
+		}
+		&:after {
+			content: '';
+			.ts-mixin-maximize();
+		}
+	}	
+	
 }

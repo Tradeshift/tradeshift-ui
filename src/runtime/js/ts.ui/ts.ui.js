@@ -187,6 +187,7 @@ ts.ui = gui.namespace(
 
 			// forms - TODO: maybe move to forms-gui@tradeshift.com
 			CLASS_FORM: 'ts-form',
+			CLASS_PREVIEW: 'ts-preview',
 			CLASS_FIELD: 'ts-field',
 			CLASS_GROUP: 'ts-group',
 			CLASS_TEXT: 'ts-text',

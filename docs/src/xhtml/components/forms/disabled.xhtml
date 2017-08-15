@@ -19,7 +19,8 @@
 				<span class="attr-pair">
 					<span>readonly</span>
 				</span>
-				the same way you would in (X)HTML(5)
+				the same way you would in (X)HTML(5).
+				You can set <code class="attr-name">data-ts.preview</code> attribute to preview whole form.
 			</p>
 		</section>
 		<section>
@@ -219,6 +220,28 @@
 							<label>
 								<span>Secret Feature (On by default)</span>
 								<input type="checkbox" checked disabled/>
+							</label>
+						</fieldset>
+					</form>
+				</script>
+			</figure>
+			<h3>
+				<span class="el">Form</span>
+				<span class="attr-pair">
+					<span>data-ts.preview</span>=&quot;<span>true</span>&quot;
+				</span>
+				<span class="attr-pair">
+					<span>preview</span>
+				</span>
+				<span>fields in the form</span>
+			</h3>
+			<figure data-ts="DoxMarkup">
+				<output/>
+				<script>
+					<form data-ts="Form" data-ts.preview="true">
+						<fieldset>
+							<label>
+								<input type="text" value="preview form"/>
 							</label>
 						</fieldset>
 					</form>

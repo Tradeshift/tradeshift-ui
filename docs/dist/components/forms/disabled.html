@@ -36,7 +36,7 @@
                         <span class="attr-pair">
 					<span>readonly</span>
                         </span>
-                        the same way you would in (X)HTML(5)
+                        the same way you would in (X)HTML(5). You can set <code class="attr-name">data-ts.preview</code> attribute to preview whole form.
                     </p>
                 </section>
                 <section>
@@ -352,6 +352,40 @@
 		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>label</span><span class="token punctuation">&gt;</span></span>
 			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">&gt;</span></span>Secret Feature (On by default)<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span>
 			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>checkbox<span class="token punctuation">&quot;</span></span> <span class="token attr-name">checked</span> <span class="token attr-name">disabled</span><span class="token punctuation">/&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>label</span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>fieldset</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>form</span><span class="token punctuation">&gt;</span></span></code>
+</pre>
+                        </div>
+                    </figure>
+                    <h3><span>
+				<span class="el">Form</span>
+                        <span class="attr-pair">
+					<span>data-ts.preview</span>=&quot;<span>true</span>&quot;
+                        </span>
+                        <span class="attr-pair">
+					<span>preview</span>
+                        </span>
+                        <span>fields in the form</span>
+                        </span>
+                    </h3>
+                    <figure data-ts="DoxMarkup" data-ts.code="%3Cform%20data-ts%3D%22Form%22%20data-ts.preview%3D%22true%22%3E%0A%09%3Cfieldset%3E%0A%09%09%3Clabel%3E%0A%09%09%09%3Cinput%20type%3D%22text%22%20value%3D%22preview%20form%22%2F%3E%0A%09%09%3C%2Flabel%3E%0A%09%3C%2Ffieldset%3E%0A%3C%2Fform%3E">
+                        <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Atrue%2C%22runs%22%3Afalse%2C%22flip%22%3Atrue%7D">
+                        <div class="tabpanels">
+                            <div class="output">
+                                <form data-ts="Form" data-ts.preview="true">
+                                    <fieldset>
+                                        <label>
+			<input type="text" value="preview form">
+		</label>
+                                    </fieldset>
+                                </form>
+                            </div>
+                            <pre class="prism language-markup">
+<code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>form</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Form<span class="token punctuation">&quot;</span></span> <span class="token attr-name">data-ts</span>.<span class="token attr-name">preview</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>true<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>fieldset</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>label</span><span class="token punctuation">&gt;</span></span>
+			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>text<span class="token punctuation">&quot;</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>preview form<span class="token punctuation">&quot;</span></span><span class="token punctuation">/&gt;</span></span>
 		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>label</span><span class="token punctuation">&gt;</span></span>
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>fieldset</span><span class="token punctuation">&gt;</span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>form</span><span class="token punctuation">&gt;</span></span></code>

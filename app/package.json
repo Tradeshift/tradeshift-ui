@@ -12,7 +12,7 @@
     ]
   },
   "scripts": {
-    "build": "babel src -d temp && browserify temp/ts.app.js -o dist/ts.app.js --standalone 'ts.app'"
+    "build": "babel src -d temp && browserify temp/ts.app.js -o dist/ts.app.js --standalone 'ts._app'"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",

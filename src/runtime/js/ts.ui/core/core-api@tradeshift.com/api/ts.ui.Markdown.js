@@ -306,9 +306,21 @@ ts.ui.Markdown = (function using(linkparser) {
 		}
 
 		function gettext(cut) {
-			last = cut.lastIndexOf('(');
+			last = getlastindex(cut);
 			init = cut.substr(0, last);
 			return cut.slice(last + 1);
+		}
+
+		function getlastindex(cut) {
+			var left = cut.lastIndexOf('(');
+			var right = cut.lastIndexOf(')');
+			if (left < 0) {
+				return -1;
+			}
+			if (left <= right) {
+				return getlastindex(cut.substr(0,left - 1));
+			}
+			return left;
 		}
 
 		function donecut() {

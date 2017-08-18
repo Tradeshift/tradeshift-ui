@@ -310,6 +310,37 @@ describe('ts.ui.TableSpirit', function likethis() {
 				});
 			});
 		});
+		it('should support () in the text of the link markdown', function(done) {
+			setup(function(spirit, dom) {
+				spirit.linkable();
+				spirit.rows([['Please visit (Trade(s)hift)[http://www.tradeshift.com]']]);
+				sometime(function later() {
+					expect(spirit.element.innerHTML).toContain('Trade(s)hift</a>');
+					done();
+				});
+			});
+		});
+		it('should support () in the text of the link markdown(new syntax)', function(done) {
+			setup(function(spirit, dom) {
+				spirit.linkable();
+				spirit.rows([['Please visit [Trade(s)hift](http://www.tradeshift.com)']]);
+				sometime(function later() {
+					expect(spirit.element.innerHTML).toContain('Trade(s)hift</a>');
+					done();
+				});
+			});
+		});
+
+		it('should get right text of the link markdown ', function(done) {
+			setup(function(spirit, dom) {
+				spirit.linkable();
+				spirit.rows([['Please (visit)[Trade(s)hift](http://www.tradeshift.com)']]);
+				sometime(function later() {
+					expect(spirit.element.innerHTML).toContain('(visit)<a');
+					done();
+				});
+			});
+		});
 	});
 
 	describe('Sort', function() {

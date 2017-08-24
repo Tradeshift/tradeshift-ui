@@ -121,12 +121,17 @@
 			height: 100%;
 			min-height: @ts-unit-double - 1px;
 			width: 100%;
-			color: @ts-black;
+			color: @ts-medium-litest;
 			i {
 				.ts-mixin-maximize();
-				font-size: 20px;
+				font-size: 27px;
 				padding-top: @ts-unit + 1px;
 				pointer-events: none; // Chrome needs this
+			}
+		}
+		&.ts-checked {
+			button {	
+				color: @ts-blue;
 			}
 		}
 	}

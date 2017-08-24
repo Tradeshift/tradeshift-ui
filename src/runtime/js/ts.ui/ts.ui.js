@@ -415,7 +415,7 @@ ts.ui = gui.namespace(
 			 */
 			openMenu: chained(function() {
 				gui.Broadcast.dispatchGlobal(this.BROADCAST_GLOBAL_MENU_OPEN);
-				ts.ui.app.broadcast(this.BROADCAST_TO_CHROME, this.BROADCAST_CHROME_MENU_OPEN);
+				ts.app.broadcast(this.BROADCAST_TO_CHROME, this.BROADCAST_CHROME_MENU_OPEN);
 			}),
 
 			/**
@@ -424,7 +424,7 @@ ts.ui = gui.namespace(
 			 */
 			closeMenu: chained(function() {
 				gui.Broadcast.dispatchGlobal(this.BROADCAST_GLOBAL_MENU_CLOSE);
-				ts.ui.app.broadcast(this.BROADCAST_TO_CHROME, this.BROADCAST_CHROME_MENU_CLOSE);
+				ts.app.broadcast(this.BROADCAST_TO_CHROME, this.BROADCAST_CHROME_MENU_CLOSE);
 			}),
 
 			/**

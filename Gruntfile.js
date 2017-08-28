@@ -43,6 +43,10 @@ module.exports = function(grunt) {
 
 	// never called directly, release-it will do that for us
 	grunt.registerTask('release-deploy', ['concurrent:check_cdn_while_dist', 'exec:s3_upload']);
+	grunt.registerTask('release-deploy-cn', [
+		'concurrent:check_cdn_while_dist',
+		'exec:ali_oss_upload'
+	]);
 
 	// Config ....................................................................
 
@@ -137,9 +141,13 @@ module.exports = function(grunt) {
 			cdn: {
 				options: {
 					'${runtimecss}':
-						'<%= config.cdn_live %>' + config.cdn_folder + '/ts-<%= pkg.version %>.min.css',
+						'<%= process.env.ALI_OSS_CDN_LIVE || config.cdn_live %>' +
+							config.cdn_folder +
+							'/ts-<%= pkg.version %>.min.css',
 					'${langbundle}':
-						'<%= config.cdn_live %>' + config.cdn_folder + '/ts-lang-<LANG>-<%= pkg.version %>.js'
+						'<%= process.env.ALI_OSS_CDN_LIVE || config.cdn_live %>' +
+							config.cdn_folder +
+							'/ts-lang-<LANG>-<%= pkg.version %>.js'
 				},
 				files: {
 					'temp/ts.js': 'src/runtime/ts.js'
@@ -416,9 +424,15 @@ module.exports = function(grunt) {
 		check_cdn: {
 			cdn: {
 				urls: [
-					'<%= config.cdn_base %>' + config.cdn_folder + '/ts-<%= pkg.version %>.js',
-					'<%= config.cdn_base %>' + config.cdn_folder + '/ts-<%= pkg.version %>.min.js',
-					'<%= config.cdn_base %>' + config.cdn_folder + '/ts-<%= pkg.version %>.min.js.map'
+					'<%= process.env.cdn_base || config.cdn_base %>' +
+						config.cdn_folder +
+						'/ts-<%= pkg.version %>.js',
+					'<%= process.env.cdn_base || config.cdn_base %>' +
+						config.cdn_folder +
+						'/ts-<%= pkg.version %>.min.js',
+					'<%= process.env.cdn_base || config.cdn_base %>' +
+						config.cdn_folder +
+						'/ts-<%= pkg.version %>.min.js.map'
 				]
 			}
 		},
@@ -427,6 +441,10 @@ module.exports = function(grunt) {
 		exec: {
 			s3_upload: {
 				command: 'npm run deploy-s3',
+				stdout: 'inherit'
+			},
+			ali_oss_upload: {
+				command: 'npm run deploy-ali-oss',
 				stdout: 'inherit'
 			},
 			eslint: {

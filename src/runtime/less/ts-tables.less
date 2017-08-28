@@ -409,9 +409,11 @@
 	}
 	.ts-table-row-selected {
 		td {
-			background-color: transparent;
+			background-color: @ts-liteblue;
+			&.ts-selected {
+				background-color: @ts-liteblue-dark;
+			}
 		}
-
 	}
 	.ts-table-row-unselectable {
 		background-color: @ts-lite-lite;

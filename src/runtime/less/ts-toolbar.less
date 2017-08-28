@@ -460,14 +460,18 @@
 			&.ts-toolbar-checkbox {
 				padding: 0 !important;
 				.ts-button {
-					// .ts-mixin-fix(@ts-unit-double, @ts-unit-double);
-					.ts-icon-checkboxon {
-						font-size: 27px;
-						color: @ts-blue;
-					}
-					.ts-icon-checkbox {
-						font-size: 27px;
-						color:@ts-medium-litest; 
+					.ts-mixin-fix(@ts-unit-double, @ts-unit-double);
+					i {
+						&:before {
+							font-size: 27px !important;
+							top: 2px;
+						}
+						&.ts-icon-checkboxon {
+							color: @ts-blue;
+						}
+						&.ts-icon-checkbox {
+							color:@ts-medium-litest; 
+						}
 					}
 				}
 			}

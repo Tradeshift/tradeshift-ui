@@ -4,15 +4,17 @@
 
 	var id = table.$instanceid;
 	@class = 'ts-table-menu ts-engine-' + gui.Client.agent;
-	@class += table.menuopen ? ' ts-open ts-bg-yellow' : '';
+	@class += table.menuopen ? ' ts-open ts-bg-white' : '';
 
 	<aside @class id="${id}-menu" data-ts="Spirit">
 		<table>
 			<thead>
 				<tr>
-					<th class="ts-table-checkbox">
+					var check = table.isVisibleRowSelected();
+					@class =  'ts-table-checkbox ';
+					@class +=  check ? 'ts-checked' : '';
+					<th @class>
 						<button data-action="selection-menu" id="${id}-menu-button">
-							var check = table.isVisibleRowSelected();
 							@class = check ? 'ts-icon-checkboxon' : 'ts-icon-checkbox';
 							<i @class></i>
 						</button>

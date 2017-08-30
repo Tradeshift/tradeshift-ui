@@ -28,13 +28,13 @@ describe('ts.ui.tablemenu.edbml', function likethis() {
 		var table = new ts.ui.TableModel();
 		spyOn(table, 'isVisibleRowSelected').and.returnValue(true);
 		expect(gethtml(table)).toContain('class="ts-icon-checkboxon');
-		expect(gethtml(table)).not.toContain('class="ts-icon-checkbox');
+		expect(gethtml(table)).not.toMatch(/class=\"ts-icon-checkbox([ \"])/);
 	});
 
 	it('should contain ts-icon-checkbox', function() {
 		var table = new ts.ui.TableModel();
 		spyOn(table, 'isVisibleRowSelected').and.returnValue(false);
-		expect(gethtml(table)).toContain('class="ts-icon-checkbox');
+		expect(gethtml(table)).toMatch(/class=\"ts-icon-checkbox([ \"])/);
 		expect(gethtml(table)).not.toContain('class="ts-icon-checkboxon');
 	});
 });

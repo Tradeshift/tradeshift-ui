@@ -7,7 +7,7 @@
 	
 	rows.forEach(function(row) {
 		var selectable = row.selectable !== false;
-		@class = table.selectable && selectable && row.selected ? 'ts-table-row-selected ts-bg-yellow' : '';
+		@class = table.selectable && selectable && row.selected ? 'ts-table-row-selected' : '';
 		<tr @class>
 			if(selectable) {
 				renderCheck(table, row);

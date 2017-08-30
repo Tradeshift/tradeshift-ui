@@ -23,7 +23,7 @@
 	function renderRow(row) {
 		var selectable = row.selectable === false ? false : true;
 		@class = row.TEMPFIX ? 'TEMPFIX' : '';
-		@class += table.selectable && selectable && row.selected ? 'ts-table-row-selected ts-bg-yellow' : '';
+		@class += table.selectable && selectable && row.selected ? 'ts-table-row-selected' : '';
 		@class += table.selectable && !selectable ? 'ts-table-row-unselectable' : '';
 		@class += row.new ? 'ts-table-new-row' : '';
 		<tr data-index="${row.$index}" @class>

@@ -88,14 +88,6 @@ gui.KeysModule = gui.module('gui-keys@wunderbyte.com', {
 		var n = e.keyCode,
 			c = this._keymap[n];
 		var id = e.currentTarget.defaultView.gui.$contextid;
-
-		/*
-		// TODO: THIS!
-		if ( e.ctrlKey && gui.Key.$key [ e.keyCode ] !== "Control" ) {
-			e.preventDefault ();
-		}
-		*/
-
 		switch (e.type) {
 			case 'keydown':
 				if (c === undefined) {
@@ -104,7 +96,7 @@ gui.KeysModule = gui.module('gui-keys@wunderbyte.com', {
 					this._keymap[n] = String.fromCharCode(e.which).toLowerCase();
 					gui.Tick.next(function() {
 						c = this._keymap[n];
-						this._broadcast(true, null, c, n, id);
+						this._maybebroadcast(true, null, c, n, id);
 						this._keycode = null;
 					}, this);
 				}
@@ -117,10 +109,28 @@ gui.KeysModule = gui.module('gui-keys@wunderbyte.com', {
 				break;
 			case 'keyup':
 				if (c !== undefined) {
-					this._broadcast(false, null, c, n, id);
+					this._maybebroadcast(false, null, c, n, id);
 					delete this._keymap[n];
 				}
 				break;
+		}
+	},
+
+	/**
+	 * Doh! We would at one point broadcast every keystroke to support cross-frame 
+	 * keyboard shortcuts (which is still a future project), but then we realized 
+	 * that we had really build a cross-frame keylogger and now we only broadcast 
+	 * special keys such as UP, DOWN, LEFT, RIGHT, ENTER and ESCAPE and so on. 
+	 * If needed, we could probably (safely) broadcast key combos such as `Shift+S`.
+	 * @param {boolean} down
+	 * @param {String} key Newschool ABORTED FOR NOW
+	 * @param {String} c (char) Bothschool
+	 * @param {number} code Oldschool
+	 * @param {String} sig Contextkey
+	 */
+	_maybebroadcast: function(down, key, c, code, sig) {
+		if (!c) {
+			this._broadcast(down, key, c, code, sig);
 		}
 	},
 

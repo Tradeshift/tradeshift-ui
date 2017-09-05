@@ -113,6 +113,13 @@ gui.DOMCombos = (function using(before, after, around, provided, Type, guiArray,
 		gui.get(this).att.del(name);
 	});
 
+	/**
+	 * Ready-made DOMCombo for `node[field] = value` type setters
+	 */
+	var attrCombo = function(base) {
+		return ifEnabled(ifEmbedded(setAttBefore(suspending(base)), otherwise(base)), otherwise(base));
+	};
+
 	/*
 	 * Spirit-aware className. Convert js-property change to DOM attribute change
 	 * so that attribute listeners can pick it up. Note that this voids the
@@ -313,6 +320,9 @@ gui.DOMCombos = (function using(before, after, around, provided, Type, guiArray,
 				ifEmbedded(detachSubBefore(suspending(base)), otherwise(base)),
 				otherwise(base)
 			);
+		},
+		alt: function(base) {
+			return attrCombo(base);
 		}
 		/*
 		 * If we should need to create observers for the class attribute that

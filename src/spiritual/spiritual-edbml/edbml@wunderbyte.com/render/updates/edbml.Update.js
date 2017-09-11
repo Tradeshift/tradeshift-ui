@@ -135,7 +135,6 @@ edbml.Update = gui.Class.create(
 		_dispatch: function(element, name) {
 			// element might sometimes be undefined under strange (Angular) conditions
 			if (element && element.dispatchEvent) {
-				// hotfix https://github.com/Tradeshift/docs/issues/141
 				var event = document.createEvent('UIEvents');
 				event.initEvent(name, true, true);
 				return element.dispatchEvent(event);

@@ -134,7 +134,10 @@ edbml.Update = gui.Class.create(
 		 * @return {boolean} False if event was canceled
 		 */
 		_dispatch: function(element, name) {
-			if (element) {
+			/*
+			 * There's actually not any reason to do this and someone saw it fail...
+			 *
+			if (element && element.dispatchEvent) {
 				// hotfix https://github.com/Tradeshift/docs/issues/141
 				var event = document.createEvent('UIEvents');
 				event.initEvent(name, true, true);
@@ -142,6 +145,7 @@ edbml.Update = gui.Class.create(
 			} else {
 				console.error('Occasional EDBML dysfunction just happened');
 			}
+			*/
 		},
 
 		/**

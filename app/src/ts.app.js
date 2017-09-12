@@ -12,7 +12,7 @@
  */
 export function broadcast(appIds, key, data) {
 	const content = stringify(appIds, key, data);
-	parent.postMessage(content, '*');
+	top.postMessage(content, '*');
 }
 
 /**

@@ -26,7 +26,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
  */
 function broadcast(appIds, key, data) {
 	var content = stringify(appIds, key, data);
-	parent.postMessage(content, '*');
+	top.postMessage(content, '*');
 }
 
 /**

@@ -431,8 +431,10 @@ ts.ui.SideShowSpirit = (function using(
 			 * @return {ts.ui.Spirit}
 			 */
 			_confirmpanel: function() {
-				if (!this.dom.q('.ts-panel', ts.ui.PanelSpirit)) {
-					throw new Error('Expected a Panel');
+				if (!Client.isExplorer) {
+					if (!this.dom.q('.ts-panel', ts.ui.PanelSpirit)) {
+						throw new Error('Expected a Panel');
+					}
 				}
 			},
 

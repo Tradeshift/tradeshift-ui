@@ -52,8 +52,6 @@ ts.ui.DoorManPlugin = (function(Type) {
 						}
 					}
 					this._suspended = false;
-				} else {
-					console.log('Not attempting');
 				}
 				return false;
 			},

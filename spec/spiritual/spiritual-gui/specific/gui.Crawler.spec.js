@@ -96,9 +96,7 @@ describe('gui.Crawler', function likethis() {
 				}
 			}
 		});
-		expect(spirits.length).toBe(
-			this.sandbox.querySelectorAll('.gui-spirit').length
-		);
+		expect(spirits.length).toBe(this.sandbox.querySelectorAll('.gui-spirit').length);
 	});
 
 	/**
@@ -156,7 +154,8 @@ describe('gui.Crawler', function likethis() {
 	 * but the *siblings* should still be crawled (unlike STOP).
 	 */
 	it('should skip the children (not the siblings) if a directive says so', function() {
-		var items = [], firstlevelitems = this.sandbox.querySelectorAll('li.level-1');
+		var items = [],
+			firstlevelitems = this.sandbox.querySelectorAll('li.level-1');
 		function hasclass(elm, name) {
 			return elm.className.indexOf(name) > -1; // IE no classList!
 		}
@@ -171,9 +170,11 @@ describe('gui.Crawler', function likethis() {
 			}
 		});
 		expect(items.length).toBe(firstlevelitems.length);
-		expect(items.every(function(item) {
-			return hasclass(item, 'level-1');
-		})).toBe(true);
+		expect(
+			items.every(function(item) {
+				return hasclass(item, 'level-1');
+			})
+		).toBe(true);
 	});
 
 	/**
@@ -209,24 +210,29 @@ describe('gui.Crawler', function likethis() {
 			}
 		});
 		var expected = [11, 12, 131, 132, 133, 13, 21, 22, 231, 232, 233, 23];
-		expect(expected.every(function(number, index) {
-			return items[index] === number;
-		})).toBe(true);
+		expect(
+			expected.every(function(number, index) {
+				return items[index] === number;
+			})
+		).toBe(true);
 	});
 
 	/**
 	 * The Crawler traverses all over the place.
 	 */
 	it('should also crawl upwards from time to time', function() {
-		var tags = [], items = gui.Array.from(document.querySelectorAll('li'));
+		var tags = [],
+			items = gui.Array.from(document.querySelectorAll('li'));
 		new gui.Crawler().ascend(items.pop(), {
 			handleElement: function(elm) {
 				tags.push(elm.localName);
 			}
 		});
 		var expected = ['li', 'ul', 'main', 'body', 'html'];
-		expect(expected.every(function(tag, index) {
-			return tags[index] === tag;
-		})).toBe(true);
+		expect(
+			expected.every(function(tag, index) {
+				return tags[index] === tag;
+			})
+		).toBe(true);
 	});
 });

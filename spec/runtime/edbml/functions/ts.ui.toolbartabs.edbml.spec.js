@@ -23,7 +23,7 @@ describe('ts.ui.toolbartabs.edbml', function likethis() {
 
 	it('should contain ts-selected', function() {
 		var spirit = {},
-			tabs = [{selected: true}],
+			tabs = [{ selected: true }],
 			id = 'test',
 			mobile = false;
 		expect(gethtml(spirit, tabs, id, mobile)).toContain('ts-selected');
@@ -31,7 +31,7 @@ describe('ts.ui.toolbartabs.edbml', function likethis() {
 
 	it('should not contain ts-selected', function() {
 		var spirit = {},
-			tabs = [{selected: false}],
+			tabs = [{ selected: false }],
 			id = 'test',
 			mobile = false;
 		expect(gethtml(spirit, tabs, id, mobile)).not.toContain('ts-selected');
@@ -39,7 +39,7 @@ describe('ts.ui.toolbartabs.edbml', function likethis() {
 
 	it('should contain ts-counter', function() {
 		var spirit = {},
-			tabs = [{counter: 2}],
+			tabs = [{ counter: 2 }],
 			id = 'test',
 			mobile = false;
 		expect(gethtml(spirit, tabs, id, mobile)).toContain('ts-counter');
@@ -48,7 +48,7 @@ describe('ts.ui.toolbartabs.edbml', function likethis() {
 
 	it('should not contain ts-counter', function() {
 		var spirit = {},
-			tabs = [{counter: 0}],
+			tabs = [{ counter: 0 }],
 			id = 'test',
 			mobile = false;
 		expect(gethtml(spirit, tabs, id, mobile)).not.toContain('ts-counter');
@@ -56,7 +56,7 @@ describe('ts.ui.toolbartabs.edbml', function likethis() {
 
 	it('should contain ts-tab-close', function() {
 		var spirit = {},
-			tabs = [{selected: true, closeable: true}],
+			tabs = [{ selected: true, closeable: true }],
 			id = 'test',
 			mobile = false;
 		expect(gethtml(spirit, tabs, id, mobile)).toContain('ts-tab-close');
@@ -64,7 +64,7 @@ describe('ts.ui.toolbartabs.edbml', function likethis() {
 
 	it('should not contain ts-tab-close', function() {
 		var spirit = {},
-			tabs = [{selected: false, closeable: true}],
+			tabs = [{ selected: false, closeable: true }],
 			id = 'test',
 			mobile = false;
 		expect(gethtml(spirit, tabs, id, mobile)).not.toContain('ts-tab-close');
@@ -72,7 +72,7 @@ describe('ts.ui.toolbartabs.edbml', function likethis() {
 
 	it('should not contain ts-tab-close', function() {
 		var spirit = {},
-			tabs = [{selected: true, closeable: false}],
+			tabs = [{ selected: true, closeable: false }],
 			id = 'test',
 			mobile = false;
 		expect(gethtml(spirit, tabs, id, mobile)).not.toContain('ts-tab-close');
@@ -80,7 +80,7 @@ describe('ts.ui.toolbartabs.edbml', function likethis() {
 
 	it('should not contain ts-tab-close', function() {
 		var spirit = {},
-			tabs = [{selected: false, closeable: false}],
+			tabs = [{ selected: false, closeable: false }],
 			id = 'test',
 			mobile = false;
 		expect(gethtml(spirit, tabs, id, mobile)).not.toContain('ts-tab-close');
@@ -88,7 +88,7 @@ describe('ts.ui.toolbartabs.edbml', function likethis() {
 
 	it('should contain ts-tab-icon', function() {
 		var spirit = {},
-			tabs = [{icon: 'icon'}],
+			tabs = [{ icon: 'icon' }],
 			id = 'test',
 			mobile = false;
 		expect(gethtml(spirit, tabs, id, mobile)).toContain('ts-tab-icon');
@@ -104,7 +104,7 @@ describe('ts.ui.toolbartabs.edbml', function likethis() {
 
 	it('should not contain ts-tab-label', function() {
 		var spirit = {},
-			tabs = [{label: 'leo'}],
+			tabs = [{ label: 'leo' }],
 			id = 'test',
 			mobile = false;
 		expect(gethtml(spirit, tabs, id, mobile)).toContain('<span class="ts-tab-label">leo</span>');

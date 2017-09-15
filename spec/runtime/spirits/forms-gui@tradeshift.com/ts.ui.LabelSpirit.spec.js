@@ -1,6 +1,7 @@
 describe('ts.ui.LabelSpirit', function likethis() {
 	it('should (eventually) channel via ts-attribute', function(done) {
-		var spirit, dom = helper.createTestDom();
+		var spirit,
+			dom = helper.createTestDom();
 		dom.innerHTML = '<input data-ts="Label"/>';
 		sometime(function later() {
 			spirit = ts.ui.get(dom.querySelector('input'));
@@ -14,10 +15,10 @@ describe('ts.ui.LabelSpirit', function likethis() {
 		var dom = helper.createTestDom();
 		dom.innerHTML =
 			'<label data-ts="Label">' +
-				'<span>Text</span>' +
-				'<input data-ts="Input" type="text" data-ts.icon' +
-				(iconClass ? '="' + iconClass + '"' : '') +
-				' />' +
+			'<span>Text</span>' +
+			'<input data-ts="Input" type="text" data-ts.icon' +
+			(iconClass ? '="' + iconClass + '"' : '') +
+			' />' +
 			'</label>';
 		sometime(function later() {
 			inputSpirit = ts.ui.get(dom.querySelector('input'));

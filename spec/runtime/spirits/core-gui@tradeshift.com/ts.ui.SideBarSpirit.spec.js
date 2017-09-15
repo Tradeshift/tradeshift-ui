@@ -2,7 +2,8 @@ describe('ts.ui.SideBarSpirit', function likethis() {
 	// Preparations ..............................................................
 
 	function setup(action) {
-		var spirit, dom = helper.createTestDom();
+		var spirit,
+			dom = helper.createTestDom();
 		dom.innerHTML = '<aside data-ts="SideBar"><div data-ts="Panel"><p>Leo</p></div></aside>';
 		sometime(function later() {
 			spirit = ts.ui.get(dom.querySelector('aside'));

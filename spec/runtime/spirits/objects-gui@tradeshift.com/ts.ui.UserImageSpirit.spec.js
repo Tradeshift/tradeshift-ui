@@ -1,6 +1,7 @@
 describe('ts.ui.UserImageSpirit', function likethis() {
 	function setup(action, html) {
-		var spirit, dom = helper.createTestDom();
+		var spirit,
+			dom = helper.createTestDom();
 		dom.innerHTML = html;
 		sometime(function later() {
 			spirit = ts.ui.get(dom.querySelector('img[data-ts=UserImage]'));

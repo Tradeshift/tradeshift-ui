@@ -15,7 +15,6 @@ const environment = {
 };
 
 module.exports = {
-
 	/**
 	 * Shoot screenshots.
 	 * @param {Object} options
@@ -30,19 +29,23 @@ module.exports = {
 
 				var browser = new Browser(string);
 				var driver = new webdriver.Builder()
-						.usingServer(URL_BROWSERCLOUD)
-						.withCapabilities({
-							browserName: browser.nickname,
-							version: browser.versname,
-							platform: browser.platform,
-							'browserstack.local': true,
-							'browserstack.user': environment.user,
-							'browserstack.key': environment.key
-						}).build();
+					.usingServer(URL_BROWSERCLOUD)
+					.withCapabilities({
+						browserName: browser.nickname,
+						version: browser.versname,
+						platform: browser.platform,
+						'browserstack.local': true,
+						'browserstack.user': environment.user,
+						'browserstack.key': environment.key
+					})
+					.build();
 
 				// set the window size because otherwise Edge
 				// would collapse it into a singularity...
-				driver.manage().window().setSize(1366, 768);
+				driver
+					.manage()
+					.window()
+					.setSize(1366, 768);
 
 				/**
 				 * Create function to load a page.
@@ -54,13 +57,15 @@ module.exports = {
 					return function() {
 						driver.get(`http://localhost:10114/dist/${url}`);
 						return new Promise(function(resolve, reject) {
-							driver.wait(function() {
-								var readyroot = webdriver.By.css('html.ts-ready'); // not needed?
-								return driver.findElements(readyroot);
-							}).then(function() {
-								currenturl = url;
-								action(resolve);
-							});
+							driver
+								.wait(function() {
+									var readyroot = webdriver.By.css('html.ts-ready'); // not needed?
+									return driver.findElements(readyroot);
+								})
+								.then(function() {
+									currenturl = url;
+									action(resolve);
+								});
 						});
 					};
 				}
@@ -76,16 +81,21 @@ module.exports = {
 					return new Promise(function(resolve, reject) {
 						Out.write(filename);
 						driver.takeScreenshot().then(function(data) {
-							fs.writeFile(File.ensurefolder(target), data.replace(/^data:image\/png;base64,/, ''), 'base64', function(err) {
-								if (err) {
-									throw err;
-								} else if (options.compare && options.differs) {
-									compare(target, resolve);
-								} else {
-									Out.erase().writeln(filename);
-									resolve();
+							fs.writeFile(
+								File.ensurefolder(target),
+								data.replace(/^data:image\/png;base64,/, ''),
+								'base64',
+								function(err) {
+									if (err) {
+										throw err;
+									} else if (options.compare && options.differs) {
+										compare(target, resolve);
+									} else {
+										Out.erase().writeln(filename);
+										resolve();
+									}
 								}
-							});
+							);
 						});
 					});
 				};
@@ -139,7 +149,7 @@ module.exports = {
 							callback(diffs, done);
 						}
 					});
-				}(screenshots(webdriver, driver, shoot)));
+				})(screenshots(webdriver, driver, shoot));
 			};
 		});
 
@@ -148,7 +158,8 @@ module.exports = {
 		 * @param {function} done
 		 */
 		(function nextsession() {
-			var json, next = sessions.shift();
+			var json,
+				next = sessions.shift();
 			next(function nextDone_(sessionDiffs, nextDone) {
 				if (sessions.length) {
 					nextsession();
@@ -162,7 +173,7 @@ module.exports = {
 					});
 				}
 			});
-		}());
+		})();
 
 		/**
 		 * Format JSON for smaller file size.
@@ -170,29 +181,35 @@ module.exports = {
 		 * @param {Object} options
 		 * @returns {string}
 		 */
-		function formatjson(diffs, options) { // eslint-disable-line no-shadow
+		function formatjson(diffs, options) {
+			// eslint-disable-line no-shadow
 			var dirty = object => !!object.diffs.length;
 			var space = s => s.replace(/-/g, ' ');
 			var title = s => space(path.basename(s).replace(path.extname(s), ''));
-			return JSON.stringify(options.browsers.map(string => {
-				var browser = new Browser(string);
-				var matches = diff => diff.browser === browser.nickname; // eslint-disable-line no-shadow
-				return {
-					browser: browser.nicename,
-					diffs: diffs.filter(matches).map(setup => {
-						return [
-							title(setup.actualImage),
-							setup.url,
-							setup.actualImage,
-							setup.expectedImage,
-							setup.diffImage
-						];
+			return JSON.stringify(
+				options.browsers
+					.map(string => {
+						var browser = new Browser(string);
+						var matches = diff => diff.browser === browser.nickname; // eslint-disable-line no-shadow
+						return {
+							browser: browser.nicename,
+							diffs: diffs.filter(matches).map(setup => {
+								return [
+									title(setup.actualImage),
+									setup.url,
+									setup.actualImage,
+									setup.expectedImage,
+									setup.diffImage
+								];
+							})
+						};
 					})
-				};
-			}).filter(dirty), null, '\t');
+					.filter(dirty),
+				null,
+				'\t'
+			);
 		}
 	}
-
 };
 
 // Scoped ......................................................................
@@ -296,13 +313,16 @@ class File {
 	 * @eturns {string}
 	 */
 	static ensurefolder(target) {
-		path.dirname(target).split('/').reduce((prev, folderPath) => {
-			var next = prev + folderPath + '/';
-			if (!fs.existsSync(next)) {
-				fs.mkdirSync(next);
-			}
-			return next;
-		}, '');
+		path
+			.dirname(target)
+			.split('/')
+			.reduce((prev, folderPath) => {
+				var next = prev + folderPath + '/';
+				if (!fs.existsSync(next)) {
+					fs.mkdirSync(next);
+				}
+				return next;
+			}, '');
 		return target;
 	}
 }

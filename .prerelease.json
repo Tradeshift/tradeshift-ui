@@ -1,15 +1,14 @@
 {
+	"non-interactive": true,
 	"verbose": true,
 	"increment": "prerelease",
 	"prereleaseId": "beta",
 	"requireCleanWorkingDir": true,
-	"changelogCommand":
-		"echo '### Commits' && git log --pretty=format:'* %h - %s%n```%n%b```' $(git describe --tags $(git rev-list --tags --max-count=1))...HEAD | cat; echo ",
 	"src": {
 		"commitMessage": "Release v%s",
 		"tagName": "v%s",
 		"tagAnnotation": "Tradeshift UI v%s",
-		"beforeStageCommand": "grunt release-deploy"
+		"beforeStageCommand": "yarn lint && grunt release-deploy"
 	},
 	"github": {
 		"release": true,

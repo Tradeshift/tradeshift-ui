@@ -1,6 +1,6 @@
 {
 	"name": "tradeshift-ui",
-	"version": "9.2.2",
+	"version": "9.2.3",
 	"private": true,
 	"description": "The Tradeshift UI Library & Framework",
 	"homepage": "https://ui.tradeshift.com/",
@@ -20,16 +20,12 @@
 	},
 	"scripts": {
 		"****** LINT *****": "",
-		"lint":
-			"yarn run prettier && yarn run prettier-less && yarn run prettier-json && yarn run eslint",
-		"eslint":
-			"eslint --cache --config ./.eslintrc.json {src,app/src,docs/src/{js/{dox-{api,gui}@tradeshift.com},xhtml}}/**/*.js",
-		"prettier":
-			"prettier --write --use-tabs --single-quote --print-width 100 \"{{src,spec,app/src,tasks,docs/src/{js/{dox-{api,gui}@tradeshift.com'},xhtml}}/**/*.js,Gruntfile.js}\"",
-		"prettier-less":
-			"prettier --write --use-tabs --single-quote --print-width 100 --parser postcss \"{src,docs,app}/**/*.less\"",
-		"prettier-json":
-			"prettier --write --use-tabs --single-quote --print-width 100 --parser json \"{{.,docs,app}/src/**/,}*.json\"",
+		"prelint": "run-p -n prettier prettier-less prettier-json",
+		"lint": "yarn run eslint",
+		"eslint": "eslint --cache --config ./.eslintrc.json .",
+		"prettier": "prettier --write -l \"**/*.js\"",
+		"prettier-less": "prettier --write -l --parser postcss \"**/*.less\"",
+		"prettier-json": "prettier --write -l --parser json \"**/*.json\"",
 		"****** DIST *****": "",
 		"build": "grunt dist",
 		"deploy-s3": "node tasks/deploy.js",
@@ -44,19 +40,9 @@
 		"precommit": "lint-staged && grunt exec:docs_dist && git add -A docs"
 	},
 	"lint-staged": {
-		"*.js": [
-			"prettier --write --use-tabs --single-quote --print-width 100",
-			"eslint --config ./.eslintrc.json",
-			"git add"
-		],
-		"*.json": [
-			"prettier --write --use-tabs --single-quote --print-width 100 --parser json",
-			"git add"
-		],
-		"*.less": [
-			"prettier --write --use-tabs --single-quote --print-width 100 --parser postcss",
-			"git add"
-		]
+		"*.js": ["prettier --write", "eslint --config ./.eslintrc.json", "git add"],
+		"*.json": ["prettier --write --parser json", "git add"],
+		"*.less": ["prettier --write --parser postcss", "git add"]
 	},
 	"browserslist": ["Last 2 versions", "not ie <= 8"],
 	"devDependencies": {
@@ -92,11 +78,12 @@
 		"grunt-spiritual-build": "^0.1.18",
 		"grunt-spiritual-dox": "^0.1.2",
 		"grunt-spiritual-edbml": "^0.3.0",
-		"husky": "^0.14.0",
+		"husky": "^0.14.3",
 		"less": "^2.7.2",
-		"lint-staged": "^4.1.3",
+		"lint-staged": "^4.2.1",
 		"load-grunt-tasks": "^3.5.2",
 		"node-static": "^0.7.10",
+		"npm-run-all": "^4.1.1",
 		"postcss-clean": "^1.0.2",
 		"postcss-less-engine": "^0.6.2",
 		"prettier": "1.7.0",

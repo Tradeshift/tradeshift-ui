@@ -20,7 +20,9 @@ module.exports = function(grunt) {
 	require('load-grunt-tasks')(grunt);
 
 	// read config and apply local overrides (gitignored!)
-	var config = require('./tasks/config').init(grunt).merge('config.json', 'config.local.json');
+	var config = require('./tasks/config')
+		.init(grunt)
+		.merge('config.json', 'config.local.json');
 	// get version number directly from the package.json of the runtime
 	config.runtime_version = require('../package.json').version;
 
@@ -430,7 +432,10 @@ module.exports = function(grunt) {
 				return {
 					title: title,
 					href: href,
-					content: S(content).trim().stripTags().stripPunctuation().s
+					content: S(content)
+						.trim()
+						.stripTags()
+						.stripPunctuation().s
 				};
 			}
 		}

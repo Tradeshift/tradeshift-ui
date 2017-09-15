@@ -2,7 +2,8 @@ describe('ts.ui.TabBarSpirit', function likethis() {
 	// Preparations ..............................................................
 
 	function setup(action) {
-		var spirit, dom = helper.createTestDom();
+		var spirit,
+			dom = helper.createTestDom();
 		dom.innerHTML = '<div data-ts="TabBar"></div>';
 		sometime(function later() {
 			spirit = ts.ui.get(dom.querySelector('div[data-ts=TabBar]'));

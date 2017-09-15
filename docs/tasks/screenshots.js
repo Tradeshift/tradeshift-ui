@@ -1,6 +1,5 @@
 module.exports = function screenshots(webdriver, driver, shoot) {
 	return [
-
 		shoot('screenshots/pages/asides.html', function(done) {
 			setTimeout(function waitforaside() {
 				driver.saveScreenshot('asides.png').then(done);
@@ -24,6 +23,5 @@ module.exports = function screenshots(webdriver, driver, shoot) {
 				driver.saveScreenshot('panels.png').then(done);
 			}, 2000);
 		})
-
 	];
 };

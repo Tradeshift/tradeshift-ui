@@ -23,7 +23,8 @@ describe('gui.EventPlugin', function likethis() {
 	/**
 	 * Spirit of the test.
 	 */
-	var TestSpirit = gui.Spirit.extend({ // eslint-disable-line no-unused-vars
+	// eslint-disable-next-line no-unused-vars
+	var TestSpirit = gui.Spirit.extend({
 		done: function() {
 			// implemented by the test...
 		},

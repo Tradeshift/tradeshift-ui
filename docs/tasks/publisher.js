@@ -3,7 +3,6 @@
  * 127.0.0.1 to support mobile device testing.
  */
 module.exports = {
-
 	/**
 	 * Replace 127.0.0.1 with network IP.
 	 * @param {string} text

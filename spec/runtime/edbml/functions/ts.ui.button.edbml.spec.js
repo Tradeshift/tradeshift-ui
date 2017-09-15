@@ -4,7 +4,7 @@ describe('ts.ui.button.edbml', function likethis() {
 		return ts.ui.button.edbml(
 			new ts.ui.ButtonModel({
 				icon: 'ts-icon-hest',
-				label: (icononly ? null : 'Hest')
+				label: icononly ? null : 'Hest'
 			})
 		);
 	}

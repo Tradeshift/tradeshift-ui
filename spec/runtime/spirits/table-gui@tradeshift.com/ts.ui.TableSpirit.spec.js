@@ -1,6 +1,7 @@
 describe('ts.ui.TableSpirit', function likethis() {
 	function setup(action) {
-		var spirit, dom = helper.createTestDom();
+		var spirit,
+			dom = helper.createTestDom();
 		dom.innerHTML = '<div data-ts="Table"></div>';
 		sometime(function later() {
 			spirit = ts.ui.get(dom.querySelector('div[data-ts=Table]'));
@@ -527,7 +528,10 @@ describe('ts.ui.TableSpirit', function likethis() {
 
 		it('All cells are assumed editable unless negated in the column definition', function(done) {
 			setup(function(spirit, dom) {
-				spirit.cols([{ label: "Don't edit!", editable: false }]).rows([['X']]).editable();
+				spirit
+					.cols([{ label: "Don't edit!", editable: false }])
+					.rows([['X']])
+					.editable();
 				sometime(function later() {
 					expect(spirit.element.innerHTML).not.toContain('textarea');
 					done();
@@ -594,7 +598,7 @@ describe('ts.ui.TableSpirit', function likethis() {
 		it('should make the table configurable by a button in the statusbar', function(done) {
 			setup(function(spirit, dom) {
 				spirit
-					.configurable(function onclick() {})
+					.configbutton(function onclick() {})
 					.cols(['A', 'B', 'C', 'D'])
 					.rows([[1, 4, 7, 10], [2, 5, 8, 11], [3, 6, 9, 12]]);
 				sometime(function later() {

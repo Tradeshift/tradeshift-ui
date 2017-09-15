@@ -1,4 +1,5 @@
 @import 'ts-variables.less';
+
 // General Mixins ..............................................................
 .ts-mixin-unselectable() {
 	user-select: none;
@@ -44,10 +45,10 @@
 		clear: both;
 	}
 }
-/**
- * @TODO: This now out of sync with form field headers!
- */
 .ts-mixin-label-text() {
+	/**
+	 * @TODO: This now out of sync with form field headers!
+	 */
 	text-transform: uppercase;
 	font-size: @ts-fontsize-small;
 	font-weight: @ts-fontweight-semibold;
@@ -158,13 +159,13 @@
 }
 
 // Transitions ..................................................................
-.ts-mixin-transition( @what : all, @length : @ts-transition-fast, @easing : none, @delay : 0s ) {
+.ts-mixin-transition( @what : all, @length : @ts-transition-fast, @easing : ease, @delay : 0s ) {
 	transition-property: @what;
 	.ts-mixin-transition-duration(@length);
 	.ts-mixin-transition-timing(@easing);
 	.ts-mixin-transition-delay(@delay);
 }
-.ts-mixin-transition-transform( @length : @ts-transition-fast, @easing : none, @delay : 0s ) {
+.ts-mixin-transition-transform( @length : @ts-transition-fast, @easing : ease, @delay : 0s ) {
 	.ts-mixin-transition( transform, @length, @easing, @delay );
 }
 .ts-mixin-transition-duration(@length: @ts-transition-fast) {
@@ -176,13 +177,13 @@
 .ts-mixin-transition-delay(@delay: 0) {
 	transition-delay: @delay;
 }
-.ts-mixin-transition-colors(@length: @ts-transition-fast, @easing: none) {
+.ts-mixin-transition-colors(@length: @ts-transition-fast, @easing: ease) {
 	transition-property: color, background-color, border-color;
 	.ts-mixin-transition-duration(@length);
 	.ts-mixin-transition-timing(@easing);
 }
 
-// Animations .......................................................................
+// Animations ..................................................................
 .ts-mixin-animation(@name, @duration: 250ms, @ease: ease, @delay: 0) {
 	animation: @name @duration @ease @delay;
 }
@@ -198,7 +199,7 @@
 	}
 }
 
-// Transformations ..................................................................
+// Transformations .............................................................
 .ts-mixin-transform( @shorthand : none ) {
 	transform: @shorthand;
 }

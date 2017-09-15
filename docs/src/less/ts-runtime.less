@@ -153,6 +153,7 @@
 @ts-timing-easeinexpo: cubic-bezier(0.95, 0.05, 0.795, 0.035);
 @ts-timing-easeincirc: cubic-bezier(0.6, 0.04, 0.98, 0.335);
 @ts-timing-easeinback: cubic-bezier(0.6, -0.28, 0.735, 0.045);
+
 @ts-timing-easeoutquad: cubic-bezier(0.25, 0.46, 0.45, 0.94);
 @ts-timing-easeoutcubic: cubic-bezier(0.215, 0.61, 0.355, 1);
 @ts-timing-easeoutquart: cubic-bezier(0.165, 0.84, 0.44, 1);
@@ -161,14 +162,15 @@
 @ts-timing-easeoutexpo: cubic-bezier(0.19, 1, 0.22, 1);
 @ts-timing-easeoutcirc: cubic-bezier(0.075, 0.82, 0.165, 1);
 @ts-timing-easeoutback: cubic-bezier(0.175, 0.885, 0.32, 1.275);
-@ts-timing-easeoutquad: cubic-bezier(0.455, 0.03, 0.515, 0.955);
-@ts-timing-easeoutcubic: cubic-bezier(0.645, 0.045, 0.355, 1);
-@ts-timing-easeoutquart: cubic-bezier(0.77, 0, 0.175, 1);
-@ts-timing-easeoutquint: cubic-bezier(0.23, 1, 0.32, 1);
-@ts-timing-easeoutsine: cubic-bezier(0.445, 0.05, 0.55, 0.95);
-@ts-timing-easeoutexpo: cubic-bezier(1, 0, 0, 1);
-@ts-timing-easeoutcirc: cubic-bezier(0.785, 0.135, 0.15, 0.86);
-@ts-timing-easeoutback: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+@ts-timing-easeinoutquad: cubic-bezier(0.455, 0.03, 0.515, 0.955);
+@ts-timing-easeinoutcubic: cubic-bezier(0.645, 0.045, 0.355, 1);
+@ts-timing-easeinoutquart: cubic-bezier(0.77, 0, 0.175, 1);
+@ts-timing-easeinoutquint: cubic-bezier(0.86, 0, 0.07, 1);
+@ts-timing-easeinoutsine: cubic-bezier(0.445, 0.05, 0.55, 0.95);
+@ts-timing-easeinoutexpo: cubic-bezier(1, 0, 0, 1);
+@ts-timing-easeinoutcirc: cubic-bezier(0.785, 0.135, 0.15, 0.86);
+@ts-timing-easeinoutback: cubic-bezier(0.68, -0.55, 0.265, 1.55);
 
 // ts-mixins.less ..............................................................
 
@@ -328,13 +330,13 @@
 }
 
 // Transitions ..................................................................
-.ts-mixin-transition( @what : all, @length : @ts-transition-fast, @easing : none, @delay : 0s ) {
+.ts-mixin-transition( @what : all, @length : @ts-transition-fast, @easing : ease, @delay : 0s ) {
 	transition-property: @what;
 	.ts-mixin-transition-duration(@length);
 	.ts-mixin-transition-timing(@easing);
 	.ts-mixin-transition-delay(@delay);
 }
-.ts-mixin-transition-transform( @length : @ts-transition-fast, @easing : none, @delay : 0s ) {
+.ts-mixin-transition-transform( @length : @ts-transition-fast, @easing : ease, @delay : 0s ) {
 	.ts-mixin-transition( transform, @length, @easing, @delay );
 }
 .ts-mixin-transition-duration(@length: @ts-transition-fast) {
@@ -346,19 +348,19 @@
 .ts-mixin-transition-delay(@delay: 0) {
 	transition-delay: @delay;
 }
-.ts-mixin-transition-colors(@length: @ts-transition-fast, @easing: none) {
+.ts-mixin-transition-colors(@length: @ts-transition-fast, @easing: ease) {
 	transition-property: color, background-color, border-color;
 	.ts-mixin-transition-duration(@length);
 	.ts-mixin-transition-timing(@easing);
 }
 
-// Animations .......................................................................
+// Animations ..................................................................
 .ts-mixin-animation(@name, @duration: 250ms, @ease: ease, @delay: 0) {
 	animation: @name @duration @ease @delay;
 }
 
 .ts-mixin-keyframes(@name, @fromRules, @toRules) {
-	@keyframes ~'@{name}' {
+	@keyframes @name {
 		0% {
 			@fromRules();
 		}
@@ -368,7 +370,7 @@
 	}
 }
 
-// Transformations ..................................................................
+// Transformations .............................................................
 .ts-mixin-transform( @shorthand : none ) {
 	transform: @shorthand;
 }

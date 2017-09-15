@@ -920,7 +920,7 @@ article {
 .doc-responsive .docs-responsive-demo {
   transition-property: all;
   transition-duration: 0.2s;
-  transition-timing-function: none;
+  transition-timing-function: ease;
   transition-delay: 0s;
   background: #f5f5f5;
   border: 1px solid #e1e1e1;

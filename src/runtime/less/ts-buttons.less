@@ -574,8 +574,8 @@
 .ts-bg-dark,
 .ts-bg-yellow,
 [class^='ts-bg'] .ts-bg-white,
-// ouch,
-expensive :/ [class^='ts-bg'] .ts-bg-lite {
+[class^='ts-bg'] .ts-bg-lite {
+	// ouch, expensive selector :/
 	.ts-button:not(:disabled) {
 		.mixin-active-lite();
 		&.ts-primary {
@@ -736,8 +736,8 @@ expensive :/ [class^='ts-bg'] .ts-bg-lite {
 .ts-bg-purple,
 .ts-bg-orange {
 	.ts-bg-white,
-	// ouch,
-	expensive :/ .ts-bg-lite {
+	.ts-bg-lite {
+		// ouch, expensive bunch :/
 		.ts-button:not(:disabled) {
 			.mixin-tertiary-lite();
 			.mixin-active-lite();

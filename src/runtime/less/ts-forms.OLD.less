@@ -1,10 +1,10 @@
-@import "ts-variables.less";
-@import "ts-mixins.less";
+@import 'ts-variables.less';
+@import 'ts-mixins.less';
 
 .ts-forms-mixin-label () {
+	.ts-mixin-label-text ();
 	display: block;
 	color: @ts-blue;
-	.ts-mixin-label-text ();
 	padding-top: @ts-unit-half;
 	padding-bottom: @ts-unit-half;
 }
@@ -53,11 +53,11 @@
 		position: relative;
 		> dt,
 		> dd {
-			position:relative;
+			position: relative;
 			padding-left: 19px;
 			&:before {
 				position: absolute;
-				content: "";
+				content: '';
 				-webkit-font-smoothing: antialiased;
 				-moz-osx-font-smoothing: grayscale;
 				font-weight: normal;
@@ -77,12 +77,12 @@
 				font-size: @ts-fontsize-medium;
 				top: 12px;
 				left: 0;
-				content: "!";
+				content: '!';
 			}
 		}
 		> dd {
 			&:before {
-				content: "\2219";
+				content: '\2219';
 				font-size: 35px;
 				line-height: 0;
 				position: absolute;
@@ -95,7 +95,7 @@
 		color: @ts-black;
 		> dt {
 			&:before {
-				content: "i";
+				content: 'i';
 				color: @ts-blue;
 			}
 		}
@@ -113,11 +113,12 @@
 		}
 		&.ts-textlabel {
 			// min-height: 71.5px;
-			&, * {
+			&,
+			* {
 				cursor: text; // @TODO disabled!
 			}
 			&:after {
-				content: "";
+				content: '';
 				position: absolute;
 				bottom: @ts-unit-half;
 				right: @ts-unit-half;
@@ -140,15 +141,17 @@
 		&.ts-datelabel,
 		&.ts-fakelabel,
 		&.ts-autocompletelabel {
-			&, * {
+			&,
+			* {
 				cursor: pointer;
 			}
 		}
-		&.ts-fakelabel { // open-aside-triangle
+		&.ts-fakelabel {
+			// open-aside-triangle
 			&:not(.ts-disabled) {
 				&:before {
 					.ts-mixin-icon(@ts-fontsize-small);
-					content: "6";
+					content: '6';
 					position: absolute;
 					right: 0;
 					left: auto;
@@ -169,7 +172,7 @@
 				&:after {
 					.ts-mixin-icon();
 					position: relative;
-					content: "";
+					content: '';
 					top: 0;
 				}
 			}
@@ -177,7 +180,8 @@
 		&.ts-error {
 			&.ts-focus,
 			&.ts-focus-on {
-				&, + em {
+				&,
+				+ em {
 					background: @ts-darkred-lite;
 				}
 			}
@@ -286,7 +290,8 @@
 			padding-top: 0;
 			position: relative;
 		}
-		+ :not(.ts-fieldset) { // something not-a-fieldset inserted into the form...
+		+ :not(.ts-fieldset) {
+			// something not-a-fieldset inserted into the form...
 			margin-top: @ts-unit;
 		}
 	}
@@ -329,7 +334,7 @@
 				display: block;
 			}
 			+ span:before {
-				content: "";
+				content: '';
 				position: absolute;
 				line-height: @ts-unit;
 				font-family: @ts-fontstack-icon;
@@ -341,19 +346,19 @@
 			+ span:after {
 				top: 50%;
 			}
-			&[type="radio"] {
+			&[type='radio'] {
 				+ span:before {
 					line-height: @ts-unit;
-					content: "{";
+					content: '{';
 				}
 				&:checked {
 					+ span:before {
 						line-height: @ts-unit;
-						content: ":";
+						content: ':';
 					}
 				}
 			}
-			&[type="checkbox"] {
+			&[type='checkbox'] {
 				+ span:before {
 					line-height: @ts-unit;
 					content: "'";
@@ -361,7 +366,7 @@
 				&:checked {
 					+ span:before {
 						line-height: @ts-unit;
-						content: "\"";
+						content: '"';
 					}
 				}
 			}
@@ -383,7 +388,8 @@
 				position: relative;
 				border-radius: @ts-unit-half;
 				background-color: @ts-lite-dark;
-				&, > i {
+				&,
+				> i {
 					.ts-mixin-transition(all,0.1s,ease-out);
 				}
 				> i {
@@ -449,7 +455,7 @@
 			}
 		}
 	}
-	
+
 	.ts-autocomplete-list {
 		position: absolute;
 		left: 0;
@@ -513,7 +519,6 @@
 	}
 }
 
-
 @keyframes tsoptionselected {
 	.ts-forms-mixin-keyframes ();
 }
@@ -564,7 +569,7 @@
 			&:nth-child(2) {
 				width: 100%/3;
 			}
-		]
+		}
 	}
 	&.ts-layout-1-1-1 {
 		label {

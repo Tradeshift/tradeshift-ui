@@ -20,11 +20,16 @@
 	},
 	"scripts": {
 		"****** LINT *****": "",
-		"lint": "yarn run prettier && yarn run eslint",
+		"lint":
+			"yarn run prettier && yarn run prettier-less && yarn run prettier-json && yarn run eslint",
 		"eslint":
 			"eslint --cache --config ./.eslintrc.json {src,app/src,docs/src/{js/{dox-{api,gui}@tradeshift.com},xhtml}}/**/*.js",
 		"prettier":
 			"prettier --write --use-tabs --single-quote --print-width 100 \"{{src,app/src,tasks,docs/src/{js/{dox-{api,gui}@tradeshift.com'},xhtml}}/**/*.js,Gruntfile.js}\"",
+		"prettier-less":
+			"prettier --write --use-tabs --single-quote --print-width 100 --parser postcss \"{src,docs,app}/**/*.less\"",
+		"prettier-json":
+			"prettier --write --use-tabs --single-quote --print-width 100 --parser json \"{{.,docs,app}/src/**/,}*.json\"",
 		"****** DIST *****": "",
 		"build": "grunt dist",
 		"deploy-s3": "node tasks/deploy.js",
@@ -42,6 +47,14 @@
 		"*.js": [
 			"prettier --write --use-tabs --single-quote --print-width 100",
 			"eslint --config ./.eslintrc.json",
+			"git add"
+		],
+		"*.json": [
+			"prettier --write --use-tabs --single-quote --print-width 100 --parser json",
+			"git add"
+		],
+		"*.less": [
+			"prettier --write --use-tabs --single-quote --print-width 100 --parser postcss",
 			"git add"
 		]
 	},

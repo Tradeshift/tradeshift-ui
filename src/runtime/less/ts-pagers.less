@@ -1,7 +1,8 @@
 .ts-pager {
 	text-align: center;
 	display: block;
-	menu, li {
+	menu,
+	li {
 		height: @ts-unit-double; // WebKit dysfunction
 	}
 	menu {
@@ -22,12 +23,14 @@
 				overflow: hidden;
 				&:disabled {
 					background-color: fade(@ts-lite-liter, 25%);
-					span, i {
+					span,
+					i {
 						color: @ts-black;
 						opacity: 0.25;
 					}
 				}
-				span, i {
+				span,
+				i {
 					.ts-mixin-maximize();
 					font-size: @ts-fontsize;
 					font-weight: @ts-fontweight-semibold;
@@ -83,7 +86,7 @@
 			}
 			&:last-child {
 				button {
-					border-radius: 0 @ts-unit-double  @ts-unit-double 0;
+					border-radius: 0 @ts-unit-double @ts-unit-double 0;
 					&.ts-pager-next svg {
 						left: 0px;
 					}

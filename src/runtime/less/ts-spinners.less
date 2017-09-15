@@ -1,17 +1,18 @@
 .ts-spinner {
-  &.ts-topbarspinner { // note that this is used outside the TopBar!
-    width: @ts-unit-triple;
-    height: @ts-unit-triple;
-    position: absolute;
-    top: 0;
-    left: -5px;
-    transition: opacity @ts-transition-fast;
-    opacity: 0;
-  }
+	&.ts-topbarspinner {
+		// note that this is used outside the TopBar!
+		width: @ts-unit-triple;
+		height: @ts-unit-triple;
+		position: absolute;
+		top: 0;
+		left: -5px;
+		transition: opacity @ts-transition-fast;
+		opacity: 0;
+	}
 }
 
 .ts-loading {
-  .ts-spinner.ts-topbarspinner {
-    opacity: 1;
-  }
+	.ts-spinner.ts-topbarspinner {
+		opacity: 1;
+	}
 }

@@ -1,23 +1,20 @@
 {
-  "name": "tradeshift-ui-ts-app",
-  "version": "1.0.0",
-  "private": true,
-  "main": "index.js",
-  "babel": {
-    "presets": [
-      "env"
-    ],
-    "plugins": [
-      "transform-class-properties"
-    ]
-  },
-  "scripts": {
-    "build": "babel src -d temp && browserify temp/ts.app.js -o dist/ts.app.js --standalone 'ts._app'"
-  },
-  "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-plugin-transform-class-properties": "^6.24.1",
-    "babel-preset-env": "^1.5.1",
-    "browserify": "^14.4.0"
-  }
+	"name": "tradeshift-ui-ts-app",
+	"version": "1.0.0",
+	"private": true,
+	"main": "index.js",
+	"babel": {
+		"presets": ["env"],
+		"plugins": ["transform-class-properties"]
+	},
+	"scripts": {
+		"build":
+			"babel src -d temp && browserify temp/ts.app.js -o dist/ts.app.js --standalone 'ts._app'"
+	},
+	"devDependencies": {
+		"babel-cli": "^6.26.0",
+		"babel-plugin-transform-class-properties": "^6.24.1",
+		"babel-preset-env": "^1.5.1",
+		"browserify": "^14.4.0"
+	}
 }

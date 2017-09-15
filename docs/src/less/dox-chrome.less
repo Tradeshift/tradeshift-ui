@@ -122,7 +122,8 @@
 			margin-top: 0;
 		}
 		> li {
-			&, &:last-child {
+			&,
+			&:last-child {
 				> a {
 					padding: @ts-unit @ts-unit-half @ts-unit @ts-unit-plus;
 				}
@@ -145,7 +146,8 @@
 				&.ts-checked {
 					position: relative; // on toggle ?????????????????????????????????????
 					z-index: 3;
-					&, &:hover {
+					&,
+					&:hover {
 						background-color: @ts-dustblue !important;
 						color: @ts-white;
 						cursor: default;
@@ -161,7 +163,8 @@
 					z-index: 2;
 				}
 				> a:not(.ts-checked) {
-					&, &:hover {
+					&,
+					&:hover {
 						background-color: @ts-dark-liter !important;
 					}
 				}
@@ -169,7 +172,7 @@
 					position: absolute;
 					height: 3px;
 					width: 100%;
-					background-image: linear-gradient(rgba(0,0,0,0.15), transparent);
+					background-image: linear-gradient(rgba(0, 0, 0, 0.15), transparent);
 					z-index: 1;
 				}
 				menu {
@@ -250,7 +253,6 @@
 	}
 }
 
-
 // Layouts .....................................................................
 
 .ts-doxchrome {
@@ -308,7 +310,7 @@
 		&:not(.uncollapse) {
 			.ts-search {
 				display: none;
-			}	
+			}
 		}
 	}
 	&.collapse-full {

@@ -20,7 +20,7 @@ figure {
 		font-size: @ts-fontsize-mini;
 		text-align: right;
 		&:after {
-			content: "";
+			content: '';
 			clear: left;
 			display: block;
 			height: 0;
@@ -73,12 +73,12 @@ figure {
 			.docs-mixin-editor();
 			font-family: @ts-fontstack-mono;
 			width: 100%;
-			height: 100%  !important;
+			height: 100% !important;
 			padding: @ts-unit 0 @ts-unit @ts-unit;
 			overflow: auto;
 			resize: none;
 			&:focus {
-				background-color: rgb(253,254,213);
+				background-color: rgb(253, 254, 213);
 			}
 			&:not(:focus) {
 				background-image: -webkit-linear-gradient(@superliteblue 50%, @ts-white 50%);
@@ -119,16 +119,17 @@ figure {
 .el {
 	color: #c92c2c;
 }
-.attr-pair span:last-child, .attr-value {
+.attr-pair span:last-child,
+.attr-value {
 	color: #1990b8;
 }
-.attr-pair span:first-child, .attr-name {
+.attr-pair span:first-child,
+.attr-name {
 	color: #2f9c0a;
 }
 .function {
 	color: #c92c2c;
 }
-
 
 /* Prism .................................................................... */
 
@@ -165,10 +166,10 @@ pre.prism {
 .token.prolog,
 .token.doctype,
 .token.cdata {
-	color: #7D8B99;
+	color: #7d8b99;
 }
 .token.punctuation {
-	color: #5F6364;
+	color: #5f6364;
 }
 .token.property,
 .token.tag,
@@ -218,7 +219,7 @@ pre.prism {
 	cursor: help;
 }
 .namespace {
-	opacity: .7;
+	opacity: 0.7;
 }
 .token.tab:not(:empty):before,
 .token.cr:before,

@@ -74,20 +74,12 @@
 						<div data-ts="Table" id="big-data-table"></div>
 					</li>
 				</ul>
-				<!-- FIX THIS
-				<p>
-					If you need to reset the pager, for example when 
-					<a data-ts="Button" href="/#components/table/sorting.html">sorting</a>, 
-					the Table, you can control the page index. Note however that <em>it doesn't work!!!</em>.
-				</p>
+				<p>If you need to update the index later on, for example to support history navigation, it is recommended that you change the <code>page</code> property of the existing Pager instead of initializing a whole new Pager. You can just call the same method without arguments.<p>
 				<figure data-ts="DoxScript">
-					<script type="runnable">
-						var table = ts.ui.get('#big-data-table');
-						var pager = table.pager;
-						pager.page = 0;
+					<script type="text/plain">
+						mytable.pager().page = 23;
 					</script>
 				</figure>
-				-->
 			</article>
 		</main>
 	</body>

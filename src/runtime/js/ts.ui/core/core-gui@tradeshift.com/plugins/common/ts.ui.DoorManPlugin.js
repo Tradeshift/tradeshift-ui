@@ -35,12 +35,13 @@ ts.ui.DoorManPlugin = (function(Type) {
 			 */
 			open: function(opt_open) {
 				var spirit = this.spirit;
-				if (this._suspended) {
-					return false;
-				} else if (!Type.isBoolean(opt_open)) {
+				if (!Type.isBoolean(opt_open)) {
 					opt_open = true;
 				}
-				if (this._shouldattempt(opt_open)) {
+				this._stayopen = opt_open;
+				if (this._suspended) {
+					return true;
+				} else if (this._shouldattempt(opt_open)) {
 					this._suspended = true;
 					if (opt_open) {
 						if (!spirit.isOpen) {
@@ -66,6 +67,9 @@ ts.ui.DoorManPlugin = (function(Type) {
 				this.spirit.event.dispatch(domevent.DIDOPEN, {
 					bubbles: true
 				});
+				if (!this._stayopen) {
+					this.spirit.close();
+				}
 			},
 
 			/**
@@ -77,6 +81,9 @@ ts.ui.DoorManPlugin = (function(Type) {
 				this.spirit.event.dispatch(domevent.DIDCLOSE, {
 					bubbles: true
 				});
+				if (this._stayopen) {
+					this.spirit.open();
+				}
 			},
 
 			// Private ...............................................................
@@ -86,6 +93,13 @@ ts.ui.DoorManPlugin = (function(Type) {
 			 * @type {boolean}
 			 */
 			_suspended: false,
+
+			/**
+			 * While opening (or closing), the spirit can be told to close (or open).
+			 * This flag keeps allows us to postpone this until *after* we are done.
+			 * @type {boolean}
+			 */
+			_stayopen: true,
 
 			/**
 			 * Fire custom DOM event and return whether or not this was preventDefaulted.
@@ -166,7 +180,7 @@ ts.ui.DoorManPlugin = (function(Type) {
 			 * Confirm methods implemented or at least stubbed with `null`.
 			 */
 			_confirminterface: function() {
-				var apis = 'isOpen onopen onopened onclose onclosed $onopen $onclose';
+				var apis = 'isOpen open close onopen onopened onclose onclosed $onopen $onclose';
 				var host = this.spirit;
 				apis.split(' ').forEach(function(api) {
 					if (host[api] === undefined) {

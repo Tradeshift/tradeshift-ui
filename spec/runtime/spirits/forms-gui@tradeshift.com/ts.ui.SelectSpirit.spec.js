@@ -8,7 +8,8 @@ describe('ts.ui.SelectSpirit', function likethis() {
 	].join('\n');
 
 	it('should (eventually) channel via ts-attribute', function(done) {
-		var spirit, dom = helper.createTestDom();
+		var spirit,
+			dom = helper.createTestDom();
 		dom.innerHTML = MARKUP;
 		sometime(function later() {
 			spirit = ts.ui.get(dom.querySelector('select'));

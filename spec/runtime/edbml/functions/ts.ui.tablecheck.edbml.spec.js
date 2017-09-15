@@ -14,14 +14,14 @@ describe('ts.ui.tablecheck.edbml', function likethis() {
 
 	it('should contain ts-icon-checkboxon', function() {
 		var table = {},
-			row = {selected: true},
+			row = { selected: true },
 			fixed = true;
 		expect(gethtml(table, row, fixed)).toContain('ts-icon-checkboxon');
 	});
 
 	it('should contain ts-icon-checkbox', function() {
 		var table = {},
-			row = {selected: false},
+			row = { selected: false },
 			fixed = true;
 		expect(gethtml(table, row, fixed)).toContain('ts-icon-checkbox');
 		expect(gethtml(table, row, fixed)).not.toContain('ts-icon-checkboxon');

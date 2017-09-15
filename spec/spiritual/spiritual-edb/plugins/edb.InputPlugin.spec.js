@@ -15,7 +15,8 @@ describe('edb.InputPlugin', function likethis() {
 	 * The argument is a {edb.Input} object whose `data` points to that instance.
 	 */
 	it('should connect to the output', function(done) {
-		var base, spirit = gui.Spirit.summon();
+		var base,
+			spirit = gui.Spirit.summon();
 		spirit.oninput = function(input) {
 			expect(input.type).toBe(BaseType);
 			expect(input.data).toBe(base);
@@ -30,8 +31,9 @@ describe('edb.InputPlugin', function likethis() {
 	/**
 	 * You can `get()` the latest input of a certain Type (if it's there).
 	 */
-	it('should .get() the output (after it\'s receieved)', function(done) {
-		var base, spirit = gui.Spirit.summon();
+	it("should .get() the output (after it's receieved)", function(done) {
+		var base,
+			spirit = gui.Spirit.summon();
 		spirit.oninput = function() {
 			expect(this.input.get(BaseType)).toBe(base);
 			this.input.disconnect(BaseType);
@@ -46,7 +48,8 @@ describe('edb.InputPlugin', function likethis() {
 	 * Make sure we can also disconnect from a Type's output
 	 */
 	it('should disconnect from the output', function() {
-		var base, spirit = gui.Spirit.summon();
+		var base,
+			spirit = gui.Spirit.summon();
 		spirit.input.connect(BaseType);
 		spirit.input.disconnect(BaseType);
 		base = new BaseType();
@@ -58,7 +61,9 @@ describe('edb.InputPlugin', function likethis() {
 	 * Once disconnected, we can't `get()` the input like we used to
 	 */
 	it('should disconnect from the output', function(done) {
-		var base1, base2, spirit = gui.Spirit.summon();
+		var base1,
+			base2,
+			spirit = gui.Spirit.summon();
 		spirit.input.connect(BaseType); // connect...
 		spirit.oninput = function() {
 			expect(this.input.get(BaseType)).toBe(base1);
@@ -76,7 +81,8 @@ describe('edb.InputPlugin', function likethis() {
 	});
 
 	it('should connect to derived classes automatically', function(done) {
-		var derived, spirit = gui.Spirit.summon();
+		var derived,
+			spirit = gui.Spirit.summon();
 		spirit.oninput = function(input) {
 			expect(input.data).toBe(derived);
 			expect(input.type).toBe(DerivedType);

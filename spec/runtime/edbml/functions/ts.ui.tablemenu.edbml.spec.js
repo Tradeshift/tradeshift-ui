@@ -11,14 +11,14 @@ describe('ts.ui.tablemenu.edbml', function likethis() {
 	});
 
 	it('should contain ts-open', function() {
-		var table = new ts.ui.TableModel({menuopen: true});
+		var table = new ts.ui.TableModel({ menuopen: true });
 		expect(gethtml(table)).toContain('ts-open ts-bg-white');
 		expect(gethtml(table)).toContain('<th class="ts-table-choices">');
 		expect(gethtml(table)).toContain('<th class="ts-table-choices-close">');
 	});
 
 	it('should not contain ts-open', function() {
-		var table = new ts.ui.TableModel({menuopen: false});
+		var table = new ts.ui.TableModel({ menuopen: false });
 		expect(gethtml(table)).not.toContain('ts-open ts-bg-white');
 		expect(gethtml(table)).not.toContain('<th class="ts-table-choices">');
 		expect(gethtml(table)).not.toContain('<th class="ts-table-choices-close">');

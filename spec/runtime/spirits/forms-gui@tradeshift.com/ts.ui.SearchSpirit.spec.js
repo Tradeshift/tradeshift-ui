@@ -1,6 +1,7 @@
 describe('ts.ui.SearchSpirit', function likethis() {
 	function setup(action, html, done) {
-		var spirit, dom = helper.createTestDom();
+		var spirit,
+			dom = helper.createTestDom();
 		dom.innerHTML = html;
 		sometime(function later() {
 			spirit = ts.ui.get(dom.querySelector('div[data-ts=Search]'));

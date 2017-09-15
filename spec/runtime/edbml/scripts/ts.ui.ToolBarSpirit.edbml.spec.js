@@ -1,6 +1,7 @@
 describe('ts.ui.ToolBarSpirit.edbml', function likethis() {
 	function getspirit() {
-		var then = new gui.Then(), dom = helper.createTestDom();
+		var then = new gui.Then(),
+			dom = helper.createTestDom();
 		dom.innerHTML = '<footer data-ts="ToolBar"></footer>';
 		sometime(function later() {
 			var footer = dom.querySelector('footer');
@@ -32,10 +33,12 @@ describe('ts.ui.ToolBarSpirit.edbml', function likethis() {
 
 	it('should render button', function(done) {
 		getspirit().then(function(spirit) {
-			spirit.buttons([{
-				label: 'Daniel',
-				type: 'ts-primary'
-			}]);
+			spirit.buttons([
+				{
+					label: 'Daniel',
+					type: 'ts-primary'
+				}
+			]);
 			sometime(function later() {
 				expect(spirit.element.innerHTML).toContain('ts-primary');
 				expect(spirit.element.innerHTML).toContain('Daniel');

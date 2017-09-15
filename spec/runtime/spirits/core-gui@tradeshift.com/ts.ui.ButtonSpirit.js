@@ -1,12 +1,9 @@
 describe('ts.ui.ButtonSpirit', function likethis() {
-	var MARKUP = [
-		'<button data-ts="Button">',
-		'	<span>Label</span>',
-		'</buttton>'
-	].join('\n');
+	var MARKUP = ['<button data-ts="Button">', '	<span>Label</span>', '</buttton>'].join('\n');
 
 	function setup(action, html) {
-		var spirit, dom = helper.createTestDom();
+		var spirit,
+			dom = helper.createTestDom();
 		dom.innerHTML = html || MARKUP;
 		sometime(function later() {
 			spirit = ts.ui.get(dom.querySelector('button'));

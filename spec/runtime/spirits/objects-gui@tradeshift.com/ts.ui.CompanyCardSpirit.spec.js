@@ -12,7 +12,8 @@ describe('ts.ui.CompanyCardSpirit', function likethis() {
 	};
 
 	it('should (eventually) channel via ts-attribute', function(done) {
-		var spirit, dom = helper.createTestDom();
+		var spirit,
+			dom = helper.createTestDom();
 		dom.innerHTML = '<div data-ts="CompanyCard"></div>';
 		sometime(function later() {
 			spirit = ts.ui.get(dom.querySelector('div'));
@@ -22,7 +23,8 @@ describe('ts.ui.CompanyCardSpirit', function likethis() {
 	});
 
 	it('should generate HTML via .render(json)', function(done) {
-		var spirit, dom = helper.createTestDom();
+		var spirit,
+			dom = helper.createTestDom();
 		dom.innerHTML = '<div data-ts="CompanyCard"></div>';
 		sometime(function later() {
 			spirit = ts.ui.get(dom.querySelector('div'));
@@ -41,7 +43,8 @@ describe('ts.ui.CompanyCardSpirit', function likethis() {
 	});
 
 	it('should generate HTML via ts.render="encodedjson"', function(done) {
-		var spirit, dom = helper.createTestDom();
+		var spirit,
+			dom = helper.createTestDom();
 		var encodedjson = encodeURIComponent(JSON.stringify(CARDDATA).trim());
 		dom.innerHTML = '<div data-ts="CompanyCard" data-ts.render="' + encodedjson + '"></div>';
 		sometime(function later() {

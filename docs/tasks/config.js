@@ -6,7 +6,6 @@ var alce = require('alce');
  * @see https://github.com/walmartlabs/ALCE
  */
 module.exports = {
-
 	/**
 	 * Init Grunt.
 	 * @param {Grunt} g
@@ -45,10 +44,7 @@ module.exports = {
  * @returns {string}
  */
 function read(file) {
-	return alce.parse(
-		grunt.file.read(file),
-		{meta: false}
-	);
+	return alce.parse(grunt.file.read(file), { meta: false });
 }
 
 /**

@@ -1,9 +1,7 @@
 describe('ts.ui.menu.edbml', function likethis() {
 	function gethtml(menu) {
-		var model = menu || {items: [{}, {}]};
-		return ts.ui.menu.edbml(
-			new ts.ui.MenuModel(model)
-		);
+		var model = menu || { items: [{}, {}] };
+		return ts.ui.menu.edbml(new ts.ui.MenuModel(model));
 	}
 
 	it('should contain ts-menu', function() {
@@ -24,56 +22,68 @@ describe('ts.ui.menu.edbml', function likethis() {
 
 	it('should contain button', function() {
 		var menu = {
-			items: [{
-				label: 'menu'
-			}]
+			items: [
+				{
+					label: 'menu'
+				}
+			]
 		};
 		expect(gethtml(menu)).toContain('<button');
 	});
 
 	it('should contain disabled button', function() {
 		var menu = {
-			items: [{
-				label: 'menu',
-				disabled: true
-			}]
+			items: [
+				{
+					label: 'menu',
+					disabled: true
+				}
+			]
 		};
 		expect(gethtml(menu)).toContain('<button disabled');
 	});
 
 	it('should not contain disabled button', function() {
 		var menu = {
-			items: [{
-				label: 'menu'
-			}]
+			items: [
+				{
+					label: 'menu'
+				}
+			]
 		};
 		expect(gethtml(menu)).not.toContain('<button disabled');
 	});
 
 	it('should contain icon', function() {
 		var menu = {
-			items: [{
-				label: 'menu',
-				icon: 'ts-icon-test'
-			}]
+			items: [
+				{
+					label: 'menu',
+					icon: 'ts-icon-test'
+				}
+			]
 		};
 		expect(gethtml(menu)).toContain('ts-icon-test');
 	});
 
 	it('should contain label', function() {
 		var menu = {
-			items: [{
-				label: 'test'
-			}]
+			items: [
+				{
+					label: 'test'
+				}
+			]
 		};
 		expect(gethtml(menu)).toContain('test');
 	});
 
 	it('should selected', function() {
 		var menu = {
-			items: [{
-				label: 'menu'
-			}],
+			items: [
+				{
+					label: 'menu'
+				}
+			],
 			selectedIndex: 0
 		};
 		expect(gethtml(menu)).toContain('ts-icon-checked');
@@ -81,11 +91,14 @@ describe('ts.ui.menu.edbml', function likethis() {
 
 	it('should contain ts-buttons', function() {
 		var menu = {
-			items: [{
-				label: 'menu'
-			}, {
-				label: 'menu'
-			}],
+			items: [
+				{
+					label: 'menu'
+				},
+				{
+					label: 'menu'
+				}
+			],
 			select: 'many',
 			selectedIndexes: [1]
 		};
@@ -94,11 +107,14 @@ describe('ts.ui.menu.edbml', function likethis() {
 
 	it('should contain disabled ts-buttons', function() {
 		var menu = {
-			items: [{
-				label: 'menu'
-			}, {
-				label: 'menu'
-			}],
+			items: [
+				{
+					label: 'menu'
+				},
+				{
+					label: 'menu'
+				}
+			],
 			select: 'many',
 			selectedIndexes: [1],
 			donebuttonenabled: false
@@ -108,11 +124,14 @@ describe('ts.ui.menu.edbml', function likethis() {
 
 	it('should not contain disabled ts-buttons', function() {
 		var menu = {
-			items: [{
-				label: 'menu'
-			}, {
-				label: 'menu'
-			}],
+			items: [
+				{
+					label: 'menu'
+				},
+				{
+					label: 'menu'
+				}
+			],
 			select: 'many',
 			selectedIndexes: [1],
 			donebuttonenabled: true
@@ -122,11 +141,14 @@ describe('ts.ui.menu.edbml', function likethis() {
 
 	it('should contain ts-buttons label', function() {
 		var menu = {
-			items: [{
-				label: 'menu'
-			}, {
-				label: 'menu'
-			}],
+			items: [
+				{
+					label: 'menu'
+				},
+				{
+					label: 'menu'
+				}
+			],
 			select: 'many',
 			selectedIndexes: [1],
 			donebuttonlabel: 'test'

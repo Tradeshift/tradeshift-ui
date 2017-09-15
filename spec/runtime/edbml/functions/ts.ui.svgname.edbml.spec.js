@@ -12,7 +12,9 @@ describe('ts.ui.svgname.edbml', function likethis() {
 	});
 
 	it('should contain col1, width and height', function() {
-		expect(gethtml('test', 'red', 'green', 22)).toContain('width="22px" height="22px" viewBox="0 0 22 22" style="background-color:red;"');
+		expect(gethtml('test', 'red', 'green', 22)).toContain(
+			'width="22px" height="22px" viewBox="0 0 22 22" style="background-color:red;"'
+		);
 	});
 
 	it('should contain defs', function() {
@@ -20,7 +22,9 @@ describe('ts.ui.svgname.edbml', function likethis() {
 	});
 
 	it('should contain style sheet', function() {
-		expect(gethtml('test', 'red', 'green', 22, 'stylesheet_url')).toContain('<style type="text/css">');
+		expect(gethtml('test', 'red', 'green', 22, 'stylesheet_url')).toContain(
+			'<style type="text/css">'
+		);
 	});
 
 	it('should contain style sheet contents', function() {

@@ -88,8 +88,10 @@ gui.DOMChanger = {
 	_docombo: function(proto, name, combo, root, ok) {
 		if (this._ismethod(name)) {
 			this._domethod(proto, name, combo);
-		} else {
+		} else if (ok) {
 			this._doaccessor(proto, name, combo);
+		} else {
+			// Safari and old Chrome relies on the {gui.DOMObserver}
 		}
 	},
 

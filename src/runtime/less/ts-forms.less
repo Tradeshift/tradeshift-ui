@@ -55,6 +55,17 @@
 			&.ts-haslabel {
 				padding-top: @ts-unit-plus;
 			}
+			&.ts-customiconlabel {
+				.ts-field {
+					padding-right: 1.25 * @ts-unit; 
+				}
+			}
+			&.ts-right {
+				text-align: right;
+				.ts-field {
+					text-align: right;
+				}
+			}
 		}
 		&.ts-options {
 			padding-left: @ts-unit-half;
@@ -111,6 +122,7 @@
 			padding-top: @ts-unit-quarter - 1px;
 			padding-bottom: @ts-unit-quarter - 1px;
 			padding-left: @ts-unit-half;
+			padding-right: @ts-unit-half;
 			background-color: @ts-white;
 			height: @ts-unit-plus;
 		}
@@ -120,6 +132,10 @@
 			padding-right: @ts-unit-half;
 			padding-bottom: 0;
 			resize: none;
+		}
+		&[type="number"] {
+			font-size: 13px;
+			letter-spacing: 1.2px;
 		}
 		&.ts-option {
 			opacity: 0;
@@ -182,6 +198,7 @@
 			}
 		}
 	}
+
 }
 
 
@@ -879,6 +896,7 @@
 		.ts-field.ts-select {
 			border: 1px solid transparent;
 			padding-left: 0;
+			padding-right: 0;
 			&.ts-fakeselectinput {
 				display: none;
 			}

@@ -112,13 +112,19 @@ ts.ui.PagerModel = (function using(chained) {
 		onchange: function(changes) {
 			changes.forEach(function(c) {
 				if (c.name === 'page') {
+					var page = c.newValue;
+					var most = this.max || this.defaultmax;
+					var init = this.init;
+					var last = init + most;
+					if (page < this.pages) {
+						if (page >= last) {
+							this._initup();
+						} else if (page < init) {
+							this._initdown();
+						}
+					}
 					if (this.onselect) {
 						this.onselect(c.newValue);
-					}
-					if (c.newValue > c.oldValue) {
-						this._initup();
-					} else {
-						this._initdown();
 					}
 				}
 			}, this);

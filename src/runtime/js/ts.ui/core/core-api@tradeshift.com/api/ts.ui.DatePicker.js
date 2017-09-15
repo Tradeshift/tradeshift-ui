@@ -56,8 +56,8 @@ ts.ui.DatePicker.localize = function(config) {};
 						}
 						model.isOpen = false;
 					}
-				}))
-				.open();
+				})
+			).open();
 		} else {
 			if ((aside = asides[id])) {
 				gui.Tick.time(function() {

@@ -1,7 +1,7 @@
 .ts-modal {
 	z-index: @ts-zindex-modal;
-	position: absolute;	
-	box-shadow: 2px 2px 8px rgba(0,0,0,0.75);
+	position: absolute;
+	box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.75);
 	&.ts-inscreen {
 		width: 480px;
 		height: 320px;
@@ -16,13 +16,15 @@
 			border-radius: 0 0 @ts-radius @ts-radius;
 		}
 	}
-	&.ts-fullscreen {}
+	&.ts-fullscreen {
+	}
 	> .ts-panel {
 		.ts-mixin-maximize();
 		padding-bottom: 0;
 		background-color: @ts-white;
 		overflow: hidden;
-		&:after { // firefox dysfunction :(
+		&:after {
+			// firefox dysfunction :(
 			content: '!';
 			display: block;
 			visibility: hidden;
@@ -50,7 +52,6 @@
 		bottom: 0;
 		width: 100%;
 		&.ts-bg-lite {
-
 			&:after {
 				content: '';
 				top: -5px;
@@ -58,7 +59,7 @@
 				width: 100%;
 				position: absolute;
 				pointer-events: none;
-				background: linear-gradient(0deg, rgba(0,0,0,0.35), rgba(0,0,0,0));
+				background: linear-gradient(0deg, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0));
 			}
 		}
 	}
@@ -79,7 +80,7 @@
 		> .ts-panel {
 			bottom: @ts-unit-triple;
 		}
-		&.ts-level-1-5 > .ts-panel { 
+		&.ts-level-1-5 > .ts-panel {
 			bottom: (@ts-unit-triple * 1.5);
 		}
 		&.ts-level-2 > .ts-panel {

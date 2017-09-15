@@ -113,6 +113,22 @@ gui.DOMCombos = (function using(before, after, around, provided, Type, guiArray,
 		gui.get(this).att.del(name);
 	});
 
+	/**
+	 * Spirit-aware setAttribute('alt', value).
+	 * @param {string} name
+	 * @param {string} value
+	 */
+	var setAltBefore = before(function(value) {
+		gui.get(this).att.set('alt', value);
+	});
+
+	/**
+	 * Ready-made DOMCombo for `node.alt = value` type setters
+	 */
+	var altCombo = function(base) {
+		return ifEnabled(ifEmbedded(setAltBefore(suspending(base)), otherwise(base)), otherwise(base));
+	};
+
 	/*
 	 * Spirit-aware className. Convert js-property change to DOM attribute change
 	 * so that attribute listeners can pick it up. Note that this voids the
@@ -313,6 +329,9 @@ gui.DOMCombos = (function using(before, after, around, provided, Type, guiArray,
 				ifEmbedded(detachSubBefore(suspending(base)), otherwise(base)),
 				otherwise(base)
 			);
+		},
+		alt: function(base) {
+			return altCombo(base);
 		}
 		/*
 		 * If we should need to create observers for the class attribute that

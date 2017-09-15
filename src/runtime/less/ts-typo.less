@@ -1,10 +1,11 @@
-@import "ts-variables.less";
+@import 'ts-variables.less';
 
 h1,
 h2,
-h3, {
+h3 {
 	font-weight: 400;
-	> span { // baseline shift
+	> span {
+		// baseline shift
 		position: relative;
 	}
 }
@@ -55,7 +56,8 @@ ul:not([class]) {
 		display: block;
 		padding-left: 16px;
 		position: relative;
-		&:before { // TODO: bg color variations!
+		&:before {
+			// TODO: bg color variations!
 			content: '';
 			position: absolute;
 			left: 1px;

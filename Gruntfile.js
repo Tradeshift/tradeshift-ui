@@ -19,7 +19,9 @@ module.exports = function(grunt) {
 	});
 
 	// read config and apply local overrides (gitignored!)
-	const config = require('./tasks/config').init(grunt).merge('config.json', 'config.local.json');
+	const config = require('./tasks/config')
+		.init(grunt)
+		.merge('config.json', 'config.local.json');
 
 	// Tasks .....................................................................
 
@@ -142,12 +144,12 @@ module.exports = function(grunt) {
 				options: {
 					'${runtimecss}':
 						'<%= process.env.ALI_OSS_CDN_LIVE || config.cdn_live %>' +
-							config.cdn_folder +
-							'/ts-<%= pkg.version %>.min.css',
+						config.cdn_folder +
+						'/ts-<%= pkg.version %>.min.css',
 					'${langbundle}':
 						'<%= process.env.ALI_OSS_CDN_LIVE || config.cdn_live %>' +
-							config.cdn_folder +
-							'/ts-lang-<LANG>-<%= pkg.version %>.js'
+						config.cdn_folder +
+						'/ts-lang-<LANG>-<%= pkg.version %>.js'
 				},
 				files: {
 					'temp/ts.js': 'src/runtime/ts.js'

@@ -114,10 +114,19 @@ gui.DOMCombos = (function using(before, after, around, provided, Type, guiArray,
 	});
 
 	/**
-	 * Ready-made DOMCombo for `node[field] = value` type setters
+	 * Spirit-aware setAttribute('alt', value).
+	 * @param {string} name
+	 * @param {string} value
 	 */
-	var attrCombo = function(base) {
-		return ifEnabled(ifEmbedded(setAttBefore(suspending(base)), otherwise(base)), otherwise(base));
+	var setAltBefore = before(function(value) {
+		gui.get(this).att.set('alt', value);
+	});
+
+	/**
+	 * Ready-made DOMCombo for `node.alt = value` type setters
+	 */
+	var altCombo = function(base) {
+		return ifEnabled(ifEmbedded(setAltBefore(suspending(base)), otherwise(base)), otherwise(base));
 	};
 
 	/*
@@ -322,7 +331,7 @@ gui.DOMCombos = (function using(before, after, around, provided, Type, guiArray,
 			);
 		},
 		alt: function(base) {
-			return attrCombo(base);
+			return altCombo(base);
 		}
 		/*
 		 * If we should need to create observers for the class attribute that

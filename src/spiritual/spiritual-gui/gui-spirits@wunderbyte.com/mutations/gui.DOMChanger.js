@@ -135,6 +135,11 @@ gui.DOMChanger = {
 	 * @param @optional @internal {boolean} once
 	 */
 	_doaccessor: function(proto, name, combo, once) {
+		if (name === 'alt') {
+			// alt doesn't exist on Element.prototype nor HTMLElement.prototype
+			proto = HTMLImageElement.prototype;
+		}
+
 		var base = Object.getOwnPropertyDescriptor(proto, name);
 		if (base) {
 			Object.defineProperty(proto, name, {

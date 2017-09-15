@@ -46,7 +46,12 @@ const getLESS = (grunt, src) => {
  * @returns {string}
  */
 const clean = less =>
-	less.split('\n').filter(noFancyStuff).filter(noBlockComment).map(noComment).join('\n');
+	less
+		.split('\n')
+		.filter(noFancyStuff)
+		.filter(noBlockComment)
+		.map(noComment)
+		.join('\n');
 
 /**
  * Nice header to separate less from different files.

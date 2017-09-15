@@ -810,11 +810,9 @@ ts.ui.TableSpirit = (function using(
 		 * @param @optional {number|Array<number>}
 		 */
 		select: confirmed('(number|array)')(
-			chained(
-				function(/* ...indexes */) {
-					this._select(true, this._rowsadd, arguments);
-				}
-			)
+			chained(function(/* ...indexes */) {
+				this._select(true, this._rowsadd, arguments);
+			})
 		),
 
 		/**
@@ -822,11 +820,9 @@ ts.ui.TableSpirit = (function using(
 		 * @param @optional {number|Array<number>}
 		 */
 		unselect: confirmed('(number|array)')(
-			chained(
-				function(/* ...indexes */) {
-					this._select(false, this._rowsoff, arguments);
-				}
-			)
+			chained(function(/* ...indexes */) {
+				this._select(false, this._rowsoff, arguments);
+			})
 		),
 
 		/**
@@ -834,20 +830,18 @@ ts.ui.TableSpirit = (function using(
 		 * @param @optional {number|Array<number>}
 		 */
 		toggle: confirmed('(number|array)')(
-			chained(
-				function(/* ...indexes */) {
-					var given = arguments;
-					var model = this._model;
-					var indxs = given.length ? given : model.rows.map(indexes);
-					makearray(indxs).forEach(function(i) {
-						if (model.rowselected(i)) {
-							this.unselect(i);
-						} else {
-							this.select(i);
-						}
-					}, this);
-				}
-			)
+			chained(function(/* ...indexes */) {
+				var given = arguments;
+				var model = this._model;
+				var indxs = given.length ? given : model.rows.map(indexes);
+				makearray(indxs).forEach(function(i) {
+					if (model.rowselected(i)) {
+						this.unselect(i);
+					} else {
+						this.select(i);
+					}
+				}, this);
+			})
 		),
 
 		// Searching ...............................................................
@@ -1352,11 +1346,13 @@ ts.ui.TableSpirit = (function using(
 		 */
 		_selectpage: function(on) {
 			var page = this._model.visibleRows();
-			var idxs = page.filter(function(row) {
-				return row.selectable !== false;
-			}).map(function(row) {
-				return row.$index;
-			});
+			var idxs = page
+				.filter(function(row) {
+					return row.selectable !== false;
+				})
+				.map(function(row) {
+					return row.$index;
+				});
 			if (on === false) {
 				this.unselect(idxs);
 			} else {

@@ -245,11 +245,9 @@ ts.ui.Dialog.DEFAULT_TIME = 1500;
 		 * @returns {ts.ui.DialogModel}
 		 */
 		confirm: chained(
-			api(
-				function(/* ...args */) {
-					return getdialog(this.CONFIRM, arguments);
-				}
-			)
+			api(function(/* ...args */) {
+				return getdialog(this.CONFIRM, arguments);
+			})
 		),
 
 		/**
@@ -257,11 +255,9 @@ ts.ui.Dialog.DEFAULT_TIME = 1500;
 		 * @returns {ts.ui.DialogModel}
 		 */
 		warning: chained(
-			api(
-				function(/* ...args */) {
-					return getdialog(this.WARNING, arguments);
-				}
-			)
+			api(function(/* ...args */) {
+				return getdialog(this.WARNING, arguments);
+			})
 		),
 
 		/**
@@ -269,11 +265,9 @@ ts.ui.Dialog.DEFAULT_TIME = 1500;
 		 * @returns {ts.ui.DialogModel}
 		 */
 		danger: chained(
-			api(
-				function(/* ...args */) {
-					return getdialog(this.DANGER, arguments);
-				}
-			)
+			api(function(/* ...args */) {
+				return getdialog(this.DANGER, arguments);
+			})
 		),
 
 		// Privileged ..............................................................

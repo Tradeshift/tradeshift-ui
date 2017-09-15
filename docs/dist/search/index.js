@@ -109,7 +109,12 @@ function getContent(query, content) {
 	var queryIndex = content.indexOf(query);
 	var start = queryIndex - 10 > 0 ? queryIndex - 10 : 0;
 	var end = queryIndex + 10 > content.length - 1 ? content.length - 1 : queryIndex + 10;
-	return content.slice(start, end).join(' ').replace(query, '<code>' + query + '</code>') + '...';
+	return (
+		content
+			.slice(start, end)
+			.join(' ')
+			.replace(query, '<code>' + query + '</code>') + '...'
+	);
 }
 
 // Let's get started

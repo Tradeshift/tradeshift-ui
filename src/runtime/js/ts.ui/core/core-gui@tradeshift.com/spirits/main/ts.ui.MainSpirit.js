@@ -265,9 +265,12 @@ ts.ui.MainSpirit = (function using(Type, chained, PANEL_ATTACH, PANEL_DETACH) {
 					}
 				});
 			} else {
-				bar.tabs().splice(index, 1).forEach(function(tab) {
-					tab.dispose();
-				});
+				bar
+					.tabs()
+					.splice(index, 1)
+					.forEach(function(tab) {
+						tab.dispose();
+					});
 			}
 			bar.$hascontent(); // for the tabbar to render instantly
 		},

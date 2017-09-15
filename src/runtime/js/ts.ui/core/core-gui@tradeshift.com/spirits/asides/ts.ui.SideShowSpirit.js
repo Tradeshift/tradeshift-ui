@@ -683,13 +683,16 @@ ts.ui.SideShowSpirit = (function using(
 						}
 					});
 				} else {
-					bar.tabs().splice(index, 1).forEach(function(tab) {
-						if (tab.selected) {
-							var selectedindex = index ? index - 1 : index;
-							bar.tabs()[selectedindex].select();
-						}
-						tab.dispose();
-					});
+					bar
+						.tabs()
+						.splice(index, 1)
+						.forEach(function(tab) {
+							if (tab.selected) {
+								var selectedindex = index ? index - 1 : index;
+								bar.tabs()[selectedindex].select();
+							}
+							tab.dispose();
+						});
 					if (bar.tabs().length === 1) {
 						this._removetabbar();
 					}

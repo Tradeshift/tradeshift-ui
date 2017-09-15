@@ -233,7 +233,7 @@
 				(function anim() {
 					i++;
 					for (var j = 0; j < o.lines; j++) {
-						alpha = Math.max(1 - (i + (o.lines - j) * astep) % f * ostep, o.opacity);
+						alpha = Math.max(1 - ((i + (o.lines - j) * astep) % f) * ostep, o.opacity);
 
 						self.opacity(el, j * o.direction + start, alpha, o);
 					}
@@ -275,11 +275,11 @@
 					transformOrigin: 'left',
 					transform:
 						'rotate(' +
-							~~(360 / o.lines * i + o.rotate) +
-							'deg) translate(' +
-							o.scale * o.radius +
-							'px' +
-							',0)',
+						~~(360 / o.lines * i + o.rotate) +
+						'deg) translate(' +
+						o.scale * o.radius +
+						'px' +
+						',0)',
 					borderRadius: ((o.corners * o.scale * o.width) >> 1) + 'px'
 				});
 			}
@@ -292,10 +292,10 @@
 					opacity: o.opacity,
 					animation:
 						useCssAnimations &&
-							addAnimation(o.opacity, o.trail, start + i * o.direction, o.lines) +
-								' ' +
-								1 / o.speed +
-								's linear infinite'
+						addAnimation(o.opacity, o.trail, start + i * o.direction, o.lines) +
+							' ' +
+							1 / o.speed +
+							's linear infinite'
 				});
 
 				if (o.shadow) ins(seg, css(fill('#000', '0 0 4px #000'), { top: '2px' }));

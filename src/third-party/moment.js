@@ -556,7 +556,9 @@
 			sign = number >= 0;
 		return (
 			(sign ? (forceSign ? '+' : '') : '-') +
-			Math.pow(10, Math.max(0, zerosToFill)).toString().substr(1) +
+			Math.pow(10, Math.max(0, zerosToFill))
+				.toString()
+				.substr(1) +
 			absNumber
 		);
 	}
@@ -969,19 +971,20 @@
 		var a = m._a;
 
 		if (a && getParsingFlags(m).overflow === -2) {
-			overflow = a[MONTH] < 0 || a[MONTH] > 11
-				? MONTH
-				: a[DATE] < 1 || a[DATE] > daysInMonth(a[YEAR], a[MONTH])
-					? DATE
-					: a[HOUR] < 0 ||
+			overflow =
+				a[MONTH] < 0 || a[MONTH] > 11
+					? MONTH
+					: a[DATE] < 1 || a[DATE] > daysInMonth(a[YEAR], a[MONTH])
+						? DATE
+						: a[HOUR] < 0 ||
 							a[HOUR] > 24 ||
 							(a[HOUR] === 24 && (a[MINUTE] !== 0 || a[SECOND] !== 0 || a[MILLISECOND] !== 0))
-						? HOUR
-						: a[MINUTE] < 0 || a[MINUTE] > 59
-							? MINUTE
-							: a[SECOND] < 0 || a[SECOND] > 59
-								? SECOND
-								: a[MILLISECOND] < 0 || a[MILLISECOND] > 999 ? MILLISECOND : -1;
+							? HOUR
+							: a[MINUTE] < 0 || a[MINUTE] > 59
+								? MINUTE
+								: a[SECOND] < 0 || a[SECOND] > 59
+									? SECOND
+									: a[MILLISECOND] < 0 || a[MILLISECOND] > 999 ? MILLISECOND : -1;
 
 			if (getParsingFlags(m)._overflowDayOfYear && (overflow < YEAR || overflow > DATE)) {
 				overflow = DATE;
@@ -1206,7 +1209,7 @@
 	// start-of-first-week - start-of-year
 	function firstWeekOffset(year, dow, doy) {
 		var // first-week day -- which january is always in the first week (4 for iso, 1 for other)
-		fwd = 7 + dow - doy,
+			fwd = 7 + dow - doy,
 			// first-week day local weekday -- which local weekday is fwd
 			fwdlw = (7 + createUTCDate(year, 0, fwd).getUTCDay() - dow) % 7;
 
@@ -1918,8 +1921,14 @@
 
 	function isDaylightSavingTime() {
 		return (
-			this.utcOffset() > this.clone().month(0).utcOffset() ||
-			this.utcOffset() > this.clone().month(5).utcOffset()
+			this.utcOffset() >
+				this.clone()
+					.month(0)
+					.utcOffset() ||
+			this.utcOffset() >
+				this.clone()
+					.month(5)
+					.utcOffset()
 		);
 	}
 
@@ -2043,7 +2052,12 @@
 		var res = { milliseconds: 0, months: 0 };
 
 		res.months = other.month() - base.month() + (other.year() - base.year()) * 12;
-		if (base.clone().add(res.months, 'M').isAfter(other)) {
+		if (
+			base
+				.clone()
+				.add(res.months, 'M')
+				.isAfter(other)
+		) {
 			--res.months;
 		}
 
@@ -2139,13 +2153,14 @@
 		var now = time || local__createLocal(),
 			sod = cloneWithOffset(now, this).startOf('day'),
 			diff = this.diff(sod, 'days', true),
-			format = diff < -6
-				? 'sameElse'
-				: diff < -1
-					? 'lastWeek'
-					: diff < 0
-						? 'lastDay'
-						: diff < 1 ? 'sameDay' : diff < 2 ? 'nextDay' : diff < 7 ? 'nextWeek' : 'sameElse';
+			format =
+				diff < -6
+					? 'sameElse'
+					: diff < -1
+						? 'lastWeek'
+						: diff < 0
+							? 'lastDay'
+							: diff < 1 ? 'sameDay' : diff < 2 ? 'nextDay' : diff < 7 ? 'nextWeek' : 'sameElse';
 
 		var output = formats && (isFunction(formats[format]) ? formats[format]() : formats[format]);
 
@@ -2235,17 +2250,18 @@
 			}
 		} else {
 			delta = this - that;
-			output = units === 'second'
-				? delta / 1e3 // 1000
-				: units === 'minute'
-					? delta / 6e4 // 1000 * 60
-					: units === 'hour'
-						? delta / 36e5 // 1000 * 60 * 60
-						: units === 'day'
-							? (delta - zoneDelta) / 864e5 // 1000 * 60 * 60 * 24, negate dst
-							: units === 'week'
-								? (delta - zoneDelta) / 6048e5 // 1000 * 60 * 60 * 24 * 7, negate dst
-								: delta;
+			output =
+				units === 'second'
+					? delta / 1e3 // 1000
+					: units === 'minute'
+						? delta / 6e4 // 1000 * 60
+						: units === 'hour'
+							? delta / 36e5 // 1000 * 60 * 60
+							: units === 'day'
+								? (delta - zoneDelta) / 864e5 // 1000 * 60 * 60 * 24, negate dst
+								: units === 'week'
+									? (delta - zoneDelta) / 6048e5 // 1000 * 60 * 60 * 24 * 7, negate dst
+									: delta;
 		}
 		return asFloat ? output : absFloor(output);
 	}
@@ -2274,7 +2290,9 @@
 	utils_hooks__hooks.defaultFormat = 'YYYY-MM-DDTHH:mm:ssZ';
 
 	function toString() {
-		return this.clone().locale('en').format('ddd MMM DD YYYY HH:mm:ss [GMT]ZZ');
+		return this.clone()
+			.locale('en')
+			.format('ddd MMM DD YYYY HH:mm:ss [GMT]ZZ');
 	}
 
 	function moment_format__toISOString() {
@@ -2410,7 +2428,9 @@
 		if (units === undefined || units === 'millisecond') {
 			return this;
 		}
-		return this.startOf(units).add(1, units === 'isoWeek' ? 'week' : units).subtract(1, 'ms');
+		return this.startOf(units)
+			.add(1, units === 'isoWeek' ? 'week' : units)
+			.subtract(1, 'ms');
 	}
 
 	function to_type__valueOf() {
@@ -3391,9 +3411,10 @@
 		ordinalParse: /\d{1,2}(th|st|nd|rd)/,
 		ordinal: function(number) {
 			var b = number % 10,
-				output = toInt(number % 100 / 10) === 1
-					? 'th'
-					: b === 1 ? 'st' : b === 2 ? 'nd' : b === 3 ? 'rd' : 'th';
+				output =
+					toInt((number % 100) / 10) === 1
+						? 'th'
+						: b === 1 ? 'st' : b === 2 ? 'nd' : b === 3 ? 'rd' : 'th';
 			return number + output;
 		}
 	});
@@ -3556,7 +3577,7 @@
 		return (
 			this._milliseconds +
 			this._days * 864e5 +
-			this._months % 12 * 2592e6 +
+			(this._months % 12) * 2592e6 +
 			toInt(this._months / 12) * 31536e6
 		);
 	}
@@ -3623,15 +3644,15 @@
 		var years = round(duration.as('y'));
 
 		var a = (seconds < thresholds.s && ['s', seconds]) ||
-		(minutes <= 1 && ['m']) ||
-		(minutes < thresholds.m && ['mm', minutes]) ||
-		(hours <= 1 && ['h']) ||
-		(hours < thresholds.h && ['hh', hours]) ||
-		(days <= 1 && ['d']) ||
-		(days < thresholds.d && ['dd', days]) ||
-		(months <= 1 && ['M']) ||
-		(months < thresholds.M && ['MM', months]) ||
-		(years <= 1 && ['y']) || ['yy', years];
+			(minutes <= 1 && ['m']) ||
+			(minutes < thresholds.m && ['mm', minutes]) ||
+			(hours <= 1 && ['h']) ||
+			(hours < thresholds.h && ['hh', hours]) ||
+			(days <= 1 && ['d']) ||
+			(days < thresholds.d && ['dd', days]) ||
+			(months <= 1 && ['M']) ||
+			(months < thresholds.M && ['MM', months]) ||
+			(years <= 1 && ['y']) || ['yy', years];
 
 		a[2] = withoutSuffix;
 		a[3] = +posNegDuration > 0;

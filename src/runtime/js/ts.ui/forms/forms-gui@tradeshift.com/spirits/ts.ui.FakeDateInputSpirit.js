@@ -114,7 +114,6 @@ ts.ui.FakeDateInputSpirit = (function using(chained, tick, time) {
 				} else {
 					this._triggerinput();
 				}
-				
 			}
 		},
 

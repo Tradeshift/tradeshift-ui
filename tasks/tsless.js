@@ -21,9 +21,9 @@ const EIGHTY_WIDE_UNDERLINE =
  * @returns {string}
  */
 const importURL = line => {
-	const match = line.match(/".+"/);
+	const match = line.match(/'.+'/);
 	if (match) {
-		return match.shift().replace(/"/g, '');
+		return match.shift().replace(/'/g, '');
 	}
 };
 

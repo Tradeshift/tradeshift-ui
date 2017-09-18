@@ -56,9 +56,11 @@ ts.ui.PagerModel = (function using(chained) {
 
 		/**
 		 * Observe myself.
+		 * Too late now, but next time: `onselect` should fire on newup (if defined)
 		 */
 		onconstruct: function() {
 			this.super.onconstruct();
+			this._initup();
 			this.addObserver(this);
 		},
 
@@ -104,21 +106,28 @@ ts.ui.PagerModel = (function using(chained) {
 
 		/**
 		 * Handle changes (to myself).
+		 * TODO: Too late now, but next time throw RangeError if `page > pages - 1`
 		 * @param {Array<edb.Change>} changes
 		 */
 		onchange: function(changes) {
-			if (this.onselect) {
-				changes.forEach(function(c) {
-					if (c.name === 'page') {
-						this.onselect(c.newValue);
-						if (c.newValue > c.oldValue) {
+			changes.forEach(function(c) {
+				if (c.name === 'page') {
+					var page = c.newValue;
+					var most = this.max || this.defaultmax;
+					var init = this.init;
+					var last = init + most;
+					if (page < this.pages) {
+						if (page >= last) {
 							this._initup();
-						} else {
+						} else if (page < init) {
 							this._initdown();
 						}
 					}
-				}, this);
-			}
+					if (this.onselect) {
+						this.onselect(c.newValue);
+					}
+				}
+			}, this);
 		},
 
 		/**
@@ -147,6 +156,9 @@ ts.ui.PagerModel = (function using(chained) {
 
 		// Private .................................................................
 
+		/**
+		 * Increment `this.init`.
+		 */
 		_initup: function() {
 			var max = this.max;
 			var page = this.page;
@@ -156,6 +168,9 @@ ts.ui.PagerModel = (function using(chained) {
 			}
 		},
 
+		/**
+		 * Decrement `this.init`.
+		 */
 		_initdown: function() {
 			var page = this.page;
 			while (page < this.init && this.init > 0) {

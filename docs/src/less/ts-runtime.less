@@ -10,7 +10,9 @@
 @ts-unit-double: (@ts-unit * 2);
 @ts-unit-triple: (@ts-unit * 3);
 @ts-width-aside: 320px;
-@ts-width-grails: (@ts-width-aside - @ts-unit-double);
+@ts-width-grails: (
+	@ts-width-aside - @ts-unit-double
+);
 
 // Fonts .......................................................................
 
@@ -172,7 +174,10 @@
 @ts-timing-easeinoutcirc: cubic-bezier(0.785, 0.135, 0.15, 0.86);
 @ts-timing-easeinoutback: cubic-bezier(0.68, -0.55, 0.265, 1.55);
 
+
+
 // ts-mixins.less ..............................................................
+
 
 // General Mixins ..............................................................
 .ts-mixin-unselectable() {
@@ -463,3 +468,6 @@
 		@color2
 	);
 }
+
+
+

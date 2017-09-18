@@ -1,5 +1,1 @@
-[
-	"ts.lib.js",
-	"ts.lib.Date.js",
-	"ts.lib.Location.js"
-]
+["ts.lib.js", "ts.lib.Date.js", "ts.lib.Location.js"]

@@ -2,8 +2,7 @@ describe('ts.ui.DatepickerSpirit.edbml', function likethis() {
 	var datePicker = ts.ui.DatePicker({
 		title: 'Your Birthday',
 		value: '1973-03-26',
-		onselect: function(newval, oldval) {
-		}
+		onselect: function(newval, oldval) {}
 	});
 
 	it('should contain header', function() {

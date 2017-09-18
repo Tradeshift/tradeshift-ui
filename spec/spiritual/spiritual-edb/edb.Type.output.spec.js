@@ -16,7 +16,7 @@ describe('edb.Type.output', function likethis() {
 		var DescendantType = AncestorType.extend();
 
 		// testing superclass or subclass?
-		var MyType = (testdecendant ? DescendantType : AncestorType);
+		var MyType = testdecendant ? DescendantType : AncestorType;
 		var mytype = new MyType();
 
 		// create the listener
@@ -85,13 +85,28 @@ describe('edb.Type.output', function likethis() {
 
 	it('should support all of the above for arrays (as well as objects)', function(done) {
 		doTheTest(function() {
-			doTheTest(function() {
-				doTheTest(function() {
-					doTheTest(function() {
-						doTheTest(done, false, false, true, true, true);
-					}, false, false, true, true);
-				}, false, false, true);
-			}, false, true);
+			doTheTest(
+				function() {
+					doTheTest(
+						function() {
+							doTheTest(
+								function() {
+									doTheTest(done, false, false, true, true, true);
+								},
+								false,
+								false,
+								true,
+								true
+							);
+						},
+						false,
+						false,
+						true
+					);
+				},
+				false,
+				true
+			);
 		}, false);
 	});
 });

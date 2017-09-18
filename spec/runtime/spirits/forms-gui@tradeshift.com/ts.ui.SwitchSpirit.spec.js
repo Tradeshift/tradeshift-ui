@@ -1,6 +1,7 @@
 describe('ts.ui.SwitchSpirit', function likethis() {
 	it('should (eventually) channel via ts-attribute', function(done) {
-		var spirit, dom = helper.createTestDom();
+		var spirit,
+			dom = helper.createTestDom();
 		dom.innerHTML = '<select data-ts="Select"/>';
 		sometime(function later() {
 			spirit = ts.ui.get(dom.querySelector('select'));

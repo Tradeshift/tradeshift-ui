@@ -1,12 +1,15 @@
 describe('ts.ui.buttonsmenu.edbml', function likethis() {
 	function gethtml(hasbuttons) {
-		var buttons = [{
-			icon: 'ts-icon-hest',
-			label: 'Hest1'
-		}, {
-			icon: 'ts-icon-hest',
-			label: 'Hest2'
-		}];
+		var buttons = [
+			{
+				icon: 'ts-icon-hest',
+				label: 'Hest1'
+			},
+			{
+				icon: 'ts-icon-hest',
+				label: 'Hest2'
+			}
+		];
 		return ts.ui.buttonsmenu.edbml(
 			new ts.ui.ButtonMenuModel({
 				items: hasbuttons ? buttons : []

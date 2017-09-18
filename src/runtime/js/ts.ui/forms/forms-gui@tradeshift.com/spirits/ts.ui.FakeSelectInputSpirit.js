@@ -16,7 +16,10 @@ ts.ui.FakeSelectInputSpirit = (function using(chained, confirmed, tick, time, gu
 	 * @returns {Array<number>}
 	 */
 	function selectedoptions(options) {
-		return guiArray.from(options).map(selectedindexes).filter(selectedonly);
+		return guiArray
+			.from(options)
+			.map(selectedindexes)
+			.filter(selectedonly);
 	}
 
 	/**

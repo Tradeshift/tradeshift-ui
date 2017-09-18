@@ -2,10 +2,9 @@ Choose the section that applies to you and use the template to help us figure ou
 
 ----------------------------
 ### Bug report
-> Use the `bug` label
 
 #### Tradeshift UI version affected
-v7.0.0
+v9.2.0
 
 
 #### Expected Behavior
@@ -19,7 +18,6 @@ v7.0.0
 ---------------------------
 
 ### Feature request
-> Use the `enhancement` label
 
 #### Description of feature
 

@@ -1,6 +1,1 @@
-[
-	"gui.Key.js",
-	"gui.KeyPlugin.js",
-	"gui.IKeyHandler.js",
-	"module.js"
-]
+["gui.Key.js", "gui.KeyPlugin.js", "gui.IKeyHandler.js", "module.js"]

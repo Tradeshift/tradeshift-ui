@@ -1,8 +1,10 @@
 describe('ts.ui.AsideSpirit', function likethis() {
-	var MARKUP = '<aside data-ts="Aside" data-ts.title="Test Aside"><div data-ts="Panel"></div></aside>';
+	var MARKUP =
+		'<aside data-ts="Aside" data-ts.title="Test Aside"><div data-ts="Panel"></div></aside>';
 
 	it('should (eventually) channel via ts-attribute', function(done) {
-		var spirit, dom = helper.createTestDom();
+		var spirit,
+			dom = helper.createTestDom();
 		dom.innerHTML = MARKUP;
 		sometime(function later() {
 			spirit = ts.ui.get(dom.querySelector('aside'));
@@ -13,7 +15,8 @@ describe('ts.ui.AsideSpirit', function likethis() {
 	});
 
 	it('should remove cover when Aside is spontaneously nuked', function(done) {
-		var spirit, dom = helper.createTestDom();
+		var spirit,
+			dom = helper.createTestDom();
 		dom.innerHTML = MARKUP;
 		sometime(function later() {
 			spirit = ts.ui.get(dom.querySelector('aside'));

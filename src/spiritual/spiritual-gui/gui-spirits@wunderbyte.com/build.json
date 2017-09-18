@@ -17,7 +17,7 @@
 	"plugins/event/gui.EventPlugin.js",
 	"plugins/event/gui.IEventHandler.js",
 	"plugins/sprite/gui.SpritePlugin.js",
-	
+
 	"spirits/gui.Spirit.js",
 	"spirits/gui.DocumentSpirit.js",
 	"spirits/gui.IframeSpirit.js",
@@ -25,7 +25,7 @@
 	"abstract/gui.Position.js",
 	"abstract/gui.Dimension.js",
 	"abstract/gui.Geometry.js",
-	
+
 	"abstract/gui.UnitBezier.js",
 
 	"mutations/gui.DOMChanger.js",
@@ -34,7 +34,7 @@
 
 	"channeling/gui.Assistant.js",
 	"channeling/gui.Guide.js",
-	
-	"module.mixins.js",	
+
+	"module.mixins.js",
 	"module.js"
 ]

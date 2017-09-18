@@ -15,7 +15,6 @@
 	}
 }
 
-
 // Styles both ToolBar, TopBar and TabBar! .....................................
 
 .ts-toolbar {
@@ -42,7 +41,8 @@
 	}
 	&.ts-left {
 		left: 0;
-		&, & > li {
+		&,
+		& > li {
 			.ts-mixin-fixheight(@ts-unit-triple);
 			.ts-button {
 				display: inline-block;
@@ -129,7 +129,7 @@
 	}
 	label {
 		font-size: @ts-fontsize;
-		top: 0;	
+		top: 0;
 	}
 }
 .ts-toolbar-search {
@@ -140,7 +140,7 @@
 	padding-right: @ts-unit-half;
 	&.ts-flex {
 		padding-right: @ts-unit-quarter * 0.5;
-	}	
+	}
 	&.ts-searching {
 		width: @ts-width-aside;
 		padding-right: @ts-unit-half;
@@ -154,7 +154,6 @@
 		padding-right: @ts-unit-half;
 	}
 }
-
 
 // Tabs ........................................................................
 
@@ -198,7 +197,7 @@
 			margin-top: 0 - 10px;
 		}
 		&:after {
-			content: "";
+			content: '';
 			border-bottom: 6px solid transparent;
 			position: absolute;
 			right: 0;
@@ -267,13 +266,12 @@
 					i {
 						line-height: @ts-unit-double;
 						margin-left: 0 !important;
-					}	
+					}
 				}
 			}
 		}
 	}
 }
-
 
 // Tabs buttons (add new, show more ) ..........................................
 
@@ -359,7 +357,6 @@
 	}
 }
 
-
 // Statusbar ...................................................................
 
 .ts-toolbar {
@@ -437,7 +434,8 @@
 .ts-toolbar.ts-micro {
 	.ts-mixin-fixheight(@ts-unit-double);
 	.ts-left {
-		&, & > li {
+		&,
+		& > li {
 			.ts-mixin-fixheight(@ts-unit-double);
 			.ts-action {
 				height: @ts-unit-plus;
@@ -470,7 +468,7 @@
 							color: @ts-blue;
 						}
 						&.ts-icon-checkbox {
-							color:@ts-medium-litest; 
+							color: @ts-medium-litest;
 						}
 					}
 				}
@@ -492,7 +490,8 @@
 			}
 		}
 	}
-	.ts-counter,.ts-tab-close {
+	.ts-counter,
+	.ts-tab-close {
 		.ts-button {
 			padding-right: @ts-unit-double;
 		}
@@ -502,35 +501,37 @@
 			.ts-close-bg {
 				top: 0;
 				right: 0;
-			}	
+			}
 		}
-		
 	}
-	.ts-add-tab,.ts-tab-more {
+	.ts-add-tab,
+	.ts-tab-more {
 		.ts-button {
 			.ts-mixin-fixheight(@ts-unit-double);
 		}
 	}
 }
 
-
 // Button groups ...............................................................
 
 .ts-toolbar .ts-join .ts-button {
-	&, &:after {
+	&,
+	&:after {
 		border-radius: 0;
 	}
 	padding-left: @ts-unit-quarter;
 	padding-right: @ts-unit-quarter;
 	&:first-child {
 		padding-left: @ts-unit-half;
-		&, &:after {
+		&,
+		&:after {
 			border-radius: @ts-unit 0 0 @ts-unit;
 		}
 	}
 	&:last-child {
 		padding-right: @ts-unit-half;
-		&, &:after {
+		&,
+		&:after {
 			border-radius: 0 @ts-unit @ts-unit 0;
 		}
 	}
@@ -545,7 +546,6 @@
 		}
 	}
 }
-
 
 // Before and after Main .......................................................
 
@@ -568,7 +568,7 @@
 		&:after {
 			content: '';
 			top: 100%;
-			background: linear-gradient(0deg, rgba(0,0,0,0), rgba(0,0,0,0.35));
+			background: linear-gradient(0deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.35));
 		}
 	}
 	&.ts-micro + .ts-toolbar-first {
@@ -585,7 +585,7 @@
 		&:after {
 			content: '';
 			top: -5px;
-			background: linear-gradient(0deg, rgba(0,0,0,0.35), rgba(0,0,0,0));
+			background: linear-gradient(0deg, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0));
 		}
 	}
 }
@@ -605,7 +605,6 @@
 		bottom: 0;
 	}
 }
-
 
 // Breakpoints .................................................................
 
@@ -631,16 +630,15 @@
 	}
 }
 
-
 // Browsers ....................................................................
 
 .ts-engine-explorer9 {
 	.ts-toolbar-first:after {
-		border-top: 1px solid rgba(0,0,0,0.35);
+		border-top: 1px solid rgba(0, 0, 0, 0.35);
 		background: none;
 	}
 	.ts-toolbar-last:after {
-		border-bottom: 1px solid rgba(0,0,0,0.35);
+		border-bottom: 1px solid rgba(0, 0, 0, 0.35);
 		background: none;
 	}
 }

@@ -39,7 +39,7 @@ describe('ts.ui.DialogSpirit', function likethis() {
 	});
 
 	it('should display primary button', function(done) {
-		var dialog = ts.ui.Dialog.confirm('Primary?', {primary: 'accept', focused: 'accept'});
+		var dialog = ts.ui.Dialog.confirm('Primary?', { primary: 'accept', focused: 'accept' });
 		sometime(function later() {
 			expect(gethtml()).toContain('ts-primary');
 			dialog.accept().then(done);

@@ -1,12 +1,12 @@
-@import "ts-runtime.less";
-@import "dox-variables.less";
-@import "dox-mixins.less";
-@import "dox-fonts.less";
-@import "dox-typo.less";
-@import "dox-syntax.less";
-@import "dox-table.less";
-@import "dox-page-intro.less";
-@import "dox-chrome.less";
+@import 'ts-runtime.less';
+@import 'dox-variables.less';
+@import 'dox-mixins.less';
+@import 'dox-fonts.less';
+@import 'dox-typo.less';
+@import 'dox-syntax.less';
+@import 'dox-table.less';
+@import 'dox-page-intro.less';
+@import 'dox-chrome.less';
 
 html {
 	background-color: @ts-lite-lite !important;
@@ -63,7 +63,7 @@ article {
 }
 
 .dox-dropshadow {
-	 box-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+	box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .doc-responsive {
@@ -82,7 +82,7 @@ article {
 			}
 		}
 		&:after {
-			content: "";
+			content: '';
 			display: block;
 			clear: both;
 			height: 0;
@@ -127,7 +127,7 @@ article {
 			.color-code {
 				font-family: @ts-fontstack-mono;
 				font-size: @ts-fontsize-medium;
-				opacity: .75;
+				opacity: 0.75;
 			}
 		}
 	}
@@ -141,7 +141,6 @@ article {
 		background-color: @ts-white;
 		color: @ts-black;
 	}
-
 
 	// dark grey
 	.ts-dark-darker {
@@ -168,7 +167,6 @@ article {
 		background-color: @ts-dark-liter;
 		color: @ts-white;
 	}
-
 
 	// medium grey
 	.ts-medium-darkest {
@@ -206,7 +204,6 @@ article {
 		color: @ts-white;
 	}
 
-
 	// lite grey
 	.ts-lite-darker {
 		background-color: @ts-lite-darker;
@@ -233,7 +230,6 @@ article {
 		color: @ts-black;
 	}
 
-
 	// green
 	.ts-green {
 		background-color: @ts-green;
@@ -259,7 +255,6 @@ article {
 		background-color: @ts-green-text;
 		color: @ts-green;
 	}
-
 
 	// blue
 	.ts-blue {
@@ -292,7 +287,6 @@ article {
 		color: @ts-blue;
 	}
 
-
 	// pale blue
 	.ts-liteblue {
 		background-color: @ts-liteblue;
@@ -304,13 +298,11 @@ article {
 		color: @ts-black;
 	}
 
-
 	// pale green
 	.ts-litegreen {
 		background-color: @ts-litegreen;
 		color: @ts-white;
 	}
-
 
 	// dark blue
 	.ts-darkblue {
@@ -323,13 +315,11 @@ article {
 		color: @ts-white;
 	}
 
-
 	// dark green
 	.ts-darkgreen {
 		background-color: @ts-darkgreen;
 		color: @ts-white;
 	}
-
 
 	// red
 	.ts-red {
@@ -357,7 +347,6 @@ article {
 		color: @ts-red;
 	}
 
-
 	// dark red
 	.ts-darkred {
 		background-color: @ts-darkred;
@@ -374,7 +363,6 @@ article {
 		color: @ts-darkred;
 	}
 
-
 	// yellow
 	.ts-yellow {
 		background-color: @ts-yellow;
@@ -390,19 +378,19 @@ article {
 		background-color: @ts-yellow-text;
 		color: @ts-yellow;
 	}
-	
+
 	// orange
-	
+
 	.ts-orange-liter {
 		background-color: @ts-orange-liter;
 		color: @ts-orange;
 	}
-	
+
 	.ts-orange-lite {
 		background-color: @ts-orange-lite;
 		color: @ts-orange-dark;
 	}
-	
+
 	.ts-orange {
 		background-color: @ts-orange;
 		color: @ts-orange-text;
@@ -412,7 +400,7 @@ article {
 		background-color: @ts-orange-dark;
 		color: @ts-orange-text;
 	}
-	
+
 	.ts-orange-darker {
 		background-color: @ts-orange-darker;
 		color: @ts-orange-text;
@@ -422,7 +410,6 @@ article {
 		background-color: @ts-orange-text;
 		color: @ts-orange;
 	}
-
 
 	// purple
 	.ts-purple {
@@ -449,7 +436,6 @@ article {
 		background-color: @ts-purple-text;
 		color: @ts-purple;
 	}
-
 }
 
 /* Breakpoints .............................................................. */
@@ -542,12 +528,12 @@ article {
 .ts-has-toolbar-first-ts-micro.ts-has-topbar {
 	.sticky {
 		top: @ts-unit-triple + @ts-unit-double + @ts-unit-plus;
-	}	
+	}
 }
 .ts-has-toolbar-first-ts-micro.ts-has-toolbar-first-ts-macro.ts-has-topbar {
 	.sticky {
 		top: @ts-unit-triple + @ts-unit-triple + @ts-unit-double + @ts-unit-plus;
-	}	
+	}
 }
 
 // Section-specific styling ....................................................

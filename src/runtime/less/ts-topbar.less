@@ -1,22 +1,23 @@
 // (most styles are in ts-toolbar.less!)
 
 .ts-topbar {
-  z-index: @ts-zindex-topbar;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  .ts-toolbar-item { // navigation buttons
-    + .ts-toolbar-title {
-      padding-left: @ts-unit-quarter;
-    }
-  }
-  .ts-topbar-menubutton {
-    border-color: transparent !important;
-    i {
-      top: -2px;
-    }
-  }
+	z-index: @ts-zindex-topbar;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	.ts-toolbar-item {
+		// navigation buttons
+		+ .ts-toolbar-title {
+			padding-left: @ts-unit-quarter;
+		}
+	}
+	.ts-topbar-menubutton {
+		border-color: transparent !important;
+		i {
+			top: -2px;
+		}
+	}
 }
 .ts-tablet {
 	.ts-topbar {
@@ -27,37 +28,34 @@
 			display: none;
 		}
 	}
-  &.ts-has-topbar {
-    .ts-topbar:empty {
-      display: block;
-    }
-  }
+	&.ts-has-topbar {
+		.ts-topbar:empty {
+			display: block;
+		}
+	}
 }
 .ts-mobile {
-  &.ts-loading {
-    .ts-topbar-menubutton i {
-      display: none; // spinner will appear instead
-    }
-  }
+	&.ts-loading {
+		.ts-topbar-menubutton i {
+			display: none; // spinner will appear instead
+		}
+	}
 }
-
 
 // Mixins ......................................................................
 
-
-.ts-mixin-icon-content(@content: "7"){
+.ts-mixin-icon-content(@content: '7') {
 	.ts-mixin-icon();
 	content: @content;
 	position: absolute;
 	right: 0;
-  top: 1px;
+	top: 1px;
 	line-height: @ts-unit-double;
-  font-size: @ts-fontsize;
+	font-size: @ts-fontsize;
 	height: @ts-unit-double;
 	width: @ts-unit-double;
 	text-align: center;
 }
-
 
 // Breakpoints .................................................................
 
@@ -126,17 +124,17 @@
 			}
 			li:not(:only-child):first-child {
 				&:after {
-					.ts-mixin-icon-content("9");
+					.ts-mixin-icon-content('9');
 				}
 			}
 		}
 		&:not(.ts-open) {
 			li.ts-selected {
-        .ts-button:hover {
-          background-color: @ts-dustblue;
+				.ts-button:hover {
+					background-color: @ts-dustblue;
 				}
 				&:after {
-					.ts-mixin-icon-content("7");
+					.ts-mixin-icon-content('7');
 				}
 			}
 		}

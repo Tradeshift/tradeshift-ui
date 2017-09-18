@@ -115,16 +115,19 @@ ts.ui.NextIconSpirit = (function(URL, Request, Client, Parser) {
 			queue.push(callback);
 			if (!loads) {
 				var request = (bundles[path] = new Request(path));
-				request.accept('image/svg+xml').get().then(function(status, svg) {
-					if (status === 200) {
-						bundles[path] = Parser.parseToDocument(svg);
-						while (queue.length) {
-							queue.shift()();
+				request
+					.accept('image/svg+xml')
+					.get()
+					.then(function(status, svg) {
+						if (status === 200) {
+							bundles[path] = Parser.parseToDocument(svg);
+							while (queue.length) {
+								queue.shift()();
+							}
+						} else {
+							console.error(path + ' status:' + status);
 						}
-					} else {
-						console.error(path + ' status:' + status);
-					}
-				}, this);
+					}, this);
 			}
 		}
 	});

@@ -106,7 +106,10 @@ ts.ui.TimeSpirit = (function using(chained) {
 			}
 			var duration = ts.ui.moment().diff(firsttime);
 			timespan = ts.ui.moment().diff(realtime);
-			newdatetime = ts.ui.moment(datetime).add(timespan).subtract(duration);
+			newdatetime = ts.ui
+				.moment(datetime)
+				.add(timespan)
+				.subtract(duration);
 			return ts.ui.moment(newdatetime).fromNow();
 		}
 	});

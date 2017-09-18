@@ -1,9 +1,9 @@
-@import "ts-variables.less";
+@import 'ts-variables.less';
 
 .ts-menu {
 	list-style: none;
 	> li {
-		display: block;	
+		display: block;
 		overflow: hidden;
 		margin: 0;
 		padding: 0;
@@ -13,7 +13,7 @@
 			background-color: @ts-liteblue;
 			&:before {
 				.ts-mixin-maximize();
-				content: "";
+				content: '';
 				right: auto;
 				width: 5px;
 			}
@@ -62,12 +62,14 @@
 					left: @ts-unit-half;
 				}
 				& > span + i,
-				& > sub + i { // icon on the right
+				& > sub + i {
+					// icon on the right
 					left: auto;
 					right: @ts-unit-half;
 				}
 				& > i ~ span,
-				& > i ~ sub { // icon on the left
+				& > i ~ sub {
+					// icon on the left
 					padding-left: @ts-unit-plus;
 				}
 				& > img ~ span,
@@ -127,7 +129,8 @@
 					color: @ts-medium-lite;
 				}
 				&:not(:disabled) {
-					&, &:hover {
+					&,
+					&:hover {
 						background-color: @ts-blue;
 						color: @ts-white;
 					}

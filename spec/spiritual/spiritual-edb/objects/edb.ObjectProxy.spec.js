@@ -10,7 +10,8 @@ describe('edb.ObjectProxy', function likethis() {
 	 * whenever a property is changed that affects the rendering.
 	 */
 	it('should broadcast when you read a property', function(done) {
-		var object = new edb.Object({ // create an {edb.Object}
+		var object = new edb.Object({
+			// create an {edb.Object}
 			name: 'John'
 		});
 		// need to add broadcast the listener before we change...
@@ -91,7 +92,8 @@ describe('edb.ObjectProxy', function likethis() {
 				name: 'Anders'
 			}
 		});
-		var handler = { // this should not get triggered
+		var handler = {
+			// this should not get triggered
 			ontick: function shouldnothappen() {
 				expect(false).toBe(true);
 			}
@@ -115,7 +117,8 @@ describe('edb.ObjectProxy', function likethis() {
 			nickname: 'Henning',
 			age: 23
 		});
-		var sum = 0, handler = {
+		var sum = 0,
+			handler = {
 				ontick: function() {
 					sum++; // incrementing the counter for every change recorded
 				}

@@ -6,7 +6,8 @@ describe('ts.ui.TableSpirit.edbml', function likethis() {
 	}
 
 	function getspirit() {
-		var then = new gui.Then(), dom = helper.createTestDom();
+		var then = new gui.Then(),
+			dom = helper.createTestDom();
 		dom.innerHTML = '<div data-ts="Table"></div>';
 		sometime(function later() {
 			var footer = dom.querySelector('.ts-table');
@@ -28,7 +29,7 @@ describe('ts.ui.TableSpirit.edbml', function likethis() {
 
 	it('should contain gutter', function(done) {
 		getspirit().then(function(spirit) {
-			spirit.selectable().rows([{cells: ['A', 'D', 'G'], selected: true}]);
+			spirit.selectable().rows([{ cells: ['A', 'D', 'G'], selected: true }]);
 			sometime(function later() {
 				expect(spirit.element.innerHTML).toContain('ts-table-gutter');
 				done();
@@ -38,7 +39,7 @@ describe('ts.ui.TableSpirit.edbml', function likethis() {
 
 	it('should contain a footer', function(done) {
 		getspirit().then(function(spirit) {
-			spirit.configurable();
+			spirit.configbutton();
 			sometime(function later() {
 				expect(spirit.element.innerHTML).toContain('ts-table-foot');
 				done();

@@ -440,7 +440,12 @@ gui.Guide = (function using(
 				}
 			}
 			return function(spirits) {
-				spirits.map(configure).map(enter).map(attach).reverse().forEach(ready);
+				spirits
+					.map(configure)
+					.map(enter)
+					.map(attach)
+					.reverse()
+					.forEach(ready);
 			};
 		})(),
 

@@ -74,7 +74,7 @@
 				background-color: @ts-dark-liter;
 				&:not(:last-child) {
 					margin-bottom: @ts-unit-half;
-				}	
+				}
 				.ts-textlabel:not(.ts-focus) {
 					> span,
 					.ts-field {
@@ -110,7 +110,6 @@
 	}
 }
 
-
 // Breakpoints .................................................................
 
 .ts-mobile-only {
@@ -127,7 +126,8 @@
 		}
 	}
 }
-.ts-iframe-hosted { // assumed in the chrome, account for menu width
+.ts-iframe-hosted {
+	// assumed in the chrome, account for menu width
 	&.ts-tablet {
 		.ts-dialog {
 			margin-left: @local-variable-dialog-minus - @ts-unit-plus;

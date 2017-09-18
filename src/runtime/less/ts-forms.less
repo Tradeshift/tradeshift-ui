@@ -21,7 +21,6 @@
 	text-overflow: ellipsis;
 }
 
-
 // Forms .......................................................................
 
 .ts-form {
@@ -57,7 +56,7 @@
 			}
 			&.ts-customiconlabel {
 				.ts-field {
-					padding-right: 1.25 * @ts-unit; 
+					padding-right: 1.25 * @ts-unit;
 				}
 			}
 			&.ts-right {
@@ -75,7 +74,7 @@
 			margin-top: @ts-unit-half;
 			&.ts-haslabel {
 				padding-top: @ts-unit-double;
-			}	
+			}
 			> span:first-child {
 				.local-mixin-field-header();
 			}
@@ -100,7 +99,7 @@
 				> span:first-child {
 					.local-mixin-field-header();
 				}
-			}	
+			}
 		}
 	}
 	.ts-textlabel:not(.ts-disabled) {
@@ -133,7 +132,7 @@
 			padding-bottom: 0;
 			resize: none;
 		}
-		&[type="number"] {
+		&[type='number'] {
 			font-size: 13px;
 			letter-spacing: 1.2px;
 		}
@@ -146,7 +145,7 @@
 				display: block;
 			}
 			+ span:before {
-				content: "";
+				content: '';
 				position: absolute;
 				line-height: @ts-unit;
 				font-family: @ts-fontstack-icon;
@@ -159,19 +158,19 @@
 			+ span:after {
 				top: 50%;
 			}
-			&[type="radio"] {
+			&[type='radio'] {
 				+ span:before {
 					line-height: @ts-unit;
-					content: "{";
+					content: '{';
 				}
 				&:checked {
 					+ span:before {
 						line-height: @ts-unit;
-						content: ":";
+						content: ':';
 					}
 				}
 			}
-			&[type="checkbox"] {
+			&[type='checkbox'] {
 				+ span:before {
 					line-height: @ts-unit;
 					content: "'";
@@ -179,28 +178,26 @@
 				&:checked {
 					+ span:before {
 						line-height: @ts-unit;
-						content: "\"";
-					} 
-        } 
-      } 
-      &[type="radio"], 
-      &[type="checkbox"] { 
-        &:checked { 
-          + span:before { 
-            color: @ts-blue; 
-          } 
-        } 
-        &:disabled { 
-          + span:before { 
-            color: @ts-lite; 
-          } 
-        } 
+						content: '"';
+					}
+				}
+			}
+			&[type='radio'],
+			&[type='checkbox'] {
+				&:checked {
+					+ span:before {
+						color: @ts-blue;
+					}
+				}
+				&:disabled {
+					+ span:before {
+						color: @ts-lite;
+					}
+				}
 			}
 		}
 	}
-
 }
-
 
 // Focus & Hover ...............................................................
 
@@ -241,7 +238,7 @@
 					&.ts-checkbox,
 					&.ts-switchlabel {
 						.local-mixin-hover-outline(@ts-red);
-					}	
+					}
 				}
 			}
 		}
@@ -291,7 +288,6 @@
 	}
 }
 
-
 // Colors ......................................................................
 
 .ts-bg-red,
@@ -305,24 +301,24 @@
 			&.ts-text {
 				border-color: transparent !important;
 			}
-			&.ts-option { 
-				+ span:before { 
-					color: rgba(255,255,255,0.6); 
-				} 
-				&[type="radio"], 
-				&[type="checkbox"] { 
-					&:checked { 
-						+ span:before { 
-							color: @ts-white; 
-						} 
-					} 
-					&:disabled { 
-						+ span:before { 
-							color: rgba(255,255,255,0.3); 
-						} 
-					} 
-				} 
-			} 
+			&.ts-option {
+				+ span:before {
+					color: rgba(255, 255, 255, 0.6);
+				}
+				&[type='radio'],
+				&[type='checkbox'] {
+					&:checked {
+						+ span:before {
+							color: @ts-white;
+						}
+					}
+					&:disabled {
+						+ span:before {
+							color: rgba(255, 255, 255, 0.3);
+						}
+					}
+				}
+			}
 		}
 	}
 }
@@ -335,7 +331,7 @@
 		label {
 			&:hover,
 			&.ts-focus,
-			&.ts-focus-on	{
+			&.ts-focus-on {
 				.ts-field {
 					&.ts-text,
 					&.ts-date {
@@ -364,7 +360,7 @@
 					.local-mixin-focus-outline(@ts-white);
 				}
 			}
-		}	
+		}
 	}
 }
 .ts-bg-red {
@@ -398,7 +394,6 @@
 	}
 }
 
-
 // Errors ......................................................................
 
 .ts-form {
@@ -424,7 +419,6 @@
 				&.ts-switchlabel {
 					.local-mixin-focus-outline(@ts-red);
 				}
-
 			}
 		}
 	}
@@ -439,11 +433,11 @@
 		position: relative;
 		> dt,
 		> dd {
-			position:relative;
+			position: relative;
 			padding-left: 19px;
 			&:before {
 				position: absolute;
-				content: "";
+				content: '';
 				-webkit-font-smoothing: antialiased;
 				-moz-osx-font-smoothing: grayscale;
 				font-weight: normal;
@@ -463,12 +457,12 @@
 				font-size: @ts-fontsize-medium;
 				top: 12px;
 				left: 0;
-				content: "!";
+				content: '!';
 			}
 		}
 		> dd {
 			&:before {
-				content: "\2219";
+				content: '\2219';
 				font-size: 35px;
 				line-height: 0;
 				position: absolute;
@@ -481,7 +475,7 @@
 		color: @ts-black;
 		> dt {
 			&:before {
-				content: "i";
+				content: 'i';
 				color: @ts-blue;
 			}
 		}
@@ -499,7 +493,6 @@
 	}
 }
 
-
 // Faking it ...................................................................
 
 .ts-form {
@@ -507,12 +500,14 @@
 	.ts-fakelabel,
 	.ts-autocompletelabel {
 		&:not(.ts-disabled):not(.ts-readonly) {
-			&, * {
+			&,
+			* {
 				cursor: pointer;
 			}
 		}
 	}
-	.ts-fakelabel { // open-select-menu
+	.ts-fakelabel {
+		// open-select-menu
 		&:not(.ts-disabled):not(.ts-readonly) {
 			&:before {
 				.ts-mixin-icon(@ts-fontsize-medium);
@@ -533,9 +528,9 @@
 	}
 	.ts-datelabel {
 		&:not(.ts-disabled):not(.ts-readonly) {
-				&:before {
-						content: '\00a9';
-				}
+			&:before {
+				content: '\00a9';
+			}
 		}
 	}
 	.ts-select,
@@ -547,7 +542,8 @@
 		padding: 0 !important;
 	}
 	.ts-select {
-		option { // https://bugzilla.mozilla.org/show_bug.cgi?id=392863 
+		option {
+			// https://bugzilla.mozilla.org/show_bug.cgi?id=392863
 			display: none;
 		}
 	}
@@ -569,7 +565,7 @@
 		> span {
 			display: block;
 			line-height: @ts-unit;
-			width: calc(~"100% - "@ts-unit-double);
+			width: calc(~'100% - '@ts-unit-double);
 			text-align: left;
 			float: left;
 		}
@@ -615,7 +611,8 @@
 			top: @ts-unit-quarter - 1px;
 			border-radius: @ts-unit-half;
 			background-color: @ts-lite-dark;
-			&, > i {
+			&,
+			> i {
 				.ts-mixin-transition(all,0.1s,ease-out);
 			}
 			> i {
@@ -682,7 +679,6 @@
 	}
 }
 
-
 // Multi-fields  ...............................................................
 
 .ts-form {
@@ -743,8 +739,6 @@
 	}
 }
 
-
-
 // Disabled & readonly .........................................................
 
 .ts-form {
@@ -789,7 +783,8 @@
 				color: @ts-medium;
 			}
 			.ts-field {
-				&.ts-text { // &.ts-date
+				&.ts-text {
+					// &.ts-date
 					border-color: @ts-lite;
 				}
 			}
@@ -803,7 +798,7 @@
 	label.ts-customiconlabel:not(.ts-option):not(.ts-switchlabel) {
 		&:after {
 			.ts-mixin-icon(@ts-fontsize-medium);
-			content: ~"attr(data-ts-icon)";
+			content: ~'attr(data-ts-icon)';
 			position: absolute;
 			right: @ts-unit-half;
 			left: auto;
@@ -905,6 +900,5 @@
 			content: '';
 			.ts-mixin-maximize();
 		}
-	}	
-	
+	}
 }

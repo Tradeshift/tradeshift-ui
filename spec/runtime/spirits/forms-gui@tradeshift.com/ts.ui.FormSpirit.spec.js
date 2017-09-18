@@ -1,6 +1,7 @@
 describe('ts.ui.FormSpirit', function likethis() {
 	it('should (eventually) channel via ts-attribute', function(done) {
-		var spirit, dom = helper.createTestDom();
+		var spirit,
+			dom = helper.createTestDom();
 		dom.innerHTML = '<form data-ts="Form"></form>';
 		sometime(function later() {
 			spirit = ts.ui.get(dom.querySelector('form'));

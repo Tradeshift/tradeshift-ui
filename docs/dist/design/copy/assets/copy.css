@@ -24,10 +24,10 @@ figure p + p {
   padding-top: 0;
 }
 figure.bad-copy:before {
-  content: "Bad copy";
+  content: 'Bad copy';
   background-color: #fac8c8;
 }
 figure.good-copy:before {
-  content: "Good copy";
+  content: 'Good copy';
   background-color: #c8fac8;
 }

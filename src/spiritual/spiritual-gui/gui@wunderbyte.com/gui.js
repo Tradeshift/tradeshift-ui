@@ -264,7 +264,11 @@ window.gui = (function using(Namespace, Timer) {
 		 */
 		_exist: function() {
 			this.hosted = window !== parent;
-			this.$contextid = 'key' + Math.random().toString().slice(2, 11);
+			this.$contextid =
+				'key' +
+				Math.random()
+					.toString()
+					.slice(2, 11);
 			if (this.hosted) {
 				// TODO: get rid of this stuff!
 				this.xhost = '*';

@@ -8,8 +8,9 @@
 @ts-unit-double: (@ts-unit * 2);
 @ts-unit-triple: (@ts-unit * 3);
 @ts-width-aside: 320px;
-@ts-width-grails: (@ts-width-aside - @ts-unit-double); // used for menu to allow Grails pages to fit in 1280px
-
+@ts-width-grails: (
+	@ts-width-aside - @ts-unit-double
+); // used for menu to allow Grails pages to fit in 1280px
 
 // Fonts .......................................................................
 
@@ -27,12 +28,12 @@
 @ts-fontweight-semibold: 600;
 @ts-fontweight-bold: 700;
 
-@ts-fontstack: "Open Sans", "Helvetica Neue", "Lucida Grande", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif;
-@ts-fontstack-mono: "Ubuntu Mono", "Monaco", "Consolas", "Bitstream Vera Sans Mono", monospace;
-@ts-fontstack-icon: "Tradeshifticons", fantasy;
+@ts-fontstack: 'Open Sans', 'Helvetica Neue', 'Lucida Grande', 'Segoe UI', 'Ubuntu', 'Droid Sans',
+	sans-serif;
+@ts-fontstack-mono: 'Ubuntu Mono', 'Monaco', 'Consolas', 'Bitstream Vera Sans Mono', monospace;
+@ts-fontstack-icon: 'Tradeshifticons', fantasy;
 
 @ts-radius: 3px;
-
 
 // Z-index .....................................................................
 
@@ -50,77 +51,77 @@
 // Colors ......................................................................
 
 // black and white
-@ts-black: rgb(30,30,30);
-@ts-white: rgb(255,255,255);
+@ts-black: rgb(30, 30, 30);
+@ts-white: rgb(255, 255, 255);
 
 // dark grey
-@ts-dark-liter: rgb(73,73,73);
-@ts-dark-lite: rgb(63,63,63);
-@ts-dark: rgb(53,53,53);
-@ts-dark-dark: rgb(43,43,43);
-@ts-dark-darker: rgb(33,33,33);
+@ts-dark-liter: rgb(73, 73, 73);
+@ts-dark-lite: rgb(63, 63, 63);
+@ts-dark: rgb(53, 53, 53);
+@ts-dark-dark: rgb(43, 43, 43);
+@ts-dark-darker: rgb(33, 33, 33);
 
 // medium grey
-@ts-medium-litest: rgb(175,175,175);
-@ts-medium-liter: rgb(147,147,147);
-@ts-medium-lite: rgb(137,137,137);
-@ts-medium: rgb(127,127,127);
-@ts-medium-dark: rgb(117,117,117);
-@ts-medium-darker: rgb(107,107,107);
-@ts-medium-darkest: rgb(97,97,97);
+@ts-medium-litest: rgb(175, 175, 175);
+@ts-medium-liter: rgb(147, 147, 147);
+@ts-medium-lite: rgb(137, 137, 137);
+@ts-medium: rgb(127, 127, 127);
+@ts-medium-dark: rgb(117, 117, 117);
+@ts-medium-darker: rgb(107, 107, 107);
+@ts-medium-darkest: rgb(97, 97, 97);
 
 // lite grey
-@ts-lite-liter: rgb(245,245,245);
-@ts-lite-lite: rgb(235,235,235);
-@ts-lite: rgb(225,225,225);
-@ts-lite-dark: rgb(215,215,215);
-@ts-lite-darker: rgb(205,205,205);
+@ts-lite-liter: rgb(245, 245, 245);
+@ts-lite-lite: rgb(235, 235, 235);
+@ts-lite: rgb(225, 225, 225);
+@ts-lite-dark: rgb(215, 215, 215);
+@ts-lite-darker: rgb(205, 205, 205);
 
 // green
 @ts-green-text: @ts-white;
-@ts-green-lite: rgb(134,197,92);
-@ts-green: rgb(114,177,72);
-@ts-green-dark: rgb(94,157,52);
-@ts-green-darker: rgb(74,137,32);
+@ts-green-lite: rgb(134, 197, 92);
+@ts-green: rgb(114, 177, 72);
+@ts-green-dark: rgb(94, 157, 52);
+@ts-green-darker: rgb(74, 137, 32);
 
 // blue
 @ts-blue-text: @ts-white;
-@ts-blue-liter: rgb(88,184,239);
-@ts-blue-lite: rgb(43,180,253);
-@ts-blue: rgb(32,160,233);
-@ts-blue-dark: rgb(12,140,213);
-@ts-blue-darker: rgb(0,120,193);
+@ts-blue-liter: rgb(88, 184, 239);
+@ts-blue-lite: rgb(43, 180, 253);
+@ts-blue: rgb(32, 160, 233);
+@ts-blue-dark: rgb(12, 140, 213);
+@ts-blue-darker: rgb(0, 120, 193);
 
 // pale blue
-@ts-liteblue-dark: rgb(220,241,253);
-@ts-liteblue: rgb(236,247,253);
+@ts-liteblue-dark: rgb(220, 241, 253);
+@ts-liteblue: rgb(236, 247, 253);
 
 // pale green
-@ts-litegreen: rgb(178,215,130);
+@ts-litegreen: rgb(178, 215, 130);
 
 // dark blue
-@ts-darkblue: rgb(24,63,84);
-@ts-dustblue: rgb(54,99,117);
+@ts-darkblue: rgb(24, 63, 84);
+@ts-dustblue: rgb(54, 99, 117);
 
 // dark green
-@ts-darkgreen: rgb(24,84,63);
+@ts-darkgreen: rgb(24, 84, 63);
 
 // red
 @ts-red-text: @ts-white;
-@ts-red-lite: rgb(231,0,0);
-@ts-red: rgb(191,0,0);
-@ts-red-dark: rgb(171,0,0);
-@ts-red-darker: rgb(151,0,0);
+@ts-red-lite: rgb(231, 0, 0);
+@ts-red: rgb(191, 0, 0);
+@ts-red-dark: rgb(171, 0, 0);
+@ts-red-darker: rgb(151, 0, 0);
 
 // dark red
 @ts-darkred-text: @ts-white;
-@ts-darkred-lite: rgb(248,229,229);
-@ts-darkred: rgb(233,32,32);
+@ts-darkred-lite: rgb(248, 229, 229);
+@ts-darkred: rgb(233, 32, 32);
 
 // yellow
-@ts-yellow-text: rgb(127,115,72);
-@ts-yellow-dark: rgb(244,242,201);
-@ts-yellow: rgb(253,254,213);
+@ts-yellow-text: rgb(127, 115, 72);
+@ts-yellow-dark: rgb(244, 242, 201);
+@ts-yellow: rgb(253, 254, 213);
 
 // orange
 @ts-orange-text: @ts-white;
@@ -132,11 +133,10 @@
 
 // purple
 @ts-purple-text: @ts-white;
-@ts-purple-lite: rgb(166,58,224);
-@ts-purple: rgb(148,52,200);
-@ts-purple-dark: rgb(128,45,173);
-@ts-purple-darker: rgb(108,25,153);
-
+@ts-purple-lite: rgb(166, 58, 224);
+@ts-purple: rgb(148, 52, 200);
+@ts-purple-dark: rgb(128, 45, 173);
+@ts-purple-darker: rgb(108, 25, 153);
 
 // Animations ..................................................................
 
@@ -145,27 +145,29 @@
 @ts-transition-slow: 0.6s;
 
 // live examples in dropdown on http://matthewlein.com/ceaser/
-@ts-timing-easeinquad: cubic-bezier(0.550, 0.085, 0.680, 0.530);
-@ts-timing-easeincubic: cubic-bezier(0.550, 0.055, 0.675, 0.190);
-@ts-timing-easeinquart: cubic-bezier(0.895, 0.030, 0.685, 0.220);
-@ts-timing-easeinquint: cubic-bezier(0.755, 0.050, 0.855, 0.060);
-@ts-timing-easeinsine: cubic-bezier(0.470, 0.000, 0.745, 0.715);
-@ts-timing-easeinexpo: cubic-bezier(0.950, 0.050, 0.795, 0.035);
-@ts-timing-easeincirc: cubic-bezier(0.600, 0.040, 0.980, 0.335);
-@ts-timing-easeinback: cubic-bezier(0.600, -0.280, 0.735, 0.045);
-@ts-timing-easeoutquad: cubic-bezier(0.250, 0.460, 0.450, 0.940);
-@ts-timing-easeoutcubic: cubic-bezier(0.215, 0.610, 0.355, 1.000);
-@ts-timing-easeoutquart: cubic-bezier(0.165, 0.840, 0.440, 1.000);
-@ts-timing-easeoutquint: cubic-bezier(0.230, 1.000, 0.320, 1.000);
-@ts-timing-easeoutsine: cubic-bezier(0.390, 0.575, 0.565, 1.000);
-@ts-timing-easeoutexpo: cubic-bezier(0.190, 1.000, 0.220, 1.000);
-@ts-timing-easeoutcirc: cubic-bezier(0.075, 0.820, 0.165, 1.000);
-@ts-timing-easeoutback: cubic-bezier(0.175, 0.885, 0.320, 1.275);
-@ts-timing-easeoutquad: cubic-bezier(0.455, 0.030, 0.515, 0.955);
-@ts-timing-easeoutcubic: cubic-bezier(0.645, 0.045, 0.355, 1.000);
-@ts-timing-easeoutquart: cubic-bezier(0.770, 0.000, 0.175, 1.000);
-@ts-timing-easeoutquint: cubic-bezier(0.230, 1.000, 0.320, 1.000);
-@ts-timing-easeoutsine: cubic-bezier(0.445, 0.050, 0.550, 0.950);
-@ts-timing-easeoutexpo: cubic-bezier(1.000, 0.000, 0.000, 1.000);
-@ts-timing-easeoutcirc: cubic-bezier(0.785, 0.135, 0.150, 0.860);
-@ts-timing-easeoutback: cubic-bezier(0.680, -0.550, 0.265, 1.550);
+@ts-timing-easeinquad: cubic-bezier(0.55, 0.085, 0.68, 0.53);
+@ts-timing-easeincubic: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+@ts-timing-easeinquart: cubic-bezier(0.895, 0.03, 0.685, 0.22);
+@ts-timing-easeinquint: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+@ts-timing-easeinsine: cubic-bezier(0.47, 0, 0.745, 0.715);
+@ts-timing-easeinexpo: cubic-bezier(0.95, 0.05, 0.795, 0.035);
+@ts-timing-easeincirc: cubic-bezier(0.6, 0.04, 0.98, 0.335);
+@ts-timing-easeinback: cubic-bezier(0.6, -0.28, 0.735, 0.045);
+
+@ts-timing-easeoutquad: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+@ts-timing-easeoutcubic: cubic-bezier(0.215, 0.61, 0.355, 1);
+@ts-timing-easeoutquart: cubic-bezier(0.165, 0.84, 0.44, 1);
+@ts-timing-easeoutquint: cubic-bezier(0.23, 1, 0.32, 1);
+@ts-timing-easeoutsine: cubic-bezier(0.39, 0.575, 0.565, 1);
+@ts-timing-easeoutexpo: cubic-bezier(0.19, 1, 0.22, 1);
+@ts-timing-easeoutcirc: cubic-bezier(0.075, 0.82, 0.165, 1);
+@ts-timing-easeoutback: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+@ts-timing-easeinoutquad: cubic-bezier(0.455, 0.03, 0.515, 0.955);
+@ts-timing-easeinoutcubic: cubic-bezier(0.645, 0.045, 0.355, 1);
+@ts-timing-easeinoutquart: cubic-bezier(0.77, 0, 0.175, 1);
+@ts-timing-easeinoutquint: cubic-bezier(0.86, 0, 0.07, 1);
+@ts-timing-easeinoutsine: cubic-bezier(0.445, 0.05, 0.55, 0.95);
+@ts-timing-easeinoutexpo: cubic-bezier(1, 0, 0, 1);
+@ts-timing-easeinoutcirc: cubic-bezier(0.785, 0.135, 0.15, 0.86);
+@ts-timing-easeinoutback: cubic-bezier(0.68, -0.55, 0.265, 1.55);

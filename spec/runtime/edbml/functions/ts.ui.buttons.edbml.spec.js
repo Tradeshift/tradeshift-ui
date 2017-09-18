@@ -1,13 +1,16 @@
 describe('ts.ui.buttons.edbml', function likethis() {
 	function gethtml() {
 		return ts.ui.buttons.edbml(
-			new ts.ui.ButtonCollection([{
-				icon: 'ts-icon-hest',
-				label: 'Hest1'
-			}, {
-				icon: 'ts-icon-hest',
-				label: 'Hest2'
-			}])
+			new ts.ui.ButtonCollection([
+				{
+					icon: 'ts-icon-hest',
+					label: 'Hest1'
+				},
+				{
+					icon: 'ts-icon-hest',
+					label: 'Hest2'
+				}
+			])
 		);
 	}
 

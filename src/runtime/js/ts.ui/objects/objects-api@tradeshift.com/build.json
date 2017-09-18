@@ -2,7 +2,7 @@
 	"api/ts.ui.Card.js",
 	"api/ts.ui.CompanyCard.js",
 	"api/ts.ui.UserCard.js",
-	
+
 	"models/ts.ui.ObjectModel.js",
 	"models/ts.ui.ObjectCollection.js",
 	"models/cards/ts.ui.CardModel.js",

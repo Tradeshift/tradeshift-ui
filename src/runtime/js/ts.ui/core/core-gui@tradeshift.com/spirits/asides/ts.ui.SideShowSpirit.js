@@ -431,8 +431,10 @@ ts.ui.SideShowSpirit = (function using(
 			 * @return {ts.ui.Spirit}
 			 */
 			_confirmpanel: function() {
-				if (!this.dom.q('.ts-panel', ts.ui.PanelSpirit)) {
-					throw new Error('Expected a Panel');
+				if (!Client.isExplorer) {
+					if (!this.dom.q('.ts-panel', ts.ui.PanelSpirit)) {
+						throw new Error('Expected a Panel');
+					}
 				}
 			},
 
@@ -681,13 +683,16 @@ ts.ui.SideShowSpirit = (function using(
 						}
 					});
 				} else {
-					bar.tabs().splice(index, 1).forEach(function(tab) {
-						if (tab.selected) {
-							var selectedindex = index ? index - 1 : index;
-							bar.tabs()[selectedindex].select();
-						}
-						tab.dispose();
-					});
+					bar
+						.tabs()
+						.splice(index, 1)
+						.forEach(function(tab) {
+							if (tab.selected) {
+								var selectedindex = index ? index - 1 : index;
+								bar.tabs()[selectedindex].select();
+							}
+							tab.dispose();
+						});
 					if (bar.tabs().length === 1) {
 						this._removetabbar();
 					}

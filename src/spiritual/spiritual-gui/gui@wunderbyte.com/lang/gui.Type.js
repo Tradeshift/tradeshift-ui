@@ -9,7 +9,10 @@ gui.Type = {
 	 * @returns {String}
 	 */
 	of: function(o) {
-		var type = {}.toString.call(o).match(this._typeexp)[1].toLowerCase();
+		var type = {}.toString
+			.call(o)
+			.match(this._typeexp)[1]
+			.toLowerCase();
 		if (type === 'domwindow' && String(typeof o) === 'undefined') {
 			type = 'undefined'; // some kind of degenerate bug in Safari on iPad
 		}

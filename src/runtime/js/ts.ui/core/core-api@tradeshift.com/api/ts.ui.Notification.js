@@ -75,11 +75,9 @@ ts.ui.Notification = {
 		 * @param @optional {object} config
 		 * @returns {ts.ui.Notification}
 		 */
-		success: confirm(
-			function(/* ...args */) {
-				return getdialog(Dialog.SUCCESS, arguments);
-			}
-		),
+		success: confirm(function(/* ...args */) {
+			return getdialog(Dialog.SUCCESS, arguments);
+		}),
 
 		/**
 		 * @param {string} text
@@ -87,11 +85,9 @@ ts.ui.Notification = {
 		 * @param @optional {object} config
 		 * @returns {ts.ui.Notification}
 		 */
-		info: confirm(
-			function(/* ...args */) {
-				return getdialog(Dialog.INFO, arguments);
-			}
-		),
+		info: confirm(function(/* ...args */) {
+			return getdialog(Dialog.INFO, arguments);
+		}),
 
 		/**
 		 * @param {string} text
@@ -99,11 +95,9 @@ ts.ui.Notification = {
 		 * @param @optional {object} config
 		 * @returns {ts.ui.Notification}
 		 */
-		warning: confirm(
-			function(/* ...args */) {
-				return getdialog(Dialog.WARNING, arguments);
-			}
-		),
+		warning: confirm(function(/* ...args */) {
+			return getdialog(Dialog.WARNING, arguments);
+		}),
 
 		/**
 		 * @param {string} text
@@ -111,10 +105,8 @@ ts.ui.Notification = {
 		 * @param @optional {object} config
 		 * @returns {ts.ui.Notification}
 		 */
-		error: confirm(
-			function(/* ...args */) {
-				return getdialog(Dialog.ERROR, arguments);
-			}
-		)
+		error: confirm(function(/* ...args */) {
+			return getdialog(Dialog.ERROR, arguments);
+		})
 	});
 })(ts.ui.Dialog, gui.Object, gui.Combo.chained, gui.Arguments.confirmed);

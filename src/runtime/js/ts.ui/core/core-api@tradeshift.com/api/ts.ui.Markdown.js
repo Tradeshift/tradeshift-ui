@@ -154,7 +154,10 @@ ts.ui.Markdown = (function using(linkparser) {
 	 */
 	function eachline(string, action, doubles) {
 		var x2 = /\n{2,}/;
-		return string.split(doubles ? x2 : '\n').map(action).join('\n');
+		return string
+			.split(doubles ? x2 : '\n')
+			.map(action)
+			.join('\n');
 	}
 
 	/**
@@ -257,18 +260,21 @@ ts.ui.Markdown = (function using(linkparser) {
 			if (line.indexOf('](') < 0) {
 				return line;
 			}
-			line = line.split('](').map(function(cut){
-				var normal = cut;
-				if (isnormaltext(cut)) {
-					var l = normal.lastIndexOf('[');
-					normal = normal.substr(0, l) + normal.substr(l).replace('[', '(');
-				}
-				if (isnormalurl(cut)) {
-					var f = normal.indexOf(')');
-					normal = normal.substr(0, f+1).replace(')', ']') + normal.substr(f+1);
-				}
-				return normal;
-			}).join(')[');
+			line = line
+				.split('](')
+				.map(function(cut) {
+					var normal = cut;
+					if (isnormaltext(cut)) {
+						var l = normal.lastIndexOf('[');
+						normal = normal.substr(0, l) + normal.substr(l).replace('[', '(');
+					}
+					if (isnormalurl(cut)) {
+						var f = normal.indexOf(')');
+						normal = normal.substr(0, f + 1).replace(')', ']') + normal.substr(f + 1);
+					}
+					return normal;
+				})
+				.join(')[');
 			return line;
 		}
 
@@ -318,7 +324,7 @@ ts.ui.Markdown = (function using(linkparser) {
 				return -1;
 			}
 			if (left <= right) {
-				return getlastindex(cut.substr(0,left - 1));
+				return getlastindex(cut.substr(0, left - 1));
 			}
 			return left;
 		}
@@ -339,7 +345,12 @@ ts.ui.Markdown = (function using(linkparser) {
 		return function linkparser(line) {
 			reset();
 			line = unnormalize(line);
-			return line.split(')[').map(parsecut).join('') || line;
+			return (
+				line
+					.split(')[')
+					.map(parsecut)
+					.join('') || line
+			);
 		};
 	})(/\(.+$/, /^.+\]/)
 );

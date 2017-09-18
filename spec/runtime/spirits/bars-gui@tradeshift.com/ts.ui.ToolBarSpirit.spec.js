@@ -2,7 +2,8 @@ describe('ts.ui.ToolBarSpirit', function likethis() {
 	// Preparations ..............................................................
 
 	function setup(action) {
-		var spirit, dom = helper.createTestDom();
+		var spirit,
+			dom = helper.createTestDom();
 		dom.innerHTML = '<header data-ts="ToolBar"></header>';
 		sometime(function later() {
 			spirit = ts.ui.get(dom.querySelector('header[data-ts=ToolBar]'));
@@ -91,12 +92,7 @@ describe('ts.ui.ToolBarSpirit', function likethis() {
 	it('should support button groups', function(done) {
 		var item;
 		setup(function(spirit) {
-			spirit.buttons([
-				[
-					{ label: 'Hest' },
-					{ label: 'Fest' }
-				]
-			]);
+			spirit.buttons([[{ label: 'Hest' }, { label: 'Fest' }]]);
 			sometime(function later() {
 				item = getbuttonsitem(spirit);
 				expect(item.innerHTML).toContain('ts-join');

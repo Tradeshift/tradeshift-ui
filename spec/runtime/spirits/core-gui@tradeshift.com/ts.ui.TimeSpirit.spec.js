@@ -1,6 +1,7 @@
 describe('ts.ui.TimeSpirit', function likethis() {
 	function setup(action, html) {
-		var spirit, dom = helper.createTestDom();
+		var spirit,
+			dom = helper.createTestDom();
 		dom.innerHTML = html;
 		sometime(function later() {
 			spirit = ts.ui.get(dom.querySelector('time'));
@@ -25,7 +26,8 @@ describe('ts.ui.TimeSpirit', function likethis() {
 	});
 
 	it('should display 2 hours ago', function(done) {
-		var html = '<time data-ts="Time" datetime="2015-11-04 03:59:33" realtime="2015-11-04 05:59:35"></time>';
+		var html =
+			'<time data-ts="Time" datetime="2015-11-04 03:59:33" realtime="2015-11-04 05:59:35"></time>';
 		setup(function(spirit) {
 			expect(spirit.element.innerHTML).toContain('2 hours ago');
 			done();

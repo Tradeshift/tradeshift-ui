@@ -1,5 +1,4 @@
 describe('ts.ui.CompanyCardSpirit', function likethis() {
-
 	/*
 	 * TODO: fix this test so that it also closes the aside...
 	 *

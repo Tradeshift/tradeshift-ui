@@ -28,7 +28,7 @@
 		&.ts-has-extra {
 			text-align: center;
 			&.ts-has-button .ts-button {
-				width: calc(~"100% - 5.5px");
+				width: calc(~'100% - 5.5px');
 			}
 			&.ts-has-switch {
 				.ts-table-cell {
@@ -65,7 +65,8 @@
 		border-top: none;
 		overflow: hidden;
 	}
-	td, th {
+	td,
+	th {
 		text-align: left;
 		&:first-child {
 			border-left: none;
@@ -74,7 +75,8 @@
 			border-right: none;
 		}
 		&:not(.ts-table-checkbox) {
-			+ td, + th {
+			+ td,
+			+ th {
 				&.ts-number {
 					text-align: right;
 					.ts-button-sort {
@@ -88,7 +90,7 @@
 	.ts-table-body,
 	.ts-table-rows,
 	.ts-table-cols,
-	.ts-table-foot, {
+	.ts-table-foot {
 		position: relative;
 	}
 	.ts-table-gutter {
@@ -130,7 +132,7 @@
 			}
 		}
 		&.ts-checked {
-			button {	
+			button {
 				color: @ts-blue;
 			}
 		}
@@ -214,7 +216,9 @@
 				}
 			}
 		}
-		.ts-table-checkbox, .ts-table-hilt, .ts-table-numbered {
+		.ts-table-checkbox,
+		.ts-table-hilt,
+		.ts-table-numbered {
 			background-color: @ts-lite;
 			border: 1px solid @ts-lite-darker;
 			border-bottom-color: @ts-medium-litest;
@@ -239,7 +243,8 @@
 		&.ts-table-vfix {
 			.ts-table-cell,
 			.ts-table-checkbox,
-			.ts-table-hilt { // TODO: STREAMLINE!
+			.ts-table-hilt {
+				// TODO: STREAMLINE!
 				height: auto !important;
 			}
 		}
@@ -254,7 +259,8 @@
 				}
 			}
 			&.ts-editable {
-				&, * {
+				&,
+				* {
 					cursor: text;
 				}
 			}
@@ -326,7 +332,8 @@
 				.ts-table-cell {
 					> p,
 					> ul,
-					> ol { // TODO: fix this elsehow :/
+					> ol {
+						// TODO: fix this elsehow :/
 						display: none;
 					}
 				}
@@ -469,7 +476,8 @@
 				padding-top: @ts-unit-quarter + 0.5px;
 				white-space: nowrap;
 				width: 100%;
-				.ts-button { // TODO: a general "small button" setup!
+				.ts-button {
+					// TODO: a general "small button" setup!
 					.ts-mixin-fixheight(@ts-unit-plus);
 					padding-top: 0;
 					padding-bottom: 0;
@@ -549,7 +557,7 @@
 		border: none !important;
 	}
 	tr {
-		border-bottom: 1px solid @ts-lite-dark;;
+		border-bottom: 1px solid @ts-lite-dark;
 	}
 	th {
 		border: none !important;
@@ -580,14 +588,16 @@
 		border-top: 1px solid @ts-lite-dark;
 	}
 	.ts-wrapping {
-		.ts-table-gutter {}
+		.ts-table-gutter {
+		}
 	}
 }
 .ts-engine-webkit {
 	.ts-table-rows,
 	.ts-table-cols {
 		.ts-table-checkbox,
-		.ts-table-hilt { // but why???
+		.ts-table-hilt {
+			// but why???
 			.ts-mixin-fixwidth(@ts-unit-double - 2px);
 		}
 	}

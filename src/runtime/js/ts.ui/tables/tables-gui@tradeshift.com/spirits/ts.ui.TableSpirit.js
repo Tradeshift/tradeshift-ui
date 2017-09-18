@@ -1911,7 +1911,7 @@ ts.ui.TableSpirit = (function using(
 				this._spinner.spin(this.dom.q('.ts-table-body'), opts);
 			} else if (this._cover) {
 				this._spinner.stop();
-				this._cover.remove();
+				this.element.removeChild(this._cover);
 				this._cover = null;
 			}
 		},

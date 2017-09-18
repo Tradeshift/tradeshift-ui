@@ -116,16 +116,19 @@ gui.DOMChanger = {
 	},
 
 	/**
-	 * Overload DOM method (same for all browsers).
+	 * Overload DOM method. Same procedure for all browsers, except we abort 
+	 * for some (DOM4) methods that are supported in the particular browser.
 	 * @param {object} proto
 	 * @param {String} name
 	 * @param {function} combo
 	 */
 	_domethod: function(proto, name, combo) {
 		var base = proto[name];
-		proto[name] = combo(function() {
-			return base.apply(this, arguments);
-		});
+		if (base) {
+			proto[name] = combo(function() {
+				return base.apply(this, arguments);
+			});
+		}
 	},
 
 	/**

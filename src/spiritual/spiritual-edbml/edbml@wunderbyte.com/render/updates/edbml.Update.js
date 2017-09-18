@@ -128,14 +128,13 @@ edbml.Update = gui.Class.create(
 
 		/**
 		 * Dispatch bubbling DOM event for potential handlers to intercept the update.
-		 * TODO: Investigate CustomEvent support in our browser stack...
 		 * @param {Element} element
 		 * @param {String} name
 		 * @return {boolean} False if event was canceled
 		 */
 		_dispatch: function(element, name) {
-			if (element) {
-				// hotfix https://github.com/Tradeshift/docs/issues/141
+			// element might sometimes be undefined under strange (Angular) conditions
+			if (element && element.dispatchEvent) {
 				var event = document.createEvent('UIEvents');
 				event.initEvent(name, true, true);
 				return element.dispatchEvent(event);

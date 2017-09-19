@@ -128,7 +128,7 @@
 				.ts-mixin-maximize();
 				font-size: 27px;
 				padding-top: @ts-unit + 1px;
-				pointer-events: none; // Chrome needs this
+				pointer-events: none; /* Chrome needs this */
 			}
 		}
 		&.ts-checked {
@@ -244,7 +244,7 @@
 			.ts-table-cell,
 			.ts-table-checkbox,
 			.ts-table-hilt {
-				// TODO: STREAMLINE!
+				/* TODO: STREAMLINE! */
 				height: auto !important;
 			}
 		}
@@ -273,7 +273,7 @@
 		}
 		tr:last-child td {
 			border-bottom: none;
-			// corrections needed for fix-height tables with empty space (last page)
+			/* corrections needed for fix-height tables with empty space (last page) */
 		}
 	}
 	.ts-table-rows {
@@ -298,12 +298,12 @@
 			&:focus {
 				color: @ts-black;
 				background-color: @ts-yellow;
-				//z-index: 2;
+				/*z-index: 2; */
 			}
 		}
 		.ts-table-line {
 			.ts-mixin-maximize();
-			//pointer-events: none;
+			/*pointer-events: none; */
 			border: 1px solid transparent;
 			outline: 1px solid transparent;
 			display: none;
@@ -333,7 +333,7 @@
 					> p,
 					> ul,
 					> ol {
-						// TODO: fix this elsehow :/
+						/* TODO: fix this elsehow :/ */
 						display: none;
 					}
 				}
@@ -357,7 +357,7 @@
 					overflow: hidden;
 					margin-bottom: 0;
 					+ * {
-						display: none; // only ever show the first line of text
+						display: none; /* only ever show the first line of text */
 					}
 				}
 			}
@@ -477,7 +477,7 @@
 				white-space: nowrap;
 				width: 100%;
 				.ts-button {
-					// TODO: a general "small button" setup!
+					/* TODO: a general "small button" setup! */
 					.ts-mixin-fixheight(@ts-unit-plus);
 					padding-top: 0;
 					padding-bottom: 0;
@@ -523,7 +523,7 @@
 				max-height: 100% !important;
 				height: 100%;
 				display: block;
-				overflow-y: scroll !important; // TODO: toogle just-in-time on rowdata
+				overflow-y: scroll !important; /* TODO: toogle just-in-time on rowdata */
 			}
 		}
 		.ts-table-foot {
@@ -543,13 +543,13 @@
 		}
 	}
 
-	// Spinner text ............................................................
+	/* Spinner text ............................................................ */
 	.ts-spinner-text {
 		position: absolute;
 	}
 }
 
-// Table List ..................................................................
+/* Table List .................................................................. */
 
 .ts-table.ts-table-list {
 	border: none !important;
@@ -580,10 +580,10 @@
 	}
 }
 
-// Browsers ....................................................................
+/* Browsers .................................................................... */
 
 .ts-engine-gecko {
-	//.ts-table-gutter,
+	/*.ts-table-gutter, */
 	.ts-table-menu {
 		border-top: 1px solid @ts-lite-dark;
 	}
@@ -597,7 +597,7 @@
 	.ts-table-cols {
 		.ts-table-checkbox,
 		.ts-table-hilt {
-			// but why???
+			/* but why??? */
 			.ts-mixin-fixwidth(@ts-unit-double - 2px);
 		}
 	}

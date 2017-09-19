@@ -311,7 +311,7 @@ ts.ui.TableLayoutPlugin = (function using(Client, Tick) {
 		 */
 		_vfix3: function(rows, guts, floats, edits) {
 			rows = rows.dom.qall('tr');
-			guts = floats ? guts.dom.qall('tr') : null;
+			guts = floats && guts ? guts.dom.qall('tr') : null;
 			rows
 				.map(function readheight(row, index) {
 					var border = index ? 1 : Client.isGecko ? 1 : 0;

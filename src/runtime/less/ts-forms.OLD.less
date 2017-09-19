@@ -23,7 +23,7 @@
 	&:not(disabled):focus {
 		background-color: @ts-yellow;
 		&:invalid {
-			/* @TODO invalid overide */
+			// @TODO invalid overide
 		}
 	}
 }
@@ -112,10 +112,10 @@
 			background-color: @ts-yellow;
 		}
 		&.ts-textlabel {
-			/* min-height: 71.5px; */
+			// min-height: 71.5px;
 			&,
 			* {
-				cursor: text; /* @TODO disabled! */
+				cursor: text; // @TODO disabled!
 			}
 			&:after {
 				content: '';
@@ -147,7 +147,7 @@
 			}
 		}
 		&.ts-fakelabel {
-			/* open-aside-triangle */
+			// open-aside-triangle
 			&:not(.ts-disabled) {
 				&:before {
 					.ts-mixin-icon(@ts-fontsize-small);
@@ -224,7 +224,7 @@
 				top: auto;
 				right: @ts-unit-half;
 				bottom: (@ts-unit + @ts-unit-quarter + 1px);
-				content: 'V'; /* lock */
+				content: 'V'; // lock
 			}
 		}
 		&.ts-switchlabel {
@@ -242,7 +242,7 @@
 				}
 				.ts-field.ts-switchbox + .ts-switcher {
 					> i:before {
-						content: 'V'; /* lock */
+						content: 'V'; // lock
 						font-size: @ts-fontsize-medium;
 					}
 					&.ts-engine-webkit {
@@ -291,7 +291,7 @@
 			position: relative;
 		}
 		+ :not(.ts-fieldset) {
-			/* something not-a-fieldset inserted into the form... */
+			// something not-a-fieldset inserted into the form...
 			margin-top: @ts-unit;
 		}
 	}
@@ -303,8 +303,8 @@
 			background-color: transparent;
 			border: none;
 			resize: none;
-			/*max-height: @ts-unit; */
-			/*margin: (-@ts-unit-half) 0 @ts-unit-quarter @ts-unit-quarter; */
+			//max-height: @ts-unit;
+			//margin: (-@ts-unit-half) 0 @ts-unit-quarter @ts-unit-quarter;
 		}
 		&.ts-textarea {
 			max-height: @ts-unit * 10;
@@ -420,7 +420,7 @@
 					}
 				}
 				&.ts-checked {
-					background-color: @ts-litegreen; /* TODO: this color! */
+					background-color: @ts-litegreen; // TODO: this color!
 					> i {
 						left: 100%;
 						margin-left: -@ts-unit;
@@ -532,7 +532,7 @@
 	.ts-forms-mixin-keyframes ();
 }
 
-/* Layouts ..................................................................... */
+// Layouts .....................................................................
 
 .ts-form fieldset {
 	&.ts-layout-1-1,

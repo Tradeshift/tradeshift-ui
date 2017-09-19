@@ -1,4 +1,4 @@
-/* (most styles are in ts-toolbar.less!) */
+// (most styles are in ts-toolbar.less!)
 
 .ts-topbar {
 	z-index: @ts-zindex-topbar;
@@ -7,7 +7,7 @@
 	left: 0;
 	right: 0;
 	.ts-toolbar-item {
-		/* navigation buttons */
+		// navigation buttons
 		+ .ts-toolbar-title {
 			padding-left: @ts-unit-quarter;
 		}
@@ -37,12 +37,12 @@
 .ts-mobile {
 	&.ts-loading {
 		.ts-topbar-menubutton i {
-			display: none; /* spinner will appear instead */
+			display: none; // spinner will appear instead
 		}
 	}
 }
 
-/* Mixins ...................................................................... */
+// Mixins ......................................................................
 
 .ts-mixin-icon-content(@content: '7') {
 	.ts-mixin-icon();
@@ -57,7 +57,7 @@
 	text-align: center;
 }
 
-/* Breakpoints ................................................................. */
+// Breakpoints .................................................................
 
 .ts-mobile-only {
 	.ts-topbar-tabs {

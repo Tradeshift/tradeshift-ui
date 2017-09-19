@@ -1,6 +1,6 @@
-// WORK IN PROGRESS TO IMPLEMENT THE WHITE DESIGN OF THE FUTURE
+/* WORK IN PROGRESS TO IMPLEMENT THE WHITE DESIGN OF THE FUTURE */
 
-// ts-tabbar.less
+/* ts-tabbar.less */
 
 .ts-tabbar {
 	&.ts-bg-lite {
@@ -20,9 +20,9 @@
 	}
 }
 
-// ts-toolbar.less
+/* ts-toolbar.less */
 
-// Mixins ......................................................................
+/* Mixins ...................................................................... */
 
 .mixin-temp(@selected: pink, @unselected: @ts-white, @bground: @ts-white) {
 	.ts-toolbar-tabs {
@@ -41,7 +41,7 @@
 	}
 }
 
-// Styles both ToolBar, TopBar and TabBar! .....................................
+/* Styles both ToolBar, TopBar and TabBar! ..................................... */
 
 .ts-toolbar {
 	.ts-mixin-unselectable();
@@ -157,7 +157,7 @@
 	}
 }
 
-// Tabs ........................................................................
+/* Tabs ........................................................................ */
 
 .ts-toolbar-tabs {
 	position: relative;
@@ -183,7 +183,7 @@
 		padding: @ts-unit;
 		position: relative;
 		margin: 0;
-		// border-right: 1px solid transparent;
+		/* border-right: 1px solid transparent; */
 		em {
 			background-color: @ts-medium-litest;
 			color: @ts-black;
@@ -275,7 +275,7 @@
 	}
 }
 
-// Tabs buttons (add new, show more ) ..........................................
+/* Tabs buttons (add new, show more ) .......................................... */
 
 .ts-toolbar-tabs {
 	li {
@@ -302,7 +302,7 @@
 					.ts-mixin-fix(@ts-unit-plus, @ts-unit-plus);
 					.ts-mixin-transition(border-color, @ts-transition-now);
 					&.ts-icon-other {
-						border-top: 1px solid transparent; // align with buttons
+						border-top: 1px solid transparent; /* align with buttons */
 					}
 				}
 			}
@@ -367,7 +367,7 @@
 	}
 }
 
-// Statusbar ...................................................................
+/* Statusbar ................................................................... */
 
 .ts-toolbar.ts-statusbar {
 	.ts-toolbar-title {
@@ -424,7 +424,7 @@
 	}
 }
 
-// Micro toolbar ...............................................................
+/* Micro toolbar ............................................................... */
 
 .ts-toolbar.ts-micro {
 	.ts-mixin-fixheight(@ts-unit-double);
@@ -482,7 +482,7 @@
 	}
 }
 
-// Button groups ...............................................................
+/* Button groups ............................................................... */
 
 .ts-toolbar .ts-join .ts-button {
 	&,
@@ -517,7 +517,7 @@
 	}
 }
 
-// Before and after Main .......................................................
+/* Before and after Main ....................................................... */
 
 .ts-toolbar-first,
 .ts-toolbar-last {
@@ -576,7 +576,7 @@
 	}
 }
 
-// Breakpoints .................................................................
+/* Breakpoints ................................................................. */
 
 .ts-mobile-only {
 	&.ts-has-topbar-tabs {
@@ -600,7 +600,7 @@
 	}
 }
 
-// Browsers ....................................................................
+/* Browsers .................................................................... */
 
 .ts-engine-explorer9 {
 	.ts-toolbar-first:after {

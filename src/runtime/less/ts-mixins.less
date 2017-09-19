@@ -1,6 +1,6 @@
 @import 'ts-variables.less';
 
-// General Mixins ..............................................................
+/* General Mixins .............................................................. */
 .ts-mixin-unselectable() {
 	user-select: none;
 }
@@ -105,7 +105,7 @@
 	padding-right: @value;
 }
 
-// Appearance ..................................................................
+/* Appearance .................................................................. */
 .ts-mixin-menuitem(@spanwidth: auto) {
 	padding: @ts-unit-half;
 	text-align: left;
@@ -158,7 +158,7 @@
 	text-overflow: ellipsis;
 }
 
-// Transitions ..................................................................
+/* Transitions .................................................................. */
 .ts-mixin-transition( @what : all, @length : @ts-transition-fast, @easing : ease, @delay : 0s ) {
 	transition-property: @what;
 	.ts-mixin-transition-duration(@length);
@@ -183,7 +183,7 @@
 	.ts-mixin-transition-timing(@easing);
 }
 
-// Animations ..................................................................
+/* Animations .................................................................. */
 .ts-mixin-animation(@name, @duration: 250ms, @ease: ease, @delay: 0) {
 	animation: @name @duration @ease @delay;
 }
@@ -199,7 +199,7 @@
 	}
 }
 
-// Transformations .............................................................
+/* Transformations ............................................................. */
 .ts-mixin-transform( @shorthand : none ) {
 	transform: @shorthand;
 }
@@ -233,7 +233,7 @@
 	transform-origin: @x @y;
 }
 
-// Danger zone: Modern browsers only ...........................................
+/* Danger zone: Modern browsers only ........................................... */
 .ts-mixin-flexbox() {
 	display: flex;
 	flex-wrap: nowrap;
@@ -255,7 +255,7 @@
 	flex-basis: @value;
 }
 
-// Loading bar .................................................................
+/* Loading bar ................................................................. */
 .ts-mixin-progress-bar-gradient(@color1: black, @color2: white) {
 	background-image: -webkit-gradient(
 		linear,

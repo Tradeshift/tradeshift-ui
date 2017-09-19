@@ -1,4 +1,4 @@
-// Mixins ......................................................................
+/* Mixins ...................................................................... */
 
 /*
  * This thing is position:absolute because Firefox has 
@@ -21,7 +21,7 @@
 	text-overflow: ellipsis;
 }
 
-// Forms .......................................................................
+/* Forms ....................................................................... */
 
 .ts-form {
 	position: relative;
@@ -199,7 +199,7 @@
 	}
 }
 
-// Focus & Hover ...............................................................
+/* Focus & Hover ............................................................... */
 
 .local-mixin-focus-outline(@color: @ts-blue) {
 	border: 1px solid @color;
@@ -288,7 +288,7 @@
 	}
 }
 
-// Colors ......................................................................
+/* Colors ...................................................................... */
 
 .ts-bg-red,
 .ts-bg-green,
@@ -394,7 +394,7 @@
 	}
 }
 
-// Errors ......................................................................
+/* Errors ...................................................................... */
 
 .ts-form {
 	label.ts-error {
@@ -493,7 +493,7 @@
 	}
 }
 
-// Faking it ...................................................................
+/* Faking it ................................................................... */
 
 .ts-form {
 	.ts-datelabel,
@@ -507,7 +507,7 @@
 		}
 	}
 	.ts-fakelabel {
-		// open-select-menu
+		/* open-select-menu */
 		&:not(.ts-disabled):not(.ts-readonly) {
 			&:before {
 				.ts-mixin-icon(@ts-fontsize-medium);
@@ -543,7 +543,7 @@
 	}
 	.ts-select {
 		option {
-			// https://bugzilla.mozilla.org/show_bug.cgi?id=392863
+			/* https://bugzilla.mozilla.org/show_bug.cgi?id=392863 */
 			display: none;
 		}
 	}
@@ -552,15 +552,15 @@
 			display: none;
 		}
 	}
-	// Angular can (in rare and random cases) think that the fake element 
-	// should be part of its template and we would end up seeing it twice.
-	// Angulars chaotic behavior cannot be debugged, so we'll just hide it.
+	/* Angular can (in rare and random cases) think that the fake element 
+	** should be part of its template and we would end up seeing it twice.
+	** Angulars chaotic behavior cannot be debugged, so we'll just hide it. */
 	.ts-fake + .ts-fake {
 		display: none;
 	}
 }
 
-// Switches ....................................................................
+/* Switches .................................................................... */
 
 .ts-form {
 	label.ts-switchlabel {
@@ -581,7 +581,7 @@
 			}
 			.ts-field.ts-switchbox + .ts-switcher {
 				> i:before {
-					content: 'V'; // lock UPDATE REQUIRED!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+					content: 'V'; /* lock UPDATE REQUIRED!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */
 					font-size: @ts-fontsize-medium;
 				}
 				&.ts-engine-webkit {
@@ -649,7 +649,7 @@
 				}
 			}
 			&.ts-checked {
-				background-color: @ts-litegreen; // TODO: this color!
+				background-color: @ts-litegreen; /* TODO: this color! */
 				> i {
 					left: 100%;
 					margin-left: -@ts-unit;
@@ -685,7 +685,7 @@
 	}
 }
 
-// Multi-fields  ...............................................................
+/* Multi-fields  ............................................................... */
 
 .ts-form {
 	.ts-fieldset.ts-multi {
@@ -745,7 +745,7 @@
 	}
 }
 
-// Disabled & readonly .........................................................
+/* Disabled & readonly ......................................................... */
 
 .ts-form {
 	label {
@@ -768,7 +768,7 @@
 			&:not(.ts-option):not(.ts-switchlabel) {
 				&:after {
 					.ts-mixin-icon(@ts-fontsize-medium);
-					content: 'V'; // lock icon
+					content: 'V'; /* lock icon */
 					position: absolute;
 					top: @ts-unit-plus;
 					right: @ts-unit-half;
@@ -790,7 +790,7 @@
 			}
 			.ts-field {
 				&.ts-text {
-					// &.ts-date
+					/* &.ts-date */
 					border-color: @ts-lite;
 				}
 			}
@@ -798,7 +798,7 @@
 	}
 }
 
-// Customizing it ..............................................................
+/* Customizing it .............................................................. */
 
 .ts-form {
 	label.ts-customiconlabel:not(.ts-option):not(.ts-switchlabel) {
@@ -819,7 +819,7 @@
 	}
 }
 
-// Autocomplete ................................................................
+/* Autocomplete ................................................................ */
 
 .ts-form {
 	.ts-autocomplete-list {
@@ -883,7 +883,7 @@
 	}
 }
 
-// Preview .....................................................................
+/* Preview ..................................................................... */
 
 .ts-form {
 	&.ts-preview {

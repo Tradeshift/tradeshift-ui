@@ -39,7 +39,7 @@
 				> sub {
 					width: 100%;
 					display: block;
-					padding-right: @ts-unit-plus; // icon on the right by default
+					padding-right: @ts-unit-plus; /* icon on the right by default */
 				}
 				> sub {
 					text-transform: uppercase;
@@ -49,7 +49,7 @@
 				> img,
 				> i {
 					position: absolute;
-					left: @ts-unit-half; // icon on the left by default
+					left: @ts-unit-half; /* icon on the left by default */
 					line-height: 0;
 					top: 50%;
 					&:only-child {
@@ -63,13 +63,13 @@
 				}
 				& > span + i,
 				& > sub + i {
-					// icon on the right
+					/* icon on the right */
 					left: auto;
 					right: @ts-unit-half;
 				}
 				& > i ~ span,
 				& > i ~ sub {
-					// icon on the left
+					/* icon on the left */
 					padding-left: @ts-unit-plus;
 				}
 				& > img ~ span,

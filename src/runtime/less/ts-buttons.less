@@ -8,11 +8,11 @@
 @depression: rgba(255, 255, 255, 0.2);
 @buttonblue: fade(@ts-blue, 70%);
 
-// Mixins ......................................................................
+/* Mixins ...................................................................... */
 
 .mixin-button() {
 	.ts-mixin-unselectable();
-	.ts-mixin-fixheight(@ts-unit-double); // IE10 may otherwise grow on focus :/
+	.ts-mixin-fixheight(@ts-unit-double); /* IE10 may otherwise grow on focus :/ */
 	min-width: @ts-unit-double;
 	max-width: 100%;
 	margin-right: @ts-unit-quarter;
@@ -206,7 +206,7 @@
 	}
 }
 
-// Buttons! ....................................................................
+/* Buttons! .................................................................... */
 
 .ts-button {
 	&.ts-default,
@@ -229,7 +229,7 @@
 	}
 }
 
-// Browsers ....................................................................
+/* Browsers .................................................................... */
 
 .ts-engine-explorer {
 	.ts-default,
@@ -244,7 +244,7 @@
 	}
 }
 
-// Buttons (menus) .............................................................
+/* Buttons (menus) ............................................................. */
 
 .ts-buttons {
 	list-style: none;
@@ -516,7 +516,7 @@
 	}
 }
 
-// Colorscheme mixins ..........................................................
+/* Colorscheme mixins .......................................................... */
 
 .mixin-active-lite {
 	&.ts-active:active {
@@ -546,7 +546,7 @@
 	}
 }
 
-// Colorschemes ................................................................
+/* Colorschemes ................................................................ */
 
 /*
  * These selectors are sequenced in a way that supports white/lite boxes
@@ -575,7 +575,7 @@
 .ts-bg-yellow,
 [class^='ts-bg'] .ts-bg-white,
 [class^='ts-bg'] .ts-bg-lite {
-	// ouch, expensive selector :/
+	/* ouch, expensive selector :/ */
 	.ts-button:not(:disabled) {
 		.mixin-active-lite();
 		&.ts-primary {
@@ -607,7 +607,7 @@
 		}
 	}
 	.ts-button:disabled {
-		// like tertiary
+		/* like tertiary */
 		&:not(.ts-action) {
 			color: @ts-black;
 			background-color: rgba(0, 0, 0, 0.1);
@@ -737,7 +737,7 @@
 .ts-bg-orange {
 	.ts-bg-white,
 	.ts-bg-lite {
-		// ouch, expensive bunch :/
+		/* ouch, expensive bunch :/ */
 		.ts-button:not(:disabled) {
 			.mixin-tertiary-lite();
 			.mixin-active-lite();
@@ -756,7 +756,7 @@
 	}
 }
 
-// Loading bar..................................................................
+/* Loading bar.................................................................. */
 
 .ts-mixin-keyframes(move-progress-bar, {
 	background-position: 0 0;

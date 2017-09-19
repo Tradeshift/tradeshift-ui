@@ -1,4 +1,4 @@
-*fonts.less
+*.less
 **/dist
 **/node_modules
 **/public

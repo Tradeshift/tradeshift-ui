@@ -316,7 +316,7 @@ ts.ui.TableSpirit = (function using(
 			var elm = e.target;
 			switch (e.type) {
 				case 'click':
-					this._onclick(elm);
+					this._onclick(elm, e);
 					break;
 				case 'scroll':
 					if (!this._noscrolling) {
@@ -1486,11 +1486,12 @@ ts.ui.TableSpirit = (function using(
 		/**
 		 * Something was clicked.
 		 * @param {Element} elm
+		 * @param {Event} e
 		 */
-		_onclick: function(elm) {
+		_onclick: function(elm, e) {
 			var model = this._model;
 			if (model.menuopen) {
-				this._specialclick(elm);
+				this._specialclick(elm, e);
 			} else {
 				this._regularclick(elm);
 			}
@@ -1499,11 +1500,13 @@ ts.ui.TableSpirit = (function using(
 		/**
 		 * Something was clicked while the selection menu is open.
 		 * @param {Element} elm
+		 * @param {Event} e
 		 */
-		_specialclick: function(elm) {
+		_specialclick: function(elm, e) {
 			var menu = this.queryplugin.getmenu();
 			if (this._contains(menu, elm)) {
 				this._onmenuclick(elm);
+				e.stopPropagation();
 			} else {
 				this._openmenu(false);
 			}

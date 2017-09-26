@@ -151,6 +151,36 @@
 						});
 						</script>
 					</figure>
+					
+					<p>Use the <code>indeterminate</code> property if state that is neither checked nor unchecked. It's a in-between state that can be used show a partial selection and to uncheck all selections.</p>
+					
+					<figure data-ts="DoxScript">
+						<script type="runnable">
+							var i = 0
+							ts.ui.Footer.checkbox({
+								onclick: function() {
+									switch (++i % 3) {
+										case 0:
+											// unchecked
+											this.checked = false;
+											ts.ui.Footer.status('0 of 3 items selected');
+											break;
+										case 1:
+											// indeterminate overrides checked
+											this.checked = true;
+											this.indeterminate = true;
+											ts.ui.Footer.status('1 of 3 items selected');
+											break;
+										case 2:
+											// checked
+											this.indeterminate = false;
+											ts.ui.Footer.status('3 of 3 items selected');
+											break;
+									}
+								}
+							}).status('0 of 3 items selected');
+						</script>
+					</figure>
 
 					<p>You must manually toggle the <code>checked</code> property. This will give you a chance to let the user confirm if he really intends to select millions of products; or if he really wants to clear a selection that took him hours to complete. Here is the <code>CheckBoxModel</code>.</p>
 
@@ -163,6 +193,11 @@
 										name: 'checked',
 										type: 'boolean',
 										desc: 'Checkbox is checked?'
+									},
+									{
+										name: 'indeterminate',
+										type: 'boolean',
+										desc: 'Selection is indeterminate?'
 									},
 									{
 										name: 'visible',

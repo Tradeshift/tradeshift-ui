@@ -44,15 +44,6 @@ ts.ui.CheckBoxModel = (function using(chained) {
     }),
 
     /**
-		 * Indeterminate checkbox.
-		 * @returns {this}
-		 */
-    setIndeterminate: chained(function() {
-      this.indeterminate = true;
-      this.checked = false;
-    }),
-
-    /**
 		 * Uncheck the checkbox.
 		 * @returns {this}
 		 */

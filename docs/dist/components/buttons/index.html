@@ -3,8 +3,10 @@
 
 <head>
     <title>Button</title>
+    <meta name="apple-mobile-web-app-title" content="Button">
+    <link rel="apple-touch-icon" href="/dist/assets/icon.svg">
     <meta name="viewport" content="width=device-width">
-    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-9.2.4.min.js"></script>
+    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-9.2.3.min.js"></script>
     <script src="/dist/assets/dox.min.js"></script>
     <script src="/dist/assets/mark.min.js"></script>
     <script src="/dist/assets/jquery-2.2.4.min.js"></script>
@@ -38,32 +40,39 @@
                     <p>Assign <code class="attr-pair"><span>data-ts</span>=&quot;<span>Button</span>&quot;</code> to a <code class="el">button</code> to initialize it as a Button.</p>
                     <figure data-ts="DoxMarkup" data-ts.code="%3Cbutton%20data-ts%3D%22Button%22%3E%0A%09%3Cspan%3EDefault%20Button%3C%2Fspan%3E%0A%3C%2Fbutton%3E">
                         <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Atrue%2C%22runs%22%3Afalse%2C%22flip%22%3Atrue%7D">
-                        <div class="tabpanels">
-                            <div class="output"><button data-ts="Button">
+                        <ul data-ts="TabPanels">
+                            <li data-ts="TabPanel" data-ts.label="Render">
+                                <div class="output"><button data-ts="Button">
 	<span>Default Button</span>
 </button></div>
-                            <pre class="prism language-markup">
-<code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Button<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+                            </li>
+                            <li data-ts="TabPanel" data-ts.label="Markup">
+                                <pre class="prism language-markup">
+					<code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Button<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">&gt;</span></span>Default Button<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">&gt;</span></span></code>
-</pre>
-                        </div>
+				</pre>
+                            </li>
+                        </ul>
                     </figure>
                     <p>The default button looks like a link, but some CSS classnames can be added to make it look more like a button.</p>
                     <figure data-ts="DoxMarkup" data-ts.code="%3Cbutton%20data-ts%3D%22Button%22%20class%3D%22ts-primary%22%3E%0A%09%3Cspan%3EPrimary%3C%2Fspan%3E%0A%3C%2Fbutton%3E%0A%3Cbutton%20data-ts%3D%22Button%22%20class%3D%22ts-secondary%22%3E%0A%09%3Cspan%3ESecondary%3C%2Fspan%3E%0A%3C%2Fbutton%3E%0A%3Cbutton%20data-ts%3D%22Button%22%20class%3D%22ts-tertiary%22%3E%0A%09%3Cspan%3ETertiary%3C%2Fspan%3E%0A%3C%2Fbutton%3E">
                         <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Atrue%2C%22runs%22%3Afalse%2C%22flip%22%3Atrue%7D">
-                        <div class="tabpanels">
-                            <div class="output"><button data-ts="Button" class="ts-primary">
+                        <ul data-ts="TabPanels">
+                            <li data-ts="TabPanel" data-ts.label="Render">
+                                <div class="output"><button data-ts="Button" class="ts-primary">
 	<span>Primary</span>
 </button>
-                                <button data-ts="Button" class="ts-secondary">
+                                    <button data-ts="Button" class="ts-secondary">
 	<span>Secondary</span>
 </button>
-                                <button data-ts="Button" class="ts-tertiary">
+                                    <button data-ts="Button" class="ts-tertiary">
 	<span>Tertiary</span>
 </button></div>
-                            <pre class="prism language-markup">
-<code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Button<span class="token punctuation">&quot;</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>ts-primary<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+                            </li>
+                            <li data-ts="TabPanel" data-ts.label="Markup">
+                                <pre class="prism language-markup">
+					<code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Button<span class="token punctuation">&quot;</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>ts-primary<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">&gt;</span></span>Primary<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">&gt;</span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Button<span class="token punctuation">&quot;</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>ts-secondary<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
@@ -72,25 +81,30 @@
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Button<span class="token punctuation">&quot;</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>ts-tertiary<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">&gt;</span></span>Tertiary<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">&gt;</span></span></code>
-</pre>
-                        </div>
+				</pre>
+                            </li>
+                        </ul>
                     </figure>
                     <h3><span>Button icons</span></h3>
                     <p>Icons go into a separate <code class="el">i</code> element. You can see a <a data-ts="Button" href="/dist/components/icons/css.html">list of all icons</a>.</p>
                     <figure data-ts="DoxMarkup" data-ts.code="%3Cbutton%20data-ts%3D%22Button%22%20class%3D%22ts-primary%22%3E%0A%09%3Cspan%20style%3D%22display%3Anone%3B%22%3EButton%20Text%3C%2Fspan%3E%0A%09%3Ci%20class%3D%22ts-icon-arrowright%22%3E%3C%2Fi%3E%0A%3C%2Fbutton%3E">
                         <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Atrue%2C%22runs%22%3Afalse%2C%22flip%22%3Atrue%7D">
-                        <div class="tabpanels">
-                            <div class="output"><button data-ts="Button" class="ts-primary">
+                        <ul data-ts="TabPanels">
+                            <li data-ts="TabPanel" data-ts.label="Render">
+                                <div class="output"><button data-ts="Button" class="ts-primary">
 	<span style="display:none;">Button Text</span>
 	<i class="ts-icon-arrowright"></i>
 </button></div>
-                            <pre class="prism language-markup">
-<code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Button<span class="token punctuation">&quot;</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>ts-primary<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+                            </li>
+                            <li data-ts="TabPanel" data-ts.label="Markup">
+                                <pre class="prism language-markup">
+					<code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Button<span class="token punctuation">&quot;</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>ts-primary<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span> <span class="token attr-name">style</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>display:none;<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>Button Text<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span>
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>i</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>ts-icon-arrowright<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>i</span><span class="token punctuation">&gt;</span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">&gt;</span></span></code>
-</pre>
-                        </div>
+				</pre>
+                            </li>
+                        </ul>
                     </figure>
                     <p>You&apos;ll notice in the code snippet that the <code class="el">span</code> has been set to <code>display:none</code>.</p>
                     <div data-ts="Note">
@@ -100,30 +114,36 @@
                     <p>If you need both, it&apos;s up to you to hide one or the other. In this example, the button has been rigged up to show the icon only in the mobile breakpoint.</p>
                     <figure data-ts="DoxMarkup" data-ts.code="%3Cbutton%20data-ts%3D%22Button%22%20class%3D%22ts-primary%22%3E%0A%09%3Cspan%20class%3D%22ts-hide-mobile-only%22%3EHidden%20In%20Mobile%3C%2Fspan%3E%0A%09%3Ci%20class%3D%22ts-show-mobile-only%20ts-icon-arrowright%22%3E%3C%2Fi%3E%0A%3C%2Fbutton%3E">
                         <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Atrue%2C%22runs%22%3Afalse%2C%22flip%22%3Atrue%7D">
-                        <div class="tabpanels">
-                            <div class="output"><button data-ts="Button" class="ts-primary">
+                        <ul data-ts="TabPanels">
+                            <li data-ts="TabPanel" data-ts.label="Render">
+                                <div class="output"><button data-ts="Button" class="ts-primary">
 	<span class="ts-hide-mobile-only">Hidden In Mobile</span>
 	<i class="ts-show-mobile-only ts-icon-arrowright"></i>
 </button></div>
-                            <pre class="prism language-markup">
-<code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Button<span class="token punctuation">&quot;</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>ts-primary<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+                            </li>
+                            <li data-ts="TabPanel" data-ts.label="Markup">
+                                <pre class="prism language-markup">
+					<code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Button<span class="token punctuation">&quot;</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>ts-primary<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>ts-hide-mobile-only<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>Hidden In Mobile<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span>
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>i</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>ts-show-mobile-only ts-icon-arrowright<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>i</span><span class="token punctuation">&gt;</span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">&gt;</span></span></code>
-</pre>
-                        </div>
+				</pre>
+                            </li>
+                        </ul>
                     </figure>
                     <h3><span>Button spinner</span></h3>
                     <p>Assign the <code class="attr-name">data-ts.busy</code> attribute to a <code class="el">button</code> to initialize a spinner.</p>
                     <figure data-ts="DoxMarkup" data-ts.code="%3Cbutton%20data-ts%3D%22Button%22%20data-ts.busy%3D%22true%22%20class%3D%22ts-primary%22%3E%0A%09%3Cspan%3EPrimary%3C%2Fspan%3E%0A%3C%2Fbutton%3E">
                         <input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
-                        <div class="tabpanels">
-                            <pre class="prism language-markup">
-<code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Button<span class="token punctuation">&quot;</span></span> <span class="token attr-name">data-ts</span>.<span class="token attr-name">busy</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>true<span class="token punctuation">&quot;</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>ts-primary<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+                        <ul data-ts="TabPanels">
+                            <li data-ts="TabPanel" data-ts.label="Markup">
+                                <pre class="prism language-markup">
+					<code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Button<span class="token punctuation">&quot;</span></span> <span class="token attr-name">data-ts</span>.<span class="token attr-name">busy</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>true<span class="token punctuation">&quot;</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>ts-primary<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">&gt;</span></span>Primary<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">&gt;</span></span></code>
-</pre>
-                        </div>
+				</pre>
+                            </li>
+                        </ul>
                     </figure>
                     <p>
                         <button data-ts="Button" class="ts-primary" id="mybutton" onclick="spin(&apos;#mybutton&apos;)">
@@ -134,18 +154,21 @@
                     <p>You can add class <code class="attr-name">ts-micro</code> to get a micro button.</p>
                     <figure data-ts="DoxMarkup" data-ts.code="%3Cbutton%20data-ts%3D%22Button%22%20class%3D%22ts-primary%20ts-micro%22%3E%0A%09%3Cspan%3EPrimary%3C%2Fspan%3E%0A%3C%2Fbutton%3E%0A%3Cbutton%20data-ts%3D%22Button%22%20class%3D%22ts-secondary%20ts-micro%22%3E%0A%09%3Cspan%3ESecondary%3C%2Fspan%3E%0A%3C%2Fbutton%3E%0A%3Cbutton%20data-ts%3D%22Button%22%20class%3D%22ts-tertiary%20ts-micro%22%3E%0A%09%3Cspan%3ETertiary%3C%2Fspan%3E%0A%3C%2Fbutton%3E">
                         <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Atrue%2C%22runs%22%3Afalse%2C%22flip%22%3Atrue%7D">
-                        <div class="tabpanels">
-                            <div class="output"><button data-ts="Button" class="ts-primary ts-micro">
+                        <ul data-ts="TabPanels">
+                            <li data-ts="TabPanel" data-ts.label="Render">
+                                <div class="output"><button data-ts="Button" class="ts-primary ts-micro">
 	<span>Primary</span>
 </button>
-                                <button data-ts="Button" class="ts-secondary ts-micro">
+                                    <button data-ts="Button" class="ts-secondary ts-micro">
 	<span>Secondary</span>
 </button>
-                                <button data-ts="Button" class="ts-tertiary ts-micro">
+                                    <button data-ts="Button" class="ts-tertiary ts-micro">
 	<span>Tertiary</span>
 </button></div>
-                            <pre class="prism language-markup">
-<code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Button<span class="token punctuation">&quot;</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>ts-primary ts-micro<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+                            </li>
+                            <li data-ts="TabPanel" data-ts.label="Markup">
+                                <pre class="prism language-markup">
+					<code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Button<span class="token punctuation">&quot;</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>ts-primary ts-micro<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">&gt;</span></span>Primary<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">&gt;</span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Button<span class="token punctuation">&quot;</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>ts-secondary ts-micro<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
@@ -154,8 +177,9 @@
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Button<span class="token punctuation">&quot;</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>ts-tertiary ts-micro<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">&gt;</span></span>Tertiary<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">&gt;</span></span></code>
-</pre>
-                        </div>
+				</pre>
+                            </li>
+                        </ul>
                     </figure>
                 </section>
                 <section>

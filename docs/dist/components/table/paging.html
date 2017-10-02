@@ -3,8 +3,10 @@
 
 <head>
     <title>Table Paging</title>
+    <meta name="apple-mobile-web-app-title" content="Table Paging">
+    <link rel="apple-touch-icon" href="/dist/assets/icon.svg">
     <meta name="viewport" content="width=device-width">
-    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-9.2.4.min.js"></script>
+    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-9.2.3.min.js"></script>
     <script src="/dist/assets/dox.min.js"></script>
     <script src="/dist/assets/mark.min.js"></script>
     <script src="/dist/assets/jquery-2.2.4.min.js"></script>
@@ -52,9 +54,10 @@
                                     <script type="runnable">
                                         $.getJSON('assets/rowdata.json', function(json) { ts.ui.get('#example9', table => { table.cols([ { label: 'ID', type: 'ts-number' }, { label: 'Name', flex: 2 }, { label: 'Price', type: 'ts-number'} ]); table.rows(json).max(5); }); });
                                     </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
-                                    <div class="tabpanels">
+                                    <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                                    <div data-ts="Panel">
                                         <pre class="prism language-javascript">
-<code>$<span class="token punctuation">.</span><span class="token function">getJSON<span class="token punctuation">(</span></span><span class="token string">&apos;assets/rowdata.json&apos;</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span>json<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+				<code>$<span class="token punctuation">.</span><span class="token function">getJSON<span class="token punctuation">(</span></span><span class="token string">&apos;assets/rowdata.json&apos;</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span>json<span class="token punctuation">)</span> <span class="token punctuation">{</span>
 	ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#example9&apos;</span><span class="token punctuation">,</span> table <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
 		table<span class="token punctuation">.</span><span class="token function">cols<span class="token punctuation">(</span></span><span class="token punctuation">[</span>
 			<span class="token punctuation">{</span> label<span class="token punctuation">:</span> <span class="token string">&apos;ID&apos;</span><span class="token punctuation">,</span> type<span class="token punctuation">:</span> <span class="token string">&apos;ts-number&apos;</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
@@ -64,7 +67,7 @@
 		table<span class="token punctuation">.</span><span class="token function">rows<span class="token punctuation">(</span></span>json<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">max<span class="token punctuation">(</span></span><span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 	<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
-</pre>
+			</pre>
                                     </div>
                                 </figure>
                             </li>
@@ -76,12 +79,13 @@
                     <p>You can track the page with the <code>onpage</code> method, if for some reason you need that.</p>
                     <figure data-ts="DoxScript" data-ts.code="table.onpage%20%3D%20function(index)%20%7B%0A%09console.log(index)%3B%20%2F%2F%20called%20whenever%20the%20user%20changes%20page%0A%7D%3B">
                         <input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
-                        <div class="tabpanels">
+                        <input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
+                        <div data-ts="Panel">
                             <pre class="prism language-javascript">
-<code>table<span class="token punctuation">.</span>onpage <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span>index<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+				<code>table<span class="token punctuation">.</span>onpage <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span>index<span class="token punctuation">)</span> <span class="token punctuation">{</span>
 	console<span class="token punctuation">.</span><span class="token function">log<span class="token punctuation">(</span></span>index<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// called whenever the user changes page
 </span><span class="token punctuation">}</span><span class="token punctuation">;</span></code>
-</pre>
+			</pre>
                         </div>
                     </figure>
                     <p>If you would like to manage paging yourself, because you have a billion products and don&apos;t want to fetch them all at once, you can create your own pager.</p>
@@ -93,9 +97,10 @@
                                         var popup = ts.ui.Notification; ts.ui.get('#big-data-table', table => { table.max(10).cols([ { label: 'ID', type: 'ts-number' }, { label: 'Name', flex: 2 }, { label: 'Price', type: 'ts-number'} ]); table.pager({ pages: 5, page: 0, onselect: loadpage });
                                         function loadpage(index) { var url = 'assets/page-' + index + '.json'; $.getJSON(url, function(json) { var n = json.length; popup.success('Loaded ' + n + ' rows'); table.rows(json); }); } loadpage(0); });
                                     </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
-                                    <div class="tabpanels">
+                                    <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                                    <div data-ts="Panel">
                                         <pre class="prism language-javascript">
-<code><span class="token keyword">var</span> popup <span class="token operator">=</span> ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Notification<span class="token punctuation">;</span>
+				<code><span class="token keyword">var</span> popup <span class="token operator">=</span> ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Notification<span class="token punctuation">;</span>
 ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#big-data-table&apos;</span><span class="token punctuation">,</span> table <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
 	table<span class="token punctuation">.</span><span class="token function">max<span class="token punctuation">(</span></span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">cols<span class="token punctuation">(</span></span><span class="token punctuation">[</span>
 		<span class="token punctuation">{</span> label<span class="token punctuation">:</span> <span class="token string">&apos;ID&apos;</span><span class="token punctuation">,</span> type<span class="token punctuation">:</span> <span class="token string">&apos;ts-number&apos;</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
@@ -117,7 +122,7 @@ ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</s
 	<span class="token punctuation">}</span>
 	<span class="token function">loadpage<span class="token punctuation">(</span></span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
-</pre>
+			</pre>
                                     </div>
                                 </figure>
                             </li>
@@ -131,10 +136,11 @@ ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</s
                     <p>
                         <figure data-ts="DoxScript" data-ts.code="mytable.pager().page%20%3D%2023%3B">
                             <input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
-                            <div class="tabpanels">
+                            <input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
+                            <div data-ts="Panel">
                                 <pre class="prism language-javascript">
-<code>mytable<span class="token punctuation">.</span><span class="token function">pager<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">.</span>page <span class="token operator">=</span> <span class="token number">23</span><span class="token punctuation">;</span></code>
-</pre>
+				<code>mytable<span class="token punctuation">.</span><span class="token function">pager<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">.</span>page <span class="token operator">=</span> <span class="token number">23</span><span class="token punctuation">;</span></code>
+			</pre>
                             </div>
                         </figure>
                     </p>

@@ -3,8 +3,10 @@
 
 <head>
     <title>Form</title>
+    <meta name="apple-mobile-web-app-title" content="Form">
+    <link rel="apple-touch-icon" href="/dist/assets/icon.svg">
     <meta name="viewport" content="width=device-width">
-    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-9.2.4.min.js"></script>
+    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-9.2.3.min.js"></script>
     <script src="/dist/assets/dox.min.js"></script>
     <script src="/dist/assets/mark.min.js"></script>
     <script src="/dist/assets/jquery-2.2.4.min.js"></script>
@@ -35,11 +37,13 @@
                         <script type="text/html">
                             <form data-ts="Form"> ... </form>
                         </script><input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
-                        <div class="tabpanels">
-                            <pre class="prism language-markup">
-<code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>form</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Form<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span> ...  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>form</span><span class="token punctuation">&gt;</span></span></code>
-</pre>
-                        </div>
+                        <ul data-ts="TabPanels">
+                            <li data-ts="TabPanel" data-ts.label="Markup">
+                                <pre class="prism language-markup">
+					<code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>form</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Form<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span> ...  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>form</span><span class="token punctuation">&gt;</span></span></code>
+				</pre>
+                            </li>
+                        </ul>
                     </figure>
                     <p>Form components depend on specific internal element structure in order to initialize and style their contents. Most components adhere to this structure:</p>
                     <figure data-ts="DoxMarkup" data-ts.code="%3Cform%20data-ts%3D%22Form%22%3E%0A%09%3Cfieldset%3E%0A%09%09%3Clabel%3E%0A%09%09%09%3Cspan%3E%20...%20%3C%2Fspan%3E%0A%09%09%09%3Cinput%2F%3E%0A%09%09%3C%2Flabel%3E%0A%09%3C%2Ffieldset%3E%0A%3C%2Fform%3E">
@@ -53,9 +57,10 @@
                                 </fieldset>
                             </form>
                         </script><input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
-                        <div class="tabpanels">
-                            <pre class="prism language-markup">
-<code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>form</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Form<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+                        <ul data-ts="TabPanels">
+                            <li data-ts="TabPanel" data-ts.label="Markup">
+                                <pre class="prism language-markup">
+					<code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>form</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Form<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>fieldset</span><span class="token punctuation">&gt;</span></span>
 		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>label</span><span class="token punctuation">&gt;</span></span>
 			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">&gt;</span></span> ... <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span>
@@ -63,8 +68,9 @@
 		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>label</span><span class="token punctuation">&gt;</span></span>
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>fieldset</span><span class="token punctuation">&gt;</span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>form</span><span class="token punctuation">&gt;</span></span></code>
-</pre>
-                        </div>
+				</pre>
+                            </li>
+                        </ul>
                     </figure>
                     <h3><span>
 						<span class="el">textarea</span>
@@ -82,19 +88,22 @@
                                 </fieldset>
                             </form>
                         </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Atrue%2C%22runs%22%3Afalse%2C%22flip%22%3Atrue%7D">
-                        <div class="tabpanels">
-                            <div class="output">
-                                <form data-ts="Form">
-                                    <fieldset>
-                                        <label>
+                        <ul data-ts="TabPanels">
+                            <li data-ts="TabPanel" data-ts.label="Render">
+                                <div class="output">
+                                    <form data-ts="Form">
+                                        <fieldset>
+                                            <label>
 			<span>Textarea</span>
 			<textarea></textarea>
 		</label>
-                                    </fieldset>
-                                </form>
-                            </div>
-                            <pre class="prism language-markup">
-<code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>form</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Form<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+                                        </fieldset>
+                                    </form>
+                                </div>
+                            </li>
+                            <li data-ts="TabPanel" data-ts.label="Markup">
+                                <pre class="prism language-markup">
+					<code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>form</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Form<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>fieldset</span><span class="token punctuation">&gt;</span></span>
 		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>label</span><span class="token punctuation">&gt;</span></span>
 			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">&gt;</span></span>Textarea<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span>
@@ -102,8 +111,9 @@
 		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>label</span><span class="token punctuation">&gt;</span></span>
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>fieldset</span><span class="token punctuation">&gt;</span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>form</span><span class="token punctuation">&gt;</span></span></code>
-</pre>
-                        </div>
+				</pre>
+                            </li>
+                        </ul>
                     </figure>
                     <p>You can specify <code class="attr-pair"><span>type</span>=&quot;<span>submit</span>&quot;</code> to make the texarea submit the form on <kbd>ENTER</kbd>. In this mode, newlines may still be entered while pressing the <kbd>SHIFT</kbd>                        key.</p>
                     <figure data-ts="DoxMarkup" data-ts.code="%3Cform%20data-ts%3D%22Form%22%20action%3D%22javascript%3Aalert(&apos;Form%20submitted&apos;)%22%3E%0A%09%3Cfieldset%3E%0A%09%09%3Clabel%3E%0A%09%09%09%3Cspan%3EPress%20SHIFT%20to%20ENTER%20newlines%3C%2Fspan%3E%0A%09%09%09%3Ctextarea%20rows%3D%221%22%20type%3D%22submit%22%3E%3C%2Ftextarea%3E%0A%09%09%3C%2Flabel%3E%0A%09%3C%2Ffieldset%3E%0A%3C%2Fform%3E">
@@ -117,19 +127,22 @@
                                 </fieldset>
                             </form>
                         </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Atrue%2C%22runs%22%3Afalse%2C%22flip%22%3Atrue%7D">
-                        <div class="tabpanels">
-                            <div class="output">
-                                <form data-ts="Form" action="javascript:alert(&apos;Form submitted&apos;)">
-                                    <fieldset>
-                                        <label>
+                        <ul data-ts="TabPanels">
+                            <li data-ts="TabPanel" data-ts.label="Render">
+                                <div class="output">
+                                    <form data-ts="Form" action="javascript:alert(&apos;Form submitted&apos;)">
+                                        <fieldset>
+                                            <label>
 			<span>Press SHIFT to ENTER newlines</span>
 			<textarea rows="1" type="submit"></textarea>
 		</label>
-                                    </fieldset>
-                                </form>
-                            </div>
-                            <pre class="prism language-markup">
-<code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>form</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Form<span class="token punctuation">&quot;</span></span> <span class="token attr-name">action</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>javascript:alert(&apos;Form submitted&apos;)<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+                                        </fieldset>
+                                    </form>
+                                </div>
+                            </li>
+                            <li data-ts="TabPanel" data-ts.label="Markup">
+                                <pre class="prism language-markup">
+					<code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>form</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Form<span class="token punctuation">&quot;</span></span> <span class="token attr-name">action</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>javascript:alert(&apos;Form submitted&apos;)<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>fieldset</span><span class="token punctuation">&gt;</span></span>
 		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>label</span><span class="token punctuation">&gt;</span></span>
 			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">&gt;</span></span>Press SHIFT to ENTER newlines<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span>
@@ -137,8 +150,9 @@
 		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>label</span><span class="token punctuation">&gt;</span></span>
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>fieldset</span><span class="token punctuation">&gt;</span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>form</span><span class="token punctuation">&gt;</span></span></code>
-</pre>
-                        </div>
+				</pre>
+                            </li>
+                        </ul>
                     </figure>
                     <h3><span>
 						<span class="el">input</span>
@@ -158,19 +172,22 @@
                                 </fieldset>
                             </form>
                         </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Atrue%2C%22runs%22%3Afalse%2C%22flip%22%3Atrue%7D">
-                        <div class="tabpanels">
-                            <div class="output">
-                                <form data-ts="Form">
-                                    <fieldset>
-                                        <label>
+                        <ul data-ts="TabPanels">
+                            <li data-ts="TabPanel" data-ts.label="Render">
+                                <div class="output">
+                                    <form data-ts="Form">
+                                        <fieldset>
+                                            <label>
 			<span>Text</span>
 			<input type="text" required>
 		</label>
-                                    </fieldset>
-                                </form>
-                            </div>
-                            <pre class="prism language-markup">
-<code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>form</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Form<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+                                        </fieldset>
+                                    </form>
+                                </div>
+                            </li>
+                            <li data-ts="TabPanel" data-ts.label="Markup">
+                                <pre class="prism language-markup">
+					<code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>form</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Form<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>fieldset</span><span class="token punctuation">&gt;</span></span>
 		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>label</span><span class="token punctuation">&gt;</span></span>
 			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">&gt;</span></span>Text<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span>
@@ -178,8 +195,9 @@
 		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>label</span><span class="token punctuation">&gt;</span></span>
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>fieldset</span><span class="token punctuation">&gt;</span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>form</span><span class="token punctuation">&gt;</span></span></code>
-</pre>
-                        </div>
+				</pre>
+                            </li>
+                        </ul>
                     </figure>
                     <h3><span>
 						<span class="el">input</span>
@@ -199,19 +217,22 @@
                                 </fieldset>
                             </form>
                         </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Atrue%2C%22runs%22%3Afalse%2C%22flip%22%3Atrue%7D">
-                        <div class="tabpanels">
-                            <div class="output">
-                                <form data-ts="Form">
-                                    <fieldset>
-                                        <label>
+                        <ul data-ts="TabPanels">
+                            <li data-ts="TabPanel" data-ts.label="Render">
+                                <div class="output">
+                                    <form data-ts="Form">
+                                        <fieldset>
+                                            <label>
 			<span>Tel</span>
 			<input type="tel" required>
 		</label>
-                                    </fieldset>
-                                </form>
-                            </div>
-                            <pre class="prism language-markup">
-<code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>form</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Form<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+                                        </fieldset>
+                                    </form>
+                                </div>
+                            </li>
+                            <li data-ts="TabPanel" data-ts.label="Markup">
+                                <pre class="prism language-markup">
+					<code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>form</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Form<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>fieldset</span><span class="token punctuation">&gt;</span></span>
 		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>label</span><span class="token punctuation">&gt;</span></span>
 			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">&gt;</span></span>Tel<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span>
@@ -219,8 +240,9 @@
 		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>label</span><span class="token punctuation">&gt;</span></span>
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>fieldset</span><span class="token punctuation">&gt;</span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>form</span><span class="token punctuation">&gt;</span></span></code>
-</pre>
-                        </div>
+				</pre>
+                            </li>
+                        </ul>
                     </figure>
                     <h3><span>
 						<span class="el">input</span>
@@ -240,19 +262,22 @@
                                 </fieldset>
                             </form>
                         </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Atrue%2C%22runs%22%3Afalse%2C%22flip%22%3Atrue%7D">
-                        <div class="tabpanels">
-                            <div class="output">
-                                <form data-ts="Form">
-                                    <fieldset>
-                                        <label>
+                        <ul data-ts="TabPanels">
+                            <li data-ts="TabPanel" data-ts.label="Render">
+                                <div class="output">
+                                    <form data-ts="Form">
+                                        <fieldset>
+                                            <label>
 			<span>Email</span>
 			<input type="email" required>
 		</label>
-                                    </fieldset>
-                                </form>
-                            </div>
-                            <pre class="prism language-markup">
-<code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>form</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Form<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+                                        </fieldset>
+                                    </form>
+                                </div>
+                            </li>
+                            <li data-ts="TabPanel" data-ts.label="Markup">
+                                <pre class="prism language-markup">
+					<code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>form</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Form<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>fieldset</span><span class="token punctuation">&gt;</span></span>
 		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>label</span><span class="token punctuation">&gt;</span></span>
 			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">&gt;</span></span>Email<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span>
@@ -260,8 +285,9 @@
 		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>label</span><span class="token punctuation">&gt;</span></span>
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>fieldset</span><span class="token punctuation">&gt;</span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>form</span><span class="token punctuation">&gt;</span></span></code>
-</pre>
-                        </div>
+				</pre>
+                            </li>
+                        </ul>
                     </figure>
                     <h3><span>
 						<span class="el">input</span>
@@ -281,19 +307,22 @@
                                 </fieldset>
                             </form>
                         </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Atrue%2C%22runs%22%3Afalse%2C%22flip%22%3Atrue%7D">
-                        <div class="tabpanels">
-                            <div class="output">
-                                <form data-ts="Form">
-                                    <fieldset>
-                                        <label>
+                        <ul data-ts="TabPanels">
+                            <li data-ts="TabPanel" data-ts.label="Render">
+                                <div class="output">
+                                    <form data-ts="Form">
+                                        <fieldset>
+                                            <label>
 			<span>Number</span>
 			<input type="number">
 		</label>
-                                    </fieldset>
-                                </form>
-                            </div>
-                            <pre class="prism language-markup">
-<code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>form</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Form<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+                                        </fieldset>
+                                    </form>
+                                </div>
+                            </li>
+                            <li data-ts="TabPanel" data-ts.label="Markup">
+                                <pre class="prism language-markup">
+					<code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>form</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Form<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>fieldset</span><span class="token punctuation">&gt;</span></span>
 		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>label</span><span class="token punctuation">&gt;</span></span>
 			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">&gt;</span></span>Number<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span>
@@ -301,8 +330,9 @@
 		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>label</span><span class="token punctuation">&gt;</span></span>
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>fieldset</span><span class="token punctuation">&gt;</span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>form</span><span class="token punctuation">&gt;</span></span></code>
-</pre>
-                        </div>
+				</pre>
+                            </li>
+                        </ul>
                     </figure>
                     <h3><span>
 						<span class="el">input</span>
@@ -325,19 +355,22 @@
                                 </fieldset>
                             </form>
                         </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Atrue%2C%22runs%22%3Afalse%2C%22flip%22%3Atrue%7D">
-                        <div class="tabpanels">
-                            <div class="output">
-                                <form data-ts="Form">
-                                    <fieldset>
-                                        <label>
+                        <ul data-ts="TabPanels">
+                            <li data-ts="TabPanel" data-ts.label="Render">
+                                <div class="output">
+                                    <form data-ts="Form">
+                                        <fieldset>
+                                            <label>
 			<span>Date</span>
 			<input type="date" value="2015-01-01" min="2014-01-01" max="2016-01-01">
 		</label>
-                                    </fieldset>
-                                </form>
-                            </div>
-                            <pre class="prism language-markup">
-<code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>form</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Form<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+                                        </fieldset>
+                                    </form>
+                                </div>
+                            </li>
+                            <li data-ts="TabPanel" data-ts.label="Markup">
+                                <pre class="prism language-markup">
+					<code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>form</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Form<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>fieldset</span><span class="token punctuation">&gt;</span></span>
 		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>label</span><span class="token punctuation">&gt;</span></span>
 			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">&gt;</span></span>Date<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span>
@@ -348,8 +381,9 @@
 		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>label</span><span class="token punctuation">&gt;</span></span>
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>fieldset</span><span class="token punctuation">&gt;</span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>form</span><span class="token punctuation">&gt;</span></span></code>
-</pre>
-                        </div>
+				</pre>
+                            </li>
+                        </ul>
                     </figure>
                     <h3><span>
 						<span class="el">select</span>
@@ -374,11 +408,12 @@
                                 </fieldset>
                             </form>
                         </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Atrue%2C%22runs%22%3Afalse%2C%22flip%22%3Atrue%7D">
-                        <div class="tabpanels">
-                            <div class="output">
-                                <form data-ts="Form">
-                                    <fieldset>
-                                        <label>
+                        <ul data-ts="TabPanels">
+                            <li data-ts="TabPanel" data-ts.label="Render">
+                                <div class="output">
+                                    <form data-ts="Form">
+                                        <fieldset>
+                                            <label>
 			<span>Select</span>
 			<select>
 				<option value="a" selected>One</option>
@@ -386,11 +421,13 @@
 				<option value="c">Three</option>
 			</select>
 		</label>
-                                    </fieldset>
-                                </form>
-                            </div>
-                            <pre class="prism language-markup">
-<code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>form</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Form<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+                                        </fieldset>
+                                    </form>
+                                </div>
+                            </li>
+                            <li data-ts="TabPanel" data-ts.label="Markup">
+                                <pre class="prism language-markup">
+					<code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>form</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Form<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>fieldset</span><span class="token punctuation">&gt;</span></span>
 		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>label</span><span class="token punctuation">&gt;</span></span>
 			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">&gt;</span></span>Select<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span>
@@ -402,8 +439,9 @@
 		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>label</span><span class="token punctuation">&gt;</span></span>
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>fieldset</span><span class="token punctuation">&gt;</span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>form</span><span class="token punctuation">&gt;</span></span></code>
-</pre>
-                        </div>
+				</pre>
+                            </li>
+                        </ul>
                     </figure>
                     <p>You can configure the <code class="el">select</code> with a default placeholder in a two-step process.</p>
                     <ul>
@@ -425,11 +463,12 @@
                                 </fieldset>
                             </form>
                         </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Atrue%2C%22runs%22%3Afalse%2C%22flip%22%3Atrue%7D">
-                        <div class="tabpanels">
-                            <div class="output">
-                                <form data-ts="Form">
-                                    <fieldset>
-                                        <label>
+                        <ul data-ts="TabPanels">
+                            <li data-ts="TabPanel" data-ts.label="Render">
+                                <div class="output">
+                                    <form data-ts="Form">
+                                        <fieldset>
+                                            <label>
 			<span>Select with placeholder</span>
 			<select placeholder="Pick a number">
 				<option></option>
@@ -437,11 +476,13 @@
 				<option value="23">23</option>
 			</select>
 		</label>
-                                    </fieldset>
-                                </form>
-                            </div>
-                            <pre class="prism language-markup">
-<code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>form</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Form<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+                                        </fieldset>
+                                    </form>
+                                </div>
+                            </li>
+                            <li data-ts="TabPanel" data-ts.label="Markup">
+                                <pre class="prism language-markup">
+					<code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>form</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Form<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>fieldset</span><span class="token punctuation">&gt;</span></span>
 		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>label</span><span class="token punctuation">&gt;</span></span>
 			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">&gt;</span></span>Select with placeholder<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span>
@@ -453,8 +494,9 @@
 		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>label</span><span class="token punctuation">&gt;</span></span>
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>fieldset</span><span class="token punctuation">&gt;</span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>form</span><span class="token punctuation">&gt;</span></span></code>
-</pre>
-                        </div>
+				</pre>
+                            </li>
+                        </ul>
                     </figure>
                     <p>When a selection is made, the user can revert to the default (no selection) by clicking the selected option a second time. If you don&apos;t want to allow this, you should make sure to remove the empty <code class="el">option</code>.</p>
                     <div data-ts="Note">
@@ -486,11 +528,12 @@
                                 </fieldset>
                             </form>
                         </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Atrue%2C%22runs%22%3Afalse%2C%22flip%22%3Atrue%7D">
-                        <div class="tabpanels">
-                            <div class="output">
-                                <form data-ts="Form">
-                                    <fieldset>
-                                        <label>
+                        <ul data-ts="TabPanels">
+                            <li data-ts="TabPanel" data-ts.label="Render">
+                                <div class="output">
+                                    <form data-ts="Form">
+                                        <fieldset>
+                                            <label>
 			<span>Select multiple</span>
 			<select multiple>
 				<option value="a">One</option>
@@ -501,11 +544,13 @@
 			</select>
 			<button>Cool, apply changes!</button>
 		</label>
-                                    </fieldset>
-                                </form>
-                            </div>
-                            <pre class="prism language-markup">
-<code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>form</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Form<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+                                        </fieldset>
+                                    </form>
+                                </div>
+                            </li>
+                            <li data-ts="TabPanel" data-ts.label="Markup">
+                                <pre class="prism language-markup">
+					<code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>form</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Form<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>fieldset</span><span class="token punctuation">&gt;</span></span>
 		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>label</span><span class="token punctuation">&gt;</span></span>
 			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">&gt;</span></span>Select multiple<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span>
@@ -520,8 +565,9 @@
 		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>label</span><span class="token punctuation">&gt;</span></span>
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>fieldset</span><span class="token punctuation">&gt;</span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>form</span><span class="token punctuation">&gt;</span></span></code>
-</pre>
-                        </div>
+				</pre>
+                            </li>
+                        </ul>
                     </figure>
                     <h3><span>
 						<span class="el">input</span>
@@ -547,24 +593,27 @@
                                 </fieldset>
                             </form>
                         </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Atrue%2C%22runs%22%3Afalse%2C%22flip%22%3Atrue%7D">
-                        <div class="tabpanels">
-                            <div class="output">
-                                <form data-ts="Form">
-                                    <fieldset>
-                                        <span>Choose wisely</span>
-                                        <label>
+                        <ul data-ts="TabPanels">
+                            <li data-ts="TabPanel" data-ts.label="Render">
+                                <div class="output">
+                                    <form data-ts="Form">
+                                        <fieldset>
+                                            <span>Choose wisely</span>
+                                            <label>
 			<input type="radio" name="radio" checked>
 			<span>Red pill</span>
 		</label>
-                                        <label>
+                                            <label>
 			<input type="radio" name="radio">
 			<span>Blue pill</span>
 		</label>
-                                    </fieldset>
-                                </form>
-                            </div>
-                            <pre class="prism language-markup">
-<code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>form</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Form<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+                                        </fieldset>
+                                    </form>
+                                </div>
+                            </li>
+                            <li data-ts="TabPanel" data-ts.label="Markup">
+                                <pre class="prism language-markup">
+					<code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>form</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Form<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>fieldset</span><span class="token punctuation">&gt;</span></span>
 		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">&gt;</span></span>Choose wisely<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span>
 		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>label</span><span class="token punctuation">&gt;</span></span>
@@ -577,8 +626,9 @@
 		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>label</span><span class="token punctuation">&gt;</span></span>
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>fieldset</span><span class="token punctuation">&gt;</span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>form</span><span class="token punctuation">&gt;</span></span></code>
-</pre>
-                        </div>
+				</pre>
+                            </li>
+                        </ul>
                     </figure>
                     <h3><span>
 						<span class="el">input</span>
@@ -604,24 +654,27 @@
                                 </fieldset>
                             </form>
                         </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Atrue%2C%22runs%22%3Afalse%2C%22flip%22%3Atrue%7D">
-                        <div class="tabpanels">
-                            <div class="output">
-                                <form data-ts="Form">
-                                    <fieldset>
-                                        <span>Legally Binding Contract</span>
-                                        <label>
+                        <ul data-ts="TabPanels">
+                            <li data-ts="TabPanel" data-ts.label="Render">
+                                <div class="output">
+                                    <form data-ts="Form">
+                                        <fieldset>
+                                            <span>Legally Binding Contract</span>
+                                            <label>
 			<input type="checkbox">
 			<span>I agree to something</span>
 		</label>
-                                        <label>
+                                            <label>
 			<input type="checkbox" checked>
 			<span>I agree to something (by default)</span>
 		</label>
-                                    </fieldset>
-                                </form>
-                            </div>
-                            <pre class="prism language-markup">
-<code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>form</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Form<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+                                        </fieldset>
+                                    </form>
+                                </div>
+                            </li>
+                            <li data-ts="TabPanel" data-ts.label="Markup">
+                                <pre class="prism language-markup">
+					<code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>form</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Form<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>fieldset</span><span class="token punctuation">&gt;</span></span>
 		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">&gt;</span></span>Legally Binding Contract<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span>
 		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>label</span><span class="token punctuation">&gt;</span></span>
@@ -634,8 +687,9 @@
 		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>label</span><span class="token punctuation">&gt;</span></span>
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>fieldset</span><span class="token punctuation">&gt;</span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>form</span><span class="token punctuation">&gt;</span></span></code>
-</pre>
-                        </div>
+				</pre>
+                            </li>
+                        </ul>
                     </figure>
                     <h3><span>
 						<span class="el">input</span>
@@ -662,24 +716,27 @@
                                 </fieldset>
                             </form>
                         </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Atrue%2C%22runs%22%3Afalse%2C%22flip%22%3Atrue%7D">
-                        <div class="tabpanels">
-                            <div class="output">
-                                <form data-ts="Form">
-                                    <fieldset>
-                                        <span>Settings Page</span>
-                                        <label>
+                        <ul data-ts="TabPanels">
+                            <li data-ts="TabPanel" data-ts.label="Render">
+                                <div class="output">
+                                    <form data-ts="Form">
+                                        <fieldset>
+                                            <span>Settings Page</span>
+                                            <label>
 			<span>Secret Feature</span>
 			<input type="checkbox">
 		</label>
-                                        <label>
+                                            <label>
 			<span>Secret Feature (On by default)</span>
 			<input type="checkbox" checked>
 		</label>
-                                    </fieldset>
-                                </form>
-                            </div>
-                            <pre class="prism language-markup">
-<code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>form</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Form<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+                                        </fieldset>
+                                    </form>
+                                </div>
+                            </li>
+                            <li data-ts="TabPanel" data-ts.label="Markup">
+                                <pre class="prism language-markup">
+					<code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>form</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Form<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>fieldset</span><span class="token punctuation">&gt;</span></span>
 		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">&gt;</span></span>Settings Page<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span>
 		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>label</span><span class="token punctuation">&gt;</span></span>
@@ -692,8 +749,9 @@
 		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>label</span><span class="token punctuation">&gt;</span></span>
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>fieldset</span><span class="token punctuation">&gt;</span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>form</span><span class="token punctuation">&gt;</span></span></code>
-</pre>
-                        </div>
+				</pre>
+                            </li>
+                        </ul>
                     </figure>
                     <h2><span>Errors and info</span></h2>
                     <p>To mark a control as invalid, simply add the class <code class="attr-value">ts-error</code> to the label.</p>
@@ -708,19 +766,22 @@
                                 </fieldset>
                             </form>
                         </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Atrue%2C%22runs%22%3Afalse%2C%22flip%22%3Atrue%7D">
-                        <div class="tabpanels">
-                            <div class="output">
-                                <form data-ts="Form">
-                                    <fieldset>
-                                        <label class="ts-error">
+                        <ul data-ts="TabPanels">
+                            <li data-ts="TabPanel" data-ts.label="Render">
+                                <div class="output">
+                                    <form data-ts="Form">
+                                        <fieldset>
+                                            <label class="ts-error">
 			<span>Text</span>
 			<input type="text">
 		</label>
-                                    </fieldset>
-                                </form>
-                            </div>
-                            <pre class="prism language-markup">
-<code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>form</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Form<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+                                        </fieldset>
+                                    </form>
+                                </div>
+                            </li>
+                            <li data-ts="TabPanel" data-ts.label="Markup">
+                                <pre class="prism language-markup">
+					<code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>form</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Form<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>fieldset</span><span class="token punctuation">&gt;</span></span>
 		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>label</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>ts-error<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
 			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">&gt;</span></span>Text<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span>
@@ -728,30 +789,34 @@
 		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>label</span><span class="token punctuation">&gt;</span></span>
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>fieldset</span><span class="token punctuation">&gt;</span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>form</span><span class="token punctuation">&gt;</span></span></code>
-</pre>
-                        </div>
+				</pre>
+                            </li>
+                        </ul>
                     </figure>
                     <p>To display an error message, one must mark the control as errored using the <code class="attr-value">ts-error</code> class, as well as add the error message markup to the page.</p>
                     <figure data-ts="DoxMarkup" data-ts.code="%3Cform%20data-ts%3D%22Form%22%3E%0A%09%3Cfieldset%3E%0A%09%09%3Clabel%20class%3D%22ts-error%22%3E%0A%09%09%09%3Cspan%3EText%3C%2Fspan%3E%0A%09%09%09%3Cinput%20type%3D%22text%22%20%2F%3E%0A%09%09%3C%2Flabel%3E%0A%09%09%3Cdl%20class%3D%22ts-errors%22%3E%0A%09%09%09%3Cdt%3EText%3C%2Fdt%3E%0A%09%09%09%3Cdd%3EAn%20explanation%20of%20the%20error%20in%20question%3C%2Fdd%3E%0A%09%09%09%3Cdd%3EAnother%20explanation%20of%20the%20error%20in%20question%3C%2Fdd%3E%0A%09%09%3C%2Fdl%3E%0A%09%3C%2Ffieldset%3E%0A%3C%2Fform%3E">
                         <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Atrue%2C%22runs%22%3Afalse%2C%22flip%22%3Atrue%7D">
-                        <div class="tabpanels">
-                            <div class="output">
-                                <form data-ts="Form">
-                                    <fieldset>
-                                        <label class="ts-error">
+                        <ul data-ts="TabPanels">
+                            <li data-ts="TabPanel" data-ts.label="Render">
+                                <div class="output">
+                                    <form data-ts="Form">
+                                        <fieldset>
+                                            <label class="ts-error">
 			<span>Text</span>
 			<input type="text">
 		</label>
-                                        <dl class="ts-errors">
-                                            <dt>Text</dt>
-                                            <dd>An explanation of the error in question</dd>
-                                            <dd>Another explanation of the error in question</dd>
-                                        </dl>
-                                    </fieldset>
-                                </form>
-                            </div>
-                            <pre class="prism language-markup">
-<code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>form</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Form<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+                                            <dl class="ts-errors">
+                                                <dt>Text</dt>
+                                                <dd>An explanation of the error in question</dd>
+                                                <dd>Another explanation of the error in question</dd>
+                                            </dl>
+                                        </fieldset>
+                                    </form>
+                                </div>
+                            </li>
+                            <li data-ts="TabPanel" data-ts.label="Markup">
+                                <pre class="prism language-markup">
+					<code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>form</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Form<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>fieldset</span><span class="token punctuation">&gt;</span></span>
 		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>label</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>ts-error<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
 			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">&gt;</span></span>Text<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span>
@@ -764,30 +829,34 @@
 		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dl</span><span class="token punctuation">&gt;</span></span>
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>fieldset</span><span class="token punctuation">&gt;</span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>form</span><span class="token punctuation">&gt;</span></span></code>
-</pre>
-                        </div>
+				</pre>
+                            </li>
+                        </ul>
                     </figure>
                     <p>To display an info section, use the <code class="attr-value">ts-info</code> class.</p>
                     <figure data-ts="DoxMarkup" data-ts.code="%3Cform%20data-ts%3D%22Form%22%3E%0A%09%3Cfieldset%3E%0A%09%09%3Clabel%3E%0A%09%09%09%3Cspan%3EText%3C%2Fspan%3E%0A%09%09%09%3Cinput%20type%3D%22text%22%20%2F%3E%0A%09%09%3C%2Flabel%3E%0A%09%09%3Cdl%20class%3D%22ts-info%22%3E%0A%09%09%09%3Cdt%3EText%3C%2Fdt%3E%0A%09%09%09%3Cdd%3EAn%20information%20about%20the%20field%3C%2Fdd%3E%0A%09%09%09%3Cdd%3EAnother%20information%20about%20the%20field%3C%2Fdd%3E%0A%09%09%3C%2Fdl%3E%0A%09%3C%2Ffieldset%3E%0A%3C%2Fform%3E">
                         <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Atrue%2C%22runs%22%3Afalse%2C%22flip%22%3Atrue%7D">
-                        <div class="tabpanels">
-                            <div class="output">
-                                <form data-ts="Form">
-                                    <fieldset>
-                                        <label>
+                        <ul data-ts="TabPanels">
+                            <li data-ts="TabPanel" data-ts.label="Render">
+                                <div class="output">
+                                    <form data-ts="Form">
+                                        <fieldset>
+                                            <label>
 			<span>Text</span>
 			<input type="text">
 		</label>
-                                        <dl class="ts-info">
-                                            <dt>Text</dt>
-                                            <dd>An information about the field</dd>
-                                            <dd>Another information about the field</dd>
-                                        </dl>
-                                    </fieldset>
-                                </form>
-                            </div>
-                            <pre class="prism language-markup">
-<code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>form</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Form<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+                                            <dl class="ts-info">
+                                                <dt>Text</dt>
+                                                <dd>An information about the field</dd>
+                                                <dd>Another information about the field</dd>
+                                            </dl>
+                                        </fieldset>
+                                    </form>
+                                </div>
+                            </li>
+                            <li data-ts="TabPanel" data-ts.label="Markup">
+                                <pre class="prism language-markup">
+					<code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>form</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Form<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>fieldset</span><span class="token punctuation">&gt;</span></span>
 		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>label</span><span class="token punctuation">&gt;</span></span>
 			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">&gt;</span></span>Text<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span>
@@ -800,8 +869,9 @@
 		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dl</span><span class="token punctuation">&gt;</span></span>
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>fieldset</span><span class="token punctuation">&gt;</span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>form</span><span class="token punctuation">&gt;</span></span></code>
-</pre>
-                        </div>
+				</pre>
+                            </li>
+                        </ul>
                     </figure>
                 </section>
             </article>

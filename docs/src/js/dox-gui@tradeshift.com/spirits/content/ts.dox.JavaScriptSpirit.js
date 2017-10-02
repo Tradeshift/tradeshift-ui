@@ -1,7 +1,20 @@
 /**
  * Spirit of the script snippet.
  */
-ts.dox.JavaScriptSpirit = ts.dox.PrismSpirit.extend({
+ts.dox.JavaScriptSpirit = ts.ui.BoxSpirit.extend({
+
+	code: '',
+
+	/**
+	 *
+	 */
+	onconfigure: function() {
+		this.super.onconfigure();
+		this.code = decodeURIComponent(this.code);
+		alert(this.code);
+	},
+
+
 	/**
 	 * Handle event.
 	 */

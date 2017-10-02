@@ -26,7 +26,6 @@
 		}
 	}
 }
-
 .ts-mobile-only {
 	.ts-sidebar {
 		z-index: @ts-zindex-aside - 1;
@@ -59,8 +58,22 @@
 		}
 	}
 }
-.ts-tablet.ts-has-topbar {
-	.ts-sidebar {
-		top: @ts-unit-triple;
+
+/*
+ * Pending design decision
+ *
+.ts-tablet.ts-has-header {
+	&.ts-header-level-3,
+	&.ts-header-level-6 {
+		.ts-sidebar {
+			top: @ts-unit * 3;
+		}
+	}
+	&.ts-header-level-5,
+	&.ts-header-level-8 {
+		.ts-sidebar {
+			top: @ts-unit * 5;
+		}
 	}
 }
+*/

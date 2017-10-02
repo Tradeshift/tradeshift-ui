@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Header</title>
+		<!--
+		<meta name="apple-mobile-web-app-title" content="Header"/>
+	  <link rel="apple-touch-icon" href="/dist/assets/icon.svg"/>
+		-->
+	</head>
+	<body class="nosticky">
+		<header data-ts="TopBar"></header>
+		<!--
+		<aside data-ts="SideBar" data-ts.title="SideBar Left">
+			<div data-ts="Panel">
+
+			</div>
+		</aside>
+		-->
+		<main data-ts="Main">
+			<article>
+				<h1>Header</h1>
+				<section class="desc">
+					<p>Go go gadget Header.</p>
+				</section>
+				<section>
+
+					<figure data-ts="DoxScript">
+						<script type="runnable">
+							ts.ui.Header.title('Hello World').icon('assets/appicon.svg');
+						</script>
+					</figure>	
+
+					<figure data-ts="DoxScript">
+						<script type="runnable">
+							ts.ui.Header.buttons([
+								{ label: 'Primary', type: 'ts-primary', icon: 'ts-icon-triangleup' },
+								{ label: 'Secondary', type: 'ts-secondary', icon: 'ts-icon-triangledown' },
+								{ label: 'Tertiary One', icon: 'ts-icon-triangleleft' },
+								{ label: 'Tertiary Two', icon: 'ts-icon-triangleright' },
+								{ label: 'Tertiary Three', icon: 'ts-icon-halt', onclick: () => {
+									ts.ui.Header.buttons().clear();
+								}}
+							]);
+						</script>
+					</figure>
+
+					<figure data-ts="DoxScript">
+						<script type="runnable">
+							ts.ui.Header.tabs([
+								{ label: 'One' },
+								{ label: 'Two' },
+								{ label: 'Three' }
+							]);
+						</script>
+					</figure>
+
+					<figure data-ts="DoxScript">
+						<script type="runnable">
+							ts.ui.Header.search({
+								info: 'Search amongst all the things',
+								onsearch: function(value) {
+									ts.ui.Notification.success(value || 'Search cleared');
+								},
+								buttons: [
+									{
+										label: "Let's Search",
+										icon: 'ts-icon-search',
+										onclick: function() {
+											this.search.search();
+										}
+									}
+								]
+							});
+						</script>
+
+						<!--
+							setTimeout(function() {
+								ts.ui.Header.search().buttons.push(
+									{ label: 'Search', icon: 'ts-icon-search', onclick: function() {
+										alert(this.search);
+									}}
+								);
+							}, 100);
+						-->
+					</figure>
+
+				</section>
+			</article>
+		</main>
+		<!--
+		<aside data-ts="SideBar" data-ts.title="SideBar Right">
+			<div data-ts="Panel">
+
+			</div>
+		</aside>
+		-->
+	</body>
+<html>

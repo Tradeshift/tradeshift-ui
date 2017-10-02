@@ -54,7 +54,7 @@
 				"path": "components/asides/"
 			},
 			{
-				"label": "Bars",
+				"label": "Bars (DEPRECATED)",
 				"icon": "docs-icon-expand-horizontal-7",
 				"path": "components/bars/topbar.html"
 			},
@@ -89,6 +89,11 @@
 				"path": "components/forms/"
 			},
 			{
+				"label": "Header",
+				"icon": "docs-icon-video-games-space-invaders-1",
+				"path": "components/header/"
+			},
+			{
 				"label": "Icons",
 				"icon": "docs-icon-file-images-svg",
 				"path": "components/icons/"
@@ -119,7 +124,7 @@
 				"path": "components/pager/"
 			},
 			{
-				"label": "Panels",
+				"label": "Panels (DEPRECATED)",
 				"icon": "docs-icon-video-control-fast-forward",
 				"path": "components/panels/"
 			},
@@ -137,6 +142,11 @@
 				"label": "Spinner",
 				"icon": "docs-icon-interface-loading",
 				"path": "components/spinners/"
+			},
+			{
+				"label": "TabBox",
+				"icon": "docs-icon-grid",
+				"path": "components/tabbox/"
 			},
 			{
 				"label": "Table",

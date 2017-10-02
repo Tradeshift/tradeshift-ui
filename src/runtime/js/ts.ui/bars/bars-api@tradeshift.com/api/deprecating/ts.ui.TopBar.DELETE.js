@@ -1,8 +1,45 @@
+ts.ui.TopBar = (function(Header, chained) {
+	return {
+		title: chained(function(string) {
+			if (arguments.length) {
+				Header.title(string);
+			} else {
+				return Header.title();
+			}
+		}),
+
+		defaultTitle: chained(function(string) {
+			console.error('TODO: TopBar.defaultTitle');
+		}),
+
+		/**
+		 * Get or set tabs.
+		 * @param @optional {Array<object>} opt_json
+		 * @returns {this|ts.ui.TabCollection}
+		 */
+		tabs: chained(function(json) {
+			if (arguments.length) {
+				Header.tabs(json);
+			} else {
+				return Header.tabs();
+			}
+		}),
+
+		buttons: chained(function(json) {
+			if (arguments.length) {
+				Header.buttons(json);
+			} else {
+				return Header.buttons();
+			}
+		})
+	};
+})(ts.ui.Header, gui.Combo.chained);
+
 /**
  * TopBar API.
  * TODO (jmo@): clear methods
  */
-ts.ui.TopBar = {
+ts.ui.TopBar_OLDSCHOOL = {
 	/**
 	 * @deprecated so don't use this!
 	 * Get or set tabs and/or buttons.

@@ -3,8 +3,10 @@
 
 <head>
     <title>Table</title>
+    <meta name="apple-mobile-web-app-title" content="Table">
+    <link rel="apple-touch-icon" href="/dist/assets/icon.svg">
     <meta name="viewport" content="width=device-width">
-    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-9.2.4.min.js"></script>
+    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-9.2.3.min.js"></script>
     <script src="/dist/assets/dox.min.js"></script>
     <script src="/dist/assets/mark.min.js"></script>
     <script src="/dist/assets/jquery-2.2.4.min.js"></script>
@@ -47,11 +49,13 @@
                         itself. Instead, we can assign it to a <code class="el">div</code>.</p>
                     <figure data-ts="DoxMarkup" data-ts.code="%3Cdiv%20data-ts%3D%22Table%22%3E%3C%2Fdiv%3E">
                         <input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
-                        <div class="tabpanels">
-                            <pre class="prism language-markup">
-<code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Table<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span></code>
-</pre>
-                        </div>
+                        <ul data-ts="TabPanels">
+                            <li data-ts="TabPanel" data-ts.label="Markup">
+                                <pre class="prism language-markup">
+					<code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Table<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span></code>
+				</pre>
+                            </li>
+                        </ul>
                     </figure>
                     <p>All features are controlled through an API as outlined on the following pages.</p>
                 </section>

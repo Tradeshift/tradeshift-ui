@@ -115,15 +115,7 @@ ts.ui.DocumentPanelPlugin = (function using(MapList, GuiArray) {
 		 */
 		managepanels: function() {
 			classnames.set(this.spirit.$instanceid, []);
-			this.spirit.action.add(
-				[
-					ts.ui.ACTION_PANEL_ATTACH,
-					ts.ui.ACTION_PANEL_SHOW,
-					ts.ui.ACTION_PANEL_HIDE,
-					ts.ui.ACTION_ROOT_CLASSNAMES
-				],
-				this
-			);
+			this.spirit.action.add(ts.ui.ACTION_ROOT_CLASSNAMES, this);
 		},
 
 		/**
@@ -131,8 +123,10 @@ ts.ui.DocumentPanelPlugin = (function using(MapList, GuiArray) {
 		 * @param {gui.Action} a
 		 */
 		onaction: function(a) {
-			var isroot = a.data === true;
 			switch (a.type) {
+				/*
+				 * TODO: Deprecate all these;
+				 *
 				case ts.ui.ACTION_PANEL_ATTACH:
 					if (isroot) {
 						this._enterpanel(a.target);
@@ -148,6 +142,7 @@ ts.ui.DocumentPanelPlugin = (function using(MapList, GuiArray) {
 						this._hidepanel(a.target);
 					}
 					break;
+				*/
 				case ts.ui.ACTION_ROOT_CLASSNAMES:
 					var data = a.data;
 					this._togglecss(data.enabled, data.classes, data.relatedPanel);

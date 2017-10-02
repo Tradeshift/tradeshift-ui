@@ -3,8 +3,10 @@
 
 <head>
     <title>Menu</title>
+    <meta name="apple-mobile-web-app-title" content="Menu">
+    <link rel="apple-touch-icon" href="/dist/assets/icon.svg">
     <meta name="viewport" content="width=device-width">
-    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-9.2.4.min.js"></script>
+    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-9.2.3.min.js"></script>
     <script src="/dist/assets/dox.min.js"></script>
     <script src="/dist/assets/mark.min.js"></script>
     <script src="/dist/assets/jquery-2.2.4.min.js"></script>
@@ -46,31 +48,34 @@
                                 </li>
                             </menu>
                         </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Atrue%2C%22runs%22%3Afalse%2C%22flip%22%3Atrue%7D">
-                        <div class="tabpanels">
-                            <div class="output">
-                                <menu data-ts="Menu">
-                                    <li>
-                                        <button>
+                        <ul data-ts="TabPanels">
+                            <li data-ts="TabPanel" data-ts.label="Render">
+                                <div class="output">
+                                    <menu data-ts="Menu">
+                                        <li>
+                                            <button>
 			<span>Item One</span>
 			<i class="ts-icon-rating"></i>
 		</button>
-                                    </li>
-                                    <li>
-                                        <button>
+                                        </li>
+                                        <li>
+                                            <button>
 			<span>Item Two</span>
 			<i class="ts-icon-rating"></i>
 		</button>
-                                    </li>
-                                    <li>
-                                        <button>
+                                        </li>
+                                        <li>
+                                            <button>
 			<span>Item Three</span>
 			<i class="ts-icon-rating"></i>
 		</button>
-                                    </li>
-                                </menu>
-                            </div>
-                            <pre class="prism language-markup">
-<code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>menu</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Menu<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+                                        </li>
+                                    </menu>
+                                </div>
+                            </li>
+                            <li data-ts="TabPanel" data-ts.label="Markup">
+                                <pre class="prism language-markup">
+					<code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>menu</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Menu<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span><span class="token punctuation">&gt;</span></span>
 		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span><span class="token punctuation">&gt;</span></span>
 			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">&gt;</span></span>Item One<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span>
@@ -90,8 +95,9 @@
 		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">&gt;</span></span>
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">&gt;</span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>menu</span><span class="token punctuation">&gt;</span></span></code>
-</pre>
-                        </div>
+				</pre>
+                            </li>
+                        </ul>
                     </figure>
                     <h3><span>Adding Icons</span></h3>
                     <p>The markup follows the convention for <a data-ts="Button" href="/dist/components/buttons/">buttons</a>. Use a <code class="el">span</code> and an <code class="el">i</code> element to seperate text and icon, simply reverse the two to
@@ -113,25 +119,28 @@
                                 </li>
                             </menu>
                         </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Atrue%2C%22runs%22%3Afalse%2C%22flip%22%3Atrue%7D">
-                        <div class="tabpanels">
-                            <div class="output">
-                                <menu data-ts="Menu">
-                                    <li>
-                                        <button>
+                        <ul data-ts="TabPanels">
+                            <li data-ts="TabPanel" data-ts.label="Render">
+                                <div class="output">
+                                    <menu data-ts="Menu">
+                                        <li>
+                                            <button>
 			<span>I have an icon on my right</span>
 			<i class="ts-icon-rating"></i>
 		</button>
-                                    </li>
-                                    <li>
-                                        <button>
+                                        </li>
+                                        <li>
+                                            <button>
 			<i class="ts-icon-rating"></i>
 			<span>I have an icon on my left</span>
 		</button>
-                                    </li>
-                                </menu>
-                            </div>
-                            <pre class="prism language-markup">
-<code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>menu</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Menu<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+                                        </li>
+                                    </menu>
+                                </div>
+                            </li>
+                            <li data-ts="TabPanel" data-ts.label="Markup">
+                                <pre class="prism language-markup">
+					<code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>menu</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Menu<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span><span class="token punctuation">&gt;</span></span>
 		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span><span class="token punctuation">&gt;</span></span>
 			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">&gt;</span></span>I have an icon on my right<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span>
@@ -145,8 +154,9 @@
 		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">&gt;</span></span>
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">&gt;</span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>menu</span><span class="token punctuation">&gt;</span></span></code>
-</pre>
-                        </div>
+				</pre>
+                            </li>
+                        </ul>
                     </figure>
                     <h3><span>Using the second line/sub text</span></h3>
                     <p>To add a second line to the Menu item, just add a <code class="el">sub</code> with some text in it.</p>
@@ -161,19 +171,22 @@
                                 </li>
                             </menu>
                         </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Atrue%2C%22runs%22%3Afalse%2C%22flip%22%3Atrue%7D">
-                        <div class="tabpanels">
-                            <div class="output">
-                                <menu data-ts="Menu">
-                                    <li>
-                                        <button>
+                        <ul data-ts="TabPanels">
+                            <li data-ts="TabPanel" data-ts.label="Render">
+                                <div class="output">
+                                    <menu data-ts="Menu">
+                                        <li>
+                                            <button>
 			<span>I&apos;m the first line</span>
 			<sub>I&apos;m the second line</sub>
 		</button>
-                                    </li>
-                                </menu>
-                            </div>
-                            <pre class="prism language-markup">
-<code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>menu</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Menu<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+                                        </li>
+                                    </menu>
+                                </div>
+                            </li>
+                            <li data-ts="TabPanel" data-ts.label="Markup">
+                                <pre class="prism language-markup">
+					<code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>menu</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Menu<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span><span class="token punctuation">&gt;</span></span>
 		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span><span class="token punctuation">&gt;</span></span>
 			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">&gt;</span></span>I&apos;m the first line<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span>
@@ -181,8 +194,9 @@
 		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">&gt;</span></span>
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">&gt;</span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>menu</span><span class="token punctuation">&gt;</span></span></code>
-</pre>
-                        </div>
+				</pre>
+                            </li>
+                        </ul>
                     </figure>
                     <h3><span>Select one</span></h3>
                     <p>To create a <em>single select</em> menu, mark one (and only one) <code class="el">li</code> with the <code class="attr-value">ts-checked</code> classname and use the <code class="attr-value">ts-icon-checked</code> classname for the
@@ -203,24 +217,27 @@
                                 </li>
                             </menu>
                         </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Atrue%2C%22runs%22%3Afalse%2C%22flip%22%3Atrue%7D">
-                        <div class="tabpanels">
-                            <div class="output">
-                                <menu data-ts="Menu">
-                                    <li class="ts-checked">
-                                        <button>
+                        <ul data-ts="TabPanels">
+                            <li data-ts="TabPanel" data-ts.label="Render">
+                                <div class="output">
+                                    <menu data-ts="Menu">
+                                        <li class="ts-checked">
+                                            <button>
 			<span>Selected</span>
 			<i class="ts-icon-checked"></i>
 		</button>
-                                    </li>
-                                    <li>
-                                        <button>
+                                        </li>
+                                        <li>
+                                            <button>
 			<span>Not selected</span>
 		</button>
-                                    </li>
-                                </menu>
-                            </div>
-                            <pre class="prism language-markup">
-<code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>menu</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Menu<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+                                        </li>
+                                    </menu>
+                                </div>
+                            </li>
+                            <li data-ts="TabPanel" data-ts.label="Markup">
+                                <pre class="prism language-markup">
+					<code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>menu</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Menu<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>ts-checked<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
 		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span><span class="token punctuation">&gt;</span></span>
 			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">&gt;</span></span>Selected<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span>
@@ -233,8 +250,9 @@
 		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">&gt;</span></span>
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">&gt;</span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>menu</span><span class="token punctuation">&gt;</span></span></code>
-</pre>
-                        </div>
+				</pre>
+                            </li>
+                        </ul>
                     </figure>
                     <h3><span>Select many</span></h3>
                     <p>To create a <em>multi select</em> menu, simply add more classnames and icons.</p>
@@ -255,25 +273,28 @@
                                 </li>
                             </menu>
                         </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Atrue%2C%22runs%22%3Afalse%2C%22flip%22%3Atrue%7D">
-                        <div class="tabpanels">
-                            <div class="output">
-                                <menu data-ts="Menu">
-                                    <li class="ts-checked">
-                                        <button>
+                        <ul data-ts="TabPanels">
+                            <li data-ts="TabPanel" data-ts.label="Render">
+                                <div class="output">
+                                    <menu data-ts="Menu">
+                                        <li class="ts-checked">
+                                            <button>
 			<span>Selected</span>
 			<i class="ts-icon-checked"></i>
 		</button>
-                                    </li>
-                                    <li class="ts-checked">
-                                        <button>
+                                        </li>
+                                        <li class="ts-checked">
+                                            <button>
 			<span>Also Selected</span>
 			<i class="ts-icon-checked"></i>
 		</button>
-                                    </li>
-                                </menu>
-                            </div>
-                            <pre class="prism language-markup">
-<code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>menu</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Menu<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+                                        </li>
+                                    </menu>
+                                </div>
+                            </li>
+                            <li data-ts="TabPanel" data-ts.label="Markup">
+                                <pre class="prism language-markup">
+					<code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>menu</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Menu<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>ts-checked<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
 		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span><span class="token punctuation">&gt;</span></span>
 			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">&gt;</span></span>Selected<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span>
@@ -287,8 +308,9 @@
 		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">&gt;</span></span>
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">&gt;</span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>menu</span><span class="token punctuation">&gt;</span></span></code>
-</pre>
-                        </div>
+				</pre>
+                            </li>
+                        </ul>
                     </figure>
                     <div data-ts="Note">
                         <i class="ts-icon-info"></i>
@@ -317,29 +339,32 @@
                                 </li>
                             </menu>
                         </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Atrue%2C%22runs%22%3Afalse%2C%22flip%22%3Atrue%7D">
-                        <div class="tabpanels">
-                            <div class="output">
-                                <menu data-ts="Menu">
-                                    <li>
-                                        <button disabled>
+                        <ul data-ts="TabPanels">
+                            <li data-ts="TabPanel" data-ts.label="Render">
+                                <div class="output">
+                                    <menu data-ts="Menu">
+                                        <li>
+                                            <button disabled>
 			<span>Not selected</span>
 		</button>
-                                    </li>
-                                    <li>
-                                        <button disabled>
+                                        </li>
+                                        <li>
+                                            <button disabled>
 			<span>Not selected</span>
 		</button>
-                                    </li>
-                                    <li class="ts-checked">
-                                        <button disabled>
+                                        </li>
+                                        <li class="ts-checked">
+                                            <button disabled>
 			<span>Selected</span>
 			<i class="ts-icon-checked"></i>
 		</button>
-                                    </li>
-                                </menu>
-                            </div>
-                            <pre class="prism language-markup">
-<code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>menu</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Menu<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+                                        </li>
+                                    </menu>
+                                </div>
+                            </li>
+                            <li data-ts="TabPanel" data-ts.label="Markup">
+                                <pre class="prism language-markup">
+					<code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>menu</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Menu<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span><span class="token punctuation">&gt;</span></span>
 		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">disabled</span><span class="token punctuation">&gt;</span></span>
 			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">&gt;</span></span>Not selected<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span>
@@ -357,8 +382,9 @@
 		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">&gt;</span></span>
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">&gt;</span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>menu</span><span class="token punctuation">&gt;</span></span></code>
-</pre>
-                        </div>
+				</pre>
+                            </li>
+                        </ul>
                     </figure>
                 </section>
             </article>

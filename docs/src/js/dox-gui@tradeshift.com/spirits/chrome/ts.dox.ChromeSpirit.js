@@ -1,4 +1,10 @@
 /**
+ * Let the locally loaded Tradeshift UI know that we are in the topframe.
+ */
+ts.ui.topframe = true;
+ts.ui.appframe = false;
+
+/**
  * Spirit of the Dox chrome.
  * @using {gui.CSSPlugin} CSSPlugin
  * @using {gui.Then} Then

@@ -1,11 +1,19 @@
 /**
  * Advanced footer model.
  * @extends {ts.ui.Model}
- * @using {Class<PagerModel>} PagerModel
+ * @using {Class<ts.ui.ToolBarModel>} ToolBarModel
+ * @using {Class<ts.ui.StatusBarModel>} StatusBarModel
+ * @using {Class<ts.ui.PagerModel>} PagerModel
  * @using {Class<ts.ui.ActionModel>} ActionModel
  * @using {gui.Combo#chained} chained
  */
-ts.ui.FooterBarModel = (function using(PagerModel, ActionModel, chained) {
+ts.ui.FooterBarModel = (function using(
+	ToolBarModel,
+	StatusBarModel,
+	PagerModel,
+	ActionModel,
+	chained
+) {
 	return ts.ui.Model.extend({
 		/**
 		 * Friendly name.
@@ -16,22 +24,22 @@ ts.ui.FooterBarModel = (function using(PagerModel, ActionModel, chained) {
 		/**
 		 * @type {ts.ui.ToolBarModel}
 		 */
-		bufferbar: ts.ui.ToolBarModel,
+		bufferbar: ToolBarModel,
 
 		/**
 		 * @type {ts.ui.ToolBarModel}
 		 */
-		actionbar: ts.ui.ToolBarModel,
+		actionbar: ToolBarModel,
+
+		/**
+		 * @type {ts.ui.StatusBarModel}
+		 */
+		centerbar: StatusBarModel,
 
 		/**
 		 * @type {ts.ui.ToolBarModel}
 		 */
-		centerbar: ts.ui.StatusBarModel,
-
-		/**
-		 * @type {ts.ui.ToolBarModel}
-		 */
-		backupbar: ts.ui.ToolBarModel,
+		backupbar: ToolBarModel,
 
 		// Getters and setters .....................................................
 
@@ -225,4 +233,10 @@ ts.ui.FooterBarModel = (function using(PagerModel, ActionModel, chained) {
 			return !!(model.buttons.getLength() || model.actions.getLength());
 		}
 	});
-})(ts.ui.PagerModel, ts.ui.ActionModel, gui.Combo.chained);
+})(
+	ts.ui.ToolBarModel,
+	ts.ui.StatusBarModel,
+	ts.ui.PagerModel,
+	ts.ui.ActionModel,
+	gui.Combo.chained
+);

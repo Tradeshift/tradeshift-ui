@@ -513,6 +513,24 @@ article {
 .ts-desktop-only .sticky {
 	display: block;
 }
+.ts-has-header {
+	&.ts-header-level-2 .sticky {
+		top: @ts-unit-plus + (@ts-unit * 2);
+	}
+	&.ts-header-level-3 .sticky {
+		top: @ts-unit-plus + (@ts-unit * 3);
+	}
+	&.ts-header-level-5 .sticky {
+		top: @ts-unit-plus + (@ts-unit * 5);
+	}
+	&.ts-header-level-6 .sticky {
+		top: @ts-unit-plus + (@ts-unit * 6);
+	}
+	&.ts-header-level-8 .sticky {
+		top: @ts-unit-plus + (@ts-unit * 8);
+	}
+}
+/*
 .ts-has-toolbar-first-ts-micro {
 	.sticky {
 		top: @ts-unit-double + @ts-unit-plus;
@@ -535,6 +553,7 @@ article {
 		top: @ts-unit-triple + @ts-unit-triple + @ts-unit-double + @ts-unit-plus;
 	}
 }
+*/
 
 // Section-specific styling ....................................................
 

@@ -115,15 +115,22 @@ ts.dox = gui.namespace(
 			// Public ...........................................................
 
 			/**
-		 * Toggled by the {ts.dox.ChromeSpirit} when the iframe is loaded.
-		 * @type {boolean}
-		 */
+			 * Toggled by the {ts.dox.ChromeSpirit} when the iframe is loaded.
+			 * @type {boolean}
+			 */
 			booting: true,
 
 			/**
-		 * Show those tabs. Omit the argument to build from `link` tags in HEAD
-		 * @param @optional {Array<Array>} tabs (can be omitted)
-		 */
+			 *
+			 */
+			title: function(title) {
+				ts.ui.Header.title(title);
+			},
+
+			/**
+			 * Show those tabs. Omit the argument to build from `link` tags in HEAD
+			 * @param @optional {Array<Array>} tabs (can be omitted)
+			 */
 			tabs: function(tabs) {
 				tabs = tabs || parselinks();
 				if (tabs.length) {
@@ -132,7 +139,7 @@ ts.dox = gui.namespace(
 					var fold = path.replace(file, '');
 					var indx = file === '';
 					if (hasrelevant(tabs)) {
-						ts.ui.TopBar.tabs(
+						ts.ui.Header.tabs(
 							tabs.filter(visibletab).map(function(tab) {
 								return createtab(tab, file, fold, indx, tab[2] === true);
 							})

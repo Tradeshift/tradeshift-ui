@@ -639,6 +639,7 @@ module.exports = function(grunt) {
 			.concat(build('forms/forms-gui@tradeshift.com/build.json'))
 			.concat(build('objects/objects-gui@tradeshift.com/build.json'))
 			.concat(build('bars/bars-gui@tradeshift.com/build.json'))
+			.concat(build('layout/layout-gui@tradeshift.com/build.json'))
 			.concat(build('tables/tables-gui@tradeshift.com/build.json'));
 	}
 

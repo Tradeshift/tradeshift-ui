@@ -3,8 +3,10 @@
 
 <head>
     <title>Table Styling</title>
+    <meta name="apple-mobile-web-app-title" content="Table Styling">
+    <link rel="apple-touch-icon" href="/dist/assets/icon.svg">
     <meta name="viewport" content="width=device-width">
-    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-9.2.4.min.js"></script>
+    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-9.2.3.min.js"></script>
     <script src="/dist/assets/dox.min.js"></script>
     <script src="/dist/assets/mark.min.js"></script>
     <script src="/dist/assets/jquery-2.2.4.min.js"></script>
@@ -85,9 +87,10 @@
                                         ts.ui.get('#mytable', table => { table.cols([ {label: 'Product'}, {label: 'Regular Price', type: 'ts-number oldprice'}, {label: 'Sale price', type: 'ts-number newprice'} ]); table.rows([ ['Apple', '1.30', '1.00'], ['Orange', '0.75', '0.50'], ['Banana',
                                         '2.00', '1.25'] ]); });
                                     </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
-                                    <div class="tabpanels">
+                                    <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                                    <div data-ts="Panel">
                                         <pre class="prism language-javascript">
-<code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#mytable&apos;</span><span class="token punctuation">,</span> table <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+				<code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#mytable&apos;</span><span class="token punctuation">,</span> table <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
 	table<span class="token punctuation">.</span><span class="token function">cols<span class="token punctuation">(</span></span><span class="token punctuation">[</span>
 		<span class="token punctuation">{</span>label<span class="token punctuation">:</span> <span class="token string">&apos;Product&apos;</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
 		<span class="token punctuation">{</span>label<span class="token punctuation">:</span> <span class="token string">&apos;Regular Price&apos;</span><span class="token punctuation">,</span> type<span class="token punctuation">:</span> <span class="token string">&apos;ts-number oldprice&apos;</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
@@ -99,7 +102,7 @@
 		<span class="token punctuation">[</span><span class="token string">&apos;Banana&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;2.00&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;1.25&apos;</span><span class="token punctuation">]</span>
 	<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
-</pre>
+			</pre>
                                     </div>
                                 </figure>
                             </li>
@@ -111,9 +114,10 @@
                     <p>This means that you can style the columns using CSS that looks like this.</p>
                     <figure data-ts="DoxMarkup" data-ts.code="%3Cstyle%20type%3D%22text%2Fless%22%3E%0A%09%23mytable%20%7B%0A%09%09th%20%7B%0A%09%09%09%26.oldprice%20%7B%0A%09%09%09%09background%3A%20red%3B%0A%09%09%09%7D%0A%09%09%09%26.newprice%20%7B%0A%09%09%09%09background%3A%20green%3B%0A%09%09%09%7D%0A%09%09%7D%0A%09%09td%20%7B%0A%09%09%09%26.oldprice%20%7B%0A%09%09%09%09background%3A%20pink%3B%0A%09%09%09%7D%0A%09%09%09%26.newprice%20%7B%0A%09%09%09%09background%3A%20lime%3B%0A%09%09%09%7D%0A%09%09%7D%0A%09%7D%0A%3C%2Fstyle%3E">
                         <input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
-                        <div class="tabpanels">
-                            <pre class="prism language-markup">
-<code><span class="token style"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>style</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>text/less<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+                        <ul data-ts="TabPanels">
+                            <li data-ts="TabPanel" data-ts.label="Markup">
+                                <pre class="prism language-markup">
+					<code><span class="token style"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>style</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>text/less<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
 	<span class="token selector">#mytable </span><span class="token punctuation">{</span>
 		<span class="token selector">th </span><span class="token punctuation">{</span>
 			<span class="token selector">&amp;.oldprice </span><span class="token punctuation">{</span>
@@ -133,8 +137,9 @@
 		<span class="token punctuation">}</span>
 	<span class="token punctuation">}</span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>style</span><span class="token punctuation">&gt;</span></span></span></code>
-</pre>
-                        </div>
+				</pre>
+                            </li>
+                        </ul>
                     </figure>
                     <p>A similar property works for the rows (if you switch to verbose syntax). You will of course need to defined these classnames somewhere in your CSS file.</p>
                     <div class="splitscreen-container">
@@ -144,16 +149,17 @@
                                     <script type="runnable">
                                         ts.ui.get('#example2', table => { table.rows([ {cells: ['A', 'D', 'G'], type: 'pale-red'}, {cells: ['B', 'E', 'H'], type: 'pale-green'}, {cells: ['C', 'F', 'I'], type: 'pale-blue'}, ]); });
                                     </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
-                                    <div class="tabpanels">
+                                    <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                                    <div data-ts="Panel">
                                         <pre class="prism language-javascript">
-<code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#example2&apos;</span><span class="token punctuation">,</span> table <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+				<code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#example2&apos;</span><span class="token punctuation">,</span> table <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
 	table<span class="token punctuation">.</span><span class="token function">rows<span class="token punctuation">(</span></span><span class="token punctuation">[</span>
 		<span class="token punctuation">{</span>cells<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">&apos;A&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;D&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;G&apos;</span><span class="token punctuation">]</span><span class="token punctuation">,</span> type<span class="token punctuation">:</span> <span class="token string">&apos;pale-red&apos;</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
 		<span class="token punctuation">{</span>cells<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">&apos;B&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;E&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;H&apos;</span><span class="token punctuation">]</span><span class="token punctuation">,</span> type<span class="token punctuation">:</span> <span class="token string">&apos;pale-green&apos;</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
 		<span class="token punctuation">{</span>cells<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">&apos;C&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;F&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;I&apos;</span><span class="token punctuation">]</span><span class="token punctuation">,</span> type<span class="token punctuation">:</span> <span class="token string">&apos;pale-blue&apos;</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
 	<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
-</pre>
+			</pre>
                                     </div>
                                 </figure>
                             </li>
@@ -170,9 +176,10 @@
                                     <script type="runnable">
                                         ts.ui.get('#example3', table => { table.rows([ { cells: [ {text: 'Normal'}, {text: 'Normal'}, {text: 'Special', type: 'very-special'} ] } ]); });
                                     </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
-                                    <div class="tabpanels">
+                                    <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                                    <div data-ts="Panel">
                                         <pre class="prism language-javascript">
-<code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#example3&apos;</span><span class="token punctuation">,</span> table <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+				<code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#example3&apos;</span><span class="token punctuation">,</span> table <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
 	table<span class="token punctuation">.</span><span class="token function">rows<span class="token punctuation">(</span></span><span class="token punctuation">[</span>
 		<span class="token punctuation">{</span>
 			cells<span class="token punctuation">:</span> <span class="token punctuation">[</span>
@@ -183,7 +190,7 @@
 		<span class="token punctuation">}</span>
 	<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
-</pre>
+			</pre>
                                     </div>
                                 </figure>
                             </li>

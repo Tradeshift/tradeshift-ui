@@ -1,15 +1,21 @@
 /**
  * Spirit of the markup snippet.
+ * @extends {ts.ui.TabBoxSpirit}
  */
-ts.dox.MarkupSpirit = ts.dox.PrismSpirit.extend({
+ts.dox.MarkupSpirit = ts.ui.TabBoxSpirit.extend({
+	code: '', // TODO!
+
 	/**
 	 * Special setup for markup the tabs a rendering.
 	 */
 	onenter: function() {
 		this.super.onenter();
+		console.log(this);
+		/*
 		if (this.dom.q('.output')) {
 			this._initialize(this.dom.q('.tabpanels'), this.dom.qall('.tabpanels > *'));
 		}
+		*/
 	},
 
 	// Private ...................................................................

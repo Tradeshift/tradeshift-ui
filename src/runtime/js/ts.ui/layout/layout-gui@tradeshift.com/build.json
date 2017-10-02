@@ -1,0 +1,8 @@
+[
+	"spirits/box/ts.ui.BoxSpirit.js",
+	"spirits/tabbox/ts.ui.TabBoxSpirit.js",
+	"spirits/tabbox/ts.ui.TabBoxSpirit.js",
+	"spirits/tabbox/ts.ui.TabPanelsSpirit.js",
+	"spirits/tabbox/ts.ui.TabPanelSpirit.js",
+	"module.js"
+]

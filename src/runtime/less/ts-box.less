@@ -1,0 +1,42 @@
+.ts-box {
+	box-shadow: 0 0 6px rgba(0,0,0,0.15);
+	border: 1px solid @ts-lite-darker;
+	background-color: @ts-white;
+	position: relative;
+	margin-bottom: @ts-unit;
+	// min-height: 100%;
+	.ts-mixin-rounded();
+	&.ts-box-hasbar {
+		padding-top: @ts-unit-double;
+	}
+	> .ts-tabbar {
+		.ts-mixin-maximize();
+		bottom: auto;
+		margin: 0;
+	}
+	> .ts-panel {
+		overflow: auto;
+		padding: @ts-unit;
+	}
+	&:not(.ts-maximized) {
+		> .ts-tabbar {
+			.ts-mixin-rounded(@ts-radius, @ts-radius, 0, 0);
+		}
+	}
+	/*
+	&.ts-maximized {
+		.ts-mixin-maximize();
+		margin: 0;
+		&.ts-todoname {
+			.ts-mixin-maximize(@ts-unit, @ts-unit, @ts-unit, @ts-unit);
+		}
+		> .ts-tabpanels {
+			height: 100%;
+			> .ts-tabpanel {
+				height: 100%;
+				overflow: auto;
+			}
+		}
+	}
+	*/
+}

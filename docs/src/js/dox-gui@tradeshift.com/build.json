@@ -9,5 +9,6 @@
 	"spirits/content/ts.dox.JavaScriptSpirit.js",
 	"spirits/content/ts.dox.ApiTableSpirit.js",
 	"spirits/content/ts.dox.LinkSpirit.js",
+	"spirits/content/ts.dox.PrismPlugin.js",
 	"module.js"
 ]

@@ -898,21 +898,20 @@ gui.DOMPlugin.mixin(
 			return this; // or what?
 		},
 
-		// @todo implement prependChild()
-		// /**
-		// * Prepend spirit (element) to another spirit or element.
-		// * @param {object} thing
-		// * @returns {this} or what?
-		// */
-		// prependTo: function(thing) {
-		//	var elm = this.spirit.element;
-		//	if (gui.Type.isSpirit(thing)) {
-		//		thing.dom.prepend(elm);
-		//	} else if (gui.Type.isElement(thing)) {
-		//		thing.prependChild(elm);
-		//	}
-		//	return this; // or what?
-		// },
+		/**
+		 * Prepend spirit (element) to another spirit or element (as the first child).
+		 * @param {object} thing
+		 * @returns {this} or what?
+		 */
+		prependTo: function(thing) {
+			var elm = this.spirit.element;
+			if (gui.Type.isSpirit(thing)) {
+				thing.dom.prepend(elm);
+			} else if (gui.Type.isElement(thing)) {
+				thing.insertBefore(elm, thing.firstChild);
+			}
+			return this; // or what?
+		},
 
 		/**
 		 * Insert spirit (element) before another spirit or element

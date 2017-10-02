@@ -1,7 +1,7 @@
 /**
  * Spirit of the (main) footer, a container for up to three toolbars.
  * TODO: Implement `onpage` callback for parity with Table.
- * @extends {ts.ui.Spirit}
+ * @extends {ts.ui.GlobalBarSpirit}
  * @using {gui.Combo#chained} chained
  * @using {gui.Arguments#confirmed} confirmed
  * @using {gui.Array} GuiArray
@@ -25,27 +25,7 @@ ts.ui.FooterBarSpirit = (function using(
 		return elm.getBoundingClientRect();
 	}
 
-	return ts.ui.Spirit.extend({
-		/**
-		 * Get or set visibility.
-		 * @type {boolean}
-		 */
-		visible: {
-			getter: function() {
-				return this._visible;
-			},
-			setter: function(is) {
-				if (is !== this._visible) {
-					if ((this._visible = is)) {
-						this.dom.show();
-					} else {
-						this.dom.hide();
-					}
-					this._layout();
-				}
-			}
-		},
-
+	return ts.ui.GlobalBarSpirit.extend({
 		/**
 		 * Open for implementation: Callback for when a link is clicked in status message.
 		 * @type {Function}
@@ -66,8 +46,8 @@ ts.ui.FooterBarSpirit = (function using(
 		onenter: function() {
 			this.super.onenter();
 			if (this.guilayout.outsideMain()) {
-				this.css.add('ts-mainfooter ts-bg-lite');
 				this.guilayout.shiftGlobal(true, 'ts-has-footer');
+				this.css.add('ts-mainfooter'); // ts-bg-lite
 			}
 		},
 
@@ -90,25 +70,6 @@ ts.ui.FooterBarSpirit = (function using(
 				a.consume();
 			}
 		},
-
-		/**
-		 * Get or set the buttons.
-		 * [The buttons will be rendered in the `bufferbar`!]
-		 * @param {Array<object>|ts.ui.ButtonCollection|null} [json]
-		 * @returns {this|ts.ui.ButtonCollection}
-		 */
-		buttons: chained(function(json) {
-			var model = this.model();
-			if (arguments.length) {
-				if (json === null) {
-					model.buttons.clear();
-				} else {
-					model.buttons = json;
-				}
-			} else {
-				return model.buttons;
-			}
-		}),
 
 		/**
 		 * Get or set the actions.
@@ -207,15 +168,14 @@ ts.ui.FooterBarSpirit = (function using(
 				}, this);
 				this._layout();
 			}
-			this._refresh();
+			this._refresh([this._actionbar, this._centerbar, this._backupbar]);
 		},
 
 		/**
-		 * Handle life.
+		 * Perform various layout optimizations whenever the individual bars render.
 		 * @param {gui.Life} l
 		 */
 		onlife: function xxx(l) {
-			this.super.onlife(l);
 			if (l.type === gui.LIFE_RENDER) {
 				switch (l.target) {
 					case this._bufferbar:
@@ -228,8 +188,8 @@ ts.ui.FooterBarSpirit = (function using(
 						}
 						break;
 				}
-				this._layout();
 			}
+			this.super.onlife(l);
 		},
 
 		/**
@@ -288,17 +248,6 @@ ts.ui.FooterBarSpirit = (function using(
 		// Private .................................................................
 
 		/**
-		 * Visible? Please only update this via the `visible` property (no underscore).
-		 * @type {boolean}
-		 */
-		_visible: true,
-
-		/**
-		 *
-		 */
-		_hidden: false,
-
-		/**
 		 * Since the buttons will be moved around, it's easier if we collect them 
 		 * in an "off-screen" buffer so that they don't belong anywhere in the UI.
 		 * @type {ts.ui.ButtonCollection}
@@ -345,15 +294,6 @@ ts.ui.FooterBarSpirit = (function using(
 		 * @type {ts.ui.ToolBarSpirit}
 		 */
 		_backupbar: null,
-
-		/**
-		 * Lookup ToolBarSpirit by selector.
-		 * @param {string} selector
-		 * @returns {ts.ui.ToolBarSpirit}
-		 */
-		_getbar: function(selector) {
-			return this.dom.q(selector, ToolBarSpirit);
-		},
 
 		/**
 		 * Attempt to optimize the vertical height by stacking the bars when needed.
@@ -420,36 +360,11 @@ ts.ui.FooterBarSpirit = (function using(
 		 * If no bars are visible, we'll hide ourselves not to show an awkward dropshadow.
 		 */
 		_layout: function() {
-			if (this._hidden) {
-				this.action.dispatch(ts.ui.ACTION_FOOTER_LEVEL, 0);
-			} else {
-				var offset = this._offset([this._actionbar, this._centerbar, this._backupbar]);
-				this.action.dispatch(ts.ui.ACTION_FOOTER_LEVEL, offset);
-				this.visible = !!offset;
-			}
-		},
-
-		/**
-		 * Compute the total height of bars measured in units (currently at `22px`).
-		 * @param {Array<ts.ui.ToolBarSpirit>} bars
-		 * @returns {number};
-		 */
-		_offset: function(bars) {
-			return bars.reduce(function sum(offset, bar, index) {
-				return offset + (bar.visible ? (index ? 3 : 2) : 0);
-			}, 0);
-		},
-
-		/**
-		 * There's just no way that this can work with pure CSS, so here it is: 
-		 * Style the thing so that there is a 1px border separator between bars.
-		 */
-		_refresh: function() {
-			[this._centerbar, this._backupbar].reduce(function(was, bar) {
-				var is = bar.visible;
-				bar.css.shift(is && was, 'ts-toolbar-divider');
-				return was || is;
-			}, this._actionbar.visible);
+			this.super._layout(ts.ui.ACTION_FOOTER_LEVEL, [
+				[this._actionbar, 2],
+				[this._centerbar, 3],
+				[this._backupbar, 3]
+			]);
 		}
 	});
 })(

@@ -3,8 +3,10 @@
 
 <head>
     <title>DatePicker</title>
+    <meta name="apple-mobile-web-app-title" content="DatePicker">
+    <link rel="apple-touch-icon" href="/dist/assets/icon.svg">
     <meta name="viewport" content="width=device-width">
-    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-9.2.4.min.js"></script>
+    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-9.2.3.min.js"></script>
     <script src="/dist/assets/dox.min.js"></script>
     <script src="/dist/assets/mark.min.js"></script>
     <script src="/dist/assets/jquery-2.2.4.min.js"></script>
@@ -26,9 +28,10 @@
                         <script type="runnable">
                             var datePicker = ts.ui.DatePicker({ title: "Your Birthday", value: '1973-03-26', onselect: function(newval, oldval) { ts.ui.Notification.success(this.value); this.close(); }, onclosed: function() { this.dispose(); } }); datePicker.open();
                         </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
-                        <div class="tabpanels">
+                        <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                        <div data-ts="Panel">
                             <pre class="prism language-javascript">
-<code><span class="token keyword">var</span> datePicker <span class="token operator">=</span> ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token function">DatePicker<span class="token punctuation">(</span></span><span class="token punctuation">{</span>
+				<code><span class="token keyword">var</span> datePicker <span class="token operator">=</span> ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token function">DatePicker<span class="token punctuation">(</span></span><span class="token punctuation">{</span>
 	title<span class="token punctuation">:</span> <span class="token string">&quot;Your Birthday&quot;</span><span class="token punctuation">,</span>
 	value<span class="token punctuation">:</span> <span class="token string">&apos;1973-03-26&apos;</span><span class="token punctuation">,</span>
 	onselect<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span>newval<span class="token punctuation">,</span> oldval<span class="token punctuation">)</span> <span class="token punctuation">{</span>
@@ -40,7 +43,7 @@
 	<span class="token punctuation">}</span>
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 datePicker<span class="token punctuation">.</span><span class="token function">open<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
-</pre>
+			</pre>
                         </div>
                     </figure>
                     <p>You can specify a <code>min</code> and <code>max</code> value.</p>
@@ -48,9 +51,10 @@ datePicker<span class="token punctuation">.</span><span class="token function">o
                         <script type="runnable">
                             ts.ui.DatePicker({ title: "Your Birthday", value: '1984-05-23', min: '1984-01-01', max: '1985-12-24', onselect: function() { this.close(); }, onclosed: function() { this.dispose(); } }).open();
                         </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
-                        <div class="tabpanels">
+                        <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                        <div data-ts="Panel">
                             <pre class="prism language-javascript">
-<code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token function">DatePicker<span class="token punctuation">(</span></span><span class="token punctuation">{</span>
+				<code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token function">DatePicker<span class="token punctuation">(</span></span><span class="token punctuation">{</span>
 	title<span class="token punctuation">:</span> <span class="token string">&quot;Your Birthday&quot;</span><span class="token punctuation">,</span>
 	value<span class="token punctuation">:</span> <span class="token string">&apos;1984-05-23&apos;</span><span class="token punctuation">,</span>
 	min<span class="token punctuation">:</span> <span class="token string">&apos;1984-01-01&apos;</span><span class="token punctuation">,</span>
@@ -62,7 +66,7 @@ datePicker<span class="token punctuation">.</span><span class="token function">o
 		<span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">dispose<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 	<span class="token punctuation">}</span>
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">open<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
-</pre>
+			</pre>
                         </div>
                     </figure>
                     <p>The object argument configures a <code>ts.ui.DatePickerModel</code> as outlined below.</p>

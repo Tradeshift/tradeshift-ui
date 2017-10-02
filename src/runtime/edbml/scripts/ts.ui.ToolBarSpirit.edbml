@@ -10,9 +10,10 @@
 	var topbar =  ts.ui.TopBarModel.is(toolbar);
 	var statusbar = ts.ui.StatusBarModel.is(toolbar);
 	var hasrealtitle = !!toolbar.title;
-	
+
 	renderleft(
 		toolbar.title || (topbar ? toolbar.defaultTitle : ''),
+		toolbar.icon,
 		toolbar.status,
 		toolbar.search,
 		toolbar.tabs,
@@ -21,10 +22,14 @@
 		toolbar.$allactions()
 	);
 	rendercenter(id, toolbar.pager);
-	renderright(id, toolbar.$allbuttons());
+	if(toolbar.search) {
+		rendersearchbuttons(id, toolbar.search.buttons);
+	} else {
+		rendernormalbuttons(id, toolbar.$allbuttons());
+	}
 	renderspinner(topbar && mobilos);
 	
-	function renderleft(title, status, search, tabs, navigation, checkbox, actions) {
+	function renderleft(title, icon, status, search, tabs, navigation, checkbox, actions) {
 		var hasnavi = !!(topbar && navigation && navigation.getLength());
 		var hastabs = !!tabs.getLength();
 		var hasactions = !!actions.length;
@@ -39,7 +44,12 @@
 				if(!mobilos && hastabs && !hasnavi) {
 					renderTabs(spirit, tabs, id, mobilos);
 				} else {
-				 if(search) {
+					if(icon) {
+						<li id="${id}-search" class="ts-toolbar-item ts-toolbar-icon">
+							<img src="${icon}" width="44" height="44"/>
+						</li>
+					}
+					if(search) {
 						@class = klass('ts-toolbar-search', search);
 						<li id="${id}-search" @class>
 							out.html += search.render();
@@ -67,20 +77,26 @@
 			</menu>
 		}
 	}
+
+	function renderright(id, content) {
+		<menu id="${id}-buttons" class="ts-toolbar-menu ts-right">
+			content();
+		</menu>
+	}
 	
 	function showPager(pager) {
 		return !!(statusbar && pager && pager.pages && pager.visible);
 	}
 
-	function renderright(id, buttons) {
+	function rendernormalbuttons(id, buttons) {
 		if(buttons.length || toolbar.configbutton || toolbar.closebutton) {
-			<menu id="${id}-buttons" class="ts-toolbar-menu ts-right">
+			renderright(id, function content() {
 				if(buttons.length) {
 					if(!toolbar.compact) {
-						toolbar.$allbuttons().forEach(renderbutton);
+						buttons.forEach(renderbutton);
 					} else if (mobilos && buttons.length > 1 && !hasicons(buttons)) {
 						renderasidebutton(function onclick() {
-							spirit.putaside(toolbar.$allbuttons());
+							spirit.putaside(buttons);
 						});
 					} else {
 						renderbuttons(
@@ -90,8 +106,14 @@
 					}
 				}
 				[toolbar.configbutton, toolbar.closebutton].forEach(renderbutton);
-			</menu>
+			});
 		}
+	}
+
+	function rendersearchbuttons(id, searchbuttons) {
+		renderright(id, function content() {
+			searchbuttons.forEach(renderbutton);
+		});
 	}
 
 	// all buttons has icons (or is primary) so that we can keep them in mobile?

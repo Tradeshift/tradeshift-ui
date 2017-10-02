@@ -3,8 +3,10 @@
 
 <head>
     <title>Table Edit</title>
+    <meta name="apple-mobile-web-app-title" content="Table Edit">
+    <link rel="apple-touch-icon" href="/dist/assets/icon.svg">
     <meta name="viewport" content="width=device-width">
-    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-9.2.4.min.js"></script>
+    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-9.2.3.min.js"></script>
     <script src="/dist/assets/dox.min.js"></script>
     <script src="/dist/assets/mark.min.js"></script>
     <script src="/dist/assets/jquery-2.2.4.min.js"></script>
@@ -52,9 +54,10 @@
                                         ts.ui.get('#table1', table => { table.rows([ ['Single asterisks is used for *italic text*'], ['Double asterisks is used for **strong text**'], ['Single backtick is used for `monotype text`'], ['Double tilde can be used to ~~Strike text~~'] ]).editable(function
                                         onedit(rowindex, cellindex, value) { console.log('Send to backend: ' + value); table.cell(rowindex, cellindex, value); }); });
                                     </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
-                                    <div class="tabpanels">
+                                    <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                                    <div data-ts="Panel">
                                         <pre class="prism language-javascript">
-<code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#table1&apos;</span><span class="token punctuation">,</span> table <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+				<code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#table1&apos;</span><span class="token punctuation">,</span> table <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
 	table<span class="token punctuation">.</span><span class="token function">rows<span class="token punctuation">(</span></span><span class="token punctuation">[</span>
 		<span class="token punctuation">[</span><span class="token string">&apos;Single asterisks is used for *italic text*&apos;</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
 		<span class="token punctuation">[</span><span class="token string">&apos;Double asterisks is used for **strong text**&apos;</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
@@ -65,7 +68,7 @@
 		table<span class="token punctuation">.</span><span class="token function">cell<span class="token punctuation">(</span></span>rowindex<span class="token punctuation">,</span> cellindex<span class="token punctuation">,</span> value<span class="token punctuation">)</span><span class="token punctuation">;</span>
 	<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
-</pre>
+			</pre>
                                     </div>
                                 </figure>
                             </li>
@@ -82,9 +85,10 @@
                                     <script type="runnable">
                                         ts.ui.get('#table6', table => { table.cols([ {label: 'Edit'}, {label: 'Edit'}, {label: 'Don\'t edit!', editable: false} ]).rows([ ['V', 'V', 'X'] ]).editable(function onedit(ri, ci, value) { this.cell(ri, ci, value); }); });
                                     </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
-                                    <div class="tabpanels">
+                                    <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                                    <div data-ts="Panel">
                                         <pre class="prism language-javascript">
-<code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#table6&apos;</span><span class="token punctuation">,</span> table <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+				<code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#table6&apos;</span><span class="token punctuation">,</span> table <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
 	table<span class="token punctuation">.</span><span class="token function">cols<span class="token punctuation">(</span></span><span class="token punctuation">[</span>
 		<span class="token punctuation">{</span>label<span class="token punctuation">:</span> <span class="token string">&apos;Edit&apos;</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
 		<span class="token punctuation">{</span>label<span class="token punctuation">:</span> <span class="token string">&apos;Edit&apos;</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
@@ -95,7 +99,7 @@
 		<span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">cell<span class="token punctuation">(</span></span>ri<span class="token punctuation">,</span> ci<span class="token punctuation">,</span> value<span class="token punctuation">)</span><span class="token punctuation">;</span>
 	<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
-</pre>
+			</pre>
                                     </div>
                                 </figure>
                             </li>
@@ -112,9 +116,10 @@
                                     <script type="runnable">
                                         ts.ui.get('#table7', table => { table.rows([ { cells: ['X', 'X', 'X'], editable: false}, { cells: ['V', 'V', 'V']}, { cells: ['V', 'V', 'V']} ]).editable(function onedit(ri, ci, value) { this.cell(ri, ci, value); }); });
                                     </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
-                                    <div class="tabpanels">
+                                    <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                                    <div data-ts="Panel">
                                         <pre class="prism language-javascript">
-<code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#table7&apos;</span><span class="token punctuation">,</span> table <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+				<code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#table7&apos;</span><span class="token punctuation">,</span> table <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
 	table<span class="token punctuation">.</span><span class="token function">rows<span class="token punctuation">(</span></span><span class="token punctuation">[</span>
 		<span class="token punctuation">{</span> cells<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">&apos;X&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;X&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;X&apos;</span><span class="token punctuation">]</span><span class="token punctuation">,</span> editable<span class="token punctuation">:</span> <span class="token keyword">false</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
 		<span class="token punctuation">{</span> cells<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">&apos;V&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;V&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;V&apos;</span><span class="token punctuation">]</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
@@ -123,7 +128,7 @@
 		<span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">cell<span class="token punctuation">(</span></span>ri<span class="token punctuation">,</span> ci<span class="token punctuation">,</span> value<span class="token punctuation">)</span><span class="token punctuation">;</span>
 	<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
-</pre>
+			</pre>
                                     </div>
                                 </figure>
                             </li>
@@ -143,9 +148,10 @@
                                         var popup = ts.ui.Notification; ts.ui.get('#table8', table => { table.cols([ {label: 'Wrapped column', wrap: true}, {label: 'Unwrapped column'} ]).rows([ [ 'Hold `SHIFT` while pressing `ENTER` to add a second paragraph.', 'New paragraph ignored!' ] ]).editable(function
                                         onedit(ri, ci, value) { table.cell(ri, ci, value); }); });
                                     </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
-                                    <div class="tabpanels">
+                                    <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                                    <div data-ts="Panel">
                                         <pre class="prism language-javascript">
-<code><span class="token keyword">var</span> popup <span class="token operator">=</span> ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Notification<span class="token punctuation">;</span>
+				<code><span class="token keyword">var</span> popup <span class="token operator">=</span> ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Notification<span class="token punctuation">;</span>
 ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#table8&apos;</span><span class="token punctuation">,</span> table <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
 	table<span class="token punctuation">.</span><span class="token function">cols<span class="token punctuation">(</span></span><span class="token punctuation">[</span>
 		<span class="token punctuation">{</span>label<span class="token punctuation">:</span> <span class="token string">&apos;Wrapped column&apos;</span><span class="token punctuation">,</span> wrap<span class="token punctuation">:</span> <span class="token keyword">true</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
@@ -159,7 +165,7 @@ ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</s
 		table<span class="token punctuation">.</span><span class="token function">cell<span class="token punctuation">(</span></span>ri<span class="token punctuation">,</span> ci<span class="token punctuation">,</span> value<span class="token punctuation">)</span><span class="token punctuation">;</span>
 	<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
-</pre>
+			</pre>
                                     </div>
                                 </figure>
                             </li>
@@ -178,9 +184,10 @@ ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</s
                                         var popup = ts.ui.Notification; ts.ui.get('#table2', table => { table.rows([ [1, 1, 2, 3, 5], [8, 13, 21, 34, 55] ]).editable(function onedit(ri, ci, value) { value = Number(value); if(isNaN(value)) { table.invalid(ri, ci); popup.error('Please type a
                                         number.', { onaccept: function() { table.focus(ri, ci); } }); } else { console.log('Send to backend: ' + value); table.cell(ri, ci, value); } }); });
                                     </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
-                                    <div class="tabpanels">
+                                    <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                                    <div data-ts="Panel">
                                         <pre class="prism language-javascript">
-<code><span class="token keyword">var</span> popup <span class="token operator">=</span> ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Notification<span class="token punctuation">;</span>
+				<code><span class="token keyword">var</span> popup <span class="token operator">=</span> ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Notification<span class="token punctuation">;</span>
 ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#table2&apos;</span><span class="token punctuation">,</span> table <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
 	table<span class="token punctuation">.</span><span class="token function">rows<span class="token punctuation">(</span></span><span class="token punctuation">[</span>
 		<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
@@ -200,7 +207,7 @@ ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</s
 		<span class="token punctuation">}</span>
 	<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
-</pre>
+			</pre>
                                     </div>
                                 </figure>
                             </li>
@@ -220,9 +227,10 @@ ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</s
                                         '2015-10-21', text: format('2015-10-26') }], [{ value: '1955-11-12', text: format('1955-11-12') }] ]).editable(function onedit(ri, ci, value) { if(valid(value)) { console.log('Send to backend: ' + value); table.cell(ri,
                                         ci, { value: value, text: format(value), }); } else { var message = 'Please use the format *YYYY-MM-DD*'; table.invalid(ri, ci, message); } }); });
                                     </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
-                                    <div class="tabpanels">
+                                    <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                                    <div data-ts="Panel">
                                         <pre class="prism language-javascript">
-<code><span class="token keyword">function</span> <span class="token function">format<span class="token punctuation">(</span></span>value<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+				<code><span class="token keyword">function</span> <span class="token function">format<span class="token punctuation">(</span></span>value<span class="token punctuation">)</span> <span class="token punctuation">{</span>
 	<span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toDateString<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 <span class="token keyword">function</span> <span class="token function">valid<span class="token punctuation">(</span></span>value<span class="token punctuation">)</span> <span class="token punctuation">{</span>
@@ -246,7 +254,7 @@ ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</s
 		<span class="token punctuation">}</span>
 	<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
-</pre>
+			</pre>
                                     </div>
                                 </figure>
                             </li>
@@ -265,9 +273,10 @@ ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</s
                                     <script type="runnable">
                                         ts.ui.get('#table4', table => { table.rows([ [ { value: 1000, text: '$1,000.00'}, { value: 2000, text: '$2,000.00'}, { value: 3000, text: '$3,000.00'} ] ]).editable(); });
                                     </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
-                                    <div class="tabpanels">
+                                    <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                                    <div data-ts="Panel">
                                         <pre class="prism language-javascript">
-<code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#table4&apos;</span><span class="token punctuation">,</span> table <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+				<code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#table4&apos;</span><span class="token punctuation">,</span> table <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
 	table<span class="token punctuation">.</span><span class="token function">rows<span class="token punctuation">(</span></span><span class="token punctuation">[</span>
 		<span class="token punctuation">[</span>
 			<span class="token punctuation">{</span> value<span class="token punctuation">:</span> <span class="token number">1000</span><span class="token punctuation">,</span> text<span class="token punctuation">:</span> <span class="token string">&apos;$1,000.00&apos;</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
@@ -276,7 +285,7 @@ ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</s
 		<span class="token punctuation">]</span>
 	<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">editable<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
-</pre>
+			</pre>
                                     </div>
                                 </figure>
                             </li>
@@ -289,13 +298,14 @@ ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</s
                         showing the document title, for example. Remember to update verbosely:</p>
                     <figure data-ts="DoxScript" data-ts.code="table.cell(rowindex%2C%20cellindex%2C%20%7B%0A%09text%3A%20&apos;4%2C000.00&apos;%2C%0A%09value%3A%204000%0A%7D)%3B">
                         <input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
-                        <div class="tabpanels">
+                        <input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
+                        <div data-ts="Panel">
                             <pre class="prism language-javascript">
-<code>table<span class="token punctuation">.</span><span class="token function">cell<span class="token punctuation">(</span></span>rowindex<span class="token punctuation">,</span> cellindex<span class="token punctuation">,</span> <span class="token punctuation">{</span>
+				<code>table<span class="token punctuation">.</span><span class="token function">cell<span class="token punctuation">(</span></span>rowindex<span class="token punctuation">,</span> cellindex<span class="token punctuation">,</span> <span class="token punctuation">{</span>
 	text<span class="token punctuation">:</span> <span class="token string">&apos;4,000.00&apos;</span><span class="token punctuation">,</span>
 	value<span class="token punctuation">:</span> <span class="token number">4000</span>
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
-</pre>
+			</pre>
                         </div>
                     </figure>
                     <p>&#x2014; because otherwise the text becomes identical to the value. Also note that the <code>editable</code> callback will always serve the value as a string, so it may be nescessary to convert it to a number. Here&apos;s the more
@@ -308,9 +318,10 @@ ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</s
                                         function format(n) { return '$' + n.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",") } ts.ui.get('#table5', table => { table.rows([ [ { value: 1000, text: format(1000)}, { value: 2000, text: format(2000)}, { value: 3000, text: format(1000)} ] ]).editable(function(ri,
                                         ci, value) { value = Number(value); if(isNaN(value)) { table.invalid(ri, ci); } else { table.cell(ri, ci, {value: value, text: format(value)}); } }); });
                                     </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
-                                    <div class="tabpanels">
+                                    <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                                    <div data-ts="Panel">
                                         <pre class="prism language-javascript">
-<code><span class="token keyword">function</span> <span class="token function">format<span class="token punctuation">(</span></span>n<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+				<code><span class="token keyword">function</span> <span class="token function">format<span class="token punctuation">(</span></span>n<span class="token punctuation">)</span> <span class="token punctuation">{</span>
 	<span class="token keyword">return</span> <span class="token string">&apos;$&apos;</span> <span class="token operator">+</span> n<span class="token punctuation">.</span><span class="token function">toFixed<span class="token punctuation">(</span></span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">replace<span class="token punctuation">(</span></span><span class="token regex">/\B(?=(\d{3})+(?!\d))/g</span><span class="token punctuation">,</span> <span class="token string">&quot;,&quot;</span><span class="token punctuation">)</span>
 <span class="token punctuation">}</span>
 ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#table5&apos;</span><span class="token punctuation">,</span> table <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
@@ -329,7 +340,7 @@ ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</s
 		<span class="token punctuation">}</span>
 	<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
-</pre>
+			</pre>
                                     </div>
                                 </figure>
                             </li>

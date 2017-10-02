@@ -53,9 +53,19 @@ function maincontent($) {
  * Insert tags into HEAD section of HTML.
  */
 function headtags($, tags) {
+	const appname = $('title').text();
+	tags = headerstuff(tags, appname);
 	inserttags($, tags, $('title'));
 	lesstocss($);
 	return $;
+}
+
+function headerstuff(tags, appname) {
+	return [
+		`<meta name="apple-mobile-web-app-title" content="${appname}"/>`,
+		`<link rel="apple-touch-icon" href="/dist/assets/icon.svg"/>`,
+		...tags
+	];
 }
 
 /**
@@ -187,16 +197,16 @@ function getelement(klass, html, code, runs, edit, outs, flip) {
 		runs: runs,
 		flip: flip
 	};
-	return [
-		'<input type="hidden" value="' + encodeURIComponent(JSON.stringify(x)) + '"/>',
-		'<div class="tabpanels">',
-		[outs ? (flip ? output : '') : ''],
-		'<pre class="prism ' + klass + '">',
-		'<code>' + html + '</code>',
-		'</pre>',
-		[outs ? (flip ? '' : output) : ''],
-		'</div>'
-	].join('\n');
+	var result = `<input type="hidden" value="${encodeURIComponent(JSON.stringify(x))}"/>`;
+	switch(klass) {
+		case 'language-markup':
+			result += gettabbox(klass, html, output, runs, edit, outs, flip, x);
+			break;
+		case 'language-javascript':
+			result += getbox(klass, html, output, runs, edit, outs, flip, x);
+			break;
+	}
+	return result;
 }
 
 /**
@@ -204,7 +214,34 @@ function getelement(klass, html, code, runs, edit, outs, flip) {
  * @returns {string}
  */
 function getoutput(code) {
-	return '<div class="output">' + code + '</div>';
+	return `
+		<li data-ts="TabPanel" data-ts.label="Render">
+			<div class="output">${code}</div>
+		</li>`;
+}
+
+function gettabbox(klass, html, output, runs, edit, outs, flip, x) {
+	return [`
+		<ul data-ts="TabPanels">`,
+		[outs ? (flip ? output : '') : ''],
+		`<li data-ts="TabPanel" data-ts.label="Markup">
+				<pre class="prism ${klass}">
+					<code>${html}</code>
+				</pre>
+			</li>`,
+		[outs ? (flip ? '' : output) : ''],
+		'</ul>'
+	].join('\n');
+}
+
+function getbox(klass, html, output, runs, edit, outs, flip, x) {
+	return `
+		<input type="hidden" value="${encodeURIComponent(JSON.stringify(x))}"/>
+		<div data-ts="Panel">
+			<pre class="prism ${klass}">
+				<code>${html}</code>
+			</pre>
+		</div>`;
 }
 
 // Typography ..................................................................

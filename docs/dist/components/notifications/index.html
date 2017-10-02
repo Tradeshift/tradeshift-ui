@@ -3,8 +3,10 @@
 
 <head>
     <title>Notification</title>
+    <meta name="apple-mobile-web-app-title" content="Notification">
+    <link rel="apple-touch-icon" href="/dist/assets/icon.svg">
     <meta name="viewport" content="width=device-width">
-    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-9.2.4.min.js"></script>
+    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-9.2.3.min.js"></script>
     <script src="/dist/assets/dox.min.js"></script>
     <script src="/dist/assets/mark.min.js"></script>
     <script src="/dist/assets/jquery-2.2.4.min.js"></script>
@@ -61,10 +63,11 @@
                         <script type="runnable">
                             ts.ui.Notification.success('You did it!');
                         </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
-                        <div class="tabpanels">
+                        <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                        <div data-ts="Panel">
                             <pre class="prism language-javascript">
-<code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Notification<span class="token punctuation">.</span><span class="token function">success<span class="token punctuation">(</span></span><span class="token string">&apos;You did it!&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
-</pre>
+				<code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Notification<span class="token punctuation">.</span><span class="token function">success<span class="token punctuation">(</span></span><span class="token string">&apos;You did it!&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
+			</pre>
                         </div>
                     </figure>
                     <p>The <code>info</code>, <code>warning</code> and <code>error</code> notification must be accepted by the user.</p>
@@ -72,12 +75,13 @@
                         <script type="runnable">
                             ts.ui.Notification.info('You can do it.'); ts.ui.Notification.warning('You will fail.'); ts.ui.Notification.error('You are wrong.');
                         </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
-                        <div class="tabpanels">
+                        <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                        <div data-ts="Panel">
                             <pre class="prism language-javascript">
-<code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Notification<span class="token punctuation">.</span><span class="token function">info<span class="token punctuation">(</span></span><span class="token string">&apos;You can do it.&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+				<code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Notification<span class="token punctuation">.</span><span class="token function">info<span class="token punctuation">(</span></span><span class="token string">&apos;You can do it.&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Notification<span class="token punctuation">.</span><span class="token function">warning<span class="token punctuation">(</span></span><span class="token string">&apos;You will fail.&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Notification<span class="token punctuation">.</span><span class="token function">error<span class="token punctuation">(</span></span><span class="token string">&apos;You are wrong.&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
-</pre>
+			</pre>
                         </div>
                     </figure>
                     <p>An optional second argument specifies the button text.</p>
@@ -85,10 +89,11 @@ ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</s
                         <script type="runnable">
                             ts.ui.Notification.warning('Beware', 'Understood');
                         </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
-                        <div class="tabpanels">
+                        <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                        <div data-ts="Panel">
                             <pre class="prism language-javascript">
-<code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Notification<span class="token punctuation">.</span><span class="token function">warning<span class="token punctuation">(</span></span><span class="token string">&apos;Beware&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;Understood&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
-</pre>
+				<code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Notification<span class="token punctuation">.</span><span class="token function">warning<span class="token punctuation">(</span></span><span class="token string">&apos;Beware&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;Understood&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
+			</pre>
                         </div>
                     </figure>
                     <p>You can configure a callback for when the Notification gets accepted.</p>
@@ -96,34 +101,38 @@ ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</s
                         <script type="runnable">
                             ts.ui.Notification.info('You must accept it.', { onaccept: function() { ts.ui.Notification.success('We knew you would.'); } });
                         </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
-                        <div class="tabpanels">
+                        <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                        <div data-ts="Panel">
                             <pre class="prism language-javascript">
-<code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Notification<span class="token punctuation">.</span><span class="token function">info<span class="token punctuation">(</span></span><span class="token string">&apos;You must accept it.&apos;</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+				<code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Notification<span class="token punctuation">.</span><span class="token function">info<span class="token punctuation">(</span></span><span class="token string">&apos;You must accept it.&apos;</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
 	onaccept<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
 		ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Notification<span class="token punctuation">.</span><span class="token function">success<span class="token punctuation">(</span></span><span class="token string">&apos;We knew you would.&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 	<span class="token punctuation">}</span>
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
-</pre>
+			</pre>
                         </div>
                     </figure>
                     <p>Notifications support basic markdown for formatting and links.</p>
                     <figure data-ts="DoxMarkup" data-ts.code="Markdown%20for%20**bold%20text**%20and%20*italic%20text*%20and%20%60source%20code%60%0AMarkdown%20for%20a%20%5Bhyperlink%5D(http%3A%2F%2Fwww.example.com%2F)">
                         <input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
-                        <div class="tabpanels">
-                            <pre class="prism language-markup">
-<code>Markdown for **bold text** and *italic text* and `source code`
+                        <ul data-ts="TabPanels">
+                            <li data-ts="TabPanel" data-ts.label="Markup">
+                                <pre class="prism language-markup">
+					<code>Markdown for **bold text** and *italic text* and `source code`
 Markdown for a [hyperlink](http://www.example.com/)</code>
-</pre>
-                        </div>
+				</pre>
+                            </li>
+                        </ul>
                     </figure>
                     <p>When a link is clicked, the URL will be passed along to the <code>onlink</code> method. As you can see below, the URL can be just a key, it doesn&apos;t have to be real URL.</p>
                     <figure data-ts="DoxScript" class="runnable" data-ts.code="var%20text%20%3D%20&apos;Choose%20link%20%5Bone%5D(ONE)%20or%20%5Btwo%5D(TWO)%20or%20%5Bthree%5D(THREE).&apos;%3B%0Ats.ui.Notification.info(text%2C%20%7B%0A%09onlink%3A%20function(url)%20%7B%0A%09%09this.accept().then(function%20onfadeout()%20%7B%0A%09%09%09ts.ui.Notification.success(url)%3B%0A%09%09%7D)%3B%0A%09%7D%0A%7D)%3B">
                         <script type="runnable">
                             var text = 'Choose link [one](ONE) or [two](TWO) or [three](THREE).'; ts.ui.Notification.info(text, { onlink: function(url) { this.accept().then(function onfadeout() { ts.ui.Notification.success(url); }); } });
                         </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
-                        <div class="tabpanels">
+                        <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                        <div data-ts="Panel">
                             <pre class="prism language-javascript">
-<code><span class="token keyword">var</span> text <span class="token operator">=</span> <span class="token string">&apos;Choose link [one](ONE) or [two](TWO) or [three](THREE).&apos;</span><span class="token punctuation">;</span>
+				<code><span class="token keyword">var</span> text <span class="token operator">=</span> <span class="token string">&apos;Choose link [one](ONE) or [two](TWO) or [three](THREE).&apos;</span><span class="token punctuation">;</span>
 ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Notification<span class="token punctuation">.</span><span class="token function">info<span class="token punctuation">(</span></span>text<span class="token punctuation">,</span> <span class="token punctuation">{</span>
 	onlink<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span>url<span class="token punctuation">)</span> <span class="token punctuation">{</span>
 		<span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">accept<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then<span class="token punctuation">(</span></span><span class="token keyword">function</span> <span class="token function">onfadeout<span class="token punctuation">(</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
@@ -131,7 +140,7 @@ ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</s
 		<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 	<span class="token punctuation">}</span>
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
-</pre>
+			</pre>
                         </div>
                     </figure>
                     <p>If the link should indeed link to something, make sure to provide the full protocol <code>http(s)://</code></p>
@@ -139,12 +148,13 @@ ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</s
                         <script type="runnable">
                             ts.ui.Notification.info( 'Please visit [Tradeshift](http://www.tradeshift.com)' );
                         </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
-                        <div class="tabpanels">
+                        <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                        <div data-ts="Panel">
                             <pre class="prism language-javascript">
-<code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Notification<span class="token punctuation">.</span><span class="token function">info<span class="token punctuation">(</span></span>
+				<code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Notification<span class="token punctuation">.</span><span class="token function">info<span class="token punctuation">(</span></span>
 	<span class="token string">&apos;Please visit [Tradeshift](http://www.tradeshift.com)&apos;</span>
 <span class="token punctuation">)</span><span class="token punctuation">;</span></code>
-</pre>
+			</pre>
                         </div>
                     </figure>
                     <p>Note that all links will open in a new tab (or window, depending on the browser settings), so you should not use links in Notifications for internal navigation, at least not just yet.</p>

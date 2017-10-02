@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>TabBox</title>
+	</head>
+	<body>
+		<header data-ts="TopBar"></header>
+		<main data-ts="Main">
+			<article>
+				<h1>TabBox</h1>
+				<section>
+					<p>Box</p>
+					<div data-ts="Box" id="mybox">
+						<div data-ts="Panel">
+							<h1>Heil</h1>
+						</div>
+					</div>
+					<figure data-ts="DoxScript">
+						<script type="runnable">
+							ts.ui.get('#mytabbox', tabbox => {
+								tabbox.tabs([
+									{label: 'One'},
+									{label: 'Two'},
+									{label: 'Three', closeable: true},
+									{label: 'Four', closeable: true},
+									{label: 'Five', closeable: true},
+								]);
+							});
+						</script>
+					</figure>
+
+					<p>TabBox!</p>
+					<div data-ts="TabBox" id="mytabbox">
+						<ul data-ts="TabPanels">
+							<li data-ts="TabPanel" data-ts.label="Normal tabbox">
+								<h1>TabBox</h1>
+								<p>Hello.</p>
+								<div data-ts="Box" id="mybox">
+									<div data-ts="Panel">
+										<h1>Heil</h1>
+									</div>
+								</div>
+							</li>
+							<li data-ts="TabPanel" data-ts.label="Tabs in Aside">
+								<h1>TabBox</h1>
+								<p>
+									<button data-ts="Button" onclick="ts.ui.get('#myaside').open()">
+										<span>Open the Aside</span>
+									</button>
+								</p>
+							</li>
+						</ul>
+					</div>
+					<figure data-ts="DoxScript">
+						<script type="runnable">
+							ts.ui.get('#mytabbox', tabbox => {
+								tabbox.tabs([
+									{label: 'One'},
+									{label: 'Two'},
+									{label: 'Three', closeable: true},
+									{label: 'Four', closeable: true},
+									{label: 'Five', closeable: true},
+								]);
+							});
+						</script>
+					</figure>
+				</section>
+				<!--
+				.ts-tabbox {
+					margin: 22px !important;
+					min-height: 100%; // calc1
+				}
+				-->
+			</article>
+		</main>
+		<aside data-ts="Aside" id="myaside">
+				<div data-ts="Panel">
+					<div data-ts="TabBox">
+						<ul data-ts="TabPanels">
+							<li data-ts="TabPanel" data-ts.label="One">
+								<h1>TabPanel One</h1>
+							</li>
+							<li data-ts="TabPanel" data-ts.label="Two">
+								<h1>TabPanel Two</h1>
+							</li>
+						</ul>
+					</div>
+				</div>
+		</aside>
+	</body>
+</html>

@@ -9,8 +9,9 @@
 			}
 		}
 		.ts-selected .ts-button {
-			background-color: @bground;
-			color: @selected;
+			// background-color: @bground;
+			// color: @selected;
+			color: @ts-black; // HARDCODEDD FOR NOW
 		}
 	}
 }
@@ -52,10 +53,19 @@
 				padding-right: 0;
 			}
 		}
+		> li {
+			&.ts-toolbar-icon {
+				padding-left: @ts-unit-half;
+				padding-right: @ts-unit-half;
+				img {
+					display: block;
+				}
+			}
+		}
 	}
 	&.ts-right {
 		right: 0;
-		li {
+		.ts-tab {
 			text-align: right;
 			&:first-child {
 				padding-left: @ts-unit-half;
@@ -136,7 +146,7 @@
 	position: relative;
 	min-width: @ts-unit-double;
 	min-height: @ts-unit-double;
-	padding-left: @ts-unit-half;
+	padding-left: @ts-unit-quarter;
 	padding-right: @ts-unit-half;
 	&.ts-flex {
 		padding-right: @ts-unit-quarter * 0.5;
@@ -171,12 +181,24 @@
 	}
 	button.ts-button {
 		display: inline;
-		background-color: lime !important;
 	}
 	.ts-tab {
 		padding: 0;
 	}
+	.ts-tab-indicator {
+		height: 2px;
+		background-color: @ts-black;
+		position: absolute;
+		left: 0;
+		bottom: 0px;
+		width: 100px;
+		//z-index: 1000000000000;
+		&.ts-smooth {
+			.ts-mixin-transition-transform(@ts-transition-now * 0.5, @ts-timing-easeinoutexpo);
+		}
+	}
 	.ts-button {
+		.ts-mixin-transition-colors(@ts-transition-now);
 		.ts-mixin-menuitem();
 		padding: @ts-unit;
 		position: relative;
@@ -196,6 +218,7 @@
 			z-index: 1;
 			margin-top: 0 - 10px;
 		}
+		/*
 		&:after {
 			content: '';
 			border-bottom: 6px solid transparent;
@@ -204,6 +227,7 @@
 			left: 0;
 			bottom: 0;
 		}
+		*/
 		&:hover {
 			span {
 				text-decoration: none;
@@ -219,7 +243,7 @@
 			white-space: nowrap;
 		}
 	}
-	li {
+	.ts-tab {
 		display: inline-block;
 		&.ts-counter {
 			.ts-button {
@@ -276,7 +300,7 @@
 // Tabs buttons (add new, show more ) ..........................................
 
 .ts-toolbar-tabs {
-	li {
+	.ts-tab {
 		&.ts-tab-button {
 			overflow: hidden;
 			vertical-align: top;
@@ -309,7 +333,7 @@
 }
 .ts-macro {
 	.ts-toolbar-tabs {
-		li {
+		.ts-tab {
 			&.ts-tab-button {
 				.ts-button i {
 					top: @ts-unit-half;
@@ -365,68 +389,7 @@
 		.ts-toolbar-item.ts-action:first-child {
 			padding-left: @ts-unit;
 		}
-		/*
-		.ts-toolbar-title {
-			&:first-child {
-				padding-left: @ts-unit-plus;
-			}
-			&:not(:first-child) {
-				padding-left: 0 !important;
-			}
-			label {
-				font-size: @ts-fontsize;
-				top: 0;	
-			}
-		}
-		*/
 	}
-	/*
-	&.ts-small {
-		&.ts-level-4-5,
-		&.ts-level-6,
-		&.ts-level-7-5,
-		&.ts-level-9 {
-			.ts-toolbar-menu {
-				display: block;
-				width: 100%;
-			}
-			.ts-left,
-			.ts-right {
-				position: absolute;
-				text-align: center;
-				float: none;
-			}
-			.ts-right {
-				bottom: 0;
-			}
-		}
-		&.ts-level-4-5,
-		&.ts-level-7-5 {
-			.ts-left {
-				.ts-toolbar-item {
-					padding: 0;
-				}
-			}
-			&.ts-hascenter {
-				.ts-left {
-					top: @ts-unit-triple - @ts-unit-quarter;
-				}
-			}
-		}
-		&.ts-level-4-5 {
-			.ts-mixin-fixheight((@ts-unit-triple * 1.5) + @ts-unit-quarter);
-		}
-		&.ts-level-6 {
-			.ts-mixin-fixheight(@ts-unit-triple * 2);
-		}
-		&.ts-level-7-5 {
-			.ts-mixin-fixheight(@ts-unit-triple * 2.5);
-		}
-		&.ts-level-9 {
-			.ts-mixin-fixheight(@ts-unit-triple * 3);
-		}
-	}
-	*/
 }
 
 // Micro toolbar ...............................................................
@@ -435,7 +398,7 @@
 	.ts-mixin-fixheight(@ts-unit-double);
 	.ts-left {
 		&,
-		& > li {
+		& > .ts-tab {
 			.ts-mixin-fixheight(@ts-unit-double);
 			.ts-action {
 				height: @ts-unit-plus;
@@ -480,6 +443,7 @@
 		.ts-mixin-fixheight(@ts-unit-double);
 	}
 	.ts-toolbar-tabs {
+		padding-left: @ts-unit-half;
 		.ts-button {
 			padding: @ts-unit-half;
 			span {

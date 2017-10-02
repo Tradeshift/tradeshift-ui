@@ -3,8 +3,10 @@
 
 <head>
     <title>Aside JS</title>
+    <meta name="apple-mobile-web-app-title" content="Aside JS">
+    <link rel="apple-touch-icon" href="/dist/assets/icon.svg">
     <meta name="viewport" content="width=device-width">
-    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-9.2.4.min.js"></script>
+    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-9.2.3.min.js"></script>
     <script src="/dist/assets/dox.min.js"></script>
     <script src="/dist/assets/mark.min.js"></script>
     <script src="/dist/assets/jquery-2.2.4.min.js"></script>
@@ -27,15 +29,16 @@
                     <p>You can get a hold of the <code class="attr-value">Aside</code> component and control it with JavaScript.</p>
                     <figure data-ts="DoxScript" data-ts.code="ts.ui.get(&apos;%23myaside&apos;%2C%20function(aside)%20%7B%20%2F%2F%20you%20can%20pass%20an%20element%20instead%20of%20an%20ID%0A%09aside.open()%3B%0A%09aside.close()%3B%0A%09aside.toggle()%3B%0A%09aside.title(&apos;Updated%20title&apos;)%3B%0A%7D)%3B">
                         <input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
-                        <div class="tabpanels">
+                        <input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
+                        <div data-ts="Panel">
                             <pre class="prism language-javascript">
-<code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#myaside&apos;</span><span class="token punctuation">,</span> aside <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span> <span class="token comment" spellcheck="true">// you can pass an element instead of an ID
+				<code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#myaside&apos;</span><span class="token punctuation">,</span> aside <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span> <span class="token comment" spellcheck="true">// you can pass an element instead of an ID
 </span>	aside<span class="token punctuation">.</span><span class="token function">open<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 	aside<span class="token punctuation">.</span><span class="token function">close<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 	aside<span class="token punctuation">.</span><span class="token function">toggle<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 	aside<span class="token punctuation">.</span><span class="token function">title<span class="token punctuation">(</span></span><span class="token string">&apos;Updated title&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
-</pre>
+			</pre>
                         </div>
                     </figure>
                     <h3><span>Tracking with methods</span></h3>
@@ -46,12 +49,13 @@
                     </p>
                     <figure data-ts="DoxScript" data-ts.code="aside.onopen%20%3D%20function()%20%7B%0A%09console.log(&apos;Aside%20will%20open&apos;)%3B%0A%7D%3B">
                         <input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
-                        <div class="tabpanels">
+                        <input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
+                        <div data-ts="Panel">
                             <pre class="prism language-javascript">
-<code>aside<span class="token punctuation">.</span>onopen <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+				<code>aside<span class="token punctuation">.</span>onopen <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
 	console<span class="token punctuation">.</span><span class="token function">log<span class="token punctuation">(</span></span><span class="token string">&apos;Aside will open&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span></code>
-</pre>
+			</pre>
                         </div>
                     </figure>
                     <p>
@@ -61,16 +65,17 @@
                     <p>You can also monitor the asides with DOM event listeners.</p>
                     <figure data-ts="DoxScript" data-ts.code="function%20debug(e)%20%7B%0A%09console.log(e.type%2C%20e.target)%3B%0A%7D%0Adocument.addEventListener(&apos;ts-open&apos;%2C%20debug)%3B%0Adocument.addEventListener(&apos;ts-opened&apos;%2C%20debug)%3B%0Adocument.addEventListener(&apos;ts-close&apos;%2C%20debug)%3B%0Adocument.addEventListener(&apos;ts-closed&apos;%2C%20debug)%3B">
                         <input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
-                        <div class="tabpanels">
+                        <input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
+                        <div data-ts="Panel">
                             <pre class="prism language-javascript">
-<code><span class="token keyword">function</span> <span class="token function">debug<span class="token punctuation">(</span></span>e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+				<code><span class="token keyword">function</span> <span class="token function">debug<span class="token punctuation">(</span></span>e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
 	console<span class="token punctuation">.</span><span class="token function">log<span class="token punctuation">(</span></span>e<span class="token punctuation">.</span>type<span class="token punctuation">,</span> e<span class="token punctuation">.</span>target<span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 document<span class="token punctuation">.</span><span class="token function">addEventListener<span class="token punctuation">(</span></span><span class="token string">&apos;ts-open&apos;</span><span class="token punctuation">,</span> debug<span class="token punctuation">)</span><span class="token punctuation">;</span>
 document<span class="token punctuation">.</span><span class="token function">addEventListener<span class="token punctuation">(</span></span><span class="token string">&apos;ts-opened&apos;</span><span class="token punctuation">,</span> debug<span class="token punctuation">)</span><span class="token punctuation">;</span>
 document<span class="token punctuation">.</span><span class="token function">addEventListener<span class="token punctuation">(</span></span><span class="token string">&apos;ts-close&apos;</span><span class="token punctuation">,</span> debug<span class="token punctuation">)</span><span class="token punctuation">;</span>
 document<span class="token punctuation">.</span><span class="token function">addEventListener<span class="token punctuation">(</span></span><span class="token string">&apos;ts-closed&apos;</span><span class="token punctuation">,</span> debug<span class="token punctuation">)</span><span class="token punctuation">;</span></code>
-</pre>
+			</pre>
                         </div>
                     </figure>
                     <p>

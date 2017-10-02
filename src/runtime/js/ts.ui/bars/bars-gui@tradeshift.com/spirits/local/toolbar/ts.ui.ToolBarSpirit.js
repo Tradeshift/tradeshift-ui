@@ -91,7 +91,7 @@ ts.ui.ToolBarSpirit = (function using(
 				this.super.onenter();
 				this.action.add([edbml.ACTION_RENDER, 'ts-action-search']);
 				if (!this.css.name().includes('ts-bg')) {
-					this.lite();
+					this.white();
 				}
 			},
 
@@ -182,7 +182,7 @@ ts.ui.ToolBarSpirit = (function using(
 			},
 
 			/**
-			 * Show tabs as menu in aside (this gets invoked by the EDBML template).
+			 * Show tabs as Menu in Aside (this gets invoked by the EDBML template).
 			 * @see ts.ui.TopBarSpirit.edbml
 			 * @param {Array<ts.ui.TabModel>} tabs
 			 * @param {string} color
@@ -192,7 +192,7 @@ ts.ui.ToolBarSpirit = (function using(
 				var model = this._model;
 				var selecteditem = null;
 				var aside = ts.ui.Aside({
-					title: TopBar.localize('more'),
+					title: ts.ui.ToolBarSpirit.localize('more'),
 					onclosed: function() {
 						this.dispose();
 						if (selecteditem) {
@@ -225,7 +225,7 @@ ts.ui.ToolBarSpirit = (function using(
 			},
 
 			/**
-			 * Show buttons as menu in aside (this gets invoked by the EDBML template).
+			 * Show buttons as Menu in Aside (this gets invoked by the EDBML template).
 			 * TODO: Button groups now expands to normal buttons (they get ungrouped)!
 			 * @see ts.ui.ToolBarSpirit.edbml
 			 * @param {Array<ts.ui.ButtonModel>} buttons
@@ -249,7 +249,7 @@ ts.ui.ToolBarSpirit = (function using(
 					}
 				});
 				var aside = ts.ui.Aside({
-					title: TopBar.localize('options'),
+					title: ts.ui.ToolBarSpirit.localize('options'),
 					items: [
 						ts.ui.Buttons({
 							items: morphed.reverse()
@@ -751,6 +751,10 @@ ts.ui.ToolBarSpirit = (function using(
 			_calculate: function calculate(tabs) {
 				var moretab, gonetab, avail, width, dofit;
 				if (tabs && tabs.getLength()) {
+					this._moveindicator(
+						this.dom.q('.ts-tab-indicator', ts.ui.Spirit),
+						this.dom.q('.ts-tab.ts-selected', ts.ui.Spirit)
+					);
 					if ((moretab = this.dom.q('.ts-tab-more', ts.ui.Spirit))) {
 						moretab.css.display = '';
 						avail = this._getavailwidth(22);
@@ -768,6 +772,29 @@ ts.ui.ToolBarSpirit = (function using(
 								this._arraymove(tabs, gonetab.$instanceid, 1);
 							}
 						}
+					}
+				}
+			},
+
+			/**
+			 * @param {ts.ui.Spirit} source
+			 * @param {ts.ui.Spirit} target
+			 */
+			_moveindicator: function(source, target) {
+				var smooth = 'ts-smooth';
+				if (source) {
+					if (target) {
+						source.dom.show();
+						source.sprite.x = target.box.localX;
+						source.sprite.xscale = target.box.width / 100;
+						if (!source.css.contains(smooth)) {
+							this.tick.nextFrame(function starttransitions() {
+								source.css.add(smooth);
+							});
+						}
+					} else {
+						source.css.remove(smooth);
+						source.dom.hide();
 					}
 				}
 			},
@@ -883,3 +910,11 @@ ts.ui.ToolBarSpirit = (function using(
 	ts.ui.ButtonModel,
 	ts.ui.BACKGROUND_COLORS
 );
+
+/**
+ * Default-localize the ToolBarSpirit.
+ */
+ts.ui.ToolBarSpirit.localize({
+	options: 'Options',
+	more: 'More...'
+});

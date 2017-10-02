@@ -1,0 +1,73 @@
+.ts-tabbox {
+	> .ts-tabpanels {
+		border-top: 1px solid @ts-lite-darker;
+		> .ts-tabpanel {
+			overflow: visible;
+			padding: @ts-unit;
+		}
+	}
+	&:not(.ts-maximized) {
+		> .ts-tabbar {
+			.ts-mixin-rounded(@ts-radius, @ts-radius, 0, 0);
+			.ts-tab,
+			.ts-tab-label,
+			.ts-tab .ts-button {
+				&:first-of-type {
+					.ts-mixin-rounded(@ts-radius, 0, 0, 0);
+				}
+			}
+		}
+	}
+}
+/*
+.ts-box {
+	box-shadow: 0 0 4px rgba(0,0,0,0.5);
+	background-color: @ts-white;
+	padding-top: @ts-unit-double;
+	position: relative;
+	margin-bottom: @ts-unit;
+	// min-height: 100%;
+	.ts-mixin-rounded();
+	> .ts-tabbar {
+		bottom: auto;
+		margin: 0;
+	}
+	> .ts-tabpanels {
+		border-top: 1px solid @ts-lite-darker;
+		> .ts-tabpanel {
+			overflow: visible;
+			padding: @ts-unit;
+		}
+	}
+	> .ts-tabbar {
+		.ts-mixin-maximize();
+		bottom: auto;
+	}
+	&:not(.ts-maximized) {
+		> .ts-tabbar {
+			.ts-mixin-rounded(@ts-radius, @ts-radius, 0, 0);
+			.ts-tab,
+			.ts-tab-label,
+			.ts-tab .ts-button {
+				&:first-of-type {
+					.ts-mixin-rounded(@ts-radius, 0, 0, 0);
+				}
+			}
+		}
+	}
+	&.ts-maximized {
+		.ts-mixin-maximize();
+		margin: 0;
+		&.ts-todoname {
+			.ts-mixin-maximize(@ts-unit, @ts-unit, @ts-unit, @ts-unit);
+		}
+		> .ts-tabpanels {
+			height: 100%;
+			> .ts-tabpanel {
+				height: 100%;
+				overflow: auto;
+			}
+		}
+	}
+}
+*/

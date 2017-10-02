@@ -21,10 +21,10 @@ ts.ui.DocumentSpirit = (function using(Client) {
 			this.asideplugin.manageasides();
 			this.panelplugin.managepanels();
 			this.input.connect(ts.ui.LayoutModel);
+			// TODO: Either deprecate these things or support them in The New Chrome
 			this.broadcast.addGlobal([APP_LOADING, APP_ABORTED, APP_COMPLETE]);
 			this.action
-				// .add(ts.ui.ACTION_STATUSBAR_LEVEL)
-				.add(ts.ui.ACTION_FOOTER_LEVEL)
+				.add([ts.ui.ACTION_HEADER_LEVEL, ts.ui.ACTION_FOOTER_LEVEL])
 				.addGlobal([
 					ts.ui.ACTION_GLOBAL_MODELS_INITIALIZE,
 					ts.ui.ACTION_GLOBAL_LOCATION_CHANGEHASH,
@@ -32,11 +32,7 @@ ts.ui.DocumentSpirit = (function using(Client) {
 					ts.ui.ACTION_GLOBAL_COMPLETED,
 					ts.ui.ACTION_GLOBAL_TERMINATE
 				])
-				.dispatchGlobal(
-					// TODO: this doesn't do nothing; but it should also hook into menu instead...
-					ts.ui.ACTION_GLOBAL_DOCUMENT_TITLE,
-					document.title
-				);
+				.dispatchGlobal(ts.ui.ACTION_GLOBAL_DOCUMENT_TITLE, document.title);
 		},
 
 		/**
@@ -119,14 +115,10 @@ ts.ui.DocumentSpirit = (function using(Client) {
 				case ts.ui.ACTION_GLOBAL_TERMINATE:
 					this.broadcast.dispatch(ts.ui.BROADCAST_TERMINATE);
 					break;
-				/*
-				// statusbar changed height on window resize
-				case ts.ui.ACTION_STATUSBAR_LEVEL:
-					if (a.target.guilayout.outsideMain()) {
-						this.guilayout.gotoLevel(a.data);
-					}
+				// header initialized or changed height
+				case ts.ui.ACTION_HEADER_LEVEL:
+					this.guilayout.gotoLevel(a.data, 'ts-header-level');
 					break;
-				*/
 				// footer initialized or changed height
 				case ts.ui.ACTION_FOOTER_LEVEL:
 					this.guilayout.gotoLevel(a.data, 'ts-footer-level');

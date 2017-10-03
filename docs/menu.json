@@ -59,6 +59,11 @@
 				"path": "components/bars/topbar.html"
 			},
 			{
+				"label": "Boxes",
+				"icon": "docs-icon-grid",
+				"path": "components/boxes/"
+			},
+			{
 				"label": "Buttons",
 				"icon": "docs-icon-cursor-touch-1",
 				"path": "components/buttons/"
@@ -142,11 +147,6 @@
 				"label": "Spinner",
 				"icon": "docs-icon-interface-loading",
 				"path": "components/spinners/"
-			},
-			{
-				"label": "TabBox",
-				"icon": "docs-icon-grid",
-				"path": "components/tabbox/"
 			},
 			{
 				"label": "Table",

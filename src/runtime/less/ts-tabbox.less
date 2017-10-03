@@ -1,23 +1,5 @@
 .ts-tabbox {
-	> .ts-tabpanels {
-		border-top: 1px solid @ts-lite-darker;
-		> .ts-tabpanel {
-			overflow: visible;
-			padding: @ts-unit;
-		}
-	}
-	&:not(.ts-maximized) {
-		> .ts-tabbar {
-			.ts-mixin-rounded(@ts-radius, @ts-radius, 0, 0);
-			.ts-tab,
-			.ts-tab-label,
-			.ts-tab .ts-button {
-				&:first-of-type {
-					.ts-mixin-rounded(@ts-radius, 0, 0, 0);
-				}
-			}
-		}
-	}
+	
 }
 /*
 .ts-box {
@@ -32,9 +14,9 @@
 		bottom: auto;
 		margin: 0;
 	}
-	> .ts-tabpanels {
+	> .ts-panels {
 		border-top: 1px solid @ts-lite-darker;
-		> .ts-tabpanel {
+		> .ts-panel {
 			overflow: visible;
 			padding: @ts-unit;
 		}
@@ -61,9 +43,9 @@
 		&.ts-todoname {
 			.ts-mixin-maximize(@ts-unit, @ts-unit, @ts-unit, @ts-unit);
 		}
-		> .ts-tabpanels {
+		> .ts-panels {
 			height: 100%;
-			> .ts-tabpanel {
+			> .ts-panel {
 				height: 100%;
 				overflow: auto;
 			}

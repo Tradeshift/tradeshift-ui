@@ -8,15 +8,14 @@ gui.module('layout-gui@tradeshift.com', {
 	channel: [
 		['[data-ts=Box]', ts.ui.BoxSpirit],
 		['[data-ts=TabBox]', ts.ui.TabBoxSpirit],
-		['[data-ts=TabPanels]', ts.ui.TabPanelsSpirit],
-		['[data-ts=TabPanel]', ts.ui.TabPanelSpirit]
+		['[data-ts=Panels]', ts.ui.PanelsSpirit]
 	],
 
 	/**
 	 *
 	 */
 	oncontextinitialize: function() {
-		ts.ui.TabPanelsSpirit.plugin('panels', ts.ui.PanelsPlugin);
+		ts.ui.PanelsSpirit.plugin('panels', ts.ui.PanelsPlugin);
 	},
 
 	/**

@@ -198,7 +198,7 @@ function getelement(klass, html, code, runs, edit, outs, flip) {
 		flip: flip
 	};
 	var result = `<input type="hidden" value="${encodeURIComponent(JSON.stringify(x))}"/>`;
-	switch(klass) {
+	switch (klass) {
 		case 'language-markup':
 			result += gettabbox(klass, html, output, runs, edit, outs, flip, x);
 			break;
@@ -215,16 +215,17 @@ function getelement(klass, html, code, runs, edit, outs, flip) {
  */
 function getoutput(code) {
 	return `
-		<li data-ts="TabPanel" data-ts.label="Render">
+		<li data-ts="Panel" data-ts.label="Render">
 			<div class="output">${code}</div>
 		</li>`;
 }
 
 function gettabbox(klass, html, output, runs, edit, outs, flip, x) {
-	return [`
-		<ul data-ts="TabPanels">`,
+	return [
+		`
+		<ul data-ts="Panels">`,
 		[outs ? (flip ? output : '') : ''],
-		`<li data-ts="TabPanel" data-ts.label="Markup">
+		`<li data-ts="Panel" data-ts.label="Markup">
 				<pre class="prism ${klass}">
 					<code>${html}</code>
 				</pre>

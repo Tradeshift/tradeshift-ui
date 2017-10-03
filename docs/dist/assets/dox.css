@@ -104,15 +104,8 @@ ul.splitscreen li:last-child li {
 figure {
   background-color: #ffffff;
   position: relative;
-  /*
-	.ts-toolbar {
-		background-color: @ts-lite-lite;
-		.ts-mixin-rounded-t();
-		margin: 0;
-	}
-	*/
 }
-figure.ts-tabbox .ts-tabpanel {
+figure.ts-box .ts-panel {
   padding: 0 !important;
 }
 figure .output {

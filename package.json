@@ -109,5 +109,9 @@
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/Tradeshift/tradeshift-ui.git"
+	},
+	"dependencies": {
+		"g": "^2.0.1",
+		"yarn": "^1.1.0"
 	}
 }

@@ -138,6 +138,7 @@ ts.ui.PanelSpirit = (function using(
 		},
 
 		/**
+		 * @deprecated
 		 * Get the MainSpirit nested directly inside this panel, if it exists.
 		 * @returns {ts.ui.MainSpirit}
 		 */
@@ -146,6 +147,7 @@ ts.ui.PanelSpirit = (function using(
 		},
 
 		/**
+		 * @deprecated
 		 * Get the MainSpirit found above this panel, if it exists.
 		 * (using ancestor, not parent, because of MainContenSpirit).
 		 * @returns {ts.ui.MainSpirit}

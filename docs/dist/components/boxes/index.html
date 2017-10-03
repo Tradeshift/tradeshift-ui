@@ -2,8 +2,8 @@
 <html lang="en-us" class="ts-docs" spellcheck="false">
 
 <head>
-    <title>TabBox</title>
-    <meta name="apple-mobile-web-app-title" content="TabBox">
+    <title>Boxes</title>
+    <meta name="apple-mobile-web-app-title" content="Boxes">
     <link rel="apple-touch-icon" href="/dist/assets/icon.svg">
     <meta name="viewport" content="width=device-width">
     <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-9.2.3.min.js"></script>
@@ -18,38 +18,38 @@
     <main data-ts="Main">
         <div data-ts="MainContent">
             <article>
-                <h1><span>TabBox</span></h1>
+                <h1><span>Boxes</span></h1>
                 <section>
                     <p>Box</p>
                     <div data-ts="Box" id="mybox">
                         <div data-ts="Panel">
-                            <h1><span>Heil</span></h1>
+                            <p>This box is what designers call a card for some reason.</p>
                         </div>
                     </div>
-                    <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.get(&apos;%23mytabbox&apos;%2C%20function(tabbox)%20%7B%0A%09tabbox.tabs(%5B%0A%09%09%7Blabel%3A%20&apos;One&apos;%7D%2C%0A%09%09%7Blabel%3A%20&apos;Two&apos;%7D%2C%0A%09%09%7Blabel%3A%20&apos;Three&apos;%2C%20closeable%3A%20true%7D%2C%0A%09%09%7Blabel%3A%20&apos;Four&apos;%2C%20closeable%3A%20true%7D%2C%0A%09%09%7Blabel%3A%20&apos;Five&apos;%2C%20closeable%3A%20true%7D%2C%0A%09%5D)%3B%0A%7D)%3B">
+                    <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.get(&apos;%23mybox&apos;%2C%20function(box)%20%7B%0A%09box.buttons(%5B%0A%09%09%7Blabel%3A%20&apos;One&apos;%7D%2C%0A%09%09%7Blabel%3A%20&apos;Two&apos;%7D%2C%0A%09%09%7Blabel%3A%20&apos;Three&apos;%7D%2C%0A%09%09%7Blabel%3A%20&apos;Four&apos;%7D%2C%0A%09%09%7Blabel%3A%20&apos;Five&apos;%7D%0A%09%5D)%3B%0A%7D)%3B">
                         <script type="runnable">
-                            ts.ui.get('#mytabbox', tabbox => { tabbox.tabs([ {label: 'One'}, {label: 'Two'}, {label: 'Three', closeable: true}, {label: 'Four', closeable: true}, {label: 'Five', closeable: true}, ]); });
+                            ts.ui.get('#mybox', box => { box.buttons([ {label: 'One'}, {label: 'Two'}, {label: 'Three'}, {label: 'Four'}, {label: 'Five'} ]); });
                         </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                         <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                         <div data-ts="Panel">
                             <pre class="prism language-javascript">
-				<code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#mytabbox&apos;</span><span class="token punctuation">,</span> tabbox <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
-	tabbox<span class="token punctuation">.</span><span class="token function">tabs<span class="token punctuation">(</span></span><span class="token punctuation">[</span>
+				<code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#mybox&apos;</span><span class="token punctuation">,</span> box <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+	box<span class="token punctuation">.</span><span class="token function">buttons<span class="token punctuation">(</span></span><span class="token punctuation">[</span>
 		<span class="token punctuation">{</span>label<span class="token punctuation">:</span> <span class="token string">&apos;One&apos;</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
 		<span class="token punctuation">{</span>label<span class="token punctuation">:</span> <span class="token string">&apos;Two&apos;</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
-		<span class="token punctuation">{</span>label<span class="token punctuation">:</span> <span class="token string">&apos;Three&apos;</span><span class="token punctuation">,</span> closeable<span class="token punctuation">:</span> <span class="token keyword">true</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
-		<span class="token punctuation">{</span>label<span class="token punctuation">:</span> <span class="token string">&apos;Four&apos;</span><span class="token punctuation">,</span> closeable<span class="token punctuation">:</span> <span class="token keyword">true</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
-		<span class="token punctuation">{</span>label<span class="token punctuation">:</span> <span class="token string">&apos;Five&apos;</span><span class="token punctuation">,</span> closeable<span class="token punctuation">:</span> <span class="token keyword">true</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+		<span class="token punctuation">{</span>label<span class="token punctuation">:</span> <span class="token string">&apos;Three&apos;</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+		<span class="token punctuation">{</span>label<span class="token punctuation">:</span> <span class="token string">&apos;Four&apos;</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+		<span class="token punctuation">{</span>label<span class="token punctuation">:</span> <span class="token string">&apos;Five&apos;</span><span class="token punctuation">}</span>
 	<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
 			</pre>
                         </div>
                     </figure>
                     <p>TabBox!</p>
-                    <div data-ts="TabBox" id="mytabbox">
-                        <ul data-ts="TabPanels">
-                            <li data-ts="TabPanel" data-ts.label="Normal tabbox">
-                                <h1><span>TabBox</span></h1>
+                    <div data-ts="Box" id="mytabbox">
+                        <ul data-ts="Panels">
+                            <li data-ts="Panel" data-ts.label="Normal tabbox">
+                                <h1><span>Panel One</span></h1>
                                 <p>Hello.</p>
                                 <div data-ts="Box" id="mybox">
                                     <div data-ts="Panel">
@@ -57,8 +57,8 @@
                                     </div>
                                 </div>
                             </li>
-                            <li data-ts="TabPanel" data-ts.label="Tabs in Aside">
-                                <h1><span>TabBox</span></h1>
+                            <li data-ts="Panel" data-ts.label="Tabs in Aside">
+                                <h1><span>Panel Two</span></h1>
                                 <p>
                                     <button data-ts="Button" onclick="ts.ui.get(&apos;#myaside&apos;).open()">
 										<span>Open the Aside</span>

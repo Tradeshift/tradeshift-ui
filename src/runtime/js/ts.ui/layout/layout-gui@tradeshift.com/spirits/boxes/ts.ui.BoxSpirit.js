@@ -1,16 +1,27 @@
 /**
- * Spirit of the tabbox.
- * @extends {ts.ui.Spirit}
- * @using {Constructor<ts.ui.TabBarSpirit>} TabBarSpirit
- * @using {gui.Combo#chained} chained
+ * Spirit of the box.
  */
-ts.ui.TabBoxSpirit = (function using(TabBarSpirit, chained) {
-	return ts.ui.BoxSpirit.extend({
-
+ts.ui.BoxSpirit = (function using(TabBarSpirit, chained) {
+	return ts.ui.Spirit.extend({
 		onenter: function() {
 			this.super.onenter();
-			this._bar();
+			// this._bar();
 		},
+
+		/**
+		 * Get or set the buttons in the statusbar.
+		 * so will simply not allow that.
+		 * @param @optional {Array<Object>} json
+		 * @returns {ts.ui.ButtonsCollection|ts.ui.ModalSpirit}
+		 */
+		buttons: chained(function(json) {
+			var bar = this._bar();
+			if (arguments.length) {
+				bar.buttons(json);
+			} else {
+				return bar.buttons();
+			}
+		}),
 
 		/**
 		 * Get or set the tabs.
@@ -40,9 +51,21 @@ ts.ui.TabBoxSpirit = (function using(TabBarSpirit, chained) {
 
 		$selectTab: function() {
 			console.log('TODO: $selectTab');
-		}
+		},
 
 		// Private .................................................................
 
+		/**
+		 *
+		 */
+		_tabbar: null,
+
+		/**
+		 * @returns {ts.ui.TabBarSpirit}
+		 */
+		_bar: function() {
+			this.css.add('ts-box-hasbar');
+			return this._tabbar || (this._tabbar = this.dom.prepend(TabBarSpirit.summon()));
+		}
 	});
 })(ts.ui.TabBarSpirit, gui.Combo.chained);

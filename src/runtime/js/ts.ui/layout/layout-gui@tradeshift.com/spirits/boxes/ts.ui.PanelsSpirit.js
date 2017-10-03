@@ -1,9 +1,9 @@
 /**
- * Spirit of the tabbox.
+ * Spirit of the box.
  * @extends {ts.ui.Spirit}
- * @using {Class<ts.ui.TabBoxSpirit>} TabBoxSpirit
+ * @using {Class<ts.ui.BoxSpirit>} BoxSpirit
  */
-ts.ui.TabPanelsSpirit = (function(TabBoxSpirit) {
+ts.ui.PanelsSpirit = (function(BoxSpirit) {
 	return ts.ui.Spirit.extend({
 		// Privileged ..............................................................
 
@@ -13,8 +13,8 @@ ts.ui.TabPanelsSpirit = (function(TabBoxSpirit) {
 		 * @param {number} index
 		 */
 		$insertTab: function(json, index) {
-			this._tabbox(function(tabbox) {
-				tabbox.$insertTab(json, index);
+			this._box(function(box) {
+				box.$insertTab(json, index);
 			});
 		},
 
@@ -25,14 +25,14 @@ ts.ui.TabPanelsSpirit = (function(TabBoxSpirit) {
 		// Private .................................................................
 
 		/**
-		 * Call function on parent tabbox.
+		 * Call function on parent box.
 		 * @param {Function} action
 		 */
-		_tabbox: function(action) {
-			var tabbox = this.dom.parent(TabBoxSpirit);
-			if (tabbox) {
-				action.call(this, tabbox);
+		_box: function(action) {
+			var box = this.dom.parent(BoxSpirit);
+			if (box) {
+				action.call(this, box);
 			}
 		}
 	});
-})(ts.ui.TabBoxSpirit);
+})(ts.ui.BoxSpirit);

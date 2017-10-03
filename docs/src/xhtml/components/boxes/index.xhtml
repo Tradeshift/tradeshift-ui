@@ -1,39 +1,39 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>TabBox</title>
+		<title>Boxes</title>
 	</head>
 	<body>
 		<header data-ts="TopBar"></header>
 		<main data-ts="Main">
 			<article>
-				<h1>TabBox</h1>
+				<h1>Boxes</h1>
 				<section>
 					<p>Box</p>
 					<div data-ts="Box" id="mybox">
 						<div data-ts="Panel">
-							<h1>Heil</h1>
+							<p>This box is what designers call a card for some reason.</p>
 						</div>
 					</div>
 					<figure data-ts="DoxScript">
 						<script type="runnable">
-							ts.ui.get('#mytabbox', tabbox => {
-								tabbox.tabs([
+							ts.ui.get('#mybox', box => {
+								box.buttons([
 									{label: 'One'},
 									{label: 'Two'},
-									{label: 'Three', closeable: true},
-									{label: 'Four', closeable: true},
-									{label: 'Five', closeable: true},
+									{label: 'Three'},
+									{label: 'Four'},
+									{label: 'Five'}
 								]);
 							});
 						</script>
 					</figure>
 
 					<p>TabBox!</p>
-					<div data-ts="TabBox" id="mytabbox">
-						<ul data-ts="TabPanels">
-							<li data-ts="TabPanel" data-ts.label="Normal tabbox">
-								<h1>TabBox</h1>
+					<div data-ts="Box" id="mytabbox">
+						<ul data-ts="Panels">
+							<li data-ts="Panel" data-ts.label="Normal tabbox">
+								<h1>Panel One</h1>
 								<p>Hello.</p>
 								<div data-ts="Box" id="mybox">
 									<div data-ts="Panel">
@@ -41,8 +41,8 @@
 									</div>
 								</div>
 							</li>
-							<li data-ts="TabPanel" data-ts.label="Tabs in Aside">
-								<h1>TabBox</h1>
+							<li data-ts="Panel" data-ts.label="Tabs in Aside">
+								<h1>Panel Two</h1>
 								<p>
 									<button data-ts="Button" onclick="ts.ui.get('#myaside').open()">
 										<span>Open the Aside</span>

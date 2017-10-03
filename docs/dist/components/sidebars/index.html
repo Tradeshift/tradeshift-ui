@@ -56,8 +56,8 @@
                 </section>
                 <figure data-ts="DoxMarkup" data-ts.code="%3Caside%20data-ts%3D%22SideBar%22%3E%0A%09%3Cdiv%20data-ts%3D%22Panel%22%3E%0A%09%09%3Cp%3ESideBar%20content.%3C%2Fp%3E%0A%09%3C%2Fdiv%3E%0A%3C%2Faside%3E">
                     <input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
-                    <ul data-ts="TabPanels">
-                        <li data-ts="TabPanel" data-ts.label="Markup">
+                    <ul data-ts="Panels">
+                        <li data-ts="Panel" data-ts.label="Markup">
                             <pre class="prism language-markup">
 					<code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>aside</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>SideBar<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Panel<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
@@ -71,8 +71,8 @@
                 <p>Also note tht the SideBar <em>must</em> be positioned before or after the <code class="attr-value">Main</code> element:</p>
                 <figure data-ts="DoxMarkup" data-ts.code="%3Cmain%20data-ts%3D%22Main%22%3E%20...%20%3C%2Fmain%3E%0A%3Caside%20data-ts%3D%22SideBar%22%3E%20...%20%3C%2Faside%3E">
                     <input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
-                    <ul data-ts="TabPanels">
-                        <li data-ts="TabPanel" data-ts.label="Markup">
+                    <ul data-ts="Panels">
+                        <li data-ts="Panel" data-ts.label="Markup">
                             <pre class="prism language-markup">
 					<code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>main</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Main<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span> ... <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>main</span><span class="token punctuation">&gt;</span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>aside</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>SideBar<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span> ... <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>aside</span><span class="token punctuation">&gt;</span></span></code>
@@ -104,8 +104,8 @@ sidebar<span class="token punctuation">.</span><span class="token function">togg
                 <p>You can put a <code class="attr-value">Footer</code> next to the <code class="attr-value">Panel</code>. The Footer will stick to the bottom of the SideBar.</p>
                 <figure data-ts="DoxMarkup" data-ts.code="%3Caside%20data-ts%3D%22SideBar%22%20id%3D%22mysidebar%22%20data-ts.title%3D%22My%20SideBar%22%3E%0A%09%3Cdiv%20data-ts%3D%22Panel%22%3E%20...%20%3C%2Fdiv%3E%0A%09%3Cdiv%20data-ts%3D%22Footer%22%20class%3D%22ts-show-mobile-only%22%3E%20...%20%3C%2Fdiv%3E%0A%3C%2Faside%3E">
                     <input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
-                    <ul data-ts="TabPanels">
-                        <li data-ts="TabPanel" data-ts.label="Markup">
+                    <ul data-ts="Panels">
+                        <li data-ts="Panel" data-ts.label="Markup">
                             <pre class="prism language-markup">
 					<code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>aside</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>SideBar<span class="token punctuation">&quot;</span></span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>mysidebar<span class="token punctuation">&quot;</span></span> <span class="token attr-name">data-ts</span>.<span class="token attr-name">title</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>My SideBar<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Panel<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span> ... <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
@@ -123,8 +123,8 @@ sidebar<span class="token punctuation">.</span><span class="token function">togg
                 <p>You can make <em>subsidebars</em> by nesting Aside components in the <code class="attr-value">ts-sidebar</code>. The Aside can be opened and closed like a <a data-ts="Button" href="/dist/components/asides/js.html">normal Aside</a>.</p>
                 <figure data-ts="DoxMarkup" data-ts.code="%3Caside%20data-ts%3D%22SideBar%22%3E%0A%09%3Cdiv%20data-ts%3D%22Panel%22%3E%0A%09%09%3Cp%3ESideBar%20content%3C%2Fp%3E%0A%09%3C%2Fdiv%3E%0A%09%3Caside%20data-ts%3D%22Aside%22%3E%0A%09%09%3Cdiv%20data-ts%3D%22Panel%22%3E%0A%09%09%09%3Cp%3EAside%20content.%3C%2Fp%3E%0A%09%09%3C%2Fdiv%3E%0A%09%3C%2Faside%3E%0A%3C%2Faside%3E">
                     <input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
-                    <ul data-ts="TabPanels">
-                        <li data-ts="TabPanel" data-ts.label="Markup">
+                    <ul data-ts="Panels">
+                        <li data-ts="Panel" data-ts.label="Markup">
                             <pre class="prism language-markup">
 					<code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>aside</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>SideBar<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Panel<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>

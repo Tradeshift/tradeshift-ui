@@ -10,9 +10,7 @@
 @ts-unit-double: (@ts-unit * 2);
 @ts-unit-triple: (@ts-unit * 3);
 @ts-width-aside: 320px;
-@ts-width-grails: (
-	@ts-width-aside - @ts-unit-double
-);
+@ts-width-grails: (@ts-width-aside - @ts-unit-double);
 
 // Fonts .......................................................................
 
@@ -30,8 +28,7 @@
 @ts-fontweight-semibold: 600;
 @ts-fontweight-bold: 700;
 
-@ts-fontstack: 'Open Sans', 'Helvetica Neue', 'Lucida Grande', 'Segoe UI', 'Ubuntu', 'Droid Sans',
-	sans-serif;
+@ts-fontstack: 'Open Sans', 'Helvetica Neue', 'Lucida Grande', 'Segoe UI', 'Ubuntu', 'Droid Sans', sans-serif;
 @ts-fontstack-mono: 'Ubuntu Mono', 'Monaco', 'Consolas', 'Bitstream Vera Sans Mono', monospace;
 @ts-fontstack-icon: 'Tradeshifticons', fantasy;
 
@@ -433,39 +430,8 @@
 
 // Loading bar .................................................................
 .ts-mixin-progress-bar-gradient(@color1: black, @color2: white) {
-	background-image: -webkit-gradient(
-		linear,
-		0 0,
-		100% 100%,
-		color-stop(0.25, @color1),
-		color-stop(0.25, @color2),
-		color-stop(0.5, @color2),
-		color-stop(0.5, @color1),
-		color-stop(0.75, @color1),
-		color-stop(0.75, @color2),
-		to(@color2)
-	);
-
-	background-image: -moz-linear-gradient(
-		-45deg,
-		@color1 25%,
-		@color2 25%,
-		@color2 50%,
-		@color1 50%,
-		@color1 75%,
-		@color2 75%,
-		@color2
-	);
-
 	background-image: linear-gradient(
-		-45deg,
-		@color1 25%,
-		@color2 25%,
-		@color2 50%,
-		@color1 50%,
-		@color1 75%,
-		@color2 75%,
-		@color2
+		-45deg, @color1 25%, @color2 25%, @color2 50%, @color1 50%, @color1 75%, @color2 75%, @color2
 	);
 }
 

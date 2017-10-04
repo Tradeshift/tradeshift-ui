@@ -38,8 +38,8 @@ module.exports = function(grunt) {
 		// tags to include in HEAD when building for local development
 		localtags: [
 			'<meta name="viewport" content="width=device-width"/>',
-			'<script src="//127.0.0.1:10111/dist/ts.min.js"></script>',
-			'<script src="/dist/assets/dox.min.js"></script>',
+			'<script src="//127.0.0.1:10111/dist/ts.js"></script>',
+			'<script src="/dist/assets/dox.js"></script>',
 			'<script src="/dist/assets/mark.min.js"></script>',
 			'<script src="/dist/assets/jquery-2.2.4.min.js"></script>',
 			'<link rel="stylesheet" href="/dist/assets/dox.css"/>'
@@ -141,6 +141,14 @@ module.exports = function(grunt) {
 			}
 		},
 
+		concat: {
+			local: {
+				files: {
+					'dist/assets/dox.js': ['temp/dox-api.js', 'temp/dox-gui.js', 'temp/dox-edbml.js']
+				}
+			}
+		},
+
 		less: {
 			global: {
 				files: {
@@ -234,6 +242,8 @@ module.exports = function(grunt) {
 			}
 		},
 
+					'WINDOWS: internet explorer 9',
+					'WINDOWS: internet explorer 10',
 		shooter: {
 			options: {
 				user: '<%=stackconf.username%>',
@@ -242,8 +252,6 @@ module.exports = function(grunt) {
 					'WIN8: firefox',
 					'WIN8: chrome',
 					'MAC: safari',
-					'WINDOWS: internet explorer 9',
-					'WINDOWS: internet explorer 10',
 					'WIN8: internet explorer 11',
 					'ANY: edge'
 					// 'ANY: android',
@@ -449,17 +457,22 @@ module.exports = function(grunt) {
 	 * @returns {Array<string>}
 	 */
 	function xxx(tags) {
-		return [
+		var out = [
 			'clean:dist',
 			'guibundles',
 			'edbml:outline',
 			'edbml:' + tags,
 			'copy:' + tags,
 			'copy:libs',
-			'copy:pageassets',
-			'uglify',
-			'less',
-			'lunr'
+			'copy:pageassets'
 		];
+		if (tags === 'target_public') {
+			out.push('uglify');
+		} else if (tags === 'target_local') {
+			out.push('concat:local');
+		}
+		out.push('less');
+		out.push('lunr');
+		return out;
 	}
 };

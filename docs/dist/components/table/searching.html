@@ -54,11 +54,10 @@
                                     <script type="runnable">
                                         $.getJSON('assets/rowdata.json', function(json) { ts.ui.get('#example10', table => { table.rows(json).max(4).cols([ { label: 'ID', type: 'ts-number', search: { tip: 'Search product ID', onidle: function(value) { table.search(0, value); } }}, { label:
                                         'Product Name', flex: 1, search: { tip: 'Search product names', onidle: function(value) { table.search(1, value); } }} ]); }); });
-                                    </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                                    </script>
                                     <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                                     <div data-ts="Panel">
-                                        <pre class="prism language-javascript">
-				<code>$<span class="token punctuation">.</span><span class="token function">getJSON<span class="token punctuation">(</span></span><span class="token string">&apos;assets/rowdata.json&apos;</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span>json<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                                        <pre class="prism language-javascript"><code>$<span class="token punctuation">.</span><span class="token function">getJSON<span class="token punctuation">(</span></span><span class="token string">&apos;assets/rowdata.json&apos;</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span>json<span class="token punctuation">)</span> <span class="token punctuation">{</span>
 	ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#example10&apos;</span><span class="token punctuation">,</span> table <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
 		table<span class="token punctuation">.</span><span class="token function">rows<span class="token punctuation">(</span></span>json<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">max<span class="token punctuation">(</span></span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">cols<span class="token punctuation">(</span></span><span class="token punctuation">[</span>
 			<span class="token punctuation">{</span> label<span class="token punctuation">:</span> <span class="token string">&apos;ID&apos;</span><span class="token punctuation">,</span> type<span class="token punctuation">:</span> <span class="token string">&apos;ts-number&apos;</span><span class="token punctuation">,</span> search<span class="token punctuation">:</span> <span class="token punctuation">{</span>
@@ -75,8 +74,7 @@
 			<span class="token punctuation">}</span><span class="token punctuation">}</span>
 		<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 	<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
-			</pre>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
                                     </div>
                                 </figure>
                             </li>
@@ -93,13 +91,11 @@
                     <figure data-ts="DoxScript" class="runnable" data-ts.code="var%20table%20%3D%20ts.ui.get(&apos;%23example10&apos;)%3B%0Atable.cols()%5B1%5D.search.focus()%3B">
                         <script type="runnable">
                             var table = ts.ui.get('#example10'); table.cols()[1].search.focus();
-                        </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                        </script>
                         <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                         <div data-ts="Panel">
-                            <pre class="prism language-javascript">
-				<code><span class="token keyword">var</span> table <span class="token operator">=</span> ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#example10&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-table<span class="token punctuation">.</span><span class="token function">cols<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">.</span>search<span class="token punctuation">.</span><span class="token function">focus<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
-			</pre>
+                            <pre class="prism language-javascript"><code><span class="token keyword">var</span> table <span class="token operator">=</span> ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#example10&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+table<span class="token punctuation">.</span><span class="token function">cols<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">.</span>search<span class="token punctuation">.</span><span class="token function">focus<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
                         </div>
                     </figure>
                 </section>

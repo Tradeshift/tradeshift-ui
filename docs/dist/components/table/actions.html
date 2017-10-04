@@ -55,11 +55,10 @@
                                         var table = ts.ui.get('#table1'); table.cols(['One', 'Two', 'Three']).rows([ ['A', 'B', 'C'], ['D', 'E', 'F'], ['G', 'H', 'I'], ]).selectable(update); function update() { var actions = table.actions(); var maximum = table.rows().length; var counter =
                                         table.selected().length; if(counter > 0) { table.status(counter + ' of ' + maximum + ' rows selected'); if(!actions.length) { actions.push( { label: 'Delete', icon: 'ts-icon-delete' }, { label: 'Report', icon: 'ts-icon-halt'
                                         }, { label: 'Revert', icon: 'ts-icon-back', onclick: () => { console.log('The revert action was clicked!'); }} ); } } else { actions.clear(); table.status(maximum + ' rows'); } } update();
-                                    </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                                    </script>
                                     <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                                     <div data-ts="Panel">
-                                        <pre class="prism language-javascript">
-				<code><span class="token keyword">var</span> table <span class="token operator">=</span> ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#table1&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                                        <pre class="prism language-javascript"><code><span class="token keyword">var</span> table <span class="token operator">=</span> ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#table1&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 table<span class="token punctuation">.</span><span class="token function">cols<span class="token punctuation">(</span></span><span class="token punctuation">[</span><span class="token string">&apos;One&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;Two&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;Three&apos;</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">rows<span class="token punctuation">(</span></span><span class="token punctuation">[</span>
 	<span class="token punctuation">[</span><span class="token string">&apos;A&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;B&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;C&apos;</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
 	<span class="token punctuation">[</span><span class="token string">&apos;D&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;E&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;F&apos;</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
@@ -85,8 +84,7 @@ table<span class="token punctuation">.</span><span class="token function">cols<s
 		table<span class="token punctuation">.</span><span class="token function">status<span class="token punctuation">(</span></span>maximum <span class="token operator">+</span> <span class="token string">&apos; rows&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 	<span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
-<span class="token function">update<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
-			</pre>
+<span class="token function">update<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
                                     </div>
                                 </figure>
                             </li>

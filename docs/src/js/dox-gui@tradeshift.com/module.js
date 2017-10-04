@@ -62,7 +62,6 @@
 		 * Setup section-specific classname for styling (although not used).
 		 */
 		oncontextinitialize: function() {
-			ts.dox.JavaScriptSpirit.plugin('prism', ts.dox.PrismPlugin);
 			if (gui.hosted) {
 				this._sectionclassname(location.href);
 			}

@@ -1,18 +1,9 @@
 /**
  * Spirit of the script snippet.
+ * @extends {ts.dox.PrismSpirit}
  */
 ts.dox.JavaScriptSpirit = (function() {
-	return ts.ui.BoxSpirit.extend({
-		code: '',
-
-		/**
-		 *
-		 */
-		onconfigure: function() {
-			this.super.onconfigure();
-			this.code = decodeURIComponent(this.code);
-		},
-
+	return ts.dox.PrismSpirit.extend({
 		/**
 		 * Handle event.
 		 */
@@ -42,7 +33,7 @@ ts.dox.JavaScriptSpirit = (function() {
 			if (config.runs) {
 				var classed = this.css.contains('attention');
 				var primary = this._attention(classed);
-				var buttons = this._toolbar.buttons();
+				var buttons = this._bar().buttons();
 				var that = this;
 				buttons.push({
 					type: primary ? 'ts-primary' : 'ts-tertiary',
@@ -62,7 +53,7 @@ ts.dox.JavaScriptSpirit = (function() {
 						this.hide();
 					}
 				});
-				this._toolbar.script.run();
+				this._bar().script.run();
 				this.event.add('click');
 			}
 		},
@@ -96,7 +87,7 @@ ts.dox.JavaScriptSpirit = (function() {
 		 */
 		_edit: function() {
 			var area = (this._editor = ts.ui.TextAreaSpirit.summon());
-			var pane = this.dom.q('.tabpanels');
+			var pane = this.dom.q('.ts-panel');
 			area.css.add('editcode');
 			area.value = this.code;
 			this._makeeditor(area);
@@ -135,6 +126,8 @@ ts.dox.JavaScriptSpirit = (function() {
 		 * TODO: Preserve indent level :/
 		 */
 		_makeeditor: function(area) {
+			console.log('TODO: makeditor');
+			/*
 			var value = area.value;
 			var buttons = this._toolbar.buttons();
 			$(area.element)
@@ -160,6 +153,7 @@ ts.dox.JavaScriptSpirit = (function() {
 						buttons.get('button-revert').show();
 					}
 				});
+			*/
 		}
 	});
 })();

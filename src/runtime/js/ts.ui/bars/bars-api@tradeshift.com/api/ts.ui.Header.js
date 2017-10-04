@@ -4,7 +4,7 @@
  */
 ts.ui.Header = (function using(chained) {
 	/**
-	 * Creates and appends the {ts.ui.FooterBarSpirit} when first invoked.
+	 * Creates and appends the {ts.ui.HeaderBarSpirit} when first invoked.
 	 * @returns {ts.ui.FooterBarSpirit}
 	 */
 	function bar() {
@@ -61,9 +61,7 @@ ts.ui.Header = (function using(chained) {
 		 * @returns {this|ts.ui.TabCollection}
 		 */
 		tabs: chained(function(tabs) {
-			console.log('Tabs', tabs);
 			if (arguments.length) {
-				console.log('bar', bar());
 				bar().tabs(tabs);
 			} else {
 				return bar().tabs();

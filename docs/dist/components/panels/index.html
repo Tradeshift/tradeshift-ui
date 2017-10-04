@@ -27,11 +27,9 @@
                         <p>We can position <code class="attr-pair"><span>Panel</span></code> elements as direct children of the <code class="el">body</code> to autogenerate tabs in the TopBar. The tabs at the top of this page are created with the markup
                             shown below.</p>
                         <figure data-ts="DoxMarkup" data-ts.code="%3Cbody%3E%0A%09%3Cheader%20data-ts%3D%22TopBar%22%3E%3C%2Fheader%3E%0A%09%3Cdiv%20data-ts%3D%22Panel%22%20data-ts.label%3D%22Panel%20One%22%3E%0A%09%09%3Cmain%20data-ts%3D%22Main%22%3E%0A%09%09%09%3Cdiv%20data-ts%3D%22MainContent%22%3E%E2%80%A6%3C%2Fdiv%3E%0A%09%09%3C%2Fmain%3E%0A%09%3C%2Fdiv%3E%0A%09%3Cdiv%20data-ts%3D%22Panel%22%20data-ts.label%3D%22Panel%20Two%22%3E%0A%09%09%3Cmain%20data-ts%3D%22Main%22%3E%0A%09%09%09%3Cdiv%20data-ts%3D%22MainContent%22%3E%E2%80%A6%3C%2Fdiv%3E%0A%09%09%3C%2Fmain%3E%0A%09%3C%2Fdiv%3E%0A%09%3Cdiv%20data-ts%3D%22Panel%22%20data-ts.label%3D%22Panel%20Three%22%3E%0A%09%09%3Cmain%20data-ts%3D%22Main%22%3E%0A%09%09%09%3Cdiv%20data-ts%3D%22MainContent%22%3E%E2%80%A6%3C%2Fdiv%3E%0A%09%09%3C%2Fmain%3E%0A%09%3C%2Fdiv%3E%0A%3C%2Fbody%3E">
-                            <input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
                             <ul data-ts="Panels">
-                                <li data-ts="Panel" data-ts.label="Markup">
-                                    <pre class="prism language-markup">
-					<code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">&gt;</span></span>
+                                <li data-ts="Panel">
+                                    <pre class="prism language-markup"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">&gt;</span></span>
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>header</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>TopBar<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>header</span><span class="token punctuation">&gt;</span></span>
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Panel<span class="token punctuation">&quot;</span></span> <span class="token attr-name">data-ts</span>.<span class="token attr-name">label</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Panel One<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
 		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>main</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Main<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
@@ -48,8 +46,7 @@
 			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>MainContent<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>&#x2026;<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
 		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>main</span><span class="token punctuation">&gt;</span></span>
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">&gt;</span></span></code>
-				</pre>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">&gt;</span></span></code></pre>
                                 </li>
                             </ul>
                         </figure>
@@ -65,13 +62,10 @@
                         <p>To avoid conflicts with your favorite routing library, Tradeshift UI will not attempt to update the history (via the address bar). You can however add history support if you manually intercept tab selection like this.</p>
                         <figure data-ts="DoxScript" data-ts.code="ts.ui.TopBar.tabs().onselect%20%3D%20function(newindex%2C%20oldindex)%20%7B%0A%09%2F%2F%20update%20history%20here%0A%7D%3B">
                             <input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
-                            <input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
                             <div data-ts="Panel">
-                                <pre class="prism language-javascript">
-				<code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>TopBar<span class="token punctuation">.</span><span class="token function">tabs<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">.</span>onselect <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span>newindex<span class="token punctuation">,</span> oldindex<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                                <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>TopBar<span class="token punctuation">.</span><span class="token function">tabs<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">.</span>onselect <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span>newindex<span class="token punctuation">,</span> oldindex<span class="token punctuation">)</span> <span class="token punctuation">{</span>
 	<span class="token comment" spellcheck="true">// update history here
-</span><span class="token punctuation">}</span><span class="token punctuation">;</span></code>
-			</pre>
+</span><span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre>
                             </div>
                         </figure>
                         <!--
@@ -114,11 +108,10 @@
                                             <div>
                                                 <!-- Panel Three -->
                                     </body>
-                                </script><input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
+                                </script>
                                 <ul data-ts="Panels">
-                                    <li data-ts="Panel" data-ts.label="Markup">
-                                        <pre class="prism language-markup">
-					<code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">&gt;</span></span>
+                                    <li data-ts="Panel">
+                                        <pre class="prism language-markup"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">&gt;</span></span>
 	<span class="token comment" spellcheck="true">&lt;!-- Panel One --&gt;</span>
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Panel<span class="token punctuation">&quot;</span></span> <span class="token attr-name">data-ts</span>.<span class="token attr-name">label</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Panel Two<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
 		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>main</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Main<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
@@ -129,8 +122,7 @@
 		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>main</span><span class="token punctuation">&gt;</span></span>
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">&gt;</span></span>
 	<span class="token comment" spellcheck="true">&lt;!-- Panel Three --&gt;</span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">&gt;</span></span></code>
-				</pre>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">&gt;</span></span></code></pre>
                                     </li>
                                 </ul>
                             </figure>
@@ -139,17 +131,15 @@
                             <figure data-ts="DoxScript" class="runnable" data-ts.code="var%20index%20%3D%201%3B%20%2F%2F%20the%20root%20panel%20index!!!%0Avar%20tabs%20%3D%20ts.ui.TabBar.get(index).tabs()%3B%0Atabs%5B1%5D.label%20%3D%20&apos;Select%20Me!&apos;%3B%0Atabs%5B1%5D.onselect%20%3D%20function()%20%7B%0A%09ts.ui.Notification.success(&apos;Thanks!&apos;)%3B%0A%7D%3B">
                                 <script type="runnable">
                                     var index = 1; // the root panel index!!! var tabs = ts.ui.TabBar.get(index).tabs(); tabs[1].label = 'Select Me!'; tabs[1].onselect = function() { ts.ui.Notification.success('Thanks!'); };
-                                </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                                </script>
                                 <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                                 <div data-ts="Panel">
-                                    <pre class="prism language-javascript">
-				<code><span class="token keyword">var</span> index <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// the root panel index!!!
+                                    <pre class="prism language-javascript"><code><span class="token keyword">var</span> index <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// the root panel index!!!
 </span><span class="token keyword">var</span> tabs <span class="token operator">=</span> ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>TabBar<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span>index<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">tabs<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 tabs<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">.</span>label <span class="token operator">=</span> <span class="token string">&apos;Select Me!&apos;</span><span class="token punctuation">;</span>
 tabs<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">.</span>onselect <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
 	ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Notification<span class="token punctuation">.</span><span class="token function">success<span class="token punctuation">(</span></span><span class="token string">&apos;Thanks!&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span class="token punctuation">;</span></code>
-			</pre>
+<span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre>
                                 </div>
                             </figure>
                         </section>
@@ -185,11 +175,9 @@ tabs<span class="token punctuation">[</span><span class="token number">1</span><
                         <section>
                             <p>In this <code class="attr-pair"><span>Panel</span></code>, we have a nested <a data-ts="Button" href="/dist/components/sidebars/">SideBar</a> just to show that it must be positioned either before or after the <code class="attr-pair"><span>Main</span></code>                                element.</p>
                             <figure data-ts="DoxMarkup" data-ts.code="%3Cbody%3E%0A%09%3C!--%20Panel%20One%20--%3E%0A%09%3C!--%20Panel%20Two%20--%3E%0A%09%3Cdiv%20data-ts%3D%22Panel%22%20data-ts.label%3D%22Panel%20Three%22%3E%0A%09%09%3Caside%20data-ts%3D%22SideBar%22%20data-ts.title%3D%22SideBar%22%3E%0A%09%09%09%3Cdiv%20data-ts%3D%22Panel%22%3E%3C%2Fdiv%3E%0A%09%09%3C%2Faside%3E%0A%09%09%3Cmain%20data-ts%3D%22Main%22%3E%E2%80%A6%3C%2Fmain%3E%0A%09%3C%2Fdiv%3E%0A%3C%2Fbody%3E">
-                                <input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
                                 <ul data-ts="Panels">
-                                    <li data-ts="Panel" data-ts.label="Markup">
-                                        <pre class="prism language-markup">
-					<code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">&gt;</span></span>
+                                    <li data-ts="Panel">
+                                        <pre class="prism language-markup"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">&gt;</span></span>
 	<span class="token comment" spellcheck="true">&lt;!-- Panel One --&gt;</span>
 	<span class="token comment" spellcheck="true">&lt;!-- Panel Two --&gt;</span>
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Panel<span class="token punctuation">&quot;</span></span> <span class="token attr-name">data-ts</span>.<span class="token attr-name">label</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Panel Three<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
@@ -198,8 +186,7 @@ tabs<span class="token punctuation">[</span><span class="token number">1</span><
 		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>aside</span><span class="token punctuation">&gt;</span></span>
 		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>main</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Main<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>&#x2026;<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>main</span><span class="token punctuation">&gt;</span></span>
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">&gt;</span></span></code>
-				</pre>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">&gt;</span></span></code></pre>
                                     </li>
                                 </ul>
                             </figure>

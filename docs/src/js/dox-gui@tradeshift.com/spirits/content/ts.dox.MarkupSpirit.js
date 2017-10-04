@@ -1,16 +1,15 @@
 /**
  * Spirit of the markup snippet.
- * @extends {ts.ui.TabBoxSpirit}
+ * @extends {ts.dox.PrismSpirit}
  */
 ts.dox.MarkupSpirit = (function() {
-	return ts.ui.BoxSpirit.extend({
-		code: '', // TODO!
-
+	return ts.dox.PrismSpirit.extend({
 		/**
-		 * Special setup for markup the tabs a rendering.
+		 * 
 		 */
-		onenter: function() {
-			this.super.onenter();
+		onready: function() {
+			this.super.onready();
+			this.equalsize(true);
 			/*
 			if (this.dom.q('.output')) {
 				this._initialize(this.dom.q('.tabpanels'), this.dom.qall('.tabpanels > *'));
@@ -24,6 +23,9 @@ ts.dox.MarkupSpirit = (function() {
 		 * @param {object} config
 		 */
 		_parseconfig: function(config) {
+			this.super._parseconfig(config);
+			console.log('TODO: MarkupSpirit._parseconfig');
+			/*
 			this.super._parseconfig(config);
 			var flip = config.flip;
 			var that = this;
@@ -50,13 +52,14 @@ ts.dox.MarkupSpirit = (function() {
 				this._toolbar.tabs(tabs);
 				this._toolbar.script.run();
 			}
-		},
+			*/
+		}
 
 		/**
 		 * Fix height to the heighest panel and hide all but the first panel.
 		 * @param {HTMLDivElement} parent
 		 * @param {Array<HTMLElement>} panels
-		 */
+		 *
 		_initialize: function(parent, panels) {
 			parent.style.minHeight =
 				panels.reduce(function(max, panel, index) {
@@ -70,11 +73,12 @@ ts.dox.MarkupSpirit = (function() {
 		 * Toggle panels in a hacked up way.
 		 * @param {number} oldindex
 		 * @param {number} newindex
-		 */
+		 *
 		_togglepanels: function(oldindex, newindex) {
 			var panels = this.dom.qall('.tabpanels > *');
 			panels[oldindex].style.display = 'none';
 			panels[newindex].style.display = 'block';
 		}
+		*/
 	});
 })();

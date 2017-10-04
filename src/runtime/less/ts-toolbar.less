@@ -42,6 +42,7 @@
 	}
 	&.ts-left {
 		left: 0;
+		// padding-left: @ts-unit-quarter;
 		&,
 		& > li {
 			.ts-mixin-fixheight(@ts-unit-triple);
@@ -63,8 +64,18 @@
 			}
 		}
 	}
+	&.ts-left {
+		
+	}
 	&.ts-right {
 		right: 0;
+		.ts-toolbar-item {
+			&:last-child {
+				padding-right: @ts-unit-half;
+			}
+		}
+		// padding-right: @ts-unit-quarter;
+		/*
 		.ts-tab {
 			text-align: right;
 			&:first-child {
@@ -74,6 +85,7 @@
 				padding-right: @ts-unit-half;
 			}
 		}
+		*/
 	}
 	&.ts-left ~ .ts-right {
 		li:first-child {
@@ -146,7 +158,7 @@
 	position: relative;
 	min-width: @ts-unit-double;
 	min-height: @ts-unit-double;
-	padding-left: @ts-unit-quarter;
+	padding-left: @ts-unit-half;
 	padding-right: @ts-unit-half;
 	&.ts-flex {
 		padding-right: @ts-unit-quarter * 0.5;

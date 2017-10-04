@@ -1,9 +1,8 @@
 /**
  * Spirit of the box.
  * @extends {ts.ui.Spirit}
- * @using {Class<ts.ui.BoxSpirit>} BoxSpirit
  */
-ts.ui.PanelsSpirit = (function(BoxSpirit) {
+ts.ui.PanelsSpirit = (function() {
 	return ts.ui.Spirit.extend({
 		// Privileged ..............................................................
 
@@ -25,14 +24,15 @@ ts.ui.PanelsSpirit = (function(BoxSpirit) {
 		// Private .................................................................
 
 		/**
-		 * Call function on parent box.
+		 * Call function on parent box if it exists.
 		 * @param {Function} action
+		 * @returns {*}
 		 */
 		_box: function(action) {
-			var box = this.dom.parent(BoxSpirit);
+			var box = this.dom.parent(ts.ui.BoxSpirit);
 			if (box) {
-				action.call(this, box);
+				return action.call(this, box);
 			}
 		}
 	});
-})(ts.ui.BoxSpirit);
+})();

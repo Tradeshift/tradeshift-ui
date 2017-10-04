@@ -1,9 +1,10 @@
 figure {
-	background-color: @ts-white;
+	background-color: @superliteblue;
 	position: relative;
 	&.ts-box {
-		.ts-panel {
-			padding: 0 !important;
+		> .ts-panel,
+		> .ts-panels > .ts-panel {
+			padding: 0;
 		}
 	}
 	.output {
@@ -66,14 +67,35 @@ figure {
 			}
 		}
 	}
-	.tabpanels {
+	.prism, 
+	.prism code {
+		border-radius: @ts-radius;
+	}
+	&.ts-hasbar {
+		.prism, 
+		.prism code {
+			border-radius: 0 0 @ts-radius @ts-radius;
+		}	
+	}
+	.ts-panel {
+		overflow: visible;
 		position: relative;
 		.ts-textarea.editcode {
 			.ts-mixin-maximize();
 			.docs-mixin-editor();
 			font-family: @ts-fontstack-mono;
-			width: 100%;
-			height: 100% !important;
+			// width: 100%;
+			// height: 100% !important;
+			// width: 100%;
+
+			/*
+			position: absolute;
+			top: 0;
+			right: 0;
+			bottom: 0;
+			left: 0;
+			*/
+
 			padding: @ts-unit 0 @ts-unit @ts-unit;
 			overflow: auto;
 			resize: none;
@@ -81,11 +103,11 @@ figure {
 				background-color: rgb(253, 254, 213);
 			}
 			&:not(:focus) {
-				background-image: -webkit-linear-gradient(@superliteblue 50%, @ts-white 50%);
-				background-image: -moz-linear-gradient(@superliteblue 50%, @ts-white 50%);
-				background-image: -ms-linear-gradient(@superliteblue 50%, @ts-white 50%);
-				background-image: -o-linear-gradient(@superliteblue 50%, @ts-white 50%);
-				background-image: linear-gradient(@superliteblue 50%, @ts-white 50%);
+				background-image: -webkit-linear-gradient(@superliteblue 50%, @superliteblue 50%);
+				background-image: -moz-linear-gradient(@superliteblue 50%, @superliteblue 50%);
+				background-image: -ms-linear-gradient(@superliteblue 50%, @superliteblue 50%);
+				background-image: -o-linear-gradient(@superliteblue 50%, @superliteblue 50%);
+				background-image: linear-gradient(@superliteblue 50%, @superliteblue 50%);
 				background-size: @ts-unit-double @ts-unit-double;
 				background-origin: content-box;
 			}
@@ -157,9 +179,9 @@ pre.prism {
 	code {
 		font-size: 14px;
 		display: block;
-		//padding: @ts-unit;
+		padding: @ts-unit;
 		// padding-bottom: 0; // but why?
-		padding: 0 @ts-unit;
+		// padding: 0 @ts-unit;
 	}
 }
 .token.comment,

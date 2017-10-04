@@ -41,11 +41,10 @@
                                     <script type="runnable">
                                         ts.ui.get('#mystaticautocomplete', autocomplete => { autocomplete.data([ { key: 0, value: 'zero' }, { key: 1, value: 'one' }, { key: 2, value: 'two' }, { key: 3, value: 'three' }, { key: 4, value: 'four' }, { key: 5, value: 'five' }, { key: 6, value:
                                         'six' }, { key: 7, value: 'seven' }, { key: 8, value: 'eight' }, { key: 9, value: 'nine' } ]); });
-                                    </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                                    </script>
                                     <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                                     <div data-ts="Panel">
-                                        <pre class="prism language-javascript">
-				<code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#mystaticautocomplete&apos;</span><span class="token punctuation">,</span> autocomplete <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+                                        <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#mystaticautocomplete&apos;</span><span class="token punctuation">,</span> autocomplete <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
 	autocomplete<span class="token punctuation">.</span><span class="token function">data<span class="token punctuation">(</span></span><span class="token punctuation">[</span>
 		<span class="token punctuation">{</span> key<span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">,</span> value<span class="token punctuation">:</span> <span class="token string">&apos;zero&apos;</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
 		<span class="token punctuation">{</span> key<span class="token punctuation">:</span> <span class="token number">1</span><span class="token punctuation">,</span> value<span class="token punctuation">:</span> <span class="token string">&apos;one&apos;</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
@@ -58,8 +57,7 @@
 		<span class="token punctuation">{</span> key<span class="token punctuation">:</span> <span class="token number">8</span><span class="token punctuation">,</span> value<span class="token punctuation">:</span> <span class="token string">&apos;eight&apos;</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
 		<span class="token punctuation">{</span> key<span class="token punctuation">:</span> <span class="token number">9</span><span class="token punctuation">,</span> value<span class="token punctuation">:</span> <span class="token string">&apos;nine&apos;</span> <span class="token punctuation">}</span>
 	<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
-			</pre>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
                                     </div>
                                 </figure>
                             </li>
@@ -87,16 +85,14 @@
                                 <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.get(&apos;%23myadvancedautocomplete&apos;%2C%20function(autocomplete)%20%7B%0A%09%24.getJSON(&apos;assets%2Fautocomplete.json&apos;%2C%20function(json)%20%7B%0A%09%09autocomplete.data(json)%3B%0A%09%7D)%3B%0A%7D)%3B">
                                     <script type="runnable">
                                         ts.ui.get('#myadvancedautocomplete', autocomplete => { $.getJSON('assets/autocomplete.json', function(json) { autocomplete.data(json); }); });
-                                    </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                                    </script>
                                     <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                                     <div data-ts="Panel">
-                                        <pre class="prism language-javascript">
-				<code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#myadvancedautocomplete&apos;</span><span class="token punctuation">,</span> autocomplete <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+                                        <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#myadvancedautocomplete&apos;</span><span class="token punctuation">,</span> autocomplete <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
 	$<span class="token punctuation">.</span><span class="token function">getJSON<span class="token punctuation">(</span></span><span class="token string">&apos;assets/autocomplete.json&apos;</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span>json<span class="token punctuation">)</span> <span class="token punctuation">{</span>
 		autocomplete<span class="token punctuation">.</span><span class="token function">data<span class="token punctuation">(</span></span>json<span class="token punctuation">)</span><span class="token punctuation">;</span>
 	<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
-			</pre>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
                                     </div>
                                 </figure>
                             </li>
@@ -125,11 +121,10 @@
                                     <script type="runnable">
                                         ts.ui.get('#myfancyautocomplete', autocomplete => { autocomplete.onfilter(function(filter) { var output = []; for (var i = parseInt(Math.random() * 10 + 1, 10); i >= 0; i--) { output.push({ key: i, value: Math.random().toString(36).substr(2, 5) }); }
                                         return output; }); });
-                                    </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                                    </script>
                                     <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                                     <div data-ts="Panel">
-                                        <pre class="prism language-javascript">
-				<code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#myfancyautocomplete&apos;</span><span class="token punctuation">,</span> autocomplete <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+                                        <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#myfancyautocomplete&apos;</span><span class="token punctuation">,</span> autocomplete <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
 	autocomplete<span class="token punctuation">.</span><span class="token function">onfilter<span class="token punctuation">(</span></span><span class="token keyword">function</span><span class="token punctuation">(</span>filter<span class="token punctuation">)</span> <span class="token punctuation">{</span>
 		<span class="token keyword">var</span> output <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
 		<span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">var</span> i <span class="token operator">=</span> <span class="token function">parseInt<span class="token punctuation">(</span></span>Math<span class="token punctuation">.</span><span class="token function">random<span class="token punctuation">(</span></span><span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">10</span> <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span> i <span class="token operator">&gt;=</span> <span class="token number">0</span><span class="token punctuation">;</span> i<span class="token operator">--</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
@@ -140,8 +135,7 @@
 		<span class="token punctuation">}</span>
 		<span class="token keyword">return</span> output<span class="token punctuation">;</span>
 	<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
-			</pre>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
                                     </div>
                                 </figure>
                             </li>
@@ -170,11 +164,10 @@
                                     <script type="runnable">
                                         ts.ui.get('#myspecialautocomplete', autocomplete => { autocomplete.data([ { key: 0, value: 'zero' }, { key: 1, value: 'one' } ]); autocomplete.onselect(function(item) { ts.ui.Notification.success('"' + item.value + '" selected'); return item.value; });
                                         });
-                                    </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                                    </script>
                                     <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                                     <div data-ts="Panel">
-                                        <pre class="prism language-javascript">
-				<code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#myspecialautocomplete&apos;</span><span class="token punctuation">,</span> autocomplete <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+                                        <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#myspecialautocomplete&apos;</span><span class="token punctuation">,</span> autocomplete <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
 	autocomplete<span class="token punctuation">.</span><span class="token function">data<span class="token punctuation">(</span></span><span class="token punctuation">[</span>
 		<span class="token punctuation">{</span> key<span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">,</span> value<span class="token punctuation">:</span> <span class="token string">&apos;zero&apos;</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
 		<span class="token punctuation">{</span> key<span class="token punctuation">:</span> <span class="token number">1</span><span class="token punctuation">,</span> value<span class="token punctuation">:</span> <span class="token string">&apos;one&apos;</span> <span class="token punctuation">}</span>
@@ -183,8 +176,7 @@
 		ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Notification<span class="token punctuation">.</span><span class="token function">success<span class="token punctuation">(</span></span><span class="token string">&apos;&quot;&apos;</span> <span class="token operator">+</span> item<span class="token punctuation">.</span>value <span class="token operator">+</span> <span class="token string">&apos;&quot; selected&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 		<span class="token keyword">return</span> item<span class="token punctuation">.</span>value<span class="token punctuation">;</span>
 	<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
-			</pre>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
                                     </div>
                                 </figure>
                             </li>

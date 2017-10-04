@@ -53,11 +53,10 @@
                                     <script type="runnable">
                                         var table = ts.ui.get('#table1'); var popup = ts.ui.Notification; table.rows([ {cells: ['A', 'D', 'G'], selected: true}, {cells: ['B', 'E', 'H']}, {cells: ['C', 'F', 'I']}, ]); table.selectable(function debug(selected, unselected) { popup.success([ JSON.stringify(selected),
                                         JSON.stringify(unselected) ].join(', ')); });
-                                    </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                                    </script>
                                     <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                                     <div data-ts="Panel">
-                                        <pre class="prism language-javascript">
-				<code><span class="token keyword">var</span> table <span class="token operator">=</span> ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#table1&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                                        <pre class="prism language-javascript"><code><span class="token keyword">var</span> table <span class="token operator">=</span> ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#table1&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token keyword">var</span> popup <span class="token operator">=</span> ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Notification<span class="token punctuation">;</span>
 table<span class="token punctuation">.</span><span class="token function">rows<span class="token punctuation">(</span></span><span class="token punctuation">[</span>
 	<span class="token punctuation">{</span>cells<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">&apos;A&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;D&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;G&apos;</span><span class="token punctuation">]</span><span class="token punctuation">,</span> selected<span class="token punctuation">:</span> <span class="token keyword">true</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
@@ -69,8 +68,7 @@ table<span class="token punctuation">.</span><span class="token function">select
 		JSON<span class="token punctuation">.</span><span class="token function">stringify<span class="token punctuation">(</span></span>selected<span class="token punctuation">)</span><span class="token punctuation">,</span>
 		JSON<span class="token punctuation">.</span><span class="token function">stringify<span class="token punctuation">(</span></span>unselected<span class="token punctuation">)</span>
 	<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">join<span class="token punctuation">(</span></span><span class="token string">&apos;, &apos;</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
-			</pre>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
                                     </div>
                                 </figure>
                             </li>
@@ -87,11 +85,10 @@ table<span class="token punctuation">.</span><span class="token function">select
                                     <script type="runnable">
                                         var table = ts.ui.get('#table5'); var popup = ts.ui.Notification; table.rows([ {cells: ['A', 'D', 'G']}, {cells: ['B', 'E', 'H'], selectable: false}, {cells: ['C', 'F', 'I']}, ]); table.selectable(function debug(selected, unselected) { popup.success([
                                         JSON.stringify(selected), JSON.stringify(unselected) ].join(', ')); });
-                                    </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                                    </script>
                                     <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                                     <div data-ts="Panel">
-                                        <pre class="prism language-javascript">
-				<code><span class="token keyword">var</span> table <span class="token operator">=</span> ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#table5&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                                        <pre class="prism language-javascript"><code><span class="token keyword">var</span> table <span class="token operator">=</span> ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#table5&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token keyword">var</span> popup <span class="token operator">=</span> ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Notification<span class="token punctuation">;</span>
 table<span class="token punctuation">.</span><span class="token function">rows<span class="token punctuation">(</span></span><span class="token punctuation">[</span>
 	<span class="token punctuation">{</span>cells<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">&apos;A&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;D&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;G&apos;</span><span class="token punctuation">]</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
@@ -103,8 +100,7 @@ table<span class="token punctuation">.</span><span class="token function">select
 		JSON<span class="token punctuation">.</span><span class="token function">stringify<span class="token punctuation">(</span></span>selected<span class="token punctuation">)</span><span class="token punctuation">,</span>
 		JSON<span class="token punctuation">.</span><span class="token function">stringify<span class="token punctuation">(</span></span>unselected<span class="token punctuation">)</span>
 	<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">join<span class="token punctuation">(</span></span><span class="token string">&apos;, &apos;</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
-			</pre>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
                                     </div>
                                 </figure>
                             </li>
@@ -120,18 +116,16 @@ table<span class="token punctuation">.</span><span class="token function">select
                                 <figure data-ts="DoxScript" class="runnable" data-ts.code="var%20table%20%3D%20ts.ui.get(&apos;%23table3&apos;)%3B%0Atable.selectable().rows(%5B%0A%09%5B&apos;A&apos;%2C%20&apos;E&apos;%2C%20&apos;I&apos;%5D%2C%0A%09%5B&apos;B&apos;%2C%20&apos;F&apos;%2C%20&apos;J&apos;%5D%2C%0A%09%5B&apos;C&apos;%2C%20&apos;G&apos;%2C%20&apos;K&apos;%5D%2C%0A%09%5B&apos;D&apos;%2C%20&apos;H&apos;%2C%20&apos;L&apos;%5D%2C%0A%5D).select(0%2C%201).toggle(%5B2%2C%203%5D)%3B">
                                     <script type="runnable">
                                         var table = ts.ui.get('#table3'); table.selectable().rows([ ['A', 'E', 'I'], ['B', 'F', 'J'], ['C', 'G', 'K'], ['D', 'H', 'L'], ]).select(0, 1).toggle([2, 3]);
-                                    </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                                    </script>
                                     <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                                     <div data-ts="Panel">
-                                        <pre class="prism language-javascript">
-				<code><span class="token keyword">var</span> table <span class="token operator">=</span> ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#table3&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                                        <pre class="prism language-javascript"><code><span class="token keyword">var</span> table <span class="token operator">=</span> ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#table3&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 table<span class="token punctuation">.</span><span class="token function">selectable<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">rows<span class="token punctuation">(</span></span><span class="token punctuation">[</span>
 	<span class="token punctuation">[</span><span class="token string">&apos;A&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;E&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;I&apos;</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
 	<span class="token punctuation">[</span><span class="token string">&apos;B&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;F&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;J&apos;</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
 	<span class="token punctuation">[</span><span class="token string">&apos;C&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;G&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;K&apos;</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
 	<span class="token punctuation">[</span><span class="token string">&apos;D&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;H&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;L&apos;</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
-<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">select<span class="token punctuation">(</span></span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toggle<span class="token punctuation">(</span></span><span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
-			</pre>
+<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">select<span class="token punctuation">(</span></span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toggle<span class="token punctuation">(</span></span><span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
                                     </div>
                                 </figure>
                             </li>
@@ -144,45 +138,39 @@ table<span class="token punctuation">.</span><span class="token function">select
                     <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.get(&apos;%23table3&apos;).toggle()%3B">
                         <script type="runnable">
                             ts.ui.get('#table3').toggle();
-                        </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                        </script>
                         <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                         <div data-ts="Panel">
-                            <pre class="prism language-javascript">
-				<code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#table3&apos;</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toggle<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
-			</pre>
+                            <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#table3&apos;</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toggle<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
                         </div>
                     </figure>
                     <p>You can retrieve the selected indexes (as an array) with the <code>selected</code> method.</p>
                     <figure data-ts="DoxScript" class="runnable" data-ts.code="var%20table%20%3D%20ts.ui.get(&apos;%23table3&apos;)%3B%0Avar%20array%20%3D%20table.selected()%3B%0Avar%20popup%20%3D%20ts.ui.Notification%3B%0Apopup.success(JSON.stringify(array))%3B">
                         <script type="runnable">
                             var table = ts.ui.get('#table3'); var array = table.selected(); var popup = ts.ui.Notification; popup.success(JSON.stringify(array));
-                        </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                        </script>
                         <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                         <div data-ts="Panel">
-                            <pre class="prism language-javascript">
-				<code><span class="token keyword">var</span> table <span class="token operator">=</span> ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#table3&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                            <pre class="prism language-javascript"><code><span class="token keyword">var</span> table <span class="token operator">=</span> ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#table3&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token keyword">var</span> array <span class="token operator">=</span> table<span class="token punctuation">.</span><span class="token function">selected<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token keyword">var</span> popup <span class="token operator">=</span> ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Notification<span class="token punctuation">;</span>
-popup<span class="token punctuation">.</span><span class="token function">success<span class="token punctuation">(</span></span>JSON<span class="token punctuation">.</span><span class="token function">stringify<span class="token punctuation">(</span></span>array<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
-			</pre>
+popup<span class="token punctuation">.</span><span class="token function">success<span class="token punctuation">(</span></span>JSON<span class="token punctuation">.</span><span class="token function">stringify<span class="token punctuation">(</span></span>array<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
                         </div>
                     </figure>
                     <p>You can also confirm selection by passing one or more indexes (or an array).</p>
                     <figure data-ts="DoxScript" class="runnable" data-ts.code="var%20table%20%3D%20ts.ui.get(&apos;%23table3&apos;)%3B%0Avar%20popup%20%3D%20ts.ui.Notification%3B%0Aif(table.selected(0%2C%201%2C%202%2C%203))%20%7B%0A%09popup.success(&apos;All%20selected!&apos;)%3B%0A%7D%20else%20%7B%0A%09popup.warning(&apos;You%20must%20select%20them%20all.&apos;)%3B%0A%7D">
                         <script type="runnable">
                             var table = ts.ui.get('#table3'); var popup = ts.ui.Notification; if(table.selected(0, 1, 2, 3)) { popup.success('All selected!'); } else { popup.warning('You must select them all.'); }
-                        </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                        </script>
                         <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                         <div data-ts="Panel">
-                            <pre class="prism language-javascript">
-				<code><span class="token keyword">var</span> table <span class="token operator">=</span> ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#table3&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                            <pre class="prism language-javascript"><code><span class="token keyword">var</span> table <span class="token operator">=</span> ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#table3&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token keyword">var</span> popup <span class="token operator">=</span> ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Notification<span class="token punctuation">;</span>
 <span class="token keyword">if</span><span class="token punctuation">(</span>table<span class="token punctuation">.</span><span class="token function">selected<span class="token punctuation">(</span></span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
 	popup<span class="token punctuation">.</span><span class="token function">success<span class="token punctuation">(</span></span><span class="token string">&apos;All selected!&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
 	popup<span class="token punctuation">.</span><span class="token function">warning<span class="token punctuation">(</span></span><span class="token string">&apos;You must select them all.&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span></code>
-			</pre>
+<span class="token punctuation">}</span></code></pre>
                         </div>
                     </figure>
                     <p>If you add columns to the table, you&apos;ll get a selection menu in the header.</p>
@@ -192,19 +180,17 @@ popup<span class="token punctuation">.</span><span class="token function">succes
                                 <figure data-ts="DoxScript" class="runnable" data-ts.code="var%20table%20%3D%20ts.ui.get(&apos;%23table2&apos;)%3B%0Atable.selectable()%3B%0Atable.cols(%5B&apos;One&apos;%2C%20&apos;Two&apos;%2C%20&apos;Three&apos;%5D)%3B%0Atable.rows(%5B%0A%09%7Bcells%3A%20%5B&apos;A&apos;%2C%20&apos;D&apos;%2C%20&apos;G&apos;%5D%7D%2C%0A%09%7Bcells%3A%20%5B&apos;B&apos;%2C%20&apos;E&apos;%2C%20&apos;H&apos;%5D%7D%2C%0A%09%7Bcells%3A%20%5B&apos;C&apos;%2C%20&apos;F&apos;%2C%20&apos;I&apos;%5D%7D%2C%0A%5D)%3B">
                                     <script type="runnable">
                                         var table = ts.ui.get('#table2'); table.selectable(); table.cols(['One', 'Two', 'Three']); table.rows([ {cells: ['A', 'D', 'G']}, {cells: ['B', 'E', 'H']}, {cells: ['C', 'F', 'I']}, ]);
-                                    </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                                    </script>
                                     <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                                     <div data-ts="Panel">
-                                        <pre class="prism language-javascript">
-				<code><span class="token keyword">var</span> table <span class="token operator">=</span> ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#table2&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                                        <pre class="prism language-javascript"><code><span class="token keyword">var</span> table <span class="token operator">=</span> ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#table2&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 table<span class="token punctuation">.</span><span class="token function">selectable<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 table<span class="token punctuation">.</span><span class="token function">cols<span class="token punctuation">(</span></span><span class="token punctuation">[</span><span class="token string">&apos;One&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;Two&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;Three&apos;</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 table<span class="token punctuation">.</span><span class="token function">rows<span class="token punctuation">(</span></span><span class="token punctuation">[</span>
 	<span class="token punctuation">{</span>cells<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">&apos;A&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;D&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;G&apos;</span><span class="token punctuation">]</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
 	<span class="token punctuation">{</span>cells<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">&apos;B&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;E&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;H&apos;</span><span class="token punctuation">]</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
 	<span class="token punctuation">{</span>cells<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">&apos;C&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;F&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;I&apos;</span><span class="token punctuation">]</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
-<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
-			</pre>
+<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
                                     </div>
                                 </figure>
                             </li>
@@ -220,15 +206,13 @@ table<span class="token punctuation">.</span><span class="token function">rows<s
                                 <figure data-ts="DoxScript" class="runnable" data-ts.code="%24.getJSON(&apos;assets%2Frowdata.json&apos;%2C%20function(json)%20%7B%0A%09var%20table%20%3D%20ts.ui.get(&apos;%23table4&apos;).selectable()%3B%0A%09table.cols(%5B&apos;ID&apos;%2C%20&apos;Name&apos;%2C%20&apos;Price&apos;%5D).rows(json).max(5)%3B%0A%7D)%3B">
                                     <script type="runnable">
                                         $.getJSON('assets/rowdata.json', function(json) { var table = ts.ui.get('#table4').selectable(); table.cols(['ID', 'Name', 'Price']).rows(json).max(5); });
-                                    </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                                    </script>
                                     <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                                     <div data-ts="Panel">
-                                        <pre class="prism language-javascript">
-				<code>$<span class="token punctuation">.</span><span class="token function">getJSON<span class="token punctuation">(</span></span><span class="token string">&apos;assets/rowdata.json&apos;</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span>json<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                                        <pre class="prism language-javascript"><code>$<span class="token punctuation">.</span><span class="token function">getJSON<span class="token punctuation">(</span></span><span class="token string">&apos;assets/rowdata.json&apos;</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span>json<span class="token punctuation">)</span> <span class="token punctuation">{</span>
 	<span class="token keyword">var</span> table <span class="token operator">=</span> ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#table4&apos;</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">selectable<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 	table<span class="token punctuation">.</span><span class="token function">cols<span class="token punctuation">(</span></span><span class="token punctuation">[</span><span class="token string">&apos;ID&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;Name&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;Price&apos;</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">rows<span class="token punctuation">(</span></span>json<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">max<span class="token punctuation">(</span></span><span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
-			</pre>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
                                     </div>
                                 </figure>
                             </li>
@@ -242,26 +226,22 @@ table<span class="token punctuation">.</span><span class="token function">rows<s
                     <figure data-ts="DoxScript" data-ts.code="table.selectable(onselect%2C%20onselectall%2C%20onunselectall)%3B">
                         <script type="text/html">
                             table.selectable(onselect, onselectall, onunselectall);
-                        </script><input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
+                        </script>
                         <input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
                         <div data-ts="Panel">
-                            <pre class="prism language-javascript">
-				<code>table<span class="token punctuation">.</span><span class="token function">selectable<span class="token punctuation">(</span></span>onselect<span class="token punctuation">,</span> onselectall<span class="token punctuation">,</span> onunselectall<span class="token punctuation">)</span><span class="token punctuation">;</span></code>
-			</pre>
+                            <pre class="prism language-javascript"><code>table<span class="token punctuation">.</span><span class="token function">selectable<span class="token punctuation">(</span></span>onselect<span class="token punctuation">,</span> onselectall<span class="token punctuation">,</span> onunselectall<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
                         </div>
                     </figure>
                     <p>You can also assign these methods directly.</p>
                     <figure data-ts="DoxScript" data-ts.code="table.onselect%20%3D%20function(selected%2C%20unselected)%20%7B%7D%3B%0Atable.onselectall%20%3D%20function()%20%7B%20console.log(&apos;All&apos;)%3B%20%7D%3B%0Atable.onunselectall%20%3D%20function()%20%7B%20console.log(&apos;None&apos;)%3B%20%7D%3B">
                         <script type="text/html">
                             table.onselect = function(selected, unselected) {}; table.onselectall = function() { console.log('All'); }; table.onunselectall = function() { console.log('None'); };
-                        </script><input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
+                        </script>
                         <input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
                         <div data-ts="Panel">
-                            <pre class="prism language-javascript">
-				<code>table<span class="token punctuation">.</span>onselect <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span>selected<span class="token punctuation">,</span> unselected<span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+                            <pre class="prism language-javascript"><code>table<span class="token punctuation">.</span>onselect <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span>selected<span class="token punctuation">,</span> unselected<span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
 table<span class="token punctuation">.</span>onselectall <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> console<span class="token punctuation">.</span><span class="token function">log<span class="token punctuation">(</span></span><span class="token string">&apos;All&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
-table<span class="token punctuation">.</span>onunselectall <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> console<span class="token punctuation">.</span><span class="token function">log<span class="token punctuation">(</span></span><span class="token string">&apos;None&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token punctuation">}</span><span class="token punctuation">;</span></code>
-			</pre>
+table<span class="token punctuation">.</span>onunselectall <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> console<span class="token punctuation">.</span><span class="token function">log<span class="token punctuation">(</span></span><span class="token string">&apos;None&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre>
                         </div>
                     </figure>
                     <p>Here&apos;s a summary of the methods that deal with row selection.</p>

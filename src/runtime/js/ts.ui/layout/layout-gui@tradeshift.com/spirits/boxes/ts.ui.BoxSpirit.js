@@ -1,13 +1,25 @@
 /**
  * Spirit of the box.
+ * @using {ts.ui.TabBarSpirit} TabBarSpirit
+ * @using {ts.ui.PanelsSpirit} PanelsSpirt
+ * @using {ts.ui.PanelSpirit} PanelSpirit
+ * @using {gui.Combo#chained} chained
  */
-ts.ui.BoxSpirit = (function using(TabBarSpirit, chained) {
-	return ts.ui.Spirit.extend({
-		onenter: function() {
-			this.super.onenter();
-			// this._bar();
-		},
+ts.ui.BoxSpirit = (function using(TabBarSpirit, PanelsSpirit, PanelSpirit, chained) {
+	/**
+	 * Reduce to heighest panel.
+	 * @param {number} max
+	 * @parapm {ts.ui.PanelSpirit}
+	 */
+	function maxheight(max, next) {
+		var was = next.dom.visible;
+		next.dom.visible = true;
+		var fit = next.box.height;
+		next.dom.visible = was;
+		return fit > max ? fit : max;
+	}
 
+	return ts.ui.Spirit.extend({
 		/**
 		 * Get or set the buttons in the statusbar.
 		 * so will simply not allow that.
@@ -34,6 +46,21 @@ ts.ui.BoxSpirit = (function using(TabBarSpirit, chained) {
 				bar.tabs(json);
 			} else {
 				return bar.tabs();
+			}
+		}),
+
+		/*
+		 * Equalsize panels height to match the highest panel.
+		 * @param {boolean} enable
+		 * @returns {this}
+		 */
+		equalsize: chained(function(enable) {
+			var panels = this.dom.child(PanelsSpirit);
+			if (panels && (panels = panels.dom.children(PanelSpirit)).length) {
+				var height = panels.reduce(maxheight, 0);
+				panels.forEach(function(p) {
+					p.css.height = enable ? height : '';
+				});
 			}
 		}),
 
@@ -68,4 +95,4 @@ ts.ui.BoxSpirit = (function using(TabBarSpirit, chained) {
 			return this._tabbar || (this._tabbar = this.dom.prepend(TabBarSpirit.summon()));
 		}
 	});
-})(ts.ui.TabBarSpirit, gui.Combo.chained);
+})(ts.ui.TabBarSpirit, ts.ui.PanelsSpirit, ts.ui.PanelSpirit, gui.Combo.chained);

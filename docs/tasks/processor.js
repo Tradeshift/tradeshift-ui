@@ -197,16 +197,13 @@ function getelement(klass, html, code, runs, edit, outs, flip) {
 		runs: runs,
 		flip: flip
 	};
-	var result = `<input type="hidden" value="${encodeURIComponent(JSON.stringify(x))}"/>`;
+	const args = [klass, html, output, runs, edit, outs, flip, x];
 	switch (klass) {
 		case 'language-markup':
-			result += gettabbox(klass, html, output, runs, edit, outs, flip, x);
-			break;
+			return markupbox(...args);
 		case 'language-javascript':
-			result += getbox(klass, html, output, runs, edit, outs, flip, x);
-			break;
+			return scriptbox(...args);
 	}
-	return result;
 }
 
 /**
@@ -220,28 +217,30 @@ function getoutput(code) {
 		</li>`;
 }
 
-function gettabbox(klass, html, output, runs, edit, outs, flip, x) {
+/**
+ *
+ */
+function markupbox(klass, html, output, runs, edit, outs, flip, x) {
 	return [
 		`
 		<ul data-ts="Panels">`,
 		[outs ? (flip ? output : '') : ''],
-		`<li data-ts="Panel" data-ts.label="Markup">
-				<pre class="prism ${klass}">
-					<code>${html}</code>
-				</pre>
+		`<li data-ts="Panel" ${output ? 'data-ts.label="Markup"' : ''}>
+				<pre class="prism ${klass}"><code>${html}</code></pre>
 			</li>`,
 		[outs ? (flip ? '' : output) : ''],
 		'</ul>'
 	].join('\n');
 }
 
-function getbox(klass, html, output, runs, edit, outs, flip, x) {
+/**
+ *
+ */
+function scriptbox(klass, html, output, runs, edit, outs, flip, x) {
 	return `
 		<input type="hidden" value="${encodeURIComponent(JSON.stringify(x))}"/>
 		<div data-ts="Panel">
-			<pre class="prism ${klass}">
-				<code>${html}</code>
-			</pre>
+			<pre class="prism ${klass}"><code>${html}</code></pre>
 		</div>`;
 }
 

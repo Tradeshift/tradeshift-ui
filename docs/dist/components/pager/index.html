@@ -26,16 +26,13 @@
                     <p>Assign <code class="attr-pair"><span>data-ts</span>=&quot;<span>Pager</span>&quot;</code> to a <code class="el">menu</code> or <code class="el">nav</code> to initialize it as a Pager. The component may be configured in HTML, complete
                         with an inline callback, like in this example.</p>
                     <figure data-ts="DoxMarkup" data-ts.code="%3Cmenu%20data-ts%3D%22Pager%22%20%0A%09data-ts.pages%3D%228%22%20%0A%09data-ts.page%3D%220%22%20%0A%09data-ts.onselect%3D%22console.log(this.page)%22%3E%0A%3C%2Fmenu%3E">
-                        <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Atrue%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
                         <ul data-ts="Panels">
                             <li data-ts="Panel" data-ts.label="Markup">
-                                <pre class="prism language-markup">
-					<code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>menu</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Pager<span class="token punctuation">&quot;</span></span> 
+                                <pre class="prism language-markup"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>menu</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Pager<span class="token punctuation">&quot;</span></span> 
 	<span class="token attr-name">data-ts</span>.<span class="token attr-name">pages</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>8<span class="token punctuation">&quot;</span></span> 
 	<span class="token attr-name">data-ts</span>.<span class="token attr-name">page</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>0<span class="token punctuation">&quot;</span></span> 
 	<span class="token attr-name">data-ts</span>.<span class="token attr-name">onselect</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>console.log(this.page)<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>menu</span><span class="token punctuation">&gt;</span></span></code>
-				</pre>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>menu</span><span class="token punctuation">&gt;</span></span></code></pre>
                             </li>
                             <li data-ts="Panel" data-ts.label="Render">
                                 <div class="output">
@@ -49,18 +46,16 @@
                     <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.get(&apos;%23mypager&apos;%2C%20function(pager)%20%7B%0A%09pager.pages%20%3D%208%3B%0A%09pager.page%20%3D%200%3B%0A%09pager.onselect%20%3D%20function(page)%20%7B%0A%09%09console.log(page)%3B%0A%09%7D%3B%0A%7D)%3B">
                         <script type="runnable">
                             ts.ui.get('#mypager', pager => { pager.pages = 8; pager.page = 0; pager.onselect = function(page) { console.log(page); }; });
-                        </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                        </script>
                         <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                         <div data-ts="Panel">
-                            <pre class="prism language-javascript">
-				<code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#mypager&apos;</span><span class="token punctuation">,</span> pager <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+                            <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#mypager&apos;</span><span class="token punctuation">,</span> pager <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
 	pager<span class="token punctuation">.</span>pages <span class="token operator">=</span> <span class="token number">8</span><span class="token punctuation">;</span>
 	pager<span class="token punctuation">.</span>page <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
 	pager<span class="token punctuation">.</span>onselect <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span>page<span class="token punctuation">)</span> <span class="token punctuation">{</span>
 		console<span class="token punctuation">.</span><span class="token function">log<span class="token punctuation">(</span></span>page<span class="token punctuation">)</span><span class="token punctuation">;</span>
 	<span class="token punctuation">}</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
-			</pre>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
                         </div>
                     </figure>
                     <menu data-ts="Pager" id="mypager"></menu>

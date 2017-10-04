@@ -1,5 +1,5 @@
 .ts-box {
-	box-shadow: 0 0 6px rgba(0,0,0,0.15);
+	box-shadow: 0 0 4px rgba(0,0,0,0.1);
 	border: 1px solid @ts-lite-darker;
 	background-color: @ts-white;
 	position: relative;
@@ -8,6 +8,10 @@
 	.ts-mixin-rounded();
 	&.ts-box-hasbar {
 		padding-top: @ts-unit-double;
+		> .ts-panels,
+		> .ts-panel {
+			border-top: 1px solid @ts-lite-darker;
+		}
 	}
 	> .ts-tabbar {
 		.ts-mixin-maximize();
@@ -23,10 +27,7 @@
 			.ts-mixin-rounded(@ts-radius, @ts-radius, 0, 0);
 		}
 	}
-
-
-	> .ts-panels {
-		border-top: 1px solid @ts-lite-darker;
+	> .ts-panels {		
 		> .ts-panel {
 			overflow: visible;
 			padding: @ts-unit;

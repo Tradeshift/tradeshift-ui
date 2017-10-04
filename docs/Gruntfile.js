@@ -242,8 +242,6 @@ module.exports = function(grunt) {
 			}
 		},
 
-					'WINDOWS: internet explorer 9',
-					'WINDOWS: internet explorer 10',
 		shooter: {
 			options: {
 				user: '<%=stackconf.username%>',

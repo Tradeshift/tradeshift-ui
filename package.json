@@ -44,7 +44,7 @@
 		"*.json": ["prettier --write --parser json", "git add"],
 		"*.less": ["prettier --write --parser postcss", "git add"]
 	},
-	"browserslist": ["Last 2 versions", "not ie <= 8"],
+	"browserslist": ["Last 2 versions", "ie 11"],
 	"devDependencies": {
 		"alce": "^1.2.0",
 		"ali-oss": "^4.10.1",

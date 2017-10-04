@@ -65,8 +65,7 @@
                         </script>
                         <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                         <div data-ts="Panel">
-                            <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Notification<span class="token punctuation">.</span><span class="token function">success<span class="token punctuation">(</span></span><span class="token string">&apos;You did it!&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
-                        </div>
+                            <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Notification<span class="token punctuation">.</span><span class="token function">success<span class="token punctuation">(</span></span><span class="token string">&apos;You did it!&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
                     </figure>
                     <p>The <code>info</code>, <code>warning</code> and <code>error</code> notification must be accepted by the user.</p>
                     <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.Notification.info(&apos;You%20can%20do%20it.&apos;)%3B%0Ats.ui.Notification.warning(&apos;You%20will%20fail.&apos;)%3B%0Ats.ui.Notification.error(&apos;You%20are%20wrong.&apos;)%3B">
@@ -77,8 +76,7 @@
                         <div data-ts="Panel">
                             <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Notification<span class="token punctuation">.</span><span class="token function">info<span class="token punctuation">(</span></span><span class="token string">&apos;You can do it.&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Notification<span class="token punctuation">.</span><span class="token function">warning<span class="token punctuation">(</span></span><span class="token string">&apos;You will fail.&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Notification<span class="token punctuation">.</span><span class="token function">error<span class="token punctuation">(</span></span><span class="token string">&apos;You are wrong.&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
-                        </div>
+ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Notification<span class="token punctuation">.</span><span class="token function">error<span class="token punctuation">(</span></span><span class="token string">&apos;You are wrong.&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
                     </figure>
                     <p>An optional second argument specifies the button text.</p>
                     <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.Notification.warning(&apos;Beware&apos;%2C%20&apos;Understood&apos;)%3B">
@@ -87,8 +85,7 @@ ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</s
                         </script>
                         <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                         <div data-ts="Panel">
-                            <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Notification<span class="token punctuation">.</span><span class="token function">warning<span class="token punctuation">(</span></span><span class="token string">&apos;Beware&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;Understood&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
-                        </div>
+                            <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Notification<span class="token punctuation">.</span><span class="token function">warning<span class="token punctuation">(</span></span><span class="token string">&apos;Beware&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;Understood&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
                     </figure>
                     <p>You can configure a callback for when the Notification gets accepted.</p>
                     <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.Notification.info(&apos;You%20must%20accept%20it.&apos;%2C%20%7B%0A%09onaccept%3A%20function()%20%7B%0A%09%09ts.ui.Notification.success(&apos;We%20knew%20you%20would.&apos;)%3B%0A%09%7D%0A%7D)%3B">
@@ -101,8 +98,7 @@ ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</s
 	onaccept<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
 		ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Notification<span class="token punctuation">.</span><span class="token function">success<span class="token punctuation">(</span></span><span class="token string">&apos;We knew you would.&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 	<span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
-                        </div>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
                     </figure>
                     <p>Notifications support basic markdown for formatting and links.</p>
                     <figure data-ts="DoxMarkup" data-ts.code="Markdown%20for%20**bold%20text**%20and%20*italic%20text*%20and%20%60source%20code%60%0AMarkdown%20for%20a%20%5Bhyperlink%5D(http%3A%2F%2Fwww.example.com%2F)">
@@ -127,8 +123,7 @@ ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</s
 			ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Notification<span class="token punctuation">.</span><span class="token function">success<span class="token punctuation">(</span></span>url<span class="token punctuation">)</span><span class="token punctuation">;</span>
 		<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 	<span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
-                        </div>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
                     </figure>
                     <p>If the link should indeed link to something, make sure to provide the full protocol <code>http(s)://</code></p>
                     <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.Notification.info(%0A%09&apos;Please%20visit%20%5BTradeshift%5D(http%3A%2F%2Fwww.tradeshift.com)&apos;%0A)%3B">
@@ -139,8 +134,7 @@ ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</s
                         <div data-ts="Panel">
                             <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Notification<span class="token punctuation">.</span><span class="token function">info<span class="token punctuation">(</span></span>
 	<span class="token string">&apos;Please visit [Tradeshift](http://www.tradeshift.com)&apos;</span>
-<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
-                        </div>
+<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
                     </figure>
                     <p>Note that all links will open in a new tab (or window, depending on the browser settings), so you should not use links in Notifications for internal navigation, at least not just yet.</p>
                 </section>

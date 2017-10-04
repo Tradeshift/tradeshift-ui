@@ -182,7 +182,7 @@ figure .ts-panel {
   overflow: visible;
   position: relative;
 }
-figure .ts-panel .ts-textarea.editcode {
+figure .editcode {
   position: absolute;
   top: 0;
   right: 0;
@@ -200,29 +200,21 @@ figure .ts-panel .ts-textarea.editcode {
   -ms-hyphens: none;
   hyphens: none;
   padding: 0;
+  opacity: 0;
   font-family: 'Ubuntu Mono', 'Monaco', 'Consolas', 'Bitstream Vera Sans Mono', monospace;
-  /*
-			position: absolute;
-			top: 0;
-			right: 0;
-			bottom: 0;
-			left: 0;
-			*/
+  width: 100%;
+  height: 100% !important;
   padding: 22px 0 22px 22px;
   overflow: auto;
   resize: none;
+  background-color: #ffffff;
 }
-figure .ts-panel .ts-textarea.editcode:focus {
+figure .editcode:focus {
   background-color: #fdfed5;
 }
-figure .ts-panel .ts-textarea.editcode:not(:focus) {
-  background-image: -webkit-linear-gradient(#f5fbfe 50%, #f5fbfe 50%);
-  background-image: -moz-linear-gradient(#f5fbfe 50%, #f5fbfe 50%);
-  background-image: -ms-linear-gradient(#f5fbfe 50%, #f5fbfe 50%);
-  background-image: -o-linear-gradient(#f5fbfe 50%, #f5fbfe 50%);
-  background-image: linear-gradient(#f5fbfe 50%, #f5fbfe 50%);
-  background-size: 44px 44px;
-  background-origin: content-box;
+figure.editmode .editcode,
+figure .editcode:focus {
+  opacity: 1;
 }
 figure .message {
   position: absolute;
@@ -281,8 +273,6 @@ pre.prism {
   -ms-hyphens: none;
   hyphens: none;
   padding: 0;
-  overflow-y: visible;
-  overflow-x: auto;
   background-image: -webkit-linear-gradient(#ffffff 50%, #f5fbfe 50%);
   background-image: -moz-linear-gradient(#ffffff 50%, #f5fbfe 50%);
   background-image: -ms-linear-gradient(#ffffff 50%, #f5fbfe 50%);
@@ -290,6 +280,8 @@ pre.prism {
   background-image: linear-gradient(#ffffff 50%, #f5fbfe 50%);
   background-size: 44px 44px;
   background-origin: content-box;
+  overflow-y: visible;
+  overflow-x: auto;
 }
 pre.prism code {
   font-size: 14px;

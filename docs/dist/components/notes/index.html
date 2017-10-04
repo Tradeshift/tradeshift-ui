@@ -43,8 +43,7 @@
 	onclose<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
 		ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Notification<span class="token punctuation">.</span><span class="token function">success<span class="token punctuation">(</span></span><span class="token string">&apos;The Note is gone...&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 	<span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
-                        </div>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
                     </figure>
                     <p>You can add buttons to the Note. If you save a reference to the Note, you can close it with any button.</p>
                     <figure data-ts="DoxScript" class="runnable" data-ts.code="var%20note%20%3D%20ts.ui.Note(%7B%0A%09buttons%3A%20%5B%7B%0A%09%09label%3A%20&apos;Button&apos;%2C%0A%09%09type%3A%20&apos;ts-primary&apos;%2C%0A%09%09onclick%3A%20function()%20%7B%0A%09%09%09note.close()%3B%0A%09%09%7D%0A%09%7D%5D%0A%7D)%3B">
@@ -61,8 +60,7 @@
 			note<span class="token punctuation">.</span><span class="token function">close<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 		<span class="token punctuation">}</span>
 	<span class="token punctuation">}</span><span class="token punctuation">]</span>
-<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
-                        </div>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
                     </figure>
                     <p>You can also add some links via Markdown. When a link is clicked, the URL will be passed along to the <code>onlink</code> method. As you can see below, the URL can be just a key, it doesn&apos;t have to be real URL.
                         <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.Note(%7B%0A%09text%3A%20&apos;Choose%20link%20%5Bone%5D(ONE)%20or%20%5Btwo%5D(TWO)%20or%20%5Bthree%5D(THREE).&apos;%2C%0A%09onlink%3A%20function(url)%20%7B%0A%09%09ts.ui.Notification.success(url)%3B%0A%09%09this.close()%3B%0A%09%7D%0A%7D)%3B">
@@ -77,8 +75,7 @@
 		ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Notification<span class="token punctuation">.</span><span class="token function">success<span class="token punctuation">(</span></span>url<span class="token punctuation">)</span><span class="token punctuation">;</span>
 		<span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">close<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 	<span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
-                            </div>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
                         </figure>
                     </p>
                     <p>If the link should indeed link to something, make sure to provide the full protocol <code>http(s)://</code>. Notes should not be used for internal navigation, at least not yet.</p>

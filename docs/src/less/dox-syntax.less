@@ -1,3 +1,13 @@
+.docs-mixin-stripes() {
+	background-image: -webkit-linear-gradient(@ts-white 50%, @superliteblue 50%);
+	background-image: -moz-linear-gradient(@ts-white 50%, @superliteblue 50%);
+	background-image: -ms-linear-gradient(@ts-white 50%, @superliteblue 50%);
+	background-image: -o-linear-gradient(@ts-white 50%, @superliteblue 50%);
+	background-image: linear-gradient(@ts-white 50%, @superliteblue 50%);
+	background-size: @ts-unit-double @ts-unit-double;
+	background-origin: content-box;
+}
+
 figure {
 	background-color: @superliteblue;
 	position: relative;
@@ -80,38 +90,25 @@ figure {
 	.ts-panel {
 		overflow: visible;
 		position: relative;
-		.ts-textarea.editcode {
-			.ts-mixin-maximize();
-			.docs-mixin-editor();
-			font-family: @ts-fontstack-mono;
-			// width: 100%;
-			// height: 100% !important;
-			// width: 100%;
-
-			/*
-			position: absolute;
-			top: 0;
-			right: 0;
-			bottom: 0;
-			left: 0;
-			*/
-
-			padding: @ts-unit 0 @ts-unit @ts-unit;
-			overflow: auto;
-			resize: none;
-			&:focus {
-				background-color: rgb(253, 254, 213);
-			}
-			&:not(:focus) {
-				background-image: -webkit-linear-gradient(@superliteblue 50%, @superliteblue 50%);
-				background-image: -moz-linear-gradient(@superliteblue 50%, @superliteblue 50%);
-				background-image: -ms-linear-gradient(@superliteblue 50%, @superliteblue 50%);
-				background-image: -o-linear-gradient(@superliteblue 50%, @superliteblue 50%);
-				background-image: linear-gradient(@superliteblue 50%, @superliteblue 50%);
-				background-size: @ts-unit-double @ts-unit-double;
-				background-origin: content-box;
-			}
+	}
+	.editcode {
+		.ts-mixin-maximize();
+		.docs-mixin-editor();
+		opacity: 0;
+		font-family: @ts-fontstack-mono;
+		width: 100%;
+		height: 100% !important;
+		padding: @ts-unit 0 @ts-unit @ts-unit;
+		overflow: auto;
+		resize: none;
+		background-color: @ts-white;
+		&:focus {
+			background-color: @ts-yellow;
 		}
+	}
+	&.editmode .editcode,
+	.editcode:focus {
+		opacity: 1;
 	}
 	.message {
 		position: absolute;
@@ -167,21 +164,13 @@ pre.prism {
 	direction: ltr;
 	text-align: left;
 	.docs-mixin-editor();
+	.docs-mixin-stripes();
 	overflow-y: visible;
 	overflow-x: auto;
-	background-image: -webkit-linear-gradient(@ts-white 50%, @superliteblue 50%);
-	background-image: -moz-linear-gradient(@ts-white 50%, @superliteblue 50%);
-	background-image: -ms-linear-gradient(@ts-white 50%, @superliteblue 50%);
-	background-image: -o-linear-gradient(@ts-white 50%, @superliteblue 50%);
-	background-image: linear-gradient(@ts-white 50%, @superliteblue 50%);
-	background-size: @ts-unit-double @ts-unit-double;
-	background-origin: content-box;
 	code {
 		font-size: 14px;
 		display: block;
 		padding: @ts-unit;
-		// padding-bottom: 0; // but why?
-		// padding: 0 @ts-unit;
 	}
 }
 .token.comment,

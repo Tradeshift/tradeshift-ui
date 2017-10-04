@@ -8,30 +8,4 @@
  * @extends {ts.ui.Bar}
  * @using {Array<string>} methods
  */
-ts.ui.ToolBar = (function using(methods) {
-	var statics = { $bars: [] };
-	var xstatics = ts.ui.Bar.$staticmethods(methods);
-	var protos = gui.Object.extend(ts.ui.Bar.$protomethods(methods), {
-		$getbar: function() {
-			return this._main.toolbar();
-		}
-	});
-	return ts.ui.Bar.extend(protos, xstatics, statics);
-})([
-	// these methods are mapped directly to the spirits methods!
-	'title',
-	'buttons',
-	'tabs',
-	'search',
-	'hide',
-	'show',
-	'clear',
-	'green',
-	'blue',
-	'purple',
-	'dark',
-	'lite',
-	'white',
-	'showClose',
-	'hideClose'
-]);
+ts.ui.ToolBar = ts.ui.TopBar;

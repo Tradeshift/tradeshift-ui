@@ -7,10 +7,9 @@
 	"models/global/ts.ui.HeaderBarModel.js",
 	"api/ts.ui.Header.js",
 	"api/ts.ui.Footer.js",
-	"api/deprecating/ts.ui.Bar.js",
+	"api/deprecating/ts.ui.TopBar.js",
 	"api/deprecating/ts.ui.ToolBar.js",
 	"api/deprecating/ts.ui.TabBar.js",
 	"api/deprecating/ts.ui.StatusBar.js",
-	"api/deprecating/ts.ui.TopBar.js",
 	"module.js"
 ]

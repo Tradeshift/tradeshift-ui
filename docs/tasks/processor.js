@@ -237,11 +237,14 @@ function markupbox(klass, html, output, runs, edit, outs, flip, x) {
  *
  */
 function scriptbox(klass, html, output, runs, edit, outs, flip, x) {
-	return `
+	return (
+		`
 		<input type="hidden" value="${encodeURIComponent(JSON.stringify(x))}"/>
 		<div data-ts="Panel">
-			<pre class="prism ${klass}"><code>${html}</code></pre>
-		</div>`;
+			<pre class="prism ${klass}"><code>${html}</code></pre>` +
+		(runs ? `<textarea data-ts="TextArea" class="editcode"></textarea>` : '') +
+		`</div>`
+	);
 }
 
 // Typography ..................................................................

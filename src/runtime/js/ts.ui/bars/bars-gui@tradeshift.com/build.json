@@ -5,7 +5,7 @@
 	"spirits/local/topbar/ts.ui.TopBarTabsSpirit.js",
 	"spirits/local/tabbar/ts.ui.TabBarSpirit.js",
 	"spirits/local/statusbar/ts.ui.StatusBarSpirit.js",
-	"spirits/global/ts.ui.GlobalBarSpirit.js",
+	"spirits/global/ts.ui.MajorBarSpirit.js",
 	"spirits/global/ts.ui.HeaderBarSpirit.js",
 	"spirits/global/ts.ui.FooterBarSpirit.js",
 	"module.js"

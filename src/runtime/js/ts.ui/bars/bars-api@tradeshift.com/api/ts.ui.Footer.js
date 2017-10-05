@@ -9,7 +9,7 @@ ts.ui.Footer = (function using(chained) {
 	 */
 	function bar() {
 		if (!bar.spirit) {
-			var spirit = ts.ui.FooterBarSpirit.summon();
+			var spirit = ts.ui.FooterBarSpirit.summon(true);
 			spirit.dom.appendTo(document.body);
 			bar.spirit = spirit;
 		}

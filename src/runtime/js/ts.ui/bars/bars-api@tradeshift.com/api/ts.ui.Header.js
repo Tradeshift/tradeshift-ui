@@ -9,7 +9,7 @@ ts.ui.Header = (function using(chained) {
 	 */
 	function bar() {
 		if (!bar.spirit) {
-			var spirit = (bar.spirit = ts.ui.HeaderBarSpirit.summon());
+			var spirit = (bar.spirit = ts.ui.HeaderBarSpirit.summon(true));
 			ts.ui.ready(function inject() {
 				spirit.dom.prependTo(document.body);
 			});

@@ -53,14 +53,23 @@ ts.ui.ModalSpirit = (function using(Client, transition, chained) {
 
 		/**
 		 * Handle action.
+		 * TODO: This JS layout stuff can be replaced with proper CSS nowadays!
 		 * @param {gui.Action} a
 		 */
 		onaction: function(a) {
 			this.super.onaction(a);
 			switch (a.type) {
-				case ts.ui.ACTION_STATUSBAR_LEVEL:
-					this.guilayout.gotoLevel(a.data);
-					this.reflex();
+				case ts.ui.ACTION_HEADER_LEVEL:
+					this.guilayout.gotoLevel(a.data, 'ts-header-level');
+					// this._headerheight = a.data * ts.ui.UNIT;
+					// this.reflex();
+					a.consume();
+					break;
+				case ts.ui.ACTION_FOOTER_LEVEL:
+					this.guilayout.gotoLevel(a.data, 'ts-footer-level');
+					// this._footerheight = a.data * ts.ui.UNIT;
+					// this.reflex();
+					a.consume();
 					break;
 			}
 		},
@@ -210,7 +219,7 @@ ts.ui.ModalSpirit = (function using(Client, transition, chained) {
 		 * @returns {Array<ts.ui.TabModel>|ts.ui.ModalSpirit}
 		 */
 		tabs: chained(function(json) {
-			var tabbar = this._tabbar();
+			var tabbar = this._header();
 			if (arguments.length) {
 				tabbar.tabs(json);
 			} else {
@@ -282,7 +291,7 @@ ts.ui.ModalSpirit = (function using(Client, transition, chained) {
 		 * @param {number} index
 		 */
 		$insertTab: function(json, index) {
-			var tabs = this._tabbar().tabs();
+			var tabs = this._header().tabs();
 			if (this.$fullscreen) {
 				tabs.splice(index, 0, json);
 			} else {
@@ -424,7 +433,6 @@ ts.ui.ModalSpirit = (function using(Client, transition, chained) {
 
 		/**
 		 * Size the modal to fill the screen, obviously.
-		 * TODO: We might get away with pure CSS for this.
 		 * @param {gui.Then} then
 		 * @param {number} avail
 		 * @param {number} xxxxx
@@ -458,16 +466,20 @@ ts.ui.ModalSpirit = (function using(Client, transition, chained) {
 		/**
 		 * If we should ever need non-fullscreen Modals,
 		 * this will position the Modal centered on screen.
+		 * TODO: If we need this, update for bar *levels*
+		 * NOTE: `headerheight` and `footerheight` don't exits!
 		 * @param {gui.Then} then
 		 * @param {number} avail
 		 * @param {number} xxxxx
 		 */
 		_autosizeinscreen: function(then, avail, xxxxx) {
 			this.css.remove('ts-overflow');
+			var headerheight = 'TODO';
+			var footerheight = 'TODO';
 			var height =
 				this._panel().naturalHeight() +
-				(this.css.contains('ts-hasheader') ? 66 : 0) +
-				(this.css.contains('ts-hasheader') ? 66 : 0);
+				(this.css.contains('ts-has-header') ? headerheight : 0) +
+				(this.css.contains('ts-has-footer') ? footerheight : 0);
 			var breaks = height > avail;
 			height = breaks ? avail : height;
 			this.css.height = height;
@@ -506,29 +518,14 @@ ts.ui.ModalSpirit = (function using(Client, transition, chained) {
 		},
 
 		/**
-		 * Get spirit of the header (titlebar).
+		 * Get spirit of the header.
 		 * @returns {ts.ui.ToolBarSpirit}
 		 */
 		_header: function() {
-			var ToolBar = ts.ui.ToolBarSpirit;
-			this.css.add('ts-hasheader');
-			return (
-				this.dom.q('header.ts-toolbar', ToolBar) ||
-				this.dom.prepend(ToolBar.summon('header', 'ts-bg-blue'))
-			);
-		},
-
-		/**
-		 * Get spirit of the tabbar.
-		 * @returns {ts.ui.ToolBarSpirit}
-		 */
-		_tabbar: function() {
-			var TabBar = ts.ui.TabBarSpirit;
-			this.css.add('ts-hastabs');
-			return (
-				this.dom.q('header.ts-tabbar', TabBar) ||
-				this._header().dom.after(TabBar.summon('header', 'ts-bg-white'))
-			);
+			var HeaderBar = ts.ui.HeaderBarSpirit;
+			this.action.add(ts.ui.ACTION_HEADER_LEVEL);
+			this.css.add('ts-has-header');
+			return this.dom.q('.ts-headerbar', HeaderBar) || this.dom.prepend(HeaderBar.summon());
 		},
 
 		/**
@@ -536,12 +533,10 @@ ts.ui.ModalSpirit = (function using(Client, transition, chained) {
 		 * @returns {ts.ui.ToolBarSpirit}
 		 */
 		_footer: function() {
-			this.css.add('ts-hasfooter');
-			var StatusBar = ts.ui.StatusBarSpirit;
-			this.action.add(ts.ui.ACTION_STATUSBAR_LEVEL);
-			return (
-				this.dom.q('footer.ts-toolbar', StatusBar) || this.dom.append(StatusBar.summon('footer'))
-			);
+			var FooterBar = ts.ui.FooterBarSpirit;
+			this.action.add(ts.ui.ACTION_FOOTER_LEVEL);
+			this.css.add('ts-has-footer');
+			return this.dom.q('.ts-footerbar', FooterBar) || this.dom.append(FooterBar.summon());
 		},
 
 		/**

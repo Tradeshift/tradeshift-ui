@@ -1,14 +1,21 @@
 /**
- * Superspirit for global bars.
+ * Superspirit for some big bars that are made of multiple bars.
  * @see {ts.ui.HeaderBarSpirit}
  * @see {ts.ui.HeaderBarSpirit}
  * @using {ts.ui.ToolBarSpirit} ToolBarSpirit
  * @using {gui.Combo#chained} chained
  */
-ts.ui.GlobalBarSpirit = (function(ToolBarSpirit, chained) {
+ts.ui.MajorBarSpirit = (function(ToolBarSpirit, chained) {
 	return ts.ui.Spirit.extend({
 		/**
+		 * Is the "Main" Header or Footer?
+		 * @type {boolean}
+		 */
+		global: false,
+
+		/**
 		 * Get or set visibility.
+		 * TODO: Simplify via new property `this.dom.visible`
 		 * @type {boolean}
 		 */
 		visible: {

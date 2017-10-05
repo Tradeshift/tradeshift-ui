@@ -40,7 +40,7 @@
 		"precommit": "lint-staged && grunt exec:docs_dist && git add -A docs"
 	},
 	"lint-staged": {
-		"*.js": ["prettier", "eslint --config ./.eslintrc.json", "git add"]
+		"*.js": ["eslint --config ./.eslintrc.json", "prettier", "git add"]
 	},
 	"lint-staged_FAILING_ON_FRESH_INSTALL": {
 		"*.json": ["prettier --write --parser json", "git add"],

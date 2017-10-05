@@ -26,7 +26,6 @@ ts.ui.CoreModule = gui.module('core-gui@tradeshift.com', {
 		['[data-ts=Note]', ts.ui.NoteSpirit],
 		['[data-ts=Icon]', ts.ui.NextIconSpirit],
 		['[data-ts=Spinner]', ts.ui.SpinnerSpirit],
-		['[data-ts=Modal]', ts.ui.ModalSpirit],
 		['[data-ts=Spirit]', ts.ui.Spirit]
 	],
 
@@ -133,8 +132,8 @@ ts.ui.CoreModule = gui.module('core-gui@tradeshift.com', {
 	 * TODO: SideShowSpirit should also refactor to use the PanelsPlugin
 	 */
 	_specialplugins: function() {
-		ts.ui.ModalSpirit.plugin('panels', ts.ui.PanelsPlugin);
-		ts.ui.ModalSpirit.plugin('doorman', ts.ui.DoorManPlugin);
+		// ts.ui.ModalSpirit.plugin('panels', ts.ui.PanelsPlugin);
+		// ts.ui.ModalSpirit.plugin('doorman', ts.ui.DoorManPlugin);
 		ts.ui.SideShowSpirit.plugin('doorman', ts.ui.DoorManPlugin);
 	},
 

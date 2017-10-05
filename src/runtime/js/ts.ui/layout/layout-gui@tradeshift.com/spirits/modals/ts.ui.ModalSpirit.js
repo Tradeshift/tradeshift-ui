@@ -1,16 +1,18 @@
 /**
  * Spirit of the Modal.
+ * @using {ts.ui.HeaderBar} HeaderBar
+ * @using {ts.ui.FooterBar} FooterBar
  * @using {gui.Client} Client
  * @using {boolean} transition
  * @using {function} gui.Combo.chained
  */
-ts.ui.ModalSpirit = (function using(Client, transition, chained) {
+ts.ui.ModalSpirit = (function using(HeaderBar, FooterBar, Client, transition, chained) {
 	var willopen = ts.ui.BROADCAST_MODAL_WILL_OPEN,
 		didopen = ts.ui.BROADCAST_MODAL_DID_OPEN,
 		willclose = ts.ui.BROADCAST_MODAL_WILL_CLOSE,
 		didclose = ts.ui.BROADCAST_MODAL_DID_CLOSE;
 
-	return ts.ui.Spirit.extend({
+	return ts.ui.BoxSpirit.extend({
 		/**
 		 * Modal is open?
 		 * @type {boolean}
@@ -67,7 +69,7 @@ ts.ui.ModalSpirit = (function using(Client, transition, chained) {
 					break;
 				case ts.ui.ACTION_FOOTER_LEVEL:
 					this.guilayout.gotoLevel(a.data, 'ts-footer-level');
-					// this._footerheight = a.data * ts.ui.UNIT;
+					// this._footheight = a.data * ts.ui.UNIT;
 					// this.reflex();
 					a.consume();
 					break;
@@ -133,7 +135,7 @@ ts.ui.ModalSpirit = (function using(Client, transition, chained) {
 		 * is currently selected, in case of tabs).
 		 * This serves an example in the Docs, mostly.
 		 * @param @optional {string} markup
-		 * @returns {string|ts.ui.ModalSpirit}
+		 * @returns {string|this}
 		 */
 		html: chained(function(markup) {
 			var target = this._main() || this._panel();
@@ -174,10 +176,10 @@ ts.ui.ModalSpirit = (function using(Client, transition, chained) {
 		/**
 		 * Get or set the title.
 		 * @param @optional {string} title
-		 * @returns {String|ts.ui.ModalSpirit}
+		 * @returns {String|this}
 		 */
 		title: chained(function(title) {
-			var header = this._header();
+			var header = this._head();
 			if (arguments.length) {
 				header.title(title);
 			} else {
@@ -188,10 +190,10 @@ ts.ui.ModalSpirit = (function using(Client, transition, chained) {
 		/**
 		 * Get or set the statusbar message.
 		 * @param @optional {string} message
-		 * @returns {String|ts.ui.ModalSpirit}
+		 * @returns {String|this}
 		 */
 		status: chained(function(message) {
-			var footer = this._footer();
+			var footer = this._foot();
 			if (arguments.length) {
 				footer.message(message);
 			} else {
@@ -202,10 +204,10 @@ ts.ui.ModalSpirit = (function using(Client, transition, chained) {
 		/**
 		 * Get or set the statusbar Pager.
 		 * @param @optional {Object} json
-		 * @returns {ts.ui.PageModel|ts.ui.ModalSpirit}
+		 * @returns {ts.ui.PageModel|this}
 		 */
 		pager: chained(function(json) {
-			var footer = this._footer();
+			var footer = this._foot();
 			if (arguments.length) {
 				footer.pager(json);
 			} else {
@@ -214,27 +216,12 @@ ts.ui.ModalSpirit = (function using(Client, transition, chained) {
 		}),
 
 		/**
-		 * Get or set the tabs.
+		 * Unlike in a standard {BoxSpirit}, buttons go into the footer!
 		 * @param @optional {Array<Object>} json
-		 * @returns {Array<ts.ui.TabModel>|ts.ui.ModalSpirit}
-		 */
-		tabs: chained(function(json) {
-			var tabbar = this._header();
-			if (arguments.length) {
-				tabbar.tabs(json);
-			} else {
-				return tabbar.tabs();
-			}
-		}),
-
-		/**
-		 * Get or set the buttons in the statusbar.
-		 * so will simply not allow that.
-		 * @param @optional {Array<Object>} json
-		 * @returns {ts.ui.ButtonsCollection|ts.ui.ModalSpirit}
+		 * @returns {ts.ui.ButtonsCollection|this}
 		 */
 		buttons: chained(function(json) {
-			var footer = this._footer();
+			var footer = this._foot();
 			if (arguments.length) {
 				footer.buttons(json);
 			} else {
@@ -286,26 +273,13 @@ ts.ui.ModalSpirit = (function using(Client, transition, chained) {
 		$fullscreen: true,
 
 		/**
-		 * Called by the {ts.ui.PanelsPlugin} to append a tab.
-		 * @param {Object} json
-		 * @param {number} index
-		 */
-		$insertTab: function(json, index) {
-			var tabs = this._header().tabs();
-			if (this.$fullscreen) {
-				tabs.splice(index, 0, json);
-			} else {
-				throw new Error('Tabs reserved for fullscreen modals :/');
-			}
-		},
-
-		/**
 		 * Called by the {ts.ui.PanelsPlugin} when a tab is selected.
 		 * @param {ts.ui.TabPanel} panel The corresponding panel
 		 */
 		$selectTab: function(panel) {
-			this._autocenter();
-			this._focus();
+			this.super.$selectTab(panel);
+			this._autocenter(panel);
+			this._focus(panel);
 		},
 
 		// Private .................................................................
@@ -317,11 +291,11 @@ ts.ui.ModalSpirit = (function using(Client, transition, chained) {
 		_then: null,
 
 		/**
-		 * Get the Panel (currently selected, in case of tabs).
+		 * Get the Panel (or the currently selected Panel, in case of tabs).
 		 * @returns {ts.ui.PanelSpirit}
 		 */
 		_panel: function() {
-			return this.panels.current();
+			return this.dom.child(ts.ui.PanelSpirit) || this.dom.child(ts.ui.PanelsSpirit).current();
 		},
 
 		/**
@@ -342,10 +316,10 @@ ts.ui.ModalSpirit = (function using(Client, transition, chained) {
 				this.broadcast.dispatch(didopen);
 				this._then.now(true);
 				this.doorman.didopen();
-				this._focus();
+				this._focus(this._panel());
 			} else {
 				this.dom.show();
-				this.panels.init();
+				// this.panels.init();
 				this._cloak(true);
 				this.broadcast.dispatch(willopen);
 				this.att.set('data-ts.open', true);
@@ -399,9 +373,9 @@ ts.ui.ModalSpirit = (function using(Client, transition, chained) {
 		/**
 		 * On Modal opened, focus the first focusable thing
 		 * (having allowed the dev to focus something first)
+		 * @param {ts.ui.PanelSpirit} panel
 		 */
-		_focus: function() {
-			var panel = this._panel();
+		_focus: function(panel) {
 			var focus = document.activeElement;
 			if (!focus || !panel.dom.contains(focus)) {
 				(this._main() || this).attention.enter();
@@ -440,20 +414,21 @@ ts.ui.ModalSpirit = (function using(Client, transition, chained) {
 		_autosizefullscreen: function(then, avail, xxxxx) {
 			this.css.height = avail;
 			this.css.width = xxxxx;
-			this._autocenter();
+			this._autocenter(this._panel());
 			this.tick.time(function unflicker() {
 				then.now(avail, false);
-			}, Client.isWebKit ? 100 : 200);
+			}, Client.isWebKit ? 50 : 100);
 		},
 
 		/**
-		 * Center main in panel.
-		 * @param {ts.ui.MainSpirit} main
+		 * Center main in panel. You are probably thinking that some CSS can replace 
+		 * this nowadays, but we don't really want the Main to *stay* centered 
+		 * when you append more content to it (since that will move it incrementally 
+		 * upwards on the screen) so the JS layout  solution may still be alright.
 		 * @param {ts.ui.PanelSpirit} panel
 		 */
-		_autocenter: function() {
+		_autocenter: function(panel) {
 			var GOLDEN = 0.382;
-			var panel = this._panel();
 			var main = panel.childMain();
 			if (main) {
 				var height = main.box.height;
@@ -509,7 +484,7 @@ ts.ui.ModalSpirit = (function using(Client, transition, chained) {
 			var that = this;
 			if (panel) {
 				this.attention.trap(panel);
-				this._header().showClose(function() {
+				this._head().showClose(function() {
 					that.open(false);
 				});
 			} else {
@@ -519,24 +494,23 @@ ts.ui.ModalSpirit = (function using(Client, transition, chained) {
 
 		/**
 		 * Get spirit of the header.
-		 * @returns {ts.ui.ToolBarSpirit}
+		 * @overwrites {ts.ui.BoxSpirit#_head}
+		 * @returns {ts.ui.HeaderBarSpirit}
 		 */
-		_header: function() {
-			var HeaderBar = ts.ui.HeaderBarSpirit;
-			this.action.add(ts.ui.ACTION_HEADER_LEVEL);
+		_head: function() {
 			this.css.add('ts-has-header');
-			return this.dom.q('.ts-headerbar', HeaderBar) || this.dom.prepend(HeaderBar.summon());
+			this.action.add(ts.ui.ACTION_HEADER_LEVEL);
+			return this.dom.child(HeaderBar) || this.dom.prepend(HeaderBar.summon());
 		},
 
 		/**
 		 * Get spirit of the footer.
-		 * @returns {ts.ui.ToolBarSpirit}
+		 * @returns {ts.ui.FooterBarSpirit}
 		 */
-		_footer: function() {
-			var FooterBar = ts.ui.FooterBarSpirit;
-			this.action.add(ts.ui.ACTION_FOOTER_LEVEL);
+		_foot: function() {
 			this.css.add('ts-has-footer');
-			return this.dom.q('.ts-footerbar', FooterBar) || this.dom.append(FooterBar.summon());
+			this.action.add(ts.ui.ACTION_FOOTER_LEVEL);
+			return this.dom.child(FooterBar) || this.dom.append(FooterBar.summon());
 		},
 
 		/**
@@ -552,4 +526,10 @@ ts.ui.ModalSpirit = (function using(Client, transition, chained) {
 			}
 		}
 	});
-})(gui.Client, gui.Client.hasTransitions, gui.Combo.chained);
+})(
+	ts.ui.HeaderBarSpirit,
+	ts.ui.FooterBarSpirit,
+	gui.Client,
+	gui.Client.hasTransitions,
+	gui.Combo.chained
+);

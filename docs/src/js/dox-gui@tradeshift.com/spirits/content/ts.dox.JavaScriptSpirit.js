@@ -68,7 +68,7 @@ ts.dox.JavaScriptSpirit = (function() {
 						}
 					}
 				);
-				this._bar().script.run();
+				this._head().script.run();
 				this.event.add('click');
 			}
 		},

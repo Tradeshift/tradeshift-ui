@@ -27,7 +27,7 @@ ts.ui.BoxSpirit = (function using(TabBarSpirit, PanelsSpirit, PanelSpirit, chain
 		 * @returns {ts.ui.ButtonsCollection|ts.ui.ModalSpirit}
 		 */
 		buttons: chained(function(json) {
-			var bar = this._bar();
+			var bar = this._head();
 			if (arguments.length) {
 				bar.buttons(json);
 			} else {
@@ -41,12 +41,20 @@ ts.ui.BoxSpirit = (function using(TabBarSpirit, PanelsSpirit, PanelSpirit, chain
 		 * @returns {Array<ts.ui.TabModel>|ts.ui.ModalSpirit}
 		 */
 		tabs: chained(function(json) {
-			var bar = this._bar();
+			var bar = this._head();
 			if (arguments.length) {
 				bar.tabs(json);
 			} else {
 				return bar.tabs();
 			}
+		}),
+
+		/**
+		 * Hm, this should then affect both the header and the potential footer?
+		 * @returns {this}
+		 */
+		uncompact: chained(function() {
+			this._head.uncompact();
 		}),
 
 		/*
@@ -72,27 +80,24 @@ ts.ui.BoxSpirit = (function using(TabBarSpirit, PanelsSpirit, PanelSpirit, chain
 		 * @param {number} index
 		 */
 		$insertTab: function(json, index) {
-			var tabs = this._bar().tabs();
+			var tabs = this._head().tabs();
 			tabs.splice(index, 0, json);
 		},
 
-		$selectTab: function() {
-			console.log('TODO: $selectTab');
-		},
+		/**
+		 * Called by the {ts.ui.PanelsPlugin} when a tab is selected.
+		 * @param {ts.ui.PanelSpirit} panel - The associated panel (not the tab!)
+		 */
+		$selectTab: function(panel) {},
 
 		// Private .................................................................
 
 		/**
-		 *
-		 */
-		_tabbar: null,
-
-		/**
 		 * @returns {ts.ui.TabBarSpirit}
 		 */
-		_bar: function() {
-			this.css.add('ts-box-hasbar');
-			return this._tabbar || (this._tabbar = this.dom.prepend(TabBarSpirit.summon()));
+		_head: function() {
+			this.css.add('ts-has-header');
+			return this.dom.child(TabBarSpirit) || this.dom.prepend(TabBarSpirit.summon());
 		}
 	});
 })(ts.ui.TabBarSpirit, ts.ui.PanelsSpirit, ts.ui.PanelSpirit, gui.Combo.chained);

@@ -5,13 +5,18 @@ gui.module('layout-gui@tradeshift.com', {
 	/**
 	 * Channeling spirits to CSS selectors.
 	 */
-	channel: [['[data-ts=Box]', ts.ui.BoxSpirit], ['[data-ts=Panels]', ts.ui.PanelsSpirit]],
+	channel: [
+		['[data-ts=Box]', ts.ui.BoxSpirit],
+		['[data-ts=Panels]', ts.ui.PanelsSpirit],
+		['[data-ts=Modal]', ts.ui.ModalSpirit]
+	],
 
 	/**
-	 *
+	 * Send in the plugins.
 	 */
 	oncontextinitialize: function() {
 		ts.ui.PanelsSpirit.plugin('panels', ts.ui.PanelsPlugin);
+		ts.ui.ModalSpirit.plugin('doorman', ts.ui.DoorManPlugin);
 	},
 
 	/**

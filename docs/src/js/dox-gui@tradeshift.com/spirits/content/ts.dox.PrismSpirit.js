@@ -36,7 +36,7 @@ ts.dox.PrismSpirit = (function() {
 		 */
 		_parseconfig: function(config) {
 			if (config.show) {
-				this._bar().uncompact();
+				this._head().uncompact();
 			}
 		}
 	});

@@ -1,7 +1,7 @@
 .ts-modal {
 	z-index: @ts-zindex-modal;
 	position: absolute;
-	box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.75);
+	border-radius: 0;
 	&.ts-inscreen {
 		width: 480px;
 		height: 320px;
@@ -16,11 +16,17 @@
 			border-radius: 0 0 @ts-radius @ts-radius;
 		}
 	}
-	&.ts-fullscreen {
+	> .ts-panels {
+		position: relative;
 	}
-	> .ts-panel {
+	> .ts-panels,
+	> .ts-panel,
+	> .ts-panels > .ts-panel {
 		.ts-mixin-maximize();
-		padding-bottom: 0;
+	}
+	> .ts-panels > .ts-panel,
+	> .ts-panel, {
+		// padding-bottom: 0;
 		background-color: @ts-white;
 		overflow: hidden;
 		&:after {
@@ -64,37 +70,67 @@
 		}
 	}
 	&.ts-has-header {
-		&.ts-header-level-2 > .ts-panel {
-			top: @ts-unit * 2;
+		&.ts-header-level-2 {
+			> .ts-panels,
+			> .ts-panel {
+				top: @ts-unit * 2;
+			}
 		}
-		&.ts-header-level-3 > .ts-panel {
-			top: @ts-unit * 3;
+		&.ts-header-level-3 {
+			> .ts-panels,
+			> .ts-panel {
+				top: @ts-unit * 3;
+			}
 		}
-		&.ts-header-level-5 > .ts-panel {
-			top: @ts-unit * 5;
+		&.ts-header-level-5 {
+			> .ts-panels,
+			> .ts-panel {
+				top: @ts-unit * 5;
+			}
 		}
-		&.ts-header-level-6 > .ts-panel {
-			top: @ts-unit * 6;
+		&.ts-header-level-6 {
+			> .ts-panels,
+			> .ts-panel {
+				top: @ts-unit * 6;
+			}
 		}
-		&.ts-header-level-8 > .ts-panel {
-			top: @ts-unit * 8;
+		&.ts-header-level-8 {
+			> .ts-panels,
+			> .ts-panel {
+				top: @ts-unit * 8;
+			}
 		}
 	}
 	&.ts-has-footer {
-		&.ts-footer-level-2 > .ts-panel {
-			bottom: @ts-unit * 2;
+		&.ts-footer-level-2 {
+			> .ts-panels,
+			> .ts-panel {
+				bottom: @ts-unit * 2;
+			}
 		}
-		&.ts-footer-level-3 > .ts-panel {
-			bottom: @ts-unit * 3;
+		&.ts-footer-level-3 {
+			> .ts-panels,
+			> .ts-panel {
+				bottom: @ts-unit * 3;
+			}
 		}
-		&.ts-footer-level-5 > .ts-panel {
-			bottom: @ts-unit * 5;
+		&.ts-footer-level-5 {
+			> .ts-panels,
+			> .ts-panel {
+				bottom: @ts-unit * 5;
+			}
 		}
-		&.ts-footer-level-6 > .ts-panel {
-			bottom: @ts-unit * 6;
+		&.ts-footer-level-6 {
+			> .ts-panels,
+			> .ts-panel {
+				bottom: @ts-unit * 6;
+			}
 		}
-		&.ts-footer-level-8 > .ts-panel {
-			bottom: @ts-unit * 8;
+		&.ts-footer-level-8 {
+			> .ts-panels,
+			> .ts-panel {
+				bottom: @ts-unit * 8;
+			}
 		}
 	}
 	&.ts-transition {

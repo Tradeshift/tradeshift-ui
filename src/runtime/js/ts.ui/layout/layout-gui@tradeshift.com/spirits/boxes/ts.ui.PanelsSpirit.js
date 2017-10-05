@@ -1,9 +1,17 @@
 /**
- * Spirit of the box.
+ * Spirit of the panels.
  * @extends {ts.ui.Spirit}
  */
 ts.ui.PanelsSpirit = (function() {
 	return ts.ui.Spirit.extend({
+		/**
+		 * Get selected panel via the {ts.ui.PanelsPlugin}.
+		 * @returns {ts.ui.PanelSpirit}
+		 */
+		current: function() {
+			return this.panels.current();
+		},
+
 		// Privileged ..............................................................
 
 		/**
@@ -17,16 +25,23 @@ ts.ui.PanelsSpirit = (function() {
 			});
 		},
 
-		$selectTab: function() {
-			console.log('TODO: $selectTab');
+		/**
+		 * Called by the {ts.ui.PanelsPlugin} when a tab is selected.
+		 * @param {ts.ui.PanelSpirit} panel The associated Panel (not the tab!).
+		 * @param {number} index
+		 */
+		$selectTab: function(panel) {
+			this._box(function(box) {
+				box.$selectTab(panel);
+			});
 		},
 
 		// Private .................................................................
 
 		/**
-		 * Call function on parent box if it exists.
-		 * @param {Function} action
-		 * @returns {*}
+		 * Do something with the parent box (if it exists).
+		 * @param {Function} action - Callback with box as argument
+		 * @returns {*} - Returns the callback return value (if any)
 		 */
 		_box: function(action) {
 			var box = this.dom.parent(ts.ui.BoxSpirit);

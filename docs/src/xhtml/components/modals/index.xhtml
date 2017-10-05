@@ -41,9 +41,14 @@
 			<article id="panel1">
 				<h1>Modal</h1>
 				<section class="desc" data-ts="Note">
-					<p>The fullscreen Modal can be used for stuff that doesn't really work in an <a data-ts="Button" href="#components/asides/">Aside</a>. Note that this component is in development, the design and APIs may change.</p>
+					<p>The fullscreen Modal can be used for stuff that doesn't really work in an <a data-ts="Button" href="#components/asides/"><span>Aside</span></a>. Note that this component is in development, the design and APIs may change.</p>
 				</section>
 				<section>
+					<p>
+							<a data-ts="Button" class="ts-primary" onclick="ts.ui.get('#example3').open()">
+								<span>PANEL TABS!</span>
+							</a>
+					</p>
 					<p>The <val>Modal</val> component <em>must</em> be created with a child component <val>Panel</val>.</p>
 					<figure data-ts="DoxMarkup">
 						<script type="text/html">
@@ -141,15 +146,28 @@
 						</script>
 					</figure>
 					<p>The tabs don"t do anything by default, so what happens at <code>onselect</code> is completely up to you. If you decice to go with this approach, you should make sure to read the section on <a href="#busy-and-done">busy and done</a> further down the page.</p>
-					<p>The alternative approach is to declare multiple <val>Panel</val> elements with a <att>data-ts.label</att> attribute and this will generate the tabs automatically as seen in <a data-ts="Button" onclick="ts.ui.get('#example3').open()">this example</a>.</p>
+
+					<p>The alternative approach is to declare multiple <val>Panel</val> inside a containing <val>Panels</val> element. They should all have the <att>data-ts.label</att> attribute declared. This will generate the tabs automatically as seen in <a data-ts="Button" onclick="ts.ui.get('#example3').open()">this example</a>.</p>
+
+
+					<!--
+					<p>The alternative approach is to declare multiple <val>Panel</val> elements inside a <val>Panels</val> element. The individual <val>Panel</val> elements should all habe the <att>data-ts.label</att> attribute declared. This will generate the tabs automatically as seen in <a data-ts="Button" onclick="ts.ui.get('#example3').open()">this example</a>.</p>
+					-->
+
+
+					<div data-ts="Note">
+						<p>TODO: UPDATE THIS DOCUMENTATION!</p>
+					</div>
 					<figure data-ts="DoxMarkup">
 						<script type="text/html">
 							<dialog data-ts="Modal">
-								<div data-ts="Panel" data-ts.label="Details">
-									<main data-ts="Main">…</main>
-								</div>
-								<div data-ts="Panel" data-ts.label="More Details">
-									<main data-ts="Main">…</main>
+								<div data-ts="Panels">
+									<div data-ts="Panel" data-ts.label="Details">
+										<main data-ts="Main">…</main>
+									</div>
+									<div data-ts="Panel" data-ts.label="More Details">
+										<main data-ts="Main">…</main>
+									</div>
 								</div>
 							</dialog>
 						</script>
@@ -379,7 +397,6 @@
 					<h1>Modal with fixed footer</h1>
 					<p>Bacon ipsum dolor amet jerky sausage pork belly tenderloin burgdoggen kevin prosciutto beef ribs shoulder tri-tip salami ribeye turducken rump. Rump prosciutto ham, kevin picanha drumstick chuck pork chop. Short ribs tail shank, alcatra kevin spare ribs meatloaf beef. Pork loin salami flank andouille prosciutto chuck bresaola sirloin ribeye. Bacon picanha salami filet mignon capicola beef ribs. Venison jowl meatloaf jerky porchetta, brisket shank picanha drumstick capicola frankfurter.</p>
  					
- 					<!--
 					<p>Modal ipsum dolor amet jerky sausage pork belly tenderloin burgdoggen kevin prosciutto beef ribs shoulder tri-tip salami ribeye turducken rump. Rump prosciutto ham, kevin picanha drumstick chuck pork chop. Short ribs tail shank, alcatra kevin spare ribs meatloaf beef. Pork loin salami flank andouille prosciutto chuck bresaola sirloin ribeye. Bacon picanha salami filet mignon capicola beef ribs. Venison jowl meatloaf jerky porchetta, brisket shank picanha.</p>
 
 					<p>Modal ipsum dolor amet jerky sausage pork belly tenderloin burgdoggen kevin prosciutto beef ribs shoulder tri-tip salami ribeye turducken rump. Rump prosciutto ham, kevin picanha drumstick chuck pork chop. Short ribs tail shank, alcatra kevin spare ribs meatloaf beef. Pork loin salami flank andouille prosciutto chuck bresaola sirloin ribeye. Bacon picanha salami filet mignon capicola beef ribs. Venison jowl meatloaf jerky porchetta, brisket shank picanha.</p>
@@ -397,53 +414,55 @@
 					<p>Modal ipsum dolor amet jerky sausage pork belly tenderloin burgdoggen kevin prosciutto beef ribs shoulder tri-tip salami ribeye turducken rump. Rump prosciutto ham, kevin picanha drumstick chuck pork chop. Short ribs tail shank, alcatra kevin spare ribs meatloaf beef. Pork loin salami flank andouille prosciutto chuck bresaola sirloin ribeye. Bacon picanha salami filet mignon capicola beef ribs. Venison jowl meatloaf jerky porchetta, brisket shank picanha.</p>
 
 					<p>Modal ipsum dolor amet jerky sausage pork belly tenderloin burgdoggen kevin prosciutto beef ribs shoulder tri-tip salami ribeye turducken rump. Rump prosciutto ham, kevin picanha drumstick chuck pork chop. Short ribs tail shank, alcatra kevin spare ribs meatloaf beef. Pork loin salami flank andouille prosciutto chuck bresaola sirloin ribeye. Bacon picanha salami filet mignon capicola beef ribs. Venison jowl meatloaf jerky porchetta, brisket shank picanha.</p>
-				-->
+
 				</main>
 			</div>
 		</dialog>
 
 		<dialog data-ts="Modal" id="example3" data-ts.title="Example Tabs">
-			<div data-ts="Panel" data-ts.label="Details">
-				<main data-ts="Main">
-					<h1>User details</h1>
-					<form data-ts="Form">
-						<fieldset>
-							<label>
-								<span>Real name</span>
-								<input/>
-							</label>
-						</fieldset>
-						<fieldset>
-							<label>
-								<span>Username</span>
-								<input/>
-							</label>
-						</fieldset>
-					</form>
-				</main>
-			</div>
-			<div data-ts="Panel" data-ts.label="More Details">
-				<main data-ts="Main">
-					<h1>More details</h1>
-					<form data-ts="Form">
-						<fieldset>
-							<label>
-								<span>Age</span>
-								<input type="number"/>
-							</label>
-						</fieldset>
-						<fieldset>
-							<label>
-								<span>Occupation</span>
-								<select>
-									<option value="a" selected>Developer</option>
-									<option value="b">Designer</option>
-									<option value="c">Manager</option>
-								</select>
-							</label>
-						</fieldset>
-					</form>
-				</main>
+			<div data-ts="Panels">
+				<div data-ts="Panel" data-ts.label="Details">
+					<main data-ts="Main">
+						<h1>User details</h1>
+						<form data-ts="Form">
+							<fieldset>
+								<label>
+									<span>Real name</span>
+									<input/>
+								</label>
+							</fieldset>
+							<fieldset>
+								<label>
+									<span>Username</span>
+									<input/>
+								</label>
+							</fieldset>
+						</form>
+					</main>
+				</div>
+				<div data-ts="Panel" data-ts.label="More Details">
+					<main data-ts="Main">
+						<h1>More details</h1>
+						<form data-ts="Form">
+							<fieldset>
+								<label>
+									<span>Age</span>
+									<input type="number"/>
+								</label>
+							</fieldset>
+							<fieldset>
+								<label>
+									<span>Occupation</span>
+									<select>
+										<option value="a" selected>Developer</option>
+										<option value="b">Designer</option>
+										<option value="c">Manager</option>
+									</select>
+								</label>
+							</fieldset>
+						</form>
+					</main>
+				</div>
 			</div>
 		</dialog>
 

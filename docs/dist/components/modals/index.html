@@ -59,9 +59,14 @@
             <article id="panel1">
                 <h1><span>Modal</span></h1>
                 <section class="desc" data-ts="Note">
-                    <p>The fullscreen Modal can be used for stuff that doesn&apos;t really work in an <a data-ts="Button" href="#components/asides/">Aside</a>. Note that this component is in development, the design and APIs may change.</p>
+                    <p>The fullscreen Modal can be used for stuff that doesn&apos;t really work in an <a data-ts="Button" href="#components/asides/"><span>Aside</span></a>. Note that this component is in development, the design and APIs may change.</p>
                 </section>
                 <section>
+                    <p>
+                        <a data-ts="Button" class="ts-primary" onclick="ts.ui.get(&apos;#example3&apos;).open()">
+								<span>PANEL TABS!</span>
+							</a>
+                    </p>
                     <p>The <code class="attr-value">Modal</code> component <em>must</em> be created with a child component <code class="attr-value">Panel</code>.</p>
                     <figure data-ts="DoxMarkup" data-ts.code="%3Cdialog%20data-ts%3D%22Modal%22%3E%0A%09%3Cdiv%20data-ts%3D%22Panel%22%3E%0A%09%09%3Cp%3EModal%20content.%3C%2Fp%3E%0A%09%3C%2Fdiv%3E%0A%3C%2Fdialog%3E">
                         <script type="text/html">
@@ -207,27 +212,36 @@
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
                     </figure>
                     <p>The tabs don&quot;t do anything by default, so what happens at <code>onselect</code> is completely up to you. If you decice to go with this approach, you should make sure to read the section on <a href="#busy-and-done">busy and done</a>                        further down the page.</p>
-                    <p>The alternative approach is to declare multiple <code class="attr-value">Panel</code> elements with a <code class="attr-pair"><span>data-ts.label</span></code> attribute and this will generate the tabs automatically as seen in <a data-ts="Button"
-                            onclick="ts.ui.get(&apos;#example3&apos;).open()">this example</a>.</p>
-                    <figure data-ts="DoxMarkup" data-ts.code="%3Cdialog%20data-ts%3D%22Modal%22%3E%0A%09%3Cdiv%20data-ts%3D%22Panel%22%20data-ts.label%3D%22Details%22%3E%0A%09%09%3Cmain%20data-ts%3D%22Main%22%3E%E2%80%A6%3C%2Fmain%3E%0A%09%3C%2Fdiv%3E%0A%09%3Cdiv%20data-ts%3D%22Panel%22%20data-ts.label%3D%22More%20Details%22%3E%0A%09%09%3Cmain%20data-ts%3D%22Main%22%3E%E2%80%A6%3C%2Fmain%3E%0A%09%3C%2Fdiv%3E%0A%3C%2Fdialog%3E">
+                    <p>The alternative approach is to declare multiple <code class="attr-value">Panel</code> inside a containing <code class="attr-value">Panels</code> element. They should all have the <code class="attr-pair"><span>data-ts.label</span></code>                        attribute declared. This will generate the tabs automatically as seen in <a data-ts="Button" onclick="ts.ui.get(&apos;#example3&apos;).open()">this example</a>.</p>
+                    <!--
+					<p>The alternative approach is to declare multiple <val>Panel</val> elements inside a <val>Panels</val> element. The individual <val>Panel</val> elements should all habe the <att>data-ts.label</att> attribute declared. This will generate the tabs automatically as seen in <a data-ts="Button" onclick="ts.ui.get('#example3').open()">this example</a>.</p>
+					-->
+                    <div data-ts="Note">
+                        <p>TODO: UPDATE THIS DOCUMENTATION!</p>
+                    </div>
+                    <figure data-ts="DoxMarkup" data-ts.code="%3Cdialog%20data-ts%3D%22Modal%22%3E%0A%09%3Cdiv%20data-ts%3D%22Panels%22%3E%0A%09%09%3Cdiv%20data-ts%3D%22Panel%22%20data-ts.label%3D%22Details%22%3E%0A%09%09%09%3Cmain%20data-ts%3D%22Main%22%3E%E2%80%A6%3C%2Fmain%3E%0A%09%09%3C%2Fdiv%3E%0A%09%09%3Cdiv%20data-ts%3D%22Panel%22%20data-ts.label%3D%22More%20Details%22%3E%0A%09%09%09%3Cmain%20data-ts%3D%22Main%22%3E%E2%80%A6%3C%2Fmain%3E%0A%09%09%3C%2Fdiv%3E%0A%09%3C%2Fdiv%3E%0A%3C%2Fdialog%3E">
                         <script type="text/html">
                             <dialog data-ts="Modal">
-                                <div data-ts="Panel" data-ts.label="Details">
-                                    <main data-ts="Main">…</main>
-                                </div>
-                                <div data-ts="Panel" data-ts.label="More Details">
-                                    <main data-ts="Main">…</main>
+                                <div data-ts="Panels">
+                                    <div data-ts="Panel" data-ts.label="Details">
+                                        <main data-ts="Main">…</main>
+                                    </div>
+                                    <div data-ts="Panel" data-ts.label="More Details">
+                                        <main data-ts="Main">…</main>
+                                    </div>
                                 </div>
                             </dialog>
                         </script>
                         <ul data-ts="Panels">
                             <li data-ts="Panel">
                                 <pre class="prism language-markup"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dialog</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Modal<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
-	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Panel<span class="token punctuation">&quot;</span></span> <span class="token attr-name">data-ts</span>.<span class="token attr-name">label</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Details<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
-		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>main</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Main<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>&#x2026;<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>main</span><span class="token punctuation">&gt;</span></span>
-	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
-	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Panel<span class="token punctuation">&quot;</span></span> <span class="token attr-name">data-ts</span>.<span class="token attr-name">label</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>More Details<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
-		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>main</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Main<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>&#x2026;<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>main</span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Panels<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Panel<span class="token punctuation">&quot;</span></span> <span class="token attr-name">data-ts</span>.<span class="token attr-name">label</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Details<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>main</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Main<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>&#x2026;<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>main</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Panel<span class="token punctuation">&quot;</span></span> <span class="token attr-name">data-ts</span>.<span class="token attr-name">label</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>More Details<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>main</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Main<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>&#x2026;<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>main</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dialog</span><span class="token punctuation">&gt;</span></span></code></pre>
                             </li>
@@ -399,62 +413,71 @@ document<span class="token punctuation">.</span><span class="token function">add
                 <p>Bacon ipsum dolor amet jerky sausage pork belly tenderloin burgdoggen kevin prosciutto beef ribs shoulder tri-tip salami ribeye turducken rump. Rump prosciutto ham, kevin picanha drumstick chuck pork chop. Short ribs tail shank, alcatra
                     kevin spare ribs meatloaf beef. Pork loin salami flank andouille prosciutto chuck bresaola sirloin ribeye. Bacon picanha salami filet mignon capicola beef ribs. Venison jowl meatloaf jerky porchetta, brisket shank picanha drumstick
                     capicola frankfurter.</p>
-                <!--
-					<p>Modal ipsum dolor amet jerky sausage pork belly tenderloin burgdoggen kevin prosciutto beef ribs shoulder tri-tip salami ribeye turducken rump. Rump prosciutto ham, kevin picanha drumstick chuck pork chop. Short ribs tail shank, alcatra kevin spare ribs meatloaf beef. Pork loin salami flank andouille prosciutto chuck bresaola sirloin ribeye. Bacon picanha salami filet mignon capicola beef ribs. Venison jowl meatloaf jerky porchetta, brisket shank picanha.</p>
-					<p>Modal ipsum dolor amet jerky sausage pork belly tenderloin burgdoggen kevin prosciutto beef ribs shoulder tri-tip salami ribeye turducken rump. Rump prosciutto ham, kevin picanha drumstick chuck pork chop. Short ribs tail shank, alcatra kevin spare ribs meatloaf beef. Pork loin salami flank andouille prosciutto chuck bresaola sirloin ribeye. Bacon picanha salami filet mignon capicola beef ribs. Venison jowl meatloaf jerky porchetta, brisket shank picanha.</p>
-					<p>Modal ipsum dolor amet jerky sausage pork belly tenderloin burgdoggen kevin prosciutto beef ribs shoulder tri-tip salami ribeye turducken rump. Rump prosciutto ham, kevin picanha drumstick chuck pork chop. Short ribs tail shank, alcatra kevin spare ribs meatloaf beef. Pork loin salami flank andouille prosciutto chuck bresaola sirloin ribeye. Bacon picanha salami filet mignon capicola beef ribs. Venison jowl meatloaf jerky porchetta, brisket shank picanha.</p>
-					<p>Modal ipsum dolor amet jerky sausage pork belly tenderloin burgdoggen kevin prosciutto beef ribs shoulder tri-tip salami ribeye turducken rump. Rump prosciutto ham, kevin picanha drumstick chuck pork chop. Short ribs tail shank, alcatra kevin spare ribs meatloaf beef. Pork loin salami flank andouille prosciutto chuck bresaola sirloin ribeye. Bacon picanha salami filet mignon capicola beef ribs. Venison jowl meatloaf jerky porchetta, brisket shank picanha.</p>
-					<p>Modal ipsum dolor amet jerky sausage pork belly tenderloin burgdoggen kevin prosciutto beef ribs shoulder tri-tip salami ribeye turducken rump. Rump prosciutto ham, kevin picanha drumstick chuck pork chop. Short ribs tail shank, alcatra kevin spare ribs meatloaf beef. Pork loin salami flank andouille prosciutto chuck bresaola sirloin ribeye. Bacon picanha salami filet mignon capicola beef ribs. Venison jowl meatloaf jerky porchetta, brisket shank picanha.</p>
-					<p>Modal ipsum dolor amet jerky sausage pork belly tenderloin burgdoggen kevin prosciutto beef ribs shoulder tri-tip salami ribeye turducken rump. Rump prosciutto ham, kevin picanha drumstick chuck pork chop. Short ribs tail shank, alcatra kevin spare ribs meatloaf beef. Pork loin salami flank andouille prosciutto chuck bresaola sirloin ribeye. Bacon picanha salami filet mignon capicola beef ribs. Venison jowl meatloaf jerky porchetta, brisket shank picanha.</p>
-					<p>Modal ipsum dolor amet jerky sausage pork belly tenderloin burgdoggen kevin prosciutto beef ribs shoulder tri-tip salami ribeye turducken rump. Rump prosciutto ham, kevin picanha drumstick chuck pork chop. Short ribs tail shank, alcatra kevin spare ribs meatloaf beef. Pork loin salami flank andouille prosciutto chuck bresaola sirloin ribeye. Bacon picanha salami filet mignon capicola beef ribs. Venison jowl meatloaf jerky porchetta, brisket shank picanha.</p>
-					<p>Modal ipsum dolor amet jerky sausage pork belly tenderloin burgdoggen kevin prosciutto beef ribs shoulder tri-tip salami ribeye turducken rump. Rump prosciutto ham, kevin picanha drumstick chuck pork chop. Short ribs tail shank, alcatra kevin spare ribs meatloaf beef. Pork loin salami flank andouille prosciutto chuck bresaola sirloin ribeye. Bacon picanha salami filet mignon capicola beef ribs. Venison jowl meatloaf jerky porchetta, brisket shank picanha.</p>
-					<p>Modal ipsum dolor amet jerky sausage pork belly tenderloin burgdoggen kevin prosciutto beef ribs shoulder tri-tip salami ribeye turducken rump. Rump prosciutto ham, kevin picanha drumstick chuck pork chop. Short ribs tail shank, alcatra kevin spare ribs meatloaf beef. Pork loin salami flank andouille prosciutto chuck bresaola sirloin ribeye. Bacon picanha salami filet mignon capicola beef ribs. Venison jowl meatloaf jerky porchetta, brisket shank picanha.</p>
-				-->
+                <p>Modal ipsum dolor amet jerky sausage pork belly tenderloin burgdoggen kevin prosciutto beef ribs shoulder tri-tip salami ribeye turducken rump. Rump prosciutto ham, kevin picanha drumstick chuck pork chop. Short ribs tail shank, alcatra
+                    kevin spare ribs meatloaf beef. Pork loin salami flank andouille prosciutto chuck bresaola sirloin ribeye. Bacon picanha salami filet mignon capicola beef ribs. Venison jowl meatloaf jerky porchetta, brisket shank picanha.</p>
+                <p>Modal ipsum dolor amet jerky sausage pork belly tenderloin burgdoggen kevin prosciutto beef ribs shoulder tri-tip salami ribeye turducken rump. Rump prosciutto ham, kevin picanha drumstick chuck pork chop. Short ribs tail shank, alcatra
+                    kevin spare ribs meatloaf beef. Pork loin salami flank andouille prosciutto chuck bresaola sirloin ribeye. Bacon picanha salami filet mignon capicola beef ribs. Venison jowl meatloaf jerky porchetta, brisket shank picanha.</p>
+                <p>Modal ipsum dolor amet jerky sausage pork belly tenderloin burgdoggen kevin prosciutto beef ribs shoulder tri-tip salami ribeye turducken rump. Rump prosciutto ham, kevin picanha drumstick chuck pork chop. Short ribs tail shank, alcatra
+                    kevin spare ribs meatloaf beef. Pork loin salami flank andouille prosciutto chuck bresaola sirloin ribeye. Bacon picanha salami filet mignon capicola beef ribs. Venison jowl meatloaf jerky porchetta, brisket shank picanha.</p>
+                <p>Modal ipsum dolor amet jerky sausage pork belly tenderloin burgdoggen kevin prosciutto beef ribs shoulder tri-tip salami ribeye turducken rump. Rump prosciutto ham, kevin picanha drumstick chuck pork chop. Short ribs tail shank, alcatra
+                    kevin spare ribs meatloaf beef. Pork loin salami flank andouille prosciutto chuck bresaola sirloin ribeye. Bacon picanha salami filet mignon capicola beef ribs. Venison jowl meatloaf jerky porchetta, brisket shank picanha.</p>
+                <p>Modal ipsum dolor amet jerky sausage pork belly tenderloin burgdoggen kevin prosciutto beef ribs shoulder tri-tip salami ribeye turducken rump. Rump prosciutto ham, kevin picanha drumstick chuck pork chop. Short ribs tail shank, alcatra
+                    kevin spare ribs meatloaf beef. Pork loin salami flank andouille prosciutto chuck bresaola sirloin ribeye. Bacon picanha salami filet mignon capicola beef ribs. Venison jowl meatloaf jerky porchetta, brisket shank picanha.</p>
+                <p>Modal ipsum dolor amet jerky sausage pork belly tenderloin burgdoggen kevin prosciutto beef ribs shoulder tri-tip salami ribeye turducken rump. Rump prosciutto ham, kevin picanha drumstick chuck pork chop. Short ribs tail shank, alcatra
+                    kevin spare ribs meatloaf beef. Pork loin salami flank andouille prosciutto chuck bresaola sirloin ribeye. Bacon picanha salami filet mignon capicola beef ribs. Venison jowl meatloaf jerky porchetta, brisket shank picanha.</p>
+                <p>Modal ipsum dolor amet jerky sausage pork belly tenderloin burgdoggen kevin prosciutto beef ribs shoulder tri-tip salami ribeye turducken rump. Rump prosciutto ham, kevin picanha drumstick chuck pork chop. Short ribs tail shank, alcatra
+                    kevin spare ribs meatloaf beef. Pork loin salami flank andouille prosciutto chuck bresaola sirloin ribeye. Bacon picanha salami filet mignon capicola beef ribs. Venison jowl meatloaf jerky porchetta, brisket shank picanha.</p>
+                <p>Modal ipsum dolor amet jerky sausage pork belly tenderloin burgdoggen kevin prosciutto beef ribs shoulder tri-tip salami ribeye turducken rump. Rump prosciutto ham, kevin picanha drumstick chuck pork chop. Short ribs tail shank, alcatra
+                    kevin spare ribs meatloaf beef. Pork loin salami flank andouille prosciutto chuck bresaola sirloin ribeye. Bacon picanha salami filet mignon capicola beef ribs. Venison jowl meatloaf jerky porchetta, brisket shank picanha.</p>
+                <p>Modal ipsum dolor amet jerky sausage pork belly tenderloin burgdoggen kevin prosciutto beef ribs shoulder tri-tip salami ribeye turducken rump. Rump prosciutto ham, kevin picanha drumstick chuck pork chop. Short ribs tail shank, alcatra
+                    kevin spare ribs meatloaf beef. Pork loin salami flank andouille prosciutto chuck bresaola sirloin ribeye. Bacon picanha salami filet mignon capicola beef ribs. Venison jowl meatloaf jerky porchetta, brisket shank picanha.</p>
             </main>
         </div>
     </dialog>
     <dialog data-ts="Modal" id="example3" data-ts.title="Example Tabs">
-        <div data-ts="Panel" data-ts.label="Details">
-            <main data-ts="Main">
-                <h1><span>User details</span></h1>
-                <form data-ts="Form">
-                    <fieldset>
-                        <label>
-								<span>Real name</span>
-								<input>
-							</label>
-                    </fieldset>
-                    <fieldset>
-                        <label>
-								<span>Username</span>
-								<input>
-							</label>
-                    </fieldset>
-                </form>
-            </main>
-        </div>
-        <div data-ts="Panel" data-ts.label="More Details">
-            <main data-ts="Main">
-                <h1><span>More details</span></h1>
-                <form data-ts="Form">
-                    <fieldset>
-                        <label>
-								<span>Age</span>
-								<input type="number">
-							</label>
-                    </fieldset>
-                    <fieldset>
-                        <label>
-								<span>Occupation</span>
-								<select>
-									<option value="a" selected>Developer</option>
-									<option value="b">Designer</option>
-									<option value="c">Manager</option>
-								</select>
-							</label>
-                    </fieldset>
-                </form>
-            </main>
+        <div data-ts="Panels">
+            <div data-ts="Panel" data-ts.label="Details">
+                <main data-ts="Main">
+                    <h1><span>User details</span></h1>
+                    <form data-ts="Form">
+                        <fieldset>
+                            <label>
+									<span>Real name</span>
+									<input>
+								</label>
+                        </fieldset>
+                        <fieldset>
+                            <label>
+									<span>Username</span>
+									<input>
+								</label>
+                        </fieldset>
+                    </form>
+                </main>
+            </div>
+            <div data-ts="Panel" data-ts.label="More Details">
+                <main data-ts="Main">
+                    <h1><span>More details</span></h1>
+                    <form data-ts="Form">
+                        <fieldset>
+                            <label>
+									<span>Age</span>
+									<input type="number">
+								</label>
+                        </fieldset>
+                        <fieldset>
+                            <label>
+									<span>Occupation</span>
+									<select>
+										<option value="a" selected>Developer</option>
+										<option value="b">Designer</option>
+										<option value="c">Manager</option>
+									</select>
+								</label>
+                        </fieldset>
+                    </form>
+                </main>
+            </div>
         </div>
     </dialog>
     <dialog data-ts="Modal" id="example4" data-ts.title="Busy Modal">

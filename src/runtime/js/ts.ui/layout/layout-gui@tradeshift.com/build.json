@@ -1,5 +1,6 @@
 [
 	"spirits/boxes/ts.ui.PanelsSpirit.js",
 	"spirits/boxes/ts.ui.BoxSpirit.js",
+	"spirits/modals/ts.ui.ModalSpirit.js",
 	"module.js"
 ]

@@ -1,5 +1,5 @@
 /**
- * Objects GUI module.
+ * Layout module.
  */
 gui.module('layout-gui@tradeshift.com', {
 	/**
@@ -7,8 +7,14 @@ gui.module('layout-gui@tradeshift.com', {
 	 */
 	channel: [
 		['[data-ts=Box]', ts.ui.BoxSpirit],
+		['[data-ts=Board]', ts.ui.BoardSpirit],
+		['[data-ts=Panel]', ts.ui.PanelSpirit],
 		['[data-ts=Panels]', ts.ui.PanelsSpirit],
-		['[data-ts=Modal]', ts.ui.ModalSpirit]
+		['[data-ts=Aside]', ts.ui.AsideSpirit],
+		['[data-ts=SideBar]', ts.ui.SideBarSpirit],
+		['[data-ts=Modal]', ts.ui.ModalSpirit],
+		['[data-ts=Main]', ts.ui.MainSpirit],
+		['[data-ts=MainContent]', ts.ui.MainContentSpirit] // TODO: Panel this!
 	],
 
 	/**
@@ -17,10 +23,11 @@ gui.module('layout-gui@tradeshift.com', {
 	oncontextinitialize: function() {
 		ts.ui.PanelsSpirit.plugin('panels', ts.ui.PanelsPlugin);
 		ts.ui.ModalSpirit.plugin('doorman', ts.ui.DoorManPlugin);
+		ts.ui.SideShowSpirit.plugin('doorman', ts.ui.DoorManPlugin);
 	},
 
 	/**
-	 *
+	 * Parse optional metatags to produce a nice header.
 	 */
 	onbeforespiritualize: function() {
 		function setupheader(meta, link) {

@@ -1,6 +1,13 @@
 [
+	"spirits/boxes/ts.ui.PanelSpirit.js",
 	"spirits/boxes/ts.ui.PanelsSpirit.js",
 	"spirits/boxes/ts.ui.BoxSpirit.js",
+	"spirits/boxes/ts.ui.BoardSpirit.js",
+	"spirits/asides/ts.ui.SideShowSpirit.js",
+	"spirits/asides/ts.ui.AsideSpirit.js",
+	"spirits/asides/ts.ui.SideBarSpirit.js",
 	"spirits/modals/ts.ui.ModalSpirit.js",
+	"spirits/main/ts.ui.MainSpirit.js",
+	"spirits/main/ts.ui.MainContentSpirit.js",
 	"module.js"
 ]

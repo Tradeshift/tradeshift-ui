@@ -13,8 +13,16 @@ ts.ui.HeaderBarSpirit = (function using(chained) {
 			model: ts.ui.Spirit.createModelMethod(ts.ui.HeaderBarModel, 'ts.ui.HeaderBarSpirit.edbml'),
 
 			/**
-		 * Add that global classname.
-		 */
+			 * This spirit is not channeled, so we'll need to add this classname manually.
+			 */
+			onconfigure: function() {
+				this.super.onconfigure();
+				this.css.add('ts-headerbar');
+			},
+
+			/**
+		   * Add that global classname.
+		   *
 			onenter: function() {
 				this.super.onenter();
 				if (this.guilayout.outsideMain()) {
@@ -26,9 +34,9 @@ ts.ui.HeaderBarSpirit = (function using(chained) {
 			},
 
 			/**
-		 * Index the various bars and watch for rendering updates.
-		 * @param {Object} summary
-		 */
+		 	 * Index the various bars and watch for rendering updates.
+			 * @param {Object} summary
+			 */
 			onrender: function(summary) {
 				this.super.onrender(summary);
 				if (summary.first) {
@@ -48,18 +56,18 @@ ts.ui.HeaderBarSpirit = (function using(chained) {
 			},
 
 			/**
-		 * TODO: Future layout optimizations should be done around here!
-		 * @param {gui.Life} l
-		 */
+			 * TODO: Future layout optimizations should be done around here!
+			 * @param {gui.Life} l
+			 */
 			onlife: function(l) {
 				this.super.onlife(l);
 			},
 
 			/**
-		 * Get or set the title.
-		 * @param {string} [string]
-		 * @returns {this|string}
-		 */
+			 * Get or set the title.
+			 * @param {string} [string]
+			 * @returns {this|string}
+			 */
 			title: chained(function(string) {
 				var model = this.model();
 				if (arguments.length) {
@@ -70,10 +78,10 @@ ts.ui.HeaderBarSpirit = (function using(chained) {
 			}),
 
 			/**
-		 * Get or set the icon image.
-		 * @param {string} [string]
-		 * @returns {this|string}
-		 */
+			 * Get or set the icon image.
+			 * @param {string} [string]
+			 * @returns {this|string}
+			 */
 			icon: chained(function(string) {
 				var model = this.model();
 				if (arguments.length) {
@@ -84,10 +92,10 @@ ts.ui.HeaderBarSpirit = (function using(chained) {
 			}),
 
 			/**
-		 * Get or set the tabs.
-		 * @param {Array<object>|ts.ui.TabCollection|null} [json]
-		 * @returns {this|ts.ui.TabCollection}
-		 */
+			 * Get or set the tabs.
+			 * @param {Array<object>|ts.ui.TabCollection|null} [json]
+			 * @returns {this|ts.ui.TabCollection}
+			 */
 			tabs: chained(function(json) {
 				var model = this.model();
 				if (arguments.length) {
@@ -102,11 +110,11 @@ ts.ui.HeaderBarSpirit = (function using(chained) {
 			}),
 
 			/**
-		 * Get or set the search.
-		 * [The buttons will be rendered in the `bufferbar`!]
-		 * @param {Object|ts.ui.SearchModel|null} [json]
-		 * @returns {this|ts.ui.SearchModel}
-		 */
+			 * Get or set the search.
+			 * [The buttons will be rendered in the `bufferbar`!]
+			 * @param {Object|ts.ui.SearchModel|null} [json]
+			 * @returns {this|ts.ui.SearchModel}
+			 */
 			search: chained(function(json) {
 				var model = this.model();
 				if (arguments.length) {
@@ -118,8 +126,8 @@ ts.ui.HeaderBarSpirit = (function using(chained) {
 			}),
 
 			/**
-		 * @param {Function} [onclick]
-		 */
+			 * @param {Function} [onclick]
+			 */
 			showClose: chained(function(onclick) {
 				if (this.life.rendered) {
 					this._headerbar.showClose(onclick);
@@ -131,24 +139,24 @@ ts.ui.HeaderBarSpirit = (function using(chained) {
 			// Private .................................................................
 
 			/**
-		 * @type {ts.ui.ToolBarSpirit}
-		 */
+			 * @type {ts.ui.ToolBarSpirit}
+			 */
 			_headerbar: null,
 
 			/**
-		 * @type {ts.ui.ToolBarSpirit}
-		 */
+			 * @type {ts.ui.ToolBarSpirit}
+			 */
 			_centerbar: null,
 
 			/**
-		 * @type {ts.ui.ToolBarSpirit}
-		 */
+			 * @type {ts.ui.ToolBarSpirit}
+			 */
 			_buttonbar: null,
 
 			/**
-		 * Dispatch some action bearing offset info for the general environment to handle.
-		 * If no bars are visible, we'll hide ourselves not to show an awkward dropshadow.
-		 */
+			 * Dispatch some action bearing offset info for the general environment to handle.
+			 * If no bars are visible, we'll hide ourselves not to show an awkward dropshadow.
+			 */
 			_layout: function() {
 				this.super._layout(ts.ui.ACTION_HEADER_LEVEL, [
 					[this._headerbar, 3],
@@ -161,15 +169,18 @@ ts.ui.HeaderBarSpirit = (function using(chained) {
 			// Static ...............................................................
 
 			/**
-		 * Summon spirit.
-		 * @param {boolean} [isglobal]
-		 * @returns {ts.ui.HeaderBarSpirit}
-		 */
+			 * Summon spirit.
+			 * @param {boolean} [isglobal]
+			 * @returns {ts.ui.HeaderBarSpirit}
+			 */
 			summon: function(isglobal) {
+				return ts.ui.HeaderBarSpirit.possess(document.createElement('header'));
+				/*
 				var elm = document.createElement('header');
 				var spi = ts.ui.HeaderBarSpirit.possess(elm);
 				spi.global = isglobal || false;
 				return spi;
+				*/
 			}
 		}
 	);

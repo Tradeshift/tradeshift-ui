@@ -158,26 +158,30 @@
                 <h3><span>Adding some tabs</span></h3>
                 <section>
                     <p>If an <code class="attr-value">Aside</code> contains more than one <code class="attr-value">Panel</code>, we will automatically create a TabBar to switch between the panels like in <a data-ts="Button" onclick="ts.ui.get(&apos;#aside2&apos;).open()">this example</a>.</p>
-                    <figure data-ts="DoxMarkup" data-ts.code="%3Caside%20data-ts%3D%22Aside%22%3E%0A%09%3Cdiv%20data-ts%3D%22Panel%22%20data-ts.label%3D%22Tab%201%22%3E%0A%09%09%3Cp%3EAside%20content.%3C%2Fp%3E%0A%09%3C%2Fdiv%3E%0A%09%3Cdiv%20data-ts%3D%22Panel%22%20data-ts.label%3D%22Tab%202%22%3E%0A%09%09%3Cp%3EAside%20content.%3C%2Fp%3E%0A%09%3C%2Fdiv%3E%0A%3C%2Faside%3E">
+                    <figure data-ts="DoxMarkup" data-ts.code="%3Caside%20data-ts%3D%22Aside%22%3E%0A%09%3Cul%20data-ts%3D%22Panels%22%3E%0A%09%09%3Cli%20data-ts%3D%22Panel%22%20data-ts.label%3D%22Tab%201%22%3E%0A%09%09%09%3Cp%3EAside%20content.%3C%2Fp%3E%0A%09%09%3C%2Fli%3E%0A%09%09%3Cli%20data-ts%3D%22Panel%22%20data-ts.label%3D%22Tab%202%22%3E%0A%09%09%09%3Cp%3EAside%20content.%3C%2Fp%3E%0A%09%09%3C%2Fli%3E%0A%09%3C%2Ful%3E%0A%3C%2Faside%3E">
                         <script type="text/html">
                             <aside data-ts="Aside">
-                                <div data-ts="Panel" data-ts.label="Tab 1">
-                                    <p>Aside content.</p>
-                                </div>
-                                <div data-ts="Panel" data-ts.label="Tab 2">
-                                    <p>Aside content.</p>
-                                </div>
+                                <ul data-ts="Panels">
+                                    <li data-ts="Panel" data-ts.label="Tab 1">
+                                        <p>Aside content.</p>
+                                    </li>
+                                    <li data-ts="Panel" data-ts.label="Tab 2">
+                                        <p>Aside content.</p>
+                                    </li>
+                                </ul>
                             </aside>
                         </script>
                         <ul data-ts="Panels">
                             <li data-ts="Panel">
                                 <pre class="prism language-markup"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>aside</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Aside<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
-	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Panel<span class="token punctuation">&quot;</span></span> <span class="token attr-name">data-ts</span>.<span class="token attr-name">label</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Tab 1<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
-		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>Aside content.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
-	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
-	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Panel<span class="token punctuation">&quot;</span></span> <span class="token attr-name">data-ts</span>.<span class="token attr-name">label</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Tab 2<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
-		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>Aside content.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
-	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ul</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Panels<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Panel<span class="token punctuation">&quot;</span></span> <span class="token attr-name">data-ts</span>.<span class="token attr-name">label</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Tab 1<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>Aside content.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Panel<span class="token punctuation">&quot;</span></span> <span class="token attr-name">data-ts</span>.<span class="token attr-name">label</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Tab 2<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>Aside content.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ul</span><span class="token punctuation">&gt;</span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>aside</span><span class="token punctuation">&gt;</span></span></code></pre>
                             </li>
                         </ul>
@@ -361,19 +365,21 @@ aside<span class="token punctuation">.</span><span class="token function">attr<s
         <div data-ts="Panel"></div>
     </aside>
     <aside data-ts="Aside" id="aside2" data-ts.title="Declarative Tabs">
-        <div data-ts="Panel" data-ts.label="tab 1">
-            <p>Bacon ipsum dolor sit p&#xF6;lsesnack, jerky pork belly short loin sausage andouille kevin capicola ham hamburger doner. Shank prosciutto flank kevin ribeye short ribs swine ham pork porchetta spare ribs kielbasa beef ribs. Prosciutto pancetta
-                shank boudin. Corned beef shoulder capicola, turducken prosciutto pork belly sirloin shankle brisket chuck leberkas tail beef. Sirloin meatloaf pastrami beef ribs. Ball tip pastrami landjaeger, brisket Tradeshift strip steak short loin
-                pancetta meatball corned beef tenderloin beef ribs spare ribs. Tradeshift sausage strip steak ham, ribeye pork loin meatball turkey corned beef shoulder. Leberkas jerky sirloin boudin, turducken ham hock pastrami. Doner pig boudin sausage,
-                ball tip leberkas ground round beef jowl kielbasa tongue shankle spare ribs tail shoulder. Fatback pork kielbasa ham, doner pig short loin short ribs pancetta. Pancetta jerky biltong short loin capicola beef. Pork belly strip steak venison
-                brisket shoulder beef filet mignon shank tenderloin tri-tip ground round shankle cow.</p>
-        </div>
-        <div data-ts="Panel" data-ts.label="tab 2">
-            <p>Tradeshift salami burger mit invoice pastrami, shankle venison meatball pork belly capicola ribeye sirloin doner Aside. Tail kielbasa beef ribs landjaeger pork belly. T-bone pig andouille, doner ham sirloin short ribs meatloaf salami strip
-                steak tenderloin short loin tri-tip pork loin. Pastrami jowl sirloin, kevin jerky filet mignon bacon pork chop brisket pancetta. Spare ribs ground round pork belly pork chop doner swine, fatback bresaola. Picanha beef ribs burgdoggen bacon
-                sausage rump. Porchetta turkey ribeye, tenderloin landjaeger spare ribs strip steak pork belly t-bone. Tenderloin t-bone ham, doner corned beef chuck fatback ground round short ribs tri-tip. Landjaeger ribeye brisket boudin tongue pork
-                kevin frankfurter. Swine capicola filet mignon, cow spare ribs ribeye salami sausage porchetta hamburger short ribs corned beef.</p>
-        </div>
+        <ul data-ts="Panels">
+            <li data-ts="Panel" data-ts.label="tab 1">
+                <p>Bacon ipsum dolor sit p&#xF6;lsesnack, jerky pork belly short loin sausage andouille kevin capicola ham hamburger doner. Shank prosciutto flank kevin ribeye short ribs swine ham pork porchetta spare ribs kielbasa beef ribs. Prosciutto
+                    pancetta shank boudin. Corned beef shoulder capicola, turducken prosciutto pork belly sirloin shankle brisket chuck leberkas tail beef. Sirloin meatloaf pastrami beef ribs. Ball tip pastrami landjaeger, brisket Tradeshift strip steak
+                    short loin pancetta meatball corned beef tenderloin beef ribs spare ribs. Tradeshift sausage strip steak ham, ribeye pork loin meatball turkey corned beef shoulder. Leberkas jerky sirloin boudin, turducken ham hock pastrami. Doner
+                    pig boudin sausage, ball tip leberkas ground round beef jowl kielbasa tongue shankle spare ribs tail shoulder. Fatback pork kielbasa ham, doner pig short loin short ribs pancetta. Pancetta jerky biltong short loin capicola beef. Pork
+                    belly strip steak venison brisket shoulder beef filet mignon shank tenderloin tri-tip ground round shankle cow.</p>
+            </li>
+            <li data-ts="Panel" data-ts.label="tab 2">
+                <p>Tradeshift salami burger mit invoice pastrami, shankle venison meatball pork belly capicola ribeye sirloin doner Aside. Tail kielbasa beef ribs landjaeger pork belly. T-bone pig andouille, doner ham sirloin short ribs meatloaf salami strip
+                    steak tenderloin short loin tri-tip pork loin. Pastrami jowl sirloin, kevin jerky filet mignon bacon pork chop brisket pancetta. Spare ribs ground round pork belly pork chop doner swine, fatback bresaola. Picanha beef ribs burgdoggen
+                    bacon sausage rump. Porchetta turkey ribeye, tenderloin landjaeger spare ribs strip steak pork belly t-bone. Tenderloin t-bone ham, doner corned beef chuck fatback ground round short ribs tri-tip. Landjaeger ribeye brisket boudin tongue
+                    pork kevin frankfurter. Swine capicola filet mignon, cow spare ribs ribeye salami sausage porchetta hamburger short ribs corned beef.</p>
+            </li>
+        </ul>
     </aside>
     <aside data-ts="Aside" id="aside3" data-ts.title="Programmatic Tabs">
         <div data-ts="Panel"></div>

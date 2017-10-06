@@ -28,22 +28,30 @@ ts.ui.FooterBarSpirit = (function using(
 	return ts.ui.MajorBarSpirit.extend(
 		{
 			/**
-		 * Open for implementation: Callback for when a link is clicked in status message.
-		 * @type {Function}
-		 */
+			 * Open for implementation: Callback for when a link is clicked in status message.
+			 * @type {Function}
+			 */
 			onlink: null,
 
 			/*
-		 * Get (or set) the model. This will load the EDBML.
-		 * @param {object|ts.ui.ToolBarModel} model
-		 * @returns {ts.ui.ToolBarModel|ts.ui.ToolBarSpirit}
-		 */
+			 * Get (or set) the model. This will load the EDBML.
+			 * @param {object|ts.ui.ToolBarModel} model
+			 * @returns {ts.ui.ToolBarModel|ts.ui.ToolBarSpirit}
+			 */
 			model: ts.ui.Spirit.createModelMethod(ts.ui.FooterBarModel, 'ts.ui.FooterBarSpirit.edbml'),
 
 			/**
-		 * Add local and global classname.
-		 * TODO: Do this stunt elsewhere?
-		 */
+			 * This spirit is not channeled, so we'll need to add this classname manually.
+			 */
+			onconfigure: function() {
+				this.super.onconfigure();
+				this.css.add('ts-footerbar');
+			},
+
+			/**
+		   * Add local and global classname.
+		   * TODO: Do this stunt elsewhere?
+		   *
 			onenter: function() {
 				this.super.onenter();
 				if (this.guilayout.outsideMain()) {
@@ -51,19 +59,20 @@ ts.ui.FooterBarSpirit = (function using(
 					this.css.add('ts-mainfooter'); // ts-bg-lite
 				}
 			},
+			*/
 
 			/**
-		 * Evaluate conflict between pager and buttons in light of new window size.
-		 */
+			 * Evaluate conflict between pager and buttons in light of new window size.
+			 */
 			onflex: function() {
 				this.super.onflex();
 				this._optimize(true);
 			},
 
 			/**
-		 * Handle action.
-		 * @param {gui.Action} a
-		 */
+			 * Handle action.
+			 * @param {gui.Action} a
+			 */
 			onaction: function(a) {
 				this.super.onaction(a);
 				if (a.type === ts.ui.ACTION_SAFE_LINK) {
@@ -73,11 +82,11 @@ ts.ui.FooterBarSpirit = (function using(
 			},
 
 			/**
-		 * Get or set the actions.
-		 * [The actions will be rendered in the `actionbar`!]
-		 * @param {Array<Object>|ts.ui.ActionsCollection|null} [json]
-		 * @returns {this|ts.ui.ButtonCollection}
-		 */
+			 * Get or set the actions.
+			 * [The actions will be rendered in the `actionbar`!]
+			 * @param {Array<Object>|ts.ui.ActionsCollection|null} [json]
+			 * @returns {this|ts.ui.ButtonCollection}
+			 */
 			actions: chained(function(json) {
 				var model = this.model();
 				if (arguments.length) {
@@ -92,11 +101,11 @@ ts.ui.FooterBarSpirit = (function using(
 			}),
 
 			/**
-		 * Get or set the pager. Pass `null` to remove the pager.
-		 * [The pager will be rendered in the `centerbar`!]
-		 * @param @optional {Object|ts.ui.PagerModel|null} [json]
-		 * @returns {ts.ui.PagerModel|ts.ui.ToolBarSpirit}
-		 */
+			 * Get or set the pager. Pass `null` to remove the pager.
+			 * [The pager will be rendered in the `centerbar`!]
+			 * @param @optional {Object|ts.ui.PagerModel|null} [json]
+			 * @returns {ts.ui.PagerModel|ts.ui.ToolBarSpirit}
+			 */
 			pager: chained(function(json) {
 				var model = this.model();
 				if (arguments.length) {
@@ -108,10 +117,10 @@ ts.ui.FooterBarSpirit = (function using(
 			}),
 
 			/**
-		 * [The checkbox will be rendered in the `centerbar`!]
-		 * @param {Object|null} [json]
-		 * @returns {this|ts.ui.Model}
-		 */
+			 * [The checkbox will be rendered in the `centerbar`!]
+			 * @param {Object|null} [json]
+			 * @returns {this|ts.ui.Model}
+			 */
 			checkbox: chained(function(json) {
 				var model = this.model();
 				if (arguments.length) {
@@ -122,10 +131,10 @@ ts.ui.FooterBarSpirit = (function using(
 			}),
 
 			/**
-		 * [The status will be rendered in the `actionbar`!]
-		 * @param {string} [message] 
-		 * @returns {this|string}
-		 */
+			 * [The status will be rendered in the `actionbar`!]
+			 * @param {string} [message] 
+			 * @returns {this|string}
+			 */
 			status: chained(function(message) {
 				var model = this.model();
 				if (arguments.length) {
@@ -136,26 +145,26 @@ ts.ui.FooterBarSpirit = (function using(
 			}),
 
 			/**
-		 * @param {Function} [onclick]
-		 * @returns {this}
-		 */
+			 * @param {Function} [onclick]
+			 * @returns {this}
+			 */
 			configbutton: chained(function(onclick) {
 				return this.model().configbutton.apply(this.model(), arguments);
 			}),
 
 			/**
-		 * Show collaboration button.
-		 * @param {Function} [onclick]
-		 * @returns {this}
-		 */
+			 * Show collaboration button.
+			 * @param {Function} [onclick]
+			 * @returns {this}
+			 */
 			collabbutton: chained(function(onclick) {
 				return this.model().collabbutton.apply(this.model(), arguments);
 			}),
 
 			/**
-		 * Index the various bars and watch for rendering updates.
-		 * @param {Object} summary
-		 */
+			 * Index the various bars and watch for rendering updates.
+			 * @param {Object} summary
+			 */
 			onrender: function(summary) {
 				this.super.onrender(summary);
 				if (summary.first) {
@@ -173,9 +182,9 @@ ts.ui.FooterBarSpirit = (function using(
 			},
 
 			/**
-		 * Perform various layout optimizations whenever the individual bars render.
-		 * @param {gui.Life} l
-		 */
+			 * Perform various layout optimizations whenever the individual bars render.
+			 * @param {gui.Life} l
+			 */
 			onlife: function xxx(l) {
 				if (l.type === gui.LIFE_RENDER) {
 					switch (l.target) {
@@ -194,9 +203,9 @@ ts.ui.FooterBarSpirit = (function using(
 			},
 
 			/**
-		 * Hide the whole footer and *stay hidden* until `show` is called.
-		 * @returns {this}
-		 */
+			 * Hide the whole footer and *stay hidden* until `show` is called.
+			 * @returns {this}
+			 */
 			hide: chained(function() {
 				if (this.visible) {
 					this._hidden = true;
@@ -205,9 +214,9 @@ ts.ui.FooterBarSpirit = (function using(
 			}),
 
 			/**
-		 * Show the footer (when hidden, will otherwise appear when populated).
-		 * @returns {this}
-		 */
+			 * Show the footer (when hidden, will otherwise appear when populated).
+			 * @returns {this}
+			 */
 			show: chained(function() {
 				if (!this.visible) {
 					this._hidden = false;
@@ -216,19 +225,19 @@ ts.ui.FooterBarSpirit = (function using(
 			}),
 
 			/**
-		 * Clear everything (this will automatically hide the FooterBar).
-		 * @returns {this}
-		 */
+			 * Clear everything (this will automatically hide the FooterBar).
+			 * @returns {this}
+			 */
 			clear: chained(function() {
 				this.model().clear();
 			}),
 
 			/**
-		 * Manually enable support for links in the status message (just to
-		 * remind yourself that you may now be enncouraging phishing attacks).
-		 * @param @optional {function} onlink
-		 * @returns {ts.ui.StatusBarSpirit}
-		 */
+			 * Manually enable support for links in the status message (just to
+			 * remind yourself that you may now be enncouraging phishing attacks).
+			 * @param @optional {function} onlink
+			 * @returns {ts.ui.StatusBarSpirit}
+			 */
 			linkable: confirmed('(function)')(
 				chained(function(onlink) {
 					this.model().linkable(true);
@@ -238,8 +247,8 @@ ts.ui.FooterBarSpirit = (function using(
 			),
 
 			/**
-		 *
-		 */
+			 *
+			 */
 			unlinkable: chained(function() {
 				this.model().linkable(false);
 				this.remove.add(ts.ui.ACTION_SAFE_LINK);
@@ -249,57 +258,57 @@ ts.ui.FooterBarSpirit = (function using(
 			// Private .................................................................
 
 			/**
-		 * Since the buttons will be moved around, it's easier if we collect them 
-		 * in an "off-screen" buffer so that they don't belong anywhere in the UI.
-		 * @type {ts.ui.ButtonCollection}
-		 */
+			 * Since the buttons will be moved around, it's easier if we collect them 
+			 * in an "off-screen" buffer so that they don't belong anywhere in the UI.
+			 * @type {ts.ui.ButtonCollection}
+			 */
 			_buffer: null,
 
 			/**
-		 * There's a conflict in size between pager and buttons (while resizing)?
-		 * @type {boolean}
-		 */
+			 * There's a conflict in size between pager and buttons (while resizing)?
+			 * @type {boolean}
+			 */
 			_conflict: false,
 
 			/**
-		 * @type {Function}
-		 */
+			 * @type {Function}
+			 */
 			_oncheckboxclick: null,
 
 			/**
-		 * Just a flag to indicate that the pager appeared or disappeared.
-		 * @type {boolean}
-		 */
+			 * Just a flag to indicate that the pager appeared or disappeared.
+			 * @type {boolean}
+			 */
 			_pagerchanged: false,
 
 			/**
-		 * Spirit of the buffer bar (remains invisible at all times).
-		 * @type {ts.ui.ToolBarSpirit}
-		 */
+			 * Spirit of the buffer bar (remains invisible at all times).
+			 * @type {ts.ui.ToolBarSpirit}
+			 */
 			_bufferbar: null,
 
 			/**
-		 * Spirit of the action bar.
-		 * @type {ts.ui.ToolBarSpirit}
-		 */
+			 * Spirit of the action bar.
+			 * @type {ts.ui.ToolBarSpirit}
+			 */
 			_actionbar: null,
 
 			/**
-		 * Spirit of the center bar (usually the bottom bar unless collissions).
-		 * @type {ts.ui.StatusBarSpirit}
-		 */
+			 * Spirit of the center bar (usually the bottom bar unless collissions).
+			 * @type {ts.ui.StatusBarSpirit}
+			 */
 			_centerbar: null,
 
 			/**
-		 * Spirit of the backup bar (only visible upon collistions in centerbar).
-		 * @type {ts.ui.ToolBarSpirit}
-		 */
+			 * Spirit of the backup bar (only visible upon collistions in centerbar).
+			 * @type {ts.ui.ToolBarSpirit}
+			 */
 			_backupbar: null,
 
 			/**
-		 * Attempt to optimize the vertical height by stacking the bars when needed.
-		 * @param {boolean} [flexing]
-		 */
+			 * Attempt to optimize the vertical height by stacking the bars when needed.
+			 * @param {boolean} [flexing]
+			 */
 			_optimize: function(flexing) {
 				var model = this.model();
 				var buttons = model.bufferbar.buttons;
@@ -312,11 +321,11 @@ ts.ui.FooterBarSpirit = (function using(
 			},
 
 			/**
-		 * Teleport buttons between centerbar and backupbar.
-		 * @param {ts.ui.FooterBarModel} model
-		 * @param {Array<ts.ui.ButtonModel>} clone
-		 * @param {boolean} hits
-		 */
+			 * Teleport buttons between centerbar and backupbar.
+			 * @param {ts.ui.FooterBarModel} model
+			 * @param {Array<ts.ui.ButtonModel>} clone
+			 * @param {boolean} hits
+			 */
 			_optimizebuttons: function(model, clone, hits) {
 				if (hits) {
 					model.backupbar.buttons = clone;
@@ -328,11 +337,11 @@ ts.ui.FooterBarSpirit = (function using(
 			},
 
 			/**
-		 * Teleport actions (collaborationbutton!) between centerbar and backupbar.
-		 * @param {ts.ui.FooterBarModel} model
-		 * @param {Array<ts.ui.ButtonModel>} clone
-		 * @param {boolean} hits
-		 */
+			 * Teleport actions (collaborationbutton!) between centerbar and backupbar.
+			 * @param {ts.ui.FooterBarModel} model
+			 * @param {Array<ts.ui.ButtonModel>} clone
+			 * @param {boolean} hits
+			 */
 			_optimizeactions: function(model, clone, hits) {
 				if (hits) {
 					model.centerbar.actions.clear();
@@ -344,9 +353,9 @@ ts.ui.FooterBarSpirit = (function using(
 			},
 
 			/**
-		 * Pager (in the centerbar) and buttons (in the bufferbar) would overlap?
-		 * @returns {boolean}
-		 */
+			 * Pager (in the centerbar) and buttons (in the bufferbar) would overlap?
+			 * @returns {boolean}
+			 */
 			_hittest: function() {
 				var pager = this._centerbar.dom.q('.ts-toolbar-pager');
 				var butts = this._bufferbar.dom.q('.ts-toolbar-menu.ts-right');
@@ -357,9 +366,9 @@ ts.ui.FooterBarSpirit = (function using(
 			},
 
 			/**
-		 * Dispatch some action bearing offset info for the general environment to handle.
-		 * If no bars are visible, we'll hide ourselves not to show an awkward dropshadow.
-		 */
+			 * Dispatch some action bearing offset info for the general environment to handle.
+			 * If no bars are visible, we'll hide ourselves not to show an awkward dropshadow.
+			 */
 			_layout: function() {
 				this.super._layout(ts.ui.ACTION_FOOTER_LEVEL, [
 					[this._actionbar, 2],
@@ -372,15 +381,11 @@ ts.ui.FooterBarSpirit = (function using(
 			// Static ...............................................................
 
 			/**
-		 * Summon spirit.
-		 * @param {boolean} [isglobal]
-		 * @returns {ts.ui.HeaderBarSpirit}
-		 */
-			summon: function(isglobal) {
-				var elm = document.createElement('footer');
-				var spi = ts.ui.FooterBarSpirit.possess(elm);
-				spi.global = isglobal || false;
-				return spi;
+			 * Summon spirit.
+			 * @returns {ts.ui.HeaderBarSpirit}
+			 */
+			summon: function() {
+				return ts.ui.FooterBarSpirit.possess(document.createElement('footer'));
 			}
 		}
 	);

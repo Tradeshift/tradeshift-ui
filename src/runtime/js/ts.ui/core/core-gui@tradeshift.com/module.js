@@ -10,13 +10,10 @@ ts.ui.CoreModule = gui.module('core-gui@tradeshift.com', {
 		['html', ts.ui.DocumentSpirit],
 
 		// stuff that developers use
-		['[data-ts=Main]', ts.ui.MainSpirit],
-		['[data-ts=MainContent]', ts.ui.MainContentSpirit],
+		// ['[data-ts=Main]', ts.ui.MainSpirit],
+		// ['[data-ts=MainContent]', ts.ui.MainContentSpirit],
 		['[data-ts=Frame]', ts.ui.FrameSpirit],
-		['[data-ts=Aside]', ts.ui.AsideSpirit],
-		['[data-ts=SideBar]', ts.ui.SideBarSpirit],
-		['[data-ts=Footer]', ts.ui.AsideFooterSpirit],
-		['[data-ts=Panel]', ts.ui.PanelSpirit],
+		// ['[data-ts=Footer]', ts.ui.AsideFooterSpirit],
 		['[data-ts=Menu]', ts.ui.MenuSpirit],
 		['[data-ts=Button]', ts.ui.ButtonSpirit],
 		['[data-ts=Buttons]', ts.ui.ButtonMenuSpirit],
@@ -134,7 +131,7 @@ ts.ui.CoreModule = gui.module('core-gui@tradeshift.com', {
 	_specialplugins: function() {
 		// ts.ui.ModalSpirit.plugin('panels', ts.ui.PanelsPlugin);
 		// ts.ui.ModalSpirit.plugin('doorman', ts.ui.DoorManPlugin);
-		ts.ui.SideShowSpirit.plugin('doorman', ts.ui.DoorManPlugin);
+		// ts.ui.SideShowSpirit.plugin('doorman', ts.ui.DoorManPlugin);
 	},
 
 	/**

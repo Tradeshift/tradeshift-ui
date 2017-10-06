@@ -1,18 +1,19 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Boxes</title>
+		<title>Boards</title>
 	</head>
 	<body>
 		<header data-ts="TopBar"></header>
 		<main data-ts="Main">
 			<article>
-				<h1>Boxes</h1>
+				<h1>Boards</h1>
 				<section>
-					<p>Box</p>
-					<div data-ts="Box" id="mybox">
+					<p>Here it is.</p>
+
+					<div data-ts="Board" id="mybox">
 						<div data-ts="Panel">
-							<p>This box is what designers call a card for some reason.</p>
+							<p>The Board looks like this.</p>
 						</div>
 					</div>
 
@@ -30,22 +31,25 @@
 						</script>
 					</figure>
 
-					<p>TabBox!</p>
-					<div data-ts="Box" id="mytabbox">
+					<h3>Tabs</h3>
+
+					<div data-ts="Board" id="mytabbox">
 						<ul data-ts="Panels">
-							<li data-ts="Panel" data-ts.label="Normal tabbox">
-								<h1>Panel One</h1>
-								<p>Hello.</p>
-								<div data-ts="Box" id="mybox">
+							<li data-ts="Panel" data-ts.label="Tabs">
+								<p>Panel One</p>
+							</li>
+							<li data-ts="Panel" data-ts.label="Nested tabs">
+								<p>Panel Two</p>
+								<div data-ts="Board" id="mybox">
 									<div data-ts="Panel">
-										<h1>Heil</h1>
+										<p>Nested box</p>
 									</div>
 								</div>
 							</li>
 							<li data-ts="Panel" data-ts.label="Tabs in Aside">
-								<h1>Panel Two</h1>
+								<p>Panel Three</p>
 								<p>
-									<button data-ts="Button" onclick="ts.ui.get('#myaside').open()">
+									<button data-ts="Button" onclick="ts.ui.get('#myaside').open()" class="ts-primary">
 										<span>Open the Aside</span>
 									</button>
 								</p>
@@ -74,19 +78,19 @@
 				-->
 			</article>
 		</main>
-		<aside data-ts="Aside" id="myaside">
-				<div data-ts="Panel">
-					<div data-ts="TabBox">
-						<ul data-ts="TabPanels">
-							<li data-ts="TabPanel" data-ts.label="One">
-								<h1>TabPanel One</h1>
-							</li>
-							<li data-ts="TabPanel" data-ts.label="Two">
-								<h1>TabPanel Two</h1>
-							</li>
-						</ul>
-					</div>
+		<aside data-ts="Aside" id="myaside" data-ts.title="Box in Aside">
+			<div data-ts="Panel">
+				<div data-ts="Board">
+					<ul data-ts="Panels">
+						<li data-ts="Panel" data-ts.label="One">
+							<h1>TabPanel One</h1>
+						</li>
+						<li data-ts="Panel" data-ts.label="Two">
+							<h1>TabPanel Two</h1>
+						</li>
+					</ul>
 				</div>
+			</div>
 		</aside>
 	</body>
 </html>

@@ -59,9 +59,9 @@
 				"path": "components/bars/topbar.html"
 			},
 			{
-				"label": "Boxes",
+				"label": "Boards",
 				"icon": "docs-icon-grid",
-				"path": "components/boxes/"
+				"path": "components/boards/"
 			},
 			{
 				"label": "Buttons",

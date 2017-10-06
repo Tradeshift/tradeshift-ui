@@ -600,6 +600,8 @@ table.api th {
 .ts-doxchrome .ts-main {
   overflow-x: hidden;
   overflow-y: hidden;
+  display: block;
+  min-height: 100%;
 }
 .ts-doxchrome .ts-main iframe {
   width: 100%;

@@ -9,9 +9,13 @@ ts.ui.Footer = (function using(chained) {
 	 */
 	function bar() {
 		if (!bar.spirit) {
-			var spirit = ts.ui.FooterBarSpirit.summon(true);
-			spirit.dom.appendTo(document.body);
-			bar.spirit = spirit;
+			var spirit = (bar.spirit = ts.ui.FooterBarSpirit.summon(true));
+			ts.ui.ready(function inject() {
+				var main = ts.ui.get('.ts-main');
+				if (main) {
+					main.$foot(spirit);
+				}
+			});
 		}
 		return bar.spirit;
 	}

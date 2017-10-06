@@ -2,8 +2,8 @@
 <html lang="en-us" class="ts-docs" spellcheck="false">
 
 <head>
-    <title>Boxes</title>
-    <meta name="apple-mobile-web-app-title" content="Boxes">
+    <title>Boards</title>
+    <meta name="apple-mobile-web-app-title" content="Boards">
     <link rel="apple-touch-icon" href="/dist/assets/icon.svg">
     <meta name="viewport" content="width=device-width">
     <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-9.2.3.min.js"></script>
@@ -18,12 +18,12 @@
     <main data-ts="Main">
         <div data-ts="MainContent">
             <article>
-                <h1><span>Boxes</span></h1>
+                <h1><span>Boards</span></h1>
                 <section>
-                    <p>Box</p>
-                    <div data-ts="Box" id="mybox">
+                    <p>Here it is.</p>
+                    <div data-ts="Board" id="mybox">
                         <div data-ts="Panel">
-                            <p>This box is what designers call a card for some reason.</p>
+                            <p>The Board looks like this.</p>
                         </div>
                     </div>
                     <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.get(&apos;%23mybox&apos;%2C%20function(box)%20%7B%0A%09box.buttons(%5B%0A%09%09%7Blabel%3A%20&apos;One&apos;%7D%2C%0A%09%09%7Blabel%3A%20&apos;Two&apos;%7D%2C%0A%09%09%7Blabel%3A%20&apos;Three&apos;%7D%2C%0A%09%09%7Blabel%3A%20&apos;Four&apos;%7D%2C%0A%09%09%7Blabel%3A%20&apos;Five&apos;%7D%0A%09%5D)%3B%0A%7D)%3B">
@@ -42,22 +42,24 @@
 	<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
                     </figure>
-                    <p>TabBox!</p>
-                    <div data-ts="Box" id="mytabbox">
+                    <h3><span>Tabs</span></h3>
+                    <div data-ts="Board" id="mytabbox">
                         <ul data-ts="Panels">
-                            <li data-ts="Panel" data-ts.label="Normal tabbox">
-                                <h1><span>Panel One</span></h1>
-                                <p>Hello.</p>
-                                <div data-ts="Box" id="mybox">
+                            <li data-ts="Panel" data-ts.label="Tabs">
+                                <p>Panel One</p>
+                            </li>
+                            <li data-ts="Panel" data-ts.label="Nested tabs">
+                                <p>Panel Two</p>
+                                <div data-ts="Board" id="mybox">
                                     <div data-ts="Panel">
-                                        <h1><span>Heil</span></h1>
+                                        <p>Nested box</p>
                                     </div>
                                 </div>
                             </li>
                             <li data-ts="Panel" data-ts.label="Tabs in Aside">
-                                <h1><span>Panel Two</span></h1>
+                                <p>Panel Three</p>
                                 <p>
-                                    <button data-ts="Button" onclick="ts.ui.get(&apos;#myaside&apos;).open()">
+                                    <button data-ts="Button" onclick="ts.ui.get(&apos;#myaside&apos;).open()" class="ts-primary">
 										<span>Open the Aside</span>
 									</button>
                                 </p>
@@ -90,14 +92,14 @@
             </article>
         </div>
     </main>
-    <aside data-ts="Aside" id="myaside">
+    <aside data-ts="Aside" id="myaside" data-ts.title="Box in Aside">
         <div data-ts="Panel">
-            <div data-ts="TabBox">
-                <ul data-ts="TabPanels">
-                    <li data-ts="TabPanel" data-ts.label="One">
+            <div data-ts="Board">
+                <ul data-ts="Panels">
+                    <li data-ts="Panel" data-ts.label="One">
                         <h1><span>TabPanel One</span></h1>
                     </li>
-                    <li data-ts="TabPanel" data-ts.label="Two">
+                    <li data-ts="Panel" data-ts.label="Two">
                         <h1><span>TabPanel Two</span></h1>
                     </li>
                 </ul>

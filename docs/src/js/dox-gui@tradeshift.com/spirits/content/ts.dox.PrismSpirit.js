@@ -1,8 +1,8 @@
 /**
- *
+ * Spirit of the syntax highlighted code snippet.
  */
 ts.dox.PrismSpirit = (function() {
-	return ts.ui.BoxSpirit.extend({
+	return ts.ui.BoardSpirit.extend({
 		/**
 		 * Source code (encoded via encodeURIComponent).
 		 * This get's set in the HTML by some Grunt task.

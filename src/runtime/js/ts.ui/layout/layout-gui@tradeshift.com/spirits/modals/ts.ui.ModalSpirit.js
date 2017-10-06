@@ -1,12 +1,10 @@
 /**
  * Spirit of the Modal.
- * @using {ts.ui.HeaderBar} HeaderBar
- * @using {ts.ui.FooterBar} FooterBar
  * @using {gui.Client} Client
  * @using {boolean} transition
  * @using {function} gui.Combo.chained
  */
-ts.ui.ModalSpirit = (function using(HeaderBar, FooterBar, Client, transition, chained) {
+ts.ui.ModalSpirit = (function using(Client, transition, chained) {
 	var willopen = ts.ui.BROADCAST_MODAL_WILL_OPEN,
 		didopen = ts.ui.BROADCAST_MODAL_DID_OPEN,
 		willclose = ts.ui.BROADCAST_MODAL_WILL_CLOSE,
@@ -51,29 +49,6 @@ ts.ui.ModalSpirit = (function using(HeaderBar, FooterBar, Client, transition, ch
 			this.dom.hide();
 			this._setup(this._panel());
 			this.css.shift(transition, 'ts-transition');
-		},
-
-		/**
-		 * Handle action.
-		 * TODO: This JS layout stuff can be replaced with proper CSS nowadays!
-		 * @param {gui.Action} a
-		 */
-		onaction: function(a) {
-			this.super.onaction(a);
-			switch (a.type) {
-				case ts.ui.ACTION_HEADER_LEVEL:
-					this.guilayout.gotoLevel(a.data, 'ts-header-level');
-					// this._headerheight = a.data * ts.ui.UNIT;
-					// this.reflex();
-					a.consume();
-					break;
-				case ts.ui.ACTION_FOOTER_LEVEL:
-					this.guilayout.gotoLevel(a.data, 'ts-footer-level');
-					// this._footheight = a.data * ts.ui.UNIT;
-					// this.reflex();
-					a.consume();
-					break;
-			}
 		},
 
 		/**
@@ -498,9 +473,12 @@ ts.ui.ModalSpirit = (function using(HeaderBar, FooterBar, Client, transition, ch
 		 * @returns {ts.ui.HeaderBarSpirit}
 		 */
 		_head: function() {
+			/*
 			this.css.add('ts-has-header');
 			this.action.add(ts.ui.ACTION_HEADER_LEVEL);
 			return this.dom.child(HeaderBar) || this.dom.prepend(HeaderBar.summon());
+			*/
+			return ts.ui.BoxSpirit.majorHeader(this);
 		},
 
 		/**
@@ -508,9 +486,7 @@ ts.ui.ModalSpirit = (function using(HeaderBar, FooterBar, Client, transition, ch
 		 * @returns {ts.ui.FooterBarSpirit}
 		 */
 		_foot: function() {
-			this.css.add('ts-has-footer');
-			this.action.add(ts.ui.ACTION_FOOTER_LEVEL);
-			return this.dom.child(FooterBar) || this.dom.append(FooterBar.summon());
+			return ts.ui.BoxSpirit.majorFooter(this);
 		},
 
 		/**
@@ -526,10 +502,4 @@ ts.ui.ModalSpirit = (function using(HeaderBar, FooterBar, Client, transition, ch
 			}
 		}
 	});
-})(
-	ts.ui.HeaderBarSpirit,
-	ts.ui.FooterBarSpirit,
-	gui.Client,
-	gui.Client.hasTransitions,
-	gui.Combo.chained
-);
+})(gui.Client, gui.Client.hasTransitions, gui.Combo.chained);

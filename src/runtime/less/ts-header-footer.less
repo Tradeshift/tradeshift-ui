@@ -7,9 +7,10 @@
 			&:before  {
 				content: '';
 				position: absolute;
-				left: 0;
+				top: 0;
 				right: 0;
-				top: -1px;
+				left: 0;
+				//top: -1px;
 				height: 1px;
 				background-color: @ts-lite-darker;
 			}
@@ -23,17 +24,6 @@
 		visibility: hidden;
 		bottom: 0 - @ts-unit-triple;
 	}
-}
-.ts-mainheader,
-.ts-mainfooter {
-	position: absolute;
-	top: 0;
-	left: 0;
-	right: 0;
-	background-color: purple;
-	> menu {
-		margin: 0;
-	}
 	&:before,
 	&:after {
 		content: '';
@@ -43,18 +33,34 @@
 		pointer-events: none;
 		z-index: @ts-zindex-main + 1;
 	}
-}
-.ts-mainheader {
-	&:after {
-		background-image: linear-gradient(rgba(0,0,0,0.2), transparent);
+	> menu {
+		margin: 0;
 	}
 }
-.ts-mainfooter {
+.ts-headerbar {
+	&:after {
+		background-image: linear-gradient(rgba(0,0,0,0.2), transparent);
+		bottom: -4px;
+	}
+}
+.ts-footerbar {
 	&:before {
 		background-image: linear-gradient(transparent, rgba(0,0,0,0.2));
 		top: -4px;
 	}
 }
+/*
+.ts-mainheader,
+.ts-mainfooter {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	background-color: purple;
+}
+*/
+
+/*
 .ts-has-sidebar-first {
 	.ts-mainheader, {
 		left: @ts-width-aside;
@@ -65,7 +71,7 @@
 		right: @ts-width-aside;
 	}
 }
-
+*/
 /*
  * Pending design decision...
  *

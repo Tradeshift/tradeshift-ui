@@ -20,7 +20,6 @@
 </head>
 
 <body class="nosticky">
-    <header data-ts="TopBar"></header>
     <aside data-ts="SideBar" id="sidebar-before" data-ts.title="Example SideBar" data-ts.flipped="false">
         <div data-ts="Panel">
             <p>Bacon ipsum dolor amet turducken leberkas fatback, porchetta cow shoulder kielbasa drumstick shank bacon pork chop turkey. Drumstick filet mignon pig t-bone porchetta jerky. Sirloin beef ribs ball tip chuck, pork loin rump tenderloin meatball
@@ -50,16 +49,20 @@
                 <p>Aside content.</p>
             </div>
         </aside>
-        <div data-ts="Footer">
-            <p>Footer content. The button below is only relevant in <strong>mobile</strong> view.</p>
-            <p>
-                <button data-ts="Button" class="ts-tertiary" onclick="gui.get(&apos;sidebar-before&apos;).toggle()">
+        <!--
+			<div data-ts="Footer">
+				<p>Footer content. The button below is only relevant in <strong>mobile</strong> view.</p>
+				<p>
+					<button data-ts="Button" class="ts-tertiary" onclick="gui.get('sidebar-before').toggle()">
 						<span>Toggle SideBar</span>
 					</button>
-            </p>
-        </div>
+				</p>
+			</div>
+			-->
     </aside>
-    <header data-ts="ToolBar" data-ts.title="ToolBar before MAIN"></header>
+    <!--
+		<header data-ts="ToolBar" data-ts.title="ToolBar before MAIN"></header>
+		-->
     <main data-ts="Main">
         <div data-ts="MainContent">
             <article>
@@ -90,7 +93,9 @@
             </article>
         </div>
     </main>
-    <footer data-ts="ToolBar" data-ts.title="ToolBar after MAIN"></footer>
+    <!--
+		<footer data-ts="ToolBar" data-ts.title="ToolBar after MAIN"></footer>
+		-->
     <aside data-ts="SideBar" id="sidebar-after" data-ts.title="Example SideBar">
         <div data-ts="Panel">
             <p>Bacon ipsum dolor amet turducken leberkas fatback, porchetta cow shoulder kielbasa drumstick shank bacon pork chop turkey. Drumstick filet mignon pig t-bone porchetta jerky. Sirloin beef ribs ball tip chuck, pork loin rump tenderloin meatball
@@ -120,14 +125,16 @@
                 <p>Aside content.</p>
             </div>
         </aside>
-        <div data-ts="Footer">
-            <p>Footer content. The button below is only relevant in <strong>mobile</strong> view.</p>
-            <p>
-                <button data-ts="Button" class="ts-tertiary" onclick="gui.get(&apos;sidebar-after&apos;).toggle()">
+        <!--
+			<div data-ts="Footer">
+				<p>Footer content. The button below is only relevant in <strong>mobile</strong> view.</p>
+				<p>
+					<button data-ts="Button" class="ts-tertiary" onclick="gui.get('sidebar-after').toggle()">
 						<span>Toggle SideBar</span>
 					</button>
-            </p>
-        </div>
+				</p>
+			</div>
+			-->
     </aside>
 </body>
 

@@ -11,7 +11,10 @@ ts.ui.Header = (function using(chained) {
 		if (!bar.spirit) {
 			var spirit = (bar.spirit = ts.ui.HeaderBarSpirit.summon(true));
 			ts.ui.ready(function inject() {
-				spirit.dom.prependTo(document.body);
+				var main = ts.ui.get('.ts-main');
+				if (main) {
+					main.$head(spirit);
+				}
 			});
 		}
 		return bar.spirit;

@@ -1,5 +1,8 @@
 // TODO: MOVE THESE ............................................................
 
+
+
+/*
 .ts-mainheader {
 	&.ts-bg-lite {
 		&:after {
@@ -20,6 +23,8 @@
 		}
 	}
 }
+*/
+
 /*
 .ts-mainfooter-buffer {
 	bottom: 0 - @ts-unit-triple;
@@ -29,6 +34,7 @@
 
 // Mixins ......................................................................
 
+/*
 .mixin-footer(@mult : 1) {
 	.ts-maincontent {
 		bottom: @ts-unit-triple * @mult;
@@ -51,29 +57,40 @@
 		}
 	}
 }
+*/
 
 // Styles ......................................................................
 
+.ts-main {
+	margin: 0;
+	.ts-mixin-maximize();
+}
+
+/*
 .ts-main,
 .ts-maincontent,
 body > .ts-panel {
 	.ts-mixin-maximize();
 }
+*/
 .ts-main {
 	z-index: @ts-zindex-main;
 	background-color: @ts-lite-liter;
-	overflow-x: auto;
-	overflow-y: scroll;
-	-webkit-overflow-scrolling: touch;
+	//overflow-x: auto;
+	//overflow-y: scroll;
+	//-webkit-overflow-scrolling: touch;
 }
+/*
 .ts-maincontent {
 	> .ts-panel {
 		overflow: visible;
 	}
 }
+*/
 
 // Adjustment time .............................................................
 
+/*
 .ts-has-header {
 	&.ts-header-level-2 .ts-main {
 		top: @ts-unit * 2;
@@ -179,6 +196,8 @@ body > .ts-panel {
 		}
 	}
 }
+*/
+
 .ts-asides-on {
 	.ts-topbar {
 		z-index: 0;

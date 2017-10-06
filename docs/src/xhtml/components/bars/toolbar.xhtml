@@ -15,11 +15,16 @@
 				})
 			});
 		</script>
+		<style>
+			.ts-mainbox {
+				margin: 22px;
+				min-height: calc(100% - 22px);
+			}
+		</style>
 	</head>
-	<body>
-		<header data-ts="TopBar"></header>
+	<body class="nosticky">
 		<main data-ts="Main">
-			<div data-ts="Box" class="ts-mainbox">
+			<div data-ts="Board" class="ts-mainbox"> <!-- STYLES IN HTML ABOVE!!! -->
 				<ul data-ts="Panels">
 					<li data-ts="Panel" data-ts.label="Main ToolBar" data-ts.onselect="ts.ui.ToolBar.show()">
 						<article>

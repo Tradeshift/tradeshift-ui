@@ -43,11 +43,11 @@ ts.ui.BoxSpirit = (function using(
 			}),
 
 			/**
-		 * Get or set the buttons in the statusbar.
-		 * so will simply not allow that.
-		 * @param @optional {Array<Object>} json
-		 * @returns {ts.ui.ButtonsCollection|ts.ui.ModalSpirit}
-		 */
+			 * Get or set the buttons in the statusbar.
+			 * so will simply not allow that.
+			 * @param @optional {Array<Object>} json
+			 * @returns {ts.ui.ButtonsCollection|ts.ui.ModalSpirit}
+			 */
 			buttons: chained(function(json) {
 				var bar = this._head();
 				if (arguments.length) {
@@ -58,10 +58,10 @@ ts.ui.BoxSpirit = (function using(
 			}),
 
 			/**
-		 * Get or set the tabs.
-		 * @param @optional {Array<Object>} json
-		 * @returns {Array<ts.ui.TabModel>|ts.ui.ModalSpirit}
-		 */
+			 * Get or set the tabs.
+			 * @param @optional {Array<Object>} json
+			 * @returns {Array<ts.ui.TabModel>|ts.ui.ModalSpirit}
+			 */
 			tabs: chained(function(json) {
 				var bar = this._head();
 				if (arguments.length) {
@@ -72,18 +72,18 @@ ts.ui.BoxSpirit = (function using(
 			}),
 
 			/**
-		 * Hm, this should then affect both the header and the potential footer?
-		 * @returns {this}
-		 */
+			 * Hm, this should then affect both the header and the potential footer?
+			 * @returns {this}
+			 */
 			uncompact: chained(function() {
 				this._head.uncompact();
 			}),
 
 			/*
-		 * Equalsize panels height to match the highest panel.
-		 * @param {boolean} enable
-		 * @returns {this}
-		 */
+			 * Equalsize panels height to match the highest panel.
+			 * @param {boolean} enable
+			 * @returns {this}
+			 */
 			equalsize: chained(function(enable) {
 				var panels = this.dom.child(PanelsSpirit);
 				if (panels && (panels = panels.dom.children(PanelSpirit)).length) {
@@ -95,11 +95,11 @@ ts.ui.BoxSpirit = (function using(
 			}),
 
 			/**
-		 * Relevant for subclasses that use major headers or footer.
-		 * @see {ts.ui.SideShowSpirit}
-		 * @see {ts.ui.ModalSpirit}
-		 * @param {gui.Action} a
-		 */
+			 * Relevant for subclasses that use major headers or footer.
+			 * @see {ts.ui.SideShowSpirit}
+			 * @see {ts.ui.ModalSpirit}
+			 * @param {gui.Action} a
+			 */
 			onaction: function(a) {
 				this.super.onaction(a);
 				switch (a.type) {
@@ -117,26 +117,26 @@ ts.ui.BoxSpirit = (function using(
 			// Privileged ..............................................................
 
 			/**
-		 * Called by the {ts.ui.PanelsPlugin} to append a tab.
-		 * @param {Object} json
-		 * @param {number} index
-		 */
+			 * Called by the {ts.ui.PanelsPlugin} to append a tab.
+			 * @param {Object} json
+			 * @param {number} index
+			 */
 			$insertTab: function(json, index) {
 				var tabs = this._head().tabs();
 				tabs.splice(index, 0, json);
 			},
 
 			/**
-		 * Called by the {ts.ui.PanelsPlugin} when a tab is selected.
-		 * @param {ts.ui.PanelSpirit} panel - The associated panel (not the tab!)
-		 */
+			 * Called by the {ts.ui.PanelsPlugin} when a tab is selected.
+			 * @param {ts.ui.PanelSpirit} panel - The associated panel (not the tab!)
+			 */
 			$selectTab: function(panel) {},
 
 			// Private .................................................................
 
 			/**
-		 * @returns {ts.ui.TabBarSpirit}
-		 */
+			 * @returns {ts.ui.TabBarSpirit}
+			 */
 			_head: function() {
 				return ts.ui.BoxSpirit.minorHeader(this);
 			}
@@ -148,9 +148,9 @@ ts.ui.BoxSpirit = (function using(
 			// Static ...............................................................
 
 			/**
-		 * @param {ts.ui.BoxSpirit} box
-		 * @returns {ts.ui.ToolBarSpirit}
-		 */
+			 * @param {ts.ui.BoxSpirit} box
+			 * @returns {ts.ui.ToolBarSpirit}
+			 */
 			minorHeader: function(box) {
 				box.css.add(['ts-has-header', 'ts-has-header-minor']);
 				return (
@@ -160,23 +160,27 @@ ts.ui.BoxSpirit = (function using(
 			},
 
 			/**
-		 * @param {ts.ui.BoxSpirit} box
-		 * @returns {ts.ui.HeaderBarSpirit}
-		 */
-			majorHeader: function(box) {
+			 * @param {ts.ui.BoxSpirit} box
+			 * @param {ts.ui.HeaderBarSpirit} [footer]
+			 * @returns {ts.ui.HeaderBarSpirit}
+			 */
+			majorHeader: function(box, header) {
 				box.css.add(['ts-has-header', 'ts-has-header-major']);
 				box.action.add(ts.ui.ACTION_HEADER_LEVEL);
-				return box.dom.child(HeaderBarSpirit) || box.dom.prepend(HeaderBarSpirit.summon());
+				return (
+					box.dom.child(HeaderBarSpirit) || box.dom.prepend(header || HeaderBarSpirit.summon())
+				);
 			},
 
 			/**
-		 * @param {ts.ui.BoxSpirit} box
-		 * @returns {ts.ui.FooterBarSpirit}
-		 */
-			majorFooter: function(box) {
+			 * @param {ts.ui.BoxSpirit} box
+			 * @param {ts.ui.FooterBarSpirit} [footer]
+			 * @returns {ts.ui.FooterBarSpirit}
+			 */
+			majorFooter: function(box, footer) {
 				box.css.add(['ts-has-footer', 'ts-has-footer-minor']);
 				box.action.add(ts.ui.ACTION_FOOTER_LEVEL);
-				return box.dom.child(FooterBarSpirit) || box.dom.append(FooterBarSpirit.summon());
+				return box.dom.child(FooterBarSpirit) || box.dom.append(footer || FooterBarSpirit.summon());
 			}
 		}
 	);

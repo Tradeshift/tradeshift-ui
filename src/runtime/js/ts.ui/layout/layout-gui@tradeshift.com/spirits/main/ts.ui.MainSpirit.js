@@ -2,22 +2,70 @@
  * Spirit of the main element.
  * @extends {ts.ui.BoxSpirit}
  */
-ts.ui.MainSpirit = ts.ui.BoxSpirit.extend({
+ts.ui.MainSpirit = (function() {
 	/**
-	 * Inject the header (which may have been configured before this existed).
-	 * @see {ts.ui.Header}
-	 * @param {ts.ui.HeaderBarSpirit} header
+	 * Main header configured via API.
+	 * @returns {ts.ui.HeaderBarSpirit}
 	 */
-	$head: function(header) {
-		this.dom.prepend(header);
-	},
+	function mainheader() {
+		return ts.ui.Header.$spirit();
+	}
 
 	/**
-	 * Inject the footer.
-	 * @see {ts.ui.Footer}
-	 * @param {ts.ui.FooterBarSpirit} header
+	 * Main footer configured via API.
+	 * @returns {ts.ui.FooterBarSpirit}
 	 */
-	$foot: function(footer) {
-		this.dom.append(footer);
+	function mainfooter() {
+		return ts.ui.Footer.$spirit();
 	}
-});
+
+	return ts.ui.BoxSpirit.extend(
+		{
+			// Privileged ............................................................
+
+			/**
+			 * Inject any header and footer that might have been configured by now.
+			 */
+			$inject: function() {
+				mainheader() && this._head();
+				mainfooter() && this._foot();
+			},
+
+			// Private ...............................................................
+
+			/**
+			 * Make sure to use the main header. Creates the header if it doesn't exits.
+			 * @overwrites {ts.ui.BoxSpirit#_head}
+			 */
+			_head: function() {
+				return ts.ui.BoxSpirit.majorHeader(this, mainheader());
+			},
+
+			/**
+			 * Make sure to use the main footer.
+			 * @overwrites {ts.ui.BoxSpirit#_foot}
+			 */
+			_foot: function() {
+				return ts.ui.BoxSpirit.majorFooter(this, mainfooter());
+			}
+		},
+		{
+			// Static ................................................................
+
+			/**
+			 * Instruct the the MainSpirit to inject as soon as possible.
+			 * @param {ts.ui.MajorBarSpirit} bar
+			 * @returns {ts.ui.MajorBarSpirit}
+			 */
+			$inject: function(bar) {
+				ts.ui.ready(function inject() {
+					var main = ts.ui.get('.ts-main');
+					if (main) {
+						main.$inject();
+					}
+				});
+				return bar;
+			}
+		}
+	);
+})();

@@ -1,92 +1,11 @@
 // TODO: MOVE THESE ............................................................
 
-
-
-/*
-.ts-mainheader {
-	&.ts-bg-lite {
-		&:after {
-			content: '';
-			top: 100%;
-			background: linear-gradient(0deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.25));
-		}
-	}
-}
-.ts-mainfooter {
-	top: auto;
-	bottom: 0;
-	&.ts-bg-lite {
-		&:after {
-			content: '';
-			top: -4px;
-			background: linear-gradient(0deg, rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0));
-		}
-	}
-}
-*/
-
-/*
-.ts-mainfooter-buffer {
-	bottom: 0 - @ts-unit-triple;
-	visibility: hidden;
-}
-*/
-
-// Mixins ......................................................................
-
-/*
-.mixin-footer(@mult : 1) {
-	.ts-maincontent {
-		bottom: @ts-unit-triple * @mult;
-	}
-	.ts-maincontent {
-		top: @ts-unit-triple * @mult;
-	}
-}
-
-.mixin-misc(@mult: 3) {
-	.ts-maincontent,
-	.ts-main > .ts-note {
-		top: (@ts-unit * @mult);
-	}
-	&.ts-has-topbar-tabs,
-	&.ts-has-tabs {
-		.ts-maincontent,
-		.ts-main > .ts-note {
-			top: (@ts-unit * @mult) + @ts-unit-double;
-		}
-	}
-}
-*/
-
-// Styles ......................................................................
-
 .ts-main {
-	margin: 0;
 	.ts-mixin-maximize();
-}
-
-/*
-.ts-main,
-.ts-maincontent,
-body > .ts-panel {
-	.ts-mixin-maximize();
-}
-*/
-.ts-main {
-	z-index: @ts-zindex-main;
 	background-color: @ts-lite-liter;
-	//overflow-x: auto;
-	//overflow-y: scroll;
-	//-webkit-overflow-scrolling: touch;
+	z-index: @ts-zindex-main;
+	margin: 0;
 }
-/*
-.ts-maincontent {
-	> .ts-panel {
-		overflow: visible;
-	}
-}
-*/
 
 // Adjustment time .............................................................
 
@@ -196,13 +115,13 @@ body > .ts-panel {
 		}
 	}
 }
-*/
 
 .ts-asides-on {
 	.ts-topbar {
 		z-index: 0;
 	}
 }
+*/
 
 // Drawer adjustments ..........................................................
 
@@ -210,11 +129,19 @@ body > .ts-panel {
 	&.ts-has-sidebar-first {
 		.ts-main {
 			left: @ts-width-aside;
+			> .ts-headerbar,
+			> .ts-footerbar {
+				// border-right: 1px solid @ts-lite-darker;
+			}
 		}
 	}
 	&.ts-has-sidebar-last {
 		.ts-main {
 			right: @ts-width-aside;
+			> .ts-headerbar,
+			> .ts-footerbar {
+				// border-left: 1px solid @ts-lite-darker;
+			}
 		}
 	}
 }

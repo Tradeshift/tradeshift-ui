@@ -4,20 +4,11 @@
  */
 ts.ui.Header = (function using(chained) {
 	/**
-	 * Creates and appends the {ts.ui.HeaderBarSpirit} when first invoked.
-	 * @returns {ts.ui.FooterBarSpirit}
+	 * Creates the header when first invoked.
+	 * @returns {ts.ui.HeaderBarSpirit}
 	 */
 	function bar() {
-		if (!bar.spirit) {
-			var spirit = (bar.spirit = ts.ui.HeaderBarSpirit.summon(true));
-			ts.ui.ready(function inject() {
-				var main = ts.ui.get('.ts-main');
-				if (main) {
-					main.$head(spirit);
-				}
-			});
-		}
-		return bar.spirit;
+		return bar.spirit || ts.ui.MainSpirit.$inject((bar.spirit = ts.ui.HeaderBarSpirit.summon()));
 	}
 
 	return {
@@ -92,6 +83,17 @@ ts.ui.Header = (function using(chained) {
 			} else {
 				console.log('TODO: ts.ui.Header.localize');
 			}
+		},
+
+		// Privileged ..............................................................
+
+		/**
+		 * The {ts.ui.MainSpirit} will request this at some point.
+		 * @see {ts.ui.MainSpirit}
+		 * @returns {ts.ui.HeaderBarSpirit}
+		 */
+		$spirit: function() {
+			return bar.spirit || null;
 		}
 	};
 })(gui.Combo.chained);

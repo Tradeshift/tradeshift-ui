@@ -4,20 +4,11 @@
  */
 ts.ui.Footer = (function using(chained) {
 	/**
-	 * Creates and appends the {ts.ui.FooterBarSpirit} when first invoked.
+	 * Creates the footer when first invoked.
 	 * @returns {ts.ui.FooterBarSpirit}
 	 */
 	function bar() {
-		if (!bar.spirit) {
-			var spirit = (bar.spirit = ts.ui.FooterBarSpirit.summon(true));
-			ts.ui.ready(function inject() {
-				var main = ts.ui.get('.ts-main');
-				if (main) {
-					main.$foot(spirit);
-				}
-			});
-		}
-		return bar.spirit;
+		return bar.spirit || ts.ui.MainSpirit.$inject((bar.spirit = ts.ui.FooterBarSpirit.summon()));
 	}
 
 	/*
@@ -150,6 +141,14 @@ ts.ui.Footer = (function using(chained) {
 		}),
 
 		// Privileged ..............................................................
+
+		/**
+		 * The {ts.ui.MainSpirit} will request this at some point.
+		 * @returns {ts.ui.FooterBarSpirit}
+		 */
+		$spirit: function() {
+			return bar.spirit || null;
+		},
 
 		/**
 		 * Toggle the checkbox to indicate something or nothing selected.

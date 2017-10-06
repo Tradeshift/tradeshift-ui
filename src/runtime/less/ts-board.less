@@ -1,0 +1,24 @@
+.ts-board {
+	.ts-mixin-rounded();
+	box-shadow: 0 0 4px rgba(0,0,0,0.1);
+	border: 1px solid @ts-lite-darker;
+	background-color: @ts-white;
+	> .ts-toolbar {
+		.ts-mixin-rounded(@ts-radius, @ts-radius, 0, 0);
+		.ts-tab,
+		.ts-tab-label,
+		.ts-tab .ts-button {
+			&:first-of-type {
+				.ts-mixin-rounded(@ts-radius, 0, 0, 0);
+			}
+		}
+	}
+	> .ts-panel {
+		padding: @ts-unit;
+	}
+	> .ts-panels {		
+		> .ts-panel {
+			padding: @ts-unit;
+		}
+	}
+}

@@ -569,190 +569,45 @@
 		}
 	}
 }
-.ts-bg-white,
-.ts-bg-lite,
-.ts-bg-dark,
-.ts-bg-yellow,
-[class^='ts-bg'] .ts-bg-white,
-[class^='ts-bg'] .ts-bg-lite {
-	// ouch, expensive selector :/
-	.ts-button:not(:disabled) {
-		.mixin-active-lite();
-		&.ts-primary {
-			background-color: @ts-green;
-			color: @ts-green-text;
-			&:focus:before {
-				border-color: @ts-green-darker;
-			}
-		}
-		&.ts-secondary {
-			background-color: @ts-blue;
-			color: @ts-blue-text;
-			&:focus:before {
-				border-color: @ts-blue-darker;
-			}
-		}
-		&.ts-danger {
-			background-color: @ts-red;
-			color: @ts-red-text;
-			&:focus:before {
-				border-color: @ts-red-darker;
-			}
-		}
-		&.ts-tertiary {
-			border-color: @buttonblue;
-			&:after {
-				border: none;
-			}
+
+.ts-button:not(:disabled) {
+	.mixin-active-lite();
+	&.ts-primary {
+		background-color: @ts-green;
+		color: @ts-green-text;
+		&:focus:before {
+			border-color: @ts-green-darker;
 		}
 	}
-	.ts-button:disabled {
-		// like tertiary
-		&:not(.ts-action) {
-			color: @ts-black;
-			background-color: rgba(0, 0, 0, 0.1);
+	&.ts-secondary {
+		background-color: @ts-blue;
+		color: @ts-blue-text;
+		&:focus:before {
+			border-color: @ts-blue-darker;
 		}
+	}
+	&.ts-danger {
+		background-color: @ts-red;
+		color: @ts-red-text;
+		&:focus:before {
+			border-color: @ts-red-darker;
+		}
+	}
+	&.ts-tertiary {
+		border-color: @buttonblue;
 		&:after {
-			border: 1px solid @darkborder;
+			border: none;
 		}
 	}
 }
-.ts-bg-blue,
-.ts-bg-dark,
-.ts-bg-red,
-.ts-bg-green,
-.ts-bg-purple,
-.ts-bg-orange {
-	.ts-button.ts-active:not(:disabled):not(.ts-nofocus) {
-		&:active {
-			&.ts-tertiary {
-				background-color: fade(@ts-blue, 10%);
-				border: 1px solid fade(@ts-blue, 50%);
-			}
-		}
+.ts-button:disabled {
+	// like tertiary
+	&:not(.ts-action) {
+		color: @ts-black;
+		background-color: rgba(0, 0, 0, 0.1);
 	}
-}
-.ts-bg-blue,
-.ts-bg-red,
-.ts-bg-green,
-.ts-bg-purple,
-.ts-bg-orange {
-	.ts-button:not(:disabled) {
-		&.ts-primary {
-			.mixin-button-light(
-				rgba(255,255,255,1),
-				rgba(255,255,255,0.6),
-				rgba(255,255,255,0),
-				rgba(255,255,255,0)
-			);
-		}
-		&.ts-secondary {
-			.mixin-button-light(
-				rgba(255,255,255,0.3),
-				rgba(255,255,255,0.1),
-				rgba(255,255,255,0),
-				rgba(255,255,255,0)
-			);
-		}
-	}
-}
-.ts-bg-blue,
-.ts-bg-dark,
-.ts-bg-red,
-.ts-bg-green,
-.ts-bg-purple,
-.ts-bg-orange {
-	.ts-button {
-		&:disabled,
-		&.ts-tertiary {
-			.mixin-button-light(
-				rgba(255,255,255,0),
-				rgba(255,255,255,0.1),
-				rgba(255,255,255,0.7),
-				rgba(255,255,255,0.5)
-			);
-		}
-		&:not(:disabled) {
-			&.ts-tertiary {
-				border-color: @ts-white;
-			}
-		}
-	}
-}
-.ts-bg-blue {
-	.ts-button:not(:disabled) {
-		&.ts-primary {
-			color: @ts-blue;
-			&:focus:before {
-				border-color: @ts-blue-darker;
-			}
-		}
-	}
-}
-.ts-bg-red {
-	.ts-button:not(:disabled) {
-		&.ts-primary {
-			color: @ts-red;
-			&:focus:before {
-				border-color: @ts-red-darker;
-			}
-		}
-	}
-}
-.ts-bg-green {
-	.ts-button:not(:disabled) {
-		&.ts-primary {
-			color: @ts-green;
-			&:focus:before {
-				border-color: @ts-green-darker;
-			}
-		}
-	}
-}
-.ts-bg-purple {
-	.ts-button:not(:disabled) {
-		&.ts-primary {
-			color: @ts-purple;
-			&:focus:before {
-				border-color: @ts-purple-darker;
-			}
-		}
-	}
-}
-.ts-bg-orange {
-	.ts-button:not(:disabled) {
-		&.ts-primary {
-			color: @ts-orange;
-			&:focus:before {
-				border-color: @ts-orange-darker;
-			}
-		}
-	}
-}
-.ts-bg-blue,
-.ts-bg-dark,
-.ts-bg-red,
-.ts-bg-green,
-.ts-bg-purple,
-.ts-bg-orange {
-	.ts-bg-white,
-	.ts-bg-lite {
-		// ouch, expensive bunch :/
-		.ts-button:not(:disabled) {
-			.mixin-tertiary-lite();
-			.mixin-active-lite();
-		}
-	}
-}
-.ts-bg-dark,
-.ts-bg-darkened {
-	.ts-button:not(:disabled) {
-		&.ts-primary,
-		&.ts-secondary {
-			&:focus:before {
-				border-color: rgba(255, 255, 255, 0.6);
-			}
-		}
+	&:after {
+		border: 1px solid @darkborder;
 	}
 }
 
@@ -769,6 +624,7 @@
 	cursor: default;
 	&.ts-loading-message > span {
 		z-index: 1;
+		color: @ts-black;
 	}
 	&:not(.ts-loading-message) > span {
 		color: transparent;
@@ -795,22 +651,14 @@
 		}
 	}
 }
-.ts-bg-lite,
-.ts-bg-white {
-	.ts-button.ts-is-loading.ts-loading-message {
-		> span {
-			color: @ts-black;
-		}
-	}
-}
 .ts-bg-dark,
-.ts-bg-red,
-.ts-bg-green,
-.ts-bg-blue,
-.ts-bg-purple {
-	.ts-button.ts-is-loading.ts-loading-message {
-		> span {
-			color: @ts-white;
+.ts-bg-darkened {
+	.ts-button:not(:disabled) {
+		&.ts-primary,
+		&.ts-secondary {
+			&:focus:before {
+				border-color: rgba(255, 255, 255, 0.6);
+			}
 		}
 	}
 }

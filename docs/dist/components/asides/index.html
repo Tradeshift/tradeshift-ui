@@ -104,25 +104,21 @@
                             </li>
                         </ul>
                     </figure>
-                    <p>You can color the header by assigning any of the classnames
-                        <code class="attr-value">ts-bg-blue</code>,
-                        <code class="attr-value">ts-bg-green</code>,
-                        <code class="attr-value">ts-bg-red</code> and
-                        <code class="attr-value">ts-bg-purple</code> to the <code class="el">Aside</code> element itself.</p>
-                    <figure data-ts="DoxMarkup" data-ts.code="%3Caside%20data-ts%3D%22Aside%22%20class%3D%22ts-bg-red%22%3E%0A%09%3Cdiv%20data-ts%3D%22Panel%22%3E%3C%2Fdiv%3E%0A%3C%2Faside%3E">
-                        <script type="text/html">
-                            <aside data-ts="Aside" class="ts-bg-red">
-                                <div data-ts="Panel"></div>
-                            </aside>
-                        </script>
-                        <ul data-ts="Panels">
-                            <li data-ts="Panel">
-                                <pre class="prism language-markup"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>aside</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Aside<span class="token punctuation">&quot;</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>ts-bg-red<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
-	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Panel<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>aside</span><span class="token punctuation">&gt;</span></span></code></pre>
-                            </li>
-                        </ul>
-                    </figure>
+                    <!--
+					<p>You can color the header by assigning any of the classnames
+						<code class="attr-value">ts-bg-blue</code>,
+						<code class="attr-value">ts-bg-green</code>,
+						<code class="attr-value">ts-bg-red</code> and
+						<code class="attr-value">ts-bg-purple</code>
+						to the <code class="el">Aside</code> element itself.</p>
+					<figure data-ts="DoxMarkup">
+						<script type="text/html">
+							<aside data-ts="Aside" class="ts-bg-red">
+								<div data-ts="Panel"></div>
+							</aside>
+						</script>
+					</figure>
+					-->
                 </section>
                 <h3><span>Opening the aside</span></h3>
                 <section>
@@ -362,7 +358,13 @@ aside<span class="token punctuation">.</span><span class="token function">attr<s
     </main>
     <!-- asides  -->
     <aside data-ts="Aside" id="myaside" data-ts.title="Aside Title">
-        <div data-ts="Panel"></div>
+        <div data-ts="Panel">
+            <p>Bacon ipsum dolor sit p&#xF6;lsesnack, jerky pork belly short loin sausage andouille kevin capicola ham hamburger doner. Shank prosciutto flank kevin ribeye short ribs swine ham pork porchetta spare ribs kielbasa beef ribs. Prosciutto pancetta
+                shank boudin. Corned beef shoulder capicola, turducken prosciutto pork belly sirloin shankle brisket chuck leberkas tail beef. Sirloin meatloaf pastrami beef ribs. Ball tip pastrami landjaeger, brisket Tradeshift strip steak short loin
+                pancetta meatball corned beef tenderloin beef ribs spare ribs. Tradeshift sausage strip steak ham, ribeye pork loin meatball turkey corned beef shoulder. Leberkas jerky sirloin boudin, turducken ham hock pastrami. Doner pig boudin sausage,
+                ball tip leberkas ground round beef jowl kielbasa tongue shankle spare ribs tail shoulder. Fatback pork kielbasa ham, doner pig short loin short ribs pancetta. Pancetta jerky biltong short loin capicola beef. Pork belly strip steak venison
+                brisket shoulder beef filet mignon shank tenderloin tri-tip ground round shankle cow.</p>
+        </div>
     </aside>
     <aside data-ts="Aside" id="aside2" data-ts.title="Declarative Tabs">
         <ul data-ts="Panels">
@@ -384,7 +386,7 @@ aside<span class="token punctuation">.</span><span class="token function">attr<s
     <aside data-ts="Aside" id="aside3" data-ts.title="Programmatic Tabs">
         <div data-ts="Panel"></div>
     </aside>
-    <aside data-ts="Aside" id="one" data-ts.open="false" data-ts.title="Aside One" class="ts-bg-red">
+    <aside data-ts="Aside" id="one" data-ts.title="Aside One">
         <div data-ts="Panel">
             <menu data-ts="Buttons">
                 <li>
@@ -396,7 +398,7 @@ aside<span class="token punctuation">.</span><span class="token function">attr<s
             <p></p>
         </div>
     </aside>
-    <aside data-ts="Aside" id="two" data-ts.open="false" data-ts.title="Aside Two" class="ts-bg-purple">
+    <aside data-ts="Aside" id="two" data-ts.title="Aside Two">
         <div data-ts="Panel">
             <menu data-ts="Buttons">
                 <li>
@@ -407,7 +409,7 @@ aside<span class="token punctuation">.</span><span class="token function">attr<s
             </menu>
         </div>
     </aside>
-    <aside data-ts="Aside" id="three" data-ts.open="false" data-ts.title="Aside Three" class="ts-bg-green">
+    <aside data-ts="Aside" id="three" data-ts.title="Aside Three">
         <div data-ts="Panel">
             <menu data-ts="Buttons">
                 <li>

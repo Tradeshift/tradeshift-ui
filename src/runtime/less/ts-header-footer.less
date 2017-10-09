@@ -1,6 +1,7 @@
 .ts-footerbar,
 .ts-headerbar {
 	position: relative;
+	background-color: @ts-white;
 	.ts-toolbar {
 		position: relative;
 		&.ts-toolbar-divider {
@@ -39,13 +40,13 @@
 }
 .ts-headerbar {
 	&:after {
-		background-image: linear-gradient(rgba(0,0,0,0.2), transparent);
+		background-image: linear-gradient(rgba(0,0,0,0.15), transparent);
 		bottom: -4px;
 	}
 }
 .ts-footerbar {
 	&:before {
-		background-image: linear-gradient(transparent, rgba(0,0,0,0.2));
+		background-image: linear-gradient(transparent, rgba(0,0,0,0.15));
 		top: -4px;
 	}
 }

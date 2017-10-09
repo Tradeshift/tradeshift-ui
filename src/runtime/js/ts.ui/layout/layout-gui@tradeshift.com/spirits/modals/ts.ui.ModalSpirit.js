@@ -371,6 +371,7 @@ ts.ui.ModalSpirit = (function using(Client, transition, chained) {
 		 * @returns {gui.Then}
 		 */
 		_autosize: function(avail, xxxxx) {
+			console.log('autosize!');
 			var then = new gui.Then();
 			if (this.$fullscreen) {
 				this._autosizefullscreen(then, avail, xxxxx);
@@ -408,6 +409,9 @@ ts.ui.ModalSpirit = (function using(Client, transition, chained) {
 			if (main) {
 				var height = main.box.height;
 				var avails = panel.box.height;
+				console.log('height', height);
+				console.log('avails', avails);
+				console.log('what', panel.element.getBoundingClientRect().height);
 				var offset = avails * GOLDEN - height * 0.5;
 				main.css.top = offset > 0 ? offset : 0;
 			}

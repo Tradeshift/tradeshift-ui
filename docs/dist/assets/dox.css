@@ -102,8 +102,66 @@ ul.splitscreen li:last-child li {
   letter-spacing: 0px;
 }
 figure {
-  background-color: #f5fbfe;
   position: relative;
+  /*
+	.tabs {
+		.ts-mixin-rounded-t();
+		margin: 0;
+		border: 1px solid @ts-lite-lite;
+		border-bottom: 0 none;
+		&:empty {
+			border: 0 none;
+		}
+		font-size: @ts-fontsize-mini;
+		text-align: right;
+		&:after {
+			content: '';
+			clear: left;
+			display: block;
+			height: 0;
+		}
+		button {
+			display: inline-block;
+			padding: @ts-unit-quarter @ts-unit;
+			color: @ts-medium;
+			span {
+				line-height: @ts-unit-double;
+			}
+			span + svg {
+				position: relative;
+				top: 8px;
+				margin-left: 6px;
+				fill: currentColor;
+			}
+			&:hover {
+				background-color: fade(@ts-lite-dark, 75%);
+				cursor: pointer;
+			}
+			&.selected {
+				background-color: @ts-lite-lite;
+				color: @ts-medium-dark;
+				cursor: default;
+			}
+			&.tab {
+				float: left;
+				&:first-child {
+					.ts-mixin-rounded-tl();
+				}
+			}
+			&.run {
+				padding-left: @ts-unit;
+				padding-right: @ts-unit;
+			}
+			&.edit,
+			&.revert {
+				float: left;
+				svg {
+					top: 4px;
+				}
+			}
+		}
+	}
+	*/
 }
 figure.ts-box > .ts-panel,
 figure.ts-box > .ts-panels > .ts-panel {
@@ -111,64 +169,6 @@ figure.ts-box > .ts-panels > .ts-panel {
 }
 figure .output {
   padding: 22px;
-}
-figure .tabs {
-  border-radius: 3px 3px 0 0;
-  margin: 0;
-  border: 1px solid #ebebeb;
-  border-bottom: 0 none;
-  font-size: 12px;
-  text-align: right;
-}
-figure .tabs:empty {
-  border: 0 none;
-}
-figure .tabs:after {
-  content: '';
-  clear: left;
-  display: block;
-  height: 0;
-}
-figure .tabs button {
-  display: inline-block;
-  padding: 5.5px 22px;
-  color: #7f7f7f;
-}
-figure .tabs button span {
-  line-height: 44px;
-}
-figure .tabs button span + svg {
-  position: relative;
-  top: 8px;
-  margin-left: 6px;
-  fill: currentColor;
-}
-figure .tabs button:hover {
-  background-color: rgba(215, 215, 215, 0.75);
-  cursor: pointer;
-}
-figure .tabs button.selected {
-  background-color: #ebebeb;
-  color: #757575;
-  cursor: default;
-}
-figure .tabs button.tab {
-  float: left;
-}
-figure .tabs button.tab:first-child {
-  border-radius: 3px 0 0 0;
-}
-figure .tabs button.run {
-  padding-left: 22px;
-  padding-right: 22px;
-}
-figure .tabs button.edit,
-figure .tabs button.revert {
-  float: left;
-}
-figure .tabs button.edit svg,
-figure .tabs button.revert svg {
-  top: 4px;
 }
 figure .prism,
 figure .prism code {

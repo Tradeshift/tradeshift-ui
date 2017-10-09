@@ -12,7 +12,7 @@
 	> .ts-panel,
 	> .ts-panels {
 		-webkit-flex: 1 0 0;
-		-ms-flex: 1 0 0px; // UNIT IT NEEDED!
+		-ms-flex: 1 0 0px; // this unit is needed in IE!
 		flex: 1 0 0;
 	}
 }
@@ -26,10 +26,11 @@
 	> .ts-panels {
 		margin: 0;
 	}
-	> .ts-panels {		
+	> .ts-panels {
 		> .ts-panel {
 			overflow: visible;
 			padding: @ts-unit;
+			height: 100%;
 		}
 	}
 	&.ts-has-header {

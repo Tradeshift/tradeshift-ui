@@ -90,9 +90,11 @@ ts.ui.ToolBarSpirit = (function using(
 				this._validate();
 				this.super.onenter();
 				this.action.add([edbml.ACTION_RENDER, 'ts-action-search']);
+				/*
 				if (!this.css.name().includes('ts-bg')) {
 					this.white();
 				}
+				*/
 			},
 
 			/**

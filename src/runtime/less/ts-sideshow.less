@@ -1,12 +1,14 @@
 .ts-sideshow { 
 	.box-mixin-vbox();
 	margin-bottom: 0;
+	background-color: @ts-white;
 	/*
 	> .ts-footer,
 	> .ts-panel {
 		position: relative;
 	}
 	*/
+	/*
 	> header {
 		&.ts-inset {
 			&:after {
@@ -22,10 +24,13 @@
 			border-color: transparent !important;
 		}
 	}
+	*/
+	&, > header, > footer, > .ts-panel, > .ts-panels {
+		background-color: @ts-white;
+	}
 	> .ts-panel,
 	> .ts-panels > .ts-panel,
 	> .ts-footer {
-		background-color: @ts-white;
 		padding: @ts-unit;
 		overflow-y: scroll;
 	}
@@ -75,13 +80,10 @@
 		background-image: linear-gradient(transparent, rgba(0, 0, 0, 0.2));
 		z-index: @ts-zindex-aside + 1; // cover also aside nested in drawer
 	}
-	&.ts-flipping {
-		transform-style: preserve-3d;
-		transition: transform 1s;
-	}
 	background-color: transparent !important; // otherwise flip foks in Chrome
 }
 
+/*
 .ts-engine-gecko {
 	// not sure why padding-bottom is not working here...
 	.ts-sideshow {
@@ -92,50 +94,4 @@
 		}
 	}
 }
-
-// Flipping ....................................................................
-
-/*
- * This relates to a potential future project about "Aside flipping" 
- * that perhaps we should just never mention to anyone ever again.
- */
-.ts-sideshow {
-	perspective: 1600px;
-	&.ts-flipping,
-	&.ts-flipped {
-		> header,
-		> .ts-panel,
-		> .ts-footer,
-		> .ts-shadow {
-			transform-style: preserve-3d;
-			backface-visibility: hidden;
-		}
-	}
-	&.ts-flipping {
-		> header,
-		> .ts-panel,
-		> .ts-footer,
-		> .ts-shadow {
-			transition: transform 1s;
-		}
-		&.ts-flip-out {
-			> header,
-			> .ts-panel,
-			> .ts-footer,
-			> .ts-shadow {
-				transform: rotateY(90deg);
-			}
-		}
-		&.ts-flip-in {
-			> header,
-			> .ts-panel,
-			> .ts-footer,
-			> .ts-shadow {
-				transform: rotateY(0deg);
-			}
-		}
-	}
-	&.ts-flipped {
-		transform: rotateY(-90deg);
-	}
-}
+*/

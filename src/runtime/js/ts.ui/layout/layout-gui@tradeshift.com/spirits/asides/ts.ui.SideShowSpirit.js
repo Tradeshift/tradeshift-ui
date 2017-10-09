@@ -20,6 +20,7 @@ ts.ui.SideShowSpirit = (function using(
 	PANEL_ATTACH,
 	PANEL_DETACH
 ) {
+	/*
 	// when synchronizing the colors, make sure to remove all existing colors...
 	var BGCOLORS = (function(colors) {
 		return Object.keys(colors).map(function(key) {
@@ -31,7 +32,7 @@ ts.ui.SideShowSpirit = (function using(
 	 * Extract `ts-bg-` classname from spirit.
 	 * @param {ts.ui.Spirit} spirit
 	 * @returns {string}
-	 */
+	 *
 	function getcolor(spirit) {
 		return Object.keys(Colors)
 			.map(function(key) {
@@ -41,6 +42,7 @@ ts.ui.SideShowSpirit = (function using(
 				return result || (spirit.css.contains(color) ? color : null);
 			}, null);
 	}
+	*/
 
 	return ts.ui.BoxSpirit.extend(
 		{
@@ -75,12 +77,6 @@ ts.ui.SideShowSpirit = (function using(
 			onclosed: null,
 
 			/**
-			 *(work in progress)
-			 * @type {boolean}
-			 */
-			flipped: false,
-
-			/**
 			 * ts.ui.SpinnerSpirit.
 			 */
 			spin: null,
@@ -102,22 +98,7 @@ ts.ui.SideShowSpirit = (function using(
 			 */
 			onconfigure: function() {
 				this.super.onconfigure();
-				this.action.add([PANEL_ATTACH, PANEL_DETACH]);
-			},
-
-			/**
-			 * Setup.
-			 */
-			onenter: function() {
-				this.super.onenter();
-				if (this.flipped) {
-					// this.css.add('ts-flipped'); TODO!
-					this.event.add('transitionend');
-					this.css.add('ts-flipping ts-flip-init');
-					this.tick.time(function transition_ok() {
-						this.css.add('ts-flip-out');
-					});
-				}
+				// this.action.add([PANEL_ATTACH, PANEL_DETACH]);
 			},
 
 			/**
@@ -127,17 +108,18 @@ ts.ui.SideShowSpirit = (function using(
 				this.super.onready();
 				this._confirmpanel();
 				this.css.add('ts-sideshow');
-				this._initfooter(window.MutationObserver || window.WebKitMutationObserver);
+				// this._initfooter(window.MutationObserver || window.WebKitMutationObserver);
 				this._inittabs();
 			},
 
 			/**
 			 * Reflex also when moved to another position (V4 scenario)
-			 */
+			 *
 			onattach: function() {
 				this.super.onattach();
 				this._reflex();
 			},
+			*/
 
 			/**
 			 * Detach hacky mutation observer.
@@ -155,21 +137,22 @@ ts.ui.SideShowSpirit = (function using(
 			onrender: function() {
 				this.super.onrender();
 				this._confirmpanel();
-				this._reflex();
+				// this._reflex();
 			},
 
 			/**
 			 * Window resized (probably).
-			 */
+			 *
 			onflex: function() {
 				this.super.onflex();
 				this._reflex();
 			},
+			*/
 
 			/**
 			 * Handle tick.
 			 * @param {gui.Tick} t
-			 */
+			 *
 			ontick: function(t) {
 				this.super.ontick(t);
 				if (!this.$destructed && t.type === 'ts-sideshow-theme' && this.dom.embedded()) {
@@ -179,11 +162,12 @@ ts.ui.SideShowSpirit = (function using(
 					this.tick.remove(t.type);
 				}
 			},
+			*/
 
 			/**
 			 * Handle event.
 			 * @param {Event} e
-			 */
+			 *
 			onevent: function(e) {
 				this.super.onevent(e);
 				switch (e.type) {
@@ -197,13 +181,14 @@ ts.ui.SideShowSpirit = (function using(
 						break;
 				}
 			},
+			*/
 
 			/**
 			 * We'll need to support that the tabbar auto-updates whenever a panel gets
 			 * added or removed (like we do in the Main TabBar) but for now, we'll just
 			 * make sure that these actions (dispatched from the Panel) are contained.
 			 * @param {gui.Action} a
-			 */
+			 *
 			onaction: function(a) {
 				this.super.onaction(a);
 				switch (a.type) {
@@ -219,6 +204,7 @@ ts.ui.SideShowSpirit = (function using(
 						break;
 				}
 			},
+			*/
 
 			/**
 			 * Observing the tabbar tabs.
@@ -246,9 +232,12 @@ ts.ui.SideShowSpirit = (function using(
 			title: chained(function(title) {
 				var header = this._head();
 				if (arguments.length) {
+					header.title(title);
+					/*
 					this._reflex(function() {
 						header.title(title);
 					});
+					*/
 				} else {
 					return header.title();
 				}
@@ -303,13 +292,6 @@ ts.ui.SideShowSpirit = (function using(
 			}),
 
 			/**
-			 * Announce to the {ts.ui.DocumentAsidePlugin} that we intend to flip.
-			 */
-			flip: function() {
-				this.action.dispatch('FLIP', this.flipped);
-			},
-
-			/**
 			 * Programatically create those tabs (or modify some declarative tabs).
 			 * @returns {ts.ui.TabCollection|ts.ui.SideShowSpirit}
 			 */
@@ -334,29 +316,14 @@ ts.ui.SideShowSpirit = (function using(
 			 */
 			$onclose: function() {},
 
-			/**
-			 * Actually flip the thing.
-			 * @returns {gui.Then} Some kind of Promise-like object
-			 */
-			$flip: function() {
-				if (!this._flipping) {
-					this._flipping = new gui.Then();
-					this.event.add('transitionend');
-					this.css.remove('ts-flipped').add('ts-flipping');
-					this.tick.time(function transition_ok() {
-						this.css.add(this.flipped ? 'ts-flip-in' : 'ts-flip-out');
-					});
-				}
-				return this._flipping;
-			},
-
 			// Private ...............................................................
 
 			/**
 			 * Snapshot the color scheme asigned via model.
 			 * @type {string}
-			 */
+			 *
 			_theme: null,
+			*/
 
 			/**
 			 * The Main tabbar.
@@ -369,12 +336,6 @@ ts.ui.SideShowSpirit = (function using(
 			 * @type {MutationObserver}
 			 */
 			_observer: null,
-
-			/**
-			 * We can think of this as a Promise (code is old).
-			 * @type {gui.Then}
-			 */
-			flipping: false,
 
 			/**
 			 * Configured with the closing "X" button?
@@ -500,7 +461,7 @@ ts.ui.SideShowSpirit = (function using(
 			 * but note that the problem (in Chrome only!) is only apparent
 			 * in a production/sandbox environment. They are however easy to spot.
 			 * @param {constructor} Observer Which is undefined in old IE versions
-			 */
+			 *
 			_initfooter: function(Observer) {
 				var footer = this.dom.q('.ts-footer');
 				if (footer) {
@@ -522,25 +483,7 @@ ts.ui.SideShowSpirit = (function using(
 					}
 				}
 			},
-
-			/**
-			 * (work in progress)
-			 * @param {ts.ui.Spirit} spirit
-			 */
-			_ontransitionend: function(spirit) {
-				if (ts.ui.PanelSpirit.is(spirit)) {
-					this.event.remove('transitionend');
-					this.css.remove('ts-flipping ts-flip-in ts-flip-out');
-					if (this.css.contains('ts-flip-init')) {
-						this.css.remove('ts-flip-init').add('ts-flipped');
-					} else {
-						this.flipped = !this.flipped;
-						this.css.shift(this.flipped, 'ts-flipped');
-					}
-					this._flipping.now();
-					this._flipping = null;
-				}
-			},
+			*/
 
 			/**
 			 * Add or remove the closing "X" button in the titlebar.
@@ -562,10 +505,13 @@ ts.ui.SideShowSpirit = (function using(
 					// while accounting for the fact that models are updated async.
 					this.tick.time(function asyncproblem() {
 						if (!tool.life.hascontent) {
+							tool.dom.remove();
+							/*
 							this.reflex(function removeheader() {
 								tool.dom.remove();
 								this._fixappearance();
 							}, this);
+							*/
 						}
 					}, 50);
 				}
@@ -659,7 +605,7 @@ ts.ui.SideShowSpirit = (function using(
 			 * TODO: Support a `selected` property in the {ts.ui.PanelSpirit}
 			 * TODO: When all panels are done, somehow force `tabbar.script.run()` ...
 			 * @param {ts.ui.PanelSpirit} panel
-			 */
+			 *
 			_updatetab: function(panel, added) {
 				var bar = this._tabbar,
 					dom = this.dom;
@@ -703,6 +649,7 @@ ts.ui.SideShowSpirit = (function using(
 				}
 				bar.$hascontent(); // for the tabbar to render instantly
 			},
+			*/
 
 			/**
 			 * If spirit was created via a model, return the model color.
@@ -711,7 +658,7 @@ ts.ui.SideShowSpirit = (function using(
 			 * so that (in a future project) we can flip the Aside nicely.
 			 * @param {string} color Fallback color!
 			 * @returns {string}
-			 */
+			 *
 			_extractcolor: function(color) {
 				function fixweirdlooking(c) {
 					return c.match(/ts-bg-lite|ts-bg-white/) ? 'ts-bg-blue' : c;
@@ -731,13 +678,14 @@ ts.ui.SideShowSpirit = (function using(
 				}
 				return color;
 			},
+			*/
 
 			/**
 			 * Transform background color to members (unless it
 			 * already has a background color classname given).
 			 * @param {string} color
 			 * @param {Array<string>} selectors
-			 */
+			 *
 			_transfercolor: function(color, selectors) {
 				var dom = this.dom;
 				selectors.forEach(function(selector) {
@@ -765,13 +713,14 @@ ts.ui.SideShowSpirit = (function using(
 						});
 				});
 			},
+			*/
 
 			/**
 			 * Apply color theme extras. The dropshadows are done with DIVs (instead
 			 * of using CSS box-shadow) to keep them under control without using any
 			 * kind of z-index, since this would mess up the general page layout.
 			 * @param {gui.DOMPlugin} dom
-			 */
+			 *
 			_themesupport: function(dom) {
 				var shade = Parser.parseToNode('<div class="ts-shadow"></div>');
 				var panel = dom.q('this > .ts-panel', ts.ui.PanelSpirit);
@@ -801,6 +750,7 @@ ts.ui.SideShowSpirit = (function using(
 					}
 				}
 			},
+			*/
 
 			/**
 			 * Execute callback configured via HTML attribute or via JS property.

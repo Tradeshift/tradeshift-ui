@@ -20,7 +20,7 @@ If you'd like to submit a feature request or report a bug, go to our [issues pag
 1. Install the Grunt Command Line Utility globally.
 	- `yarn global add grunt-cli`
 1. Install the dependencies of this project.
-	- `yarn upgrade`
+	- `yarn`
 
 ## Usage (Local Development)
 

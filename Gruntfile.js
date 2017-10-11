@@ -26,10 +26,10 @@ module.exports = function(grunt) {
 	// Tasks .....................................................................
 
 	// setup for local development (no docs)
-	grunt.registerTask('default', [].concat(build('dev'), sizeReport('dev'), ['concurrent:nodocs']));
+	grunt.registerTask('default', [].concat(build('dev'), ['concurrent:nodocs']));
 
 	// setup for local development (with docs)
-	grunt.registerTask('dev', [].concat(build('dev'), sizeReport('dev'), ['concurrent:docs']));
+	grunt.registerTask('dev', [].concat(build('dev'), ['concurrent:docs']));
 
 	// build for CDN
 	grunt.registerTask(
@@ -121,7 +121,7 @@ module.exports = function(grunt) {
 			// setup 'ts.js'
 			dev: {
 				options: {
-					'${runtimecss}': '//127.0.0.1:10111/dist/ts.min.css',
+					'${runtimecss}': '//127.0.0.1:10111/dist/ts.css',
 					'${langbundle}': '//127.0.0.1:10111/dist/ts-lang-<LANG>.js'
 				},
 				files: {
@@ -273,17 +273,12 @@ module.exports = function(grunt) {
 		uglify: {
 			options: {
 				mangle: false,
-				beautify: false,
-				sourceMap: true,
 				output: {
 					ascii_only: true,
 					comments: false
-				}
-			},
-			dev: {
-				files: {
-					'dist/ts.min.js': 'dist/ts.js'
-				}
+				},
+				beautify: false,
+				sourceMap: true
 			},
 			cdn: {
 				files: {
@@ -356,24 +351,6 @@ module.exports = function(grunt) {
 						'public/ts-<%= pkg.version %>.min.css',
 						'public/ts-lang-en-<%= pkg.version %>.js'
 					]
-				}
-			},
-			// minified js vs normal
-			dev_js_minified_vs_normal: {
-				files: {
-					list: ['dist/ts.js', 'dist/ts.min.js']
-				}
-			},
-			// minified css vs normal
-			dev_css_minified_vs_normal: {
-				files: {
-					list: ['dist/ts.css', 'dist/ts.min.css']
-				}
-			},
-			// data loaded in the browser
-			dev_loaded: {
-				files: {
-					list: ['dist/ts.min.js', 'dist/ts.min.css', 'dist/ts-lang-en.js']
 				}
 			}
 		},
@@ -541,18 +518,21 @@ module.exports = function(grunt) {
 	}
 
 	function concatAndUglifyJs(target = 'cdn') {
-		return [
-			`concat:${returnDevForJasmine(target)}`, // concat all files generated above
-			`uglify:${returnDevForJasmine(target)}` // uglify
+		const out = [
+			`concat:${returnDevForJasmine(target)}` // concat all files generated above
 		];
+		if (target === 'cdn') {
+			out.push(`uglify:${returnDevForJasmine(target)}`); // uglify
+		}
+		return out;
 	}
 
 	function compileAndMinifyLess(target = 'cdn') {
 		let out = [
-			'postcss:compile_less_to_css', // less -> css
-			'postcss:generate_minified_css' // css -> min.css
+			'postcss:compile_less_to_css' // less -> css
 		];
 		if (target === 'cdn') {
+			out.push('postcss:generate_minified_css'); // css -> min.css
 			out.push('copy:css_cdn');
 		}
 		return out;
@@ -582,12 +562,8 @@ module.exports = function(grunt) {
 		let out = [];
 		if (target === 'cdn') {
 			out.push('size_report:cdn_gzip_vs_normal');
+			out.push(`size_report:${target}_loaded`);
 		}
-		out = out.concat([
-			`size_report:${target}_js_minified_vs_normal`,
-			`size_report:${target}_css_minified_vs_normal`,
-			`size_report:${target}_loaded`
-		]);
 		return out;
 	}
 

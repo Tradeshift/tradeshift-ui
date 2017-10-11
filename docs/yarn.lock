@@ -1126,6 +1126,13 @@ grunt-contrib-clean@^1.0.0:
     async "^1.5.2"
     rimraf "^2.5.1"
 
+grunt-contrib-concat@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/grunt-contrib-concat/-/grunt-contrib-concat-1.0.1.tgz#61509863084e871d7e86de48c015259ed97745bd"
+  dependencies:
+    chalk "^1.0.0"
+    source-map "^0.5.3"
+
 grunt-contrib-connect@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/grunt-contrib-connect/-/grunt-contrib-connect-1.0.2.tgz#5cf933b91a67386044273c0b2444603cd98879ba"

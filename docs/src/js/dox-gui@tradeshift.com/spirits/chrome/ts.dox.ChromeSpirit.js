@@ -269,7 +269,6 @@ ts.dox.ChromeSpirit = (function using(CSSPlugin, Then) {
 
 		/**
 		 * Subsequent page loaded in iframe: Switch from one iframe to the other.
-		 * Allowing the layout to stabilize first so that we don't notice flicker
 		 * (we create new iframes to avoid browser history local to the iframes).
 		 */
 		_nextload: function() {
@@ -282,7 +281,7 @@ ts.dox.ChromeSpirit = (function using(CSSPlugin, Then) {
 					this._oldframe.dom.remove();
 					this._oldframe = null;
 				}
-			}, 50);
+			});
 		},
 
 		/**

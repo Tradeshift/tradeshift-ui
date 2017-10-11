@@ -26,24 +26,23 @@
 <body>
     <header data-ts="TopBar"></header>
     <main data-ts="Main">
-        <div data-ts="MainContent">
-            <article>
-                <h1><span>Footer actions</span></h1>
-                <section class="desc">
-                    <p>Footer <code>actions</code> can be used to manipulate selected objects of any kind. They appear in a separate toolbar, so that they never conflict with the normal <a data-ts="Button" href="/dist/components/footer/index.html">buttons</a>.
-                        This toolbar can also be configured with a <a href="#status">status message</a> and this <a href="#checkbox">checkbox</a>.</p>
-                </section>
-                <section>
-                    <p>The <code>actions</code> method both sets and gets the actions. If you omit the argument, you&quot;ll get the current actions (jQuery style). In real life, the actions should only appear whenever the user has selected something with
-                        the mouse or keyboard, so we will just have to pretend that something is selected.</p>
-                    <figure data-ts="DoxScript" class="attention runnable" data-ts.code="ts.ui.Footer.actions(%5B%0A%09%7B%20label%3A%20&apos;Move%20Up&apos;%2C%20icon%3A%20&apos;ts-icon-triangleup&apos;%20%7D%2C%0A%09%7B%20label%3A%20&apos;Move%20Down&apos;%2C%20icon%3A%20&apos;ts-icon-triangledown&apos;%20%7D%2C%0A%09%7B%20label%3A%20&apos;Move%20Left&apos;%2C%20icon%3A%20&apos;ts-icon-triangleleft&apos;%20%7D%2C%0A%09%7B%20label%3A%20&apos;Move%20Right&apos;%2C%20icon%3A%20&apos;ts-icon-triangleright&apos;%20%7D%2C%0A%09%7B%20label%3A%20&apos;Don%5C&apos;t%20Move&apos;%2C%20icon%3A%20&apos;ts-icon-halt&apos;%2C%20onclick%3A%20function()%20%7B%0A%09%09ts.ui.Footer.actions().clear()%3B%0A%09%7D%7D%0A%5D)%3B">
-                        <script type="runnable">
-                            ts.ui.Footer.actions([ { label: 'Move Up', icon: 'ts-icon-triangleup' }, { label: 'Move Down', icon: 'ts-icon-triangledown' }, { label: 'Move Left', icon: 'ts-icon-triangleleft' }, { label: 'Move Right', icon: 'ts-icon-triangleright' }, { label: 'Don\'t
-                            Move', icon: 'ts-icon-halt', onclick: () => { ts.ui.Footer.actions().clear(); }} ]);
-                        </script>
-                        <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
-                        <div data-ts="Panel">
-                            <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Footer<span class="token punctuation">.</span><span class="token function">actions<span class="token punctuation">(</span></span><span class="token punctuation">[</span>
+        <article>
+            <h1><span>Footer actions</span></h1>
+            <section class="desc">
+                <p>Footer <code>actions</code> can be used to manipulate selected objects of any kind. They appear in a separate toolbar, so that they never conflict with the normal <a data-ts="Button" href="/dist/components/footer/index.html">buttons</a>.
+                    This toolbar can also be configured with a <a href="#status">status message</a> and this <a href="#checkbox">checkbox</a>.</p>
+            </section>
+            <section>
+                <p>The <code>actions</code> method both sets and gets the actions. If you omit the argument, you&quot;ll get the current actions (jQuery style). In real life, the actions should only appear whenever the user has selected something with the
+                    mouse or keyboard, so we will just have to pretend that something is selected.</p>
+                <figure data-ts="DoxScript" class="attention runnable" data-ts.code="ts.ui.Footer.actions(%5B%0A%09%7B%20label%3A%20&apos;Move%20Up&apos;%2C%20icon%3A%20&apos;ts-icon-triangleup&apos;%20%7D%2C%0A%09%7B%20label%3A%20&apos;Move%20Down&apos;%2C%20icon%3A%20&apos;ts-icon-triangledown&apos;%20%7D%2C%0A%09%7B%20label%3A%20&apos;Move%20Left&apos;%2C%20icon%3A%20&apos;ts-icon-triangleleft&apos;%20%7D%2C%0A%09%7B%20label%3A%20&apos;Move%20Right&apos;%2C%20icon%3A%20&apos;ts-icon-triangleright&apos;%20%7D%2C%0A%09%7B%20label%3A%20&apos;Don%5C&apos;t%20Move&apos;%2C%20icon%3A%20&apos;ts-icon-halt&apos;%2C%20onclick%3A%20function()%20%7B%0A%09%09ts.ui.Footer.actions().clear()%3B%0A%09%7D%7D%0A%5D)%3B">
+                    <script type="runnable">
+                        ts.ui.Footer.actions([ { label: 'Move Up', icon: 'ts-icon-triangleup' }, { label: 'Move Down', icon: 'ts-icon-triangledown' }, { label: 'Move Left', icon: 'ts-icon-triangleleft' }, { label: 'Move Right', icon: 'ts-icon-triangleright' }, { label: 'Don\'t
+                        Move', icon: 'ts-icon-halt', onclick: () => { ts.ui.Footer.actions().clear(); }} ]);
+                    </script>
+                    <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                    <div data-ts="Panel">
+                        <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Footer<span class="token punctuation">.</span><span class="token function">actions<span class="token punctuation">(</span></span><span class="token punctuation">[</span>
 	<span class="token punctuation">{</span> label<span class="token punctuation">:</span> <span class="token string">&apos;Move Up&apos;</span><span class="token punctuation">,</span> icon<span class="token punctuation">:</span> <span class="token string">&apos;ts-icon-triangleup&apos;</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
 	<span class="token punctuation">{</span> label<span class="token punctuation">:</span> <span class="token string">&apos;Move Down&apos;</span><span class="token punctuation">,</span> icon<span class="token punctuation">:</span> <span class="token string">&apos;ts-icon-triangledown&apos;</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
 	<span class="token punctuation">{</span> label<span class="token punctuation">:</span> <span class="token string">&apos;Move Left&apos;</span><span class="token punctuation">,</span> icon<span class="token punctuation">:</span> <span class="token string">&apos;ts-icon-triangleleft&apos;</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
@@ -52,130 +51,129 @@
 		ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Footer<span class="token punctuation">.</span><span class="token function">actions<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">clear<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 	<span class="token punctuation">}</span><span class="token punctuation">}</span>
 <span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
-                    </figure>
-                    <p>You can use array methods like <code>push</code>, <code>pop</code>, <code>shift</code>, <code>unshift</code>, <code>splice</code> and so on to manage actions, just note that the actions <code>length</code> is a readonly property. To
-                        ensure consistency, actions should always have both an icon and a label, much unlike the buttons.</p>
-                    <h3><span>Hide actions</span></h3>
-                    <p>You can <code>hide()</code> and <code>show()</code> actions. You can also toggle <code>visible</code>.</p>
-                    <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.Footer.actions().forEach(function(action)%20%7B%0A%09if(action.visible)%20%7B%0A%09%09action.hide()%3B%0A%09%7D%20else%20%7B%0A%09%09action.show()%3B%0A%09%7D%0A%7D)%3B">
-                        <script type="runnable">
-                            ts.ui.Footer.actions().forEach(function(action) { if(action.visible) { action.hide(); } else { action.show(); } });
-                        </script>
-                        <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
-                        <div data-ts="Panel">
-                            <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Footer<span class="token punctuation">.</span><span class="token function">actions<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">forEach<span class="token punctuation">(</span></span><span class="token keyword">function</span><span class="token punctuation">(</span>action<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                </figure>
+                <p>You can use array methods like <code>push</code>, <code>pop</code>, <code>shift</code>, <code>unshift</code>, <code>splice</code> and so on to manage actions, just note that the actions <code>length</code> is a readonly property. To ensure
+                    consistency, actions should always have both an icon and a label, much unlike the buttons.</p>
+                <h3><span>Hide actions</span></h3>
+                <p>You can <code>hide()</code> and <code>show()</code> actions. You can also toggle <code>visible</code>.</p>
+                <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.Footer.actions().forEach(function(action)%20%7B%0A%09if(action.visible)%20%7B%0A%09%09action.hide()%3B%0A%09%7D%20else%20%7B%0A%09%09action.show()%3B%0A%09%7D%0A%7D)%3B">
+                    <script type="runnable">
+                        ts.ui.Footer.actions().forEach(function(action) { if(action.visible) { action.hide(); } else { action.show(); } });
+                    </script>
+                    <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                    <div data-ts="Panel">
+                        <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Footer<span class="token punctuation">.</span><span class="token function">actions<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">forEach<span class="token punctuation">(</span></span><span class="token keyword">function</span><span class="token punctuation">(</span>action<span class="token punctuation">)</span> <span class="token punctuation">{</span>
 	<span class="token keyword">if</span><span class="token punctuation">(</span>action<span class="token punctuation">.</span>visible<span class="token punctuation">)</span> <span class="token punctuation">{</span>
 		action<span class="token punctuation">.</span><span class="token function">hide<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 	<span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
 		action<span class="token punctuation">.</span><span class="token function">show<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 	<span class="token punctuation">}</span>
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
-                    </figure>
-                    <h3><span>Disable actions</span></h3>
-                    <p>You can <code>disable()</code> and <code>enable()</code> action. You can also toggle <code>disabled</code>.</p>
-                    <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.Footer.actions().forEach(function(action)%20%7B%0A%09if(action.disabled)%20%7B%0A%09%09action.enable()%3B%0A%09%7D%20else%20%7B%0A%09%09action.disable()%3B%0A%09%7D%0A%7D)%3B">
-                        <script type="runnable">
-                            ts.ui.Footer.actions().forEach(function(action) { if(action.disabled) { action.enable(); } else { action.disable(); } });
-                        </script>
-                        <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
-                        <div data-ts="Panel">
-                            <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Footer<span class="token punctuation">.</span><span class="token function">actions<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">forEach<span class="token punctuation">(</span></span><span class="token keyword">function</span><span class="token punctuation">(</span>action<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                </figure>
+                <h3><span>Disable actions</span></h3>
+                <p>You can <code>disable()</code> and <code>enable()</code> action. You can also toggle <code>disabled</code>.</p>
+                <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.Footer.actions().forEach(function(action)%20%7B%0A%09if(action.disabled)%20%7B%0A%09%09action.enable()%3B%0A%09%7D%20else%20%7B%0A%09%09action.disable()%3B%0A%09%7D%0A%7D)%3B">
+                    <script type="runnable">
+                        ts.ui.Footer.actions().forEach(function(action) { if(action.disabled) { action.enable(); } else { action.disable(); } });
+                    </script>
+                    <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                    <div data-ts="Panel">
+                        <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Footer<span class="token punctuation">.</span><span class="token function">actions<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">forEach<span class="token punctuation">(</span></span><span class="token keyword">function</span><span class="token punctuation">(</span>action<span class="token punctuation">)</span> <span class="token punctuation">{</span>
 	<span class="token keyword">if</span><span class="token punctuation">(</span>action<span class="token punctuation">.</span>disabled<span class="token punctuation">)</span> <span class="token punctuation">{</span>
 		action<span class="token punctuation">.</span><span class="token function">enable<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 	<span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
 		action<span class="token punctuation">.</span><span class="token function">disable<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 	<span class="token punctuation">}</span>
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
-                    </figure>
-                    <h3><span>Busy actions</span></h3>
-                    <p>We can display a temporary progress indicator with the <code>busy</code> and <code>done</code> methods.</p>
-                    <figure data-ts="DoxScript" class="runnable" data-ts.code="var%20action%20%3D%20ts.ui.Footer.actions()%5B0%5D%3B%0Aaction.busy()%3B%0AsetTimeout(function()%20%7B%0A%09action.done()%3B%0A%7D%2C%201000)%3B">
-                        <script type="runnable">
-                            var action = ts.ui.Footer.actions()[0]; action.busy(); setTimeout(function() { action.done(); }, 1000);
-                        </script>
-                        <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
-                        <div data-ts="Panel">
-                            <pre class="prism language-javascript"><code><span class="token keyword">var</span> action <span class="token operator">=</span> ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Footer<span class="token punctuation">.</span><span class="token function">actions<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+                </figure>
+                <h3><span>Busy actions</span></h3>
+                <p>We can display a temporary progress indicator with the <code>busy</code> and <code>done</code> methods.</p>
+                <figure data-ts="DoxScript" class="runnable" data-ts.code="var%20action%20%3D%20ts.ui.Footer.actions()%5B0%5D%3B%0Aaction.busy()%3B%0AsetTimeout(function()%20%7B%0A%09action.done()%3B%0A%7D%2C%201000)%3B">
+                    <script type="runnable">
+                        var action = ts.ui.Footer.actions()[0]; action.busy(); setTimeout(function() { action.done(); }, 1000);
+                    </script>
+                    <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                    <div data-ts="Panel">
+                        <pre class="prism language-javascript"><code><span class="token keyword">var</span> action <span class="token operator">=</span> ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Footer<span class="token punctuation">.</span><span class="token function">actions<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
 action<span class="token punctuation">.</span><span class="token function">busy<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token function">setTimeout<span class="token punctuation">(</span></span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
 	action<span class="token punctuation">.</span><span class="token function">done<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token number">1000</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
-                    </figure>
-                    <p>The <code>busy</code> method supports an optional message.</p>
-                    <figure data-ts="DoxScript" class="runnable" data-ts.code="var%20action%20%3D%20ts.ui.Footer.actions()%5B0%5D%3B%0Aaction.busy(&apos;Making%20progress&apos;)%3B%0AsetTimeout(function()%20%7B%0A%09action.done()%3B%0A%7D%2C%201000)%3B">
-                        <script type="runnable">
-                            var action = ts.ui.Footer.actions()[0]; action.busy('Making progress'); setTimeout(function() { action.done(); }, 1000);
-                        </script>
-                        <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
-                        <div data-ts="Panel">
-                            <pre class="prism language-javascript"><code><span class="token keyword">var</span> action <span class="token operator">=</span> ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Footer<span class="token punctuation">.</span><span class="token function">actions<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+                </figure>
+                <p>The <code>busy</code> method supports an optional message.</p>
+                <figure data-ts="DoxScript" class="runnable" data-ts.code="var%20action%20%3D%20ts.ui.Footer.actions()%5B0%5D%3B%0Aaction.busy(&apos;Making%20progress&apos;)%3B%0AsetTimeout(function()%20%7B%0A%09action.done()%3B%0A%7D%2C%201000)%3B">
+                    <script type="runnable">
+                        var action = ts.ui.Footer.actions()[0]; action.busy('Making progress'); setTimeout(function() { action.done(); }, 1000);
+                    </script>
+                    <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                    <div data-ts="Panel">
+                        <pre class="prism language-javascript"><code><span class="token keyword">var</span> action <span class="token operator">=</span> ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Footer<span class="token punctuation">.</span><span class="token function">actions<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
 action<span class="token punctuation">.</span><span class="token function">busy<span class="token punctuation">(</span></span><span class="token string">&apos;Making progress&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token function">setTimeout<span class="token punctuation">(</span></span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
 	action<span class="token punctuation">.</span><span class="token function">done<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token number">1000</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
-                    </figure>
-                    <p>Here&quot;s a summary of the <code>actions</code> collection and <code>action</code> model.</p>
-                    <div data-ts="DoxApi" data-ts.code="%7B%0A%09name%3A%20%22ts.ui.ActionCollection%22%2C%0A%09methods%3A%20%5B%0A%09%09%7B%0A%09%09%09name%3A%20%22push%22%2C%0A%09%09%09args%3A%20%22o1%2C%20o2%2C%20...%22%2C%0A%09%09%09desc%3A%20%22Add%20action(s)%20to%20the%20end%20of%20the%20collection.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20%22unshift%22%2C%0A%09%09%09args%3A%20%22o1%2C%20o2%2C%20...%22%2C%0A%09%09%09desc%3A%20%22Add%20action(s)%20to%20the%20front%20of%20the%20collection.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20%22pop%22%2C%0A%09%09%09desc%3A%20%22Remove%20and%20return%20the%20last%20action.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20%22shift%22%2C%0A%09%09%09desc%3A%20%22Remove%20and%20return%20the%20first%20action.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20%22splice%22%2C%0A%09%09%09args%3A%20%22i%2C%20d%2C%20o1%2C%20o2%2C%20...%22%2C%0A%09%09%09desc%3A%20%22Insert%20action(s)%20at%20%60i%60%2C%20optionally%20deleting%20%60d%60%20amount%20of%20actions.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20%22get%22%2C%0A%09%09%09args%3A%20%22string%7Cnumber%22%2C%0A%09%09%09desc%3A%20%22Get%20action%20by%20%60id%60%20or%20numeric%20index.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20%22clear%22%2C%0A%09%09%09desc%3A%20%22Remove%20all%20actions.%22%0A%09%09%7D%0A%09%5D%0A%7D">
-                    </div>
-                    <div data-ts="DoxApi" data-ts.code="%7B%0A%09name%3A%20%22ts.ui.ActionModel%22%2C%0A%09properties%3A%20%5B%0A%09%09%7B%0A%09%09%09name%3A%20%22id%22%2C%0A%09%09%09type%3A%20%22string%22%2C%0A%09%09%09desc%3A%20%22Optional%20action%20%60id%60.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20%22label%22%2C%0A%09%09%09type%3A%20%22string%22%2C%0A%09%09%09desc%3A%20%22The%20actions%20label.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20%22icon%22%2C%0A%09%09%09type%3A%20%22string%22%2C%0A%09%09%09desc%3A%20%22The%20action%20icon%20(label%20must%20be%20%60null%60%20or%20empty).%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20%22info%22%2C%0A%09%09%09type%3A%20%22string%22%2C%0A%09%09%09desc%3A%20%22The%20action%20tooltip%20(hover%20text).%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20%22visible%22%2C%0A%09%09%09type%3A%20%22boolean%22%2C%0A%09%09%09desc%3A%20%22Action%20is%20visible%3F%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20%22disabled%22%2C%0A%09%09%09type%3A%20%22boolean%22%2C%0A%09%09%09desc%3A%20%22Action%20is%20disabled%3F%22%0A%09%09%7D%0A%09%5D%2C%0A%09methods%3A%20%5B%0A%09%09%7B%0A%09%09%09name%3A%20%22onclick%22%2C%0A%09%09%09desc%3A%20%22Called%20whenever%20the%20action%20gets%20clicked.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20%22busy%22%2C%0A%09%09%09args%3A%20%22(string)%22%2C%0A%09%09%09desc%3A%20%22Mark%20action%20busy%20with%20optional%20message.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20%22done%22%2C%0A%09%09%09desc%3A%20%22Mark%20the%20action%20done%20(not%20busy).%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20%22hide%22%2C%0A%09%09%09desc%3A%20%22Hide%20the%20action.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20%22show%22%2C%0A%09%09%09desc%3A%20%22Show%20the%20action.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20%22disable%22%2C%0A%09%09%09desc%3A%20%22Disable%20the%20action.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20%22enable%22%2C%0A%09%09%09desc%3A%20%22Enable%20the%20action.%22%0A%09%09%7D%0A%09%5D%0A%7D">
-                    </div>
-                    <h3 id="status"><span>Status message</span></h3>
-                    <p>We can configure the actionbar with a <code>status</code> message. When a selection is made, the massage could be something like &quot;23 products selected&quot;. When nothing is selected, it could perhaps be something like &quot;Showing
-                        10-20 out of 123 products&quot;.</p>
-                    <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.Footer.status(&apos;23%25%20of%20one%20million%20products%20selected&apos;)%3B">
-                        <script type="runnable">
-                            ts.ui.Footer.status('23% of one million products selected');
-                        </script>
-                        <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
-                        <div data-ts="Panel">
-                            <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Footer<span class="token punctuation">.</span><span class="token function">status<span class="token punctuation">(</span></span><span class="token string">&apos;23% of one million products selected&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
-                    </figure>
-                    <p>If you call <code>linkable()</code>, you can also some links in the message. Beware of phishing!</p>
-                    <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.StatusBar.linkable().message(%0A%09&apos;Please%20visit%20(Tradeshift)%5Bhttp%3A%2F%2Fwww.tradeshift.com%5D&apos;%0A)%3B">
-                        <script type="runnable">
-                            ts.ui.StatusBar.linkable().message( 'Please visit (Tradeshift)[http://www.tradeshift.com]' );
-                        </script>
-                        <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
-                        <div data-ts="Panel">
-                            <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>StatusBar<span class="token punctuation">.</span><span class="token function">linkable<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">message<span class="token punctuation">(</span></span>
+                </figure>
+                <p>Here&quot;s a summary of the <code>actions</code> collection and <code>action</code> model.</p>
+                <div data-ts="DoxApi" data-ts.code="%7B%0A%09name%3A%20%22ts.ui.ActionCollection%22%2C%0A%09methods%3A%20%5B%0A%09%09%7B%0A%09%09%09name%3A%20%22push%22%2C%0A%09%09%09args%3A%20%22o1%2C%20o2%2C%20...%22%2C%0A%09%09%09desc%3A%20%22Add%20action(s)%20to%20the%20end%20of%20the%20collection.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20%22unshift%22%2C%0A%09%09%09args%3A%20%22o1%2C%20o2%2C%20...%22%2C%0A%09%09%09desc%3A%20%22Add%20action(s)%20to%20the%20front%20of%20the%20collection.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20%22pop%22%2C%0A%09%09%09desc%3A%20%22Remove%20and%20return%20the%20last%20action.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20%22shift%22%2C%0A%09%09%09desc%3A%20%22Remove%20and%20return%20the%20first%20action.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20%22splice%22%2C%0A%09%09%09args%3A%20%22i%2C%20d%2C%20o1%2C%20o2%2C%20...%22%2C%0A%09%09%09desc%3A%20%22Insert%20action(s)%20at%20%60i%60%2C%20optionally%20deleting%20%60d%60%20amount%20of%20actions.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20%22get%22%2C%0A%09%09%09args%3A%20%22string%7Cnumber%22%2C%0A%09%09%09desc%3A%20%22Get%20action%20by%20%60id%60%20or%20numeric%20index.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20%22clear%22%2C%0A%09%09%09desc%3A%20%22Remove%20all%20actions.%22%0A%09%09%7D%0A%09%5D%0A%7D">
+                </div>
+                <div data-ts="DoxApi" data-ts.code="%7B%0A%09name%3A%20%22ts.ui.ActionModel%22%2C%0A%09properties%3A%20%5B%0A%09%09%7B%0A%09%09%09name%3A%20%22id%22%2C%0A%09%09%09type%3A%20%22string%22%2C%0A%09%09%09desc%3A%20%22Optional%20action%20%60id%60.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20%22label%22%2C%0A%09%09%09type%3A%20%22string%22%2C%0A%09%09%09desc%3A%20%22The%20actions%20label.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20%22icon%22%2C%0A%09%09%09type%3A%20%22string%22%2C%0A%09%09%09desc%3A%20%22The%20action%20icon%20(label%20must%20be%20%60null%60%20or%20empty).%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20%22info%22%2C%0A%09%09%09type%3A%20%22string%22%2C%0A%09%09%09desc%3A%20%22The%20action%20tooltip%20(hover%20text).%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20%22visible%22%2C%0A%09%09%09type%3A%20%22boolean%22%2C%0A%09%09%09desc%3A%20%22Action%20is%20visible%3F%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20%22disabled%22%2C%0A%09%09%09type%3A%20%22boolean%22%2C%0A%09%09%09desc%3A%20%22Action%20is%20disabled%3F%22%0A%09%09%7D%0A%09%5D%2C%0A%09methods%3A%20%5B%0A%09%09%7B%0A%09%09%09name%3A%20%22onclick%22%2C%0A%09%09%09desc%3A%20%22Called%20whenever%20the%20action%20gets%20clicked.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20%22busy%22%2C%0A%09%09%09args%3A%20%22(string)%22%2C%0A%09%09%09desc%3A%20%22Mark%20action%20busy%20with%20optional%20message.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20%22done%22%2C%0A%09%09%09desc%3A%20%22Mark%20the%20action%20done%20(not%20busy).%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20%22hide%22%2C%0A%09%09%09desc%3A%20%22Hide%20the%20action.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20%22show%22%2C%0A%09%09%09desc%3A%20%22Show%20the%20action.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20%22disable%22%2C%0A%09%09%09desc%3A%20%22Disable%20the%20action.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20%22enable%22%2C%0A%09%09%09desc%3A%20%22Enable%20the%20action.%22%0A%09%09%7D%0A%09%5D%0A%7D">
+                </div>
+                <h3 id="status"><span>Status message</span></h3>
+                <p>We can configure the actionbar with a <code>status</code> message. When a selection is made, the massage could be something like &quot;23 products selected&quot;. When nothing is selected, it could perhaps be something like &quot;Showing
+                    10-20 out of 123 products&quot;.</p>
+                <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.Footer.status(&apos;23%25%20of%20one%20million%20products%20selected&apos;)%3B">
+                    <script type="runnable">
+                        ts.ui.Footer.status('23% of one million products selected');
+                    </script>
+                    <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                    <div data-ts="Panel">
+                        <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Footer<span class="token punctuation">.</span><span class="token function">status<span class="token punctuation">(</span></span><span class="token string">&apos;23% of one million products selected&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
+                </figure>
+                <p>If you call <code>linkable()</code>, you can also some links in the message. Beware of phishing!</p>
+                <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.StatusBar.linkable().message(%0A%09&apos;Please%20visit%20(Tradeshift)%5Bhttp%3A%2F%2Fwww.tradeshift.com%5D&apos;%0A)%3B">
+                    <script type="runnable">
+                        ts.ui.StatusBar.linkable().message( 'Please visit (Tradeshift)[http://www.tradeshift.com]' );
+                    </script>
+                    <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                    <div data-ts="Panel">
+                        <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>StatusBar<span class="token punctuation">.</span><span class="token function">linkable<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">message<span class="token punctuation">(</span></span>
 	<span class="token string">&apos;Please visit (Tradeshift)[http://www.tradeshift.com]&apos;</span>
 <span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
-                    </figure>
-                    <p>You can pass a callback function to be invoked whenever a link is clicked.</p>
-                    <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.StatusBar.linkable(function%20onclick(url)%20%7B%0A%09ts.ui.Notification.success(url)%3B%0A%09this.status(&apos;Thanks!&apos;)%3B%0A%7D).message(&apos;Please%20(click%20the%20link)%5BThe%20URL%20can%20be%20any%20string%5D&apos;)%3B">
-                        <script type="runnable">
-                            ts.ui.StatusBar.linkable(function onclick(url) { ts.ui.Notification.success(url); this.status('Thanks!'); }).message('Please (click the link)[The URL can be any string]');
-                        </script>
-                        <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
-                        <div data-ts="Panel">
-                            <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>StatusBar<span class="token punctuation">.</span><span class="token function">linkable<span class="token punctuation">(</span></span><span class="token keyword">function</span> <span class="token function">onclick<span class="token punctuation">(</span></span>url<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                </figure>
+                <p>You can pass a callback function to be invoked whenever a link is clicked.</p>
+                <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.StatusBar.linkable(function%20onclick(url)%20%7B%0A%09ts.ui.Notification.success(url)%3B%0A%09this.status(&apos;Thanks!&apos;)%3B%0A%7D).message(&apos;Please%20(click%20the%20link)%5BThe%20URL%20can%20be%20any%20string%5D&apos;)%3B">
+                    <script type="runnable">
+                        ts.ui.StatusBar.linkable(function onclick(url) { ts.ui.Notification.success(url); this.status('Thanks!'); }).message('Please (click the link)[The URL can be any string]');
+                    </script>
+                    <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                    <div data-ts="Panel">
+                        <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>StatusBar<span class="token punctuation">.</span><span class="token function">linkable<span class="token punctuation">(</span></span><span class="token keyword">function</span> <span class="token function">onclick<span class="token punctuation">(</span></span>url<span class="token punctuation">)</span> <span class="token punctuation">{</span>
 	ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Notification<span class="token punctuation">.</span><span class="token function">success<span class="token punctuation">(</span></span>url<span class="token punctuation">)</span><span class="token punctuation">;</span>
 	<span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">status<span class="token punctuation">(</span></span><span class="token string">&apos;Thanks!&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">message<span class="token punctuation">(</span></span><span class="token string">&apos;Please (click the link)[The URL can be any string]&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
-                    </figure>
-                    <div data-ts="DoxApi" data-ts.code="%7B%0A%09name%3A%20%22ts.ui.Footer%22%2C%0A%09methods%3A%20%5B%0A%09%09%7B%0A%09%09%09name%3A%20&apos;status&apos;%2C%0A%09%09%09args%3A%20&apos;(string)&apos;%2C%0A%09%09%09desc%3A%20&apos;Get%20or%20set%20the%20status%20message.&apos;%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20&apos;linkable&apos;%2C%0A%09%09%09args%3A%20&apos;(function)&apos;%2C%0A%09%09%09desc%3A%20&apos;Support%20links%20via%20Markdown%20with%20optional%20callback.&apos;%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20&apos;unlinkable&apos;%2C%0A%09%09%09desc%3A%20&apos;Disable%20support%20for%20links%20in%20the%20status%20message.&apos;%0A%09%09%7D%0A%09%5D%0A%7D">
-                    </div>
-                    <h3 id="checkbox"><span>Checkbox</span></h3>
-                    <p>There&apos;s also a checkbox which (conceptually) can be used to manage selections. This is the minimum viable implementation.</p>
-                    <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.Footer.checkbox(%7B%0A%09onclick%3A%20function()%20%7B%0A%09%09this.checked%20%3D%20!this.checked%3B%0A%09%7D%0A%7D)%3B">
-                        <script type="runnable">
-                            ts.ui.Footer.checkbox({ onclick: function() { this.checked = !this.checked; } });
-                        </script>
-                        <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
-                        <div data-ts="Panel">
-                            <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Footer<span class="token punctuation">.</span><span class="token function">checkbox<span class="token punctuation">(</span></span><span class="token punctuation">{</span>
+                </figure>
+                <div data-ts="DoxApi" data-ts.code="%7B%0A%09name%3A%20%22ts.ui.Footer%22%2C%0A%09methods%3A%20%5B%0A%09%09%7B%0A%09%09%09name%3A%20&apos;status&apos;%2C%0A%09%09%09args%3A%20&apos;(string)&apos;%2C%0A%09%09%09desc%3A%20&apos;Get%20or%20set%20the%20status%20message.&apos;%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20&apos;linkable&apos;%2C%0A%09%09%09args%3A%20&apos;(function)&apos;%2C%0A%09%09%09desc%3A%20&apos;Support%20links%20via%20Markdown%20with%20optional%20callback.&apos;%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20&apos;unlinkable&apos;%2C%0A%09%09%09desc%3A%20&apos;Disable%20support%20for%20links%20in%20the%20status%20message.&apos;%0A%09%09%7D%0A%09%5D%0A%7D">
+                </div>
+                <h3 id="checkbox"><span>Checkbox</span></h3>
+                <p>There&apos;s also a checkbox which (conceptually) can be used to manage selections. This is the minimum viable implementation.</p>
+                <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.Footer.checkbox(%7B%0A%09onclick%3A%20function()%20%7B%0A%09%09this.checked%20%3D%20!this.checked%3B%0A%09%7D%0A%7D)%3B">
+                    <script type="runnable">
+                        ts.ui.Footer.checkbox({ onclick: function() { this.checked = !this.checked; } });
+                    </script>
+                    <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                    <div data-ts="Panel">
+                        <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Footer<span class="token punctuation">.</span><span class="token function">checkbox<span class="token punctuation">(</span></span><span class="token punctuation">{</span>
 	onclick<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
 		<span class="token keyword">this</span><span class="token punctuation">.</span>checked <span class="token operator">=</span> <span class="token operator">!</span><span class="token keyword">this</span><span class="token punctuation">.</span>checked<span class="token punctuation">;</span>
 	<span class="token punctuation">}</span>
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
-                    </figure>
-                    <p>You must manually toggle the <code>checked</code> property. This will give you a chance to let the user confirm if he really intends to select millions of products; or if he really wants to clear a selection that took him hours to
-                        complete. Here is the <code>CheckBoxModel</code>.</p>
-                    <div data-ts="DoxApi" data-ts.code="%7B%0A%09name%3A%20%22ts.ui.CheckBoxModel%22%2C%0A%09properties%3A%20%5B%0A%09%09%7B%0A%09%09%09name%3A%20&apos;checked&apos;%2C%0A%09%09%09type%3A%20&apos;boolean&apos;%2C%0A%09%09%09desc%3A%20&apos;Checkbox%20is%20checked%3F&apos;%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20&apos;visible&apos;%2C%0A%09%09%09type%3A%20&apos;boolean&apos;%2C%0A%09%09%09desc%3A%20&apos;Checkbox%20is%20visible%3F&apos;%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20&apos;info&apos;%2C%0A%09%09%09type%3A%20&apos;string&apos;%2C%0A%09%09%09desc%3A%20&apos;The%20checkbox%20title%20(tooltip).&apos;%0A%09%09%7D%2C%0A%09%5D%2C%0A%09methods%3A%20%5B%0A%09%09%7B%0A%09%09%09name%3A%20&apos;check&apos;%2C%0A%09%09%09desc%3A%20&apos;Check%20that%20checkbox.&apos;%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20&apos;uncheck&apos;%2C%0A%09%09%09desc%3A%20&apos;Uncheck%20the%20checkbox.&apos;%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20&apos;hide&apos;%2C%0A%09%09%09desc%3A%20&apos;Hide%20the%20checkbox.&apos;%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20&apos;show&apos;%2C%0A%09%09%09desc%3A%20&apos;Show%20the%20(hidden)%20checkbox.&apos;%0A%09%09%7D%0A%09%5D%0A%7D">
-                    </div>
-                </section>
-            </article>
-        </div>
+                </figure>
+                <p>You must manually toggle the <code>checked</code> property. This will give you a chance to let the user confirm if he really intends to select millions of products; or if he really wants to clear a selection that took him hours to complete.
+                    Here is the <code>CheckBoxModel</code>.</p>
+                <div data-ts="DoxApi" data-ts.code="%7B%0A%09name%3A%20%22ts.ui.CheckBoxModel%22%2C%0A%09properties%3A%20%5B%0A%09%09%7B%0A%09%09%09name%3A%20&apos;checked&apos;%2C%0A%09%09%09type%3A%20&apos;boolean&apos;%2C%0A%09%09%09desc%3A%20&apos;Checkbox%20is%20checked%3F&apos;%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20&apos;visible&apos;%2C%0A%09%09%09type%3A%20&apos;boolean&apos;%2C%0A%09%09%09desc%3A%20&apos;Checkbox%20is%20visible%3F&apos;%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20&apos;info&apos;%2C%0A%09%09%09type%3A%20&apos;string&apos;%2C%0A%09%09%09desc%3A%20&apos;The%20checkbox%20title%20(tooltip).&apos;%0A%09%09%7D%2C%0A%09%5D%2C%0A%09methods%3A%20%5B%0A%09%09%7B%0A%09%09%09name%3A%20&apos;check&apos;%2C%0A%09%09%09desc%3A%20&apos;Check%20that%20checkbox.&apos;%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20&apos;uncheck&apos;%2C%0A%09%09%09desc%3A%20&apos;Uncheck%20the%20checkbox.&apos;%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20&apos;hide&apos;%2C%0A%09%09%09desc%3A%20&apos;Hide%20the%20checkbox.&apos;%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20&apos;show&apos;%2C%0A%09%09%09desc%3A%20&apos;Show%20the%20(hidden)%20checkbox.&apos;%0A%09%09%7D%0A%09%5D%0A%7D">
+                </div>
+            </section>
+        </article>
     </main>
     <aside data-ts="Note" class="sticky ts-bg-yellow">
         <p>If you find a bug or need a feature&#x2026;</p>

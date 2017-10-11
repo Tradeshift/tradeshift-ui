@@ -213,7 +213,7 @@ ts.ui = gui.namespace(
 			CLASS_NOLOCK: 'ts-nolock',
 			CLASS_HASLABEL: 'ts-haslabel',
 
-			// background colors
+			// background colors (deprecated!)
 			CLASS_BG_LITE: 'ts-bg-lite',
 			CLASS_BG_WHITE: 'ts-bg-white',
 			CLASS_BG_DARK: 'ts-bg-dark',
@@ -557,6 +557,7 @@ ts.ui = gui.namespace(
 );
 
 /**
+ * @deprecated
  * Match method names to some background
  * colors for various coloring purposes.
  * @type {Map<string, string>}
@@ -574,6 +575,7 @@ ts.ui.BACKGROUND_COLORS = {
 };
 
 /**
+ * @deprecated
  * Match method names to some colors.
  * @type {Map<string, string>}
  */

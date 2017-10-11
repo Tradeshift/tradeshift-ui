@@ -96,7 +96,7 @@ ts.ui.SideBarSpirit = (function using(chained, Type, Client, GuiObject, Colors) 
 			 * Give'm a second to move the SideBar into it's designated
 			 * position (immediately before or after the '.ts-main' element)
 			 * if for some reason the portal server didn't place it there.
-			 */
+			 *
 			onready: function() {
 				this.super.onready();
 				this.input.connect(ts.ui.TopBarModel);
@@ -108,7 +108,7 @@ ts.ui.SideBarSpirit = (function using(chained, Type, Client, GuiObject, Colors) 
 			/**
 			 * Handle input. Watching that TopBar.
 			 * @param {gui.Input} input
-			 */
+			 *
 			oninput: function(i) {
 				this.super.oninput(i);
 				if (i.type === ts.ui.TopBarModel) {
@@ -121,7 +121,7 @@ ts.ui.SideBarSpirit = (function using(chained, Type, Client, GuiObject, Colors) 
 			 * and hope this fixes the height measurement in Safari.
 			 * UPDATE: It worked - now do this with a simple broadcast!!!!!!!!!!!!!!!!!!
 			 * @param {Array<edb.Change>} changes
-			 */
+			 *
 			onchange: function(changes) {
 				this.super.onchange(changes);
 				changes.forEach(function(change) {
@@ -132,6 +132,7 @@ ts.ui.SideBarSpirit = (function using(chained, Type, Client, GuiObject, Colors) 
 					}
 				}, this);
 			},
+			*/
 
 			/**
 			 * Consume all nested aside actions
@@ -209,6 +210,7 @@ ts.ui.SideBarSpirit = (function using(chained, Type, Client, GuiObject, Colors) 
 			 * @param {boolean} attaching This is `false' when SideBar gets removed.
 			 */
 			_layoutmain: function(attaching) {
+				/*
 				var layout = this.guilayout;
 				if (layout.outsideMain()) {
 					var local1 = 'ts-sidebar-first',
@@ -223,6 +225,7 @@ ts.ui.SideBarSpirit = (function using(chained, Type, Client, GuiObject, Colors) 
 						layout.shiftGlobal(attaching, global3);
 					}
 				}
+				*/
 			},
 
 			/**

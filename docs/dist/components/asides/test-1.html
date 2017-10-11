@@ -23,19 +23,17 @@
 <body>
     <header data-ts="TopBar"></header>
     <main data-ts="Main">
-        <div data-ts="MainContent">
-            <article>
-                <h1><span>Aside CSS testing</span></h1>
-                <section>
-                    <p>We&apos;ll want to take a screenshot of this Aside so we can test the CSS.</p>
-                    <p>
-                        <button data-ts="Button" class="ts-primary" onclick="ts.ui.get(&apos;myaside&apos;).toggle()">
+        <article>
+            <h1><span>Aside CSS testing</span></h1>
+            <section>
+                <p>We&apos;ll want to take a screenshot of this Aside so we can test the CSS.</p>
+                <p>
+                    <button data-ts="Button" class="ts-primary" onclick="ts.ui.get(&apos;myaside&apos;).toggle()">
 							<span>Open the aside</span>
 						</button>
-                    </p>
-                </section>
-            </article>
-        </div>
+                </p>
+            </section>
+        </article>
     </main>
     <aside data-ts="Aside" id="myaside" data-ts.title="Aside CSS Check">
         <div data-ts="Panel">

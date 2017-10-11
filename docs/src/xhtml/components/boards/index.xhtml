@@ -4,80 +4,81 @@
 		<title>Boards</title>
 	</head>
 	<body>
-		<header data-ts="TopBar"></header>
-		<main data-ts="Main">
-			<article>
-				<h1>Boards</h1>
-				<section>
-					<p>Here it is.</p>
+		<div data-ts="App">
+			<div data-ts="Main">
+				<div data-ts="Content">
+					<div data-ts="Panel">
 
-					<div data-ts="Board" id="mybox">
-						<div data-ts="Panel">
-							<p>The Board looks like this.</p>
-						</div>
-					</div>
+						<article>
+							<h1>Boards</h1>
+							<section>
+								<p>Here it is.</p>
 
-					<figure data-ts="DoxScript">
-						<script type="runnable">
-							ts.ui.get('#mybox', box => {
-								box.buttons([
-									{label: 'One'},
-									{label: 'Two'},
-									{label: 'Three'},
-									{label: 'Four'},
-									{label: 'Five'}
-								]);
-							});
-						</script>
-					</figure>
-
-					<h3>Tabs</h3>
-
-					<div data-ts="Board" id="mytabbox">
-						<ul data-ts="Panels">
-							<li data-ts="Panel" data-ts.label="Tabs">
-								<p>Panel One</p>
-							</li>
-							<li data-ts="Panel" data-ts.label="Nested tabs">
-								<p>Panel Two</p>
 								<div data-ts="Board" id="mybox">
 									<div data-ts="Panel">
-										<p>Nested box</p>
+										<p>The Board looks like this.</p>
 									</div>
 								</div>
-							</li>
-							<li data-ts="Panel" data-ts.label="Tabs in Aside">
-								<p>Panel Three</p>
-								<p>
-									<button data-ts="Button" onclick="ts.ui.get('#myaside').open()" class="ts-primary">
-										<span>Open the Aside</span>
-									</button>
-								</p>
-							</li>
-						</ul>
+
+								<figure data-ts="DoxScript">
+									<script type="runnable">
+										ts.ui.get('#mybox', box => {
+											box.buttons([
+												{label: 'One'},
+												{label: 'Two'},
+												{label: 'Three'},
+												{label: 'Four'},
+												{label: 'Five'}
+											]);
+										});
+									</script>
+								</figure>
+
+								<h3>Tabs</h3>
+
+								<div data-ts="Board" id="mytabbox">
+									<ul data-ts="Panels">
+										<li data-ts="Panel" data-ts.label="Tabs">
+											<p>Panel One</p>
+										</li>
+										<li data-ts="Panel" data-ts.label="Nested tabs">
+											<p>Panel Two</p>
+											<div data-ts="Board" id="mybox">
+												<div data-ts="Panel">
+													<p>Nested box</p>
+												</div>
+											</div>
+										</li>
+										<li data-ts="Panel" data-ts.label="Tabs in Aside">
+											<p>Panel Three</p>
+											<p>
+												<button data-ts="Button" onclick="ts.ui.get('#myaside').open()" class="ts-primary">
+													<span>Open the Aside</span>
+												</button>
+											</p>
+										</li>
+									</ul>
+								</div>
+								<figure data-ts="DoxScript">
+									<script type="runnable">
+										ts.ui.get('#mytabbox', tabbox => {
+											tabbox.tabs([
+												{label: 'One'},
+												{label: 'Two'},
+												{label: 'Three', closeable: true},
+												{label: 'Four', closeable: true},
+												{label: 'Five', closeable: true},
+											]);
+										});
+									</script>
+								</figure>
+							</section>
+						</article>
+						
 					</div>
-					<figure data-ts="DoxScript">
-						<script type="runnable">
-							ts.ui.get('#mytabbox', tabbox => {
-								tabbox.tabs([
-									{label: 'One'},
-									{label: 'Two'},
-									{label: 'Three', closeable: true},
-									{label: 'Four', closeable: true},
-									{label: 'Five', closeable: true},
-								]);
-							});
-						</script>
-					</figure>
-				</section>
-				<!--
-				.ts-tabbox {
-					margin: 22px !important;
-					min-height: 100%; // calc1
-				}
-				-->
-			</article>
-		</main>
+				</div>
+			</div>
+		</div>
 		<aside data-ts="Aside" id="myaside" data-ts.title="Box in Aside">
 			<div data-ts="Panel">
 				<div data-ts="Board">

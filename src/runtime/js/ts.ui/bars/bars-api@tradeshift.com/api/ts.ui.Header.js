@@ -8,7 +8,7 @@ ts.ui.Header = (function using(chained) {
 	 * @returns {ts.ui.HeaderBarSpirit}
 	 */
 	function bar() {
-		return bar.spirit || ts.ui.MainSpirit.$inject((bar.spirit = ts.ui.HeaderBarSpirit.summon()));
+		return bar.spirit || ts.ui.AppSpirit.$inject((bar.spirit = ts.ui.HeaderBarSpirit.summon()));
 	}
 
 	return {

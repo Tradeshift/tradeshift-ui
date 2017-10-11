@@ -26,29 +26,28 @@
 		</aside>
 		-->
     <main data-ts="Main">
-        <div data-ts="MainContent">
-            <article>
-                <h1><span>Header</span></h1>
-                <section class="desc">
-                    <p>Go go gadget Header.</p>
-                </section>
-                <section>
-                    <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.Header.title(&apos;Hello%20World&apos;).icon(&apos;assets%2Fappicon.svg&apos;)%3B">
-                        <script type="runnable">
-                            ts.ui.Header.title('Hello World').icon('assets/appicon.svg');
-                        </script>
-                        <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
-                        <div data-ts="Panel">
-                            <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Header<span class="token punctuation">.</span><span class="token function">title<span class="token punctuation">(</span></span><span class="token string">&apos;Hello World&apos;</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">icon<span class="token punctuation">(</span></span><span class="token string">&apos;assets/appicon.svg&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
-                    </figure>
-                    <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.Header.buttons(%5B%0A%09%7B%20label%3A%20&apos;Primary&apos;%2C%20type%3A%20&apos;ts-primary&apos;%2C%20icon%3A%20&apos;ts-icon-triangleup&apos;%20%7D%2C%0A%09%7B%20label%3A%20&apos;Secondary&apos;%2C%20type%3A%20&apos;ts-secondary&apos;%2C%20icon%3A%20&apos;ts-icon-triangledown&apos;%20%7D%2C%0A%09%7B%20label%3A%20&apos;Tertiary%20One&apos;%2C%20icon%3A%20&apos;ts-icon-triangleleft&apos;%20%7D%2C%0A%09%7B%20label%3A%20&apos;Tertiary%20Two&apos;%2C%20icon%3A%20&apos;ts-icon-triangleright&apos;%20%7D%2C%0A%09%7B%20label%3A%20&apos;Tertiary%20Three&apos;%2C%20icon%3A%20&apos;ts-icon-halt&apos;%2C%20onclick%3A%20function()%20%7B%0A%09%09ts.ui.Header.buttons().clear()%3B%0A%09%7D%7D%0A%5D)%3B">
-                        <script type="runnable">
-                            ts.ui.Header.buttons([ { label: 'Primary', type: 'ts-primary', icon: 'ts-icon-triangleup' }, { label: 'Secondary', type: 'ts-secondary', icon: 'ts-icon-triangledown' }, { label: 'Tertiary One', icon: 'ts-icon-triangleleft' }, { label: 'Tertiary Two',
-                            icon: 'ts-icon-triangleright' }, { label: 'Tertiary Three', icon: 'ts-icon-halt', onclick: () => { ts.ui.Header.buttons().clear(); }} ]);
-                        </script>
-                        <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
-                        <div data-ts="Panel">
-                            <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Header<span class="token punctuation">.</span><span class="token function">buttons<span class="token punctuation">(</span></span><span class="token punctuation">[</span>
+        <article>
+            <h1><span>Header</span></h1>
+            <section class="desc">
+                <p>Go go gadget Header.</p>
+            </section>
+            <section>
+                <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.Header.title(&apos;Hello%20World&apos;).icon(&apos;assets%2Fappicon.svg&apos;)%3B">
+                    <script type="runnable">
+                        ts.ui.Header.title('Hello World').icon('assets/appicon.svg');
+                    </script>
+                    <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                    <div data-ts="Panel">
+                        <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Header<span class="token punctuation">.</span><span class="token function">title<span class="token punctuation">(</span></span><span class="token string">&apos;Hello World&apos;</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">icon<span class="token punctuation">(</span></span><span class="token string">&apos;assets/appicon.svg&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
+                </figure>
+                <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.Header.buttons(%5B%0A%09%7B%20label%3A%20&apos;Primary&apos;%2C%20type%3A%20&apos;ts-primary&apos;%2C%20icon%3A%20&apos;ts-icon-triangleup&apos;%20%7D%2C%0A%09%7B%20label%3A%20&apos;Secondary&apos;%2C%20type%3A%20&apos;ts-secondary&apos;%2C%20icon%3A%20&apos;ts-icon-triangledown&apos;%20%7D%2C%0A%09%7B%20label%3A%20&apos;Tertiary%20One&apos;%2C%20icon%3A%20&apos;ts-icon-triangleleft&apos;%20%7D%2C%0A%09%7B%20label%3A%20&apos;Tertiary%20Two&apos;%2C%20icon%3A%20&apos;ts-icon-triangleright&apos;%20%7D%2C%0A%09%7B%20label%3A%20&apos;Tertiary%20Three&apos;%2C%20icon%3A%20&apos;ts-icon-halt&apos;%2C%20onclick%3A%20function()%20%7B%0A%09%09ts.ui.Header.buttons().clear()%3B%0A%09%7D%7D%0A%5D)%3B">
+                    <script type="runnable">
+                        ts.ui.Header.buttons([ { label: 'Primary', type: 'ts-primary', icon: 'ts-icon-triangleup' }, { label: 'Secondary', type: 'ts-secondary', icon: 'ts-icon-triangledown' }, { label: 'Tertiary One', icon: 'ts-icon-triangleleft' }, { label: 'Tertiary Two',
+                        icon: 'ts-icon-triangleright' }, { label: 'Tertiary Three', icon: 'ts-icon-halt', onclick: () => { ts.ui.Header.buttons().clear(); }} ]);
+                    </script>
+                    <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                    <div data-ts="Panel">
+                        <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Header<span class="token punctuation">.</span><span class="token function">buttons<span class="token punctuation">(</span></span><span class="token punctuation">[</span>
 	<span class="token punctuation">{</span> label<span class="token punctuation">:</span> <span class="token string">&apos;Primary&apos;</span><span class="token punctuation">,</span> type<span class="token punctuation">:</span> <span class="token string">&apos;ts-primary&apos;</span><span class="token punctuation">,</span> icon<span class="token punctuation">:</span> <span class="token string">&apos;ts-icon-triangleup&apos;</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
 	<span class="token punctuation">{</span> label<span class="token punctuation">:</span> <span class="token string">&apos;Secondary&apos;</span><span class="token punctuation">,</span> type<span class="token punctuation">:</span> <span class="token string">&apos;ts-secondary&apos;</span><span class="token punctuation">,</span> icon<span class="token punctuation">:</span> <span class="token string">&apos;ts-icon-triangledown&apos;</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
 	<span class="token punctuation">{</span> label<span class="token punctuation">:</span> <span class="token string">&apos;Tertiary One&apos;</span><span class="token punctuation">,</span> icon<span class="token punctuation">:</span> <span class="token string">&apos;ts-icon-triangleleft&apos;</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
@@ -57,27 +56,27 @@
 		ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Header<span class="token punctuation">.</span><span class="token function">buttons<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">clear<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 	<span class="token punctuation">}</span><span class="token punctuation">}</span>
 <span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
-                    </figure>
-                    <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.Header.tabs(%5B%0A%09%7B%20label%3A%20&apos;One&apos;%20%7D%2C%0A%09%7B%20label%3A%20&apos;Two&apos;%20%7D%2C%0A%09%7B%20label%3A%20&apos;Three&apos;%20%7D%0A%5D)%3B">
-                        <script type="runnable">
-                            ts.ui.Header.tabs([ { label: 'One' }, { label: 'Two' }, { label: 'Three' } ]);
-                        </script>
-                        <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
-                        <div data-ts="Panel">
-                            <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Header<span class="token punctuation">.</span><span class="token function">tabs<span class="token punctuation">(</span></span><span class="token punctuation">[</span>
+                </figure>
+                <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.Header.tabs(%5B%0A%09%7B%20label%3A%20&apos;One&apos;%20%7D%2C%0A%09%7B%20label%3A%20&apos;Two&apos;%20%7D%2C%0A%09%7B%20label%3A%20&apos;Three&apos;%20%7D%0A%5D)%3B">
+                    <script type="runnable">
+                        ts.ui.Header.tabs([ { label: 'One' }, { label: 'Two' }, { label: 'Three' } ]);
+                    </script>
+                    <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                    <div data-ts="Panel">
+                        <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Header<span class="token punctuation">.</span><span class="token function">tabs<span class="token punctuation">(</span></span><span class="token punctuation">[</span>
 	<span class="token punctuation">{</span> label<span class="token punctuation">:</span> <span class="token string">&apos;One&apos;</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
 	<span class="token punctuation">{</span> label<span class="token punctuation">:</span> <span class="token string">&apos;Two&apos;</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
 	<span class="token punctuation">{</span> label<span class="token punctuation">:</span> <span class="token string">&apos;Three&apos;</span> <span class="token punctuation">}</span>
 <span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
-                    </figure>
-                    <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.Header.search(%7B%0A%09info%3A%20&apos;Search%20amongst%20all%20the%20things&apos;%2C%0A%09onsearch%3A%20function(value)%20%7B%0A%09%09ts.ui.Notification.success(value%20%7C%7C%20&apos;Search%20cleared&apos;)%3B%0A%09%7D%2C%0A%09buttons%3A%20%5B%0A%09%09%7B%0A%09%09%09label%3A%20%22Let&apos;s%20Search%22%2C%0A%09%09%09icon%3A%20&apos;ts-icon-search&apos;%2C%0A%09%09%09onclick%3A%20function()%20%7B%0A%09%09%09%09this.search.search()%3B%0A%09%09%09%7D%0A%09%09%7D%0A%09%5D%0A%7D)%3B">
-                        <script type="runnable">
-                            ts.ui.Header.search({ info: 'Search amongst all the things', onsearch: function(value) { ts.ui.Notification.success(value || 'Search cleared'); }, buttons: [ { label: "Let's Search", icon: 'ts-icon-search', onclick: function() { this.search.search();
-                            } } ] });
-                        </script>
-                        <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
-                        <div data-ts="Panel">
-                            <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Header<span class="token punctuation">.</span><span class="token function">search<span class="token punctuation">(</span></span><span class="token punctuation">{</span>
+                </figure>
+                <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.Header.search(%7B%0A%09info%3A%20&apos;Search%20amongst%20all%20the%20things&apos;%2C%0A%09onsearch%3A%20function(value)%20%7B%0A%09%09ts.ui.Notification.success(value%20%7C%7C%20&apos;Search%20cleared&apos;)%3B%0A%09%7D%2C%0A%09buttons%3A%20%5B%0A%09%09%7B%0A%09%09%09label%3A%20%22Let&apos;s%20Search%22%2C%0A%09%09%09icon%3A%20&apos;ts-icon-search&apos;%2C%0A%09%09%09onclick%3A%20function()%20%7B%0A%09%09%09%09this.search.search()%3B%0A%09%09%09%7D%0A%09%09%7D%0A%09%5D%0A%7D)%3B">
+                    <script type="runnable">
+                        ts.ui.Header.search({ info: 'Search amongst all the things', onsearch: function(value) { ts.ui.Notification.success(value || 'Search cleared'); }, buttons: [ { label: "Let's Search", icon: 'ts-icon-search', onclick: function() { this.search.search();
+                        } } ] });
+                    </script>
+                    <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                    <div data-ts="Panel">
+                        <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Header<span class="token punctuation">.</span><span class="token function">search<span class="token punctuation">(</span></span><span class="token punctuation">{</span>
 	info<span class="token punctuation">:</span> <span class="token string">&apos;Search amongst all the things&apos;</span><span class="token punctuation">,</span>
 	onsearch<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span> <span class="token punctuation">{</span>
 		ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Notification<span class="token punctuation">.</span><span class="token function">success<span class="token punctuation">(</span></span>value <span class="token operator">||</span> <span class="token string">&apos;Search cleared&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -92,7 +91,7 @@
 		<span class="token punctuation">}</span>
 	<span class="token punctuation">]</span>
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
-                        <!--
+                    <!--
 							setTimeout(function() {
 								ts.ui.Header.search().buttons.push(
 									{ label: 'Search', icon: 'ts-icon-search', onclick: function() {
@@ -101,10 +100,9 @@
 								);
 							}, 100);
 						-->
-                    </figure>
-                </section>
-            </article>
-        </div>
+                </figure>
+            </section>
+        </article>
     </main>
     <!--
 		<aside data-ts="SideBar" data-ts.title="SideBar Right">

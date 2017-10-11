@@ -40,12 +40,16 @@ module.exports = {
 // Private .....................................................................
 
 function maincontent($) {
+	/*
 	$('body > main').each(function(i, main) {
 		main = $(main);
-		var mainContent = $('<div data-ts="MainContent"></div>');
-		mainContent.append(main.children());
-		main.append(mainContent);
+		if(!main.children('[data-ts=Panel]')[0]) {
+			var mainContent = $('<div data-ts="Panel"></div>'); // MainContent
+			mainContent.append(main.children());
+			main.append(mainContent);
+		}
 	});
+	*/
 	return $;
 }
 

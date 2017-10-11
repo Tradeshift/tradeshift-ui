@@ -16,17 +16,17 @@
 	}
 
 	function actionbar(model) {
-		<li data-ts="ToolBar" class="ts-footerbar-actionbar ts-micro ts-bg-white" id="${id}-actionbar" +
+		<li data-ts="ToolBar" class="ts-footerbar-actionbar ts-micro" id="${id}-actionbar" +
 			data-ts.model="?{model}" data-ts.visible="${footer.$showActionBar(model)}"></li>
 	}
 
 	function centerbar(model) {
-		<li data-ts="StatusBar" class="ts-footerbar-centerbar ts-bg-white" id="${id}-centerbar" +
+		<li data-ts="StatusBar" class="ts-footerbar-centerbar" id="${id}-centerbar" +
 			data-ts.model="?{model}" data-ts.visible="${footer.$showCenterBar(model)}"></li>
 	}
 
 	function backupbar(model) {
-		<li data-ts="ToolBar" class="ts-footerbar-backupbar ts-bg-white" id="${id}-backupbar" +
+		<li data-ts="ToolBar" class="ts-footerbar-backupbar" id="${id}-backupbar" +
 			data-ts.model="?{model}" data-ts.visible="${footer.$showBackupBar(model)}"></li>
 	}
 

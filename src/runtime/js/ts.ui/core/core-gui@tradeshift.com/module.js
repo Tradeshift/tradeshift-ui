@@ -58,7 +58,6 @@ ts.ui.CoreModule = gui.module('core-gui@tradeshift.com', {
 		this._specialplugins();
 		this._documentplugins();
 		this._guiattributes();
-		this._defaultcolors();
 	},
 
 	/**
@@ -154,17 +153,5 @@ ts.ui.CoreModule = gui.module('core-gui@tradeshift.com', {
 	 */
 	_guiattributes: function() {
 		gui.attributes = ['ts', 'data-ts'];
-	},
-
-	/**
-	 * Assign a default "colorspace". This will cause
-	 * reflow, so it's wise to hardcode it in the HMTL.
-	 */
-	_defaultcolors: function() {
-		var cssp = gui.CSSPlugin;
-		var html = document.documentElement;
-		if (!html.className.includes('ts-bg')) {
-			cssp.add(html, 'ts-bg-lite');
-		}
 	}
 });

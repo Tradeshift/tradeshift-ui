@@ -32,119 +32,117 @@
 <body class="nosticky">
     <header data-ts="TopBar"></header>
     <main data-ts="Main">
-        <div data-ts="MainContent">
-            <script class="gui-script" data-ts.scriptid="edbml.$ZsJn2z1">
-                edbml.declare("edbml.$ZsJn2z1").as(function $edbml(
-                    /*``*/
-                ) {
-                    'use strict';
-                    var out = $edbml.$out,
-                        $att = $edbml.$att,
-                        $txt = edbml.safetext,
-                        $val = edbml.safeattr,
-                        layout = $edbml.$input(ts.ui.LayoutModel);
-                    var spirit = this;
-                    var backgroundcolors = [
-                        'ts-bg-lite',
-                        'ts-bg-white',
-                        'ts-bg-yellow',
-                        'ts-bg-dark',
-                        'ts-bg-blue',
-                        'ts-bg-red',
-                        'ts-bg-orange',
-                        'ts-bg-green',
-                        'ts-bg-purple'
-                    ];
-                    var buttonlabeltexts = [
-                        'Primary',
-                        'Secondary',
-                        'Tertiary'
-                    ];
-                    var buttonclassnames = [
-                        'ts-primary',
-                        'ts-secondary',
-                        'ts-tertiary'
-                    ];
-                    rendercolumns(layout.breakpoint === 'desktop');
+        <script class="gui-script" data-ts.scriptid="edbml.$ZsJn2z1">
+            edbml.declare("edbml.$ZsJn2z1").as(function $edbml(
+                /*``*/
+            ) {
+                'use strict';
+                var out = $edbml.$out,
+                    $att = $edbml.$att,
+                    $txt = edbml.safetext,
+                    $val = edbml.safeattr,
+                    layout = $edbml.$input(ts.ui.LayoutModel);
+                var spirit = this;
+                var backgroundcolors = [
+                    'ts-bg-lite',
+                    'ts-bg-white',
+                    'ts-bg-yellow',
+                    'ts-bg-dark',
+                    'ts-bg-blue',
+                    'ts-bg-red',
+                    'ts-bg-orange',
+                    'ts-bg-green',
+                    'ts-bg-purple'
+                ];
+                var buttonlabeltexts = [
+                    'Primary',
+                    'Secondary',
+                    'Tertiary'
+                ];
+                var buttonclassnames = [
+                    'ts-primary',
+                    'ts-secondary',
+                    'ts-tertiary'
+                ];
+                rendercolumns(layout.breakpoint === 'desktop');
 
-                    function rendercolumns(desktop) {
-                        if (desktop) {
-                            out.html += '<table>' +
-                                '<thead>' +
-                                '<tr>';
-                            backgroundcolors.forEach(function(classname) {
-                                out.html += '<th class="' + $val(classname) + '">' +
-                                    '<code>.' + $txt(classname) + '</code>' +
-                                    '</th>';
-                            });
-                            out.html += '</tr>' +
-                                '</thead>' +
-                                '<tbody>' +
-                                '<tr>';
-                            backgroundcolors.forEach(function(classname) {
-                                out.html += '<td class="' + $val(classname) + '">';
-                                renderbuttons();
-                                out.html += '</td>';
-                            });
-                            out.html += '</tr>' +
-                                '</tbody>' +
-                                '</table>';
-                        } else {
-                            backgroundcolors.forEach(function(classname) {
-                                out.html += '<section class="' + $val(classname) + '">';
-                                renderbuttons();
-                                out.html += '</section>';
-                            });
-                        }
-                    }
-
-                    function renderbuttons() {
-                        var key = gui.KeyMaster.generateKey();
-                        out.html += '<menu class="ts-buttons" id="' + $val(key) + '">';
-                        buttonclassnames.forEach(function(classname, i) {
-                            out.html += '<li>';
-                            $att['disabled'] = spirit.disabled ? 'disabled' : null;
-                            out.html += '<button data-ts="Button" class="' + $val(classname) + '" ' + $att.$('disabled') + '>' +
-                                '<span>' + $txt(buttonlabeltexts[i]) + '</span>' +
-                                '</button>' +
-                                '</li>';
+                function rendercolumns(desktop) {
+                    if (desktop) {
+                        out.html += '<table>' +
+                            '<thead>' +
+                            '<tr>';
+                        backgroundcolors.forEach(function(classname) {
+                            out.html += '<th class="' + $val(classname) + '">' +
+                                '<code>.' + $txt(classname) + '</code>' +
+                                '</th>';
                         });
-                        out.html += '</menu>';
-                        renderToggle(key);
-                    }
-
-                    function rendernested() {
-                        out.html += '<div class="nested">' +
-                            '<p>Nested <code>.ts-bg-white</code></p>' +
-                            '<div class="ts-bg-white">';
-                        buttonclassnames.forEach(function(classname, i) {
-                            out.html += '<button data-ts="Button" class="' + $val(classname) + '">' +
-                                '<i class="ts-icon-rating"></i>' +
-                                '</button>';
+                        out.html += '</tr>' +
+                            '</thead>' +
+                            '<tbody>' +
+                            '<tr>';
+                        backgroundcolors.forEach(function(classname) {
+                            out.html += '<td class="' + $val(classname) + '">';
+                            renderbuttons();
+                            out.html += '</td>';
                         });
-                        out.html += '</div>' +
-                            '</div>';
+                        out.html += '</tr>' +
+                            '</tbody>' +
+                            '</table>';
+                    } else {
+                        backgroundcolors.forEach(function(classname) {
+                            out.html += '<section class="' + $val(classname) + '">';
+                            renderbuttons();
+                            out.html += '</section>';
+                        });
                     }
+                }
 
-                    function renderToggle(key) {
-                        out.html += '<form data-ts="Form">' +
-                            '<fieldset>' +
-                            '<label>' +
-                            '<input type="checkbox" onchange="toggle(\'' + $val(key) + '\', this)" tabindex="-1"/>' +
-                            '<span>Disabled</span>' +
-                            '</label>' +
-                            '</fieldset>' +
-                            '</form>';
-                    }
-                    return out.write();
-                }).withInstructions([{
-                    input: {
-                        name: "layout",
-                        type: "ts.ui.LayoutModel"
-                    }
-                }]);
-            </script>
-        </div>
+                function renderbuttons() {
+                    var key = gui.KeyMaster.generateKey();
+                    out.html += '<menu class="ts-buttons" id="' + $val(key) + '">';
+                    buttonclassnames.forEach(function(classname, i) {
+                        out.html += '<li>';
+                        $att['disabled'] = spirit.disabled ? 'disabled' : null;
+                        out.html += '<button data-ts="Button" class="' + $val(classname) + '" ' + $att.$('disabled') + '>' +
+                            '<span>' + $txt(buttonlabeltexts[i]) + '</span>' +
+                            '</button>' +
+                            '</li>';
+                    });
+                    out.html += '</menu>';
+                    renderToggle(key);
+                }
+
+                function rendernested() {
+                    out.html += '<div class="nested">' +
+                        '<p>Nested <code>.ts-bg-white</code></p>' +
+                        '<div class="ts-bg-white">';
+                    buttonclassnames.forEach(function(classname, i) {
+                        out.html += '<button data-ts="Button" class="' + $val(classname) + '">' +
+                            '<i class="ts-icon-rating"></i>' +
+                            '</button>';
+                    });
+                    out.html += '</div>' +
+                        '</div>';
+                }
+
+                function renderToggle(key) {
+                    out.html += '<form data-ts="Form">' +
+                        '<fieldset>' +
+                        '<label>' +
+                        '<input type="checkbox" onchange="toggle(\'' + $val(key) + '\', this)" tabindex="-1"/>' +
+                        '<span>Disabled</span>' +
+                        '</label>' +
+                        '</fieldset>' +
+                        '</form>';
+                }
+                return out.write();
+            }).withInstructions([{
+                input: {
+                    name: "layout",
+                    type: "ts.ui.LayoutModel"
+                }
+            }]);
+        </script>
     </main>
 </body>
 

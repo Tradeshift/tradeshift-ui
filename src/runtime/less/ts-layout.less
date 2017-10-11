@@ -1,0 +1,77 @@
+/*
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+.hidden {
+  display: none;
+}
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+*/
+html,
+body {
+	height: 100%;
+	margin: 0;
+	padding: 0;
+  overflow: hidden;
+}
+.ts-app {
+	flex: 1 0 0px;
+	background-color: yellow;
+	display: flex;
+	flex-direction: column;
+}
+body,
+.ts-main,
+.ts-mains {
+	display: flex;
+	flex-direction: row;
+	flex: 1 0 0px;
+}
+.ts-sideshow,
+.ts-content {
+	display: flex;
+	flex-direction: column;
+}
+.ts-content {
+	width: 100%;
+}
+.ts-panel {
+	flex: 1 0 0px;
+	overflow-y: scroll;
+	height: 0;
+  padding: 20px;
+}
+.ts-tablet {
+	.ts-sideshow {
+		.ts-mixin-fixwidth(@ts-width-aside);
+	}
+}
+.ts-mobile-only {
+	.ts-sideshow {
+		.ts-mixin-fixwidth(100%);
+	}
+}
+/*
+header,
+footer {
+	background-color: pink;
+	height: 50px;
+	min-height: 50px;
+	padding: 10px;
+  border-bottom: 1px solid purple;
+	//position: absolute;
+}
+header:before {
+	content: attr(title);
+}
+footer:before {
+	content: attr(title);
+}
+*/

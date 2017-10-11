@@ -1,5 +1,6 @@
 // Mixins ......................................................................
 
+/*
 .mixin-temp(@selected: pink, @unselected: @ts-white, @bground: @ts-white) {
 	.ts-toolbar-tabs {
 		.ts-button {
@@ -15,6 +16,7 @@
 		}
 	}
 }
+*/
 
 // Styles both ToolBar, TopBar and TabBar! .....................................
 
@@ -41,7 +43,6 @@
 	}
 	&.ts-left {
 		left: 0;
-		// padding-left: @ts-unit-quarter;
 		&,
 		& > li {
 			.ts-mixin-fixheight(@ts-unit-triple);
@@ -73,18 +74,6 @@
 				padding-right: @ts-unit-half;
 			}
 		}
-		// padding-right: @ts-unit-quarter;
-		/*
-		.ts-tab {
-			text-align: right;
-			&:first-child {
-				padding-left: @ts-unit-half;
-			}
-			&:last-child {
-				padding-right: @ts-unit-half;
-			}
-		}
-		*/
 	}
 	&.ts-left ~ .ts-right {
 		li:first-child {
@@ -312,6 +301,12 @@
 
 .ts-toolbar-tabs {
 	.ts-tab {
+		.ts-button {
+			color: @ts-medium;
+		}
+		&.ts-selected .ts-button {
+			color: @ts-black;
+		}
 		&.ts-tab-button {
 			overflow: hidden;
 			vertical-align: top;
@@ -356,6 +351,7 @@
 		}
 	}
 }
+/*
 .ts-toolbar {
 	&.ts-bg-dark .ts-toolbar-tabs {
 		.ts-button {
@@ -391,6 +387,7 @@
 		.mixin-temp(@ts-purple);
 	}
 }
+*/
 
 // Statusbar ...................................................................
 

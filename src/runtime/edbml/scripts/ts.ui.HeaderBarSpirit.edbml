@@ -11,17 +11,17 @@
 	</ul>
 
 	function headerbar(model) {
-		<li data-ts="ToolBar" class="ts-headerbar-headerbar ts-bg-white" id="${id}-headerbar" +
+		<li data-ts="ToolBar" class="ts-headerbar-headerbar" id="${id}-headerbar" +
 			data-ts.model="?{model}" data-ts.visible="${header.$showHeaderBar(model)}"></li>
 	}
 
 	function centerbar(model) {
-		<li data-ts="ToolBar" class="ts-headerbar-centerbar ts-micro ts-bg-white" id="${id}-centerbar" +
+		<li data-ts="ToolBar" class="ts-headerbar-centerbar ts-micro" id="${id}-centerbar" +
 			data-ts.model="?{model}" data-ts.visible="${header.$showCenterBar(model)}"></li>
 	}
 
 	function buttonbar(model) {
-		<li data-ts="ToolBar" class="ts-headerbar-buttonbar ts-bg-white" id="${id}-buttonbar" +
+		<li data-ts="ToolBar" class="ts-headerbar-buttonbar" id="${id}-buttonbar" +
 			data-ts.model="?{model}" data-ts.visible="${header.$showButtonBar(model)}"></li>
 	}
 

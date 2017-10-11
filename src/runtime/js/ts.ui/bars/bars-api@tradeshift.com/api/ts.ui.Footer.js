@@ -8,7 +8,7 @@ ts.ui.Footer = (function using(chained) {
 	 * @returns {ts.ui.FooterBarSpirit}
 	 */
 	function bar() {
-		return bar.spirit || ts.ui.MainSpirit.$inject((bar.spirit = ts.ui.FooterBarSpirit.summon()));
+		return bar.spirit || ts.ui.AppSpirit.$inject((bar.spirit = ts.ui.FooterBarSpirit.summon()));
 	}
 
 	/*

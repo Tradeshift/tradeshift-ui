@@ -16,25 +16,23 @@
 <body>
     <header data-ts="TopBar"></header>
     <main data-ts="Main">
-        <div data-ts="MainContent">
+        <article>
+            <h1><span>Basic rules</span></h1>
+            <section>
+                <p>UI components would like to assume ownership of:</p>
+                <ul>
+                    <li>The <code class="attr-value">data-ts</code> HTML attribute</li>
+                    <li>All HTML attributes that start with <code class="attr-value">data-ts.</code> (dot)</li>
+                    <li>All HTML attributes that start with <code class="attr-value">data-ts-</code> (dash)</li>
+                    <li>All CSS classnames that start with <code class="attr-value">ts-</code> (dash)</li>
+                    <li>The global namespace object <code>ts.ui</code></li>
+                </ul>
+                <p>Rule number one is to not use <code>ts-</code> prefixed CSS classnames in your app. UX designers can continue reading the <a data-ts="Button" href="/dist/design/">Design Principles</a> while developers may skip directly to the <a data-ts="Button"
+                        href="/dist/components/" style="white-space:nowrap">UI Components</a> section. If you are new to Tradeshift, you should probably read both.</p>
+            </section>
             <article>
-                <h1><span>Basic rules</span></h1>
-                <section>
-                    <p>UI components would like to assume ownership of:</p>
-                    <ul>
-                        <li>The <code class="attr-value">data-ts</code> HTML attribute</li>
-                        <li>All HTML attributes that start with <code class="attr-value">data-ts.</code> (dot)</li>
-                        <li>All HTML attributes that start with <code class="attr-value">data-ts-</code> (dash)</li>
-                        <li>All CSS classnames that start with <code class="attr-value">ts-</code> (dash)</li>
-                        <li>The global namespace object <code>ts.ui</code></li>
-                    </ul>
-                    <p>Rule number one is to not use <code>ts-</code> prefixed CSS classnames in your app. UX designers can continue reading the <a data-ts="Button" href="/dist/design/">Design Principles</a> while developers may skip directly to the <a data-ts="Button"
-                            href="/dist/components/" style="white-space:nowrap">UI Components</a> section. If you are new to Tradeshift, you should probably read both.</p>
-                </section>
-                <article>
-                </article>
             </article>
-        </div>
+        </article>
     </main>
     <aside data-ts="Note" class="sticky ts-bg-yellow">
         <p>If you find a bug or need a feature&#x2026;</p>

@@ -1,11 +1,8 @@
 .ts-aside {
+	.ts-mixin-maximize();
+	position: absolute;
 	left: auto;
 	z-index: @ts-zindex-aside;
 	width: @ts-width-aside;
 	box-shadow: 0 0 5px rgba(0, 0, 0, 0.5); // TODO: Something more controlled!
-}
-.ts-mobile-only {
-	.ts-aside {
-		width: 100%;
-	}
 }

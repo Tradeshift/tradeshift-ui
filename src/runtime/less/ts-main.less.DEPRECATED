@@ -1,13 +1,25 @@
 // TODO: MOVE THESE ............................................................
 
+body {
+	.box-mixin-hbox();
+}
+
+.ts-main,
+.ts-panel {
+	-webkit-flex: 1 0 0;
+	-ms-flex: 1 0 0px; // this unit is needed in IE!
+	flex: 1 0 0;	
+}
+
 .ts-main {
-	.box-mixin-vbox();
+	//.box-mixin-vbox();
+	.box-mixin-hbox();
 	background-color: @ts-lite-liter;
 	z-index: @ts-zindex-main;
 	margin: 0;
 }
 .ts-panel .ts-main {
-	display: block;
+	// display: block;
 }
 
 // Adjustment time .............................................................

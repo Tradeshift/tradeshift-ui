@@ -3,6 +3,7 @@
 	box-shadow: 0 0 4px rgba(0,0,0,0.1);
 	border: 1px solid @ts-lite-darker;
 	background-color: @ts-white;
+	margin-bottom: @ts-unit;
 	> .ts-panel {
 		padding: @ts-unit;
 		overflow: visible;
@@ -20,6 +21,12 @@
 			&:first-of-type {
 				.ts-mixin-rounded(@ts-radius, 0, 0, 0);
 			}
+		}
+	}
+	&.ts-has-header {
+		> .ts-panels,
+		> .ts-panel {
+			border-top: 1px solid @ts-lite-darker;
 		}
 	}
 }

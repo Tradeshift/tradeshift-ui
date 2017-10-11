@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>SIDEBAR REFACTORING :)</title>
+		<link rel="stylesheet" href="styles.less"/>
+	</head>
+	<body class="nosticky">
+		<sidebar>
+			<header></header>
+			<panel></panel>
+		</sidebar>
+		<app>
+			<header></header>
+			<main>
+				<sidebar>
+					<header></header>
+					<panel></panel>
+				</sidebar>
+				<panel>
+					<p>Content goes here.</p>
+				</panel>
+				<sidebar>
+					<header></header>
+					<panel></panel>
+				</sidebar>
+			</main>
+			<footer></footer>
+		</app>
+		<sidebar>
+			<header></header>
+			<panel></panel>
+		</sidebar>
+	</body>
+
+	<!--
+	<body class="nosticky">
+		<aside data-ts="SideBar" data-ts.title="Left">
+			<div data-ts="Panel">
+				<p>SideBar left</p>
+			</div>
+		</aside>
+		<main data-ts="Main">
+			<aside data-ts="SideBar" data-ts.title="Nested Left">
+				<div data-ts="Panel">
+					<p>SideBar nested left</p>
+				</div>
+			</aside>
+			<div data-ts="Panel">
+				<h1>Main</h1>
+			</div>
+			<aside data-ts="SideBar" data-ts.title="Nested Right">
+				<div data-ts="Panel">
+					<p>SideBar nested right</p>
+				</div>
+			</aside>
+		</main>
+		<aside data-ts="SideBar" data-ts.title="Right">
+			<div data-ts="Panel">
+				<p>SideBar right</p>
+			</div>
+		</aside>
+	</body>
+-->
+</html>

@@ -16,98 +16,96 @@
 <body>
     <header data-ts="TopBar"></header>
     <main data-ts="Main">
-        <div data-ts="MainContent">
-            <article>
-                <h1><span>Search</span></h1>
-                <section class="desc">
-                    <p>The Search is prominently featured in the <a data-ts="Button" href="/dist/components/bars/toolbar.html">Main ToolBar</a>, but you can use it anywhere on the page if you like. Note that the API is in any case identical.</p>
-                </section>
+        <article>
+            <h1><span>Search</span></h1>
+            <section class="desc">
+                <p>The Search is prominently featured in the <a data-ts="Button" href="/dist/components/bars/toolbar.html">Main ToolBar</a>, but you can use it anywhere on the page if you like. Note that the API is in any case identical.</p>
+            </section>
+            <section>
+                <p>You can initialize a Search with <code class="attr-pair"><span>data-ts</span>=&quot;<span>Search</span>&quot;</code>. The classname <code class="attr-value">ts-inset</code> will add an outline (so that we can see how it behaves on this
+                    white background).</p>
+                <figure data-ts="DoxMarkup" data-ts.code="%3Cdiv%20data-ts%3D%22Search%22%20id%3D%22mysearch%22%20class%3D%22ts-inset%22%3E%3C%2Fdiv%3E">
+                    <ul data-ts="Panels">
+                        <li data-ts="Panel" data-ts.label="Render">
+                            <div class="output">
+                                <div data-ts="Search" id="mysearch" class="ts-inset"></div>
+                            </div>
+                        </li>
+                        <li data-ts="Panel" data-ts.label="Markup">
+                            <pre class="prism language-markup"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Search<span class="token punctuation">&quot;</span></span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>mysearch<span class="token punctuation">&quot;</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>ts-inset<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span></code></pre>
+                        </li>
+                    </ul>
+                </figure>
                 <section>
-                    <p>You can initialize a Search with <code class="attr-pair"><span>data-ts</span>=&quot;<span>Search</span>&quot;</code>. The classname <code class="attr-value">ts-inset</code> will add an outline (so that we can see how it behaves on
-                        this white background).</p>
-                    <figure data-ts="DoxMarkup" data-ts.code="%3Cdiv%20data-ts%3D%22Search%22%20id%3D%22mysearch%22%20class%3D%22ts-inset%22%3E%3C%2Fdiv%3E">
-                        <ul data-ts="Panels">
-                            <li data-ts="Panel" data-ts.label="Render">
-                                <div class="output">
-                                    <div data-ts="Search" id="mysearch" class="ts-inset"></div>
-                                </div>
-                            </li>
-                            <li data-ts="Panel" data-ts.label="Markup">
-                                <pre class="prism language-markup"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Search<span class="token punctuation">&quot;</span></span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>mysearch<span class="token punctuation">&quot;</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>ts-inset<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span></code></pre>
-                            </li>
-                        </ul>
-                    </figure>
                     <section>
-                        <section>
-                            <p>The search field expands when the field is focused by the user or whenever there&apos;s a non-empty value in the field. You can change the value like this:</p>
-                            <figure data-ts="DoxScript" class="runnable" data-ts.code="var%20search%20%3D%20ts.ui.get(&apos;%23mysearch&apos;)%3B%0Asearch.value%20%3D%20&apos;Hello%20world&apos;%3B">
-                                <script type="runnable">
-                                    var search = ts.ui.get('#mysearch'); search.value = 'Hello world';
-                                </script>
-                                <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
-                                <div data-ts="Panel">
-                                    <pre class="prism language-javascript"><code><span class="token keyword">var</span> search <span class="token operator">=</span> ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#mysearch&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                        <p>The search field expands when the field is focused by the user or whenever there&apos;s a non-empty value in the field. You can change the value like this:</p>
+                        <figure data-ts="DoxScript" class="runnable" data-ts.code="var%20search%20%3D%20ts.ui.get(&apos;%23mysearch&apos;)%3B%0Asearch.value%20%3D%20&apos;Hello%20world&apos;%3B">
+                            <script type="runnable">
+                                var search = ts.ui.get('#mysearch'); search.value = 'Hello world';
+                            </script>
+                            <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                            <div data-ts="Panel">
+                                <pre class="prism language-javascript"><code><span class="token keyword">var</span> search <span class="token operator">=</span> ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#mysearch&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 search<span class="token punctuation">.</span>value <span class="token operator">=</span> <span class="token string">&apos;Hello world&apos;</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
-                            </figure>
-                        </section>
-                        <p>To keep the field expanded at all times, simply assign the CSS classname <code>ts-expanded</code>.</p>
-                        <section>
-                            <h3><span>Search info</span></h3>
-                            <p>The <code>data-ts.info</code> attribute works to show a <code>title</code> (mouseover tooltip) when the field is collapsed and a <code>placeholder</code> when the field is expanded.
-                                <figure data-ts="DoxMarkup" data-ts.code="%3Cdiv%20data-ts%3D%22Search%22%20class%3D%22ts-inset%22%0A%09data-ts.info%3D%22Search%20amongst%20the%20things%22%3E%3C%2Fdiv%3E">
-                                    <ul data-ts="Panels">
-                                        <li data-ts="Panel" data-ts.label="Markup">
-                                            <pre class="prism language-markup"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Search<span class="token punctuation">&quot;</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>ts-inset<span class="token punctuation">&quot;</span></span>
+                        </figure>
+                    </section>
+                    <p>To keep the field expanded at all times, simply assign the CSS classname <code>ts-expanded</code>.</p>
+                    <section>
+                        <h3><span>Search info</span></h3>
+                        <p>The <code>data-ts.info</code> attribute works to show a <code>title</code> (mouseover tooltip) when the field is collapsed and a <code>placeholder</code> when the field is expanded.
+                            <figure data-ts="DoxMarkup" data-ts.code="%3Cdiv%20data-ts%3D%22Search%22%20class%3D%22ts-inset%22%0A%09data-ts.info%3D%22Search%20amongst%20the%20things%22%3E%3C%2Fdiv%3E">
+                                <ul data-ts="Panels">
+                                    <li data-ts="Panel" data-ts.label="Markup">
+                                        <pre class="prism language-markup"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Search<span class="token punctuation">&quot;</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>ts-inset<span class="token punctuation">&quot;</span></span>
 	<span class="token attr-name">data-ts</span>.<span class="token attr-name">info</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Search amongst the things<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span></code></pre>
-                                        </li>
-                                        <li data-ts="Panel" data-ts.label="Render">
-                                            <div class="output">
-                                                <div data-ts="Search" class="ts-inset" data-ts.info="Search amongst the things"></div>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </figure>
-                            </p>
-                        </section>
-                        <section>
-                            <h3>Search callbacks</h3>
-                            <p>The <code>onsearch</code> callback gets invoked when when the user presses <kbd>ENTER</kbd>.</p>
-                            <figure data-ts="DoxScript" class="runnable" data-ts.code="var%20search%20%3D%20ts.ui.ToolBar.search()%3B%0Asearch.value%20%3D%20&apos;Press%20ENTER%20here&apos;%3B%0Asearch.onsearch%20%3D%20function(value)%20%7B%0A%09ts.ui.Notification.success(value%20%7C%7C%20&apos;Search%20cleared&apos;)%3B%0A%7D%3B">
-                                <script type="runnable">
-                                    var search = ts.ui.ToolBar.search(); search.value = 'Press ENTER here'; search.onsearch = function(value) { ts.ui.Notification.success(value || 'Search cleared'); };
-                                </script>
-                                <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
-                                <div data-ts="Panel">
-                                    <pre class="prism language-javascript"><code><span class="token keyword">var</span> search <span class="token operator">=</span> ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>ToolBar<span class="token punctuation">.</span><span class="token function">search<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                                    </li>
+                                    <li data-ts="Panel" data-ts.label="Render">
+                                        <div class="output">
+                                            <div data-ts="Search" class="ts-inset" data-ts.info="Search amongst the things"></div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </figure>
+                        </p>
+                    </section>
+                    <section>
+                        <h3>Search callbacks</h3>
+                        <p>The <code>onsearch</code> callback gets invoked when when the user presses <kbd>ENTER</kbd>.</p>
+                        <figure data-ts="DoxScript" class="runnable" data-ts.code="var%20search%20%3D%20ts.ui.ToolBar.search()%3B%0Asearch.value%20%3D%20&apos;Press%20ENTER%20here&apos;%3B%0Asearch.onsearch%20%3D%20function(value)%20%7B%0A%09ts.ui.Notification.success(value%20%7C%7C%20&apos;Search%20cleared&apos;)%3B%0A%7D%3B">
+                            <script type="runnable">
+                                var search = ts.ui.ToolBar.search(); search.value = 'Press ENTER here'; search.onsearch = function(value) { ts.ui.Notification.success(value || 'Search cleared'); };
+                            </script>
+                            <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                            <div data-ts="Panel">
+                                <pre class="prism language-javascript"><code><span class="token keyword">var</span> search <span class="token operator">=</span> ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>ToolBar<span class="token punctuation">.</span><span class="token function">search<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 search<span class="token punctuation">.</span>value <span class="token operator">=</span> <span class="token string">&apos;Press ENTER here&apos;</span><span class="token punctuation">;</span>
 search<span class="token punctuation">.</span>onsearch <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span> <span class="token punctuation">{</span>
 	ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Notification<span class="token punctuation">.</span><span class="token function">success<span class="token punctuation">(</span></span>value <span class="token operator">||</span> <span class="token string">&apos;Search cleared&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
-                            </figure>
-                            <p>If defined, the <code>onidle</code> method gets called whenever the user pauses typing.</p>
-                            <figure data-ts="DoxScript" class="runnable" data-ts.code="var%20search%20%3D%20ts.ui.ToolBar.search()%3B%0Asearch.value%20%3D%20&apos;Try%20it%20now!&apos;%3B%0Asearch.onidle%20%3D%20function(value)%20%7B%0A%09ts.ui.Notification.success(value)%3B%0A%7D%3B">
-                                <script type="runnable">
-                                    var search = ts.ui.ToolBar.search(); search.value = 'Try it now!'; search.onidle = function(value) { ts.ui.Notification.success(value); };
-                                </script>
-                                <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
-                                <div data-ts="Panel">
-                                    <pre class="prism language-javascript"><code><span class="token keyword">var</span> search <span class="token operator">=</span> ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>ToolBar<span class="token punctuation">.</span><span class="token function">search<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                        </figure>
+                        <p>If defined, the <code>onidle</code> method gets called whenever the user pauses typing.</p>
+                        <figure data-ts="DoxScript" class="runnable" data-ts.code="var%20search%20%3D%20ts.ui.ToolBar.search()%3B%0Asearch.value%20%3D%20&apos;Try%20it%20now!&apos;%3B%0Asearch.onidle%20%3D%20function(value)%20%7B%0A%09ts.ui.Notification.success(value)%3B%0A%7D%3B">
+                            <script type="runnable">
+                                var search = ts.ui.ToolBar.search(); search.value = 'Try it now!'; search.onidle = function(value) { ts.ui.Notification.success(value); };
+                            </script>
+                            <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                            <div data-ts="Panel">
+                                <pre class="prism language-javascript"><code><span class="token keyword">var</span> search <span class="token operator">=</span> ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>ToolBar<span class="token punctuation">.</span><span class="token function">search<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 search<span class="token punctuation">.</span>value <span class="token operator">=</span> <span class="token string">&apos;Try it now!&apos;</span><span class="token punctuation">;</span>
 search<span class="token punctuation">.</span>onidle <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span> <span class="token punctuation">{</span>
 	ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Notification<span class="token punctuation">.</span><span class="token function">success<span class="token punctuation">(</span></span>value<span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
-                            </figure>
-                            <p>The <code>onidle</code> method may also be called when the field loses focus. The <code>idletime</code> property controls the timeout value, default is <code>500</code> (milliseconds).</p>
-                        </section>
-                        <section>
-                            <p>Here&apos; an overview of the properties and methods of the Search component.</p>
-                            <div data-ts="DoxApi" data-ts.code="%7B%0A%09name%3A%20%22ts.ui.SearchSpirit%22%2C%0A%09properties%3A%20%5B%0A%09%09%7B%0A%09%09%09name%3A%20%22value%22%2C%0A%09%09%09type%3A%20%22string%22%2C%0A%09%09%09desc%3A%20%22The%20search%20field%20value.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20%22idletime%22%2C%0A%09%09%09type%3A%20%22number%22%2C%0A%09%09%09desc%3A%20%22Time%20before%20the%20user%20is%20considered%20idle.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20%22info%22%2C%0A%09%09%09type%3A%20%22string%22%2C%0A%09%09%09desc%3A%20%22The%20placeholder%20and%2For%20mouseover%20tooltip.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20%22flex%22%2C%0A%09%09%09type%3A%20%22number%22%2C%0A%09%09%09desc%3A%20%22Fill%20the%20available%20width%20of%20the%20ToolBar.%20The%20value%20should%20be%20%601%60.%22%0A%09%09%7D%0A%09%5D%2C%0A%09methods%3A%20%5B%0A%09%09%7B%0A%09%09%09name%3A%20%22onsearch%22%2C%0A%09%09%09desc%3A%20%22Called%20when%20the%20user%20presses%20ENTER.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20%22onidle%22%2C%0A%09%09%09desc%3A%20%22Called%20when%20the%20user%20pauses%20typing.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20%22onfocus%22%2C%0A%09%09%09desc%3A%20%22Called%20when%20the%20search%20field%20is%20focused.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20%22onblur%22%2C%0A%09%09%09desc%3A%20%22Called%20when%20the%20search%20field%20gets%20blurred.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20%22focus%22%2C%0A%09%09%09desc%3A%20%22Focus%20the%20search%20field.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20%22blur%22%2C%0A%09%09%09desc%3A%20%22Blur%20the%20search%20field.%22%0A%09%09%7D%0A%09%5D%0A%7D">
-                            </div>
-                        </section>
+                        </figure>
+                        <p>The <code>onidle</code> method may also be called when the field loses focus. The <code>idletime</code> property controls the timeout value, default is <code>500</code> (milliseconds).</p>
+                    </section>
+                    <section>
+                        <p>Here&apos; an overview of the properties and methods of the Search component.</p>
+                        <div data-ts="DoxApi" data-ts.code="%7B%0A%09name%3A%20%22ts.ui.SearchSpirit%22%2C%0A%09properties%3A%20%5B%0A%09%09%7B%0A%09%09%09name%3A%20%22value%22%2C%0A%09%09%09type%3A%20%22string%22%2C%0A%09%09%09desc%3A%20%22The%20search%20field%20value.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20%22idletime%22%2C%0A%09%09%09type%3A%20%22number%22%2C%0A%09%09%09desc%3A%20%22Time%20before%20the%20user%20is%20considered%20idle.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20%22info%22%2C%0A%09%09%09type%3A%20%22string%22%2C%0A%09%09%09desc%3A%20%22The%20placeholder%20and%2For%20mouseover%20tooltip.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20%22flex%22%2C%0A%09%09%09type%3A%20%22number%22%2C%0A%09%09%09desc%3A%20%22Fill%20the%20available%20width%20of%20the%20ToolBar.%20The%20value%20should%20be%20%601%60.%22%0A%09%09%7D%0A%09%5D%2C%0A%09methods%3A%20%5B%0A%09%09%7B%0A%09%09%09name%3A%20%22onsearch%22%2C%0A%09%09%09desc%3A%20%22Called%20when%20the%20user%20presses%20ENTER.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20%22onidle%22%2C%0A%09%09%09desc%3A%20%22Called%20when%20the%20user%20pauses%20typing.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20%22onfocus%22%2C%0A%09%09%09desc%3A%20%22Called%20when%20the%20search%20field%20is%20focused.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20%22onblur%22%2C%0A%09%09%09desc%3A%20%22Called%20when%20the%20search%20field%20gets%20blurred.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20%22focus%22%2C%0A%09%09%09desc%3A%20%22Focus%20the%20search%20field.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20%22blur%22%2C%0A%09%09%09desc%3A%20%22Blur%20the%20search%20field.%22%0A%09%09%7D%0A%09%5D%0A%7D">
+                        </div>
                     </section>
                 </section>
-            </article>
-        </div>
+            </section>
+        </article>
     </main>
     <aside data-ts="Note" class="sticky ts-bg-yellow">
         <p>If you find a bug or need a feature&#x2026;</p>

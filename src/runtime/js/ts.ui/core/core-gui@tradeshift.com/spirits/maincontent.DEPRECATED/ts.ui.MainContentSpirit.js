@@ -1,5 +1,5 @@
 /**
- * Spirit of the main element.
+ * @deprecated
  */
 ts.ui.MainContentSpirit = ts.ui.Spirit.extend({
 	/**

@@ -14,25 +14,26 @@
 </head>
 
 <body>
-    <header data-ts="TopBar"></header>
-    <main data-ts="Main">
-        <div data-ts="MainContent">
-            <article>
-                <h1><span>Boards</span></h1>
-                <section>
-                    <p>Here it is.</p>
-                    <div data-ts="Board" id="mybox">
-                        <div data-ts="Panel">
-                            <p>The Board looks like this.</p>
-                        </div>
-                    </div>
-                    <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.get(&apos;%23mybox&apos;%2C%20function(box)%20%7B%0A%09box.buttons(%5B%0A%09%09%7Blabel%3A%20&apos;One&apos;%7D%2C%0A%09%09%7Blabel%3A%20&apos;Two&apos;%7D%2C%0A%09%09%7Blabel%3A%20&apos;Three&apos;%7D%2C%0A%09%09%7Blabel%3A%20&apos;Four&apos;%7D%2C%0A%09%09%7Blabel%3A%20&apos;Five&apos;%7D%0A%09%5D)%3B%0A%7D)%3B">
-                        <script type="runnable">
-                            ts.ui.get('#mybox', box => { box.buttons([ {label: 'One'}, {label: 'Two'}, {label: 'Three'}, {label: 'Four'}, {label: 'Five'} ]); });
-                        </script>
-                        <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
-                        <div data-ts="Panel">
-                            <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#mybox&apos;</span><span class="token punctuation">,</span> box <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+    <div data-ts="App">
+        <div data-ts="Main">
+            <div data-ts="Content">
+                <div data-ts="Panel">
+                    <article>
+                        <h1><span>Boards</span></h1>
+                        <section>
+                            <p>Here it is.</p>
+                            <div data-ts="Board" id="mybox">
+                                <div data-ts="Panel">
+                                    <p>The Board looks like this.</p>
+                                </div>
+                            </div>
+                            <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.get(&apos;%23mybox&apos;%2C%20function(box)%20%7B%0A%09box.buttons(%5B%0A%09%09%7Blabel%3A%20&apos;One&apos;%7D%2C%0A%09%09%7Blabel%3A%20&apos;Two&apos;%7D%2C%0A%09%09%7Blabel%3A%20&apos;Three&apos;%7D%2C%0A%09%09%7Blabel%3A%20&apos;Four&apos;%7D%2C%0A%09%09%7Blabel%3A%20&apos;Five&apos;%7D%0A%09%5D)%3B%0A%7D)%3B">
+                                <script type="runnable">
+                                    ts.ui.get('#mybox', box => { box.buttons([ {label: 'One'}, {label: 'Two'}, {label: 'Three'}, {label: 'Four'}, {label: 'Five'} ]); });
+                                </script>
+                                <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                                <div data-ts="Panel">
+                                    <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#mybox&apos;</span><span class="token punctuation">,</span> box <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
 	box<span class="token punctuation">.</span><span class="token function">buttons<span class="token punctuation">(</span></span><span class="token punctuation">[</span>
 		<span class="token punctuation">{</span>label<span class="token punctuation">:</span> <span class="token string">&apos;One&apos;</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
 		<span class="token punctuation">{</span>label<span class="token punctuation">:</span> <span class="token string">&apos;Two&apos;</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
@@ -41,38 +42,38 @@
 		<span class="token punctuation">{</span>label<span class="token punctuation">:</span> <span class="token string">&apos;Five&apos;</span><span class="token punctuation">}</span>
 	<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
-                    </figure>
-                    <h3><span>Tabs</span></h3>
-                    <div data-ts="Board" id="mytabbox">
-                        <ul data-ts="Panels">
-                            <li data-ts="Panel" data-ts.label="Tabs">
-                                <p>Panel One</p>
-                            </li>
-                            <li data-ts="Panel" data-ts.label="Nested tabs">
-                                <p>Panel Two</p>
-                                <div data-ts="Board" id="mybox">
-                                    <div data-ts="Panel">
-                                        <p>Nested box</p>
-                                    </div>
-                                </div>
-                            </li>
-                            <li data-ts="Panel" data-ts.label="Tabs in Aside">
-                                <p>Panel Three</p>
-                                <p>
-                                    <button data-ts="Button" onclick="ts.ui.get(&apos;#myaside&apos;).open()" class="ts-primary">
-										<span>Open the Aside</span>
-									</button>
-                                </p>
-                            </li>
-                        </ul>
-                    </div>
-                    <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.get(&apos;%23mytabbox&apos;%2C%20function(tabbox)%20%7B%0A%09tabbox.tabs(%5B%0A%09%09%7Blabel%3A%20&apos;One&apos;%7D%2C%0A%09%09%7Blabel%3A%20&apos;Two&apos;%7D%2C%0A%09%09%7Blabel%3A%20&apos;Three&apos;%2C%20closeable%3A%20true%7D%2C%0A%09%09%7Blabel%3A%20&apos;Four&apos;%2C%20closeable%3A%20true%7D%2C%0A%09%09%7Blabel%3A%20&apos;Five&apos;%2C%20closeable%3A%20true%7D%2C%0A%09%5D)%3B%0A%7D)%3B">
-                        <script type="runnable">
-                            ts.ui.get('#mytabbox', tabbox => { tabbox.tabs([ {label: 'One'}, {label: 'Two'}, {label: 'Three', closeable: true}, {label: 'Four', closeable: true}, {label: 'Five', closeable: true}, ]); });
-                        </script>
-                        <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
-                        <div data-ts="Panel">
-                            <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#mytabbox&apos;</span><span class="token punctuation">,</span> tabbox <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+                            </figure>
+                            <h3><span>Tabs</span></h3>
+                            <div data-ts="Board" id="mytabbox">
+                                <ul data-ts="Panels">
+                                    <li data-ts="Panel" data-ts.label="Tabs">
+                                        <p>Panel One</p>
+                                    </li>
+                                    <li data-ts="Panel" data-ts.label="Nested tabs">
+                                        <p>Panel Two</p>
+                                        <div data-ts="Board" id="mybox">
+                                            <div data-ts="Panel">
+                                                <p>Nested box</p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li data-ts="Panel" data-ts.label="Tabs in Aside">
+                                        <p>Panel Three</p>
+                                        <p>
+                                            <button data-ts="Button" onclick="ts.ui.get(&apos;#myaside&apos;).open()" class="ts-primary">
+													<span>Open the Aside</span>
+												</button>
+                                        </p>
+                                    </li>
+                                </ul>
+                            </div>
+                            <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.get(&apos;%23mytabbox&apos;%2C%20function(tabbox)%20%7B%0A%09tabbox.tabs(%5B%0A%09%09%7Blabel%3A%20&apos;One&apos;%7D%2C%0A%09%09%7Blabel%3A%20&apos;Two&apos;%7D%2C%0A%09%09%7Blabel%3A%20&apos;Three&apos;%2C%20closeable%3A%20true%7D%2C%0A%09%09%7Blabel%3A%20&apos;Four&apos;%2C%20closeable%3A%20true%7D%2C%0A%09%09%7Blabel%3A%20&apos;Five&apos;%2C%20closeable%3A%20true%7D%2C%0A%09%5D)%3B%0A%7D)%3B">
+                                <script type="runnable">
+                                    ts.ui.get('#mytabbox', tabbox => { tabbox.tabs([ {label: 'One'}, {label: 'Two'}, {label: 'Three', closeable: true}, {label: 'Four', closeable: true}, {label: 'Five', closeable: true}, ]); });
+                                </script>
+                                <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                                <div data-ts="Panel">
+                                    <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#mytabbox&apos;</span><span class="token punctuation">,</span> tabbox <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
 	tabbox<span class="token punctuation">.</span><span class="token function">tabs<span class="token punctuation">(</span></span><span class="token punctuation">[</span>
 		<span class="token punctuation">{</span>label<span class="token punctuation">:</span> <span class="token string">&apos;One&apos;</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
 		<span class="token punctuation">{</span>label<span class="token punctuation">:</span> <span class="token string">&apos;Two&apos;</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
@@ -81,17 +82,13 @@
 		<span class="token punctuation">{</span>label<span class="token punctuation">:</span> <span class="token string">&apos;Five&apos;</span><span class="token punctuation">,</span> closeable<span class="token punctuation">:</span> <span class="token keyword">true</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
 	<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
-                    </figure>
-                </section>
-                <!--
-				.ts-tabbox {
-					margin: 22px !important;
-					min-height: 100%; // calc1
-				}
-				-->
-            </article>
+                            </figure>
+                        </section>
+                    </article>
+                </div>
+            </div>
         </div>
-    </main>
+    </div>
     <aside data-ts="Aside" id="myaside" data-ts.title="Box in Aside">
         <div data-ts="Panel">
             <div data-ts="Board">

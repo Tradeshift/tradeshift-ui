@@ -13,8 +13,10 @@ gui.module('layout-gui@tradeshift.com', {
 		['[data-ts=Aside]', ts.ui.AsideSpirit],
 		['[data-ts=SideBar]', ts.ui.SideBarSpirit],
 		['[data-ts=Modal]', ts.ui.ModalSpirit],
+		['[data-ts=App]', ts.ui.AppSpirit],
 		['[data-ts=Main]', ts.ui.MainSpirit],
-		['[data-ts=MainContent]', ts.ui.MainContentSpirit] // TODO: Panel this!
+		['[data-ts=Content]', ts.ui.ContentSpirit],
+		['[data-ts=MainContent]', ts.ui.MainContentSpirit] // TODO: remove soon!
 	],
 
 	/**

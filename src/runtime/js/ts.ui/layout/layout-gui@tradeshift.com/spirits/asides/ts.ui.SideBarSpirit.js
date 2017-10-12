@@ -66,12 +66,9 @@ ts.ui.SideBarSpirit = (function using(chained, Type, Client, GuiObject, Colors) 
 			 */
 			onattach: function() {
 				this.super.onattach();
-				this.action.dispatch('ts-action-attach');
-				this._layoutmain(true);
+				this._layout(true);
 				if (ts.ui.isMobilePoint()) {
 					this._breakpoint();
-				} else {
-					this._reflex();
 				}
 			},
 
@@ -89,50 +86,8 @@ ts.ui.SideBarSpirit = (function using(chained, Type, Client, GuiObject, Colors) 
 			 */
 			ondetach: function() {
 				this.super.ondetach();
-				this._layoutmain(false);
+				this._layout(false);
 			},
-
-			/**
-			 * Give'm a second to move the SideBar into it's designated
-			 * position (immediately before or after the '.ts-main' element)
-			 * if for some reason the portal server didn't place it there.
-			 *
-			onready: function() {
-				this.super.onready();
-				this.input.connect(ts.ui.TopBarModel);
-				this.tick.time(function() {
-					this._confirmposition();
-				}, 1000);
-			},
-
-			/**
-			 * Handle input. Watching that TopBar.
-			 * @param {gui.Input} input
-			 *
-			oninput: function(i) {
-				this.super.oninput(i);
-				if (i.type === ts.ui.TopBarModel) {
-					i.data.addObserver(this);
-				}
-			},
-
-			/**
-			 * Handle changes. Reflex the layout when TopBar toggles
-			 * and hope this fixes the height measurement in Safari.
-			 * UPDATE: It worked - now do this with a simple broadcast!!!!!!!!!!!!!!!!!!
-			 * @param {Array<edb.Change>} changes
-			 *
-			onchange: function(changes) {
-				this.super.onchange(changes);
-				changes.forEach(function(change) {
-					if (ts.ui.TopBarModel.is(change.object)) {
-						if (change.name === 'hascontent') {
-							this._reflex();
-						}
-					}
-				}, this);
-			},
-			*/
 
 			/**
 			 * Consume all nested aside actions
@@ -143,9 +98,6 @@ ts.ui.SideBarSpirit = (function using(chained, Type, Client, GuiObject, Colors) 
 				this.super.onaction(a);
 				switch (a.type) {
 					case willopen:
-						this._fitaside(a.target, this.dom.qall('.ts-footer', ts.ui.AsideFooterSpirit));
-						a.consume();
-						break;
 					case didopen:
 					case willclose:
 					case didclose:
@@ -170,7 +122,6 @@ ts.ui.SideBarSpirit = (function using(chained, Type, Client, GuiObject, Colors) 
 			 */
 			$onopen: function() {
 				this.css.add(ts.ui.CLASS_OPENING);
-				this._reflex();
 				this.tick.time(function slide() {
 					this.css.add(ts.ui.CLASS_OPEN);
 				});
@@ -196,36 +147,18 @@ ts.ui.SideBarSpirit = (function using(chained, Type, Client, GuiObject, Colors) 
 			_autoclose: true,
 
 			/**
-			 * This classname has to do with flipping, it's a future project.
-			 */
-			_fixappearance: function() {
-				this.super._fixappearance();
-				var has3D = gui.Client.has3D;
-				this.css.shift(has3D, 'ts-3d').shift(!has3D, 'ts-2d');
-			},
-
-			/**
-			 * Add/remove classnames on the HTML element so we can style the MAIN.
-			 * TODO: This should probably all be maintained somewhat more modelled...
 			 * @param {boolean} attaching This is `false' when SideBar gets removed.
 			 */
-			_layoutmain: function(attaching) {
-				/*
-				var layout = this.guilayout;
-				if (layout.outsideMain()) {
-					var local1 = 'ts-sidebar-first',
-						local2 = 'ts-sidebar-last',
-						global2 = 'ts-has-sidebar-first',
-						global3 = 'ts-has-sidebar-last';
-					if (layout.beforeMain()) {
-						this.css.shift(attaching, local1);
-						layout.shiftGlobal(attaching, global2);
-					} else {
-						this.css.shift(attaching, local2);
-						layout.shiftGlobal(attaching, global3);
-					}
+			_layout: function(attaching) {
+				var parent = this.dom.parent();
+				var target = ts.ui.BoxSpirit;
+				if (this.dom.next(target)) {
+					parent.classList.add('ts-has-sidebar-first');
+					this.css.add('ts-sidebar-first');
+				} else if (this.dom.previous(target)) {
+					parent.classList.add('ts-has-sidebar-last');
+					this.css.add('ts-sidebar-last');
 				}
-				*/
 			},
 
 			/**
@@ -260,19 +193,6 @@ ts.ui.SideBarSpirit = (function using(chained, Type, Client, GuiObject, Colors) 
 							this.guilayout.flexGlobal();
 						}
 					}
-				}
-			},
-
-			/**
-			 * Fit nested aside inside the panel (footer scenario).
-			 * @param {ts.ui.AsideSpirit} aside
-			 * @param {Array<ts.ui.AsideFooterSpirit>} footers List of bonus footers
-			 */
-			_fitaside: function(aside, footers) {
-				if (footers.length) {
-					aside.css.bottom = footers.reduce(function(totalheight, footer) {
-						return totalheight + footer.box.height;
-					}, 0);
 				}
 			}
 		},

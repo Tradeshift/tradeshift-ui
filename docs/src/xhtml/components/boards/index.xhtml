@@ -14,7 +14,7 @@
 							<section>
 								<p>Here it is.</p>
 
-								<div data-ts="Board" id="mybox">
+								<div data-ts="Board" id="board">
 									<div data-ts="Panel">
 										<p>The Board looks like this.</p>
 									</div>
@@ -22,8 +22,8 @@
 
 								<figure data-ts="DoxScript">
 									<script type="runnable">
-										ts.ui.get('#mybox', box => {
-											box.buttons([
+										ts.ui.get('#board', board => {
+											board.buttons([
 												{label: 'One'},
 												{label: 'Two'},
 												{label: 'Three'},
@@ -36,14 +36,14 @@
 
 								<h3>Tabs</h3>
 
-								<div data-ts="Board" id="mytabbox">
+								<div data-ts="Board" id="tabboard">
 									<ul data-ts="Panels">
 										<li data-ts="Panel" data-ts.label="Tabs">
 											<p>Panel One</p>
 										</li>
 										<li data-ts="Panel" data-ts.label="Nested tabs">
 											<p>Panel Two</p>
-											<div data-ts="Board" id="mybox">
+											<div data-ts="Board">
 												<div data-ts="Panel">
 													<p>Nested box</p>
 												</div>
@@ -61,8 +61,8 @@
 								</div>
 								<figure data-ts="DoxScript">
 									<script type="runnable">
-										ts.ui.get('#mytabbox', tabbox => {
-											tabbox.tabs([
+										ts.ui.get('#tabboard', board => {
+											board.tabs([
 												{label: 'One'},
 												{label: 'Two'},
 												{label: 'Three', closeable: true},

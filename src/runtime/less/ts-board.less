@@ -1,16 +1,20 @@
 .ts-board {
 	.ts-mixin-rounded();
-	box-shadow: 0 0 4px rgba(0,0,0,0.1);
-	border: 1px solid @ts-lite-darker;
+	box-shadow: 0 0 3px rgba(0,0,0,0.08);
+	border: 1px solid rgba(0,0,0,0.16);
 	background-color: @ts-white;
 	margin-bottom: @ts-unit;
-	> .ts-panel {
+	> .ts-panel,
+	> .ts-panels > .ts-panel {
 		padding: @ts-unit;
 		overflow: visible;
 	}
-	> .ts-panels {		
-		> .ts-panel {
-			padding: @ts-unit;
+	&.ts-equalsize {
+		> .ts-panels {
+			overflow: hidden;
+			.ts-panel {
+				height: 100%;
+			}
 		}
 	}
 	> .ts-toolbar {
@@ -23,10 +27,23 @@
 			}
 		}
 	}
+	.ts-panels,
+	.ts-panel {
+		flex: none;
+		height: auto;
+	}
 	&.ts-has-header {
 		> .ts-panels,
 		> .ts-panel {
-			border-top: 1px solid @ts-lite-darker;
+			border-top: 1px solid rgba(0,0,0,0.16);
 		}
 	}
+	/*
+	&:not(.ts-has-header) {
+		> .ts-panel {
+			flex: none;
+			height: auto;
+		}
+	}
+	*/
 }

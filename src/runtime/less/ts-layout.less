@@ -1,19 +1,5 @@
-/*
-*,
-*:before,
-*:after {
-  box-sizing: border-box;
-}
-.hidden {
-  display: none;
-}
-html,
-body {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-}
-*/
+// Layout ......................................................................
+
 html,
 body {
 	height: 100%;
@@ -23,7 +9,6 @@ body {
 }
 .ts-app {
 	flex: 1 0 0px;
-	background-color: yellow;
 	display: flex;
 	flex-direction: column;
 }
@@ -34,20 +19,120 @@ body,
 	flex-direction: row;
 	flex: 1 0 0px;
 }
+.ts-main {
+	position: relative;
+}
 .ts-sideshow,
 .ts-content {
 	display: flex;
 	flex-direction: column;
 }
 .ts-content {
+	z-index: @ts-zindex-main;
+	position: relative;
 	width: 100%;
 }
+.ts-panels,
 .ts-panel {
 	flex: 1 0 0px;
-	overflow-y: scroll;
+	position: relative;
 	height: 0;
-  padding: 20px;
 }
+.ts-panel {
+	overflow-y: scroll;
+}
+.ts-panels {
+	display: flex;
+	flex-direction: column;
+	> .ts-panel {
+		&:not(.ts-selected) {
+			display: none;
+		}
+	}
+}
+
+// Box .........................................................................
+
+.ts-box {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	> header,
+	> footer,
+	> .ts-panel,
+	> .ts-panels {
+		margin: 0;
+	}
+}
+
+// Decorations .................................................................
+
+@bordercolor: rgba(0,0,0,0.16); // TODO: externalize this somewhere
+@shadowcolor: rgba(0,0,0,0.08);
+
+.ts-sidebar {
+	&.ts-sidebar-first {
+		border-right: 1px solid @bordercolor;
+	}
+	&.ts-sidebar-last {
+		border-left: 1px solid @bordercolor;
+	}
+}
+
+/*
+.mixin-borderline() {
+	content: '';
+	position: absolute;
+	pointer-events: none;
+	top: 0;
+	right: 0;
+	left: 0;
+	height: 1px;
+	background-color: @bordercolor;
+}
+*/
+
+.ts-headerbar,
+.ts-footerbar {
+	.ts-toolbar {
+		&:before,
+		&:after {
+			height: 1px;
+			width: 100%;
+			position: absolute;
+			pointer-events: none;
+			background-color: @bordercolor;
+		}
+	}
+}
+.ts-headerbar {
+	.ts-toolbar:after {
+		content: '';
+		bottom: 0;
+	}
+}
+
+.ts-app.ts-has-header > .ts-main {
+	> .ts-content {
+		&:before,
+		&:after {
+			content: '';
+			height: 3px;
+			width: 100%;
+			position: absolute;
+			pointer-events: none;
+		}
+	}
+	> .ts-content {
+		&:before {
+			background-image: linear-gradient(@shadowcolor, transparent);
+			top: 0;
+		}
+	}
+}
+
+// Breakpoints .................................................................
+
 .ts-tablet {
 	.ts-sideshow {
 		.ts-mixin-fixwidth(@ts-width-aside);
@@ -58,20 +143,3 @@ body,
 		.ts-mixin-fixwidth(100%);
 	}
 }
-/*
-header,
-footer {
-	background-color: pink;
-	height: 50px;
-	min-height: 50px;
-	padding: 10px;
-  border-bottom: 1px solid purple;
-	//position: absolute;
-}
-header:before {
-	content: attr(title);
-}
-footer:before {
-	content: attr(title);
-}
-*/

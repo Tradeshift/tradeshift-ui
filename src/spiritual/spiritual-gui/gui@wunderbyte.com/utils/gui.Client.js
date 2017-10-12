@@ -334,7 +334,7 @@ gui.Client = (function() {
 						this.scrollBarSize = 17;
 					}
 				} else if (this.system === 'linux' && this.isGecko) {
-					this.scrollBarSize = 16;
+					this.scrollBarSize = 12;
 				} else {
 					this.scrollBarSize = 15;
 				}

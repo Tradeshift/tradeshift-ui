@@ -34,12 +34,6 @@ ts.ui.PanelSpirit = (function using(
 		icon: null,
 
 		/**
-		 * Panel is visible? (please use methods `hide` and `show`).
-		 * @type {boolean} visible
-		 */
-		visible: true,
-
-		/**
 		 * Open for implementation.
 		 * @type {function}
 		 */
@@ -50,6 +44,19 @@ ts.ui.PanelSpirit = (function using(
 		 * @type {function}
 		 */
 		onunselect: null,
+
+		/**
+		 * Panel is visible?
+		 * @type {boolean} visible
+		 */
+		visible: {
+			getter: function() {
+				return this.css.contains(ts.ui.CLASS_SELECTED);
+			},
+			setter: function(is) {
+				this.css.shift(is, ts.ui.CLASS_SELECTED);
+			}
+		},
 
 		/**
 		 * Setup.
@@ -102,24 +109,21 @@ ts.ui.PanelSpirit = (function using(
 			}
 		},
 
-		/*
+		/**
 		 * Show the panel.
+		 * @returns {this}
 		 */
-		show: function() {
+		show: chained(function() {
 			this.visible = true;
-			this.dom.show();
-			this.reflex();
-			this.action.dispatch(ACTION_SHOW, this._isroot());
-		},
+		}),
 
-		/*
+		/**
 		 * Hide the panel.
+		 * @returns {this}
 		 */
-		hide: function() {
-			this.dom.hide();
+		hide: chained(function() {
 			this.visible = false;
-			this.action.dispatch(ACTION_HIDE, this._isroot());
-		},
+		}),
 
 		/**
 		 * How high should the Panel be in order to *not* show the scrollbar?
@@ -160,7 +164,6 @@ ts.ui.PanelSpirit = (function using(
 		 *
 		 */
 		busy: chained(function() {
-			console.log('busy', this._cover().$instanceid);
 			this._cover().show();
 		}),
 
@@ -168,7 +171,6 @@ ts.ui.PanelSpirit = (function using(
 		 *
 		 */
 		done: chained(function() {
-			console.log('Done', this._cover().$instanceid);
 			this._cover().hide();
 		}),
 

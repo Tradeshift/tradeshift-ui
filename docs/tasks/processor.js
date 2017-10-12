@@ -58,19 +58,40 @@ function maincontent($) {
  */
 function headtags($, tags) {
 	const appname = $('title').text();
-	tags = headerstuff(tags, appname);
+	tags = appbanner(tags, appname);
 	inserttags($, tags, $('title'));
 	lesstocss($);
 	return $;
 }
 
-function headerstuff(tags, appname) {
+/**
+ * Stuff used in the app header.
+ * @param {Array<string>} tags
+ * @param {string} appname
+ * @returns {Array<string>}
+ */
+function appbanner(tags, appname) {
 	return [
 		`<meta name="apple-mobile-web-app-title" content="${appname}"/>`,
 		`<link rel="apple-touch-icon" href="/dist/assets/icon.svg"/>`,
 		...tags
 	];
 }
+
+/**
+ * NOT USED but this would configure the banner via attributes on the AppSpirit.
+ * @param {$} $
+ * @returns {$}
+ *
+function appheader($) {
+	const app = $('[data-ts=App]');
+	if(app[0]) {
+		app.attr('data-ts.title', $('title').text());
+		app.attr('data-ts.icon', '/dist/assets/icon.svg');
+	}
+	return $;
+}
+*/
 
 /**
  * LESS files get compiled, reflect that in LINK tags.

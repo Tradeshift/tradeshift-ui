@@ -33,6 +33,7 @@
 	<body class="nosticky">
 		<div data-ts="App">
 			<div data-ts="Main">
+
 				<div data-ts="Content">
 					<div data-ts="Panel">
 						<article>
@@ -130,28 +131,28 @@
 						</article>
 					</div>
 				</div>
+				<aside data-ts="SideBar" id="mysidebar">
+					<div data-ts="Panel">
+						<p>This is the SideBar.</p>
+					</div>
+					<aside data-ts="Aside" data-ts.title="Nested Aside" id="myaside">
+						<div data-ts="Panel">
+							<p>Aside content.</p>
+						</div>
+					</aside>
+					<div data-ts="Footer">
+						<p>Footer content. The button below is only relevant in <strong>mobile</strong> view.</p>
+						<menu data-ts="Buttons">
+							<li>
+								<button data-ts="Button" class="ts-tertiary" onclick="gui.get('mysidebar').toggle()">
+									<span>Toggle SideBar</span>
+								</button>
+							</li>
+						</menu>
+						</p>
+					</div>
+				</aside>
 			</div>
 		</div>
-		<aside data-ts="SideBar" id="mysidebar" data-ts.title="Example SideBar">
-			<div data-ts="Panel">
-				<p>SideBar content.</p>
-			</div>
-			<aside data-ts="Aside" data-ts.title="Nested Aside" id="myaside">
-				<div data-ts="Panel">
-					<p>Aside content.</p>
-				</div>
-			</aside>
-			<div data-ts="Footer">
-				<p>Footer content. The button below is only relevant in <strong>mobile</strong> view.</p>
-				<menu data-ts="Buttons">
-					<li>
-						<button data-ts="Button" class="ts-tertiary" onclick="gui.get('mysidebar').toggle()">
-							<span>Toggle SideBar</span>
-						</button>
-					</li>
-				</menu>
-				</p>
-			</div>
-		</aside>
 	</body>
 </html>

@@ -45,7 +45,9 @@ ts.ui.DocumentSpirit = (function using(Client) {
 				.shift(gui.hosted, 'ts-iframe-hosted')
 				.shift(Client.isExplorer9, 'ts-engine-explorer9')
 				.shift(Client.isTouchDevice, 'ts-device-touch')
-				.shift(!Client.isTouchDevice, 'ts-device-mouse');
+				.shift(!Client.isTouchDevice, 'ts-device-mouse')
+				.shift(!!Client.scrollBarSize, 'ts-scrollbars-on')
+				.shift(!Client.scrollBarSize, 'ts-scrollbars-off');
 		},
 
 		/**

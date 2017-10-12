@@ -15,27 +15,14 @@ ts.ui.BoxSpirit = (function using(
 	PanelSpirit,
 	chained
 ) {
-	/**
-	 * Reduce to heighest panel.
-	 * @param {number} max
-	 * @parapm {ts.ui.PanelSpirit}
-	 */
-	function maxheight(max, next) {
-		var was = next.dom.visible;
-		next.dom.visible = true;
-		var fit = next.box.height;
-		next.dom.visible = was;
-		return fit > max ? fit : max;
-	}
-
 	return ts.ui.Spirit.extend(
 		{
 			title: chained(function(title) {
-				console.log('TODO: TITLE');
+				this._head().title(title);
 			}),
 
 			icon: chained(function(icon) {
-				console.log('TODO: TITLE');
+				this._head().icon(icon);
 			}),
 
 			search: chained(function(search) {
@@ -77,21 +64,6 @@ ts.ui.BoxSpirit = (function using(
 			 */
 			uncompact: chained(function() {
 				this._head.uncompact();
-			}),
-
-			/*
-			 * Equalsize panels height to match the highest panel.
-			 * @param {boolean} enable
-			 * @returns {this}
-			 */
-			equalsize: chained(function(enable) {
-				var panels = this.dom.child(PanelsSpirit);
-				if (panels && (panels = panels.dom.children(PanelSpirit)).length) {
-					var height = panels.reduce(maxheight, 0);
-					panels.forEach(function(p) {
-						p.css.height = enable ? height : '';
-					});
-				}
 			}),
 
 			/**

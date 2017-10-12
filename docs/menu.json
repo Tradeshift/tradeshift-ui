@@ -144,11 +144,6 @@
 				"path": "components/sidebars/"
 			},
 			{
-				"label": "SIDEBAR REFACTORING",
-				"icon": "docs-icon-window-application-6",
-				"path": "components/sidebargallery/"
-			},
-			{
 				"label": "Spinner",
 				"icon": "docs-icon-interface-loading",
 				"path": "components/spinners/"

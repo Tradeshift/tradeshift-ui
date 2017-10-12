@@ -3,7 +3,7 @@
  */
 ts.ui.AppSpirit = (function() {
 	/**
-	 * Main header configured via API.
+	 * Main header (configured via API).
 	 * @returns {ts.ui.HeaderBarSpirit}
 	 */
 	function appheader() {
@@ -11,7 +11,7 @@ ts.ui.AppSpirit = (function() {
 	}
 
 	/**
-	 * Main footer configured via API.
+	 * Main footer (configured via API).
 	 * @returns {ts.ui.FooterBarSpirit}
 	 */
 	function appfooter() {

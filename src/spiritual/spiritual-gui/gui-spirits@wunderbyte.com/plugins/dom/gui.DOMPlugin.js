@@ -817,12 +817,12 @@ gui.DOMPlugin.mixin(
 			 * @returns {Array<element|gui.Spirit>}
 			 */
 			following: function(type) {
-				var result = [],
-					spirit,
-					el = this.spirit.element;
+				var result = [];
+				var spirit;
+				var el = this.spirit.element;
 				while ((el = el.nextElementSibling)) {
-					if (type) {
-						if ((spirit = el.spirit) && spirit instanceof type) {
+					if (arguments.length) {
+						if ((spirit = el.spirit) && type.is(spirit)) {
 							result.push(spirit);
 						}
 					} else {
@@ -838,12 +838,12 @@ gui.DOMPlugin.mixin(
 			 * @returns {Array<element|gui.Spirit>}
 			 */
 			preceding: function(type) {
-				var result = [],
-					spirit,
-					el = this.spirit.element;
+				var result = [];
+				var spirit;
+				var el = this.spirit.element;
 				while ((el = el.previousElementSibling)) {
-					if (type) {
-						if ((spirit = el.spirit) && spirit instanceof type) {
+					if (arguments.length) {
+						if ((spirit = el.spirit) && type.is(spirit)) {
 							result.push(spirit);
 						}
 					} else {

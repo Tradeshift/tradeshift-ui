@@ -1,38 +1,25 @@
 .ts-sideshow { 
-	//.box-mixin-vbox();
 	margin-bottom: 0;
-	background-color: @ts-white;
-	/*
-	> .ts-footer,
-	> .ts-panel {
-		position: relative;
-	}
-	*/
-	/*
-	> header {
-		&.ts-inset {
-			&:after {
-				content: '';
-				.ts-mixin-maximize();
-				background-image: linear-gradient(rgba(0, 0, 0, 0.2), transparent);
-				height: 2px;
-				top: auto;
-			}
-		}
-		button.ts-tertiary {
-			// probably the closing X
-			border-color: transparent !important;
-		}-
-	}
-	*/
 	&, > header, > footer, > .ts-panel, > .ts-panels {
 		background-color: @ts-white;
+	}
+	> .ts-panel,
+	> .ts-panels > .ts-panel {
+		overflow-y: auto;
 	}
 	> .ts-panel,
 	> .ts-panels > .ts-panel,
 	> .ts-footer {
 		padding: @ts-unit;
-		overflow-y: scroll;
+	}
+	> .ts-panel {
+		z-index: 0;
+		padding-bottom: @ts-unit-triple;
+		> .ts-note {
+			&:first-child {
+				margin: -@ts-unit -@ts-unit 0 -@ts-unit;
+			}
+		}
 	}
 	> .ts-panel,
 	> .ts-footer {
@@ -52,46 +39,10 @@
 			}
 		}
 	}
-	> .ts-panel {
-		z-index: 0;
-		padding-bottom: @ts-unit-triple;
-		> .ts-note {
-			&:first-child {
-				margin: -@ts-unit -@ts-unit 0 -@ts-unit;
-			}
-		}
-	}
+	/*
 	> header,
 	> .ts-footer {
 		z-index: @ts-zindex-aside + 1; // account for nested asides
 	}
-	> .ts-shadow {
-		position: absolute;
-		height: 7px;
-		width: 100%;
-		z-index: @ts-zindex-main + 2;
-		background-image: linear-gradient(rgba(0, 0, 0, 0.2), transparent);
-	}
-	> .ts-tabbar + .ts-shadow {
-		height: 2px;
-	}
-	> .ts-panel ~ .ts-shadow {
-		margin-top: -7px;
-		background-image: linear-gradient(transparent, rgba(0, 0, 0, 0.2));
-		z-index: @ts-zindex-aside + 1; // cover also aside nested in drawer
-	}
-	background-color: transparent !important; // otherwise flip foks in Chrome
+	*/
 }
-
-/*
-.ts-engine-gecko {
-	// not sure why padding-bottom is not working here...
-	.ts-sideshow {
-		> .ts-panel:after {
-			content: '';
-			height: @ts-unit-triple;
-			display: block;
-		}
-	}
-}
-*/

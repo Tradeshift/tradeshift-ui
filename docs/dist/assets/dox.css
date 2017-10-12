@@ -162,6 +162,12 @@ figure {
 		}
 	}
 	*/
+  /*
+	.ts-panel {
+		overflow: visible;
+		position: relative;
+	}
+	*/
 }
 figure.ts-box > .ts-panel,
 figure.ts-box > .ts-panels > .ts-panel {
@@ -177,10 +183,6 @@ figure .prism code {
 figure.ts-hasbar .prism,
 figure.ts-hasbar .prism code {
   border-radius: 0 0 3px 3px;
-}
-figure .ts-panel {
-  overflow: visible;
-  position: relative;
 }
 figure .editcode {
   position: absolute;

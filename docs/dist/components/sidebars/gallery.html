@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en-us" class="ts-docs" spellcheck="false">
+
+<head>
+    <title>SideBars Gallery</title>
+    <meta name="apple-mobile-web-app-title" content="SideBars Gallery">
+    <link rel="apple-touch-icon" href="/dist/assets/icon.svg">
+    <meta name="viewport" content="width=device-width">
+    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-9.2.3.min.js"></script>
+    <script src="/dist/assets/dox.min.js"></script>
+    <script src="/dist/assets/mark.min.js"></script>
+    <script src="/dist/assets/jquery-2.2.4.min.js"></script>
+    <link rel="stylesheet" href="/dist/assets/dox.css">
+    <meta name="robots" content="noindex">
+    <link rel="prefetch" title="HTML" href="index.html">
+    <link rel="prefetch" title="Gallery" href="gallery.html" class="hidden">
+    <script>
+        ts.dox.tabs()
+    </script>
+</head>
+
+<body class="nosticky">
+    <aside data-ts="SideBar" id="global-before" data-ts.title="Global SideBar">
+        <div data-ts="Panel">
+            <p>Bacon ipsum dolor amet turducken leberkas fatback, porchetta cow shoulder kielbasa drumstick shank bacon pork chop turkey. Drumstick filet mignon pig t-bone porchetta jerky. Sirloin beef ribs ball tip chuck, pork loin rump tenderloin meatball
+                short loin pig tri-tip swine. Jerky frankfurter capicola beef ribs venison corned beef cupim prosciutto. Sausage fatback shoulder, pork loin salami beef ribs hamburger kevin tri-tip tenderloin pig jerky ham hock ham. Filet mignon bresaola
+                kevin biltong flank chuck sirloin swine beef rump cow. Hamburger t-bone landjaeger turkey doner fatback corned beef pastrami spare ribs tongue brisket tenderloin ball tip sirloin.</p>
+        </div>
+        <aside data-ts="Aside" data-ts.title="Nested Aside" id="myaside">
+            <div data-ts="Panel">
+                <p>Aside content.</p>
+            </div>
+        </aside>
+    </aside>
+    <div data-ts="App">
+        <div data-ts="Main">
+            <aside data-ts="SideBar" id="local-before">
+                <div data-ts="Panel">
+                    <p>Doner tenderloin beef alcatra pork beef ribs sausage jerky ground round kevin corned beef jowl prosciutto. Flank leberkas bresaola beef pork loin prosciutto brisket boudin capicola filet mignon drumstick turducken pork chuck. Tri-tip
+                        landjaeger pork loin, meatball turducken corned beef venison chicken pork cupim andouille ham hock. Turkey pork belly pig picanha frankfurter andouille, ball tip leberkas ground round ribeye jerky chicken meatloaf pork. Pastrami
+                        ground round filet mignon drumstick, pork loin biltong salami ham hock rump. Biltong flank pork loin, bacon shank shankle spare ribs drumstick beef shoulder meatloaf corned beef ground round t-bone fatback.</p>
+                </div>
+                <aside data-ts="Aside" data-ts.title="Nested Aside" id="myaside">
+                    <div data-ts="Panel">
+                        <p>Aside content.</p>
+                    </div>
+                </aside>
+            </aside>
+            <div data-ts="Content">
+                <div data-ts="Panel">
+                    <article>
+                        <h1><span>SideBar gallery</span></h1>
+                        <section>
+                            <p>Turducken corned beef swine, filet mignon meatball pork prosciutto flank t-bone pork belly. Spare ribs tri-tip rump kevin pork loin fatback chicken shoulder pork belly, beef ribs ham hock. Ball tip beef ribs alcatra cow bacon
+                                short loin ground round kevin ham hock jerky leberkas tenderloin. Beef corned beef bresaola, sausage chuck alcatra kielbasa ribeye turkey salami short loin prosciutto. Ham porchetta shank, pork belly ribeye prosciutto turkey
+                                cupim pork. Fatback swine tenderloin boudin filet mignon. Tail fatback shoulder boudin.</p>
+                            <div data-ts="Board" id="tabboard">
+                                <ul data-ts="Panels">
+                                    <li data-ts="Panel" data-ts.label="Tabs">
+                                        <p>Panel One</p>
+                                    </li>
+                                    <li data-ts="Panel" data-ts.label="Nested tabs">
+                                        <p>Panel Two</p>
+                                        <div data-ts="Board">
+                                            <div data-ts="Panel">
+                                                <p>Nested box</p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li data-ts="Panel" data-ts.label="Tabs in Aside">
+                                        <p>Panel Three</p>
+                                        <p>
+                                            <button data-ts="Button" onclick="ts.ui.get(&apos;#myaside&apos;).open()" class="ts-primary">
+													<span>Open the Aside</span>
+												</button>
+                                        </p>
+                                    </li>
+                                </ul>
+                            </div>
+                        </section>
+                    </article>
+                </div>
+            </div>
+            <aside data-ts="SideBar" id="local-after">
+                <div data-ts="Panel">
+                    <p>Drumstick short ribs kielbasa hamburger. Pig short loin ground round pork chop, pork kevin boudin bacon salami turducken tongue picanha. Bresaola cupim tri-tip meatloaf sirloin jowl alcatra ball tip porchetta ground round chicken short
+                        ribs brisket shankle tenderloin. Leberkas brisket drumstick salami, chicken shankle short loin spare ribs doner boudin hamburger frankfurter shoulder tenderloin. Tri-tip cupim porchetta shoulder pork loin ground round turkey ham
+                        pig, ribeye meatball leberkas landjaeger.</p>
+                </div>
+                <aside data-ts="Aside" data-ts.title="Nested Aside" id="myaside">
+                    <div data-ts="Panel">
+                        <p>Aside content.</p>
+                    </div>
+                </aside>
+            </aside>
+        </div>
+    </div>
+    <!--
+		<footer data-ts="ToolBar" data-ts.title="ToolBar after MAIN"></footer>
+		-->
+    <aside data-ts="SideBar" id="sidebar-after" data-ts.title="Global SideBar">
+        <div data-ts="Panels">
+            <div data-ts="Panel" data-ts.label="One">
+                <p>Bacon ipsum dolor amet turducken leberkas fatback, porchetta cow shoulder kielbasa drumstick shank bacon pork chop turkey. Drumstick filet mignon pig t-bone porchetta jerky. Sirloin beef ribs ball tip chuck, pork loin rump tenderloin meatball
+                    short loin pig tri-tip swine. Jerky frankfurter capicola beef ribs venison corned beef cupim prosciutto. Sausage fatback shoulder, pork loin salami beef ribs hamburger kevin tri-tip tenderloin pig jerky ham hock ham. Filet mignon bresaola
+                    kevin biltong flank chuck sirloin swine beef rump cow. Hamburger t-bone landjaeger turkey doner fatback corned beef pastrami spare ribs tongue brisket tenderloin ball tip sirloin.</p>
+            </div>
+            <div data-ts="Panel" data-ts.label="Two" data-ts.selected="true">
+                <p>Bacon ipsum dolor amet turducken leberkas fatback, porchetta cow shoulder kielbasa drumstick shank bacon pork chop turkey. Drumstick filet mignon pig t-bone porchetta jerky. Sirloin beef ribs ball tip chuck, pork loin rump tenderloin meatball
+                    short loin pig tri-tip swine. Jerky frankfurter capicola beef ribs venison corned beef cupim prosciutto. Sausage fatback shoulder, pork loin salami beef ribs hamburger kevin tri-tip tenderloin pig jerky ham hock ham. Filet mignon bresaola
+                    kevin biltong flank chuck sirloin swine beef rump cow. Hamburger t-bone landjaeger turkey doner fatback corned beef pastrami spare ribs tongue brisket tenderloin ball tip sirloin.</p>
+                <p>Doner tenderloin beef alcatra pork beef ribs sausage jerky ground round kevin corned beef jowl prosciutto. Flank leberkas bresaola beef pork loin prosciutto brisket boudin capicola filet mignon drumstick turducken pork chuck. Tri-tip landjaeger
+                    pork loin, meatball turducken corned beef venison chicken pork cupim andouille ham hock. Turkey pork belly pig picanha frankfurter andouille, ball tip leberkas ground round ribeye jerky chicken meatloaf pork. Pastrami ground round
+                    filet mignon drumstick, pork loin biltong salami ham hock rump. Biltong flank pork loin, bacon shank shankle spare ribs drumstick beef shoulder meatloaf corned beef ground round t-bone fatback.</p>
+                <p>Turducken corned beef swine, filet mignon meatball pork prosciutto flank t-bone pork belly. Spare ribs tri-tip rump kevin pork loin fatback chicken shoulder pork belly, beef ribs ham hock. Ball tip beef ribs alcatra cow bacon short loin
+                    ground round kevin ham hock jerky leberkas tenderloin. Beef corned beef bresaola, sausage chuck alcatra kielbasa ribeye turkey salami short loin prosciutto. Ham porchetta shank, pork belly ribeye prosciutto turkey cupim pork. Fatback
+                    swine tenderloin boudin filet mignon. Tail fatback shoulder boudin.</p>
+                <p>Drumstick short ribs kielbasa hamburger. Pig short loin ground round pork chop, pork kevin boudin bacon salami turducken tongue picanha. Bresaola cupim tri-tip meatloaf sirloin jowl alcatra ball tip porchetta ground round chicken short
+                    ribs brisket shankle tenderloin. Leberkas brisket drumstick salami, chicken shankle short loin spare ribs doner boudin hamburger frankfurter shoulder tenderloin. Tri-tip cupim porchetta shoulder pork loin ground round turkey ham pig,
+                    ribeye meatball leberkas landjaeger.</p>
+                <p>Jowl salami turkey pork loin sirloin tri-tip turducken tongue beef leberkas pastrami. Flank tenderloin pork chop, meatloaf chuck andouille boudin shoulder sausage ribeye. Boudin porchetta short ribs ribeye pork chop chicken shankle picanha
+                    turkey brisket biltong andouille. Brisket strip steak cow, picanha porchetta boudin short loin. Turkey cupim tail short loin.</p>
+                <p>Beef ribs tail tenderloin meatloaf corned beef leberkas short ribs alcatra pancetta drumstick. Sausage rump fatback boudin picanha ham hock, short ribs drumstick kielbasa. Beef andouille ribeye meatball tenderloin picanha ham hock shankle,
+                    fatback cow kielbasa boudin prosciutto bresaola short ribs. Turducken short ribs ground round tri-tip. Alcatra biltong brisket beef, pork t-bone boudin drumstick shank picanha cupim ham hock ribeye sausage.</p>
+                <p>Swine strip steak shank cow, kielbasa tongue biltong bacon porchetta brisket. Salami flank filet mignon pork chop beef frankfurter prosciutto. Cow turkey prosciutto brisket, tail pork chop pork loin boudin drumstick tenderloin frankfurter
+                    pork meatloaf hamburger. Alcatra sirloin short ribs pork chop flank. Bacon t-bone boudin pork belly meatloaf, chicken shoulder chuck landjaeger.</p>
+                <p>Meatloaf venison flank andouille tail. Drumstick biltong spare ribs chuck. T-bone drumstick hamburger shankle doner ball tip leberkas pork belly brisket pastrami chicken salami pork chop chuck. Swine pastrami ground round, sausage doner
+                    pork chop shank bresaola tongue. Corned beef tail ribeye doner drumstick strip steak shoulder jerky ground round leberkas pastrami sirloin ball tip. Tail tri-tip filet mignon jowl jerky salami, pork belly venison swine cupim drumstick
+                    flank. Venison ground round brisket, boudin tri-tip kevin porchetta flank pork loin hamburger shank rump ham hock.</p>
+            </div>
+        </div>
+        <aside data-ts="Aside" data-ts.title="Nested Aside">
+            <div data-ts="Panel">
+                <p>Aside content.</p>
+            </div>
+        </aside>
+        <!--
+			<div data-ts="Footer">
+				<p>Footer content. The button below is only relevant in <strong>mobile</strong> view.</p>
+				<p>
+					<button data-ts="Button" class="ts-tertiary" onclick="gui.get('sidebar-after').toggle()">
+						<span>Toggle SideBar</span>
+					</button>
+				</p>
+			</div>
+			-->
+    </aside>
+</body>
+
+</html>

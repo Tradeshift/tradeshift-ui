@@ -28,11 +28,6 @@ article {
 		margin-top: @ts-unit-triple;
 		margin-bottom: @ts-unit-plus;
 	}
-	h4,
-	h5 {
-		font-weight: @ts-fontweight-light;
-		letter-spacing: 0.25px;
-	}
 }
 
 section {
@@ -45,13 +40,6 @@ section {
 		code {
 			font-size: 16px;
 		}
-	}
-	p,
-	dl,
-	ul li,
-	ol li {
-		font-weight: @ts-fontweight-light;
-		letter-spacing: 0.25px;
 	}
 }
 
@@ -79,18 +67,4 @@ samp {
 	-webkit-hyphens: none;
 	-moz-hyphens: none;
 	hyphens: none;
-}
-
-/* Remove font-weight hack for certain elements ..............................*/
-ul.splitscreen li:last-child {
-	&,
-	p,
-	li {
-		font-weight: @ts-fontweight;
-		letter-spacing: 0px;
-	}
-}
-.output {
-	font-weight: @ts-fontweight;
-	letter-spacing: 0px;
 }

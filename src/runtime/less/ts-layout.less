@@ -1,3 +1,5 @@
+@import 'ts-variables-new.less';
+
 // Layout ......................................................................
 
 html,
@@ -67,66 +69,66 @@ body,
 
 // Decorations .................................................................
 
-@bordercolor: rgba(0,0,0,0.16); // TODO: externalize this somewhere
-@shadowcolor: rgba(0,0,0,0.08);
-
-.ts-sidebar {
-	&.ts-sidebar-first {
-		border-right: 1px solid @bordercolor;
+.ts-toolbar {
+	&:before,
+	&:after {
+		height: 1px;
+		width: 100%;
+		position: absolute;
+		pointer-events: none;
+		background-color: @new-bordercolor;
 	}
-	&.ts-sidebar-last {
-		border-left: 1px solid @bordercolor;
+	&:before {
+		top: 0;
 	}
-}
-
-/*
-.mixin-borderline() {
-	content: '';
-	position: absolute;
-	pointer-events: none;
-	top: 0;
-	right: 0;
-	left: 0;
-	height: 1px;
-	background-color: @bordercolor;
-}
-*/
-
-.ts-headerbar,
-.ts-footerbar {
-	.ts-toolbar {
-		&:before,
-		&:after {
-			height: 1px;
-			width: 100%;
-			position: absolute;
-			pointer-events: none;
-			background-color: @bordercolor;
-		}
-	}
-}
-.ts-headerbar {
-	.ts-toolbar:after {
-		content: '';
+	&:after {
 		bottom: 0;
 	}
 }
+.ts-toolbar:not(:last-child):after {
+	content: '';
+}
 
-.ts-app.ts-has-header > .ts-main {
-	> .ts-content {
-		&:before,
-		&:after {
-			content: '';
-			height: 3px;
-			width: 100%;
-			position: absolute;
-			pointer-events: none;
+.ts-sidebar {
+	&.ts-sidebar-first {
+		> .ts-panels,
+		> .ts-panel {
+			border-right: 1px solid @new-bordercolor;
 		}
 	}
-	> .ts-content {
-		&:before {
-			background-image: linear-gradient(@shadowcolor, transparent);
-			top: 0;
+	&.ts-sidebar-last {
+		> .ts-panels,
+		> .ts-panel {
+			border-left: 1px solid @new-bordercolor;
+		}
+	}
+}
+
+.ts-app {
+	&.ts-has-header,
+	&.ts-has-footer {
+		.ts-content > .ts-panel {
+			background-repeat: no-repeat;
+			background-size: 100% 3px;
+		}
+	}
+	&.ts-has-header {
+		.ts-content > .ts-panel {
+			background-image: linear-gradient(@new-shadowcolor, transparent);			
+		}
+	}
+	&.ts-has-footer {
+		.ts-content > .ts-panel {
+			background-image: linear-gradient(transparent, @new-shadowcolor);
+			background-position: 0 100%;
+		}	
+	}
+	&.ts-has-header.ts-has-footer {
+		.ts-content > .ts-panel {
+			background-image: linear-gradient(@new-shadowcolor, transparent), linear-gradient(transparent, @new-shadowcolor);
+			background-repeat: no-repeat, no-repeat;
+			background-size: 100% 3px, 100% 3px;
+			background-position: 0 0, 0 100%;
 		}
 	}
 }

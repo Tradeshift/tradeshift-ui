@@ -1,7 +1,9 @@
+@import 'ts-variables-new.less';
+
 .ts-board {
 	.ts-mixin-rounded();
-	box-shadow: 0 0 3px rgba(0,0,0,0.08);
-	border: 1px solid rgba(0,0,0,0.16);
+	box-shadow: 0 0 3px @new-shadowcolor;
+	border: 1px solid @new-bordercolor;
 	background-color: @ts-white;
 	margin-bottom: @ts-unit;
 	> .ts-panel,
@@ -32,13 +34,13 @@
 		flex: none;
 		height: auto;
 	}
+	/*
 	&.ts-has-header {
 		> .ts-panels,
 		> .ts-panel {
 			border-top: 1px solid rgba(0,0,0,0.16);
 		}
 	}
-	/*
 	&:not(.ts-has-header) {
 		> .ts-panel {
 			flex: none;

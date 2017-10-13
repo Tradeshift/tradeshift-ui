@@ -35,7 +35,7 @@ ts.dox.ChromeSpirit = (function using(CSSPlugin, Then) {
 		 */
 		onready: function() {
 			this.super.onready();
-			this._sbar = this.dom.q('.ts-sidebar', ts.ui.SideBarSpirit);
+			this._sbar = this.dom.q('.ts-sidebar', ts.dox.SideBarSpirit);
 			this._menu = this.dom.q('.ts-menu', ts.dox.MenuSpirit);
 			this._main = this.dom.q('.ts-main', ts.ui.MainSpirit);
 			this._menu.life.add(gui.LIFE_RENDER, this);

@@ -42,11 +42,6 @@ article h2 {
   margin-top: 66px;
   margin-bottom: 33px;
 }
-article h4,
-article h5 {
-  font-weight: 300;
-  letter-spacing: 0.25px;
-}
 section {
   margin-bottom: 22px;
 }
@@ -58,13 +53,6 @@ section.desc {
 section.desc,
 section.desc code {
   font-size: 16px;
-}
-section p,
-section dl,
-section ul li,
-section ol li {
-  font-weight: 300;
-  letter-spacing: 0.25px;
 }
 dl {
   margin-bottom: 22px;
@@ -89,17 +77,6 @@ samp {
   -webkit-hyphens: none;
   -moz-hyphens: none;
   hyphens: none;
-}
-/* Remove font-weight hack for certain elements ..............................*/
-ul.splitscreen li:last-child,
-ul.splitscreen li:last-child p,
-ul.splitscreen li:last-child li {
-  font-weight: 400;
-  letter-spacing: 0px;
-}
-.output {
-  font-weight: 400;
-  letter-spacing: 0px;
 }
 figure {
   position: relative;
@@ -364,7 +341,6 @@ table.api {
   width: 100%;
   background-color: #ebebeb;
   color: #494949;
-  font-weight: 300;
 }
 #markdown table code,
 table.api code {
@@ -387,10 +363,6 @@ table.api caption,
 #markdown table th,
 table.api th {
   text-align: left;
-}
-#markdown table th,
-table.api th {
-  font-weight: 300;
 }
 #markdown table caption,
 table.api caption {
@@ -416,7 +388,6 @@ table.api tbody:last-child tr:last-child td {
 }
 #markdown table {
   background: transparent;
-  font-weight: 300;
 }
 #markdown table tr {
   border-top: 1px solid #ebebeb;
@@ -565,6 +536,18 @@ table.api th {
 .ts-doxchrome .ts-topbarspinner {
   visibility: hidden;
 }
+.ts-doxchrome .ts-sidebar .ts-toolbar {
+  background-color: #494949;
+}
+.ts-doxchrome .ts-sidebar .ts-toolbar,
+.ts-doxchrome .ts-sidebar .ts-toolbar a,
+.ts-doxchrome .ts-sidebar .ts-toolbar button {
+  color: #ffffff;
+}
+.ts-doxchrome .ts-sidebar .ts-toolbar label.ts-focus,
+.ts-doxchrome .ts-sidebar .ts-toolbar label.ts-focus-on {
+  background-color: transparent;
+}
 .ts-doxchrome .ts-sidebar .ts-toolbar-title label {
   -webkit-font-smoothing: antialiased;
   font-family: Tradeshifticons;
@@ -575,6 +558,7 @@ table.api th {
   padding: 0;
   overflow-y: scroll;
   background-color: #3f3f3f;
+  border-right: none;
 }
 .ts-doxchrome .ts-sidebar .ts-panel::-webkit-scrollbar {
   width: 5px;
@@ -591,6 +575,9 @@ table.api th {
 }
 .ts-doxchrome .ts-sidebar .ts-panel .ts-menu {
   margin: 0;
+}
+.ts-doxchrome .ts-sidebar .ts-panel:after {
+  content: '';
 }
 .ts-doxchrome.selectfirstitem .ts-sidebar > .ts-shadow {
   display: none;
@@ -687,6 +674,7 @@ table.api th {
 .ts-doxchrome .ts-menu > li > a:hover:not(:disabled):before,
 .ts-doxchrome .ts-menu > li > a:focus:before {
   background-color: #0c8cd5;
+  background-color: #20a0e9;
 }
 .ts-doxchrome .ts-menu > li > a > i {
   top: 33%;
@@ -695,15 +683,18 @@ table.api th {
 .ts-doxchrome .ts-menu > li > a.ts-checked {
   position: relative;
   z-index: 3;
+  /*
+					&:before {
+						background-color: @ts-blue-dark;
+						background-color: @ts-blue;
+					}
+					*/
 }
 .ts-doxchrome .ts-menu > li > a.ts-checked,
 .ts-doxchrome .ts-menu > li > a.ts-checked:hover {
-  background-color: #366375 !important;
+  background-color: #20a0e9 !important;
   color: #ffffff;
   cursor: default;
-}
-.ts-doxchrome .ts-menu > li > a.ts-checked:before {
-  background-color: #0c8cd5;
 }
 .ts-doxchrome .ts-menu > li.submenu > a {
   position: relative;

@@ -23,12 +23,6 @@ ts.ui.PanelSpirit = (function using(
 
 		/**
 		 * For when the panel is used to generate tabs.
-		 * @type {boolean}
-		 */
-		selected: false,
-
-		/**
-		 * For when the panel is used to generate tabs.
 		 * @type {string} label
 		 */
 		icon: null,
@@ -46,7 +40,28 @@ ts.ui.PanelSpirit = (function using(
 		onunselect: null,
 
 		/**
-		 * Panel is visible?
+		 * This property comes in handy when the panel is used to generate tabs.
+		 * @type {boolean}
+		 */
+		selected: {
+			getter: function() {
+				return this.visible;
+			},
+			setter: function(is) {
+				if (is !== this.visible) {
+					if ((this.visible = is)) {
+						this.$onselect();
+					} else {
+						this.$onunselect();
+					}
+				}
+			}
+		},
+
+		/**
+		 * Panel is selected? This can be used to show the panel without triggering 
+		 * the selection logic (for example to compute the height of the panel).
+		 * Note that this doesn't have any effect unless inside a {PanelsSpirit}.
 		 * @type {boolean} visible
 		 */
 		visible: {
@@ -110,19 +125,19 @@ ts.ui.PanelSpirit = (function using(
 		},
 
 		/**
-		 * Show the panel.
+		 * Select the panel.
 		 * @returns {this}
 		 */
-		show: chained(function() {
-			this.visible = true;
+		select: chained(function() {
+			this.selected = true;
 		}),
 
 		/**
-		 * Hide the panel.
+		 * Unselect the panel.
 		 * @returns {this}
 		 */
-		hide: chained(function() {
-			this.visible = false;
+		unselect: chained(function() {
+			this.selected = false;
 		}),
 
 		/**

@@ -11,9 +11,15 @@
 		</style>
 	</head>
 	<body class="nosticky">
-		<header data-ts="ToolBar" id="toolbar"></header>
-		<main data-ts="Main">
-			<div data-ts="Table" id="demotable"></div>
-		</main>
+		<div data-ts="App">
+			<div data-ts="Main">
+				<div data-ts="Content">
+					<header data-ts="ToolBar" id="toolbar"></header>
+					<div data-ts="Panel" style="overflow:hidden">
+						<div data-ts="Table" id="demotable"></div>
+					</div>
+				</div>
+			</div>
+		</div>
 	</body>
 </html>

@@ -28,6 +28,11 @@ ts.ui.AppSpirit = (function() {
 			$inject: function() {
 				appheader() && this._head();
 				appfooter() && this._foot();
+				/*
+				this.tick.next(function() {
+					this.reflex();
+				});
+				*/
 			},
 
 			// Private ...............................................................

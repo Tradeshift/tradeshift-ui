@@ -1,8 +1,10 @@
 .ts-modal {
 	// .box-mixin-vbox();
 	// .ts-mixin-maximize();
+	.ts-mixin-maximize();
 	z-index: @ts-zindex-modal;
 	border-radius: 0;
+	/*
 	&.ts-inscreen {
 		width: 480px;
 		height: 320px;
@@ -17,6 +19,7 @@
 			border-radius: 0 0 @ts-radius @ts-radius;
 		}
 	}
+	*/
 	> .ts-panels {
 		position: relative;
 	}
@@ -37,6 +40,8 @@
 			visibility: hidden;
 		}
 		> .ts-main {
+			display: block;
+			flex: none;
 			max-width: (@ts-width-aside + @ts-unit-plus) * 2; // 640px usable
 			padding: @ts-unit-plus;
 			text-align: center;
@@ -54,6 +59,7 @@
 			overflow-x: hidden;
 		}
 	}
+	/*
 	> footer {
 		position: absolute;
 		bottom: 0;
@@ -70,7 +76,6 @@
 			}
 		}
 	}
-	/*
 	&.ts-has-header {
 		&.ts-header-level-2 {
 			> .ts-panels,

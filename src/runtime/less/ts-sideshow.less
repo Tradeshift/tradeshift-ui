@@ -4,17 +4,16 @@
 		background-color: @ts-white;
 	}
 	> .ts-panel,
-	> .ts-panels > .ts-panel {
-		overflow-y: auto;
-	}
-	> .ts-panel,
 	> .ts-panels > .ts-panel,
 	> .ts-footer {
 		padding: @ts-unit;
 	}
+	> .ts-panel,
+	> .ts-panels > .ts-panel {
+		padding-bottom: @ts-unit-triple;
+	}
 	> .ts-panel {
 		z-index: 0;
-		padding-bottom: @ts-unit-triple;
 		> .ts-note {
 			&:first-child {
 				margin: -@ts-unit -@ts-unit 0 -@ts-unit;

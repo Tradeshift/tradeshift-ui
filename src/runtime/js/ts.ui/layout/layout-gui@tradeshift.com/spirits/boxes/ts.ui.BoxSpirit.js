@@ -110,7 +110,7 @@ ts.ui.BoxSpirit = (function using(
 			 * @returns {ts.ui.TabBarSpirit}
 			 */
 			_head: function() {
-				return ts.ui.BoxSpirit.minorHeader(this);
+				return ts.ui.BoxSpirit.microHeader(this);
 			}
 		},
 		{
@@ -120,20 +120,37 @@ ts.ui.BoxSpirit = (function using(
 			// Static ...............................................................
 
 			/**
+			 * Setup box header using a micro ToolBar.
 			 * @param {ts.ui.BoxSpirit} box
+			 * @param {ts.ui.ToolBarSpirit} [toolbar] - Optionally inject this toolbar
 			 * @returns {ts.ui.ToolBarSpirit}
 			 */
-			minorHeader: function(box) {
-				box.css.add(['ts-has-header', 'ts-has-header-minor']);
+			microHeader: function(box, toolbar) {
+				box.css.add(['ts-has-header', 'ts-has-header-micro']);
 				return (
 					box.dom.child(ToolBarSpirit) ||
-					box.dom.prepend(ToolBarSpirit.summon('header', 'ts-micro'))
+					box.dom.prepend(toolbar || ToolBarSpirit.summon('header', 'ts-micro'))
 				);
 			},
 
 			/**
+			 * Setup box header using a macro ToolBar.
 			 * @param {ts.ui.BoxSpirit} box
-			 * @param {ts.ui.HeaderBarSpirit} [footer]
+			 * @param {ts.ui.ToolBarSpirit} [toolbar] - Optionally inject this toolbar
+			 * @returns {ts.ui.ToolBarSpirit}
+			 */
+			macroHeader: function(box, toolbar) {
+				box.css.add(['ts-has-header', 'ts-has-header-macro']);
+				return (
+					box.dom.child(ToolBarSpirit) ||
+					box.dom.prepend(toolbar || ToolBarSpirit.summon('header', 'ts-macro'))
+				);
+			},
+
+			/**
+			 * Setup box header using a  full on HeaderBar.
+			 * @param {ts.ui.BoxSpirit} box
+			 * @param {ts.ui.HeaderBarSpirit} [footer] - Optionally inject this header
 			 * @returns {ts.ui.HeaderBarSpirit}
 			 */
 			majorHeader: function(box, header) {
@@ -145,8 +162,9 @@ ts.ui.BoxSpirit = (function using(
 			},
 
 			/**
+			 * Setup box footer using a mighty FooteBar.
 			 * @param {ts.ui.BoxSpirit} box
-			 * @param {ts.ui.FooterBarSpirit} [footer]
+			 * @param {ts.ui.FooterBarSpirit} [footer] - Optionally inject this header
 			 * @returns {ts.ui.FooterBarSpirit}
 			 */
 			majorFooter: function(box, footer) {

@@ -42,6 +42,7 @@ module.exports = function(grunt) {
 			'<script src="/dist/assets/dox.js"></script>',
 			'<script src="/dist/assets/mark.min.js"></script>',
 			'<script src="/dist/assets/jquery-2.2.4.min.js"></script>',
+			'<link rel="stylesheet" href="//127.0.0.1:10111/dist/ts.css" id="ts-css"/>',
 			'<link rel="stylesheet" href="/dist/assets/dox.css"/>'
 		],
 
@@ -180,7 +181,7 @@ module.exports = function(grunt) {
 		watch: {
 			js_global: {
 				files: 'src/js/**/*.js',
-				tasks: ['guibundles', 'uglify'],
+				tasks: ['guibundles', 'concat:local', 'uglify'],
 				options: { debounceDelay: 250 }
 			},
 			js_local: {

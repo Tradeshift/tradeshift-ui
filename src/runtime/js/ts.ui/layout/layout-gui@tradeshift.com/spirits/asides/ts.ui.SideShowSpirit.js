@@ -233,11 +233,6 @@ ts.ui.SideShowSpirit = (function using(
 				var header = this._head();
 				if (arguments.length) {
 					header.title(title);
-					/*
-					this._reflex(function() {
-						header.title(title);
-					});
-					*/
 				} else {
 					return header.title();
 				}

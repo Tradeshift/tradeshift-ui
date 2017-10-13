@@ -227,10 +227,7 @@ ts.ui.ModalSpirit = (function using(Client, transition, chained) {
 		 * Called by the {DoorManPlugin} when the modal opens.
 		 */
 		$onopen: function() {
-			this.css
-				.shift(this.$fullscreen, 'ts-fullscreen')
-				.shift(!this.$fullscreen, 'ts-inscreen')
-				.shift(this.$fullscreen, 'ts-overflow');
+			this.css.add('ts-fullscreen').add('ts-overflow');
 			this._fadeIn();
 		},
 
@@ -240,12 +237,6 @@ ts.ui.ModalSpirit = (function using(Client, transition, chained) {
 		$onclose: function() {
 			this._fadeOut();
 		},
-
-		/**
-		 * Open fullscreen? We can just hardcode this for now.
-		 * @type {boolean}
-		 */
-		$fullscreen: true,
 
 		/**
 		 * Called by the {ts.ui.PanelsPlugin} when a tab is selected.
@@ -295,6 +286,7 @@ ts.ui.ModalSpirit = (function using(Client, transition, chained) {
 			} else {
 				this.dom.show();
 				// this.panels.init();
+				this.reflex();
 				this._cloak(true);
 				this.broadcast.dispatch(willopen);
 				this.att.set('data-ts.open', true);
@@ -371,13 +363,8 @@ ts.ui.ModalSpirit = (function using(Client, transition, chained) {
 		 * @returns {gui.Then}
 		 */
 		_autosize: function(avail, xxxxx) {
-			console.log('autosize!');
 			var then = new gui.Then();
-			if (this.$fullscreen) {
-				this._autosizefullscreen(then, avail, xxxxx);
-			} else {
-				this._autosizeinscreen(then, avail, xxxxx);
-			}
+			this._autosizefullscreen(then, avail, xxxxx);
 			return then;
 		},
 
@@ -409,38 +396,9 @@ ts.ui.ModalSpirit = (function using(Client, transition, chained) {
 			if (main) {
 				var height = main.box.height;
 				var avails = panel.box.height;
-				console.log('height', height);
-				console.log('avails', avails);
-				console.log('what', panel.element.getBoundingClientRect().height);
 				var offset = avails * GOLDEN - height * 0.5;
 				main.css.top = offset > 0 ? offset : 0;
 			}
-		},
-
-		/**
-		 * If we should ever need non-fullscreen Modals,
-		 * this will position the Modal centered on screen.
-		 * TODO: If we need this, update for bar *levels*
-		 * NOTE: `headerheight` and `footerheight` don't exits!
-		 * @param {gui.Then} then
-		 * @param {number} avail
-		 * @param {number} xxxxx
-		 */
-		_autosizeinscreen: function(then, avail, xxxxx) {
-			this.css.remove('ts-overflow');
-			var headerheight = 'TODO';
-			var footerheight = 'TODO';
-			var height =
-				this._panel().naturalHeight() +
-				(this.css.contains('ts-has-header') ? headerheight : 0) +
-				(this.css.contains('ts-has-footer') ? footerheight : 0);
-			var breaks = height > avail;
-			height = breaks ? avail : height;
-			this.css.height = height;
-			this.css.shift(breaks, 'ts-overflow');
-			this.tick.time(function unflicker() {
-				then.now(height, breaks);
-			}, Client.isWebKit ? 100 : 200);
 		},
 
 		/**
@@ -477,11 +435,6 @@ ts.ui.ModalSpirit = (function using(Client, transition, chained) {
 		 * @returns {ts.ui.HeaderBarSpirit}
 		 */
 		_head: function() {
-			/*
-			this.css.add('ts-has-header');
-			this.action.add(ts.ui.ACTION_HEADER_LEVEL);
-			return this.dom.child(HeaderBar) || this.dom.prepend(HeaderBar.summon());
-			*/
 			return ts.ui.BoxSpirit.majorHeader(this);
 		},
 

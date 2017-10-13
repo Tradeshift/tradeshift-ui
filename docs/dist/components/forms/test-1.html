@@ -26,73 +26,79 @@
 </head>
 
 <body>
-    <main data-ts="Main">
-        <article>
-            <h1><span>Testing fake inputs</span></h1>
-            <section class="desc">
-                <p>Testing the proxy elements created by <code>&lt;select&gt;</code> and <code>&lt;input type=&quot;date&quot;&gt;</code>.</p>
-            </section>
-            <section ng-app="app" ng-controller="TestController">
-                <div data-ts="Note">
-                    <i class="ts-icon-todo"></i>
-                    <p>TODO: The <code>SELECT</code> updates on the <code>tick</code>, make it faster!</p>
-                </div>
-                <h3><span>This runs <em>inside</em> the Angular controller.</span></h3>
-                <ul ng-repeat="level1 in testList1">
-                    <li ng-repeat="level2 in testList2">
-                        <div ng-repeat="level3 in testList3">
-                            <form data-ts="Form">
-                                <fieldset>
-                                    <label>
+    <div data-ts="App">
+        <div data-ts="Main">
+            <div data-ts="Content">
+                <div data-ts="Panel">
+                    <article>
+                        <h1><span>Testing fake inputs</span></h1>
+                        <section class="desc">
+                            <p>Testing the proxy elements created by <code>&lt;select&gt;</code> and <code>&lt;input type=&quot;date&quot;&gt;</code>.</p>
+                        </section>
+                        <section ng-app="app" ng-controller="TestController">
+                            <div data-ts="Note">
+                                <i class="ts-icon-todo"></i>
+                                <p>TODO: The <code>SELECT</code> updates on the <code>tick</code>, make it faster!</p>
+                            </div>
+                            <h3><span>This runs <em>inside</em> the Angular controller.</span></h3>
+                            <ul ng-repeat="level1 in testList1">
+                                <li ng-repeat="level2 in testList2">
+                                    <div ng-repeat="level3 in testList3">
+                                        <form data-ts="Form">
+                                            <fieldset>
+                                                <label>
 											<span>Select</span>
 											<select ng-model="typeOption" ng-disabled="selectDisabled" ng-options="option.value as option.name for option in typeOptions">
 											</select>
 										</label>
-                                </fieldset>
-                                <fieldset>
-                                    <label>
+                                            </fieldset>
+                                            <fieldset>
+                                                <label>
 											<span>Select multiple</span>
 											<select multiple="true" ng-model="selectedColors" ng-options="c.name+&apos; (&apos;+c.shade+&apos;)&apos; for c in colors">
 											</select>
 										</label>
-                                </fieldset>
-                                <fieldset>
-                                    <label>
+                                            </fieldset>
+                                            <fieldset>
+                                                <label>
 											<span>Date</span>
 											<input type="date" value="2015-01-01" min="2014-01-01" max="2016-01-01">
 										</label>
-                                </fieldset>
-                            </form>
-                        </div>
-                    </li>
-                </ul>
-            </section>
-            <section>
-                <h3><span>This runs <em>outside</em> the Angular controller.</span></h3>
-                <form data-ts="Form">
-                    <fieldset>
-                        <label>
+                                            </fieldset>
+                                        </form>
+                                    </div>
+                                </li>
+                            </ul>
+                        </section>
+                        <section>
+                            <h3><span>This runs <em>outside</em> the Angular controller.</span></h3>
+                            <form data-ts="Form">
+                                <fieldset>
+                                    <label>
 								<span>Label</span>
 								<select id="outsideselect"></select>
 							</label>
-                    </fieldset>
-                    <fieldset>
-                        <label>
+                                </fieldset>
+                                <fieldset>
+                                    <label>
 								<span>Select multiple</span>
 								<select multiple id="outsideselectmultiple"></select>
 								<button>Cool, apply changes!</button>
 							</label>
-                    </fieldset>
-                    <fieldset>
-                        <label>
+                                </fieldset>
+                                <fieldset>
+                                    <label>
 								<span>Date</span>
 								<input type="date" value="2015-01-01" min="2014-01-01" max="2016-01-01">
 							</label>
-                    </fieldset>
-                </form>
-            </section>
-        </article>
-    </main>
+                                </fieldset>
+                            </form>
+                        </section>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </div>
     <aside data-ts="Note" class="sticky ts-bg-yellow">
         <p>If you find a bug or need a feature&#x2026;</p>
         <menu class="ts-buttons">

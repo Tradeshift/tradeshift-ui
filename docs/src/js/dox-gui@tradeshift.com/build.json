@@ -1,5 +1,6 @@
 [
 	"spirits/chrome/ts.dox.ChromeSpirit.js",
+	"spirits/chrome/ts.dox.SideBarSpirit.js",
 	"spirits/menu/ts.dox.MenuSpirit.js",
 	"spirits/menu/ts.dox.ItemSpirit.js",
 	"spirits/menu/ts.dox.MenuCoverSpirit.js",

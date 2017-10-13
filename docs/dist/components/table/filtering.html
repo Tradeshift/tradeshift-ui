@@ -39,22 +39,25 @@
 </head>
 
 <body class="nosticky">
-    <main data-ts="Main">
-        <article>
-            <h1><span>Filtering the columns</span></h1>
-            <section>
-                <p>The table doesn&apos;t really know anything about &quot;filtering&quot;, but it does support a <code>button</code> which can be assigned an <code>icon</code> and an <code>onclick</code> method. Perhaps you can use this to create your own
-                    filtering UI in an <a data-ts="Button" href="/dist/components/asides/">Aside</a> or something.</p>
-                <div class="splitscreen-container">
-                    <ul class="splitscreen">
-                        <li>
-                            <figure data-ts="DoxScript" class="runnable" data-ts.code="var%20table%20%3D%20ts.ui.get(&apos;%23table1&apos;)%3B%0Avar%20popup%20%3D%20ts.ui.Notification%3B%0Atable.cols(%5B%0A%09%7B%0A%09%09label%3A%20&apos;Hello&apos;%2C%0A%09%09type%3A%20&apos;ts-number&apos;%2C%0A%09%09button%3A%20%7B%0A%09%09%09icon%3A%20&apos;ts-icon-addfilter&apos;%2C%0A%09%09%09onclick%3A%20function()%20%7B%0A%09%09%09%09this.icon%20%3D%20&apos;ts-icon-delete&apos;%3B%0A%09%09%09%09popup.success(&apos;Clicked!&apos;)%3B%0A%09%09%09%7D%0A%09%09%7D%0A%09%7D%0A%5D)%3B">
-                                <script type="runnable">
-                                    var table = ts.ui.get('#table1'); var popup = ts.ui.Notification; table.cols([ { label: 'Hello', type: 'ts-number', button: { icon: 'ts-icon-addfilter', onclick: function() { this.icon = 'ts-icon-delete'; popup.success('Clicked!'); } } } ]);
-                                </script>
-                                <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
-                                <div data-ts="Panel">
-                                    <pre class="prism language-javascript"><code><span class="token keyword">var</span> table <span class="token operator">=</span> ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#table1&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <div data-ts="App">
+        <div data-ts="Main">
+            <div data-ts="Content">
+                <div data-ts="Panel">
+                    <article>
+                        <h1><span>Filtering the columns</span></h1>
+                        <section>
+                            <p>The table doesn&apos;t really know anything about &quot;filtering&quot;, but it does support a <code>button</code> which can be assigned an <code>icon</code> and an <code>onclick</code> method. Perhaps you can use this to create
+                                your own filtering UI in an <a data-ts="Button" href="/dist/components/asides/">Aside</a> or something.</p>
+                            <div class="splitscreen-container">
+                                <ul class="splitscreen">
+                                    <li>
+                                        <figure data-ts="DoxScript" class="runnable" data-ts.code="var%20table%20%3D%20ts.ui.get(&apos;%23table1&apos;)%3B%0Avar%20popup%20%3D%20ts.ui.Notification%3B%0Atable.cols(%5B%0A%09%7B%0A%09%09label%3A%20&apos;Hello&apos;%2C%0A%09%09type%3A%20&apos;ts-number&apos;%2C%0A%09%09button%3A%20%7B%0A%09%09%09icon%3A%20&apos;ts-icon-addfilter&apos;%2C%0A%09%09%09onclick%3A%20function()%20%7B%0A%09%09%09%09this.icon%20%3D%20&apos;ts-icon-delete&apos;%3B%0A%09%09%09%09popup.success(&apos;Clicked!&apos;)%3B%0A%09%09%09%7D%0A%09%09%7D%0A%09%7D%0A%5D)%3B">
+                                            <script type="runnable">
+                                                var table = ts.ui.get('#table1'); var popup = ts.ui.Notification; table.cols([ { label: 'Hello', type: 'ts-number', button: { icon: 'ts-icon-addfilter', onclick: function() { this.icon = 'ts-icon-delete'; popup.success('Clicked!'); } } } ]);
+                                            </script>
+                                            <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                                            <div data-ts="Panel">
+                                                <pre class="prism language-javascript"><code><span class="token keyword">var</span> table <span class="token operator">=</span> ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#table1&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token keyword">var</span> popup <span class="token operator">=</span> ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Notification<span class="token punctuation">;</span>
 table<span class="token punctuation">.</span><span class="token function">cols<span class="token punctuation">(</span></span><span class="token punctuation">[</span>
 	<span class="token punctuation">{</span>
@@ -69,41 +72,42 @@ table<span class="token punctuation">.</span><span class="token function">cols<s
 		<span class="token punctuation">}</span>
 	<span class="token punctuation">}</span>
 <span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
-                            </figure>
-                        </li>
-                        <li>
-                            <div data-ts="Table" id="table1"></div>
-                        </li>
-                    </ul>
-                </div>
-                <p>You can change the <code>icon</code> and the <code>onclick</code> method as often as you like.</p>
-                <figure data-ts="DoxScript" class="runnable" data-ts.code="var%20table%20%3D%20ts.ui.get(&apos;%23table1&apos;)%3B%0Avar%20popup%20%3D%20ts.ui.Notification%3B%0Avar%20mycol%20%3D%20table.cols()%5B0%5D%3B%0Amycol.button.icon%20%3D%20&apos;ts-icon-view&apos;%3B%0Amycol.button.onclick%20%3D%20function()%20%7B%0A%09popup.success(&apos;Clicked%20again!&apos;)%3B%0A%7D%3B">
-                    <script type="runnable">
-                        var table = ts.ui.get('#table1'); var popup = ts.ui.Notification; var mycol = table.cols()[0]; mycol.button.icon = 'ts-icon-view'; mycol.button.onclick = function() { popup.success('Clicked again!'); };
-                    </script>
-                    <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
-                    <div data-ts="Panel">
-                        <pre class="prism language-javascript"><code><span class="token keyword">var</span> table <span class="token operator">=</span> ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#table1&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                                        </figure>
+                                    </li>
+                                    <li>
+                                        <div data-ts="Table" id="table1"></div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <p>You can change the <code>icon</code> and the <code>onclick</code> method as often as you like.</p>
+                            <figure data-ts="DoxScript" class="runnable" data-ts.code="var%20table%20%3D%20ts.ui.get(&apos;%23table1&apos;)%3B%0Avar%20popup%20%3D%20ts.ui.Notification%3B%0Avar%20mycol%20%3D%20table.cols()%5B0%5D%3B%0Amycol.button.icon%20%3D%20&apos;ts-icon-view&apos;%3B%0Amycol.button.onclick%20%3D%20function()%20%7B%0A%09popup.success(&apos;Clicked%20again!&apos;)%3B%0A%7D%3B">
+                                <script type="runnable">
+                                    var table = ts.ui.get('#table1'); var popup = ts.ui.Notification; var mycol = table.cols()[0]; mycol.button.icon = 'ts-icon-view'; mycol.button.onclick = function() { popup.success('Clicked again!'); };
+                                </script>
+                                <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                                <div data-ts="Panel">
+                                    <pre class="prism language-javascript"><code><span class="token keyword">var</span> table <span class="token operator">=</span> ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#table1&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token keyword">var</span> popup <span class="token operator">=</span> ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Notification<span class="token punctuation">;</span>
 <span class="token keyword">var</span> mycol <span class="token operator">=</span> table<span class="token punctuation">.</span><span class="token function">cols<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
 mycol<span class="token punctuation">.</span>button<span class="token punctuation">.</span>icon <span class="token operator">=</span> <span class="token string">&apos;ts-icon-view&apos;</span><span class="token punctuation">;</span>
 mycol<span class="token punctuation">.</span>button<span class="token punctuation">.</span>onclick <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
 	popup<span class="token punctuation">.</span><span class="token function">success<span class="token punctuation">(</span></span><span class="token string">&apos;Clicked again!&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
-                </figure>
-                <p>When you implement filtering, you can either <a data-ts="Button" href="/dist/components/table/building.html">build the rows</a> from scratch or update the <code>visible</code> property of the existing row &#x2014; like in this example.</p>
-                <div class="splitscreen-container">
-                    <ul class="splitscreen">
-                        <li>
-                            <figure data-ts="DoxScript" class="runnable" data-ts.code="var%20table%20%3D%20ts.ui.get(&apos;%23table2&apos;)%3B%0Avar%20popup%20%3D%20ts.ui.Notification%3B%0Avar%20isodd%20%3D%20false%3B%0Atable.rows(%5B%5B1%5D%2C%20%5B2%5D%2C%20%5B3%5D%2C%20%5B4%5D%2C%20%5B5%5D%2C%20%5B6%5D%2C%20%5B7%5D%5D).cols(%5B%0A%09%7B%0A%09%09label%3A%20&apos;All%20numbers&apos;%2C%0A%09%09type%3A%20&apos;ts-number&apos;%2C%0A%09%09button%3A%20%7B%0A%09%09%09icon%3A%20&apos;ts-icon-addfilter&apos;%2C%0A%09%09%09info%3A%20&apos;Show%20odd%20rows&apos;%2C%0A%09%09%09onclick%3A%20function()%20%7B%0A%09%09%09%09isodd%20%3D%20!isodd%3B%0A%09%09%09%09this.icon%20%3D%20isodd%20%3F%20&apos;ts-icon-delete&apos;%20%3A%20&apos;ts-icon-addfilter&apos;%3B%0A%09%09%09%09this.info%20%3D%20isodd%20%3F%20&apos;Show%20all%20rows&apos;%20%3A%20&apos;Show%20odd%20rows&apos;%3B%0A%09%09%09%09table.cols()%5B0%5D.label%20%3D%20isodd%20%3F%20&apos;Odd%20numbers&apos;%20%3A%20&apos;All%20numbers&apos;%3B%0A%09%09%09%09table.rows().forEach(function(row%2C%20i)%20%7B%0A%09%09%09%09%09row.visible%20%3D%20isodd%20%3F%20(i%20%25%202%20%3D%3D%3D%200)%20%3A%20true%3B%0A%09%09%09%09%7D)%3B%0A%09%09%09%7D%0A%09%09%7D%0A%09%7D%0A%5D)%3B">
-                                <script type="runnable">
-                                    var table = ts.ui.get('#table2'); var popup = ts.ui.Notification; var isodd = false; table.rows([[1], [2], [3], [4], [5], [6], [7]]).cols([ { label: 'All numbers', type: 'ts-number', button: { icon: 'ts-icon-addfilter', info: 'Show odd rows', onclick:
-                                    function() { isodd = !isodd; this.icon = isodd ? 'ts-icon-delete' : 'ts-icon-addfilter'; this.info = isodd ? 'Show all rows' : 'Show odd rows'; table.cols()[0].label = isodd ? 'Odd numbers' : 'All numbers'; table.rows().forEach(function(row,
-                                    i) { row.visible = isodd ? (i % 2 === 0) : true; }); } } } ]);
-                                </script>
-                                <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
-                                <div data-ts="Panel">
-                                    <pre class="prism language-javascript"><code><span class="token keyword">var</span> table <span class="token operator">=</span> ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#table2&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                            </figure>
+                            <p>When you implement filtering, you can either <a data-ts="Button" href="/dist/components/table/building.html">build the rows</a> from scratch or update the <code>visible</code> property of the existing row &#x2014; like in this
+                                example.</p>
+                            <div class="splitscreen-container">
+                                <ul class="splitscreen">
+                                    <li>
+                                        <figure data-ts="DoxScript" class="runnable" data-ts.code="var%20table%20%3D%20ts.ui.get(&apos;%23table2&apos;)%3B%0Avar%20popup%20%3D%20ts.ui.Notification%3B%0Avar%20isodd%20%3D%20false%3B%0Atable.rows(%5B%5B1%5D%2C%20%5B2%5D%2C%20%5B3%5D%2C%20%5B4%5D%2C%20%5B5%5D%2C%20%5B6%5D%2C%20%5B7%5D%5D).cols(%5B%0A%09%7B%0A%09%09label%3A%20&apos;All%20numbers&apos;%2C%0A%09%09type%3A%20&apos;ts-number&apos;%2C%0A%09%09button%3A%20%7B%0A%09%09%09icon%3A%20&apos;ts-icon-addfilter&apos;%2C%0A%09%09%09info%3A%20&apos;Show%20odd%20rows&apos;%2C%0A%09%09%09onclick%3A%20function()%20%7B%0A%09%09%09%09isodd%20%3D%20!isodd%3B%0A%09%09%09%09this.icon%20%3D%20isodd%20%3F%20&apos;ts-icon-delete&apos;%20%3A%20&apos;ts-icon-addfilter&apos;%3B%0A%09%09%09%09this.info%20%3D%20isodd%20%3F%20&apos;Show%20all%20rows&apos;%20%3A%20&apos;Show%20odd%20rows&apos;%3B%0A%09%09%09%09table.cols()%5B0%5D.label%20%3D%20isodd%20%3F%20&apos;Odd%20numbers&apos;%20%3A%20&apos;All%20numbers&apos;%3B%0A%09%09%09%09table.rows().forEach(function(row%2C%20i)%20%7B%0A%09%09%09%09%09row.visible%20%3D%20isodd%20%3F%20(i%20%25%202%20%3D%3D%3D%200)%20%3A%20true%3B%0A%09%09%09%09%7D)%3B%0A%09%09%09%7D%0A%09%09%7D%0A%09%7D%0A%5D)%3B">
+                                            <script type="runnable">
+                                                var table = ts.ui.get('#table2'); var popup = ts.ui.Notification; var isodd = false; table.rows([[1], [2], [3], [4], [5], [6], [7]]).cols([ { label: 'All numbers', type: 'ts-number', button: { icon: 'ts-icon-addfilter', info: 'Show odd rows', onclick:
+                                                function() { isodd = !isodd; this.icon = isodd ? 'ts-icon-delete' : 'ts-icon-addfilter'; this.info = isodd ? 'Show all rows' : 'Show odd rows'; table.cols()[0].label = isodd ? 'Odd numbers' : 'All numbers';
+                                                table.rows().forEach(function(row, i) { row.visible = isodd ? (i % 2 === 0) : true; }); } } } ]);
+                                            </script>
+                                            <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                                            <div data-ts="Panel">
+                                                <pre class="prism language-javascript"><code><span class="token keyword">var</span> table <span class="token operator">=</span> ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#table2&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token keyword">var</span> popup <span class="token operator">=</span> ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Notification<span class="token punctuation">;</span>
 <span class="token keyword">var</span> isodd <span class="token operator">=</span> <span class="token keyword">false</span><span class="token punctuation">;</span>
 table<span class="token punctuation">.</span><span class="token function">rows<span class="token punctuation">(</span></span><span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token number">6</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token number">7</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">cols<span class="token punctuation">(</span></span><span class="token punctuation">[</span>
@@ -125,20 +129,23 @@ table<span class="token punctuation">.</span><span class="token function">rows<s
 		<span class="token punctuation">}</span>
 	<span class="token punctuation">}</span>
 <span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
-                            </figure>
-                        </li>
-                        <li>
-                            <div data-ts="Table" id="table2"></div>
-                        </li>
-                    </ul>
+                                        </figure>
+                                    </li>
+                                    <li>
+                                        <div data-ts="Table" id="table2"></div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div data-ts="Note">
+                                <i class="ts-icon-info"></i>
+                                <p>The <code>button</code> gets hidden by the <code>search</code> because it doesn&apos;t look right to have both. Let us know if that becomes a problem.</p>
+                            </div>
+                        </section>
+                    </article>
                 </div>
-                <div data-ts="Note">
-                    <i class="ts-icon-info"></i>
-                    <p>The <code>button</code> gets hidden by the <code>search</code> because it doesn&apos;t look right to have both. Let us know if that becomes a problem.</p>
-                </div>
-            </section>
-        </article>
-    </main>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>

@@ -36,7 +36,6 @@
 		</script>
 	</head>
 	<body>
-		<main data-ts="Main">
 			<article id="panel1">
 				<h1>Modal</h1>
 				<section class="desc" data-ts="Note">
@@ -44,9 +43,9 @@
 				</section>
 				<section>
 					<p>
-							<a data-ts="Button" class="ts-primary" onclick="ts.ui.get('#example3').open()">
-								<span>PANEL TABS!</span>
-							</a>
+						<a data-ts="Button" class="ts-primary" onclick="ts.ui.get('#example3').open()">
+							<span>PANEL TABS!</span>
+						</a>
 					</p>
 					<p>The <val>Modal</val> component <em>must</em> be created with a child component <val>Panel</val>.</p>
 					<figure data-ts="DoxMarkup">
@@ -61,9 +60,7 @@
 					<p>You can create the <val>Modal</val> wherever you like, just make sure that it's positioned outside of the <val>Main</val> element when it opens.</p>
 					<figure data-ts="DoxMarkup">
 						<script type="text/html">
-							<main data-ts="Main">
-								<p>Main content.</p>
-							</main>
+							<p>Main content.</p>
 							<dialog data-ts="Modal" data-ts.title="Example Modal">
 								<div data-ts="Panel">
 									<p>Modal content.</p>
@@ -80,7 +77,7 @@
 						<script type="text/html">
 							<dialog data-ts="Modal" id="example1">
 								<div data-ts="Panel">
-									<main data-ts="Main">
+									<div data-ts="Main">
 										<h1>A Modal Example</h1>
 										<p>…</p>
 										<p>
@@ -88,7 +85,7 @@
 												<span>Close the Modal</span>
 											</button>
 										</p>
-									</main>
+									</div>
 								</div>
 							</dialog>
 						</script>
@@ -348,80 +345,36 @@
 					<div>
 				</section>
 			</article>
-		</main>
 
 		<!-- Modals ............................................................. -->
 
 		<dialog data-ts="Modal" id="example1" data-ts.title="Example Modal">
 			<div data-ts="Panel">
-				<main data-ts="Main">
+				<div data-ts="Main">
 					<h1>A Modal Example</h1>
-					<!--
-					<div data-ts="Note">
-						<i class="ts-icon-info"></i>
-						<p>The suggested "modal layout" markup structure and CSS has not been finalized yet.</p>
-					</div>
-				-->
-					<p>Modal ipsum dolor amet jerky sausage pork belly tenderloin burgdoggen kevin prosciutto beef ribs shoulder tri-tip salami ribeye turducken rump. Rump prosciutto ham, kevin picanha drumstick chuck pork chop. Short ribs tail shank, alcatra kevin spare ribs meatloaf beef. Pork loin salami flank andouille prosciutto chuck bresaola sirloin ribeye. Bacon picanha salami filet mignon capicola beef ribs. Venison jowl meatloaf jerky porchetta, brisket shank picanha.</p>
-
-					<p>Modal ipsum dolor amet jerky sausage pork belly tenderloin burgdoggen kevin prosciutto beef ribs shoulder tri-tip salami ribeye turducken rump. Rump prosciutto ham, kevin picanha drumstick chuck pork chop. Short ribs tail shank, alcatra kevin spare ribs meatloaf beef. Pork loin salami flank andouille prosciutto chuck bresaola sirloin ribeye. Bacon picanha salami filet mignon capicola beef ribs. Venison jowl meatloaf jerky porchetta, brisket shank picanha.</p>
-
-					<p>Modal ipsum dolor amet jerky sausage pork belly tenderloin burgdoggen kevin prosciutto beef ribs shoulder tri-tip salami ribeye turducken rump. Rump prosciutto ham, kevin picanha drumstick chuck pork chop. Short ribs tail shank, alcatra kevin spare ribs meatloaf beef. Pork loin salami flank andouille prosciutto chuck bresaola sirloin ribeye. Bacon picanha salami filet mignon capicola beef ribs. Venison jowl meatloaf jerky porchetta, brisket shank picanha.</p>
-
-					<p>Modal ipsum dolor amet jerky sausage pork belly tenderloin burgdoggen kevin prosciutto beef ribs shoulder tri-tip salami ribeye turducken rump. Rump prosciutto ham, kevin picanha drumstick chuck pork chop. Short ribs tail shank, alcatra kevin spare ribs meatloaf beef. Pork loin salami flank andouille prosciutto chuck bresaola sirloin ribeye. Bacon picanha salami filet mignon capicola beef ribs. Venison jowl meatloaf jerky porchetta, brisket shank picanha.</p>
-
-					<p>Modal ipsum dolor amet jerky sausage pork belly tenderloin burgdoggen kevin prosciutto beef ribs shoulder tri-tip salami ribeye turducken rump. Rump prosciutto ham, kevin picanha drumstick chuck pork chop. Short ribs tail shank, alcatra kevin spare ribs meatloaf beef. Pork loin salami flank andouille prosciutto chuck bresaola sirloin ribeye. Bacon picanha salami filet mignon capicola beef ribs. Venison jowl meatloaf jerky porchetta, brisket shank picanha.</p>
-
-					<p>Modal ipsum dolor amet jerky sausage pork belly tenderloin burgdoggen kevin prosciutto beef ribs shoulder tri-tip salami ribeye turducken rump. Rump prosciutto ham, kevin picanha drumstick chuck pork chop. Short ribs tail shank, alcatra kevin spare ribs meatloaf beef. Pork loin salami flank andouille prosciutto chuck bresaola sirloin ribeye. Bacon picanha salami filet mignon capicola beef ribs. Venison jowl meatloaf jerky porchetta, brisket shank picanha.</p>
-
-					<p>Modal ipsum dolor amet jerky sausage pork belly tenderloin burgdoggen kevin prosciutto beef ribs shoulder tri-tip salami ribeye turducken rump. Rump prosciutto ham, kevin picanha drumstick chuck pork chop. Short ribs tail shank, alcatra kevin spare ribs meatloaf beef. Pork loin salami flank andouille prosciutto chuck bresaola sirloin ribeye. Bacon picanha salami filet mignon capicola beef ribs. Venison jowl meatloaf jerky porchetta, brisket shank picanha.</p>
-
-					<p>Modal ipsum dolor amet jerky sausage pork belly tenderloin burgdoggen kevin prosciutto beef ribs shoulder tri-tip salami ribeye turducken rump. Rump prosciutto ham, kevin picanha drumstick chuck pork chop. Short ribs tail shank, alcatra kevin spare ribs meatloaf beef. Pork loin salami flank andouille prosciutto chuck bresaola sirloin ribeye. Bacon picanha salami filet mignon capicola beef ribs. Venison jowl meatloaf jerky porchetta, brisket shank picanha.</p>
-
-					<p>Modal ipsum dolor amet jerky sausage pork belly tenderloin burgdoggen kevin prosciutto beef ribs shoulder tri-tip salami ribeye turducken rump. Rump prosciutto ham, kevin picanha drumstick chuck pork chop. Short ribs tail shank, alcatra kevin spare ribs meatloaf beef. Pork loin salami flank andouille prosciutto chuck bresaola sirloin ribeye. Bacon picanha salami filet mignon capicola beef ribs. Venison jowl meatloaf jerky porchetta, brisket shank picanha.</p>
-
 					<p>Modal ipsum dolor amet jerky sausage pork belly tenderloin burgdoggen kevin prosciutto beef ribs shoulder tri-tip salami ribeye turducken rump. Rump prosciutto ham, kevin picanha drumstick chuck pork chop. Short ribs tail shank, alcatra kevin spare ribs meatloaf beef. Pork loin salami flank andouille prosciutto chuck bresaola sirloin ribeye. Bacon picanha salami filet mignon capicola beef ribs. Venison jowl meatloaf jerky porchetta, brisket shank picanha.</p>
 					<p>
 						<button onclick="ts.ui.get('#example1').close()" data-ts="Button" class="ts-primary">
 							<span>Close the Modal</span>
 						</button>
 					</p>
-				</main>
+				</div>
 			</div>
 		</dialog>
 
 		<dialog data-ts="Modal" id="example2" data-ts.title="Example Modal">
 			<div data-ts="Panel">
-				<main data-ts="Main">
+				<div data-ts="Main">
 					<h1>Modal with fixed footer</h1>
 					<p>Bacon ipsum dolor amet jerky sausage pork belly tenderloin burgdoggen kevin prosciutto beef ribs shoulder tri-tip salami ribeye turducken rump. Rump prosciutto ham, kevin picanha drumstick chuck pork chop. Short ribs tail shank, alcatra kevin spare ribs meatloaf beef. Pork loin salami flank andouille prosciutto chuck bresaola sirloin ribeye. Bacon picanha salami filet mignon capicola beef ribs. Venison jowl meatloaf jerky porchetta, brisket shank picanha drumstick capicola frankfurter.</p>
- 					
-					<p>Modal ipsum dolor amet jerky sausage pork belly tenderloin burgdoggen kevin prosciutto beef ribs shoulder tri-tip salami ribeye turducken rump. Rump prosciutto ham, kevin picanha drumstick chuck pork chop. Short ribs tail shank, alcatra kevin spare ribs meatloaf beef. Pork loin salami flank andouille prosciutto chuck bresaola sirloin ribeye. Bacon picanha salami filet mignon capicola beef ribs. Venison jowl meatloaf jerky porchetta, brisket shank picanha.</p>
-
-					<p>Modal ipsum dolor amet jerky sausage pork belly tenderloin burgdoggen kevin prosciutto beef ribs shoulder tri-tip salami ribeye turducken rump. Rump prosciutto ham, kevin picanha drumstick chuck pork chop. Short ribs tail shank, alcatra kevin spare ribs meatloaf beef. Pork loin salami flank andouille prosciutto chuck bresaola sirloin ribeye. Bacon picanha salami filet mignon capicola beef ribs. Venison jowl meatloaf jerky porchetta, brisket shank picanha.</p>
-
-					<p>Modal ipsum dolor amet jerky sausage pork belly tenderloin burgdoggen kevin prosciutto beef ribs shoulder tri-tip salami ribeye turducken rump. Rump prosciutto ham, kevin picanha drumstick chuck pork chop. Short ribs tail shank, alcatra kevin spare ribs meatloaf beef. Pork loin salami flank andouille prosciutto chuck bresaola sirloin ribeye. Bacon picanha salami filet mignon capicola beef ribs. Venison jowl meatloaf jerky porchetta, brisket shank picanha.</p>
-
-					<p>Modal ipsum dolor amet jerky sausage pork belly tenderloin burgdoggen kevin prosciutto beef ribs shoulder tri-tip salami ribeye turducken rump. Rump prosciutto ham, kevin picanha drumstick chuck pork chop. Short ribs tail shank, alcatra kevin spare ribs meatloaf beef. Pork loin salami flank andouille prosciutto chuck bresaola sirloin ribeye. Bacon picanha salami filet mignon capicola beef ribs. Venison jowl meatloaf jerky porchetta, brisket shank picanha.</p>
-
-					<p>Modal ipsum dolor amet jerky sausage pork belly tenderloin burgdoggen kevin prosciutto beef ribs shoulder tri-tip salami ribeye turducken rump. Rump prosciutto ham, kevin picanha drumstick chuck pork chop. Short ribs tail shank, alcatra kevin spare ribs meatloaf beef. Pork loin salami flank andouille prosciutto chuck bresaola sirloin ribeye. Bacon picanha salami filet mignon capicola beef ribs. Venison jowl meatloaf jerky porchetta, brisket shank picanha.</p>
-
-					<p>Modal ipsum dolor amet jerky sausage pork belly tenderloin burgdoggen kevin prosciutto beef ribs shoulder tri-tip salami ribeye turducken rump. Rump prosciutto ham, kevin picanha drumstick chuck pork chop. Short ribs tail shank, alcatra kevin spare ribs meatloaf beef. Pork loin salami flank andouille prosciutto chuck bresaola sirloin ribeye. Bacon picanha salami filet mignon capicola beef ribs. Venison jowl meatloaf jerky porchetta, brisket shank picanha.</p>
-
-					<p>Modal ipsum dolor amet jerky sausage pork belly tenderloin burgdoggen kevin prosciutto beef ribs shoulder tri-tip salami ribeye turducken rump. Rump prosciutto ham, kevin picanha drumstick chuck pork chop. Short ribs tail shank, alcatra kevin spare ribs meatloaf beef. Pork loin salami flank andouille prosciutto chuck bresaola sirloin ribeye. Bacon picanha salami filet mignon capicola beef ribs. Venison jowl meatloaf jerky porchetta, brisket shank picanha.</p>
-
-					<p>Modal ipsum dolor amet jerky sausage pork belly tenderloin burgdoggen kevin prosciutto beef ribs shoulder tri-tip salami ribeye turducken rump. Rump prosciutto ham, kevin picanha drumstick chuck pork chop. Short ribs tail shank, alcatra kevin spare ribs meatloaf beef. Pork loin salami flank andouille prosciutto chuck bresaola sirloin ribeye. Bacon picanha salami filet mignon capicola beef ribs. Venison jowl meatloaf jerky porchetta, brisket shank picanha.</p>
-
-					<p>Modal ipsum dolor amet jerky sausage pork belly tenderloin burgdoggen kevin prosciutto beef ribs shoulder tri-tip salami ribeye turducken rump. Rump prosciutto ham, kevin picanha drumstick chuck pork chop. Short ribs tail shank, alcatra kevin spare ribs meatloaf beef. Pork loin salami flank andouille prosciutto chuck bresaola sirloin ribeye. Bacon picanha salami filet mignon capicola beef ribs. Venison jowl meatloaf jerky porchetta, brisket shank picanha.</p>
-
-				</main>
+				</div>
 			</div>
 		</dialog>
 
 		<dialog data-ts="Modal" id="example3" data-ts.title="Example Tabs">
-			<div data-ts="Panels">
-				<div data-ts="Panel" data-ts.label="Details">
-					<main data-ts="Main">
+			<ul data-ts="Panels">
+				<li data-ts="Panel" data-ts.label="Details">
+					<div data-ts="Main">
 						<h1>User details</h1>
 						<form data-ts="Form">
 							<fieldset>
@@ -437,10 +390,10 @@
 								</label>
 							</fieldset>
 						</form>
-					</main>
-				</div>
-				<div data-ts="Panel" data-ts.label="More Details">
-					<main data-ts="Main">
+					</div>
+				</li>
+				<li data-ts="Panel" data-ts.label="More Details">
+					<div data-ts="Main">
 						<h1>More details</h1>
 						<form data-ts="Form">
 							<fieldset>
@@ -460,9 +413,9 @@
 								</label>
 							</fieldset>
 						</form>
-					</main>
-				</div>
-			</div>
+					</div>
+				</li>
+			</ul>
 		</dialog>
 
 		<dialog data-ts="Modal" id="example4" data-ts.title="Busy Modal">
@@ -470,30 +423,5 @@
 				<div data-ts="Main"></div>
 			</div>
 		</dialog>
-
-					<!--
-					<p>Bacon ipsum dolor amet jerky sausage pork belly tenderloin burgdoggen kevin prosciutto beef ribs shoulder tri-tip salami ribeye turducken rump. Rump prosciutto ham, kevin picanha drumstick chuck pork chop. Short ribs tail shank, alcatra kevin spare ribs meatloaf beef. Pork loin salami flank andouille prosciutto chuck bresaola sirloin ribeye. Bacon picanha salami filet mignon capicola beef ribs. Venison jowl meatloaf jerky porchetta, brisket shank picanha drumstick capicola frankfurter tail chuck sausage.</p>
-
-					<p>Jowl ground round corned beef ham hock. Picanha cow porchetta, pork belly tri-tip pork ribeye ham hock kielbasa sausage boudin fatback venison short ribs. Strip steak bresaola pastrami sausage andouille frankfurter. Shankle hamburger turkey salami alcatra meatball. Venison rump tail bacon ball tip sirloin spare ribs. Fatback picanha venison rump. Beef ribs short ribs ball tip, hamburger bacon leberkas ham hock burgdoggen meatball venison rump pork loin tenderloin tri-tip bresaola.</p>
-
-					<p>Pig turkey tail, swine frankfurter venison capicola shank salami pork loin. Pork belly beef turkey sausage, tongue jowl ground round leberkas brisket strip steak. Tenderloin shoulder pork ground round drumstick burgdoggen, chuck kielbasa jowl meatball turducken short loin andouille. Andouille kevin shoulder, alcatra shankle short loin bacon. Ham hock tail chuck pork belly, swine kielbasa bresaola. Jowl flank cow, tenderloin salami filet mignon picanha beef ribs.</p>
-
-					<p>Cupim t-bone jerky brisket biltong pancetta. Hamburger biltong pig drumstick. Fatback rump ball tip beef turkey pork loin. Pancetta beef ribs tri-tip short ribs short loin, porchetta ham chuck pastrami flank leberkas tenderloin. Chicken sausage cow tri-tip, burgdoggen chuck shank ribeye porchetta andouille swine turducken pork chop pastrami beef.</p>
-					<p>Bacon ipsum dolor amet jerky sausage pork belly tenderloin burgdoggen kevin prosciutto beef ribs shoulder tri-tip salami ribeye turducken rump. Rump prosciutto ham, kevin picanha drumstick chuck pork chop. Short ribs tail shank, alcatra kevin spare ribs meatloaf beef. Pork loin salami flank andouille prosciutto chuck bresaola sirloin ribeye. Bacon picanha salami filet mignon capicola beef ribs. Venison jowl meatloaf jerky porchetta, brisket shank picanha drumstick capicola frankfurter tail chuck sausage.</p>
-
-					<p>Jowl ground round corned beef ham hock. Picanha cow porchetta, pork belly tri-tip pork ribeye ham hock kielbasa sausage boudin fatback venison short ribs. Strip steak bresaola pastrami sausage andouille frankfurter. Shankle hamburger turkey salami alcatra meatball. Venison rump tail bacon ball tip sirloin spare ribs. Fatback picanha venison rump. Beef ribs short ribs ball tip, hamburger bacon leberkas ham hock burgdoggen meatball venison rump pork loin tenderloin tri-tip bresaola.</p>
-
-					<p>Pig turkey tail, swine frankfurter venison capicola shank salami pork loin. Pork belly beef turkey sausage, tongue jowl ground round leberkas brisket strip steak. Tenderloin shoulder pork ground round drumstick burgdoggen, chuck kielbasa jowl meatball turducken short loin andouille. Andouille kevin shoulder, alcatra shankle short loin bacon. Ham hock tail chuck pork belly, swine kielbasa bresaola. Jowl flank cow, tenderloin salami filet mignon picanha beef ribs.</p>
-
-					<p>Cupim t-bone jerky brisket biltong pancetta. Hamburger biltong pig drumstick. Fatback rump ball tip beef turkey pork loin. Pancetta beef ribs tri-tip short ribs short loin, porchetta ham chuck pastrami flank leberkas tenderloin. Chicken sausage cow tri-tip, burgdoggen chuck shank ribeye porchetta andouille swine turducken pork chop pastrami beef.</p>
-					<p>Bacon ipsum dolor amet jerky sausage pork belly tenderloin burgdoggen kevin prosciutto beef ribs shoulder tri-tip salami ribeye turducken rump. Rump prosciutto ham, kevin picanha drumstick chuck pork chop. Short ribs tail shank, alcatra kevin spare ribs meatloaf beef. Pork loin salami flank andouille prosciutto chuck bresaola sirloin ribeye. Bacon picanha salami filet mignon capicola beef ribs. Venison jowl meatloaf jerky porchetta, brisket shank picanha drumstick capicola frankfurter tail chuck sausage.</p>
-
-					<p>Jowl ground round corned beef ham hock. Picanha cow porchetta, pork belly tri-tip pork ribeye ham hock kielbasa sausage boudin fatback venison short ribs. Strip steak bresaola pastrami sausage andouille frankfurter. Shankle hamburger turkey salami alcatra meatball. Venison rump tail bacon ball tip sirloin spare ribs. Fatback picanha venison rump. Beef ribs short ribs ball tip, hamburger bacon leberkas ham hock burgdoggen meatball venison rump pork loin tenderloin tri-tip bresaola.</p>
-
-					<p>Pig turkey tail, swine frankfurter venison capicola shank salami pork loin. Pork belly beef turkey sausage, tongue jowl ground round leberkas brisket strip steak. Tenderloin shoulder pork ground round drumstick burgdoggen, chuck kielbasa jowl meatball turducken short loin andouille. Andouille kevin shoulder, alcatra shankle short loin bacon. Ham hock tail chuck pork belly, swine kielbasa bresaola. Jowl flank cow, tenderloin salami filet mignon picanha beef ribs.</p>
-
-					<p>Cupim t-bone jerky brisket biltong pancetta. Hamburger biltong pig drumstick. Fatback rump ball tip beef turkey pork loin. Pancetta beef ribs tri-tip short ribs short loin, porchetta ham chuck pastrami flank leberkas tenderloin. Chicken sausage cow tri-tip, burgdoggen chuck shank ribeye porchetta andouille swine turducken pork chop pastrami beef.</p>
-					-->
-		
 	</body>
 </html>

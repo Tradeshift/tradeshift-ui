@@ -178,7 +178,7 @@ ts.ui.FooterBarSpirit = (function using(
 					}, this);
 					this._layout();
 				}
-				this._refresh([this._actionbar, this._centerbar, this._backupbar]);
+				// this._refresh([this._actionbar, this._centerbar, this._backupbar]);
 			},
 
 			/**

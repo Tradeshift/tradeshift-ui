@@ -90,7 +90,7 @@ ts.ui.MajorBarSpirit = (function(ToolBarSpirit, chained) {
 		/**
 		 * There's just no way that this can work with pure CSS, so here it is: 
 		 * Style the thing so that there is a 1px border separator between bars.
-		 */
+		 *
 		_refresh: function(bars) {
 			bars.slice(1).reduce(function(was, bar) {
 				var is = bar.visible;
@@ -98,6 +98,7 @@ ts.ui.MajorBarSpirit = (function(ToolBarSpirit, chained) {
 				return was || is;
 			}, bars[0].visible);
 		},
+		*/
 
 		/**
 		 * Dispatch some action bearing offset info for the general environment to handle.

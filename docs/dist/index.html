@@ -19,7 +19,7 @@
     <button data-ts="Button" data-ts.type="action-open-menu" class="button-menu-open">
 			<i class="ts-icon-menuswitch"></i>
 		</button>
-    <aside data-ts="SideBar" data-ts.title="KL" class="ts-bg-dark">
+    <aside data-ts="DoxSideBar" data-ts.title="KL" class="ts-bg-dark">
         <div data-ts="Panel">
             <menu data-ts="DoxMenu">
                 <script type="application/json">
@@ -31,11 +31,11 @@
         </div>
     </aside>
     <div data-ts="App">
-        <div id="menucover" data-ts="DoxMenuCover"></div>
-        <main data-ts="Main">
+        <div data-ts="Main">
+            <div id="menucover" data-ts="DoxMenuCover"></div>
             <button data-ts="Button" data-ts.type="action-close-menu" class="button-menu-close"></button>
-        </main>
-        <div data-ts="Spinner" data-ts.spinning="true" class="ts-topbarspinner"></div>
+            <div data-ts="Spinner" data-ts.spinning="true" class="ts-topbarspinner"></div>
+        </div>
     </div>
     <aside data-ts="Note" class="sticky ts-bg-yellow">
         <p>If you find a bug or need a feature&#x2026;</p>

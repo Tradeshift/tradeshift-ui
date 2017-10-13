@@ -52,7 +52,7 @@ ts.ui.HeaderBarSpirit = (function using(chained) {
 						this.showClose(this._closeaction);
 					}
 				}
-				this._refresh([this._headerbar, this._centerbar, this._buttonbar]);
+				// this._refresh([this._headerbar, this._centerbar, this._buttonbar]);
 			},
 
 			/**

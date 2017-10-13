@@ -8,11 +8,15 @@
 		<object data="tabs.xhtml"></object>
 	</head>
 	<body ng-app="app" ng-controller="Controller as c" class="nosticky">
-		<header data-ts="ToolBar" id="toolbar"></header>
-		<main data-ts="Main">
-			<div data-ts="Mainframe">
-				<div id="grid" data-ts="Table"></div>
+		<div data-ts="App">
+			<div data-ts="Main">
+				<div data-ts="Content">
+					<header data-ts="ToolBar" id="toolbar"></header>
+					<div data-ts="Panel" style="overflow:hidden">
+						<div id="grid" data-ts="Table"></div>
+					</div>
+				</div>
 			</div>
-		</main>
+		</div>
 	</body>
 </html>

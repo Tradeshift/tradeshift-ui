@@ -48,6 +48,7 @@
 		 */
 		channel: [
 			['[data-ts=DoxChrome]', ts.dox.ChromeSpirit],
+			['[data-ts=DoxSideBar]', ts.dox.SideBarSpirit],
 			['[data-ts=DoxMenu]', ts.dox.MenuSpirit],
 			['[data-ts=DoxItem]', ts.dox.ItemSpirit],
 			['[data-ts=DoxSubMenu]', ts.dox.SubMenuSpirit],

@@ -6,6 +6,20 @@
 		visibility: hidden;
 	}
 	.ts-sidebar {
+		.ts-toolbar {
+			background-color: @ts-dark-liter;
+			&,
+			a,
+			button {
+				color: @ts-white;
+			}
+			label {
+				&.ts-focus,
+				&.ts-focus-on {
+					background-color: transparent;
+				}
+			}
+		}
 		.ts-toolbar-title label {
 			-webkit-font-smoothing: antialiased;
 			font-family: Tradeshifticons;
@@ -16,6 +30,7 @@
 			padding: 0;
 			overflow-y: scroll;
 			background-color: @ts-dark-lite;
+			border-right: none;
 			&::-webkit-scrollbar {
 				width: 5px;
 			}
@@ -31,6 +46,9 @@
 			}
 			.ts-menu {
 				margin: 0;
+			}
+			&:after {
+				content: ''; // why does this make the scrollbar look cool in Chrome?
 			}
 		}
 	}
@@ -139,6 +157,7 @@
 					background-color: @ts-dark-lite !important;
 					&:before {
 						background-color: @ts-blue-dark;
+						background-color: @ts-blue;
 					}
 				}
 				> i {
@@ -150,13 +169,17 @@
 					z-index: 3;
 					&,
 					&:hover {
-						background-color: @ts-dustblue !important;
+						//background-color: @ts-dustblue !important;
+						background-color: @ts-blue !important;
 						color: @ts-white;
 						cursor: default;
 					}
+					/*
 					&:before {
 						background-color: @ts-blue-dark;
+						background-color: @ts-blue;
 					}
+					*/
 				}
 			}
 			&.submenu {

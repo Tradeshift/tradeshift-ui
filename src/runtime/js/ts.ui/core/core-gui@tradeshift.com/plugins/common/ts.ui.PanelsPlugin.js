@@ -23,21 +23,32 @@ ts.ui.PanelsPlugin = (function using(PANEL_ATTACH, PANEL_DETACH) {
 	/**
 	 * Select one tab while unselecting other tabs.
 	 * @param {ts.ui.Spirit} spirit
-	 * @param {ts.ui.PanelSpirit} spirit
+	 * @param {ts.ui.PanelSpirit} newpansl
 	 */
-	function select(spirit, panel) {
+	function select(spirit, newpanel) {
+		var oldpanel;
 		if (!spirit.$destructed) {
-			spirit.dom.children(ts.ui.PanelSpirit).forEach(function(p) {
-				if (p === panel) {
-					p.show();
-					p.$onselect();
-					spirit.$selectTab(p);
-				} else {
-					p.hide();
-					p.$onunselect();
-				}
-			});
+			if ((oldpanel = selected(spirit))) {
+				oldpanel.unselect();
+				oldpanel.$onunselect();
+			}
+			newpanel.select();
+			newpanel.$onselect();
+			spirit.$selectTab(newpanel);
 		}
+	}
+
+	/**
+	 * Find the currently seelcted tab, if any.
+	 * @param {ts.ui.Spirit} spirit
+	 * @returns {ts.ui.PanelSpirit|null}
+	 */
+	function selected(spirit) {
+		return (
+			spirit.dom.children(ts.ui.PanelSpirit).find(function(p) {
+				return p.selected;
+			}) || null
+		);
 	}
 
 	return ts.ui.Plugin.extend(
@@ -152,7 +163,7 @@ ts.ui.PanelsPlugin = (function using(PANEL_ATTACH, PANEL_DETACH) {
 					var json = gettab(spirit, panel);
 					spirit.$insertTab(json, index);
 					if (!panel.selected) {
-						panel.hide();
+						panel.unselect();
 					}
 				} else {
 					// TODO: Fix this - the panel was removed!

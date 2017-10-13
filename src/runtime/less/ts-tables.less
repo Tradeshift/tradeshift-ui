@@ -432,7 +432,7 @@
 	.ts-table-foot {
 		padding: 0;
 		.ts-footerbar {
-			border-top: 1px solid @ts-medium-litest;
+			// border-top: 1px solid @ts-medium-litest;
 			.ts-toolbar {
 				background-color: @ts-lite-lite;
 			}
@@ -515,6 +515,7 @@
 	}
 	&.ts-maximized {
 		.ts-mixin-maximize();
+		border: none;
 		margin-bottom: 0;
 		.ts-table-body {
 			.ts-mixin-maximize(@ts-unit-double, 0, 0, 0);

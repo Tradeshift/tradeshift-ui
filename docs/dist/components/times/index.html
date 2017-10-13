@@ -14,56 +14,61 @@
 </head>
 
 <body>
-    <main data-ts="Main">
-        <article>
-            <h1><span>Time</span></h1>
-            <section class="desc">
-                <p>Use the Time component to show a human readable time your app.</p>
-            </section>
-            <section>
-                <p>Assign <code class="attr-pair"><span>data-ts</span>=&quot;<span>Time</span>&quot;</code> to a <code class="el">time</code> to initialize it as a Time.</p>
-                <figure data-ts="DoxMarkup" data-ts.code="%3Ctime%20data-ts%3D%22Time%22%20datetime%3D%222015-11-04%2003%3A59%3A33%22%3E%3C%2Ftime%3E">
-                    <ul data-ts="Panels">
-                        <li data-ts="Panel" data-ts.label="Render">
-                            <div class="output"><time data-ts="Time" datetime="2015-11-04 03:59:33"></time></div>
-                        </li>
-                        <li data-ts="Panel" data-ts.label="Markup">
-                            <pre class="prism language-markup"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>time</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Time<span class="token punctuation">&quot;</span></span> <span class="token attr-name">datetime</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>2015-11-04 03:59:33<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>time</span><span class="token punctuation">&gt;</span></span></code></pre>
-                        </li>
-                    </ul>
-                </figure>
-                <p>If you do not trust the users device time, you can set the <code class="attr-name">realtime</code> attribute to mark the current time (the moment when the page renders).</p>
-                <figure data-ts="DoxMarkup" data-ts.code="%3Ctime%20data-ts%3D%22Time%22%20datetime%3D%222015-11-04%2003%3A59%3A33%22%20realtime%3D%222015-11-04%2003%3A59%3A35%22%3E%3C%2Ftime%3E">
-                    <ul data-ts="Panels">
-                        <li data-ts="Panel" data-ts.label="Render">
-                            <div class="output"><time data-ts="Time" datetime="2015-11-04 03:59:33" realtime="2015-11-04 03:59:35"></time></div>
-                        </li>
-                        <li data-ts="Panel" data-ts.label="Markup">
-                            <pre class="prism language-markup"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>time</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Time<span class="token punctuation">&quot;</span></span> <span class="token attr-name">datetime</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>2015-11-04 03:59:33<span class="token punctuation">&quot;</span></span> <span class="token attr-name">realtime</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>2015-11-04 03:59:35<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>time</span><span class="token punctuation">&gt;</span></span></code></pre>
-                        </li>
-                    </ul>
-                </figure>
-                <div data-ts="Note">
-                    <i class="ts-icon-info"></i>
-                    <p>If you set an invalid datetime, it will show the string.</p>
-                </div>
-                <figure data-ts="DoxMarkup" data-ts.code="%3Ctime%20data-ts%3D%22Time%22%20datetime%3D%22A%20long%20time%20ago%20in%20a%20galaxy%20far%20far%20away%22%22%3E%3C%2Ftime%3E">
-                    <ul data-ts="Panels">
-                        <li data-ts="Panel" data-ts.label="Render">
-                            <div class="output">
-                                <time data-ts="Time" datetime="A long time ago in a galaxy far far away" "=" "></time></div>
+    <div data-ts="App">
+        <div data-ts="Main">
+            <div data-ts="Content">
+                <div data-ts="Panel">
+                    <article>
+                        <h1><span>Time</span></h1>
+                        <section class="desc">
+                            <p>Use the Time component to show a human readable time your app.</p>
+                        </section>
+                        <section>
+                            <p>Assign <code class="attr-pair"><span>data-ts</span>=&quot;<span>Time</span>&quot;</code> to a <code class="el">time</code> to initialize it as a Time.</p>
+                            <figure data-ts="DoxMarkup" data-ts.code="%3Ctime%20data-ts%3D%22Time%22%20datetime%3D%222015-11-04%2003%3A59%3A33%22%3E%3C%2Ftime%3E">
+                                <ul data-ts="Panels">
+                                    <li data-ts="Panel" data-ts.label="Render">
+                                        <div class="output"><time data-ts="Time" datetime="2015-11-04 03:59:33"></time></div>
+                                    </li>
+                                    <li data-ts="Panel" data-ts.label="Markup">
+                                        <pre class="prism language-markup"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>time</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Time<span class="token punctuation">&quot;</span></span> <span class="token attr-name">datetime</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>2015-11-04 03:59:33<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>time</span><span class="token punctuation">&gt;</span></span></code></pre>
+                                    </li>
+                                </ul>
+                            </figure>
+                            <p>If you do not trust the users device time, you can set the <code class="attr-name">realtime</code> attribute to mark the current time (the moment when the page renders).</p>
+                            <figure data-ts="DoxMarkup" data-ts.code="%3Ctime%20data-ts%3D%22Time%22%20datetime%3D%222015-11-04%2003%3A59%3A33%22%20realtime%3D%222015-11-04%2003%3A59%3A35%22%3E%3C%2Ftime%3E">
+                                <ul data-ts="Panels">
+                                    <li data-ts="Panel" data-ts.label="Render">
+                                        <div class="output"><time data-ts="Time" datetime="2015-11-04 03:59:33" realtime="2015-11-04 03:59:35"></time></div>
+                                    </li>
+                                    <li data-ts="Panel" data-ts.label="Markup">
+                                        <pre class="prism language-markup"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>time</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Time<span class="token punctuation">&quot;</span></span> <span class="token attr-name">datetime</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>2015-11-04 03:59:33<span class="token punctuation">&quot;</span></span> <span class="token attr-name">realtime</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>2015-11-04 03:59:35<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>time</span><span class="token punctuation">&gt;</span></span></code></pre>
+                                    </li>
+                                </ul>
+                            </figure>
+                            <div data-ts="Note">
+                                <i class="ts-icon-info"></i>
+                                <p>If you set an invalid datetime, it will show the string.</p>
+                            </div>
+                            <figure data-ts="DoxMarkup" data-ts.code="%3Ctime%20data-ts%3D%22Time%22%20datetime%3D%22A%20long%20time%20ago%20in%20a%20galaxy%20far%20far%20away%22%22%3E%3C%2Ftime%3E">
+                                <ul data-ts="Panels">
+                                    <li data-ts="Panel" data-ts.label="Render">
+                                        <div class="output">
+                                            <time data-ts="Time" datetime="A long time ago in a galaxy far far away" "=" "></time></div>
 		</li>
 <li data-ts="Panel " data-ts.label="Markup ">
 				<pre class="prism language-markup "><code><span class="token tag "><span class="token tag "><span class="token punctuation ">&lt;</span>time</span> <span class="token attr-name ">data-ts</span><span class="token attr-value "><span class="token punctuation
-                                    ">=</span><span class="token punctuation ">&quot;</span>Time<span class="token punctuation ">&quot;</span></span> <span class="token attr-name ">datetime</span><span class="token attr-value "><span class="token punctuation
-                                    ">=</span><span class="token punctuation ">&quot;</span>A long time ago in a galaxy far far away<span class="token punctuation ">&quot;</span></span>&quot;<span class="token punctuation ">&gt;</span></span><span class="token tag
-                                    "><span class="token tag "><span class="token punctuation ">&lt;/</span>time</span><span class="token punctuation ">&gt;</span></span></code></pre>
+                                                ">=</span><span class="token punctuation ">&quot;</span>Time<span class="token punctuation ">&quot;</span></span> <span class="token attr-name ">datetime</span><span class="token attr-value "><span class="token punctuation
+                                                ">=</span><span class="token punctuation ">&quot;</span>A long time ago in a galaxy far far away<span class="token punctuation ">&quot;</span></span>&quot;<span class="token punctuation ">&gt;</span></span><span class="token tag
+                                                "><span class="token tag "><span class="token punctuation ">&lt;/</span>time</span><span class="token punctuation ">&gt;</span></span></code></pre>
 			</li>
 </ul>
 					</figure>
 				</section>
-			</article>
-		</main>
+			</article></div>
+					</div>
+				</div>
+			</div>
 	<aside data-ts="Note " class="sticky ts-bg-yellow ">
 			  <p>If you find a bug or need a feature&#x2026;</p>
 		    <menu class="ts-buttons ">

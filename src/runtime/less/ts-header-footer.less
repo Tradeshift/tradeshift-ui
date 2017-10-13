@@ -1,7 +1,6 @@
 .ts-footerbar,
 .ts-headerbar {
 	position: relative;
-	background-color: @ts-white;
 	.ts-toolbar {
 		position: relative;
 		/*
@@ -30,7 +29,15 @@
 		margin: 0;
 	}
 }
-
+.ts-footerbar {
+	.ts-toolbar:before {
+		content: '';
+		top: 0;
+	}
+	.ts-toolbar:after {
+		content: none;
+	}
+}
 /*
 .ts-footerbar,
 .ts-headerbar {

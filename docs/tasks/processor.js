@@ -27,7 +27,7 @@ module.exports = {
 		$ = splitscreen($);
 		$ = specialtags($);
 		$ = highlite($);
-		$ = maincontent($);
+		$ = boilerplate($);
 		$ = chromelinks($);
 		$ = inittabs($);
 		$ = stickys($);
@@ -39,17 +39,24 @@ module.exports = {
 
 // Private .....................................................................
 
-function maincontent($) {
-	/*
-	$('body > main').each(function(i, main) {
-		main = $(main);
-		if(!main.children('[data-ts=Panel]')[0]) {
-			var mainContent = $('<div data-ts="Panel"></div>'); // MainContent
-			mainContent.append(main.children());
-			main.append(mainContent);
-		}
+/**
+ * If the root element is simply `<article>` machine will inject basic layout.
+ */
+function boilerplate($) {
+	$('body > article').each(function(i, article) {
+		article = $(article);
+		const boiler = $(`
+			<div data-ts="App">
+				<div data-ts="Main">
+					<div data-ts="Content">
+						<div data-ts="Panel">
+						</div>
+					</div>
+				</div>
+			</div>`);
+		boiler.find('[data-ts=Panel]').append(article);
+		$('body').prepend(boiler);
 	});
-	*/
 	return $;
 }
 

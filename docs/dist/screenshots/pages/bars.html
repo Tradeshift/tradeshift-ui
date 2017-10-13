@@ -16,16 +16,22 @@
 </head>
 
 <body class="nosticky">
-    <main data-ts="Main">
-        <article>
-            <h1><span>Inline Bars</span></h1>
-            <section>
-                <header id="toolbar" data-ts="ToolBar" data-ts.title="Inline ToolBar" class="ts-bg-green"></header>
-                <header id="tabbar" data-ts="TabBar" class="ts-bg-blue"></header>
-                <footer id="statusbar" data-ts="StatusBar" data-ts.message="Inline StatusBar" class="ts-bg-purple"></footer>
-            </section>
-        </article>
-    </main>
+    <div data-ts="App">
+        <div data-ts="Main">
+            <div data-ts="Content">
+                <div data-ts="Panel">
+                    <article>
+                        <h1><span>Inline Bars</span></h1>
+                        <section>
+                            <header id="toolbar" data-ts="ToolBar" data-ts.title="Inline ToolBar" class="ts-bg-green"></header>
+                            <header id="tabbar" data-ts="TabBar" class="ts-bg-blue"></header>
+                            <footer id="statusbar" data-ts="StatusBar" data-ts.message="Inline StatusBar" class="ts-bg-purple"></footer>
+                        </section>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </div>
     <aside data-ts="SideBar" id="mysidebar" data-ts.title="SideBar OK?">
         <div data-ts="Panel">
             <p>Just testing that the SideBar is shown.</p>

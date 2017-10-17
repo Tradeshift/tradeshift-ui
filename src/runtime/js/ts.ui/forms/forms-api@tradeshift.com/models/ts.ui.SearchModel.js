@@ -98,7 +98,12 @@ ts.ui.SearchModel = (function(InputModel, ButtonCollection, chained) {
 			this.buttons.addObserver(this);
 		},
 
+		/**
+		 * Stamp the buttons with a reference to the SearchModel (this SearchModel).
+		 * @param {Array<edb.Change>} changes
+		 */
 		onchange: function(changes) {
+			this.super.onchange(changes);
 			var buttons = this.buttons;
 			var splice = edb.ArrayChange.TYPE_SPLICE;
 			changes

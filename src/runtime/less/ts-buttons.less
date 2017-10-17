@@ -15,7 +15,6 @@
 	.ts-mixin-fixheight(@ts-unit-double); // IE10 may otherwise grow on focus :/
 	min-width: @ts-unit-double;
 	max-width: 100%;
-	margin-right: @ts-unit-quarter;
 	padding: @ts-unit-half;
 	text-align: center;
 	position: relative;
@@ -209,6 +208,7 @@
 // Buttons! ....................................................................
 
 .ts-button {
+	margin-right: @ts-unit-quarter;
 	&.ts-default,
 	&.ts-primary,
 	&.ts-secondary,
@@ -219,6 +219,10 @@
 	&.ts-tertiary {
 		line-height: @ts-unit - 2;
 	}
+}
+
+menu .ts-button {
+	margin-right: 0;
 }
 
 .ts-button.ts-micro,

@@ -81,9 +81,10 @@ ts.dox.JavaScriptSpirit = (function() {
 				new Function(this._editor ? this._editor.value : this.code)();
 			} catch (exception) {
 				console.error(exception.message);
-				if (this._editor) {
+				if (this._editing()) {
 					ts.ui.Notification.error(exception.message);
 				} else {
+					console.error(exception.message);
 					ts.ui.Notification.warning(
 						[
 							'Script error! Sometimes a snippet depends on a previous ',
@@ -97,27 +98,19 @@ ts.dox.JavaScriptSpirit = (function() {
 		},
 
 		/**
-		 * Go to edit mode.
-		 * @param {ts.ui.ButtonSpirit} button
-		 *
-		_edit: function() {
-			var area = (this._editor = ts.ui.TextAreaSpirit.summon());
-			var pane = this.dom.q('.ts-panel');
-			area.css.add('editcode');
-			area.value = this.code;
-			this._makeeditor(area);
-			area.dom.appendTo(pane);
-			area.focus();
-			area.element.setSelectionRange(0, 0);
-		},
-		*/
-
-		/**
 		 * Revert hacked code.
 		 */
 		_revert: function() {
 			this._editor.value = this.code;
 			this.css.remove('editmode');
+		},
+
+		/**
+		 * Currently editing the code snippet?
+		 * @returns {boolean}
+		 */
+		_editing: function() {
+			return this.buttons().get('button-revert').visible;
 		},
 
 		/**
@@ -152,7 +145,6 @@ ts.dox.JavaScriptSpirit = (function() {
 		 * @returns {HTMLTextAreaElement}
 		 */
 		_makeeditor: function(area) {
-			console.log('TODO: makeditor');
 			var css = this.css;
 			var value = area.value;
 			var buttons = this.buttons();

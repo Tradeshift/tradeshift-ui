@@ -38,7 +38,6 @@ ts.ui.DoorManPlugin = (function(Type) {
 				if (!Type.isBoolean(opt_open)) {
 					opt_open = true;
 				}
-				console.log(this.spirit.$instanceid, opt_open);
 				this._stayopen = opt_open;
 				if (this._suspended) {
 					return true;

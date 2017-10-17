@@ -73,7 +73,7 @@
                     <article>
                         <h1><span>SideBar</span></h1>
                         <section class="desc">
-                            <p>The SideBar is a panel used for interactions directly related to the main content, such as filtering and sorting a list of items.</p>
+                            <p>The SideBar is a panel used for interactions directly related to the main <code class="attr-value">Content</code>, such as filtering and sorting a list of items.</p>
                         </section>
                         <section>
                             <p>Assign <code class="attr-pair"><span>data-ts</span>=&quot;<span>SideBar</span>&quot;</code> to an <code class="el">aside</code> to initialize as a SideBar. The SideBar <em>must</em> be created with a child <code class="attr-value">Panel</code>.</p>
@@ -89,26 +89,28 @@
                                 </li>
                             </ul>
                         </figure>
-                        <section class="ts-hide-mobile">
-                            <p>This sidebar should be positioned in one of four places in the <a>basic layout</a> structure.</p>
+                        <section class="ts-hide-mobile-only">
+                            <p>This sidebar should be positioned either before or after the <code class="attr-value">Content</code> element.</p>
                             <form data-ts="Form">
                                 <fieldset>
                                     <label>
 											<input type="radio" name="radio" onchange="show(&apos;#before-content&apos;)">
-											<span>Before <code class="attr-value">Content</code> (below the header)</span>
+											<span>Before <code class="attr-value">Content</code></span>
 										</label>
                                     <label>
 											<input type="radio" name="radio" checked onchange="show(&apos;#after-content&apos;)">
 											<span>After <code class="attr-value">Content</code></span>
 										</label>
-                                    <label>
-											<input type="radio" name="radio" onchange="show(&apos;#before-app&apos;)">
-											<span>Before <code class="attr-value">App</code></span>
+                                    <!--
+										<label>
+											<input type="radio" name="radio" onchange="show('#before-app')"/>
+											<span>Before <val>App</val></span>
 										</label>
-                                    <label>
-											<input type="radio" name="radio" onchange="show(&apos;#after-app&apos;)">
-											<span>After <code class="attr-value">App</code></span>
+										<label>
+											<input type="radio" name="radio" onchange="show('#after-app')"/>
+											<span>After <val>App</val></span>
 										</label>
+										-->
                                 </fieldset>
                             </form>
                         </section>

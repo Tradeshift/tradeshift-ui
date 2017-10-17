@@ -602,7 +602,7 @@ table.api th {
   height: 100%;
   top: 0;
   left: 0;
-  z-index: 10000;
+  z-index: 2998;
   display: none;
 }
 .ts-doxchrome .button-menu-open {

@@ -61,7 +61,7 @@
 						<article>
 							<h1>SideBar</h1>
 							<section class="desc">
-								<p>The SideBar is a panel used for interactions directly related to the main content, such as filtering and sorting a list of items.</p>
+								<p>The SideBar is a panel used for interactions directly related to the main <val>Content</val>, such as filtering and sorting a list of items.</p>
 							</section>
 							<section>
 								<p>Assign <att>data-ts="SideBar"</att> to an <elm>aside</elm> to initialize as a SideBar. The SideBar <em>must</em> be created with a child <val>Panel</val>.</p>
@@ -75,18 +75,19 @@
 									</aside>
 								</script>
 							</figure>
-							<section class="ts-hide-mobile">
-								<p>This sidebar should be positioned in one of four places in the <a>basic layout</a> structure.</p>
+							<section class="ts-hide-mobile-only">
+								<p>This sidebar should be positioned either before or after the <val>Content</val> element.</p>
 								<form data-ts="Form">
 									<fieldset>
 										<label>
 											<input type="radio" name="radio" onchange="show('#before-content')"/>
-											<span>Before <val>Content</val> (below the header)</span>
+											<span>Before <val>Content</val></span>
 										</label>
 										<label>
 											<input type="radio" name="radio" checked onchange="show('#after-content')"/>
 											<span>After <val>Content</val></span>
 										</label>
+										<!--
 										<label>
 											<input type="radio" name="radio" onchange="show('#before-app')"/>
 											<span>Before <val>App</val></span>
@@ -95,6 +96,7 @@
 											<input type="radio" name="radio" onchange="show('#after-app')"/>
 											<span>After <val>App</val></span>
 										</label>
+										-->
 									</fieldset>
 								</form>
 							</section>

@@ -7,7 +7,7 @@
 			<article>
 				<h1>Search</h1>
 				<section class="desc">
-					<p>The Search is prominently featured in the <a data-ts="Button" href="/#components/bars/toolbar.html">Main ToolBar</a>, but you can use it anywhere on the page if you like. Note that the API is in any case identical.</p>
+					<p>The Search is prominently featured in the <a data-ts="Button" href="/#components/header/">Header</a>, but you can use it anywhere on the page if you like. Note that the API is in any case identical.</p>
 				</section>
 				<section>
 					<p>You can initialize a Search with <att>data-ts="Search"</att>. The classname <val>ts-inset</val> will add an outline (so that we can see how it behaves on this white background).</p>
@@ -17,11 +17,17 @@
 							<div data-ts="Search" id="mysearch" class="ts-inset"></div>
 						</script>
 					</figure>
-				<section>
-				<section>
-					<object data="../bars/toolbar.xhtml#search-desc">
-						<replace input="ts.ui.ToolBar.search()" output="ts.ui.get('#mysearch')"/>
-					</object>
+					<figure data-ts="DoxScript">
+						<script type="runnable">
+							ts.ui.get('#mysearch', search => {
+								search.value = 'Press ENTER here';
+								search.info = 'Search amongst all the things';
+								search.onsearch = function(value) {
+									ts.ui.Notification.success(value || 'Search cleared');
+								}
+							});
+						</script>
+					</figure>
 				</section>
 				<p>To keep the field expanded at all times, simply assign the CSS classname <code>ts-expanded</code>.</p>
 				<section>

@@ -332,24 +332,6 @@ ts.ui.AsideSpirit = (function using(chained, confirmed, Client, LayoutModel, not
 			},
 
 			/**
-			 * Aside header (Toolbar) is now fixed height, so we can
-			 * harcode the panel height in CSS and save some layout
-			 * calculations *except* when there's a Footer present.
-			 * @overwrites {ts.ui.SideShowSpirit#_reflex}
-			 * @param @optional {function} action
-			 * @returns {object}
-			 */
-			_reflex: function(action) {
-				var thing;
-				if (this.css.contains('ts-hasfooter')) {
-					thing = this.super._reflex(action);
-				} else if (action) {
-					thing = action.call(this);
-				}
-				return thing;
-			},
-
-			/**
 			 * Fix an occasional collision with the Angular compiler.
 			 */
 			_delayedAngularInitialization: function() {
@@ -437,12 +419,10 @@ ts.ui.AsideSpirit = (function using(chained, confirmed, Client, LayoutModel, not
 				this._confirmposition();
 				this._isreallyopen = true;
 				this.dom.show();
+				this._head().reflex();
 				this.guistatus.busy('opening aside');
 				this._updateworld(willopen);
 				this._register(true);
-				if (this._isSideBarAside()) {
-					this._themesupport(this.dom);
-				}
 				if ((index = this._zindex())) {
 					this.css.zIndex = index;
 				}

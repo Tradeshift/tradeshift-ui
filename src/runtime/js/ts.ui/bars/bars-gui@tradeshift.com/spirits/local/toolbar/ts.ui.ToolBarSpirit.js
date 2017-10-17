@@ -9,7 +9,6 @@
  * @using {ts.ui.SearchModel} SearchModel
  * @using {ts.ui.TopBar} TopBar
  * @using {ts.ui.ButtonModel} ButtonModel
- * @using {ts.ui.BACKGROUND_COLORS} bgcolors
  */
 ts.ui.ToolBarSpirit = (function using(
 	chained,
@@ -22,8 +21,7 @@ ts.ui.ToolBarSpirit = (function using(
 	TextModel,
 	SearchModel,
 	TopBar,
-	ButtonModel,
-	bgcolors
+	ButtonModel
 ) {
 	/*
 	 * When rendering as a statusbar, we'll split into multiple rows
@@ -32,6 +30,12 @@ ts.ui.ToolBarSpirit = (function using(
 	 * Breakpoint corresponds to an iPad in vertical orientation.
 	 */
 	var BREAKPOINT_1 = 768;
+
+	/**
+	 * Width of the "+" button to show "more tabs".
+	 * @type {number}
+	 */
+	var WIDTH_MORE_TABS_BUTTON = ts.ui.UNIT * 2;
 
 	/**
 	 * Is flexed item?
@@ -90,11 +94,6 @@ ts.ui.ToolBarSpirit = (function using(
 				this._validate();
 				this.super.onenter();
 				this.action.add([edbml.ACTION_RENDER, 'ts-action-search']);
-				/*
-				if (!this.css.name().includes('ts-bg')) {
-					this.white();
-				}
-				*/
 			},
 
 			/**
@@ -191,7 +190,6 @@ ts.ui.ToolBarSpirit = (function using(
 			 */
 			puttabs: function(tabs) {
 				var self = this;
-				var model = this._model;
 				var selecteditem = null;
 				var aside = ts.ui.Aside({
 					title: ts.ui.ToolBarSpirit.localize('more'),
@@ -223,7 +221,6 @@ ts.ui.ToolBarSpirit = (function using(
 							.reverse()
 					})
 				);
-				this._matchcolor(aside, model).open();
 			},
 
 			/**
@@ -264,7 +261,6 @@ ts.ui.ToolBarSpirit = (function using(
 						}
 					}
 				});
-				this._matchcolor(aside, this._model).open();
 			},
 
 			/**
@@ -550,10 +546,12 @@ ts.ui.ToolBarSpirit = (function using(
 			 * Figure out if all tabs can fit inside the bar.
 			 */
 			_layout: function() {
+				var tabs = this._model.tabs;
 				if (this.element.offsetWidth) {
 					this._flex();
-					if (this._ismodelled()) {
-						this._calculate(this._model.tabs);
+					if (tabs && tabs.getLength()) {
+						this._updateselection(tabs);
+						this._optimizefit(tabs);
 					}
 				}
 			},
@@ -633,21 +631,6 @@ ts.ui.ToolBarSpirit = (function using(
 				) {
 					css.right = mobile ? Client.scrollBarSize : '';
 				}
-			},
-
-			/**
-			 * Match spirit color to model color (we use it for the Asides).
-			 * @param {ts.ui.Spirit} spirit (implements color scheme methods).
-			 * @param {ts.ui.ToolBarModel} model
-			 * @returns {ts.ui.Spirit}
-			 */
-			_matchcolor: function(spirit, model) {
-				gui.Object.each(bgcolors, function(methodname, classname) {
-					if (classname === model.color) {
-						spirit[methodname]();
-					}
-				});
-				return spirit;
 			},
 
 			/**
@@ -750,35 +733,52 @@ ts.ui.ToolBarSpirit = (function using(
 			 * that the More-tab is not rendered in mobile breakpoint.
 			 * @param {Array<ts.ui.TabCollection>} tabs
 			 */
-			_calculate: function calculate(tabs) {
-				var moretab, gonetab, avail, width, dofit;
-				if (tabs && tabs.getLength()) {
-					this._moveindicator(
-						this.dom.q('.ts-tab-indicator', ts.ui.Spirit),
-						this.dom.q('.ts-tab.ts-selected', ts.ui.Spirit)
-					);
-					if ((moretab = this.dom.q('.ts-tab-more', ts.ui.Spirit))) {
-						moretab.css.display = '';
-						avail = this._getavailwidth(22);
-						this._setmaxwidth(avail);
-						width = 44; // width of the more-tab button
-						dofit = this._toggletabs(tabs, width, avail);
-						moretab.css.display = dofit ? 'none' : '';
-						if (!dofit) {
-							// make sure selected tab is visible
-							if (
-								(gonetab = tabs.find(function ishidden(tab) {
-									return tab.selected && !tab.$isontop;
-								}))
-							) {
-								this._arraymove(tabs, gonetab.$instanceid, 1);
-							}
-						}
+			_optimizefit: function(tabs) {
+				var moretab, avail, dofit;
+				var width = WIDTH_MORE_TABS_BUTTON;
+				if ((moretab = this.dom.q('.ts-tab-more', ts.ui.Spirit))) {
+					moretab.css.display = '';
+					avail = this._getavailwidth(ts.ui.UNIT);
+					this._setmaxwidth(avail);
+					dofit = this._toggletabs(tabs, width, avail);
+					moretab.css.display = dofit ? 'none' : '';
+					if (!dofit) {
+						this._ensureusable(tabs);
 					}
 				}
 			},
 
 			/**
+			 * When "more tabs" are hidden in an Aside, make sure that thee selected 
+			 * tab is always visible by moving it to the second position. This fits 
+			 * the usecase of some app where the first tab is "home", but we should 
+			 * probably make this configurable so that the first tab is not sacred.
+			 * @param {Array<ts.ui.TabCollection>} tabs
+			 */
+			_ensureusable: function(tabs) {
+				var gonetab;
+				if (
+					(gonetab = tabs.find(function ishidden(tab) {
+						return tab.selected && !tab.$isontop;
+					}))
+				) {
+					this._arraymove(tabs, gonetab.$instanceid, 1);
+				}
+			},
+
+			/**
+			 * Highlight the selected tab.
+			 * @param {Array<ts.ui.TabCollection>} tabs
+			 */
+			_updateselection: function(tabs) {
+				this._moveindicator(
+					this.dom.q('.ts-tab-indicator', ts.ui.Spirit),
+					this.dom.q('.ts-tab.ts-selected', ts.ui.Spirit)
+				);
+			},
+
+			/**
+			 * Move selected tab marker.
 			 * @param {ts.ui.Spirit} source
 			 * @param {ts.ui.Spirit} target
 			 */
@@ -909,8 +909,7 @@ ts.ui.ToolBarSpirit = (function using(
 	ts.ui.TextModel,
 	ts.ui.SearchModel,
 	ts.ui.TopBar,
-	ts.ui.ButtonModel,
-	ts.ui.BACKGROUND_COLORS
+	ts.ui.ButtonModel
 );
 
 /**

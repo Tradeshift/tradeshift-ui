@@ -2,38 +2,60 @@
 <html>
 	<head>
 		<title>SideBars</title>
-		<object data="tabs.xhtml"></object>
 		<script>
-
-			// used to test that sidebars can be transferred from MAIN to BODY 
-			// without breaking functionality (since this always happens in V4).
-			if(false) {
-				$(document).ready(function() {
-					var $elem = $('#mysidebar');
-					var $main = $elem.closest('.ts-main');
-					//alert($main).get(0);
-					if ($main.length > 0) {
-						$main.after($elem);
+			var sidebars = ['#before-app', '#after-app', '#before-content', '#after-content'];
+			function clone(id) {
+				return document.querySelector(id + '-template').content.cloneNode(true);
+			}
+			function show(id) {
+				var bar;
+				sidebars.forEach(function(id) {
+					if((bar = ts.ui.get(id))) {
+						bar.dom.remove();
 					}
 				});
+				bar = clone(id);
+				switch(id) {
+					case '#before-app':
+						$('body').prepend(bar);
+						break;
+					case '#after-app':
+					 	$('body').append(bar);
+						break;
+					case '#before-content':
+						$('.ts-main').prepend(bar);
+						break;
+					case '#after-content':
+						$('.ts-main').append(bar);
+						break;
+				}
 			}
-
-			// used to test delayed Angular initialization in Collaboration panel :/
-			// (note that the `title` must also be removed to simulate collaboration)
-			if(false) {
-				$(document).ready(function() {
-					setTimeout(function() {
-						var $elem = $('#mysidebar');
-						$elem.attr('data-ts.autoclose', false);
-					}, 1000);
-				});
-			}
+			ts.ui.ready(function() {
+				document.querySelector('input[type=radio]:checked').onchange();
+			});
 		</script>
+		<!--
+				<aside data-ts="Aside" data-ts.title="Nested Aside" id="myaside">
+					<div data-ts="Panel">
+						<p>Aside content.</p>
+					</div>
+				</aside>
+				<div data-ts="Footer">
+					<p>Footer content. The button below is only relevant in <strong>mobile</strong> view.</p>
+					<menu data-ts="Buttons">
+						<li>
+							<button data-ts="Button" class="ts-tertiary" onclick="gui.get('mysidebar').toggle()">
+								<span>Toggle SideBar</span>
+							</button>
+						</li>
+					</menu>
+					</p>
+				</div>
+				-->
 	</head>
 	<body class="nosticky">
 		<div data-ts="App">
 			<div data-ts="Main">
-
 				<div data-ts="Content">
 					<div data-ts="Panel">
 						<article>
@@ -53,13 +75,40 @@
 									</aside>
 								</script>
 							</figure>
+							<section class="ts-hide-mobile">
+								<p>This sidebar should be positioned in one of four places in the <a>basic layout</a> structure.</p>
+								<form data-ts="Form">
+									<fieldset>
+										<label>
+											<input type="radio" name="radio" onchange="show('#before-content')"/>
+											<span>Before <val>Content</val> (below the header)</span>
+										</label>
+										<label>
+											<input type="radio" name="radio" checked onchange="show('#after-content')"/>
+											<span>After <val>Content</val></span>
+										</label>
+										<label>
+											<input type="radio" name="radio" onchange="show('#before-app')"/>
+											<span>Before <val>App</val></span>
+										</label>
+										<label>
+											<input type="radio" name="radio" onchange="show('#after-app')"/>
+											<span>After <val>App</val></span>
+										</label>
+									</fieldset>
+								</form>
+							</section>
+
+							<!--
 							<p>Also note tht the SideBar <em>must</em> be positioned before or after the <val>Main</val> element:</p>
 							<figure data-ts="DoxMarkup">
 								<script>
 									<main data-ts="Main"> ... 									<aside data-ts="SideBar"> ... </aside>
 								</script>
 							</figure>
+						-->
 
+							<!--
 							<h3>Toggle the SideBar</h3>
 							<p>In mobile breakpoint, the SideBar is hidden and must be toggled forth manually. If you resize to <em>mobile view</em>, you can try it with this button.</p>
 							<p>
@@ -127,31 +176,42 @@
 								<i class="ts-icon-warning"></i>
 								<p>This API is likely to change!</p>
 							</div>
+							-->
 						</article>
 					</div>
 				</div>
-				<aside data-ts="SideBar" id="mysidebar">
-					<div data-ts="Panel">
-						<p>This is the SideBar.</p>
-					</div>
-					<aside data-ts="Aside" data-ts.title="Nested Aside" id="myaside">
-						<div data-ts="Panel">
-							<p>Aside content.</p>
-						</div>
-					</aside>
-					<div data-ts="Footer">
-						<p>Footer content. The button below is only relevant in <strong>mobile</strong> view.</p>
-						<menu data-ts="Buttons">
-							<li>
-								<button data-ts="Button" class="ts-tertiary" onclick="gui.get('mysidebar').toggle()">
-									<span>Toggle SideBar</span>
-								</button>
-							</li>
-						</menu>
-						</p>
-					</div>
-				</aside>
 			</div>
 		</div>
+
+		<!-- templates ......................................................... -->
+		
+		<template id="before-app-template">
+			<aside data-ts="SideBar" id="before-app" data-ts.title="Before App">
+				<div data-ts="Panel">
+					<p>SideBar before <val>App</val>.</p>
+				</div>
+			</aside>
+		</template>
+		<template id="after-app-template">
+			<aside data-ts="SideBar" id="after-app" data-ts.title="After App">
+				<div data-ts="Panel">
+					<p>SideBar after <val>App</val>.</p>
+				</div>
+			</aside>
+		</template>
+		<template id="before-content-template">
+			<aside data-ts="SideBar" id="before-content">
+				<div data-ts="Panel">
+					<p>SideBar before <val>Content</val>.</p>
+				</div>
+			</aside>
+		</template>
+		<template id="after-content-template">
+			<aside data-ts="SideBar" id="after-content">
+				<div data-ts="Panel">
+					<p>SideBar after <val>Content</val>.</p>
+				</div>
+			</aside>
+		</template>
 	</body>
 </html>

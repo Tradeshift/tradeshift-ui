@@ -274,7 +274,7 @@
 					position: absolute;
 					left: @ts-unit-half;
 					right: @ts-unit-half;
-					top: @ts-unit-plus;
+					top: 0;
 					bottom: 0;
 				}
 				&:hover:not(.ts-focus):before {
@@ -282,6 +282,16 @@
 				}
 				&.ts-focus:before {
 					.local-mixin-focus-outline();
+				}
+			}
+		}
+		&.ts-haslabel {
+			&.ts-radio {
+				&:not(.ts-disabled):not(.ts-readonly) {
+					&:before {
+						content: '';
+						top: @ts-unit-plus;
+					}
 				}
 			}
 		}

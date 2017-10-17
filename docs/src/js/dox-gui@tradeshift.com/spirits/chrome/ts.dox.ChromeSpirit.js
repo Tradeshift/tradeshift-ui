@@ -35,12 +35,13 @@ ts.dox.ChromeSpirit = (function using(CSSPlugin, Then) {
 		 */
 		onready: function() {
 			this.super.onready();
+			this._app = this.dom.q('.ts-app', ts.ui.AppSpirit);
 			this._sbar = this.dom.q('.ts-sidebar', ts.dox.SideBarSpirit);
 			this._menu = this.dom.q('.ts-menu', ts.dox.MenuSpirit);
 			this._main = this.dom.q('.ts-main', ts.ui.MainSpirit);
 			this._menu.life.add(gui.LIFE_RENDER, this);
 			this.event.add('hashchange', window);
-			this.event.add('transitionend', this._main);
+			this.event.add('transitionend', this._app);
 			this.action.add([ONDOM, ONSEARCH, MENUOPEN, MENUCLOSE]).addGlobal([TITLE, DOLOAD]);
 			this.broadcast
 				.addGlobal([TITLE, MENUON, ONROTATE, ASIDESON, ASIDESOFF, DIALOGSON, DIALOGSOFF])
@@ -412,6 +413,7 @@ ts.dox.ChromeSpirit = (function using(CSSPlugin, Then) {
 			var chrome = this;
 			sidebar.search({
 				onsearch: function(query) {
+					alert(query);
 					chrome._searchquery = query;
 					chrome.broadcast.dispatchGlobal('dox-search-query', query);
 					if (query) {

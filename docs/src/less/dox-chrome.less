@@ -230,21 +230,9 @@
 				white-space: nowrap;
 				color: @ts-lite;
 				position: relative;
-				//background-color: @ts-dark-liter;
 				strong {
 					color: @ts-white;
 				}
-				/*
-				.ts-shadow {
-					position: absolute;
-					height: 4px;
-					width: 100%;
-					bottom: 0;
-					left: 0;
-					background-image: linear-gradient(transparent, rgba(0,0,0,0.23));
-					z-index: 1;
-				}
-				*/
 			}
 		}
 	}
@@ -281,12 +269,19 @@
 // Layouts .....................................................................
 
 .ts-doxchrome {
+	.ts-app {
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: @ts-width-aside;
+	}
 	.ts-cover:not(.ts-dox-blocking) {
 		max-width: @ts-width-aside;
 	}
 	&.collapse-some,
 	&.collapse-full {
-		.ts-main {
+		.ts-app {
 			.ts-mixin-transition-transform(@ts-transition-fast, @ts-timing-easeoutquint);
 		}
 		.ts-sidebar {
@@ -296,14 +291,15 @@
 		}
 	}
 	&.collapse-some {
+		.ts-app {
+			left: @ts-unit-triple;
+			background-color: @ts-lite-liter;
+		}
 		&:before {
 			width: @ts-unit-triple;
 		}
 		.ts-cover:not(.ts-dox-blocking) {
 			max-width: @ts-unit-triple;
-		}
-		.ts-main {
-			left: @ts-unit-triple;
 		}
 		.button-menu-open {
 			display: block;
@@ -320,7 +316,7 @@
 			.ts-topbarspinner {
 				display: none;
 			}
-			.ts-main {
+			.ts-app {
 				.ts-mixin-translate3d(@ts-width-aside - @ts-unit-triple, 0, 0);
 			}
 			.ts-menu h3 {
@@ -339,20 +335,20 @@
 		}
 	}
 	&.collapse-full {
+		.ts-app {
+			left: 0;
+		}
 		&:before {
 			display: none;
 		}
 		.ts-cover:not(.ts-dox-blocking) {
 			display: none !important;
 		}
-		.ts-main {
-			left: 0;
-		}
 		.ts-topbarspinner {
 			display: none;
 		}
 		&.uncollapse {
-			.ts-main {
+			.ts-app {
 				.ts-mixin-translate3d(100%, 0, 0);
 			}
 		}

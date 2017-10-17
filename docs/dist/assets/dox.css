@@ -72,7 +72,6 @@ var,
 kbd,
 samp {
   font-family: 'Ubuntu Mono', 'Monaco', 'Consolas', 'Bitstream Vera Sans Mono', monospace;
-  font-size: 15px;
   word-spacing: -2px;
   -webkit-hyphens: none;
   -moz-hyphens: none;
@@ -738,17 +737,6 @@ table.api th {
   white-space: nowrap;
   color: #e1e1e1;
   position: relative;
-  /*
-				.ts-shadow {
-					position: absolute;
-					height: 4px;
-					width: 100%;
-					bottom: 0;
-					left: 0;
-					background-image: linear-gradient(transparent, rgba(0,0,0,0.23));
-					z-index: 1;
-				}
-				*/
 }
 .ts-doxchrome .ts-menu > li.resultsbanner strong {
   color: #ffffff;
@@ -772,11 +760,18 @@ table.api th {
 .ts-loading .ts-doxchrome .button-menu-open i {
   opacity: 0;
 }
+.ts-doxchrome .ts-app {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 320px;
+}
 .ts-doxchrome .ts-cover:not(.ts-dox-blocking) {
   max-width: 320px;
 }
-.ts-doxchrome.collapse-some .ts-main,
-.ts-doxchrome.collapse-full .ts-main {
+.ts-doxchrome.collapse-some .ts-app,
+.ts-doxchrome.collapse-full .ts-app {
   transition-property: transform;
   transition-duration: 0.2s;
   transition-timing-function: cubic-bezier(0.23, 1, 0.32, 1);
@@ -786,14 +781,15 @@ table.api th {
 .ts-doxchrome.collapse-full .ts-sidebar .ts-toolbar-title label {
   display: none;
 }
+.ts-doxchrome.collapse-some .ts-app {
+  left: 66px;
+  background-color: #f5f5f5;
+}
 .ts-doxchrome.collapse-some:before {
   width: 66px;
 }
 .ts-doxchrome.collapse-some .ts-cover:not(.ts-dox-blocking) {
   max-width: 66px;
-}
-.ts-doxchrome.collapse-some .ts-main {
-  left: 66px;
 }
 .ts-doxchrome.collapse-some .button-menu-open {
   display: block;
@@ -809,7 +805,7 @@ table.api th {
 .ts-doxchrome.collapse-some.uncollapse .ts-topbarspinner {
   display: none;
 }
-.ts-doxchrome.collapse-some.uncollapse .ts-main {
+.ts-doxchrome.collapse-some.uncollapse .ts-app {
   transform: translate3d(254px, 0, 0);
 }
 .ts-doxchrome.collapse-some.uncollapse .ts-menu h3 {
@@ -821,19 +817,19 @@ table.api th {
 .ts-doxchrome.collapse-some:not(.uncollapse) .ts-search {
   display: none;
 }
+.ts-doxchrome.collapse-full .ts-app {
+  left: 0;
+}
 .ts-doxchrome.collapse-full:before {
   display: none;
 }
 .ts-doxchrome.collapse-full .ts-cover:not(.ts-dox-blocking) {
   display: none !important;
 }
-.ts-doxchrome.collapse-full .ts-main {
-  left: 0;
-}
 .ts-doxchrome.collapse-full .ts-topbarspinner {
   display: none;
 }
-.ts-doxchrome.collapse-full.uncollapse .ts-main {
+.ts-doxchrome.collapse-full.uncollapse .ts-app {
   transform: translate3d(100%, 0, 0);
 }
 .ts-doxchrome.uncollapse .ts-sidebar .ts-toolbar-title label {

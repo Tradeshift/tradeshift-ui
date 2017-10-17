@@ -171,7 +171,11 @@
 		@title = box.info || null;
 		<li @class id="${id}-checkbox">
 			<button data-ts="Button" onclick="#{box.onclick()}" @title>
-				@class = box.checked ? 'ts-icon-checkboxon' : 'ts-icon-checkbox';
+				if(box.indeterminate) {
+					@class = 'ts-icon-checkbox-indeterminate';
+				} else {
+					@class = box.checked ? 'ts-icon-checkboxon' : 'ts-icon-checkbox';
+				}
 				<i @class></i>
 			</button>
 		</li>

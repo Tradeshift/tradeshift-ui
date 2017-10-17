@@ -18,6 +18,12 @@ ts.ui.CheckBoxModel = (function using(chained) {
 		checked: false,
 
 		/**
+		 * Indeterminate?
+		 * @type {boolean}
+		 */
+		indeterminate: false,
+
+		/**
 		 * Visible?
 		 * @type {boolean}
 		 */

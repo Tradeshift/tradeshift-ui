@@ -93,17 +93,17 @@
                         <section>
                             <h3><span>Find the current breakpoint</span></h3>
                             <p>The current breakpoint is determined via CSS classnames on the <code>html</code> element. You can use a function such as this to lookup the current breakpoint; it returns a class.</p>
-                            <figure data-ts="DoxScript" data-ts.code="function%20breakpoint()%20%7B%0A%09var%20cname%20%3D%20document.documentElement.className%3B%0A%09return(%5B%0A%09%09&apos;ts-mobile-only&apos;%2C%0A%09%09&apos;ts-tablet-only&apos;%2C%0A%09%09&apos;ts-desktop-only&apos;%0A%09%5D.find(function(c)%20%7B%0A%09%09return%20cname.includes(c)%3B%0A%09%7D))%3B%0A%7D">
+                            <figure data-ts="DoxScript" data-ts.code="function%20breakpoint()%20%7B%0A%09var%20root%20%3D%20document.documentElement%3B%0A%09return(%5B%0A%09%09&apos;ts-mobile-only&apos;%2C%0A%09%09&apos;ts-tablet-only&apos;%2C%0A%09%09&apos;ts-desktop-only&apos;%0A%09%5D.find(function(c)%20%7B%0A%09%09return%20root.classList.contains(c)%3B%0A%09%7D))%3B%0A%7D">
                                 <input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
                                 <div data-ts="Panel">
                                     <pre class="prism language-javascript"><code><span class="token keyword">function</span> <span class="token function">breakpoint<span class="token punctuation">(</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-	<span class="token keyword">var</span> cname <span class="token operator">=</span> document<span class="token punctuation">.</span>documentElement<span class="token punctuation">.</span>className<span class="token punctuation">;</span>
+	<span class="token keyword">var</span> root <span class="token operator">=</span> document<span class="token punctuation">.</span>documentElement<span class="token punctuation">;</span>
 	<span class="token keyword">return</span><span class="token punctuation">(</span><span class="token punctuation">[</span>
 		<span class="token string">&apos;ts-mobile-only&apos;</span><span class="token punctuation">,</span>
 		<span class="token string">&apos;ts-tablet-only&apos;</span><span class="token punctuation">,</span>
 		<span class="token string">&apos;ts-desktop-only&apos;</span>
 	<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">find<span class="token punctuation">(</span></span><span class="token keyword">function</span><span class="token punctuation">(</span>c<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-		<span class="token keyword">return</span> cname<span class="token punctuation">.</span><span class="token function">includes<span class="token punctuation">(</span></span>c<span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token keyword">return</span> root<span class="token punctuation">.</span>classList<span class="token punctuation">.</span><span class="token function">contains<span class="token punctuation">(</span></span>c<span class="token punctuation">)</span><span class="token punctuation">;</span>
 	<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span></code></pre>
                                 </div>

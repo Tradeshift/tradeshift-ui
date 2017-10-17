@@ -413,7 +413,6 @@ ts.dox.ChromeSpirit = (function using(CSSPlugin, Then) {
 			var chrome = this;
 			sidebar.search({
 				onsearch: function(query) {
-					alert(query);
 					chrome._searchquery = query;
 					chrome.broadcast.dispatchGlobal('dox-search-query', query);
 					if (query) {

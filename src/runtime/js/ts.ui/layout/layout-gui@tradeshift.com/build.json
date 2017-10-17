@@ -9,6 +9,7 @@
 	"spirits/modals/ts.ui.ModalSpirit.js",
 	"spirits/app/ts.ui.AppSpirit.js",
 	"spirits/main/ts.ui.MainSpirit.js",
+	"spirits/main/ts.ui.MainsSpirit.js",
 	"spirits/main/ts.ui.ContentSpirit.js",
 	"spirits/main/ts.ui.MainContentSpirit.js",
 	"module.js"

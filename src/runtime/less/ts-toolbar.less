@@ -26,10 +26,6 @@
 	white-space: nowrap;
 	background-color: @ts-white;
 }
-.ts-main .ts-toolbar {
-	position: relative;
-	width: 100%;
-}
 .ts-toolbar-menu {
 	position: absolute;
 	font-size: 0;
@@ -190,13 +186,9 @@
 		left: 0;
 		bottom: 0px;
 		width: 100px;
-		//z-index: 1000000000000;
-		&.ts-smooth {
-			.ts-mixin-transition-transform(@ts-transition-now * 0.5, @ts-timing-easeinoutexpo);
-		}
+		
 	}
 	.ts-button {
-		.ts-mixin-transition-colors(@ts-transition-now);
 		.ts-mixin-menuitem();
 		padding: @ts-unit;
 		position: relative;
@@ -216,16 +208,6 @@
 			z-index: 1;
 			margin-top: 0 - 10px;
 		}
-		/*
-		&:after {
-			content: '';
-			border-bottom: 6px solid transparent;
-			position: absolute;
-			right: 0;
-			left: 0;
-			bottom: 0;
-		}
-		*/
 		&:hover {
 			span {
 				text-decoration: none;
@@ -294,6 +276,16 @@
 		}
 	}
 }
+.ts-toolbar.ts-ready {
+	.ts-toolbar-tabs {
+		.ts-button {
+			.ts-mixin-transition-colors(@ts-transition-now);
+		}
+		.ts-tab-indicator {
+			.ts-mixin-transition-transform(@ts-transition-now * 0.5, @ts-timing-easeinoutexpo);
+		}
+	}
+}
 
 // Tabs buttons (add new, show more ) ..........................................
 
@@ -349,43 +341,6 @@
 		}
 	}
 }
-/*
-.ts-toolbar {
-	&.ts-bg-dark .ts-toolbar-tabs {
-		.ts-button {
-			color: @ts-lite;
-			background-color: @ts-dark-liter;
-			border-right-color: @ts-dark-lite;
-		}
-		.ts-selected .ts-button {
-			background-color: @ts-dustblue;
-			color: @ts-white;
-		}
-	}
-	&.ts-bg-lite,
-	&.ts-bg-white {
-		.mixin-temp(@ts-blue, @ts-medium);
-	}
-	&.ts-bg-blue {
-		.mixin-temp(@ts-blue);
-	}
-	&.ts-bg-green {
-		.mixin-temp(@ts-green);
-	}
-	&.ts-bg-yellow {
-		.mixin-temp(@ts-yellow, @ts-yellow-text, @ts-yellow-text);
-	}
-	&.ts-bg-orange {
-		.mixin-temp(@ts-orange, @ts-orange-text, @ts-orange-text);
-	}
-	&.ts-bg-red {
-		.mixin-temp(@ts-red);
-	}
-	&.ts-bg-purple {
-		.mixin-temp(@ts-purple);
-	}
-}
-*/
 
 // Statusbar ...................................................................
 

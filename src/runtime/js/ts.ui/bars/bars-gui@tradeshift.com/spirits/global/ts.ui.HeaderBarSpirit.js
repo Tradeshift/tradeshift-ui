@@ -21,19 +21,6 @@ ts.ui.HeaderBarSpirit = (function using(chained) {
 			},
 
 			/**
-		   * Add that global classname.
-		   *
-			onenter: function() {
-				this.super.onenter();
-				if (this.guilayout.outsideMain()) {
-					this.guilayout.shiftGlobal(true, 'ts-has-header');
-					this.css.add('ts-headerbar ts-mainheader'); //  ts-bg-lite
-				} else {
-					console.error('Not supported');
-				}
-			},
-
-			/**
 		 	 * Index the various bars and watch for rendering updates.
 			 * @param {Object} summary
 			 */
@@ -136,7 +123,7 @@ ts.ui.HeaderBarSpirit = (function using(chained) {
 				}
 			}),
 
-			// Private .................................................................
+			// Private ...............................................................
 
 			/**
 			 * @type {ts.ui.ToolBarSpirit}
@@ -166,7 +153,7 @@ ts.ui.HeaderBarSpirit = (function using(chained) {
 			}
 		},
 		{
-			// Static ...............................................................
+			// Static ................................................................
 
 			/**
 			 * Summon spirit.
@@ -175,12 +162,6 @@ ts.ui.HeaderBarSpirit = (function using(chained) {
 			 */
 			summon: function(isglobal) {
 				return ts.ui.HeaderBarSpirit.possess(document.createElement('header'));
-				/*
-				var elm = document.createElement('header');
-				var spi = ts.ui.HeaderBarSpirit.possess(elm);
-				spi.global = isglobal || false;
-				return spi;
-				*/
 			}
 		}
 	);

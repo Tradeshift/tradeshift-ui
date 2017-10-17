@@ -13,6 +13,7 @@ body {
 	flex: 1 0 0px;
 	display: flex;
 	flex-direction: column;
+	max-width: 100%;
 }
 body,
 .ts-main,
@@ -23,6 +24,10 @@ body,
 }
 .ts-main {
 	position: relative;
+	z-index: @ts-zindex-main;
+	&.ts-panel {
+		overflow: hidden;
+	}
 }
 .ts-sideshow,
 .ts-content {
@@ -30,7 +35,6 @@ body,
 	flex-direction: column;
 }
 .ts-content {
-	z-index: @ts-zindex-main;
 	position: relative;
 	width: 100%;
 }
@@ -41,6 +45,7 @@ body,
 	height: 0;
 }
 .ts-panel {
+	overflow-x: hidden;
 	overflow-y: scroll;
 }
 .ts-panels {
@@ -70,11 +75,13 @@ body,
 // Decorations .................................................................
 
 .ts-toolbar {
+	position: relative;
 	&:before,
 	&:after {
 		height: 1px;
-		width: 100%;
 		position: absolute;
+		left: 0;
+		right: 0;
 		pointer-events: none;
 		background-color: @new-bordercolor;
 	}
@@ -138,8 +145,36 @@ body,
 		.ts-mixin-fixwidth(@ts-width-aside);
 	}
 }
+.mixin-panel-buffer(@padding) {
+	.ts-main {
+		> .ts-content {
+			> .ts-panel {
+				padding-top: @padding;
+			}
+		}
+	}
+}
 .ts-mobile-only {
-	.ts-sideshow {
-		.ts-mixin-fixwidth(100%);
+	.ts-app {
+		> .ts-headerbar {
+			position: absolute;
+			width: 100%;
+			z-index: @ts-zindex-main + 1;
+		}
+		.ts-sideshow {
+			.ts-mixin-fixwidth(100%);
+		}
+		&.ts-header-level-3 {
+			.mixin-panel-buffer(@ts-unit * 3);
+		}
+		&.ts-header-level-5 {
+			.mixin-panel-buffer(@ts-unit * 5);
+		}
+		&.ts-header-level-6 {
+			.mixin-panel-buffer(@ts-unit * 6);
+		}
+		&.ts-header-level-8 {
+			.mixin-panel-buffer(@ts-unit * 8);
+		}
 	}
 }

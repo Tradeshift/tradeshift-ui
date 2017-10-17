@@ -11,8 +11,7 @@ ts.ui.PanelSpirit = (function using(
 	ACTION_ATTACH,
 	ACTION_DETACH,
 	ACTION_SHOW,
-	ACTION_HIDE,
-	ACTION_CLASS
+	ACTION_HIDE
 ) {
 	return ts.ui.Spirit.extend({
 		/**
@@ -78,7 +77,7 @@ ts.ui.PanelSpirit = (function using(
 		 */
 		onconfigure: function() {
 			this.super.onconfigure();
-			this.action.add([ACTION_ATTACH, ACTION_SHOW, ACTION_HIDE, ACTION_CLASS]);
+			this.action.add([ACTION_ATTACH, ACTION_DETACH, ACTION_SHOW, ACTION_HIDE]);
 		},
 
 		/**
@@ -98,28 +97,16 @@ ts.ui.PanelSpirit = (function using(
 		},
 
 		/**
-		 * Consume nested panel actions. When a request for root CSS
-		 * update is found, we'll stamp the action with a pointer to
-		 * this panel (so that root CSS always matches selected panel).
+		 * Consume nested panel actions.
 		 * @param {gui.Action} a
 		 */
 		onaction: function(a) {
 			switch (a.type) {
 				case ACTION_ATTACH:
+				case ACTION_DETACH:
 				case ACTION_SHOW:
 				case ACTION_HIDE:
 					a.consume();
-					break;
-				case ACTION_CLASS:
-					if (this._isroot()) {
-						a.data.relatedPanel = this;
-					}
-					break;
-				case ts.ui.ACTION_STATUSBAR_LEVEL:
-					if (a.target.guilayout.outsideMain()) {
-						// TODO: CSS FOR THIS!
-						this.guilayout.gotolevel(a.data);
-					}
 					break;
 			}
 		},
@@ -157,7 +144,7 @@ ts.ui.PanelSpirit = (function using(
 		},
 
 		/**
-		 * @deprecated
+		 * @deprecated (though still used, but it should become @deprecated)
 		 * Get the MainSpirit nested directly inside this panel, if it exists.
 		 * @returns {ts.ui.MainSpirit}
 		 */
@@ -166,7 +153,7 @@ ts.ui.PanelSpirit = (function using(
 		},
 
 		/**
-		 * @deprecated
+		 * @deprecated (though still used, but it should become @deprecated)
 		 * Get the MainSpirit found above this panel, if it exists.
 		 * (using ancestor, not parent, because of MainContenSpirit).
 		 * @returns {ts.ui.MainSpirit}
@@ -264,6 +251,5 @@ ts.ui.PanelSpirit = (function using(
 	ts.ui.ACTION_PANEL_ATTACH,
 	ts.ui.ACTION_PANEL_DETACH,
 	ts.ui.ACTION_PANEL_SHOW,
-	ts.ui.ACTION_PANEL_HIDE,
-	ts.ui.ACTION_ROOT_CLASSNAMES
+	ts.ui.ACTION_PANEL_HIDE
 );

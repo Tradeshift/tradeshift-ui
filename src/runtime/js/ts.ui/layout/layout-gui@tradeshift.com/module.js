@@ -15,6 +15,7 @@ gui.module('layout-gui@tradeshift.com', {
 		['[data-ts=Modal]', ts.ui.ModalSpirit],
 		['[data-ts=App]', ts.ui.AppSpirit],
 		['[data-ts=Main]', ts.ui.MainSpirit],
+		['[data-ts=Mains]', ts.ui.MainsSpirit],
 		['[data-ts=Content]', ts.ui.ContentSpirit],
 		['[data-ts=MainContent]', ts.ui.MainContentSpirit] // TODO: remove soon!
 	],

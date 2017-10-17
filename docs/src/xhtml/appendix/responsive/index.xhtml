@@ -73,13 +73,13 @@
 						<figure data-ts="DoxScript">
 							<script>
 								function breakpoint() {
-									var cname = document.documentElement.className;
+									var root = document.documentElement;
 									return([
 										'ts-mobile-only',
 										'ts-tablet-only',
 										'ts-desktop-only'
 									].find(function(c) {
-										return cname.includes(c);
+										return root.classList.contains(c);
 									}));
 								}
 							</script>

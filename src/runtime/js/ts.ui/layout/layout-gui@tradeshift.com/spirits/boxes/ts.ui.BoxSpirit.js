@@ -17,14 +17,23 @@ ts.ui.BoxSpirit = (function using(
 ) {
 	return ts.ui.Spirit.extend(
 		{
+			/**
+			 * TODO: finalize this
+			 */
 			title: chained(function(title) {
 				this._head().title(title);
 			}),
 
+			/**
+			 * TODO: finalize this
+			 */
 			icon: chained(function(icon) {
 				this._head().icon(icon);
 			}),
 
+			/**
+			 * TODO: finalize this
+			 */
 			search: chained(function(search) {
 				console.log('TODO: SEARCH');
 			}),
@@ -102,7 +111,13 @@ ts.ui.BoxSpirit = (function using(
 			 * Called by the {ts.ui.PanelsPlugin} when a tab is selected.
 			 * @param {ts.ui.PanelSpirit} panel - The associated panel (not the tab!)
 			 */
-			$selectTab: function(panel) {},
+			$selectTab: function(panel) {
+				/*
+				var indx = panel.dom.ordinal();
+				var tabs = this._head().tabs();
+				tabs.selectedIndex = indx;
+				*/
+			},
 
 			// Private .................................................................
 

@@ -112,6 +112,17 @@ ts.ui.ToolBarSpirit = (function using(
 			},
 
 			/**
+			 * Until we manage to get the inital tabs rendering performed 
+			 * synchronously, at least supress initial CSS animations here.
+			 */
+			onasync: function() {
+				this.super.onasync();
+				this.tick.time(function hotfix() {
+					this.css.add(ts.ui.CLASS_READY);
+				}, 300);
+			},
+
+			/**
 			 * Further hotfix for situation explained in previous comment.
 			 */
 			onattach: function() {
@@ -783,19 +794,21 @@ ts.ui.ToolBarSpirit = (function using(
 			 * @param {ts.ui.Spirit} target
 			 */
 			_moveindicator: function(source, target) {
-				var smooth = 'ts-smooth';
+				// var smooth = 'ts-smooth';
 				if (source) {
 					if (target) {
 						source.dom.show();
 						source.sprite.x = target.box.localX;
 						source.sprite.xscale = target.box.width / 100;
+						/*
 						if (!source.css.contains(smooth)) {
 							this.tick.nextFrame(function starttransitions() {
 								source.css.add(smooth);
 							});
 						}
+						*/
 					} else {
-						source.css.remove(smooth);
+						// source.css.remove(smooth);
 						source.dom.hide();
 					}
 				}

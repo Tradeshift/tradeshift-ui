@@ -14,10 +14,11 @@
 	}
 	> .ts-panel {
 		z-index: 0;
-		> .ts-note {
-			&:first-child {
-				margin: -@ts-unit -@ts-unit 0 -@ts-unit;
-			}
+	}
+	> .ts-panel > .ts-note,
+	> .ts-panels > .ts-panel > .ts-note {
+		&:first-child {
+			margin: -@ts-unit -@ts-unit @ts-unit -@ts-unit;
 		}
 	}
 	> .ts-panel,

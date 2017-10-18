@@ -538,18 +538,21 @@ function stickys($) {
 	const tooltip = 'Submit new issue';
 	const body = $('body');
 	if (!body.hasClass('nosticky')) {
-		body.first().append(
-			`<aside data-ts="Note" class="sticky ts-bg-yellow">
+		body
+			.find('article')
+			.first()
+			.append(
+				`<div data-ts="Note" class="sticky">
 			  <p>If you find a bug or need a feature…</p>
-		    <menu class="ts-buttons">
+		    <menu data-ts="Buttons">
 		      <li>
-		        <a data-ts="Button" target="_blank" href="${newissue}" title="${tooltip}" class="ts-secondary">
+		        <a data-ts="Button" target="_blank" href="${newissue}" title="${tooltip}">
 		          <span>Create GitHub Issue…</span>
 		        </a>
 		      </li>
 			  </menu>
-			</aside>`
-		);
+			</div>`
+			);
 	}
 	return $;
 }

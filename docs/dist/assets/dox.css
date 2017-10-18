@@ -79,71 +79,6 @@ samp {
 }
 figure {
   position: relative;
-  /*
-	.tabs {
-		.ts-mixin-rounded-t();
-		margin: 0;
-		border: 1px solid @ts-lite-lite;
-		border-bottom: 0 none;
-		&:empty {
-			border: 0 none;
-		}
-		font-size: @ts-fontsize-mini;
-		text-align: right;
-		&:after {
-			content: '';
-			clear: left;
-			display: block;
-			height: 0;
-		}
-		button {
-			display: inline-block;
-			padding: @ts-unit-quarter @ts-unit;
-			color: @ts-medium;
-			span {
-				line-height: @ts-unit-double;
-			}
-			span + svg {
-				position: relative;
-				top: 8px;
-				margin-left: 6px;
-				fill: currentColor;
-			}
-			&:hover {
-				background-color: fade(@ts-lite-dark, 75%);
-				cursor: pointer;
-			}
-			&.selected {
-				background-color: @ts-lite-lite;
-				color: @ts-medium-dark;
-				cursor: default;
-			}
-			&.tab {
-				float: left;
-				&:first-child {
-					.ts-mixin-rounded-tl();
-				}
-			}
-			&.run {
-				padding-left: @ts-unit;
-				padding-right: @ts-unit;
-			}
-			&.edit,
-			&.revert {
-				float: left;
-				svg {
-					top: 4px;
-				}
-			}
-		}
-	}
-	*/
-  /*
-	.ts-panel {
-		overflow: visible;
-		position: relative;
-	}
-	*/
 }
 figure.ts-box > .ts-panel,
 figure.ts-box > .ts-panels > .ts-panel {
@@ -1275,34 +1210,3 @@ article {
 .ts-has-header.ts-header-level-8 .sticky {
   top: 209px;
 }
-/*
-.ts-has-toolbar-first-ts-micro {
-	.sticky {
-		top: @ts-unit-double + @ts-unit-plus;
-	}
-}
-.ts-has-toolbar-first-ts-macro,
-.ts-has-topbar {
-	.sticky {
-		top: @ts-unit-triple + @ts-unit-plus;
-	}
-}
-.ts-has-toolbar-first-ts-micro.ts-has-toolbar-first-ts-macro,
-.ts-has-toolbar-first-ts-micro.ts-has-topbar {
-	.sticky {
-		top: @ts-unit-triple + @ts-unit-double + @ts-unit-plus;
-	}
-}
-.ts-has-toolbar-first-ts-micro.ts-has-toolbar-first-ts-macro.ts-has-topbar {
-	.sticky {
-		top: @ts-unit-triple + @ts-unit-triple + @ts-unit-double + @ts-unit-plus;
-	}
-}
-*/
-/* Not currently used!
-html.design.ts-bg-lite {
-	.ts-main {
-		background-color: @ts-white;
-	}
-}
-*/

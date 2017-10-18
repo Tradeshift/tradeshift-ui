@@ -95,19 +95,30 @@ body,
 	}
 }
 
-.ts-sidebar {
-	&.ts-sidebar-first {
-		border-right: 1px solid @new-bordercolor !important;
-		> .ts-panels,
-		> .ts-panel {
-			//border-right: 1px solid @new-bordercolor;
+body {
+	> .ts-sidebar {
+		&.ts-sidebar-first {
+			> .ts-panels,
+			> .ts-panel {
+				border-right: 1px solid @new-bordercolor;
+			}
+		}
+		&.ts-sidebar-last {
+			> .ts-panels,
+			> .ts-panel {
+				border-left: 1px solid @new-bordercolor;
+			}
 		}
 	}
-	&.ts-sidebar-last {
-		border-left: 1px solid @new-bordercolor !important;
-		> .ts-panels,
-		> .ts-panel {
-			//border-left: 1px solid @new-bordercolor;
+}
+
+.ts-main {
+	> .ts-sidebar {
+		&.ts-sidebar-first {
+			border-right: 1px solid @new-bordercolor !important;
+		}
+		&.ts-sidebar-last {
+			border-left: 1px solid @new-bordercolor !important;
 		}
 	}
 }

@@ -19,65 +19,6 @@ figure {
 	.output {
 		padding: @ts-unit;
 	}
-	/*
-	.tabs {
-		.ts-mixin-rounded-t();
-		margin: 0;
-		border: 1px solid @ts-lite-lite;
-		border-bottom: 0 none;
-		&:empty {
-			border: 0 none;
-		}
-		font-size: @ts-fontsize-mini;
-		text-align: right;
-		&:after {
-			content: '';
-			clear: left;
-			display: block;
-			height: 0;
-		}
-		button {
-			display: inline-block;
-			padding: @ts-unit-quarter @ts-unit;
-			color: @ts-medium;
-			span {
-				line-height: @ts-unit-double;
-			}
-			span + svg {
-				position: relative;
-				top: 8px;
-				margin-left: 6px;
-				fill: currentColor;
-			}
-			&:hover {
-				background-color: fade(@ts-lite-dark, 75%);
-				cursor: pointer;
-			}
-			&.selected {
-				background-color: @ts-lite-lite;
-				color: @ts-medium-dark;
-				cursor: default;
-			}
-			&.tab {
-				float: left;
-				&:first-child {
-					.ts-mixin-rounded-tl();
-				}
-			}
-			&.run {
-				padding-left: @ts-unit;
-				padding-right: @ts-unit;
-			}
-			&.edit,
-			&.revert {
-				float: left;
-				svg {
-					top: 4px;
-				}
-			}
-		}
-	}
-	*/
 	.prism, 
 	.prism code {
 		border-radius: @ts-radius;
@@ -88,12 +29,6 @@ figure {
 			border-radius: 0 0 @ts-radius @ts-radius;
 		}	
 	}
-	/*
-	.ts-panel {
-		overflow: visible;
-		position: relative;
-	}
-	*/
 	.editcode {
 		.ts-mixin-maximize();
 		.docs-mixin-editor();

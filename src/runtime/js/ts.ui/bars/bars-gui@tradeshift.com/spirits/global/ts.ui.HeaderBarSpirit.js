@@ -79,6 +79,14 @@ ts.ui.HeaderBarSpirit = (function using(chained) {
 			}),
 
 			/**
+			 * Show the dedicated burger button? Use `null` to hide it again.
+			 * @param {Function|null} callback
+			 */
+			burgerbutton: chained(function(callback) {
+				return this.model().burgerbutton.apply(this.model(), arguments);
+			}),
+
+			/**
 			 * Get or set the tabs.
 			 * @param {Array<object>|ts.ui.TabCollection|null} [json]
 			 * @returns {this|ts.ui.TabCollection}
@@ -123,6 +131,36 @@ ts.ui.HeaderBarSpirit = (function using(chained) {
 				}
 			}),
 
+			// Privileged ............................................................
+
+			/**
+			 * Implements the "sticky position" of the main header.
+			 * @param {number} scroll
+			 */
+			$scroll: function(scroll) {
+				if (scroll === 0) {
+					this.sprite.reset();
+				} else {
+					var stop = 0 - ts.ui.UNIT_TRIPLE;
+					var delt = scroll - this._scroll;
+					var down = delt > 0;
+					var doit = false;
+					var next = 0;
+					if (down) {
+						doit = this.sprite.y > stop;
+					} else {
+						doit = this.sprite.y < 0;
+					}
+					if (doit) {
+						next = this.sprite.y - delt;
+						next = next < stop ? stop : next;
+						next = next > 0 ? 0 : next;
+						this.sprite.y = next;
+					}
+				}
+				this._scroll = scroll;
+			},
+
 			// Private ...............................................................
 
 			/**
@@ -139,6 +177,12 @@ ts.ui.HeaderBarSpirit = (function using(chained) {
 			 * @type {ts.ui.ToolBarSpirit}
 			 */
 			_buttonbar: null,
+
+			/**
+			 * Snapshot scrolling.
+			 * @type {number}
+			 */
+			_scroll: 0,
 
 			/**
 			 * Dispatch some action bearing offset info for the general environment to handle.

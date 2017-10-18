@@ -4,7 +4,16 @@
  */
 ts.dox.SideBarSpirit = ts.ui.SideBarSpirit.extend({
 	/**
-	 * This sidebar should just have a regular toolbar header.
+	 * Don't close the menu in mobile breakpoint :)
+	 */
+	onconstruct: function() {
+		this.super.onconstruct();
+		this.autoclose = false;
+	},
+
+	/**
+	 * This particular sidebar should just have a regular toolbar 
+	 * header (because we like how the Search looks in that one).
 	 * @returns {ts.ui.ToolBarSpirit}
 	 */
 	_head: function() {

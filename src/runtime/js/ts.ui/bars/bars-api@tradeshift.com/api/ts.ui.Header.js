@@ -11,6 +11,39 @@ ts.ui.Header = (function using(chained) {
 		return bar.spirit || ts.ui.AppSpirit.$inject((bar.spirit = ts.ui.HeaderBarSpirit.summon()));
 	}
 
+	/**
+	 * Is mobile breakpoint?
+	 * @returns {string}
+	 */
+	function ismobile() {
+		return document.documentElement.classList.contains(ts.ui.CLASS_MOBILE_ONLY);
+	}
+
+	/**
+	 * Open the main menu (from the mobile breakpoint).
+	 */
+	function openmenu() {
+		ts.ui.openMenu();
+	}
+
+	/**
+	 * Show the burger button (instead of the app icon) in mobile breakpoint?
+	 */
+	ts.ui.ready(function() {
+		function burger() {
+			if (ismobile()) {
+				bar().burgerbutton(openmenu);
+			} else {
+				bar().burgerbutton(null);
+				bar().$scroll(0);
+			}
+		}
+		if (ts.ui.appframe) {
+			document.addEventListener('ts-breakpoint', burger);
+			burger();
+		}
+	});
+
 	return {
 		/**
 		 * Get or set the title.
@@ -94,6 +127,16 @@ ts.ui.Header = (function using(chained) {
 		 */
 		$spirit: function() {
 			return bar.spirit || null;
+		},
+
+		/**
+		 * Scrolling the sticky header in mobile breakpoint.
+		 * @param {number} scroll
+		 */
+		$scroll: function(scroll) {
+			if (ismobile()) {
+				bar().$scroll(scroll);
+			}
 		}
 	};
 })(gui.Combo.chained);

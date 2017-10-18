@@ -123,6 +123,24 @@ ts.ui.ToolBarModel = (function using(chained, ButtonModel, CheckBoxModel) {
 		},
 
 		/**
+		 * Reserved for the burger button that opens main navigation in mobile.
+		 * @type {ts.ui.ButtonModel}
+		 */
+		burgerbutton: {
+			getter: function() {
+				return this.actualburgerbutton;
+			},
+			setter: function(json) {
+				if (json) {
+					json = ButtonModel.from(json);
+					json.icon = 'ts-icon-menuswitch';
+					json.type = 'ts-tertiary ts-noborder';
+				}
+				this.actualburgerbutton = json;
+			}
+		},
+
+		/**
 		 * Checkbox (mainly to handle the actionbar selections).
 		 * @type {ts.ui.CheckBoxModel}
 		 */
@@ -149,6 +167,12 @@ ts.ui.ToolBarModel = (function using(chained, ButtonModel, CheckBoxModel) {
 
 		/**
 		 * (woraround bug in EDBML spec)
+		 * @type {ts.ui.ButtonModel}
+		 */
+		actualburgerbutton: null,
+
+		/**
+		 * (woraround bug in EDBML spec, quite embaressing by now)
 		 * @type {ts.ui.CheckBoxModel}
 		 */
 		actualcheckbox: null,

@@ -209,14 +209,19 @@
 			</aside>
 		</template>
     <template id="before-content-template">
-			<aside data-ts="SideBar" id="before-content">
-				<div data-ts="Panel">
-					<p>SideBar before <code class="attr-value">Content</code>.</p>
+			<aside data-ts="SideBar" id="before-content" data-ts.title="My Filters">
+				<div data-ts="Panels">
+					<div data-ts="Panel" data-ts.label="Hansen">
+						<p>SideBar before <code class="attr-value">Content</code>.</p>
+					</div>
+					<div data-ts="Panel" data-ts.label="Jensen">
+						<p>Dav.</p>
+					</div>
 				</div>
 			</aside>
 		</template>
     <template id="after-content-template">
-			<aside data-ts="SideBar" id="after-content">
+			<aside data-ts="SideBar" id="after-content" data-ts.title="My Filters">
 				<div data-ts="Panel">
 					<p>SideBar after <code class="attr-value">Content</code>.</p>
 				</div>

@@ -2,8 +2,9 @@
  * Advanced header model.
  * @using {ts.ui.ToolBarModel} ToolBarModel
  * @using {ts.ui.SearchBarModel} SearchModel
+ * @using {gui.Combo#chained} chained
  */
-ts.ui.HeaderBarModel = (function using(ToolBarModel, SearchModel) {
+ts.ui.HeaderBarModel = (function using(ToolBarModel, SearchModel, chained) {
 	return ts.ui.Model.extend({
 		/**
 		 * Friendly name.
@@ -111,6 +112,22 @@ ts.ui.HeaderBarModel = (function using(ToolBarModel, SearchModel) {
 			}
 		},
 
+		/**
+		 * The dedicated burger button.
+		 * @returns {this|ts.ui.ButtonModel}
+		 */
+		burgerbutton: chained(function(onclick) {
+			if (onclick === null) {
+				this.headerbar.burgerbutton = null;
+			} else if (onclick) {
+				this.headerbar.burgerbutton = {
+					onclick: onclick
+				};
+			} else {
+				return this.centerbar.burgerbutton;
+			}
+		}),
+
 		// Privileged ..............................................................
 
 		/**
@@ -153,4 +170,4 @@ ts.ui.HeaderBarModel = (function using(ToolBarModel, SearchModel) {
 			return !!(model.buttons.getLength() || model.search);
 		}
 	});
-})(ts.ui.ToolBarModel, ts.ui.SearchModel);
+})(ts.ui.ToolBarModel, ts.ui.SearchModel, gui.Combo.chained);

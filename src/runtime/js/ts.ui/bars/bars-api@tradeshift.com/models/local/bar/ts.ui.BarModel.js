@@ -4,7 +4,7 @@
  * @extends {ts.ui.Model}
  * @using {ts.ui.ButtonCollection} ButtonCollection
  */
-ts.ui.BarModel = (function using(ButtonCollection) {
+ts.ui.BarModel = (function using(ButtonCollection, secondary, tertiary) {
 	return ts.ui.Model.extend({
 		// Privileged ................................................................
 
@@ -37,18 +37,20 @@ ts.ui.BarModel = (function using(ButtonCollection) {
 
 		/**
 		 * Get primary and secondary buttons (ascending).
+		 * @param {boolean} optimize
 		 * @returns {Array<ts.ui.ButtonModel>}
 		 */
-		$specialbuttons: function() {
-			return this._sortbuttons(this.$allbuttons(), true);
+		$specialbuttons: function(optimize) {
+			return this._sortbuttons(this.$allbuttons(), optimize, true);
 		},
 
 		/**
 		 * Get tertiary buttons (ascending).
+		 * @param {boolean} optimize
 		 * @returns {Array<ts.ui.ButtonModel>}
 		 */
-		$normalbuttons: function() {
-			return this._sortbuttons(this.$allbuttons(), false);
+		$normalbuttons: function(optimize) {
+			return this._sortbuttons(this.$allbuttons(), optimize, false);
 		},
 
 		// Private .................................................................
@@ -57,16 +59,18 @@ ts.ui.BarModel = (function using(ButtonCollection) {
 		 * Sort buttons for distribution into ASIDE.
 		 * This methods gets invoked by the EDBML.
 		 * @see ts.ui.TopBarSpirit.edbml
+		 * @param {boolean} optimize
 		 * @param {boolean} special
 		 * @returns {Array<ts.ui.ButtonModel>}
 		 */
-		_sortbuttons: function(buttons, special) {
+		_sortbuttons: function(buttons, optimize, special) {
+			var ignore = this._lessimportant;
 			return buttons.filter(function(thing) {
 				var button = thing;
 				if (ButtonCollection.is(thing)) {
 					button = thing[0];
 				}
-				if (button.type.indexOf(ts.ui.CLASS_TERTIARY) > -1) {
+				if (ignore(button, optimize)) {
 					if (!special) {
 						return true;
 					}
@@ -74,6 +78,10 @@ ts.ui.BarModel = (function using(ButtonCollection) {
 					return special;
 				}
 			});
+		},
+
+		_lessimportant: function(button, optimize) {
+			return button.type.includes(tertiary) || (optimize && button.type.includes(secondary));
 		}
 	});
-})(ts.ui.ButtonCollection);
+})(ts.ui.ButtonCollection, ts.ui.CLASS_SECONDARY, ts.ui.CLASS_TERTIARY);

@@ -142,10 +142,7 @@ gui.SpritePlugin = (function() {
 		 */
 		onconstruct: function() {
 			this.super.onconstruct();
-			this._pos = new gui.Position();
-			this._org = new gui.Position();
-			this._scx = 1;
-			this._scy = 1;
+			this._reset();
 		},
 
 		/**
@@ -159,6 +156,7 @@ gui.SpritePlugin = (function() {
 				this.spirit.css.left = '';
 				this.spirit.css.top = '';
 			}
+			this._reset();
 		},
 
 		// Private ...............................................
@@ -243,6 +241,16 @@ gui.SpritePlugin = (function() {
 					msTransform: 'scaleX(' + xscale + ') scaleY(' + yscale + ')'
 				});
 			}
+		},
+
+		/**
+		 * Reset to initial values.
+		 */
+		_reset: function() {
+			this._pos = new gui.Position();
+			this._org = new gui.Position();
+			this._scx = 1;
+			this._scy = 1;
 		}
 	});
 })();

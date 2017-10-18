@@ -45,6 +45,7 @@ body,
 	height: 0;
 }
 .ts-panel {
+	-webkit-overflow-scrolling: touch;
 	overflow-x: hidden;
 	overflow-y: scroll;
 }
@@ -96,15 +97,17 @@ body,
 
 .ts-sidebar {
 	&.ts-sidebar-first {
+		border-right: 1px solid @new-bordercolor !important;
 		> .ts-panels,
 		> .ts-panel {
-			border-right: 1px solid @new-bordercolor;
+			//border-right: 1px solid @new-bordercolor;
 		}
 	}
 	&.ts-sidebar-last {
+		border-left: 1px solid @new-bordercolor !important;
 		> .ts-panels,
 		> .ts-panel {
-			border-left: 1px solid @new-bordercolor;
+			//border-left: 1px solid @new-bordercolor;
 		}
 	}
 }
@@ -155,10 +158,14 @@ body,
 	}
 }
 .ts-mobile-only {
+	.ts-sideshow  {
+		.ts-mixin-fixwidth(100%);
+	}
 	.ts-app {
 		> .ts-headerbar {
 			position: absolute;
 			width: 100%;
+			will-change: transform;
 			z-index: @ts-zindex-main + 1;
 		}
 		.ts-sideshow {

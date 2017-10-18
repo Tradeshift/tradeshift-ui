@@ -14,6 +14,7 @@
 	renderleft(
 		toolbar.title || (topbar ? toolbar.defaultTitle : ''),
 		toolbar.icon,
+		toolbar.burgerbutton,
 		toolbar.status,
 		toolbar.search,
 		toolbar.tabs,
@@ -29,7 +30,7 @@
 	}
 	renderspinner(topbar && mobilos);
 	
-	function renderleft(title, icon, status, search, tabs, navigation, checkbox, actions) {
+	function renderleft(title, icon, burger, status, search, tabs, navigation, checkbox, actions) {
 		var hasnavi = !!(topbar && navigation && navigation.getLength());
 		var hastabs = !!tabs.getLength();
 		var hasactions = !!actions.length;
@@ -44,8 +45,12 @@
 				if(!mobilos && hastabs && !hasnavi) {
 					renderTabs(spirit, tabs, id, mobilos);
 				} else {
-					if(icon) {
-						<li id="${id}-search" class="ts-toolbar-item ts-toolbar-icon">
+					if(burger) {
+						<li id="${id}-burger" class="ts-toolbar-item ts-toolbar-burger">
+							out.html += burger.render();
+						</li>
+					} else if(icon) {
+						<li id="${id}-icon" class="ts-toolbar-item ts-toolbar-icon">
 							<img src="${icon}" width="44" height="44"/>
 						</li>
 					}
@@ -100,8 +105,8 @@
 						});
 					} else {
 						renderbuttons(
-							toolbar.$specialbuttons(),
-							toolbar.$normalbuttons()
+							toolbar.$specialbuttons(mobilos),
+							toolbar.$normalbuttons(mobilos)
 						);
 					}
 				}

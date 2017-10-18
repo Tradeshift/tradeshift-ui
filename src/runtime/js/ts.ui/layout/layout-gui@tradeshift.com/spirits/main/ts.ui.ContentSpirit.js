@@ -33,12 +33,13 @@ ts.ui.ContentSpirit = ts.ui.BoxSpirit.extend({
 
 	/**
 	 * Handle event.
+	 * TODO: Handle multi-Main scenario!
 	 * @param {Event} e
 	 */
 	onevent: function(e) {
 		this.super.onevent(e);
 		if (e.type === 'scroll') {
-			ts.ui.AppSpirit.$scroll(e.target.scrollTop);
+			ts.ui.Header.$scroll(e.target.scrollTop);
 		}
 	},
 

@@ -18,22 +18,12 @@ ts.ui.AppSpirit = (function() {
 		return ts.ui.Footer.$spirit();
 	}
 
-	/**
-	 * Is mobile breakpoint?
-	 * @returns {string}
-	 */
-	function ismobile() {
-		return document.documentElement.classList.contains(ts.ui.CLASS_MOBILE_ONLY);
-	}
-
 	return ts.ui.BoxSpirit.extend(
 		{
-			onconstruct: function() {
-				this.super.onconstruct();
-				this.event.add('ts-breakpoint', document);
-				this._onbreakpoint();
-			},
-
+			/**
+			 * Handle event.
+			 * @param {Event} e
+			 */
 			onevent: function(e) {
 				this.super.onevent(e);
 				this._onbreakpoint();
@@ -52,8 +42,9 @@ ts.ui.AppSpirit = (function() {
 			// Private ...............................................................
 
 			/**
-			 * Make sure to use the main header. Creates the header if it doesn't exits.
+			 * Make sure to use the main header.
 			 * @overwrites {ts.ui.BoxSpirit#_head}
+			 * @returns {ts.ui.HeaderBarSpirit}
 			 */
 			_head: function() {
 				return ts.ui.BoxSpirit.majorHeader(this, appheader());
@@ -62,50 +53,30 @@ ts.ui.AppSpirit = (function() {
 			/**
 			 * Make sure to use the main footer.
 			 * @overwrites {ts.ui.BoxSpirit#_foot}
+			 * @returns {ts.ui.FooterBarSpirit}
 			 */
 			_foot: function() {
 				return ts.ui.BoxSpirit.majorFooter(this, appfooter());
-			},
-
-			/**
-			 * Handle breakpoint.
-			 */
-			_onbreakpoint: function() {
-				if (ismobile()) {
-					console.log('MOBILE BREAKPOINT');
-				} else {
-					console.log('NOT MOBILE BREAKPOINT');
-				}
 			}
 		},
 		{
 			// Static ................................................................
 
 			/**
-			 * Instruct the the MainSpirit to inject as soon as possible.
+			 * Instruct the the AppSpirit to inject the 
+			 * Header and Footer as soon as possible.
 			 * @param {ts.ui.MajorBarSpirit} bar
 			 * @returns {ts.ui.MajorBarSpirit}
 			 */
 			$inject: function(bar) {
 				ts.ui.ready(function inject() {
-					var app = ts.ui.AppSpirit.$spirit();
-					if (app) {
-						app.$inject();
-					}
+					ts.ui.AppSpirit.$spirit().$inject();
 				});
 				return bar;
 			},
 
 			/**
-			 * TODO: Let's do this...
-			 * @param {number} offset
-			 */
-			$scroll: function(offset) {
-				console.log(offset);
-			},
-
-			/**
-			 * No need to query the DOM for all enternity.
+			 * Let's cache this lookup.
 			 * @returns {ts.ui.AppSpirit}
 			 */
 			$spirit: function cached() {

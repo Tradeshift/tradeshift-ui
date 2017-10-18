@@ -207,7 +207,6 @@ ts.ui.ToolBarSpirit = (function using(
 					onclosed: function() {
 						this.dispose();
 						if (selecteditem) {
-							// postponed to transition the Aside elegantly
 							self._arraymove(tabs, selecteditem, 1);
 						}
 					}
@@ -232,6 +231,7 @@ ts.ui.ToolBarSpirit = (function using(
 							.reverse()
 					})
 				);
+				aside.open();
 			},
 
 			/**
@@ -242,11 +242,10 @@ ts.ui.ToolBarSpirit = (function using(
 			 * @param {string} color Copy from Tobbar. Now useless(@leo)
 			 */
 			putaside: function(buttons, color) {
-				var selected = null,
-					morphed = [];
+				var selected = null;
+				var morphed = [];
 				buttons.forEach(function transmorph(button) {
 					if (ts.ui.Collection.is(button)) {
-						// it's a button group!
 						button.forEach(transmorph);
 					} else {
 						var data = JSON.parse(JSON.stringify(button));
@@ -272,6 +271,7 @@ ts.ui.ToolBarSpirit = (function using(
 						}
 					}
 				});
+				aside.open();
 			},
 
 			/**

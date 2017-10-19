@@ -20,7 +20,7 @@ ts.ui.SideShowSpirit = (function using(
 	PANEL_ATTACH,
 	PANEL_DETACH
 ) {
-	return ts.ui.BoxSpirit.extend({
+	return ts.ui.LayoutSpirit.extend({
 		/**
 		 * Open?
 		 * @type {boolean}
@@ -236,7 +236,7 @@ ts.ui.SideShowSpirit = (function using(
 		 * @returns {ts.ui.HeaderBarSpirit}
 		 */
 		_head: function() {
-			return ts.ui.BoxSpirit.majorHeader(this);
+			return ts.ui.LayoutSpirit.macroHeader(this);
 		},
 
 		/**

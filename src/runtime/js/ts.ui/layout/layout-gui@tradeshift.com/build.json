@@ -1,7 +1,7 @@
 [
 	"spirits/boxes/ts.ui.PanelSpirit.js",
 	"spirits/boxes/ts.ui.PanelsSpirit.js",
-	"spirits/boxes/ts.ui.BoxSpirit.js",
+	"spirits/boxes/ts.ui.LayoutSpirit.js",
 	"spirits/boxes/ts.ui.BoardSpirit.js",
 	"spirits/asides/ts.ui.SideShowSpirit.js",
 	"spirits/asides/ts.ui.AsideSpirit.js",

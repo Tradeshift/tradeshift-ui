@@ -10,7 +10,7 @@ ts.ui.ModalSpirit = (function using(Client, transition, chained) {
 		willclose = ts.ui.BROADCAST_MODAL_WILL_CLOSE,
 		didclose = ts.ui.BROADCAST_MODAL_DID_CLOSE;
 
-	return ts.ui.BoxSpirit.extend({
+	return ts.ui.LayoutSpirit.extend({
 		/**
 		 * Modal is open?
 		 * @type {boolean}
@@ -431,11 +431,11 @@ ts.ui.ModalSpirit = (function using(Client, transition, chained) {
 
 		/**
 		 * Get spirit of the header.
-		 * @overwrites {ts.ui.BoxSpirit#_head}
+		 * @overwrites {ts.ui.LayoutSpirit#_head}
 		 * @returns {ts.ui.HeaderBarSpirit}
 		 */
 		_head: function() {
-			return ts.ui.BoxSpirit.majorHeader(this);
+			return ts.ui.LayoutSpirit.macroHeader(this);
 		},
 
 		/**
@@ -443,7 +443,7 @@ ts.ui.ModalSpirit = (function using(Client, transition, chained) {
 		 * @returns {ts.ui.FooterBarSpirit}
 		 */
 		_foot: function() {
-			return ts.ui.BoxSpirit.majorFooter(this);
+			return ts.ui.LayoutSpirit.macroFooter(this);
 		},
 
 		/**

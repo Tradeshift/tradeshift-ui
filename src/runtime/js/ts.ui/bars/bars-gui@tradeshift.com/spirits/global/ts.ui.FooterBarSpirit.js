@@ -49,19 +49,6 @@ ts.ui.FooterBarSpirit = (function using(
 			},
 
 			/**
-		   * Add local and global classname.
-		   * TODO: Do this stunt elsewhere?
-		   *
-			onenter: function() {
-				this.super.onenter();
-				if (this.guilayout.outsideMain()) {
-					this.guilayout.shiftGlobal(true, 'ts-has-footer');
-					this.css.add('ts-mainfooter'); // ts-bg-lite
-				}
-			},
-			*/
-
-			/**
 			 * Evaluate conflict between pager and buttons in light of new window size.
 			 */
 			onflex: function() {
@@ -255,7 +242,19 @@ ts.ui.FooterBarSpirit = (function using(
 				this.onlink = null;
 			}),
 
-			// Private .................................................................
+			/**
+			 * Stubbed for now.
+			 * @returns {this}
+			 */
+			micro: chained(function() {}),
+
+			/**
+			 * Stubbed for now.
+			 * @returns {this}
+			 */
+			macro: chained(function() {}),
+
+			// Private ...............................................................
 
 			/**
 			 * Since the buttons will be moved around, it's easier if we collect them 
@@ -378,7 +377,7 @@ ts.ui.FooterBarSpirit = (function using(
 			}
 		},
 		{
-			// Static ...............................................................
+			// Static ................................................................
 
 			/**
 			 * Summon spirit.

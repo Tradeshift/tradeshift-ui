@@ -2,7 +2,7 @@
  * Spirit of the main content.
  * @extends {ts.ui.Spirit}
  */
-ts.ui.ContentSpirit = ts.ui.BoxSpirit.extend({
+ts.ui.ContentSpirit = ts.ui.LayoutSpirit.extend({
 	/**
 	 * Setup to track scrolling.
 	 * @param {Event} e
@@ -47,7 +47,7 @@ ts.ui.ContentSpirit = ts.ui.BoxSpirit.extend({
 
 	/**
 	 * Don't allow declarative panels to configure a local tabbar just yet.
-	 * @overwrites {ts.ui.BoxSpirit#$insertTab}
+	 * @overwrites {ts.ui.LayoutSpirit#$insertTab}
 	 */
 	$insertTab: function(json, index) {
 		console.error('Not allowed (until we know how to handle this on mobile)');

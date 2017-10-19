@@ -134,7 +134,7 @@ ts.ui.HeaderBarSpirit = (function using(chained) {
 			}),
 
 			/**
-			 * Calling `micro() on header and search bar.
+			 * Header becomes a micro toolbar.
 			 * @returns {this}
 			 */
 			micro: chained(function() {
@@ -145,7 +145,7 @@ ts.ui.HeaderBarSpirit = (function using(chained) {
 			}),
 
 			/**
-			 * Calling `macro() on header and search bar.
+			 * Header becomes a macro toolbar.
 			 * @returns {this}
 			 */
 			macro: chained(function() {

@@ -17,6 +17,6 @@ ts.dox.SideBarSpirit = ts.ui.SideBarSpirit.extend({
 	 * @returns {ts.ui.ToolBarSpirit}
 	 */
 	_head: function() {
-		return ts.ui.BoxSpirit.macroHeader(this);
+		return ts.ui.LayoutSpirit.macroToolBar(this);
 	}
 });

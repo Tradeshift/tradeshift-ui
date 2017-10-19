@@ -1,5 +1,11 @@
 /**
- * Spirit of the box.
+ * This things acts as base spirit for a number of widgets to ensure consistent 
+ * handling of toolbars, headers and footers plus basic CSS (via flex features).
+ * @see {AppSpirit}
+ * @see {SideShowSpirit}
+ * @see {BoardSpirit}
+ * @see {ContentSpirit}
+ * @see {ModalSpirit}
  * @using {ts.ui.ToolBarSpirit} ToolBarSpirit
  * @using {ts.ui.HeaderBarSpirit} HeaderBarSpirit
  * @using {ts.ui.FooterBarSpirit} FooterBarSpirit
@@ -7,7 +13,7 @@
  * @using {ts.ui.PanelSpirit} PanelSpirit
  * @using {gui.Combo#chained} chained
  */
-ts.ui.BoxSpirit = (function using(
+ts.ui.LayoutSpirit = (function using(
 	ToolBarSpirit,
 	HeaderBarSpirit,
 	FooterBarSpirit,
@@ -15,8 +21,55 @@ ts.ui.BoxSpirit = (function using(
 	PanelSpirit,
 	chained
 ) {
+	/**
+ 	 * @param {ts.ui.LayoutSpirit} layout
+ 	 * @param {ts.ui.ToolBarSpirit} [toolbar]
+ 	 * @returs {ts.ui.ToolBarSpirit}
+ 	 */
+	function gettoolbar(layout, toolbar) {
+		layout.css.add(['ts-has-header']);
+		return (
+			layout.dom.child(ToolBarSpirit) ||
+			layout.dom.prepend(toolbar || ToolBarSpirit.summon('header'))
+		);
+	}
+
+	/**
+	 * @param {ts.ui.LayoutSpirit} layout
+ 	 * @param {ts.ui.HeaderBarSpirit} [header]
+ 	 * @returs {ts.ui.HeaderBarSpirit}
+ 	 */
+	function getheader(layout, header) {
+		layout.css.add(['ts-has-header']);
+		layout.action.add(ts.ui.ACTION_HEADER_LEVEL);
+		return (
+			layout.dom.child(HeaderBarSpirit) || layout.dom.prepend(header || HeaderBarSpirit.summon())
+		);
+	}
+
+	/**
+	 * @param {ts.ui.LayoutSpirit} layout
+ 	 * @param {ts.ui.FooterBarSpirit} [footer]
+ 	 * @returs {ts.ui.FooterBarSpirit}
+ 	 */
+	function getfooter(layout, footer) {
+		layout.css.add(['ts-has-footer']);
+		layout.action.add(ts.ui.ACTION_FOOTER_LEVEL);
+		return (
+			layout.dom.child(FooterBarSpirit) || layout.dom.append(footer || FooterBarSpirit.summon())
+		);
+	}
+
 	return ts.ui.Spirit.extend(
 		{
+			/**
+			 * The spirit is not channelled, so we'll attach classname manually.
+			 */
+			onconfigure: function() {
+				this.super.onconfigure();
+				this.css.add('ts-layout');
+			},
+
 			/**
 			 * TODO: finalize this
 			 */
@@ -125,7 +178,7 @@ ts.ui.BoxSpirit = (function using(
 			 * @returns {ts.ui.TabBarSpirit}
 			 */
 			_head: function() {
-				return ts.ui.BoxSpirit.microHeader(this);
+				return ts.ui.LayoutSpirit.microToolBar(this);
 			}
 		},
 		{
@@ -135,57 +188,53 @@ ts.ui.BoxSpirit = (function using(
 			// Static ...............................................................
 
 			/**
-			 * Setup box header using a micro ToolBar.
-			 * @param {ts.ui.BoxSpirit} box
-			 * @param {ts.ui.ToolBarSpirit} [toolbar] - Optionally inject this toolbar
+			 * Setup header using a micro ToolBar.
+			 * @param {ts.ui.LayoutSpirit} layout
+			 * @param {ts.ui.ToolBarSpirit} [toolbar]
 			 * @returns {ts.ui.ToolBarSpirit}
 			 */
-			microHeader: function(box, toolbar) {
-				box.css.add(['ts-has-header', 'ts-has-header-micro']);
-				return (
-					box.dom.child(ToolBarSpirit) ||
-					box.dom.prepend(toolbar || ToolBarSpirit.summon('header', 'ts-micro'))
-				);
+			microToolBar: function(layout, toolbar) {
+				return gettoolbar(layout, toolbar).micro();
 			},
 
 			/**
-			 * Setup box header using a macro ToolBar.
-			 * @param {ts.ui.BoxSpirit} box
-			 * @param {ts.ui.ToolBarSpirit} [toolbar] - Optionally inject this toolbar
+			 * Setup header using a macro ToolBar.
+			 * @param {ts.ui.LayoutSpirit} layout
+			 * @param {ts.ui.ToolBarSpirit} [toolbar]
 			 * @returns {ts.ui.ToolBarSpirit}
 			 */
-			macroHeader: function(box, toolbar) {
-				box.css.add(['ts-has-header', 'ts-has-header-macro']);
-				return (
-					box.dom.child(ToolBarSpirit) ||
-					box.dom.prepend(toolbar || ToolBarSpirit.summon('header', 'ts-macro'))
-				);
+			macroToolBar: function(layout, toolbar) {
+				return gettoolbar(layout, toolbar).macro();
 			},
 
 			/**
-			 * Setup box header using a  full on HeaderBar.
-			 * @param {ts.ui.BoxSpirit} box
-			 * @param {ts.ui.HeaderBarSpirit} [footer] - Optionally inject this header
+			 * Setup header using a micro HeaderBar.
+			 * @param {ts.ui.LayoutSpirit} layout
+			 * @param {ts.ui.HeaderBarSpirit} [footer]
 			 * @returns {ts.ui.HeaderBarSpirit}
 			 */
-			majorHeader: function(box, header) {
-				box.css.add(['ts-has-header', 'ts-has-header-major']);
-				box.action.add(ts.ui.ACTION_HEADER_LEVEL);
-				return (
-					box.dom.child(HeaderBarSpirit) || box.dom.prepend(header || HeaderBarSpirit.summon())
-				);
+			microHeader: function(layout, header) {
+				return getheader(layout, header).micro();
 			},
 
 			/**
-			 * Setup box footer using a mighty FooteBar.
-			 * @param {ts.ui.BoxSpirit} box
-			 * @param {ts.ui.FooterBarSpirit} [footer] - Optionally inject this header
+			 * Setup header using a macro HeaderBar.
+			 * @param {ts.ui.LayoutSpirit} layout
+			 * @param {ts.ui.HeaderBarSpirit} [footer]
+			 * @returns {ts.ui.HeaderBarSpirit}
+			 */
+			macroHeader: function(layout, header) {
+				return getheader(layout, header).macro();
+			},
+
+			/**
+			 * Setup footer using a macro FooteBar.
+			 * @param {ts.ui.LayoutSpirit} layout
+			 * @param {ts.ui.FooterBarSpirit} [footer]
 			 * @returns {ts.ui.FooterBarSpirit}
 			 */
-			majorFooter: function(box, footer) {
-				box.css.add(['ts-has-footer', 'ts-has-footer-minor']);
-				box.action.add(ts.ui.ACTION_FOOTER_LEVEL);
-				return box.dom.child(FooterBarSpirit) || box.dom.append(footer || FooterBarSpirit.summon());
+			macroFooter: function(layout, footer) {
+				return getfooter(layout, footer).macro();
 			}
 		}
 	);

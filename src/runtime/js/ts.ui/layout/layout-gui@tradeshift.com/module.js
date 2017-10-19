@@ -6,7 +6,7 @@ gui.module('layout-gui@tradeshift.com', {
 	 * Channeling spirits to CSS selectors.
 	 */
 	channel: [
-		['[data-ts=Box]', ts.ui.BoxSpirit],
+		// ['[data-ts=Layout]', ts.ui.LayoutSpirit],
 		['[data-ts=Board]', ts.ui.BoardSpirit],
 		['[data-ts=Panel]', ts.ui.PanelSpirit],
 		['[data-ts=Panels]', ts.ui.PanelsSpirit],

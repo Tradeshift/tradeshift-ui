@@ -18,7 +18,7 @@ ts.ui.AppSpirit = (function() {
 		return ts.ui.Footer.$spirit();
 	}
 
-	return ts.ui.BoxSpirit.extend(
+	return ts.ui.LayoutSpirit.extend(
 		{
 			/**
 			 * Handle event.
@@ -44,20 +44,20 @@ ts.ui.AppSpirit = (function() {
 
 			/**
 			 * Make sure to use the main header.
-			 * @overwrites {ts.ui.BoxSpirit#_head}
+			 * @overwrites {ts.ui.LayoutSpirit#_head}
 			 * @returns {ts.ui.HeaderBarSpirit}
 			 */
 			_head: function() {
-				return ts.ui.BoxSpirit.majorHeader(this, appheader());
+				return ts.ui.LayoutSpirit.macroHeader(this, appheader());
 			},
 
 			/**
 			 * Make sure to use the main footer.
-			 * @overwrites {ts.ui.BoxSpirit#_foot}
+			 * @overwrites {ts.ui.LayoutSpirit#_foot}
 			 * @returns {ts.ui.FooterBarSpirit}
 			 */
 			_foot: function() {
-				return ts.ui.BoxSpirit.majorFooter(this, appfooter());
+				return ts.ui.LayoutSpirit.macroFooter(this, appfooter());
 			}
 		},
 		{

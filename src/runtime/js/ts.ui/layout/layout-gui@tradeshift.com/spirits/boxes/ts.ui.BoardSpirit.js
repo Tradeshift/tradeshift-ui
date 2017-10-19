@@ -1,6 +1,6 @@
 /**
  * Spirit of the board.
- * @extends {ts.ui.BoxSpirit}
+ * @extends {ts.ui.LayoutSpirit}
  * @using {ts.uiPanelsSpirit} PanelsSpirit
  * @using {gui.Combo#chained} chained
  */
@@ -21,7 +21,7 @@ ts.ui.BoardSpirit = (function using(PanelsSpirit, PanelSpirit, chained) {
 		return max;
 	}
 
-	return ts.ui.BoxSpirit.extend({
+	return ts.ui.LayoutSpirit.extend({
 		/**
 		 * Equalsize panels height to match the highest panel. 
 		 * TODO: Pure CSS solution should be possible nowadays.

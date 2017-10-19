@@ -81,8 +81,8 @@ figure {
   position: relative;
   background-color: #ffffff;
 }
-figure.ts-box > .ts-panel,
-figure.ts-box > .ts-panels > .ts-panel {
+figure.ts-layout > .ts-panel,
+figure.ts-layout > .ts-panels > .ts-panel {
   padding: 0;
 }
 figure .output {

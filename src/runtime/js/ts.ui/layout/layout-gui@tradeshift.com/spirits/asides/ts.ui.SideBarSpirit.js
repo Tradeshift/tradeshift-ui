@@ -145,11 +145,9 @@ ts.ui.SideBarSpirit = (function using(chained, Type, Client, GuiObject) {
 		 * @returns {ts.ui.HeaderBarSpirit}
 		 */
 		_head: function() {
-			var header = ts.ui.BoxSpirit.majorHeader(this);
-			if (this.dom.parent(ts.ui.MainSpirit)) {
-				header.micro();
-			}
-			return header;
+			return this.dom.parent(ts.ui.MainSpirit)
+				? ts.ui.LayoutSpirit.microHeader(this)
+				: ts.ui.LayoutSpirit.macroHeader(this);
 		},
 
 		/**
@@ -157,7 +155,7 @@ ts.ui.SideBarSpirit = (function using(chained, Type, Client, GuiObject) {
 			 */
 		_layout: function(attaching) {
 			var parent = this.dom.parent();
-			var target = ts.ui.BoxSpirit;
+			var target = ts.ui.LayoutSpirit;
 			if (this.dom.next(target)) {
 				parent.classList.add('ts-has-sidebar-first');
 				this.css.add('ts-sidebar-first');

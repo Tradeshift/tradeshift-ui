@@ -44,7 +44,7 @@ ts.ui.PanelsSpirit = (function() {
 		 * @returns {*} - Returns the callback return value (if any)
 		 */
 		_box: function(action) {
-			var box = this.dom.parent(ts.ui.BoxSpirit);
+			var box = this.dom.parent(ts.ui.LayoutSpirit);
 			if (box) {
 				return action.call(this, box);
 			}

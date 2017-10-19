@@ -10,6 +10,8 @@ ts.ui.SelectSpirit = ts.ui.FieldSpirit.extend({
 	 */
 	debugsync: false,
 
+	custom: false,
+
 	/**
 	 * Get ready.
 	 */

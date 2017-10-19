@@ -222,6 +222,18 @@ ts.ui.FakeSelectInputSpirit = (function using(chained, confirmed, tick, time, gu
 		},
 
 		/**
+		 * Check the custom before open aside
+		 */
+		_maybeopen: function() {
+			var select = this._proxyelement;
+			if (ts.ui.get(select).custom) {
+				select.click();
+				return;
+			}
+			this.super._maybeopen();
+		},
+
+		/**
 		 * @param {Function} onclosed
 		 */
 		_openaside: function(onclosed) {

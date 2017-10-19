@@ -1,44 +1,22 @@
 .ts-modal {
-	// .box-mixin-vbox();
-	// .ts-mixin-maximize();
 	.ts-mixin-maximize();
 	z-index: @ts-zindex-modal;
 	border-radius: 0;
-	/*
-	&.ts-inscreen {
-		width: 480px;
-		height: 320px;
-		left: 50%;
-		top: 20%;
-		margin-left: -220px;
-		border-radius: @ts-radius;
-		> header {
-			border-radius: @ts-radius @ts-radius 0 0;
-		}
-		> footer {
-			border-radius: 0 0 @ts-radius @ts-radius;
-		}
-	}
-	*/
 	> .ts-panels {
 		position: relative;
 	}
-	> .ts-panels,
-	> .ts-panel,
-	> .ts-panels > .ts-panel {
-		// .ts-mixin-maximize();
-	}
 	> .ts-panels > .ts-panel,
 	> .ts-panel, {
-		// padding-bottom: 0;
 		background-color: @ts-white;
 		overflow: hidden;
+		/*
 		&:after {
 			// firefox dysfunction :(
 			content: '!';
 			display: block;
 			visibility: hidden;
 		}
+		*/
 		> .ts-main {
 			display: block;
 			flex: none;
@@ -51,6 +29,7 @@
 			margin-left: auto;
 			margin-right: auto;
 			bottom: auto;
+			height: auto;
 		}
 	}
 	&.ts-overflow {
@@ -59,88 +38,6 @@
 			overflow-x: hidden;
 		}
 	}
-	/*
-	> footer {
-		position: absolute;
-		bottom: 0;
-		width: 100%;
-		&.ts-bg-lite {
-			&:after {
-				content: '';
-				top: -5px;
-				height: 5px;
-				width: 100%;
-				position: absolute;
-				pointer-events: none;
-				background: linear-gradient(0deg, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0));
-			}
-		}
-	}
-	&.ts-has-header {
-		&.ts-header-level-2 {
-			> .ts-panels,
-			> .ts-panel {
-				top: @ts-unit * 2;
-			}
-		}
-		&.ts-header-level-3 {
-			> .ts-panels,
-			> .ts-panel {
-				top: @ts-unit * 3;
-			}
-		}
-		&.ts-header-level-5 {
-			> .ts-panels,
-			> .ts-panel {
-				top: @ts-unit * 5;
-			}
-		}
-		&.ts-header-level-6 {
-			> .ts-panels,
-			> .ts-panel {
-				top: @ts-unit * 6;
-			}
-		}
-		&.ts-header-level-8 {
-			> .ts-panels,
-			> .ts-panel {
-				top: @ts-unit * 8;
-			}
-		}
-	}
-	&.ts-has-footer {
-		&.ts-footer-level-2 {
-			> .ts-panels,
-			> .ts-panel {
-				bottom: @ts-unit * 2;
-			}
-		}
-		&.ts-footer-level-3 {
-			> .ts-panels,
-			> .ts-panel {
-				bottom: @ts-unit * 3;
-			}
-		}
-		&.ts-footer-level-5 {
-			> .ts-panels,
-			> .ts-panel {
-				bottom: @ts-unit * 5;
-			}
-		}
-		&.ts-footer-level-6 {
-			> .ts-panels,
-			> .ts-panel {
-				bottom: @ts-unit * 6;
-			}
-		}
-		&.ts-footer-level-8 {
-			> .ts-panels,
-			> .ts-panel {
-				bottom: @ts-unit * 8;
-			}
-		}
-	}
-	*/
 	&.ts-transition {
 		will-change: transform;
 		transition-property: transform, opacity;

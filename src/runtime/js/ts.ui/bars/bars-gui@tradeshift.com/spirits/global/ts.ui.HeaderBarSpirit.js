@@ -34,12 +34,14 @@ ts.ui.HeaderBarSpirit = (function using(chained) {
 					].forEach(function(spirit) {
 						spirit.life.add(gui.LIFE_RENDER, this);
 					}, this);
+					if (this._micro) {
+						this.micro();
+					}
 					this._layout();
 					if (this._closeaction) {
 						this.showClose(this._closeaction);
 					}
 				}
-				// this._refresh([this._headerbar, this._centerbar, this._buttonbar]);
 			},
 
 			/**
@@ -131,6 +133,28 @@ ts.ui.HeaderBarSpirit = (function using(chained) {
 				}
 			}),
 
+			/**
+			 * Calling `micro() on header and search bar.
+			 * @returns {this}
+			 */
+			micro: chained(function() {
+				this._micro = true;
+				if (this.life.rendered) {
+					this._headerbar.micro();
+				}
+			}),
+
+			/**
+			 * Calling `macro() on header and search bar.
+			 * @returns {this}
+			 */
+			macro: chained(function() {
+				this._micro = false;
+				if (this.life.rendered) {
+					this._headerbar.macro();
+				}
+			}),
+
 			// Privileged ............................................................
 
 			/**
@@ -177,6 +201,11 @@ ts.ui.HeaderBarSpirit = (function using(chained) {
 			 * @type {ts.ui.ToolBarSpirit}
 			 */
 			_buttonbar: null,
+
+			/**
+			 * @type {boolean}
+			 */
+			_micro: false,
 
 			/**
 			 * Snapshot scrolling.

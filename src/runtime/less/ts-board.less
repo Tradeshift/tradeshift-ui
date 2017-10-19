@@ -2,9 +2,6 @@
 
 .ts-board {
 	.ts-mixin-rounded();
-	box-shadow: 0 0 3px @new-shadowcolor;
-	border: 1px solid @new-bordercolor;
-	background-color: @ts-white;
 	margin-bottom: @ts-unit;
 	> .ts-panel,
 	> .ts-panels > .ts-panel {
@@ -34,18 +31,21 @@
 		flex: none;
 		height: auto;
 	}
-	/*
-	&.ts-has-header {
-		> .ts-panels,
-		> .ts-panel {
-			border-top: 1px solid rgba(0,0,0,0.16);
+	&:not(.ts-plain) {
+		background-color: @ts-white;
+		box-shadow: 0 0 3px @new-shadowcolor;
+		border: 1px solid @new-bordercolor;
+		> .ts-toolbar {
+			&:after {
+				content: '';
+				bottom: 0;
+			}
 		}
 	}
-	&:not(.ts-has-header) {
-		> .ts-panel {
-			flex: none;
-			height: auto;
-		}
-	}
-	*/
+}
+
+// one single board in Content will produce a full screen board.
+.ts-content > .ts-panel > .ts-board:only-child {
+	min-height: calc(~'100% - '@ts-unit-double);
+	margin: @ts-unit;
 }

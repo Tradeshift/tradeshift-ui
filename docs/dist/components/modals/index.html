@@ -153,7 +153,7 @@
                             </figure>
                         </section>
                         <section>
-                            <h3><span>Adding some buttons</span></h3>
+                            <h3><span>Modal buttons</span></h3>
                             <p>Buttons can be added as part of the content, but some Modals work better when the buttons are presented in a fixed footer, for example when there is a lot of content (and scrolling). These buttons can be added using the API
                                 we know from the <a data-ts="Button" href="/dist/components/footer/">Footer</a>.</p>
                             <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.get(&apos;%23example2&apos;%2C%20function(modal)%20%7B%0A%09modal.buttons(%5B%7B%0A%09%09label%3A%20&apos;Close%20the%20Modal&apos;%2C%0A%09%09type%3A%20&apos;ts-primary&apos;%2C%0A%09%09onclick%3A%20function()%20%7B%0A%09%09%09modal.close()%3B%0A%09%09%7D%0A%09%7D%5D).open()%3B%0A%7D)%3B">
@@ -185,7 +185,7 @@
                             </section>
                         </section>
                         <section>
-                            <h3><span>Adding some tabs</span></h3>
+                            <h3><span>Modal tabs</span></h3>
                             <p>There&apos;s two ways to add tabs and one of them is likely to fit your workflow. First, we will add some tabs to the example modal using the API we know from the <a data-ts="Button" href="/dist/components/bars/tabbar.html">TabBar</a>.</p>
                             <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.get(&apos;%23example1&apos;%2C%20function(modal)%20%7B%0A%09modal.tabs(%5B%0A%09%09%7Blabel%3A%20&apos;One&apos;%7D%2C%0A%09%09%7Blabel%3A%20&apos;Two&apos;%7D%2C%0A%09%09%7Blabel%3A%20&apos;Three&apos;%2C%20onselect%3A%20function()%20%7B%0A%09%09%09console.log(&apos;Tab%20three%20selected!&apos;)%3B%0A%09%09%7D%7D%2C%0A%09%5D).open()%3B%0A%7D)%3B">
                                 <script type="runnable">

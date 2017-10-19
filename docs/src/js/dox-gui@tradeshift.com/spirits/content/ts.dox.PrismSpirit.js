@@ -12,6 +12,7 @@ ts.dox.PrismSpirit = (function() {
 
 		/**
 		 * Decode the code. Perhaps this should be lazy?
+		 * Also: Attaching class to remove "Board" look.
 		 */
 		onconfigure: function() {
 			this.super.onconfigure();

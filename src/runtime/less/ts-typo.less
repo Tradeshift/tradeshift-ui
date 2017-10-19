@@ -1,9 +1,20 @@
 @import 'ts-variables.less';
 
+h1 {
+	font-weight: @ts-fontweight;
+}
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-weight: @ts-fontweight;
+	// TODO: font-weight: @ts-fontweight-semibold; ???
+}
+
 h1,
 h2,
 h3 {
-	font-weight: 400;
 	> span {
 		// baseline shift
 		position: relative;

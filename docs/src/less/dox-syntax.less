@@ -10,6 +10,7 @@
 
 figure {
 	position: relative;
+	background-color: @ts-white;
 	&.ts-box {
 		> .ts-panel,
 		> .ts-panels > .ts-panel {
@@ -23,11 +24,11 @@ figure {
 	.prism code {
 		border-radius: @ts-radius;
 	}
-	&.ts-hasbar {
+	&.ts-has-header {
 		.prism, 
 		.prism code {
 			border-radius: 0 0 @ts-radius @ts-radius;
-		}	
+		}
 	}
 	.editcode {
 		.ts-mixin-maximize();

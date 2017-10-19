@@ -35,6 +35,7 @@ ts.ui.AppSpirit = (function() {
 			 * Inject any header and footer that might have been configured by now.
 			 */
 			$inject: function() {
+				console.log(document.title, appheader(), appfooter());
 				appheader() && this._head();
 				appfooter() && this._foot();
 			},
@@ -70,17 +71,21 @@ ts.ui.AppSpirit = (function() {
 			 */
 			$inject: function(bar) {
 				ts.ui.ready(function inject() {
-					ts.ui.AppSpirit.$spirit().$inject();
+					ts.ui.AppSpirit.$spirit(function(spirit) {
+						spirit.$inject();
+					});
 				});
 				return bar;
 			},
 
 			/**
-			 * Let's cache this lookup.
-			 * @returns {ts.ui.AppSpirit}
+			 * Apply action if indeed the {AppSpirit} exists.
+			 * @param {Function} action
+			 * @returns {*}
 			 */
-			$spirit: function cached() {
-				return cached.spirit || (cached.spirit = ts.ui.get('.ts-app'));
+			$spirit: function cached(action) {
+				var spirit = cached.spirit || (cached.spirit = ts.ui.get('.ts-app'));
+				return action(spirit);
 			}
 		}
 	);

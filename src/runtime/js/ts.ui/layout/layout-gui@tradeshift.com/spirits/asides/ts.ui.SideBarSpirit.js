@@ -140,6 +140,19 @@ ts.ui.SideBarSpirit = (function using(chained, Type, Client, GuiObject) {
 		_autoclose: true,
 
 		/**
+		 * If the SideBar is nested below the main header, 
+		 * make the SideBar header become less prominent.
+		 * @returns {ts.ui.HeaderBarSpirit}
+		 */
+		_head: function() {
+			var header = ts.ui.BoxSpirit.majorHeader(this);
+			if (this.dom.parent(ts.ui.MainSpirit)) {
+				header.micro();
+			}
+			return header;
+		},
+
+		/**
 			 * @param {boolean} attaching This is `false' when SideBar gets removed.
 			 */
 		_layout: function(attaching) {

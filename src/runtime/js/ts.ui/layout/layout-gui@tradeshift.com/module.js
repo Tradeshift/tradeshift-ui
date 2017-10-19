@@ -37,7 +37,7 @@ gui.module('layout-gui@tradeshift.com', {
 			if (meta && meta.content) {
 				ts.ui.Header.title(meta.content);
 			}
-			if (link && link.href) {
+			if (link && link.getAttribute('href')) {
 				ts.ui.Header.icon(link.href);
 			}
 		}

@@ -3,7 +3,6 @@
 	<head>
 		<title>SideBars Gallery</title>
 		<meta name="robots" content="noindex"/>
-		<object data="tabs.xhtml"></object>
 	</head>
 	<body class="nosticky">
 		<aside data-ts="SideBar" id="global-before" data-ts.title="Global SideBar">
@@ -22,7 +21,7 @@
 		</aside>
 		<div data-ts="App">
 			<div data-ts="Main">
-				<aside data-ts="SideBar" id="local-before">
+				<aside data-ts="SideBar" id="local-before" data-ts.title="Local SideBar">
 					<div data-ts="Panel">
 						<p>Doner tenderloin beef alcatra pork beef ribs sausage jerky ground round kevin corned beef jowl prosciutto. Flank leberkas bresaola beef pork loin prosciutto brisket boudin capicola filet mignon drumstick turducken pork chuck. Tri-tip landjaeger pork loin, meatball turducken corned beef venison chicken pork cupim andouille ham hock. Turkey pork belly pig picanha frankfurter andouille, ball tip leberkas ground round ribeye jerky chicken meatloaf pork. Pastrami ground round filet mignon drumstick, pork loin biltong salami ham hock rump. Biltong flank pork loin, bacon shank shankle spare ribs drumstick beef shoulder meatloaf corned beef ground round t-bone fatback.</p>
 					</div>
@@ -37,7 +36,53 @@
 						<article>
 							<h1>SideBar gallery</h1>
 							<section>
-								<p>Turducken corned beef swine, filet mignon meatball pork prosciutto flank t-bone pork belly. Spare ribs tri-tip rump kevin pork loin fatback chicken shoulder pork belly, beef ribs ham hock. Ball tip beef ribs alcatra cow bacon short loin ground round kevin ham hock jerky leberkas tenderloin. Beef corned beef bresaola, sausage chuck alcatra kielbasa ribeye turkey salami short loin prosciutto. Ham porchetta shank, pork belly ribeye prosciutto turkey cupim pork. Fatback swine tenderloin boudin filet mignon. Tail fatback shoulder boudin.</p>
+
+								<h3>Header</h3>
+
+								<figure data-ts="DoxScript">
+									<script type="runnable">
+										ts.ui.Header.buttons([
+											{ label: 'Primary', type: 'ts-primary', icon: 'ts-icon-triangleup' },
+											{ label: 'Secondary', type: 'ts-secondary', icon: 'ts-icon-triangledown' },
+											{ label: 'Tertiary One', icon: 'ts-icon-triangleleft' },
+											{ label: 'Tertiary Two', icon: 'ts-icon-triangleright' },
+											{ label: 'Tertiary Three', icon: 'ts-icon-halt', onclick: () => {
+												ts.ui.Header.buttons().clear();
+											}}
+										]);
+									</script>
+								</figure>
+
+								<figure data-ts="DoxScript">
+									<script type="runnable">
+										ts.ui.Header.tabs([
+											{ label: 'One' },
+											{ label: 'Two' },
+											{ label: 'Three' }
+										]);
+									</script>
+								</figure>
+
+								<figure data-ts="DoxScript">
+									<script type="runnable">
+										ts.ui.Header.search({
+											info: 'Search amongst all the things',
+											onsearch: function(value) {
+												ts.ui.Notification.success(value || 'Search cleared');
+											},
+											buttons: [
+												{
+													label: "Let's Search",
+													icon: 'ts-icon-search',
+													onclick: function() {
+														this.search.search();
+													}
+												}
+											]
+										});
+									</script>
+								</figure>
+
 								<div data-ts="Board" id="tabboard">
 									<ul data-ts="Panels">
 										<li data-ts="Panel" data-ts.label="Tabs">
@@ -61,11 +106,81 @@
 										</li>
 									</ul>
 								</div>
+
+								<h3>Footer</h3>
+
+								<p><strong>1</strong> Add a pager.</p>
+
+								<figure data-ts="DoxScript" class="attention">
+									<script type="runnable">
+										ts.ui.Footer.pager({
+											pages: 23,
+											page: 0,
+											onselect: function(index) {
+												console.log(index);
+											}
+										});
+									</script>
+								</figure>
+
+								<p><strong>2</strong> Add some buttons.</p>
+
+								<figure data-ts="DoxScript">
+									<script type="runnable">
+										ts.ui.Footer.buttons([
+											{ label: 'Button 1', type: 'ts-primary' },
+											{ label: 'Button 2', type: 'ts-secondary' },
+											{ label: 'Button 3' },
+											{ label: 'Button 4' },
+											{ label: 'Button 5' }
+										]);
+									</script>
+								</figure>
+
+								<p><strong>3</strong> Add more buttons until they crash into the Pager. Behold the second toolbar.</p>
+
+								<figure data-ts="DoxScript">
+									<script type="runnable">
+										ts.ui.Footer.buttons().splice(2, 0,
+											{ label: 'Bonus Button', type: 'ts-secondary' }
+										);
+									</script>
+								</figure>
+
+								<p><strong>4</strong> The actions will appear in yet another toolbar. That's right.</p>
+
+								<figure data-ts="DoxScript">
+									<script type="runnable">
+										ts.ui.Footer.actions([
+											{ label: 'Move Up', icon: 'ts-icon-triangleup' },
+											{ label: 'Move Down', icon: 'ts-icon-triangledown' },
+											{ label: 'Move Left', icon: 'ts-icon-triangleleft' },
+											{ label: 'Move Right', icon: 'ts-icon-triangleright' },
+											{ label: 'Don\'t Move', icon: 'ts-icon-halt' }
+										]).status('Something is selected').checkbox({
+											onclick: function() {
+												this.checked = !this.checked;
+											}
+										});
+									</script>
+								</figure>
+								
+								<p><strong>5</strong> Finally add the configuration and collaboration buttons.</p>
+
+								<figure data-ts="DoxScript">
+									<script type="runnable">
+										ts.ui.Footer.configbutton(function onclick() {
+											ts.ui.Notification.success('Go configure!');
+										}).collabbutton(function onclick() {
+											ts.ui.Notification.success('Go collaborate!');
+										});
+									</script>
+								</figure>
 							</section>
 						</article>
 					</div>
 				</div>
-				<aside data-ts="SideBar" id="local-after">
+				<aside data-ts="SideBar" id="local-after" data-ts.title="Local SideBar">
 					<div data-ts="Panel">
 						<p>Drumstick short ribs kielbasa hamburger. Pig short loin ground round pork chop, pork kevin boudin bacon salami turducken tongue picanha. Bresaola cupim tri-tip meatloaf sirloin jowl alcatra ball tip porchetta ground round chicken short ribs brisket shankle tenderloin. Leberkas brisket drumstick salami, chicken shankle short loin spare ribs doner boudin hamburger frankfurter shoulder tenderloin. Tri-tip cupim porchetta shoulder pork loin ground round turkey ham pig, ribeye meatball leberkas landjaeger.</p>
 					</div>

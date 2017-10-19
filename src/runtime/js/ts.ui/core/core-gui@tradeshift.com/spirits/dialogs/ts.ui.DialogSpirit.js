@@ -385,7 +385,6 @@ ts.ui.DialogSpirit = (function using(Dialog, Client, chained, Type) {
 				this.broadcast.dispatch(didclose);
 				this.css.remove([ts.ui.CLASS_OPEN, ts.ui.CLASS_CLOSING]);
 				this.attention.exit();
-				/*
 				this.dom.remove();
 				if (this._ismodelled()) {
 					var model = this._model;
@@ -394,7 +393,6 @@ ts.ui.DialogSpirit = (function using(Dialog, Client, chained, Type) {
 						model.dispose();
 					});
 				}
-				*/
 			},
 
 			/**

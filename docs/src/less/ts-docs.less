@@ -13,9 +13,17 @@ html {
 }
 
 article {
-	padding: (@ts-unit * 3);
-	max-width: @docs-width + (@ts-unit * 3 * 2);
+	padding: @ts-unit * 3;
+	padding-top: @ts-unit * 3.5;
 	padding-bottom: @ts-unit * 7;
+	max-width: @docs-width + (@ts-unit * 3 * 2);
+	> h1 {
+		display: none; // experimentally attempt to survive on the Header title...
+	}
+}
+
+.ts-board article {
+	padding: @ts-unit;
 }
 
 #markdown {

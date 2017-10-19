@@ -8,7 +8,9 @@ ts.ui.Header = (function using(chained) {
 	 * @returns {ts.ui.HeaderBarSpirit}
 	 */
 	function bar() {
-		return bar.spirit || ts.ui.AppSpirit.$inject((bar.spirit = ts.ui.HeaderBarSpirit.summon()));
+		return (
+			bar.spirit || ts.ui.AppSpirit.$inject((bar.spirit = setup(ts.ui.HeaderBarSpirit.summon())))
+		);
 	}
 
 	/**
@@ -20,29 +22,30 @@ ts.ui.Header = (function using(chained) {
 	}
 
 	/**
-	 * Open the main menu (from the mobile breakpoint).
+	 * Setup to show the burger button (instead of the app icon) in mobile breakpoint.
+	 * @param {ts.ui.HeaderBarSpirit} bar
+	 * @returns {ts.ui.HeaderBarSpirit}
 	 */
-	function openmenu() {
-		ts.ui.openMenu();
-	}
-
-	/**
-	 * Show the burger button (instead of the app icon) in mobile breakpoint?
-	 */
-	ts.ui.ready(function() {
-		function burger() {
-			if (ismobile()) {
-				bar().burgerbutton(openmenu);
-			} else {
-				bar().burgerbutton(null);
-				bar().$scroll(0);
+	function setup(bar) {
+		ts.ui.ready(function() {
+			function openmenu() {
+				ts.ui.openMenu();
 			}
-		}
-		if (ts.ui.appframe) {
-			document.addEventListener('ts-breakpoint', burger);
-			burger();
-		}
-	});
+			function burger() {
+				if (ismobile()) {
+					bar.burgerbutton(openmenu);
+				} else {
+					bar.burgerbutton(null);
+					bar.$scroll(0);
+				}
+			}
+			if (ts.ui.appframe) {
+				document.addEventListener('ts-breakpoint', burger);
+				burger();
+			}
+		});
+		return bar;
+	}
 
 	return {
 		/**
@@ -54,7 +57,7 @@ ts.ui.Header = (function using(chained) {
 			if (arguments.length) {
 				bar().title(string);
 			} else {
-				return bar.title();
+				return bar().title();
 			}
 		}),
 
@@ -121,7 +124,7 @@ ts.ui.Header = (function using(chained) {
 		// Privileged ..............................................................
 
 		/**
-		 * The {ts.ui.MainSpirit} will request this at some point.
+		 * Get the main header, if it exists.
 		 * @see {ts.ui.MainSpirit}
 		 * @returns {ts.ui.HeaderBarSpirit}
 		 */
@@ -130,12 +133,12 @@ ts.ui.Header = (function using(chained) {
 		},
 
 		/**
-		 * Scrolling the sticky header in mobile breakpoint.
+		 * Scrolling the sticky header (if it exists) in mobile breakpoint.
 		 * @param {number} scroll
 		 */
 		$scroll: function(scroll) {
-			if (ismobile()) {
-				bar().$scroll(scroll);
+			if (bar.spirit && ismobile()) {
+				bar.spirit.$scroll(scroll);
 			}
 		}
 	};

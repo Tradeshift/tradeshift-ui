@@ -75,9 +75,10 @@ body,
 
 // Decorations .................................................................
 
-.ts-toolbar {
+.ts-toolbar,
+.ts-headerbar,
+.ts-footerbar {
 	position: relative;
-	&:before,
 	&:after {
 		height: 1px;
 		position: absolute;
@@ -86,39 +87,54 @@ body,
 		pointer-events: none;
 		background-color: @new-bordercolor;
 	}
-	&:before {
-		top: 0;
-	}
+}
+
+.ts-headerbar {
 	&:after {
-		content: '';
 		bottom: 0;
+		content: '';
 	}
-}
-
-body {
-	> .ts-sidebar {
-		&.ts-sidebar-first {
-			> .ts-panels,
-			> .ts-panel {
-				border-right: 1px solid @new-bordercolor;
-			}
-		}
-		&.ts-sidebar-last {
-			> .ts-panels,
-			> .ts-panel {
-				border-left: 1px solid @new-bordercolor;
-			}
+	.ts-headerbar-buttonbar {
+		&:after {
+			top: 0;
+			content: '';
 		}
 	}
 }
 
-.ts-main {
-	> .ts-sidebar {
-		&.ts-sidebar-first {
-			border-right: 1px solid @new-bordercolor !important;
+.ts-footerbar:after {
+	top: 0;
+	content: '';
+}
+
+.ts-sidebar {
+	position: relative;
+	&:after {
+		width: 1px;
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		pointer-events: none;
+		background-color: @new-bordercolor;
+	}
+	&.ts-sidebar-first {
+		&:after {
+			right: 0;
+			content: '';
 		}
-		&.ts-sidebar-last {
-			border-left: 1px solid @new-bordercolor !important;
+	}
+	&.ts-sidebar-last {
+		&:after {
+			left: 0;
+			content: '';
+		}
+	}
+}
+
+.ts-scrollbars-on {
+	.ts-content + .ts-sidebar.ts-sidebar-last {
+		&:after {
+			content: none;
 		}
 	}
 }

@@ -20,6 +20,7 @@ module.exports = {
 		var EMPTYLINE = /^\s*[\r\n]/gm;
 		tags = tags.split(',');
 		var $ = cheerio.load(html);
+		$ = stickys($);
 		$ = localization($);
 		$ = headtags($, tags);
 		$ = headertags($);
@@ -30,7 +31,6 @@ module.exports = {
 		$ = boilerplate($);
 		$ = chromelinks($);
 		$ = inittabs($);
-		$ = stickys($);
 		$('html').addClass('ts-docs');
 		$('html').attr('spellcheck', false);
 		return publisher.publish(beautify($.html().replace(EMPTYLINE, '')));
@@ -65,7 +65,7 @@ function boilerplate($) {
  */
 function headtags($, tags) {
 	const appname = $('title').text();
-	tags = appbanner(tags, appname);
+	tags = appbanner($, tags, appname);
 	inserttags($, tags, $('title'));
 	lesstocss($);
 	return $;
@@ -77,10 +77,12 @@ function headtags($, tags) {
  * @param {string} appname
  * @returns {Array<string>}
  */
-function appbanner(tags, appname) {
+function appbanner($, tags, appname) {
+	const meta = $('meta[name=apple-mobile-web-app-title]')[0];
+	const link = $('link[rel=apple-touch-icon]')[0];
 	return [
-		`<meta name="apple-mobile-web-app-title" content="${appname}"/>`,
-		`<link rel="apple-touch-icon" href="/dist/assets/icon.svg"/>`,
+		meta ? '' : `<meta name="apple-mobile-web-app-title" content="${appname}"/>`,
+		link ? '' : `<link rel="apple-touch-icon" href="/dist/assets/icon.svg"/>`,
 		...tags
 	];
 }
@@ -539,7 +541,7 @@ function stickys($) {
 	const body = $('body');
 	if (!body.hasClass('nosticky')) {
 		body
-			.find('article')
+			.find('body > article')
 			.first()
 			.append(
 				`<div data-ts="Note" class="sticky">

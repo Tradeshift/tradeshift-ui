@@ -30,7 +30,6 @@
 			padding: 0;
 			overflow-y: scroll;
 			background-color: @ts-dark-lite;
-			border-right: none;
 			&::-webkit-scrollbar {
 				width: 5px;
 			}
@@ -50,6 +49,9 @@
 			&:after {
 				content: ''; // why does this make the scrollbar look cool in Chrome?
 			}
+		}
+		&:after {
+			content: none;
 		}
 	}
 	&.selectfirstitem {

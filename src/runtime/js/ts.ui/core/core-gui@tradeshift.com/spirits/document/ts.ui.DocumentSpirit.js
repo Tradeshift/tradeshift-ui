@@ -61,35 +61,6 @@ ts.ui.DocumentSpirit = (function using(Client) {
 		},
 
 		/**
-		 * Validate structure and stuff. The `touchstart` event has to
-		 * do with an iOS bug that most likely is fixed in Safari now.
-		 */
-		onasync: function() {
-			if (ts.ui.appframe) {
-				var main = this.dom.qdoc('.ts-main');
-				if (main) {
-					main.addEventListener(
-						'touchstart',
-						function() {},
-						gui.Client.hasPassiveEventListeners ? { passive: true } : false
-					);
-				} else {
-					console.warn('WARNING: This app needs a ts-main');
-				}
-				/**
-				 * @todo dsp move this behind a debug switch
-				 */
-				// var tbar = this.dom.qdoc('.ts-topbar');
-				// if(!tbar) { // TODO: escalate this to an error later on
-				// 	console.warn(
-				// 		'WARNING: This app needs a ts-topbar (otherwise ' +
-				// 		'the main menu cannot be opened on a mobile phone)'
-				// 	);
-				// }
-			}
-		},
-
-		/**
 		 * Handle action.
 		 * @param {gui.Action} a
 		 */

@@ -79,6 +79,7 @@ samp {
 }
 figure {
   position: relative;
+  background-color: #ffffff;
 }
 figure.ts-box > .ts-panel,
 figure.ts-box > .ts-panels > .ts-panel {
@@ -91,8 +92,8 @@ figure .prism,
 figure .prism code {
   border-radius: 3px;
 }
-figure.ts-hasbar .prism,
-figure.ts-hasbar .prism code {
+figure.ts-has-header .prism,
+figure.ts-has-header .prism code {
   border-radius: 0 0 3px 3px;
 }
 figure .editcode {
@@ -492,7 +493,6 @@ table.api th {
   padding: 0;
   overflow-y: scroll;
   background-color: #3f3f3f;
-  border-right: none;
 }
 .ts-doxchrome .ts-sidebar .ts-panel::-webkit-scrollbar {
   width: 5px;
@@ -512,6 +512,9 @@ table.api th {
 }
 .ts-doxchrome .ts-sidebar .ts-panel:after {
   content: '';
+}
+.ts-doxchrome .ts-sidebar:after {
+  content: none;
 }
 .ts-doxchrome.selectfirstitem .ts-sidebar > .ts-shadow {
   display: none;
@@ -797,8 +800,15 @@ html {
 }
 article {
   padding: 66px;
-  max-width: 704px;
+  padding-top: 77px;
   padding-bottom: 154px;
+  max-width: 704px;
+}
+article > h1 {
+  display: none;
+}
+.ts-board article {
+  padding: 22px;
 }
 #markdown img {
   max-width: 100%;

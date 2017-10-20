@@ -10,6 +10,10 @@ ts.ui.SelectSpirit = ts.ui.FieldSpirit.extend({
 	 */
 	debugsync: false,
 
+	/**
+	 * Let the developer customize their own select.
+	 * @type {boolean}
+	 */
 	custom: false,
 
 	/**

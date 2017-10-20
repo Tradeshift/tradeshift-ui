@@ -91,7 +91,34 @@ ts.ui.LayoutPlugin = (function using(GuiArray, DOMPlugin, CSSPlugin, chained) {
 				});
 			},
 
+			/**
+			 * Append the spinner.
+			 * @param {string} [message]
+			 */
+			startSpinning: chained(function(message) {
+				console.log('start', message);
+				if (!this._spinner) {
+					this._spinner = this.spirit.dom.append(ts.ui.SpinnerSpirit.summon());
+				}
+			}),
+
+			/**
+			 * Remove the spinner.
+			 */
+			stopSpinning: chained(function() {
+				console.log('stop');
+				if (this._spinner) {
+					this._spinner.dom.remove();
+				}
+			}),
+
 			// Private .................................................................
+
+			/**
+			 * Spirit of the spinner.
+			 * @type {ts.ui.SpinnerSpirit}
+			 */
+			_spinner: null,
 
 			/**
 			 * Spirit is inside some kind of Aside?

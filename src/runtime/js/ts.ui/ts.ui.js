@@ -310,10 +310,10 @@ ts.ui = gui.namespace(
 
 			// global broadcasts
 			BROADCAST_GLOBAL_MODEL_UPDATE: 'ts-broadcast-g-model-update',
-			BROADCAST_GLOBAL_STATUS_BUSY_BLOCKING: 'ts-broadcast-g-status-busy-blocking',
-			BROADCAST_GLOBAL_STATUS_DONE_BLOCKING: 'ts-broadcast-g-status-done-blocking',
-			BROADCAST_GLOBAL_STATUS_BUSY: 'ts-broadcast-g-status-busy',
-			BROADCAST_GLOBAL_STATUS_DONE: 'ts-broadcast-g-status-done',
+			// BROADCAST_GLOBAL_STATUS_BUSY_BLOCKING: 'ts-broadcast-g-status-busy-blocking',
+			// BROADCAST_GLOBAL_STATUS_DONE_BLOCKING: 'ts-broadcast-g-status-done-blocking',
+			// BROADCAST_GLOBAL_STATUS_BUSY: 'ts-broadcast-g-status-busy',
+			// BROADCAST_GLOBAL_STATUS_DONE: 'ts-broadcast-g-status-done',
 			BROADCAST_GLOBAL_ALL_BUSY: 'ts-broadcast-g-all-busy',
 			BROADCAST_GLOBAL_ALL_DONE: 'ts-broadcast-g-all-done',
 			BROADCAST_GLOBAL_DIALOGS_WILL_ON: 'ts-broadcast-g-dialogs-will-on',

@@ -1,8 +1,8 @@
 [
-	"spirits/boxes/ts.ui.PanelSpirit.js",
-	"spirits/boxes/ts.ui.PanelsSpirit.js",
-	"spirits/boxes/ts.ui.LayoutSpirit.js",
-	"spirits/boxes/ts.ui.BoardSpirit.js",
+	"spirits/ts.ui.LayoutSpirit.js",
+	"spirits/panels/ts.ui.PanelSpirit.js",
+	"spirits/panels/ts.ui.PanelsSpirit.js",
+	"spirits/boards/ts.ui.BoardSpirit.js",
 	"spirits/asides/ts.ui.SideShowSpirit.js",
 	"spirits/asides/ts.ui.AsideSpirit.js",
 	"spirits/asides/ts.ui.SideBarSpirit.js",

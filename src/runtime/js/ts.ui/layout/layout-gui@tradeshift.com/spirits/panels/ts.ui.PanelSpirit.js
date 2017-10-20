@@ -85,7 +85,7 @@ ts.ui.PanelSpirit = (function using(
 		 */
 		onattach: function() {
 			this.super.onattach();
-			this.action.dispatch(ACTION_ATTACH, this._isroot());
+			this.action.dispatch(ACTION_ATTACH);
 		},
 
 		/**
@@ -93,7 +93,7 @@ ts.ui.PanelSpirit = (function using(
 		 */
 		ondetach: function() {
 			this.super.ondetach();
-			this.action.dispatch(ACTION_DETACH, this._isroot());
+			this.action.dispatch(ACTION_DETACH);
 		},
 
 		/**
@@ -162,36 +162,6 @@ ts.ui.PanelSpirit = (function using(
 			return this.dom.ancestor(ts.ui.MainSpirit);
 		},
 
-		/**
-		 *
-		 */
-		busy: chained(function() {
-			this._cover().show();
-		}),
-
-		/**
-		 *
-		 */
-		done: chained(function() {
-			this._cover().hide();
-		}),
-
-		/**
-		 * @param @optional {string} message
-		 */
-		spin: chained(function(message) {
-			this._cover().spin(message);
-			this.busy();
-		}),
-
-		/**
-		 *
-		 */
-		stop: chained(function() {
-			this._cover().stop();
-			this.done();
-		}),
-
 		// Privileged ..............................................................
 
 		/**
@@ -226,24 +196,6 @@ ts.ui.PanelSpirit = (function using(
 						break;
 				}
 			}
-		},
-
-		// Private .................................................................
-
-		/**
-		 * @returns {ts.ui.CoverSpirit}
-		 */
-		_cover: function() {
-			var Cover = ts.ui.CoverSpirit;
-			return this.dom.child(Cover) || this.dom.append(Cover.summon());
-		},
-
-		/**
-		 * Is root level panel?
-		 * @returns {boolean}
-		 */
-		_isroot: function() {
-			return this.dom.parent() === document.body;
 		}
 	});
 })(

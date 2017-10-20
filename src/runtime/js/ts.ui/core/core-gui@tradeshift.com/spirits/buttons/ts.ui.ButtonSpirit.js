@@ -8,9 +8,8 @@
  * @using {gui.Client} Client
  * @using {gui.Type} Type
  * @using {gui.CSSPlugin} CSSPlugin
- * @using {boolean} ie9
  */
-ts.ui.ButtonSpirit = (function using(chained, Client, Type, CSSPlugin, ie9) {
+ts.ui.ButtonSpirit = (function using(chained, Client, Type, CSSPlugin) {
 	// classnames reserved for button color scheme
 	var classnames = [
 		ts.ui.CLASS_PRIMARY,
@@ -45,8 +44,7 @@ ts.ui.ButtonSpirit = (function using(chained, Client, Type, CSSPlugin, ie9) {
 			/**
 			 * Mark as busy or done, use `false` or empty string when done.
 			 * (API looks like this so we can control it via HTML attribute)
-			 * TODO(jmo@): Perhaps something more fancy for IE9, but for now
-			 * we'll just call it "progressive enhancement"...
+			 * TODO: Support boolean arg here (for parity with elsewhere)
 			 * @param @optional {string|boolean} busy
 			 * @returns {ts.ui.ButtonSpirit}
 			 */
@@ -56,18 +54,14 @@ ts.ui.ButtonSpirit = (function using(chained, Client, Type, CSSPlugin, ie9) {
 				if (Type.isString(busy) && busy.trim().startsWith('{')) {
 					return; // about weird Moustache syntax (Angular scenario)
 				}
-				if (ie9) {
-					this.element.disabled = !!busy;
-				} else {
-					if (busy) {
-						this._busymessage(busy);
-						css.remove(CLASS_READY).add(CLASS_LOADING);
-					} else if (css.contains(CLASS_LOADING)) {
-						css.remove(CLASS_LOADING);
-						this._nomorebusy(function bypasstransitions() {
-							css.shift(!css.contains(CLASS_LOADING), CLASS_READY);
-						});
-					}
+				if (busy) {
+					this._busymessage(busy);
+					css.remove(CLASS_READY).add(CLASS_LOADING);
+				} else if (css.contains(CLASS_LOADING)) {
+					css.remove(CLASS_LOADING);
+					this._nomorebusy(function bypasstransitions() {
+						css.shift(!css.contains(CLASS_LOADING), CLASS_READY);
+					});
 				}
 			}),
 
@@ -428,4 +422,4 @@ ts.ui.ButtonSpirit = (function using(chained, Client, Type, CSSPlugin, ie9) {
 			hasfocusstyling: !Client.isSafari && !Client.isTouchDevice
 		}
 	);
-})(gui.Combo.chained, gui.Client, gui.Type, gui.CSSPlugin, gui.Client.isExplorer9);
+})(gui.Combo.chained, gui.Client, gui.Type, gui.CSSPlugin);

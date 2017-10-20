@@ -432,19 +432,11 @@
 	.ts-table-foot {
 		padding: 0;
 		.ts-footerbar {
-			// border-top: 1px solid @ts-medium-litest;
 			.ts-toolbar {
 				background-color: @ts-lite-lite;
 			}
 		}
 	}
-	/*
-	&.ts-hastool:not(.ts-hasrows) {
-		.ts-table-foot {
-			border-top: none;
-		}
-	}
-	*/
 	.ts-table-gutter,
 	.ts-table-menu {
 		overflow: hidden;
@@ -543,10 +535,11 @@
 			bottom: @ts-unit * 8;
 		}
 	}
-
-	// Spinner text ............................................................
-	.ts-spinner-text {
-		position: absolute;
+	> .ts-cover {
+		background-color: rgba(255,255,255,0.7);
+		.ts-spinner {
+			top: 50%;
+		}
 	}
 }
 

@@ -73,16 +73,49 @@ ts.ui.ModalSpirit = (function using(Client, transition, chained) {
 		},
 
 		/**
+		 *
+		 */
+		busy: function() {
+			var panel = this._panel();
+			panel.busy.apply(panel, arguments);
+		},
+
+		/**
+		 *
+		 */
+		done: function() {
+			var panel = this._panel();
+			panel.done.apply(panel, arguments);
+			this.reflex();
+		},
+
+		/**
+		 * @deprecated
+		 * @returns {this}
+		 */
+		spin: chained(function(message) {
+			this.busy.apply(this, arguments);
+		}),
+
+		/**
+		 * @deprecated
+		 * @returns {this}
+		 */
+		stop: chained(function(message) {
+			this.done();
+		}),
+
+		/**
 		 * Cloak the content (to obscure whatever messy Angular loading sequence).
 		 * @param @optional {string} message
-		 */
+		 *
 		busy: chained(function() {
 			this._panel().busy();
 		}),
 
 		/**
 		 * Show the content once again.
-		 */
+		 *
 		done: chained(function() {
 			this.reflex();
 			this._panel().done();
@@ -91,7 +124,7 @@ ts.ui.ModalSpirit = (function using(Client, transition, chained) {
 		/**
 		 * Show a spinner while hiding the content, for mobiles and slow servers.
 		 * @param @optional {string} message
-		 */
+		 *
 		spin: chained(function(message) {
 			this._panel().spin(message);
 			this.busy();
@@ -99,11 +132,12 @@ ts.ui.ModalSpirit = (function using(Client, transition, chained) {
 
 		/**
 		 * Stop the spinner and show the content.
-		 */
+		 *
 		stop: chained(function() {
 			this._panel().stop();
 			this.done();
 		}),
+		*/
 
 		/**
 		 * Inject HTML into the Main or Panel (that
@@ -261,6 +295,7 @@ ts.ui.ModalSpirit = (function using(Client, transition, chained) {
 		 * @returns {ts.ui.PanelSpirit}
 		 */
 		_panel: function() {
+			console.log('TODO: MOVE THIS TO LayoutSpirit');
 			return this.dom.child(ts.ui.PanelSpirit) || this.dom.child(ts.ui.PanelsSpirit).current();
 		},
 
@@ -268,6 +303,7 @@ ts.ui.ModalSpirit = (function using(Client, transition, chained) {
 		 * Get the Main, if any (in the currently selected Panel, in case of tabs).
 		 */
 		_main: function() {
+			console.log('TODO: DEPRECATE THIS!');
 			return this._panel().childMain();
 		},
 

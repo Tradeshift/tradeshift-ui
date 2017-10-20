@@ -224,7 +224,7 @@ function setup($, figure, script, klass, type, lang, gram, code) {
  * @param {boolean} flip
  */
 function getelement(klass, html, code, runs, edit, outs, flip) {
-	var output = outs ? getoutput(code) : '';
+	var output = outs ? getoutput(code, flip) : '';
 	var x = {
 		show: outs || runs,
 		outs: outs,
@@ -244,22 +244,28 @@ function getelement(klass, html, code, runs, edit, outs, flip) {
  * @param {string} code
  * @returns {string}
  */
-function getoutput(code) {
+function getoutput(code, flip) {
 	return `
-		<li data-ts="Panel" data-ts.label="Render">
+		<li data-ts="Panel" data-ts.label="Render" data-ts.selected="${flip}">
 			<div class="output">${code}</div>
 		</li>`;
 }
 
 /**
- *
+ * @param {string} klass
+ * @param {string} html
+ * @param {string} output
+ * @param {boolean} runs
+ * @param {boolean} edit
+ * @param {boolean} flip
+ * @param {Object} x
  */
 function markupbox(klass, html, output, runs, edit, outs, flip, x) {
 	return [
 		`
 		<ul data-ts="Panels">`,
 		[outs ? (flip ? output : '') : ''],
-		`<li data-ts="Panel" ${output ? 'data-ts.label="Markup"' : ''}>
+		`<li data-ts="Panel" ${output ? 'data-ts.label="Markup"' : ''} data-ts.selected="${!flip}">
 				<pre class="prism ${klass}"><code>${html}</code></pre>
 			</li>`,
 		[outs ? (flip ? '' : output) : ''],

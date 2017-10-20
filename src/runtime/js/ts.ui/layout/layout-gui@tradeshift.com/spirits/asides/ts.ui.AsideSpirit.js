@@ -420,7 +420,6 @@ ts.ui.AsideSpirit = (function using(chained, confirmed, Client, LayoutModel, not
 				this._isreallyopen = true;
 				this.dom.show();
 				this._head().reflex();
-				this.guistatus.busy('opening aside');
 				this._updateworld(willopen);
 				this._register(true);
 				if ((index = this._zindex())) {
@@ -463,7 +462,6 @@ ts.ui.AsideSpirit = (function using(chained, confirmed, Client, LayoutModel, not
 				this.broadcast.addGlobal(doclose);
 				this.key.addGlobal('Esc');
 				this.css.add(ts.ui.CLASS_OPEN);
-				this.guistatus.done('opening aside');
 				this.doorman.didopen();
 
 				/**
@@ -496,7 +494,6 @@ ts.ui.AsideSpirit = (function using(chained, confirmed, Client, LayoutModel, not
 			 * About to close.
 			 */
 			_willclose: function() {
-				this.guistatus.busy('closing aside');
 				this._updateworld(willclose);
 				this.action.remove(ts.ui.ACTION_CLOSE);
 				this.broadcast.removeGlobal(doclose);
@@ -516,7 +513,6 @@ ts.ui.AsideSpirit = (function using(chained, confirmed, Client, LayoutModel, not
 				this._offset = 0;
 				this.dom.hide();
 				this._updateworld(didclose);
-				this.guistatus.done('closing aside');
 				this.att.del('data-ts-offset');
 				this.attention.exit(panel);
 				this.css.remove(ts.ui.CLASS_SECONDARY);

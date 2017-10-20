@@ -28,7 +28,7 @@
 	} else {
 		rendernormalbuttons(id, toolbar.$allbuttons());
 	}
-	renderspinner(topbar && mobilos);
+	// renderspinner(topbar && mobilos);
 	
 	function renderleft(title, icon, burger, status, search, tabs, navigation, checkbox, actions) {
 		var hasnavi = !!(topbar && navigation && navigation.getLength());
@@ -223,6 +223,7 @@
 	
 	// SPINNER ...................................................................
 	
+	/*
 	// in the TopBar, we'll render the Spinner in mobile brakpoint.
 	function renderspinner(on) {
 		@id = id + '-spinner';
@@ -231,6 +232,7 @@
 			<div data-ts="Spinner" @id @class data-ts.spinning="true"></div>
 		}
 	}
+	*/
 
 		
 	// BACK/FORWARD/MENUTOGGLE ...................................................

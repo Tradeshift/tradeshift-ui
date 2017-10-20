@@ -83,7 +83,7 @@
                             <p>You can use an <em>inline</em> Note to give information about a certain section of the page. Only the page-level Note is closeable while inline Notes should stay on the page with the content.</p>
                             <figure data-ts="DoxMarkup" data-ts.code="%3Cdiv%20data-ts%3D%22Note%22%3E%0A%09%3Ci%20class%3D%22ts-icon-heart%22%3E%3C%2Fi%3E%0A%09%3Cp%3EYou%20love%20the%20Note!%3C%2Fp%3E%0A%3C%2Fdiv%3E">
                                 <ul data-ts="Panels">
-                                    <li data-ts="Panel" data-ts.label="Render">
+                                    <li data-ts="Panel" data-ts.label="Render" data-ts.selected="true">
                                         <div class="output">
                                             <div data-ts="Note">
                                                 <i class="ts-icon-heart"></i>
@@ -91,7 +91,7 @@
                                             </div>
                                         </div>
                                     </li>
-                                    <li data-ts="Panel" data-ts.label="Markup">
+                                    <li data-ts="Panel" data-ts.label="Markup" data-ts.selected="false">
                                         <pre class="prism language-markup"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Note<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>i</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>ts-icon-heart<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>i</span><span class="token punctuation">&gt;</span></span>
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>You love the Note!<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
@@ -102,14 +102,14 @@
                             <p>Note without icon using simple HTML:</p>
                             <figure data-ts="DoxMarkup" data-ts.code="%3Cdiv%20data-ts%3D%22Note%22%3E%0A%09%3Cp%3EThis%20is%20the%20iconless%20Note!%3C%2Fp%3E%0A%3C%2Fdiv%3E">
                                 <ul data-ts="Panels">
-                                    <li data-ts="Panel" data-ts.label="Render">
+                                    <li data-ts="Panel" data-ts.label="Render" data-ts.selected="true">
                                         <div class="output">
                                             <div data-ts="Note">
                                                 <p>This is the iconless Note!</p>
                                             </div>
                                         </div>
                                     </li>
-                                    <li data-ts="Panel" data-ts.label="Markup">
+                                    <li data-ts="Panel" data-ts.label="Markup" data-ts.selected="false">
                                         <pre class="prism language-markup"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Note<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>This is the iconless Note!<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span></code></pre>
@@ -119,14 +119,14 @@
                             <p>Inline Note with closeable function</p>
                             <figure data-ts="DoxMarkup" data-ts.code="%3Cdiv%20data-ts%3D%22Note%22%20data-ts.closeable%3D%22true%22%3E%0A%09%3Cp%3EThis%20is%20the%20closeable%20inline%20Note!%3C%2Fp%3E%0A%3C%2Fdiv%3E">
                                 <ul data-ts="Panels">
-                                    <li data-ts="Panel" data-ts.label="Render">
+                                    <li data-ts="Panel" data-ts.label="Render" data-ts.selected="true">
                                         <div class="output">
                                             <div data-ts="Note" data-ts.closeable="true">
                                                 <p>This is the closeable inline Note!</p>
                                             </div>
                                         </div>
                                     </li>
-                                    <li data-ts="Panel" data-ts.label="Markup">
+                                    <li data-ts="Panel" data-ts.label="Markup" data-ts.selected="false">
                                         <pre class="prism language-markup"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Note<span class="token punctuation">&quot;</span></span> <span class="token attr-name">data-ts</span>.<span class="token attr-name">closeable</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>true<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>This is the closeable inline Note!<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span></code></pre>
@@ -144,7 +144,7 @@
                             <p>You can use a Note in an <a data-ts="Button" onclick="toggle(&apos;#myaside&apos;);">Aside</a> or a SideBar, if you put the inline note as the first child of the ts-panel.</p>
                             <figure data-ts="DoxMarkup" data-ts.code="%3Caside%20data-ts%3D%22Aside%22%3E%0A%09%3Cdiv%20data-ts%3D%22Panel%22%3E%0A%09%09%3Cdiv%20data-ts%3D%22Note%22%3E%0A%09%09%09%3Ci%20class%3D%22ts-icon-heart%22%3E%3C%2Fi%3E%0A%09%09%09%3Cp%3ENote%20in%20the%20Aside!%3C%2Fp%3E%0A%09%09%3C%2Fdiv%3E%0A%09%3C%2Fdiv%3E%0A%3C%2Faside%3E">
                                 <ul data-ts="Panels">
-                                    <li data-ts="Panel">
+                                    <li data-ts="Panel" data-ts.selected="true">
                                         <pre class="prism language-markup"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>aside</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Aside<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Panel<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
 		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Note<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>

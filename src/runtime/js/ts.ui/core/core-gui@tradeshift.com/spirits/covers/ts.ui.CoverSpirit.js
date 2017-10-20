@@ -6,6 +6,8 @@
  */
 ts.ui.CoverSpirit = (function using(chained, Client) {
 	var MOUSE_EVENTS = Client.isTouchDevice ? 'touchstart mouseenter' : 'mousedown mouseenter';
+	var BLOCKING = 'ts-blocking';
+	var OPAQUE = 'ts-opaque';
 
 	return ts.ui.Spirit.extend(
 		{
@@ -38,15 +40,43 @@ ts.ui.CoverSpirit = (function using(chained, Client) {
 			}),
 
 			/**
-			 * Start spinning (on a transparent background, unless you CSS this).
+			 * Fit with semitransparent background.
+			 * @param {boolean} is
+			 * @returns {this|boolean} 
+			 */
+			opaque: chained(function(is) {
+				if (arguments.length) {
+					this.css.shift(is, OPAQUE);
+				} else {
+					return this.css.contains(OPAQUE);
+				}
+			}),
+
+			/**
+			 * Block all mouse events.
+			 * @param {boolean} is
+			 * @returns {this|boolean} 
+			 */
+			blocking: chained(function(is) {
+				if (arguments.length) {
+					this.css.shift(is, BLOCKING);
+				} else {
+					return this.css.contains(BLOCKING);
+				}
+			}),
+
+			/**
+			 * Start spinning.
 			 * @param @optional {string} message
 			 * @returns {ts.ui.CoverSpirit}
 			 */
 			spin: chained(function(message) {
-				this._spinner = this._spinner || ts.ui.SpinnerSpirit.summon();
-				this._spinner.spin(this.element, {
-					message: message || ''
-				});
+				message = typeof message === 'string' ? message : '';
+				this.dom.append(
+					ts.ui.SpinnerSpirit.summon(message, {
+						color: this.blocking() ? 'rgb(255,255,255)' : 'rgb(85,85,85)'
+					})
+				);
 			}),
 
 			/**
@@ -54,8 +84,9 @@ ts.ui.CoverSpirit = (function using(chained, Client) {
 			 * @return {ts.ui.CoverSpirit}
 			 */
 			stop: chained(function() {
-				if (this._spinner) {
-					this._spinner.stop();
+				var spinner = this.dom.child(ts.ui.SpinnerSpirit);
+				if (spinner) {
+					spinner.dom.remove();
 				}
 			}),
 
@@ -88,32 +119,33 @@ ts.ui.CoverSpirit = (function using(chained, Client) {
 
 			/**
 			 * Show and fade to no opacity.
+			 * @returns {gui.Then}
 			 */
 			fadeIn: function() {
+				this._then = new gui.Then();
 				this.show();
 				this._shouldbevisible = true;
-				if (this._usetransitions) {
-					this.css.add(ts.ui.CLASS_TRANSITION);
-					this.event.add('transitionend');
-					this.tick.time(function browserfix() {
-						this.css.add(ts.ui.CLASS_VISIBLE);
-					}, ts.ui.TRANSITION_DELAY);
-				}
+				this.css.add(ts.ui.CLASS_TRANSITION);
+				this.event.add('transitionend');
+				this.tick.time(function browserfix() {
+					this.css.add(ts.ui.CLASS_VISIBLE);
+				});
+				return this._then;
 			},
 
 			/**
 			 * Fade to full opacity and hide.
+			 * @returns {gui.Then}
 			 */
 			fadeOut: function() {
+				this._then = new gui.Then();
 				this._shouldbevisible = false;
-				if (this._usetransitions) {
-					this.event.add('transitionend');
-					this.tick.time(function browserfix() {
-						this.css.remove(ts.ui.CLASS_VISIBLE);
-					}, ts.ui.TRANSITION_DELAY);
-				} else {
-					this.hide();
-				}
+				this.event.add('transitionend');
+				this.css.add(ts.ui.CLASS_TRANSITION);
+				this.tick.time(function browserfix() {
+					this.css.remove(ts.ui.CLASS_VISIBLE);
+				});
+				return this._then;
 			},
 
 			/**
@@ -138,10 +170,15 @@ ts.ui.CoverSpirit = (function using(chained, Client) {
 						break;
 					case 'transitionend':
 						if (e.target === this.element) {
+							this.css.remove(ts.ui.CLASS_TRANSITION);
 							this.event.remove(e.type);
 							if (!this._shouldbevisible) {
 								this.hide();
 							}
+						}
+						if (this._then) {
+							this._then.now();
+							this._then = null;
 						}
 						break;
 				}
@@ -154,12 +191,6 @@ ts.ui.CoverSpirit = (function using(chained, Client) {
 			 * @type {ts.ui.SpinnerSpirit}
 			 */
 			_spinner: null,
-
-			/**
-			 * Fade around with CSS transitions?
-			 * @type {boolean}
-			 */
-			_usetransitions: ts.ui.usetransitions,
 
 			/**
 			 * Tracking a transitional state.

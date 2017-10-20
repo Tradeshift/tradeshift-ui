@@ -52,23 +52,6 @@ ts.ui.SideShowSpirit = (function using(
 		onclosed: null,
 
 		/**
-		 * ts.ui.SpinnerSpirit.
-		 */
-		spin: null,
-
-		/**
-		 * @param {boolean} busy
-		 */
-		busy: function(busy) {
-			this._initspin(busy);
-			if (busy) {
-				this.guistatus.busy(this.$instanceid);
-			} else {
-				this.guistatus.done(this.$instanceid);
-			}
-		},
-
-		/**
 		 * Open by default?
 		 */
 		onenter: function() {
@@ -85,7 +68,6 @@ ts.ui.SideShowSpirit = (function using(
 			this.super.onready();
 			this._confirmpanel();
 			this.css.add('ts-sideshow');
-			this._inittabs();
 		},
 
 		/**
@@ -297,86 +279,6 @@ ts.ui.SideShowSpirit = (function using(
 						tool.dom.remove();
 					}
 				}, 50);
-			}
-		},
-
-		/**
-		 * If you set the attribute ts.busy is true, you will see the spinner in the main
-		 * param {boolean} busy
-		 */
-		_initspin: function(busy) {
-			if (!this.spin) {
-				this.spin = ts.ui.SpinnerSpirit.summon();
-			}
-			if (busy) {
-				var opts = {
-					message: busy,
-					top: '226px'
-				};
-				this.spin.spin(this.element, opts);
-			} else {
-				this.spin.stop();
-			}
-		},
-
-		/**
-		 * If more than one panel next to aside, generate the tabbar automaticly
-		 */
-		_inittabs: function() {
-			var panels = this.dom.children(ts.ui.PanelSpirit);
-			if (panels.length > 1) {
-				if (
-					panels.every(function(panel) {
-						return !!panel.label;
-					})
-				) {
-					this._setuptabs(panels, this);
-				} else {
-					console.warn(
-						'(Multiple) Panels in Aside must have ' + 'a label in order to create the TabBar'
-					);
-				}
-			}
-		},
-
-		/**
-		 * Multiple panels found, setup the tabbar to switch between them.
-		 * @param {Array<ts.ui.PanelSpirit>} panels
-		 * @param {ts.ui.SideBarSpirit} that
-		 */
-		_setuptabs: function(panels, that) {
-			var tabbar = this._head();
-			panels.forEach(function(panel, index) {
-				tabbar.tabs().push({
-					label: panel.label,
-					selected: index === 0,
-					$onselect: function() {
-						if (!that.$destructed) {
-							that.dom.children(ts.ui.PanelSpirit).forEach(function(p) {
-								if (p === panel) {
-									p.show();
-									p.$onselect();
-									// TODO: scroll to zero?
-								} else {
-									p.hide();
-								}
-							});
-						}
-					}
-				});
-			});
-		},
-
-		/**
-		 * Remove the tabbar.
-		 */
-		_removetabbar: function() {
-			var bar = this._tabbar;
-			if (bar) {
-				bar.dom.remove();
-				bar.tabs().removeObserver(this);
-				this.css.remove('ts-has-panels');
-				this._tabbar = null;
 			}
 		},
 

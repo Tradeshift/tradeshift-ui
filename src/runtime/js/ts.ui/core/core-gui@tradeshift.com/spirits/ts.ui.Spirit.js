@@ -17,6 +17,44 @@ ts.ui.Spirit = (function using(Type, GuiArray, confirmed, chained) {
 				this._configureclassnames(this.css);
 			},
 
+			/**
+			 * @returns {this}
+			 */
+			busy: chained(function(arg) {
+				var cover = this._childcover();
+				switch (arg) {
+					case false:
+					case '':
+						cover.fadeOut().then(function() {
+							cover
+								.opaque(false)
+								.blocking(false)
+								.stop();
+						});
+						break;
+					default:
+						cover.spin(arg).show();
+						break;
+				}
+			}),
+
+			/**
+			 * @returns {this}
+			 */
+			done: chained(function() {
+				this.busy(false);
+			}),
+
+			/**
+			 * @returns {this}
+			 */
+			blocking: function() {
+				this._childcover()
+					.opaque(true)
+					.blocking(true);
+				this.busy.apply(this, arguments);
+			},
+
 			// Private ...............................................................
 
 			/**
@@ -67,6 +105,14 @@ ts.ui.Spirit = (function using(Type, GuiArray, confirmed, chained) {
 					action.apply(this, args);
 				}
 				return !!action;
+			},
+
+			/**
+			 * @returns {ts.ui.CoverSpirit}
+			 */
+			_childcover: function() {
+				var Cover = ts.ui.CoverSpirit;
+				return this.dom.child(Cover) || this.dom.append(Cover.summon());
 			},
 
 			// Privileged ............................................................

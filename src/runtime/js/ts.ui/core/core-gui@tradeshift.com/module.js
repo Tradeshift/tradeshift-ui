@@ -43,7 +43,6 @@ ts.ui.CoreModule = gui.module('core-gui@tradeshift.com', {
 	 * Setup plugins (for all spirits).
 	 */
 	plugin: {
-		guistatus: ts.ui.StatusPlugin,
 		guilayout: ts.ui.LayoutPlugin,
 		attention: ts.ui.AttentionPlugin
 	},

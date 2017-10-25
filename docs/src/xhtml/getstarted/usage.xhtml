@@ -2,6 +2,7 @@
 <html>
 	<head>
 		<title>Usage</title>
+		<object data="tabs.xhtml"></object>
 	</head>
 	<body>
 			<article>
@@ -26,13 +27,13 @@
 					</figure>
 
 					<h3>JS interface</h3>
-					<p>The component may also expose a JavaScript API. For example, the <code class="attr-value">Aside</code> can be opened with a method call instead of an attribute. You can get hold of the implementation using <code>ts.ui.get</code>, which takes an element as argument.</p>
+					<p>The component may also expose a JavaScript API. You can get hold of the implementation using <code>ts.ui.get</code>, which takes an element or a CSS selector as argument. If you use a selector, the query will be scoped from the document root.</p>
 					<figure data-ts="DoxScript">
 						<script>
-							var myelement = document.querySelector('#myaside');
-							var component = ts.ui.get(myelement);
-							console.log(component); // [object ts.ui.AsideSpirit]
-							component.open();
+							var element = document.querySelector('#myaside');
+							ts.ui.get(element, component => {
+								component.open();
+							});
 						</script>
 					</figure>
 					
@@ -46,7 +47,7 @@
 							}).open();
 						</script>
 					</figure>
-					<p>When making apps with UI components, there’s a few <a data-ts="Button" href="/#getstarted/rules/">basic rules</a> we would like you to observe.</p>
+					<p>When making apps with UI components, there’s a few <a data-ts="Button" href="/#getstarted/rules.html">basic rules</a> we would like you to observe.</p>
 				</section>
 			</article>
 	</body>

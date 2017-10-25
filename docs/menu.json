@@ -7,29 +7,13 @@
 	{
 		"label": "Get Started",
 		"icon": "docs-icon-space-rocket",
-		"path": "getstarted/",
-		"items": [
-			{
-				"label": "Layout",
-				"icon": "docs-icon-window-application-7",
-				"path": "getstarted/layout/"
-			},
-			{
-				"label": "Usage",
-				"icon": "docs-icon-cloud-upload-2",
-				"path": "getstarted/usage/"
-			},
-			{
-				"label": "Basic Rules",
-				"icon": "docs-icon-sign-no-entry",
-				"path": "getstarted/rules/"
-			}
-		]
+		"path": "getstarted/"
 	},
 	{
 		"label": "Design Principles",
 		"icon": "docs-icon-pen-brush",
 		"path": "design/",
+		"hidden": true,
 		"items": [
 			{
 				"label": "Design Patterns",

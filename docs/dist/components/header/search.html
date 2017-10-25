@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en-us" class="ts-docs" spellcheck="false">
+
+<head>
+    <title>Header Search</title>
+    <meta name="ts-app-title" content="Header Search">
+    <link rel="ts-app-icon" href="/dist/assets/icon.svg">
+    <meta name="viewport" content="width=device-width">
+    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-10.0.0-alpha.0.min.js"></script>
+    <script src="/dist/assets/dox.min.js"></script>
+    <script src="/dist/assets/mark.min.js"></script>
+    <script src="/dist/assets/jquery-2.2.4.min.js"></script>
+    <link rel="stylesheet" href="/dist/assets/dox.css">
+    <link rel="prefetch" title="Header" href="index.html">
+    <link rel="prefetch" title="Tabs" href="tabs.html">
+    <link rel="prefetch" title="Buttons" href="buttons.html">
+    <link rel="prefetch" title="Search" href="search.html">
+    <script>
+        ts.dox.tabs()
+    </script>
+</head>
+
+<body>
+    <div data-ts="App">
+        <div data-ts="Main">
+            <div data-ts="Content">
+                <div data-ts="Panel">
+                    <article>
+                        <section>
+                            <p>The <code>search</code> method reveals a dedicated search bar. The <code>info</code> property acts as placeholder and the <code>onsearch</code> method gets called whenever the user presses <code>ENTER</code>.</p>
+                            <figure data-ts="DoxScript" class="attention runnable" data-ts.code="ts.ui.Header.search(%7B%0A%09info%3A%20&apos;Search%20amongst%20all%20the%20things&apos;%2C%0A%09onsearch%3A%20function(value)%20%7B%0A%09%09ts.ui.Notification.success(value%20%7C%7C%20&apos;(nothing)&apos;)%3B%0A%09%7D%0A%7D)%3B">
+                                <script type="runnable">
+                                    ts.ui.Header.search({ info: 'Search amongst all the things', onsearch: function(value) { ts.ui.Notification.success(value || '(nothing)'); } });
+                                </script>
+                                <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                                <div data-ts="Panel">
+                                    <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Header<span class="token punctuation">.</span><span class="token function">search<span class="token punctuation">(</span></span><span class="token punctuation">{</span>
+	info<span class="token punctuation">:</span> <span class="token string">&apos;Search amongst all the things&apos;</span><span class="token punctuation">,</span>
+	onsearch<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Notification<span class="token punctuation">.</span><span class="token function">success<span class="token punctuation">(</span></span>value <span class="token operator">||</span> <span class="token string">&apos;(nothing)&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
+                            </figure>
+                            <p>If defined, the <code>onidle</code> method gets called whenever the user pauses typing.</p>
+                            <figure data-ts="DoxScript" class="runnable" data-ts.code="var%20search%20%3D%20ts.ui.Header.search()%3B%0Asearch.value%20%3D%20&apos;Try%20it%20now!&apos;%3B%0Asearch.onidle%20%3D%20function(value)%20%7B%0A%09ts.ui.Notification.success(value)%3B%0A%7D%3B">
+                                <script type="runnable">
+                                    var search = ts.ui.Header.search(); search.value = 'Try it now!'; search.onidle = function(value) { ts.ui.Notification.success(value); };
+                                </script>
+                                <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                                <div data-ts="Panel">
+                                    <pre class="prism language-javascript"><code><span class="token keyword">var</span> search <span class="token operator">=</span> ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Header<span class="token punctuation">.</span><span class="token function">search<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+search<span class="token punctuation">.</span>value <span class="token operator">=</span> <span class="token string">&apos;Try it now!&apos;</span><span class="token punctuation">;</span>
+search<span class="token punctuation">.</span>onidle <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Notification<span class="token punctuation">.</span><span class="token function">success<span class="token punctuation">(</span></span>value<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
+                            </figure>
+                            <p>The <code>onidle</code> method will also be called when the field loses focus. The <code>idletime</code> property controls the timeout value, default is <code>500</code> (milliseconds). You can also add one or more buttons
+                                to the Search.</p>
+                            <figure data-ts="DoxScript" class="runnable" data-ts.code="var%20search%20%3D%20ts.ui.Header.search()%3B%0Asearch.buttons.push(%7B%0A%09label%3A%20&apos;Search%20Now!&apos;%2C%0A%09onclick%3A%20function()%20%7B%0A%09%09search.search()%3B%0A%09%7D%0A%7D)%3B">
+                                <script type="runnable">
+                                    var search = ts.ui.Header.search(); search.buttons.push({ label: 'Search Now!', onclick: function() { search.search(); } });
+                                </script>
+                                <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                                <div data-ts="Panel">
+                                    <pre class="prism language-javascript"><code><span class="token keyword">var</span> search <span class="token operator">=</span> ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Header<span class="token punctuation">.</span><span class="token function">search<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+search<span class="token punctuation">.</span>buttons<span class="token punctuation">.</span><span class="token function">push<span class="token punctuation">(</span></span><span class="token punctuation">{</span>
+	label<span class="token punctuation">:</span> <span class="token string">&apos;Search Now!&apos;</span><span class="token punctuation">,</span>
+	onclick<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		search<span class="token punctuation">.</span><span class="token function">search<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
+                            </figure>
+                            <p>The buttons have a <code>search</code> property that references the Search model. This will come in handy when you configure the Search via a single JSON payload.</p>
+                            <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.Header.search(%7B%0A%09info%3A%20&apos;Search%20amongst%20all%20the%20things&apos;%2C%0A%09buttons%3A%20%5B%7B%0A%09%09label%3A%20&apos;Advanced%20Search&apos;%2C%0A%09%09onclick%3A%20function()%20%7B%0A%09%09%09console.log(&apos;Loading%20advanced%20search...&apos;)%3B%0A%09%09%09this.search.hide()%3B%0A%09%09%7D%0A%09%7D%5D%0A%7D)%3B">
+                                <script type="runnable">
+                                    ts.ui.Header.search({ info: 'Search amongst all the things', buttons: [{ label: 'Advanced Search', onclick: function() { console.log('Loading advanced search...'); this.search.hide(); } }] });
+                                </script>
+                                <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                                <div data-ts="Panel">
+                                    <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Header<span class="token punctuation">.</span><span class="token function">search<span class="token punctuation">(</span></span><span class="token punctuation">{</span>
+	info<span class="token punctuation">:</span> <span class="token string">&apos;Search amongst all the things&apos;</span><span class="token punctuation">,</span>
+	buttons<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token punctuation">{</span>
+		label<span class="token punctuation">:</span> <span class="token string">&apos;Advanced Search&apos;</span><span class="token punctuation">,</span>
+		onclick<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+			console<span class="token punctuation">.</span><span class="token function">log<span class="token punctuation">(</span></span><span class="token string">&apos;Loading advanced search...&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+			<span class="token keyword">this</span><span class="token punctuation">.</span>search<span class="token punctuation">.</span><span class="token function">hide<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token punctuation">}</span>
+	<span class="token punctuation">}</span><span class="token punctuation">]</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
+                            </figure>
+                        </section>
+                        <p>If you are using <a data-ts="Button" href="/dist/components/header/tabs.html">tabs</a>, remember that the Search is conceptually scoped to the current tab. You would most often want to clear the entire Search whenever the user
+                            switches tab. This event can be tracked with the tabs <code>onselect</code> callback.</p>
+                        <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.Header.search(null)%3B">
+                            <script type="runnable">
+                                ts.ui.Header.search(null);
+                            </script>
+                            <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                            <div data-ts="Panel">
+                                <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Header<span class="token punctuation">.</span><span class="token function">search<span class="token punctuation">(</span></span><span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
+                        </figure>
+                        <!--
+				<code>hide</code> or <code>clear</code> the Search whenever the user switches tab. If you need to clear the buttons as well, there's also a way to do that.</p>
+			<figure data-ts="DoxScript">
+					<script type="text/plain">
+						ts.ui.Header.search().buttons.clear();
+					</script>
+				</figure>
+			-->
+                        <!--
+			<section>
+				<h3>Search info</h3>
+				<p>The <code>info</code> property doubles as both the <code>placeholder</code> when the field is expanded and the <code>title</code> (or tooltip) when the field is collapsed.</p>
+				<figure data-ts="DoxScript">
+					<script type="runnable">
+						var search = ts.ui.Header.search();
+						search.info = 'Search amongst the things';
+						search.value = ''; // collapse the field
+					</script>
+				</figure>
+			</section>
+			<section>
+				<h3>Search flex</h3>
+				<p>You can <code>flex</code> the search field to make it stretch the available width of the ToolBar. In that case, it will remain expanded even when there's no default <code>value</code>.</p>
+				<figure data-ts="DoxScript">
+					<script type="runnable">
+						ts.ui.Header.search({
+							tip: 'Flex all the way!',
+							flex: 1
+						}).buttons([
+							{ label: 'No Flex', type: 'ts-primary' }
+						]);
+					</script>
+				</figure>
+				<p>You can also assign <code>flex</code> to buttons, although that has little practical value. In the future, we may provide a more advanced distribution scheme. That's why we use a number instead of a boolean, but you should always use <samp>1</samp> for now.</p>
+			</section>
+			-->
+                        <section id="search-api" data-important="THIS GETS INCLUDED IN OTHER PAGES!">
+                            <p>Here&apos; an overview of the Search model.</p>
+                            <div data-ts="DoxApi" data-ts.code="%7B%0A%09name%3A%20%22ts.ui.SearchModel%22%2C%0A%09properties%3A%20%5B%0A%09%09%7B%0A%09%09%09name%3A%20%22value%22%2C%0A%09%09%09type%3A%20%22string%22%2C%0A%09%09%09desc%3A%20%22The%20search%20field%20value.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20%22idletime%22%2C%0A%09%09%09type%3A%20%22number%22%2C%0A%09%09%09desc%3A%20%22Time%20before%20the%20user%20is%20considered%20idle.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20%22info%22%2C%0A%09%09%09type%3A%20%22string%22%2C%0A%09%09%09desc%3A%20%22The%20placeholder%20and%2For%20mouseover%20tooltip.%22%0A%09%09%7D%0A%09%5D%2C%0A%09methods%3A%20%5B%0A%09%09%7B%0A%09%09%09name%3A%20%22onsearch%22%2C%0A%09%09%09desc%3A%20%22Called%20when%20pressing%20ENTER%20or%20%60search%60%20is%20called.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20%22onidle%22%2C%0A%09%09%09desc%3A%20%22Called%20when%20the%20user%20pauses%20typing.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20&apos;search&apos;%2C%0A%09%09%09desc%3A%20&apos;Execute%20the%20search%20based%20on%20current%20value.&apos;%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20&apos;clear&apos;%2C%0A%09%09%09desc%3A%20&apos;Clear%20the%20value%20AND%20execute%20%60onsearch%60%20(or%20%60onidle%60).&apos;%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20%22onfocus%22%2C%0A%09%09%09desc%3A%20%22Called%20when%20the%20search%20field%20is%20focused.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20%22onblur%22%2C%0A%09%09%09desc%3A%20%22Called%20when%20the%20search%20field%20gets%20blurred.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20%22focus%22%2C%0A%09%09%09desc%3A%20%22Focus%20the%20search%20field.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20%22blur%22%2C%0A%09%09%09desc%3A%20%22Blur%20the%20search%20field.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20%22hide%22%2C%0A%09%09%09desc%3A%20%22Hide%20the%20search%20field.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20%22show%22%2C%0A%09%09%09desc%3A%20%22Show%20the%20search%20field.%22%0A%09%09%7D%0A%09%5D%0A%7D">
+                            </div>
+                        </section>
+                        <!--
+				,
+							buttons: [
+								{
+									label: "Let's Search",
+									icon: 'ts-icon-search',
+									onclick: function() {
+										this.search.search();
+									}
+								}
+							]
+						-->
+                        <div data-ts="Note" class="sticky">
+                            <p>If you find a bug or need a feature&#x2026;</p>
+                            <menu data-ts="Buttons">
+                                <li>
+                                    <a data-ts="Button" target="_blank" href="https://github.com/Tradeshift/tradeshift-ui/issues/new" title="Submit new issue">
+		          <span>Create GitHub Issue&#x2026;</span>
+		        </a>
+                                </li>
+                            </menu>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<html lang="en-us" class="ts-docs" spellcheck="false">
+
+</html>
+
+</html>

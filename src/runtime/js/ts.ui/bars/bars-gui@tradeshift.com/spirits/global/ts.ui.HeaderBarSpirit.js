@@ -115,7 +115,9 @@ ts.ui.HeaderBarSpirit = (function using(chained) {
 			search: chained(function(json) {
 				var model = this.model();
 				if (arguments.length) {
-					json.flex = 1; // for now we'll just hack this to suppor the design :)
+					if (json) {
+						json.flex = 1; // for now we'll just hack this to support the design...
+					}
 					model.search = json;
 				} else {
 					return model.search;

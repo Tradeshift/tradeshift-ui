@@ -3,14 +3,21 @@
 
 <head>
     <title>Usage</title>
-    <meta name="apple-mobile-web-app-title" content="Usage">
-    <link rel="apple-touch-icon" href="/dist/assets/icon.svg">
+    <meta name="ts-app-title" content="Usage">
+    <link rel="ts-app-icon" href="/dist/assets/icon.svg">
     <meta name="viewport" content="width=device-width">
-    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-9.2.3.min.js"></script>
+    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-10.0.0-alpha.0.min.js"></script>
     <script src="/dist/assets/dox.min.js"></script>
     <script src="/dist/assets/mark.min.js"></script>
     <script src="/dist/assets/jquery-2.2.4.min.js"></script>
     <link rel="stylesheet" href="/dist/assets/dox.css">
+    <link rel="prefetch" title="Setup" href="index.html">
+    <link rel="prefetch" title="Layout" href="layout.html">
+    <link rel="prefetch" title="Usage" href="usage.html">
+    <link rel="prefetch" title="Rules" href="rules.html">
+    <script>
+        ts.dox.tabs()
+    </script>
 </head>
 
 <body>
@@ -43,15 +50,15 @@
                                 </ul>
                             </figure>
                             <h3><span>JS interface</span></h3>
-                            <p>The component may also expose a JavaScript API. For example, the <code class="attr-value">Aside</code> can be opened with a method call instead of an attribute. You can get hold of the implementation using <code>ts.ui.get</code>,
-                                which takes an element as argument.</p>
-                            <figure data-ts="DoxScript" data-ts.code="var%20myelement%20%3D%20document.querySelector(&apos;%23myaside&apos;)%3B%0Avar%20component%20%3D%20ts.ui.get(myelement)%3B%0Aconsole.log(component)%3B%20%2F%2F%20%5Bobject%20ts.ui.AsideSpirit%5D%0Acomponent.open()%3B">
+                            <p>The component may also expose a JavaScript API. You can get hold of the implementation using <code>ts.ui.get</code>, which takes an element or a CSS selector as argument. If you use a selector, the query will be scoped from
+                                the document root.</p>
+                            <figure data-ts="DoxScript" data-ts.code="var%20element%20%3D%20document.querySelector(&apos;%23myaside&apos;)%3B%0Ats.ui.get(element%2C%20function(component)%20%7B%0A%09component.open()%3B%0A%7D)%3B">
                                 <input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
                                 <div data-ts="Panel">
-                                    <pre class="prism language-javascript"><code><span class="token keyword">var</span> myelement <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector<span class="token punctuation">(</span></span><span class="token string">&apos;#myaside&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token keyword">var</span> component <span class="token operator">=</span> ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span>myelement<span class="token punctuation">)</span><span class="token punctuation">;</span>
-console<span class="token punctuation">.</span><span class="token function">log<span class="token punctuation">(</span></span>component<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// [object ts.ui.AsideSpirit]
-</span>component<span class="token punctuation">.</span><span class="token function">open<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+                                    <pre class="prism language-javascript"><code><span class="token keyword">var</span> element <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector<span class="token punctuation">(</span></span><span class="token string">&apos;#myaside&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span>element<span class="token punctuation">,</span> component <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+	component<span class="token punctuation">.</span><span class="token function">open<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
                                 </div>
                             </figure>
                             <h3><span>API-only components</span></h3>
@@ -65,7 +72,7 @@ console<span class="token punctuation">.</span><span class="token function">log<
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">open<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
                                 </div>
                             </figure>
-                            <p>When making apps with UI components, there&#x2019;s a few <a data-ts="Button" href="/dist/getstarted/rules/">basic rules</a> we would like you to observe.</p>
+                            <p>When making apps with UI components, there&#x2019;s a few <a data-ts="Button" href="/dist/getstarted/rules.html">basic rules</a> we would like you to observe.</p>
                         </section>
                         <div data-ts="Note" class="sticky">
                             <p>If you find a bug or need a feature&#x2026;</p>

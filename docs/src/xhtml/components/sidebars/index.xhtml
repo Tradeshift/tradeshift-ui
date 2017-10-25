@@ -68,7 +68,7 @@
 							</section>
 							<figure data-ts="DoxMarkup">
 								<script>
-									<aside data-ts="SideBar">
+									<aside data-ts="SideBar" data-ts.title="My SideBar">
 										<div data-ts="Panel">
 											<p>SideBar content.</p>
 										</div>
@@ -76,7 +76,7 @@
 								</script>
 							</figure>
 							<section class="ts-hide-mobile-only">
-								<p>This sidebar should be positioned either before or after the <val>Content</val> element.</p>
+								<p>This sidebar should be positioned either before or after the <val>Content</val> element as seen in your <a data-ts="Button" href="/#getstarted/layout.html">basic layout</a>. You can toggle this position to witness the difference.</p>
 								<form data-ts="Form">
 									<fieldset>
 										<label>
@@ -99,6 +99,11 @@
 										-->
 									</fieldset>
 								</form>
+							</section>
+							<section class="show-mobile-only">
+								<div data-ts="Note">
+									<p>TODO: Something special here for mobile breakpoint.</p>
+								</div>
 							</section>
 
 							<!--
@@ -202,19 +207,14 @@
 			</aside>
 		</template>
 		<template id="before-content-template">
-			<aside data-ts="SideBar" id="before-content" data-ts.title="My Filters">
-				<div data-ts="Panels">
-					<div data-ts="Panel" data-ts.label="Hansen">
-						<p>SideBar before <val>Content</val>.</p>
-					</div>
-					<div data-ts="Panel" data-ts.label="Jensen">
-						<p>Dav.</p>
-					</div>
+			<aside data-ts="SideBar" id="before-content" data-ts.title="Before Content">
+				<div data-ts="Panel" data-ts.label="Hansen">
+					<p>SideBar before <val>Content</val>.</p>
 				</div>
 			</aside>
 		</template>
 		<template id="after-content-template">
-			<aside data-ts="SideBar" id="after-content" data-ts.title="My Filters">
+			<aside data-ts="SideBar" id="after-content" data-ts.title="After Content">
 				<div data-ts="Panel">
 					<p>SideBar after <val>Content</val>.</p>
 				</div>

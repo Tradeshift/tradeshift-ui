@@ -73,27 +73,30 @@ ts.ui.ModalSpirit = (function using(Client, transition, chained) {
 		},
 
 		/**
-		 *
+		 * Forwarding to the panel.
+		 * @returns {this}
 		 */
-		busy: function() {
+		busy: chained(function() {
 			var panel = this._panel();
 			panel.busy.apply(panel, arguments);
-		},
+		}),
 
 		/**
-		 *
+		 * Forwarding to the panel.
+		 * @returns {this}
 		 */
-		done: function() {
+		done: chained(function() {
 			var panel = this._panel();
 			panel.done.apply(panel, arguments);
 			this.reflex();
-		},
+		}),
 
 		/**
 		 * @deprecated
 		 * @returns {this}
 		 */
 		spin: chained(function(message) {
+			console.error('The modal "spin" method id deprecated. Use "busy" instead');
 			this.busy.apply(this, arguments);
 		}),
 
@@ -101,43 +104,10 @@ ts.ui.ModalSpirit = (function using(Client, transition, chained) {
 		 * @deprecated
 		 * @returns {this}
 		 */
-		stop: chained(function(message) {
-			this.done();
-		}),
-
-		/**
-		 * Cloak the content (to obscure whatever messy Angular loading sequence).
-		 * @param @optional {string} message
-		 *
-		busy: chained(function() {
-			this._panel().busy();
-		}),
-
-		/**
-		 * Show the content once again.
-		 *
-		done: chained(function() {
-			this.reflex();
-			this._panel().done();
-		}),
-
-		/**
-		 * Show a spinner while hiding the content, for mobiles and slow servers.
-		 * @param @optional {string} message
-		 *
-		spin: chained(function(message) {
-			this._panel().spin(message);
-			this.busy();
-		}),
-
-		/**
-		 * Stop the spinner and show the content.
-		 *
 		stop: chained(function() {
-			this._panel().stop();
+			console.error('The modal "stop" method id deprecated. Use "done" instead');
 			this.done();
 		}),
-		*/
 
 		/**
 		 * Inject HTML into the Main or Panel (that
@@ -147,7 +117,7 @@ ts.ui.ModalSpirit = (function using(Client, transition, chained) {
 		 * @returns {string|this}
 		 */
 		html: chained(function(markup) {
-			var target = this._main() || this._panel();
+			var target = this._box() || this._panel();
 			if (arguments.length) {
 				target.dom.html(markup);
 			} else {
@@ -240,19 +210,13 @@ ts.ui.ModalSpirit = (function using(Client, transition, chained) {
 
 		/**
 		 * Resize and reposition on startup and on `window.resize`.
+		 * TODO: Less JS, more CSS!
 		 * @overwrites {gui.Spirit#onflex}
 		 * @param @optional {Function} callback
 		 * @param @optional {Object} thisp
 		 */
 		onflex: function(callback, thisp) {
-			var avail = window.innerHeight;
-			var xxxxx = window.innerWidth;
-			this._autosize(avail, xxxxx).then(function(height, breaks) {
-				this._position(height, avail, breaks);
-				if (callback) {
-					callback.call(thisp);
-				}
-			}, this);
+			this._autocenter(this._panel());
 		},
 
 		// Privileged ..............................................................
@@ -295,16 +259,19 @@ ts.ui.ModalSpirit = (function using(Client, transition, chained) {
 		 * @returns {ts.ui.PanelSpirit}
 		 */
 		_panel: function() {
-			console.log('TODO: MOVE THIS TO LayoutSpirit');
 			return this.dom.child(ts.ui.PanelSpirit) || this.dom.child(ts.ui.PanelsSpirit).current();
 		},
 
 		/**
-		 * Get the Main, if any (in the currently selected Panel, in case of tabs).
+		 * Get the Box (used for centering the content), if any. We'll also look for 
+		 * the Main, even if this is not deprecated. TODO: Remove at some point...
+		 * @param {ts.ui.PanelSpirit} panel
 		 */
-		_main: function() {
-			console.log('TODO: DEPRECATE THIS!');
-			return this._panel().childMain();
+		_box: function(panel) {
+			return (
+				(panel || this._panel()).dom.child(ts.ui.BoxSpirit) || // the new standard!
+				(panel || this._panel()).dom.child(ts.ui.MainSpirit) // deprecated standard
+			);
 		},
 
 		/**
@@ -321,7 +288,6 @@ ts.ui.ModalSpirit = (function using(Client, transition, chained) {
 				this._focus(this._panel());
 			} else {
 				this.dom.show();
-				// this.panels.init();
 				this.reflex();
 				this._cloak(true);
 				this.broadcast.dispatch(willopen);
@@ -329,7 +295,8 @@ ts.ui.ModalSpirit = (function using(Client, transition, chained) {
 				if (this.dom.tag() === 'dialog') {
 					this.att.set('open', 'open');
 				}
-				this.onflex(function() {
+				this.onflex();
+				this.tick.time(function stabilize() {
 					this._cloak(false);
 					if (transition) {
 						this.css.add('ts-opening');
@@ -337,7 +304,7 @@ ts.ui.ModalSpirit = (function using(Client, transition, chained) {
 					} else {
 						this._fadeIn(true);
 					}
-				}, this);
+				}, 25);
 			}
 		},
 
@@ -357,7 +324,7 @@ ts.ui.ModalSpirit = (function using(Client, transition, chained) {
 				this._then.now();
 				this.tick.time(function() {
 					if (!this.$disposed) {
-						(this._main() || this).attention.exit();
+						(this._box() || this).attention.exit();
 						this.doorman.didclose();
 					}
 				});
@@ -381,7 +348,7 @@ ts.ui.ModalSpirit = (function using(Client, transition, chained) {
 		_focus: function(panel) {
 			var focus = document.activeElement;
 			if (!focus || !panel.dom.contains(focus)) {
-				(this._main() || this).attention.enter();
+				(this._box() || this).attention.enter();
 			}
 		},
 
@@ -397,19 +364,20 @@ ts.ui.ModalSpirit = (function using(Client, transition, chained) {
 		 * @param {number} avail
 		 * @param {number} xxxxx
 		 * @returns {gui.Then}
-		 */
+		 *
 		_autosize: function(avail, xxxxx) {
 			var then = new gui.Then();
 			this._autosizefullscreen(then, avail, xxxxx);
 			return then;
 		},
+		*/
 
 		/**
 		 * Size the modal to fill the screen, obviously.
 		 * @param {gui.Then} then
 		 * @param {number} avail
 		 * @param {number} xxxxx
-		 */
+		 *
 		_autosizefullscreen: function(then, avail, xxxxx) {
 			this.css.height = avail;
 			this.css.width = xxxxx;
@@ -418,6 +386,7 @@ ts.ui.ModalSpirit = (function using(Client, transition, chained) {
 				then.now(avail, false);
 			}, Client.isWebKit ? 50 : 100);
 		},
+		*/
 
 		/**
 		 * Center main in panel. You are probably thinking that some CSS can replace 
@@ -427,13 +396,13 @@ ts.ui.ModalSpirit = (function using(Client, transition, chained) {
 		 * @param {ts.ui.PanelSpirit} panel
 		 */
 		_autocenter: function(panel) {
-			var GOLDEN = 0.382;
-			var main = panel.childMain();
-			if (main) {
-				var height = main.box.height;
+			var box = this._box(panel);
+			var POS = 0.382;
+			if (box) {
+				var height = box.box.height;
 				var avails = panel.box.height;
-				var offset = avails * GOLDEN - height * 0.5;
-				main.css.top = offset > 0 ? offset : 0;
+				var offset = avails * POS - height * 0.5;
+				box.css.top = offset > 0 ? offset : 0;
 			}
 		},
 

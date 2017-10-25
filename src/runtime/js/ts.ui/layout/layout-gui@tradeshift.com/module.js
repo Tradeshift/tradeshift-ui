@@ -6,12 +6,12 @@ gui.module('layout-gui@tradeshift.com', {
 	 * Channeling spirits to CSS selectors.
 	 */
 	channel: [
-		// ['[data-ts=Layout]', ts.ui.LayoutSpirit],
 		['[data-ts=Board]', ts.ui.BoardSpirit],
 		['[data-ts=Panel]', ts.ui.PanelSpirit],
 		['[data-ts=Panels]', ts.ui.PanelsSpirit],
 		['[data-ts=Aside]', ts.ui.AsideSpirit],
 		['[data-ts=SideBar]', ts.ui.SideBarSpirit],
+		['[data-ts=Box]', ts.ui.BoxSpirit],
 		['[data-ts=Modal]', ts.ui.ModalSpirit],
 		['[data-ts=App]', ts.ui.AppSpirit],
 		['[data-ts=Main]', ts.ui.MainSpirit],
@@ -43,6 +43,6 @@ gui.module('layout-gui@tradeshift.com', {
 		}
 		(function init(meta, link) {
 			setupheader(document.head.querySelector(meta), document.head.querySelector(link));
-		})('meta[name=apple-mobile-web-app-title]', 'link[rel=apple-touch-icon]');
+		})('meta[name=ts-app-title]', 'link[rel=ts-app-icon]');
 	}
 });

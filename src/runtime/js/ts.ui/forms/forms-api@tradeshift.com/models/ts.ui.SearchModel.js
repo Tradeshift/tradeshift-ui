@@ -67,6 +67,12 @@ ts.ui.SearchModel = (function(InputModel, ButtonCollection, chained) {
 		flex: 0,
 
 		/**
+		 * Search is visible? Changing this is not universally supported.
+		 * @type {boolean}
+		 */
+		visible: true,
+
+		/**
 		 * @deprecated
 		 * @type {string}
 		 */
@@ -135,10 +141,27 @@ ts.ui.SearchModel = (function(InputModel, ButtonCollection, chained) {
 
 		/**
 		 * Search now!
+		 * @returns {this}
 		 */
-		search: function() {
+		search: chained(function() {
 			this._bestcallback(this.value);
-		},
+		}),
+
+		/**
+		 * Intend to hide the search. This is not guaranteed to work in all cases!
+		 * @returns {this}
+		 */
+		hide: chained(function() {
+			this.visible = false;
+		}),
+
+		/**
+		 * Show the search.
+		 * @returns {this}
+		 */
+		show: chained(function() {
+			this.visible = true;
+		}),
 
 		// Private ...................................................................
 

@@ -38,8 +38,8 @@
 	<body>
 			<article id="panel1">
 				<h1>Modal</h1>
-				<section class="desc" data-ts="Note">
-					<p>The fullscreen Modal can be used for stuff that doesn't really work in an <a data-ts="Button" href="#components/asides/"><span>Aside</span></a>. Note that this component is in development, the design and APIs may change.</p>
+				<section class="desc">
+					<p>The fullscreen Modal can be used for stuff that doesn't really work in an <a data-ts="Button" href="#components/asides/"><span>Aside</span></a>.</p>
 				</section>
 				<section>
 					<p>The <val>Modal</val> component <em>must</em> be created with a child component <val>Panel</val>.</p>
@@ -67,12 +67,12 @@
 
 				<section>
 					<h3>Title and layout</h3>
-					<p>The <att>data-ts.title</att> attribute configures the Modal title. You can also choose to add a <val>Main</val> element to center the content.</p>
+					<p>The <att>data-ts.title</att> attribute configures the Modal title. You can also choose to add a <val>Box</val> element to center the content.</p>
 					<figure data-ts="DoxMarkup">
 						<script type="text/html">
 							<dialog data-ts="Modal" id="example1">
 								<div data-ts="Panel">
-									<div data-ts="Main">
+									<article data-ts="Box">
 										<h1>A Modal Example</h1>
 										<p>…</p>
 										<p>
@@ -80,7 +80,7 @@
 												<span>Close the Modal</span>
 											</button>
 										</p>
-									</div>
+									</article>
 								</div>
 							</dialog>
 						</script>
@@ -122,7 +122,7 @@
 
 				<section>
 					<h3>Modal tabs</h3>
-					<p>There's two ways to add tabs and one of them is likely to fit your workflow. First, we will add some tabs to the example modal using the API we know from the <a data-ts="Button" href="/#components/bars/tabbar.html">TabBar</a>.</p>
+					<p>There's two ways to add tabs and one of them is likely to fit your workflow. First, we will add some tabs to the example modal using the API we know from the <a data-ts="Button" href="/#components/header/">Header</a>.</p>
 					<figure data-ts="DoxScript">
 						<script type="runnable">
 						ts.ui.get('#example1', modal => {
@@ -140,26 +140,17 @@
 
 					<p>The alternative approach is to declare multiple <val>Panel</val> inside a containing <val>Panels</val> element. They should all have the <att>data-ts.label</att> attribute declared. This will generate the tabs automatically as seen in <a data-ts="Button" onclick="ts.ui.get('#example3').open()">this example</a>.</p>
 
-
-					<!--
-					<p>The alternative approach is to declare multiple <val>Panel</val> elements inside a <val>Panels</val> element. The individual <val>Panel</val> elements should all habe the <att>data-ts.label</att> attribute declared. This will generate the tabs automatically as seen in <a data-ts="Button" onclick="ts.ui.get('#example3').open()">this example</a>.</p>
-					-->
-
-
-					<div data-ts="Note">
-						<p>TODO: UPDATE THIS DOCUMENTATION!</p>
-					</div>
 					<figure data-ts="DoxMarkup">
 						<script type="text/html">
 							<dialog data-ts="Modal">
-								<div data-ts="Panels">
-									<div data-ts="Panel" data-ts.label="Details">
-										<main data-ts="Main">…</main>
-									</div>
-									<div data-ts="Panel" data-ts.label="More Details">
-										<main data-ts="Main">…</main>
-									</div>
-								</div>
+								<ul data-ts="Panels">
+									<li data-ts="Panel" data-ts.label="Details">
+										<div data-ts="Box">…</div>
+									</li>
+									<li data-ts="Panel" data-ts.label="More Details">
+										<div data-ts="Box">…</div>
+									</li>
+								</li>
 							</dialog>
 						</script>
 					</figure>
@@ -181,7 +172,7 @@
 				</section>
 				<section id="busy-and-done">
 					<h3>Busy and done</h3>
-					<p>If you are loading the Modal tabs incrementally (so that the content is not hardcoded inside <val>Panels</val>), you may want to mark the Modal as <code>busy()</code> and <code>done()</code> to hide the content while loading. Importantly, if you are using <val>Main</val> to center the content, this will also instruct the Modal to center the the newly loaded content all over again.</p>
+					<p>If you are loading the Modal tabs incrementally (so that the content is not hardcoded inside <val>Panels</val>), you may want to mark the Modal as <code>busy()</code> and <code>done()</code> to show a Spinner while loading. Importantly, if you are using <val>Box</val> to center the content, this will also instruct the Modal to center the the newly loaded content all over again.</p>
 					<figure data-ts="DoxScript">
 						<script type="runnable">
 							ts.ui.get('#example4', modal => {
@@ -204,7 +195,7 @@
 							});
 						</script>
 					</figure>
-					<p>Note that you can also call <code>modal.reflex()</code> to center the <val>Main</val> at any point in time.</p>
+					<p>Note that you can also call <code>modal.reflex()</code> to center the <val>Box</val> at any point in time.</p>
 				</section>
 				
 				<section>
@@ -331,7 +322,7 @@
 
 		<dialog data-ts="Modal" id="example1" data-ts.title="Example Modal">
 			<div data-ts="Panel">
-				<div data-ts="Main">
+				<div data-ts="Box">
 					<h1>A Modal Example</h1>
 					<p>Modal ipsum dolor amet jerky sausage pork belly tenderloin burgdoggen kevin prosciutto beef ribs shoulder tri-tip salami ribeye turducken rump. Rump prosciutto ham, kevin picanha drumstick chuck pork chop. Short ribs tail shank, alcatra kevin spare ribs meatloaf beef. Pork loin salami flank andouille prosciutto chuck bresaola sirloin ribeye. Bacon picanha salami filet mignon capicola beef ribs. Venison jowl meatloaf jerky porchetta, brisket shank picanha.</p>
 					<p>
@@ -345,7 +336,7 @@
 
 		<dialog data-ts="Modal" id="example2" data-ts.title="Example Modal">
 			<div data-ts="Panel">
-				<div data-ts="Main">
+				<div data-ts="Box">
 					<h1>Modal with fixed footer</h1>
 					<p>Bacon ipsum dolor amet jerky sausage pork belly tenderloin burgdoggen kevin prosciutto beef ribs shoulder tri-tip salami ribeye turducken rump. Rump prosciutto ham, kevin picanha drumstick chuck pork chop. Short ribs tail shank, alcatra kevin spare ribs meatloaf beef. Pork loin salami flank andouille prosciutto chuck bresaola sirloin ribeye. Bacon picanha salami filet mignon capicola beef ribs. Venison jowl meatloaf jerky porchetta, brisket shank picanha drumstick capicola frankfurter.</p>
 				</div>
@@ -355,7 +346,7 @@
 		<dialog data-ts="Modal" id="example3" data-ts.title="Example Tabs">
 			<ul data-ts="Panels">
 				<li data-ts="Panel" data-ts.label="Details">
-					<div data-ts="Main">
+					<div data-ts="Box">
 						<h1>User details</h1>
 						<form data-ts="Form">
 							<fieldset>
@@ -374,7 +365,7 @@
 					</div>
 				</li>
 				<li data-ts="Panel" data-ts.label="More Details">
-					<div data-ts="Main">
+					<div data-ts="Box">
 						<h1>More details</h1>
 						<form data-ts="Form">
 							<fieldset>
@@ -401,7 +392,7 @@
 
 		<dialog data-ts="Modal" id="example4" data-ts.title="Busy Modal">
 			<div data-ts="Panel">
-				<div data-ts="Main"></div>
+				<div data-ts="Box"></div>
 			</div>
 		</dialog>
 	</body>

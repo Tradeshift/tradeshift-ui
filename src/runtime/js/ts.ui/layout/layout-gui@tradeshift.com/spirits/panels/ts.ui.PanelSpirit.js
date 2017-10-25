@@ -143,25 +143,6 @@ ts.ui.PanelSpirit = (function using(
 			return this.naturalHeight() > this.element.offsetHeight;
 		},
 
-		/**
-		 * @deprecated (though still used, but it should become @deprecated)
-		 * Get the MainSpirit nested directly inside this panel, if it exists.
-		 * @returns {ts.ui.MainSpirit}
-		 */
-		childMain: function() {
-			return this.dom.child(ts.ui.MainSpirit);
-		},
-
-		/**
-		 * @deprecated (though still used, but it should become @deprecated)
-		 * Get the MainSpirit found above this panel, if it exists.
-		 * (using ancestor, not parent, because of MainContenSpirit).
-		 * @returns {ts.ui.MainSpirit}
-		 */
-		parentMain: function() {
-			return this.dom.ancestor(ts.ui.MainSpirit);
-		},
-
 		// Privileged ..............................................................
 
 		/**

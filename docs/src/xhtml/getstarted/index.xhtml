@@ -2,6 +2,7 @@
 <html>
 	<head>
 		<title>Get Started</title>
+		<object data="tabs.xhtml"></object>
 		<script>
 			ts.ui.ready(function nastyhack() {
 				var version =  ts.ui.version;
@@ -15,18 +16,19 @@
 			<article>
 				<h1>Get started</h1>
 				<section class="desc">
-					<p>This is a good starting point also for visual designers who prefer to work in HTML, because the script will inject the stylesheet along with the fonts and icons etc.</p>
+					<p>This is a good starting point also for visual designers who prefer to work in HTML, because the stylesheet delivers all the fonts and icons etc.</p>
 				</section>
 				<section>
 					<p data-ts="Spirit">
 						<script type="text/edbml">
 							<span>To get Tradeshift UI up and running on your page, simply include +
-							<code>ts.js</code> in an appropriate version. The latest version +
-							is <code>${ts.ui.version}</code>.
+							<code>ts.js</code> and <code>ts.css</code> in an appropriate version. The latest version +
+							is <code>${ts.ui.version}</code>
 						</script>
 					</p>
 					<figure data-ts="DoxMarkup">
 						<script>
+							<link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-${ts.ui.version}.min.css"/>
 							<scrxpt src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-${ts.ui.version}.min.js"></scrxpt>
 						</script>
 					</figure>
@@ -51,7 +53,7 @@
 							});
 						</script>
 					</figure>
-					<p>Before we begin, you&apos;ll need to mark up your page with the <a data-ts="Button" href="/#getstarted/layout/">basic layout</a>.</p>
+					<p>Before we begin, you&apos;ll need to mark up your page with the <a data-ts="Button" href="/#getstarted/layout.html">basic layout</a>.</p>
 				</section>
 			</article>
 	</body>

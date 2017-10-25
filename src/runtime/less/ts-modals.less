@@ -2,6 +2,7 @@
 	.ts-mixin-maximize();
 	z-index: @ts-zindex-modal;
 	border-radius: 0;
+	width: 100%;
 	> .ts-panels {
 		position: relative;
 	}
@@ -12,19 +13,24 @@
 		> .ts-cover {
 			background-color: @ts-white;
 		}
-		> .ts-main {
+		> .ts-main, // ts-main is deprecated and can be remove at some point...
+		> .ts-box {
 			display: block;
-			flex: none;
+			position: relative;
 			max-width: (@ts-width-aside + @ts-unit-plus) * 2; // 640px usable
 			padding: @ts-unit-plus;
 			text-align: center;
 			overflow-x: visible;
 			overflow-y: visible;
-			background-color: transparent;
 			margin-left: auto;
 			margin-right: auto;
 			bottom: auto;
 			height: auto;
+
+		}
+		> .ts-main {
+			background-color: transparent;
+			flex: none;
 		}
 	}
 	&.ts-overflow {

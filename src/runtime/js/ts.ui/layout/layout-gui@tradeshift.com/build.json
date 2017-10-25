@@ -6,6 +6,7 @@
 	"spirits/asides/ts.ui.SideShowSpirit.js",
 	"spirits/asides/ts.ui.AsideSpirit.js",
 	"spirits/asides/ts.ui.SideBarSpirit.js",
+	"spirits/modals/ts.ui.BoxSpirit.js",
 	"spirits/modals/ts.ui.ModalSpirit.js",
 	"spirits/app/ts.ui.AppSpirit.js",
 	"spirits/main/ts.ui.MainSpirit.js",

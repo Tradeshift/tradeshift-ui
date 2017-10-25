@@ -73,16 +73,17 @@ function headtags($, tags) {
 
 /**
  * Stuff used in the app header.
+ * @param {$} $
  * @param {Array<string>} tags
  * @param {string} appname
  * @returns {Array<string>}
  */
 function appbanner($, tags, appname) {
-	const meta = $('meta[name=apple-mobile-web-app-title]')[0];
-	const link = $('link[rel=apple-touch-icon]')[0];
+	const meta = $('meta[name=ts-app-title]')[0];
+	const link = $('link[rel=ts-app-icon]')[0];
 	return [
-		meta ? '' : `<meta name="apple-mobile-web-app-title" content="${appname}"/>`,
-		link ? '' : `<link rel="apple-touch-icon" href="/dist/assets/icon.svg"/>`,
+		meta ? '' : `<meta name="ts-app-title" content="${appname}"/>`,
+		link ? '' : `<link rel="ts-app-icon" href="/dist/assets/icon.svg"/>`,
 		...tags
 	];
 }

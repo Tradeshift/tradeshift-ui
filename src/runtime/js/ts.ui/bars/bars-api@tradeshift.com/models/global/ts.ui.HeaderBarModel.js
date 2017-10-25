@@ -167,7 +167,7 @@ ts.ui.HeaderBarModel = (function using(ToolBarModel, SearchModel, chained) {
 		 * @returns {boolean}
 		 */
 		$showButtonBar: function(model) {
-			return !!(model.buttons.getLength() || model.search);
+			return !!(model.search && model.search.visible);
 		}
 	});
 })(ts.ui.ToolBarModel, ts.ui.SearchModel, gui.Combo.chained);

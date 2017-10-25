@@ -69,18 +69,15 @@
 					</section>
 					<section>
 						<h3>Find the current breakpoint</h3>
-						<p>The current breakpoint is determined via CSS classnames on the <code>html</code> element. You can use a function such as this to lookup the current breakpoint; it returns a class.</p>
+						<p>The current breakpoint is determined via CSS classnames on the <code>html</code> element. You can use a function such as this to lookup the current breakpoint (CSS classname).</p>
 						<figure data-ts="DoxScript">
 							<script>
 								function breakpoint() {
-									var root = document.documentElement;
 									return([
 										'ts-mobile-only',
 										'ts-tablet-only',
 										'ts-desktop-only'
-									].find(function(c) {
-										return root.classList.contains(c);
-									}));
+									].find(c => document.documentElement.classList.contains(c)));
 								}
 							</script>
 						</figure>

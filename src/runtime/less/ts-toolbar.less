@@ -142,9 +142,6 @@
 	min-height: @ts-unit-double;
 	padding-left: @ts-unit-half;
 	padding-right: @ts-unit-half;
-	&.ts-flex {
-		padding-right: @ts-unit-quarter * 0.5;
-	}
 	&.ts-searching {
 		width: @ts-width-aside;
 		padding-right: @ts-unit-half;
@@ -156,6 +153,13 @@
 .ts-toolbar .ts-left:only-child {
 	.ts-toolbar-search.ts-flex {
 		padding-right: @ts-unit-half;
+	}
+}
+.ts-hasright {
+	.ts-toolbar-search {
+		&.ts-flex {
+			padding-right: @ts-unit-quarter * 0.5;
+		}
 	}
 }
 

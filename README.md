@@ -74,7 +74,7 @@ We're currently testing on the following browsers:
 * IE11
 
 ## Roadmap
-To stay up to date with upcoming releases and new features in the works, check out our [ROADMAP.md](https://github.com/Tradeshift/tradeshift-ui/blob/master/ROADMAP.md).
+To stay up to date with upcoming releases and new features in the works, check out our [Milestones](https://github.com/Tradeshift/tradeshift-ui/milestones).
 
 ## Contribute
 

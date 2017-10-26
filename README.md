@@ -1,4 +1,3 @@
-[![Gitter](https://img.shields.io/badge/gitter-join%20chat-f81a65.svg?style=flat-square)](https://gitter.im/tradeshift-ui/Lobby)
 [![travis.org Build Status](https://travis-ci.org/Tradeshift/tradeshift-ui.svg?branch=master)](https://travis-ci.org/Tradeshift/tradeshift-ui)
 [![devDependencies](https://img.shields.io/david/dev/Tradeshift/tradeshift-ui.svg?style=flat-square)](https://david-dm.org/Tradeshift/tradeshift-ui/?type=dev)
 ___
@@ -71,7 +70,8 @@ We're currently testing on the following browsers:
 * Google Chrome (latest, previous)
 * Mozilla Firefox (latest, previous)
 * Apple Safari (latest, previous)
-* IE9, IE10, IE11
+* Microsoft Edge (latest, previous)
+* IE11
 
 ## Roadmap
 To stay up to date with upcoming releases and new features in the works, check out our [ROADMAP.md](https://github.com/Tradeshift/tradeshift-ui/blob/master/ROADMAP.md).

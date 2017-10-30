@@ -2,56 +2,7 @@
 <html>
 	<head>
 		<title>SideBars</title>
-		<script>
-			var sidebars = ['#before-app', '#after-app', '#before-content', '#after-content'];
-			function clone(id) {
-				return document.querySelector(id + '-template').content.cloneNode(true);
-			}
-			function show(id) {
-				var bar;
-				sidebars.forEach(function(id) {
-					if((bar = ts.ui.get(id))) {
-						bar.dom.remove();
-					}
-				});
-				bar = clone(id);
-				switch(id) {
-					case '#before-app':
-						$('body').prepend(bar);
-						break;
-					case '#after-app':
-					 	$('body').append(bar);
-						break;
-					case '#before-content':
-						$('.ts-main').prepend(bar);
-						break;
-					case '#after-content':
-						$('.ts-main').append(bar);
-						break;
-				}
-			}
-			ts.ui.ready(function() {
-				document.querySelector('input[type=radio]:checked').onchange();
-			});
-		</script>
-		<!--
-				<aside data-ts="Aside" data-ts.title="Nested Aside" id="myaside">
-					<div data-ts="Panel">
-						<p>Aside content.</p>
-					</div>
-				</aside>
-				<div data-ts="Footer">
-					<p>Footer content. The button below is only relevant in <strong>mobile</strong> view.</p>
-					<menu data-ts="Buttons">
-						<li>
-							<button data-ts="Button" class="ts-tertiary" onclick="gui.get('mysidebar').toggle()">
-								<span>Toggle SideBar</span>
-							</button>
-						</li>
-					</menu>
-					</p>
-				</div>
-				-->
+		<script src="index.js"></script>
 	</head>
 	<body class="nosticky">
 		<div data-ts="App">
@@ -67,7 +18,7 @@
 								<p>Assign <att>data-ts="SideBar"</att> to an <elm>aside</elm> to initialize as a SideBar. The SideBar <em>must</em> be created with a child <val>Panel</val>.</p>
 							</section>
 							<figure data-ts="DoxMarkup">
-								<script>
+								<script type="tex/html">
 									<aside data-ts="SideBar" data-ts.title="My SideBar">
 										<div data-ts="Panel">
 											<p>SideBar content.</p>
@@ -100,10 +51,42 @@
 									</fieldset>
 								</form>
 							</section>
-							<section class="show-mobile-only">
+							<section class="ts-show-mobile-only">
 								<div data-ts="Note">
 									<p>TODO: Something special here for mobile breakpoint.</p>
 								</div>
+							</section>
+							<section>
+								<h3>SideBar footer</h3>
+								<figure data-ts="DoxMarkup">
+									<script type="tex/html">
+										<aside data-ts="SideBar" data-ts.title="My SideBar">
+											<div data-ts="Panel">
+												<p>SideBar content.</p>
+											</div>
+											<footer>
+												<p>Sidebar footer.</p>
+											</footer>
+										</aside>
+									</script>
+								</figure>
+							</section>
+							<section>
+								<h3>Nested Aside</h3>
+								<figure data-ts="DoxMarkup">
+									<script type="tex/html">
+										<aside data-ts="SideBar" data-ts.title="My SideBar">
+											<div data-ts="Panel">
+												<p>SideBar content.</p>
+											</div>
+											<aside data-ts="Aside" data-ts.title="My Aside">
+												<div data-ts="Panel">
+													<p>aside content.</p>
+												</div>
+											</footer>
+										</aside>
+									</script>
+								</figure>
 							</section>
 
 							<!--
@@ -193,31 +176,53 @@
 		<!-- templates ......................................................... -->
 		
 		<template id="before-app-template">
-			<aside data-ts="SideBar" id="before-app" data-ts.title="Before App">
+			<aside data-ts="SideBar" id="before-app" data-ts.title="SideBar Before App">
 				<div data-ts="Panel">
-					<p>SideBar before <val>App</val>.</p>
+					<p>This SideBar is positioned before the <val>App</val> element in the <a data-ts="Button" href="/#getstarted/layout.html">basic layout</a>.</p>
 				</div>
 			</aside>
 		</template>
 		<template id="after-app-template">
-			<aside data-ts="SideBar" id="after-app" data-ts.title="After App">
+			<aside data-ts="SideBar" id="after-app" data-ts.title="SideBar After App">
 				<div data-ts="Panel">
-					<p>SideBar after <val>App</val>.</p>
+					<p>This SideBar is positioned after the <val>App</val> element in the <a data-ts="Button" href="/#getstarted/layout.html">basic layout</a>.</p>
 				</div>
 			</aside>
 		</template>
 		<template id="before-content-template">
-			<aside data-ts="SideBar" id="before-content" data-ts.title="Before Content">
+			<aside data-ts="SideBar" id="before-content" data-ts.title="SideBar Before Content">
 				<div data-ts="Panel" data-ts.label="Hansen">
-					<p>SideBar before <val>Content</val>.</p>
+					<p>This SideBar is positioned before the <val>Content</val> element in the <a data-ts="Button" href="/#getstarted/layout.html">basic layout</a>. It also features a nested <val>Aside</val>.</p>
+					<menu data-ts="Buttons">
+						<li>
+							<button data-ts="Button" onclick="ts.ui.get('#nestedaside').open()">
+								<span>Open Nested Aside</span>
+							</button>
+						</li>
+					</menu>
 				</div>
+				<aside data-ts="Aside" id="nestedaside" data-ts.title="Nested Aside">
+					<div data-ts="Panel">
+						<p>You can close the nested <val>Aside</val> now.</p>
+						<menu data-ts="Buttons">
+							<li>
+								<button data-ts="Button" onclick="ts.ui.get('#nestedaside').close()">
+									<span>Close Nested Aside</span>
+								</button>
+							</li>
+						</menu>
+					</div>
+				</aside>
 			</aside>
 		</template>
 		<template id="after-content-template">
-			<aside data-ts="SideBar" id="after-content" data-ts.title="After Content">
+			<aside data-ts="SideBar" id="after-content" data-ts.title="SideBar After Content">
 				<div data-ts="Panel">
-					<p>SideBar after <val>Content</val>.</p>
+					<p>This SideBar is positioned after the <val>Content</val> element in the <a data-ts="Button" href="/#getstarted/layout.html">basic layout</a>.</p>
 				</div>
+				<footer>
+					<p>This SideBar has a <elm>footer</elm> below the <val>Panel</val>. This can be used for any purpose you can imagine.</p>
+				</footer>
 			</aside>
 		</template>
 	</body>

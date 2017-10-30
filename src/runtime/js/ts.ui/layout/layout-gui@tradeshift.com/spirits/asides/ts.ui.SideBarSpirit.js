@@ -1,13 +1,13 @@
 /**
- * Spirit of the SideBar (formerly known as the "Drawer").
- * @see @deprecated {ts.ui.DrawerSpirit}
+ * Spirit of the SideBar.
  * @extends {ts.ui.SideShowSpirit}
- * @using {gui.Combo.chained} chained
+ * @using {ts.ui.layoutSpirit} LayoutSpirit
  * @using {gui.Type} Type
  * @using {gui.Client} Client
- * @using {gui.Object} GuiObject
+ * @using {gui.CSSPlugin} CSSPlugin
+ * @using {gui.Combo.chained} chained
  */
-ts.ui.SideBarSpirit = (function using(chained, Type, Client, GuiObject) {
+ts.ui.SideBarSpirit = (function using(LayoutSpirit, Type, Client, CSSPlugin, chained) {
 	// consuming all actions from nested asides
 	var willopen = ts.ui.ACTION_ASIDE_WILL_OPEN,
 		didopen = ts.ui.ACTION_ASIDE_DID_OPEN,
@@ -24,6 +24,8 @@ ts.ui.SideBarSpirit = (function using(chained, Type, Client, GuiObject) {
 		/**
 			 * Automatically close the SideBar in mobile breakpoint?
 			 * Note that the SideBar must then be *manually* opened.
+			 * TODO: Once Collaboration has been refactored to *not*
+			 * be in a SideBar, perhaps this property can be removed.
 			 * @type {boolean}
 			 */
 		autoclose: {
@@ -151,24 +153,23 @@ ts.ui.SideBarSpirit = (function using(chained, Type, Client, GuiObject) {
 		},
 
 		/**
-			 * @param {boolean} attaching This is `false' when SideBar gets removed.
-			 */
+		 * @param {boolean} attaching This is `false' when SideBar gets removed.
+		 */
 		_layout: function(attaching) {
 			var parent = this.dom.parent();
-			var target = ts.ui.LayoutSpirit;
-			if (this.dom.next(target)) {
-				parent.classList.add('ts-has-sidebar-first');
-				this.css.add('ts-sidebar-first');
-			} else if (this.dom.previous(target)) {
-				parent.classList.add('ts-has-sidebar-last');
-				this.css.add('ts-sidebar-last');
+			if (this.dom.next(LayoutSpirit)) {
+				this.css.shift(attaching, 'ts-sidebar-first');
+				CSSPlugin.shift(parent, attaching, 'ts-has-sidebar-first');
+			} else if (this.dom.previous(LayoutSpirit)) {
+				this.css.shift(attaching, 'ts-sidebar-last');
+				CSSPlugin.shift(parent, attaching, 'ts-has-sidebar-last');
 			}
 		},
 
 		/**
-			 * Watch for breakpoint changes (using some
-			 * temporary API that should be refactored).
-			 */
+		 * Watch for breakpoint changes (using some
+		 * temporary API that should be refactored).
+		 */
 		_breakpointwatch: function() {
 			ts.ui.addBreakPointListener(
 				function() {
@@ -178,10 +179,10 @@ ts.ui.SideBarSpirit = (function using(chained, Type, Client, GuiObject) {
 		},
 
 		/**
-			 * Collapse the SideBar on mobile breakpoint.
-			 * Setup to avoid CSS transition on collapse.
-			 * @param {boolean} go
-			 */
+		 * Collapse the SideBar on mobile breakpoint.
+		 * Setup to avoid CSS transition on collapse.
+		 * @param {boolean} go
+		 */
 		_breakpoint: function() {
 			var go = ts.ui.isMobilePoint();
 			if (this._autoclose) {
@@ -200,4 +201,4 @@ ts.ui.SideBarSpirit = (function using(chained, Type, Client, GuiObject) {
 			}
 		}
 	});
-})(gui.Combo.chained, gui.Type, gui.Client, gui.Object);
+})(ts.ui.LayoutSpirit, gui.Type, gui.Client, gui.CSSPlugin, gui.Combo.chained);

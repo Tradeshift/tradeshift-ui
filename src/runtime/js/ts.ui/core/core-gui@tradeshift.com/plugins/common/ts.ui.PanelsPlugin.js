@@ -2,6 +2,7 @@
  * Note that the user spirit must implement `$insertTab(json, index)`.
  * TODO: Finalize setup for tabs added or removed post initialization.
  * TODO: Refactor the `SideShowSpirit` and `MainSpirit` to use this!
+ * TODO: Refactor from plugin to spirit! Only {ts.ui.PanelsSpirit} uses this!
  */
 ts.ui.PanelsPlugin = (function using(PANEL_ATTACH, PANEL_DETACH) {
 	/**

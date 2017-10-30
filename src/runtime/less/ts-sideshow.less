@@ -1,11 +1,12 @@
-.ts-sideshow { 
+.ts-sideshow {
 	margin-bottom: 0;
 	&, > header, > footer, > .ts-panel, > .ts-panels {
 		background-color: @ts-white;
 	}
 	> .ts-panel,
 	> .ts-panels > .ts-panel,
-	> .ts-footer {
+	> .ts-panel ~ footer,
+	> .ts-panels ~ footer {
 		padding: @ts-unit;
 	}
 	> .ts-panel,
@@ -22,7 +23,7 @@
 		}
 	}
 	> .ts-panel,
-	> .ts-footer {
+	> .ts-panel ~ footer {
 		.ts-menu,
 		.ts-fieldset,
 		.ts-calendar {

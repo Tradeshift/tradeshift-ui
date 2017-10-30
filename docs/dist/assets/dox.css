@@ -563,22 +563,6 @@ table.api th {
 .ts-doxchrome .button-menu-open i:before {
   top: 50%;
 }
-/*
-.ts-mobile-only {
-	.ts-doxchrome .ts-sidebar {
-		&.ts-3d {
-			.ts-mixin-transition-transform(@ts-transition-fast, @ts-timing-easeoutquint);
-			.ts-mixin-translate3d(-100%, 0);
-			&.ts-open {
-				.ts-mixin-translate3d(0, 0);
-			}
-		}
-		&.ts-2d {
-			top: 0;
-		}
-	}
-}
-*/
 .ts-engine-webkit .ts-doxchrome .ts-sidebar .ts-toolbar-title label {
   position: relative;
   top: 1px;
@@ -623,12 +607,6 @@ table.api th {
 .ts-doxchrome .ts-menu > li > a.ts-checked {
   position: relative;
   z-index: 3;
-  /*
-					&:before {
-						background-color: @ts-blue-dark;
-						background-color: @ts-blue;
-					}
-					*/
 }
 .ts-doxchrome .ts-menu > li > a.ts-checked,
 .ts-doxchrome .ts-menu > li > a.ts-checked:hover {
@@ -725,6 +703,9 @@ table.api th {
 .ts-doxchrome.collapse-some .ts-app {
   left: 66px;
   background-color: #f5f5f5;
+  width: calc(100% -  66px);
+  max-width: calc(100% -  66px);
+  min-width: calc(100% -  66px);
 }
 .ts-doxchrome.collapse-some:before {
   width: 66px;

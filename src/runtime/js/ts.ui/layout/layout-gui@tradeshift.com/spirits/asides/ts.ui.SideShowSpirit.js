@@ -214,11 +214,15 @@ ts.ui.SideShowSpirit = (function using(
 		_canclose: false,
 
 		/**
-		 * Sporting a full HeaderBarSpirit.
+		 * If this thing is nested in a SideBar, 
+		 * make the header become less prominent.
+		 * TODO: Not if it's a *root* SideBar :/
 		 * @returns {ts.ui.HeaderBarSpirit}
 		 */
 		_head: function() {
-			return ts.ui.LayoutSpirit.macroHeader(this);
+			return this.dom.parent(ts.ui.SideBarSpirit)
+				? ts.ui.LayoutSpirit.microHeader(this)
+				: ts.ui.LayoutSpirit.macroHeader(this);
 		},
 
 		/**

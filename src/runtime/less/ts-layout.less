@@ -1,6 +1,20 @@
 @import 'ts-variables-new.less';
 
-// Layout ......................................................................
+// LayoutSpirit ................................................................
+
+.ts-layout {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	> header,
+	> footer,
+	> .ts-panel,
+	> .ts-panels {
+		margin: 0;
+	}
+}
+
+// Basic layout ................................................................
 
 html,
 body {
@@ -13,7 +27,7 @@ body {
 	flex: 1 0 0px;
 	display: flex;
 	flex-direction: column;
-	max-width: 100%;
+	.ts-mixin-fixwidth(100%);
 }
 body,
 .ts-main,
@@ -35,8 +49,7 @@ body,
 	flex-direction: column;
 }
 .ts-content {
-	position: relative;
-	width: 100%;
+	.ts-mixin-fixwidth(100%);
 }
 .ts-panels,
 .ts-panel {
@@ -59,22 +72,27 @@ body,
 	}
 }
 
-// Box .........................................................................
+// Sidebar scenarios ...........................................................
 
-.ts-layout {
-	position: relative;
-	display: flex;
-	flex-direction: column;
-	> header,
-	> footer,
-	> .ts-panel,
-	> .ts-panels {
-		margin: 0;
+.ts-tablet {
+	.ts-has-sidebar-first,
+	.ts-has-sidebar-last {
+		> .ts-content,
+		> .ts-app {
+			.ts-mixin-fixwidth(calc(~'100% - '@ts-width-aside));
+		}
+	}
+	.ts-has-sidebar-first.ts-has-sidebar-last {
+		> .ts-content,
+		> .ts-app {
+			.ts-mixin-fixwidth(calc(~'100% - '@ts-width-aside * 2));
+		}
 	}
 }
 
 // Decorations .................................................................
 
+// header and footer borders
 .ts-toolbar,
 .ts-headerbar,
 .ts-footerbar {
@@ -89,6 +107,7 @@ body,
 	}
 }
 
+// header border
 .ts-headerbar {
 	&:after {
 		bottom: 0;
@@ -102,12 +121,66 @@ body,
 	}
 }
 
+// footer border
 .ts-footerbar:after {
 	top: 0;
 	content: '';
 }
 
+// sideshow borders
+.ts-sideshow {
+	position: relative;
+	&:after {
+		width: 1px;
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		pointer-events: none;
+		background-color: @new-bordercolor;
+		z-index: 2000000; // above the nested aside - TODO: find the exact number!
+	}
+}
+
+// sidebar borders
 .ts-sidebar {
+	&.ts-sidebar-first {
+		&:after {
+			right: 0;
+			content: '';
+		}
+	}
+	&.ts-sidebar-last {
+		&:after {
+			left: 0;
+			content: '';
+		}
+	}
+}
+
+// no border next to scrollbar
+.ts-scrollbars-on {
+	.ts-content + .ts-sidebar.ts-sidebar-last {
+		&:after {
+			content: none;
+		}
+	}
+}
+
+.ts-sideshow {
+	> .ts-panel ~ footer,
+	> .ts-panels ~ footer {
+		//background-color: yellow;
+		position: relative;
+		&:after {
+			.ts-mixin-maximize();
+			content: '';
+			height: 1px;
+			bottom: auto;
+			pointer-events: none;
+			background-color: @new-bordercolor;
+		}
+	}
+	/*
 	position: relative;
 	&:after {
 		width: 1px;
@@ -129,16 +202,10 @@ body,
 			content: '';
 		}
 	}
+	*/
 }
 
-.ts-scrollbars-on {
-	.ts-content + .ts-sidebar.ts-sidebar-last {
-		&:after {
-			content: none;
-		}
-	}
-}
-
+// dropshadows in main content area
 .ts-app {
 	&.ts-has-header,
 	&.ts-has-footer {

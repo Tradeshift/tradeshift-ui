@@ -22,9 +22,6 @@ ts.ui.AsideSpirit = (function using(chained, confirmed, Client, LayoutModel, not
 		classclosing = ts.ui.CLASS_CLOSING,
 		classclosed = ts.ui.CLASS_CLOSED;
 
-	// selector to detect Asides nested inside SideBars
-	var SIDEBAR_ASIDE_SELECTOR = '.ts-sidebar .ts-aside';
-
 	return ts.ui.SideShowSpirit.extend(
 		{
 			/**
@@ -262,7 +259,7 @@ ts.ui.AsideSpirit = (function using(chained, confirmed, Client, LayoutModel, not
 			 * @returns {boolean}
 			 */
 			_isSideBarAside: function() {
-				return !!this.css.matches(SIDEBAR_ASIDE_SELECTOR);
+				return !!this.dom.parent(ts.ui.SideBarSpirit);
 			},
 
 			/**
@@ -420,6 +417,7 @@ ts.ui.AsideSpirit = (function using(chained, confirmed, Client, LayoutModel, not
 				this._isreallyopen = true;
 				this.dom.show();
 				this._head().reflex();
+				this.css.add(classopening);
 				this._updateworld(willopen);
 				this._register(true);
 				if ((index = this._zindex())) {
@@ -494,6 +492,7 @@ ts.ui.AsideSpirit = (function using(chained, confirmed, Client, LayoutModel, not
 			 * About to close.
 			 */
 			_willclose: function() {
+				this.css.add(classclosing);
 				this._updateworld(willclose);
 				this.action.remove(ts.ui.ACTION_CLOSE);
 				this.broadcast.removeGlobal(doclose);

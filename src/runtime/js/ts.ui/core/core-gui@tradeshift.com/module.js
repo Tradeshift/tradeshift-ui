@@ -8,12 +8,7 @@ ts.ui.CoreModule = gui.module('core-gui@tradeshift.com', {
 	channel: [
 		// stuff that the framework uses
 		['html', ts.ui.DocumentSpirit],
-
-		// stuff that developers use
-		// ['[data-ts=Main]', ts.ui.MainSpirit],
-		// ['[data-ts=MainContent]', ts.ui.MainContentSpirit],
 		['[data-ts=Frame]', ts.ui.FrameSpirit],
-		// ['[data-ts=Footer]', ts.ui.AsideFooterSpirit],
 		['[data-ts=Menu]', ts.ui.MenuSpirit],
 		['[data-ts=Button]', ts.ui.ButtonSpirit],
 		['[data-ts=Buttons]', ts.ui.ButtonMenuSpirit],

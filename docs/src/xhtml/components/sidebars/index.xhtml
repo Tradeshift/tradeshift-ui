@@ -2,6 +2,7 @@
 <html>
 	<head>
 		<title>SideBars</title>
+		<script src="template.js"></script>
 		<script src="index.js"></script>
 	</head>
 	<body class="nosticky">
@@ -31,20 +32,20 @@
 								<form data-ts="Form">
 									<fieldset>
 										<label>
-											<input type="radio" name="radio" onchange="show('#before-content')"/>
+											<input type="radio" name="radio" onchange="showsidebar('#before-content')"/>
 											<span>Before <val>Content</val></span>
 										</label>
 										<label>
-											<input type="radio" name="radio" checked onchange="show('#after-content')"/>
+											<input type="radio" name="radio" checked onchange="showsidebar('#after-content')"/>
 											<span>After <val>Content</val></span>
 										</label>
 										<!--
 										<label>
-											<input type="radio" name="radio" onchange="show('#before-app')"/>
+											<input type="radio" name="radio" onchange="showsidebar('#before-app')"/>
 											<span>Before <val>App</val></span>
 										</label>
 										<label>
-											<input type="radio" name="radio" onchange="show('#after-app')"/>
+											<input type="radio" name="radio" onchange="showsidebar('#after-app')"/>
 											<span>After <val>App</val></span>
 										</label>
 										-->
@@ -55,6 +56,61 @@
 								<div data-ts="Note">
 									<p>TODO: Something special here for mobile breakpoint.</p>
 								</div>
+							</section>
+							<section>
+								<p>Before we dive into the SideBar features, here is the most important observation.</p>
+								<div data-ts="Note">
+									<i class="ts-icon-info"></i>
+									<p>The SideBar will automatically become <strong>hidden</strong> in the mobile breakpoint.</p>
+								</div>
+								<p class="ts-hide-mobile-only">There is currently no generalized way to restoring the hidden SideBar, so if you want the SideBar to be accessible to mobile users, you'll have to present a button somewhere in your content. You can resize this page to see an example.</p>
+								<p class="ts-show-mobile-only">The SideBar is for example hidden now, but you can open it if you like.</p>
+								<menu data-ts="Buttons" class="ts-show-mobile-only">
+									<li>
+										<button data-ts="Button" class="ts-primary" onclick="togglesidebar()">
+											<span>Open The SideBar</span>
+										</button>
+									</li>
+								</menu>
+								<p>The <a data-ts="Button" href="/#appendix/responsive/">responsive classnames</a> makes it easy to hide and show stuff in the various breakpoints.</p>
+							</section>
+							<section>
+								<h3>SideBar tabs</h3>
+								<p>SideBar tabs can be declared in the HTML via <val>Panels</val> and <att>label</att> attributes</li> as seen in <button data-ts="Button" onclick="showsidebar('#after-content-with-tabs')">this example</button>.</p>
+								<figure data-ts="DoxMarkup">
+									<script type="tex/html">
+										<aside data-ts="SideBar" data-ts.title="SideBar With Tabs">
+											<div data-ts="Panels">
+												<div data-ts="Panel" data-ts.label="One">
+													<p>First panel</p>
+												</div>
+												<div data-ts="Panel" data-ts.label="Two">
+													<p>Second panel</p>
+												</div>
+											</div>
+										</aside>
+									</script>
+								</figure>
+								<p>&mdash; or they can injected programatically via the <code>tabs</code> method. Remember that programatically cretated tabs don't do anything by default, so you will have to implement your own content switching mechanism via the <code>onselect</code> callback.</p>
+								<figure data-ts="DoxScript">
+									<script>
+										ts.ui.get('#mysidebar', sidebar => {
+											sidebar.tabs([
+												{label: 'One', onselect() {
+													console.log('Select 1');
+												}},
+												{label: 'Two', onselect() {
+													console.log('Select 2');
+												}}
+											]).open();
+										});
+									</script>
+								</figure>
+							</section>
+							<section>
+								<object data="../header/tabs.xhtml#tabs-api">
+									<replace input="TopBar" output="TabBar"/>
+								</object>
 							</section>
 							<section>
 								<h3>SideBar footer</h3>
@@ -223,6 +279,18 @@
 				<footer>
 					<p>This SideBar has a <elm>footer</elm> below the <val>Panel</val>. This can be used for any purpose you can imagine.</p>
 				</footer>
+			</aside>
+		</template>
+		<template id="after-content-with-tabs-template">
+			<aside data-ts="SideBar" id="after-content" data-ts.title="SideBar With Tabs">
+				<div data-ts="Panels">
+					<div data-ts="Panel" data-ts.label="One">
+						<p>First panel</p>
+					</div>
+					<div data-ts="Panel" data-ts.label="Two">
+						<p>Second panel</p>
+					</div>
+				</div>
 			</aside>
 		</template>
 	</body>

@@ -40,12 +40,6 @@
 			}
 		}
 	}
-	/*
-	> header,
-	> .ts-footer {
-		z-index: @ts-zindex-aside + 1; // account for nested asides
-	}
-	*/
 	> .ts-cover {
 		&.ts-opaque {
 			background-color: @ts-white;
@@ -53,5 +47,9 @@
 		.ts-spinner {
 			top: @ts-unit * 9;
 		}
+	}
+	&.ts-opening,
+	&.ts-closing {
+		pointer-events: none;
 	}
 }

@@ -6,7 +6,8 @@ var sidebars = ['#before-app', '#after-app', '#before-content', '#after-content'
  * so we'll have to add and remove these SideBars from the DOM :/
  * @param {string} id
  */
-window.show = function(id) {
+window.showsidebar = function show(id) {
+	show.current = id;
 	var bar;
 	sidebars.forEach(function(id) {
 		if ((bar = ts.ui.get(id))) {
@@ -25,9 +26,26 @@ window.show = function(id) {
 			$('.ts-main').prepend(bar);
 			break;
 		case '#after-content':
+		case '#after-content-with-tabs':
 			$('.ts-main').append(bar);
 			break;
 	}
+	if (checked()) {
+		if (id !== '#before-content' && id !== '#after-content') {
+			checked().checked = false;
+		}
+	}
+};
+
+window.togglesidebar = function() {
+	ts.ui.get(window.showsidebar.current, sidebar => {
+		alert(sidebar);
+		if (sidebar.isOpen) {
+			sidebar.close();
+		} else {
+			sidebar.open();
+		}
+	});
 };
 
 /**
@@ -36,16 +54,19 @@ window.show = function(id) {
  * @returns {DocumentFragment}
  */
 function clone(id) {
-	if (gui.Client.isExplorer11) {
-		ts.ui.Notification.warning("Sorry, this page doesn't work in IE :(");
-	} else {
-		return document.querySelector(id + '-template').content.cloneNode(true);
-	}
+	return document.querySelector(id + '-template').content.cloneNode(true);
+}
+
+/**
+ * Get the checked radio button.
+ */
+function checked() {
+	return document.querySelector('input[type=radio]:checked');
 }
 
 /**
  * Firefox will persist the form selection on refresh, so we'll account for that.
  */
 ts.ui.ready(function initform() {
-	document.querySelector('input[type=radio]:checked').onchange();
+	checked().onchange();
 });

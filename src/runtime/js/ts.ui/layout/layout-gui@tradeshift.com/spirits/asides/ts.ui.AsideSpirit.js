@@ -263,69 +263,11 @@ ts.ui.AsideSpirit = (function using(chained, confirmed, Client, LayoutModel, not
 			},
 
 			/**
-			 * All attempts to animate the Aside with ordinary CSS transitions
-			 * would result in fatal rendering glitches that only occurs in a
-			 * production environment, of course. Using the brute force method.
-			 * UPDATE: This was caused by Track.js versus `handleEvent` so we
-			 * can go ahead and use CSS transitions now :)
-			 * @param {boolean} open
-			 * @param @optional {boolean} callback
-			 * @returns {gui.Then}
-			 */
-			_slideopen: function(open, callback) {
-				var then = new gui.Then();
-				var tick = this.tick;
-				var end = ts.ui.TRANSITION_FAST;
-				var deg, off;
-				function getoffset(now) {
-					deg = now / (end / 90);
-					deg = deg * Math.PI / 180;
-					off = open ? Math.sin(deg) : Math.cos(deg);
-					return off * 100;
-				}
-				tick.time(function() {
-					var time = 0;
-					tick.nextFrame(function paint(stamp) {
-						if (!this.$destructed) {
-							if (!time) {
-								time = stamp;
-								tick.nextFrame(paint);
-							} else {
-								var now = stamp - time;
-								var pct = getoffset(now);
-								if (now < end) {
-									this._position(100 - pct);
-									tick.nextFrame(paint);
-								} else {
-									this._position(open ? 0 : 100);
-									then.now();
-								}
-							}
-						}
-					});
-				}, ts.ui.TRANSITION_DELAY);
-				return then;
-			},
-
-			/**
 			 * Stack the Aside.
 			 * @param {boolean} stack
 			 */
 			_stack: function(stack) {
 				this._slideopen(!stack);
-			},
-
-			/**
-			 * Update position.
-			 * @param {number} pct
-			 */
-			_position: function(pct) {
-				if (Client.isExplorer) {
-					this._width = this._width || this.box.width;
-					this.css.set('right', pct / -100 * this._width + 'px');
-				} else {
-					this.css.set('-beta-transform', 'translate3d(' + pct + '%,0,0)');
-				}
 			},
 
 			/**
@@ -347,11 +289,7 @@ ts.ui.AsideSpirit = (function using(chained, confirmed, Client, LayoutModel, not
 				this._delayedAngularInitialization();
 				this._trapattention();
 				this._willopen();
-				this._slideopen(true).then(
-					function done() {
-						this._ontransitionend();
-					}.bind(this)
-				);
+				this.super.$onopen();
 			},
 
 			/**
@@ -360,11 +298,7 @@ ts.ui.AsideSpirit = (function using(chained, confirmed, Client, LayoutModel, not
 			 */
 			$onclose: function(animated) {
 				this._willclose();
-				this._slideopen(false).then(
-					function done() {
-						this._ontransitionend();
-					}.bind(this)
-				);
+				this.super.$onclose();
 			},
 
 			/**

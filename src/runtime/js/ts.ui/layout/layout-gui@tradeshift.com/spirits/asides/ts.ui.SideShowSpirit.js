@@ -181,19 +181,35 @@ ts.ui.SideShowSpirit = (function using(
 			}
 		}),
 
-		// Privileged ............................................................
+		// Privileged ..............................................................
 
 		/**
 		 * Required by the {DoorManPlugin}.
 		 */
-		$onopen: function() {},
+		$onopen: function() {
+			console.log('$onopen', String(this));
+			this.dom.show();
+			this._slideopen(true).then(
+				function done() {
+					this._ontransitionend();
+				}.bind(this)
+			);
+		},
 
 		/**
 		 * Required by the {DoorManPlugin}.
 		 */
-		$onclose: function() {},
+		$onclose: function() {
+			console.log('$onclose', String(this));
+			this._slideopen(false).then(
+				function done() {
+					this._ontransitionend();
+					this.dom.hide();
+				}.bind(this)
+			);
+		},
 
-		// Private ...............................................................
+		// Private .................................................................
 
 		/**
 		 * The Main tabbar.
@@ -275,14 +291,6 @@ ts.ui.SideShowSpirit = (function using(
 			} else if (this._canclose) {
 				this._canclose = false;
 				tool.hideClose();
-				// if `autoclose` was changed sometime *after* initialization,
-				// we'll need to remove any header that doesn't have a `title`
-				// while accounting for the fact that models are updated async.
-				this.tick.time(function asyncproblem() {
-					if (!tool.life.hascontent) {
-						tool.dom.remove();
-					}
-				}, 50);
 			}
 		},
 
@@ -356,7 +364,12 @@ ts.ui.SideShowSpirit = (function using(
 		 */
 		_position: function(pct) {
 			this.css.set('-beta-transform', 'translate3d(' + pct + '%,0,0)');
-		}
+		},
+
+		/**
+		 * Subclass will do something here.
+		 */
+		_ontransitionend: function() {}
 	});
 })(
 	gui.Combo.chained,

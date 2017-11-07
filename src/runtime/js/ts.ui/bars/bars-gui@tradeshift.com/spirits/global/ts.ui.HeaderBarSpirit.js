@@ -125,6 +125,7 @@ ts.ui.HeaderBarSpirit = (function using(chained) {
 			}),
 
 			/**
+			 * Show the closing X button.
 			 * @param {Function} [onclick]
 			 */
 			showClose: chained(function(onclick) {
@@ -132,6 +133,16 @@ ts.ui.HeaderBarSpirit = (function using(chained) {
 					this._headerbar.showClose(onclick);
 				} else {
 					this._closeaction = onclick;
+				}
+			}),
+
+			/**
+			 * Hide the closing X button.
+			 */
+			hideClose: chained(function() {
+				this._closeaction = null;
+				if (this.life.rendered) {
+					this._headerbar.hideClose();
 				}
 			}),
 

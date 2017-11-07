@@ -14,12 +14,6 @@ ts.ui.SideBarSpirit = (function using(LayoutSpirit, Type, Client, CSSPlugin, cha
 		willclose = ts.ui.ACTION_ASIDE_WILL_CLOSE,
 		didclose = ts.ui.ACTION_ASIDE_DID_CLOSE;
 
-	/**
-	 * There is no need for Collaboration to be in a SideBar anymore, so we will remove this questionable feature.
-	 * @type {string}
-	 */
-	var warning = 'SideBar "autoclose" is deprecated';
-
 	return ts.ui.SideShowSpirit.extend({
 		/**
 		 * Open by default.
@@ -34,10 +28,10 @@ ts.ui.SideBarSpirit = (function using(LayoutSpirit, Type, Client, CSSPlugin, cha
 		 */
 		autoclose: {
 			getter: function() {
-				console.error(warning);
+				return this._autoclose;
 			},
-			setter: function() {
-				console.error(warning);
+			setter: function(is) {
+				this.event.shift((this._autoclose = is), 'ts-breakpoint', document);
 			}
 		},
 
@@ -45,8 +39,8 @@ ts.ui.SideBarSpirit = (function using(LayoutSpirit, Type, Client, CSSPlugin, cha
 		 * Setup to consume actions from nested Asides.
 		 */
 		onconfigure: function() {
+			this.event.add('ts-breakpoint', document);
 			this.super.onconfigure();
-			this.event.add('ts-breakpoint');
 			this.action.add([willopen, didopen, willclose, didclose]);
 		},
 
@@ -67,9 +61,7 @@ ts.ui.SideBarSpirit = (function using(LayoutSpirit, Type, Client, CSSPlugin, cha
 		onattach: function() {
 			this.super.onattach();
 			this._layout(true);
-			if (ts.ui.isMobilePoint()) {
-				this._breakpoint();
-			}
+			this._breakpoint();
 		},
 
 		/**
@@ -100,26 +92,38 @@ ts.ui.SideBarSpirit = (function using(LayoutSpirit, Type, Client, CSSPlugin, cha
 		// Privileged ..............................................................
 
 		/**
+		 * 
+		 */
+		$onopen: function() {
+			if (this._autoclose) {
+				this.super.$onopen();
+			}
+		},
+
+		/**
+		 * 
+		 */
+		$onclose: function() {
+			if (this._autoclose) {
+				this.super.$onclose();
+			}
+		},
+
+		/**
 		 * Open.
 		 * TODO: Validate that we are not opening inside .ts-main
 		 * @param {boolean} animated (not supported just yet)
-		 */
+		 *
 		$onopen: function(animated) {
 			// this._delayedAngularInitialization();
 			// this._trapattention();
 			// this._willopen();
-			this.dom.show();
-			this._slideopen(true).then(
-				function done() {
-					this._ontransitionend();
-				}.bind(this)
-			);
 		},
 
 		/**
 		 * Close.
 		 * @param {boolean} animated (not supported)
-		 */
+		 *
 		$onclose: function(animated) {
 			// this._willclose();
 			this._slideopen(false).then(
@@ -129,6 +133,7 @@ ts.ui.SideBarSpirit = (function using(LayoutSpirit, Type, Client, CSSPlugin, cha
 				}.bind(this)
 			);
 		},
+		*/
 
 		/**
 		 * Trransition ended.
@@ -163,6 +168,11 @@ ts.ui.SideBarSpirit = (function using(LayoutSpirit, Type, Client, CSSPlugin, cha
 		// Private ...............................................................
 
 		/**
+		 * @type {boolean}
+		 */
+		_autoclose: true,
+
+		/**
 		 * If the SideBar is nested below the main header, 
 		 * make the SideBar header become less prominent.
 		 * @returns {ts.ui.HeaderBarSpirit}
@@ -190,33 +200,22 @@ ts.ui.SideBarSpirit = (function using(LayoutSpirit, Type, Client, CSSPlugin, cha
 		/**
 		 * Collapse the SideBar on mobile breakpoint.
 		 * Setup to avoid CSS transition on collapse.
-		 * @param {boolean} go
+		 * @param {boolean} [go] Switch to mobile?
 		 */
-		_breakpoint: function() {
+		_breakpoint: function(go) {
 			var is = ts.ui.isMobilePoint();
-			this._closebutton(is);
-			if (is) {
-				this.isOpen = false;
-				this._position(100);
-				this.dom.hide();
-			} else {
-				this.isOpen = true;
-				this._position(0);
-			}
-			/*
-			var go = ts.ui.isMobilePoint();
-			this._closebutton(go);
-			if (go) {
-				if (this.isOpen) {
-					this.close();
+			if (this._autoclose) {
+				this._closebutton(is);
+				if (is) {
 					this.isOpen = false;
-				}
-			} else {
-				if (!this.isOpen) {
+					this._position(100);
+					this.dom.hide();
+				} else {
 					this.isOpen = true;
+					this._position(0);
+					this.dom.show();
 				}
 			}
-			*/
 		}
 	});
 })(ts.ui.LayoutSpirit, gui.Type, gui.Client, gui.CSSPlugin, gui.Combo.chained);

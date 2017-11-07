@@ -390,13 +390,13 @@ table.api th {
 }
 .doc-intro .box-code {
   padding-bottom: 66px;
-  background-color: rgba(32, 160, 233, 0.04);
+  background-color: rgba(0, 172, 240, 0.04);
 }
 .doc-intro .box-code svg rect,
 .doc-intro .box-code svg circle,
 .doc-intro .box-code svg polygon,
 .doc-intro .box-code svg path {
-  fill: #20a0e9;
+  fill: #00acf0;
 }
 .doc-intro .box-design {
   padding-top: 66px;
@@ -598,7 +598,7 @@ table.api th {
 .ts-doxchrome .ts-menu > li > a:hover:not(:disabled):before,
 .ts-doxchrome .ts-menu > li > a:focus:before {
   background-color: #0c8cd5;
-  background-color: #20a0e9;
+  background-color: #00acf0;
 }
 .ts-doxchrome .ts-menu > li > a > i {
   top: 33%;
@@ -610,7 +610,7 @@ table.api th {
 }
 .ts-doxchrome .ts-menu > li > a.ts-checked,
 .ts-doxchrome .ts-menu > li > a.ts-checked:hover {
-  background-color: #20a0e9 !important;
+  background-color: #00acf0 !important;
   color: #ffffff;
   cursor: default;
 }
@@ -998,7 +998,7 @@ article > h1 {
   color: #72b148;
 }
 #doc-colors-demo .ts-blue {
-  background-color: #20a0e9;
+  background-color: #00acf0;
   color: #ffffff;
 }
 #doc-colors-demo .ts-blue-dark {
@@ -1019,7 +1019,7 @@ article > h1 {
 }
 #doc-colors-demo .ts-blue-text {
   background-color: #ffffff;
-  color: #20a0e9;
+  color: #00acf0;
 }
 #doc-colors-demo .ts-liteblue {
   background-color: #ecf7fd;

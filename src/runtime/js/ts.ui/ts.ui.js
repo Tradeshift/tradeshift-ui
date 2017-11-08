@@ -483,6 +483,7 @@ ts.ui = gui.namespace(
 			 * @param {function} callback Two args: newpoint + oldpoint
 			 */
 			addBreakPointListener: function(callback) {
+				console.error('addBreakPointListener is deprecated');
 				breakpointers.push(callback);
 			},
 

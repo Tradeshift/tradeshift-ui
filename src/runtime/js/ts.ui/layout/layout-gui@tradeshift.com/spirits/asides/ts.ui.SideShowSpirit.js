@@ -181,19 +181,35 @@ ts.ui.SideShowSpirit = (function using(
 			}
 		}),
 
-		// Privileged ............................................................
+		// Privileged ..............................................................
 
 		/**
 		 * Required by the {DoorManPlugin}.
 		 */
-		$onopen: function() {},
+		$onopen: function() {
+			console.log('$onopen', String(this));
+			this.dom.show();
+			this._slideopen(true).then(
+				function done() {
+					this._ontransitionend();
+				}.bind(this)
+			);
+		},
 
 		/**
 		 * Required by the {DoorManPlugin}.
 		 */
-		$onclose: function() {},
+		$onclose: function() {
+			console.log('$onclose', String(this));
+			this._slideopen(false).then(
+				function done() {
+					this._ontransitionend();
+					this.dom.hide();
+				}.bind(this)
+			);
+		},
 
-		// Private ...............................................................
+		// Private .................................................................
 
 		/**
 		 * The Main tabbar.
@@ -275,14 +291,6 @@ ts.ui.SideShowSpirit = (function using(
 			} else if (this._canclose) {
 				this._canclose = false;
 				tool.hideClose();
-				// if `autoclose` was changed sometime *after* initialization,
-				// we'll need to remove any header that doesn't have a `title`
-				// while accounting for the fact that models are updated async.
-				this.tick.time(function asyncproblem() {
-					if (!tool.life.hascontent) {
-						tool.dom.remove();
-					}
-				}, 50);
 			}
 		},
 
@@ -303,7 +311,65 @@ ts.ui.SideShowSpirit = (function using(
 				}
 			}
 			return true;
-		}
+		},
+
+		/**
+		 * All attempts to animate the Aside with ordinary CSS transitions
+		 * would result in fatal rendering glitches that only occurs in a
+		 * production environment, of course. Using the brute force method.
+		 * UPDATE: This was caused by Track.js versus `handleEvent` so we
+		 * can go ahead and use CSS transitions now :)
+		 * @param {boolean} open
+		 * @param @optional {boolean} callback
+		 * @returns {gui.Then}
+		 */
+		_slideopen: function(open, callback) {
+			var then = new gui.Then();
+			var tick = this.tick;
+			var end = ts.ui.TRANSITION_FAST;
+			var deg, off;
+			function getoffset(now) {
+				deg = now / (end / 90);
+				deg = deg * Math.PI / 180;
+				off = open ? Math.sin(deg) : Math.cos(deg);
+				return off * 100;
+			}
+			tick.time(function() {
+				var time = 0;
+				tick.nextFrame(function paint(stamp) {
+					if (!this.$destructed) {
+						if (!time) {
+							time = stamp;
+							tick.nextFrame(paint);
+						} else {
+							var now = stamp - time;
+							var pct = getoffset(now);
+							if (now < end) {
+								this._position(100 - pct);
+								tick.nextFrame(paint);
+							} else {
+								this._position(open ? 0 : 100);
+								then.now();
+							}
+						}
+					}
+				});
+			}, ts.ui.TRANSITION_DELAY);
+			return then;
+		},
+
+		/**
+		 * Update position.
+		 * @param {number} pct
+		 */
+		_position: function(pct) {
+			this.css.set('-beta-transform', 'translate3d(' + pct + '%,0,0)');
+		},
+
+		/**
+		 * Subclass will do something here.
+		 */
+		_ontransitionend: function() {}
 	});
 })(
 	gui.Combo.chained,

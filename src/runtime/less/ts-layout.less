@@ -92,6 +92,15 @@ body,
 
 // Decorations .................................................................
 
+/**
+ * Branding color (temp setup)
+ *
+.ts-app > .ts-headerbar .ts-toolbar {
+	background-color: @ts-blue;
+	color: @ts-white;
+}
+*/
+
 // header and footer borders
 .ts-toolbar,
 .ts-headerbar,
@@ -212,6 +221,7 @@ body,
 		.ts-content > .ts-panel {
 			background-repeat: no-repeat;
 			background-size: 100% 3px;
+			// background-image: none !important; // only works with white header :/
 		}
 	}
 	&.ts-has-header {

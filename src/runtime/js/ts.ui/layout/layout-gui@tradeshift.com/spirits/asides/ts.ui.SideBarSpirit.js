@@ -16,85 +16,67 @@ ts.ui.SideBarSpirit = (function using(LayoutSpirit, Type, Client, CSSPlugin, cha
 
 	return ts.ui.SideShowSpirit.extend({
 		/**
-			 * Open by default.
-			 * @type {boolean}
-			 */
+		 * Open by default.
+		 * @type {boolean}
+		 */
 		isOpen: true,
 
 		/**
-			 * Automatically close the SideBar in mobile breakpoint?
-			 * Note that the SideBar must then be *manually* opened.
-			 * TODO: Once Collaboration has been refactored to *not*
-			 * be in a SideBar, perhaps this property can be removed.
-			 * @type {boolean}
-			 */
+		 * @deprecated
+		 * Automatically close the SideBar in mobile breakpoint?
+		 * @type {boolean}
+		 */
 		autoclose: {
 			getter: function() {
 				return this._autoclose;
 			},
-			setter: function(autoclose) {
-				if (Type.isBoolean(Type.cast(autoclose))) {
-					// no weird moustache syntax
-					this.css.shift(autoclose, 'ts-autoclose');
-					this._autoclose = !!autoclose;
-					if (this.life.ready) {
-						// changed post init
-						if (this._autoclose) {
-							if (ts.ui.isMobilePoint()) {
-								this._breakpoint();
-							}
-						} else {
-							this._closebutton(false);
-							this.isOpen = true;
-							this.reflex();
-						}
-					}
-				}
+			setter: function(is) {
+				this.event.shift((this._autoclose = is), 'ts-breakpoint', document);
 			}
 		},
 
 		/**
-			 * Setup to consume actions from nested Asides.
-			 */
+		 * Setup to consume actions from nested Asides.
+		 */
 		onconfigure: function() {
+			this.event.add('ts-breakpoint', document);
 			this.super.onconfigure();
 			this.action.add([willopen, didopen, willclose, didclose]);
-			this.open();
 		},
 
 		/**
-			 * Add assistant classnames and fix the layout.
-			 */
-		onattach: function() {
-			this.super.onattach();
-			this._layout(true);
-			if (ts.ui.isMobilePoint()) {
+		 * Handle event.
+		 * @param {Event} e
+		 */
+		onevent: function(e) {
+			this.super.onevent(e);
+			if (e.type === 'ts-breakpoint') {
 				this._breakpoint();
 			}
 		},
 
 		/**
-			 * Setup the stuff.
-			 */
-		onenter: function() {
-			this.super.onenter();
-			this._breakpointwatch();
-			this.css.shift(this._autoclose, 'ts-autoclose');
+		 * Add assistant classnames and fix the layout.
+		 */
+		onattach: function() {
+			this.super.onattach();
+			this._layout(true);
+			this._breakpoint();
 		},
 
 		/**
-			 * Remove assistant classnames.
-			 */
+		 * Remove assistant classnames.
+		 */
 		ondetach: function() {
 			this.super.ondetach();
 			this._layout(false);
 		},
 
 		/**
-			 * Consume all nested aside actions
-			 * so as not to trigger the cover.
-			 * @param {gui.Action} a
-			 */
+		 * Consume all nested aside actions
+		 * so as not to trigger the cover.
+		 * @param {gui.Action} a
+		 */
 		onaction: function(a) {
 			this.super.onaction(a);
 			switch (a.type) {
@@ -107,38 +89,87 @@ ts.ui.SideBarSpirit = (function using(LayoutSpirit, Type, Client, CSSPlugin, cha
 			}
 		},
 
+		// Privileged ..............................................................
+
 		/**
-			 * Cleanup (using a temporary API that should be refactored).
-			 */
-		ondestruct: function() {
-			this.super.ondestruct();
-			ts.ui.removeBreakPointListener(this);
+		 * 
+		 */
+		$onopen: function() {
+			if (this._autoclose) {
+				this.super.$onopen();
+			}
 		},
 
-		// Privileged ............................................................
+		/**
+		 * 
+		 */
+		$onclose: function() {
+			if (this._autoclose) {
+				this.super.$onclose();
+			}
+		},
 
 		/**
-			 * Show the SideBar.
-			 */
+		 * Open.
+		 * TODO: Validate that we are not opening inside .ts-main
+		 * @param {boolean} animated (not supported just yet)
+		 *
+		$onopen: function(animated) {
+			// this._delayedAngularInitialization();
+			// this._trapattention();
+			// this._willopen();
+		},
+
+		/**
+		 * Close.
+		 * @param {boolean} animated (not supported)
+		 *
+		$onclose: function(animated) {
+			// this._willclose();
+			this._slideopen(false).then(
+				function done() {
+					this._ontransitionend();
+					this.dom.hide();
+				}.bind(this)
+			);
+		},
+		*/
+
+		/**
+		 * Trransition ended.
+		 */
+		_ontransitionend: function() {
+			if (this.isOpen) {
+				this.css.add(ts.ui.CLASS_OPEN);
+				this.doorman.didopen();
+			} else {
+				this.css.add(ts.ui.CLASS_OPEN);
+				this.doorman.didclose();
+			}
+		},
+
+		/**
+		 * Show the SideBar.
+		 *
 		$onopen: function() {
 			this.css.add(ts.ui.CLASS_OPEN);
 			this.doorman.didopen();
 		},
 
 		/**
-			 * Don't show the SideBar.
-			 */
+		 * Don't show the SideBar.
+		 *
 		$onclose: function() {
 			this.css.remove(ts.ui.CLASS_OPEN);
 			this.doorman.didclose();
 		},
+		*/
 
 		// Private ...............................................................
 
 		/**
-			 * Automatically close the SideBar in mobile breakpoint?
-			 * @type {boolean}
-			 */
+		 * @type {boolean}
+		 */
 		_autoclose: true,
 
 		/**
@@ -167,36 +198,22 @@ ts.ui.SideBarSpirit = (function using(LayoutSpirit, Type, Client, CSSPlugin, cha
 		},
 
 		/**
-		 * Watch for breakpoint changes (using some
-		 * temporary API that should be refactored).
-		 */
-		_breakpointwatch: function() {
-			ts.ui.addBreakPointListener(
-				function() {
-					this._breakpoint();
-				}.bind(this)
-			);
-		},
-
-		/**
 		 * Collapse the SideBar on mobile breakpoint.
 		 * Setup to avoid CSS transition on collapse.
-		 * @param {boolean} go
+		 * @param {boolean} [go] Switch to mobile?
 		 */
-		_breakpoint: function() {
-			var go = ts.ui.isMobilePoint();
+		_breakpoint: function(go) {
+			var is = ts.ui.isMobilePoint();
 			if (this._autoclose) {
-				this._closebutton(go);
-				if (go) {
-					if (this.isOpen) {
-						this.close();
-						this.isOpen = false;
-					}
+				this._closebutton(is);
+				if (is) {
+					this.isOpen = false;
+					this._position(100);
+					this.dom.hide();
 				} else {
-					if (!this.isOpen) {
-						this.isOpen = true;
-						this.guilayout.flexGlobal();
-					}
+					this.isOpen = true;
+					this._position(0);
+					this.dom.show();
 				}
 			}
 		}

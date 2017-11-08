@@ -28,7 +28,20 @@
 								</script>
 							</figure>
 							<section class="ts-hide-mobile-only">
-								<p>This sidebar should be positioned either before or after the <val>Content</val> element as seen in your <a data-ts="Button" href="/#getstarted/layout.html">basic layout</a>. You can toggle this position to witness the difference.</p>
+								<p>This sidebar should be positioned either before or after the <val>Content</val> element as seen in your <a data-ts="Button" href="/#getstarted/layout.html">basic layout</a>.</p>
+								<figure data-ts="DoxMarkup">
+									<script type="text/html">
+										<div data-ts="App">
+											<div data-ts="Main">
+												<!-- SideBar before Content goes here -->
+												<div data-ts="Content"></div>
+												<!-- SideBar after Content goes here -->
+												</div>
+											</div>
+										</div>
+									</script>
+								</figure>
+								<p>You can toggle this position to witness the difference.</p>
 								<form data-ts="Form">
 									<fieldset>
 										<label>
@@ -63,8 +76,16 @@
 									<i class="ts-icon-info"></i>
 									<p>The SideBar will automatically become <strong>hidden</strong> in the mobile breakpoint.</p>
 								</div>
-								<p class="ts-hide-mobile-only">There is currently no generalized way to restoring the hidden SideBar, so if you want the SideBar to be accessible to mobile users, you'll have to present a button somewhere in your content. You can resize this page to see an example.</p>
-								<p class="ts-show-mobile-only">The SideBar is for example hidden now, but you can open it if you like.</p>
+								<p class="ts-hide-mobile-only">The mobile phone doesn't leave much room for SideBars, so we will just hide them. There is no <em>generalized</em> way to restore a hidden SideBar, so if you want the SideBar to be accessible to mobile users, you'll have to present a button in your content. The SideBar can be displayed with the <code>open</code> method.</p>
+								<figure data-ts="DoxMarkup">
+								<script type="tex/html">
+									<button data-ts="Button" onclick="ts.ui.get('#sidebar').open()">
+										<span>Open The SideBar</span>
+									</button>
+								</script>
+							</figure>
+								<p class="ts-hide-mobile-only">The SideBar will open like an Aside; you can resize this page to see an example. Remember that the <a data-ts="Button" href="/#appendix/responsive/">responsive classnames</a> can make it easy to hide and show stuff in the various breakpoints.</p>
+								<p class="ts-show-mobile-only">The SideBar is hidden now, but you can open it if you like.</p>
 								<menu data-ts="Buttons" class="ts-show-mobile-only">
 									<li>
 										<button data-ts="Button" class="ts-primary" onclick="togglesidebar()">
@@ -72,7 +93,6 @@
 										</button>
 									</li>
 								</menu>
-								<p>The <a data-ts="Button" href="/#appendix/responsive/">responsive classnames</a> makes it easy to hide and show stuff in the various breakpoints.</p>
 							</section>
 							<section>
 								<h3>SideBar tabs</h3>
@@ -114,6 +134,7 @@
 							</section>
 							<section>
 								<h3>SideBar footer</h3>
+								<p>You can insert a <elm>footer</elm> in the SideBar for whatever purpose you can imagine. Note that if your SideBar features tabs, you may want to manually toggle the <code>display</code> of one or more <elm>footer</elm> elements, since that doesn't happen automatically. Tab change can be intercepted with the <code>onselect</code> callback.</p>
 								<figure data-ts="DoxMarkup">
 									<script type="tex/html">
 										<aside data-ts="SideBar" data-ts.title="My SideBar">
@@ -129,6 +150,7 @@
 							</section>
 							<section>
 								<h3>Nested Aside</h3>
+								<p>Asides can be nested directly inside the SideBar if they are relevant for the SideBars functionality. You can just <code>open</code> and <code>close</code> them like you would with a <a data-ts="Button" href="/#components/asides/">regular Aside</a>.</p>
 								<figure data-ts="DoxMarkup">
 									<script type="tex/html">
 										<aside data-ts="SideBar" data-ts.title="My SideBar">
@@ -144,85 +166,21 @@
 									</script>
 								</figure>
 							</section>
-
-							<!--
-							<p>Also note tht the SideBar <em>must</em> be positioned before or after the <val>Main</val> element:</p>
-							<figure data-ts="DoxMarkup">
-								<script>
-									<main data-ts="Main"> ... 									<aside data-ts="SideBar"> ... </aside>
+							<section data-ts="Spirit">
+								<script type="text/edbml">
+									if (location.hostname === 'localhost') {
+										<h3>Hello developer!</h3>
+										<p>Since you are on viewing this on <code>localhost</code> and since you have a giant monitor:</p>
+										<menu data-ts="Buttons">
+											<li>
+												<a data-ts="Button" class="ts-primary" href="gallery.html">
+													<span>Click here to open the SideBar Gallery</span>
+												</a>
+											</li>
+										</menu>
+									}
 								</script>
-							</figure>
-						-->
-
-							<!--
-							<h3>Toggle the SideBar</h3>
-							<p>In mobile breakpoint, the SideBar is hidden and must be toggled forth manually. If you resize to <em>mobile view</em>, you can try it with this button.</p>
-							<p>
-								<button data-ts="Button" class="ts-primary" onclick="gui.get('mysidebar').toggle()">
-									<span>Toggle SideBar</span>
-								</button>
-							</p>
-							<p>You can toggle the SideBar like you would <a data-ts="Button" href="/#components/asides/js.html">toggle an Aside</a>.</p>
-							<figure data-ts="DoxScript">
-								<script>
-									var sidebar = gui.get('#mysidebar');
-									sidebar.open();
-									sidebar.close();
-									sidebar.toggle();
-								</script>
-							</figure>
-
-							<h3>Bonus panels</h3>
-							<p>You can put a <val>Footer</val> next to the <val>Panel</val>. The Footer will stick to the bottom of the SideBar.</p>
-							<figure data-ts="DoxMarkup">
-								<script>
-									<aside data-ts="SideBar" id="mysidebar" data-ts.title="My SideBar">
-										<div data-ts="Panel"> ... </div>
-										<div data-ts="Footer" class="ts-show-mobile-only"> ... </div>
-									</aside>
-								</script>
-							</figure>
-							<div data-ts="Note">
-								<i class="ts-icon-info"></i>
-								<p>If you want this to be visible in mobile only, as the current designs suggest, you can assign it the classname <val>ts-show-mobile-only</val>.</p>
-							</div>
-
-							<h3>Nesting Asides</h3>
-							<p>You can make <em>subsidebars</em> by nesting Aside components in the <val>ts-sidebar</val>. The Aside can be opened and closed like a <a data-ts="Button" href="/#components/asides/js.html">normal Aside</a>.</p>
-							<figure data-ts="DoxMarkup">
-								<script>
-									<aside data-ts="SideBar">
-										<div data-ts="Panel">
-											<p>SideBar content</p>
-										</div>
-										<aside data-ts="Aside">
-											<div data-ts="Panel">
-												<p>Aside content.</p>
-											</div>
-										</aside>
-									</aside>
-								</script>
-							</figure>
-							
-							<h3>Custom toolbar buttons</h3>
-							<p>The SideBar header works like a Toolbar. You can add buttons with an API, so we'll add a button to toggle that Aside we talked about.</p>
-							<figure data-ts="DoxScript">
-								<script type="runnable">
-									var sidebar = gui.get('#mysidebar');
-									var header = sidebar.header();
-									header.buttons.push({
-										icon: 'ts-icon-add',
-										onclick: function() {
-											gui.get('#myaside').toggle();
-										}
-									});
-								</script>
-							</figure>
-							<div data-ts="Note">
-								<i class="ts-icon-warning"></i>
-								<p>This API is likely to change!</p>
-							</div>
-							-->
+							</section>
 						</article>
 					</div>
 				</div>

@@ -50,7 +50,7 @@
                     <article>
                         <h1><span>SideBar gallery</span></h1>
                         <section>
-                            <h3><span>Header</span></h3>
+                            <p>Yes, you will need a big screen to witness all these SideBars in a single layout. But now that you have one, we can start adding all kinds of exotice features.</p>
                             <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.Header.buttons(%5B%0A%09%7B%20label%3A%20&apos;Primary&apos;%2C%20type%3A%20&apos;ts-primary&apos;%2C%20icon%3A%20&apos;ts-icon-triangleup&apos;%20%7D%2C%0A%09%7B%20label%3A%20&apos;Secondary&apos;%2C%20type%3A%20&apos;ts-secondary&apos;%2C%20icon%3A%20&apos;ts-icon-triangledown&apos;%20%7D%2C%0A%09%7B%20label%3A%20&apos;Tertiary%20One&apos;%2C%20icon%3A%20&apos;ts-icon-triangleleft&apos;%20%7D%2C%0A%09%7B%20label%3A%20&apos;Tertiary%20Two&apos;%2C%20icon%3A%20&apos;ts-icon-triangleright&apos;%20%7D%2C%0A%09%7B%20label%3A%20&apos;Tertiary%20Three&apos;%2C%20icon%3A%20&apos;ts-icon-halt&apos;%2C%20onclick%3A%20function()%20%7B%0A%09%09ts.ui.Header.buttons().clear()%3B%0A%09%7D%7D%0A%5D)%3B">
                                 <script type="runnable">
                                     ts.ui.Header.buttons([ { label: 'Primary', type: 'ts-primary', icon: 'ts-icon-triangleup' }, { label: 'Secondary', type: 'ts-secondary', icon: 'ts-icon-triangledown' }, { label: 'Tertiary One', icon: 'ts-icon-triangleleft' }, { label: 'Tertiary Two',
@@ -126,9 +126,7 @@
                                     </li>
                                 </ul>
                             </div>
-                            <h3><span>Footer</span></h3>
-                            <p><strong>1</strong> Add a pager.</p>
-                            <figure data-ts="DoxScript" class="attention runnable" data-ts.code="ts.ui.Footer.pager(%7B%0A%09pages%3A%2023%2C%0A%09page%3A%200%2C%0A%09onselect%3A%20function(index)%20%7B%0A%09%09console.log(index)%3B%0A%09%7D%0A%7D)%3B">
+                            <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.Footer.pager(%7B%0A%09pages%3A%2023%2C%0A%09page%3A%200%2C%0A%09onselect%3A%20function(index)%20%7B%0A%09%09console.log(index)%3B%0A%09%7D%0A%7D)%3B">
                                 <script type="runnable">
                                     ts.ui.Footer.pager({ pages: 23, page: 0, onselect: function(index) { console.log(index); } });
                                 </script>
@@ -142,7 +140,6 @@
 	<span class="token punctuation">}</span>
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
                             </figure>
-                            <p><strong>2</strong> Add some buttons.</p>
                             <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.Footer.buttons(%5B%0A%09%7B%20label%3A%20&apos;Button%201&apos;%2C%20type%3A%20&apos;ts-primary&apos;%20%7D%2C%0A%09%7B%20label%3A%20&apos;Button%202&apos;%2C%20type%3A%20&apos;ts-secondary&apos;%20%7D%2C%0A%09%7B%20label%3A%20&apos;Button%203&apos;%20%7D%2C%0A%09%7B%20label%3A%20&apos;Button%204&apos;%20%7D%2C%0A%09%7B%20label%3A%20&apos;Button%205&apos;%20%7D%0A%5D)%3B">
                                 <script type="runnable">
                                     ts.ui.Footer.buttons([ { label: 'Button 1', type: 'ts-primary' }, { label: 'Button 2', type: 'ts-secondary' }, { label: 'Button 3' }, { label: 'Button 4' }, { label: 'Button 5' } ]);
@@ -157,7 +154,6 @@
 	<span class="token punctuation">{</span> label<span class="token punctuation">:</span> <span class="token string">&apos;Button 5&apos;</span> <span class="token punctuation">}</span>
 <span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
                             </figure>
-                            <p><strong>3</strong> Add more buttons until they crash into the Pager. Behold the second toolbar.</p>
                             <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.Footer.buttons().splice(2%2C%200%2C%0A%09%7B%20label%3A%20&apos;Bonus%20Button&apos;%2C%20type%3A%20&apos;ts-secondary&apos;%20%7D%0A)%3B">
                                 <script type="runnable">
                                     ts.ui.Footer.buttons().splice(2, 0, { label: 'Bonus Button', type: 'ts-secondary' } );
@@ -168,7 +164,6 @@
 	<span class="token punctuation">{</span> label<span class="token punctuation">:</span> <span class="token string">&apos;Bonus Button&apos;</span><span class="token punctuation">,</span> type<span class="token punctuation">:</span> <span class="token string">&apos;ts-secondary&apos;</span> <span class="token punctuation">}</span>
 <span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
                             </figure>
-                            <p><strong>4</strong> The actions will appear in yet another toolbar. That&apos;s right.</p>
                             <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.Footer.actions(%5B%0A%09%7B%20label%3A%20&apos;Move%20Up&apos;%2C%20icon%3A%20&apos;ts-icon-triangleup&apos;%20%7D%2C%0A%09%7B%20label%3A%20&apos;Move%20Down&apos;%2C%20icon%3A%20&apos;ts-icon-triangledown&apos;%20%7D%2C%0A%09%7B%20label%3A%20&apos;Move%20Left&apos;%2C%20icon%3A%20&apos;ts-icon-triangleleft&apos;%20%7D%2C%0A%09%7B%20label%3A%20&apos;Move%20Right&apos;%2C%20icon%3A%20&apos;ts-icon-triangleright&apos;%20%7D%2C%0A%09%7B%20label%3A%20&apos;Don%5C&apos;t%20Move&apos;%2C%20icon%3A%20&apos;ts-icon-halt&apos;%20%7D%0A%5D).status(&apos;Something%20is%20selected&apos;).checkbox(%7B%0A%09onclick%3A%20function()%20%7B%0A%09%09this.checked%20%3D%20!this.checked%3B%0A%09%7D%0A%7D)%3B">
                                 <script type="runnable">
                                     ts.ui.Footer.actions([ { label: 'Move Up', icon: 'ts-icon-triangleup' }, { label: 'Move Down', icon: 'ts-icon-triangledown' }, { label: 'Move Left', icon: 'ts-icon-triangleleft' }, { label: 'Move Right', icon: 'ts-icon-triangleright' }, { label: 'Don\'t
@@ -188,7 +183,6 @@
 	<span class="token punctuation">}</span>
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
                             </figure>
-                            <p><strong>5</strong> Finally add the configuration and collaboration buttons.</p>
                             <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.Footer.configbutton(function%20onclick()%20%7B%0A%09ts.ui.Notification.success(&apos;Go%20configure!&apos;)%3B%0A%7D).collabbutton(function%20onclick()%20%7B%0A%09ts.ui.Notification.success(&apos;Go%20collaborate!&apos;)%3B%0A%7D)%3B">
                                 <script type="runnable">
                                     ts.ui.Footer.configbutton(function onclick() { ts.ui.Notification.success('Go configure!'); }).collabbutton(function onclick() { ts.ui.Notification.success('Go collaborate!'); });

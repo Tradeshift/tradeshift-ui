@@ -110,32 +110,6 @@ ts.ui.SideBarSpirit = (function using(LayoutSpirit, Type, Client, CSSPlugin, cha
 		},
 
 		/**
-		 * Open.
-		 * TODO: Validate that we are not opening inside .ts-main
-		 * @param {boolean} animated (not supported just yet)
-		 *
-		$onopen: function(animated) {
-			// this._delayedAngularInitialization();
-			// this._trapattention();
-			// this._willopen();
-		},
-
-		/**
-		 * Close.
-		 * @param {boolean} animated (not supported)
-		 *
-		$onclose: function(animated) {
-			// this._willclose();
-			this._slideopen(false).then(
-				function done() {
-					this._ontransitionend();
-					this.dom.hide();
-				}.bind(this)
-			);
-		},
-		*/
-
-		/**
 		 * Trransition ended.
 		 */
 		_ontransitionend: function() {
@@ -147,23 +121,6 @@ ts.ui.SideBarSpirit = (function using(LayoutSpirit, Type, Client, CSSPlugin, cha
 				this.doorman.didclose();
 			}
 		},
-
-		/**
-		 * Show the SideBar.
-		 *
-		$onopen: function() {
-			this.css.add(ts.ui.CLASS_OPEN);
-			this.doorman.didopen();
-		},
-
-		/**
-		 * Don't show the SideBar.
-		 *
-		$onclose: function() {
-			this.css.remove(ts.ui.CLASS_OPEN);
-			this.doorman.didclose();
-		},
-		*/
 
 		// Private ...............................................................
 

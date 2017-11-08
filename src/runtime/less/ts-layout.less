@@ -136,6 +136,15 @@ body,
 	content: '';
 }
 
+// fixed toolbar border
+.ts-app > .ts-toolbar,
+.ts-content > .ts-toolbar {
+	&:after {
+		bottom: 0;
+		content: '';
+	}
+}
+
 // sideshow borders
 .ts-sideshow {
 	position: relative;

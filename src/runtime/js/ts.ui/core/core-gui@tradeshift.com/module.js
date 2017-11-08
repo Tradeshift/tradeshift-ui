@@ -136,8 +136,7 @@ ts.ui.CoreModule = gui.module('core-gui@tradeshift.com', {
 		ts.ui.DocumentSpirit
 			.plugin('layoutplugin', ts.ui.DocumentLayoutPlugin)
 			.plugin('dialogplugin', ts.ui.DocumentDialogPlugin)
-			.plugin('asideplugin', ts.ui.DocumentAsidePlugin)
-			.plugin('panelplugin', ts.ui.DocumentPanelPlugin);
+			.plugin('asideplugin', ts.ui.DocumentAsidePlugin);
 	},
 
 	/**

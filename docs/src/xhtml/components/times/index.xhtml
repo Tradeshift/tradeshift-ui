@@ -7,10 +7,10 @@
 			<article>
 				<h1>Time</h1>
 				<section class="desc">
-					<p>Use the Time component to show a human readable time your app.</p>
+					<p>Use the Time component to show a human readable time stamp your app.</p>
 				</section>
 				<section>
-					<p>Assign <att>data-ts="Time"</att> to a <elm>time</elm> to initialize it as a Time.</p>
+					<p>Assign <att>data-ts="Time"</att> to a <elm>time</elm> element to initialize it as a Time.</p>
 					<figure data-ts="DoxMarkup">
 						<output/>
 						<script>
@@ -24,14 +24,11 @@
 							<time data-ts="Time" datetime="2015-11-04 03:59:33" realtime="2015-11-04 03:59:35"></time>
 						</script>
 					</figure>
-					<div data-ts="Note">
-						<i class="ts-icon-info"></i>
-						<p>If you set an invalid datetime, it will show the string.</p>
-					</div>
+					<p>If you set an invalid datetime, it will simply show the string.</p>
 					<figure data-ts="DoxMarkup">
 						<output/>
 						<script>
-							<time data-ts="Time" datetime="A long time ago in a galaxy far far away""></time>
+							<time data-ts="Time" datetime="A long time ago in a galaxy far far away"></time>
 						</script>
 					</figure>
 				</section>

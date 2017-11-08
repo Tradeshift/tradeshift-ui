@@ -10,7 +10,6 @@
 	"plugins/document/ts.ui.DocumentLayoutPlugin.js",
 	"plugins/document/ts.ui.DocumentDialogPlugin.js",
 	"plugins/document/ts.ui.DocumentAsidePlugin.js",
-	"plugins/document/ts.ui.DocumentPanelPlugin.js",
 
 	"spirits/ts.ui.Spirit.js",
 	"spirits/document/ts.ui.DocumentSpirit.js",

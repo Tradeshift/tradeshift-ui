@@ -27,14 +27,14 @@
                                     <p>The Board looks like this.</p>
                                 </div>
                             </div>
-                            <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.get(&apos;%23board&apos;%2C%20function(board)%20%7B%0A%09board.buttons(%5B%0A%09%09%7Blabel%3A%20&apos;One&apos;%7D%2C%0A%09%09%7Blabel%3A%20&apos;Two&apos;%7D%2C%0A%09%09%7Blabel%3A%20&apos;Three&apos;%7D%2C%0A%09%09%7Blabel%3A%20&apos;Four&apos;%7D%2C%0A%09%09%7Blabel%3A%20&apos;Five&apos;%7D%0A%09%5D)%3B%0A%7D)%3B">
+                            <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.get(&apos;%23board&apos;%2C%20function(board)%20%7B%0A%09board.title(&apos;My%20Board&apos;).buttons(%5B%0A%09%09%7Blabel%3A%20&apos;One&apos;%7D%2C%0A%09%09%7Blabel%3A%20&apos;Two&apos;%7D%2C%0A%09%09%7Blabel%3A%20&apos;Three&apos;%7D%2C%0A%09%09%7Blabel%3A%20&apos;Four&apos;%7D%2C%0A%09%09%7Blabel%3A%20&apos;Five&apos;%7D%0A%09%5D)%3B%0A%7D)%3B">
                                 <script type="runnable">
-                                    ts.ui.get('#board', board => { board.buttons([ {label: 'One'}, {label: 'Two'}, {label: 'Three'}, {label: 'Four'}, {label: 'Five'} ]); });
+                                    ts.ui.get('#board', board => { board.title('My Board').buttons([ {label: 'One'}, {label: 'Two'}, {label: 'Three'}, {label: 'Four'}, {label: 'Five'} ]); });
                                 </script>
                                 <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                                 <div data-ts="Panel">
                                     <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#board&apos;</span><span class="token punctuation">,</span> board <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
-	board<span class="token punctuation">.</span><span class="token function">buttons<span class="token punctuation">(</span></span><span class="token punctuation">[</span>
+	board<span class="token punctuation">.</span><span class="token function">title<span class="token punctuation">(</span></span><span class="token string">&apos;My Board&apos;</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">buttons<span class="token punctuation">(</span></span><span class="token punctuation">[</span>
 		<span class="token punctuation">{</span>label<span class="token punctuation">:</span> <span class="token string">&apos;One&apos;</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
 		<span class="token punctuation">{</span>label<span class="token punctuation">:</span> <span class="token string">&apos;Two&apos;</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
 		<span class="token punctuation">{</span>label<span class="token punctuation">:</span> <span class="token string">&apos;Three&apos;</span><span class="token punctuation">}</span><span class="token punctuation">,</span>

@@ -19,7 +19,6 @@ ts.ui.DocumentSpirit = (function using(Client) {
 			this.layoutplugin.managelayout();
 			this.dialogplugin.managedialogs();
 			this.asideplugin.manageasides();
-			this.panelplugin.managepanels();
 			this.input.connect(ts.ui.LayoutModel);
 			// TODO: Either deprecate these things or support them in The New Chrome
 			this.broadcast.addGlobal([APP_LOADING, APP_ABORTED, APP_COMPLETE]);

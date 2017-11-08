@@ -113,7 +113,7 @@
 				"path": "components/pager/"
 			},
 			{
-				"label": "Panels (DEPRECATED)",
+				"label": "Panels (TODO!)",
 				"icon": "docs-icon-video-control-fast-forward",
 				"path": "components/panels/"
 			},
@@ -133,6 +133,11 @@
 				"path": "components/spinners/"
 			},
 			{
+				"label": "TabBar (TODO!)",
+				"icon": "docs-icon-expand-horizontal-7",
+				"path": "components/tabbar/"
+			},
+			{
 				"label": "Table",
 				"icon": "docs-icon-grid",
 				"path": "components/table/"
@@ -141,6 +146,11 @@
 				"label": "Time",
 				"icon": "docs-icon-time-bomb",
 				"path": "components/times/"
+			},
+			{
+				"label": "ToolBar (TODO!)",
+				"icon": "docs-icon-expand-horizontal-7",
+				"path": "components/toolbar/"
 			},
 			{
 				"label": "UserImage",

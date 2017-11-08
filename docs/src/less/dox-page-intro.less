@@ -1,4 +1,5 @@
-@import 'ts-runtime.less';
+@import '../../../src/runtime/less/ts-mixins.less';
+@import '../../../src/runtime/less/ts-variables.less';
 
 /* Intro page ............................................................... */
 
@@ -33,26 +34,26 @@
 	}
 	.box-code {
 		padding-bottom: @ts-unit-triple;
-		background-color: fade(@ts-blue, 4%);
+		background-color: fade(@ts-color-blue, 4%);
 		svg {
 			rect,
 			circle,
 			polygon,
 			path {
-				fill: @ts-blue;
+				fill: @ts-color-blue;
 			}
 		}
 	}
 	.box-design {
 		padding-top: @ts-unit-triple;
 		padding-bottom: @ts-unit * 7 !important;
-		background-color: fade(@ts-green-lite, 4%);
+		background-color: fade(@ts-color-green, 4%);
 		svg {
 			rect,
 			circle,
 			polygon,
 			path {
-				fill: @ts-green-lite;
+				fill: @ts-color-green-light;
 			}
 		}
 	}

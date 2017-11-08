@@ -9,7 +9,7 @@
 	left: 50%;
 	width: @local-variable-dialog-width; // equal aside body
 	margin-left: @local-variable-dialog-minus;
-	color: @ts-white;
+	color: @ts-color-white;
 	.ts-dialog-head,
 	.ts-dialog-body,
 	.ts-dialog-buttons {
@@ -71,17 +71,17 @@
 				border-radius: @ts-radius;
 			}
 			> fieldset {
-				background-color: @ts-dark-liter;
+				background-color: @ts-color-gray-dark;
 				&:not(:last-child) {
 					margin-bottom: @ts-unit-half;
 				}
 				.ts-textlabel:not(.ts-focus) {
 					> span,
 					.ts-field {
-						color: @ts-white;
+						color: @ts-color-white;
 					}
 					&:after {
-						border-bottom-color: @ts-white;
+						border-bottom-color: @ts-color-white;
 					}
 				}
 			}
@@ -109,12 +109,12 @@
 		}
 	}
 	&.ts-dialog-success { // TOTAL FASTFIX! WAS OTHERWISE INVISIBLE :/
-		background-color: @ts-white;
-		color: @ts-black;
+		background-color: @ts-color-white;
+		color: @ts-color-black;
 		border: 1px solid @new-bordercolor;
 		box-shadow: 2px 2px 6px @new-shadowcolor;
 		.ts-dialog-icon {
-			color: @ts-green;
+			color: @ts-color-green;
 		}
 	}
 }

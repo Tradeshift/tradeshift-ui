@@ -6,7 +6,7 @@
 @darkborder: rgba(0, 0, 0, 0.1);
 @liteborder: rgba(255, 255, 255, 0.25);
 @depression: rgba(255, 255, 255, 0.2);
-@buttonblue: fade(@ts-blue, 70%);
+@buttonblue: fade(@ts-color-blue, 70%);
 
 // Mixins ......................................................................
 
@@ -100,7 +100,7 @@
 	}
 }
 .mixin-button-light(@background: transparent, @activebackground: transparent, @bordercolor: transparent, @activebordercolor: transparent) {
-	color: @ts-white;
+	color: @ts-color-white;
 	background-color: @background;
 	&:after {
 		transition: border-color @ts-transition-now;
@@ -526,24 +526,24 @@ menu .ts-button {
 .mixin-active-lite {
 	&.ts-active:active {
 		&.ts-primary {
-			background-color: @ts-green-dark;
+			background-color: @ts-color-green-dark;
 		}
 		&.ts-secondary {
-			background-color: @ts-blue-dark;
+			background-color: @ts-color-blue-dark;
 		}
 		&.ts-danger {
-			background-color: @ts-red-dark;
+			background-color: @ts-color-red-dark;
 		}
 		&.ts-tertiary:not(.ts-nofocus) {
-			background-color: fade(@ts-blue, 10%);
-			border: 1px solid fade(@ts-blue, 50%);
+			background-color: fade(@ts-color-blue, 10%);
+			border: 1px solid fade(@ts-color-blue, 50%);
 		}
 	}
 }
 .mixin-tertiary-lite {
 	&.ts-tertiary {
 		background-color: rgba(255, 255, 255, 0);
-		color: @ts-blue;
+		color: @ts-color-blue;
 		border: 1px solid @buttonblue;
 		&:focus:before {
 			border-color: @buttonblue;
@@ -564,10 +564,10 @@ menu .ts-button {
 }
 .ts-button:disabled {
 	&.ts-action {
-		color: @ts-medium;
+		color: @ts-color-gray;
 	}
 	&:not(.ts-action) {
-		color: @ts-black;
+		color: @ts-color-black;
 		background-color: rgba(0, 0, 0, 0.1);
 		&:after {
 			border: 1px solid @darkborder;
@@ -578,24 +578,24 @@ menu .ts-button {
 .ts-button:not(:disabled) {
 	.mixin-active-lite();
 	&.ts-primary {
-		background-color: @ts-green;
-		color: @ts-green-text;
+		background-color: @ts-color-green;
+		color: @ts-color-white;
 		&:focus:before {
-			border-color: @ts-green-darker;
+			border-color: @ts-color-green-darker;
 		}
 	}
 	&.ts-secondary {
-		background-color: @ts-blue;
-		color: @ts-blue-text;
+		background-color: @ts-color-blue;
+		color: @ts-color-white;
 		&:focus:before {
-			border-color: @ts-blue-darker;
+			border-color: @ts-color-blue-darker;
 		}
 	}
 	&.ts-danger {
-		background-color: @ts-red;
-		color: @ts-red-text;
+		background-color: @ts-color-red;
+		color: @ts-color-white;
 		&:focus:before {
-			border-color: @ts-red-darker;
+			border-color: @ts-color-red-darker;
 		}
 	}
 	&.ts-tertiary {
@@ -608,7 +608,7 @@ menu .ts-button {
 .ts-button:disabled {
 	// like tertiary
 	&:not(.ts-action) {
-		color: @ts-black;
+		color: @ts-color-black;
 		background-color: rgba(0, 0, 0, 0.1);
 	}
 	&:after {
@@ -629,7 +629,7 @@ menu .ts-button {
 	cursor: default;
 	&.ts-loading-message > span {
 		z-index: 1;
-		color: @ts-black;
+		color: @ts-color-black;
 	}
 	&:not(.ts-loading-message) > span {
 		color: transparent;
@@ -641,7 +641,7 @@ menu .ts-button {
 		content: '';
 		background-size: @ts-unit-double @ts-unit-double;
 		.ts-mixin-maximize();
-		.ts-mixin-progress-bar-gradient(fade(@ts-medium-litest, 65%), fade(@ts-lite-dark, 65%));
+		.ts-mixin-progress-bar-gradient(fade(@ts-color-gray-light, 65%), fade(@ts-color-gray-lighter, 65%));
 		.ts-mixin-animation(move-progress-bar, 1s, linear, infinite);
 		margin: @ts-unit-half;
 	}

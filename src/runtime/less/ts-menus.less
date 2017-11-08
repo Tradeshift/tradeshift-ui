@@ -9,8 +9,8 @@
 		padding: 0;
 		> button,
 		> a {
-			border-bottom: 1px solid @ts-white;
-			background-color: @ts-liteblue;
+			border-bottom: 1px solid @ts-color-white;
+			background-color: @ts-color-gray-lightest;
 			&:before {
 				.ts-mixin-maximize();
 				content: '';
@@ -20,12 +20,12 @@
 			&:focus:not(:active) {
 				outline: none;
 				&:before {
-					background-color: @ts-blue;
+					background-color: @ts-color-blue;
 				}
 			}
 			&:hover:not(:disabled),
 			&:focus {
-				background-color: @ts-liteblue-dark;
+				background-color: @ts-color-gray-lighter;
 			}
 			&:not(.ts-object) {
 				.ts-mixin-unselectable();
@@ -85,8 +85,8 @@
 				}
 			}
 			&:disabled {
-				color: @ts-medium-litest;
-				background-color: @ts-lite-liter;
+				color: @ts-color-gray-light;
+				background-color: @ts-color-gray-lightest;
 				cursor: not-allowed;
 			}
 		}
@@ -125,17 +125,17 @@
 			> button,
 			> a {
 				&:disabled {
-					background-color: @ts-lite;
-					color: @ts-medium-lite;
+					background-color: @ts-color-gray-lighter;
+					color: @ts-color-gray;
 				}
 				&:not(:disabled) {
 					&,
 					&:hover {
-						background-color: @ts-blue;
-						color: @ts-white;
+						background-color: @ts-color-blue;
+						color: @ts-color-white;
 					}
 					&:focus:before {
-						background-color: @ts-blue-dark;
+						background-color: @ts-color-blue-dark;
 					}
 				}
 			}

@@ -13,19 +13,19 @@
 		li {
 			display: inline-block;
 			button {
-				background-color: @ts-lite-liter;
-				border: 1px solid @ts-lite-dark;
-				border-color: @ts-medium-litest;
+				background-color: @ts-color-gray-lighter;
+				border: 1px solid @ts-color-gray-lighter;
+				border-color: @ts-color-gray-light;
 				display: inline-block;
 				width: @ts-unit-double;
 				height: @ts-unit-double;
 				position: relative;
 				overflow: hidden;
 				&:disabled {
-					background-color: fade(@ts-lite-liter, 25%);
+					background-color: fade(@ts-color-gray-lighter, 25%);
 					span,
 					i {
-						color: @ts-black;
+						color: @ts-color-black;
 						opacity: 0.25;
 					}
 				}
@@ -38,8 +38,8 @@
 					padding-top: @ts-unit;
 				}
 				&.ts-selected {
-					background-color: @ts-white;
-					color: @ts-black;
+					background-color: @ts-color-white;
+					color: @ts-color-black;
 					cursor: default;
 				}
 				&.ts-more span:after,
@@ -56,7 +56,7 @@
 				svg {
 					position: relative;
 					top: -12px;
-					fill: @ts-blue;
+					fill: @ts-color-blue;
 				}
 				&.ts-pager-first svg {
 					left: 2px;

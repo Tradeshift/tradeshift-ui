@@ -6,7 +6,7 @@
 	display: block;
 	&.ts-hascols,
 	&.ts-hasrows {
-		border: 1px solid @ts-medium-litest;
+		border: 1px solid @ts-color-gray-light;
 	}
 	table {
 		table-layout: fixed;
@@ -21,7 +21,7 @@
 		}
 	}
 	td {
-		border: 1px solid @ts-lite-dark;
+		border: 1px solid @ts-color-gray-lighter;
 		-webkit-user-select: text;
 		-moz-user-select: text;
 		user-select: text;
@@ -60,8 +60,8 @@
 		}
 	}
 	th {
-		border: 1px solid @ts-lite-darker;
-		border-bottom-color: @ts-medium-litest;
+		border: 1px solid @ts-color-gray-light;
+		border-bottom-color: @ts-color-gray-light;
 		border-top: none;
 		overflow: hidden;
 	}
@@ -123,7 +123,7 @@
 			height: 100%;
 			min-height: @ts-unit-double - 1px;
 			width: 100%;
-			color: @ts-medium-litest;
+			color: @ts-color-gray-light;
 			i {
 				.ts-mixin-maximize();
 				font-size: 27px;
@@ -133,13 +133,13 @@
 		}
 		&.ts-checked {
 			button {
-				color: @ts-blue;
+				color: @ts-color-blue;
 			}
 		}
 	}
 	.ts-table-new-row {
 		font-style: italic;
-		color: @ts-medium-liter;
+		color: @ts-color-gray;
 	}
 	.ts-table-hilt {
 		button {
@@ -154,7 +154,7 @@
 	.ts-table-cols,
 	.ts-table-menu:not(.ts-open) {
 		th {
-			background-color: @ts-lite;
+			background-color: @ts-color-gray-lighter;
 		}
 	}
 	.ts-table-cols {
@@ -173,7 +173,7 @@
 			-ms-text-overflow: ellipsis;
 			overflow: hidden;
 			white-space: nowrap;
-			color: @ts-black;
+			color: @ts-color-black;
 			text-align: left;
 			span {
 				.ts-mixin-label-text();
@@ -190,12 +190,12 @@
 			}
 		}
 		.ts-default {
-			color: @ts-black;
+			color: @ts-color-black;
 			position: relative;
 			z-index: 1;
 			float: left;
 			&:hover {
-				color: @ts-blue;
+				color: @ts-color-blue;
 			}
 		}
 		.ts-search {
@@ -208,7 +208,7 @@
 			}
 		}
 		.ts-selected {
-			background-color: @ts-lite-dark;
+			background-color: @ts-color-gray-lighter;
 			.ts-button-sort {
 				padding-right: @ts-unit-double !important;
 				i {
@@ -219,9 +219,9 @@
 		.ts-table-checkbox,
 		.ts-table-hilt,
 		.ts-table-numbered {
-			background-color: @ts-lite;
-			border: 1px solid @ts-lite-darker;
-			border-bottom-color: @ts-medium-litest;
+			background-color: @ts-color-gray-lighter;
+			border: 1px solid @ts-color-gray-light;
+			border-bottom-color: @ts-color-gray-light;
 			border-left: none;
 			border-top: none;
 		}
@@ -249,9 +249,9 @@
 			}
 		}
 		td {
-			background-color: @ts-white;
+			background-color: @ts-color-white;
 			&.ts-table-hilt {
-				background-color: @ts-lite-lite;
+				background-color: @ts-color-gray-lighter;
 			}
 			+ td:not(.ts-number) {
 				.ts-table-cell {
@@ -278,7 +278,7 @@
 	}
 	.ts-table-rows {
 		overflow: hidden;
-		background-color: @ts-lite-liter;
+		background-color: @ts-color-gray-lighter;
 		table {
 			position: relative;
 		}
@@ -296,8 +296,8 @@
 				min-height: 100% !important;
 			}
 			&:focus {
-				color: @ts-black;
-				background-color: @ts-yellow;
+				color: @ts-color-black;
+				background-color: @ts-color-yellow;
 				//z-index: 2;
 			}
 		}
@@ -309,23 +309,23 @@
 			display: none;
 			z-index: 3;
 			&:focus {
-				border-color: @ts-medium-litest;
-				outline-color: @ts-medium-litest;
+				border-color: @ts-color-gray-light;
+				outline-color: @ts-color-gray-light;
 			}
 		}
 		.ts-editable {
 			.ts-table-line:focus {
-				border-color: @ts-blue;
-				outline-color: @ts-blue;
+				border-color: @ts-color-blue;
+				outline-color: @ts-color-blue;
 			}
 		}
 		td {
-			background-color: @ts-white;
+			background-color: @ts-color-white;
 			&.ts-selected {
-				background-color: @ts-lite-liter;
+				background-color: @ts-color-gray-lighter;
 			}
 			&.ts-table-editmode {
-				background-color: @ts-yellow !important;
+				background-color: @ts-color-yellow !important;
 			}
 			&.ts-table-editmode,
 			&.ts-table-invalid {
@@ -340,12 +340,12 @@
 			}
 			&.ts-table-invalid {
 				.ts-table-line:focus {
-					border-color: @ts-darkred;
-					outline-color: @ts-darkred;
+					border-color: @ts-color-red;
+					outline-color: @ts-color-red;
 				}
 				.ts-table-input:not(:focus) {
-					background: @ts-darkred-lite;
-					color: @ts-darkred;
+					background: @ts-color-red-lighter;
+					color: @ts-color-black;
 				}
 			}
 			&:not(.ts-wrap) {
@@ -398,12 +398,12 @@
 					position: absolute;
 					width: @ts-unit-double;
 					height: @ts-unit-double;
-					background-color: @ts-lite;
+					background-color: @ts-color-gray-lighter;
 					left: 100%;
 				}
 				&.ts-selected {
 					fieldset:after {
-						background-color: @ts-lite-dark;
+						background-color: @ts-color-gray-lighter;
 					}
 				}
 			}
@@ -416,15 +416,15 @@
 	}
 	.ts-table-row-selected {
 		td {
-			background-color: @ts-liteblue;
+			background-color: @ts-color-pink-lighter;
 			&.ts-selected {
-				background-color: @ts-liteblue-dark;
+				background-color: @ts-color-pink-light;
 			}
 		}
 	}
 	.ts-table-row-unselectable {
-		background-color: @ts-lite-lite;
-		color: @ts-medium;
+		background-color: @ts-color-gray-lighter;
+		color: @ts-color-gray;
 		td {
 			background-color: transparent;
 		}
@@ -433,7 +433,7 @@
 		padding: 0;
 		.ts-footerbar {
 			.ts-toolbar {
-				background-color: @ts-lite-lite;
+				background-color: @ts-color-gray-lighter;
 			}
 		}
 	}
@@ -444,7 +444,7 @@
 		width: @ts-unit-double;
 	}
 	.ts-table-gutter {
-		border-right: 1px solid @ts-lite-dark;
+		border-right: 1px solid @ts-color-gray-lighter;
 		top: 0;
 		right: auto;
 		bottom: auto;
@@ -452,7 +452,7 @@
 		display: none;
 	}
 	.ts-table-menu {
-		border-right: 1px solid @ts-medium-litest;
+		border-right: 1px solid @ts-color-gray-light;
 		table {
 			width: auto;
 		}
@@ -551,12 +551,12 @@
 		border: none !important;
 	}
 	tr {
-		border-bottom: 1px solid @ts-lite-dark;
+		border-bottom: 1px solid @ts-color-gray-lighter;
 	}
 	th {
 		border: none !important;
-		border-bottom: 1px solid @ts-lite-dark;
-		background-color: @ts-white !important;
+		border-bottom: 1px solid @ts-color-gray-lighter;
+		background-color: @ts-color-white !important;
 	}
 
 	.ts-table-menu {
@@ -569,7 +569,7 @@
 
 	.ts-table-foot {
 		.ts-toolbar {
-			background-color: @ts-white;
+			background-color: @ts-color-white;
 		}
 	}
 }
@@ -579,7 +579,7 @@
 .ts-engine-gecko {
 	//.ts-table-gutter,
 	.ts-table-menu {
-		border-top: 1px solid @ts-lite-dark;
+		border-top: 1px solid @ts-color-gray-lighter;
 	}
 	.ts-wrapping {
 		.ts-table-gutter {

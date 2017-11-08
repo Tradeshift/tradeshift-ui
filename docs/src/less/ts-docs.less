@@ -1,4 +1,5 @@
-@import 'ts-runtime.less';
+@import '../../../src/runtime/less/ts-mixins.less';
+@import '../../../src/runtime/less/ts-variables.less';
 @import 'dox-variables.less';
 @import 'dox-mixins.less';
 @import 'dox-fonts.less';
@@ -7,10 +8,6 @@
 @import 'dox-table.less';
 @import 'dox-page-intro.less';
 @import 'dox-chrome.less';
-
-html {
-	background-color: @ts-lite-lite !important;
-}
 
 article {
 	padding: @ts-unit * 3;
@@ -33,7 +30,7 @@ article {
 	}
 	blockquote {
 		.ts-mixin-rounded-t();
-		background: @ts-lite-lite;
+		// background: @ts-lite-lite;
 		padding: 0;
 		margin-bottom: @ts-unit;
 		overflow: hidden;
@@ -45,19 +42,19 @@ article {
 			padding: 0 @ts-unit;
 			text-transform: uppercase;
 			font-size: @ts-fontsize-mini;
-			color: @ts-white;
+			color: @ts-color-white;
 			line-height: @ts-unit;
 		}
 		// "good copy" is h4, "bad copy" is h5
 		h4 {
-			background: fade(@ts-green, 75%);
+			background: fade(@ts-color-green, 75%);
 		}
 		h5 {
-			background: fade(@ts-red, 75%);
+			background: fade(@ts-color-red, 75%);
 		}
 		// h6 is just a normal gray heading
 		h6 {
-			background: fade(@ts-black, 75%);
+			background: fade(@ts-color-black, 75%);
 		}
 		p {
 			margin: 0;
@@ -76,7 +73,7 @@ article {
 
 .doc-responsive {
 	#breakpoints {
-		background-color: @ts-lite-liter;
+		background-color: @ts-color-gray-lighter;
 		padding-bottom: @ts-unit;
 		border-radius: 3px;
 		dl {
@@ -99,8 +96,8 @@ article {
 
 	.docs-responsive-demo {
 		.ts-mixin-transition();
-		background: @ts-lite-liter;
-		border: 1px solid @ts-lite;
+		background: pink;
+		border: 1px solid lime;
 		padding: @ts-unit;
 		margin-bottom: @ts-unit;
 	}
@@ -109,7 +106,7 @@ article {
 .doc-typo {
 	max-width: @ts-unit * 30;
 	span.extra {
-		color: fade(@ts-black, 50%);
+		color: fade(@ts-color-black, 50%);
 		margin-left: @ts-unit-double;
 		font-family: @ts-fontstack-mono;
 		font-size: @ts-fontsize;

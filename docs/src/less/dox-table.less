@@ -1,8 +1,8 @@
 #markdown table,
 table.api {
 	width: 100%;
-	background-color: @ts-lite-lite;
-	color: @ts-dark-liter;
+	background-color: @ts-color-gray-lighter;
+	//color: @ts-color-dark-liter;
 	//font-weight: @ts-fontweight-light;
 	code {
 		white-space: nowrap;
@@ -23,8 +23,8 @@ table.api {
 		//font-weight: @ts-fontweight-light;
 	}
 	caption {
-		background-color: @ts-dark-lite;
-		color: @ts-white;
+		background-color: @ts-color-gray-darker;
+		color: @ts-color-white;
 		.ts-mixin-rounded-t;
 	}
 	td {
@@ -48,23 +48,22 @@ table.api {
 	background: transparent;
 	//font-weight: @ts-fontweight-light;
 	tr {
-		border-top: 1px solid @ts-lite-lite;
-		border-bottom: 1px solid @ts-lite-lite;
+		//border-top: 1px solid @ts-lite-lite;
+		//border-bottom: 1px solid @ts-lite-lite;
 		td,
 		th {
 			padding: @ts-unit-half;
 			&:nth-child(1),
 			&:nth-child(2) {
 				padding: @ts-unit-half;
-				border-top: 1px solid @ts-white;
-				border-bottom: 1px solid @ts-white;
+				border-top: 1px solid @ts-color-white;
+				border-bottom: 1px solid @ts-color-white;
 			}
-
 			&:nth-child(1) {
-				background: fade(@ts-green, 30%);
+				background: fade(@ts-color-green, 30%);
 			}
 			&:nth-child(2) {
-				background: fade(@ts-red, 30%);
+				background: fade(@ts-color-red, 30%);
 			}
 		}
 	}

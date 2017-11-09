@@ -19,8 +19,10 @@
     <script>
         $(document).ready(function() {
             $(".user-container div").click(function(e) {
+                var name = $(e.currentTarget).attr("name");
                 ts.ui.get("#myAside", aside => aside.close());
-                ts.ui.Notification.success($(e.currentTarget).attr("name"));
+                $("#mySelect").val(name);
+                ts.ui.Notification.success(name);
             });
         });
     </script>
@@ -69,6 +71,13 @@
                                         <label>
 										<span>Select</span>
 										<select id="mySelect" data-ts.custom="true">
+											<option value=""></option>
+											<option value="Karl Benson">Karl Benson</option>
+											<option value="Marshall Garrett">Marshall Garrett</option>
+											<option value="Natalie Carr">Natalie Carr</option>
+											<option value="Rochelle Cox">Rochelle Cox</option>
+											<option value="Mae Schultz">Mae Schultz</option>
+											<option value="Jimmie Edwards">Jimmie Edwards</option>
 										</select>
 									</label>
                                     </fieldset>
@@ -76,6 +85,93 @@
                             </li>
                         </ul>
                     </div>
+                </section>
+                <section>
+                    <p>Create your own <code class="el">Aside</code></p>
+                    <figure data-ts="DoxMarkup" data-ts.code="%3Caside%20data-ts%3D%22Aside%22%20data-ts.title%3D%22Custom%20Select%22%20id%3D%22myAside%22%3E%0A%09%3Cdiv%20data-ts%3D%22Panel%22%20class%3D%22user-container%22%3E%0A%09%09%3Cdiv%20name%3D%22Karl%20Benson%22%3E%0A%09%09%09%3Cimg%20data-ts%3D%22UserImage%22%20alt%3D%22Karl%20Benson%22%2F%3E%0A%09%09%09%3Cspan%3EKarl%20Benson%3C%2Fspan%3E%0A%09%09%3C%2Fdiv%3E%0A%09%09%3Cdiv%20name%3D%22Marshall%20Garrett%22%3E%0A%09%09%09%3Cimg%20data-ts%3D%22UserImage%22%20alt%3D%22Marshall%20Garrett%22%2F%3E%0A%09%09%09%3Cspan%3EMarshall%20Garrett%3C%2Fspan%3E%0A%09%09%3C%2Fdiv%3E%0A%09%09%3Cdiv%20name%3D%22Natalie%20Carr%22%3E%0A%09%09%09%3Cimg%20data-ts%3D%22UserImage%22%20alt%3D%22Natalie%20Carr%22%2F%3E%0A%09%09%09%3Cspan%3ENatalie%20Carr%3C%2Fspan%3E%0A%09%09%3C%2Fdiv%3E%0A%09%09%3Cdiv%20name%3D%22Rochelle%20Cox%22%3E%0A%09%09%09%3Cimg%20data-ts%3D%22UserImage%22%20alt%3D%22Rochelle%20Cox%22%2F%3E%0A%09%09%09%3Cspan%3ERochelle%20Cox%3C%2Fspan%3E%0A%09%09%3C%2Fdiv%3E%0A%09%09%3Cdiv%20name%3D%22Mae%20Schultz%22%3E%0A%09%09%09%3Cimg%20data-ts%3D%22UserImage%22%20alt%3D%22Mae%20Schultz%22%2F%3E%0A%09%09%09%3Cspan%3EMae%20Schultz%3C%2Fspan%3E%0A%09%09%3C%2Fdiv%3E%0A%09%09%3Cdiv%20name%3D%22Jimmie%20Edwards%22%3E%0A%09%09%09%3Cimg%20data-ts%3D%22UserImage%22%20alt%3D%22Jimmie%20Edwards%22%2F%3E%0A%09%09%09%3Cspan%3EJimmie%20Edwards%3C%2Fspan%3E%0A%09%09%3C%2Fdiv%3E%0A%09%3C%2Fdiv%3E%0A%3C%2Faside%3E">
+                        <script type="text/html">
+                            <aside data-ts="Aside" data-ts.title="Custom Select" id="myAside">
+                                <div data-ts="Panel" class="user-container">
+                                    <div name="Karl Benson">
+                                        <img data-ts="UserImage" alt="Karl Benson" />
+                                        <span>Karl Benson</span>
+                                    </div>
+                                    <div name="Marshall Garrett">
+                                        <img data-ts="UserImage" alt="Marshall Garrett" />
+                                        <span>Marshall Garrett</span>
+                                    </div>
+                                    <div name="Natalie Carr">
+                                        <img data-ts="UserImage" alt="Natalie Carr" />
+                                        <span>Natalie Carr</span>
+                                    </div>
+                                    <div name="Rochelle Cox">
+                                        <img data-ts="UserImage" alt="Rochelle Cox" />
+                                        <span>Rochelle Cox</span>
+                                    </div>
+                                    <div name="Mae Schultz">
+                                        <img data-ts="UserImage" alt="Mae Schultz" />
+                                        <span>Mae Schultz</span>
+                                    </div>
+                                    <div name="Jimmie Edwards">
+                                        <img data-ts="UserImage" alt="Jimmie Edwards" />
+                                        <span>Jimmie Edwards</span>
+                                    </div>
+                                </div>
+                            </aside>
+                        </script><input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
+                        <div class="tabpanels">
+                            <pre class="prism language-markup">
+<code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>aside</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Aside<span class="token punctuation">&quot;</span></span> <span class="token attr-name">data-ts</span>.<span class="token attr-name">title</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Custom Select<span class="token punctuation">&quot;</span></span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>myAside<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Panel<span class="token punctuation">&quot;</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>user-container<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Karl Benson<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>UserImage<span class="token punctuation">&quot;</span></span> <span class="token attr-name">alt</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Karl Benson<span class="token punctuation">&quot;</span></span><span class="token punctuation">/&gt;</span></span>
+			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">&gt;</span></span>Karl Benson<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Marshall Garrett<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>UserImage<span class="token punctuation">&quot;</span></span> <span class="token attr-name">alt</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Marshall Garrett<span class="token punctuation">&quot;</span></span><span class="token punctuation">/&gt;</span></span>
+			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">&gt;</span></span>Marshall Garrett<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Natalie Carr<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>UserImage<span class="token punctuation">&quot;</span></span> <span class="token attr-name">alt</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Natalie Carr<span class="token punctuation">&quot;</span></span><span class="token punctuation">/&gt;</span></span>
+			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">&gt;</span></span>Natalie Carr<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Rochelle Cox<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>UserImage<span class="token punctuation">&quot;</span></span> <span class="token attr-name">alt</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Rochelle Cox<span class="token punctuation">&quot;</span></span><span class="token punctuation">/&gt;</span></span>
+			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">&gt;</span></span>Rochelle Cox<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Mae Schultz<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>UserImage<span class="token punctuation">&quot;</span></span> <span class="token attr-name">alt</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Mae Schultz<span class="token punctuation">&quot;</span></span><span class="token punctuation">/&gt;</span></span>
+			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">&gt;</span></span>Mae Schultz<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Jimmie Edwards<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>UserImage<span class="token punctuation">&quot;</span></span> <span class="token attr-name">alt</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Jimmie Edwards<span class="token punctuation">&quot;</span></span><span class="token punctuation">/&gt;</span></span>
+			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">&gt;</span></span>Jimmie Edwards<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>aside</span><span class="token punctuation">&gt;</span></span></code>
+</pre>
+                        </div>
+                    </figure>
+                </section>
+                <section>
+                    <p>Set up <code class="attr-pair"><span>onClick</span></code> event</p>
+                    <figure data-ts="DoxMarkup" data-ts.code="%24(document).ready(function()%20%7B%0A%09%24(%22.user-container%20div%22).click(function(e)%7B%0A%09%09var%20name%20%3D%20%24(e.currentTarget).attr(%22name%22)%3B%0A%09%09ts.ui.get(%22%23myAside%22%2C%20aside%20%3D%3E%20aside.close())%3B%0A%09%09%24(%22%23mySelect%22).val(name)%3B%0A%09%09ts.ui.Notification.success(name)%3B%0A%09%7D)%3B%0A%7D)%3B">
+                        <script type="text/html">
+                            $(document).ready(function() { $(".user-container div").click(function(e){ var name = $(e.currentTarget).attr("name"); ts.ui.get("#myAside", aside => aside.close()); $("#mySelect").val(name); ts.ui.Notification.success(name); }); });
+                        </script><input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
+                        <div class="tabpanels">
+                            <pre class="prism language-markup">
+<code>$(document).ready(function() {
+	$(&quot;.user-container div&quot;).click(function(e){
+		var name = $(e.currentTarget).attr(&quot;name&quot;);
+		ts.ui.get(&quot;#myAside&quot;, aside =&gt; aside.close());
+		$(&quot;#mySelect&quot;).val(name);
+		ts.ui.Notification.success(name);
+	});
+});</code>
+</pre>
+                        </div>
+                    </figure>
                 </section>
             </article>
         </div>

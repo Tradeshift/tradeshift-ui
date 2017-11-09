@@ -6,8 +6,10 @@
 	<script>
 		$(document).ready(function() {
 			$(".user-container div").click(function(e){
+				var name = $(e.currentTarget).attr("name");
 				ts.ui.get("#myAside", aside => aside.close());
-				ts.ui.Notification.success($(e.currentTarget).attr("name"));
+				$("#mySelect").val(name);
+				ts.ui.Notification.success(name);
 			});
 		});
 	</script>
@@ -45,12 +47,69 @@
 									<label>
 										<span>Select</span>
 										<select id="mySelect" data-ts.custom="true">
+											<option value=""></option>
+											<option value="Karl Benson">Karl Benson</option>
+											<option value="Marshall Garrett">Marshall Garrett</option>
+											<option value="Natalie Carr">Natalie Carr</option>
+											<option value="Rochelle Cox">Rochelle Cox</option>
+											<option value="Mae Schultz">Mae Schultz</option>
+											<option value="Jimmie Edwards">Jimmie Edwards</option>
 										</select>
 									</label>
 								</fieldset>
 							</form>
 						</li>
 					</ul>
+				</section>
+				<section>
+					<p>Create your own <elm>Aside</elm></p>
+					<figure data-ts="DoxMarkup">
+						<script type="text/html">
+							<aside data-ts="Aside" data-ts.title="Custom Select" id="myAside">
+								<div data-ts="Panel" class="user-container">
+									<div name="Karl Benson">
+										<img data-ts="UserImage" alt="Karl Benson"/>
+										<span>Karl Benson</span>
+									</div>
+									<div name="Marshall Garrett">
+										<img data-ts="UserImage" alt="Marshall Garrett"/>
+										<span>Marshall Garrett</span>
+									</div>
+									<div name="Natalie Carr">
+										<img data-ts="UserImage" alt="Natalie Carr"/>
+										<span>Natalie Carr</span>
+									</div>
+									<div name="Rochelle Cox">
+										<img data-ts="UserImage" alt="Rochelle Cox"/>
+										<span>Rochelle Cox</span>
+									</div>
+									<div name="Mae Schultz">
+										<img data-ts="UserImage" alt="Mae Schultz"/>
+										<span>Mae Schultz</span>
+									</div>
+									<div name="Jimmie Edwards">
+										<img data-ts="UserImage" alt="Jimmie Edwards"/>
+										<span>Jimmie Edwards</span>
+									</div>
+								</div>
+							</aside>
+						</script>
+					</figure>
+				</section>
+				<section>
+					<p>Set up <att>onClick</att> event</p>
+					<figure data-ts="DoxMarkup">
+						<script type="text/html">
+							$(document).ready(function() {
+								$(".user-container div").click(function(e){
+									var name = $(e.currentTarget).attr("name");
+									ts.ui.get("#myAside", aside => aside.close());
+									$("#mySelect").val(name);
+									ts.ui.Notification.success(name);
+								});
+							});
+						</script>
+					</figure>
 				</section>
 			</article>
 		</main>

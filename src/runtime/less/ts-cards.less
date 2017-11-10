@@ -9,16 +9,16 @@
 	// TEMP: Companycard needs details rendering!
 	display: block;
 	max-width: 298px;
-	border: 1px solid @ts-lite;
-	background-color: @ts-white;
-	color: @ts-dark-dark;
+	border: 1px solid @ts-color-gray-lighter;
+	background-color: @ts-color-white;
+	color: @ts-color-gray-darker;
 	height: @cardheight;
 	margin-bottom: @ts-unit;
 	position: relative;
 	.ts-card-connection {
 		.ts-mixin-maximize();
 		top: auto;
-		background-color: @ts-lite-liter;
+		background-color: @ts-color-gray-lighter;
 		height: @ts-unit-double - 1px;
 		padding: @ts-unit-half 88px (@ts-unit-half - 1px) (@ts-unit-double - 1px);
 	}
@@ -31,7 +31,7 @@
 		line-height: @ts-unit-double;
 	}
 	.ts-card-connection-text {
-		color: @ts-medium-darker;
+		color: @ts-color-gray-darker;
 	}
 }
 
@@ -89,21 +89,21 @@
 	display: block;
 	position: relative;
 	border: 1px solid rgba(0, 0, 0, 0.1);
-	background-color: @ts-white;
+	background-color: @ts-color-white;
 }
 .ts-companycard .ts-mockup {
 	color: transparent;
 	.ts-companycard-branding {
 		border: 1px solid rgba(0, 0, 0, 0.1);
-		background-color: @ts-white;
+		background-color: @ts-color-white;
 	}
 	.ts-companycard-details,
 	.ts-companycard-name {
 		span {
-			background-color: @ts-lite-liter;
+			background-color: @ts-color-gray-lighter;
 		}
 		i {
-			color: @ts-lite-lite;
+			color: @ts-color-gray-lighter;
 		}
 	}
 }
@@ -186,7 +186,7 @@
 	}
 	.ts-usercard-name {
 		.ts-mixin-transition-colors(@ts-transition-now);
-		color: @ts-black;
+		color: @ts-color-black;
 		font-weight: @ts-fontweight-semibold;
 		padding: @ts-unit-half;
 		padding-left: 0;
@@ -202,7 +202,7 @@
 		cursor: pointer;
 		&:hover {
 			.ts-usercard-name {
-				color: @ts-blue;
+				color: @ts-color-blue;
 			}
 		}
 	}

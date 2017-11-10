@@ -54,7 +54,7 @@
 			font-weight: normal;
 		}
 		i {
-			color: @ts-black;
+			color: @ts-color-black;
 			&:before {
 				font-size: @ts-fontsize-big;
 			}
@@ -66,7 +66,7 @@
 			font-size: @ts-fontsize-small;
 			padding: @ts-unit-half 0;
 			font-weight: @ts-fontweight;
-			color: @ts-black;
+			color: @ts-color-black;
 		}
 	}
 	.ts-calendar-days {
@@ -87,16 +87,16 @@
 		}
 		.ts-calendar-other {
 			button {
-				color: @ts-lite-darker;
+				color: @ts-color-gray-light;
 			}
 		}
 		.ts-selected {
 			button,
 			button:hover {
 				font-weight: @ts-fontweight-semibold;
-				color: @ts-white;
+				color: @ts-color-white;
 				span {
-					background-color: @ts-blue;
+					background-color: @ts-color-blue;
 				}
 			}
 		}
@@ -110,11 +110,11 @@
 				left: 50%;
 				bottom: 3px;
 				margin-left: -3px;
-				background-color: @ts-blue;
+				background-color: @ts-color-blue;
 			}
 			&.ts-selected {
 				span:after {
-					background-color: @ts-white;
+					background-color: @ts-color-white;
 				}
 			}
 		}
@@ -130,11 +130,11 @@
 				left: 0;
 				right: 0;
 				top: 50%;
-				border-bottom: 1px solid @ts-blue;
+				border-bottom: 1px solid @ts-color-blue;
 			}
 			&.ts-calendar-other {
 				span:after {
-					border-color: @ts-lite-darker;
+					border-color: @ts-color-gray-light;
 				}
 			}
 		}

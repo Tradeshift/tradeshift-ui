@@ -25,11 +25,14 @@
 ::-moz-selection,
 ::-webkit-selection,
 ::selection {
-	background: @ts-blue;
-	color: @ts-white;
+	background: @ts-color-blue;
+	color: @ts-color-white;
 }
 ::placeholder {
 	font-style: italic;
+}
+html {
+	background-color: @ts-color-gray-lightest;
 }
 html,
 body {
@@ -37,13 +40,12 @@ body {
 	padding: 0;
 	height: 100%;
 	overflow: hidden;
-	background-color: @ts-lite-liter;
 }
 body {
 	visibility: hidden; // hide everything during page load, see next declaration!
 	font-family: @ts-fontstack;
 	font-weight: @ts-fontweight;
-	color: @ts-black;
+	color: @ts-color-black;
 	font-size: @ts-fontsize;
 	line-height: @ts-unit;
 	position: relative;

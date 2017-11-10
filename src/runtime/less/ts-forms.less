@@ -124,7 +124,7 @@
 			padding-bottom: @ts-unit-quarter - 1px;
 			padding-left: @ts-unit-half;
 			padding-right: 0;
-			background-color: @ts-white;
+			background-color: @ts-color-white;
 			height: @ts-unit-plus;
 		}
 		&.ts-textarea {
@@ -155,7 +155,7 @@
 				font-weight: normal;
 				top: @ts-unit-quarter;
 				left: -@ts-unit-quarter;
-				color: @ts-medium-litest;
+				color: @ts-color-gray-light;
 			}
 			+ span:after {
 				top: 50%;
@@ -188,12 +188,12 @@
 			&[type='checkbox'] {
 				&:checked {
 					+ span:before {
-						color: @ts-blue;
+						color: @ts-color-blue;
 					}
 				}
 				&:disabled {
 					+ span:before {
-						color: @ts-lite;
+						color: @ts-color-gray-lighter;
 					}
 				}
 			}
@@ -203,12 +203,12 @@
 
 // Focus & Hover ...............................................................
 
-.local-mixin-focus-outline(@color: @ts-blue) {
+.local-mixin-focus-outline(@color: @ts-color-blue) {
 	border: 1px solid @color;
 	box-shadow: 0 0 0 1px fade(@color, 75%);
 	border-radius: @ts-radius;
 }
-.local-mixin-hover-outline(@color: @ts-blue) {
+.local-mixin-hover-outline(@color: @ts-color-blue) {
 	.local-mixin-focus-outline(fade(@color, 25%));
 }
 .local-mixin-no-outline() {
@@ -234,12 +234,12 @@
 					.ts-field {
 						&.ts-text,
 						&.ts-date {
-							.local-mixin-hover-outline(@ts-red);
+							.local-mixin-hover-outline(@ts-color-red);
 						}
 					}
 					&.ts-checkbox,
 					&.ts-switchlabel {
-						.local-mixin-hover-outline(@ts-red);
+						.local-mixin-hover-outline(@ts-color-red);
 					}
 				}
 			}
@@ -264,7 +264,7 @@
 			&.ts-fakelabel {
 				&:not(.ts-disabled):not(.ts-readonly) {
 					&:before {
-						color: @ts-blue;
+						color: @ts-color-blue;
 					}
 				}
 			}
@@ -321,7 +321,7 @@
 				&[type='checkbox'] {
 					&:checked {
 						+ span:before {
-							color: @ts-white;
+							color: @ts-color-white;
 						}
 					}
 					&:disabled {
@@ -366,10 +366,10 @@
 		.ts-fieldset.ts-radio {
 			&:not(.ts-disabled):not(.ts-readonly) {
 				&:hover:not(.ts-focus):before {
-					.local-mixin-hover-outline(@ts-white);
+					.local-mixin-hover-outline(@ts-color-white);
 				}
 				&.ts-focus:before {
-					.local-mixin-focus-outline(@ts-white);
+					.local-mixin-focus-outline(@ts-color-white);
 				}
 			}
 		}
@@ -380,7 +380,7 @@
 		label.ts-focus,
 		label.ts-focus-on {
 			&.ts-fakelabel:not(.ts-disabled):not(.ts-readonly):before {
-				color: @ts-red;
+				color: @ts-color-red;
 			}
 		}
 	}
@@ -390,7 +390,7 @@
 		label.ts-focus,
 		label.ts-focus-on {
 			&.ts-fakelabel:not(.ts-disabled):not(.ts-readonly):before {
-				color: @ts-green;
+				color: @ts-color-green;
 			}
 		}
 	}
@@ -400,7 +400,7 @@
 		label.ts-focus,
 		label.ts-focus-on {
 			&.ts-fakelabel:not(.ts-disabled):not(.ts-readonly):before {
-				color: @ts-purple;
+				color: @ts-color-purple;
 			}
 		}
 	}
@@ -414,7 +414,7 @@
 			.ts-field {
 				&.ts-text,
 				&.ts-date {
-					border-color: @ts-red;
+					border-color: @ts-color-red;
 				}
 			}
 		}
@@ -424,19 +424,19 @@
 				.ts-field {
 					&.ts-text,
 					&.ts-date {
-						.local-mixin-focus-outline(@ts-red);
+						.local-mixin-focus-outline(@ts-color-red);
 					}
 				}
 				&.ts-checkbox,
 				&.ts-switchlabel {
-					.local-mixin-focus-outline(@ts-red);
+					.local-mixin-focus-outline(@ts-color-red);
 				}
 			}
 		}
 	}
 	.ts-errors,
 	.ts-info {
-		color: @ts-red;
+		color: @ts-color-red;
 		margin-left: @ts-unit-half;
 		font-size: @ts-fontsize-mini;
 		font-weight: @ts-fontweight;
@@ -484,21 +484,21 @@
 		}
 	}
 	.ts-info {
-		color: @ts-black;
+		color: @ts-color-black;
 		> dt {
 			&:before {
 				content: 'i';
-				color: @ts-blue;
+				color: @ts-color-blue;
 			}
 		}
 	}
 	.ts-disabled {
 		+ .ts-errors,
 		+ .ts-info {
-			color: @ts-medium;
+			color: @ts-color-gray;
 			> dt {
 				&:before {
-					color: @ts-medium;
+					color: @ts-color-gray;
 				}
 			}
 		}
@@ -529,7 +529,7 @@
 				left: auto;
 				bottom: 26px;
 				width: @ts-unit-plus;
-				color: @ts-medium;
+				color: @ts-color-gray;
 			}
 			&.ts-engine-gecko {
 				&:before {
@@ -628,7 +628,7 @@
 			position: relative;
 			top: @ts-unit-quarter - 1px;
 			border-radius: @ts-unit-half;
-			background-color: @ts-lite-dark;
+			background-color: @ts-color-gray-lighter;
 			&,
 			> i {
 				.ts-mixin-transition(all,0.1s,ease-out);
@@ -648,20 +648,21 @@
 				}
 				&:first-child {
 					opacity: 1;
-					background-color: @ts-medium;
-					color: @ts-lite-dark;
+					background-color: @ts-color-gray;
+					color: @ts-color-gray-lighter;
 					&:before {
 						left: -0.5px;
 					}
 				}
 				&:last-child {
 					opacity: 0;
-					background-color: @ts-green-dark;
-					color: @ts-green-text;
+					background-color: @ts-color-green-dark;
+					color: @ts-color-white;
 				}
 			}
 			&.ts-checked {
-				background-color: @ts-litegreen; // TODO: this color!
+				// background-color: lime;
+				background-color: @ts-color-green-light;
 				> i {
 					left: 100%;
 					margin-left: -@ts-unit;
@@ -798,12 +799,12 @@
 			> .ts-field,
 			> span,
 			&:after {
-				color: @ts-medium;
+				color: @ts-color-gray;
 			}
 			.ts-field {
 				&.ts-text {
 					// &.ts-date
-					border-color: @ts-lite;
+					border-color: @ts-color-gray-lighter;
 				}
 			}
 		}
@@ -822,7 +823,7 @@
 			left: auto;
 			bottom: 26px;
 			width: @ts-unit-plus;
-			color: @ts-medium;
+			color: @ts-color-gray;
 			line-height: @ts-unit-plus;
 		}
 		&:not(.ts-disabled):not(.ts-readonly):after {
@@ -839,8 +840,8 @@
 		left: 0;
 		right: 0;
 		z-index: 1;
-		background: @ts-dark-liter;
-		border-bottom: 1px solid @ts-black;
+		background: @ts-color-gray-dark;
+		border-bottom: 1px solid @ts-color-black;
 		max-height: ((@ts-unit * 7.5) - 1px);
 		margin: 1px @ts-unit-half 0;
 		overflow-y: auto;
@@ -848,12 +849,12 @@
 			position: relative;
 			height: @ts-unit-plus;
 			line-height: @ts-unit-plus;
-			border-bottom: 1px solid @ts-black;
+			border-bottom: 1px solid @ts-color-black;
 			padding: 0 7px;
 			font-size: @ts-fontsize-mini;
 			overflow: hidden;
-			background: @ts-dark-liter;
-			color: fade(@ts-white, 70%);
+			background: @ts-color-gray-dark;
+			color: fade(@ts-color-white, 70%);
 			text-overflow: ellipsis;
 			cursor: pointer;
 			&:after {
@@ -864,7 +865,7 @@
 				font-style: normal;
 			}
 			&.ts-autocomplete-results {
-				background: @ts-dark;
+				background: @ts-color-gray-darker;
 				font-style: italic;
 			}
 			&.ts-autocomplete-results {
@@ -877,15 +878,15 @@
 				border-bottom: 1px solid transparent;
 			}
 			&.ts-autocomplete-selected {
-				color: @ts-white;
-				background: @ts-blue;
+				color: @ts-color-white;
+				background: @ts-color-blue;
 				&:after {
 					content: '↲';
 				}
 			}
 			&:hover {
-				color: @ts-white;
-				background: fade(@ts-blue, 50%);
+				color: @ts-color-white;
+				background: fade(@ts-color-blue, 50%);
 			}
 			b {
 				font-weight: @ts-fontweight;

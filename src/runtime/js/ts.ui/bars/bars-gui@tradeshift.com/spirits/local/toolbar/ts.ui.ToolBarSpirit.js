@@ -82,7 +82,6 @@ ts.ui.ToolBarSpirit = (function using(
 						} else {
 							this.dom.hide();
 						}
-						this._layoutmain(is); // TODO: THIS MUST GO WHEN HEADER GETS CREATED!
 					}
 				}
 			},
@@ -120,22 +119,6 @@ ts.ui.ToolBarSpirit = (function using(
 				this.tick.time(function hotfix() {
 					this.css.add(ts.ui.CLASS_READY);
 				}, 300);
-			},
-
-			/**
-			 * Further hotfix for situation explained in previous comment.
-			 */
-			onattach: function() {
-				this.super.onattach();
-				this._layoutmain(true);
-			},
-
-			/**
-			 * Remove assistant classnames.
-			 */
-			ondetach: function() {
-				this.super.ondetach();
-				this._layoutmain(false);
 			},
 
 			/**
@@ -563,25 +546,6 @@ ts.ui.ToolBarSpirit = (function using(
 					if (tabs && tabs.getLength()) {
 						this._updateselection(tabs);
 						this._optimizefit(tabs);
-					}
-				}
-			},
-
-			/**
-			 * Layout the Main section.
-			 * @param {boolean} show
-			 */
-			_layoutmain: function(show) {
-				if (this.guilayout.outsideMain()) {
-					if (this.guilayout.beforeMain()) {
-						this._looknormal(this.css);
-						this._layoutbefore(show);
-						this._initbreakpoint(show);
-					} else if (this.guilayout.afterMain()) {
-						if (!this.dom.ancestor(ts.ui.FooterBarSpirit)) {
-							this._looknormal(this.css);
-							this._layoutafter(show);
-						}
 					}
 				}
 			},

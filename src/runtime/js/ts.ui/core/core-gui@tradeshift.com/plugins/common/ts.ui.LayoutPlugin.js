@@ -59,9 +59,8 @@ ts.ui.LayoutPlugin = (function using(GuiArray, DOMPlugin, CSSPlugin, chained) {
 			 * @returns {ts.ui.LayoutPlugin}
 			 */
 			shiftGlobal: chained(function(on, cnames) {
-				this.spirit.action.dispatch(ts.ui.ACTION_ROOT_CLASSNAMES, {
-					classes: GuiArray.make(cnames),
-					enabled: !!on
+				ts.ui.get(document.documentElement, function(root) {
+					root.css.shift(on, GuiArray.make(cnames));
 				});
 			}),
 

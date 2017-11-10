@@ -268,7 +268,6 @@ ts.ui = gui.namespace(
 			ACTION_STATUSBAR_LEVEL: 'ts-action-statusbar-level',
 			ACTION_HEADER_LEVEL: 'ts-action-header-level',
 			ACTION_FOOTER_LEVEL: 'ts-action-footer-level',
-			ACTION_ROOT_CLASSNAMES: 'ts-action-root-classnames',
 
 			// postmessages
 			MESSAGE_BUSY: 'ts-busy',

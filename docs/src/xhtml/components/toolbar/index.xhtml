@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>ToolBar</title>
+	</head>
+	<body>
+		<div data-ts="App">
+			<div data-ts="Main">
+				<div data-ts="Content">
+					<header data-ts="ToolBar" id="toolbar"></header>
+					<div data-ts="Panel">
+						<article>
+							<section class="desc">
+								<p>Hello world.</p>
+							</section>
+							<section>
+								<p>Assign the <att>data.ts="ToolBar"</att> attribute to a <elm>header</elm> to initialize it as a ToolBar.</p>
+								<figure data-ts="DoxMarkup">
+									<script>
+										<header data-ts="ToolBar"></header>
+									</script>
+								</figure>
+								<p>ToolBars can be positioned anywhere on the page, but on this page we've positioned before the <val>Panel</val> element in the <a data-ts="Button" href="#getstarted/layout.html">basic layout</a>. This way, it stays fixed on the top when the panel is scrolling.</p>
+							</section>
+							<h3 id="buttons">ToolBar buttons</h3>
+							<section>
+								<object data="../header/buttons.xhtml#buttons-desc">
+									<replace input="ts.ui.TopBar" output="ts.ui.get('#toolbar')"/>
+								</object>
+							</section>
+							<section>
+								<object data="../header/buttons.xhtml#buttons-api">
+									<replace input="TopBar" output="TabBar"/>
+								</object>
+							</section>
+						</section>
+						</article>
+					</div>
+				</div>
+			</div>
+		</div>
+			<!--
+			<article>
+				<section class="desc">
+					<p>Hello world.</p>
+				</section>
+				<section>
+					<p>Great.</p>
+				</section>
+			</article>
+		-->
+	</body>
+</html>

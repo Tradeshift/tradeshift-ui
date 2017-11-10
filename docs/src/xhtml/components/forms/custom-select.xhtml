@@ -26,22 +26,12 @@
 			<article>
 				<h1>Custom Select</h1>
 				<section class="desc">
-					<p>You can handle the onclick action on a select input element to make your own select, if you set the attribute <att>data-ts.custom="true"</att></p>
+					<p>You can handle the onclick action on a select input element to make your own select, if you set the attribute <att>data-ts.custom="true"</att>. Following example is custom user select, which made step by step.</p>
 				</section>
 				<section>
-					<ul class="splitscreen">
-						<li>
-							<figure data-ts="DoxScript" class="attention">
-								<script type="runnable">
-									$("#mySelect").click(function(){
-										ts.ui.get("#myAside", aside => {
-											aside.open();
-										})
-									});
-								</script>
-							</figure>
-						</li>
-						<li>
+					<p>1. Create your own select input element.</p>
+					<figure data-ts="DoxMarkup">
+						<script type="text/html">
 							<form data-ts="Form">
 								<fieldset>
 									<label>
@@ -58,11 +48,11 @@
 									</label>
 								</fieldset>
 							</form>
-						</li>
-					</ul>
+						</script>
+					</figure>
 				</section>
 				<section>
-					<p>Create your own <elm>Aside</elm></p>
+					<p>2. Create your own <val>Aside</val> and fill up <elm>options</elm> in the panel of the <val>Aside</val></p>
 					<figure data-ts="DoxMarkup">
 						<script type="text/html">
 							<aside data-ts="Aside" data-ts.title="Custom Select" id="myAside">
@@ -97,8 +87,8 @@
 					</figure>
 				</section>
 				<section>
-					<p>Set up <att>onClick</att> event</p>
-					<figure data-ts="DoxMarkup">
+					<p>3. Handle the <att>onClick</att> event of the options</p>
+					<figure data-ts="DoxScript">
 						<script type="text/html">
 							$(document).ready(function() {
 								$(".user-container div").click(function(e){
@@ -110,6 +100,40 @@
 							});
 						</script>
 					</figure>
+				</section>
+				<section>
+					<p>4. You can run the following code first and then click the <elm>select</elm> on the right to check how it works. Good luck! </p>
+					<ul class="splitscreen">
+						<li>
+							<figure data-ts="DoxScript" class="attention">
+								<script type="runnable">
+									$("#mySelect").click(function(){
+										ts.ui.get("#myAside", aside => {
+											aside.open();
+										})
+									});
+								</script>
+							</figure>
+						</li>
+						<li>
+							<form data-ts="Form">
+								<fieldset>
+									<label>
+										<span>Select</span>
+										<select id="mySelect" data-ts.custom="true">
+											<option value=""></option>
+											<option value="Karl Benson">Karl Benson</option>
+											<option value="Marshall Garrett">Marshall Garrett</option>
+											<option value="Natalie Carr">Natalie Carr</option>
+											<option value="Rochelle Cox">Rochelle Cox</option>
+											<option value="Mae Schultz">Mae Schultz</option>
+											<option value="Jimmie Edwards">Jimmie Edwards</option>
+										</select>
+									</label>
+								</fieldset>
+							</form>
+						</li>
+					</ul>
 				</section>
 			</article>
 		</main>

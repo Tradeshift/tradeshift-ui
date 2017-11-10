@@ -5,7 +5,7 @@
 	position: relative;
 	vertical-align: middle;
 	&.ts-inset {
-		background-color: @ts-white;
+		background-color: @ts-color-white;
 		&,
 		.ts-input {
 			border-radius: @ts-unit;
@@ -34,7 +34,7 @@
 		font-weight: @ts-fontweight !important; // TODO: MOVE TO TABLE COMPONENT(?)
 		display: inline-block;
 		padding: 0;
-		color: @ts-black;
+		color: @ts-color-black;
 		text-indent: 100%;
 	}
 	.ts-button-clear {
@@ -49,7 +49,7 @@
 .ts-search .ts-input:focus,
 .ts-search.ts-expanded .ts-input {
 	padding: 0 @ts-unit-double 0 @ts-unit-half;
-	background-color: @ts-white;
+	background-color: @ts-color-white;
 	padding-left: @ts-unit-double;
 	width: 100%;
 	text-indent: 0;
@@ -60,25 +60,27 @@
 		padding-left: @ts-unit-double; // TODO: MOVE TO TABLE COMPONENT!
 	}
 }
+/*
 .ts-search .ts-input:focus {
-	background-color: @ts-yellow;
+	background-color: @ts-color-yellow;
 }
+*/
 
 // Browsers ....................................................................
 
 .ts-engine-webkit {
 	.ts-search.ts-inset .ts-input {
-		box-shadow: inset 0 0 4px fade(@ts-dark, 65%);
+		box-shadow: inset 0 0 4px fade(@ts-color-gray-darker, 65%);
 	}
 }
 .ts-engine-gecko {
 	.ts-search.ts-inset .ts-input {
-		box-shadow: inset 0 0 2px fade(@ts-dark, 65%);
+		box-shadow: inset 0 0 2px fade(@ts-color-gray-darker, 65%);
 	}
 }
 .ts-engine-explorer {
 	.ts-search.ts-inset .ts-input {
-		border: 1px solid @ts-medium-liter;
+		border: 1px solid @ts-color-gray;
 	}
 }
 .ts-engine-webkit,

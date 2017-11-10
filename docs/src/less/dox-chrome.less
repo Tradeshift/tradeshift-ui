@@ -1,3 +1,5 @@
+@import '../../../src/runtime/less/ts-variables.less';
+
 // Chrome ......................................................................
 
 .ts-doxchrome {
@@ -7,11 +9,11 @@
 	}
 	.ts-sidebar {
 		.ts-toolbar {
-			background-color: @ts-dark-liter;
+			background-color: @ts-color-gray-darker;
 			&,
 			a,
 			button {
-				color: @ts-white;
+				color: @ts-color-white;
 			}
 			label {
 				&.ts-focus,
@@ -29,13 +31,13 @@
 		.ts-panel {
 			padding: 0;
 			overflow-y: scroll;
-			background-color: @ts-dark-lite;
+			background-color: @ts-color-gray-darker;
 			&::-webkit-scrollbar {
 				width: 5px;
 			}
 			&::-webkit-scrollbar-thumb:vertical {
 				margin: 5px;
-				background-color: @ts-medium-liter;
+				background-color: @ts-color-gray;
 				-webkit-border-radius: 5px;
 			}
 			&::-webkit-scrollbar-button:start:decrement,
@@ -92,8 +94,8 @@
 		left: auto;
 		i {
 			.ts-mixin-fix(@ts-unit-triple, @ts-unit-triple);
-			background-color: @ts-dark-liter;
-			color: @ts-white;
+			background-color: @ts-color-gray;
+			color: @ts-color-white;
 			position: absolute;
 			top: 0;
 			left: 0;
@@ -120,7 +122,7 @@
 	.ts-menu {
 		h3 {
 			margin: 0;
-			background-color: @ts-dark;
+			background-color: @ts-color-gray;
 			padding: @ts-unit-quarter;
 			padding-left: @ts-unit;
 			font-size: @ts-fontsize-small;
@@ -138,14 +140,13 @@
 			}
 			> a {
 				border-bottom: none;
-				background-color: @ts-dark-lite;
-				color: @ts-white;
+				background-color: @ts-color-gray-darker;
+				color: @ts-color-white;
 				&:hover:not(:disabled),
 				&:focus {
-					background-color: @ts-dark-lite !important;
+					background-color: @ts-color-gray-darker !important;
 					&:before {
-						background-color: @ts-blue-dark;
-						background-color: @ts-blue;
+						background-color: @ts-color-blue;
 					}
 				}
 				> i {
@@ -157,8 +158,8 @@
 					z-index: 3;
 					&,
 					&:hover {
-						background-color: @ts-blue !important;
-						color: @ts-white;
+						background-color: @ts-color-blue !important;
+						color: @ts-color-white;
 						cursor: default;
 					}
 				}
@@ -171,7 +172,7 @@
 				> a:not(.ts-checked) {
 					&,
 					&:hover {
-						background-color: @ts-dark-liter !important;
+						background-color: lighten(@ts-color-gray-darker, 5%) !important;
 					}
 				}
 				> .ts-shadow {
@@ -209,17 +210,17 @@
 				overflow: hidden;
 				text-overflow: ellipsis;
 				white-space: nowrap;
-				color: @ts-lite;
+				color: @ts-color-gray;
 				position: relative;
 				strong {
-					color: @ts-white;
+					color: @ts-color-white;
 				}
 			}
 		}
 	}
 	#menucover {
 		height: 0;
-		background-color: @ts-dark-lite;
+		background-color: @ts-color-gray;
 		top: 0;
 		left: 0;
 		width: @ts-width-aside;
@@ -274,7 +275,7 @@
 	&.collapse-some {
 		.ts-app {
 			left: @ts-unit-triple;
-			background-color: @ts-lite-liter; 
+			//background-color: @ts-color-light; 
 			.ts-mixin-fixwidth(calc(~'100% - '@ts-unit-triple));
 		}
 		&:before {

@@ -1,16 +1,20 @@
+@import '../../../src/runtime/less/ts-variables.less';
+
+@superliteblue: lighten(@ts-color-blue-lightest, 6%);
+
 .docs-mixin-stripes() {
-	background-image: -webkit-linear-gradient(@ts-white 50%, @superliteblue 50%);
-	background-image: -moz-linear-gradient(@ts-white 50%, @superliteblue 50%);
-	background-image: -ms-linear-gradient(@ts-white 50%, @superliteblue 50%);
-	background-image: -o-linear-gradient(@ts-white 50%, @superliteblue 50%);
-	background-image: linear-gradient(@ts-white 50%, @superliteblue 50%);
+	background-image: -webkit-linear-gradient(@ts-color-white 50%, @superliteblue 50%);
+	background-image: -moz-linear-gradient(@ts-color-white 50%, @superliteblue 50%);
+	background-image: -ms-linear-gradient(@ts-color-white 50%, @superliteblue 50%);
+	background-image: -o-linear-gradient(@ts-color-white 50%, @superliteblue 50%);
+	background-image: linear-gradient(@ts-color-white 50%, @superliteblue 50%);
 	background-size: @ts-unit-double @ts-unit-double;
 	background-origin: content-box;
 }
 
 figure {
 	position: relative;
-	background-color: @ts-white;
+	background-color: @ts-color-white;
 	&.ts-layout {
 		> .ts-panel,
 		> .ts-panels > .ts-panel {
@@ -40,9 +44,9 @@ figure {
 		padding: @ts-unit 0 @ts-unit @ts-unit;
 		overflow: auto;
 		resize: none;
-		background-color: @ts-white;
+		background-color: @ts-color-white;
 		&:focus {
-			background-color: @ts-yellow;
+			background-color: @ts-color-yellow-lightest;
 		}
 	}
 	&.editmode .editcode,
@@ -54,8 +58,7 @@ figure {
 		top: 0;
 		left: 100%;
 		margin-left: @ts-unit-half;
-		background-color: @ts-yellow;
-		color: @ts-yellow-text;
+		background-color: @ts-color-yellow-lightest;
 		padding: @ts-unit-quarter @ts-unit-half;
 		white-space: nowrap;
 		text-align: center;
@@ -99,7 +102,7 @@ pre.prism {
 	-moz-user-select: text;
 	-ms-user-select: text;
 	user-select: text;
-	color: @ts-black;
+	color: @ts-color-black;
 	direction: ltr;
 	text-align: left;
 	.docs-mixin-editor();

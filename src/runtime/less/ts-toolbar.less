@@ -1,7 +1,7 @@
 // Mixins ......................................................................
 
 /*
-.mixin-temp(@selected: pink, @unselected: @ts-white, @bground: @ts-white) {
+.mixin-temp(@selected: pink, @unselected: @ts-color-white, @bground: @ts-color-white) {
 	.ts-toolbar-tabs {
 		.ts-button {
 			color: @unselected;
@@ -12,7 +12,7 @@
 		.ts-selected .ts-button {
 			// background-color: @bground;
 			// color: @selected;
-			color: @ts-black; // HARDCODEDD FOR NOW
+			color: @ts-color-black; // HARDCODEDD FOR NOW
 		}
 	}
 }
@@ -24,7 +24,7 @@
 	.ts-mixin-unselectable();
 	.ts-mixin-fixheight(@ts-unit-triple);
 	white-space: nowrap;
-	background-color: @ts-white;
+	background-color: @ts-color-white;
 }
 .ts-toolbar-menu {
 	position: absolute;
@@ -185,7 +185,7 @@
 	}
 	.ts-tab-indicator {
 		height: 2px;
-		background-color: @ts-black;
+		background-color: @ts-color-black;
 		position: absolute;
 		left: 0;
 		bottom: 0px;
@@ -199,8 +199,8 @@
 		margin: 0;
 		border-right: 1px solid transparent;
 		em {
-			background-color: @ts-medium-litest;
-			color: @ts-black;
+			background-color: @ts-color-gray-light;
+			color: @ts-color-black;
 			min-width: 22px;
 			text-align: center;
 			border-radius: @ts-radius;
@@ -238,11 +238,11 @@
 			.ts-button {
 				cursor: default;
 				em {
-					background-color: @ts-red;
-					color: @ts-white;
+					background-color: @ts-color-red;
+					color: @ts-color-white;
 				}
 				&:after {
-					border-color: @ts-blue;
+					border-color: @ts-color-blue;
 				}
 				i {
 					cursor: pointer;
@@ -253,7 +253,7 @@
 		&:not(.ts-selected) {
 			.ts-button:hover {
 				&:after {
-					border-color: @ts-blue;
+					border-color: @ts-color-blue;
 				}
 			}
 		}
@@ -296,10 +296,10 @@
 .ts-toolbar-tabs {
 	.ts-tab {
 		.ts-button {
-			color: @ts-medium;
+			color: @ts-color-gray;
 		}
 		&.ts-selected .ts-button {
-			color: @ts-black;
+			color: @ts-color-black;
 		}
 		&.ts-tab-button {
 			overflow: hidden;
@@ -392,10 +392,10 @@
 							top: 2px;
 						}
 						&.ts-icon-checkboxon, &.ts-icon-checkbox-indeterminate {
-							color: @ts-blue;
+							color: @ts-color-blue;
 						}
 						&.ts-icon-checkbox {
-							color: @ts-medium-litest;
+							color: @ts-color-gray-light;
 						}
 					}
 				}
@@ -465,7 +465,7 @@
 	}
 	+ .ts-button {
 		&:after {
-			border-left: 1px solid @ts-white;
+			border-left: 1px solid @ts-color-white;
 		}
 		&.ts-tertiary {
 			&:after {

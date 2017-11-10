@@ -71,7 +71,7 @@
 		.ts-mixin-fixheight(@ts-unit-double);
 		li {
 			position: absolute;
-			background-color: @ts-dark;
+			background-color: @ts-color-gray-darker;
 			.ts-mixin-transition(background-color, @ts-transition-now);
 			width: 100%;
 			overflow: hidden;
@@ -91,7 +91,7 @@
 				z-index: 1;
 				.ts-button {
 					background-color: transparent;
-					color: @ts-white;
+					color: @ts-color-white;
 					cursor: pointer;
 				}
 			}
@@ -114,10 +114,10 @@
 		}
 		&.ts-open {
 			.ts-button {
-				color: @ts-white;
+				color: @ts-color-white;
 			}
 			.ts-selected {
-				background-color: @ts-blue;
+				background-color: @ts-color-blue;
 				.ts-button {
 					cursor: default;
 				}
@@ -131,7 +131,7 @@
 		&:not(.ts-open) {
 			li.ts-selected {
 				.ts-button:hover {
-					background-color: @ts-dustblue;
+					background-color: @ts-color-blue-dark;
 				}
 				&:after {
 					.ts-mixin-icon-content('7');

@@ -102,38 +102,35 @@
 					</figure>
 				</section>
 				<section>
-					<p>4. You can run the following code first and then click the <elm>select</elm> on the right to check how it works. Good luck! </p>
-					<ul class="splitscreen">
-						<li>
-							<figure data-ts="DoxScript" class="attention">
-								<script type="runnable">
-									$("#mySelect").click(function(){
-										ts.ui.get("#myAside", aside => {
-											aside.open();
-										})
-									});
-								</script>
-							</figure>
-						</li>
-						<li>
-							<form data-ts="Form">
-								<fieldset>
-									<label>
-										<span>Select</span>
-										<select id="mySelect" data-ts.custom="true">
-											<option value=""></option>
-											<option value="Karl Benson">Karl Benson</option>
-											<option value="Marshall Garrett">Marshall Garrett</option>
-											<option value="Natalie Carr">Natalie Carr</option>
-											<option value="Rochelle Cox">Rochelle Cox</option>
-											<option value="Mae Schultz">Mae Schultz</option>
-											<option value="Jimmie Edwards">Jimmie Edwards</option>
-										</select>
-									</label>
-								</fieldset>
-							</form>
-						</li>
-					</ul>
+					<p>4. You can run the following code first.</p>
+					<figure data-ts="DoxScript" class="attention">
+						<script type="runnable">
+							$("#mySelect").click(function(){
+								ts.ui.get("#myAside", aside => {
+									aside.open();
+								})
+							});
+						</script>
+					</figure>
+				</section>
+				<section>
+					<p>5. Click the <elm>select</elm> below to check how it works. Good luck! </p>
+					<form data-ts="Form">
+						<fieldset>
+							<label>
+								<span>Select</span>
+								<select id="mySelect" data-ts.custom="true">
+									<option value=""></option>
+									<option value="Karl Benson">Karl Benson</option>
+									<option value="Marshall Garrett">Marshall Garrett</option>
+									<option value="Natalie Carr">Natalie Carr</option>
+									<option value="Rochelle Cox">Rochelle Cox</option>
+									<option value="Mae Schultz">Mae Schultz</option>
+									<option value="Jimmie Edwards">Jimmie Edwards</option>
+								</select>
+							</label>
+						</fieldset>
+					</form>
 				</section>
 			</article>
 		</main>

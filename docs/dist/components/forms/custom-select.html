@@ -178,45 +178,40 @@
                     </figure>
                 </section>
                 <section>
-                    <p>4. You can run the following code first and then click the <code class="el">select</code> on the right to check how it works. Good luck! </p>
-                    <div class="splitscreen-container">
-                        <ul class="splitscreen">
-                            <li>
-                                <figure data-ts="DoxScript" class="attention runnable" data-ts.code="%24(%22%23mySelect%22).click(function()%7B%0A%09ts.ui.get(%22%23myAside%22%2C%20function(aside)%20%7B%0A%09%09aside.open()%3B%0A%09%7D)%0A%7D)%3B">
-                                    <script type="runnable">
-                                        $("#mySelect").click(function(){ ts.ui.get("#myAside", aside => { aside.open(); }) });
-                                    </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
-                                    <div class="tabpanels">
-                                        <pre class="prism language-javascript">
+                    <p>4. You can run the following code first.</p>
+                    <figure data-ts="DoxScript" class="attention runnable" data-ts.code="%24(%22%23mySelect%22).click(function()%7B%0A%09ts.ui.get(%22%23myAside%22%2C%20function(aside)%20%7B%0A%09%09aside.open()%3B%0A%09%7D)%0A%7D)%3B">
+                        <script type="runnable">
+                            $("#mySelect").click(function(){ ts.ui.get("#myAside", aside => { aside.open(); }) });
+                        </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                        <div class="tabpanels">
+                            <pre class="prism language-javascript">
 <code>$<span class="token punctuation">(</span><span class="token string">&quot;#mySelect&quot;</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">click<span class="token punctuation">(</span></span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
 	ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&quot;#myAside&quot;</span><span class="token punctuation">,</span> aside <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
 		aside<span class="token punctuation">.</span><span class="token function">open<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 	<span class="token punctuation">}</span><span class="token punctuation">)</span>
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
 </pre>
-                                    </div>
-                                </figure>
-                            </li>
-                            <li>
-                                <form data-ts="Form">
-                                    <fieldset>
-                                        <label>
-										<span>Select</span>
-										<select id="mySelect" data-ts.custom="true">
-											<option value=""></option>
-											<option value="Karl Benson">Karl Benson</option>
-											<option value="Marshall Garrett">Marshall Garrett</option>
-											<option value="Natalie Carr">Natalie Carr</option>
-											<option value="Rochelle Cox">Rochelle Cox</option>
-											<option value="Mae Schultz">Mae Schultz</option>
-											<option value="Jimmie Edwards">Jimmie Edwards</option>
-										</select>
-									</label>
-                                    </fieldset>
-                                </form>
-                            </li>
-                        </ul>
-                    </div>
+                        </div>
+                    </figure>
+                </section>
+                <section>
+                    <p>5. Click the <code class="el">select</code> below to check how it works. Good luck! </p>
+                    <form data-ts="Form">
+                        <fieldset>
+                            <label>
+								<span>Select</span>
+								<select id="mySelect" data-ts.custom="true">
+									<option value=""></option>
+									<option value="Karl Benson">Karl Benson</option>
+									<option value="Marshall Garrett">Marshall Garrett</option>
+									<option value="Natalie Carr">Natalie Carr</option>
+									<option value="Rochelle Cox">Rochelle Cox</option>
+									<option value="Mae Schultz">Mae Schultz</option>
+									<option value="Jimmie Edwards">Jimmie Edwards</option>
+								</select>
+							</label>
+                        </fieldset>
+                    </form>
                 </section>
             </article>
         </div>

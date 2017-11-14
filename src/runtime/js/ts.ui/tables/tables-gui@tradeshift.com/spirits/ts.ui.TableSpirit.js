@@ -1758,6 +1758,9 @@ ts.ui.TableSpirit = (function using(
 						} else {
 							this._openmenu(true);
 							this._selectpage();
+							if (this.onselectall) {
+								this.onselectall.call(this);
+							}
 						}
 						break;
 					case 'selection-menu-close':

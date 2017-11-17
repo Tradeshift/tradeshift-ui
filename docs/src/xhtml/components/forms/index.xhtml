@@ -123,6 +123,7 @@
 					</script>
 				</figure>
 
+<<<<<<< HEAD
 				<h3>
 					<span class="el">input</span>
 					<span class="attr-pair">
@@ -142,6 +143,30 @@
 						</form>
 					</script>
 				</figure>
+=======
+					<h3>
+						<span class="el">input</span>
+						<span class="attr-pair">
+							<span>type</span>=&quot;<span>number</span>&quot;
+						</span>
+					</h3>
+					<p>
+						Set the class <att>class="ts-right"</att> on the <elm>label</elm> to make your number text align right.
+					</p>
+					<figure data-ts="DoxMarkup">
+						<output/>
+						<script type="text/html">
+							<form data-ts="Form">
+								<fieldset>
+									<label>
+										<span>Number</span>
+										<input type="number"/>
+									</label>
+								</fieldset>
+							</form>
+						</script>
+					</figure>
+>>>>>>> master
 
 				<h3>
 					<span class="el">input</span>
@@ -166,6 +191,7 @@
 					</script>
 				</figure>
 
+<<<<<<< HEAD
 				<h3>
 					<span class="el">select</span>
 				</h3>
@@ -219,6 +245,64 @@
 					<i class="ts-icon-info"></i>
 					<p>This strange pattern ensures maximum compatibility with Angular 1.x, where an empty <elm>option</elm> is automatically inserted until a selection is performed. To also allow <em>unselection</em> in Angular, you must manually create the empty <elm>option</elm> and make sure that it is explicitly selected as default.</p>
 				</div>
+=======
+					<h3>
+						<span class="el">select</span>
+					</h3>
+					<p>
+						The <elm>select</elm> will open in an Aside, but you'll
+						mantain it like a normal <elm>select</elm>.
+						Note that the <elm>select</elm> only triggers a
+						<code>change</code> event when the Aside is fully closed!
+					</p>
+					<p>
+						Set the attribute <att>data-ts.custom="true"</att> to handle your own select event.
+					</p>
+					<figure data-ts="DoxMarkup">
+						<output/>
+						<script type="text/html">
+							<form data-ts="Form">
+								<fieldset>
+									<label>
+										<span>Select</span>
+										<select>
+											<option value="a" selected>One</option>
+											<option value="b">Two</option>
+											<option value="c">Three</option>
+										</select>
+									</label>
+								</fieldset>
+							</form>
+						</script>
+					</figure>
+					<p>You can configure the <elm>select</elm> with a default placeholder in a two-step process.</p>
+					<ul>
+						<li>Add the <att>placeholder</att> attribute to the <elm>select</elm></li>
+						<li>Leave the first <elm>option</elm> empty (no option text)</li>
+					</ul>
+					<figure data-ts="DoxMarkup">
+						<output/>
+						<script type="text/html">
+							<form data-ts="Form">
+								<fieldset>
+									<label>
+										<span>Select with placeholder</span>
+										<select placeholder="Pick a number">
+											<option></option>
+											<option value="5">5</option>
+											<option value="23">23</option>
+										</select>
+									</label>
+								</fieldset>
+							</form>
+						</script>
+					</figure>
+					<p>When a selection is made, the user can revert to the default (no selection) by clicking the selected option a second time. If you don't want to allow this, you should make sure to remove the empty <elm>option</elm>.</p>
+					<div data-ts="Note">
+						<i class="ts-icon-info"></i>
+						<p>This strange pattern ensures maximum compatibility with Angular 1.x, where an empty <elm>option</elm> is automatically inserted until a selection is performed. To also allow <em>unselection</em> in Angular, you must manually create the empty <elm>option</elm> and make sure that it is explicitly selected as default.</p>
+					</div>
+>>>>>>> master
 
 				<h3>
 					<span class="el">select</span>

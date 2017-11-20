@@ -57,7 +57,6 @@ ts.ui.Spirit = (function using(Type, GuiArray, confirmed) {
 
 			/**
 			 * If this spirit has explicit channeling, attach list of CSS classnames.
-			 * TODO: MVC frameworks might assume control of the classname :/
 			 * @param {gui.CSSPlugin} css
 			 */
 			_configureclassnames: function(css) {

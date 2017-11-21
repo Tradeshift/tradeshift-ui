@@ -110,9 +110,6 @@ gui.AttPlugin = (function using(confirmed, chained, Client) {
 						gui.Array.make(arg).forEach(function(type) {
 							if (this._addchecks(type, [handler])) {
 								this._onadd(type);
-								if (type === 'class' && Client.isExplorer9) {
-									this.spirit.element.addEventListener('DOMAttrModified', this);
-								}
 							}
 						}, this);
 					}
@@ -130,40 +127,11 @@ gui.AttPlugin = (function using(confirmed, chained, Client) {
 					handler = handler || this.spirit;
 					if (gui.Interface.validate(gui.IAttHandler, handler)) {
 						gui.Array.make(arg).forEach(function(type) {
-							if (this._removechecks(type, [handler])) {
-								// NOTE: we'll need to enable something in {gui.DOMCombos} to watch `class`!
-								if (type === 'class' && Client.isExplorer9) {
-									this.spirit.element.removeEventListener('DOMAttrModified', this);
-								}
-							}
+							this._removechecks(type, [handler]);
 						}, this);
 					}
 				})
 			),
-
-			/**
-			 * Handle that mutation event for IE9. Other browsers will be
-			 * covered with an override of `className` in {gui.DOMCombos}.
-			 * @param {MutationEvent} e
-			 */
-			handleEvent: function(e) {
-				if (e.type === 'DOMAttrModified' && e.attrName === 'class') {
-					this.$onatt('class', e.newValue);
-				}
-			},
-
-			/**
-			 * Cleanup weird event listener. The DOMAttrModified event
-			 * is by the way not exactly great for overall performance.
-			 * @param {String} type
-			 * @param {Array<object>} checks
-			 */
-			_cleanup: function(type, checks) {
-				this.super._cleanup(type, checks);
-				if (type === 'class' && Client.isExplorer9) {
-					this.spirit.element.removeEventListener('DOMAttrModified', this);
-				}
-			},
 
 			// Privileged ..............................................................
 
@@ -257,7 +225,6 @@ gui.AttPlugin = (function using(confirmed, chained, Client) {
 			set: chained(function(elm, name, value, $hotfix) {
 				var spirit = elm.spirit;
 				var change = false;
-
 				if (this._ischecked(elm, name)) {
 					// checkbox or radio?
 					change = elm.checked !== value;
@@ -266,29 +233,22 @@ gui.AttPlugin = (function using(confirmed, chained, Client) {
 						spirit.att.$onatt(name, value);
 					}
 				} else if (this._isvalue(elm, name)) {
-					// input value?
 					change = elm.value !== String(value);
 					if (change) {
 						elm.value = String(value);
 						spirit.att.$onatt(name, value);
 					}
 				} else if (name === 'required') {
-					// required?
 					elm.required = !!value;
 				} else if (name === 'readonly') {
-					// readonly?
 					elm.readOnly = !!value;
 				} else if (name === 'disabled') {
-					// disabled?
 					elm.disabled = !!value;
 				} else if (name === 'autofocus') {
-					// autofocus?
 					elm.autofocus = !!value;
 				} else if (value === null) {
-					// deleted?
 					this.del(elm, name);
 				} else {
-					// added or changed
 					value = String(value);
 					if (elm.getAttribute(name) !== value) {
 						if (spirit) {

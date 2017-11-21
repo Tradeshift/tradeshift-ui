@@ -515,10 +515,11 @@ ts.ui = gui.namespace(
 			 * Don't materialize and spiritualize during given operation.
 			 * If the operation is async, use `suspend()` and `resume()`.
 			 * @param {funtion} [operation] Assumed synchronous!
+			 * @param {Object} [thisp]
 			 */
-			suspend: function(operation) {
+			suspend: function(operation, thisp) {
 				if (arguments.length) {
-					return gui.suspend.call(gui, operation);
+					return gui.suspend.apply(gui, arguments);
 				} else {
 					gui.suspend();
 				}

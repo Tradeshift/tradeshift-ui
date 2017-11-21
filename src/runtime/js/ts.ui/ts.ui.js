@@ -518,7 +518,7 @@ ts.ui = gui.namespace(
 			 */
 			suspend: function(operation) {
 				if (arguments.length) {
-					return gui.suspend.apply(gui, operation);
+					return gui.suspend.call(gui, operation);
 				} else {
 					gui.suspend();
 				}

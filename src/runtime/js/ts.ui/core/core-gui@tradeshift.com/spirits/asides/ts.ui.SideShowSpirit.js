@@ -248,14 +248,14 @@ ts.ui.SideShowSpirit = (function using(
 
 			/**
 			 * Set or get header title.
-			 * @param {string} title
+			 * @param {*} title (will just `toString` that)
 			 * @return {ts.ui.AsideSpirit|string}
 			 */
 			title: chained(function(title) {
 				var header = this._headerspirit();
 				if (arguments.length) {
 					this._reflex(function() {
-						header.title(title);
+						header.title(String(title));
 					});
 				} else {
 					return header.title();

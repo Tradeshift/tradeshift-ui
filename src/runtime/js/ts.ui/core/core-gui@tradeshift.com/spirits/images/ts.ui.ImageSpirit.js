@@ -185,10 +185,11 @@ ts.ui.ImageSpirit = (function using(fontcss) {
 			onatt: function(att) {
 				this.super.onatt(att);
 				if (att.name === 'alt') {
-					if (!att.value.includes('{')) {
+					var val = String(att.value);
+					if (!val.includes('{')) {
 						// no weird handlebars syntax
 						if (!this.att.has('title')) {
-							this.att.set('title', att.value);
+							this.att.set('title', val);
 						}
 						if (window.btoa) {
 							this.element.src = this._computesource(att.value);

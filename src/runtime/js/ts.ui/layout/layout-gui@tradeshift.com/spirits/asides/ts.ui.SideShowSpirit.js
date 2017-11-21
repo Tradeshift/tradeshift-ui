@@ -114,7 +114,7 @@ ts.ui.SideShowSpirit = (function using(
 		title: chained(function(title) {
 			var header = this._head();
 			if (arguments.length) {
-				header.title(title);
+				header.title(String(title));
 			} else {
 				return header.title();
 			}

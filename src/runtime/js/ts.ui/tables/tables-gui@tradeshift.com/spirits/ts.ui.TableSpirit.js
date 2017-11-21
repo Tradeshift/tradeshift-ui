@@ -1724,6 +1724,10 @@ ts.ui.TableSpirit = (function using(
 						} else {
 							this._openmenu(true);
 							this._selectpage();
+							var pages = this._haspages();
+							if (this.onselectall && !pages) {
+								this.onselectall.call(this);
+							}
 						}
 						break;
 					case 'selection-menu-close':
@@ -1772,16 +1776,24 @@ ts.ui.TableSpirit = (function using(
 		 * @param {boolean} open
 		 */
 		_openmenu: function(open) {
-			var model = this._model;
-			var toolb = model.toolbar;
-			var pager = toolb.pager;
-			var pages = pager && pager.pages > 1;
-			if (pages && open !== model.menuopen) {
+			var pages = this._haspages();
+			if (pages && open !== this._model.menuopen) {
 				this._model.menuopen = open;
 				this.tick.time(function() {
 					this.event.shift(open, 'click', document);
 				});
 			}
+		},
+
+		/**
+		 * Check the table has pages or not
+		 * @returns {boolean}
+		 */
+		_haspages: function() {
+			var model = this._model;
+			var toolb = model.toolbar;
+			var pager = toolb.pager;
+			return pager && pager.pages > 1;
 		},
 
 		/**

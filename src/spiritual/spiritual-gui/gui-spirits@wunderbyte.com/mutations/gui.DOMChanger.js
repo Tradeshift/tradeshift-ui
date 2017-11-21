@@ -102,6 +102,7 @@ gui.DOMChanger = {
 	_ismethod: function(name) {
 		switch (name) {
 			case 'remove':
+			case 'append':
 			case 'appendChild':
 			case 'removeChild':
 			case 'insertBefore':

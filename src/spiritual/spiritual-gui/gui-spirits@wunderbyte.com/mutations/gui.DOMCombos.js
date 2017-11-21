@@ -123,23 +123,12 @@ gui.DOMCombos = (function using(before, after, around, provided, Type, guiArray,
 	});
 
 	/**
-	 * Ready-made DOMCombo for `node.alt = value` type setters
+	 * Hostile framework setting the `className` property with little or no 
+	 * concern about the Spirits *internally* managed classnames. Fortunately, 
+	 * we have the classnames backed up and ready to be reapplied.
 	 */
-	var altCombo = function(base) {
-		return ifEnabled(ifEmbedded(setAltBefore(suspending(base)), otherwise(base)), otherwise(base));
-	};
-
-	/*
-	 * Spirit-aware className. Convert js-property change to DOM attribute change
-	 * so that attribute listeners can pick it up. Note that this voids the
-	 * base `className` call, so let's hope other frameworks don't attempt to
-	 * override the native accessor. Note that this doesn't work in IE9,
-	 * so other workarounds are needed (Mutation Events in {gui.AttPlugin}).
-	 * @param {string} name
-	 */
-	// eslint-disable-next-line no-unused-vars
-	var setClassBefore = before(function(name) {
-		gui.get(this).att.set('class', name);
+	var persistClassesAfter = after(function(name) {
+		gui.get(this).css.$persist();
 	});
 
 	/**
@@ -253,6 +242,12 @@ gui.DOMCombos = (function using(before, after, around, provided, Type, guiArray,
 	return {
 		// Public ...........................................................
 
+		append: function(base) {
+			return ifEnabled(
+				ifEmbedded(detachBefore(spiritualizeAfter(suspending(base))), otherwise(base)),
+				otherwise(base)
+			);
+		},
 		appendChild: function(base) {
 			return ifEnabled(
 				ifEmbedded(detachBefore(spiritualizeAfter(suspending(base))), otherwise(base)),
@@ -331,25 +326,14 @@ gui.DOMCombos = (function using(before, after, around, provided, Type, guiArray,
 			);
 		},
 		alt: function(base) {
-			return altCombo(base);
-		}
-		/*
-		 * If we should need to create observers for the class attribute that
-		 * would also work when updated via the JavaScript `className` property,
-		 * we'll need to enable this, but we don't need that for the moment.
-		 * Note also the IE9 can't do this and will need an `onpropertychange`
-		 * handler be setup somewhere in the {gui.AttPlugin}. Something like
-		 * this should also be setup to intercept `disabled` and `id` and such.
-		 * @see {gui.AttPlugin}
-		 *
-		className: function(base) {
-			return (
-				ifEmbedded(ifSpirit(setClassBefore(voidbase)),
-					otherwise(base)
-				)
+			return ifEnabled(
+				ifEmbedded(setAltBefore(suspending(base)), otherwise(base)),
+				otherwise(base)
 			);
+		},
+		className: function(base) {
+			return ifEnabled(ifEmbedded(ifSpirit(persistClassesAfter(base)), otherwise(base)));
 		}
-		*/
 	};
 })(
 	gui.Combo.before,

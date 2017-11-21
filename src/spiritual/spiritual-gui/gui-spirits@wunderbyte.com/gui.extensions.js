@@ -195,12 +195,26 @@ gui = gui.Object.extend(
 
 		/**
 		 * Don't materialize and spiritualize during given operation.
-		 * @param {funtion} operation
+		 * If the operation is async, use `suspend()` and `resume()`.
+		 * @param {funtion} [operation] Assumed synchronous!
 		 */
 		suspend: function(operation) {
-			return gui.DOMObserver.suspend(function() {
-				return gui.Guide.suspend(operation);
-			});
+			if (arguments.length) {
+				return gui.DOMObserver.suspend(function() {
+					return gui.Guide.suspend(operation);
+				});
+			} else {
+				gui.DOMObserver.suspend();
+				gui.Guide.suspend();
+			}
+		},
+
+		/** 
+		 * Resume spiritualization and materialization.
+		 */
+		resume: function() {
+			gui.DOMObserver.resume();
+			gui.Guide.resume();
 		},
 
 		/**

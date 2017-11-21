@@ -40,15 +40,28 @@ gui.Guide = (function using(
 
 		/**
 		 * Suspend spiritualization and materialization during operation.
-		 * @param {function} operation
+		 * If the operation is async, use `suspend()` and later `resume()`.
+		 * @param {function} operation - This is assumed synchronous!
 		 * @param @optional {object} thisp
-		 * @returns {object}
+		 * @returns {*|this}
 		 */
 		suspend: function(operation, thisp) {
 			this._suspended = true;
-			var res = operation.call(thisp);
+			if (operation) {
+				var res = operation.call(thisp);
+				this._suspended = false;
+				return res;
+			}
+			return this;
+		},
+
+		/**
+		 * Resume spiritualization and materialization.
+		 * @returns {this}
+		 */
+		resume: function() {
 			this._suspended = false;
-			return res;
+			return this;
 		},
 
 		// Privileged ..............................................................

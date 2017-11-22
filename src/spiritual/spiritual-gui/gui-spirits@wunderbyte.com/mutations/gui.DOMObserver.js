@@ -196,9 +196,9 @@ gui.DOMObserver = (function using(Type, GuiArray) {
 		 * Suspend mutation monitoring of document; enable
 		 * monitoring again after executing provided function.
 		 * @param {Node} node
-		 * @param @optional {function} action
-		 * @param @optional {object} thisp
-		 * @returns {object} if action was defined, we might return something
+		 * @param {function} [action] Assumed synchronous!
+		 * @param {object} [thisp]
+		 * @returns {*|this} if action was defined, we might return something
 		 */
 		suspend: function(action, thisp) {
 			var res;

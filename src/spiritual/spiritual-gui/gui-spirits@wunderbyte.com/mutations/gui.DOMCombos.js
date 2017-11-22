@@ -332,7 +332,10 @@ gui.DOMCombos = (function using(before, after, around, provided, Type, guiArray,
 			);
 		},
 		className: function(base) {
-			return ifEnabled(ifEmbedded(ifSpirit(persistClassesAfter(base)), otherwise(base)));
+			return ifEnabled(
+				ifEmbedded(ifSpirit(persistClassesAfter(base), otherwise(base)), otherwise(base)),
+				otherwise(base)
+			);
 		}
 	};
 })(

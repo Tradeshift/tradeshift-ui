@@ -18,6 +18,7 @@ describe('gui.CSSPlugin', function likethis() {
 	 */
 	function runtest(setclass, done) {
 		var spirit = gui.Spirit.summon();
+		spirit.dom.appendTo(document.body); // gui.DOMObserver needs this :/
 		spirit.css.add('one two three');
 		setclass(spirit.element, 'FOUR');
 		sometime(function later() {

@@ -123,7 +123,7 @@ gui.Arguments = {
 	_abort: function(that) {
 		var summ = this._bugsummary;
 		var name = that.constructor.$classname || String(that);
-		console.error(
+		(console.error ? console.error : console.log)(
 			[
 				'Spiritual GUI: Bad argument ' + summ.shift(),
 				'for ' + name + ':',

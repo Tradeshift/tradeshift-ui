@@ -294,13 +294,13 @@ gui.DOMCombos = (function using(before, after, around, provided, Type, guiArray,
 		},
 		setAttribute: function(base) {
 			return ifEnabled(
-				ifEmbedded(ifSpirit(setAttBefore(base), otherwise(base)), otherwise(base)),
+				ifSpirit(persistClassesAfter(setAttBefore(base)), otherwise(base)),
 				otherwise(base)
 			);
 		},
 		removeAttribute: function(base) {
 			return ifEnabled(
-				ifEmbedded(ifSpirit(delAttBefore(base), otherwise(base)), otherwise(base)),
+				ifSpirit(persistClassesAfter(delAttBefore(base)), otherwise(base)),
 				otherwise(base)
 			);
 		},

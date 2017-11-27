@@ -6,7 +6,8 @@
  */
 ts.ui.CoverSpirit = (function using(chained, Client) {
 	var MOUSE_EVENTS = Client.isTouchDevice ? 'touchstart mouseenter' : 'mousedown mouseenter';
-
+	var CLASS_VISIBLE = ts.ui.CLASS_VISIBLE;
+	var CLASS_COVER = ts.ui.CLASS_COVER;
 	return ts.ui.Spirit.extend(
 		{
 			/**
@@ -16,7 +17,7 @@ ts.ui.CoverSpirit = (function using(chained, Client) {
 			 */
 			onconfigure: function() {
 				this.super.onconfigure();
-				this.css.add(ts.ui.CLASS_COVER);
+				this.css.add(CLASS_COVER);
 			},
 
 			/**
@@ -90,14 +91,15 @@ ts.ui.CoverSpirit = (function using(chained, Client) {
 			 * Show and fade to no opacity.
 			 */
 			fadeIn: function() {
-				this.show();
+				var BROWSER_GLITCH_TIME = 25;
 				this._shouldbevisible = true;
-				if (this._usetransitions) {
-					this.css.add(ts.ui.CLASS_TRANSITION);
+				this.show();
+				if (!this._transitioning) {
+					this._transitioning = true;
 					this.event.add('transitionend');
-					this.tick.time(function browserfix() {
-						this.css.add(ts.ui.CLASS_VISIBLE);
-					}, ts.ui.TRANSITION_DELAY);
+					this._timeout = this.tick.time(function() {
+						this.css.add(CLASS_VISIBLE);
+					}, BROWSER_GLITCH_TIME);
 				}
 			},
 
@@ -106,12 +108,14 @@ ts.ui.CoverSpirit = (function using(chained, Client) {
 			 */
 			fadeOut: function() {
 				this._shouldbevisible = false;
-				if (this._usetransitions) {
+				if (!this._transitioning) {
+					this._transitioning = true;
 					this.event.add('transitionend');
-					this.tick.time(function browserfix() {
-						this.css.remove(ts.ui.CLASS_VISIBLE);
-					}, ts.ui.TRANSITION_DELAY);
-				} else {
+					this.css.remove(CLASS_VISIBLE);
+				} else if (!this.css.contains(CLASS_VISIBLE)) {
+					this.tick.cancelTime(this._timeout);
+					this.event.remove('transitionend');
+					this._transitioning = false;
 					this.hide();
 				}
 			},
@@ -138,9 +142,18 @@ ts.ui.CoverSpirit = (function using(chained, Client) {
 						break;
 					case 'transitionend':
 						if (e.target === this.element) {
-							this.event.remove(e.type);
-							if (!this._shouldbevisible) {
-								this.hide();
+							this._transitioning = false;
+							this.event.remove('transitionend');
+							if (this.css.contains(CLASS_VISIBLE)) {
+								if (!this._shouldbevisible) {
+									this.fadeOut();
+								}
+							} else {
+								if (this._shouldbevisible) {
+									this.fadeIn();
+								} else {
+									this.hide();
+								}
 							}
 						}
 						break;
@@ -150,16 +163,16 @@ ts.ui.CoverSpirit = (function using(chained, Client) {
 			// Private .................................................................
 
 			/**
+			 * Scheduling fadeIn.
+			 * @type {number}
+			 */
+			_timeout: -1,
+
+			/**
 			 * Spirit of the Spinner.
 			 * @type {ts.ui.SpinnerSpirit}
 			 */
 			_spinner: null,
-
-			/**
-			 * Fade around with CSS transitions?
-			 * @type {boolean}
-			 */
-			_usetransitions: ts.ui.usetransitions,
 
 			/**
 			 * Tracking a transitional state.
@@ -177,7 +190,7 @@ ts.ui.CoverSpirit = (function using(chained, Client) {
 			 */
 			summon: function(opt_geo) {
 				var spirit = this.possess(document.createElement('div'));
-				spirit.css.add(ts.ui.CLASS_COVER);
+				spirit.css.add(CLASS_COVER);
 				if (opt_geo) {
 					spirit.position(opt_geo);
 				}

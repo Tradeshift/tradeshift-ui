@@ -107,11 +107,14 @@ ts.ui.CoverSpirit = (function using(chained, Client) {
 			 * Fade to full opacity and hide.
 			 */
 			fadeOut: function() {
+				var BROWSER_GLITCH_TIME = 25;
 				this._shouldbevisible = false;
 				if (!this._transitioning) {
 					this._transitioning = true;
 					this.event.add('transitionend');
-					this.css.remove(CLASS_VISIBLE);
+					this.tick.time(function() {
+						this.css.remove(CLASS_VISIBLE);
+					}, BROWSER_GLITCH_TIME);
 				} else if (!this.css.contains(CLASS_VISIBLE)) {
 					this.tick.cancelTime(this._timeout);
 					this.event.remove('transitionend');

@@ -1,10 +1,38 @@
 /**
  * Spirit styling studio.
  * @extends {gui.Plugin}
+ * @using {gui.Array} GuiArray
  * @using {gui.Combo#chained}
  * @using {gui.Arguments#confirmed}
  */
-gui.CSSPlugin = (function using(chained, confirmed) {
+gui.CSSPlugin = (function using(GuiArray, chained, confirmed) {
+	/**
+	 * Get the persistable classlist (or create it just-in-time).
+	 * @param {Element} element - Perhaps the user has only provided this element
+	 * @param {Spirit} spirit - But internally we use this (for technical reasons)
+	 */
+	function getset(element, spirit) {
+		if ((spirit = spirit || element.spirit)) {
+			return spirit.css._classset || (spirit.css._classset = new Set());
+		}
+	}
+
+	/**
+	 * Restore all missing classnames.
+	 * @param {Element} element
+	 * @param {Set<string>} set
+	 */
+	function setset(element, set) {
+		if (set) {
+			var css = element.classList;
+			set.forEach(function(name) {
+				if (!css.contains(name)) {
+					css.add(name);
+				}
+			});
+		}
+	}
+
 	return gui.Plugin.extend(
 		{
 			/**
@@ -14,10 +42,7 @@ gui.CSSPlugin = (function using(chained, confirmed) {
 			 */
 			add: confirmed('string|array')(
 				chained(function(name) {
-					var elm = this.spirit.element;
-					gui.Array.make(name).forEach(function(n) {
-						gui.CSSPlugin.add(elm, n);
-					});
+					gui.CSSPlugin.add(this.spirit.element, name, this.spirit);
 				})
 			),
 
@@ -28,10 +53,7 @@ gui.CSSPlugin = (function using(chained, confirmed) {
 			 */
 			remove: confirmed('string|array')(
 				chained(function(name) {
-					var elm = this.spirit.element;
-					gui.Array.make(name).forEach(function(n) {
-						gui.CSSPlugin.remove(elm, n);
-					});
+					gui.CSSPlugin.remove(this.spirit.element, name, this.spirit);
 				})
 			),
 
@@ -42,10 +64,7 @@ gui.CSSPlugin = (function using(chained, confirmed) {
 			 */
 			toggle: confirmed('string|array')(
 				chained(function(name) {
-					var elm = this.spirit.element;
-					gui.Array.make(name).forEach(function(n) {
-						gui.CSSPlugin.toggle(elm, n);
-					});
+					gui.CSSPlugin.toggle(this.spirit.element, name, this.spirit);
 				})
 			),
 
@@ -57,9 +76,10 @@ gui.CSSPlugin = (function using(chained, confirmed) {
 			 */
 			shift: confirmed('*', 'string|array')(
 				chained(function(on, name) {
+					var spi = this.spirit;
 					var elm = this.spirit.element;
-					gui.Array.make(name).forEach(function(n) {
-						gui.CSSPlugin.shift(elm, on, n);
+					GuiArray.make(name).forEach(function(n) {
+						gui.CSSPlugin.shift(elm, on, n, spi);
 					});
 				})
 			),
@@ -117,9 +137,12 @@ gui.CSSPlugin = (function using(chained, confirmed) {
 			 */
 			name: chained(function(name) {
 				var result = this.spirit.element.className;
-				if (name !== undefined) {
-					this.spirit.element.className = name;
+				if (arguments.length) {
 					result = this.spirit;
+					this._suspended = true;
+					this.spirit.element.className = '';
+					this._suspended = false;
+					this.add(name);
 				}
 				return result;
 			}),
@@ -132,92 +155,81 @@ gui.CSSPlugin = (function using(chained, confirmed) {
 			 */
 			matches: function(selector) {
 				return gui.CSSPlugin.matches(this.spirit.element, selector);
-			}
+			},
+
+			// Privileged ............................................................
+
+			/**
+			 * Compare "persisted" classnames to the current, actual classnames 
+			 * and restore the ones that are missing (actually persisting them).
+			 */
+			$persist: function() {
+				if (!this._suspended) {
+					setset(this.spirit.element, this._classset);
+				}
+			},
+
+			// Private ...............................................................
+
+			/**
+			 * Tracking assigned classnames so that they can be persisted properly.
+			 * @type {Set<string>}
+			 */
+			_classset: null
 		},
 		{},
 		{
-			// Static ...........................................................
+			// Static ................................................................
 
 			/**
 			 * classList.add
 			 * @param {Element} element
 			 * @param {String} names
+			 * @param {Spirit} [spirit] (not accessible via `element` during newup!)
 			 * @returns {function}
 			 */
-			add: chained(function(element, name) {
-				if (gui.Type.isString(name)) {
-					if (name.indexOf(' ') > -1) {
-						name = name.split(' ');
+			add: chained(function(element, name, spirit) {
+				var set = getset(element, spirit);
+				GuiArray.make(name).forEach(function(n) {
+					element.classList.add(n);
+					if (set) {
+						set.add(n);
 					}
-					if (gui.Type.isArray(name)) {
-						name.forEach(function(n) {
-							this.add(element, n);
-						}, this);
-					} else {
-						if (this._supports) {
-							if (!element.classList.contains(name)) {
-								element.classList.add(name);
-							}
-						} else {
-							var now = element.className.split(' ');
-							if (now.indexOf(name) === -1) {
-								now.push(name);
-								element.className = now.join(' ');
-							}
-						}
-					}
-				}
+				});
 			}),
 
 			/**
 			 * classList.remove
 			 * @param {Element} element
 			 * @param {String} name
+			 * @param {Spirit} [spirit]
 			 * @returns {function}
 			 */
-			remove: chained(function(element, name) {
-				if (gui.Type.isString(name)) {
-					name = name || '';
-					if (name.indexOf(' ') > -1) {
-						name = name.split(' ');
+			remove: chained(function(element, name, spirit) {
+				var set = getset(element, spirit);
+				GuiArray.make(name).forEach(function(n) {
+					element.classList.remove(n);
+					if (set) {
+						set.delete(n);
 					}
-					if (gui.Type.isArray(name)) {
-						name.forEach(function(n) {
-							this.remove(element, n);
-						}, this);
-					} else {
-						if (this._supports) {
-							element.classList.remove(name);
-						} else {
-							var now = element.className.split(' ');
-							var idx = now.indexOf(name);
-							if (idx > -1) {
-								gui.Array.remove(now, idx);
-							}
-							element.className = now.join(' ');
-						}
-					}
-				}
+				});
 			}),
 
 			/**
 			 * classList.toggle
 			 * @param {Element} element
 			 * @param {String} name
+			 * @param {Spirit} [spirit]
 			 * @returns {function}
 			 */
-			toggle: chained(function(element, name) {
-				if (gui.Type.isString(name)) {
-					if (this._supports) {
-						element.classList.toggle(name);
+			toggle: chained(function(element, name, spirit) {
+				GuiArray.make(name).forEach(function(n) {
+					if (element.classList.contains(n)) {
+						this.remove(element, n, spirit);
 					} else {
-						if (this.contains(element, name)) {
-							this.remove(element, name);
-						} else {
-							this.add(element, name);
-						}
+						this.add(element, n, spirit);
 					}
-				}
+				});
 			}),
 
 			/**
@@ -226,14 +238,15 @@ gui.CSSPlugin = (function using(chained, confirmed) {
 			 * @param {Element} element
 			 * @param {truthy} on
 			 * @param {String} name
+			 * @param {Spirit} [spirit]
 			 * @returns {function}
 			 */
-			shift: chained(function(element, on, name) {
+			shift: chained(function(element, on, name, spirit) {
 				if (on) {
 					// coerce to boolean
-					this.add(element, name);
+					this.add(element, name, spirit);
 				} else {
-					this.remove(element, name);
+					this.remove(element, name, spirit);
 				}
 			}),
 
@@ -244,12 +257,7 @@ gui.CSSPlugin = (function using(chained, confirmed) {
 			 * @returns {boolean}
 			 */
 			contains: function(element, name) {
-				if (this._supports) {
-					return element.classList.contains(name);
-				} else {
-					var classnames = element.className.split(' ');
-					return classnames.indexOf(name) > -1;
-				}
+				return element.classList.contains(name);
 			},
 
 			/**
@@ -331,7 +339,13 @@ gui.CSSPlugin = (function using(chained, confirmed) {
 				return matches;
 			},
 
-			// Private static ..........................................................
+			// Private static ........................................................
+
+			/**
+			 * Temporarily suspending the whole "persist" mechanism?
+			 * @type {boolean}
+			 */
+			_suspended: false,
 
 			/**
 			 * Non-matching vendors removed after first run. First entry
@@ -339,12 +353,6 @@ gui.CSSPlugin = (function using(chained, confirmed) {
 			 * @type {Array<String>}
 			 */
 			_vendors: ['', '-webkit-', '-moz-', '-ms-', '-o-'],
-
-			/**
-			 * _supports Element.classList?
-			 * @type {boolean}
-			 */
-			_supports: document.documentElement.classList !== undefined,
 
 			/**
 			 * Resolve shorthands for value.
@@ -531,7 +539,7 @@ gui.CSSPlugin = (function using(chained, confirmed) {
 			})()
 		}
 	);
-})(gui.Combo.chained, gui.Arguments.confirmed);
+})(gui.Array, gui.Combo.chained, gui.Arguments.confirmed);
 
 /**
  * Generate shorthand getters/setters for top|left|width|height etc.

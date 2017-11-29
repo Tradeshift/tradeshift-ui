@@ -18,23 +18,29 @@ ts.ui.Spirit = (function using(Type, GuiArray, confirmed, chained) {
 			},
 
 			/**
+			 * Show or hide cover with spinner and optional message.
+			 * Support triggering via attribute `data-ts.busy="arg"`
+			 * @param {string|boolean} arg
 			 * @returns {this}
 			 */
 			busy: chained(function(arg) {
 				var cover = this._childcover();
-				switch (arg) {
-					case false:
-					case '':
+				if (!arguments.length || !!arg) {
+					if (++this._busycount === 1) {
+						cover.spin(arg);
+						cover.fadeIn();
+					}
+				} else {
+					if (--this._busycount === 0) {
 						cover.fadeOut().then(function() {
 							cover
 								.opaque(false)
 								.blocking(false)
 								.stop();
 						});
-						break;
-					default:
-						cover.spin(arg).show();
-						break;
+					} else if (this._busycount < 0) {
+						this._busycount = 0;
+					}
 				}
 			}),
 
@@ -46,16 +52,28 @@ ts.ui.Spirit = (function using(Type, GuiArray, confirmed, chained) {
 			}),
 
 			/**
+			 * Show or hide the blocking cover with optional message.
+			 * Support triggering via attribute `data-ts.busy="arg"`
 			 * @returns {this}
 			 */
-			blocking: function() {
-				this._childcover()
-					.opaque(true)
-					.blocking(true);
-				this.busy.apply(this, arguments);
+			blocking: function(arg) {
+				if (!arguments.length || !!arg) {
+					this._childcover()
+						.opaque(true)
+						.blocking(true);
+					this.busy.apply(this, arguments);
+				} else {
+					this.done();
+				}
 			},
 
 			// Private ...............................................................
+
+			/**
+			 * Counting busy bees.
+			 * @type {boolean}
+			 */
+			_busycount: 0,
 
 			/**
 			 * The spirit can have a model associated. This usually
@@ -107,6 +125,8 @@ ts.ui.Spirit = (function using(Type, GuiArray, confirmed, chained) {
 			},
 
 			/**
+			 * Get or create the local cover. The spirit should be 
+			 * position `relative` or `absolute` for this to work.
 			 * @returns {ts.ui.CoverSpirit}
 			 */
 			_childcover: function() {

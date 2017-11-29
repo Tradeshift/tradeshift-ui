@@ -1080,7 +1080,11 @@ ts.ui.TableSpirit = (function using(
 		 */
 		busy: chained(function(arg) {
 			if (this.dom.q('.ts-table-body')) {
-				this.super.busy(arg);
+				if (arguments.length) {
+					this.super.busy(arg);
+				} else {
+					this.super.busy();
+				}
 			}
 		}),
 

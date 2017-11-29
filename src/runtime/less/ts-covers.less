@@ -17,12 +17,10 @@
 			top: auto;
 		}
 	}
-	&.ts-transition {
-		.ts-mixin-transition(opacity, @ts-transition-fast, @ts-timing-easeoutquint);
-		opacity: 0;
-		&.ts-visible {
-			opacity: 1;
-		}
+	.ts-mixin-transition(opacity, @ts-transition-fast, @ts-timing-easeoutquint);
+	opacity: 0;
+	&.ts-visible {
+		opacity: 1;
 	}
 	&.ts-blocking,
 	&.ts-asidecover,

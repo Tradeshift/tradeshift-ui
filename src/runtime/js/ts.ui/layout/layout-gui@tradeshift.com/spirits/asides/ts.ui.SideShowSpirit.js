@@ -187,7 +187,6 @@ ts.ui.SideShowSpirit = (function using(
 		 * Required by the {DoorManPlugin}.
 		 */
 		$onopen: function() {
-			console.log('$onopen', String(this));
 			this.dom.show();
 			this._slideopen(true).then(
 				function done() {
@@ -200,7 +199,6 @@ ts.ui.SideShowSpirit = (function using(
 		 * Required by the {DoorManPlugin}.
 		 */
 		$onclose: function() {
-			console.log('$onclose', String(this));
 			this._slideopen(false).then(
 				function done() {
 					this._ontransitionend();

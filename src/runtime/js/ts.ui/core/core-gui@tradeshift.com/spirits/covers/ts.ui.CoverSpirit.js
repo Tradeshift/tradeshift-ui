@@ -6,9 +6,10 @@
  */
 ts.ui.CoverSpirit = (function using(chained, Client) {
 	var MOUSE_EVENTS = Client.isTouchDevice ? 'touchstart mouseenter' : 'mousedown mouseenter';
-	var BLOCKING = 'ts-blocking';
-	var OPAQUE = 'ts-opaque';
-
+	var CLASS_BLOCKING = 'ts-blocking';
+	var CLASS_OPAQUE = 'ts-opaque';
+	var CLASS_VISIBLE = ts.ui.CLASS_VISIBLE;
+	var CLASS_COVER = ts.ui.CLASS_COVER;
 	return ts.ui.Spirit.extend(
 		{
 			/**
@@ -18,7 +19,9 @@ ts.ui.CoverSpirit = (function using(chained, Client) {
 			 */
 			onconfigure: function() {
 				this.super.onconfigure();
-				this.css.add(ts.ui.CLASS_COVER);
+				this.css.add(CLASS_COVER);
+				// TODO: remove after @dsp has deployed the Tax Selector with new scoped styles!
+				this.css.add('ts-transition');
 			},
 
 			/**
@@ -31,12 +34,12 @@ ts.ui.CoverSpirit = (function using(chained, Client) {
 			}),
 
 			/**
-			 * Hide the cover.
+			 * Hide the cover (and remove potential spinner).
 			 * @return {ts.ui.CoverSpirit}
 			 */
 			hide: chained(function() {
 				this.event.remove(MOUSE_EVENTS);
-				this.dom.hide();
+				this.dom.html('').hide();
 			}),
 
 			/**
@@ -46,9 +49,9 @@ ts.ui.CoverSpirit = (function using(chained, Client) {
 			 */
 			opaque: chained(function(is) {
 				if (arguments.length) {
-					this.css.shift(is, OPAQUE);
+					this.css.shift(is, CLASS_OPAQUE);
 				} else {
-					return this.css.contains(OPAQUE);
+					return this.css.contains(CLASS_OPAQUE);
 				}
 			}),
 
@@ -59,9 +62,9 @@ ts.ui.CoverSpirit = (function using(chained, Client) {
 			 */
 			blocking: chained(function(is) {
 				if (arguments.length) {
-					this.css.shift(is, BLOCKING);
+					this.css.shift(is, CLASS_BLOCKING);
 				} else {
-					return this.css.contains(BLOCKING);
+					return this.css.contains(CLASS_BLOCKING);
 				}
 			}),
 
@@ -84,10 +87,7 @@ ts.ui.CoverSpirit = (function using(chained, Client) {
 			 * @return {ts.ui.CoverSpirit}
 			 */
 			stop: chained(function() {
-				var spinner = this.dom.child(ts.ui.SpinnerSpirit);
-				if (spinner) {
-					spinner.dom.remove();
-				}
+				this.dom.html();
 			}),
 
 			/**
@@ -123,13 +123,16 @@ ts.ui.CoverSpirit = (function using(chained, Client) {
 			 */
 			fadeIn: function() {
 				this._then = new gui.Then();
-				this.show();
+				var BROWSER_GLITCH_TIME = 25;
 				this._shouldbevisible = true;
-				this.css.add(ts.ui.CLASS_TRANSITION);
-				this.event.add('transitionend');
-				this.tick.time(function browserfix() {
-					this.css.add(ts.ui.CLASS_VISIBLE);
-				});
+				this.show();
+				if (!this._transitioning) {
+					this._transitioning = true;
+					this.event.add('transitionend');
+					this._timeout = this.tick.time(function() {
+						this.css.add(CLASS_VISIBLE);
+					}, BROWSER_GLITCH_TIME);
+				}
 				return this._then;
 			},
 
@@ -139,12 +142,23 @@ ts.ui.CoverSpirit = (function using(chained, Client) {
 			 */
 			fadeOut: function() {
 				this._then = new gui.Then();
+				var BROWSER_GLITCH_TIME = 25;
 				this._shouldbevisible = false;
-				this.event.add('transitionend');
-				this.css.add(ts.ui.CLASS_TRANSITION);
-				this.tick.time(function browserfix() {
-					this.css.remove(ts.ui.CLASS_VISIBLE);
-				});
+				if (!this._transitioning) {
+					this._transitioning = true;
+					this.event.add('transitionend');
+					this.tick.time(function() {
+						this.css.remove(CLASS_VISIBLE);
+					}, BROWSER_GLITCH_TIME);
+				} else if (!this.css.contains(CLASS_VISIBLE)) {
+					this.tick.cancelTime(this._timeout);
+					this.event.remove('transitionend');
+					this._transitioning = false;
+					this.hide();
+					this.tick.time(function() {
+						this._then.now();
+					});
+				}
 				return this._then;
 			},
 
@@ -170,21 +184,40 @@ ts.ui.CoverSpirit = (function using(chained, Client) {
 						break;
 					case 'transitionend':
 						if (e.target === this.element) {
-							this.css.remove(ts.ui.CLASS_TRANSITION);
-							this.event.remove(e.type);
-							if (!this._shouldbevisible) {
-								this.hide();
+							this._transitioning = false;
+							this.event.remove('transitionend');
+							if (this.css.contains(CLASS_VISIBLE)) {
+								if (!this._shouldbevisible) {
+									this.fadeOut();
+								}
+							} else {
+								if (this._shouldbevisible) {
+									this.fadeIn();
+								} else {
+									this.hide();
+									if (this._then) {
+										this._then.now();
+										this._then = null;
+									}
+								}
 							}
-						}
-						if (this._then) {
-							this._then.now();
-							this._then = null;
 						}
 						break;
 				}
 			},
 
-			// Private .................................................................
+			// Private ...............................................................
+
+			/**
+			 * @type {gui.Then}
+			 */
+			_then: null,
+
+			/**
+			 * Scheduling fadeIn.
+			 * @type {number}
+			 */
+			_timeout: -1,
 
 			/**
 			 * Spirit of the Spinner.
@@ -199,7 +232,7 @@ ts.ui.CoverSpirit = (function using(chained, Client) {
 			_shouldbevisible: false
 		},
 		{
-			// Static ...............................................................
+			// Static ................................................................
 
 			/**
 			 * Summon spirit.
@@ -208,7 +241,7 @@ ts.ui.CoverSpirit = (function using(chained, Client) {
 			 */
 			summon: function(opt_geo) {
 				var spirit = this.possess(document.createElement('div'));
-				spirit.css.add(ts.ui.CLASS_COVER);
+				spirit.css.add(CLASS_COVER);
 				if (opt_geo) {
 					spirit.position(opt_geo);
 				}

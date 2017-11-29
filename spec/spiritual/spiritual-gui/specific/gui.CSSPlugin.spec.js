@@ -3,30 +3,30 @@
  * the "persistence" feature for now: `className` doesn't wipe our CSS.
  */
 describe('gui.CSSPlugin', function likethis() {
-	beforeEach(function() {
-		this.sandbox = document.createElement('main');
-		document.body.appendChild(this.sandbox);
-	});
-
-	afterEach(function() {
-		this.sandbox.parentNode.removeChild(this.sandbox);
-	});
-
+	/**
+	 * @param {gui.Spirit} spirit
+	 * @param {string} name
+	 * @returns {boolean}
+	 */
 	function hasclass(spirit, name) {
 		return spirit.element.classList.contains(name);
 	}
 
-	it('should persist those classnames', function(done) {
+	/**
+	 * @param {Function} setclass
+	 * @param {Function} done
+	 */
+	function runtest(setclass, done) {
 		var spirit = gui.Spirit.summon();
-		this.sandbox.appendChild(spirit.element);
+		spirit.dom.appendTo(document.body); // gui.DOMObserver needs this :/
 		spirit.css.add('one two three');
-		spirit.element.className = 'FOUR';
+		setclass(spirit.element, 'FOUR');
 		sometime(function later() {
 			['one', 'two', 'three', 'FOUR'].forEach(function(name) {
 				expect(hasclass(spirit, name)).toBe(true);
 			});
 			spirit.css.remove('one two');
-			spirit.element.className = 'ONE MILLION';
+			setclass(spirit.element, 'ONE MILLION');
 			sometime(function muchlater() {
 				expect(hasclass(spirit, 'three')).toBe(true);
 				['one', 'two'].forEach(function(name) {
@@ -35,5 +35,25 @@ describe('gui.CSSPlugin', function likethis() {
 				done();
 			});
 		});
+	}
+
+	it('should not mess with ordinary elements', function() {
+		var div = document.createElement('div');
+		div.className = 'johnson';
+		expect(div.className).toBe('johnson');
+		div.setAttribute('class', 'jurgenson');
+		expect(div.getAttribute('class')).toBe('jurgenson');
+	});
+
+	it('should persist after `className`', function(done) {
+		runtest(function setclass(elm, name) {
+			elm.className = name;
+		}, done);
+	});
+
+	it('should persist after `setAttribute`', function(done) {
+		runtest(function setclass(elm, name) {
+			elm.setAttribute('class', name);
+		}, done);
 	});
 });

@@ -35,7 +35,6 @@ ts.ui.AppSpirit = (function() {
 			 * Inject any header and footer that might have been configured by now.
 			 */
 			$inject: function() {
-				console.log(document.title, appheader(), appfooter());
 				appheader() && this._head();
 				appfooter() && this._foot();
 			},

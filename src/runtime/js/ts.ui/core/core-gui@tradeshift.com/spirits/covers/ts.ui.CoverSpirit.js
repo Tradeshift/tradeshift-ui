@@ -18,6 +18,8 @@ ts.ui.CoverSpirit = (function using(chained, Client) {
 			onconfigure: function() {
 				this.super.onconfigure();
 				this.css.add(CLASS_COVER);
+				// TODO: remove after @dsp has deployed the Tax Selector with new scoped styles!
+				this.css.add('ts-transition');
 			},
 
 			/**

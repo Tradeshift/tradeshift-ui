@@ -561,6 +561,17 @@ table.api th {
   position: relative;
   top: 1px;
 }
+.ts-doxchrome {
+  /*
+	.ts-shadow {
+		position: absolute;
+		height: 30px;
+		width: 100%;
+		background-image: linear-gradient(@ts-color-black, transparent);
+		z-index: 1;
+	}
+	*/
+}
 .ts-doxchrome .ts-menu h3 {
   margin: 0;
   background-color: #587c8d;
@@ -584,6 +595,7 @@ table.api th {
   border-bottom: none;
   background-color: #27373f;
   color: #ffffff;
+  border-radius: 0;
 }
 .ts-doxchrome .ts-menu > li > a:hover:not(:disabled),
 .ts-doxchrome .ts-menu > li > a:focus {
@@ -619,7 +631,7 @@ table.api th {
   position: absolute;
   height: 3px;
   width: 100%;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.15), transparent);
+  background-image: linear-gradient(rgba(15, 21, 26, 0.25), transparent);
   z-index: 1;
 }
 .ts-doxchrome .ts-menu > li.submenu menu {
@@ -847,8 +859,7 @@ article > h1 {
   transition-duration: 0.2s;
   transition-timing-function: ease;
   transition-delay: 0s;
-  background: pink;
-  border: 1px solid lime;
+  border: 1px solid #d0dce2;
   padding: 22px;
   margin-bottom: 22px;
 }

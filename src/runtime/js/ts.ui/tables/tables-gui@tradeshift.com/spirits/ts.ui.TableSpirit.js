@@ -1075,16 +1075,12 @@ ts.ui.TableSpirit = (function using(
 		// Loading .................................................................
 
 		/**
-		 * @param {string|boolean} arg
+		 * @param {string|boolean} [arg]
 		 * @returns {this}
 		 */
 		busy: chained(function(arg) {
-			if (this.dom.q('.ts-table-body')) {
-				if (arguments.length) {
-					this.super.busy(arg);
-				} else {
-					this.super.busy();
-				}
+			if (this._ismaximized() || this.queryplugin.getbody()) {
+				this.super.busy(arg);
 			}
 		}),
 

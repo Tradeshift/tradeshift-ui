@@ -3,6 +3,5 @@
 	"plugins/tween.plugin/gui.TweenPlugin.js",
 	"plugins/transition.plugin/gui.TransitionPlugin.js",
 	"plugins/transition.plugin/gui.Transition.js",
-	"plugins/visibility.plugin/gui.VisibilityPlugin.js",
 	"module.js"
 ]

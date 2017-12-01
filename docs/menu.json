@@ -148,7 +148,7 @@
 				"path": "components/times/"
 			},
 			{
-				"label": "ToolBar (TODO!)",
+				"label": "ToolBar",
 				"icon": "docs-icon-expand-horizontal-7",
 				"path": "components/toolbar/"
 			},

@@ -9,7 +9,23 @@ ts.ui.ContentSpirit = ts.ui.LayoutSpirit.extend({
 	 */
 	onconfigure: function() {
 		this.super.onconfigure();
+		this.broadcast.add(ts.ui.BROADCAST_COMPLETED);
 		this.action.add([ts.ui.ACTION_PANEL_ATTACH, ts.ui.ACTION_PANEL_DETACH]);
+	},
+
+	/**
+	 * TODO: Make sure autofocus is not in a hidden panel!
+	 * Handle broadcast.
+	 * @param {gui.Broadcast} b
+	 */
+	onbroadcast: function(b) {
+		this.super.onbroadcast(b);
+		if (b.type === ts.ui.BROADCAST_COMPLETED) {
+			this.attention.trap();
+			if (this.dom.q('[autofocus]')) {
+				this.attention.enter();
+			}
+		}
 	},
 
 	/**

@@ -119,6 +119,15 @@
 // Menu ........................................................................
 
 .ts-doxchrome {
+	/*
+	.ts-shadow {
+		position: absolute;
+		height: 30px;
+		width: 100%;
+		background-image: linear-gradient(@ts-color-black, transparent);
+		z-index: 1;
+	}
+	*/
 	.ts-menu {
 		h3 {
 			margin: 0;
@@ -142,6 +151,7 @@
 				border-bottom: none;
 				background-color: @ts-color-gray-darker;
 				color: @ts-color-white;
+				border-radius: 0;
 				&:hover:not(:disabled),
 				&:focus {
 					background-color: @ts-color-gray-darker !important;
@@ -179,7 +189,7 @@
 					position: absolute;
 					height: 3px;
 					width: 100%;
-					background-image: linear-gradient(rgba(0, 0, 0, 0.15), transparent);
+					background-image: linear-gradient(fade(@ts-color-black, 25%), transparent);
 					z-index: 1;
 				}
 				menu {

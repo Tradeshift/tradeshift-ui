@@ -426,7 +426,7 @@ ts.ui.ModalSpirit = (function using(Client, transition, chained) {
 			var that = this;
 			if (panel) {
 				this.attention.trap(panel);
-				this._head().showClose(function() {
+				this._head().closebutton(function() {
 					that.open(false);
 				});
 			} else {

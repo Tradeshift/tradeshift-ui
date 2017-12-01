@@ -40,17 +40,6 @@ ts.ui.TextAreaSpirit = (function using(Type, Client, unit, tick, time) {
 			},
 
 			/**
-			 * Form in ASIDE scenario.
-			 * TODO: remove all visibility stuff since nobody knows how to use it :/
-			 */
-			onvisible: function() {
-				this.super.onvisible();
-				if (this.css.get('height') === 'auto') {
-					this._autosize();
-				}
-			},
-
-			/**
 			 * Handle attribute (change). In Angular, attributes change chaotically.
 			 * @param {gui.Att} att
 			 */

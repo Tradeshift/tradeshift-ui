@@ -125,7 +125,7 @@ ts.ui.LayoutSpirit = (function using(
 			 * @returns {this}
 			 */
 			uncompact: chained(function() {
-				this._head.uncompact();
+				this._head().uncompact();
 			}),
 
 			/**

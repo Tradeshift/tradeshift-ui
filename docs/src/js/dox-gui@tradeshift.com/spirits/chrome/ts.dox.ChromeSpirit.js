@@ -16,8 +16,6 @@ ts.dox.ChromeSpirit = (function using(CSSPlugin, Then) {
 		MENUON = ts.ui.BROADCAST_GLOBAL_MENU_OPEN,
 		TITLE = ts.ui.ACTION_GLOBAL_DOCUMENT_TITLE,
 		ONROTATE = gui.BROADCAST_ORIENTATIONCHANGE,
-		LOADING = ts.ui.BROADCAST_GLOBAL_APP_LOADING,
-		COMPLETE = ts.ui.BROADCAST_GLOBAL_APP_COMPLETE,
 		ASIDESON = ts.ui.BROADCAST_GLOBAL_ASIDES_WILL_ON,
 		ASIDESOFF = ts.ui.BROADCAST_GLOBAL_ASIDES_WILL_OFF,
 		DIALOGSON = ts.ui.BROADCAST_GLOBAL_DIALOGS_WILL_BLOCK,
@@ -368,13 +366,16 @@ ts.dox.ChromeSpirit = (function using(CSSPlugin, Then) {
 		},
 
 		/**
+		 * DISABLED FOR NOW (used for spinner in the Header, if we need that)
 		 * This toggles the classname `ts-loading`
 		 * on the root HTML element in all frames.
 		 * TODO: Support ABORTED if and when we get a 404.
 		 * @param {boolean} loading
 		 */
 		_showloading: function(loading) {
-			this.broadcast.dispatchGlobal(loading ? LOADING : COMPLETE);
+			// LOADING = ts.ui.BROADCAST_GLOBAL_APP_LOADING,
+			// COMPLETE = ts.ui.BROADCAST_GLOBAL_APP_COMPLETE,
+			// this.broadcast.dispatchGlobal(loading ? LOADING : COMPLETE);
 		},
 
 		/**

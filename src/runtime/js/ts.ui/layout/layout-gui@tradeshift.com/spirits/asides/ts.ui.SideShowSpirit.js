@@ -283,12 +283,12 @@ ts.ui.SideShowSpirit = (function using(
 			var tool = this._head();
 			if (show !== false) {
 				this._canclose = true;
-				tool.showClose(function() {
+				tool.closebutton(function() {
 					that.close();
 				});
 			} else if (this._canclose) {
 				this._canclose = false;
-				tool.hideClose();
+				tool.closebutton(null);
 			}
 		},
 

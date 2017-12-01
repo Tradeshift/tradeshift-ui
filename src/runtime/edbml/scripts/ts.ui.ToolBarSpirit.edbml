@@ -23,7 +23,7 @@
 		toolbar.$allactions()
 	);
 	rendercenter(id, toolbar.pager);
-	if(toolbar.search) {
+	if(toolbar.search && toolbar.search.buttons.length) {
 		rendersearchbuttons(id, toolbar.search.buttons);
 	} else {
 		rendernormalbuttons(id, toolbar.$allbuttons());

@@ -294,7 +294,7 @@ ts.ui = gui.namespace(
 
 			// local broadcasts
 			BROADCAST_COMPLETED: 'ts-broadcast-completed',
-			BROADCAST_TERMINATE: 'ts-broadcast-terminate',
+			// BROADCAST_TERMINATE: 'ts-broadcast-terminate',
 			BROADCAST_DIALOG_WILL_OPEN: 'ts-broadcast-dialog-will-open',
 			BROADCAST_DIALOG_GO_OPEN: 'ts-broadcast-dialog-go-open',
 			BROADCAST_DIALOG_DID_OPEN: 'ts-broadcast-dialog-did-open',
@@ -325,9 +325,9 @@ ts.ui = gui.namespace(
 			BROADCAST_GLOBAL_ASIDES_DID_OFF: 'ts-broadcast-g-asides-did-off',
 			BROADCAST_GLOBAL_ASIDES_DO_CLOSE: 'ts-broadcast-g-asides-do-close',
 			BROADCAST_GLOBAL_PROGRESSBAR: 'ts-broadcast-g-progressbar',
-			BROADCAST_GLOBAL_APP_LOADING: 'ts-broadcast-g-app-loading',
-			BROADCAST_GLOBAL_APP_ABORTED: 'ts-broadcast-g-app-aborted',
-			BROADCAST_GLOBAL_APP_COMPLETE: 'ts-broadcast-g-app-complete',
+			// BROADCAST_GLOBAL_APP_LOADING: 'ts-broadcast-g-app-loading',
+			// BROADCAST_GLOBAL_APP_ABORTED: 'ts-broadcast-g-app-aborted',
+			// BROADCAST_GLOBAL_APP_COMPLETE: 'ts-broadcast-g-app-complete',
 			BROADCAST_GLOBAL_TOPBAR_UPDATE: 'ts-broadcast-g-topbar-update',
 			BROADCAST_GLOBAL_TOPBAR_READY: 'ts-broadcast-g-topbar-ready',
 			BROADCAST_GLOBAL_TOPBAR_UPDATE_DEFAULT_TITLE: 'ts-broadcast-g-topbar-update-default-title',

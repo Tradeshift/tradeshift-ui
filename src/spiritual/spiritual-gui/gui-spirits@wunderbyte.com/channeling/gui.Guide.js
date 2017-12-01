@@ -258,20 +258,6 @@ gui.Guide = (function using(
 			spirits.forEach(function(spirit) {
 				Spirit.$async(spirit);
 			});
-
-			/*
-			 * Temp hack: DocumentSpirit inside *iframe* must
-			 * wait for visibility status to relay elsehow...
-			 * (this stuff must all move to the plugin)
-			 * @see {gui.IframeSpirit}
-			 */
-			if (gui.hosted) {
-				var docspirit = gui.get(document.documentElement);
-				if (!docspirit || docspirit.life.visible === undefined) {
-					return;
-				}
-			}
-			this._visibility(spirits);
 		},
 
 		/**
@@ -600,20 +586,6 @@ gui.Guide = (function using(
 				Spirit.$dispose(spirit);
 			});
 			documentspirits.outside = Object.create(null);
-		},
-
-		// TODO: Externalize .......................................................
-
-		/**
-		 * Evaluate spirits visibility. TODO: Off to plugin somehow.
-		 * @param {Array<gui.Spirit>}
-		 */
-		_visibility: function(spirits) {
-			if (gui.hasModule('gui-layout@wunderbyte.com')) {
-				DOMPlugin.group(spirits).forEach(function(spirit) {
-					gui.VisibilityPlugin.$init(spirit);
-				}, this);
-			}
 		}
 	};
 })(

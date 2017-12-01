@@ -38,8 +38,8 @@ ts.ui.HeaderBarSpirit = (function using(chained) {
 						this.micro();
 					}
 					this._layout();
-					if (this._closeaction) {
-						this.showClose(this._closeaction);
+					if (this._closeaction !== undefined) {
+						this.closebutton(this._closeaction);
 					}
 				}
 			},
@@ -125,24 +125,21 @@ ts.ui.HeaderBarSpirit = (function using(chained) {
 			}),
 
 			/**
-			 * Show the closing X button.
-			 * @param {Function} [onclick]
+			 * Show the close button `X`.
+			 * @param {Function|null} onclose
+			 * @returns {ts.ui.ButtonSpirit|this}
 			 */
-			showClose: chained(function(onclick) {
-				if (this.life.rendered) {
-					this._headerbar.showClose(onclick);
+			closebutton: chained(function(onclick) {
+				var done = this.life.rendered;
+				var head = this._headerbar;
+				if (arguments.length) {
+					if (done) {
+						head.closebutton(onclick);
+					} else {
+						this._closeaction = onclick;
+					}
 				} else {
-					this._closeaction = onclick;
-				}
-			}),
-
-			/**
-			 * Hide the closing X button.
-			 */
-			hideClose: chained(function() {
-				this._closeaction = null;
-				if (this.life.rendered) {
-					this._headerbar.hideClose();
+					return done ? head.closebutton() : null;
 				}
 			}),
 
@@ -225,6 +222,12 @@ ts.ui.HeaderBarSpirit = (function using(chained) {
 			 * @type {number}
 			 */
 			_scroll: 0,
+
+			/**
+			 * Buffering close button callback while booting.
+			 * @type {Function|null}
+			 */
+			_closeaction: undefined,
 
 			/**
 			 * Dispatch some action bearing offset info for the general environment to handle.

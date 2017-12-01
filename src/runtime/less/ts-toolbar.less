@@ -24,7 +24,6 @@
 	.ts-mixin-unselectable();
 	.ts-mixin-fixheight(@ts-unit-triple);
 	white-space: nowrap;
-	background-color: @ts-color-white;
 }
 .ts-toolbar-menu {
 	position: absolute;
@@ -161,6 +160,12 @@
 			padding-right: @ts-unit-quarter * 0.5;
 		}
 	}
+}
+
+// Theming .....................................................................
+
+.ts-content > .ts-toolbar {
+	background-color: @ts-color-white;
 }
 
 // Tabs ........................................................................
@@ -378,6 +383,7 @@
 					padding-left: @ts-unit;
 				}
 				label {
+					font-size: @ts-fontsize;
 					padding-top: @ts-unit-quarter;
 					padding-bottom: @ts-unit-quarter;
 				}

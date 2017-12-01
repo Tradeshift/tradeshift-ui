@@ -25,12 +25,7 @@ ts.ui.Spirit = (function using(Type, GuiArray, confirmed, chained) {
 			 */
 			busy: chained(function(arg) {
 				var cover = this._childcover();
-				if (!arguments.length || !!arg) {
-					if (++this._busycount === 1) {
-						cover.spin(arg);
-						cover.fadeIn();
-					}
-				} else {
+				if (arg === false || arg === '') {
 					if (--this._busycount === 0) {
 						cover.fadeOut().then(function() {
 							cover
@@ -40,6 +35,11 @@ ts.ui.Spirit = (function using(Type, GuiArray, confirmed, chained) {
 						});
 					} else if (this._busycount < 0) {
 						this._busycount = 0;
+					}
+				} else {
+					if (++this._busycount === 1) {
+						cover.spin(arg);
+						cover.fadeIn();
 					}
 				}
 			}),

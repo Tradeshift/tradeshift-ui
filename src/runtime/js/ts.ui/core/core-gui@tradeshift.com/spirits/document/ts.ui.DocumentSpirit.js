@@ -4,10 +4,13 @@
  * @using {gui.Client} Client
  */
 ts.ui.DocumentSpirit = (function using(Client) {
+	/*
+	 * These don't do anything in the New Chrome, should they?
+	 *
 	var APP_LOADING = ts.ui.BROADCAST_GLOBAL_APP_LOADING;
 	var APP_ABORTED = ts.ui.BROADCAST_GLOBAL_APP_ABORTED;
 	var APP_COMPLETE = ts.ui.BROADCAST_GLOBAL_APP_COMPLETE;
-
+	*/
 	return gui.DocumentSpirit.extend({
 		/**
 		 * Kickstart the plugins that manage layout, asides and dialogs.
@@ -21,15 +24,15 @@ ts.ui.DocumentSpirit = (function using(Client) {
 			this.asideplugin.manageasides();
 			this.input.connect(ts.ui.LayoutModel);
 			// TODO: Either deprecate these things or support them in The New Chrome
-			this.broadcast.addGlobal([APP_LOADING, APP_ABORTED, APP_COMPLETE]);
+			// this.broadcast.addGlobal([APP_LOADING, APP_ABORTED, APP_COMPLETE]);
 			this.action
 				.add([ts.ui.ACTION_HEADER_LEVEL, ts.ui.ACTION_FOOTER_LEVEL])
 				.addGlobal([
-					ts.ui.ACTION_GLOBAL_MODELS_INITIALIZE,
+					// ts.ui.ACTION_GLOBAL_MODELS_INITIALIZE,
 					ts.ui.ACTION_GLOBAL_LOCATION_CHANGEHASH,
-					ts.ui.ACTION_GLOBAL_LOCATION_HASHCHANGE,
-					ts.ui.ACTION_GLOBAL_COMPLETED,
-					ts.ui.ACTION_GLOBAL_TERMINATE
+					ts.ui.ACTION_GLOBAL_LOCATION_HASHCHANGE
+					// ts.ui.ACTION_GLOBAL_COMPLETED,
+					// ts.ui.ACTION_GLOBAL_TERMINATE
 				])
 				.dispatchGlobal(ts.ui.ACTION_GLOBAL_DOCUMENT_TITLE, document.title);
 		},
@@ -57,6 +60,7 @@ ts.ui.DocumentSpirit = (function using(Client) {
 		onready: function() {
 			this.super.onready();
 			this.css.add(ts.ui.CLASS_READY);
+			this.broadcast.dispatch(ts.ui.BROADCAST_COMPLETED);
 		},
 
 		/**
@@ -71,22 +75,6 @@ ts.ui.DocumentSpirit = (function using(Client) {
 				case ts.ui.ACTION_GLOBAL_LOCATION_CHANGEHASH:
 					ts.lib.Location.assign(a.data);
 					break;
-				// information about global models descending from the hosting frame.
-				// this is disabled for now - see {ts.ui.FrameSpirit} - but the idea
-				// might come in handy at some point in the future, so we'll leave it.
-				case ts.ui.ACTION_GLOBAL_MODELS_INITIALIZE:
-					this._outputmodels(a.data);
-					this.action.remove(a.type);
-					break;
-				// this app gets shown to the user
-				// TODO(jmo@): are we using this?
-				case ts.ui.ACTION_GLOBAL_COMPLETED:
-					this.broadcast.dispatch(ts.ui.BROADCAST_COMPLETED);
-					break;
-				// next app started loading, this app soon to be unloaded
-				case ts.ui.ACTION_GLOBAL_TERMINATE:
-					this.broadcast.dispatch(ts.ui.BROADCAST_TERMINATE);
-					break;
 				// header initialized or changed height
 				case ts.ui.ACTION_HEADER_LEVEL:
 					this.guilayout.gotoLevel(a.data, 'ts-header-level');
@@ -99,28 +87,7 @@ ts.ui.DocumentSpirit = (function using(Client) {
 		},
 
 		/**
-		 * Handle broadcast.
-		 * @param {gui.Broadcast} b
-		 */
-		onbroadcast: function(b) {
-			this.super.onbroadcast(b);
-			var cname = ts.ui.CLASS_LOADING;
-			switch (b.type) {
-				case APP_LOADING:
-				case APP_ABORTED:
-					this.css.add(cname);
-					break;
-				case APP_COMPLETE:
-					this.css.remove(cname);
-					break;
-			}
-		},
-
-		/**
-		 * Handle the {ts.ui.LayoutModel} whether it was
-		 *
-		 * 1. output by the local {ts.ui.LayoutPlugin} or
-		 * 2. posted down from the chrome (global model)
+		 * Handle the {ts.ui.LayoutModel}.
 		 * @param {edb.Input} input
 		 */
 		oninput: function(input) {

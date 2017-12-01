@@ -26,7 +26,7 @@ ts.ui.CoverSpirit = (function using(chained, Client) {
 
 			/**
 			 * Show the cover.
-			 * @return {ts.ui.CoverSpirit}
+			 * @returns {this}
 			 */
 			show: chained(function() {
 				this.event.add(MOUSE_EVENTS);
@@ -35,7 +35,7 @@ ts.ui.CoverSpirit = (function using(chained, Client) {
 
 			/**
 			 * Hide the cover (and remove potential spinner).
-			 * @return {ts.ui.CoverSpirit}
+			 * @returns {this}
 			 */
 			hide: chained(function() {
 				this.event.remove(MOUSE_EVENTS);
@@ -56,7 +56,7 @@ ts.ui.CoverSpirit = (function using(chained, Client) {
 			}),
 
 			/**
-			 * Block all mouse events.
+			 * Block all mouse events. Note that this is not the default behavior!
 			 * @param {boolean} is
 			 * @returns {this|boolean} 
 			 */
@@ -71,7 +71,7 @@ ts.ui.CoverSpirit = (function using(chained, Client) {
 			/**
 			 * Start spinning.
 			 * @param @optional {string} message
-			 * @returns {ts.ui.CoverSpirit}
+			 * @returns {this}
 			 */
 			spin: chained(function(message) {
 				message = typeof message === 'string' ? message : '';
@@ -84,7 +84,7 @@ ts.ui.CoverSpirit = (function using(chained, Client) {
 
 			/**
 			 * Stop spinning.
-			 * @return {ts.ui.CoverSpirit}
+			 * @returns {this}
 			 */
 			stop: chained(function() {
 				this.dom.html();
@@ -93,7 +93,7 @@ ts.ui.CoverSpirit = (function using(chained, Client) {
 			/**
 			 * Show or hide the cover.
 			 * @param {boolean} show
-			 * @return {ts.ui.CoverSpirit}
+			 * @returns {this}
 			 */
 			shift: chained(function(show) {
 				if (show) {
@@ -106,7 +106,7 @@ ts.ui.CoverSpirit = (function using(chained, Client) {
 			/**
 			 * Position the cover.
 			 * @param {gui.Geometry|object} geo
-			 * @return {ts.ui.CoverSpirit}
+			 * @returns {this}
 			 */
 			position: chained(function(geo) {
 				this.css.style({

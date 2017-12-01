@@ -40,7 +40,7 @@
 				<p>Fortunately, you can always change what happens when a button gets clicked.</p>
 				<figure data-ts="DoxScript">
 					<script type="runnable">
-						ts.ui.TopBar.buttons().forEach(function(button, index) {
+						ts.ui.TopBar.buttons().forEach((button, index) => {
 							button.label = "Button " + (index + 1);
 							button.onclick = function() {
 								ts.ui.Notification.success(this.label);
@@ -73,7 +73,7 @@
 				<p>You can <code>hide()</code> and <code>show()</code> buttons. You can also toggle <code>visible</code>.</p>
 				<figure data-ts="DoxScript">
 					<script type="runnable">
-						ts.ui.TopBar.buttons().forEach(function(button) {
+						ts.ui.TopBar.buttons().forEach(button => {
 							if(button.visible) {
 								button.hide();
 							} else {
@@ -87,7 +87,7 @@
 				<p>You can <code>disable()</code> and <code>enable()</code> buttons. You can also toggle <code>disabled</code>.</p>
 				<figure data-ts="DoxScript">
 					<script type="runnable">
-						ts.ui.TopBar.buttons().forEach(function(button) {
+						ts.ui.TopBar.buttons().forEach(button => {
 							if(button.disabled) {
 								button.enable();
 							} else {
@@ -103,7 +103,7 @@
 					<script type="runnable">
 						var button = ts.ui.TopBar.buttons()[0];
 						button.busy();
-						setTimeout(function() {
+						setTimeout(() => {
 							button.done();
 						}, 1000);
 					</script>
@@ -113,7 +113,7 @@
 					<script type="runnable">
 						var button = ts.ui.TopBar.buttons()[0];
 						button.busy('Making progress');
-						setTimeout(function() {
+						setTimeout(() => {
 							button.done();
 						}, 1000);
 					</script>

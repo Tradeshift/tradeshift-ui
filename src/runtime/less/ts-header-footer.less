@@ -1,29 +1,10 @@
 .ts-footerbar,
 .ts-headerbar {
 	position: relative;
+	background-color: @ts-color-white;
 	.ts-toolbar {
 		position: relative;
-		/*
-		&.ts-toolbar-divider { // TODO: deprecate this thing
-			&:before  {
-				content: '';
-				position: absolute;
-				top: 0;
-				right: 0;
-				left: 0;
-				height: 1px;
-				background-color: rgba(0,0,0,0.16);
-			}
-		}
-		*/
 	}
-	/*
-	.ts-headerbar-headerbar {
-		&:after {
-			content: none;
-		}
-	}
-	*/
 	.ts-footerbar-bufferbar {
 		position: absolute;
 		left: 0;
@@ -45,29 +26,3 @@
 		top: 0;
 	}
 }
-/*
-.ts-footerbar,
-.ts-headerbar {
-	&:before,
-	&:after {
-		content: '';
-		height: 1px;
-		width: 100%;
-		position: absolute;
-		pointer-events: none;
-		//z-index: @ts-zindex-main + 1;
-	}
-}
-.ts-headerbar {
-	&:after {
-		background-image: linear-gradient(rgba(0,0,0,0.15), transparent);
-		bottom: -4px;
-	}
-}
-.ts-footerbar {
-	&:before {
-		background-image: linear-gradient(transparent, rgba(0,0,0,0.15));
-		top: -4px;
-	}
-}
-*/

@@ -61,16 +61,6 @@ ts.ui.AsideSpirit = (function using(chained, confirmed, Client, LayoutModel, not
 			},
 
 			/**
-			 * Reflex Aside members when we open the Aside.
-			 * TODO: If and when we deprecate the {gui.VisibilityPlugin}
-			 * we should probably move `this.reflex()` to method `_open`.
-			 */
-			onvisible: function() {
-				this.super.onvisible();
-				this.reflex();
-			},
-
-			/**
 			 * Handle action.
 			 * @param {gui.Action} a
 			 */

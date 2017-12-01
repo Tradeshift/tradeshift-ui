@@ -130,15 +130,17 @@ ts.ui.SideBarSpirit = (function using(LayoutSpirit, Type, Client, CSSPlugin, cha
 		_autoclose: true,
 
 		/**
+		 * THIS WILL UNDOUBTEDLY BE NEEDED AGAIN SOMETIME
 		 * If the SideBar is nested below the main header, 
 		 * make the SideBar header become less prominent.
 		 * @returns {ts.ui.HeaderBarSpirit}
-		 */
+		 *
 		_head: function() {
 			return this.dom.parent(ts.ui.MainSpirit)
 				? ts.ui.LayoutSpirit.microHeader(this)
 				: ts.ui.LayoutSpirit.macroHeader(this);
 		},
+		*/
 
 		/**
 		 * @param {boolean} attaching This is `false' when SideBar gets removed.

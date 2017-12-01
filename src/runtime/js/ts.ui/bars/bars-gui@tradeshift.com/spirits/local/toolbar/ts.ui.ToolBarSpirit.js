@@ -459,15 +459,54 @@ ts.ui.ToolBarSpirit = (function using(
 			}),
 
 			/**
+			 * Show the close button `X`.
+			 * @param {Function|null} onclick
+			 * @returns {ts.ui.ButtonSpirit|this}
+			 */
+			closebutton: chained(function(onclick) {
+				var model = this.model();
+				if (arguments.length) {
+					if (onclick === null) {
+						model.closebutton = null;
+					} else {
+						model.closebutton = {
+							onclick: onclick
+						};
+					}
+				} else {
+					return model.closebutton;
+				}
+			}),
+
+			/**
+			 * Show the close button `X`.
+			 * @param {Function|null} onclick
+			 * @returns {ts.ui.ButtonSpirit|this}
+			 */
+			configbutton: chained(function(onclick) {
+				var model = this.model();
+				if (arguments.length) {
+					if (onclick === null) {
+						model.configbutton = null;
+					} else {
+						model.configbutton = {
+							onclick: onclick
+						};
+					}
+				} else {
+					return model.configbutton;
+				}
+			}),
+
+			/**
 			 * Show the config button.
 			 * @param @optional {Function} onconfig
 			 * @returns {this}
 			 */
 			showConfig: confirmed('(function)')(
 				chained(function(onconfig) {
-					this.model().configbutton = {
-						onclick: onconfig
-					};
+					console.warn('showClose is deprecated, use `closebutton(callback)`');
+					this.configbutton.apply(this, arguments);
 				})
 			),
 
@@ -476,28 +515,30 @@ ts.ui.ToolBarSpirit = (function using(
 			 * @returns {this}
 			 */
 			hideConfig: chained(function() {
-				this.model().configbutton = null;
+				this.closebutton.apply(null);
 			}),
 
 			/**
+			 * @deprecated
 			 * Show the close button "X".
 			 * @param @optional {Function} onclose
 			 * @returns {this}
 			 */
 			showClose: confirmed('(function)')(
 				chained(function(onclose) {
-					this.model().closebutton = {
-						onclick: onclose
-					};
+					console.warn('showClose is deprecated, use `closebutton(callback)`');
+					this.closebutton.apply(this, arguments);
 				})
 			),
 
 			/**
+			 * @deprecated
 			 * Hide the close button.
 			 * @returns {this}
 			 */
 			hideClose: chained(function() {
-				this.model().closebutton = null;
+				console.warn('hideClose is deprecated, use `closebutton(null)`');
+				this.closebutton(null);
 			}),
 
 			// Privileged ............................................................

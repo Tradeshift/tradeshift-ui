@@ -169,6 +169,14 @@ ts.ui.SearchSpirit = (function using(ButtonSpirit, CSSPlugin, Type, chained) {
 			}
 		}),
 
+		/**
+ 		 * Search now!
+ 		 * @returns {this}
+ 		 */
+		search: chained(function() {
+			this._model.search();
+		}),
+
 		// Private .................................................................
 
 		/**

@@ -58,17 +58,9 @@ ts.ui.MainSpirit = (function using(Type, chained, PANEL_ATTACH, PANEL_DETACH) {
 		 * @param {string} busy
 		 */
 		busy: chained(function(busy) {
-			var opts = {
+			this._initspin(busy, {
 				message: gui.Type.isString(busy) ? busy : ''
-			};
-			this._initspin(busy, opts);
-			if (busy) {
-				this.guistatus.busy(this.$instanceid);
-				this._isbusy = true;
-			} else {
-				this.guistatus.done(this.$instanceid);
-				this._isbusy = false;
-			}
+			});
 		}),
 
 		done: chained(function() {
@@ -76,20 +68,14 @@ ts.ui.MainSpirit = (function using(Type, chained, PANEL_ATTACH, PANEL_DETACH) {
 		}),
 
 		/**
-		 * @param {string} busyblocking
+		 * @param {string} busy
 		 */
-		blocking: chained(function(busyblocking) {
-			var opts = {
-				message: busyblocking,
+		blocking: chained(function(busy) {
+			this._initspin(busy, {
+				message: gui.Type.isString(busy) ? busy : '',
 				cover: true,
 				color: '#fff'
-			};
-			this._initspin(busyblocking, opts);
-			if (busyblocking) {
-				this.guistatus.busy(this.$instanceid);
-			} else {
-				this.guistatus.done(this.$instanceid);
-			}
+			});
 		}),
 
 		/**
@@ -281,9 +267,7 @@ ts.ui.MainSpirit = (function using(Type, chained, PANEL_ATTACH, PANEL_DETACH) {
 		 * param {object} opts
 		 */
 		_initspin: function(busy, opts) {
-			if (!this.spin) {
-				this.spin = ts.ui.SpinnerSpirit.summon();
-			}
+			this.spin = this.spin || ts.ui.SpinnerSpirit.summon();
 			if (busy) {
 				this.spin.spin(document.body, opts);
 			} else {

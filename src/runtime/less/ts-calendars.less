@@ -74,6 +74,7 @@
 		button {
 			display: inline-block;
 			padding: 0;
+			color: @ts-color-black; 
 			span {
 				display: inline-block;
 				width: @ts-unit-plus;
@@ -83,6 +84,12 @@
 				margin: 4px;
 				border-radius: 100%;
 				padding: 0;
+			}
+			&:hover,
+			&:focus {
+				span {
+					background-color: @ts-color-blue-lightest;
+				}
 			}
 		}
 		.ts-calendar-other {
@@ -119,6 +126,14 @@
 			}
 		}
 		.ts-calendar-nogo {
+			button {
+				&:hover,
+				&:focus {
+					span {
+						background-color: transparent;
+					}
+				}
+			}
 			&,
 			button,
 			span {

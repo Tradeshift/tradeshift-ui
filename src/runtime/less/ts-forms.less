@@ -799,12 +799,12 @@
 			> .ts-field,
 			> span,
 			&:after {
-				color: @ts-color-gray;
+				color: @ts-color-gray-light;
 			}
 			.ts-field {
 				&.ts-text {
 					// &.ts-date
-					border-color: @ts-color-gray-lighter;
+					border-color: @new-bordercolor;
 				}
 			}
 		}
@@ -828,6 +828,12 @@
 		}
 		&:not(.ts-disabled):not(.ts-readonly):after {
 			line-height: 0;
+		}
+		&.ts-disabled::after {
+			color: @ts-color-gray-light;
+		}
+		&.ts-readonly::after {
+			color: @ts-color-black;
 		}
 	}
 }

@@ -79,6 +79,18 @@ samp {
 }
 figure {
   position: relative;
+}
+figure > figcaption {
+  font-size: 12px;
+  font-style: italic;
+  text-align: center;
+  margin: 11px 0 0 0;
+}
+figure.ts-layout > .ts-toolbar {
+  background-color: #d0dce2;
+}
+figure.ts-layout > .ts-panel,
+figure.ts-layout > .ts-panels {
   background-color: #ffffff;
 }
 figure.ts-layout > .ts-panel,

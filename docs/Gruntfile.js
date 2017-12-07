@@ -113,6 +113,7 @@ module.exports = function(grunt) {
 						src: [
 							'angular-1.3.6.min.js',
 							'jquery-2.2.4.min.js',
+							'template.js',
 							'lunr.min.js',
 							'mark.min.js',
 							'icon.svg'

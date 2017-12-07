@@ -18,6 +18,7 @@ ts.dox.PrismSpirit = (function() {
 			this.super.onconfigure();
 			this.code = decodeURIComponent(this.code);
 			this._parseinput(this.dom.q('input[type=hidden]'));
+			this.css.add('ts-plain'); // look less like a Board!
 		},
 
 		// Private ...................................................................

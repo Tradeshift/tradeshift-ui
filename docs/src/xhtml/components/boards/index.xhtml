@@ -11,7 +11,13 @@
 
 						<article>
 							<h1>Boards</h1>
+							<section class="desc">
+								<p>The board is basically a box that features buttons and tabs.</p>
+							</section>
 							<section>
+
+								<p>The <val>Board</val> component must be created with a child component <val>Panel</val>.</p>
+
 								<figure data-ts="DoxMarkup">
 									<script>
 										<div data-ts="Board">
@@ -22,23 +28,46 @@
 									</script>
 								</figure>
 
+								<p>This gives you a box with a dropshadow, but there are ways to make it interesting.</p>
+
 								<div data-ts="Board" id="board">
 									<div data-ts="Panel">
 										<p>The Board looks like this.</p>
 									</div>
 								</div>
 
+								<p>To start with, we can give the Board a title.</p>
+
 								<figure data-ts="DoxScript">
 									<script type="runnable">
 										ts.ui.get('#board', board => {
-											board.title('My Board').buttons([
+											board.title('My Board');
+										});
+									</script>
+								</figure>
+
+							</section>
+							<section>
+
+								<h2>Buttons</h2>
+
+								<p>Add buttons to the Board with the <code>buttons</code> method. This works exactly like it does in the <a data-ts="Button" href="/#components/header/buttons.html">Header API</a>, so please refer to that section for details on setup and usage</p>
+
+								<figure data-ts="DoxScript">
+									<script type="runnable">
+										ts.ui.get('#board', board => {
+											board.buttons([
 												{ label: 'One' },
 												{ label: 'Two' },
-												{ label: 'Three' }
+												{ label: 'Three', onselect() {
+													ts.ui.Notification.success('Clicked!');
+												}}
 											]);
 										});
 									</script>
 								</figure>
+
+								<p>Because these buttons are all <em>tertiary</em>, we will collect them inside a menu. If you specifically don't want this behavior, you can disable it with the <code>uncompact</code> method.</p>
 
 								<figure data-ts="DoxScript">
 									<script type="runnable">
@@ -48,7 +77,15 @@
 									</script>
 								</figure>
 
-								<h3>Tabs</h3>
+							</section>
+
+							<object data="../header/buttons.xhtml#buttons-api"></object>
+
+							<section>
+
+								<h2>Tabs</h2>
+
+								<p>The Board can also be setup with tabs to make a switchboard. There are two ways to go about this depending on your prefered workflow. One is to declare the tabpanels directly in the markup via multiple <val>Panel</val> components.
 
 								<figure data-ts="DoxMarkup">
 									<script>
@@ -61,6 +98,8 @@
 										</div>
 									</script>
 								</figure>
+
+								<p>Notice that they must be placed inside a containing <val>Panels</val> component for this to work. Also note that the individual <val>Panel</val> components must specify a <att>label</att>. The tabs will be rendered like this.</p>
 
 								<div data-ts="Board" id="tabboard">
 									<ul data-ts="Panels">
@@ -75,6 +114,9 @@
 										</li>
 									</ul>
 								</div>
+
+								<p>The other approach is to render the tabs programatically via the <code>tabs</code> method. This works exactly like it does in the <a data-ts="Button" href="/#components/header/buttons.html">Header API</a>, so please refer to that section for details on setup and usage. Let's add some tabs to the current collection.</p>
+
 								<figure data-ts="DoxScript">
 									<script type="runnable">
 										ts.ui.get('#tabboard', board => {
@@ -82,12 +124,18 @@
 												{ label: 'Four' },
 												{ label: 'Five' },
 												{ label: 'Six', onselect() {
-													console.log('Selected');
+													ts.ui.Notification.success('Selected!');
 												}});
 										});
 									</script>
 								</figure>
+
+								<p>Rembember that programatically generated tabs don't do anything by default. What happens in the <code>onselect</code> callback is completely up to you.</p>
+
 							</section>
+
+							<object data="../header/tabs.xhtml#tabs-api"></object>
+
 						</article>
 						
 					</div>

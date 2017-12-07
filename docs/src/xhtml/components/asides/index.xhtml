@@ -34,15 +34,17 @@
 										</aside>
 									</script>
 								</figure>
-								<p>You can create the <val>Aside</val> wherever you like, just make sure that it's positioned outside of the <val>Main</val> element when it opens.</p>
+								<p>You can create the <val>Aside</val> wherever you like, just make sure that it's positioned outside of the <val>Main</val> element when it opens. Perhaps you can simply place it in the <elm>body</elm>.</p>
 								<figure data-ts="DoxMarkup">
 									<script type="text/html">
-											<p>Main content.</p>
-										<aside data-ts="Aside">
-											<div data-ts="Panel">
-												<p>Aside content.</p>
-											</div>
-										</aside>
+										<div data-ts="App">
+											<div data-ts="Main">...</div>
+											<aside data-ts="Aside">
+												<div data-ts="Panel">
+													<p>Aside content.</p>
+												</div>
+											</aside>
+										</div>
 									</script>
 								</figure>
 							</section>
@@ -59,21 +61,6 @@
 										</aside>
 									</script>
 								</figure>
-								<!--
-								<p>You can color the header by assigning any of the classnames
-									<code class="attr-value">ts-bg-blue</code>,
-									<code class="attr-value">ts-bg-green</code>,
-									<code class="attr-value">ts-bg-red</code> and
-									<code class="attr-value">ts-bg-purple</code>
-									to the <code class="el">Aside</code> element itself.</p>
-								<figure data-ts="DoxMarkup">
-									<script type="text/html">
-										<aside data-ts="Aside" class="ts-bg-red">
-											<div data-ts="Panel"></div>
-										</aside>
-									</script>
-								</figure>
-								-->
 							</section>
 
 							<h3>Opening the aside</h3>
@@ -92,6 +79,12 @@
 								<figure data-ts="DoxScript">
 									<script type="runnable">
 										$('#myaside').attr('data-ts.open', true);
+									</script>
+								</figure>
+								<p>If you are doing that, you might as well open the Aside via the certified API.</p>
+								<figure data-ts="DoxScript">
+									<script type="runnable">
+										ts.ui.get('#myaside').open();
 									</script>
 								</figure>
 							</section>

@@ -34,7 +34,7 @@
 					</figure>
 
 					<h3>
-						<span class="el">textarea</span>
+						<elm>textarea</elm>
 					</h3>
 					<p>Starts out with three lines, but will expand up to ten as content is entered. The <att>rows</att> attribute can be used to adjust the initial amount of lines to show.</p>
 					<figure data-ts="DoxMarkup">
@@ -66,10 +66,8 @@
 					</figure>
 
 					<h3>
-						<span class="el">input</span>
-						<span class="attr-pair">
-							<span>type</span>=&quot;<span>text</span>&quot;
-						</span>
+						<elm>input</elm>
+						<att>type=text</att>
 					</h3>
 					<figure data-ts="DoxMarkup">
 						<output/>
@@ -86,10 +84,8 @@
 					</figure>
 
 					<h3>
-						<span class="el">input</span>
-						<span class="attr-pair">
-							<span>type</span>=&quot;<span>tel</span>&quot;
-						</span>
+						<elm>input</elm>
+						<att>type=tel</att>
 					</h3>
 					<figure data-ts="DoxMarkup">
 						<output/>
@@ -106,10 +102,8 @@
 					</figure>
 
 					<h3>
-						<span class="el">input</span>
-						<span class="attr-pair">
-							<span>type</span>=&quot;<span>email</span>&quot;
-						</span>
+						<elm>input</elm>
+						<att>type=email</att>
 					</h3>
 					<figure data-ts="DoxMarkup">
 						<output/>
@@ -126,10 +120,8 @@
 					</figure>
 
 					<h3>
-						<span class="el">input</span>
-						<span class="attr-pair">
-							<span>type</span>=&quot;<span>number</span>&quot;
-						</span>
+						<elm>input</elm>
+						<att>type=number</att>
 					</h3>
 					<p>
 						Set the class <att>class="ts-right"</att> on the <elm>label</elm> to make your number text align right.
@@ -149,10 +141,8 @@
 					</figure>
 
 					<h3>
-						<span class="el">input</span>
-						<span class="attr-pair">
-							<span>type</span>=&quot;<span>date</span>&quot;
-						</span>
+						<elm>input</elm>
+						<att>type=date</att>
 					</h3>
 					<figure data-ts="DoxMarkup">
 						<output/>
@@ -172,7 +162,7 @@
 					</figure>
 
 					<h3>
-						<span class="el">select</span>
+						<elm>select</elm>
 					</h3>
 					<p>
 						The <elm>select</elm> will open in an Aside, but you'll
@@ -229,8 +219,8 @@
 					</div>
 
 					<h3>
-						<span class="el">select</span>
-						<span class="attr-name">multiple</span>
+						<elm>select</elm>
+						<att>multiple<att/>
 					</h3>
 					<p>The <elm>select</elm> <att>multiple</att> only triggers a change when the <samp>Done</samp> button is pressed. You can customize the button label by adding a <elm>button</elm> to the <elm>label</elm> element, but note that this only configures the <em>text</em> on the button (eg. no event listeners are fired).</p>
 					<figure data-ts="DoxMarkup">
@@ -240,7 +230,7 @@
 								<fieldset>
 									<label>
 										<span>Select multiple</span>
-										<select multiple>
+										<select multiple id="multijohn">
 											<option value="a">One</option>
 											<option value="b">Two</option>
 											<option value="c">Three</option>
@@ -254,11 +244,32 @@
 						</script>
 					</figure>
 
+					<script>
+						window.onload = function() {
+(function randomize(select) {	
+	setInterval(() => {
+		Array.from(select.options).forEach(option => {
+			option.selected = Math.random() > 0.5;
+		});
+	}, 1000);
+	setTimeout(() => {
+		alert('Clear the selection!');
+		while(select.hasChildNodes()) {
+			select.removeChild(select.firstChild);
+		}
+	}, 15000);
+})(document.querySelector('select[multiple]'));
+							/*
+							while(select.hasChildNodes()) {
+								select.removeChild(select.firstChild);
+							}
+							*/
+						};
+					</script>
+
 					<h3>
-						<span class="el">input</span>
-						<span class="attr-pair">
-							<span>type</span>=&quot;<span>radio</span>&quot;
-						</span>
+						<elm>input</elm>
+						<att>type=radio</att>
 					</h3>
 					<p>Radio element. Generally used to choose something.</p>
 					<figure data-ts="DoxMarkup">
@@ -281,10 +292,8 @@
 					</figure>
 
 					<h3>
-						<span class="el">input</span>
-						<span class="attr-pair">
-							<span>type</span>=&quot;<span>checkbox</span>&quot;
-						</span>
+						<elm>input</elm>
+						<att>type=checkbox</att>
 					</h3>
 					<p>Checkbox element. Generally used to indicate consent on forms.</p>
 					<figure data-ts="DoxMarkup">
@@ -307,10 +316,8 @@
 					</figure>
 
 					<h3>
-						<span class="el">input</span>
-						<span class="attr-pair">
-							<span>type</span>=&quot;<span>checkbox</span>&quot;
-						</span>
+						<elm>input</elm>
+						<att>type=textbox</att>
 						<span style="color:rgb(127,127,127);">(alternate version)</span>
 					</h3>
 					<p>We call it the <code>switch</code>. Used mainly for toggling preferences/settings. Note that <code>switch</code> differs from the <code>checkbox</code> only by the order of HTML elements.</p>

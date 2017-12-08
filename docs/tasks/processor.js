@@ -380,16 +380,17 @@ function splitscreen($) {
  * @returns {$}
  */
 function specialtags($) {
+	const value = val => (val.startsWith('"') ? val.slice(1, -1) : val);
 	$('att').each(function(i, tag) {
 		var txt = $(tag).text();
 		var att = txt.split('=')[0];
-		var val = txt.split('="')[1];
+		var val = txt.split('=')[1];
 		$(tag).replaceWith(
 			'<code class="attr-pair">' +
 				'<span>' +
 				att +
 				'</span>' +
-				(val ? '="<span>' + val.slice(0, -1) + '</span>"' : '') +
+				(val ? '="<span>' + value(val) + '</span>"' : '') +
 				'</code>'
 		);
 	});

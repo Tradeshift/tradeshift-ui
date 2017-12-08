@@ -244,29 +244,6 @@
 						</script>
 					</figure>
 
-					<script>
-						window.onload = function() {
-(function randomize(select) {	
-	setInterval(() => {
-		Array.from(select.options).forEach(option => {
-			option.selected = Math.random() > 0.5;
-		});
-	}, 1000);
-	setTimeout(() => {
-		alert('Clear the selection!');
-		while(select.hasChildNodes()) {
-			select.removeChild(select.firstChild);
-		}
-	}, 15000);
-})(document.querySelector('select[multiple]'));
-							/*
-							while(select.hasChildNodes()) {
-								select.removeChild(select.firstChild);
-							}
-							*/
-						};
-					</script>
-
 					<h3>
 						<elm>input</elm>
 						<att>type=radio</att>

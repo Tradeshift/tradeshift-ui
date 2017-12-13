@@ -38,6 +38,7 @@
 				"path": "components/asides/"
 			},
 			{
+				"hidden": true,
 				"label": "Bars (DEPRECATED)",
 				"icon": "docs-icon-expand-horizontal-7",
 				"path": "components/bars/topbar.html"
@@ -88,6 +89,11 @@
 				"path": "components/icons/"
 			},
 			{
+				"label": "Mains",
+				"icon": "docs-icon-video-games-space-invaders-1",
+				"path": "components/mains/"
+			},
+			{
 				"label": "Menu",
 				"icon": "docs-icon-navigation-drawer-2",
 				"path": "components/menus/"
@@ -113,11 +119,6 @@
 				"path": "components/pager/"
 			},
 			{
-				"label": "Panels (TODO!)",
-				"icon": "docs-icon-video-control-fast-forward",
-				"path": "components/panels/"
-			},
-			{
 				"label": "Search",
 				"icon": "docs-icon-romance-find-love",
 				"path": "components/search/"
@@ -133,7 +134,7 @@
 				"path": "components/spinners/"
 			},
 			{
-				"label": "TabBar (TODO!)",
+				"label": "TabBar",
 				"icon": "docs-icon-expand-horizontal-7",
 				"path": "components/tabbar/"
 			},

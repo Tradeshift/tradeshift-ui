@@ -79,6 +79,7 @@ ts.dox.ChromeSpirit = (function using(CSSPlugin, Then) {
 					this._openmenu(true);
 					break;
 				case MENUCLOSE:
+					alert('!');
 					this._openmenu(false);
 					break;
 				case DOLOAD:
@@ -479,17 +480,3 @@ function search(query) {
 		})[0];
 	});
 }
-
-/**
- * get slice string
- * @param	{String} query string
- * @param	{Array} content array
- * @return {String}	results
- *
-function getContent(query, content) {
-	var queryIndex = content.indexOf(query);
-	var start = queryIndex - 10 > 0 ? queryIndex - 10 : 0;
-	var end = queryIndex + 10 > content.length - 1 ? content.length - 1 : queryIndex + 10;
-	return content.slice(start, end).join(' ') + '...'; //replace(query, '<code>' + query + '</code>') + '...';
-}
-*/

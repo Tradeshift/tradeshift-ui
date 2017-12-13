@@ -14,8 +14,21 @@
 
 figure {
 	position: relative;
-	background-color: @ts-color-white;
+	//background-color: @ts-color-white;
+	> figcaption {
+		font-size: @ts-fontsize-mini;
+		font-style: italic;
+		text-align: center;
+		margin: @ts-unit-half 0 0 0;
+	}
 	&.ts-layout {
+		> .ts-toolbar {
+			background-color: @ts-color-gray-lighter;
+		}
+		> .ts-panel,
+		> .ts-panels {
+			background-color: @ts-color-white;
+		}
 		> .ts-panel,
 		> .ts-panels > .ts-panel {
 			padding: 0;

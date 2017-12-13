@@ -247,13 +247,9 @@ ts.ui.Spirit = (function using(Type, GuiArray, confirmed, chained) {
 					var model = opt_json;
 					if (model) {
 						if (opt_json !== this._model) {
-							if (!Model.is(model)) {
-								model = new Model(opt_json);
-							}
+							model = Model.is(model) ? model : new Model(opt_json);
 							this._model = model;
-							if (!this.script.loaded) {
-								this.script.load(edbml);
-							}
+							this.script.load(edbml);
 							this.script.input(model);
 						}
 					} else {

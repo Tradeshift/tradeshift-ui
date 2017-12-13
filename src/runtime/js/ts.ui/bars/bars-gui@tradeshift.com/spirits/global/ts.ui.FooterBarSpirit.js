@@ -162,10 +162,20 @@ ts.ui.FooterBarSpirit = (function using(
 						(this._bufferbar = this._getbar('.ts-footerbar-bufferbar'))
 					].forEach(function(spirit) {
 						spirit.life.add(gui.LIFE_RENDER, this);
+						spirit.script.run(); // support the hack below...
 					}, this);
 					this._layout();
+					/**
+					 * Some race condition would make the Footer not render when 
+					 * configured before `gui.ready`, which should be most  real 
+					 * life use cases. This should be considered a temporary fix.
+					 */
+					if (this.model().$show()) {
+						this.tick.next(function() {
+							this._optimize();
+						});
+					}
 				}
-				// this._refresh([this._actionbar, this._centerbar, this._backupbar]);
 			},
 
 			/**

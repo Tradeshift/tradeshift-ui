@@ -204,13 +204,13 @@
 		margin: 0;
 		border-right: 1px solid transparent;
 		em {
-			background-color: @ts-color-gray-light;
+			background-color: @ts-color-gray-lighter;
 			color: @ts-color-black;
 			min-width: 22px;
 			text-align: center;
 			border-radius: @ts-radius;
 			font-size: @ts-fontsize-small;
-			font-weight: bold;
+			font-weight: @ts-fontweight-semibold;
 			position: absolute;
 			right: @ts-unit-half;
 			top: 50%;
@@ -220,6 +220,14 @@
 		&:hover {
 			span {
 				text-decoration: none;
+				color: @ts-color-black;
+			}
+			em {
+				background-color: @ts-color-black;
+				color: @ts-color-white;
+			}
+			.ts-tab-icon {
+				color: @ts-color-black;
 			}
 		}
 		.ts-tab-icon {
@@ -243,7 +251,7 @@
 			.ts-button {
 				cursor: default;
 				em {
-					background-color: @ts-color-red;
+					background-color: @ts-color-black;
 					color: @ts-color-white;
 				}
 				&:after {
@@ -417,7 +425,8 @@
 		.ts-button {
 			padding: @ts-unit-half;
 			span {
-				.ts-mixin-label-text();
+				font-size: @ts-fontsize;
+				font-weight: @ts-fontweight-semibold;
 			}
 			&:after {
 				display: none;
@@ -442,6 +451,9 @@
 	.ts-tab-more {
 		.ts-button {
 			.ts-mixin-fixheight(@ts-unit-double);
+			&:hover {
+				color: @ts-color-black;
+			}
 		}
 	}
 }

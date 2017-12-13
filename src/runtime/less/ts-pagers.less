@@ -13,22 +13,14 @@
 		li {
 			display: inline-block;
 			button {
-				background-color: @ts-color-gray-lighter;
-				border: 1px solid @ts-color-gray-lighter;
-				border-color: @ts-color-gray-light;
+				// background-color: @ts-color-gray-lighter;
+				// border: 1px solid @ts-color-gray-lighter;
+				// border-color: @ts-color-gray-light;
 				display: inline-block;
 				width: @ts-unit-double;
 				height: @ts-unit-double;
 				position: relative;
 				overflow: hidden;
-				&:disabled {
-					background-color: fade(@ts-color-gray-lighter, 25%);
-					span,
-					i {
-						color: @ts-color-black;
-						opacity: 0.25;
-					}
-				}
 				span,
 				i {
 					.ts-mixin-maximize();
@@ -37,8 +29,25 @@
 					line-height: 0;
 					padding-top: @ts-unit;
 				}
+				&:disabled {
+					// background-color: fade(@ts-color-gray-lighter, 25%);
+					span,
+					i {
+						color: @ts-color-gray-lighter;
+					}
+				}
+				&:not(:disabled) {
+					&:not(.ts-selected) {
+						&:hover {
+							span,
+							i {
+								color: @ts-color-blue-dark;
+							}
+						}
+					}
+				}
 				&.ts-selected {
-					background-color: @ts-color-white;
+					// background-color: @ts-color-white;
 					color: @ts-color-black;
 					cursor: default;
 				}

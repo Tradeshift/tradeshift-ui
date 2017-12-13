@@ -202,16 +202,16 @@ button<span class="token punctuation">.</span><span class="token function">busy<
 <span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
                             </figure>
                             <p>You can of course also create grouped buttons with icons instead of text.</p>
-                            <figure data-ts="DoxScript" class="runnable" data-ts.code="var%20group%20%3D%20ts.ui.get(&apos;%23toolbar&apos;).buttons()%5B2%5D%3B%0Agroup.push(%7B%0A%09icon%3A%20&apos;ts-icon-other&apos;%2C%0A%09type%3A%20&apos;ts-secondary&apos;%0A%7D)%3B">
+                            <figure data-ts="DoxScript" class="runnable" data-ts.code="var%20group%20%3D%20ts.ui.get(&apos;%23toolbar&apos;).buttons()%5B2%5D%3B%0Agroup.push(%7B%0A%09icon%3A%20&apos;ts-icon-other&apos;%2C%0A%09type%3A%20&apos;ts-danger&apos;%0A%7D)%3B">
                                 <script type="runnable">
-                                    var group = ts.ui.get('#toolbar').buttons()[2]; group.push({ icon: 'ts-icon-other', type: 'ts-secondary' });
+                                    var group = ts.ui.get('#toolbar').buttons()[2]; group.push({ icon: 'ts-icon-other', type: 'ts-danger' });
                                 </script>
                                 <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                                 <div data-ts="Panel">
                                     <pre class="prism language-javascript"><code><span class="token keyword">var</span> group <span class="token operator">=</span> ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#toolbar&apos;</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">buttons<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
 group<span class="token punctuation">.</span><span class="token function">push<span class="token punctuation">(</span></span><span class="token punctuation">{</span>
 	icon<span class="token punctuation">:</span> <span class="token string">&apos;ts-icon-other&apos;</span><span class="token punctuation">,</span>
-	type<span class="token punctuation">:</span> <span class="token string">&apos;ts-secondary&apos;</span>
+	type<span class="token punctuation">:</span> <span class="token string">&apos;ts-danger&apos;</span>
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
                             </figure>
                         </section>

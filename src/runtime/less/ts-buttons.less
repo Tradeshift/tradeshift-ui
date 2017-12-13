@@ -6,7 +6,7 @@
 @darkborder: rgba(0, 0, 0, 0.1);
 @liteborder: rgba(255, 255, 255, 0.25);
 @depression: rgba(255, 255, 255, 0.2);
-@buttonblue: fade(@ts-color-blue, 70%);
+@buttonblue: @ts-color-blue;
 
 // Mixins ......................................................................
 
@@ -150,7 +150,8 @@
 			border-top-left-radius: 0;
 			border-bottom-left-radius: 0;
 		}
-		&.ts-tertiary {
+		&.ts-tertiary,
+		&.ts-secondary {
 			border-left-color: @bordercolor;
 			border-left: @borderwidth solid @buttonblue;
 		}
@@ -164,7 +165,8 @@
 			border-top-right-radius: 0;
 			border-bottom-right-radius: 0;
 		}
-		&.ts-tertiary {
+		&.ts-tertiary,
+		&.ts-secondary {
 			border-right-color: @bordercolor;
 			border-right: @borderwidth solid @buttonblue;
 		}
@@ -183,7 +185,8 @@
 		font-size: @ts-fontsize-small;
 		min-width: @ts-unit;
 	}
-	&.ts-tertiary {
+	&.ts-tertiary,
+	&.ts-secondary {
 		line-height: 0;
 	}
 	&:not(:disabled):after {
@@ -216,7 +219,8 @@
 	&.ts-danger {
 		.mixin-button();
 	}
-	&.ts-tertiary {
+	&.ts-tertiary,
+	&.ts-secondary {
 		line-height: @ts-unit - 2;
 	}
 }
@@ -229,7 +233,8 @@ menu .ts-button {
 .ts-button.ts-micro,
 .ts-micro .ts-button {
 	.mixin-micro-button();
-	&.ts-tertiary {
+	&.ts-tertiary,
+	&.ts-secondary {
 		line-height: @ts-unit - 2;
 	}
 }
@@ -528,25 +533,30 @@ menu .ts-button {
 		&.ts-primary {
 			background-color: @ts-color-green-dark;
 		}
-		&.ts-secondary {
+		&.ts-secondaryxx {
 			background-color: @ts-color-blue-dark;
 		}
 		&.ts-danger {
 			background-color: @ts-color-red-dark;
 		}
-		&.ts-tertiary:not(.ts-nofocus) {
-			background-color: fade(@ts-color-blue, 10%);
-			border: 1px solid fade(@ts-color-blue, 50%);
+		&.ts-tertiary, 
+		&.ts-secondary { 
+		  &:not(.ts-nofocus) { 
+			background-color: transparent; 
+			border: 1px solid @new-bordercolor; 
+		  } 
+		  background-color: @ts-color-gray-lightest;
 		}
 	}
 }
 .mixin-tertiary-lite {
-	&.ts-tertiary {
-		background-color: rgba(255, 255, 255, 0);
-		color: @ts-color-blue;
-		border: 1px solid @buttonblue;
+	&.ts-tertiary, 
+	&.ts-secondary { 
+	  background-color: transparent; 
+	  color: @ts-color-black; 
+	  border: 1px solid @new-bordercolor; 
 		&:focus:before {
-			border-color: @buttonblue;
+			border-color: @new-bordercolor
 		}
 	}
 }
@@ -584,7 +594,7 @@ menu .ts-button {
 			border-color: @ts-color-green-darker;
 		}
 	}
-	&.ts-secondary {
+	&.ts-secondaryxx {
 		background-color: @ts-color-blue;
 		color: @ts-color-white;
 		&:focus:before {
@@ -598,8 +608,9 @@ menu .ts-button {
 			border-color: @ts-color-red-darker;
 		}
 	}
-	&.ts-tertiary {
-		border-color: @buttonblue;
+	&.ts-tertiary,
+	&.ts-secondary {
+		border-color: @new-bordercolor;
 		&:after {
 			border: none;
 		}
@@ -660,7 +671,7 @@ menu .ts-button {
 .ts-bg-darkened {
 	.ts-button:not(:disabled) {
 		&.ts-primary,
-		&.ts-secondary {
+		&.ts-secondaryxx {
 			&:focus:before {
 				border-color: rgba(255, 255, 255, 0.6);
 			}

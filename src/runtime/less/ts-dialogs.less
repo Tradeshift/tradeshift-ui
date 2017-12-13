@@ -4,12 +4,15 @@
 .ts-dialog {
 	position: absolute;
 	border-radius: @ts-radius;
+	background-color: @ts-color-white;
+	box-shadow: @ts-shadow;
+	border: 1px solid @new-bordercolor;
 	z-index: @ts-zindex-dialog;
 	top: 20%;
 	left: 50%;
 	width: @local-variable-dialog-width; // equal aside body
 	margin-left: @local-variable-dialog-minus;
-	color: @ts-color-white;
+	color: @ts-color-black;
 	.ts-dialog-head,
 	.ts-dialog-body,
 	.ts-dialog-buttons {
@@ -109,12 +112,29 @@
 		}
 	}
 	&.ts-dialog-success { // TOTAL FASTFIX! WAS OTHERWISE INVISIBLE :/
-		background-color: @ts-color-white;
-		color: @ts-color-black;
-		border: 1px solid @new-bordercolor;
-		box-shadow: 2px 2px 6px @new-shadowcolor;
+		// background-color: @ts-color-white;
+		// color: @ts-color-black;
+		// border: 1px solid @new-bordercolor;
+		// box-shadow: 2px 2px 6px @new-shadowcolor;
 		.ts-dialog-icon {
 			color: @ts-color-green;
+		}
+	}
+	&.ts-dialog-confirm,
+	&.ts-dialog-info {
+		.ts-dialog-icon {
+			color: @ts-color-blue;
+		}
+	}
+	&.ts-dialog-warning {
+		.ts-dialog-icon {
+			color: @ts-color-orange;
+		}
+	}
+	&.ts-dialog-danger,
+	&.ts-dialog-error {
+		.ts-dialog-icon {
+			color: @ts-color-red;
 		}
 	}
 }

@@ -1,13 +1,6 @@
 gui.$mark('- parse runtime');
 
 /**
- * Don't automatically bootstrap as soon as `DOMContentLoaded` occurs.
- * Instead we bootstrap manually in the method {ts.ui.$maybebootstrap}.
- * @overwrites {gui#bootstrap}
- */
-gui.autostrap = false;
-
-/**
  * Namespace object.
  * @using {gui.Client} Client
  * @using {gui.Array} guiArray
@@ -544,33 +537,6 @@ ts.ui = gui.namespace(
 					console.error(this + ' is not initialized');
 				}
 				return model;
-			},
-
-			// Privileged ..............................................................
-
-			/**
-			 * Toggled on `DOMContentLoaded` at which point we'll attempt to boostrap.
-			 * @type {boolean}
-			 */
-			$domloaded: false,
-
-			/**
-			 * Will be set to `true` when all scripts are loaded or when there's no
-			 * additional scripts to load (this is basically the localization script).
-			 * @type {boolean}
-			 */
-			$jsloaded: false,
-
-			/**
-			 * Called twice: Once when when the localization script has been loaded
-			 * and again (or maybe before) when the `DOMContentLoaded` event happens.
-			 * @param @optional {boolean} jsloaded
-			 */
-			$maybebootstrap: function(jsloaded) {
-				this.$jsloaded = this.$jsloaded || !!jsloaded;
-				if (this.$domloaded && this.$jsloaded) {
-					gui.bootstrap(); // release the spirits
-				}
 			}
 		};
 	})(gui.Client, gui.Array, gui.Arguments.confirmed, gui.Combo.chained)
@@ -732,14 +698,4 @@ ts.ui.ready(function addobserver() {
 	var layout = ts.ui.LayoutModel.output.get();
 	ts.ui.breakpoint = layout.breakpoint;
 	layout.addObserver(ts.ui);
-});
-
-/**
- * We attempt to bootstap on `DOMContentLoaded`. Note that it is possible
- * to check whether or not `DOMContentLoaded` has happened via the property
- * `document.readyState` but that doesn't always work quite right in IE9.
- */
-addEventListener('DOMContentLoaded', function() {
-	ts.ui.$domloaded = true;
-	ts.ui.$maybebootstrap();
 });

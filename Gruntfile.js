@@ -81,28 +81,6 @@ module.exports = function(grunt) {
 				src: ['dist/ts.js', 'dist/ts.css', 'dist/ts-lang-en.js'],
 				dest: 'spec/jasmine/'
 			},
-
-			// setup language files for local development
-			lang_dev: {
-				flatten: true,
-				expand: true,
-				src: 'src/runtime/js/ts.ui/lang/*',
-				dest: 'dist/'
-			},
-
-			// setup language files for CDN
-			lang_cdn: {
-				flatten: true,
-				expand: true,
-				src: 'src/runtime/js/ts.ui/lang/*',
-				dest: 'dist/cdn/',
-				rename: function(dest, src) {
-					const ext = path.extname(src);
-					const filename = path.basename(src, ext) + '-<%= pkg.version %>' + ext;
-					return dest + '/' + grunt.template.process(filename);
-				}
-			},
-
 			css_cdn: {
 				files: [
 					{
@@ -121,8 +99,7 @@ module.exports = function(grunt) {
 			// setup 'ts.js'
 			dev: {
 				options: {
-					'${runtimecss}': '//127.0.0.1:10111/dist/ts.css',
-					'${langbundle}': '//127.0.0.1:10111/dist/ts-lang-<LANG>.js'
+					'${runtimecss}': '//127.0.0.1:10111/dist/ts.css'
 				},
 				files: {
 					'temp/ts.js': 'src/runtime/ts.js'
@@ -131,25 +108,19 @@ module.exports = function(grunt) {
 			// setup 'ts.js' for jasmine tests
 			jasmine: {
 				options: {
-					'${runtimecss}': 'ts.css',
-					'${langbundle}': 'ts-lang-<LANG>.js'
+					'${runtimecss}': 'ts.css'
 				},
 				files: {
 					'temp/ts.js': 'src/runtime/ts.js'
 				}
 			},
-
 			// setup 'ts.js' for CDN
 			cdn: {
 				options: {
 					'${runtimecss}':
 						'<%= process.env.ALI_OSS_CDN_LIVE || config.cdn_live %>' +
 						config.cdn_folder +
-						'/ts-<%= pkg.version %>.min.css',
-					'${langbundle}':
-						'<%= process.env.ALI_OSS_CDN_LIVE || config.cdn_live %>' +
-						config.cdn_folder +
-						'/ts-lang-<LANG>-<%= pkg.version %>.js'
+						'/ts-<%= pkg.version %>.min.css'
 				},
 				files: {
 					'temp/ts.js': 'src/runtime/ts.js'
@@ -240,6 +211,26 @@ module.exports = function(grunt) {
 			jasmine: {
 				src: ['spec/spiritual/**/*.spec.js', 'spec/runtime/**/*.spec.js'],
 				dest: 'spec/jasmine/specs.js'
+			},
+			// translations into a mighty `switch` case
+			locales: {
+				options: {
+					banner: `switch((document.documentElement.lang || 'en-US').toLowerCase().replace('_', '-')) {\n`,
+					footer: '\n}',
+					process: function(src, filepath) {
+						return (
+							`\tcase '${filepath.match(/ts-lang-(.*)\.js/)[1]}':\n` +
+							src
+								.split('\n')
+								.map(line => '\t\t' + line)
+								.join('\n') +
+							'break;'
+						);
+					}
+				},
+				files: {
+					'temp/locales.js': ['src/runtime/js/ts.ui/lang/*.js']
+				}
 			}
 		},
 
@@ -463,21 +454,21 @@ module.exports = function(grunt) {
 				tasks: generateJsConcurrent('cdn')
 			},
 			cdn_generate_css_and_copy_lang_and_concat_js: {
-				tasks: generateCssAndCopyLangAndConcatJsConcurrent('cdn')
+				tasks: generateCssAndConcatJsConcurrent('cdn')
 			},
 			// Build for dev
 			dev_generate_js: {
 				tasks: generateJsConcurrent('dev')
 			},
 			dev_generate_css_and_copy_lang_and_concat_js: {
-				tasks: generateCssAndCopyLangAndConcatJsConcurrent('dev')
+				tasks: generateCssAndConcatJsConcurrent('dev')
 			},
 			// Build for Jasmine
 			jasmine_generate_js: {
 				tasks: generateJsConcurrent('jasmine')
 			},
 			jasmine_generate_css_and_copy_lang_and_concat_js: {
-				tasks: generateCssAndCopyLangAndConcatJsConcurrent('jasmine')
+				tasks: generateCssAndConcatJsConcurrent('jasmine')
 			},
 			// Check for existing files on CDN while building dist
 			check_cdn_while_dist: {
@@ -493,10 +484,7 @@ module.exports = function(grunt) {
 	// Utility functions .........................................................
 
 	function returnDevForJasmine(target) {
-		if (target === 'jasmine') {
-			return 'dev';
-		}
-		return target;
+		return target === 'jasmine' ? 'dev' : target;
 	}
 
 	function generateJsConcurrent(target = 'cdn') {
@@ -513,6 +501,7 @@ module.exports = function(grunt) {
 			'concat:moment', // generate moment.js
 			'concat:spin', // generate spin.js
 			'concat:app', // generate ts.app.js
+			'concat:locales',
 			'guibundles' // generate ts-runtime-{api,gui}.js
 		];
 	}
@@ -538,12 +527,8 @@ module.exports = function(grunt) {
 		return out;
 	}
 
-	function generateCssAndCopyLangAndConcatJsConcurrent(target = 'cdn') {
-		return [
-			concatAndUglifyJs(target),
-			compileAndMinifyLess(target),
-			`copy:lang_${returnDevForJasmine(target)}` // copy lang files
-		];
+	function generateCssAndConcatJsConcurrent(target = 'cdn') {
+		return [concatAndUglifyJs(target), compileAndMinifyLess(target)];
 	}
 
 	function build(target = 'cdn') {
@@ -654,7 +639,8 @@ module.exports = function(grunt) {
 			'temp/modules-mix.js',
 			'temp/module-edbml.js',
 			'temp/ts-runtime-gui.js',
-			'temp/edbml-compiled.js'
+			'temp/edbml-compiled.js',
+			'temp/locales.js'
 		];
 	}
 

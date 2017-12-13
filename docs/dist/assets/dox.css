@@ -90,6 +90,23 @@ samp {
   -moz-hyphens: none;
   hyphens: none;
 }
+h1 code,
+h2 code,
+h3 code,
+h1 pre,
+h2 pre,
+h3 pre,
+h1 var,
+h2 var,
+h3 var,
+h1 kbd,
+h2 kbd,
+h3 kbd,
+h1 samp,
+h2 samp,
+h3 samp {
+  font-size: inherit;
+}
 /* Remove font-weight hack for certain elements ..............................*/
 ul.splitscreen li:last-child,
 ul.splitscreen li:last-child p,

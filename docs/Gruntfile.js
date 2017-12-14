@@ -37,6 +37,7 @@ module.exports = function(grunt) {
 
 		// tags to include in HEAD when building for local development
 		localtags: [
+			'<meta charset="UTF-8">',
 			'<meta name="viewport" content="width=device-width"/>',
 			'<script src="//127.0.0.1:10111/dist/ts.js"></script>',
 			'<script src="/dist/assets/dox.js"></script>',
@@ -47,6 +48,7 @@ module.exports = function(grunt) {
 
 		// tags to include in HEAD when publishing to GitHub pages (TODO!)
 		publictags: [
+			'<meta charset="UTF-8">',
 			'<meta name="viewport" content="width=device-width"/>',
 			'<script src="<%=config.runtime_hosting%>/ts-<%=config.runtime_version%>.min.js"></script>',
 			'<script src="/dist/assets/dox.min.js"></script>',

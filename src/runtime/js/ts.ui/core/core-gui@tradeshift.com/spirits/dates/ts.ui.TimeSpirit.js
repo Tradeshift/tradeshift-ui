@@ -1,13 +1,35 @@
 /**
  * Spirit of the time.
  * @extends {ts.ui.Spirit}
+ * @using {Moment.js} moment
  * @using {gui.Combo.chained}
  */
-ts.ui.TimeSpirit = (function using(chained) {
+ts.ui.TimeSpirit = (function using(moment, chained) {
 	var mytick = 'mytick';
 	var time = 1000;
 	var issame = false;
 	var firsttime = null;
+
+	/**
+	 * There's two problems. First, our language code `no` for Nynorsk is not 
+	 * correctly declared in V4 as `nn-NO` according to the ISO standard and 
+	 * second, Nynorsk is not defined in the Moment.js list of languages :/
+	 * We'll have to use Bokmål here, which for our purpose is identical.
+	 * @param {string|null} code
+	 * @returns {string}
+	 */
+	function nynorsk(code) {
+		return code ? (code.toLowerCase() === 'no' ? 'nb-no' : code) : code;
+	}
+
+	/**
+	 * Configure locale in Moment. The replaced underscore character has to do 
+	 * with some invalid language code that emerged from the depths of Grails.
+	 * @param {string|null} code
+	 */
+	(function localize(code) {
+		moment.locale(nynorsk(code.toLowerCase()).replace('_', '-'));
+	})(document.documentElement.lang || 'en-US');
 
 	return ts.ui.Spirit.extend({
 		/**
@@ -15,7 +37,7 @@ ts.ui.TimeSpirit = (function using(chained) {
 		 */
 		onenter: function() {
 			this.super.onenter();
-			ts.ui.moment.suppressDeprecationWarnings = true;
+			moment.suppressDeprecationWarnings = true;
 			this.tick.add(mytick).start(mytick, time);
 			this.att.add('datetime');
 		},
@@ -26,7 +48,7 @@ ts.ui.TimeSpirit = (function using(chained) {
 		ontick: function(tick) {
 			this.super.ontick(tick);
 			if (tick.type === mytick) {
-				this._setText();
+				this._update();
 			}
 		},
 
@@ -36,17 +58,30 @@ ts.ui.TimeSpirit = (function using(chained) {
 		onatt: function(att) {
 			this.super.onatt(att);
 			if (att.name === 'datetime') {
-				this._setText();
+				this._update();
 			}
 		},
 
-		// Private ......................................................
+		// Private .................................................................
 
 		/**
-		 * Set the time to the element text
-		 * Just show the datetime if it is an invalid time
+		 * The Time element itself can be localized with the `lang` attribute, 
+		 * although this feature is TBH really just used for the unit tests.
 		 */
-		_setText: function() {
+		_update: function() {
+			var newcode = this.element.lang;
+			var oldcode = moment.locale();
+			newcode ? moment.locale(nynorsk(newcode)) : void 0;
+			this._setText();
+			newcode ? moment.locale(oldcode) : void 0;
+		},
+
+		/**
+		 * Set the time to the element text.
+		 * Just show the datetime if it is an invalid time.
+		 * @param {string|null} langcode 
+		 */
+		_setText: function(langcode) {
 			var datetime = this.att.get('datetime');
 			var realtime = this.att.get('realtime');
 			if (!datetime) {
@@ -54,17 +89,17 @@ ts.ui.TimeSpirit = (function using(chained) {
 			}
 			if (realtime && !issame) {
 				this.element.textContent = this._getTime(datetime, realtime);
-				this.element.title = ts.ui.moment(datetime).format('MMM Do YYYY, h:mm:ss a');
+				this.element.title = moment(datetime).format('MMM Do YYYY, h:mm:ss a');
 				return;
 			}
-			if (ts.ui.moment(datetime).isValid()) {
-				this.element.textContent = ts.ui.moment(datetime).fromNow();
-				this.element.title = ts.ui.moment(datetime).format('MMM Do YYYY, h:mm:ss a');
+			if (moment(datetime).isValid()) {
+				this.element.textContent = moment(datetime).fromNow();
+				this.element.title = moment(datetime).format('MMM Do YYYY, h:mm:ss a');
 			} else {
-				if (parseInt(datetime, 10) && ts.ui.moment(parseInt(datetime, 10)).isValid()) {
+				if (parseInt(datetime, 10) && moment(parseInt(datetime, 10)).isValid()) {
 					datetime = parseInt(datetime, 10);
-					this.element.textContent = ts.ui.moment(datetime).fromNow();
-					this.element.title = ts.ui.moment(datetime).format('MMM Do YYYY, h:mm:ss a');
+					this.element.textContent = moment(datetime).fromNow();
+					this.element.title = moment(datetime).format('MMM Do YYYY, h:mm:ss a');
 				} else {
 					this.element.textContent = datetime;
 					this.element.title = datetime;
@@ -80,37 +115,37 @@ ts.ui.TimeSpirit = (function using(chained) {
 		_getTime: function(datetime, realtime) {
 			var newdatetime = null;
 			var timespan = null;
-			if (!ts.ui.moment(datetime).isValid()) {
+			if (!moment(datetime).isValid()) {
 				if (parseInt(datetime, 10)) {
 					datetime = parseInt(datetime, 10);
 				} else {
 					return datetime;
 				}
 			}
-			if (!ts.ui.moment(realtime).isValid()) {
+			if (!moment(realtime).isValid()) {
 				if (parseInt(realtime, 10)) {
 					realtime = parseInt(realtime, 10);
 				} else {
-					return ts.ui.moment(datetime).fromNow();
+					return moment(datetime).fromNow();
 				}
 			}
-			issame = ts.ui.moment().isSame(realtime, 'minute');
+			issame = moment().isSame(realtime, 'minute');
 			if (issame) {
-				return ts.ui.moment(datetime).fromNow();
+				return moment(datetime).fromNow();
 			}
 			if (!firsttime) {
-				firsttime = ts.ui.moment();
+				firsttime = moment();
 				timespan = firsttime.diff(realtime);
-				newdatetime = ts.ui.moment(datetime).add(timespan);
-				return ts.ui.moment(newdatetime).fromNow();
+				newdatetime = moment(datetime).add(timespan);
+				return moment(newdatetime).fromNow();
 			}
-			var duration = ts.ui.moment().diff(firsttime);
-			timespan = ts.ui.moment().diff(realtime);
+			var duration = moment().diff(firsttime);
+			timespan = moment().diff(realtime);
 			newdatetime = ts.ui
 				.moment(datetime)
 				.add(timespan)
 				.subtract(duration);
-			return ts.ui.moment(newdatetime).fromNow();
+			return moment(newdatetime).fromNow();
 		}
 	});
-})(gui.Combo.chained);
+})(ts.ui.moment, gui.Combo.chained);

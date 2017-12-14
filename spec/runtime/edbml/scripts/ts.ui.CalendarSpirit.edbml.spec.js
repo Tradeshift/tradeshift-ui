@@ -25,7 +25,7 @@ describe('ts.ui.CalendarSpirit.edbml', function likethis() {
 		});
 	});
 
-	it('should contian value', function(done) {
+	it('should contain value', function(done) {
 		var calendar = new ts.ui.DatePickerModel({
 			value: '1973-03-26'
 		});
@@ -33,6 +33,21 @@ describe('ts.ui.CalendarSpirit.edbml', function likethis() {
 			expect(gethtml(calendar)).toContain('1973');
 			expect(gethtml(calendar)).toContain('3');
 			expect(gethtml(calendar)).toContain('26');
+			done();
+		});
+	});
+
+	it('should be in Chinese', function(done) {
+		var calendar = new ts.ui.DatePickerModel({
+			value: '1973-03-26'
+		});
+		sometime(function later() {
+			var html = gethtml(calendar);
+			expect(
+				'一二三四五六日'.split('').every(function(x) {
+					return html.includes(x);
+				})
+			).toBe(true);
 			done();
 		});
 	});

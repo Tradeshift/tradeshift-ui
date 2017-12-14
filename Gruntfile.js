@@ -699,11 +699,11 @@ module.exports = function(grunt) {
 
 	/**
 	 * Moment.js has been copy-pasted from the internet with *all* the possible 
-	 * language code and that is considerably more than we need, so we'll remove 
+	 * language codes and that is considerably more than we need, so we'll remove 
 	 * the unneeded translations based on the list of supported language codes.
 	 * These translations fortunately follow a uniform pattern so that we can 
 	 * simply include or reject them based on advanced analysis of JS comments.
-	 * Note: The language code `nb` is equivalent to our wrongly name `no` code.
+	 * Note: The language code `nb` is equivalent to our wrongly named `no` code.
 	 * @param {Set<string>} codes
 	 * @returns {Function}
 	 */

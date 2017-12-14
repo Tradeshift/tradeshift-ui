@@ -14,7 +14,7 @@ ts.ui.TimeSpirit = (function using(moment, chained) {
 	 * There's two problems. First, our language code `no` for Nynorsk is not 
 	 * correctly declared in V4 as `nn-NO` according to the ISO standard and 
 	 * second, Nynorsk is not defined in the Moment.js list of languages :/
-	 * We'll have to use  Bokmål here, which for our purpose is identical.
+	 * We'll have to use Bokmål here, which for our purpose is identical.
 	 * @param {string|null} code
 	 * @returns {string}
 	 */

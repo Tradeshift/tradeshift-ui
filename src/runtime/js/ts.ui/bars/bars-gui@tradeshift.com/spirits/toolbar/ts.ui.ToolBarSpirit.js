@@ -759,6 +759,7 @@ ts.ui.ToolBarSpirit = (function using(
 						dofit = this._toggletabs(tabs, width, avail);
 						moretab.css.display = dofit ? 'none' : '';
 						if (!dofit) {
+							this._hotfix();
 							// make sure selected tab is visible
 							if (
 								(gonetab = tabs.find(function ishidden(tab) {
@@ -769,6 +770,28 @@ ts.ui.ToolBarSpirit = (function using(
 							}
 						}
 					}
+				}
+			},
+
+			/**
+			 * The window may sometimes report the wrong dimensions (inside the 
+			 * iframe) under strange and unknown conditions, so whenever we see 
+			 * that the tabs are determined not to fit on the screen, we simply 
+			 * setup to perform the calculation again after some 50 millisecs. 
+			 * The tabs will (or should at least) be refactored completely on 
+			 * the `10.x` branch to eliminate much of this JS layout (via flex), 
+			 * so there is no reason to make a big deal out of a proper fix if 
+			 * this can hotfix it on the short term (it's a big deal because 
+			 * the problem cannot be reproduced locally, or at least not by @jmo).
+			 * the tabs to be rendered 
+			 */
+			_hotfix: function hotfix() {
+				if (!hotfix.running) {
+					hotfix.running = true;
+					this.tick.time(function reflex() {
+						this.reflex();
+						hotfix.running = false;
+					}, 50);
 				}
 			},
 

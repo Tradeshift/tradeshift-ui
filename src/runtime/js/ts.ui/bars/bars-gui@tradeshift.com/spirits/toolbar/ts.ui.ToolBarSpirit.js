@@ -787,8 +787,8 @@ ts.ui.ToolBarSpirit = (function using(
 			 */
 			_hotfix: function hotfix() {
 				if (!hotfix.running) {
+					hotfix.running = true;
 					this.tick.time(function reflex() {
-						hotfix.running = true;
 						this.reflex();
 						hotfix.running = false;
 					}, 50);

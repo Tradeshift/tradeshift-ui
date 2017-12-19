@@ -23,6 +23,13 @@ module.exports = function(grunt) {
 		.init(grunt)
 		.merge('config.json', 'config.local.json');
 
+	/**
+	 * Supported language codes. This will become populated 
+	 * as soon as we trawl the files in the `lang` folder.
+	 * @type {Set<String>}
+	 */
+	const langcodes = new Set();
+
 	// Tasks .....................................................................
 
 	// setup for local development (no docs)
@@ -78,31 +85,9 @@ module.exports = function(grunt) {
 			jasmine: {
 				flatten: true,
 				expand: true,
-				src: ['dist/ts.js', 'dist/ts.css', 'dist/ts-lang-en.js'],
+				src: ['dist/ts.js', 'dist/ts.css'],
 				dest: 'spec/jasmine/'
 			},
-
-			// setup language files for local development
-			lang_dev: {
-				flatten: true,
-				expand: true,
-				src: 'src/runtime/js/ts.ui/lang/*',
-				dest: 'dist/'
-			},
-
-			// setup language files for CDN
-			lang_cdn: {
-				flatten: true,
-				expand: true,
-				src: 'src/runtime/js/ts.ui/lang/*',
-				dest: 'dist/cdn/',
-				rename: function(dest, src) {
-					const ext = path.extname(src);
-					const filename = path.basename(src, ext) + '-<%= pkg.version %>' + ext;
-					return dest + '/' + grunt.template.process(filename);
-				}
-			},
-
 			css_cdn: {
 				files: [
 					{
@@ -121,8 +106,7 @@ module.exports = function(grunt) {
 			// setup 'ts.js'
 			dev: {
 				options: {
-					'${runtimecss}': '//127.0.0.1:10111/dist/ts.css',
-					'${langbundle}': '//127.0.0.1:10111/dist/ts-lang-<LANG>.js'
+					'${runtimecss}': '//127.0.0.1:10111/dist/ts.css'
 				},
 				files: {
 					'temp/ts.js': 'src/runtime/ts.js'
@@ -131,25 +115,19 @@ module.exports = function(grunt) {
 			// setup 'ts.js' for jasmine tests
 			jasmine: {
 				options: {
-					'${runtimecss}': 'ts.css',
-					'${langbundle}': 'ts-lang-<LANG>.js'
+					'${runtimecss}': 'ts.css'
 				},
 				files: {
 					'temp/ts.js': 'src/runtime/ts.js'
 				}
 			},
-
 			// setup 'ts.js' for CDN
 			cdn: {
 				options: {
 					'${runtimecss}':
 						'<%= process.env.ALI_OSS_CDN_LIVE || config.cdn_live %>' +
 						config.cdn_folder +
-						'/ts-<%= pkg.version %>.min.css',
-					'${langbundle}':
-						'<%= process.env.ALI_OSS_CDN_LIVE || config.cdn_live %>' +
-						config.cdn_folder +
-						'/ts-lang-<LANG>-<%= pkg.version %>.js'
+						'/ts-<%= pkg.version %>.min.css'
 				},
 				files: {
 					'temp/ts.js': 'src/runtime/ts.js'
@@ -192,16 +170,6 @@ module.exports = function(grunt) {
 				dest: 'temp/fastclick.js',
 				src: 'src/runtime/js/ts.ui/core/core-gui@tradeshift.com/dependencies/fastclick.js'
 			},
-			// moment.js
-			moment: {
-				options: {
-					separator: '\n\n',
-					banner: '(function() {\n\n',
-					footer: '\n\n}).call(ts.ui);'
-				},
-				dest: 'temp/moment.js',
-				src: 'src/third-party/moment.js'
-			},
 			// spin.js
 			spin: {
 				options: {
@@ -240,6 +208,27 @@ module.exports = function(grunt) {
 			jasmine: {
 				src: ['spec/spiritual/**/*.spec.js', 'spec/runtime/**/*.spec.js'],
 				dest: 'spec/jasmine/specs.js'
+			},
+			// translations into a mighty `switch` case
+			locales: {
+				src: 'src/runtime/js/ts.ui/lang/*.js',
+				dest: 'temp/locales.js',
+				options: {
+					banner: `switch((document.documentElement.lang || 'en-US').toLowerCase().replace('_', '-')) {\n`,
+					footer: '\n}',
+					process: getlocalesprocessor(langcodes)
+				}
+			},
+			// moment.js with locales reduced to the ones we need
+			moment: {
+				dest: 'temp/moment.js',
+				src: 'src/third-party/moment-with-locales.js',
+				options: {
+					separator: '\n\n',
+					banner: '(function() {\n\n',
+					footer: '\n\n}).call(ts.ui);',
+					process: getmomentprocessor(langcodes)
+				}
 			}
 		},
 
@@ -346,11 +335,7 @@ module.exports = function(grunt) {
 			// data loaded in the browser
 			cdn_loaded: {
 				files: {
-					list: [
-						'public/ts-<%= pkg.version %>.min.js',
-						'public/ts-<%= pkg.version %>.min.css',
-						'public/ts-lang-en-<%= pkg.version %>.js'
-					]
+					list: ['public/ts-<%= pkg.version %>.min.js', 'public/ts-<%= pkg.version %>.min.css']
 				}
 			}
 		},
@@ -462,22 +447,22 @@ module.exports = function(grunt) {
 			cdn_generate_js: {
 				tasks: generateJsConcurrent('cdn')
 			},
-			cdn_generate_css_and_copy_lang_and_concat_js: {
-				tasks: generateCssAndCopyLangAndConcatJsConcurrent('cdn')
+			cdn_generate_css_and_concat_js: {
+				tasks: generateCssAndConcatJsConcurrent('cdn')
 			},
 			// Build for dev
 			dev_generate_js: {
 				tasks: generateJsConcurrent('dev')
 			},
-			dev_generate_css_and_copy_lang_and_concat_js: {
-				tasks: generateCssAndCopyLangAndConcatJsConcurrent('dev')
+			dev_generate_css_and_concat_js: {
+				tasks: generateCssAndConcatJsConcurrent('dev')
 			},
 			// Build for Jasmine
 			jasmine_generate_js: {
 				tasks: generateJsConcurrent('jasmine')
 			},
-			jasmine_generate_css_and_copy_lang_and_concat_js: {
-				tasks: generateCssAndCopyLangAndConcatJsConcurrent('jasmine')
+			jasmine_generate_css_and_concat_js: {
+				tasks: generateCssAndConcatJsConcurrent('jasmine')
 			},
 			// Check for existing files on CDN while building dist
 			check_cdn_while_dist: {
@@ -493,10 +478,7 @@ module.exports = function(grunt) {
 	// Utility functions .........................................................
 
 	function returnDevForJasmine(target) {
-		if (target === 'jasmine') {
-			return 'dev';
-		}
-		return target;
+		return target === 'jasmine' ? 'dev' : target;
 	}
 
 	function generateJsConcurrent(target = 'cdn') {
@@ -508,9 +490,7 @@ module.exports = function(grunt) {
 				`tsless:${returnDevForJasmine(target)}`, // generate ts.less
 				`copy:docs_${returnDevForJasmine(target)}` // copy ts-runtime.less over to the docs
 			],
-
 			'concat:fastclick', // generate fastclick.js
-			'concat:moment', // generate moment.js
 			'concat:spin', // generate spin.js
 			'concat:app', // generate ts.app.js
 			'guibundles' // generate ts-runtime-{api,gui}.js
@@ -538,19 +518,17 @@ module.exports = function(grunt) {
 		return out;
 	}
 
-	function generateCssAndCopyLangAndConcatJsConcurrent(target = 'cdn') {
-		return [
-			concatAndUglifyJs(target),
-			compileAndMinifyLess(target),
-			`copy:lang_${returnDevForJasmine(target)}` // copy lang files
-		];
+	function generateCssAndConcatJsConcurrent(target = 'cdn') {
+		return [concatAndUglifyJs(target), compileAndMinifyLess(target)];
 	}
 
 	function build(target = 'cdn') {
 		let out = [
 			`clean:${target}`, // remove files
+			'concat:locales', // bundle locale files (synchronously BEFORE moment.js)
+			'concat:moment', // compile moment.js (synchronously AFTER locales!)
 			`concurrent:${target}_generate_js`,
-			`concurrent:${target}_generate_css_and_copy_lang_and_concat_js`
+			`concurrent:${target}_generate_css_and_concat_js`
 		];
 		if (target === 'cdn') {
 			out.push('compress'); // gzip everything
@@ -655,7 +633,8 @@ module.exports = function(grunt) {
 			'temp/modules-mix.js',
 			'temp/module-edbml.js',
 			'temp/ts-runtime-gui.js',
-			'temp/edbml-compiled.js'
+			'temp/edbml-compiled.js',
+			'temp/locales.js'
 		];
 	}
 
@@ -696,5 +675,52 @@ module.exports = function(grunt) {
 			grunt.log.error('Human error: ' + src + ' does not exist.');
 		}
 		return src;
+	}
+
+	/**
+	 * Transform JS inside some file into a `case` inside a `switch` statement 
+	 * whilst at the same time compiling the list of supported language codes.
+	 * @param {Set<string>} codes
+	 * @returns {Function}
+	 */
+	function getlocalesprocessor(codes) {
+		return (src, file) => {
+			const code = file.match(/ts-lang-(.*)\.js/)[1];
+			codes.add(code);
+			return (
+				`\tcase '${code}':\n` +
+				src
+					.split('\n')
+					.map(line => '\t\t' + line)
+					.join('\n') +
+				'break;'
+			);
+		};
+	}
+
+	/**
+	 * Moment.js has been copy-pasted from the internet with *all* the possible 
+	 * language codes and that is considerably more than we need, so we'll remove 
+	 * the unneeded translations based on the list of supported language codes.
+	 * These translations fortunately follow a uniform pattern so that we can 
+	 * simply include or reject them based on advanced analysis of JS comments.
+	 * Note: The language code `nb` is equivalent to our wrongly named `no` code.
+	 * @param {Set<string>} codes
+	 * @returns {Function}
+	 */
+	function getmomentprocessor(codes) {
+		return src => {
+			const split = '//! moment.js locale configuration';
+			const short = [...codes].map(s => s.split('-')[0]);
+			const first = s => (s = s.trim()).slice(0, s.indexOf('\n'));
+			const trail = s => s.split('\n});')[1] || '';
+			const match = s => ((s = s.match(/\[(.*)\]/)) ? s[1] : null);
+			const patch = s => s === 'nb';
+			const works = s => codes.has(s) || short.includes(s) || patch(s);
+			const build = s => works(match(first(s)));
+			return src.split(split).reduce((chunks, chunk, i) => {
+				return chunks + (i === 0 || build(chunk) ? chunk : trail(chunk));
+			}, '');
+		};
 	}
 };

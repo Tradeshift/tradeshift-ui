@@ -21,14 +21,6 @@ article {
 article em {
   font-style: italic;
 }
-article b,
-article a,
-article strong {
-  font-weight: 400;
-}
-article a {
-  text-decoration: underline;
-}
 article nav li {
   display: block;
   padding-left: 16px;
@@ -76,6 +68,23 @@ samp {
   -webkit-hyphens: none;
   -moz-hyphens: none;
   hyphens: none;
+}
+h1 code,
+h2 code,
+h3 code,
+h1 pre,
+h2 pre,
+h3 pre,
+h1 var,
+h2 var,
+h3 var,
+h1 kbd,
+h2 kbd,
+h3 kbd,
+h1 samp,
+h2 samp,
+h3 samp {
+  font-size: inherit;
 }
 figure {
   position: relative;

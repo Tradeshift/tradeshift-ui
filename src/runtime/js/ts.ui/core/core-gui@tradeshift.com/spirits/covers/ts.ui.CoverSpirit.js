@@ -13,15 +13,13 @@ ts.ui.CoverSpirit = (function using(chained, Client) {
 	return ts.ui.Spirit.extend(
 		{
 			/**
-			 * Pending a current glitch in Chrome where multiple simultaneous
-			 * transitions freak out, we have disabled cover fades in WebKit.
-			 * UPDATE: We're pushing our luck with WebKit again...
+			 * TODO: remove 'ts-transition' after @dsp has deployed the Tax Selector with new scoped styles!
 			 */
 			onconfigure: function() {
 				this.super.onconfigure();
 				this.css.add(CLASS_COVER);
-				// TODO: remove after @dsp has deployed the Tax Selector with new scoped styles!
 				this.css.add('ts-transition');
+				this.event.add('transitionend');
 			},
 
 			/**
@@ -29,6 +27,7 @@ ts.ui.CoverSpirit = (function using(chained, Client) {
 			 * @returns {this}
 			 */
 			show: chained(function() {
+				this._fadeout = false;
 				this.event.add(MOUSE_EVENTS);
 				this.dom.show();
 			}),
@@ -38,6 +37,7 @@ ts.ui.CoverSpirit = (function using(chained, Client) {
 			 * @returns {this}
 			 */
 			hide: chained(function() {
+				this._fadeout = false;
 				this.event.remove(MOUSE_EVENTS);
 				this.dom.html('').hide();
 			}),
@@ -122,16 +122,10 @@ ts.ui.CoverSpirit = (function using(chained, Client) {
 			 * @returns {gui.Then}
 			 */
 			fadeIn: function() {
-				this._then = new gui.Then();
-				var BROWSER_GLITCH_TIME = 25;
-				this._shouldbevisible = true;
 				this.show();
-				if (!this._transitioning) {
-					this._transitioning = true;
-					this.event.add('transitionend');
-					this._timeout = this.tick.time(function() {
-						this.css.add(CLASS_VISIBLE);
-					}, BROWSER_GLITCH_TIME);
+				this._then = new gui.Then();
+				if (!this.css.contains(CLASS_VISIBLE)) {
+					this.css.add(CLASS_VISIBLE);
 				}
 				return this._then;
 			},
@@ -142,22 +136,8 @@ ts.ui.CoverSpirit = (function using(chained, Client) {
 			 */
 			fadeOut: function() {
 				this._then = new gui.Then();
-				var BROWSER_GLITCH_TIME = 25;
-				this._shouldbevisible = false;
-				if (!this._transitioning) {
-					this._transitioning = true;
-					this.event.add('transitionend');
-					this.tick.time(function() {
-						this.css.remove(CLASS_VISIBLE);
-					}, BROWSER_GLITCH_TIME);
-				} else if (!this.css.contains(CLASS_VISIBLE)) {
-					this.tick.cancelTime(this._timeout);
-					this.event.remove('transitionend');
-					this._transitioning = false;
-					this.hide();
-					this.tick.time(function() {
-						this._then.now();
-					});
+				if (this.css.contains(CLASS_VISIBLE)) {
+					this.css.remove(CLASS_VISIBLE);
 				}
 				return this._then;
 			},
@@ -184,22 +164,12 @@ ts.ui.CoverSpirit = (function using(chained, Client) {
 						break;
 					case 'transitionend':
 						if (e.target === this.element) {
-							this._transitioning = false;
-							this.event.remove('transitionend');
-							if (this.css.contains(CLASS_VISIBLE)) {
-								if (!this._shouldbevisible) {
-									this.fadeOut();
-								}
-							} else {
-								if (this._shouldbevisible) {
-									this.fadeIn();
-								} else {
-									this.hide();
-									if (this._then) {
-										this._then.now();
-										this._then = null;
-									}
-								}
+							if (!this.css.contains(CLASS_VISIBLE)) {
+								this.hide();
+							}
+							if (this._then) {
+								this._then.now();
+								this._then = null;
 							}
 						}
 						break;
@@ -214,22 +184,10 @@ ts.ui.CoverSpirit = (function using(chained, Client) {
 			_then: null,
 
 			/**
-			 * Scheduling fadeIn.
-			 * @type {number}
-			 */
-			_timeout: -1,
-
-			/**
 			 * Spirit of the Spinner.
 			 * @type {ts.ui.SpinnerSpirit}
 			 */
-			_spinner: null,
-
-			/**
-			 * Tracking a transitional state.
-			 * @type {boolean}
-			 */
-			_shouldbevisible: false
+			_spinner: null
 		},
 		{
 			// Static ................................................................

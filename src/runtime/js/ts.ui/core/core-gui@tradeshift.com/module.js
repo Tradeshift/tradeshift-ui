@@ -44,8 +44,6 @@ ts.ui.CoreModule = gui.module('core-gui@tradeshift.com', {
 
 	/**
 	 * 1. Setup special plugins for special spirits.
-	 * 2. Use 'ts' instead of 'gui' for config attributes.
-	 * 3. Support PolymerGestures in {gui.EventPlugin}
 	 */
 	oncontextinitialize: function() {
 		this._commonplugins();

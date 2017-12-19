@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en-us" class="ts-docs" spellcheck="false">
+
+<head>
+    <title>Testing</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-9.3.13.min.js"></script>
+    <script src="/dist/assets/dox.min.js"></script>
+    <script src="/dist/assets/mark.min.js"></script>
+    <script src="/dist/assets/jquery-2.2.4.min.js"></script>
+    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-9.3.13.min.css">
+    <link rel="stylesheet" href="/dist/assets/dox.css">
+    <script>
+        var script = document.createElement('script');
+        script.src = '//172.31.98.151:10111/dist/ts.js';
+        setTimeout(function() {
+            document.head.appendChild(script);
+            console.log('Did it work?');
+        }, 1000);
+    </script>
+</head>
+
+<body>
+    <button data-ts="Button" class="ts-primary">Hell World</button>
+    <aside data-ts="Note" class="sticky ts-bg-yellow">
+        <p>If you find a bug or need a feature&#x2026;</p>
+        <menu class="ts-buttons">
+            <li>
+                <a data-ts="Button" target="_blank" href="https://github.com/Tradeshift/tradeshift-ui/issues/new" title="Submit new issue" class="ts-secondary">
+		          <span>Create GitHub Issue&#x2026;</span>
+		        </a>
+            </li>
+        </menu>
+    </aside>
+</body>
+
+</html>

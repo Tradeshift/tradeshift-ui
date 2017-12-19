@@ -102,27 +102,6 @@ module.exports = function(grunt) {
 			}
 		},
 
-		tsjs: {
-			// setup 'ts.js'
-			dev: {
-				files: {
-					'temp/ts.js': 'src/runtime/ts.js'
-				}
-			},
-			// setup 'ts.js' for jasmine tests
-			jasmine: {
-				files: {
-					'temp/ts.js': 'src/runtime/ts.js'
-				}
-			},
-			// setup 'ts.js' for CDN
-			cdn: {
-				files: {
-					'temp/ts.js': 'src/runtime/ts.js'
-				}
-			}
-		},
-
 		tsless: {
 			// concatenate the LESS (so that devs may copy-paste it from the web)
 			cdn: {
@@ -472,7 +451,6 @@ module.exports = function(grunt) {
 	function generateJsConcurrent(target = 'cdn') {
 		return [
 			'edbml', // edbml -> js
-			`tsjs:${target}`,
 			[
 				// generate ts.js
 				`tsless:${returnDevForJasmine(target)}`, // generate ts.less
@@ -588,7 +566,7 @@ module.exports = function(grunt) {
 	 * @returns {Array<string>}
 	 */
 	function getcombobuilds() {
-		return ['temp/ts.js'].concat(getapibuilds()).concat(getguibuilds());
+		return getapibuilds().concat(getguibuilds());
 	}
 
 	/**

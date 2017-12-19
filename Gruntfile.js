@@ -105,30 +105,18 @@ module.exports = function(grunt) {
 		tsjs: {
 			// setup 'ts.js'
 			dev: {
-				options: {
-					'${runtimecss}': '//127.0.0.1:10111/dist/ts.css'
-				},
 				files: {
 					'temp/ts.js': 'src/runtime/ts.js'
 				}
 			},
 			// setup 'ts.js' for jasmine tests
 			jasmine: {
-				options: {
-					'${runtimecss}': 'ts.css'
-				},
 				files: {
 					'temp/ts.js': 'src/runtime/ts.js'
 				}
 			},
 			// setup 'ts.js' for CDN
 			cdn: {
-				options: {
-					'${runtimecss}':
-						'<%= process.env.ALI_OSS_CDN_LIVE || config.cdn_live %>' +
-						config.cdn_folder +
-						'/ts-<%= pkg.version %>.min.css'
-				},
 				files: {
 					'temp/ts.js': 'src/runtime/ts.js'
 				}

@@ -37,7 +37,8 @@
 		"http": "static spec/jasmine -H '{\"Cache-Control\": \"no-cache, must-revalidate\"}'",
 		"****** NODE *****": "",
 		"postinstall": "cd docs && yarn && cd ../app && yarn",
-		"precommit": "lint-staged && grunt exec:docs_dist && git add -A docs"
+		"precommit": "lint-staged && grunt exec:docs_dist && git add -A docs",
+		"testing": "node tasks/gh-pages.js"
 	},
 	"lint-staged": {
 		"*.js": ["prettier --write", "eslint --config ./.eslintrc.json", "git add"],

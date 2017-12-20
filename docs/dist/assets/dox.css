@@ -105,7 +105,7 @@ figure > figcaption {
   margin: 11px 0 0 0;
 }
 figure.ts-layout > .ts-toolbar {
-  background-color: #dde5e9;
+  background-color: #eff3f5;
 }
 figure.ts-layout > .ts-panel,
 figure.ts-layout > .ts-panels {
@@ -303,7 +303,7 @@ pre.prism code {
 #markdown table,
 table.api {
   width: 100%;
-  background-color: #dde5e9;
+  background-color: #eff3f5;
 }
 #markdown table code,
 table.api code {
@@ -633,7 +633,7 @@ table.api th {
 }
 .ts-doxchrome .ts-menu > li > a:hover:not(:disabled),
 .ts-doxchrome .ts-menu > li > a:focus {
-  background-color: #2d3c43 !important;
+  background-color: #3f555f !important;
 }
 .ts-doxchrome .ts-menu > li > a:hover:not(:disabled):before,
 .ts-doxchrome .ts-menu > li > a:focus:before {

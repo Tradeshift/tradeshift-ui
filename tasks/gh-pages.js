@@ -9,15 +9,38 @@ console.log('OK');
 
 clone('https://github.com/Tradeshift/tradeshift-ui.git').then(repo => {
 	console.log('Success!');
+	const version = parseInt(getpackage().version, 10);
 	try {
-		const version = parseInt(getpackage().version, 10);
-		const source = getfolder('../', 'docs', 'dist');
-		const target = getfolder('repo', version);
-		copy(source, target);
-	} catch (x) {
-		console.log(x);
+		ensure(version);
+		copydist(version);
+		copyindex(version);
+	} catch (exception) {
+		console.log(exception);
 	}
 });
+
+/**
+ * @param {string} version
+ */
+function ensure(version) {
+	if (!file.existsSync(getfolder('repo', version))) {
+		file.mkdirSync(getfolder('repo', version));
+	}
+}
+
+/**
+ * @param {string} version
+ */
+function copydist(version) {
+	copydir(getfolder('../', 'docs', 'dist'), getfolder('repo', version, 'dist'));
+}
+
+/**
+ * @param {string} version
+ */
+function copyindex(version) {
+	file.linkSync(getfolder('../', 'docs', 'index.html'), getfolder('repo', version, 'index.html'));
+}
 
 /**
  * @param {...string} [paths]
@@ -79,14 +102,14 @@ function rimraf(dir) {
  * @param {string} src
  * @param {string} dest
  */
-function copy(src, dest) {
+function copydir(src, dest) {
 	var exist = file.existsSync(src);
 	var stats = exist && file.statSync(src);
 	var isDirectory = exist && stats.isDirectory();
 	if (exist && isDirectory) {
 		file.mkdirSync(dest);
-		file.readdirSync(src).forEach(function(childItemName) {
-			copy(path.join(src, childItemName), path.join(dest, childItemName));
+		file.readdirSync(src).forEach(function(name) {
+			copydir(path.join(src, name), path.join(dest, name));
 		});
 	} else {
 		file.linkSync(src, dest);

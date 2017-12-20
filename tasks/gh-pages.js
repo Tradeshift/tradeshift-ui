@@ -17,6 +17,10 @@ const cloneOptions = {
 	}
 };
 
+function getfolder(...paths) {
+	return path.join(__dirname, 'repo', ...paths.map(String));
+}
+
 /**
  * @returns {Object}
  */
@@ -24,13 +28,23 @@ function getpackage() {
 	return JSON.parse(file.readFileSync(path.join(__dirname, '../package.json'), 'UTF-8'));
 }
 
+console.log('DELETE');
+rimraf(temp);
+
 clone('https://github.com/Tradeshift/tradeshift-ui.git').then(repo => {
-	const version = parseInt(getpackage().version, 10);
-	const docsdir = path.join(temp, version);
-	if (!path.existsSync(docsdir)) {
-		file.mkdirSync(docsdir);
+	console.log('Success!');
+	try {
+		const version = parseInt(getpackage().version, 10);
+		const docsdir = getfolder(version);
+		console.log(`Copying into ${docsdir}`);
+		if (!file.existsSync(docsdir)) {
+			console.log('Creating new dir');
+			file.mkdirSync(docsdir);
+		}
+		console.log('Is the repository bare? %s', Boolean(repo.isBare()));
+	} catch (x) {
+		console.log(x);
 	}
-	console.log('Is the repository bare? %s', Boolean(repo.isBare()));
 });
 
 /**
@@ -38,10 +52,50 @@ clone('https://github.com/Tradeshift/tradeshift-ui.git').then(repo => {
  * @returns {Promise}
  */
 function clone(url) {
-	return Git.Clone(url, temp, cloneOptions).catch(x => {
+	console.log('Cloning', url);
+	return Git.Clone(url, getfolder(), cloneOptions).catch(x => {
 		console.log(x);
 	});
 }
+
+/**
+ * Remove directory recursively
+ * @param {string} dir_path
+ * @see https://stackoverflow.com/a/42505874/3027390
+ */
+function rimraf(dir) {
+	if (file.existsSync(dir)) {
+		file.readdirSync(dir).forEach(function(entry) {
+			var entry_path = path.join(dir, entry);
+			if (file.lstatSync(entry_path).isDirectory()) {
+				rimraf(entry_path);
+			} else {
+				file.unlinkSync(entry_path);
+			}
+		});
+		file.rmdirSync(dir);
+	}
+}
+
+/**
+ * 
+ * @param {string} src
+ * @param {string} dest
+ *
+function copy(src, dest) {
+	var exist = file.existsSync(src);
+	var stats = exist && file.statSync(src);
+	var isDirectory = exist && stats.isDirectory();
+	if (exist && isDirectory) {
+		file.mkdirSync(dest);
+		file.readdirSync(src).forEach(function(childItemName) {
+			copy(path.join(src, childItemName), path.join(dest, childItemName));
+		});
+	} else {
+		file.linkSync(src, dest);
+	}
+}
+*/
 
 /*
 console.log(`Cloning ${url}...`);

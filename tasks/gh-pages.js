@@ -3,22 +3,28 @@ const file = require('fs');
 const path = require('path');
 const temp = path.join(__dirname, 'repo');
 
-/**
- * @see http://www.nodegit.org/guides/cloning/
- */
-const cloneOptions = {
-	checkoutBranch: 'gh-pages',
-	fetchOpts: {
-		callbacks: {
-			certificateCheck() {
-				return 1;
-			}
-		}
-	}
-};
+console.log('DELETE');
+rimraf(temp);
+console.log('OK');
 
+clone('https://github.com/Tradeshift/tradeshift-ui.git').then(repo => {
+	console.log('Success!');
+	try {
+		const version = parseInt(getpackage().version, 10);
+		const source = getfolder('../', 'docs', 'dist');
+		const target = getfolder('repo', version);
+		copy(source, target);
+	} catch (x) {
+		console.log(x);
+	}
+});
+
+/**
+ * @param {...string} [paths]
+ * @returns {string}
+ */
 function getfolder(...paths) {
-	return path.join(__dirname, 'repo', ...paths.map(String));
+	return path.join(__dirname, ...paths.map(String));
 }
 
 /**
@@ -28,32 +34,23 @@ function getpackage() {
 	return JSON.parse(file.readFileSync(path.join(__dirname, '../package.json'), 'UTF-8'));
 }
 
-console.log('DELETE');
-rimraf(temp);
-
-clone('https://github.com/Tradeshift/tradeshift-ui.git').then(repo => {
-	console.log('Success!');
-	try {
-		const version = parseInt(getpackage().version, 10);
-		const docsdir = getfolder(version);
-		console.log(`Copying into ${docsdir}`);
-		if (!file.existsSync(docsdir)) {
-			console.log('Creating new dir');
-			file.mkdirSync(docsdir);
-		}
-		console.log('Is the repository bare? %s', Boolean(repo.isBare()));
-	} catch (x) {
-		console.log(x);
-	}
-});
-
 /**
+ * @see http://www.nodegit.org/guides/cloning/
  * @param {string} url
  * @returns {Promise}
  */
 function clone(url) {
 	console.log('Cloning', url);
-	return Git.Clone(url, getfolder(), cloneOptions).catch(x => {
+	return Git.Clone(url, getfolder('repo'), {
+		checkoutBranch: 'gh-pages',
+		fetchOpts: {
+			callbacks: {
+				certificateCheck() {
+					return 1;
+				}
+			}
+		}
+	}).catch(x => {
 		console.log(x);
 	});
 }
@@ -78,10 +75,10 @@ function rimraf(dir) {
 }
 
 /**
- * 
+ * Copy directory recursively.
  * @param {string} src
  * @param {string} dest
- *
+ */
 function copy(src, dest) {
 	var exist = file.existsSync(src);
 	var stats = exist && file.statSync(src);
@@ -95,32 +92,3 @@ function copy(src, dest) {
 		file.linkSync(src, dest);
 	}
 }
-*/
-
-/*
-console.log(`Cloning ${url}...`);
-Git.Clone(url, tmp, cloneOptions).then(repository => {
-	console.log("Is the repository bare? %s", Boolean(repository.isBare()));
-}).catch(x => {
-	console.log(x);
-});
-*/
-
-/**
- * Setup ts.js (the JS and CSS bootloader).
- *
-module.exports = {
-	init: function(grunt) {
-		grunt.registerMultiTask('ghpages', 'MoTh RuLeZ!', () => {
-			console.log(Git);
-			const options = this.options();
-			Object.keys(options).forEach(function(key) {
-				options[key] = grunt.template.process(options[key]).replace(localhost, publichost);
-			});
-			this.files.forEach(function(pair) {
-				tsjs(grunt, pair.src[0], pair.dest, options);
-			});
-		});
-	}
-};
-*/

@@ -1,5 +1,0 @@
-<!DOCTYPE edbml>
-<script>
-	<?param name="picker" type="ts.ui.DatePickerModel"?>
-	<div data-ts="Calendar" data-ts._model="?{picker}"></div>
-</script>

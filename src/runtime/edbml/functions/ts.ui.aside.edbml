@@ -1,8 +1,0 @@
-<!DOCTYPE edbml>
-<script>
-	<?param name="aside" type="ts.ui.AsideModel"?>
-	var title = aside ? (aside.title || '') : '';
-	<aside data-ts="Aside" data-ts.title="${title}" data-ts._model="?{aside}">
-		<div data-ts="Panel"></div>
-	</aside>
-</script>

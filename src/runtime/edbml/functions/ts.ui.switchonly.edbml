@@ -1,7 +1,0 @@
-<!DOCTYPE edbml>
-<script>
-	<div data-ts="Spirit" class="ts-switcher ${ts.ui.CLASS_ENGINE}">
-		<i class="ts-icon-cancel"></i>
-		<i class="ts-icon-checked"></i>
-	</div>
-</script>

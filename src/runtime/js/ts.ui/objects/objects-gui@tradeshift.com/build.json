@@ -1,9 +1,0 @@
-[
-	"spirits/ts.ui.ObjectSpirit.js",
-	"spirits/cards/ts.ui.CardSpirit.js",
-	"spirits/cards/companycards/ts.ui.CompanyCardSpirit.js",
-	"spirits/cards/usercards/ts.ui.UserImageSpirit.js",
-	"spirits/cards/usercards/ts.ui.UserCardSpirit.js",
-
-	"module.js"
-]

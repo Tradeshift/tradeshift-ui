@@ -1,7 +1,0 @@
-<!DOCTYPE edbml>
-<script>
-	<?param name="text"?>
-	if(text) {
-		<h1>${text}</h1>
-	}
-</script>

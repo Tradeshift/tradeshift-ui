@@ -1,5 +1,0 @@
-<!DOCTYPE edbml>
-<script>
-	<?param name="pager" type="ts.ui.PagerModel"?>
-	<div data-ts="Pager" id="${pager.$instanceid}" data-ts._model="?{pager}"></div>
-</script>

@@ -1,9 +1,0 @@
-<!DOCTYPE edbml>
-<script>
-	<?param name="select" type="ts.ui.SelectModel"?>
-	<select id="${select.$instanceid}">
-		select.options.forEach(function(option) {
-			<option value="${option.value}">${option.text}</option>
-		});
-	</select>
-</script>

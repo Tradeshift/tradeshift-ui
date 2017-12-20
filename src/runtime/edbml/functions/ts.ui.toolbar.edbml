@@ -1,5 +1,0 @@
-<!DOCTYPE edbml>
-<script>
-	<?param name="toolbar" type="ts.ui.ToolBarModel"?>
-	<header data-ts="ToolBar" data-ts.model="?{toolbar}"></header>
-</script>

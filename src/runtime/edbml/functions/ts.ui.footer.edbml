@@ -1,5 +1,0 @@
-<!DOCTYPE edbml>
-<script>
-	<?param name="footer" type="ts.ui.FooterModel"?>
-	<footer data-ts="FooterBar" id="${footer.$instanceid}" data-ts.model="?{footer}"></footer>
-</script>

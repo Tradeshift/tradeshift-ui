@@ -1,6 +1,0 @@
-<!DOCTYPE edbml>
-<script>
-	<?input name="form" type="ts.ui.FormModel"?>
-	out.html += form.items.render();
-	out.html += form.buttons.render();
-</script>

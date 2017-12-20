@@ -1,6 +1,0 @@
-<!DOCTYPE edbml>
-<script>
-	<?param name="classname"?>
-	@class = classname;
-	<h1 id="testh1" @class>Hello World</h1>
-</script>

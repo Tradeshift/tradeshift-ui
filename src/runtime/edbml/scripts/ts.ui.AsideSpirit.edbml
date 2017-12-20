@@ -1,8 +1,0 @@
-<!DOCTYPE edbml>
-<script>
-	<?input name="aside" type="ts.ui.AsideModel"?>
-	<header data-ts="ToolBar" id="${this.$instanceid}-header" class="ts-header" data-ts.title="${aside.title}"></header>
-	<div data-ts="Panel" id="${this.$instanceid}-panel">
-		out.html += aside.items.render();
-	</div>
-</script>

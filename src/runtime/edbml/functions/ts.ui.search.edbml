@@ -1,6 +1,0 @@
-<!DOCTYPE edbml>
-<script>
-	<?param name="search" type="ts.ui.SearchModel"?>
-	@class = search.inset ? 'ts-inset' : null;
-	<span data-ts="Search" @class data-ts.model="?{search}"></span>
-</script>

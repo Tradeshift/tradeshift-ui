@@ -1,9 +1,0 @@
-<!DOCTYPE edbml>
-<script>
-	<?param name="buttons" type="ts.ui.ButtonCollection"?>
-	<span class="ts-join">
-		out.html += buttons.map(function(button) {
-			return button.render();
-		}).join('');
-	</span>
-</script>

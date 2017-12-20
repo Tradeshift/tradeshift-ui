@@ -1,7 +1,0 @@
-[
-	"models/rows/ts.ui.TableRowCollection.js",
-	"models/cols/ts.ui.TableColModel.js",
-	"models/cols/ts.ui.TableColCollection.js",
-	"models/ts.ui.TableModel.js",
-	"module.js"
-]

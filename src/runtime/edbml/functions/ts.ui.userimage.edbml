@@ -1,9 +1,0 @@
-<!DOCTYPE edbml>
-<script>
-	<?param name="image" type="ts.ui.UserImageModel"?>
-	@src = image.src || null;
-	@alt = image.name || null;
-	@width = image.size || null;
-	@height = image.size || null;
-	<img data-ts="UserImage" @src @alt @width @height/>
-</script>

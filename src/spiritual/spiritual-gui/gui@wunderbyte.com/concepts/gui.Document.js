@@ -52,14 +52,32 @@ gui.Document = (function() {
 						target.addEventListener(type, that, capture);
 					});
 				};
-			add(document, 'DOMContentLoaded visibilitychange');
+			add(document, 'visibilitychange');
 			add(document, 'click mousedown mouseup', true);
-			add(window, 'load hashchange resize');
+			add(window, 'hashchange resize');
 			if (!gui.hosted) {
 				add(window, 'orientationchange');
 			}
 			if (!(window.chrome && chrome.app && chrome.runtime)) {
 				add(window, 'unload');
+			}
+			/*
+			 * Setup to support async loading (via `script.defer` or similar)
+			 */
+			if (document.readyState === 'loading') {
+				add(document, 'DOMContentLoaded');
+				add(window, 'load');
+			} else {
+				setImmediate(
+					function parseTheRestOfTheScript() {
+						this._ondom();
+						if (document.readyState === 'interactive') {
+							add(window, 'load');
+						} else {
+							this._onload();
+						}
+					}.bind(this)
+				);
 			}
 		},
 

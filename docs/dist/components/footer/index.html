@@ -11,6 +11,7 @@
     <script src="/dist/assets/dox.min.js"></script>
     <script src="/dist/assets/mark.min.js"></script>
     <script src="/dist/assets/jquery-2.2.4.min.js"></script>
+    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-9.3.13.min.css">
     <link rel="stylesheet" href="/dist/assets/dox.css">
     <link rel="prefetch" title="Footer" href="index.html">
     <link rel="prefetch" title="Buttons" href="buttons.html">
@@ -31,14 +32,8 @@
                 <div data-ts="Panel">
                     <article>
                         <h1><span>Footer</span></h1>
-                        <section class="desc">
-                            <div data-ts="Note">
-                                <i class="ts-icon-info"></i>
-                                <p>This is a <strong>developer preview</strong>. All features can be expected to change.</p>
-                            </div>
-                        </section>
                         <section>
-                            <p>The Footer appears near the bottom of the page where it is commonly used to display some buttons. All features are controlled with an API that looks something like this.</p>
+                            <p>The Footer appears near the bottom of the page where it is commonly used to display some buttons. All features are controlled with an API that looks like this.</p>
                             <figure data-ts="DoxScript" class="attention runnable" data-ts.code="ts.ui.Footer.buttons(%7B%0A%09label%3A%20&apos;Continue&apos;%2C%0A%09type%3A%20&apos;ts-primary&apos;%2C%0A%09onclick%3A%20function()%20%7B%0A%09%09top.location.hash%20%3D%20&apos;components%2Ffooter%2Fbuttons.html&apos;%3B%0A%09%7D%0A%7D)%3B">
                                 <script type="runnable">
                                     ts.ui.Footer.buttons({ label: 'Continue', type: 'ts-primary', onclick: function() { top.location.hash = 'components/footer/buttons.html'; } });

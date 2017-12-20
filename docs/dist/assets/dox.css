@@ -1,4 +1,13 @@
 /*
+// Grey
+@ts-color-gray-lightest: hsl(195, 20%, 96%);
+@ts-color-gray-lighter: hsl(198, 23%, 85%);
+@ts-color-gray-light: hsl(199, 25%, 64%);
+@ts-color-gray: hsl(200, 23%, 45%);
+@ts-color-gray-dark: hsl(203, 22%, 36%);
+@ts-color-gray-darker: hsl(200, 24%, 20%);
+*/
+/*
  * In a separate stylesheet because it ruins syntax highlighting in Atom :/
  */
 @font-face {
@@ -96,7 +105,7 @@ figure > figcaption {
   margin: 11px 0 0 0;
 }
 figure.ts-layout > .ts-toolbar {
-  background-color: #d0dce2;
+  background-color: #dde5e9;
 }
 figure.ts-layout > .ts-panel,
 figure.ts-layout > .ts-panels {
@@ -294,7 +303,7 @@ pre.prism code {
 #markdown table,
 table.api {
   width: 100%;
-  background-color: #d0dce2;
+  background-color: #dde5e9;
 }
 #markdown table code,
 table.api code {
@@ -320,7 +329,7 @@ table.api th {
 }
 #markdown table caption,
 table.api caption {
-  background-color: #27373f;
+  background-color: #506b77;
   color: #ffffff;
   border-radius: 3px 3px 0 0;
 }
@@ -331,6 +340,10 @@ table.api td:first-child {
 #markdown table td:last-child,
 table.api td:last-child {
   width: 100%;
+}
+#markdown table tr:first-child th,
+table.api tr:first-child th {
+  padding-top: 22px;
 }
 #markdown table tr:last-child td,
 table.api tr:last-child td {
@@ -487,7 +500,7 @@ table.api th {
   visibility: hidden;
 }
 .ts-doxchrome .ts-sidebar .ts-toolbar {
-  background-color: #27373f;
+  background-color: #2d3c43;
 }
 .ts-doxchrome .ts-sidebar .ts-toolbar,
 .ts-doxchrome .ts-sidebar .ts-toolbar a,
@@ -507,14 +520,14 @@ table.api th {
 .ts-doxchrome .ts-sidebar .ts-panel {
   padding: 0;
   overflow-y: scroll;
-  background-color: #27373f;
+  background-color: #2d3c43;
 }
 .ts-doxchrome .ts-sidebar .ts-panel::-webkit-scrollbar {
   width: 5px;
 }
 .ts-doxchrome .ts-sidebar .ts-panel::-webkit-scrollbar-thumb:vertical {
   margin: 5px;
-  background-color: #587c8d;
+  background-color: #9ab2bc;
   -webkit-border-radius: 5px;
 }
 .ts-doxchrome .ts-sidebar .ts-panel::-webkit-scrollbar-button:start:decrement,
@@ -569,7 +582,7 @@ table.api th {
   height: 66px;
   max-height: 66px;
   min-height: 66px;
-  background-color: #587c8d;
+  background-color: #9ab2bc;
   color: #ffffff;
   position: absolute;
   top: 0;
@@ -595,7 +608,7 @@ table.api th {
 }
 .ts-doxchrome .ts-menu h3 {
   margin: 0;
-  background-color: #587c8d;
+  background-color: #9ab2bc;
   padding: 5.5px;
   padding-left: 22px;
   font-size: 11px;
@@ -614,13 +627,13 @@ table.api th {
 }
 .ts-doxchrome .ts-menu > li > a {
   border-bottom: none;
-  background-color: #27373f;
+  background-color: #2d3c43;
   color: #ffffff;
   border-radius: 0;
 }
 .ts-doxchrome .ts-menu > li > a:hover:not(:disabled),
 .ts-doxchrome .ts-menu > li > a:focus {
-  background-color: #27373f !important;
+  background-color: #2d3c43 !important;
 }
 .ts-doxchrome .ts-menu > li > a:hover:not(:disabled):before,
 .ts-doxchrome .ts-menu > li > a:focus:before {
@@ -640,20 +653,51 @@ table.api th {
   color: #ffffff;
   cursor: default;
 }
+.ts-doxchrome .ts-menu > li.submenu {
+  /*
+				> .ts-menu {
+					> li {
+						> a {
+							background-color: @ts-color-slate;
+							position: relative;
+							z-index: 2;
+						}
+						> a:not(.ts-checked) {
+							&,
+							&:hover {
+								background-color: @ts-color-slate !important;
+							}
+						}
+					}
+				}
+				*/
+  /*
+				> .ts-shadow {
+					position: absolute;
+					height: 3px;
+					width: 100%;
+					background-image: linear-gradient(fade(@ts-color-black, 25%), transparent);
+					z-index: 1;
+				}
+				*/
+  /*
+				&:not(.open) {
+					a:after {
+						content: '▼';
+						position: absolute;
+						top: 0;
+						right: 0;
+						width: @ts-unit-triple;
+						height: @ts-unit-triple;
+						line-height: @ts-unit-triple; 
+						text-align: center;
+					}
+				}
+				*/
+}
 .ts-doxchrome .ts-menu > li.submenu > a {
   position: relative;
   z-index: 2;
-}
-.ts-doxchrome .ts-menu > li.submenu > a:not(.ts-checked),
-.ts-doxchrome .ts-menu > li.submenu > a:not(.ts-checked):hover {
-  background-color: #30454f !important;
-}
-.ts-doxchrome .ts-menu > li.submenu > .ts-shadow {
-  position: absolute;
-  height: 3px;
-  width: 100%;
-  background-image: linear-gradient(rgba(15, 21, 26, 0.25), transparent);
-  z-index: 1;
 }
 .ts-doxchrome .ts-menu > li.submenu menu {
   width: 100%;
@@ -680,7 +724,7 @@ table.api th {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  color: #587c8d;
+  color: #9ab2bc;
   position: relative;
 }
 .ts-doxchrome .ts-menu > li.resultsbanner strong {
@@ -688,7 +732,7 @@ table.api th {
 }
 .ts-doxchrome #menucover {
   height: 0;
-  background-color: #587c8d;
+  background-color: #9ab2bc;
   top: 0;
   left: 0;
   width: 320px;
@@ -855,7 +899,7 @@ article > h1 {
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 .doc-responsive #breakpoints {
-  background-color: #d0dce2;
+  background-color: #dde5e9;
   padding-bottom: 22px;
   border-radius: 3px;
 }
@@ -880,7 +924,7 @@ article > h1 {
   transition-duration: 0.2s;
   transition-timing-function: ease;
   transition-delay: 0s;
-  border: 1px solid #d0dce2;
+  border: 1px solid #dde5e9;
   padding: 22px;
   margin-bottom: 22px;
 }

@@ -43,11 +43,11 @@ module.exports = function(grunt) {
 			'<script src="/dist/assets/dox.js"></script>',
 			'<script src="/dist/assets/mark.min.js"></script>',
 			'<script src="/dist/assets/jquery-2.2.4.min.js"></script>',
-			'<link rel="stylesheet" href="//127.0.0.1:10111/dist/ts.css" id="ts-css"/>',
+			'<link rel="stylesheet" href="//127.0.0.1:10111/dist/ts.css"/>',
 			'<link rel="stylesheet" href="/dist/assets/dox.css"/>'
 		],
 
-		// tags to include in HEAD when publishing to GitHub pages (TODO!)
+		// tags to include in HEAD when publishing to GitHub pages
 		publictags: [
 			'<meta charset="UTF-8">',
 			'<meta name="viewport" content="width=device-width"/>',
@@ -55,6 +55,7 @@ module.exports = function(grunt) {
 			'<script src="/dist/assets/dox.min.js"></script>',
 			'<script src="/dist/assets/mark.min.js"></script>',
 			'<script src="/dist/assets/jquery-2.2.4.min.js"></script>',
+			'<link rel="stylesheet" href="<%=config.runtime_hosting%>/ts-<%=config.runtime_version%>.min.css"/>',
 			'<link rel="stylesheet" href="/dist/assets/dox.css"/>'
 		],
 

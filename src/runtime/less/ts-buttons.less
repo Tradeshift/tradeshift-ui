@@ -142,7 +142,7 @@
 		}
 	}
 }
-.mixin-join-left(@borderwidth: 0, @bordercolor: @buttonblue) {
+.mixin-join-left(@borderwidth: 0, @bordercolor: @new-bordercolor) {
 	.ts-button {
 		&,
 		&:before,
@@ -152,12 +152,11 @@
 		}
 		&.ts-tertiary,
 		&.ts-secondary {
-			border-left-color: @bordercolor;
-			border-left: @borderwidth solid @buttonblue;
+			border-left: @borderwidth solid @bordercolor;
 		}
 	}
 }
-.mixin-join-right(@borderwidth: 0, @bordercolor: @buttonblue) {
+.mixin-join-right(@borderwidth: 0, @bordercolor: @new-bordercolor) {
 	.ts-button {
 		&,
 		&:before,
@@ -167,8 +166,7 @@
 		}
 		&.ts-tertiary,
 		&.ts-secondary {
-			border-right-color: @bordercolor;
-			border-right: @borderwidth solid @buttonblue;
+			border-right: @borderwidth solid @bordercolor;
 		}
 	}
 }
@@ -256,6 +254,9 @@ menu .ts-button {
 
 // Buttons (menus) .............................................................
 
+/*
+ * TODO: THIS CAN ALL BE REPLACED WITH FLEX NOWADAYS!
+ */
 .ts-buttons {
 	list-style: none;
 	margin-bottom: @ts-unit;

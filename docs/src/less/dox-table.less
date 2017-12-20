@@ -21,7 +21,7 @@ table.api {
 		//font-weight: @ts-fontweight-light;
 	}
 	caption {
-		background-color: @ts-color-gray-darker;
+		background-color: @ts-color-slate-lightest;
 		color: @ts-color-white;
 		.ts-mixin-rounded-t;
 	}
@@ -32,6 +32,9 @@ table.api {
 		&:last-child {
 			width: 100%;
 		}
+	}
+	tr:first-child th {
+		padding-top: @ts-unit;
 	}
 	tr:last-child td {
 		padding-bottom: @ts-unit-half;

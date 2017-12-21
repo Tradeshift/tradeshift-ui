@@ -3,48 +3,51 @@ const semv = require('semver');
 const file = require('fs');
 const path = require('path');
 const ZERO = '0.0.0';
-const REPO = 'https://github.com/Tradeshift/tradeshift-ui.git';
 
-reset();
-
-console.log('Cloning', REPO);
-git(getfolder()).clone(REPO, 'gh-pages', ['-b', 'gh-pages', '--single-branch'], () => {
-	console.log('Success');
-	compare();
-});
-
-function compare() {
-	const thisversion = getlocalversion();
-	const thatversion = getmatchversion(thisversion);
-	if (semv.gt(thisversion, thatversion)) {
-		injectdocs(parseInt(thisversion, 10));
-		setmatchversion(thatversion, thisversion);
-		pullrequest('gh-pages', 'gh-pages-update');
-	} else {
-		console.log('Nothing to see');
+exports.update = function() {
+	reset();
+	console.log('Cloning gh-pages');
+	clone('gh-pages').then(() => {
+		console.log('Comparing versions');
+		const thisversion = getlocalversion();
+		const thatversion = getmatchversion(thisversion);
+		if (semv.gt(thisversion, thatversion)) {
+			console.log('Updating website');
+			injectdocs(parseInt(thisversion, 10));
+			setmatchversion(thatversion, thisversion);
+			pushchanges('gh-pages', 'gh-pages-update');
+		} else {
+			console.log('Update aborted');
+		}
 		reset();
-	}
+	});
+};
+
+/**
+ * @param {string} branch
+ * @returns {Promise}
+ */
+function clone(branch) {
+	const repo = 'https://github.com/Tradeshift/tradeshift-ui.git';
+	const args = ['-b', 'gh-pages', '--single-branch'];
+	return new Promise(resolve => {
+		git(getabspath()).clone(repo, branch, args, resolve);
+	});
 }
 
-function pullrequest(source, target) {
-	/*
-	git(getfolder('gh-pages'))
-		.status((error, status) => {
-			// console.log(error || status);
-			console.log(process.env.GH_ACCESS_TOK);
-		});
-	*/
-	git(getfolder(source))
+function pushchanges(source, target) {
+	console.log('Pushing', target);
+	git(getabspath(source))
 		.branch([target])
 		.checkout(target)
 		.add('./*')
-		.commit('Does it work?')
+		.commit('Update gh-pages')
 		.push('origin', target);
 }
 
 function reset() {
 	console.log('Cleaning up');
-	rimraf(getfolder('gh-pages'));
+	rimraf(getabspath('gh-pages'));
 }
 
 function getlocalversion() {
@@ -68,6 +71,7 @@ function injectdocs(version) {
 
 function setmatchversion(source, target) {
 	const pkg = getpackage('gh-pages/package.json');
+	pkg.version = semv.inc(pkg.version, 'patch');
 	pkg.versions = pkg.versions
 		.map(v => (v === source ? target : v))
 		.concat(source === ZERO ? [target] : [])
@@ -80,7 +84,7 @@ function setmatchversion(source, target) {
  * @param {string} version
  */
 function prepare(version) {
-	const target = getfolder('gh-pages', version);
+	const target = getabspath('gh-pages', version);
 	if (file.existsSync(target)) {
 		rimraf(target);
 	}
@@ -91,7 +95,7 @@ function prepare(version) {
  * @param {string} version
  */
 function copydist(version) {
-	return copydir(getfolder('../', 'docs', 'dist'), getfolder('gh-pages', version, 'dist'));
+	return copydir(getabspath('../', 'docs', 'dist'), getabspath('gh-pages', version, 'dist'));
 }
 
 /**
@@ -99,8 +103,8 @@ function copydist(version) {
  */
 function copyindex(version) {
 	file.linkSync(
-		getfolder('../', 'docs', 'index.html'),
-		getfolder('gh-pages', version, 'index.html')
+		getabspath('../', 'docs', 'index.html'),
+		getabspath('gh-pages', version, 'index.html')
 	);
 }
 
@@ -108,7 +112,7 @@ function copyindex(version) {
  * @param {...string} [paths]
  * @returns {string}
  */
-function getfolder(...paths) {
+function getabspath(...paths) {
 	return path.join(__dirname, ...paths.map(String));
 }
 
@@ -116,12 +120,11 @@ function getfolder(...paths) {
  * @returns {Object}
  */
 function getpackage(where) {
-	return JSON.parse(file.readFileSync(getfolder(where), 'UTF-8'));
+	return JSON.parse(file.readFileSync(getabspath(where), 'UTF-8'));
 }
 
 function setpackage(where, object) {
-	console.log(where);
-	console.log(JSON.stringify(object, 0, 2));
+	file.writeFileSync(getabspath(where), JSON.stringify(object, 0, 2), { encoding: 'UTF-8' });
 }
 
 /**

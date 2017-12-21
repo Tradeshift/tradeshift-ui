@@ -1,4 +1,4 @@
-const git = require('simple-git')();
+const git = require('simple-git')(__dirname);
 const semv = require('semver');
 const file = require('fs');
 const path = require('path');
@@ -13,19 +13,24 @@ git.clone(REPO, 'gh-pages', ['-b', 'gh-pages', '--single-branch'], () => {
 	if (semv.gt(thisversion, thatversion)) {
 		inject(parseInt(thisversion, 10));
 		setmatchversion(thatversion, thisversion);
-		/*
-		git
-			.branch(['-d', LEAF])
-			.branch([LEAF])
-			.checkout(LEAF)
-			.add('./*');
+		johnson(require('simple-git')(getfolder('/gh-pages')));
 		console.log('???');
-		*/
 	} else {
 		console.log('Nothing to see');
 		reset();
 	}
 });
+
+function johnson(sub) {
+	const LEAF = 'jmo/testingitout';
+	sub
+		.branch(['-d', LEAF])
+		.branch([LEAF])
+		.checkout(LEAF)
+		.add('./*')
+		.commit('YEAH!')
+		.push('origin', LEAF);
+}
 
 function reset() {
 	console.log('Cleaning up');

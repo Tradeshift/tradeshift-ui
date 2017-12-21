@@ -1,31 +1,87 @@
-const git = require('simple-git')();
+const Git = require('nodegit');
 const semv = require('semver');
 const file = require('fs');
 const path = require('path');
 const ZERO = '0.0.0';
-const REPO = 'https://github.com/Tradeshift/tradeshift-ui.git';
-// const LEAF = 'gh-pages-update';
 
 reset();
-git.clone(REPO, 'gh-pages', ['-b', 'gh-pages', '--single-branch'], () => {
+clone('https://github.com/Tradeshift/tradeshift-ui.git').then(compare);
+
+/**
+ * @param {Repository} repo
+ */
+function compare(repo) {
+	console.log('Comparing versions');
 	const thisversion = getlocalversion();
 	const thatversion = getmatchversion(thisversion);
 	if (semv.gt(thisversion, thatversion)) {
-		inject(parseInt(thisversion, 10));
-		setmatchversion(thatversion, thisversion);
-		/*
-		git
-			.branch(['-d', LEAF])
-			.branch([LEAF])
-			.checkout(LEAF)
-			.add('./*');
-		console.log('???');
-		*/
+		johannes(repo, parseInt(thisversion, 10), thisversion, thatversion)
+			.catch(exception => console.log(exception))
+			.then(() => {
+				console.log('Thank you for your patience');
+			});
 	} else {
 		console.log('Nothing to see');
 		reset();
 	}
+}
+
+function johannes(repo, majorversion, thisversion, thatversion) {
+	const signature = Git.Signature.create('Foo bar', 'foo@bar.com', 123456789, 60);
+	const files = fileoperations(majorversion);
+	setmatchversion(thatversion, thisversion);
+	return repo.refreshIndex().then(index => {
+		const local = name => name.split('/gh-pages/')[1];
+		const addit = name => index.addByPath(name);
+		return Promise.all(files.map(local).map(addit))
+			.then(index.write())
+			.then(index.writeTree())
+			.then(oid => {
+				return repo.createCommit('HEAD', signature, signature, 'Total test', oid, []);
+				// return Promise.resolve();
+			})
+			.catch(x => console.log(x));
+	});
+}
+
+/*
+// Create a new branch on head
+    return repo.getHeadCommit()
+    .then(function(commit) {
+      return repo.createBranch(
+        "new-branch",
+        commit,
+        0,
+        repo.defaultSignature(),
+        "Created new-branch on HEAD");
 });
+*/
+
+/*
+function hansen(repo, majorversion) {
+	return repo.refreshIndex().then(index => {
+		index
+			.add(getfolder('gh-pages/' + majorversion))
+			.then(index.write())
+			.then(index.writeTree())
+			.then(oid => {
+				console.log('OID!', oid);
+				return repo.createCommit('HEAD', signature, signature, 'Total test, respect', oid, []);
+			})
+			.catch(x => console.log(x));
+	});
+}
+*/
+
+/**
+ * @param {number} version
+ */
+function fileoperations(version) {
+	prepare(version);
+	var x = copydist(version);
+	copyindex(version);
+	return x;
+}
 
 function reset() {
 	console.log('Cleaning up');
@@ -43,12 +99,6 @@ function getmatchversion(version) {
 			.versions.map(semv.clean)
 			.find(match) || ZERO
 	);
-}
-
-function inject(version) {
-	prepare(version);
-	copydist(version);
-	copyindex(version);
 }
 
 function setmatchversion(source, target) {
@@ -107,6 +157,27 @@ function getpackage(where) {
 function setpackage(where, object) {
 	console.log(where);
 	console.log(JSON.stringify(object, 0, 2));
+}
+
+/**
+ * @see http://www.nodegit.org/guides/cloning/
+ * @param {string} url
+ * @returns {Promise}
+ */
+function clone(url) {
+	console.log('Cloning', url);
+	return Git.Clone(url, getfolder('gh-pages'), {
+		checkoutBranch: 'gh-pages',
+		fetchOpts: {
+			callbacks: {
+				certificateCheck() {
+					return 1;
+				}
+			}
+		}
+	}).catch(x => {
+		console.log(x);
+	});
 }
 
 /**

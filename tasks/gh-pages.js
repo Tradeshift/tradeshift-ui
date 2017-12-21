@@ -15,40 +15,70 @@ function compare(repo) {
 	const thisversion = getlocalversion();
 	const thatversion = getmatchversion(thisversion);
 	if (semv.gt(thisversion, thatversion)) {
-		johannes(repo, parseInt(thisversion, 10), thisversion, thatversion);
-		console.log('??');
+		johannes(repo, parseInt(thisversion, 10), thisversion, thatversion)
+			.catch(exception => console.log(exception))
+			.then(() => {
+				console.log('Thank you for your patience');
+			});
 	} else {
 		console.log('Nothing to see');
 		reset();
 	}
 }
 
-function johannes(repo, thisversion, thatversion, majorversion) {
-	fileoperations(majorversion);
-	setmatchversion(thatversion, thisversion);
-	hansen(repo, majorversion);
-}
-
-function hansen(repo, majorversion) {
+function johannes(repo, majorversion, thisversion, thatversion) {
 	const signature = Git.Signature.create('Foo bar', 'foo@bar.com', 123456789, 60);
-	repo.refreshIndex().then(index => {
-		index
-			.addByPath(getfolder('gh-pages/' + majorversion))
+	setmatchversion(thatversion, thisversion);
+	const files = fileoperations(majorversion);
+	return repo.refreshIndex().then(index => {
+		console.log(index);
+		Promise.all(files.map(f => index.addByPath(f)))
 			.then(index.write())
 			.then(index.writeTree())
 			.then(oid => {
 				return repo.createCommit('HEAD', signature, signature, 'Total test, respect', oid, []);
-			});
+			})
+			.catch(x => console.log(x));
 	});
 }
+
+/*
+// Create a new branch on head
+    return repo.getHeadCommit()
+    .then(function(commit) {
+      return repo.createBranch(
+        "new-branch",
+        commit,
+        0,
+        repo.defaultSignature(),
+        "Created new-branch on HEAD");
+});
+*/
+
+/*
+function hansen(repo, majorversion) {
+	return repo.refreshIndex().then(index => {
+		index
+			.add(getfolder('gh-pages/' + majorversion))
+			.then(index.write())
+			.then(index.writeTree())
+			.then(oid => {
+				console.log('OID!', oid);
+				return repo.createCommit('HEAD', signature, signature, 'Total test, respect', oid, []);
+			})
+			.catch(x => console.log(x));
+	});
+}
+*/
 
 /**
  * @param {number} version
  */
 function fileoperations(version) {
 	prepare(version);
-	copydist(version);
+	var x = copydist(version);
 	copyindex(version);
+	return x;
 }
 
 function reset() {
@@ -75,6 +105,7 @@ function setmatchversion(source, target) {
 		.map(v => (v === source ? target : v))
 		.concat(source === ZERO ? [target] : [])
 		.sort(semv.gt);
+	console.log('versions', pkg.versions);
 	setpackage('gh-pages/package.json', pkg);
 }
 
@@ -93,7 +124,7 @@ function prepare(version) {
  * @param {string} version
  */
 function copydist(version) {
-	copydir(getfolder('../', 'docs', 'dist'), getfolder('gh-pages', version, 'dist'));
+	return copydir(getfolder('../', 'docs', 'dist'), getfolder('gh-pages', version, 'dist'));
 }
 
 /**
@@ -170,16 +201,18 @@ function rimraf(dir) {
  * @param {string} src
  * @param {string} dest
  */
-function copydir(src, dest) {
+function copydir(src, dest, result = []) {
 	var exist = file.existsSync(src);
 	var stats = exist && file.statSync(src);
 	var isDirectory = exist && stats.isDirectory();
 	if (exist && isDirectory) {
 		file.mkdirSync(dest);
 		file.readdirSync(src).forEach(function(name) {
-			copydir(path.join(src, name), path.join(dest, name));
+			copydir(path.join(src, name), path.join(dest, name), result);
 		});
 	} else {
 		file.linkSync(src, dest);
+		result.push(dest);
 	}
+	return result;
 }

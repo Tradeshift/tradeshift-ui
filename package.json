@@ -83,13 +83,14 @@
 		"less": "^2.7.2",
 		"lint-staged": "^4.2.1",
 		"load-grunt-tasks": "^3.5.2",
-		"nodegit": "^0.20.3",
 		"node-static": "^0.7.10",
+		"nodegit": "^0.20.3",
 		"npm-run-all": "^4.1.1",
 		"postcss-clean": "^1.0.2",
 		"postcss-less-engine": "^0.6.2",
 		"prettier": "1.7.0",
 		"release-it": "2.8.5",
+		"semver": "^5.4.1",
 		"s3": "^4.4.0"
 	},
 	"keywords": [

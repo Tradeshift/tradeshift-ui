@@ -1,26 +1,33 @@
-const git = require('simple-git')();
+const git = require('simple-git');
 const semv = require('semver');
 const file = require('fs');
 const path = require('path');
 const ZERO = '0.0.0';
 const REPO = 'https://github.com/Tradeshift/tradeshift-ui.git';
-// const LEAF = 'gh-pages-update';
+const LEAF = 'gh-pages-update';
 
 reset();
-git.clone(REPO, 'gh-pages', ['-b', 'gh-pages', '--single-branch'], () => {
+git(getfolder()).clone(REPO, 'gh-pages', ['-b', 'gh-pages', '--single-branch'], () => {
 	const thisversion = getlocalversion();
 	const thatversion = getmatchversion(thisversion);
 	if (semv.gt(thisversion, thatversion)) {
 		inject(parseInt(thisversion, 10));
 		setmatchversion(thatversion, thisversion);
 		/*
-		git
-			.branch(['-d', LEAF])
+		git(getfolder('gh-pages'))
+			.status((error, status) => {
+				// console.log(error || status);
+				console.log(process.env.GH_ACCESS_TOK);
+			});
+		*/
+		git(getfolder('gh-pages'))
 			.branch([LEAF])
 			.checkout(LEAF)
-			.add('./*');
-		console.log('???');
-		*/
+			.add('./*')
+			.status((error, status) => {
+				console.log(error || status);
+			})
+			.branch(['-d', LEAF]);
 	} else {
 		console.log('Nothing to see');
 		reset();

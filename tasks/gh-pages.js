@@ -4,11 +4,8 @@ const file = require('fs');
 const path = require('path');
 const ZERO = '0.0.0';
 
-// rimraf(temp);
-
+reset();
 clone('https://github.com/Tradeshift/tradeshift-ui.git').then(compare);
-
-// migrate();
 
 /**
  * @param {Repository} repo
@@ -18,13 +15,31 @@ function compare(repo) {
 	const thisversion = getlocalversion();
 	const thatversion = getmatchversion(thisversion);
 	if (semv.gt(thisversion, thatversion)) {
-		console.log('Updating docs');
-		fileoperations(parseInt(thisversion, 10));
-		setmatchversion(thatversion, thisversion);
+		johannes(repo, parseInt(thisversion, 10), thisversion, thatversion);
+		console.log('??');
 	} else {
 		console.log('Nothing to see');
+		reset();
 	}
-	reset();
+}
+
+function johannes(repo, thisversion, thatversion, majorversion) {
+	fileoperations(majorversion);
+	setmatchversion(thatversion, thisversion);
+	hansen(repo, majorversion);
+}
+
+function hansen(repo, majorversion) {
+	const signature = Git.Signature.create('Foo bar', 'foo@bar.com', 123456789, 60);
+	repo.refreshIndex().then(index => {
+		index
+			.addByPath(getfolder('gh-pages/' + majorversion))
+			.then(index.write())
+			.then(index.writeTree())
+			.then(oid => {
+				return repo.createCommit('HEAD', signature, signature, 'Total test, respect', oid, []);
+			});
+	});
 }
 
 /**

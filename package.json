@@ -1,4 +1,6 @@
 {
+	"version": "0.0.0",
+	"versions": [],
 	"devDependencies": {
 		"node-static": "^0.7.10"
 	},

@@ -4,11 +4,10 @@ const file = require('fs');
 const path = require('path');
 const ZERO = '0.0.0';
 
-exports.update = function() {
-	reset();
-	console.log('Cloning gh-pages');
+(function run() {
+	clean('gh-pages');
+	console.log('Cloning "gh-pages"');
 	clone('gh-pages').then(() => {
-		console.log('Comparing versions');
 		const thisversion = getlocalversion();
 		const thatversion = getmatchversion(thisversion);
 		if (semv.gt(thisversion, thatversion)) {
@@ -19,9 +18,9 @@ exports.update = function() {
 		} else {
 			console.log('Update aborted');
 		}
-		reset();
+		clean('gh-pages');
 	});
-};
+})();
 
 /**
  * @param {string} branch
@@ -45,9 +44,8 @@ function pushchanges(source, target) {
 		.push('origin', target);
 }
 
-function reset() {
-	console.log('Cleaning up');
-	rimraf(getabspath('gh-pages'));
+function clean(folder) {
+	rimraf(getabspath(folder));
 }
 
 function getlocalversion() {
@@ -76,7 +74,6 @@ function setmatchversion(source, target) {
 		.map(v => (v === source ? target : v))
 		.concat(source === ZERO ? [target] : [])
 		.sort(semv.gt);
-	console.log('versions', pkg.versions);
 	setpackage('gh-pages/package.json', pkg);
 }
 

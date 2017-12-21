@@ -1,45 +1,94 @@
 const Git = require('nodegit');
+const semv = require('semver');
 const file = require('fs');
 const path = require('path');
-const temp = path.join(__dirname, 'repo');
+const ZERO = '0.0.0';
 
-console.log('DELETE');
-rimraf(temp);
-console.log('OK');
+// rimraf(temp);
 
-clone('https://github.com/Tradeshift/tradeshift-ui.git').then(repo => {
-	console.log('Success!');
-	const version = parseInt(getpackage().version, 10);
-	try {
-		ensure(version);
-		copydist(version);
-		copyindex(version);
-	} catch (exception) {
-		console.log(exception);
+clone('https://github.com/Tradeshift/tradeshift-ui.git').then(compare);
+
+// migrate();
+
+/**
+ * @param {Repository} repo
+ */
+function compare(repo) {
+	console.log('Comparing versions');
+	const thisversion = getlocalversion();
+	const thatversion = getmatchversion(thisversion);
+	if (semv.gt(thisversion, thatversion)) {
+		console.log('Updating docs');
+		fileoperations(parseInt(thisversion, 10));
+		setmatchversion(thatversion, thisversion);
+	} else {
+		console.log('Nothing to see');
 	}
-});
+	reset();
+}
+
+/**
+ * @param {number} version
+ */
+function fileoperations(version) {
+	prepare(version);
+	copydist(version);
+	copyindex(version);
+}
+
+function reset() {
+	console.log('Cleaning up');
+	rimraf(getfolder('gh-pages'));
+}
+
+function getlocalversion() {
+	return semv.clean(getpackage('../package.json').version);
+}
+
+function getmatchversion(version) {
+	const match = v => parseInt(v, 10) === parseInt(version, 10);
+	return (
+		getpackage('gh-pages/package.json')
+			.versions.map(semv.clean)
+			.find(match) || ZERO
+	);
+}
+
+function setmatchversion(source, target) {
+	const pkg = getpackage('gh-pages/package.json');
+	pkg.versions = pkg.versions
+		.map(v => (v === source ? target : v))
+		.concat(source === ZERO ? [target] : [])
+		.sort(semv.gt);
+	setpackage('gh-pages/package.json', pkg);
+}
 
 /**
  * @param {string} version
  */
-function ensure(version) {
-	if (!file.existsSync(getfolder('repo', version))) {
-		file.mkdirSync(getfolder('repo', version));
+function prepare(version) {
+	const target = getfolder('gh-pages', version);
+	if (file.existsSync(target)) {
+		rimraf(target);
 	}
+	file.mkdirSync(target);
 }
 
 /**
  * @param {string} version
  */
 function copydist(version) {
-	copydir(getfolder('../', 'docs', 'dist'), getfolder('repo', version, 'dist'));
+	copydir(getfolder('../', 'docs', 'dist'), getfolder('gh-pages', version, 'dist'));
 }
 
 /**
  * @param {string} version
  */
 function copyindex(version) {
-	file.linkSync(getfolder('../', 'docs', 'index.html'), getfolder('repo', version, 'index.html'));
+	file.linkSync(
+		getfolder('../', 'docs', 'index.html'),
+		getfolder('gh-pages', version, 'index.html')
+	);
 }
 
 /**
@@ -53,8 +102,13 @@ function getfolder(...paths) {
 /**
  * @returns {Object}
  */
-function getpackage() {
-	return JSON.parse(file.readFileSync(path.join(__dirname, '../package.json'), 'UTF-8'));
+function getpackage(where) {
+	return JSON.parse(file.readFileSync(getfolder(where), 'UTF-8'));
+}
+
+function setpackage(where, object) {
+	console.log(where);
+	console.log(JSON.stringify(object, 0, 2));
 }
 
 /**
@@ -64,7 +118,7 @@ function getpackage() {
  */
 function clone(url) {
 	console.log('Cloning', url);
-	return Git.Clone(url, getfolder('repo'), {
+	return Git.Clone(url, getfolder('gh-pages'), {
 		checkoutBranch: 'gh-pages',
 		fetchOpts: {
 			callbacks: {
@@ -80,8 +134,7 @@ function clone(url) {
 
 /**
  * Remove directory recursively
- * @param {string} dir_path
- * @see https://stackoverflow.com/a/42505874/3027390
+ * @param {string} dir
  */
 function rimraf(dir) {
 	if (file.existsSync(dir)) {

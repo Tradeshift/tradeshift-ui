@@ -4,35 +4,43 @@ const file = require('fs');
 const path = require('path');
 const ZERO = '0.0.0';
 const REPO = 'https://github.com/Tradeshift/tradeshift-ui.git';
-const LEAF = 'gh-pages-update';
 
 reset();
+
+console.log('Cloning', REPO);
 git(getfolder()).clone(REPO, 'gh-pages', ['-b', 'gh-pages', '--single-branch'], () => {
+	console.log('Success');
+	compare();
+});
+
+function compare() {
 	const thisversion = getlocalversion();
 	const thatversion = getmatchversion(thisversion);
 	if (semv.gt(thisversion, thatversion)) {
-		inject(parseInt(thisversion, 10));
+		injectdocs(parseInt(thisversion, 10));
 		setmatchversion(thatversion, thisversion);
-		/*
-		git(getfolder('gh-pages'))
-			.status((error, status) => {
-				// console.log(error || status);
-				console.log(process.env.GH_ACCESS_TOK);
-			});
-		*/
-		git(getfolder('gh-pages'))
-			.branch([LEAF])
-			.checkout(LEAF)
-			.add('./*')
-			.status((error, status) => {
-				console.log(error || status);
-			})
-			.branch(['-d', LEAF]);
+		pullrequest('gh-pages', 'gh-pages-update');
 	} else {
 		console.log('Nothing to see');
 		reset();
 	}
-});
+}
+
+function pullrequest(source, target) {
+	/*
+	git(getfolder('gh-pages'))
+		.status((error, status) => {
+			// console.log(error || status);
+			console.log(process.env.GH_ACCESS_TOK);
+		});
+	*/
+	git(getfolder(source))
+		.branch([target])
+		.checkout(target)
+		.add('./*')
+		.commit('Does it work?')
+		.push('origin', target);
+}
 
 function reset() {
 	console.log('Cleaning up');
@@ -52,7 +60,7 @@ function getmatchversion(version) {
 	);
 }
 
-function inject(version) {
+function injectdocs(version) {
 	prepare(version);
 	copydist(version);
 	copyindex(version);

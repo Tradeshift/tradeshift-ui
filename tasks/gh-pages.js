@@ -1,40 +1,51 @@
-const git = require('simple-git')(__dirname);
+const git = require('simple-git');
 const semv = require('semver');
 const file = require('fs');
 const path = require('path');
 const ZERO = '0.0.0';
-const REPO = 'https://github.com/Tradeshift/tradeshift-ui.git';
-// const LEAF = 'gh-pages-update';
 
-reset();
-git.clone(REPO, 'gh-pages', ['-b', 'gh-pages', '--single-branch'], () => {
-	const thisversion = getlocalversion();
-	const thatversion = getmatchversion(thisversion);
-	if (semv.gt(thisversion, thatversion)) {
-		inject(parseInt(thisversion, 10));
-		setmatchversion(thatversion, thisversion);
-		johnson(require('simple-git')(getfolder('/gh-pages')));
-		console.log('???');
-	} else {
-		console.log('Nothing to see');
-		reset();
-	}
-});
+(function run() {
+	clean('gh-pages');
+	console.log('Cloning "gh-pages"');
+	clone('gh-pages').then(() => {
+		const thisversion = getlocalversion();
+		const thatversion = getmatchversion(thisversion);
+		if (semv.gt(thisversion, thatversion)) {
+			console.log('Updating website');
+			injectdocs(parseInt(thisversion, 10));
+			setmatchversion(thatversion, thisversion);
+			pushchanges('gh-pages', 'gh-pages-update');
+		} else {
+			console.log('Update aborted');
+		}
+		clean('gh-pages');
+	});
+})();
 
-function johnson(sub) {
-	const LEAF = 'jmo/testingitout';
-	sub
-		.branch(['-d', LEAF])
-		.branch([LEAF])
-		.checkout(LEAF)
-		.add('./*')
-		.commit('YEAH!')
-		.push('origin', LEAF);
+/**
+ * @param {string} branch
+ * @returns {Promise}
+ */
+function clone(branch) {
+	const repo = 'https://github.com/Tradeshift/tradeshift-ui.git';
+	const args = ['-b', 'gh-pages', '--single-branch'];
+	return new Promise(resolve => {
+		git(getabspath()).clone(repo, branch, args, resolve);
+	});
 }
 
-function reset() {
-	console.log('Cleaning up');
-	rimraf(getfolder('gh-pages'));
+function pushchanges(source, target) {
+	console.log('Pushing', target);
+	git(getabspath(source))
+		.branch([target])
+		.checkout(target)
+		.add('./*')
+		.commit('Update gh-pages')
+		.push('origin', target);
+}
+
+function clean(folder) {
+	rimraf(getabspath(folder));
 }
 
 function getlocalversion() {
@@ -50,7 +61,7 @@ function getmatchversion(version) {
 	);
 }
 
-function inject(version) {
+function injectdocs(version) {
 	prepare(version);
 	copydist(version);
 	copyindex(version);
@@ -58,11 +69,11 @@ function inject(version) {
 
 function setmatchversion(source, target) {
 	const pkg = getpackage('gh-pages/package.json');
+	pkg.version = semv.inc(pkg.version, 'patch');
 	pkg.versions = pkg.versions
 		.map(v => (v === source ? target : v))
 		.concat(source === ZERO ? [target] : [])
 		.sort(semv.gt);
-	console.log('versions', pkg.versions);
 	setpackage('gh-pages/package.json', pkg);
 }
 
@@ -70,7 +81,7 @@ function setmatchversion(source, target) {
  * @param {string} version
  */
 function prepare(version) {
-	const target = getfolder('gh-pages', version);
+	const target = getabspath('gh-pages', version);
 	if (file.existsSync(target)) {
 		rimraf(target);
 	}
@@ -81,7 +92,7 @@ function prepare(version) {
  * @param {string} version
  */
 function copydist(version) {
-	return copydir(getfolder('../', 'docs', 'dist'), getfolder('gh-pages', version, 'dist'));
+	return copydir(getabspath('../', 'docs', 'dist'), getabspath('gh-pages', version, 'dist'));
 }
 
 /**
@@ -89,8 +100,8 @@ function copydist(version) {
  */
 function copyindex(version) {
 	file.linkSync(
-		getfolder('../', 'docs', 'index.html'),
-		getfolder('gh-pages', version, 'index.html')
+		getabspath('../', 'docs', 'index.html'),
+		getabspath('gh-pages', version, 'index.html')
 	);
 }
 
@@ -98,7 +109,7 @@ function copyindex(version) {
  * @param {...string} [paths]
  * @returns {string}
  */
-function getfolder(...paths) {
+function getabspath(...paths) {
 	return path.join(__dirname, ...paths.map(String));
 }
 
@@ -106,12 +117,11 @@ function getfolder(...paths) {
  * @returns {Object}
  */
 function getpackage(where) {
-	return JSON.parse(file.readFileSync(getfolder(where), 'UTF-8'));
+	return JSON.parse(file.readFileSync(getabspath(where), 'UTF-8'));
 }
 
 function setpackage(where, object) {
-	console.log(where);
-	console.log(JSON.stringify(object, 0, 2));
+	file.writeFileSync(getabspath(where), JSON.stringify(object, 0, 2), { encoding: 'UTF-8' });
 }
 
 /**

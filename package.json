@@ -38,7 +38,7 @@
 		"****** NODE *****": "",
 		"postinstall": "cd docs && yarn && cd ../app && yarn",
 		"precommit": "lint-staged && grunt exec:docs_dist && git add -A docs",
-		"testing": "node tasks/gh-pages.js"
+		"gh-pages": "node tasks/gh-pages.js"
 	},
 	"lint-staged": {
 		"*.js": ["prettier --write", "eslint --config ./.eslintrc.json", "git add"],

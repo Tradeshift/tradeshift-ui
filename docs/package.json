@@ -2,6 +2,7 @@
 	"name": "tradeshift-ui-docs",
 	"version": "0.0.0",
 	"private": true,
+	"versions": ["9.3.13"],
 	"devDependencies": {
 		"alce": "^1.2.0",
 		"browserstacktunnel-wrapper": "^2.0.0",

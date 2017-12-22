@@ -11,7 +11,12 @@ ts.dox.MenuSpirit = (function using(isInView, goIntoView) {
 		onconfigure: function() {
 			this.super.onconfigure();
 			this.css.add('ts-menu');
-			this._loadmenu(this.dom.q('script'));
+			new gui.Request('/package.json')
+				.acceptJSON()
+				.get()
+				.then(function(status, pkg) {
+					this._loadmenu(this.dom.q('script'), pkg);
+				}, this);
 		},
 
 		/**
@@ -81,13 +86,17 @@ ts.dox.MenuSpirit = (function using(isInView, goIntoView) {
 		/**
 		 * Render menu from embedded JSON.
 		 * @param {HTMLScriptElement} script
+		 * @param {Object} pkg - the `package.json`
 		 */
-		_loadmenu: function(script) {
-			this._model = new ts.dox.MenuModel({
-				items: JSON.parse(script.textContent.trim())
-			});
+		_loadmenu: function(script, pkg) {
 			this.script.load(ts.dox.MenuSpirit.edbml);
-			this.script.input(this._model);
+			this.script.input(
+				(this._model = new ts.dox.MenuModel({
+					items: JSON.parse(script.textContent.trim()),
+					versions: pkg.versions || [],
+					version: pkg.version
+				}))
+			);
 		},
 
 		/**

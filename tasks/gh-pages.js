@@ -6,6 +6,7 @@ const ZERO = '0.0.0';
 const USER = process.env.GH_USER_NAME;
 const PASS = process.env.GH_ACCESS_TOK;
 const REPO = 'github.com/Tradeshift/tradeshift-ui.git';
+const log = msg => console.log(msg);
 const tojson = object => JSON.stringify(object, 0, 2);
 const abspath = (...paths) => path.join(__dirname, ...paths.map(String));
 const encoding = read => (read ? 'UTF-8' : { encoding: 'UTF-8' });
@@ -23,7 +24,7 @@ const localversion = where => semv.clean(getpackage(where).version);
 	if (USER && PASS) {
 		nukefolder('gh-pages');
 		doit(function done() {
-			console.log('Cleaning up');
+			log('Cleaning up');
 			nukefolder('gh-pages');
 		});
 	} else {
@@ -37,16 +38,17 @@ const localversion = where => semv.clean(getpackage(where).version);
  * @param {Function} done
  */
 function doit(done) {
-	console.log('Cloning "gh-pages"');
+	log('Cloning "gh-pages"');
 	clone('gh-pages').then(() => {
 		const thisversion = localversion('../package.json');
 		const thatversion = majorversion('gh-pages/package.json', thisversion);
 		if (semv.gt(thisversion, thatversion)) {
-			console.log('Updating website');
+			log('Updating website');
 			injectdocs(parseInt(thisversion, 10));
 			updateversions('gh-pages/package.json', thatversion, thisversion);
 			pushchanges('gh-pages', 'gh-pages-update', done);
 		} else {
+			log('Update aborted');
 			done();
 		}
 	});
@@ -116,7 +118,7 @@ function updateversions(where, source, target) {
  * @param {Funciton} done
  */
 function pushchanges(source, target, done) {
-	console.log('Pushing', target);
+	log('Pushing', target);
 	git(abspath(source))
 		.branch([target])
 		.checkout(target)

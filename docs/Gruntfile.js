@@ -176,7 +176,7 @@ module.exports = function(grunt) {
 		watch: {
 			js_global: {
 				files: 'src/js/**/*.js',
-				tasks: ['guibundles', 'uglify'],
+				tasks: ['guibundles', 'concat'],
 				options: { debounceDelay: 250 }
 			},
 			js_local: {
@@ -191,7 +191,7 @@ module.exports = function(grunt) {
 			},
 			edbml: {
 				files: 'src/edbml/**/*.edbml',
-				tasks: ['edbml:outline', 'uglify'],
+				tasks: ['edbml:outline', 'concat'],
 				options: { debounceDelay: 250 }
 			},
 			xhtml: {

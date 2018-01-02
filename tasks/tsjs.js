@@ -20,6 +20,8 @@ module.exports = {
 };
 
 /**
+ * TODO: There is really no need for a special task 
+ * here now that the script doesn't inject the CSS.
  * @param {Grunt} grunt
  * @param {string} source
  * @param {string} target
@@ -27,9 +29,6 @@ module.exports = {
  */
 function tsjs(grunt, source, target, options) {
 	var js = grunt.file.read(source);
-	Object.keys(options).forEach(function(key) {
-		js = js.replace(key, grunt.template.process(options[key]));
-	});
 	grunt.file.write(target, js);
 	grunt.log.writeln('File ' + chalk.cyan(target) + ' created');
 }

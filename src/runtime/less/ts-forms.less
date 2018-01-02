@@ -529,7 +529,7 @@
 				left: auto;
 				bottom: 26px;
 				width: @ts-unit-plus;
-				color: @ts-color-gray;
+				color: @ts-color-slate-lightest;
 			}
 			&.ts-engine-gecko {
 				&:before {
@@ -799,7 +799,7 @@
 			> .ts-field,
 			> span,
 			&:after {
-				color: @ts-color-gray-light;
+				color: @ts-color-gray;
 			}
 			.ts-field {
 				&.ts-text {
@@ -823,14 +823,14 @@
 			left: auto;
 			bottom: 26px;
 			width: @ts-unit-plus;
-			color: @ts-color-gray;
+			color: @ts-color-slate-lightest;
 			line-height: @ts-unit-plus;
 		}
 		&:not(.ts-disabled):not(.ts-readonly):after {
 			line-height: 0;
 		}
 		&.ts-disabled::after {
-			color: @ts-color-gray-light;
+			color: @ts-color-gray;
 		}
 		&.ts-readonly::after {
 			color: @ts-color-black;
@@ -846,7 +846,7 @@
 		left: 0;
 		right: 0;
 		z-index: 1;
-		background: @ts-color-gray-dark;
+		background: @ts-color-gray-darker;
 		border-bottom: 1px solid @ts-color-black;
 		max-height: ((@ts-unit * 7.5) - 1px);
 		margin: 1px @ts-unit-half 0;
@@ -859,7 +859,7 @@
 			padding: 0 7px;
 			font-size: @ts-fontsize-mini;
 			overflow: hidden;
-			background: @ts-color-gray-dark;
+			background: @ts-color-slate-light;
 			color: fade(@ts-color-white, 70%);
 			text-overflow: ellipsis;
 			cursor: pointer;
@@ -871,7 +871,7 @@
 				font-style: normal;
 			}
 			&.ts-autocomplete-results {
-				background: @ts-color-gray-darker;
+				background: @ts-color-slate-lightest;
 				font-style: italic;
 			}
 			&.ts-autocomplete-results {
@@ -892,7 +892,7 @@
 			}
 			&:hover {
 				color: @ts-color-white;
-				background: fade(@ts-color-blue, 50%);
+				background: @ts-color-slate-lighter;
 			}
 			b {
 				font-weight: @ts-fontweight;

@@ -9,12 +9,13 @@
 	// TEMP: Companycard needs details rendering!
 	display: block;
 	max-width: 298px;
-	border: 1px solid @ts-color-gray-lighter;
 	background-color: @ts-color-white;
-	color: @ts-color-gray-darker;
+	color: @ts-color-slate-lightest;
 	height: @cardheight;
 	margin-bottom: @ts-unit;
 	position: relative;
+	box-shadow: @ts-shadow;
+	border: 1px solid @new-bordercolor;
 	.ts-card-connection {
 		.ts-mixin-maximize();
 		top: auto;
@@ -31,7 +32,7 @@
 		line-height: @ts-unit-double;
 	}
 	.ts-card-connection-text {
-		color: @ts-color-gray-darker;
+		color: @ts-color-slate-lightest;
 	}
 }
 
@@ -88,13 +89,13 @@
 	width: 100%;
 	display: block;
 	position: relative;
-	border: 1px solid rgba(0, 0, 0, 0.1);
+	border: 1px solid @new-bordercolor;
 	background-color: @ts-color-white;
 }
 .ts-companycard .ts-mockup {
 	color: transparent;
 	.ts-companycard-branding {
-		border: 1px solid rgba(0, 0, 0, 0.1);
+		border: 1px solid @new-bordercolor;
 		background-color: @ts-color-white;
 	}
 	.ts-companycard-details,

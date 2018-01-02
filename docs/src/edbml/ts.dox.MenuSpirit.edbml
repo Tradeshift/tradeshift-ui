@@ -7,11 +7,7 @@
 	} else {
 		renderItems(menu.items);
 	}
-
-	if (menu.versions.length) {
-		console.log('TODO', menu.versions, menu.version);
-	}
-
+	
 	// Menu mode .................................................................
 	
 	function renderItems(items) {

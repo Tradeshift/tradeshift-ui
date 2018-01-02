@@ -323,14 +323,23 @@ module.exports = function(grunt) {
 					var tags = grunt.template.process('<%=' + tagset + '%>');
 					var menu = grunt.file.readJSON('menu.json');
 					var svgs = grunt.file.read('src/svg/icons.svg');
-					var json = JSON.stringify(menu, null, null);
+					var json = JSON.stringify(menu, 0, 0);
+					var vers = JSON.stringify(
+						{
+							version: grunt.file.readJSON('../package.json').version,
+							versions: grunt.file.readJSON('package.json').versions
+						},
+						0,
+						0
+					);
 					tags = tags.replace(/,/g, '\n		');
 					return publisher.publish(
 						content
 							.replace('${includes}', tags)
 							.replace('${menujson}', json)
+							.replace('${versions}', vers)
 							.replace('${svgicons}', svgs.replace(/\n\n*/g, '\n'))
-							.replace('${menuhtml}', seomenu(JSON.parse(json)))
+							.replace('${menuhtml}', seomenu(menu))
 					);
 				}
 			}

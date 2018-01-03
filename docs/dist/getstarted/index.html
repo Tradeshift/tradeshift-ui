@@ -16,7 +16,7 @@
             var version = ts.ui.version;
             var figure = document.querySelector('figure');
             var markup = figure.innerHTML;
-            figure.innerHTML = markup.replace('${ts.ui.version}', version);
+            figure.innerHTML = markup.replace(/\${ts.ui.version}/g, version);
         });
     </script>
 </head>
@@ -39,16 +39,17 @@
                                 'use strict';
                                 var out = $edbml.$out,
                                     $txt = edbml.safetext;
-                                out.html += '<span>To get Tradeshift UI up and running on your page, simply include <code>ts.js</code> in an appropriate version. The latest version is <code>' + $txt(ts.ui.version) + '</code>.';
+                                out.html += '<span>To get Tradeshift UI up and running on your page, simply include <code>ts.js</code> and <code>ts.css</code> in an appropriate version. The latest version is <code>' + $txt(ts.ui.version) + '</code>';
                                 return out.write();
                             });
                         </script>
                     </p>
-                    <figure data-ts="DoxMarkup" data-ts.code="%3Cscript%20src%3D%22%2F%2Fd5wfroyti11sa.cloudfront.net%2Fprod%2Fclient%2Fts-%24%7Bts.ui.version%7D.min.js%22%3E%3C%2Fscript%3E">
+                    <figure data-ts="DoxMarkup" data-ts.code="%3Clink%20rel%3D%22stylesheet%22%20href%3D%22%2F%2Fd5wfroyti11sa.cloudfront.net%2Fprod%2Fclient%2Fts-%24%7Bts.ui.version%7D.min.css%22%2F%3E%0A%3Cscript%20src%3D%22%2F%2Fd5wfroyti11sa.cloudfront.net%2Fprod%2Fclient%2Fts-%24%7Bts.ui.version%7D.min.js%22%3E%3C%2Fscript%3E">
                         <input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
                         <div class="tabpanels">
                             <pre class="prism language-markup">
-<code><span class="token script"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>//d5wfroyti11sa.cloudfront.net/prod/client/ts-${ts.ui.version}.min.js<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span></span></code>
+<code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>link</span> <span class="token attr-name">rel</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>stylesheet<span class="token punctuation">&quot;</span></span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>//d5wfroyti11sa.cloudfront.net/prod/client/ts-${ts.ui.version}.min.css<span class="token punctuation">&quot;</span></span><span class="token punctuation">/&gt;</span></span>
+<span class="token script"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>//d5wfroyti11sa.cloudfront.net/prod/client/ts-${ts.ui.version}.min.js<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span></span></code>
 </pre>
                         </div>
                     </figure>

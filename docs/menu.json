@@ -139,6 +139,11 @@
 				"path": "components/spinners/"
 			},
 			{
+				"label": "Tags & Labels",
+				"icon": "docs-icon-tag-2",
+				"path": "components/tags/tag.html"
+			},
+			{
 				"label": "Table",
 				"icon": "docs-icon-grid",
 				"path": "components/table/"

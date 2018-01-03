@@ -1,0 +1,7 @@
+<!DOCTYPE edbml>
+<script>
+	<?param name="tags" type="ts.ui.TagCollection"?>
+	out.html += tags.map(function(tag) {
+		return tag.render();
+	}).join('');
+</script>

@@ -1,0 +1,327 @@
+@import 'ts-variables.less';
+
+// Tag .........................................................................
+
+@tag-padding: @ts-unit-quarter;
+@tag-margin: @ts-unit-quarter;
+@tag-spacing: @ts-unit-quarter;
+@tag-height: @ts-unit;
+@tag-icon-width: @tag-height;
+@tag-font-size: @ts-fontsize-small;
+
+.ts-tag {
+	display: inline-flex;
+	max-height: @tag-height;
+	max-width: 100%;
+	padding: 0;
+	margin: 0 @tag-margin @tag-margin 0;
+	border-radius: @ts-radius;
+	background: @ts-lite-liter;
+	color: @ts-black;
+	line-height: 0;
+	font-size: 0;
+	border-collapse: separate;
+
+	// Reset
+	dl,
+	dl > div,
+	dt,
+	dd,
+	figcaption {
+		.ts-mixin-fixheight(@tag-height);
+		.ts-mixin-selectable();
+		display: inline-block;
+		padding: 0;
+		margin: 0;
+		font-size: 0;
+		font-weight: @ts-fontweight;
+		min-width: 0;
+	}
+	dt,
+	dd,
+	figcaption {
+		line-height: @tag-height;
+		&,
+		&:before,
+		&:after {
+			font-size: @tag-font-size;
+			line-height: @tag-height;
+			vertical-align: bottom;
+		}
+	}
+	dl,
+	dl > div {
+		&:before,
+		&:after {
+			font-size: @tag-font-size;
+			line-height: @tag-height;
+			vertical-align: bottom;
+		}
+	}
+	figcaption > i {
+		font-size: 0.75 * @tag-height;
+	}
+
+	// DL Flex Setup
+	dl,
+	dl > div {
+		display: flex;
+		flex-direction: row;
+		align-items: flex-start;
+		justify-content: flex-start;
+	}
+
+	// Text Overflow with Ellipsis
+	figcaption {
+		overflow: hidden;
+	}
+	dl,
+	dl > div,
+	dt,
+	dd {
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		overflow: hidden;
+	}
+
+	// Tag outer right-margin (loose list)
+	&:last-child {
+		margin-right: 0;
+	}
+
+	// Tag inner left-padding
+	dl:first-child {
+		padding-left: @tag-padding;
+	}
+
+	//Tag inner right-padding
+	dl:last-child {
+		margin-right: @tag-margin;
+	}
+
+	// Label/Icon
+	figcaption {
+		.ts-mixin-fix(@tag-icon-width, @tag-height);
+		text-align: center;
+		vertical-align: top;
+	}
+
+	// Dash between Key-Value sets
+	dl + dl,
+	dl > div + div {
+		padding-left: @tag-spacing;
+		&:before {
+			content: '–';
+		}
+		& > :first-child {
+			padding-left: @tag-spacing;
+		}
+	}
+
+	// Key: comma separators and colon terminator
+	dt {
+		padding-right: @tag-spacing;
+
+		&:after {
+			content: ',';
+		}
+		&:last-of-type {
+			&:after {
+				content: ':';
+			}
+		}
+		&:only-child,
+		& + dt:last-child,
+		& + dt + dtlast-child,
+		& + dt + dt + dt:last-child,
+		& + dt + dt + dt + dt:last-child,
+		& + dt + dt + dt + dt + dt:last-child {
+			padding-right: 0;
+			&:after {
+				content: '';
+			}
+		}
+	}
+
+	// Value: comma separators
+	dd {
+		padding-right: @tag-spacing;
+		font-weight: @ts-fontweight-semibold;
+		text-transform: uppercase;
+
+		&:after {
+			content: ',';
+		}
+		&:last-of-type {
+			padding-right: 0;
+			&:after {
+				content: '';
+			}
+		}
+	}
+
+	// Clickable look
+	&.ts-tag-clickable {
+		figcaption,
+		dd,
+		dt {
+			color: @ts-blue;
+		}
+		.ts-device-mouse &:not(.ts-tag-locked):hover {
+			cursor: pointer;
+			figcaption,
+			dl,
+			dt,
+			dd {
+				color: @ts-blue-dark;
+			}
+		}
+	}
+
+	// Locked look
+	&.ts-tag-locked {
+		padding-right: @tag-icon-width;
+		figcaption,
+		dd,
+		dt,
+		&:after {
+			color: @ts-medium;
+		}
+		dl:last-child {
+			margin-right: 0;
+		}
+		&:after {
+			.ts-mixin-icon(@ts-fontsize-big);
+			position: absolute;
+			top: (@ts-unit - @ts-unit-quarter);
+			right: @ts-unit-quarter + 2px; // @TODO fix with SVGs...
+			vertical-align: top;
+			content: 'V'; // ts-icon-locked
+		}
+		del {
+			display: none;
+		}
+		.ts-device-mouse &:hover {
+			cursor: default;
+		}
+	}
+
+	// Delete button
+	del {
+		.ts-mixin-fix(@tag-icon-width, @tag-height);
+		position: relative;
+		display: inline-block;
+		line-height: @tag-height;
+		text-decoration: none;
+		vertical-align: top;
+		&:after {
+			.ts-mixin-icon(@ts-fontsize-big);
+			.ts-mixin-fix(@tag-icon-width, @tag-height);
+			display: inline-block;
+			line-height: @tag-height;
+			color: @ts-medium;
+			content: '*'; // ts-icon-close
+		}
+		.ts-device-mouse &:hover {
+			cursor: pointer;
+			&:after {
+				color: @ts-black;
+			}
+		}
+	}
+}
+
+// Tags ........................................................................
+
+.ts-tags {
+	li {
+		margin-bottom: @tag-margin;
+		.ts-tag {
+			width: 100%;
+			dl {
+				flex: 1;
+			}
+		}
+	}
+}
+
+
+.ts-tag {
+	// Color schemes .............................................................
+
+	&.ts-danger {
+		background: @ts-red;
+		&,
+		figcaption,
+		dd,
+		dt {
+			color: @ts-red-text;
+		}
+	}
+	&.ts-danger-lite {
+		background: @ts-red-lite;
+		&,
+		figcaption,
+		dd,
+		dt {
+			color: @ts-red-darker;
+		}
+	}
+
+	&.ts-warning {
+		background: @ts-orange;
+		&,
+		figcaption,
+		dd,
+		dt {
+			color: @ts-orange-text;
+		}
+	}
+	&.ts-warning-lite {
+		background: @ts-yellow;
+		&,
+		figcaption,
+		dd,
+		dt {
+			color: @ts-yellow-text;
+		}
+	}
+
+	&.ts-success {
+		background: @ts-green;
+		&,
+		figcaption,
+		dd,
+		dt {
+			color: @ts-green-text;
+		}
+	}
+	&.ts-success-lite {
+		background: @ts-litegreen;
+		&,
+		figcaption,
+		dd,
+		dt {
+			color: @ts-green;
+		}
+	}
+
+	&.ts-blue {
+		background: @ts-blue;
+		&,
+		figcaption,
+		dd,
+		dt {
+			color: @ts-blue-text;
+		}
+	}
+	&.ts-blue-lite {
+		background: @ts-liteblue;
+		&,
+		figcaption,
+		dd,
+		dt {
+			color: @ts-blue;
+		}
+	}
+}

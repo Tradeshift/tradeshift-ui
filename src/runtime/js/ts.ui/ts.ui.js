@@ -529,6 +529,15 @@ ts.ui = gui.namespace(
 				gui.resume();
 			},
 
+			/**
+			 * Stringify stuff to be used as HTML attribute values.
+			 * @param {object} data
+			 * @returns {String}
+			 */
+			encode: function(data) {
+				return edbml.Att.$encode(data);
+			},
+
 			// Private .................................................................
 
 			/**

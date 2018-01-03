@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Tags</title>
+	<object data="tabs.xhtml"></object>
+</head>
+<body>
+<header data-ts="TopBar"></header>
+<main data-ts="Main" class="doc-tags">
+	<article>
+		<h1>Tags</h1>
+		<section class="desc">
+			<p>Tags represent a set of interactive keywords that help to label, organize, and categorize objects.</p>
+		</section>
+		<section>
+			<h3>Tag Markup</h3>
+			<p>When building the <code>HTML</code> for the tag yourself, this is how it should look:</p>
+			<figure data-ts="DoxMarkup">
+				<script>
+					<!--
+						Always use a FIGURE element,
+						You can add `ts-tag-locked` or `ts-tag-clickable` as a class.
+					-->
+					<figure data-ts="Tag" class="ts-tag-clickable" onclick="ts.ui.Notification.success('I was clicked.')">
+						<!--
+							If you want to have an icon or `UserImage` use a FIGCAPTION.
+						-->
+						<figcaption><i class="ts-icon-dispute" /></figcaption>
+						<!--
+							You can have zero or more DL elements for your keys & values.
+						-->
+						<dl>
+							<!--
+								You can start your DL with one or more DT or DD elements,
+							-->
+							<dt>Magic-user</dt>
+							<dt>Human</dt>
+							<!--
+								and have zero or more DD elements following it.
+							-->
+							<dd>Merlin</dd>
+							<dd>Rincewind</dd>
+						</dl>
+						<!--
+							In case you want to add more key/value sets, start another DL
+						-->
+						<dl>
+							<dt>Beholder</dt>
+							<dd>Xanathar</dd>
+						</dl>
+						<!--
+							It is possible to have only a single DD in a DL.
+						-->
+						<dl>
+							<dd>Acererak</dd> <!-- (Even though this is against the spec) -->
+						</dl>
+						<!--
+							It is possible to have only a single DT in a DL
+						-->
+						<dl>
+							<dt>Non-magical characters</dt>
+							<!--
+								No such thing as non-magical, no DD is needed here =)
+							-->
+						</dl>
+						<!--
+							Finally, an optional DEL element will serve as your delete button
+						 -->
+						<del onclick="ts.ui.Notification.success('I am getting deleted.')"></del>
+					</figure>
+				</script>
+			</figure>
+			<p>This is how the code from above will look in action:</p>
+			<div class="doc-showcase">
+				<figure data-ts="Tag" class="ts-tag-clickable" onclick="ts.ui.Notification.success('I was clicked.')">
+					<figcaption><i class="ts-icon-dispute" /></figcaption>
+					<dl>
+						<dt>Magic-user</dt>
+						<dt>Human</dt>
+						<dd>Merlin</dd>
+						<dd>Rincewind</dd>
+					</dl>
+					<dl>
+						<dt>Beholder</dt>
+						<dd>Xanathar</dd>
+					</dl>
+					<dl>
+						<dd>Acererak</dd>
+					</dl>
+					<dl>
+						<dt>Non-magical characters</dt>
+					</dl>
+					<del onclick="ts.ui.Notification.success('I am getting deleted.')"></del>
+				</figure>
+			</div>
+			<p>&hellip;of course, it's quite a big tag, normally you'd present it like this:</p>
+			<div class="doc-showcase">
+				<figure data-ts="Tag" class="ts-tag-clickable" onclick="ts.ui.Notification.success('I was clicked.')">
+					<figcaption><i class="ts-icon-dispute" /></figcaption>
+					<dl>
+						<dt>Magic-user</dt>
+						<dt>Human</dt>
+						<dd>Merlin</dd>
+						<dd>Rincewind</dd>
+					</dl>
+					<del onclick="ts.ui.Notification.success('I am getting deleted.')"></del>
+				</figure>
+				<figure data-ts="Tag" class="ts-tag-clickable" onclick="ts.ui.Notification.success('I was clicked.')">
+					<figcaption><i class="ts-icon-dispute" /></figcaption>
+					<dl>
+						<dt>Beholder</dt>
+						<dd>Xanathar</dd>
+					</dl>
+					<del onclick="ts.ui.Notification.success('I am getting deleted.')"></del>
+				</figure>
+				<figure data-ts="Tag" class="ts-tag-clickable" onclick="ts.ui.Notification.success('I was clicked.')">
+					<figcaption><i class="ts-icon-dispute" /></figcaption>
+					<dl>
+						<dd>Acererak</dd>
+					</dl>
+					<del onclick="ts.ui.Notification.success('I am getting deleted.')"></del>
+				</figure>
+				<figure data-ts="Tag" class="ts-tag-clickable" onclick="ts.ui.Notification.success('I was clicked.')">
+					<figcaption><i class="ts-icon-dispute" /></figcaption>
+					<dl>
+						<dt>Non-magical characters</dt>
+					</dl>
+					<del onclick="ts.ui.Notification.success('I am getting deleted.')"></del>
+				</figure>
+			</div>
+		</section>
+		<section>
+			<h3>Key-only</h3>
+			<p>If you want to show an all uppercased <code>key</code> only, use a single <code>DT</code></p>
+			<figure data-ts="DoxMarkup">
+				<script>
+					<figure data-ts="Tag">
+						<dl>
+							<dt>Dragons!</dt>
+						</dl>
+					</figure>
+				</script>
+				<output/>
+			</figure>
+		</section>
+		<section>
+			<h3>Icon-only</h3>
+			<p>If you only want to show a single icon, use a single <code>FIGCAPTION</code>.</p>
+			<figure data-ts="DoxMarkup">
+				<script>
+					<figure data-ts="Tag">
+						<figcaption>
+							<i class="ts-icon-timer" />
+						</figcaption>
+					</figure>
+				</script>
+				<output/>
+			</figure>
+			<p>This also works with the <a data-ts="Button" href="/#components/userimages/index.html"><code>UserImage</code></a>, just make sure to use a size of <code>22x22</code> pixels.</p>
+			<figure data-ts="DoxMarkup">
+				<script>
+					<figure data-ts="Tag">
+						<figcaption>
+							<img
+								data-ts="UserImage"
+								src="assets/xanathar.png"
+								alt="Xanathar"
+								width="22"
+								height="22"
+							/>
+						</figcaption>
+					</figure>
+				</script>
+				<output/>
+			</figure>
+		</section>
+		<section>
+			<h3>Value-only</h3>
+			<p>If you fancy a simpler approach with lighter font weights and lowercase characters, use a single <code>DD</code>.
+			<figure data-ts="DoxMarkup">
+				<script>
+					<figure data-ts="Tag">
+						<dl>
+							<dd>Roll a d20</dd>
+						</dl>
+					</figure>
+				</script>
+				<output/>
+			</figure>
+		</section>
+		<section>
+			<h3>Key-Value</h3>
+			<p>If you need a <code>key</code> with a <code>value</code> attached to it, use a <code>DT</code> and a <code>DD</code>.
+			<figure data-ts="DoxMarkup">
+				<script>
+					<figure data-ts="Tag">
+						<dl>
+							<dt>Area of Origin</dt>
+							<dd>The Sword Coast</dd>
+						</dl>
+					</figure>
+				</script>
+				<output/>
+			</figure>
+		</section>
+		<section>
+			<h3>Key with multiple values</h3>
+			<p>You can have a single <code>key</code> with multiple <code>values</code>, just keep adding <code>DD</code> elements.
+			<figure data-ts="DoxMarkup">
+				<script>
+					<figure data-ts="Tag">
+						<dl>
+							<dt>The Teeming Hive of Evil</dt>
+							<dd>Skullport</dd>
+							<dd>Port of Shadows</dd>
+						</dl>
+					</figure>
+				</script>
+				<output/>
+			</figure>
+		</section>
+		<section>
+			<h3>Multiple keys with single value</h3>
+			<p>Of course you could flip it around and use several <code>keys</code> for a single <code>value</code>.
+			<figure data-ts="DoxMarkup">
+				<script>
+					<figure data-ts="Tag">
+						<dl>
+							<dt>Facial Tentacles</dt>
+							<dt>Potent Psionics</dt>
+							<dd>Mind Flayer</dd>
+						</dl>
+					</figure>
+				</script>
+				<output/>
+			</figure>
+		</section>
+		<section>
+			<h3>Multiple keys with multiple values</h3>
+			<p>It comes naturally that you can have several <code>keys</code> together with several <code>values</code>.
+			<figure data-ts="DoxMarkup">
+				<script>
+					<figure data-ts="Tag">
+						<dl>
+							<dt>Magic-user</dt>
+							<dt>Undead</dt>
+							<dd>Lich</dd>
+							<dd>Vampire</dd>
+						</dl>
+					</figure>
+				</script>
+				<output/>
+			</figure>
+		</section>
+		<section>
+			<h3>Multiple sets of key-values</h3>
+			<section data-ts="Note">
+				<i class="ts-icon-warning"></i>
+				<p>Due to the high intensity of the <code>CSS</code> code, we don't support adding commas, colons and dashes to a <code>DL</code> with several sets of <code>DT</code> and <code>DD</code> elements without separation. If that is what you'd like to do, please choose a method from below.</p>
+			</section>
+			<p>If you want to have several <code>key</code>/<code>value</code> sets in a single tag, you have two options:</p>
+			<p>You can follow the W3C spec and just use separate <code>DL</code> elements:</p>
+			<figure data-ts="DoxMarkup">
+				<script>
+					<figure data-ts="Tag">
+						<dl>
+							<dt>Acererak</dt>
+						</dl>
+						<dl>
+							<dt>Hobbies</dt>
+							<dd>Building Dungeons</dd>
+						</dl>
+						<dl>
+							<dt>Alignment</dt>
+							<dd>Lawful</dd>
+							<dd>Evil</dd>
+						</dl>
+					</figure>
+				</script>
+				<output/>
+			</figure>
+			<p>Or you can follow the WHATWG spec and place <code>DIV</code> elements around each set:</p>
+			<figure data-ts="DoxMarkup">
+				<script>
+					<figure data-ts="Tag">
+						<dl>
+							<div>
+								<dt>Acererak</dt>
+							</div>
+							<div>
+								<dt>Hobbies</dt>
+								<dd>Building Dungeons</dd>
+							</div>
+							<div>
+								<dt>Alignment</dt>
+								<dd>Lawful</dd>
+								<dd>Evil</dd>
+							</div>
+						</dl>
+					</figure>
+				</script>
+				<output/>
+			</figure>
+		</section>
+		<section>
+			<h3>Optional icon</h3>
+			<p>Just like above, you can add an icon next to any combinaton of <code>keys</code> and <code>values</code>.</p>
+			<figure data-ts="DoxMarkup">
+				<script>
+					<figure data-ts="Tag">
+						<figcaption>
+							<i class="ts-icon-rating" />
+						</figcaption>
+						<dl>
+							<dt>Dungeon</dt>
+							<dd>Tomb of Horrors</dd>
+						</dl>
+					</figure>
+				</script>
+				<output/>
+			</figure>
+		</section>
+		<section>
+			<h3>Optional clickability</h3>
+			<p>If you want to make your tag look like it can be clicked, add the <code>ts-tag-clickable</code> class to the <code>FIGURE</code>.</p>
+			<p>Don't forget to set some sort of <code>click</code> handler on the <code>FIGURE</code> element.</p>
+			<figure data-ts="DoxMarkup">
+				<script>
+					<figure data-ts="Tag" class="ts-tag-clickable" onclick="ts.ui.Notification.success('Do you see?')">
+						<figcaption>
+							<i class="ts-icon-view" />
+						</figcaption>
+						<dl>
+							<dt>Vision</dt>
+							<dd>Blindsight</dd>
+							<dd>Truesight</dd>
+							<dd>Darkvision</dd>
+						</dl>
+					</figure>
+				</script>
+				<output/>
+			</figure>
+		</section>
+		<section>
+			<h3>Optional delete button</h3>
+			<p>If you want to be able to remove a tag, add a <code>DEL</code> element <strong>as the last child</strong>.</p>
+			<section data-ts="Note">
+				<i class="ts-icon-warning"></i>
+				<p>When the <code>DEL</code> element is clicked, the tag will be removed from the DOM after a <code>setTimeout</code>. Don't try to read anything through the DOM at this point.</p>
+			</section>
+			<figure data-ts="DoxMarkup">
+				<script>
+					<figure data-ts="Tag">
+						<figcaption>
+							<i class="ts-icon-discovery" />
+						</figcaption>
+						<dl>
+							<dt>Languages</dt>
+							<dd>Sylvan</dd>
+							<dd>Common</dd>
+							<dd>Draconic</dd>
+							<dd>Giant</dd>
+						</dl>
+						<del onclick="ts.ui.Notification.info('Tag disintegrated!')"></del>
+					</figure>
+				</script>
+				<output/>
+			</figure>
+		</section>
+		<section>
+			<h3>Optional locked look</h3>
+			<p>If you want to lock down a tag, use the <code>ts-tag-locked</code> class on the <code>FIGURE</code>.</p>
+			<section data-ts="Note">
+				<i class="ts-icon-warning"></i>
+				<p>A locked tag will have its <code>DEL</code> button hidden.</p>
+			</section>
+			<figure data-ts="DoxMarkup">
+				<script>
+					<figure data-ts="Tag" class="ts-tag-locked">
+						<figcaption>
+							<i class="ts-icon-location" />
+						</figcaption>
+						<dl>
+							<dt>Dungeon</dt>
+							<dd>Hidden Shrine of Tamoachan</dd>
+						</dl>
+						<del onclick="ts.ui.Notification.info('I am not visible anyway.')"></del>
+					</figure>
+				</script>
+				<output/>
+			</figure>
+		</section>
+		<section>
+			<h3>List of Tags</h3>
+			<p>Whenever you put tags one after another, they will be displayed in an <code>inline</code> fashion.
+			<figure data-ts="DoxMarkup">
+				<script>
+					<figure data-ts="Tag" class="ts-tag-locked">
+						<figcaption>
+							<img
+								data-ts="UserImage"
+								src="assets/Acererak.png"
+								alt="Acererak"
+								width="22"
+								height="22"
+							/>
+						</figcaption>
+						<dl>
+							<dt>Lich</dt>
+							<dd>Acererak</dd>
+						</dl>
+					</figure>
+					<figure data-ts="Tag">
+						<figcaption>
+							<img
+								data-ts="UserImage"
+								src="assets/xanathar.png"
+								alt="Xanathar"
+								width="22"
+								height="22"
+							/>
+						</figcaption>
+						<dl>
+							<dt>Beholder</dt>
+							<dd>Xanathar</dd>
+						</dl>
+						<del onclick="ts.ui.Notification.warning('I hope you know what you\'re doing...')"></del>
+					</figure>
+				</script>
+				<output/>
+			</figure>
+		</section>
+		<section>
+			<h3>List of Tags (maximized)</h3>
+			<p>If you would rather have them stack like <code>block</code> elements, place them inside a <code>UL</code> element with <code>data-ts="Tags"</code>.
+			<figure data-ts="DoxMarkup">
+				<script>
+					<ul data-ts="Tags">
+						<li>
+							<figure data-ts="Tag" class="ts-tag-locked">
+								<figcaption>
+									<img
+										data-ts="UserImage"
+										src="assets/Acererak.png"
+										alt="Acererak"
+										width="22"
+										height="22"
+									/>
+								</figcaption>
+								<dl>
+									<dt>Lich</dt>
+									<dd>Acererak</dd>
+								</dl>
+							</figure>
+						</li>
+						<li>
+							<figure data-ts="Tag">
+								<figcaption>
+									<img
+										data-ts="UserImage"
+										src="assets/xanathar.png"
+										alt="Xanathar"
+										width="22"
+										height="22"
+									/>
+								</figcaption>
+								<dl>
+									<dt>Beholder</dt>
+									<dd>Xanathar</dd>
+								</dl>
+								<del onclick="ts.ui.Notification.warning('I hope you know what you\'re doing...')"></del>
+							</figure>
+						</li>
+					</ul>
+				</script>
+				<output/>
+			</figure>
+		</section>
+	</article>
+</main>
+</body>
+</html>

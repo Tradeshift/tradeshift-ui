@@ -77,7 +77,7 @@ gui.Combo = {
 	/**
 	 * Make function return `this` if otherwise it would return `undefined`.
 	 * Variant of the `fluent` combinator which would always returns `this`.
-	 * We use this extensively to ensure API consistancy, but we might remove
+	 * We use this extensively to ensure API consistency, but we might remove
 	 * it for a theoretical performance gain once we have a huge test suite.
 	 * @param {function} base
 	 * @returns {function}

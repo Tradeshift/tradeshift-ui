@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="en-us" class="ts-docs" spellcheck="false">
+
+<head>
+    <title>Tags</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-10.0.8.min.js"></script>
+    <script src="/dist/assets/dox.min.js"></script>
+    <script src="/dist/assets/mark.min.js"></script>
+    <script src="/dist/assets/jquery-2.2.4.min.js"></script>
+    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-10.0.8.min.css">
+    <link rel="stylesheet" href="/dist/assets/dox.css">
+    <link rel="prefetch" title="Tag" href="tag.html">
+    <link rel="prefetch" title="Tags" href="tags.html">
+    <link rel="prefetch" title="Label" href="label.html">
+    <link rel="prefetch" title="JSON" href="json.html">
+    <link rel="prefetch" title="Broken HTML" href="old.html" class="hidden">
+    <link rel="prefetch" title="Broken Gallery" href="gallery.html" class="hidden">
+    <script>
+        ts.dox.tabs()
+    </script>
+</head>
+
+<body>
+    <header data-ts="TopBar"></header>
+    <main data-ts="Main" class="doc-tags">
+        <div data-ts="MainContent">
+            <article>
+                <h1><span>Tags</span></h1>
+                <section class="desc">
+                    <p>Tags represent a set of interactive keywords that help to label, organize, and categorize objects.</p>
+                </section>
+                <section>
+                    <h3><span>Tag Markup</span></h3>
+                    <p>When building the <code>HTML</code> for the tag yourself, this is how it should look:</p>
+                    <figure data-ts="DoxMarkup" data-ts.code="%3C!--%0A%09Always%20use%20a%20FIGURE%20element%2C%0A%09You%20can%20add%20%60ts-tag-locked%60%20or%20%60ts-tag-clickable%60%20as%20a%20class.%0A--%3E%0A%3Cfigure%20data-ts%3D%22Tag%22%20class%3D%22ts-tag-clickable%22%20onclick%3D%22ts.ui.Notification.success(&apos;I%20was%20clicked.&apos;)%22%3E%0A%09%3C!--%0A%09%09If%20you%20want%20to%20have%20an%20icon%20or%20%60UserImage%60%20use%20a%20FIGCAPTION.%0A%09--%3E%0A%09%3Cfigcaption%3E%3Ci%20class%3D%22ts-icon-dispute%22%20%2F%3E%3C%2Ffigcaption%3E%0A%09%3C!--%0A%09%09You%20can%20have%20zero%20or%20more%20DL%20elements%20for%20your%20keys%20%26%20values.%0A%09--%3E%0A%09%3Cdl%3E%0A%09%09%3C!--%0A%09%09%09You%20can%20start%20your%20DL%20with%20one%20or%20more%20DT%20or%20DD%20elements%2C%0A%09%09--%3E%0A%09%09%3Cdt%3EMagic-user%3C%2Fdt%3E%0A%09%09%3Cdt%3EHuman%3C%2Fdt%3E%0A%09%09%3C!--%0A%09%09%09and%20have%20zero%20or%20more%20DD%20elements%20following%20it.%0A%09%09--%3E%0A%09%09%3Cdd%3EMerlin%3C%2Fdd%3E%0A%09%09%3Cdd%3ERincewind%3C%2Fdd%3E%0A%09%3C%2Fdl%3E%0A%09%3C!--%0A%09%09In%20case%20you%20want%20to%20add%20more%20key%2Fvalue%20sets%2C%20start%20another%20DL%0A%09--%3E%0A%09%3Cdl%3E%0A%09%09%3Cdt%3EBeholder%3C%2Fdt%3E%0A%09%09%3Cdd%3EXanathar%3C%2Fdd%3E%0A%09%3C%2Fdl%3E%0A%09%3C!--%0A%09%09It%20is%20possible%20to%20have%20only%20a%20single%20DD%20in%20a%20DL.%0A%09--%3E%0A%09%3Cdl%3E%0A%09%09%3Cdd%3EAcererak%3C%2Fdd%3E%20%3C!--%20(Even%20though%20this%20is%20against%20the%20spec)%20--%3E%0A%09%3C%2Fdl%3E%0A%09%3C!--%0A%09%09It%20is%20possible%20to%20have%20only%20a%20single%20DT%20in%20a%20DL%0A%09--%3E%0A%09%3Cdl%3E%0A%09%09%3Cdt%3ENon-magical%20characters%3C%2Fdt%3E%0A%09%09%3C!--%0A%09%09%09No%20such%20thing%20as%20non-magical%2C%20no%20DD%20is%20needed%20here%20%3D)%0A%09%09--%3E%0A%09%3C%2Fdl%3E%0A%09%3C!--%0A%09%09Finally%2C%20an%20optional%20DEL%20element%20will%20serve%20as%20your%20delete%20button%0A%09%20--%3E%0A%09%3Cdel%20onclick%3D%22ts.ui.Notification.success(&apos;I%20am%20getting%20deleted.&apos;)%22%3E%3C%2Fdel%3E%0A%3C%2Ffigure%3E">
+                        <input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
+                        <div class="tabpanels">
+                            <pre class="prism language-markup">
+<code><span class="token comment" spellcheck="true">&lt;!--
+	Always use a FIGURE element,
+	You can add `ts-tag-locked` or `ts-tag-clickable` as a class.
+--&gt;</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>figure</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Tag<span class="token punctuation">&quot;</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>ts-tag-clickable<span class="token punctuation">&quot;</span></span> <span class="token attr-name">onclick</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>ts.ui.Notification.success(&apos;I was clicked.&apos;)<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+	<span class="token comment" spellcheck="true">&lt;!--
+		If you want to have an icon or `UserImage` use a FIGCAPTION.
+	--&gt;</span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>figcaption</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>i</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>ts-icon-dispute<span class="token punctuation">&quot;</span></span> <span class="token punctuation">/&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>figcaption</span><span class="token punctuation">&gt;</span></span>
+	<span class="token comment" spellcheck="true">&lt;!--
+		You can have zero or more DL elements for your keys &amp; values.
+	--&gt;</span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dl</span><span class="token punctuation">&gt;</span></span>
+		<span class="token comment" spellcheck="true">&lt;!--
+			You can start your DL with one or more DT or DD elements,
+		--&gt;</span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dt</span><span class="token punctuation">&gt;</span></span>Magic-user<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dt</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dt</span><span class="token punctuation">&gt;</span></span>Human<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dt</span><span class="token punctuation">&gt;</span></span>
+		<span class="token comment" spellcheck="true">&lt;!--
+			and have zero or more DD elements following it.
+		--&gt;</span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dd</span><span class="token punctuation">&gt;</span></span>Merlin<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dd</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dd</span><span class="token punctuation">&gt;</span></span>Rincewind<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dd</span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dl</span><span class="token punctuation">&gt;</span></span>
+	<span class="token comment" spellcheck="true">&lt;!--
+		In case you want to add more key/value sets, start another DL
+	--&gt;</span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dl</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dt</span><span class="token punctuation">&gt;</span></span>Beholder<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dt</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dd</span><span class="token punctuation">&gt;</span></span>Xanathar<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dd</span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dl</span><span class="token punctuation">&gt;</span></span>
+	<span class="token comment" spellcheck="true">&lt;!--
+		It is possible to have only a single DD in a DL.
+	--&gt;</span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dl</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dd</span><span class="token punctuation">&gt;</span></span>Acererak<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dd</span><span class="token punctuation">&gt;</span></span> <span class="token comment" spellcheck="true">&lt;!-- (Even though this is against the spec) --&gt;</span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dl</span><span class="token punctuation">&gt;</span></span>
+	<span class="token comment" spellcheck="true">&lt;!--
+		It is possible to have only a single DT in a DL
+	--&gt;</span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dl</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dt</span><span class="token punctuation">&gt;</span></span>Non-magical characters<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dt</span><span class="token punctuation">&gt;</span></span>
+		<span class="token comment" spellcheck="true">&lt;!--
+			No such thing as non-magical, no DD is needed here =)
+		--&gt;</span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dl</span><span class="token punctuation">&gt;</span></span>
+	<span class="token comment" spellcheck="true">&lt;!--
+		Finally, an optional DEL element will serve as your delete button
+	 --&gt;</span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>del</span> <span class="token attr-name">onclick</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>ts.ui.Notification.success(&apos;I am getting deleted.&apos;)<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>del</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>figure</span><span class="token punctuation">&gt;</span></span></code>
+</pre>
+                        </div>
+                    </figure>
+                    <p>This is how the code from above will look in action:</p>
+                    <div class="doc-showcase">
+                        <figure data-ts="Tag" class="ts-tag-clickable" onclick="ts.ui.Notification.success(&apos;I was clicked.&apos;)">
+                            <figcaption><i class="ts-icon-dispute"></i></figcaption>
+                            <dl>
+                                <dt>Magic-user</dt>
+                                <dt>Human</dt>
+                                <dd>Merlin</dd>
+                                <dd>Rincewind</dd>
+                            </dl>
+                            <dl>
+                                <dt>Beholder</dt>
+                                <dd>Xanathar</dd>
+                            </dl>
+                            <dl>
+                                <dd>Acererak</dd>
+                            </dl>
+                            <dl>
+                                <dt>Non-magical characters</dt>
+                            </dl>
+                            <del onclick="ts.ui.Notification.success(&apos;I am getting deleted.&apos;)"></del>
+                        </figure>
+                    </div>
+                    <p>&#x2026;of course, it&apos;s quite a big tag, normally you&apos;d present it like this:</p>
+                    <div class="doc-showcase">
+                        <figure data-ts="Tag" class="ts-tag-clickable" onclick="ts.ui.Notification.success(&apos;I was clicked.&apos;)">
+                            <figcaption><i class="ts-icon-dispute"></i></figcaption>
+                            <dl>
+                                <dt>Magic-user</dt>
+                                <dt>Human</dt>
+                                <dd>Merlin</dd>
+                                <dd>Rincewind</dd>
+                            </dl>
+                            <del onclick="ts.ui.Notification.success(&apos;I am getting deleted.&apos;)"></del>
+                        </figure>
+                        <figure data-ts="Tag" class="ts-tag-clickable" onclick="ts.ui.Notification.success(&apos;I was clicked.&apos;)">
+                            <figcaption><i class="ts-icon-dispute"></i></figcaption>
+                            <dl>
+                                <dt>Beholder</dt>
+                                <dd>Xanathar</dd>
+                            </dl>
+                            <del onclick="ts.ui.Notification.success(&apos;I am getting deleted.&apos;)"></del>
+                        </figure>
+                        <figure data-ts="Tag" class="ts-tag-clickable" onclick="ts.ui.Notification.success(&apos;I was clicked.&apos;)">
+                            <figcaption><i class="ts-icon-dispute"></i></figcaption>
+                            <dl>
+                                <dd>Acererak</dd>
+                            </dl>
+                            <del onclick="ts.ui.Notification.success(&apos;I am getting deleted.&apos;)"></del>
+                        </figure>
+                        <figure data-ts="Tag" class="ts-tag-clickable" onclick="ts.ui.Notification.success(&apos;I was clicked.&apos;)">
+                            <figcaption><i class="ts-icon-dispute"></i></figcaption>
+                            <dl>
+                                <dt>Non-magical characters</dt>
+                            </dl>
+                            <del onclick="ts.ui.Notification.success(&apos;I am getting deleted.&apos;)"></del>
+                        </figure>
+                    </div>
+                </section>
+                <section>
+                    <h3><span>Key-only</span></h3>
+                    <p>If you want to show an all uppercased <code>key</code> only, use a single <code>DT</code></p>
+                    <figure data-ts="DoxMarkup" data-ts.code="%3Cfigure%20data-ts%3D%22Tag%22%3E%0A%09%3Cdl%3E%0A%09%09%3Cdt%3EDragons!%3C%2Fdt%3E%0A%09%3C%2Fdl%3E%0A%3C%2Ffigure%3E">
+                        <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Atrue%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
+                        <div class="tabpanels">
+                            <pre class="prism language-markup">
+<code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>figure</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Tag<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dl</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dt</span><span class="token punctuation">&gt;</span></span>Dragons!<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dt</span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dl</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>figure</span><span class="token punctuation">&gt;</span></span></code>
+</pre>
+                            <div class="output">
+                                <figure data-ts="Tag">
+                                    <dl>
+                                        <dt>Dragons!</dt>
+                                    </dl>
+                                </figure>
+                            </div>
+                        </div>
+                    </figure>
+                </section>
+                <section>
+                    <h3><span>Icon-only</span></h3>
+                    <p>If you only want to show a single icon, use a single <code>FIGCAPTION</code>.</p>
+                    <figure data-ts="DoxMarkup" data-ts.code="%3Cfigure%20data-ts%3D%22Tag%22%3E%0A%09%3Cfigcaption%3E%0A%09%09%3Ci%20class%3D%22ts-icon-timer%22%20%2F%3E%0A%09%3C%2Ffigcaption%3E%0A%3C%2Ffigure%3E">
+                        <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Atrue%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
+                        <div class="tabpanels">
+                            <pre class="prism language-markup">
+<code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>figure</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Tag<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>figcaption</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>i</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>ts-icon-timer<span class="token punctuation">&quot;</span></span> <span class="token punctuation">/&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>figcaption</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>figure</span><span class="token punctuation">&gt;</span></span></code>
+</pre>
+                            <div class="output">
+                                <figure data-ts="Tag">
+                                    <figcaption>
+                                        <i class="ts-icon-timer">
+	</i></figcaption>
+                                </figure>
+                            </div>
+                        </div>
+                    </figure>
+                    <p>This also works with the <a data-ts="Button" href="/dist/components/userimages/index.html"><code>UserImage</code></a>, just make sure to use a size of <code>22x22</code> pixels.</p>
+                    <figure data-ts="DoxMarkup" data-ts.code="%3Cfigure%20data-ts%3D%22Tag%22%3E%0A%09%3Cfigcaption%3E%0A%09%09%3Cimg%0A%09%09%09data-ts%3D%22UserImage%22%0A%09%09%09src%3D%22assets%2Fxanathar.png%22%0A%09%09%09alt%3D%22Xanathar%22%0A%09%09%09width%3D%2222%22%0A%09%09%09height%3D%2222%22%0A%09%09%2F%3E%0A%09%3C%2Ffigcaption%3E%0A%3C%2Ffigure%3E">
+                        <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Atrue%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
+                        <div class="tabpanels">
+                            <pre class="prism language-markup">
+<code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>figure</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Tag<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>figcaption</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span>
+			<span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>UserImage<span class="token punctuation">&quot;</span></span>
+			<span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>assets/xanathar.png<span class="token punctuation">&quot;</span></span>
+			<span class="token attr-name">alt</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Xanathar<span class="token punctuation">&quot;</span></span>
+			<span class="token attr-name">width</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>22<span class="token punctuation">&quot;</span></span>
+			<span class="token attr-name">height</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>22<span class="token punctuation">&quot;</span></span>
+		<span class="token punctuation">/&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>figcaption</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>figure</span><span class="token punctuation">&gt;</span></span></code>
+</pre>
+                            <div class="output">
+                                <figure data-ts="Tag">
+                                    <figcaption>
+                                        <img data-ts="UserImage" src="assets/xanathar.png" alt="Xanathar" width="22" height="22">
+                                    </figcaption>
+                                </figure>
+                            </div>
+                        </div>
+                    </figure>
+                </section>
+                <section>
+                    <h3><span>Value-only</span></h3>
+                    <p>If you fancy a simpler approach with lighter font weights and lowercase characters, use a single <code>DD</code>.
+                        <figure data-ts="DoxMarkup" data-ts.code="%3Cfigure%20data-ts%3D%22Tag%22%3E%0A%09%3Cdl%3E%0A%09%09%3Cdd%3ERoll%20a%20d20%3C%2Fdd%3E%0A%09%3C%2Fdl%3E%0A%3C%2Ffigure%3E">
+                            <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Atrue%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
+                            <div class="tabpanels">
+                                <pre class="prism language-markup">
+<code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>figure</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Tag<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dl</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dd</span><span class="token punctuation">&gt;</span></span>Roll a d20<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dd</span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dl</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>figure</span><span class="token punctuation">&gt;</span></span></code>
+</pre>
+                                <div class="output">
+                                    <figure data-ts="Tag">
+                                        <dl>
+                                            <dd>Roll a d20</dd>
+                                        </dl>
+                                    </figure>
+                                </div>
+                            </div>
+                        </figure>
+                    </p>
+                </section>
+                <section>
+                    <h3><span>Key-Value</span></h3>
+                    <p>If you need a <code>key</code> with a <code>value</code> attached to it, use a <code>DT</code> and a <code>DD</code>.
+                        <figure data-ts="DoxMarkup" data-ts.code="%3Cfigure%20data-ts%3D%22Tag%22%3E%0A%09%3Cdl%3E%0A%09%09%3Cdt%3EArea%20of%20Origin%3C%2Fdt%3E%0A%09%09%3Cdd%3EThe%20Sword%20Coast%3C%2Fdd%3E%0A%09%3C%2Fdl%3E%0A%3C%2Ffigure%3E">
+                            <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Atrue%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
+                            <div class="tabpanels">
+                                <pre class="prism language-markup">
+<code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>figure</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Tag<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dl</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dt</span><span class="token punctuation">&gt;</span></span>Area of Origin<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dt</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dd</span><span class="token punctuation">&gt;</span></span>The Sword Coast<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dd</span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dl</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>figure</span><span class="token punctuation">&gt;</span></span></code>
+</pre>
+                                <div class="output">
+                                    <figure data-ts="Tag">
+                                        <dl>
+                                            <dt>Area of Origin</dt>
+                                            <dd>The Sword Coast</dd>
+                                        </dl>
+                                    </figure>
+                                </div>
+                            </div>
+                        </figure>
+                    </p>
+                </section>
+                <section>
+                    <h3><span>Key with multiple values</span></h3>
+                    <p>You can have a single <code>key</code> with multiple <code>values</code>, just keep adding <code>DD</code> elements.
+                        <figure data-ts="DoxMarkup" data-ts.code="%3Cfigure%20data-ts%3D%22Tag%22%3E%0A%09%3Cdl%3E%0A%09%09%3Cdt%3EThe%20Teeming%20Hive%20of%20Evil%3C%2Fdt%3E%0A%09%09%3Cdd%3ESkullport%3C%2Fdd%3E%0A%09%09%3Cdd%3EPort%20of%20Shadows%3C%2Fdd%3E%0A%09%3C%2Fdl%3E%0A%3C%2Ffigure%3E">
+                            <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Atrue%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
+                            <div class="tabpanels">
+                                <pre class="prism language-markup">
+<code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>figure</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Tag<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dl</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dt</span><span class="token punctuation">&gt;</span></span>The Teeming Hive of Evil<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dt</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dd</span><span class="token punctuation">&gt;</span></span>Skullport<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dd</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dd</span><span class="token punctuation">&gt;</span></span>Port of Shadows<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dd</span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dl</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>figure</span><span class="token punctuation">&gt;</span></span></code>
+</pre>
+                                <div class="output">
+                                    <figure data-ts="Tag">
+                                        <dl>
+                                            <dt>The Teeming Hive of Evil</dt>
+                                            <dd>Skullport</dd>
+                                            <dd>Port of Shadows</dd>
+                                        </dl>
+                                    </figure>
+                                </div>
+                            </div>
+                        </figure>
+                    </p>
+                </section>
+                <section>
+                    <h3><span>Multiple keys with single value</span></h3>
+                    <p>Of course you could flip it around and use several <code>keys</code> for a single <code>value</code>.
+                        <figure data-ts="DoxMarkup" data-ts.code="%3Cfigure%20data-ts%3D%22Tag%22%3E%0A%09%3Cdl%3E%0A%09%09%3Cdt%3EFacial%20Tentacles%3C%2Fdt%3E%0A%09%09%3Cdt%3EPotent%20Psionics%3C%2Fdt%3E%0A%09%09%3Cdd%3EMind%20Flayer%3C%2Fdd%3E%0A%09%3C%2Fdl%3E%0A%3C%2Ffigure%3E">
+                            <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Atrue%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
+                            <div class="tabpanels">
+                                <pre class="prism language-markup">
+<code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>figure</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Tag<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dl</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dt</span><span class="token punctuation">&gt;</span></span>Facial Tentacles<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dt</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dt</span><span class="token punctuation">&gt;</span></span>Potent Psionics<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dt</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dd</span><span class="token punctuation">&gt;</span></span>Mind Flayer<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dd</span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dl</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>figure</span><span class="token punctuation">&gt;</span></span></code>
+</pre>
+                                <div class="output">
+                                    <figure data-ts="Tag">
+                                        <dl>
+                                            <dt>Facial Tentacles</dt>
+                                            <dt>Potent Psionics</dt>
+                                            <dd>Mind Flayer</dd>
+                                        </dl>
+                                    </figure>
+                                </div>
+                            </div>
+                        </figure>
+                    </p>
+                </section>
+                <section>
+                    <h3><span>Multiple keys with multiple values</span></h3>
+                    <p>It comes naturally that you can have several <code>keys</code> together with several <code>values</code>.
+                        <figure data-ts="DoxMarkup" data-ts.code="%3Cfigure%20data-ts%3D%22Tag%22%3E%0A%09%3Cdl%3E%0A%09%09%3Cdt%3EMagic-user%3C%2Fdt%3E%0A%09%09%3Cdt%3EUndead%3C%2Fdt%3E%0A%09%09%3Cdd%3ELich%3C%2Fdd%3E%0A%09%09%3Cdd%3EVampire%3C%2Fdd%3E%0A%09%3C%2Fdl%3E%0A%3C%2Ffigure%3E">
+                            <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Atrue%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
+                            <div class="tabpanels">
+                                <pre class="prism language-markup">
+<code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>figure</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Tag<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dl</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dt</span><span class="token punctuation">&gt;</span></span>Magic-user<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dt</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dt</span><span class="token punctuation">&gt;</span></span>Undead<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dt</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dd</span><span class="token punctuation">&gt;</span></span>Lich<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dd</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dd</span><span class="token punctuation">&gt;</span></span>Vampire<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dd</span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dl</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>figure</span><span class="token punctuation">&gt;</span></span></code>
+</pre>
+                                <div class="output">
+                                    <figure data-ts="Tag">
+                                        <dl>
+                                            <dt>Magic-user</dt>
+                                            <dt>Undead</dt>
+                                            <dd>Lich</dd>
+                                            <dd>Vampire</dd>
+                                        </dl>
+                                    </figure>
+                                </div>
+                            </div>
+                        </figure>
+                    </p>
+                </section>
+                <section>
+                    <h3><span>Multiple sets of key-values</span></h3>
+                    <section data-ts="Note">
+                        <i class="ts-icon-warning"></i>
+                        <p>Due to the high intensity of the <code>CSS</code> code, we don&apos;t support adding commas, colons and dashes to a <code>DL</code> with several sets of <code>DT</code> and <code>DD</code> elements without separation. If that is
+                            what you&apos;d like to do, please choose a method from below.</p>
+                    </section>
+                    <p>If you want to have several <code>key</code>/<code>value</code> sets in a single tag, you have two options:</p>
+                    <p>You can follow the W3C spec and just use separate <code>DL</code> elements:</p>
+                    <figure data-ts="DoxMarkup" data-ts.code="%3Cfigure%20data-ts%3D%22Tag%22%3E%0A%09%3Cdl%3E%0A%09%09%3Cdt%3EAcererak%3C%2Fdt%3E%0A%09%3C%2Fdl%3E%0A%09%3Cdl%3E%0A%09%09%3Cdt%3EHobbies%3C%2Fdt%3E%0A%09%09%3Cdd%3EBuilding%20Dungeons%3C%2Fdd%3E%0A%09%3C%2Fdl%3E%0A%09%3Cdl%3E%0A%09%09%3Cdt%3EAlignment%3C%2Fdt%3E%0A%09%09%3Cdd%3ELawful%3C%2Fdd%3E%0A%09%09%3Cdd%3EEvil%3C%2Fdd%3E%0A%09%3C%2Fdl%3E%0A%3C%2Ffigure%3E">
+                        <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Atrue%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
+                        <div class="tabpanels">
+                            <pre class="prism language-markup">
+<code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>figure</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Tag<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dl</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dt</span><span class="token punctuation">&gt;</span></span>Acererak<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dt</span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dl</span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dl</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dt</span><span class="token punctuation">&gt;</span></span>Hobbies<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dt</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dd</span><span class="token punctuation">&gt;</span></span>Building Dungeons<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dd</span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dl</span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dl</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dt</span><span class="token punctuation">&gt;</span></span>Alignment<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dt</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dd</span><span class="token punctuation">&gt;</span></span>Lawful<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dd</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dd</span><span class="token punctuation">&gt;</span></span>Evil<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dd</span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dl</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>figure</span><span class="token punctuation">&gt;</span></span></code>
+</pre>
+                            <div class="output">
+                                <figure data-ts="Tag">
+                                    <dl>
+                                        <dt>Acererak</dt>
+                                    </dl>
+                                    <dl>
+                                        <dt>Hobbies</dt>
+                                        <dd>Building Dungeons</dd>
+                                    </dl>
+                                    <dl>
+                                        <dt>Alignment</dt>
+                                        <dd>Lawful</dd>
+                                        <dd>Evil</dd>
+                                    </dl>
+                                </figure>
+                            </div>
+                        </div>
+                    </figure>
+                    <p>Or you can follow the WHATWG spec and place <code>DIV</code> elements around each set:</p>
+                    <figure data-ts="DoxMarkup" data-ts.code="%3Cfigure%20data-ts%3D%22Tag%22%3E%0A%09%3Cdl%3E%0A%09%09%3Cdiv%3E%0A%09%09%09%3Cdt%3EAcererak%3C%2Fdt%3E%0A%09%09%3C%2Fdiv%3E%0A%09%09%3Cdiv%3E%0A%09%09%09%3Cdt%3EHobbies%3C%2Fdt%3E%0A%09%09%09%3Cdd%3EBuilding%20Dungeons%3C%2Fdd%3E%0A%09%09%3C%2Fdiv%3E%0A%09%09%3Cdiv%3E%0A%09%09%09%3Cdt%3EAlignment%3C%2Fdt%3E%0A%09%09%09%3Cdd%3ELawful%3C%2Fdd%3E%0A%09%09%09%3Cdd%3EEvil%3C%2Fdd%3E%0A%09%09%3C%2Fdiv%3E%0A%09%3C%2Fdl%3E%0A%3C%2Ffigure%3E">
+                        <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Atrue%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
+                        <div class="tabpanels">
+                            <pre class="prism language-markup">
+<code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>figure</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Tag<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dl</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">&gt;</span></span>
+			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dt</span><span class="token punctuation">&gt;</span></span>Acererak<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dt</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">&gt;</span></span>
+			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dt</span><span class="token punctuation">&gt;</span></span>Hobbies<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dt</span><span class="token punctuation">&gt;</span></span>
+			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dd</span><span class="token punctuation">&gt;</span></span>Building Dungeons<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dd</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">&gt;</span></span>
+			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dt</span><span class="token punctuation">&gt;</span></span>Alignment<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dt</span><span class="token punctuation">&gt;</span></span>
+			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dd</span><span class="token punctuation">&gt;</span></span>Lawful<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dd</span><span class="token punctuation">&gt;</span></span>
+			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dd</span><span class="token punctuation">&gt;</span></span>Evil<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dd</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dl</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>figure</span><span class="token punctuation">&gt;</span></span></code>
+</pre>
+                            <div class="output">
+                                <figure data-ts="Tag">
+                                    <dl>
+                                        <div>
+                                            <dt>Acererak</dt>
+                                        </div>
+                                        <div>
+                                            <dt>Hobbies</dt>
+                                            <dd>Building Dungeons</dd>
+                                        </div>
+                                        <div>
+                                            <dt>Alignment</dt>
+                                            <dd>Lawful</dd>
+                                            <dd>Evil</dd>
+                                        </div>
+                                    </dl>
+                                </figure>
+                            </div>
+                        </div>
+                    </figure>
+                </section>
+                <section>
+                    <h3><span>Optional icon</span></h3>
+                    <p>Just like above, you can add an icon next to any combinaton of <code>keys</code> and <code>values</code>.</p>
+                    <figure data-ts="DoxMarkup" data-ts.code="%3Cfigure%20data-ts%3D%22Tag%22%3E%0A%09%3Cfigcaption%3E%0A%09%09%3Ci%20class%3D%22ts-icon-rating%22%20%2F%3E%0A%09%3C%2Ffigcaption%3E%0A%09%3Cdl%3E%0A%09%09%3Cdt%3EDungeon%3C%2Fdt%3E%0A%09%09%3Cdd%3ETomb%20of%20Horrors%3C%2Fdd%3E%0A%09%3C%2Fdl%3E%0A%3C%2Ffigure%3E">
+                        <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Atrue%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
+                        <div class="tabpanels">
+                            <pre class="prism language-markup">
+<code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>figure</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Tag<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>figcaption</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>i</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>ts-icon-rating<span class="token punctuation">&quot;</span></span> <span class="token punctuation">/&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>figcaption</span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dl</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dt</span><span class="token punctuation">&gt;</span></span>Dungeon<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dt</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dd</span><span class="token punctuation">&gt;</span></span>Tomb of Horrors<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dd</span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dl</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>figure</span><span class="token punctuation">&gt;</span></span></code>
+</pre>
+                            <div class="output">
+                                <figure data-ts="Tag">
+                                    <figcaption>
+                                        <i class="ts-icon-rating">
+	</i></figcaption>
+                                    <dl>
+                                        <dt>Dungeon</dt>
+                                        <dd>Tomb of Horrors</dd>
+                                    </dl>
+                                </figure>
+                            </div>
+                        </div>
+                    </figure>
+                </section>
+                <section>
+                    <h3><span>Optional clickability</span></h3>
+                    <p>If you want to make your tag look like it can be clicked, add the <code>ts-tag-clickable</code> class to the <code>FIGURE</code>.</p>
+                    <p>Don&apos;t forget to set some sort of <code>click</code> handler on the <code>FIGURE</code> element.</p>
+                    <figure data-ts="DoxMarkup" data-ts.code="%3Cfigure%20data-ts%3D%22Tag%22%20class%3D%22ts-tag-clickable%22%20onclick%3D%22ts.ui.Notification.success(&apos;Do%20you%20see%3F&apos;)%22%3E%0A%09%3Cfigcaption%3E%0A%09%09%3Ci%20class%3D%22ts-icon-view%22%20%2F%3E%0A%09%3C%2Ffigcaption%3E%0A%09%3Cdl%3E%0A%09%09%3Cdt%3EVision%3C%2Fdt%3E%0A%09%09%3Cdd%3EBlindsight%3C%2Fdd%3E%0A%09%09%3Cdd%3ETruesight%3C%2Fdd%3E%0A%09%09%3Cdd%3EDarkvision%3C%2Fdd%3E%0A%09%3C%2Fdl%3E%0A%3C%2Ffigure%3E">
+                        <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Atrue%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
+                        <div class="tabpanels">
+                            <pre class="prism language-markup">
+<code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>figure</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Tag<span class="token punctuation">&quot;</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>ts-tag-clickable<span class="token punctuation">&quot;</span></span> <span class="token attr-name">onclick</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>ts.ui.Notification.success(&apos;Do you see?&apos;)<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>figcaption</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>i</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>ts-icon-view<span class="token punctuation">&quot;</span></span> <span class="token punctuation">/&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>figcaption</span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dl</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dt</span><span class="token punctuation">&gt;</span></span>Vision<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dt</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dd</span><span class="token punctuation">&gt;</span></span>Blindsight<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dd</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dd</span><span class="token punctuation">&gt;</span></span>Truesight<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dd</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dd</span><span class="token punctuation">&gt;</span></span>Darkvision<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dd</span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dl</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>figure</span><span class="token punctuation">&gt;</span></span></code>
+</pre>
+                            <div class="output">
+                                <figure data-ts="Tag" class="ts-tag-clickable" onclick="ts.ui.Notification.success(&apos;Do you see?&apos;)">
+                                    <figcaption>
+                                        <i class="ts-icon-view">
+	</i></figcaption>
+                                    <dl>
+                                        <dt>Vision</dt>
+                                        <dd>Blindsight</dd>
+                                        <dd>Truesight</dd>
+                                        <dd>Darkvision</dd>
+                                    </dl>
+                                </figure>
+                            </div>
+                        </div>
+                    </figure>
+                </section>
+                <section>
+                    <h3><span>Optional delete button</span></h3>
+                    <p>If you want to be able to remove a tag, add a <code>DEL</code> element <strong>as the last child</strong>.</p>
+                    <section data-ts="Note">
+                        <i class="ts-icon-warning"></i>
+                        <p>When the <code>DEL</code> element is clicked, the tag will be removed from the DOM after a <code>setTimeout</code>. Don&apos;t try to read anything through the DOM at this point.</p>
+                    </section>
+                    <figure data-ts="DoxMarkup" data-ts.code="%3Cfigure%20data-ts%3D%22Tag%22%3E%0A%09%3Cfigcaption%3E%0A%09%09%3Ci%20class%3D%22ts-icon-discovery%22%20%2F%3E%0A%09%3C%2Ffigcaption%3E%0A%09%3Cdl%3E%0A%09%09%3Cdt%3ELanguages%3C%2Fdt%3E%0A%09%09%3Cdd%3ESylvan%3C%2Fdd%3E%0A%09%09%3Cdd%3ECommon%3C%2Fdd%3E%0A%09%09%3Cdd%3EDraconic%3C%2Fdd%3E%0A%09%09%3Cdd%3EGiant%3C%2Fdd%3E%0A%09%3C%2Fdl%3E%0A%09%3Cdel%20onclick%3D%22ts.ui.Notification.info(&apos;Tag%20disintegrated!&apos;)%22%3E%3C%2Fdel%3E%0A%3C%2Ffigure%3E">
+                        <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Atrue%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
+                        <div class="tabpanels">
+                            <pre class="prism language-markup">
+<code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>figure</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Tag<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>figcaption</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>i</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>ts-icon-discovery<span class="token punctuation">&quot;</span></span> <span class="token punctuation">/&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>figcaption</span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dl</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dt</span><span class="token punctuation">&gt;</span></span>Languages<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dt</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dd</span><span class="token punctuation">&gt;</span></span>Sylvan<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dd</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dd</span><span class="token punctuation">&gt;</span></span>Common<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dd</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dd</span><span class="token punctuation">&gt;</span></span>Draconic<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dd</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dd</span><span class="token punctuation">&gt;</span></span>Giant<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dd</span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dl</span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>del</span> <span class="token attr-name">onclick</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>ts.ui.Notification.info(&apos;Tag disintegrated!&apos;)<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>del</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>figure</span><span class="token punctuation">&gt;</span></span></code>
+</pre>
+                            <div class="output">
+                                <figure data-ts="Tag">
+                                    <figcaption>
+                                        <i class="ts-icon-discovery">
+	</i></figcaption>
+                                    <dl>
+                                        <dt>Languages</dt>
+                                        <dd>Sylvan</dd>
+                                        <dd>Common</dd>
+                                        <dd>Draconic</dd>
+                                        <dd>Giant</dd>
+                                    </dl>
+                                    <del onclick="ts.ui.Notification.info(&apos;Tag disintegrated!&apos;)"></del>
+                                </figure>
+                            </div>
+                        </div>
+                    </figure>
+                </section>
+                <section>
+                    <h3><span>Optional locked look</span></h3>
+                    <p>If you want to lock down a tag, use the <code>ts-tag-locked</code> class on the <code>FIGURE</code>.</p>
+                    <section data-ts="Note">
+                        <i class="ts-icon-warning"></i>
+                        <p>A locked tag will have its <code>DEL</code> button hidden.</p>
+                    </section>
+                    <figure data-ts="DoxMarkup" data-ts.code="%3Cfigure%20data-ts%3D%22Tag%22%20class%3D%22ts-tag-locked%22%3E%0A%09%3Cfigcaption%3E%0A%09%09%3Ci%20class%3D%22ts-icon-location%22%20%2F%3E%0A%09%3C%2Ffigcaption%3E%0A%09%3Cdl%3E%0A%09%09%3Cdt%3EDungeon%3C%2Fdt%3E%0A%09%09%3Cdd%3EHidden%20Shrine%20of%20Tamoachan%3C%2Fdd%3E%0A%09%3C%2Fdl%3E%0A%09%3Cdel%20onclick%3D%22ts.ui.Notification.info(&apos;I%20am%20not%20visible%20anyway.&apos;)%22%3E%3C%2Fdel%3E%0A%3C%2Ffigure%3E">
+                        <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Atrue%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
+                        <div class="tabpanels">
+                            <pre class="prism language-markup">
+<code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>figure</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Tag<span class="token punctuation">&quot;</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>ts-tag-locked<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>figcaption</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>i</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>ts-icon-location<span class="token punctuation">&quot;</span></span> <span class="token punctuation">/&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>figcaption</span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dl</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dt</span><span class="token punctuation">&gt;</span></span>Dungeon<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dt</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dd</span><span class="token punctuation">&gt;</span></span>Hidden Shrine of Tamoachan<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dd</span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dl</span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>del</span> <span class="token attr-name">onclick</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>ts.ui.Notification.info(&apos;I am not visible anyway.&apos;)<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>del</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>figure</span><span class="token punctuation">&gt;</span></span></code>
+</pre>
+                            <div class="output">
+                                <figure data-ts="Tag" class="ts-tag-locked">
+                                    <figcaption>
+                                        <i class="ts-icon-location">
+	</i></figcaption>
+                                    <dl>
+                                        <dt>Dungeon</dt>
+                                        <dd>Hidden Shrine of Tamoachan</dd>
+                                    </dl>
+                                    <del onclick="ts.ui.Notification.info(&apos;I am not visible anyway.&apos;)"></del>
+                                </figure>
+                            </div>
+                        </div>
+                    </figure>
+                </section>
+                <section>
+                    <h3><span>List of Tags</span></h3>
+                    <p>Whenever you put tags one after another, they will be displayed in an <code>inline</code> fashion.
+                        <figure data-ts="DoxMarkup" data-ts.code="%3Cfigure%20data-ts%3D%22Tag%22%20class%3D%22ts-tag-locked%22%3E%0A%09%3Cfigcaption%3E%0A%09%09%3Cimg%0A%09%09%09data-ts%3D%22UserImage%22%0A%09%09%09src%3D%22assets%2FAcererak.png%22%0A%09%09%09alt%3D%22Acererak%22%0A%09%09%09width%3D%2222%22%0A%09%09%09height%3D%2222%22%0A%09%09%2F%3E%0A%09%3C%2Ffigcaption%3E%0A%09%3Cdl%3E%0A%09%09%3Cdt%3ELich%3C%2Fdt%3E%0A%09%09%3Cdd%3EAcererak%3C%2Fdd%3E%0A%09%3C%2Fdl%3E%0A%3C%2Ffigure%3E%0A%3Cfigure%20data-ts%3D%22Tag%22%3E%0A%09%3Cfigcaption%3E%0A%09%09%3Cimg%0A%09%09%09data-ts%3D%22UserImage%22%0A%09%09%09src%3D%22assets%2Fxanathar.png%22%0A%09%09%09alt%3D%22Xanathar%22%0A%09%09%09width%3D%2222%22%0A%09%09%09height%3D%2222%22%0A%09%09%2F%3E%0A%09%3C%2Ffigcaption%3E%0A%09%3Cdl%3E%0A%09%09%3Cdt%3EBeholder%3C%2Fdt%3E%0A%09%09%3Cdd%3EXanathar%3C%2Fdd%3E%0A%09%3C%2Fdl%3E%0A%09%3Cdel%20onclick%3D%22ts.ui.Notification.warning(&apos;I%20hope%20you%20know%20what%20you%5C&apos;re%20doing...&apos;)%22%3E%3C%2Fdel%3E%0A%3C%2Ffigure%3E">
+                            <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Atrue%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
+                            <div class="tabpanels">
+                                <pre class="prism language-markup">
+<code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>figure</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Tag<span class="token punctuation">&quot;</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>ts-tag-locked<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>figcaption</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span>
+			<span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>UserImage<span class="token punctuation">&quot;</span></span>
+			<span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>assets/Acererak.png<span class="token punctuation">&quot;</span></span>
+			<span class="token attr-name">alt</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Acererak<span class="token punctuation">&quot;</span></span>
+			<span class="token attr-name">width</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>22<span class="token punctuation">&quot;</span></span>
+			<span class="token attr-name">height</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>22<span class="token punctuation">&quot;</span></span>
+		<span class="token punctuation">/&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>figcaption</span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dl</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dt</span><span class="token punctuation">&gt;</span></span>Lich<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dt</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dd</span><span class="token punctuation">&gt;</span></span>Acererak<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dd</span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dl</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>figure</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>figure</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Tag<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>figcaption</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span>
+			<span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>UserImage<span class="token punctuation">&quot;</span></span>
+			<span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>assets/xanathar.png<span class="token punctuation">&quot;</span></span>
+			<span class="token attr-name">alt</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Xanathar<span class="token punctuation">&quot;</span></span>
+			<span class="token attr-name">width</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>22<span class="token punctuation">&quot;</span></span>
+			<span class="token attr-name">height</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>22<span class="token punctuation">&quot;</span></span>
+		<span class="token punctuation">/&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>figcaption</span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dl</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dt</span><span class="token punctuation">&gt;</span></span>Beholder<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dt</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dd</span><span class="token punctuation">&gt;</span></span>Xanathar<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dd</span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dl</span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>del</span> <span class="token attr-name">onclick</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>ts.ui.Notification.warning(&apos;I hope you know what you\&apos;re doing...&apos;)<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>del</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>figure</span><span class="token punctuation">&gt;</span></span></code>
+</pre>
+                                <div class="output">
+                                    <figure data-ts="Tag" class="ts-tag-locked">
+                                        <figcaption>
+                                            <img data-ts="UserImage" src="assets/Acererak.png" alt="Acererak" width="22" height="22">
+                                        </figcaption>
+                                        <dl>
+                                            <dt>Lich</dt>
+                                            <dd>Acererak</dd>
+                                        </dl>
+                                    </figure>
+                                    <figure data-ts="Tag">
+                                        <figcaption>
+                                            <img data-ts="UserImage" src="assets/xanathar.png" alt="Xanathar" width="22" height="22">
+                                        </figcaption>
+                                        <dl>
+                                            <dt>Beholder</dt>
+                                            <dd>Xanathar</dd>
+                                        </dl>
+                                        <del onclick="ts.ui.Notification.warning(&apos;I hope you know what you\&apos;re doing...&apos;)"></del>
+                                    </figure>
+                                </div>
+                            </div>
+                        </figure>
+                    </p>
+                </section>
+                <section>
+                    <h3><span>List of Tags (maximized)</span></h3>
+                    <p>If you would rather have them stack like <code>block</code> elements, place them inside a <code>UL</code> element with <code>data-ts=&quot;Tags&quot;</code>.
+                        <figure data-ts="DoxMarkup" data-ts.code="%3Cul%20data-ts%3D%22Tags%22%3E%0A%09%3Cli%3E%0A%09%09%3Cfigure%20data-ts%3D%22Tag%22%20class%3D%22ts-tag-locked%22%3E%0A%09%09%09%3Cfigcaption%3E%0A%09%09%09%09%3Cimg%0A%09%09%09%09%09data-ts%3D%22UserImage%22%0A%09%09%09%09%09src%3D%22assets%2FAcererak.png%22%0A%09%09%09%09%09alt%3D%22Acererak%22%0A%09%09%09%09%09width%3D%2222%22%0A%09%09%09%09%09height%3D%2222%22%0A%09%09%09%09%2F%3E%0A%09%09%09%3C%2Ffigcaption%3E%0A%09%09%09%3Cdl%3E%0A%09%09%09%09%3Cdt%3ELich%3C%2Fdt%3E%0A%09%09%09%09%3Cdd%3EAcererak%3C%2Fdd%3E%0A%09%09%09%3C%2Fdl%3E%0A%09%09%3C%2Ffigure%3E%0A%09%3C%2Fli%3E%0A%09%3Cli%3E%0A%09%09%3Cfigure%20data-ts%3D%22Tag%22%3E%0A%09%09%09%3Cfigcaption%3E%0A%09%09%09%09%3Cimg%0A%09%09%09%09%09data-ts%3D%22UserImage%22%0A%09%09%09%09%09src%3D%22assets%2Fxanathar.png%22%0A%09%09%09%09%09alt%3D%22Xanathar%22%0A%09%09%09%09%09width%3D%2222%22%0A%09%09%09%09%09height%3D%2222%22%0A%09%09%09%09%2F%3E%0A%09%09%09%3C%2Ffigcaption%3E%0A%09%09%09%3Cdl%3E%0A%09%09%09%09%3Cdt%3EBeholder%3C%2Fdt%3E%0A%09%09%09%09%3Cdd%3EXanathar%3C%2Fdd%3E%0A%09%09%09%3C%2Fdl%3E%0A%09%09%09%3Cdel%20onclick%3D%22ts.ui.Notification.warning(&apos;I%20hope%20you%20know%20what%20you%5C&apos;re%20doing...&apos;)%22%3E%3C%2Fdel%3E%0A%09%09%3C%2Ffigure%3E%0A%09%3C%2Fli%3E%0A%3C%2Ful%3E">
+                            <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Atrue%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
+                            <div class="tabpanels">
+                                <pre class="prism language-markup">
+<code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ul</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Tags<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>figure</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Tag<span class="token punctuation">&quot;</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>ts-tag-locked<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>figcaption</span><span class="token punctuation">&gt;</span></span>
+				<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span>
+					<span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>UserImage<span class="token punctuation">&quot;</span></span>
+					<span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>assets/Acererak.png<span class="token punctuation">&quot;</span></span>
+					<span class="token attr-name">alt</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Acererak<span class="token punctuation">&quot;</span></span>
+					<span class="token attr-name">width</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>22<span class="token punctuation">&quot;</span></span>
+					<span class="token attr-name">height</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>22<span class="token punctuation">&quot;</span></span>
+				<span class="token punctuation">/&gt;</span></span>
+			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>figcaption</span><span class="token punctuation">&gt;</span></span>
+			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dl</span><span class="token punctuation">&gt;</span></span>
+				<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dt</span><span class="token punctuation">&gt;</span></span>Lich<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dt</span><span class="token punctuation">&gt;</span></span>
+				<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dd</span><span class="token punctuation">&gt;</span></span>Acererak<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dd</span><span class="token punctuation">&gt;</span></span>
+			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dl</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>figure</span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>figure</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Tag<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>figcaption</span><span class="token punctuation">&gt;</span></span>
+				<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span>
+					<span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>UserImage<span class="token punctuation">&quot;</span></span>
+					<span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>assets/xanathar.png<span class="token punctuation">&quot;</span></span>
+					<span class="token attr-name">alt</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Xanathar<span class="token punctuation">&quot;</span></span>
+					<span class="token attr-name">width</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>22<span class="token punctuation">&quot;</span></span>
+					<span class="token attr-name">height</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>22<span class="token punctuation">&quot;</span></span>
+				<span class="token punctuation">/&gt;</span></span>
+			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>figcaption</span><span class="token punctuation">&gt;</span></span>
+			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dl</span><span class="token punctuation">&gt;</span></span>
+				<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dt</span><span class="token punctuation">&gt;</span></span>Beholder<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dt</span><span class="token punctuation">&gt;</span></span>
+				<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dd</span><span class="token punctuation">&gt;</span></span>Xanathar<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dd</span><span class="token punctuation">&gt;</span></span>
+			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dl</span><span class="token punctuation">&gt;</span></span>
+			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>del</span> <span class="token attr-name">onclick</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>ts.ui.Notification.warning(&apos;I hope you know what you\&apos;re doing...&apos;)<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>del</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>figure</span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ul</span><span class="token punctuation">&gt;</span></span></code>
+</pre>
+                                <div class="output">
+                                    <ul data-ts="Tags">
+                                        <li>
+                                            <figure data-ts="Tag" class="ts-tag-locked">
+                                                <figcaption>
+                                                    <img data-ts="UserImage" src="assets/Acererak.png" alt="Acererak" width="22" height="22">
+                                                </figcaption>
+                                                <dl>
+                                                    <dt>Lich</dt>
+                                                    <dd>Acererak</dd>
+                                                </dl>
+                                            </figure>
+                                        </li>
+                                        <li>
+                                            <figure data-ts="Tag">
+                                                <figcaption>
+                                                    <img data-ts="UserImage" src="assets/xanathar.png" alt="Xanathar" width="22" height="22">
+                                                </figcaption>
+                                                <dl>
+                                                    <dt>Beholder</dt>
+                                                    <dd>Xanathar</dd>
+                                                </dl>
+                                                <del onclick="ts.ui.Notification.warning(&apos;I hope you know what you\&apos;re doing...&apos;)"></del>
+                                            </figure>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </figure>
+                    </p>
+                </section>
+            </article>
+        </div>
+    </main>
+    <aside data-ts="Note" class="sticky ts-bg-yellow">
+        <p>If you find a bug or need a feature&#x2026;</p>
+        <menu class="ts-buttons">
+            <li>
+                <a data-ts="Button" target="_blank" href="https://github.com/Tradeshift/tradeshift-ui/issues/new" title="Submit new issue" class="ts-secondary">
+		          <span>Create GitHub Issue&#x2026;</span>
+		        </a>
+            </li>
+        </menu>
+    </aside>
+</body>
+
+</html>

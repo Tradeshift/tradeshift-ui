@@ -7,7 +7,7 @@
 				var version =  ts.ui.version;
 				var figure = document.querySelector('figure');
 				var markup = figure.innerHTML;
-				figure.innerHTML = markup.replace('${ts.ui.version}', version);
+				figure.innerHTML = markup.replace(/\${ts.ui.version}/g, version);
 			});
 		</script>
 	</head>
@@ -23,12 +23,13 @@
 					<p data-ts="Spirit">
 						<script type="text/edbml">
 							<span>To get Tradeshift UI up and running on your page, simply include +
-							<code>ts.js</code> in an appropriate version. The latest version +
-							is <code>${ts.ui.version}</code>.
+							<code>ts.js</code> and <code>ts.css</code> in an appropriate version. The latest version +
+							is <code>${ts.ui.version}</code>
 						</script>
 					</p>
 					<figure data-ts="DoxMarkup">
 						<script>
+							<link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-${ts.ui.version}.min.css"/>
 							<scrxpt src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-${ts.ui.version}.min.js"></scrxpt>
 						</script>
 					</figure>

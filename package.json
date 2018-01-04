@@ -1,10 +1,12 @@
 {
-	"version": "0.0.0",
-	"versions": [],
-	"devDependencies": {
-		"node-static": "^0.7.10"
-	},
-	"scripts": {
-		"start": "static . -H '{\"Cache-Control\": \"no-cache, must-revalidate\"}'"
-	}
+  "version": "0.0.1",
+  "versions": [
+    "10.0.1-beta.0"
+  ],
+  "devDependencies": {
+    "node-static": "^0.7.10"
+  },
+  "scripts": {
+    "start": "static . -H '{\"Cache-Control\": \"no-cache, must-revalidate\"}'"
+  }
 }

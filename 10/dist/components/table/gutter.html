@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en-us" class="ts-docs" spellcheck="false">
+
+<head>
+    <title>Table Floating Gutter</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-10.0.1-beta.0.min.js"></script>
+    <script src="/10/dist/assets/dox.min.js"></script>
+    <script src="/10/dist/assets/mark.min.js"></script>
+    <script src="/10/dist/assets/jquery-2.2.4.min.js"></script>
+    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-10.0.1-beta.0.min.css">
+    <link rel="stylesheet" href="/10/dist/assets/dox.css">
+    <meta name="robots" content="noindex">
+    <link rel="prefetch" title="Table" href="index.html">
+    <link rel="prefetch" title="Build" href="building.html">
+    <link rel="prefetch" title="Layout" href="layouting.html">
+    <link rel="prefetch" title="Style" href="styling.html">
+    <link rel="prefetch" title="Page" href="paging.html">
+    <link rel="prefetch" title="Format" href="formatting.html">
+    <link rel="prefetch" title="Sort" href="sorting.html">
+    <link rel="prefetch" title="Click" href="clicking.html">
+    <link rel="prefetch" title="Select" href="selecting.html">
+    <link rel="prefetch" title="Search" href="searching.html">
+    <link rel="prefetch" title="Edit" href="editing.html">
+    <link rel="prefetch" title="Filter" href="filtering.html">
+    <link rel="prefetch" title="Status" href="status.html">
+    <link rel="prefetch" title="Config" href="configuring.html">
+    <link rel="prefetch" title="Collab" href="collaborate.html">
+    <link rel="prefetch" title="Actions" href="actions.html">
+    <link rel="prefetch" title="Buttons" href="buttons.html">
+    <link rel="prefetch" title="Extras" href="extras.html">
+    <link rel="prefetch" title="Demo" href="demo.html">
+    <link rel="prefetch" title="Angular" href="angular.html" class="hidden">
+    <link rel="prefetch" title="Gutter" href="gutter.html" class="hidden">
+    <link rel="prefetch" title="Gallery" href="gallery.html" class="hidden">
+    <script>
+        ts.dox.tabs()
+    </script>
+</head>
+
+<body class="nosticky">
+    <header data-ts="TopBar"></header>
+    <main data-ts="Main">
+        <div data-ts="MainContent">
+            <article>
+                <h1><span>Floating Gutter</span></h1>
+                <section>
+                    <p>Just so we have an example of this feature: If the table has a horizontal scrollbar, the checkbox column should stay <em>fixed</em> while you scroll, since this will make it easier to work with selection on mobile phones.</p>
+                    <div class="splitscreen-container">
+                        <ul class="splitscreen">
+                            <li>
+                                <figure data-ts="DoxScript" class="runnable" data-ts.code="%24.getJSON(&apos;assets%2Frowdata.json&apos;%2C%20function(json)%20%7B%0A%09ts.ui.get(&apos;%23table&apos;%2C%20function(table)%20%7B%0A%09%09table.selectable()%3B%0A%09%09table.cols(%5B%0A%09%09%09%7Blabel%3A%20&apos;ID&apos;%2C%20minwidth%3A%20300%7D%2C%0A%09%09%09%7Blabel%3A%20&apos;Name&apos;%2Cminwidth%3A%20300%7D%2C%0A%09%09%09%7Blabel%3A%20&apos;Price&apos;%2C%20minwidth%3A%20300%7D%0A%09%09%5D).rows(json).max(5)%3B%0A%09%7D)%0A%7D)%3B">
+                                    <script type="runnable">
+                                        $.getJSON('assets/rowdata.json', function(json) { ts.ui.get('#table', table => { table.selectable(); table.cols([ {label: 'ID', minwidth: 300}, {label: 'Name',minwidth: 300}, {label: 'Price', minwidth: 300} ]).rows(json).max(5); }) });
+                                    </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                                    <div class="tabpanels">
+                                        <pre class="prism language-javascript">
+<code>$<span class="token punctuation">.</span><span class="token function">getJSON<span class="token punctuation">(</span></span><span class="token string">&apos;assets/rowdata.json&apos;</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span>json<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#table&apos;</span><span class="token punctuation">,</span> table <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+		table<span class="token punctuation">.</span><span class="token function">selectable<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		table<span class="token punctuation">.</span><span class="token function">cols<span class="token punctuation">(</span></span><span class="token punctuation">[</span>
+			<span class="token punctuation">{</span>label<span class="token punctuation">:</span> <span class="token string">&apos;ID&apos;</span><span class="token punctuation">,</span> minwidth<span class="token punctuation">:</span> <span class="token number">300</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+			<span class="token punctuation">{</span>label<span class="token punctuation">:</span> <span class="token string">&apos;Name&apos;</span><span class="token punctuation">,</span>minwidth<span class="token punctuation">:</span> <span class="token number">300</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+			<span class="token punctuation">{</span>label<span class="token punctuation">:</span> <span class="token string">&apos;Price&apos;</span><span class="token punctuation">,</span> minwidth<span class="token punctuation">:</span> <span class="token number">300</span><span class="token punctuation">}</span>
+		<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">rows<span class="token punctuation">(</span></span>json<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">max<span class="token punctuation">(</span></span><span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
+</pre>
+                                    </div>
+                                </figure>
+                            </li>
+                            <li>
+                                <div data-ts="Table" id="table"></div>
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+            </article>
+        </div>
+    </main>
+</body>
+
+</html>

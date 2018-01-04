@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en-us" class="ts-docs" spellcheck="false">
+
+<head>
+    <title>UserImage</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-10.0.1-beta.0.min.js"></script>
+    <script src="/10/dist/assets/dox.min.js"></script>
+    <script src="/10/dist/assets/mark.min.js"></script>
+    <script src="/10/dist/assets/jquery-2.2.4.min.js"></script>
+    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-10.0.1-beta.0.min.css">
+    <link rel="stylesheet" href="/10/dist/assets/dox.css">
+</head>
+
+<body>
+    <header data-ts="TopBar"></header>
+    <main data-ts="Main">
+        <div data-ts="MainContent">
+            <article>
+                <h1><span>UserImage</span></h1>
+                <section class="desc">
+                    <p>If the user didn&apos;t upload a photo, the UserImage will generate a fallback image based on his or her name.</p>
+                </section>
+                <section>
+                    <p>You can initialize a UserImage by assigning <code class="attr-pair"><span>data-ts</span>=&quot;<span>UserImage</span>&quot;</code> to an <code class="el">img</code> element. A fallback image will be generated based on the users name
+                        if the image has no <code class="attr-pair"><span>src</span></code> attribute or if the image somehow failed to load. You also can define initials in parentheses. For example:Karl Alfonso Benson (KB), you will get KB as an initials</p>
+                    <figure data-ts="DoxMarkup" data-ts.code="%3Cimg%20data-ts%3D%22UserImage%22%20src%3D%22assets%2Fjim.png%22%20alt%3D%22Jim%20Bob%20Johnson%22%2F%3E%0A%3Cimg%20data-ts%3D%22UserImage%22%20alt%3D%22Karl%20Benson%22%2F%3E%0A%3Cimg%20data-ts%3D%22UserImage%22%20alt%3D%22Marshall%20Garrett%22%2F%3E%0A%3Cimg%20data-ts%3D%22UserImage%22%20alt%3D%22Kelvin%20Castro%22%2F%3E%0A%3Cimg%20data-ts%3D%22UserImage%22%20alt%3D%22Natalie%20Carr%22%2F%3E%0A%3Cimg%20data-ts%3D%22UserImage%22%20alt%3D%22Rochelle%20Cox%22%2F%3E%0A%3Cimg%20data-ts%3D%22UserImage%22%20alt%3D%22Mae%20Schultz%22%2F%3E%0A%3Cimg%20data-ts%3D%22UserImage%22%20alt%3D%22Jimmie%20Edwards%22%2F%3E%0A%3Cimg%20data-ts%3D%22UserImage%22%20alt%3D%22Cindy%20Jordan%22%2F%3E%0A%3Cimg%20data-ts%3D%22UserImage%22%20alt%3D%22Karl%20Alfonso%20Benson%20(KB)%22%2F%3E">
+                        <script type="text/html">
+                            <img data-ts="UserImage" src="assets/jim.png" alt="Jim Bob Johnson" />
+                            <img data-ts="UserImage" alt="Karl Benson" />
+                            <img data-ts="UserImage" alt="Marshall Garrett" />
+                            <img data-ts="UserImage" alt="Kelvin Castro" />
+                            <img data-ts="UserImage" alt="Natalie Carr" />
+                            <img data-ts="UserImage" alt="Rochelle Cox" />
+                            <img data-ts="UserImage" alt="Mae Schultz" />
+                            <img data-ts="UserImage" alt="Jimmie Edwards" />
+                            <img data-ts="UserImage" alt="Cindy Jordan" />
+                            <img data-ts="UserImage" alt="Karl Alfonso Benson (KB)" />
+                        </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Atrue%2C%22runs%22%3Afalse%2C%22flip%22%3Atrue%7D">
+                        <div class="tabpanels">
+                            <div class="output"><img data-ts="UserImage" src="assets/jim.png" alt="Jim Bob Johnson">
+                                <img data-ts="UserImage" alt="Karl Benson">
+                                <img data-ts="UserImage" alt="Marshall Garrett">
+                                <img data-ts="UserImage" alt="Kelvin Castro">
+                                <img data-ts="UserImage" alt="Natalie Carr">
+                                <img data-ts="UserImage" alt="Rochelle Cox">
+                                <img data-ts="UserImage" alt="Mae Schultz">
+                                <img data-ts="UserImage" alt="Jimmie Edwards">
+                                <img data-ts="UserImage" alt="Cindy Jordan">
+                                <img data-ts="UserImage" alt="Karl Alfonso Benson (KB)"></div>
+                            <pre class="prism language-markup">
+<code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>UserImage<span class="token punctuation">&quot;</span></span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>assets/jim.png<span class="token punctuation">&quot;</span></span> <span class="token attr-name">alt</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Jim Bob Johnson<span class="token punctuation">&quot;</span></span><span class="token punctuation">/&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>UserImage<span class="token punctuation">&quot;</span></span> <span class="token attr-name">alt</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Karl Benson<span class="token punctuation">&quot;</span></span><span class="token punctuation">/&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>UserImage<span class="token punctuation">&quot;</span></span> <span class="token attr-name">alt</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Marshall Garrett<span class="token punctuation">&quot;</span></span><span class="token punctuation">/&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>UserImage<span class="token punctuation">&quot;</span></span> <span class="token attr-name">alt</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Kelvin Castro<span class="token punctuation">&quot;</span></span><span class="token punctuation">/&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>UserImage<span class="token punctuation">&quot;</span></span> <span class="token attr-name">alt</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Natalie Carr<span class="token punctuation">&quot;</span></span><span class="token punctuation">/&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>UserImage<span class="token punctuation">&quot;</span></span> <span class="token attr-name">alt</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Rochelle Cox<span class="token punctuation">&quot;</span></span><span class="token punctuation">/&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>UserImage<span class="token punctuation">&quot;</span></span> <span class="token attr-name">alt</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Mae Schultz<span class="token punctuation">&quot;</span></span><span class="token punctuation">/&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>UserImage<span class="token punctuation">&quot;</span></span> <span class="token attr-name">alt</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Jimmie Edwards<span class="token punctuation">&quot;</span></span><span class="token punctuation">/&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>UserImage<span class="token punctuation">&quot;</span></span> <span class="token attr-name">alt</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Cindy Jordan<span class="token punctuation">&quot;</span></span><span class="token punctuation">/&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>UserImage<span class="token punctuation">&quot;</span></span> <span class="token attr-name">alt</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Karl Alfonso Benson (KB)<span class="token punctuation">&quot;</span></span><span class="token punctuation">/&gt;</span></span></code>
+</pre>
+                        </div>
+                    </figure>
+                    <p>The image defaults to a size of <code>44x44</code> pixels. If you prefer a different size, you&apos;ll need to specify both <code>width</code> and <code>height</code> as attributes in the HTML.</p>
+                    <figure data-ts="DoxMarkup" data-ts.code="%3Cimg%20ts-userimage%20alt%3D%22Trip%20Fontaine%22%20width%3D%2288%22%20height%3D%2288%22%2F%3E">
+                        <script type="text/html">
+                            <img ts-userimage alt="Trip Fontaine" width="88" height="88" />
+                        </script><input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
+                        <div class="tabpanels">
+                            <pre class="prism language-markup">
+<code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token attr-name">ts-userimage</span> <span class="token attr-name">alt</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Trip Fontaine<span class="token punctuation">&quot;</span></span> <span class="token attr-name">width</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>88<span class="token punctuation">&quot;</span></span> <span class="token attr-name">height</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>88<span class="token punctuation">&quot;</span></span><span class="token punctuation">/&gt;</span></span></code>
+</pre>
+                        </div>
+                    </figure>
+                </section>
+                <section>
+                    <p>You can select users from a menu by adding the classname <code>ts-user-menu</code> to a standard <a data-ts="Button" href="/10/dist/components/menus/">Menu</a> while also replacing the icon (<code class="el">i</code> element) with a UserImage.</p>
+                    <figure data-ts="DoxMarkup" data-ts.code="%3Cmenu%20data-ts%3D%22Menu%22%20class%3D%22ts-user-menu%22%3E%0A%09%3Cli%20class%3D%22ts-checked%22%3E%0A%09%09%3Cbutton%3E%0A%09%09%09%3Cimg%20data-ts%3D%22UserImage%22%20src%3D%22assets%2Fjim.png%22%20alt%3D%22Jim%20Bob%20Johnson%22%2F%3E%0A%09%09%09%3Cspan%3EJim%20Bob%20Johnson%3C%2Fspan%3E%0A%09%09%09%3Csub%3Ejimbob%40company.com%3C%2Fsub%3E%0A%09%09%09%3Ci%20class%3D%22ts-icon-checked%22%3E%3C%2Fi%3E%0A%09%09%3C%2Fbutton%3E%0A%09%3C%2Fli%3E%0A%09%3Cli%3E%0A%09%09%3Cbutton%3E%0A%09%09%09%3Cimg%20data-ts%3D%22UserImage%22%20alt%3D%22Karl%20Benson%22%2F%3E%0A%09%09%09%3Cspan%3EKarl%20Benson%3C%2Fspan%3E%0A%09%09%09%3Csub%3Ekarl%40company.com%3C%2Fsub%3E%0A%09%09%3C%2Fbutton%3E%0A%09%3C%2Fli%3E%0A%09%3Cli%3E%0A%09%09%3Cbutton%3E%0A%09%09%09%3Cimg%20data-ts%3D%22UserImage%22%20alt%3D%22Marshall%20Garrett%22%2F%3E%0A%09%09%09%3Cspan%3EMarshall%20Garrett%3C%2Fspan%3E%0A%09%09%09%3Csub%3Emarshall%40company.com%3C%2Fsub%3E%0A%09%09%3C%2Fbutton%3E%0A%09%3C%2Fli%3E%0A%3C%2Fmenu%3E">
+                        <script type="text/html">
+                            <menu data-ts="Menu" class="ts-user-menu">
+                                <li class="ts-checked">
+                                    <button>
+										<img data-ts="UserImage" src="assets/jim.png" alt="Jim Bob Johnson"/>
+										<span>Jim Bob Johnson</span>
+										<sub>jimbob@company.com</sub>
+										<i class="ts-icon-checked"></i>
+									</button>
+                                </li>
+                                <li>
+                                    <button>
+										<img data-ts="UserImage" alt="Karl Benson"/>
+										<span>Karl Benson</span>
+										<sub>karl@company.com</sub>
+									</button>
+                                </li>
+                                <li>
+                                    <button>
+										<img data-ts="UserImage" alt="Marshall Garrett"/>
+										<span>Marshall Garrett</span>
+										<sub>marshall@company.com</sub>
+									</button>
+                                </li>
+                            </menu>
+                        </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Atrue%2C%22runs%22%3Afalse%2C%22flip%22%3Atrue%7D">
+                        <div class="tabpanels">
+                            <div class="output">
+                                <menu data-ts="Menu" class="ts-user-menu">
+                                    <li class="ts-checked">
+                                        <button>
+			<img data-ts="UserImage" src="assets/jim.png" alt="Jim Bob Johnson">
+			<span>Jim Bob Johnson</span>
+			<sub>jimbob@company.com</sub>
+			<i class="ts-icon-checked"></i>
+		</button>
+                                    </li>
+                                    <li>
+                                        <button>
+			<img data-ts="UserImage" alt="Karl Benson">
+			<span>Karl Benson</span>
+			<sub>karl@company.com</sub>
+		</button>
+                                    </li>
+                                    <li>
+                                        <button>
+			<img data-ts="UserImage" alt="Marshall Garrett">
+			<span>Marshall Garrett</span>
+			<sub>marshall@company.com</sub>
+		</button>
+                                    </li>
+                                </menu>
+                            </div>
+                            <pre class="prism language-markup">
+<code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>menu</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Menu<span class="token punctuation">&quot;</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>ts-user-menu<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>ts-checked<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span><span class="token punctuation">&gt;</span></span>
+			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>UserImage<span class="token punctuation">&quot;</span></span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>assets/jim.png<span class="token punctuation">&quot;</span></span> <span class="token attr-name">alt</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Jim Bob Johnson<span class="token punctuation">&quot;</span></span><span class="token punctuation">/&gt;</span></span>
+			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">&gt;</span></span>Jim Bob Johnson<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span>
+			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>sub</span><span class="token punctuation">&gt;</span></span>jimbob@company.com<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>sub</span><span class="token punctuation">&gt;</span></span>
+			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>i</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>ts-icon-checked<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>i</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span><span class="token punctuation">&gt;</span></span>
+			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>UserImage<span class="token punctuation">&quot;</span></span> <span class="token attr-name">alt</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Karl Benson<span class="token punctuation">&quot;</span></span><span class="token punctuation">/&gt;</span></span>
+			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">&gt;</span></span>Karl Benson<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span>
+			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>sub</span><span class="token punctuation">&gt;</span></span>karl@company.com<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>sub</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span><span class="token punctuation">&gt;</span></span>
+			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>UserImage<span class="token punctuation">&quot;</span></span> <span class="token attr-name">alt</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Marshall Garrett<span class="token punctuation">&quot;</span></span><span class="token punctuation">/&gt;</span></span>
+			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">&gt;</span></span>Marshall Garrett<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span>
+			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>sub</span><span class="token punctuation">&gt;</span></span>marshall@company.com<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>sub</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>menu</span><span class="token punctuation">&gt;</span></span></code>
+</pre>
+                        </div>
+                    </figure>
+                </section>
+            </article>
+        </div>
+    </main>
+    <aside data-ts="Note" class="sticky ts-bg-yellow">
+        <p>If you find a bug or need a feature&#x2026;</p>
+        <menu class="ts-buttons">
+            <li>
+                <a data-ts="Button" target="_blank" href="https://github.com/Tradeshift/tradeshift-ui/issues/new" title="Submit new issue" class="ts-secondary">
+		          <span>Create GitHub Issue&#x2026;</span>
+		        </a>
+            </li>
+        </menu>
+    </aside>
+</body>
+
+</html>

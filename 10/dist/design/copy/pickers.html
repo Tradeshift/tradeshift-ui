@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en-us" class="ts-docs" spellcheck="false">
+
+<head>
+    <title>Menu Pickers</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-10.0.1-beta.0.min.js"></script>
+    <script src="/10/dist/assets/dox.min.js"></script>
+    <script src="/10/dist/assets/mark.min.js"></script>
+    <script src="/10/dist/assets/jquery-2.2.4.min.js"></script>
+    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-10.0.1-beta.0.min.css">
+    <link rel="stylesheet" href="/10/dist/assets/dox.css">
+    <link rel="prefetch" title="Principles" href="index.html">
+    <link rel="prefetch" title="Development" href="dev.html">
+    <link rel="prefetch" title="Terminology" href="terms.html">
+    <link rel="prefetch" title="Error Messages" href="errors.html">
+    <link rel="prefetch" title="Buttons" href="buttons.html">
+    <link rel="prefetch" title="Menu Pickers" href="pickers.html">
+    <link rel="prefetch" title="Emails" href="emails.html">
+    <link rel="stylesheet" href="assets/copy.css">
+    <script>
+        ts.dox.tabs()
+    </script>
+</head>
+
+<body>
+    <header data-ts="TopBar"></header>
+    <main data-ts="Main">
+        <div data-ts="MainContent">
+            <div data-ts="MainFrame">
+                <article>
+                    <h1><span>Menu Pickers</span></h1>
+                    <section class="desc">
+                        <p>With regards to copy, there are three main sections in a picker: The title, the body, and the buttons.</p>
+                    </section>
+                    <section>
+                        <p>The layered lists we call Pickers are an essential aspect of how UIs are structured on Tradeshift. Given that some of the most important choices on the platform are made through these, copy on them is very important. This is exacerbated
+                            by the fact that, due to the layered structure, a flow can become quite complex with layers being added and removed many times before the flow is over. Thus, it is essential for the copy in pickers to do two things: 1) keep
+                            the user from getting lost, and 2) push the action forward.</p>
+                        <h3><span>The title</span></h3>
+                        <p>When it comes to the first objective of picker copy, the title pulls most of the weight. The title itself then has to do two things. First, it has to be able to tell the user exactly what needs to be done in this picker. This means
+                            that somebody who looks at a picker without having just opened it should be able to know by reading the title, what they were doing, and what is expected of them. Secondly, the titles should give a sense of flow and continuity
+                            to the process. Overall, the user reading the title of a picker should know where they are, and what is expected of them.</p>
+                        <p>The first one is a matter of sharp and accurate description. For example, a picker whose body is a calendar could have as a title:</p>
+                        <figure class="bad-copy">
+                            <p>Choose A Date</p>
+                        </figure>
+                        <p>This would be a bad title, since a user reading this without remembering how they got there would not know what the date is for. A much better header for a picker with a calendar could be:</p>
+                        <figure class="good-copy">
+                            <p>Set Due Date</p>
+                        </figure>
+                        <p>With this title, the user knows that the date is the due date for an invoice, and not the date of emission, or any other date. In a vacuum, it might seem like a very small difference, but all of these little things aggregate to
+                            make the product enjoyable and easy to use.</p>
+                        <p>With regards to flow and continuity, the best way to ensure this is to put together each title with the copy of whatever it was that triggered this picker. Thus, using the due date example above, Clicking on &quot;Due&quot; in
+                            the create invoice page opens a picker named &quot;Due in&#x2026;&quot;, and choosing &quot;specific date&quot; results in &quot;set a due date&quot;. So, when writing the title for a picker, always look at it side by side
+                            with what triggered it.</p>
+                        <h3><span>The body</span></h3>
+                        <p>The body is less straightforward, because it can include very many different elements. Broadly, though, they can be divided in two categories &#x2013; &#x2018;explanation&#x2019; copy, and interactable elements. The first type
+                            does not appear in all pickers &#x2013; only in cases where there&#x2019;s need for clarification regarding the purpose of the picker. The guidelines for these are quite simple. In these cases, remember that clarity is king!
+                            You will not be adding this type of copy unless it&#x2019;s an already fairly complex flow, so the only goal of this copy should be clarity. Forget personality, forget casual tone, and focus on being clear.</p>
+                        <p>The second broad category of copy in the body of pickers are the different types of value selectors themselves. These can take the form of checkboxes, radio buttons, calendars, free text boxes, and more. For these, the same overall
+                            rules apply: Clarity (especially in labels, but also the options themselves) is the main priority.</p>
+                        <h3><span>The buttons</span></h3>
+                        <p>Finally, the last element that appears on pickers are buttons. These buttons are no different than the buttons everywhere else in the product, so the same guidelines should be followed. Read more at the <a href="http://tradeshift.github.io/#design/copy/buttons.html"
+                                data-ts="Button">buttons guidelines</a></p>
+                        <!--
+					<hr/>
+					<p>Continue reading about our UI Copy Guidelines on the <a href="//tradeshift.github.io/#design/copy/emails.html" data-ts="Button"="">Emails</a> page.</p>pickers.html:36:17
+					-->
+                    </section>
+                </article>
+            </div>
+        </div>
+    </main>
+    <aside data-ts="Note" class="sticky ts-bg-yellow">
+        <p>If you find a bug or need a feature&#x2026;</p>
+        <menu class="ts-buttons">
+            <li>
+                <a data-ts="Button" target="_blank" href="https://github.com/Tradeshift/tradeshift-ui/issues/new" title="Submit new issue" class="ts-secondary">
+		          <span>Create GitHub Issue&#x2026;</span>
+		        </a>
+            </li>
+        </menu>
+    </aside>
+</body>
+
+</html>

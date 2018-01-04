@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en-us" class="ts-docs" spellcheck="false">
+
+<head>
+    <title>DatePicker</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-10.0.1-beta.0.min.js"></script>
+    <script src="/10/dist/assets/dox.min.js"></script>
+    <script src="/10/dist/assets/mark.min.js"></script>
+    <script src="/10/dist/assets/jquery-2.2.4.min.js"></script>
+    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-10.0.1-beta.0.min.css">
+    <link rel="stylesheet" href="/10/dist/assets/dox.css">
+</head>
+
+<body>
+    <header data-ts="TopBar"></header>
+    <main data-ts="Main">
+        <div data-ts="MainContent">
+            <article>
+                <h1><span>DatePicker</span></h1>
+                <section class="desc">
+                    <p>Calendar widget that appears in Aside. Used in Forms for an implementation of &lt;input type=&quot;date&quot;&gt; elements.</p>
+                </section>
+                <section>
+                    <p>The DatePicker can be launched with a JavaScript API. You should implement the <code>onselect</code> method to get notified whenever the user picks a date. Note that you must manually <code>open</code> and <code>close</code> the DatePicker.</p>
+                    <figure data-ts="DoxScript" class="runnable" data-ts.code="var%20datePicker%20%3D%20ts.ui.DatePicker(%7B%0A%09title%3A%20%22Your%20Birthday%22%2C%0A%09value%3A%20&apos;1973-03-26&apos;%2C%0A%09onselect%3A%20function(newval%2C%20oldval)%20%7B%0A%09%09ts.ui.Notification.success(this.value)%3B%0A%09%09this.close()%3B%0A%09%7D%2C%0A%09onclosed%3A%20function()%20%7B%0A%09%09this.dispose()%3B%0A%09%7D%0A%7D)%3B%0AdatePicker.open()%3B">
+                        <script type="runnable">
+                            var datePicker = ts.ui.DatePicker({ title: "Your Birthday", value: '1973-03-26', onselect: function(newval, oldval) { ts.ui.Notification.success(this.value); this.close(); }, onclosed: function() { this.dispose(); } }); datePicker.open();
+                        </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                        <div class="tabpanels">
+                            <pre class="prism language-javascript">
+<code><span class="token keyword">var</span> datePicker <span class="token operator">=</span> ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token function">DatePicker<span class="token punctuation">(</span></span><span class="token punctuation">{</span>
+	title<span class="token punctuation">:</span> <span class="token string">&quot;Your Birthday&quot;</span><span class="token punctuation">,</span>
+	value<span class="token punctuation">:</span> <span class="token string">&apos;1973-03-26&apos;</span><span class="token punctuation">,</span>
+	onselect<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span>newval<span class="token punctuation">,</span> oldval<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Notification<span class="token punctuation">.</span><span class="token function">success<span class="token punctuation">(</span></span><span class="token keyword">this</span><span class="token punctuation">.</span>value<span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">close<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span><span class="token punctuation">,</span>
+	onclosed<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		<span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">dispose<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+datePicker<span class="token punctuation">.</span><span class="token function">open<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
+</pre>
+                        </div>
+                    </figure>
+                    <p>You can specify a <code>min</code> and <code>max</code> value.</p>
+                    <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.DatePicker(%7B%0A%09title%3A%20%22Your%20Birthday%22%2C%0A%09value%3A%20&apos;1984-05-23&apos;%2C%0A%09min%3A%20&apos;1984-01-01&apos;%2C%0A%09max%3A%20&apos;1985-12-24&apos;%2C%0A%09onselect%3A%20function()%20%7B%0A%09%09this.close()%3B%0A%09%7D%2C%0A%09onclosed%3A%20function()%20%7B%0A%09%09this.dispose()%3B%0A%09%7D%0A%7D).open()%3B">
+                        <script type="runnable">
+                            ts.ui.DatePicker({ title: "Your Birthday", value: '1984-05-23', min: '1984-01-01', max: '1985-12-24', onselect: function() { this.close(); }, onclosed: function() { this.dispose(); } }).open();
+                        </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                        <div class="tabpanels">
+                            <pre class="prism language-javascript">
+<code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token function">DatePicker<span class="token punctuation">(</span></span><span class="token punctuation">{</span>
+	title<span class="token punctuation">:</span> <span class="token string">&quot;Your Birthday&quot;</span><span class="token punctuation">,</span>
+	value<span class="token punctuation">:</span> <span class="token string">&apos;1984-05-23&apos;</span><span class="token punctuation">,</span>
+	min<span class="token punctuation">:</span> <span class="token string">&apos;1984-01-01&apos;</span><span class="token punctuation">,</span>
+	max<span class="token punctuation">:</span> <span class="token string">&apos;1985-12-24&apos;</span><span class="token punctuation">,</span>
+	onselect<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		<span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">close<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span><span class="token punctuation">,</span>
+	onclosed<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		<span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">dispose<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">open<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
+</pre>
+                        </div>
+                    </figure>
+                    <p>The object argument configures a <code>ts.ui.DatePickerModel</code> as outlined below.</p>
+                    <table class="api">
+                        <caption>
+                            <code>ts.ui.DatePickerModel</code>
+                        </caption>
+                        <tbody>
+                            <tr>
+                                <th colspan="3">Instance properties</th>
+                            </tr>
+                            <tr>
+                                <td><code>title</code></td>
+                                <td><code>{string}</code></td>
+                                <td>Appears as the title of the DatePicker</td>
+                            </tr>
+                            <tr>
+                                <td><code>value<code></code></code>
+                                </td>
+                                <td><code>{string}</code></td>
+                                <td>
+                                    The selected date. Must be dash-separated, ISO 8601 formatted date string e.g. <code>2015-01-01</code>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th colspan="3">Instance methods</th>
+                            </tr>
+                            <tr>
+                                <td><code>open</code></td>
+                                <td><code>{void}</code></td>
+                                <td>Open the DatePicker</td>
+                            </tr>
+                            <tr>
+                                <td><code>close</code></td>
+                                <td><code>{void}</code></td>
+                                <td>Close the DatePicker</td>
+                            </tr>
+                            <tr>
+                                <td><code>onselect</code></td>
+                                <td><code>{void}</code></td>
+                                <td>
+                                    Called whenever selection changes with two arguments <code>newval</code> and <code>oldval<code>.
+								</code></code>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><code>onclosed</code></td>
+                                <td><code>{void}</code></td>
+                                <td>
+                                    Event listener for close event. Called after aside closing animation is completed.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><code>dispose</code></td>
+                                <td><code>{void}</code></td>
+                                <td>Cleanup the DataPicker (recommended)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+            </article>
+        </div>
+    </main>
+    <aside data-ts="Note" class="sticky ts-bg-yellow">
+        <p>If you find a bug or need a feature&#x2026;</p>
+        <menu class="ts-buttons">
+            <li>
+                <a data-ts="Button" target="_blank" href="https://github.com/Tradeshift/tradeshift-ui/issues/new" title="Submit new issue" class="ts-secondary">
+		          <span>Create GitHub Issue&#x2026;</span>
+		        </a>
+            </li>
+        </menu>
+    </aside>
+</body>
+
+</html>

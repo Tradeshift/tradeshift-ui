@@ -122,6 +122,7 @@
 		 * @param {string} pattern
 		 */
 		_debugmetrics: function(pattern) {
+			/*
 			if (top.location.search.includes(pattern)) {
 				var times = gui.$measurements().sort(function(a, b) {
 					return b.duration >= a.duration ? 1 : -1;
@@ -148,6 +149,7 @@
 					}
 				}
 			}
+			*/
 		}
 	});
 })();

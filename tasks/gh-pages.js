@@ -44,7 +44,7 @@ function doit(done) {
 		const thatversion = majorversion('gh-pages/package.json', thisversion);
 		if (semv.gt(thisversion, thatversion)) {
 			log('Updating website');
-			injectdocs(parseInt(thisversion, 10));
+			injectdocs('v' + parseInt(thisversion, 10));
 			updateversions('gh-pages/package.json', thatversion, thisversion);
 			pushchanges('gh-pages', 'gh-pages-update', done);
 		} else {
@@ -85,7 +85,7 @@ function majorversion(where, version) {
  * folder on `gh-pages` (which is named after the major version).
  * HTML and CSS and JS pages get passed through a function that 
  * will rewrite absolute URLs so that they target the X folder.
- * @param {number} version
+ * @param {string} version (`v10` or `v13` or something like that)
  */
 function injectdocs(version) {
 	const parser = data => data.replace(/\/dist\//g, `/${version}/dist/`);

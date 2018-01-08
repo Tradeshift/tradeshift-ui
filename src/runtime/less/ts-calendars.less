@@ -95,6 +95,10 @@
 		.ts-calendar-other {
 			button {
 				color: @ts-color-gray-light;
+				&:hover,
+				&:focus {
+					color: @ts-color-black;
+				}
 			}
 		}
 		.ts-selected {
@@ -129,6 +133,7 @@
 			button {
 				&:hover,
 				&:focus {
+					color: @ts-color-gray-light;
 					span {
 						background-color: transparent;
 					}

@@ -1,4 +1,9 @@
 /*
+// Marble (TODO)
+@ts-color-marble-lightest: hsl(195, 20%, 96%);
+@ts-color-marble-lighter: hsl(195, 21%, 93%);
+*/
+/*
 // Grey
 @ts-color-gray-lightest: hsl(195, 20%, 96%);
 @ts-color-gray-lighter: hsl(198, 23%, 85%);
@@ -105,7 +110,7 @@ figure > figcaption {
   margin: 11px 0 0 0;
 }
 figure.ts-layout > .ts-toolbar {
-  background-color: #dde5e9;
+  background-color: #eff3f5;
 }
 figure.ts-layout > .ts-panel,
 figure.ts-layout > .ts-panels {
@@ -303,7 +308,7 @@ pre.prism code {
 #markdown table,
 table.api {
   width: 100%;
-  background-color: #dde5e9;
+  background-color: #eff3f5;
 }
 #markdown table code,
 table.api code {
@@ -633,7 +638,7 @@ table.api th {
 }
 .ts-doxchrome .ts-menu > li > a:hover:not(:disabled),
 .ts-doxchrome .ts-menu > li > a:focus {
-  background-color: #2d3c43 !important;
+  background-color: #3f555f !important;
 }
 .ts-doxchrome .ts-menu > li > a:hover:not(:disabled):before,
 .ts-doxchrome .ts-menu > li > a:focus:before {
@@ -899,7 +904,7 @@ article > h1 {
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 .doc-responsive #breakpoints {
-  background-color: #dde5e9;
+  background-color: #e6ecef;
   padding-bottom: 22px;
   border-radius: 3px;
 }
@@ -924,7 +929,7 @@ article > h1 {
   transition-duration: 0.2s;
   transition-timing-function: ease;
   transition-delay: 0s;
-  border: 1px solid #dde5e9;
+  border: 1px solid #e6ecef;
   padding: 22px;
   margin-bottom: 22px;
 }

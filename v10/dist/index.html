@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html class="ts-loading ts-docs" lang="en-us" spellcheck="false">
+
+<head>
+    <title>Tradeshift UI</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-10.0.1-beta.0.min.js"></script>
+    <script src="/v10/dist/assets/dox.min.js"></script>
+    <script src="/v10/dist/assets/mark.min.js"></script>
+    <script src="/v10/dist/assets/jquery-2.2.4.min.js"></script>
+    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-10.0.1-beta.0.min.css">
+    <link rel="stylesheet" href="/v10/dist/assets/dox.css">
+    <script src="/v10/dist/assets/lunr.min.js"></script>
+    ${includes} ${menuhtml} ${svgicons}
+</head>
+
+<body data-ts="DoxChrome">
+    <button data-ts="Button" data-ts.type="action-open-menu" class="button-menu-open">
+			<i class="ts-icon-menuswitch"></i>
+		</button>
+    <aside data-ts="SideBar" data-ts.title="KL" class="ts-bg-dark">
+        <div data-ts="Panel">
+            <menu data-ts="DoxMenu">
+                <script type="application/json">
+                    $ {
+                        menujson
+                    }
+                </script>
+            </menu>
+        </div>
+        <div data-ts="Footer">
+            <div data-ts="DoxVersions"></div>
+        </div>
+    </aside>
+    <div id="menucover" data-ts="DoxMenuCover"></div>
+    <main data-ts="Main">
+        <div data-ts="MainContent"><button data-ts="Button" data-ts.type="action-close-menu" class="button-menu-close"></button></div>
+    </main>
+    <div data-ts="Spinner" data-ts.spinning="true" class="ts-topbarspinner"></div>
+    <aside data-ts="Note" class="sticky ts-bg-yellow">
+        <p>If you find a bug or need a feature&#x2026;</p>
+        <menu class="ts-buttons">
+            <li>
+                <a data-ts="Button" target="_blank" href="https://github.com/Tradeshift/tradeshift-ui/issues/new" title="Submit new issue" class="ts-secondary">
+		          <span>Create GitHub Issue&#x2026;</span>
+		        </a>
+            </li>
+        </menu>
+    </aside>
+</body>
+
+</html>

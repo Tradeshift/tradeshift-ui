@@ -1,14 +1,15 @@
 addEventListener('DOMContentLoaded', function() {
 
-	var iframe = document.querySelector('iframe');
+	var iframe = window.frameElement;
 	var menu = document.querySelector('menu');
 	var hide = document.querySelector('.cover');
 
 	// iframe.src = 'http://127.0.0.1:10114';
 
 	function load(majorversion) {
-		alert(majorversion);
-		iframe.src = 'v' + majorversion + '/';
+		alert(iframe);
+		console.log('Load', majorversion);
+		// iframe.src = 'v' + majorversion + '/';
 	}
 
 	requestJSON('package.json', function(json) {

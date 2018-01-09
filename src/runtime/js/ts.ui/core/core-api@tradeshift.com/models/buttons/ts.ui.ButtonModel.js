@@ -122,7 +122,7 @@ ts.ui.ButtonModel = (function using(chained, confirmed, Type) {
 					function unfreeze() {
 						this.onclick();
 					}.bind(this),
-					50
+					ts.ui.TIMEOUT_UNFREEZE
 				);
 			}
 		}),

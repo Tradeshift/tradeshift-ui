@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en-us" class="ts-docs" spellcheck="false">
+
+<head>
+    <title>Form Gallery</title>
+    <meta name="ts-app-title" content="Form Gallery">
+    <link rel="ts-app-icon" href="/v11/dist/assets/icon.svg">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-11.0.0-beta.0.min.js"></script>
+    <script src="/v11/dist/assets/dox.min.js"></script>
+    <script src="/v11/dist/assets/mark.min.js"></script>
+    <script src="/v11/dist/assets/jquery-2.2.4.min.js"></script>
+    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-11.0.0-beta.0.min.css">
+    <link rel="stylesheet" href="/v11/dist/assets/dox.css">
+    <link rel="prefetch" title="HTML" href="index.html">
+    <link rel="prefetch" title="Disabled / Readonly" href="disabled.html">
+    <link rel="prefetch" title="Custom Select" href="custom-select.html">
+    <link rel="prefetch" title="Autocomplete" href="autocomplete.html">
+    <link rel="prefetch" title="Error / Info" href="example.html">
+    <link rel="prefetch" title="Gallery" href="redesign.html">
+    <link rel="prefetch" title="Angular Test" href="test-1.html" class="hidden">
+    <script>
+        document.addEventListener('change', function(e) {
+            var section = document.querySelector('#bgcolor');
+            if (e.target.name && e.target.value.includes('ts-bg')) {
+                section.className = e.target.value;
+            }
+        });
+    </script>
+    <script>
+        ts.dox.tabs()
+    </script>
+</head>
+
+<body>
+    <div data-ts="App">
+        <div data-ts="Main" data-ts.label="One">
+            <div data-ts="Content">
+                <div data-ts="Panel">
+                    <div data-ts="Board">
+                        <div data-ts="Panels">
+                            <div data-ts="Panel" data-ts.label="Standard">
+                                <article>
+                                    <form data-ts="Form">
+                                        <fieldset>
+                                            <label>
+												<span>Text</span>
+												<input type="text" value="Text">
+											</label>
+                                        </fieldset>
+                                        <fieldset>
+                                            <label>
+												<span>Text with custom icon</span>
+												<input type="text" value="Text" data-ts.icon="ts-icon-logout">
+											</label>
+                                        </fieldset>
+                                        <fieldset>
+                                            <label>
+												<span>Text with no icon</span>
+												<input type="text" value="Text" data-ts.icon="">
+											</label>
+                                        </fieldset>
+                                        <fieldset>
+                                            <label>
+												<span>Textarea</span>
+												<textarea>Textarea</textarea>
+											</label>
+                                        </fieldset>
+                                        <fieldset>
+                                            <label>
+												<span>Select</span>
+												<select>
+													<option value="a">One</option>
+													<option value="b">Two</option>
+													<option value="c">Three</option>
+												</select>
+											</label>
+                                        </fieldset>
+                                        <fieldset>
+                                            <label>
+												<span>Select with placeholder</span>
+												<select placeholder="Please select something">
+													<option></option>
+													<option value="a">One</option>
+													<option value="b">Two</option>
+													<option value="c">Three</option>
+												</select>
+											</label>
+                                        </fieldset>
+                                        <fieldset>
+                                            <label>
+												<span>Select multiple</span>
+												<select multiple>
+													<option value="a" selected>One</option>
+													<option value="b" selected>Two</option>
+													<option value="c">Three</option>
+													<option value="d">Four</option>
+													<option value="e">Five</option>
+												</select>
+												<button>Cool, apply changes!</button>
+											</label>
+                                        </fieldset>
+                                        <fieldset>
+                                            <label>
+												<span>Date</span>
+												<input type="date" value="2016-12-24">
+											</label>
+                                        </fieldset>
+                                        <fieldset>
+                                            <span>Radios</span>
+                                            <label>
+												<input type="radio" name="radio" checked>
+												<span>Option One</span>
+											</label>
+                                            <label>
+												<input type="radio" name="radio">
+												<span>Option Two</span>
+											</label>
+                                        </fieldset>
+                                        <fieldset>
+                                            <span>Checkbox</span>
+                                            <label>
+												<input type="checkbox">
+												<span>I agree</span>
+											</label>
+                                            <label>
+												<input type="checkbox" checked>
+												<span>I don&apos;t agree</span>
+											</label>
+                                        </fieldset>
+                                        <fieldset>
+                                            <span>Switch</span>
+                                            <label>
+												<span>I agree</span>
+												<input type="checkbox">
+											</label>
+                                            <label>
+												<span>I don&apos;t agree</span>
+												<input type="checkbox" checked>
+											</label>
+                                        </fieldset>
+                                    </form>
+                                </article>
+                            </div>
+                            <div data-ts="Panel" data-ts.label="Disabled">
+                                <article>
+                                    <form data-ts="Form">
+                                        <fieldset>
+                                            <label>
+												<span>Text</span>
+												<input type="text" value="Text" disabled>
+											</label>
+                                        </fieldset>
+                                        <fieldset>
+                                            <label>
+												<span>Text with custom icon</span>
+												<input type="text" value="Text" disabled data-ts.icon="ts-icon-send">
+											</label>
+                                        </fieldset>
+                                        <fieldset>
+                                            <label>
+												<span>Text with no icon</span>
+												<input type="text" value="Text" disabled data-ts.icon="">
+											</label>
+                                        </fieldset>
+                                        <fieldset>
+                                            <label>
+												<span>Textarea</span>
+												<textarea disabled>Textarea</textarea>
+											</label>
+                                        </fieldset>
+                                        <fieldset>
+                                            <label>
+												<span>Select</span>
+												<select disabled>
+													<option value="a">One</option>
+													<option value="b">Two</option>
+													<option value="c">Three</option>
+												</select>
+											</label>
+                                        </fieldset>
+                                        <fieldset>
+                                            <label>
+												<span>Select with placeholder</span>
+												<select disabled placeholder="Please select something">
+													<option></option>
+													<option value="a">One</option>
+													<option value="b">Two</option>
+													<option value="c">Three</option>
+												</select>
+											</label>
+                                        </fieldset>
+                                        <fieldset>
+                                            <label>
+												<span>Select multiple</span>
+												<select multiple disabled>
+													<option value="a" selected>One</option>
+													<option value="b" selected>Two</option>
+													<option value="c">Three</option>
+													<option value="d">Four</option>
+													<option value="e">Five</option>
+												</select>
+												<button>Cool, apply changes!</button>
+											</label>
+                                        </fieldset>
+                                        <fieldset>
+                                            <label>
+												<span>Date</span>
+												<input type="date" disabled value="2016-12-24">
+											</label>
+                                        </fieldset>
+                                        <fieldset>
+                                            <span>Radios</span>
+                                            <label>
+												<input type="radio" name="radio" checked disabled>
+												<span>Option One</span>
+											</label>
+                                            <label>
+												<input type="radio" name="radio" disabled>
+												<span>Option Two</span>
+											</label>
+                                        </fieldset>
+                                        <fieldset>
+                                            <span>Checkbox</span>
+                                            <label>
+												<input type="checkbox" disabled>
+												<span>I agree</span>
+											</label>
+                                            <label>
+												<input type="checkbox" checked disabled>
+												<span>I don&apos;t agree</span>
+											</label>
+                                        </fieldset>
+                                        <fieldset>
+                                            <span>Switch</span>
+                                            <label>
+												<span>I agree</span>
+												<input type="checkbox" disabled>
+											</label>
+                                            <label>
+												<span>I don&apos;t agree</span>
+												<input type="checkbox" checked disabled>
+											</label>
+                                        </fieldset>
+                                    </form>
+                                    <!--
+								<div data-ts="Note">
+									<i class="ts-icon-todo"></i>
+									<p>TODO: Ghost optiongroup label (only) when all options are disabled.</p>
+								</div>
+								-->
+                                </article>
+                            </div>
+                            <div data-ts="Panel" data-ts.label="Readonly">
+                                <article>
+                                    <form data-ts="Form">
+                                        <fieldset>
+                                            <label>
+												<span>Text</span>
+												<input type="text" value="Text" readonly>
+											</label>
+                                        </fieldset>
+                                        <fieldset>
+                                            <label>
+												<span>Text with custom icon</span>
+												<input type="text" value="Text" readonly data-ts.icon="ts-icon-dispute">
+											</label>
+                                        </fieldset>
+                                        <fieldset>
+                                            <label>
+												<span>Text with no icon</span>
+												<input type="text" value="Text" readonly data-ts.icon="">
+											</label>
+                                        </fieldset>
+                                        <fieldset>
+                                            <label>
+												<span>Textarea</span>
+												<textarea readonly>Textarea</textarea>
+											</label>
+                                        </fieldset>
+                                        <fieldset>
+                                            <label>
+												<span>Select</span>
+												<select readonly>
+													<option value="a">One</option>
+													<option value="b">Two</option>
+													<option value="c">Three</option>
+												</select>
+											</label>
+                                        </fieldset>
+                                        <fieldset>
+                                            <label>
+												<span>Select with placeholder</span>
+												<select readonly placeholder="Please select something">
+													<option></option>
+													<option value="a">One</option>
+													<option value="b">Two</option>
+													<option value="c">Three</option>
+												</select>
+											</label>
+                                        </fieldset>
+                                        <fieldset>
+                                            <label>
+												<span>Select multiple</span>
+												<select multiple readonly>
+													<option value="a" selected>One</option>
+													<option value="b" selected>Two</option>
+													<option value="c">Three</option>
+													<option value="d">Four</option>
+													<option value="e">Five</option>
+												</select>
+												<button>Cool, apply changes!</button>
+											</label>
+                                        </fieldset>
+                                        <fieldset>
+                                            <label>
+												<span>Date</span>
+												<input type="date" readonly value="2016-12-24">
+											</label>
+                                        </fieldset>
+                                    </form>
+                                    <div data-ts="Note">
+                                        <i class="ts-icon-info"></i>
+                                        <p>Note that <code>readonly</code> has no function on radio groups and checkboxes.</p>
+                                    </div>
+                                    <p>One can make a <code>readonly</code> field look normal with the <code>ts-nolock</code> classname.</p>
+                                    <form data-ts="Form">
+                                        <fieldset>
+                                            <label>
+												<span>Text</span>
+												<input type="text" value="The lock icon is now hidden" readonly class="ts-nolock">
+											</label>
+                                        </fieldset>
+                                    </form>
+                                </article>
+                            </div>
+                            <div data-ts="Panel" data-ts.label="Multi">
+                                <article>
+                                    <form data-ts="Form">
+                                        <fieldset class="ts-multi">
+                                            <label>
+												<span>Text Multi</span>
+												<input type="text" value="Text">
+											</label>
+                                            <label>
+												<span>Date Multi</span>
+												<input type="date" value="2016-12-24">
+											</label>
+                                        </fieldset>
+                                        <fieldset class="ts-multi">
+                                            <label>
+												<span>Textarea Multi</span>
+												<textarea>Textarea</textarea>
+											</label>
+                                            <label>
+												<span>More Multi</span>
+												<textarea>Textarea</textarea>
+											</label>
+                                        </fieldset>
+                                        <fieldset class="ts-multi">
+                                            <label>
+												<span>Select Multi</span>
+												<select>
+													<option value="a">One</option>
+													<option value="b">Two</option>
+													<option value="c">Three</option>
+												</select>
+											</label>
+                                            <label>
+												<span>Select Multi</span>
+												<select>
+													<option value="a">One</option>
+													<option value="b" selected>Two</option>
+													<option value="c">Three</option>
+												</select>
+											</label>
+                                        </fieldset>
+                                        <fieldset class="ts-multi">
+                                            <label>
+												<span>Multiselect multi</span>
+												<select multiple>
+													<option value="a" selected>One</option>
+													<option value="b">Two</option>
+													<option value="c">Three</option>
+													<option value="d">Four</option>
+													<option value="e">Five</option>
+												</select>
+												<button>Cool, apply changes!</button>
+											</label>
+                                            <label>
+												<span>Multiselect multi</span>
+												<select multiple>
+													<option value="a" selected>One</option>
+													<option value="b" selected>Two</option>
+													<option value="c">Three</option>
+													<option value="d">Four</option>
+													<option value="e">Five</option>
+												</select>
+												<button>Cool, apply changes!</button>
+											</label>
+                                        </fieldset>
+                                    </form>
+                                </article>
+                            </div>
+                            <div data-ts="Panel" data-ts.label="Errors &amp; Info">
+                                <article>
+                                    <form data-ts="Form">
+                                        <fieldset>
+                                            <label class="ts-error">
+												<span>Error</span>
+												<input type="text" value="Something wrong">
+											</label>
+                                            <dl class="ts-errors">
+                                                <dt>Text</dt>
+                                                <dd>An explanation of the error in question</dd>
+                                                <dd>Another explanation of the error in question</dd>
+                                            </dl>
+                                        </fieldset>
+                                        <fieldset>
+                                            <label>
+												<span>Info</span>
+												<input type="text" value="What is this?">
+											</label>
+                                            <dl class="ts-info">
+                                                <dt>Text</dt>
+                                                <dd>An information about the field</dd>
+                                                <dd>Another information about the field</dd>
+                                            </dl>
+                                        </fieldset>
+                                        <fieldset>
+                                            <label>
+												<span>Disabled info</span>
+												<input type="text" value="What is this?" disabled>
+											</label>
+                                            <dl class="ts-info">
+                                                <dt>Text</dt>
+                                                <dd>An information about the field</dd>
+                                                <dd>Another information about the field</dd>
+                                            </dl>
+                                        </fieldset>
+                                    </form>
+                                </article>
+                            </div>
+                            <div data-ts="Panel" data-ts.label="Asides">
+                                <article>
+                                    <p>Check out the Form in that Aside.</p>
+                                    <p>
+                                        <button data-ts="Button" class="ts-primary" onclick="ts.ui.get(&apos;myaside&apos;).open()">
+											<span>Open the Aside&#x2026;</span>
+										</button>
+                                    </p>
+                                </article>
+                            </div>
+                            <!--
+							<div data-ts="Panel" data-ts.label="Colors">
+								<form data-ts="Form">
+									<fieldset>
+										<span>Choose your color</span>
+										<label>
+											<input type="radio" name="color" value="ts-bg-dark" checked="checked"/>
+											<span>Dark</span>
+										</label>
+										<label>
+											<input type="radio" name="color" value="ts-bg-red"/>
+											<span>Red</span>
+										</label>
+										<label>
+											<input type="radio" name="color" value="ts-bg-green"/>
+											<span>Green</span>
+										</label>
+										<label>
+											<input type="radio" name="color" value="ts-bg-blue"/>
+											<span>Blue</span>
+										</label>
+										<label>
+											<input type="radio" name="color" value="ts-bg-purple"/>
+											<span>Purple</span>
+										</label>
+										<label>
+											<input type="radio" name="color" value="ts-bg-yellow"/>
+											<span>Yellow</span>
+										</label>
+										<label>
+											<input type="radio" name="color" value="ts-bg-lite"/>
+											<span>Lite/White</span>
+										</label>
+									</fieldset>
+									<fieldset>
+										<label>
+											<span>Text</span>
+											<input type="text" value="Text"/>
+										</label>
+									</fieldset>
+									<fieldset>
+										<label>
+											<span>Select</span>
+											<select>
+												<option value="a">One</option>
+												<option value="b">Two</option>
+												<option value="c">Three</option>
+											</select>
+										</label>
+									</fieldset>
+									<fieldset>
+										<label>
+											<span>Date</span>
+											<input type="date" value="2016-12-24"/>
+										</label>
+									</fieldset>
+								</form>
+							</div>
+							-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <aside data-ts="Aside" id="myaside" data-ts.title="Form in Aside">
+        <div data-ts="Panel">
+            <form data-ts="Form">
+                <fieldset>
+                    <label>
+						<span>Text</span>
+						<input type="text" value="Text">
+					</label>
+                </fieldset>
+                <fieldset>
+                    <label>
+						<span>Textarea</span>
+						<textarea>Textarea</textarea>
+					</label>
+                </fieldset>
+                <fieldset>
+                    <label>
+						<span>Select</span>
+						<select>
+							<option value="a">One</option>
+							<option value="b">Two</option>
+							<option value="c">Three</option>
+						</select>
+					</label>
+                </fieldset>
+                <fieldset>
+                    <label>
+						<span>Select multiple</span>
+						<select multiple>
+							<option value="a" selected>One</option>
+							<option value="b" selected>Two</option>
+							<option value="c">Three</option>
+							<option value="d">Four</option>
+							<option value="e">Five</option>
+						</select>
+						<button>Cool, apply changes!</button>
+					</label>
+                </fieldset>
+                <fieldset>
+                    <label>
+						<span>Date</span>
+						<input type="date" value="2016-12-24">
+					</label>
+                </fieldset>
+                <fieldset>
+                    <span>Radios</span>
+                    <label>
+						<input type="radio" name="radio" checked>
+						<span>Option One</span>
+					</label>
+                    <label>
+						<input type="radio" name="radio">
+						<span>Option Two</span>
+					</label>
+                </fieldset>
+                <fieldset>
+                    <span>Checkbox</span>
+                    <label>
+						<input type="checkbox">
+						<span>I agree</span>
+					</label>
+                    <label>
+						<input type="checkbox" checked>
+						<span>I don&apos;t agree</span>
+					</label>
+                </fieldset>
+                <fieldset>
+                    <span>Switch</span>
+                    <label>
+						<span>I agree</span>
+						<input type="checkbox">
+					</label>
+                    <label>
+						<span>I don&apos;t agree</span>
+						<input type="checkbox" checked>
+					</label>
+                </fieldset>
+            </form>
+        </div>
+    </aside>
+</body>
+
+</html>

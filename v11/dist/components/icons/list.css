@@ -1,0 +1,45 @@
+/*
+// Marble (TODO)
+@ts-color-marble-lightest: hsl(195, 20%, 96%);
+@ts-color-marble-lighter: hsl(195, 21%, 93%);
+*/
+/*
+// Grey
+@ts-color-gray-lightest: hsl(195, 20%, 96%);
+@ts-color-gray-lighter: hsl(198, 23%, 85%);
+@ts-color-gray-light: hsl(199, 25%, 64%);
+@ts-color-gray: hsl(200, 23%, 45%);
+@ts-color-gray-dark: hsl(203, 22%, 36%);
+@ts-color-gray-darker: hsl(200, 24%, 20%);
+*/
+#icons th.icons-size-tiny i,
+#icons td.icons-size-tiny i {
+  font-size: 11px;
+}
+#icons th.icons-size-std i,
+#icons td.icons-size-std i {
+  font-size: 22px;
+}
+#icons th.icons-size-app i,
+#icons td.icons-size-app i {
+  font-size: 36px;
+}
+#icons tbody > tr > .ts-has-icon > .ts-table-cell {
+  height: 77px;
+  line-height: 0;
+  padding: 11px 0;
+}
+#icons tbody > tr > .ts-has-icon > .ts-table-cell i {
+  top: 50%;
+}
+.ts-mobile .intro-container,
+.ts-mobile-only .intro-container {
+  padding-bottom: 0;
+}
+.ts-mobile .icons-container,
+.ts-mobile-only .icons-container {
+  padding-top: 44px;
+}
+.ts-tablet .icons-container {
+  max-width: 1280px;
+}

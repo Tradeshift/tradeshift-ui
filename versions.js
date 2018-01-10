@@ -1,9 +1,9 @@
 /*
  * When `true`, the menu will not actually load anything 
  * (so that we can safely mess around with the styling). 
- * This should only ever be `true` while on localhost.
+ * This should only ever be `true` while on localhost!!!
  */
-var develop = false;
+var develop = true;
 
 /*
  * Fetch the `package json` as soon as the DOM is ready.
@@ -33,12 +33,15 @@ function requestJSON(url, cb) {
 }
 
 /**
- * Bootstrap the whole thing.
+ * Bootstrap the whole thing. Note that only the newest 
+ * version must be marked as `beta` for this to work out.
  * @param {Object} package
  */
 function bootstrap(package, menu, frame) {
 	var current = top.location.pathname.match(/^\/v\d*\//)[0];
-	var latest = getfolder(package.versions[0]);
+	var latest = getfolder(package.versions.reduce(function(res, ver) {
+		return res.includes('beta') ? ver : res;
+	}, package.versions[0]));
 	var folders = new Map(package.versions.map(function(v) {
 		return [getfolder(v), v];
 	}));
@@ -60,16 +63,24 @@ function getfolder(version) {
 }
 
 /**
- * Update the banner text.
+ * Update the banner text and classname (to change the color).
  * @param {string} current
  * @param {string} latest
  * @param {string} version
  */
 function updateText(current, latest, version) {
-	document.body.className = current === latest ? '' : 'danger';
-	document.querySelector('p').innerHTML = (current === latest
+	var safe = current === latest;
+	var beta = version.includes('beta');
+	document.body.className = safe 
+		? ''
+		: beta
+			? 'warning'
+			: 'danger';
+	document.querySelector('p').innerHTML = (safe
 		? 'This is the latest version'
-		: 'This is an obsolete version') +
+		: beta
+			? 'This is a developer preview'
+			: 'This is an obsolete version') +
 		'<strong>' + version + '</strong>';
 }
 

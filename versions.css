@@ -107,20 +107,6 @@ menu a {
 	display: block;
 	color: white;
 }
-menu a:hover {
-	
-}
-/*
-menu a:after {
-	content: '✓';
-	padding: 0 6px;
-	font-size: 10px;
-	line-height: 0;
-	vertical-align: middle;
-	position: relative;
-	top: -1px;
-}
-*/
 menu .selected a {
 	background-color: hsl(199, 100%, 50%);
 }
@@ -140,4 +126,7 @@ iframe {
 }
 .danger header {
 	background-color: hsl(0, 100%, 37%);
+}
+.warning header {
+	background-color: hsl(34, 100%, 49%);
 }

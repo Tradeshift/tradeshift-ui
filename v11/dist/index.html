@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html class="ts-loading ts-docs" lang="en-us" spellcheck="false">
+
+<head>
+    <title>Tradeshift UI</title>
+    <meta name="ts-app-title" content="Tradeshift UI">
+    <link rel="ts-app-icon" href="/v11/dist/assets/icon.svg">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-11.0.0-beta.0.min.js"></script>
+    <script src="/v11/dist/assets/dox.min.js"></script>
+    <script src="/v11/dist/assets/mark.min.js"></script>
+    <script src="/v11/dist/assets/jquery-2.2.4.min.js"></script>
+    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-11.0.0-beta.0.min.css">
+    <link rel="stylesheet" href="/v11/dist/assets/dox.css">
+    <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+    <script src="/v11/dist/assets/lunr.min.js"></script>
+    <meta name="ts.ui.topframe" content="false">
+    <meta name="ts.ui.appframe" content="false"> ${includes} ${menuhtml} ${svgicons}
+</head>
+
+<body data-ts="DoxChrome">
+    <div id="chrome">
+        <button data-ts="Button" data-ts.type="action-open-menu" class="button-menu-open">
+				<i class="ts-icon-menuswitch"></i>
+			</button>
+        <aside data-ts="DoxSideBar" data-ts.title="KL">
+            <!--<div class="ts-shadow"> TODO! </div>-->
+            <div data-ts="Panel">
+                <menu data-ts="DoxMenu">
+                    <script type="application/json">
+                        $ {
+                            menujson
+                        }
+                    </script>
+                </menu>
+            </div>
+        </aside>
+        <div data-ts="App">
+            <div data-ts="Main">
+                <div id="menucover" data-ts="DoxMenuCover"></div>
+                <button data-ts="Button" data-ts.type="action-close-menu" class="button-menu-close"></button>
+            </div>
+        </div>
+    </div>
+    <iframe id="versions" src="/versions.html"></iframe>
+</body>
+
+</html>

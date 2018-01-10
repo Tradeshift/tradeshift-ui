@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en-us" class="ts-docs" spellcheck="false">
+
+<head>
+    <title>Table Click</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-10.0.1-beta.0.min.js"></script>
+    <script src="/v10/dist/assets/dox.min.js"></script>
+    <script src="/v10/dist/assets/mark.min.js"></script>
+    <script src="/v10/dist/assets/jquery-2.2.4.min.js"></script>
+    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-10.0.1-beta.0.min.css">
+    <link rel="stylesheet" href="/v10/dist/assets/dox.css">
+    <link rel="prefetch" title="Table" href="index.html">
+    <link rel="prefetch" title="Build" href="building.html">
+    <link rel="prefetch" title="Layout" href="layouting.html">
+    <link rel="prefetch" title="Style" href="styling.html">
+    <link rel="prefetch" title="Page" href="paging.html">
+    <link rel="prefetch" title="Format" href="formatting.html">
+    <link rel="prefetch" title="Sort" href="sorting.html">
+    <link rel="prefetch" title="Click" href="clicking.html">
+    <link rel="prefetch" title="Select" href="selecting.html">
+    <link rel="prefetch" title="Search" href="searching.html">
+    <link rel="prefetch" title="Edit" href="editing.html">
+    <link rel="prefetch" title="Filter" href="filtering.html">
+    <link rel="prefetch" title="Status" href="status.html">
+    <link rel="prefetch" title="Config" href="configuring.html">
+    <link rel="prefetch" title="Collab" href="collaborate.html">
+    <link rel="prefetch" title="Actions" href="actions.html">
+    <link rel="prefetch" title="Buttons" href="buttons.html">
+    <link rel="prefetch" title="Extras" href="extras.html">
+    <link rel="prefetch" title="Demo" href="demo.html">
+    <link rel="prefetch" title="Angular" href="angular.html" class="hidden">
+    <link rel="prefetch" title="Gutter" href="gutter.html" class="hidden">
+    <link rel="prefetch" title="Gallery" href="gallery.html" class="hidden">
+    <script>
+        ts.dox.tabs()
+    </script>
+</head>
+
+<body class="nosticky">
+    <header data-ts="TopBar"></header>
+    <main data-ts="Main">
+        <div data-ts="MainContent">
+            <article>
+                <h1><span>Clicking the cells</span></h1>
+                <section>
+                    <p>You can make the Table body <code>clickable</code>. The <code>rowindex</code> and <code>cellindex</code> refer to the indexes in the JSON arrays and not the table as shown on the screen. They are in other words not affected by <a data-ts="Button"
+                            href="/v10/dist/components/table/sorting.html">sorting</a> and <a data-ts="Button" href="/v10/dist/components/table/paging.html">paging</a> and <a data-ts="Button" href="/v10/dist/components/table/searching.html">searching</a>.</p>
+                    <div class="splitscreen-container">
+                        <ul class="splitscreen">
+                            <li>
+                                <figure data-ts="DoxScript" class="runnable" data-ts.code="var%20popup%20%3D%20ts.ui.Notification%3B%0Ats.ui.get(&apos;%23example8&apos;%2C%20function(table)%20%7B%0A%09table.rows(%5B%0A%09%09%5B&apos;A&apos;%2C%20&apos;D&apos;%2C%20&apos;G&apos;%5D%2C%0A%09%09%5B&apos;B&apos;%2C%20&apos;E&apos;%2C%20&apos;H&apos;%5D%2C%0A%09%09%5B&apos;C&apos;%2C%20&apos;F&apos;%2C%20&apos;I&apos;%5D%0A%09%5D)%3B%0A%09table.clickable(function(rowindex%2C%20cellindex)%20%7B%0A%09%09popup.success(&apos;Row%20&apos;%20%2B%20rowindex%20%2B%20&apos;%2C%20Cell%20&apos;%20%2B%20cellindex)%3B%0A%09%7D)%3B%0A%7D)%3B">
+                                    <script type="runnable">
+                                        var popup = ts.ui.Notification; ts.ui.get('#example8', table => { table.rows([ ['A', 'D', 'G'], ['B', 'E', 'H'], ['C', 'F', 'I'] ]); table.clickable(function(rowindex, cellindex) { popup.success('Row ' + rowindex + ', Cell ' + cellindex); }); });
+                                    </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                                    <div class="tabpanels">
+                                        <pre class="prism language-javascript">
+<code><span class="token keyword">var</span> popup <span class="token operator">=</span> ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Notification<span class="token punctuation">;</span>
+ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#example8&apos;</span><span class="token punctuation">,</span> table <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+	table<span class="token punctuation">.</span><span class="token function">rows<span class="token punctuation">(</span></span><span class="token punctuation">[</span>
+		<span class="token punctuation">[</span><span class="token string">&apos;A&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;D&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;G&apos;</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+		<span class="token punctuation">[</span><span class="token string">&apos;B&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;E&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;H&apos;</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+		<span class="token punctuation">[</span><span class="token string">&apos;C&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;F&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;I&apos;</span><span class="token punctuation">]</span>
+	<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	table<span class="token punctuation">.</span><span class="token function">clickable<span class="token punctuation">(</span></span><span class="token keyword">function</span><span class="token punctuation">(</span>rowindex<span class="token punctuation">,</span> cellindex<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		popup<span class="token punctuation">.</span><span class="token function">success<span class="token punctuation">(</span></span><span class="token string">&apos;Row &apos;</span> <span class="token operator">+</span> rowindex <span class="token operator">+</span> <span class="token string">&apos;, Cell &apos;</span> <span class="token operator">+</span> cellindex<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
+</pre>
+                                    </div>
+                                </figure>
+                            </li>
+                            <li>
+                                <div data-ts="Table" id="example8"></div>
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+            </article>
+        </div>
+    </main>
+</body>
+
+</html>

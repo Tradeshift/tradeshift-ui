@@ -3,7 +3,7 @@
  * (so that we can safely mess around with the styling). 
  * This should only ever be `true` while on localhost!!!
  */
-var develop = true;
+var develop = false;
 
 /*
  * Fetch the `package json` as soon as the DOM is ready.

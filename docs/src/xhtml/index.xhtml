@@ -2,32 +2,32 @@
 <html class="ts-loading">
 	<head>
 		<title>Tradeshift UI</title>
+		<link rel="icon" href="data:;base64,iVBORw0KGgo="/>
 		<script src="/dist/assets/lunr.min.js"></script>
 		${includes}
 		${menuhtml}
 		${svgicons}
 	</head>
 	<body data-ts="DoxChrome">
-		<button data-ts="Button" data-ts.type="action-open-menu" class="button-menu-open">
-			<i class="ts-icon-menuswitch"></i>
-		</button>
-		<aside data-ts="SideBar" data-ts.title="KL" class="ts-bg-dark">
-			<div data-ts="Panel">
-				<menu data-ts="DoxMenu">
-					<script type="application/json">
-						${menujson}
-					</script>
-				</menu>
-			</div>
-			<div data-ts="Footer">
-				<div data-ts="DoxVersions"></div>
-				</menu>
-			</div>
-		</aside>
-		<div id="menucover" data-ts="DoxMenuCover"></div>
-		<main data-ts="Main">
-			<button data-ts="Button" data-ts.type="action-close-menu" class="button-menu-close"></button>
-		</main>
-		<div data-ts="Spinner" data-ts.spinning="true" class="ts-topbarspinner"></div>
+		<div id="chrome">
+			<button data-ts="Button" data-ts.type="action-open-menu" class="button-menu-open">
+				<i class="ts-icon-menuswitch"></i>
+			</button>
+			<aside data-ts="SideBar" data-ts.title="KL" class="ts-bg-dark">
+				<div data-ts="Panel">
+					<menu data-ts="DoxMenu">
+						<script type="application/json">
+							${menujson}
+						</script>
+					</menu>
+				</div>
+			</aside>
+			<div id="menucover" data-ts="DoxMenuCover"></div>
+			<main data-ts="Main">
+				<button data-ts="Button" data-ts.type="action-close-menu" class="button-menu-close"></button>
+			</main>
+			<div data-ts="Spinner" data-ts.spinning="true" class="ts-topbarspinner"></div>
+		</div>
+		<iframe id="versions" src="/versions.html"></iframe>
 	</body>
 </html>

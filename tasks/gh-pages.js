@@ -45,7 +45,8 @@ function doit(done) {
 		if (semv.gt(thisversion, thatversion)) {
 			log('Updating website');
 			injectdocs('v' + parseInt(thisversion, 10));
-			updateversions('gh-pages/package.json', thatversion, thisversion);
+			var versions = updateversions('gh-pages/package.json', thatversion, thisversion);
+			updateredirect(abspath('gh-pages', 'index.html'), versions);
 			pushchanges('gh-pages', 'gh-pages-update', done);
 		} else {
 			log('Update aborted');
@@ -99,6 +100,7 @@ function injectdocs(version) {
  * @param {string} where - Path to JSON
  * @param {string} source - version before the update
  * @param {string} target - version after the update
+ * @returns {Array<string>} - returns the versions
  */
 function updateversions(where, source, target) {
 	const pkg = getpackage(where);
@@ -108,6 +110,25 @@ function updateversions(where, source, target) {
 		.concat(source === ZERO ? [target] : [])
 		.sort(semv.gt);
 	setpackage('gh-pages/package.json', pkg);
+	return pkg.versions;
+}
+
+/**
+ * Make the `gh-pages` splash page `index.html` redirect 
+ * to the newest version which is *not* a beta version.
+ * Note that only the newest version must be marked as 
+ * `beta` for this to work out, so please don't release 
+ * any beta versions of the old releases from now on.
+ */
+function updateredirect(where, versions) {
+	var vers = parseInt(
+		versions.reduce(function(res, ver) {
+			return res.includes('beta') ? ver : res;
+		}, versions[0]),
+		10
+	);
+	var html = readfile(where).replace(/URL=\/v(\d*)\//, `URL=/v${vers}/`);
+	writefile(html, where);
 }
 
 /**

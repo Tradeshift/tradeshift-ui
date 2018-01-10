@@ -23,13 +23,6 @@ ts.dox.ChromeSpirit = (function using(CSSPlugin, Then) {
 		DIALOGSON = ts.ui.BROADCAST_GLOBAL_DIALOGS_WILL_BLOCK,
 		DIALOGSOFF = ts.ui.BROADCAST_GLOBAL_DIALOGS_DID_UNBLOCK;
 
-	function getlink(node) {
-		while (node && !node.href) {
-			node = node.parentNode;
-		}
-		return node;
-	}
-
 	return ts.ui.Spirit.extend({
 		/**
 		 * Get ready.
@@ -43,7 +36,6 @@ ts.dox.ChromeSpirit = (function using(CSSPlugin, Then) {
 			this.event.add('message', window);
 			this.event.add('hashchange', window);
 			this.event.add('transitionend', this._main);
-			this.event.add('click', document, this, true);
 			this.action.add([ONDOM, ONSEARCH, MENUOPEN, MENUCLOSE]).addGlobal([TITLE, DOLOAD]);
 			this.broadcast
 				.addGlobal([TITLE, MENUON, ONROTATE, ASIDESON, ASIDESOFF, DIALOGSON, DIALOGSOFF])
@@ -152,21 +144,6 @@ ts.dox.ChromeSpirit = (function using(CSSPlugin, Then) {
 					if (this._thenclosed) {
 						this._thenclosed.now();
 						this._thenclosed = null;
-					}
-					break;
-				case 'click':
-					/*
-					 * When nested in iframe, don't change the hash locally but instead 
-					 * post the target destination to the top frame and await further 
-					 * instructions (see the case 'message' below). This to avoid adding 
-					 * "ghost entries" to the browsers history.
-					 */
-					if (nested) {
-						var link = getlink(e.target);
-						if (link) {
-							parent.postMessage(link.hash, '*');
-							e.preventDefault();
-						}
 					}
 					break;
 				case 'message':

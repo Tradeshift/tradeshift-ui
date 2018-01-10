@@ -5,6 +5,7 @@
 	"spirits/menu/ts.dox.ItemSpirit.js",
 	"spirits/menu/ts.dox.MenuCoverSpirit.js",
 	"spirits/menu/ts.dox.SubMenuSpirit.js",
+	"spirits/menu/ts.dox.VersionsSpirit.js",
 	"spirits/content/ts.dox.PrismSpirit.js",
 	"spirits/content/ts.dox.MarkupSpirit.js",
 	"spirits/content/ts.dox.JavaScriptSpirit.js",

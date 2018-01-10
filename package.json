@@ -1,6 +1,6 @@
 {
 	"name": "tradeshift-ui",
-	"version": "11.0.0-beta.0",
+	"version": "11.0.0-beta.1",
 	"private": true,
 	"description": "The Tradeshift UI Library & Framework",
 	"homepage": "https://ui.tradeshift.com/",
@@ -20,12 +20,12 @@
 	},
 	"scripts": {
 		"****** LINT *****": "",
-		"prelint": "run-p -n prettier prettier-less prettier-json",
+		"prelint": "run-p -n prettier prettier-less",
 		"lint": "yarn run eslint",
 		"eslint": "eslint --cache --config ./.eslintrc.json .",
 		"prettier": "prettier --write -l \"**/*.js\"",
 		"prettier-less": "prettier --write -l --parser postcss \"**/*.less\"",
-		"prettier-json": "prettier --write -l --parser json \"**/*.json\"",
+		"prettier-json-DISABLED": "prettier --write -l --parser json \"**/*.json\"",
 		"****** DIST *****": "",
 		"build": "grunt dist",
 		"deploy-s3": "node tasks/deploy.js",
@@ -41,28 +41,14 @@
 		"gh-pages": "node tasks/gh-pages.js"
 	},
 	"lint-staged": {
-		"*.js": [
-			"prettier",
-			"git add"
-		]
+		"*.js": ["prettier", "git add"]
 	},
 	"lint-staged_FAILING_ON_FRESH_INSTALL": {
-		"*.js": [
-			"eslint --config ./.eslintrc.json"
-		],
-		"*.json": [
-			"prettier --write --parser json",
-			"git add"
-		],
-		"*.less": [
-			"prettier --write --parser postcss",
-			"git add"
-		]
+		"*.js": ["eslint --config ./.eslintrc.json"],
+		"*.json": ["prettier --write --parser json", "git add"],
+		"*.less": ["prettier --write --parser postcss", "git add"]
 	},
-	"browserslist": [
-		"Last 2 versions",
-		"ie 11"
-	],
+	"browserslist": ["Last 2 versions", "ie 11"],
 	"devDependencies": {
 		"alce": "^1.2.0",
 		"ali-oss": "^4.10.1",

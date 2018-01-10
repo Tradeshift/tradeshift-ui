@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en-us" class="ts-docs" spellcheck="false">
+
+<head>
+    <title>Table Search</title>
+    <meta name="ts-app-title" content="Table Search">
+    <link rel="ts-app-icon" href="/v11/dist/assets/icon.svg">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-11.0.0-beta.0.min.js"></script>
+    <script src="/v11/dist/assets/dox.min.js"></script>
+    <script src="/v11/dist/assets/mark.min.js"></script>
+    <script src="/v11/dist/assets/jquery-2.2.4.min.js"></script>
+    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-11.0.0-beta.0.min.css">
+    <link rel="stylesheet" href="/v11/dist/assets/dox.css">
+    <link rel="prefetch" title="Table" href="index.html">
+    <link rel="prefetch" title="Build" href="building.html">
+    <link rel="prefetch" title="Layout" href="layouting.html">
+    <link rel="prefetch" title="Style" href="styling.html">
+    <link rel="prefetch" title="Page" href="paging.html">
+    <link rel="prefetch" title="Format" href="formatting.html">
+    <link rel="prefetch" title="Sort" href="sorting.html">
+    <link rel="prefetch" title="Click" href="clicking.html">
+    <link rel="prefetch" title="Select" href="selecting.html">
+    <link rel="prefetch" title="Search" href="searching.html">
+    <link rel="prefetch" title="Edit" href="editing.html">
+    <link rel="prefetch" title="Filter" href="filtering.html">
+    <link rel="prefetch" title="Status" href="status.html">
+    <link rel="prefetch" title="Config" href="configuring.html">
+    <link rel="prefetch" title="Collab" href="collaborate.html">
+    <link rel="prefetch" title="Actions" href="actions.html">
+    <link rel="prefetch" title="Buttons" href="buttons.html">
+    <link rel="prefetch" title="Extras" href="extras.html">
+    <link rel="prefetch" title="Demo" href="demo.html">
+    <link rel="prefetch" title="Angular" href="angular.html" class="hidden">
+    <link rel="prefetch" title="Gutter" href="gutter.html" class="hidden">
+    <link rel="prefetch" title="Gallery" href="gallery.html" class="hidden">
+    <script>
+        ts.dox.tabs()
+    </script>
+</head>
+
+<body>
+    <div data-ts="App">
+        <div data-ts="Main">
+            <div data-ts="Content">
+                <div data-ts="Panel">
+                    <article>
+                        <h1><span>Searching the columns</span></h1>
+                        <section>
+                            <p>You can setup a <code>SearchModel</code> for any column via the <code>search</code> property. We ship the Table with a built-in search mechanism, but you&apos;ll still need to call it. The Table <code>search</code> method takes
+                                a column index and the string to search for.</p>
+                            <div class="splitscreen-container">
+                                <ul class="splitscreen">
+                                    <li>
+                                        <figure data-ts="DoxScript" class="runnable" data-ts.code="%24.getJSON(&apos;assets%2Frowdata.json&apos;%2C%20function(json)%20%7B%0A%09ts.ui.get(&apos;%23example10&apos;%2C%20function(table)%20%7B%0A%09%09table.rows(json).max(4).cols(%5B%0A%09%09%09%7B%20label%3A%20&apos;ID&apos;%2C%20type%3A%20&apos;ts-number&apos;%2C%20search%3A%20%7B%0A%09%09%09%09tip%3A%20&apos;Search%20product%20ID&apos;%2C%0A%09%09%09%09onidle%3A%20function(value)%20%7B%0A%09%09%09%09%09table.search(0%2C%20value)%3B%0A%09%09%09%09%7D%0A%09%09%09%7D%7D%2C%0A%09%09%09%7B%20label%3A%20&apos;Product%20Name&apos;%2C%20flex%3A%201%2C%20search%3A%20%7B%0A%09%09%09%09tip%3A%20&apos;Search%20product%20names&apos;%2C%0A%09%09%09%09onidle%3A%20function(value)%20%7B%0A%09%09%09%09%09table.search(1%2C%20value)%3B%0A%09%09%09%09%7D%0A%09%09%09%7D%7D%0A%09%09%5D)%3B%0A%09%7D)%3B%0A%7D)%3B">
+                                            <script type="runnable">
+                                                $.getJSON('assets/rowdata.json', function(json) { ts.ui.get('#example10', table => { table.rows(json).max(4).cols([ { label: 'ID', type: 'ts-number', search: { tip: 'Search product ID', onidle: function(value) { table.search(0, value); } }}, { label:
+                                                'Product Name', flex: 1, search: { tip: 'Search product names', onidle: function(value) { table.search(1, value); } }} ]); }); });
+                                            </script>
+                                            <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                                            <div data-ts="Panel">
+                                                <pre class="prism language-javascript"><code>$<span class="token punctuation">.</span><span class="token function">getJSON<span class="token punctuation">(</span></span><span class="token string">&apos;assets/rowdata.json&apos;</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span>json<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#example10&apos;</span><span class="token punctuation">,</span> table <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+		table<span class="token punctuation">.</span><span class="token function">rows<span class="token punctuation">(</span></span>json<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">max<span class="token punctuation">(</span></span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">cols<span class="token punctuation">(</span></span><span class="token punctuation">[</span>
+			<span class="token punctuation">{</span> label<span class="token punctuation">:</span> <span class="token string">&apos;ID&apos;</span><span class="token punctuation">,</span> type<span class="token punctuation">:</span> <span class="token string">&apos;ts-number&apos;</span><span class="token punctuation">,</span> search<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+				tip<span class="token punctuation">:</span> <span class="token string">&apos;Search product ID&apos;</span><span class="token punctuation">,</span>
+				onidle<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+					table<span class="token punctuation">.</span><span class="token function">search<span class="token punctuation">(</span></span><span class="token number">0</span><span class="token punctuation">,</span> value<span class="token punctuation">)</span><span class="token punctuation">;</span>
+				<span class="token punctuation">}</span>
+			<span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+			<span class="token punctuation">{</span> label<span class="token punctuation">:</span> <span class="token string">&apos;Product Name&apos;</span><span class="token punctuation">,</span> flex<span class="token punctuation">:</span> <span class="token number">1</span><span class="token punctuation">,</span> search<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+				tip<span class="token punctuation">:</span> <span class="token string">&apos;Search product names&apos;</span><span class="token punctuation">,</span>
+				onidle<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+					table<span class="token punctuation">.</span><span class="token function">search<span class="token punctuation">(</span></span><span class="token number">1</span><span class="token punctuation">,</span> value<span class="token punctuation">)</span><span class="token punctuation">;</span>
+				<span class="token punctuation">}</span>
+			<span class="token punctuation">}</span><span class="token punctuation">}</span>
+		<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
+                                        </figure>
+                                    </li>
+                                    <li>
+                                        <div data-ts="Table" id="example10"></div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div data-ts="Note">
+                                <i class="ts-icon-info"></i>
+                                <p>The search algorithm is extremely primitive and to some degree it always will be, at least until the Table can be loaded separately from other components (because file size).</p>
+                            </div>
+                            <p>You can focus the search field if you like, either by setting the <code>focused</code> property to <code>true</code> in the JSON or by calling the <code>focus</code> method sometime later on.</p>
+                            <figure data-ts="DoxScript" class="runnable" data-ts.code="var%20table%20%3D%20ts.ui.get(&apos;%23example10&apos;)%3B%0Atable.cols()%5B1%5D.search.focus()%3B">
+                                <script type="runnable">
+                                    var table = ts.ui.get('#example10'); table.cols()[1].search.focus();
+                                </script>
+                                <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                                <div data-ts="Panel">
+                                    <pre class="prism language-javascript"><code><span class="token keyword">var</span> table <span class="token operator">=</span> ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#example10&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+table<span class="token punctuation">.</span><span class="token function">cols<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">.</span>search<span class="token punctuation">.</span><span class="token function">focus<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
+                            </figure>
+                        </section>
+                        <section>
+                            <p>Here&apos; an overview of the properties and methods of the Search model.</p>
+                            <div data-ts="DoxApi" data-ts.code="%7B%0A%09name%3A%20%22ts.ui.SearchModel%22%2C%0A%09properties%3A%20%5B%0A%09%09%7B%0A%09%09%09name%3A%20%22value%22%2C%0A%09%09%09type%3A%20%22string%22%2C%0A%09%09%09desc%3A%20%22The%20search%20field%20value.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20%22idletime%22%2C%0A%09%09%09type%3A%20%22number%22%2C%0A%09%09%09desc%3A%20%22Time%20before%20the%20user%20is%20considered%20idle.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20%22info%22%2C%0A%09%09%09type%3A%20%22string%22%2C%0A%09%09%09desc%3A%20%22The%20placeholder%20and%2For%20mouseover%20tooltip.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20%22flex%22%2C%0A%09%09%09type%3A%20%22number%22%2C%0A%09%09%09desc%3A%20%22Fill%20the%20available%20width%20of%20the%20ToolBar.%20The%20value%20should%20be%20%601%60.%22%0A%09%09%7D%0A%09%5D%2C%0A%09methods%3A%20%5B%0A%09%09%7B%0A%09%09%09name%3A%20%22onsearch%22%2C%0A%09%09%09desc%3A%20%22Called%20when%20the%20user%20presses%20ENTER.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20%22onidle%22%2C%0A%09%09%09desc%3A%20%22Called%20when%20the%20user%20pauses%20typing.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20%22onfocus%22%2C%0A%09%09%09desc%3A%20%22Called%20when%20the%20search%20field%20is%20focused.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20%22onblur%22%2C%0A%09%09%09desc%3A%20%22Called%20when%20the%20search%20field%20gets%20blurred.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20%22focus%22%2C%0A%09%09%09desc%3A%20%22Focus%20the%20search%20field.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20%22blur%22%2C%0A%09%09%09desc%3A%20%22Blur%20the%20search%20field.%22%0A%09%09%7D%0A%09%5D%0A%7D">
+                            </div>
+                        </section>
+                        <div data-ts="Note" class="sticky">
+                            <p>If you find a bug or need a feature&#x2026;</p>
+                            <menu data-ts="Buttons">
+                                <li>
+                                    <a data-ts="Button" target="_blank" href="https://github.com/Tradeshift/tradeshift-ui/issues/new" title="Submit new issue">
+		          <span>Create GitHub Issue&#x2026;</span>
+		        </a>
+                                </li>
+                            </menu>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

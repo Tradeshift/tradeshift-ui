@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en-us" class="ts-docs" spellcheck="false">
+
+<head>
+    <title>Header Tabs</title>
+    <meta name="ts-app-title" content="Header Tabs">
+    <link rel="ts-app-icon" href="/v11/dist/assets/icon.svg">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-11.0.0-beta.0.min.js"></script>
+    <script src="/v11/dist/assets/dox.min.js"></script>
+    <script src="/v11/dist/assets/mark.min.js"></script>
+    <script src="/v11/dist/assets/jquery-2.2.4.min.js"></script>
+    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-11.0.0-beta.0.min.css">
+    <link rel="stylesheet" href="/v11/dist/assets/dox.css">
+    <link rel="prefetch" title="Header" href="index.html">
+    <link rel="prefetch" title="Tabs" href="tabs.html">
+    <link rel="prefetch" title="Buttons" href="buttons.html">
+    <link rel="prefetch" title="Search" href="search.html">
+    <script>
+        ts.dox.tabs()
+    </script>
+</head>
+
+<body>
+    <div data-ts="App">
+        <div data-ts="Main">
+            <div data-ts="Content">
+                <div data-ts="Panel">
+                    <article>
+                        <section>
+                            <p>Top level navigational tabs can be mounted via the <code>tabs</code> method as shown below.</p>
+                            <figure data-ts="DoxScript" data-ts.code="ts.ui.Header.tabs(%5B%0A%09%7Blabel%3A%20&apos;One&apos;%7D%2C%0A%09%7Blabel%3A%20&apos;Two&apos;%7D%2C%0A%09%7Blabel%3A%20&apos;Three&apos;%2C%20onselect()%20%7B%0A%09%09console.log(&apos;selected&apos;)%3B%0A%09%7D%7D%0A%5D)%3B">
+                                <script type="text/html">
+                                    ts.ui.Header.tabs([ {label: 'One'}, {label: 'Two'}, {label: 'Three', onselect() { console.log('selected'); }} ]);
+                                </script>
+                                <input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
+                                <div data-ts="Panel">
+                                    <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Header<span class="token punctuation">.</span><span class="token function">tabs<span class="token punctuation">(</span></span><span class="token punctuation">[</span>
+	<span class="token punctuation">{</span>label<span class="token punctuation">:</span> <span class="token string">&apos;One&apos;</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+	<span class="token punctuation">{</span>label<span class="token punctuation">:</span> <span class="token string">&apos;Two&apos;</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+	<span class="token punctuation">{</span>label<span class="token punctuation">:</span> <span class="token string">&apos;Three&apos;</span><span class="token punctuation">,</span> <span class="token function">onselect<span class="token punctuation">(</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		console<span class="token punctuation">.</span><span class="token function">log<span class="token punctuation">(</span></span><span class="token string">&apos;selected&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span><span class="token punctuation">}</span>
+<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+                                </div>
+                            </figure>
+                            <p>&#x2014; but since the page already has tabs, we will instead append a new tab to the existing collection. If you omit the argument, you&quot;ll get the current tabs (jQuery style).</p>
+                            <figure data-ts="DoxScript" class="attention runnable" data-ts.code="var%20tabs%20%3D%20ts.ui.Header.tabs()%3B%0Atabs.push(%7B%0A%09label%3A%20&apos;Bonus%20Tab&apos;%2C%0A%09onselect%3A%20function()%20%7B%0A%09%09ts.ui.Notification.success(%60%24%7Bthis.label%7D%20selected%60)%0A%09%7D%0A%7D)%3B">
+                                <script type="runnable">
+                                    var tabs = ts.ui.Header.tabs(); tabs.push({ label: 'Bonus Tab', onselect: function() { ts.ui.Notification.success(`${this.label} selected`) } });
+                                </script>
+                                <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                                <div data-ts="Panel">
+                                    <pre class="prism language-javascript"><code><span class="token keyword">var</span> tabs <span class="token operator">=</span> ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Header<span class="token punctuation">.</span><span class="token function">tabs<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+tabs<span class="token punctuation">.</span><span class="token function">push<span class="token punctuation">(</span></span><span class="token punctuation">{</span>
+	label<span class="token punctuation">:</span> <span class="token string">&apos;Bonus Tab&apos;</span><span class="token punctuation">,</span>
+	onselect<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Notification<span class="token punctuation">.</span><span class="token function">success<span class="token punctuation">(</span></span>`$<span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span>label<span class="token punctuation">}</span> selected`<span class="token punctuation">)</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
+                            </figure>
+                        </section>
+                        <section id="tabs-desc" data-important="THIS GETS INCLUDED IN OTHER PAGES!">
+                            <p>You can use array methods like <code>push</code>, <code>pop</code>, <code>shift</code>, <code>unshift</code>, <code>splice</code> and so on to manage tabs, just note that the tabs <code>length</code> is a readonly property.
+                                Also note that tabs don&quot;t do anything by default, so what happens at <code>onselect</code> is completely up to you.</p>
+                            <h3><span>Updating tabs</span></h3>
+                            <p>We can at any time change what happens when a tab gets selected. We can also change the tab label if we like, although perhaps this could become confusing.</p>
+                            <figure data-ts="DoxScript" class="runnable" data-ts.code="var%20tabs%20%3D%20ts.ui.Header.tabs()%3B%0Atabs%5B4%5D.label%20%3D%20&apos;Choose%20Me!&apos;%3B%0Atabs%5B4%5D.onselect%20%3D%20function()%20%7B%0A%09this.label%20%3D%20&apos;Thanks!&apos;%3B%0A%7D%3B">
+                                <script type="runnable">
+                                    var tabs = ts.ui.Header.tabs(); tabs[4].label = 'Choose Me!'; tabs[4].onselect = function() { this.label = 'Thanks!'; };
+                                </script>
+                                <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                                <div data-ts="Panel">
+                                    <pre class="prism language-javascript"><code><span class="token keyword">var</span> tabs <span class="token operator">=</span> ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Header<span class="token punctuation">.</span><span class="token function">tabs<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+tabs<span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">]</span><span class="token punctuation">.</span>label <span class="token operator">=</span> <span class="token string">&apos;Choose Me!&apos;</span><span class="token punctuation">;</span>
+tabs<span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">]</span><span class="token punctuation">.</span>onselect <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	<span class="token keyword">this</span><span class="token punctuation">.</span>label <span class="token operator">=</span> <span class="token string">&apos;Thanks!&apos;</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
+                            </figure>
+                            <h3><span>Selecting tabs</span></h3>
+                            <p>We can programatically select a tab using one of these approaches.</p>
+                            <figure data-ts="DoxScript" data-ts.code="ts.ui.Header.tabs()%5B4%5D.select()%3B">
+                                <input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
+                                <div data-ts="Panel">
+                                    <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Header<span class="token punctuation">.</span><span class="token function">tabs<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">select<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+                                </div>
+                            </figure>
+                            <figure data-ts="DoxScript" data-ts.code="ts.ui.Header.tabs().selectedIndex%20%3D%201%3B">
+                                <input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
+                                <div data-ts="Panel">
+                                    <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Header<span class="token punctuation">.</span><span class="token function">tabs<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">.</span>selectedIndex <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span></code></pre>
+                                </div>
+                            </figure>
+                            <h3><span>Querying tabs</span></h3>
+                            <p>This will all become a lot easier if we give all the tabs an <code>id</code> and use <code>tabs.get()</code></p>
+                            <figure data-ts="DoxScript" class="runnable" data-ts.code="var%20tabs%20%3D%20ts.ui.Header.tabs()%3B%0Atabs.splice(4%2C%200%2C%20%7B%0A%09label%3A%20&apos;Example%20Tab&apos;%2C%0A%09id%3A%20&apos;example-tab&apos;%0A%7D)%3B%0Atabs.get(&apos;example-tab&apos;).select()%3B">
+                                <script type="runnable">
+                                    var tabs = ts.ui.Header.tabs(); tabs.splice(4, 0, { label: 'Example Tab', id: 'example-tab' }); tabs.get('example-tab').select();
+                                </script>
+                                <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                                <div data-ts="Panel">
+                                    <pre class="prism language-javascript"><code><span class="token keyword">var</span> tabs <span class="token operator">=</span> ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Header<span class="token punctuation">.</span><span class="token function">tabs<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+tabs<span class="token punctuation">.</span><span class="token function">splice<span class="token punctuation">(</span></span><span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+	label<span class="token punctuation">:</span> <span class="token string">&apos;Example Tab&apos;</span><span class="token punctuation">,</span>
+	id<span class="token punctuation">:</span> <span class="token string">&apos;example-tab&apos;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+tabs<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;example-tab&apos;</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">select<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
+                            </figure>
+                            <h3><span>Tabs icons</span></h3>
+                            <p>You can add a tab with an <a data-ts="Button" href="/v11/dist/components/icons/css.html">icon</a> if somehow that tab is special.</p>
+                            <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.Header.tabs().push%20(%7B%0A%09label%3A%20&apos;Icon%20Tab&apos;%2C%0A%09icon%3A%20&apos;ts-icon-todo&apos;%0A%7D)%3B">
+                                <script type="runnable">
+                                    ts.ui.Header.tabs().push ({ label: 'Icon Tab', icon: 'ts-icon-todo' });
+                                </script>
+                                <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                                <div data-ts="Panel">
+                                    <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Header<span class="token punctuation">.</span><span class="token function">tabs<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">.</span>push <span class="token punctuation">(</span><span class="token punctuation">{</span>
+	label<span class="token punctuation">:</span> <span class="token string">&apos;Icon Tab&apos;</span><span class="token punctuation">,</span>
+	icon<span class="token punctuation">:</span> <span class="token string">&apos;ts-icon-todo&apos;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
+                            </figure>
+                            <h3><span>Tab counters</span></h3>
+                            <p>You can add a counter to the tabs for whatever reason you like.</p>
+                            <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.Header.tabs().forEach(function(tab)%7B%0A%09tab.counter%20%3D%20Math.ceil(Math.random()%20*%2010)%3B%0A%7D)%3B">
+                                <script type="runnable">
+                                    ts.ui.Header.tabs().forEach(function(tab){ tab.counter = Math.ceil(Math.random() * 10); });
+                                </script>
+                                <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                                <div data-ts="Panel">
+                                    <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Header<span class="token punctuation">.</span><span class="token function">tabs<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">forEach<span class="token punctuation">(</span></span><span class="token keyword">function</span><span class="token punctuation">(</span>tab<span class="token punctuation">)</span><span class="token punctuation">{</span>
+	tab<span class="token punctuation">.</span>counter <span class="token operator">=</span> Math<span class="token punctuation">.</span><span class="token function">ceil<span class="token punctuation">(</span></span>Math<span class="token punctuation">.</span><span class="token function">random<span class="token punctuation">(</span></span><span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
+                            </figure>
+                            <p>When the counter reaches zero, it disappears.</p>
+                            <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.Header.tabs().forEach(function(tab)%7B%0A%09tab.counter%20--%3B%0A%7D)%3B">
+                                <script type="runnable">
+                                    ts.ui.Header.tabs().forEach(function(tab){ tab.counter --; });
+                                </script>
+                                <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                                <div data-ts="Panel">
+                                    <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Header<span class="token punctuation">.</span><span class="token function">tabs<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">forEach<span class="token punctuation">(</span></span><span class="token keyword">function</span><span class="token punctuation">(</span>tab<span class="token punctuation">)</span><span class="token punctuation">{</span>
+	tab<span class="token punctuation">.</span>counter <span class="token operator">--</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
+                            </figure>
+                            <h3><span>Closeable tabs</span></h3>
+                            <p>You can create closeable tabs, but note that the tab must be selected before it can be closed. You can <code>return false</code> in the <code>onclose</code> method to prevent the tab from closing (if this would otherwise cause
+                                data loss).</p>
+                            <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.Header.tabs().push%20(%7B%0A%09label%3A%20&apos;Closeable%20Tab&apos;%2C%0A%09closeable%3A%20true%2C%0A%09selected%3A%20true%2C%0A%09onclose%20%3A%20function()%20%7B%0A%09%09ts.ui.Notification.success(this.label%20%2B%20&apos;%20closed&apos;)%3B%0A%09%7D%2C%0A%7D)%3B">
+                                <script type="runnable">
+                                    ts.ui.Header.tabs().push ({ label: 'Closeable Tab', closeable: true, selected: true, onclose : function() { ts.ui.Notification.success(this.label + ' closed'); }, });
+                                </script>
+                                <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                                <div data-ts="Panel">
+                                    <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Header<span class="token punctuation">.</span><span class="token function">tabs<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">.</span>push <span class="token punctuation">(</span><span class="token punctuation">{</span>
+	label<span class="token punctuation">:</span> <span class="token string">&apos;Closeable Tab&apos;</span><span class="token punctuation">,</span>
+	closeable<span class="token punctuation">:</span> <span class="token keyword">true</span><span class="token punctuation">,</span>
+	selected<span class="token punctuation">:</span> <span class="token keyword">true</span><span class="token punctuation">,</span>
+	onclose <span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Notification<span class="token punctuation">.</span><span class="token function">success<span class="token punctuation">(</span></span><span class="token keyword">this</span><span class="token punctuation">.</span>label <span class="token operator">+</span> <span class="token string">&apos; closed&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
+                            </figure>
+                            <h3><span>New-Tab button</span></h3>
+                            <p>You can allow the user to create new tabs via a special button as seen in popular browsers. Note that the button just triggers a callback and that the new tab must be created manually. In the example below, the <code>selected</code>                                property also selects the tab.</p>
+                            <figure data-ts="DoxScript" class="runnable" data-ts.code="var%20tabs%20%3D%20ts.ui.Header.tabs()%3B%0Atabs.showNew(function%20onclick()%20%7B%0A%09tabs.push(%7B%0A%09%09label%3A%20&apos;My%20New%20Tab&apos;%2C%0A%09%09selected%3A%20true%0A%09%7D)%3B%0A%7D)%3B">
+                                <script type="runnable">
+                                    var tabs = ts.ui.Header.tabs(); tabs.showNew(function onclick() { tabs.push({ label: 'My New Tab', selected: true }); });
+                                </script>
+                                <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                                <div data-ts="Panel">
+                                    <pre class="prism language-javascript"><code><span class="token keyword">var</span> tabs <span class="token operator">=</span> ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Header<span class="token punctuation">.</span><span class="token function">tabs<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+tabs<span class="token punctuation">.</span><span class="token function">showNew<span class="token punctuation">(</span></span><span class="token keyword">function</span> <span class="token function">onclick<span class="token punctuation">(</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	tabs<span class="token punctuation">.</span><span class="token function">push<span class="token punctuation">(</span></span><span class="token punctuation">{</span>
+		label<span class="token punctuation">:</span> <span class="token string">&apos;My New Tab&apos;</span><span class="token punctuation">,</span>
+		selected<span class="token punctuation">:</span> <span class="token keyword">true</span>
+	<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
+                            </figure>
+                            <p>If you regret this later on, you can also hide the button.</p>
+                            <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.Header.tabs().hideNew()%3B">
+                                <script type="runnable">
+                                    ts.ui.Header.tabs().hideNew();
+                                </script>
+                                <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                                <div data-ts="Panel">
+                                    <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Header<span class="token punctuation">.</span><span class="token function">tabs<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">hideNew<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
+                            </figure>
+                        </section>
+                        <section id="tabs-api" data-important="THIS GETS INCLUDED IN OTHER PAGES!">
+                            <p>Here&quot;s a summary of the <code>tabs</code> collection and <code>tab</code> model.</p>
+                            <div data-ts="DoxApi" data-ts.code="%7B%0A%09name%3A%20%22ts.ui.TabCollection%22%2C%0A%09properties%3A%20%5B%0A%09%09%7B%0A%09%09%09name%3A%20%22selectedIndex%22%2C%0A%09%09%09type%3A%20%22number%22%2C%0A%09%09%09desc%3A%20%22Get%20or%20set%20selected%20index.%22%0A%09%09%7D%0A%09%5D%2C%0A%09methods%3A%20%5B%0A%09%09%7B%0A%09%09%09name%3A%20%22push%22%2C%0A%09%09%09args%3A%20%22o1%2C%20o2%2C%20...%22%2C%0A%09%09%09desc%3A%20%22Add%20tab(s)%20to%20the%20end%20of%20the%20collection.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20%22unshift%22%2C%0A%09%09%09args%3A%20%22o1%2C%20o2%2C%20...%22%2C%0A%09%09%09desc%3A%20%22Add%20tab(s)%20to%20the%20front%20of%20the%20collection.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20%22pop%22%2C%0A%09%09%09desc%3A%20%22Remove%20and%20return%20the%20last%20tab.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20%22shift%22%2C%0A%09%09%09desc%3A%20%22Remove%20and%20return%20the%20first%20tab.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20%22splice%22%2C%0A%09%09%09args%3A%20%22i%2C%20d%2C%20o1%2C%20o2%2C%20...%22%2C%0A%09%09%09desc%3A%20%22Insert%20tab(s)%20at%20%60i%60%2C%20optionally%20deleting%20%60d%60%20amount%20of%20tabs.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20%22get%22%2C%0A%09%09%09args%3A%20%22string%7Cnumber%22%2C%0A%09%09%09desc%3A%20%22Get%20tab%20by%20%60id%60%20or%20numeric%20index.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20%22clear%22%2C%0A%09%09%09desc%3A%20%22Remove%20all%20tabs.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20%22showNew%22%2C%0A%09%09%09args%3A%20%22(function)%22%2C%0A%09%09%09desc%3A%20%22Show%20New-Tab%20button%20with%20an%20onclick%20callback.%20Use%20%60hideNew()%60%20to%20hide%20the%20button.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20%22onselect%22%2C%0A%09%09%09args%3A%20%22number%2C%20number%22%2C%0A%09%09%09desc%3A%20%22Open%20for%20implementation%3A%20Called%20whenever%20the%20selected%20index%20changes%20with%20two%20parameters%20%60newindex%60%20and%20%60oldindex%60.%22%0A%09%09%7D%0A%09%5D%0A%7D">
+                            </div>
+                            <div data-ts="DoxApi" data-ts.code="%7B%0A%09name%3A%20%22ts.ui.TabModel%22%2C%0A%09properties%3A%20%5B%0A%09%09%7B%0A%09%09%09name%3A%20%22id%22%2C%0A%09%09%09type%3A%20%22string%22%2C%0A%09%09%09desc%3A%20%22Optional%20tab%20%60id%60.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20%22label%22%2C%0A%09%09%09type%3A%20%22string%22%2C%0A%09%09%09desc%3A%20%22The%20tab%20label.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20%22icon%22%2C%0A%09%09%09type%3A%20%22string%22%2C%0A%09%09%09desc%3A%20%22The%20tab%20icon.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20%22selected%22%2C%0A%09%09%09type%3A%20%22boolean%22%2C%0A%09%09%09desc%3A%20%22Get%20or%20set%20selected%20status.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20%22closeable%22%2C%0A%09%09%09type%3A%20%22boolean%22%2C%0A%09%09%09desc%3A%20%22Tab%20can%20be%20closed%3F%20See%20also%20%60onclose%60%22%0A%09%09%7D%0A%09%5D%2C%0A%09methods%3A%20%5B%0A%09%09%7B%0A%09%09%09name%3A%20%22select%22%2C%0A%09%09%09desc%3A%20%22Select%20the%20tab.%20This%20will%20unselect%20some%20other%20tab.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20%22onselect%22%2C%0A%09%09%09desc%3A%20%22Called%20whenever%20the%20tab%20gets%20selected.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20%22onclose%22%2C%0A%09%09%09desc%3A%20%22Called%20whenever%20the%20tab%20gets%20closed.%22%0A%09%09%7D%0A%09%5D%0A%7D">
+                            </div>
+                        </section>
+                        <div data-ts="Note" class="sticky">
+                            <p>If you find a bug or need a feature&#x2026;</p>
+                            <menu data-ts="Buttons">
+                                <li>
+                                    <a data-ts="Button" target="_blank" href="https://github.com/Tradeshift/tradeshift-ui/issues/new" title="Submit new issue">
+		          <span>Create GitHub Issue&#x2026;</span>
+		        </a>
+                                </li>
+                            </menu>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<html lang="en-us" class="ts-docs" spellcheck="false">
+
+</html>
+
+</html>

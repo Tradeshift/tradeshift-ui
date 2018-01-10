@@ -1,0 +1,16 @@
+article {
+  max-width: 100%;
+}
+#doc-colors-demo td {
+  padding: 11px 22px;
+  white-space: nowrap;
+}
+#doc-colors-demo td code {
+  font-size: 12px;
+}
+#doc-colors-demo td:nth-child(n + 4) {
+  color: white;
+}
+#doc-colors-demo tr:first-child td:nth-child(2) {
+  color: white;
+}

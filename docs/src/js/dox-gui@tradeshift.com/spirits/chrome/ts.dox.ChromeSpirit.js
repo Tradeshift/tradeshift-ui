@@ -80,7 +80,6 @@ ts.dox.ChromeSpirit = (function using(CSSPlugin, Then) {
 					this._openmenu(true);
 					break;
 				case MENUCLOSE:
-					alert('!');
 					this._openmenu(false);
 					break;
 				case DOLOAD:

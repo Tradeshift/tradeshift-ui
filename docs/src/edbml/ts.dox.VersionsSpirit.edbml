@@ -1,0 +1,21 @@
+<!DOCTYPE edbml>
+<script>
+	<?param name="json"?>
+	if (json) {
+		if (json.version === json.versions[0]) {
+			<p>Yearh!</p>
+		} else {
+			<p>No! ${json.version}</p>
+		}
+		<form data-ts="Form">
+			<fieldset>
+				<select data-ts.custom="true">
+					json.versions.forEach(function(version) {
+						@selected = version === json.version;
+						<option @selected>${version}</option>
+					});
+				</select>
+			</fieldset>
+		</form>
+	}
+</script>

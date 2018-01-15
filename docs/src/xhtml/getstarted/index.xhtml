@@ -8,7 +8,7 @@
 				var version =  ts.ui.version;
 				var figure = document.querySelector('figure');
 				var markup = figure.innerHTML;
-				figure.innerHTML = markup.replace('${ts.ui.version}', version);
+				figure.innerHTML = markup.replace(/\${ts.ui.version}/g, version);
 			});
 		</script>
 	</head>

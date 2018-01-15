@@ -53,6 +53,7 @@
 			['[data-ts=DoxItem]', ts.dox.ItemSpirit],
 			['[data-ts=DoxSubMenu]', ts.dox.SubMenuSpirit],
 			['[data-ts=DoxMenuCover]', ts.dox.MenuCoverSpirit],
+			['[data-ts=DoxVersions]', ts.dox.VersionsSpirit],
 			['[data-ts=DoxMarkup]', ts.dox.MarkupSpirit],
 			['[data-ts=DoxScript]', ts.dox.JavaScriptSpirit],
 			['[data-ts=DoxApi]', ts.dox.ApiTableSpirit],
@@ -122,6 +123,7 @@
 		 * @param {string} pattern
 		 */
 		_debugmetrics: function(pattern) {
+			/*
 			if (top.location.search.includes(pattern)) {
 				var times = gui.$measurements().sort(function(a, b) {
 					return b.duration >= a.duration ? 1 : -1;
@@ -148,6 +150,7 @@
 					}
 				}
 			}
+			*/
 		}
 	});
 })();

@@ -500,6 +500,32 @@ table.api th {
 .ts-mobile-only .doc-intro .intro-container .intro-img {
   display: none;
 }
+.ts-doxchrome {
+  /*
+	.ts-sidebar,
+	.ts-main {
+		top: 30px;
+	}
+	*/
+}
+.ts-doxchrome #chrome {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  top: 30px;
+  display: flex;
+  flex-direction: row;
+}
+.ts-doxchrome #versions {
+  height: 30px;
+  border: none;
+  position: absolute;
+  top: 0;
+  z-index: 10000;
+  width: 100%;
+}
 .ts-doxchrome .ts-sidebar,
 .ts-doxchrome .ts-topbarspinner {
   visibility: hidden;

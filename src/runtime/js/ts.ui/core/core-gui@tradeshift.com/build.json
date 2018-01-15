@@ -17,7 +17,7 @@
 	"spirits/icons/ts.ui.NextIconSpirit.js",
 	"spirits/iframes/ts.ui.FrameSpirit.js",
 	"spirits/iframes/ts.ui.MainFrameSpirit.js",
-	
+
 	"spirits/buttons/ts.ui.ButtonSpirit.js",
 	"spirits/buttons/ts.ui.ButtonMenuSpirit.js",
 	"spirits/buttons/ts.ui.LinkSpirit.js",

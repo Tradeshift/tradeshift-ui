@@ -7,8 +7,7 @@
 	} else {
 		renderItems(menu.items);
 	}
-
-
+	
 	// Menu mode .................................................................
 	
 	function renderItems(items) {

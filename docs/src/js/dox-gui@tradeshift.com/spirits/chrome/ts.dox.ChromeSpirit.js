@@ -32,6 +32,7 @@ ts.dox.ChromeSpirit = (function using(CSSPlugin, Then) {
 			this._menu = this.dom.q('.ts-menu', ts.dox.MenuSpirit);
 			this._main = this.dom.q('.ts-main', ts.ui.MainSpirit);
 			this._menu.life.add(gui.LIFE_RENDER, this);
+			this.event.add('message', window);
 			this.event.add('hashchange', window);
 			this.event.add('transitionend', this._app);
 			this.action.add([ONDOM, ONSEARCH, MENUOPEN, MENUCLOSE]).addGlobal([TITLE, DOLOAD]);
@@ -137,11 +138,17 @@ ts.dox.ChromeSpirit = (function using(CSSPlugin, Then) {
 		 */
 		onevent: function(e) {
 			this.super.onevent(e);
+			var nested = window !== top;
 			switch (e.type) {
 				case 'transitionend':
 					if (this._thenclosed) {
 						this._thenclosed.now();
 						this._thenclosed = null;
+					}
+					break;
+				case 'message':
+					if (nested && e.data.startsWith('#')) {
+						this._onhashchange(e.data);
 					}
 					break;
 				case 'hashchange':

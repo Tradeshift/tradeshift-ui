@@ -64,6 +64,55 @@ ts.ui.MajorBarSpirit = (function(ToolBarSpirit, chained) {
 			}
 		},
 
+		/**
+		 * @returns {this}
+		 */
+		hide: chained(function() {
+			this.visible = false;
+		}),
+
+		/**
+		 * @returns {this}
+		 */
+		show: chained(function() {
+			this.visible = true;
+		}),
+
+		// Privileged ..............................................................
+
+		/**
+		 * The system will call this in mobile breakpoint upon SideBar open.
+		 * @param {boolean} now - Skip the transition?
+		 * @returns {this}
+		 */
+		$fadeOut: chained(function(now) {
+			if (now) {
+				this.dom.hide();
+			} else {
+				this.css.opacity = 0;
+				this.tick.time(function() {
+					this.dom.hide();
+				}, 30);
+			}
+		}),
+
+		/**
+		 * The system will call this in mobile breakpoint upon SideBar closed.
+		 * @param {boolean} now - Skip the transition?
+		 * @returns {this}
+		 */
+		$fadeIn: chained(function(now) {
+			if (now) {
+				this.css.opacity = 1;
+				this.dom.show();
+			} else {
+				this.dom.show();
+				this.tick.time(function() {
+					this.css.opacity = 1;
+				}, 30);
+			}
+		}),
+
 		// Private .................................................................
 
 		/**

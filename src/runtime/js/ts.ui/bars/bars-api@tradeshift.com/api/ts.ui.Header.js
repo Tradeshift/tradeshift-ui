@@ -22,7 +22,32 @@ ts.ui.Header = (function using(chained) {
 	}
 
 	/**
+	 * Observe the {ts.ui.LayoutModel} to hide the header 
+	 * in mobile breakpoint whenever a SideBar is opened.
+	 * This could unfortunately not be solved by z-index :/
+	 */
+	ts.ui.ready(function() {
+		var model = ts.ui.LayoutModel.output.get();
+		model.addObserver({
+			onchange: function(changes) {
+				changes.forEach(function(c) {
+					if (c.name === 'sidebaropen') {
+						if (bar.spirit && ismobile()) {
+							if (c.newValue === true) {
+								bar.spirit.$fadeOut();
+							} else {
+								bar.spirit.$fadeIn();
+							}
+						}
+					}
+				});
+			}
+		});
+	});
+
+	/**
 	 * Setup to show the burger button (instead of the app icon) in mobile breakpoint.
+	 * When switching out of mobile breakpoints, make sure that the header is visible.
 	 * @param {ts.ui.HeaderBarSpirit} bar
 	 * @returns {ts.ui.HeaderBarSpirit}
 	 */
@@ -39,8 +64,16 @@ ts.ui.Header = (function using(chained) {
 					bar.$scroll(0);
 				}
 			}
+			function sidebar() {
+				if (!ismobile()) {
+					bar.$fadeIn(true);
+				}
+			}
 			if (ts.ui.appframe) {
-				document.addEventListener('ts-breakpoint', burger);
+				document.addEventListener('ts-breakpoint', function() {
+					sidebar();
+					burger();
+				});
 				burger();
 			}
 		});
@@ -108,6 +141,20 @@ ts.ui.Header = (function using(chained) {
 			} else {
 				return bar().search();
 			}
+		}),
+
+		/**
+		 * @returns {this}
+		 */
+		hide: chained(function() {
+			console.log('TODO: hide');
+		}),
+
+		/**
+		 * @returns {this}
+		 */
+		show: chained(function() {
+			console.log('TODO: show');
 		}),
 
 		/**

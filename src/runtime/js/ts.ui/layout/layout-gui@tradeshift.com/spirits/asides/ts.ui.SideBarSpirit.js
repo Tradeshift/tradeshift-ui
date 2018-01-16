@@ -14,6 +14,14 @@ ts.ui.SideBarSpirit = (function using(LayoutSpirit, Type, Client, CSSPlugin, cha
 		willclose = ts.ui.ACTION_ASIDE_WILL_CLOSE,
 		didclose = ts.ui.ACTION_ASIDE_DID_CLOSE;
 
+	/**
+	 * Does not exist on startup (for legacy reasons).
+	 * @returns {ts.ui.LayoutModel}
+	 */
+	function layoutmodel() {
+		return ts.ui.LayoutModel.output.get();
+	}
+
 	return ts.ui.SideShowSpirit.extend({
 		/**
 		 * Open by default.
@@ -70,6 +78,9 @@ ts.ui.SideBarSpirit = (function using(LayoutSpirit, Type, Client, CSSPlugin, cha
 		ondetach: function() {
 			this.super.ondetach();
 			this._layout(false);
+			if (this.isOpen) {
+				layoutmodel().sidebaropen = false;
+			}
 		},
 
 		/**
@@ -96,6 +107,7 @@ ts.ui.SideBarSpirit = (function using(LayoutSpirit, Type, Client, CSSPlugin, cha
 		 */
 		$onopen: function() {
 			if (this._autoclose) {
+				layoutmodel().sidebaropen = true;
 				this.super.$onopen();
 			}
 		},
@@ -105,6 +117,7 @@ ts.ui.SideBarSpirit = (function using(LayoutSpirit, Type, Client, CSSPlugin, cha
 		 */
 		$onclose: function() {
 			if (this._autoclose) {
+				layoutmodel().sidebaropen = false;
 				this.super.$onclose();
 			}
 		},
@@ -167,8 +180,9 @@ ts.ui.SideBarSpirit = (function using(LayoutSpirit, Type, Client, CSSPlugin, cha
 				this._closebutton(is);
 				if (is) {
 					this.isOpen = false;
-					this._position(100);
 					this.dom.hide();
+					this._position(100);
+					layoutmodel().sidebaropen = false;
 				} else {
 					this.isOpen = true;
 					this._position(0);

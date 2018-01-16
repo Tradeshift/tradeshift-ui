@@ -36,6 +36,12 @@ ts.ui.LayoutModel = ts.ui.Model.extend(
 		menuopen: false,
 
 		/**
+		 * SideBar is open? This information is relevant for the mobile breakpoint.
+		 * @type {boolean}
+		 */
+		sidebaropen: false,
+
+		/**
 		 * Someone is busy doing something that blocks the UI?
 		 * TODO(jmo@): We are currently not maintaining this boolean right.
 		 * @see {ts.ui.StatusPlugin}

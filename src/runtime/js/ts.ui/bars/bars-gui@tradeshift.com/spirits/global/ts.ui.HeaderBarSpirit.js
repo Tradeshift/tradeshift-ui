@@ -4,6 +4,17 @@
  * @using {gui.Combo#chained} chained
  */
 ts.ui.HeaderBarSpirit = (function using(chained) {
+	/**
+	 * Special setup for burger, back and forward buttons.
+	 * @param {ts.ui.HeaderBarModel} model
+	 * @param {string} method
+	 * @param {Arguments} args
+	 * @returns {ts.ui.ButtonModel|undefined}
+	 */
+	function specialbutton(model, method, args) {
+		return model[method].apply(model, args);
+	}
+
 	return ts.ui.MajorBarSpirit.extend(
 		{
 			/*
@@ -81,11 +92,30 @@ ts.ui.HeaderBarSpirit = (function using(chained) {
 			}),
 
 			/**
-			 * Show the dedicated burger button? Use `null` to hide it again.
+			 * Show the dedicated burger button. Pass `null` to hide it again.
 			 * @param {Function|null} callback
+			 * @returns {this|ts.ui.ButtonModel}
 			 */
 			burgerbutton: chained(function(callback) {
-				return this.model().burgerbutton.apply(this.model(), arguments);
+				return specialbutton(this.model(), 'burgerbutton', arguments);
+			}),
+
+			/**
+			 * Show the dedicated Back button. Pass `null` to hide it again.
+			 * @param {Function|null} callback
+			 * @returns {this|ts.ui.ButtonModel}
+			 */
+			backbutton: chained(function(onclick) {
+				return specialbutton(this.model(), 'backbutton', arguments);
+			}),
+
+			/**
+			 * Show the dedicated Forward button. Pass `null` to hide it again.
+			 * @param {Function|null} callback
+			 * @returns {this|ts.ui.ButtonModel}
+			 */
+			forwardbutton: chained(function(onclick) {
+				return specialbutton(this.model(), 'forwardbutton', arguments);
 			}),
 
 			/**

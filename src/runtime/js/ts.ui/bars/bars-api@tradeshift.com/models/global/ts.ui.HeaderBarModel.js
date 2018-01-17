@@ -117,18 +117,41 @@ ts.ui.HeaderBarModel = (function using(ToolBarModel, SearchModel, chained) {
 		 * @returns {this|ts.ui.ButtonModel}
 		 */
 		burgerbutton: chained(function(onclick) {
-			if (onclick === null) {
-				this.headerbar.burgerbutton = null;
-			} else if (onclick) {
-				this.headerbar.burgerbutton = {
-					onclick: onclick
-				};
-			} else {
-				return this.centerbar.burgerbutton;
-			}
+			return this._specialbutton(this.headerbar, 'burgerbutton', onclick);
+		}),
+
+		/** 
+		 * The dedicated back button.
+		 * @returns {this|ts.ui.ButtonModel}
+		 */
+		backbutton: chained(function(onclick) {
+			return this._specialbutton(this.headerbar, 'backbutton', onclick);
+		}),
+
+		/**
+		 * The dedicated forward button.
+		 * @returns {this|ts.ui.ButtonModel}
+		 */
+		forwardbutton: chained(function(onclick) {
+			return this._specialbutton(this.headerbar, 'forwardbutton', onclick);
 		}),
 
 		// Privileged ..............................................................
+
+		/**
+		 * @returns {ts.ui.ButtonModel|undefined}
+		 */
+		_specialbutton: function(bar, button, onclick) {
+			if (onclick === null) {
+				bar[button] = null;
+			} else if (onclick) {
+				bar[button] = {
+					onclick: onclick
+				};
+			} else {
+				return bar[button];
+			}
+		},
 
 		/**
 		 * Show any bars at all (although this method is not really used anywhere)?

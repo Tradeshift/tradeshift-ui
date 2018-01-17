@@ -15,10 +15,11 @@
 		toolbar.title || (topbar ? toolbar.defaultTitle : ''),
 		toolbar.icon,
 		toolbar.burgerbutton,
+		toolbar.backbutton,
+		toolbar.forwardbutton,
 		toolbar.status,
 		toolbar.search,
 		toolbar.tabs,
-		toolbar.navigation,
 		toolbar.checkbox,
 		toolbar.$allactions()
 	);
@@ -28,10 +29,9 @@
 	} else {
 		rendernormalbuttons(id, toolbar.$allbuttons());
 	}
-	// renderspinner(topbar && mobilos);
 	
-	function renderleft(title, icon, burger, status, search, tabs, navigation, checkbox, actions) {
-		var hasnavi = !!(topbar && navigation && navigation.getLength());
+	function renderleft(title, icon, burger, back, forward, status, search, tabs, checkbox, actions) {
+		var hasnavi = back || forward;
 		var hastabs = !!tabs.getLength();
 		var hasactions = !!actions.length;
 		if(mobilos || status || search || checkbox || hasactions || hastabs || hasnavi || (topbar ? hasrealtitle : title)) {
@@ -39,16 +39,13 @@
 				renderTabs(spirit, tabs, id, mobilos);
 			}
 			<menu id="${id}-items" class="ts-toolbar-menu ts-left">
-				if(topbar) {
-					renderNav(navigation);
-				}
+				back && renderspecialbutton(back, 'back');
+				forward && renderspecialbutton(forward, 'forward');
 				if(!mobilos && hastabs && !hasnavi) {
 					renderTabs(spirit, tabs, id, mobilos);
 				} else {
 					if(burger) {
-						<li id="${id}-burger" class="ts-toolbar-item ts-toolbar-burger">
-							out.html += burger.render();
-						</li>
+						renderspecialbutton(burger, 'burger');
 					} else if(icon) {
 						<li id="${id}-icon" class="ts-toolbar-item ts-toolbar-icon">
 							<img src="${icon}" width="44" height="44"/>
@@ -91,6 +88,12 @@
 	
 	function showPager(pager) {
 		return !!(statusbar && pager && pager.pages && pager.visible);
+	}
+
+	function renderspecialbutton(button, string) {
+		<li id="${id}-${string}" class="ts-toolbar-item ts-toolbar-${string}">
+			out.html += button.render();
+		</li>
 	}
 
 	function rendernormalbuttons(id, buttons) {
@@ -219,37 +222,5 @@
 	function using(search) {
 		return search && (search.focused || search.value || search.flex);
 	}
-	
-	
-	// SPINNER ...................................................................
-	
-	/*
-	// in the TopBar, we'll render the Spinner in mobile brakpoint.
-	function renderspinner(on) {
-		@id = id + '-spinner';
-		@class = 'ts-topbarspinner';
-		if(on) {
-			<div data-ts="Spinner" @id @class data-ts.spinning="true"></div>
-		}
-	}
-	*/
-
-		
-	// BACK/FORWARD/MENUTOGGLE ...................................................
-
-	// render back and forward buttons
-	function renderNav(navbuttons) {
-		if(navbuttons.getLength() || mobilos) {
-			menubutton(navbuttons).forEach(renderbutton);
-		}
-	}
-
-	// inject the menubutton in mobile
-	// TODO(jmo@): edb.Array.concat should return simple Array!!!!!!!!!!!!!!!!!!!!
-	function menubutton(navbuttons) {
-		var buttons = mobilos ? [toolbar.menubutton] : [];
-		return buttons.concat(gui.Array.from(navbuttons));
-	}
-
 
 </script>

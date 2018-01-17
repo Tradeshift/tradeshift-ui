@@ -6,6 +6,20 @@
  * @using {Class<ts.ui.CheckBoxModel} CheckBoxModel
  */
 ts.ui.ToolBarModel = (function using(chained, ButtonModel, CheckBoxModel) {
+	/**
+	 * @param {Object|null} json
+	 * @param {string} icon
+	 * @returns {ButtonModel|null}
+	 */
+	function specialbutton(json, icon) {
+		if (json) {
+			json = ButtonModel.from(json);
+			json.type = 'ts-tertiary ts-noborder';
+			json.icon = icon;
+		}
+		return json;
+	}
+
 	return ts.ui.BarModel.extend({
 		/**
 		 * Friendly name.
@@ -131,12 +145,33 @@ ts.ui.ToolBarModel = (function using(chained, ButtonModel, CheckBoxModel) {
 				return this.actualburgerbutton;
 			},
 			setter: function(json) {
-				if (json) {
-					json = ButtonModel.from(json);
-					json.icon = 'ts-icon-menuswitch';
-					json.type = 'ts-tertiary ts-noborder';
-				}
-				this.actualburgerbutton = json;
+				this.actualburgerbutton = specialbutton(json, 'ts-icon-menuswitch');
+			}
+		},
+
+		/**
+		 * Dedicated Back button.
+		 * @type {ts.ui.ButtonModel}
+		 */
+		backbutton: {
+			getter: function() {
+				return this.actualbackbutton;
+			},
+			setter: function(json) {
+				this.actualbackbutton = specialbutton(json, 'ts-icon-arrowleft');
+			}
+		},
+
+		/**
+		 * Dedicated Forward button.
+		 * @type {ts.ui.ButtonModel}
+		 */
+		forwardbutton: {
+			getter: function() {
+				return this.actualforwardbutton;
+			},
+			setter: function(json) {
+				this.actualforwardbutton = specialbutton(json, 'ts-icon-arrowright');
 			}
 		},
 
@@ -170,6 +205,18 @@ ts.ui.ToolBarModel = (function using(chained, ButtonModel, CheckBoxModel) {
 		 * @type {ts.ui.ButtonModel}
 		 */
 		actualburgerbutton: null,
+
+		/**
+		 * (woraround bug in EDBML spec)
+		 * @type {ts.ui.ButtonModel}
+		 */
+		actualbackbutton: null,
+
+		/**
+		 * (woraround bug in EDBML spec)
+		 * @type {ts.ui.ButtonModel}
+		 */
+		actualforwardbutton: null,
 
 		/**
 		 * (woraround bug in EDBML spec, quite embaressing by now)

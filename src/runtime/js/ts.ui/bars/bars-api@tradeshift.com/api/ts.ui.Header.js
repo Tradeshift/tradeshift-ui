@@ -132,6 +132,30 @@ ts.ui.Header = (function using(chained) {
 		}),
 
 		/**
+		 * Get or set the Back button.
+		 * @param {Function|null} onclick - use `null` to hide the button
+		 */
+		backbutton: chained(function(onclick) {
+			if (arguments.length) {
+				bar().backbutton(onclick);
+			} else {
+				return bar().backbutton();
+			}
+		}),
+
+		/**
+		 * Get or set the Forward button.
+		 * @param {Function|null} onclick - use `null` to hide the button
+		 */
+		forwardbutton: chained(function(onclick) {
+			if (arguments.length) {
+				bar().forwardbutton(onclick);
+			} else {
+				return bar().forwardbutton();
+			}
+		}),
+
+		/**
 		 * @param {Object|ts.ui.SearchModel} [search]
 		 * @returns {this|ts.ui.SearchModel}
 		 */

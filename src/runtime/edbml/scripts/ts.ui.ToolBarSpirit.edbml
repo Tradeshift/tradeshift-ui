@@ -35,13 +35,10 @@
 		var hastabs = !!tabs.getLength();
 		var hasactions = !!actions.length;
 		if(mobilos || status || search || checkbox || hasactions || hastabs || hasnavi || (topbar ? hasrealtitle : title)) {
-			if(mobilos && hastabs) {
-				renderTabs(spirit, tabs, id, mobilos);
-			}
 			<menu id="${id}-items" class="ts-toolbar-menu ts-left">
 				back && renderspecialbutton(back, 'back');
 				forward && renderspecialbutton(forward, 'forward');
-				if(!mobilos && hastabs && !hasnavi) {
+				if(hastabs && !hasnavi) {
 					renderTabs(spirit, tabs, id, mobilos);
 				} else {
 					if(burger) {
@@ -91,6 +88,7 @@
 	}
 
 	function renderspecialbutton(button, string) {
+
 		<li id="${id}-${string}" class="ts-toolbar-item ts-toolbar-${string}">
 			out.html += button.render();
 		</li>

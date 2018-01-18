@@ -239,6 +239,7 @@ ts.ui.TableSpirit = (function using(
 			this.super.onconfigure();
 			this.action.add([ts.ui.ACTION_CLICK, ts.ui.ACTION_SWITCH]);
 			this.event.add('click');
+			this.css.add('ts-table-list'); // TODO: Merge into default CSS when approved!
 			this._rowsadd = [];
 			this._rowsoff = [];
 			this._scroll = new Position();

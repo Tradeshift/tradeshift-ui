@@ -1,12 +1,13 @@
 .ts-table {
 	.ts-mixin-unselectable();
+	background-color: @ts-color-white;
 	margin-bottom: @ts-unit;
 	overflow: hidden;
 	position: relative;
 	display: block;
 	&.ts-hascols,
 	&.ts-hasrows {
-		border: 1px solid @ts-color-gray-light;
+		// border: 1px solid @ts-color-gray-lighter;
 	}
 	table {
 		table-layout: fixed;
@@ -60,8 +61,8 @@
 		}
 	}
 	th {
-		border: 1px solid @ts-color-gray-light;
-		border-bottom-color: @ts-color-gray-light;
+		border: 1px solid @ts-color-gray-lighter;
+		border-bottom-color: @ts-color-gray-lighter;
 		border-top: none;
 		overflow: hidden;
 	}
@@ -121,7 +122,7 @@
 			position: relative;
 			display: block;
 			height: 100%;
-			min-height: @ts-unit-double - 1px;
+			min-height: @ts-unit-double;
 			width: 100%;
 			color: @ts-color-gray-light;
 			i {
@@ -146,15 +147,15 @@
 			cursor: default;
 		}
 	}
-
 	.ts-table-checkbox {
 		cursor: pointer;
 	}
-
 	.ts-table-cols,
 	.ts-table-menu:not(.ts-open) {
 		th {
-			background-color: @ts-color-gray-lighter;
+			&.ts-selected {
+				background-color: @ts-color-gray-lightest;
+			}
 		}
 	}
 	.ts-table-cols {
@@ -219,7 +220,7 @@
 		.ts-table-checkbox,
 		.ts-table-hilt,
 		.ts-table-numbered {
-			background-color: @ts-color-gray-lighter;
+			// background-color: @ts-color-gray-lighter;
 			border: 1px solid @ts-color-gray-light;
 			border-bottom-color: @ts-color-gray-light;
 			border-left: none;
@@ -249,7 +250,7 @@
 			}
 		}
 		td {
-			background-color: @ts-color-white;
+			// background-color: @ts-color-white;
 			&.ts-table-hilt {
 				background-color: @ts-color-gray-lighter;
 			}
@@ -278,7 +279,8 @@
 	}
 	.ts-table-rows {
 		overflow: hidden;
-		background-color: @ts-color-gray-lighter;
+		//background-color: @ts-color-gray-lighter;
+		//background-color: lime;
 		table {
 			position: relative;
 		}
@@ -323,6 +325,8 @@
 			background-color: @ts-color-white;
 			&.ts-selected {
 				background-color: @ts-color-gray-lighter;
+				background-color: @ts-color-gray-lightest;
+				//background-color: pink;
 			}
 			&.ts-table-editmode {
 				background-color: @ts-color-yellow !important;
@@ -432,6 +436,9 @@
 	.ts-table-foot {
 		padding: 0;
 		.ts-footerbar {
+			&:after {
+				display: none;
+			}
 			.ts-toolbar {
 				background-color: @ts-color-gray-lightest;
 			}
@@ -545,32 +552,23 @@
 
 // Table List ..................................................................
 
-.ts-table.ts-table-list {
-	border: none !important;
+.ts-table.ts-table-list { // TODO: merge this into default CSS (when approved)
+	// border: none !important;
 	td {
-		border: none !important;
-	}
-	tr {
+		border: none;
 		border-bottom: 1px solid @ts-color-gray-lighter;
+		//border-bottom: 1px solid @ts-color-gray-lighter;
 	}
 	th {
-		border: none !important;
+		border: none;
 		border-bottom: 1px solid @ts-color-gray-lighter;
-		background-color: @ts-color-white !important;
+		background-color: @ts-color-white;
 	}
-
 	.ts-table-menu {
 		border-right: none;
 	}
-
 	.ts-table-foot {
 		border-top: none;
-	}
-
-	.ts-table-foot {
-		.ts-toolbar {
-			background-color: @ts-color-white;
-		}
 	}
 }
 
@@ -579,7 +577,7 @@
 .ts-engine-gecko {
 	//.ts-table-gutter,
 	.ts-table-menu {
-		border-top: 1px solid @ts-color-gray-lighter;
+		// border-top: 1px solid @ts-color-gray-lighter; TODO! OFFSET ONE PX!
 	}
 	.ts-wrapping {
 		.ts-table-gutter {

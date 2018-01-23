@@ -26,36 +26,51 @@
 </head>
 
 <body>
-    <header data-ts="TopBar"></header>
-    <main data-ts="Main">
-        <article>
-            <h1><span>Time</span></h1>
-            <section class="desc">
-                <p>TODO: This should go into a screenshot for the test suite!</p>
-            </section>
-            <section data-ts="Spirit">
-                <script class="gui-script" data-ts.scriptid="edbml.$14yR7I0">
-                    edbml.declare("edbml.$14yR7I0").as(function $edbml(
-                        /*``*/
-                    ) {
-                        'use strict';
-                        var out = $edbml.$out,
-                            $txt = edbml.safetext,
-                            $val = edbml.safeattr;
-                        out.html += '<table>';
-                        ('da de-CH de en-GB en-US en es ' + 'fi fr hu id it ja ms nb-NO ' + 'nl no pl pt-BR pt-PT ro ru ' + 'se sv-SE zh-CN zh-TW').split(' ').forEach(function(code) {
-                            out.html += '<tr>' +
-                                '<td><strong>' + $txt(code) + '</strong></td>' +
-                                '<td><time data-ts="Time" datetime="2015-11-04 03:59:33" lang="' + $val(code) + '"></time></td>' +
-                                '</tr>';
-                        });
-                        out.html += '</table>';
-                        return out.write();
-                    });
-                </script>
-            </section>
-        </article>
-    </main>
+    <div data-ts="App">
+        <div data-ts="Main">
+            <div data-ts="Content">
+                <div data-ts="Panel">
+                    <article>
+                        <h1><span>Time</span></h1>
+                        <section class="desc">
+                            <p>TODO: This should go into a screenshot for the test suite!</p>
+                        </section>
+                        <section data-ts="Spirit">
+                            <script class="gui-script" data-ts.scriptid="edbml.$14yR7I0">
+                                edbml.declare("edbml.$14yR7I0").as(function $edbml(
+                                    /*``*/
+                                ) {
+                                    'use strict';
+                                    var out = $edbml.$out,
+                                        $txt = edbml.safetext,
+                                        $val = edbml.safeattr;
+                                    out.html += '<table>';
+                                    ('da de-CH de en-GB en-US en es ' + 'fi fr hu id it ja ms nb-NO ' + 'nl no pl pt-BR pt-PT ro ru ' + 'se sv-SE zh-CN zh-TW').split(' ').forEach(function(code) {
+                                        out.html += '<tr>' +
+                                            '<td><strong>' + $txt(code) + '</strong></td>' +
+                                            '<td><time data-ts="Time" datetime="2015-11-04 03:59:33" lang="' + $val(code) + '"></time></td>' +
+                                            '</tr>';
+                                    });
+                                    out.html += '</table>';
+                                    return out.write();
+                                });
+                            </script>
+                        </section>
+                        <div data-ts="Note" class="sticky">
+                            <p>If you find a bug or need a feature&#x2026;</p>
+                            <menu data-ts="Buttons">
+                                <li>
+                                    <a data-ts="Button" target="_blank" href="https://github.com/Tradeshift/tradeshift-ui/issues/new" title="Submit new issue">
+		          <span>Create GitHub Issue&#x2026;</span>
+		        </a>
+                                </li>
+                            </menu>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>

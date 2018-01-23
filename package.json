@@ -36,7 +36,7 @@
 		"test": "yarn run eslint & grunt jasmine & wait && node tasks/browserstack.js",
 		"http": "static spec/jasmine -H '{\"Cache-Control\": \"no-cache, must-revalidate\"}'",
 		"****** NODE *****": "",
-		"postinstall": "cd docs && yarn && cd ../app && yarn",
+		"postinstall": "cd docs && yarn",
 		"precommit": "lint-staged && grunt exec:docs_dist && git add -A docs"
 	},
 	"lint-staged": {

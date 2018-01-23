@@ -41,10 +41,7 @@ module.exports = function(grunt) {
 	// build for CDN
 	grunt.registerTask(
 		'dist',
-		[].concat(['exec:eslint'], build('cdn'), sizeReport('cdn'), [
-			'exec:docs_dist',
-			'exec:app_grunt'
-		])
+		[].concat(['exec:eslint'], build('cdn'), sizeReport('cdn'), ['exec:docs_dist'])
 	);
 
 	// build for jasmine tests
@@ -146,16 +143,6 @@ module.exports = function(grunt) {
 				},
 				dest: 'temp/spin.js',
 				src: 'src/third-party/spin.js'
-			},
-			// ts.app.js
-			app: {
-				options: {
-					separator: '\n\n',
-					banner: '(function() {\n\n',
-					footer: '\n\n ts.app = gui.Object.extend(ts.app || {}, ts._app);}).call(ts._app);'
-				},
-				dest: 'temp/ts.app.js',
-				src: 'app/dist/ts.app.js'
 			},
 			// all the ts js files
 			dev: {
@@ -386,10 +373,6 @@ module.exports = function(grunt) {
 				command: 'cd docs && grunt dist',
 				stdout: 'inherit'
 			},
-			app_grunt: {
-				command: 'cd app && npm run build',
-				stdout: 'inherit'
-			},
 			docs_grunt: {
 				command: 'cd docs && grunt',
 				stdout: 'inherit'
@@ -408,8 +391,8 @@ module.exports = function(grunt) {
 
 		// serve, watch, generate concurrently
 		concurrent: {
-			docs: ['devserver', 'watch', 'exec:docs_grunt', 'exec:app_grunt'],
-			nodocs: ['devserver', 'watch', 'exec:app_grunt', 'asciify:banner'],
+			docs: ['devserver', 'watch', 'exec:docs_grunt'],
+			nodocs: ['devserver', 'watch', 'asciify:banner'],
 			// Build for CDN
 			cdn_generate_js: {
 				tasks: generateJsConcurrent('cdn')
@@ -458,7 +441,6 @@ module.exports = function(grunt) {
 			],
 			'concat:fastclick', // generate fastclick.js
 			'concat:spin', // generate spin.js
-			'concat:app', // generate ts.app.js
 			'guibundles' // generate ts-runtime-{api,gui}.js
 		];
 	}
@@ -584,8 +566,7 @@ module.exports = function(grunt) {
 			'temp/module-edb.js',
 			'temp/ts-runtime-api.js',
 			'temp/moment.js',
-			'temp/spin.js',
-			'temp/ts.app.js'
+			'temp/spin.js'
 		];
 	}
 

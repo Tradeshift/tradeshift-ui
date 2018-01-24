@@ -1835,6 +1835,10 @@ function chooseLocale(names) {
 }
 
 function loadLocale(name) {
+	/*
+	 * TRADESHIFT WAS HERE: DELETING THIS CODE TO 
+	 * NOTCH WEBPACK OUT OF MODULE-BUNDLING-MODE!
+	 *
 	var oldLocale = null;
 	// TODO: Find a better way to register and load all the locales in Node
 	if (!locales[name] && (typeof module !== 'undefined') &&
@@ -1846,6 +1850,7 @@ function loadLocale(name) {
 			getSetGlobalLocale(oldLocale);
 		} catch (e) {}
 	}
+	*/
 	return locales[name];
 }
 

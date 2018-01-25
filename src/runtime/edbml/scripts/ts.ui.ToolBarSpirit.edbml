@@ -45,7 +45,7 @@
 						renderspecialbutton(burger, 'burger');
 					} else if(icon) {
 						<li id="${id}-icon" class="ts-toolbar-item ts-toolbar-icon">
-							<img src="${icon}" width="44" height="44"/>
+							<img src="${icon}" width="40" height="40"/>
 						</li>
 					}
 					if(search) {

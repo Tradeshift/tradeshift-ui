@@ -99,10 +99,10 @@ ts.ui = gui.namespace(
 
 			// Units ...................................................................
 
-			UNIT: 22,
-			UNIT_HALF: 11,
-			UNIT_DOUBLE: 44,
-			UNIT_TRIPLE: 66,
+			UNIT: 20,
+			UNIT_HALF: 10,
+			UNIT_DOUBLE: 40,
+			UNIT_TRIPLE: 60,
 
 			// Classnames ..............................................................
 

@@ -129,8 +129,21 @@ gui.KeysModule = gui.module('gui-keys@wunderbyte.com', {
 	 * @param {String} sig Contextkey
 	 */
 	_maybebroadcast: function(down, key, c, code, sig) {
-		if (!c) {
-			this._broadcast(down, key, c, code, sig);
+		switch (code) {
+			case 33: // PageUp
+			case 34: // PageDown
+			case 38: // Up
+			case 40: // Down
+			case 37: // Left
+			case 39: // Right
+			case 18: // Alt
+			case 17: // Control
+			case 16: // Shift
+			case 32: // Space
+			case 27: // Esc
+			case 13: // Enter
+				this._broadcast(down, key, c, code, sig);
+				break;
 		}
 	},
 

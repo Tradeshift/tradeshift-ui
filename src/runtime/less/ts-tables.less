@@ -95,6 +95,7 @@
 		position: relative;
 	}
 	.ts-table-gutter {
+		background-color: @ts-color-white;
 		z-index: 2;
 	}
 	.ts-table-cols,
@@ -220,11 +221,14 @@
 		.ts-table-checkbox,
 		.ts-table-hilt,
 		.ts-table-numbered {
+			/*
 			// background-color: @ts-color-gray-lighter;
 			border: 1px solid @ts-color-gray-light;
 			border-bottom-color: @ts-color-gray-light;
 			border-left: none;
 			border-top: none;
+			border: none !important;
+			*/
 		}
 	}
 	&:not(.ts-hasrows):not(.ts-maximized):not(.ts-maxrows) {
@@ -233,6 +237,9 @@
 				border-bottom: none;
 			}
 		}
+	}
+	.ts-table-rows {
+		background-color: @ts-color-gray-lighter;
 	}
 	.ts-table-rows,
 	.ts-table-gutter {
@@ -299,7 +306,7 @@
 			}
 			&:focus {
 				color: @ts-color-black;
-				background-color: @ts-color-yellow;
+				background-color: @ts-color-yellow-lightest;
 				//z-index: 2;
 			}
 		}
@@ -329,7 +336,7 @@
 				//background-color: pink;
 			}
 			&.ts-table-editmode {
-				background-color: @ts-color-yellow !important;
+				background-color: @ts-color-yellow-lightest !important;
 			}
 			&.ts-table-editmode,
 			&.ts-table-invalid {
@@ -526,6 +533,13 @@
 				overflow-y: scroll !important; // TODO: toogle just-in-time on rowdata
 			}
 		}
+		/*
+		 * TODO: This???
+		 *
+		.ts-table-rows {
+			padding: @ts-unit;
+		}
+		*/
 		.ts-table-foot {
 			position: absolute;
 			bottom: 0;
@@ -557,11 +571,10 @@
 	td {
 		border: none;
 		border-bottom: 1px solid @ts-color-gray-lighter;
-		//border-bottom: 1px solid @ts-color-gray-lighter;
 	}
 	th {
 		border: none;
-		border-bottom: 1px solid @ts-color-gray-lighter;
+		border-bottom: 1px solid @new-bordercolor;
 		background-color: @ts-color-white;
 	}
 	.ts-table-menu {
@@ -585,14 +598,16 @@
 	}
 }
 .ts-engine-webkit {
+	/*
 	.ts-table-rows,
 	.ts-table-cols {
 		.ts-table-checkbox,
 		.ts-table-hilt {
-			// but why???
-			.ts-mixin-fixwidth(@ts-unit-double - 2px);
+			// but why??? leave this around for a while...
+			// .ts-mixin-fixwidth(@ts-unit-double - 2px);
 		}
 	}
+	*/
 	.ts-table-gutter {
 		.ts-table-checkbox,
 		.ts-table-hilt {

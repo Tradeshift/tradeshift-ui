@@ -3,10 +3,10 @@
  * @extends {ts.ui.Plugin}
  * @using {gui.Client} Client
  * @using {gui.Tick} Tick
+ * @using {number} UNIT
+ * @using {number} UNIT_DOUBLE
  */
-ts.ui.TableLayoutPlugin = (function using(Client, Tick) {
-	var UNIT = 22;
-	var UNIT_DOUBLE = UNIT * 2;
+ts.ui.TableLayoutPlugin = (function using(Client, Tick, UNIT, UNIT_DOUBLE) {
 	var COL_CELLS = '.ts-table-cols th:not(.ts-table-addition)';
 	var ROW_CELLS = '.ts-table-rows tr:first-child td:not(.ts-table-addition)';
 
@@ -331,4 +331,4 @@ ts.ui.TableLayoutPlugin = (function using(Client, Tick) {
 				});
 		}
 	});
-})(gui.Client, gui.Tick);
+})(gui.Client, gui.Tick, ts.ui.UNIT, ts.ui.UNIT_DOUBLE);

@@ -8,8 +8,9 @@
  * @using {gui.Position} Position
  * @using {gui.Client} Client
  * @using {gui.Key} key
+ * @using {number} UNIT
  */
-ts.ui.TableEditPlugin = (function(CSSPlugin, DOMPlugin, Position, Client, Key) {
+ts.ui.TableEditPlugin = (function(CSSPlugin, DOMPlugin, Position, Client, Key, UNIT) {
 	var CLASS_CONTAINER = 'ts-table-cell';
 	var CLASS_TEXTAREA = 'ts-table-input';
 	var CLASS_EDITMODE = 'ts-table-editmode';
@@ -396,7 +397,7 @@ ts.ui.TableEditPlugin = (function(CSSPlugin, DOMPlugin, Position, Client, Key) {
 		 */
 		_sync: function(sync, area, cont, height) {
 			height = (height || area.offsetHeight) - 1;
-			height = Math.round(height / 22) * 22 - 1;
+			height = Math.round(height / UNIT) * UNIT - 1;
 			if (sync) {
 				cont.style.minHeight = height + 'px';
 				this._shrink(area, height);
@@ -514,4 +515,4 @@ ts.ui.TableEditPlugin = (function(CSSPlugin, DOMPlugin, Position, Client, Key) {
 			}
 		}
 	});
-})(gui.CSSPlugin, gui.DOMPlugin, gui.Position, gui.Client, gui.Key);
+})(gui.CSSPlugin, gui.DOMPlugin, gui.Position, gui.Client, gui.Key, ts.ui.UNIT);

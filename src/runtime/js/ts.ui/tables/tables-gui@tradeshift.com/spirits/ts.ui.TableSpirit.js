@@ -13,6 +13,7 @@
  * @using {ts.ui.TableRowModel} TableRowModel
  * @using {ts.ui.ButtonSpiri	t} ButtonSpirit
  * @using {ts.ui.PagerModel} pager
+ * @using {number} UNIT_DOUBLE
  */
 ts.ui.TableSpirit = (function using(
 	Type,
@@ -26,10 +27,9 @@ ts.ui.TableSpirit = (function using(
 	confirmed,
 	TableRowModel,
 	ButtonSpirit,
-	PagerModel
+	PagerModel,
+	UNIT_DOUBLE
 ) {
-	var UNIT = 22;
-	var UNIT_DOUBLE = UNIT * 2;
 	var ICON_OFF = 'ts-icon-checkbox';
 	var CLASS_TEXTAREA = 'ts-table-input';
 	var CLASS_CLICKABLE = 'ts-clickable';
@@ -1884,5 +1884,6 @@ ts.ui.TableSpirit = (function using(
 	gui.Arguments.confirmed,
 	ts.ui.TableRowModel,
 	ts.ui.ButtonSpirit,
-	ts.ui.PagerModel
+	ts.ui.PagerModel,
+	ts.ui.UNIT_DOUBLE
 );

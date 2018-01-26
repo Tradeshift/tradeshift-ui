@@ -21,7 +21,10 @@ ts.ui.ToolBarSpirit = (function using(
 	TextModel,
 	SearchModel,
 	TopBar,
-	ButtonModel
+	ButtonModel,
+	CLASS_MICRO,
+	CLASS_MACRO,
+	CLASS_TRANSITION
 ) {
 	/*
 	 * When rendering as a statusbar, we'll split into multiple rows
@@ -102,23 +105,12 @@ ts.ui.ToolBarSpirit = (function using(
 			onready: function() {
 				this.super.onready();
 				if (
-					![ts.ui.CLASS_MICRO, ts.ui.CLASS_MACRO].some(function(cname) {
+					![CLASS_MICRO, CLASS_MACRO].some(function(cname) {
 						return this.css.contains(cname);
 					}, this)
 				) {
 					this.macro();
 				}
-			},
-
-			/**
-			 * Until we manage to get the inital tabs rendering performed 
-			 * synchronously, at least supress initial CSS animations here.
-			 */
-			onasync: function() {
-				this.super.onasync();
-				this.tick.time(function hotfix() {
-					this.css.add(ts.ui.CLASS_READY);
-				}, 300);
 			},
 
 			/**
@@ -262,7 +254,7 @@ ts.ui.ToolBarSpirit = (function using(
 			 * @returns {ts.ui.ToolBarSpirit}
 			 */
 			macro: chained(function() {
-				this.css.remove(ts.ui.CLASS_MICRO).add(ts.ui.CLASS_MACRO);
+				this.css.remove(CLASS_MICRO).add(CLASS_MACRO);
 			}),
 
 			/**
@@ -270,7 +262,7 @@ ts.ui.ToolBarSpirit = (function using(
 			 * @returns {ts.ui.ToolBarSpirit}
 			 */
 			micro: chained(function() {
-				this.css.remove(ts.ui.CLASS_MACRO).add(ts.ui.CLASS_MICRO);
+				this.css.remove(CLASS_MACRO).add(CLASS_MICRO);
 			}),
 
 			/**
@@ -409,12 +401,14 @@ ts.ui.ToolBarSpirit = (function using(
 
 			/**
 			 * Handle EDBML rendered.
-			 * TODO(jmo@): Called twice (on first render)???
 			 * @param {TODOType} summary
 			 */
 			onrender: function(summary) {
 				this.super.onrender(summary);
 				this._layout();
+				this.tick.time(function() {
+					this.css.shift(this.dom.q('.ts-toolbar-tabs'), CLASS_TRANSITION);
+				});
 			},
 
 			/**
@@ -596,7 +590,7 @@ ts.ui.ToolBarSpirit = (function using(
 			 */
 			_layoutbefore: function(show) {
 				this.css.shift(show, 'ts-toolbar-first');
-				var micro = this.css.contains(ts.ui.CLASS_MICRO);
+				var micro = this.css.contains(CLASS_MICRO);
 				var klass = 'ts-has-toolbar-first-' + (micro ? 'ts-micro' : 'ts-macro');
 				if (this._outsidemodal()) {
 					this.guilayout.shiftGlobal(show, klass);
@@ -927,7 +921,10 @@ ts.ui.ToolBarSpirit = (function using(
 	ts.ui.TextModel,
 	ts.ui.SearchModel,
 	ts.ui.TopBar,
-	ts.ui.ButtonModel
+	ts.ui.ButtonModel,
+	ts.ui.CLASS_MICRO,
+	ts.ui.CLASS_MACRO,
+	ts.ui.CLASS_TRANSITION
 );
 
 /**

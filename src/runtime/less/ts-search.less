@@ -1,3 +1,11 @@
+.search-mixin-focus-outline(@color: @ts-color-blue) {
+	border-color: @color;
+	box-shadow: 0 0 0 1px fade(@color, 75%);
+}
+.search-mixin-hover-outline(@color: @ts-color-blue) {
+	.search-mixin-focus-outline(fade(@color, 25%));
+}
+
 .ts-search {
 	min-width: @ts-unit-double;
 	min-height: @ts-unit-double;
@@ -6,6 +14,20 @@
 	vertical-align: middle;
 	&.ts-inset {
 		background-color: @ts-color-white;
+		&:after {
+			.ts-mixin-maximize();
+			content: '';
+			border: 1px solid @new-bordercolor;
+			border-radius: @ts-unit;
+			pointer-events: none;
+		}
+		&:hover:after {
+			.search-mixin-hover-outline();
+		}
+		&.ts-focus:after,
+		&.ts-focus:hover:after {
+			.search-mixin-focus-outline();
+		}
 		&,
 		.ts-input {
 			border-radius: @ts-unit;
@@ -43,6 +65,9 @@
 		position: absolute;
 		right: 0;
 	}
+	.ts-icon-remove {
+		color: @ts-color-slate-lightest;
+	}
 }
 .ts-flex .ts-search .ts-input,
 .ts-search:not(.ts-empty) .ts-input,
@@ -60,33 +85,13 @@
 		padding-left: @ts-unit-double; // TODO: MOVE TO TABLE COMPONENT!
 	}
 }
-/*
-.ts-search .ts-input:focus {
-	background-color: @ts-color-yellow;
-}
-*/
-
-// Browsers ....................................................................
-
-.ts-engine-webkit {
-	.ts-search.ts-inset .ts-input {
-		box-shadow: inset 0 0 4px fade(@ts-color-slate-lightest, 65%);
-	}
-}
-.ts-engine-gecko {
-	.ts-search.ts-inset .ts-input {
-		box-shadow: inset 0 0 2px fade(@ts-color-slate-lightest, 65%);
-	}
-}
-.ts-engine-explorer {
-	.ts-search.ts-inset .ts-input {
-		border: 1px solid @new-bordercolor;
-	}
+.ts-bg-dark .ts-search .ts-inset:after {
+	display: none;
 }
 .ts-engine-webkit,
 .ts-engine-gecko {
 	.ts-search {
-		.ts-icon-close:before {
+		.ts-icon-remove:before {
 			// strange :/
 			top: 0;
 			left: 0;

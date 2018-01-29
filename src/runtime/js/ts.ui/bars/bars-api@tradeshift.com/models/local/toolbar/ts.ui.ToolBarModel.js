@@ -109,12 +109,16 @@ ts.ui.ToolBarModel = (function using(chained, ButtonModel, CheckBoxModel) {
 				return this.actualconfigbutton;
 			},
 			setter: function(json) {
-				if (json) {
-					json = ButtonModel.from(json);
-					json.icon = 'ts-icon-settings';
-					json.type = 'ts-tertiary ts-noborder';
-				}
-				this.actualconfigbutton = json;
+				this.actualconfigbutton = specialbutton(json, 'ts-icon-settings');
+			}
+		},
+
+		helpbutton: {
+			getter: function() {
+				return this.actualhelpbutton;
+			},
+			setter: function(json) {
+				this.actualhelpbutton = specialbutton(json, 'ts-icon-support');
 			}
 		},
 
@@ -127,12 +131,7 @@ ts.ui.ToolBarModel = (function using(chained, ButtonModel, CheckBoxModel) {
 				return this.actualclosebutton;
 			},
 			setter: function(json) {
-				if (json) {
-					json = ButtonModel.from(json);
-					json.icon = 'ts-icon-close';
-					json.type = 'ts-tertiary ts-noborder';
-				}
-				this.actualclosebutton = json;
+				this.actualclosebutton = specialbutton(json, 'ts-icon-close');
 			}
 		},
 
@@ -193,6 +192,12 @@ ts.ui.ToolBarModel = (function using(chained, ButtonModel, CheckBoxModel) {
 		 * @type {ts.ui.ButtonModel}
 		 */
 		actualconfigbutton: null,
+
+		/**
+		 * (woraround bug in EDBML spec)
+		 * @type {ts.ui.ButtonModel}
+		 */
+		actualhelpbutton: null,
 
 		/**
 		 * (woraround bug in EDBML spec)

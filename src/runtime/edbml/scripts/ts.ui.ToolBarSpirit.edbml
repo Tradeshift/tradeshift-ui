@@ -95,7 +95,7 @@
 	}
 
 	function rendernormalbuttons(id, buttons) {
-		if(buttons.length || toolbar.configbutton || toolbar.closebutton) {
+		if(buttons.length || toolbar.configbutton || toolbar.helpbutton || toolbar.closebutton) {
 			renderright(id, function content() {
 				if(buttons.length) {
 					if(!toolbar.compact) {
@@ -111,7 +111,7 @@
 						);
 					}
 				}
-				[toolbar.configbutton, toolbar.closebutton].forEach(renderbutton);
+				[toolbar.configbutton, toolbar.helpbutton, toolbar.closebutton].forEach(renderbutton);
 			});
 		}
 	}
@@ -164,7 +164,7 @@
 	function renderasidebutton(action) {
 		@class = "ts-toolbar-item ts-item";
 		<li @class id="${id}-aside">
-			<button data-ts="Button" class="ts-tertiary" +
+			<button data-ts="Button" class="ts-tertiary ts-noborder" +
 				onclick="#{action()}" tabindex="-1">
 				<i class="ts-icon-other"></i>
 			</button>

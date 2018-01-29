@@ -93,16 +93,34 @@ ts.ui.HeaderBarSpirit = (function using(chained) {
 
 			/**
 			 * Show the dedicated burger button. Pass `null` to hide it again.
-			 * @param {Function|null} callback
+			 * @param {Function|null} onclick
 			 * @returns {this|ts.ui.ButtonModel}
 			 */
-			burgerbutton: chained(function(callback) {
+			burgerbutton: chained(function(onclick) {
 				return specialbutton(this.model(), 'burgerbutton', arguments);
 			}),
 
 			/**
+			 * Show the dedicated burger button. Pass `null` to hide it again.
+			 * @param {Function|null} onclick
+			 * @returns {this|ts.ui.ButtonModel}
+			 */
+			settingsbutton: chained(function(onclick) {
+				return specialbutton(this.model(), 'settingsbutton', arguments);
+			}),
+
+			/**
+			 * Show the dedicated burger button. Pass `null` to hide it again.
+			 * @param {Function|null} onclick
+			 * @returns {this|ts.ui.ButtonModel}
+			 */
+			supportbutton: chained(function(onclick) {
+				return specialbutton(this.model(), 'supportbutton', arguments);
+			}),
+
+			/**
 			 * Show the dedicated Back button. Pass `null` to hide it again.
-			 * @param {Function|null} callback
+			 * @param {Function|null} onclick
 			 * @returns {this|ts.ui.ButtonModel}
 			 */
 			backbutton: chained(function(onclick) {
@@ -111,7 +129,7 @@ ts.ui.HeaderBarSpirit = (function using(chained) {
 
 			/**
 			 * Show the dedicated Forward button. Pass `null` to hide it again.
-			 * @param {Function|null} callback
+			 * @param {Function|null} onclick
 			 * @returns {this|ts.ui.ButtonModel}
 			 */
 			forwardbutton: chained(function(onclick) {

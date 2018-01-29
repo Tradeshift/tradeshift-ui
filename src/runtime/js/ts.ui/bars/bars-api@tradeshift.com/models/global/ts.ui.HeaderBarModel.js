@@ -114,14 +114,34 @@ ts.ui.HeaderBarModel = (function using(ToolBarModel, SearchModel, chained) {
 
 		/**
 		 * The dedicated burger button.
+		 * @param {Function|null} onclick
 		 * @returns {this|ts.ui.ButtonModel}
 		 */
 		burgerbutton: chained(function(onclick) {
 			return this._specialbutton(this.headerbar, 'burgerbutton', onclick);
 		}),
 
+		/**
+		 * The dedicated settings button.
+		 * @param {Function|null} onclick
+		 * @returns {this|ts.ui.ButtonModel}
+		 */
+		settingsbutton: chained(function(onclick) {
+			return this._specialbutton(this.headerbar, 'configbutton', onclick);
+		}),
+
+		/**
+		 * The dedicated support button.
+		 * @param {Function|null} onclick
+		 * @returns {this|ts.ui.ButtonModel}
+		 */
+		supportbutton: chained(function(onclick) {
+			return this._specialbutton(this.headerbar, 'helpbutton', onclick);
+		}),
+
 		/** 
 		 * The dedicated back button.
+		 * @param {Function|null} onclick
 		 * @returns {this|ts.ui.ButtonModel}
 		 */
 		backbutton: chained(function(onclick) {
@@ -130,6 +150,7 @@ ts.ui.HeaderBarModel = (function using(ToolBarModel, SearchModel, chained) {
 
 		/**
 		 * The dedicated forward button.
+		 * @param {Function|null} onclick
 		 * @returns {this|ts.ui.ButtonModel}
 		 */
 		forwardbutton: chained(function(onclick) {

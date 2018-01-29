@@ -473,7 +473,6 @@ ts.ui.ToolBarSpirit = (function using(
 			}),
 
 			/**
-			 * Show the close button `X`.
 			 * @param {Function|null} onclick
 			 * @returns {ts.ui.ButtonSpirit|this}
 			 */
@@ -489,6 +488,25 @@ ts.ui.ToolBarSpirit = (function using(
 					}
 				} else {
 					return model.configbutton;
+				}
+			}),
+
+			/**
+			 * @param {Function|null} onclick
+			 * @returns {ts.ui.ButtonSpirit|this}
+			 */
+			helpbutton: chained(function(onclick) {
+				var model = this.model();
+				if (arguments.length) {
+					if (onclick === null) {
+						model.helpbutton = null;
+					} else {
+						model.helpbutton = {
+							onclick: onclick
+						};
+					}
+				} else {
+					return model.helpbutton;
 				}
 			}),
 

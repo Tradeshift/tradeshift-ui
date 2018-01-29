@@ -16,7 +16,7 @@
 	}
 
 	function actionbar(model) {
-		<li data-ts="ToolBar" class="ts-footerbar-actionbar ts-micro" id="${id}-actionbar" +
+		<li data-ts="ToolBar" class="ts-footerbar-actionbar ts-micro ts-bg-dark" id="${id}-actionbar" +
 			data-ts.model="?{model}" data-ts.visible="${footer.$showActionBar(model)}"></li>
 	}
 

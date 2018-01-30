@@ -22,6 +22,16 @@ ts.ui.Header = (function using(chained) {
 	}
 
 	/**
+	 * Similar setup for "special" buttons (Settings, Support, etc).
+	 * @param {string} method
+	 * @param {Arguments} args
+	 * @param {Function} onclick
+	 */
+	function specialbutton(method, args, onclick) {
+		return args.length ? bar()[method](onclick) : bar()[method]();
+	}
+
+	/**
 	 * Observe the {ts.ui.LayoutModel} to hide the header 
 	 * in mobile breakpoint whenever a SideBar is opened.
 	 * This could unfortunately not be solved by z-index :/
@@ -132,30 +142,6 @@ ts.ui.Header = (function using(chained) {
 		}),
 
 		/**
-		 * Get or set the Back button.
-		 * @param {Function|null} onclick - use `null` to hide the button
-		 */
-		backbutton: chained(function(onclick) {
-			if (arguments.length) {
-				bar().backbutton(onclick);
-			} else {
-				return bar().backbutton();
-			}
-		}),
-
-		/**
-		 * Get or set the Forward button.
-		 * @param {Function|null} onclick - use `null` to hide the button
-		 */
-		forwardbutton: chained(function(onclick) {
-			if (arguments.length) {
-				bar().forwardbutton(onclick);
-			} else {
-				return bar().forwardbutton();
-			}
-		}),
-
-		/**
 		 * @param {Object|ts.ui.SearchModel} [search]
 		 * @returns {this|ts.ui.SearchModel}
 		 */
@@ -191,6 +177,42 @@ ts.ui.Header = (function using(chained) {
 				console.log('TODO: ts.ui.Header.localize');
 			}
 		},
+
+		/**
+		 * Get or set the Settings button.
+		 * @param {Function|null} onclick - use `null` to hide the button
+		 * @returns {this|ts.ui.ButtonSpirit}
+		 */
+		settingsbutton: chained(function(onclick) {
+			return specialbutton('settingsbutton', arguments, onclick);
+		}),
+
+		/**
+		 * Get or set the Support button.
+		 * @param {Function|null} onclick - use `null` to hide the button
+		 * @returns {this|ts.ui.ButtonSpirit}
+		 */
+		supportbutton: chained(function(onclick) {
+			return specialbutton('supportbutton', arguments, onclick);
+		}),
+
+		/**
+		 * Get or set the Back button.
+		 * @param {Function|null} onclick - use `null` to hide the button
+		 * @returns {this|ts.ui.ButtonSpirit}
+		 */
+		backbutton: chained(function(onclick) {
+			return specialbutton('backbutton', arguments, onclick);
+		}),
+
+		/**
+		 * Get or set the Forward button.
+		 * @param {Function|null} onclick - use `null` to hide the button
+		 * @returns {this|ts.ui.ButtonSpirit}
+		 */
+		forwardbutton: chained(function(onclick) {
+			return specialbutton('forwardbutton', arguments, onclick);
+		}),
 
 		// Privileged ..............................................................
 

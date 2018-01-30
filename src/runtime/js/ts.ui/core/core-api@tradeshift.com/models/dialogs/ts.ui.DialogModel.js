@@ -394,7 +394,7 @@ ts.ui.DialogModel = (function using(
 		/**
 		 * Compute the optimal primary button and make it primary.
 		 * 1. The user can specify this button via the `primary` prop
-		 * 2. If there's only one button, we'll just make that primary.
+		 * 2. If there's only one button, we'll NOT make that primary.
 		 * 3. Or do nothing! It's perfectly fine, not to have a primary
 		 */
 		_optimusprime: function(buttons, userset) {
@@ -405,9 +405,11 @@ ts.ui.DialogModel = (function using(
 				})
 			) {
 				var b = buttons.get(userset);
+				/* single button not primary no more!
 				if (!b && buttons.length === 1) {
 					b = buttons.get(0);
 				}
+				*/
 				if (b) {
 					b.type = primaryType;
 				}

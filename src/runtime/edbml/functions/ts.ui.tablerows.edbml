@@ -39,8 +39,8 @@
 				}
 			}
 			row.cells.forEach(function(cell, i) {
-				if(!colcount || i < colcount) {
-					var col = cols[cell.$index];
+				if(!table.cols || i < table.cols.length) {
+					var col = table.cols[cell.$index];
 					if(!col || col.visible) {
 						renderCell(col, row, cell);
 					}

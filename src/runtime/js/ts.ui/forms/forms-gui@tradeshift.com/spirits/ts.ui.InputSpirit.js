@@ -106,6 +106,7 @@ ts.ui.InputSpirit = (function using(chained, Type, Client) {
 				switch (e.type) {
 					case 'keydown':
 						if (e.keyCode === 13) {
+							this._snapshot = this.value;
 							this._onenterkey(e);
 						}
 						break;
@@ -125,7 +126,9 @@ ts.ui.InputSpirit = (function using(chained, Type, Client) {
 						break;
 					case 'blur':
 						this.event.remove('keydown');
-						this._oncount();
+						if (this.value !== this._snapshot) {
+							this._oncount();
+						}
 						if (model) {
 							model.focused = false;
 						}

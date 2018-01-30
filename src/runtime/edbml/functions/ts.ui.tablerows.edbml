@@ -40,7 +40,7 @@
 			}
 			row.cells.forEach(function(cell, i) {
 				if(!table.cols || i < table.cols.length) {
-+					var col = table.cols[cell.$index];
+					var col = table.cols[cell.$index];
 					if(!col || col.visible) {
 						renderCell(col, row, cell);
 					}

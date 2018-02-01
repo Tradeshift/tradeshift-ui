@@ -10,115 +10,6 @@
 
 // Mixins ......................................................................
 
-.mixin-button() {
-	.ts-mixin-unselectable();
-	.ts-mixin-fixheight(@ts-unit-double); // IE10 may otherwise grow on focus :/
-	min-width: @ts-unit-double;
-	max-width: 100%;
-	padding: @ts-unit-half;
-	text-align: center;
-	position: relative;
-	display: inline-block;
-	&.ts-ready {
-		&,
-		> i:before {
-			.ts-mixin-transition-colors(@ts-transition-now);
-		}
-	}
-	> span,
-	> i {
-		position: relative;
-		display: inline-block;
-		vertical-align: middle;
-	}
-	> span {
-		.ts-mixin-text-ellipsis();
-		padding: 0 @ts-unit-half;
-		line-height: @ts-unit - 2px;
-		margin-top: -2px;
-		white-space: nowrap;
-		word-wrap: normal;
-		position: relative;
-		overflow: hidden;
-	}
-	> i {
-		line-height: 0;
-	}
-	&:after {
-		content: '';
-		.ts-mixin-maximize();
-	}
-	&,
-	&:after {
-		border-radius: @ts-unit;
-	}
-	&.ts-noborder {
-		&,
-		&:after {
-			border-color: transparent !important;
-		}
-	}
-	&:before {
-		content: '';
-		.ts-mixin-maximize(@outset, @outset, @outset, @outset);
-		border-radius: @ts-unit + 2.5px;
-		border: 2.75px solid transparent;
-	}
-	&.ts-ready:before {
-		.ts-mixin-transition(border-color, @ts-transition-now);
-	}
-	&.ts-nofocus {
-		&:before {
-			display: none !important;
-		}
-	}
-	&:disabled {
-		opacity: 0.4;
-		cursor: not-allowed;
-	}
-	&:not(.ts-action) {
-		> span {
-			.ts-mixin-button-text();
-		}
-		> i {
-			margin-left: -1000px;
-			margin-right: -1000px;
-		}
-	}
-	&.ts-action {
-		line-height: @ts-unit;
-		border: none !important;
-		border-radius: 0 !important;
-		> span {
-			padding-left: @ts-unit-quarter * 1.5;
-			width: auto;
-			margin-top: -3.5px;
-		}
-		&:not(.ts-is-loading):after {
-			visibility: hidden;
-		}
-	}
-}
-.mixin-button-light(@background: transparent, @activebackground: transparent, @bordercolor: transparent, @activebordercolor: transparent) {
-	color: @ts-color-white;
-	background-color: @background;
-	&:after {
-		transition: border-color @ts-transition-now;
-		border: 1px solid @bordercolor;
-		&:after {
-			border-color: @bordercolor;
-		}
-	}
-	&:focus:before {
-		border-color: rgba(255, 255, 255, 0.6);
-	}
-	&.ts-active:active {
-		background-color: @activebackground !important;
-		&:after {
-			border-color: @activebordercolor !important;
-		}
-	}
-}
 .mixin-text(@left: auto, @right: auto) {
 	left: @left;
 	right: @right;
@@ -214,8 +105,96 @@
 	&.ts-primary,
 	&.ts-secondary,
 	&.ts-tertiary,
+	&.ts-accept,
+	&.ts-warning,
 	&.ts-danger {
-		.mixin-button();
+		.ts-mixin-unselectable();
+		.ts-mixin-fixheight(@ts-unit-double); // IE10 may otherwise grow on focus :/
+		min-width: @ts-unit-double;
+		max-width: 100%;
+		padding: @ts-unit-half;
+		text-align: center;
+		position: relative;
+		display: inline-block;
+		&.ts-ready {
+			&, 
+			> i:before {
+				.ts-mixin-transition-colors(@ts-transition-now);
+			}
+		}
+		> span,
+		> i {
+			position: relative;
+			display: inline-block;
+			vertical-align: middle;
+		}
+		> span {
+			.ts-mixin-text-ellipsis();
+			padding: 0 @ts-unit-half;
+			line-height: @ts-unit - 2px;
+			margin-top: -2px;
+			white-space: nowrap;
+			word-wrap: normal;
+			position: relative;
+			overflow: hidden;
+		}
+		> i {
+			line-height: 0;
+		}
+		&:after {
+			content: '';
+			.ts-mixin-maximize();
+		}
+		&,
+		&:after {
+			border-radius: @ts-unit;
+		}
+		&.ts-noborder {
+			&,
+			&:after {
+				border-color: transparent !important;
+			}
+		}
+		&:before {
+			content: '';
+			.ts-mixin-maximize(@outset, @outset, @outset, @outset);
+			border-radius: @ts-unit + 2.5px;
+			border: 2.75px solid transparent;
+		}
+		&.ts-ready:before {
+			.ts-mixin-transition(border-color, @ts-transition-now);
+		}
+		&.ts-nofocus {
+			&:before {
+				display: none !important;
+			}
+		}
+		&:disabled {
+			opacity: 0.5;
+			cursor: not-allowed;
+		}
+		&:not(.ts-action) {
+			> span {
+				.ts-mixin-button-text();
+			}
+			> i {
+				margin-left: -1000px;
+				margin-right: -1000px;
+			}
+		}
+		&.ts-action {
+			line-height: @ts-unit;
+			border: none !important;
+			border-radius: 0 !important;
+			> span {
+				padding-left: @ts-unit-quarter * 1.5;
+				width: auto;
+				margin-top: -3.5px;
+			}
+			&:not(.ts-is-loading):after {
+				visibility: hidden;
+			}
+		}
 	}
 	&.ts-tertiary,
 	&.ts-secondary {
@@ -527,51 +506,64 @@ menu .ts-button {
 	}
 }
 
-// Colorscheme mixins ..........................................................
-
-.mixin-active-lite {
-	&.ts-active:active {
-		&.ts-primary {
-			background-color: @ts-color-green-dark;
-		}
-		&.ts-secondaryxx {
-			background-color: @ts-color-blue-dark;
-		}
-		&.ts-danger {
-			background-color: @ts-color-red-dark;
-		}
-		&.ts-tertiary, 
-		&.ts-secondary { 
-		  &:not(.ts-nofocus) { 
-			background-color: transparent; 
-			border: 1px solid @new-bordercolor; 
-		  } 
-		  background-color: @ts-color-gray-lightest;
-		}
-	}
-}
-.mixin-tertiary-lite {
-	&.ts-tertiary, 
-	&.ts-secondary { 
-	  background-color: transparent; 
-	  color: @ts-color-black; 
-	  border: 1px solid @new-bordercolor; 
-		&:focus:before {
-			border-color: @new-bordercolor
-		}
-	}
-}
-
-// Colorschemes ................................................................
-
-/*
- * These selectors are sequenced in a way that supports white/lite boxes
- * inside colored boxes. If you want colored boxes insode THOSE boxes, 
- * you are out of luck (for now).
- */
+// Colors ......................................................................
 
 .ts-button:not(:disabled) {
-	.mixin-tertiary-lite();
+	&.ts-primary {
+		background-color: @ts-color-blue;
+		color: @ts-color-white;
+		&:hover {
+			background-color: @ts-color-blue-dark;
+		}
+		&:focus:before {
+			border-color: @ts-color-blue-darker;
+		}
+	}
+	&.ts-tertiary,
+	&.ts-secondary {
+		background-color: fade(@ts-color-white, 50%);
+		color: @ts-color-black; 
+	  border: 1px solid @new-bordercolor;
+	  &:hover {
+			background-color: fade(@new-bordercolor, 50%);
+		}
+		&:focus:before {
+			border-color: @ts-color-blue;
+		}
+		&:after {
+			border: none;
+		}
+	}
+	&.ts-accept {
+		background-color: @ts-color-green;
+		color: @ts-color-white;
+		&:hover {
+			background-color: @ts-color-green-dark;
+		}
+		&:focus:before {
+			border-color: @ts-color-green-darker;
+		}
+	}
+	&.ts-warning {
+		background-color: @ts-color-orange;
+		color: @ts-color-white;
+		&:hover {
+			background-color: @ts-color-orange-dark;
+		}
+		&:focus:before {
+			border-color: @ts-color-orange-darker;
+		}
+	}
+	&.ts-danger {
+		background-color: @ts-color-red;
+		color: @ts-color-white;
+		&:hover {
+			background-color: @ts-color-red-dark;
+		}
+		&:focus:before {
+			border-color: @ts-color-red-darker;
+		}
+	}
 }
 .ts-button:disabled {
 	&.ts-action {
@@ -579,49 +571,10 @@ menu .ts-button {
 	}
 	&:not(.ts-action) {
 		color: @ts-color-black;
-		background-color: rgba(0, 0, 0, 0.1);
+		background-color: fade(@new-bordercolor, 50%);
 		&:after {
 			border: 1px solid @darkborder;
 		}
-	}
-}
-
-.ts-button:not(:disabled) {
-	.mixin-active-lite();
-	&.ts-primary {
-		background-color: @ts-color-green;
-		color: @ts-color-white;
-		&:focus:before {
-			border-color: @ts-color-green-darker;
-		}
-	}
-	&.ts-secondaryxx {
-		background-color: @ts-color-blue;
-		color: @ts-color-white;
-		&:focus:before {
-			border-color: @ts-color-blue-darker;
-		}
-	}
-	&.ts-danger {
-		background-color: @ts-color-red;
-		color: @ts-color-white;
-		&:focus:before {
-			border-color: @ts-color-red-darker;
-		}
-	}
-	&.ts-tertiary,
-	&.ts-secondary {
-		border-color: @new-bordercolor;
-		&:after {
-			border: none;
-		}
-	}
-}
-.ts-button:disabled {
-	// like tertiary
-	&:not(.ts-action) {
-		color: @ts-color-black;
-		background-color: rgba(0, 0, 0, 0.1);
 	}
 	&:after {
 		border: 1px solid @darkborder;

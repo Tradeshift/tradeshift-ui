@@ -122,6 +122,7 @@ gui.KeysModule = gui.module('gui-keys@wunderbyte.com', {
 	 * that we had really build a cross-frame keylogger and now we only broadcast 
 	 * special keys such as UP, DOWN, LEFT, RIGHT, ENTER and ESCAPE and so on. 
 	 * If needed, we could probably (safely) broadcast key combos such as `Shift+S`.
+	 * @see https://w3c.github.io/uievents/#fixed-virtual-key-codes
 	 * @param {boolean} down
 	 * @param {String} key Newschool ABORTED FOR NOW
 	 * @param {String} c (char) Bothschool
@@ -130,18 +131,24 @@ gui.KeysModule = gui.module('gui-keys@wunderbyte.com', {
 	 */
 	_maybebroadcast: function(down, key, c, code, sig) {
 		switch (code) {
+			case 8: // Backspace
+			case 9: // Tab
+			case 13: // Enter
+			case 16: // Shift
+			case 17: // Control
+			case 18: // Alt
+			case 20: // CapsLock
+			case 27: // Escape
+			case 32: // Space
 			case 33: // PageUp
 			case 34: // PageDown
-			case 38: // Up
-			case 40: // Down
-			case 37: // Left
-			case 39: // Right
-			case 18: // Alt
-			case 17: // Control
-			case 16: // Shift
-			case 32: // Space
-			case 27: // Esc
-			case 13: // Enter
+			case 35: // End
+			case 36: // Home
+			case 37: // ArrowLeft
+			case 38: // ArrowUp
+			case 39: // ArrowRight
+			case 40: // ArrowDown
+			case 46: // Delete
 				this._broadcast(down, key, c, code, sig);
 				break;
 		}

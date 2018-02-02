@@ -153,6 +153,16 @@ ts.dox.ChromeSpirit = (function using(CSSPlugin, Then) {
 				case 'hashchange':
 					this._onhashchange(location.hash);
 					break;
+				case 'click':
+					/*
+					 * The SideBar closebutton has been hacked to appear and we cannot 
+					 * assign a callback to this particular button, so we'll monitor 
+					 * the button like this (and close the menu whenever it is clicked)
+					 */
+					if (CSSPlugin.contains(e.target, 'ts-noborder')) {
+						this._openmenu(false);
+					}
+					break;
 			}
 		},
 
@@ -321,6 +331,7 @@ ts.dox.ChromeSpirit = (function using(CSSPlugin, Then) {
 			var desktop = !mobile && !tablet;
 			this._sbar.isOpen = desktop;
 			this._sbar._closebutton(!desktop);
+			this.event.shift(!desktop, 'click', this._sbar);
 			if (mobile) {
 				this.css.remove(some).add(full);
 			} else if (tablet) {

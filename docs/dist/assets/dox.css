@@ -589,6 +589,11 @@ table.api th {
   min-height: 100%;
 }
 .ts-doxchrome .ts-main iframe {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
   width: 100%;
   height: 100%;
 }
@@ -625,17 +630,6 @@ table.api th {
 .ts-engine-webkit .ts-doxchrome .ts-sidebar .ts-toolbar-title label {
   position: relative;
   top: 1px;
-}
-.ts-doxchrome {
-  /*
-	.ts-shadow {
-		position: absolute;
-		height: 30px;
-		width: 100%;
-		background-image: linear-gradient(@ts-color-black, transparent);
-		z-index: 1;
-	}
-	*/
 }
 .ts-doxchrome .ts-menu h3 {
   margin: 0;

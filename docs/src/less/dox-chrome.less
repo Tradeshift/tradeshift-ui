@@ -95,6 +95,7 @@
 		display: block;
 		min-height: 100%;
 		iframe {
+			.ts-mixin-maximize();
 			width: 100%;
 			height: 100%;
 		}
@@ -139,15 +140,6 @@
 // Menu ........................................................................
 
 .ts-doxchrome {
-	/*
-	.ts-shadow {
-		position: absolute;
-		height: 30px;
-		width: 100%;
-		background-image: linear-gradient(@ts-color-black, transparent);
-		z-index: 1;
-	}
-	*/
 	.ts-menu {
 		h3 {
 			margin: 0;
@@ -339,7 +331,6 @@
 	&.collapse-some {
 		.ts-app {
 			left: @ts-unit-triple;
-			//background-color: @ts-color-light; 
 			.ts-mixin-fixwidth(calc(~'100% - '@ts-unit-triple));
 		}
 		&:before {

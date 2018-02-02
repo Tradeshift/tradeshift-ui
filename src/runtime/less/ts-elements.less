@@ -58,18 +58,14 @@ a {
 		cursor: inherit;
 	}
 }
-p a:hover {
-	text-decoration: underline;
+button:not(:disabled):hover,
+a:hover {
+	text-decoration: underline; // overwritten later on in "ts-buttons.less"
 }
 button {
 	background-color: transparent;
 	border: none;
 }
-/*
-em { // hmmm.........
-	font-style: normal;
-}
-*/
 input:not([type='checkbox']):not([type='radio']),
 button,
 select,

@@ -30,14 +30,16 @@
 		var spinner = new Spinner(opts).spin(target)
  */
 (function(root, factory) {
-	/* CommonJS */
-	if (typeof module === 'object' && module.exports) module.exports = factory();
-	else if (typeof define === 'function' && define.amd)
-		/* AMD module */
-		define(factory);
-	else
-		/* Browser global */
-		root.Spinner = factory();
+	/*
+	 * TRADESHIFT WAS HERE: DELETING THIS CODE TO 
+	 * NOTCH WEBPACK OUT OF MODULE-BUNDLING-MODE!
+	 *
+	 * if (typeof module === 'object' && module.exports) module.exports = factory();
+	 * else if (typeof define === 'function' && define.amd)
+	 * define(factory);
+	 * else
+	 */
+	root.Spinner = factory();
 })(this, function() {
 	'use strict';
 	var prefixes = ['webkit', 'Moz', 'ms', 'O'] /* Vendor prefixes */,

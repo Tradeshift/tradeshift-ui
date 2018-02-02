@@ -124,16 +124,6 @@ module.exports = function(grunt) {
 
 		// concatenate those files
 		concat: {
-			fastclick: {
-				// stuff that isn't necessarily "use strict"
-				options: {
-					separator: '\n\n',
-					banner: '(function(window) {\n\n',
-					footer: '\n\n}(self));'
-				},
-				dest: 'temp/fastclick.js',
-				src: 'src/runtime/js/ts.ui/core/core-gui@tradeshift.com/dependencies/fastclick.js'
-			},
 			// spin.js
 			spin: {
 				options: {
@@ -439,7 +429,6 @@ module.exports = function(grunt) {
 				`tsless:${returnDevForJasmine(target)}`, // generate ts.less
 				`copy:docs_${returnDevForJasmine(target)}` // copy ts-runtime.less over to the docs
 			],
-			'concat:fastclick', // generate fastclick.js
 			'concat:spin', // generate spin.js
 			'guibundles' // generate ts-runtime-{api,gui}.js
 		];
@@ -575,7 +564,6 @@ module.exports = function(grunt) {
 	 */
 	function getguibuilds() {
 		return [
-			'temp/fastclick.js',
 			'temp/modules-mix.js',
 			'temp/module-edbml.js',
 			'temp/ts-runtime-gui.js',

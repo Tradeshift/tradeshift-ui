@@ -164,8 +164,13 @@ ts.ui.ToolBarSpirit = (function using(
 			onchange: function(changes) {
 				this.super.onchange(changes);
 				changes.forEach(function(c) {
-					if (c.name === 'hascontent') {
-						this.$hascontent(c.newValue);
+					switch (c.name) {
+						case 'hascontent':
+							this.$hascontent(c.newValue);
+							break;
+						case 'actualpager': // DOH! (because bug in EDBML spec)
+							this._maxpages();
+							break;
 					}
 				}, this);
 			},
@@ -549,10 +554,22 @@ ts.ui.ToolBarSpirit = (function using(
 			 */
 			_layout: function() {
 				if (this.element.offsetWidth) {
+					this._maxpages();
 					this._flex();
 					if (this._ismodelled()) {
 						this._calculate(this._model.tabs);
 					}
+				}
+			},
+
+			/**
+			 * Limit buttons in pager for smallish resolution.
+			 */
+			_maxpages: function() {
+				var pager = this.model().pager;
+				var width = this.box.width;
+				if (pager && width) {
+					pager.max = width < 600 ? 3 : 5;
 				}
 			},
 

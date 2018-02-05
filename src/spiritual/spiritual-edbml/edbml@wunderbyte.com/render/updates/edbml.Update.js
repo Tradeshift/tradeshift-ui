@@ -138,8 +138,6 @@ edbml.Update = gui.Class.create(
 				var event = document.createEvent('UIEvents');
 				event.initEvent(name, true, true);
 				return element.dispatchEvent(event);
-			} else {
-				console.error('Occasional EDBML dysfunction just happened');
 			}
 		},
 

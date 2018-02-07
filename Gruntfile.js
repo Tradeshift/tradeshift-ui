@@ -64,7 +64,7 @@ module.exports = function(grunt) {
 		clean: {
 			dev: ['temp/**', 'dist/**', 'public/**'],
 			jasmine: ['temp/**', 'dist/**', 'public/**'],
-			cdn: ['temp/**', 'dist/cdn/**', 'public/**']
+			cdn: ['temp/**', 'dist/cdn/**', 'dist/npm/**', 'public/**']
 		},
 
 		copy: {
@@ -92,6 +92,10 @@ module.exports = function(grunt) {
 						dest: 'dist/cdn/ts-<%= pkg.version %>.css'
 					},
 					{
+						src: 'dist/ts.css',
+						dest: 'dist/npm/ts.css'
+					},
+					{
 						src: 'dist/ts.min.css',
 						dest: 'dist/cdn/ts-<%= pkg.version %>.min.css'
 					}
@@ -102,8 +106,16 @@ module.exports = function(grunt) {
 		tsless: {
 			// concatenate the LESS (so that devs may copy-paste it from the web)
 			cdn: {
-				src: 'src/runtime/less/include.less',
-				dest: 'dist/cdn/ts-runtime-<%= pkg.version %>.less'
+				files: [
+					{
+						src: 'src/runtime/less/include.less',
+						dest: 'dist/cdn/ts-runtime-<%= pkg.version %>.less'
+					},
+					{
+						src: 'src/runtime/less/include.less',
+						dest: 'dist/npm/ts.less'
+					}
+				]
 			},
 			// concatenate the LESS (so a local dev can see what's going in the file)
 			dev: {
@@ -145,7 +157,8 @@ module.exports = function(grunt) {
 			cdn: {
 				options: getbuildoptions(),
 				files: {
-					'dist/cdn/ts-<%= pkg.version %>.js': getcombobuilds()
+					'dist/cdn/ts-<%= pkg.version %>.js': getcombobuilds(),
+					'dist/npm/ts.js': getcombobuilds()
 				}
 			},
 			// all the ts js spec files

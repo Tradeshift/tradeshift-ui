@@ -124,7 +124,9 @@ edbml.ScriptPlugin = (function using(
 		 */
 		run: function(/* arguments */) {
 			Tick.cancelFrame(this._frameindex);
-			if (this.loaded) {
+			if (!this.spirit || this.spirit.$destructed) {
+				console.warn('Attempt to handle destructed spirit');
+			} else if (this.loaded) {
 				if (!this.$input || this.$input.done) {
 					if (this.spirit.life.entered) {
 						this.write(this._run.apply(this, arguments));

@@ -28,7 +28,7 @@
 		var hasnavi = !!(topbar && navigation && navigation.getLength());
 		var hastabs = !!tabs.getLength();
 		var hasactions = !!actions.length;
-		if(status || search || checkbox || hasactions || hastabs || hasnavi || (topbar ? hasrealtitle : title)) {
+		if(mobilos || status || search || checkbox || hasactions || hastabs || hasnavi || (topbar ? hasrealtitle : title)) {
 			if(topbar && mobilos && hastabs) {
 				renderTabs(spirit, tabs, id, mobilos);
 			}

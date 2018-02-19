@@ -7,11 +7,11 @@
     <link rel="ts-app-icon" href="/v11/dist/assets/icon.svg">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
-    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-11.0.0-beta.1.min.js"></script>
+    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-11.0.0-beta.2.min.js"></script>
     <script src="/v11/dist/assets/dox.min.js"></script>
     <script src="/v11/dist/assets/mark.min.js"></script>
     <script src="/v11/dist/assets/jquery-2.2.4.min.js"></script>
-    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-11.0.0-beta.1.min.css">
+    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-11.0.0-beta.2.min.css">
     <link rel="stylesheet" href="/v11/dist/assets/dox.css">
     <script>
         function spin(elm) {
@@ -86,7 +86,7 @@
                                     </li>
                                 </ul>
                             </figure>
-                            <p>It will look like this.</p>
+                            <p>You can also use the equivalent API.</p>
                             <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.get(&apos;%23myaside&apos;%2C%20function(aside)%20%7B%0A%09aside.busy(&apos;Loading&apos;)%3B%0A%09aside.open()%3B%0A%09setTimeout(function()%20%7B%0A%09%09aside.done()%3B%0A%09%09setTimeout(function()%20%7B%0A%09%09%09aside.close()%3B%0A%09%09%7D%2C%20250)%3B%0A%09%7D%2C%201500)%3B%0A%7D)%3B">
                                 <script type="runnable">
                                     ts.ui.get('#myaside', aside => { aside.busy('Loading'); aside.open(); setTimeout(() => { aside.done(); setTimeout(() => { aside.close(); }, 250); }, 1500); });

@@ -40,10 +40,8 @@ window.showsidebar = function show(id) {
 window.togglesidebar = function() {
 	ts.ui.get(window.showsidebar.current, sidebar => {
 		if (sidebar.isOpen) {
-			console.log('Closing!');
 			sidebar.close();
 		} else {
-			console.log('Opening!');
 			sidebar.open();
 		}
 	});

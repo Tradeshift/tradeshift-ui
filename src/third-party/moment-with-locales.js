@@ -5,8 +5,13 @@
 //! momentjs.com
 
 ;(function (global, factory) {
-	typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
-	typeof define === 'function' && define.amd ? define(factory) :
+	/*
+	 * TRADESHIFT WAS HERE: DELETING THIS CODE TO 
+	 * NOTCH WEBPACK OUT OF MODULE-BUNDLING-MODE!
+	 *
+	 * typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
+	 * typeof define === 'function' && define.amd ? define(factory) :
+	 */
 	global.moment = factory()
 }(this, (function () { 'use strict';
 
@@ -1835,17 +1840,22 @@ function chooseLocale(names) {
 }
 
 function loadLocale(name) {
-	var oldLocale = null;
-	// TODO: Find a better way to register and load all the locales in Node
-	if (!locales[name] && (typeof module !== 'undefined') &&
-			module && module.exports) {
-		try {
-			oldLocale = globalLocale._abbr;
-			var aliasedRequire = require;
-			aliasedRequire('./locale/' + name);
-			getSetGlobalLocale(oldLocale);
-		} catch (e) {}
-	}
+	/*
+	 * TRADESHIFT WAS HERE: DELETING THIS CODE TO 
+	 * NOTCH WEBPACK OUT OF MODULE-BUNDLING-MODE!
+	 *
+	 * var oldLocale = null;
+	 * // TODO: Find a better way to register and load all the locales in Node
+	 * if (!locales[name] && (typeof module !== 'undefined') &&
+	 *		module && module.exports) {
+	 *	try {
+	 *	oldLocale = globalLocale._abbr;
+	 *		var aliasedRequire = require;
+	 *		aliasedRequire('./locale/' + name);
+	 *		getSetGlobalLocale(oldLocale);
+	 *	} catch (e) {}
+	 * }
+	 */
 	return locales[name];
 }
 

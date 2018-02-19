@@ -9,7 +9,6 @@
 	// Note on whitelist: You can use `h` to add H1-H4 header support.
 	// Note on whitelist: `ol` will parse number `1.50` as a list, so was removed
 	
-	var colcount = cols.length;
 	var Markdown = ts.ui.Markdown;
 	var whitelist = ['strong', 'em', 'strike', 'code', 'ul'];
 	if(table.linkable) {
@@ -39,11 +38,9 @@
 				}
 			}
 			row.cells.forEach(function(cell, i) {
-				if(!colcount || i < colcount) {
-					var col = cols[cell.$index];
-					if(!col || col.visible) {
-						renderCell(col, row, cell);
-					}
+				var col = table.cols[cell.$index];
+				if(!col || col.visible) {
+					renderCell(col, row, cell);
 				}
 			});
 		</tr>

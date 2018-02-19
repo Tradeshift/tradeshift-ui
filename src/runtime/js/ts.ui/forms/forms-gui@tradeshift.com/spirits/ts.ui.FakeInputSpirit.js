@@ -123,7 +123,7 @@ ts.ui.FakeInputSpirit = (function() {
 		},
 
 		/**
-		 * TODO: Click might be triggered twice, is it because of FastClick.js??
+		 * TODO: Click might be triggered twice?
 		 * TODO: Ouch! https://bugzilla.mozilla.org/show_bug.cgi?id=392863
 		 */
 		_maybeopen: function() {

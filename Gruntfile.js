@@ -41,10 +41,7 @@ module.exports = function(grunt) {
 	// build for CDN
 	grunt.registerTask(
 		'dist',
-		[].concat(['exec:eslint'], build('cdn'), sizeReport('cdn'), [
-			'exec:docs_dist',
-			'exec:app_grunt'
-		])
+		[].concat(['exec:eslint'], build('cdn'), sizeReport('cdn'), ['exec:docs_dist'])
 	);
 
 	// build for jasmine tests
@@ -67,7 +64,7 @@ module.exports = function(grunt) {
 		clean: {
 			dev: ['temp/**', 'dist/**', 'public/**'],
 			jasmine: ['temp/**', 'dist/**', 'public/**'],
-			cdn: ['temp/**', 'dist/cdn/**', 'public/**']
+			cdn: ['temp/**', 'dist/cdn/**', 'dist/npm/**', 'public/**']
 		},
 
 		copy: {
@@ -95,6 +92,10 @@ module.exports = function(grunt) {
 						dest: 'dist/cdn/ts-<%= pkg.version %>.css'
 					},
 					{
+						src: 'dist/ts.css',
+						dest: 'dist/npm/ts.css'
+					},
+					{
 						src: 'dist/ts.min.css',
 						dest: 'dist/cdn/ts-<%= pkg.version %>.min.css'
 					}
@@ -105,8 +106,16 @@ module.exports = function(grunt) {
 		tsless: {
 			// concatenate the LESS (so that devs may copy-paste it from the web)
 			cdn: {
-				src: 'src/runtime/less/include.less',
-				dest: 'dist/cdn/ts-runtime-<%= pkg.version %>.less'
+				files: [
+					{
+						src: 'src/runtime/less/include.less',
+						dest: 'dist/cdn/ts-runtime-<%= pkg.version %>.less'
+					},
+					{
+						src: 'src/runtime/less/include.less',
+						dest: 'dist/npm/ts.less'
+					}
+				]
 			},
 			// concatenate the LESS (so a local dev can see what's going in the file)
 			dev: {
@@ -127,16 +136,6 @@ module.exports = function(grunt) {
 
 		// concatenate those files
 		concat: {
-			fastclick: {
-				// stuff that isn't necessarily "use strict"
-				options: {
-					separator: '\n\n',
-					banner: '(function(window) {\n\n',
-					footer: '\n\n}(self));'
-				},
-				dest: 'temp/fastclick.js',
-				src: 'src/runtime/js/ts.ui/core/core-gui@tradeshift.com/dependencies/fastclick.js'
-			},
 			// spin.js
 			spin: {
 				options: {
@@ -146,16 +145,6 @@ module.exports = function(grunt) {
 				},
 				dest: 'temp/spin.js',
 				src: 'src/third-party/spin.js'
-			},
-			// ts.app.js
-			app: {
-				options: {
-					separator: '\n\n',
-					banner: '(function() {\n\n',
-					footer: '\n\n ts.app = gui.Object.extend(ts.app || {}, ts._app);}).call(ts._app);'
-				},
-				dest: 'temp/ts.app.js',
-				src: 'app/dist/ts.app.js'
 			},
 			// all the ts js files
 			dev: {
@@ -168,7 +157,8 @@ module.exports = function(grunt) {
 			cdn: {
 				options: getbuildoptions(),
 				files: {
-					'dist/cdn/ts-<%= pkg.version %>.js': getcombobuilds()
+					'dist/cdn/ts-<%= pkg.version %>.js': getcombobuilds(),
+					'dist/npm/ts.js': getcombobuilds()
 				}
 			},
 			// all the ts js spec files
@@ -386,10 +376,6 @@ module.exports = function(grunt) {
 				command: 'cd docs && grunt dist',
 				stdout: 'inherit'
 			},
-			app_grunt: {
-				command: 'cd app && npm run build',
-				stdout: 'inherit'
-			},
 			docs_grunt: {
 				command: 'cd docs && grunt',
 				stdout: 'inherit'
@@ -408,8 +394,8 @@ module.exports = function(grunt) {
 
 		// serve, watch, generate concurrently
 		concurrent: {
-			docs: ['devserver', 'watch', 'exec:docs_grunt', 'exec:app_grunt'],
-			nodocs: ['devserver', 'watch', 'exec:app_grunt', 'asciify:banner'],
+			docs: ['devserver', 'watch', 'exec:docs_grunt'],
+			nodocs: ['devserver', 'watch', 'asciify:banner'],
 			// Build for CDN
 			cdn_generate_js: {
 				tasks: generateJsConcurrent('cdn')
@@ -456,9 +442,7 @@ module.exports = function(grunt) {
 				`tsless:${returnDevForJasmine(target)}`, // generate ts.less
 				`copy:docs_${returnDevForJasmine(target)}` // copy ts-runtime.less over to the docs
 			],
-			'concat:fastclick', // generate fastclick.js
 			'concat:spin', // generate spin.js
-			'concat:app', // generate ts.app.js
 			'guibundles' // generate ts-runtime-{api,gui}.js
 		];
 	}
@@ -584,8 +568,7 @@ module.exports = function(grunt) {
 			'temp/module-edb.js',
 			'temp/ts-runtime-api.js',
 			'temp/moment.js',
-			'temp/spin.js',
-			'temp/ts.app.js'
+			'temp/spin.js'
 		];
 	}
 
@@ -594,7 +577,6 @@ module.exports = function(grunt) {
 	 */
 	function getguibuilds() {
 		return [
-			'temp/fastclick.js',
 			'temp/modules-mix.js',
 			'temp/module-edbml.js',
 			'temp/ts-runtime-gui.js',

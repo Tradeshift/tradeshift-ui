@@ -3,7 +3,7 @@
 	<?input name="toolbar" type="ts.ui.ToolBarModel"?>
 	<?input name="layout" type="ts.ui.LayoutModel"?>
 	<?function name="renderTabs" src="ts.ui.toolbartabs.edbml"?>
-
+	
 	var spirit = this;
 	var id = spirit.$instanceid + toolbar.$instanceid;
 	var mobilos = layout.isMobilePoint();
@@ -29,14 +29,14 @@
 		var hastabs = !!tabs.getLength();
 		var hasactions = !!actions.length;
 		if(mobilos || status || search || checkbox || hasactions || hastabs || hasnavi || (topbar ? hasrealtitle : title)) {
-			if(mobilos && hastabs) {
+			if(topbar && mobilos && hastabs) {
 				renderTabs(spirit, tabs, id, mobilos);
 			}
 			<menu id="${id}-items" class="ts-toolbar-menu ts-left">
-				if(topbar) {
+				if (topbar) {
 					renderNav(navigation);
 				}
-				if(!mobilos && hastabs && !hasnavi) {
+				if ((!mobilos || !topbar) && hastabs && !hasnavi) {
 					renderTabs(spirit, tabs, id, mobilos);
 				} else {
 				 if(search) {

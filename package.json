@@ -1,6 +1,6 @@
 {
 	"name": "tradeshift-ui",
-	"version": "10.0.2",
+	"version": "10.0.7",
 	"private": true,
 	"description": "The Tradeshift UI Library & Framework",
 	"homepage": "https://ui.tradeshift.com/",
@@ -36,7 +36,7 @@
 		"test": "yarn run eslint & grunt jasmine & wait && node tasks/browserstack.js",
 		"http": "static spec/jasmine -H '{\"Cache-Control\": \"no-cache, must-revalidate\"}'",
 		"****** NODE *****": "",
-		"postinstall": "cd docs && yarn && cd ../app && yarn",
+		"postinstall": "cd docs && yarn",
 		"precommit": "lint-staged && grunt exec:docs_dist && git add -A docs",
 		"gh-pages": "node tasks/gh-pages.js"
 	},

@@ -47,7 +47,6 @@ ts.ui.TopBarModel = (function using(chained) {
 			this.super.onconstruct();
 			gui.Broadcast.addGlobal([UPDATE_DEFAULT_TITLE], this);
 			this.menubutton = {
-				id: 'ts-button-menuswitch',
 				icon: 'ts-icon-menuswitch',
 				type: 'ts-tertiary ts-topbar-menubutton',
 				onclick: function() {

@@ -178,7 +178,7 @@ module.exports = function(grunt) {
 		watch: {
 			js_global: {
 				files: 'src/js/**/*.js',
-				tasks: ['guibundles', 'concat'],
+				tasks: ['guibundles', 'concat:local'],
 				options: { debounceDelay: 250 }
 			},
 			js_local: {

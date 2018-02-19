@@ -1,8 +1,8 @@
 {
-  "version": "0.0.5",
+  "version": "0.0.6",
   "versions": [
     "11.0.0-beta.2",
-    "10.0.2"
+    "10.0.7"
   ],
   "devDependencies": {
     "node-static": "^0.7.10"

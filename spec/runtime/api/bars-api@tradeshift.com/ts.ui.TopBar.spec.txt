@@ -1,3 +1,7 @@
+/*
+ * @deprecated
+ * TODO: Equivalent test for the header!!!!
+ *
 describe('ts.ui.TopBar', function likethis() {
 	// Expectations ..............................................................
 
@@ -18,3 +22,4 @@ describe('ts.ui.TopBar', function likethis() {
 		).toBe(ts.ui.TopBar);
 	});
 });
+*/

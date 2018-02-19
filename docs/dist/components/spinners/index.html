@@ -86,7 +86,7 @@
                                     </li>
                                 </ul>
                             </figure>
-                            <p>It will look like this.</p>
+                            <p>You can also use the equivalent API.</p>
                             <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.get(&apos;%23myaside&apos;%2C%20function(aside)%20%7B%0A%09aside.busy(&apos;Loading&apos;)%3B%0A%09aside.open()%3B%0A%09setTimeout(function()%20%7B%0A%09%09aside.done()%3B%0A%09%09setTimeout(function()%20%7B%0A%09%09%09aside.close()%3B%0A%09%09%7D%2C%20250)%3B%0A%09%7D%2C%201500)%3B%0A%7D)%3B">
                                 <script type="runnable">
                                     ts.ui.get('#myaside', aside => { aside.busy('Loading'); aside.open(); setTimeout(() => { aside.done(); setTimeout(() => { aside.close(); }, 250); }, 1500); });

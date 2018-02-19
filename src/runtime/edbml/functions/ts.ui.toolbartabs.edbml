@@ -7,8 +7,9 @@
     
   (function specialTabs(topbar) {
     @ts = topbar ? 'ts.ui.TopBarTabsSpirit' : null;
+    @id = id + ( topbar && mobilos ? '-dropdown' : '-tabs' );
     @class = 'ts-toolbar-tabs' + (topbar ? ' ts-topbar-tabs' : '');
-    <ul @ts @class id="${id}-tabs">
+    <ul @ts @class @id>
       tabs.forEach(rendertab);
       if(tabs.newtabbutton) {
         rendernew(tabs.newtabbutton);
@@ -16,7 +17,8 @@
       if(!(topbar && mobilos)) {
         rendermore();
       }
-      if(tabs.getLength()) {
+      if(tabs.length) {
+        console.log('TODO: getLength() really not working???');
       	@class = 'ts-tab-indicator';
       	@id = tabs.$instanceid + '-indicator';
 	      <li data-ts="Spirit" @id @class></li>

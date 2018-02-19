@@ -236,7 +236,6 @@ ts.ui.ToolBarModel = (function using(chained, ButtonModel, CheckBoxModel) {
 			this.super.onconstruct();
 			this.buttons = this.buttons || [];
 			this.actions = this.actions || [];
-			// alert('Hello ' + this + ' ' + this.actions);
 			this.tabs = this.tabs || [];
 			this._watchmodels(true);
 			this._updatehascontent();

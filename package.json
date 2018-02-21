@@ -1,7 +1,7 @@
 {
-  "version": "0.0.6",
+  "version": "0.0.7",
   "versions": [
-    "11.0.0-beta.2",
+    "11.0.0-beta.4",
     "10.0.7"
   ],
   "devDependencies": {

@@ -3,7 +3,7 @@
  * @using {function} isInView
  * @using {function} goIntoView
  */
-ts.dox.MenuSpirit = (function using(isInView, goIntoView) {
+ts.dox.MenuSpirit = (function using(isInView, goIntoView, isAppendix) {
 	return ts.ui.Spirit.extend({
 		/**
 		 * Setup much.
@@ -21,7 +21,7 @@ ts.dox.MenuSpirit = (function using(isInView, goIntoView) {
 		onrender: function(summary) {
 			this.super.onrender(summary);
 			if (this._newselection) {
-				this._revealchecked(this.dom.q('.ts-checked'));
+				this._updatechecked(this.dom.q('.ts-checked'));
 				this._newselection = false;
 			}
 		},
@@ -95,7 +95,9 @@ ts.dox.MenuSpirit = (function using(isInView, goIntoView) {
 		 * Make sure the selected item can be seen.
 		 * @param {HTMLLiElement} checked
 		 */
-		_revealchecked: function(checked) {
+		_updatechecked: function(checked) {
+			var panel = this.dom.parent(ts.ui.PanelSpirit);
+			panel.css.shift(checked && isAppendix(checked), 'appendix');
 			if (checked && !isInView(checked)) {
 				goIntoView(checked);
 			}
@@ -196,5 +198,13 @@ ts.dox.MenuSpirit = (function using(isInView, goIntoView) {
 	 */
 	function intoView(el) {
 		el.scrollIntoView(false);
+	},
+	/**
+	 * Is menu item in the Appendix section selected (checked)?
+	 * @param {Element} checked
+	 * @returns {boolean}
+	 */
+	function isAppendix(checked) {
+		return gui.CSSPlugin.matches(checked, 'li.submenu:last-child .ts-checked');
 	}
 );

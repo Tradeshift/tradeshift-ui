@@ -1,18 +1,4 @@
 /*
-// Marble (TODO)
-@ts-color-marble-lightest: hsl(195, 20%, 96%);
-@ts-color-marble-lighter: hsl(195, 21%, 93%);
-*/
-/*
-// Grey
-@ts-color-gray-lightest: hsl(195, 20%, 96%);
-@ts-color-gray-lighter: hsl(198, 23%, 85%);
-@ts-color-gray-light: hsl(199, 25%, 64%);
-@ts-color-gray: hsl(200, 23%, 45%);
-@ts-color-gray-dark: hsl(203, 22%, 36%);
-@ts-color-gray-darker: hsl(200, 24%, 20%);
-*/
-/*
  * In a separate stylesheet because it ruins syntax highlighting in Atom :/
  */
 @font-face {
@@ -506,14 +492,6 @@ table.api th {
 .ts-mobile-only section.desc {
   padding-right: 0;
 }
-.ts-doxchrome {
-  /*
-	.ts-sidebar,
-	.ts-main {
-		top: 30px;
-	}
-	*/
-}
 .ts-doxchrome #chrome {
   position: absolute;
   top: 0;
@@ -558,6 +536,9 @@ table.api th {
   padding: 0;
   overflow-y: scroll;
   background-color: #2d3c43;
+}
+.ts-doxchrome .ts-sidebar .ts-panel.appendix {
+  background-color: #1f2a2e;
 }
 .ts-doxchrome .ts-sidebar .ts-panel::-webkit-scrollbar {
   width: 5px;
@@ -686,28 +667,11 @@ table.api th {
 }
 .ts-doxchrome .ts-menu > li.submenu {
   /*
-				> .ts-menu {
-					> li {
-						> a {
-							background-color: @ts-color-slate;
-							position: relative;
-							z-index: 2;
-						}
-						> a:not(.ts-checked) {
-							&,
-							&:hover {
-								background-color: @ts-color-slate !important;
-							}
-						}
-					}
-				}
-				*/
-  /*
 				> .ts-shadow {
 					position: absolute;
 					height: 3px;
 					width: 100%;
-					background-image: linear-gradient(fade(@ts-color-black, 25%), transparent);
+					background-image: linear-gradient(fade(red, 25%), transparent);
 					z-index: 1;
 				}
 				*/
@@ -729,6 +693,15 @@ table.api th {
 .ts-doxchrome .ts-menu > li.submenu > a {
   position: relative;
   z-index: 2;
+}
+.ts-doxchrome .ts-menu > li.submenu > .ts-menu > li > a {
+  background-color: #1f2a2e;
+  position: relative;
+  z-index: 2;
+}
+.ts-doxchrome .ts-menu > li.submenu > .ts-menu > li > a:hover:not(:disabled),
+.ts-doxchrome .ts-menu > li.submenu > .ts-menu > li > a:focus {
+  background-color: #2d3c43;
 }
 .ts-doxchrome .ts-menu > li.submenu menu {
   width: 100%;

@@ -310,7 +310,7 @@ ts.dox.ChromeSpirit = (function using(CSSPlugin, Then) {
 			} else {
 				path = this._searchquery ? path + '?query=' + this._searchquery : path;
 				this._oldframe = this.dom.qdoc('iframe', ts.ui.FrameSpirit) || null;
-				this._main.dom.append(ts.ui.FrameSpirit.summon('dist/' + path));
+				this._main.dom.prepend(ts.ui.FrameSpirit.summon('dist/' + path));
 			}
 		},
 

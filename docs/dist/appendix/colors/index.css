@@ -14,3 +14,6 @@ article {
 #doc-colors-demo tr:first-child td:nth-child(2) {
   color: white;
 }
+#doc-colors-demo tr:last-child td {
+  color: white;
+}

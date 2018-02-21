@@ -193,6 +193,11 @@ module.exports = function(grunt) {
 				tasks: ['copy:pageassets'],
 				options: { debounceDelay: 250 }
 			},
+			txt: {
+				files: 'src/xhtml/**/*.txt',
+				tasks: ['copy:pageassets'],
+				options: { debounceDelay: 250 }
+			},
 			css: {
 				files: 'src/less/**/*.less',
 				tasks: ['less'],

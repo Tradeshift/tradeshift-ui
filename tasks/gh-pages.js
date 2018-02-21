@@ -42,14 +42,14 @@ function doit(done) {
 	clone('gh-pages').then(() => {
 		const thisversion = localversion('../package.json');
 		const thatversion = majorversion('gh-pages/package.json', thisversion);
-		if (semv.gt(thisversion, thatversion)) {
+		if (semv.gte(thisversion, thatversion)) {
 			log('Updating website');
 			injectdocs('v' + parseInt(thisversion, 10));
 			var versions = updateversions('gh-pages/package.json', thatversion, thisversion);
 			updateredirect(abspath('gh-pages', 'index.html'), versions);
 			pushchanges('gh-pages', 'gh-pages-update', done);
 		} else {
-			log('Update aborted');
+			log('ERROR: package.json version must *at least* be equal to the current version');
 			done();
 		}
 	});

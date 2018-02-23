@@ -6,26 +6,25 @@ const ZERO = '0.0.0';
 const USER = process.env.GH_USER_NAME;
 const PASS = process.env.GH_ACCESS_TOK;
 const REPO = 'github.com/Tradeshift/tradeshift-ui.git';
-const log = msg => console.log(msg);
-const tojson = object => JSON.stringify(object, 0, 2);
+const logtask = msg => console.log(msg);
+const getjson = object => JSON.stringify(object, 0, 2);
 const abspath = (...paths) => path.join(__dirname, ...paths.map(String));
-const encoding = read => (read ? 'UTF-8' : { encoding: 'UTF-8' });
-const readfile = where => file.readFileSync(where, encoding(true));
-const writefile = (data, where) => file.writeFileSync(where, data, encoding());
-const nukefolder = folder => rimraf(abspath(folder));
-const getpackage = where => JSON.parse(readfile(abspath(where)));
-const setpackage = (where, object) => writefile(tojson(object), abspath(where));
-const localversion = where => semv.clean(getpackage(where).version);
+const delpath = folder => rimraf(abspath(folder));
+const ncoding = read => (read ? 'UTF-8' : { ncoding: 'UTF-8' });
+const getfile = where => file.readFileSync(where, ncoding(true));
+const putfile = (data, where) => file.writeFileSync(where, data, ncoding());
+const getpckg = where => JSON.parse(getfile(abspath(where)));
+const setpckg = (where, object) => putfile(getjson(object), abspath(where));
 
 /**
  * Confirm environment variables and clean the directory before we start.
  */
 (function run() {
 	if (USER && PASS) {
-		nukefolder('gh-pages');
+		delpath('gh-pages');
 		doit(function done() {
-			log('Cleaning up');
-			nukefolder('gh-pages');
+			logtask('Cleaning up');
+			delpath('gh-pages');
 		});
 	} else {
 		USER || console.error('GH_USER_NAME missing!');
@@ -38,18 +37,18 @@ const localversion = where => semv.clean(getpackage(where).version);
  * @param {Function} done
  */
 function doit(done) {
-	log('Cloning "gh-pages"');
+	logtask('Cloning "gh-pages"');
 	clone('gh-pages').then(() => {
 		const thisversion = localversion('../package.json');
 		const thatversion = majorversion('gh-pages/package.json', thisversion);
 		if (semv.gte(thisversion, thatversion)) {
-			log('Updating website');
+			logtask('Updating website');
 			injectdocs('v' + parseInt(thisversion, 10));
 			var versions = updateversions('gh-pages/package.json', thatversion, thisversion);
 			updateredirect(abspath('gh-pages', 'index.html'), versions);
 			pushchanges('gh-pages', 'gh-pages-update', done);
 		} else {
-			log('ERROR: package.json version must *at least* be equal to the current version');
+			logtask('ERROR: package.json version must *at least* be equal to the current version');
 			done();
 		}
 	});
@@ -69,15 +68,25 @@ function clone(branch) {
 }
 
 /**
+ * Parse `package.json` to find this repos version.
+ * @param {string} where - Path to `package.json`
+ * @returns {string}
+ */
+function localversion(where) {
+	return semv.clean(getpckg(where).version);
+}
+
+/**
  * Parse `package.json` to find the version that most 
  * closely matches the current version of this branch.
  * @param {string} where - Path to `package.json`
+ * @param {string} version - current version (via `localversion` above)
  * @returns {Function}
  */
 function majorversion(where, version) {
 	const majorver = ver => parseInt(ver, 10);
 	const matchver = v => majorver(v) === majorver(version);
-	const versions = getpackage(where).versions;
+	const versions = getpckg(where).versions;
 	return versions.map(semv.clean).find(matchver) || ZERO;
 }
 
@@ -103,13 +112,13 @@ function injectdocs(version) {
  * @returns {Array<string>} - returns the versions
  */
 function updateversions(where, source, target) {
-	const pkg = getpackage(where);
+	const pkg = getpckg(where);
 	pkg.version = semv.inc(pkg.version, 'patch');
 	pkg.versions = pkg.versions
 		.map(v => (v === source ? target : v))
 		.concat(source === ZERO ? [target] : [])
 		.sort(semv.lt);
-	setpackage('gh-pages/package.json', pkg);
+	setpckg('gh-pages/package.json', pkg);
 	return pkg.versions;
 }
 
@@ -127,8 +136,8 @@ function updateredirect(where, versions) {
 		}, versions[0]),
 		10
 	);
-	var html = readfile(where).replace(/URL=\/v(\d*)\//, `URL=/v${vers}/`);
-	writefile(html, where);
+	var html = getfile(where).replace(/URL=\/v(\d*)\//, `URL=/v${vers}/`);
+	putfile(html, where);
 }
 
 /**
@@ -139,7 +148,7 @@ function updateredirect(where, versions) {
  * @param {Funciton} done
  */
 function pushchanges(source, target, done) {
-	log('Pushing', target);
+	logtask('Pushing', target);
 	git(abspath(source))
 		.branch([target])
 		.checkout(target)
@@ -179,7 +188,7 @@ function copydist(version, parser) {
 function copyindex(version, parser) {
 	const source = abspath('../', 'docs', 'index.html');
 	const target = abspath('gh-pages', version, 'index.html');
-	writefile(parser(readfile(source)), target);
+	putfile(parser(getfile(source)), target);
 }
 
 /**
@@ -232,7 +241,7 @@ function copyfile(src, dest, parser) {
 		case '.html':
 		case '.css':
 		case '.js':
-			writefile(parser(readfile(src)), dest);
+			putfile(parser(getfile(src)), dest);
 			break;
 		default:
 			file.linkSync(src, dest);

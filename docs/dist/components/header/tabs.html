@@ -31,7 +31,7 @@
                 <div data-ts="Panel">
                     <article>
                         <section>
-                            <p>Top level navigational tabs can be mounted via the <code>tabs</code> method as shown below.</p>
+                            <p>Top level navigational tabs can be mounted via the <code>tabs</code> method as shown.</p>
                             <figure data-ts="DoxScript" data-ts.code="ts.ui.Header.tabs(%5B%0A%09%7Blabel%3A%20&apos;One&apos;%7D%2C%0A%09%7Blabel%3A%20&apos;Two&apos;%7D%2C%0A%09%7Blabel%3A%20&apos;Three&apos;%2C%20onselect()%20%7B%0A%09%09console.log(&apos;selected&apos;)%3B%0A%09%7D%7D%0A%5D)%3B">
                                 <script type="text/html">
                                     ts.ui.Header.tabs([ {label: 'One'}, {label: 'Two'}, {label: 'Three', onselect() { console.log('selected'); }} ]);
@@ -62,6 +62,11 @@ tabs<span class="token punctuation">.</span><span class="token function">push<sp
 	<span class="token punctuation">}</span>
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
                             </figure>
+                            <div data-ts="Note">
+                                <i class="ts-icon-info"></i>
+                                <p>If you prefer the markup-driven approach, top level tabs may alternatively be configured declaratively via the <a data-ts="Button" href="/dist/components/mains/">Mains</a> component.
+                                </p>
+                            </div>
                         </section>
                         <section id="tabs-desc" data-important="THIS GETS INCLUDED IN OTHER PAGES!">
                             <p>You can use array methods like <code>push</code>, <code>pop</code>, <code>shift</code>, <code>unshift</code>, <code>splice</code> and so on to manage tabs, just note that the tabs <code>length</code> is a readonly property.

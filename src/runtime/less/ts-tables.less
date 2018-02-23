@@ -1,3 +1,5 @@
+@color-table-selected: @ts-color-gray-lighter;
+
 .ts-table {
 	.ts-mixin-unselectable();
 	background-color: @ts-color-white;
@@ -158,7 +160,7 @@
 	.ts-table-menu:not(.ts-open) {
 		th {
 			&.ts-selected {
-				background-color: @ts-color-gray-lightest;
+				background-color: @color-table-selected;
 			}
 		}
 	}
@@ -193,6 +195,9 @@
 				font-size: 14px;
 				display: none;
 			}
+			&:hover {
+				text-decoration: none;
+			}
 		}
 		.ts-default {
 			color: @ts-color-black;
@@ -213,7 +218,7 @@
 			}
 		}
 		.ts-selected {
-			background-color: @ts-color-gray-lighter;
+			background-color: @color-table-selected;
 			.ts-button-sort {
 				padding-right: @ts-unit-double !important;
 				i {
@@ -334,9 +339,7 @@
 		td {
 			background-color: @ts-color-white;
 			&.ts-selected {
-				background-color: @ts-color-gray-lighter;
-				background-color: @ts-color-gray-lightest;
-				//background-color: pink;
+				background-color: @color-table-selected;
 			}
 			&.ts-table-editmode {
 				background-color: @ts-color-yellow-lightest !important;
@@ -417,7 +420,7 @@
 				}
 				&.ts-selected {
 					fieldset:after {
-						background-color: @ts-color-gray-lighter;
+						background-color: @color-table-selected;
 					}
 				}
 			}
@@ -449,9 +452,11 @@
 			&:after {
 				display: none;
 			}
+			/*
 			.ts-toolbar {
 				background-color: @ts-color-gray-lightest;
 			}
+			*/
 		}
 	}
 	.ts-table-gutter,

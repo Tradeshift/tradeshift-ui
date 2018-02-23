@@ -193,7 +193,7 @@ module.exports = function(grunt) {
 			},
 			edbml: {
 				files: 'src/edbml/**/*.edbml',
-				tasks: ['edbml:outline', 'uglify'],
+				tasks: ['edbml:outline', 'concat'],
 				options: { debounceDelay: 250 }
 			},
 			xhtml: {
@@ -325,14 +325,14 @@ module.exports = function(grunt) {
 					var tags = grunt.template.process('<%=' + tagset + '%>');
 					var menu = grunt.file.readJSON('menu.json');
 					var svgs = grunt.file.read('src/svg/icons.svg');
-					var json = JSON.stringify(menu, null, null);
+					var json = JSON.stringify(menu, 0, 0);
 					tags = tags.replace(/,/g, '\n		');
 					return publisher.publish(
 						content
 							.replace('${includes}', tags)
 							.replace('${menujson}', json)
 							.replace('${svgicons}', svgs.replace(/\n\n*/g, '\n'))
-							.replace('${menuhtml}', seomenu(JSON.parse(json)))
+							.replace('${menuhtml}', seomenu(menu))
 					);
 				}
 			}

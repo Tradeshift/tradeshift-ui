@@ -1,6 +1,24 @@
 // Chrome .....................................................................
 
 .ts-doxchrome {
+	#chrome {
+		.ts-mixin-maximize();
+		top: 30px;
+	}
+	#versions {
+		height: 30px;
+		border: none;
+		position: absolute;
+		top: 0;
+		z-index: @ts-zindex-max;
+		width: 100%;
+	}
+	/*
+	.ts-sidebar,
+	.ts-main {
+		top: 30px;
+	}
+	*/
 	.ts-sidebar,
 	.ts-topbarspinner {
 		visibility: hidden;
@@ -241,6 +259,7 @@
 	.ts-topbarspinner {
 		z-index: @ts-zindex-aside + 1;
 		left: @ts-unit * 10;
+		// top: 30px;
 	}
 	.button-menu-open i {
 		transition: opacity @ts-transition-fast;

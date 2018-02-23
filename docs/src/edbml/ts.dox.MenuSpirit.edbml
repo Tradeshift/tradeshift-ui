@@ -7,8 +7,7 @@
 	} else {
 		renderItems(menu.items);
 	}
-
-
+	
 	// Menu mode .................................................................
 	
 	function renderItems(items) {
@@ -71,11 +70,19 @@
 		<li>
 			@id = 'link-' + result.$instanceid;
 			@class = result.selected ? 'ts-checked' : null;
-			<a @id @class data-ts="Button" href="/#${result.href}">
+			<a @id @class data-ts="Button" href="${prefix()}#${result.href}">
 				<i data-ts="Icon" class="ts-icon-romance-find-love"></i>
 				<span>${result.title}</span>
 			</a>
 		</li>
+	}
+
+	// append `v11` to href when on docs website (on the internet)...
+	function prefix() {
+		var regx = /^\/v\d+\/+/;
+		var path = location.pathname;
+		var list = regx.exec(path);
+		return list ? list[0] : '/';
 	}
 	
 </script>

@@ -83,11 +83,12 @@ ts.dox.MenuSpirit = (function using(isInView, goIntoView) {
 		 * @param {HTMLScriptElement} script
 		 */
 		_loadmenu: function(script) {
-			this._model = new ts.dox.MenuModel({
-				items: JSON.parse(script.textContent.trim())
-			});
 			this.script.load(ts.dox.MenuSpirit.edbml);
-			this.script.input(this._model);
+			this.script.input(
+				(this._model = new ts.dox.MenuModel({
+					items: JSON.parse(script.textContent.trim())
+				}))
+			);
 		},
 
 		/**

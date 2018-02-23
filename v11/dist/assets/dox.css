@@ -534,7 +534,6 @@ table.api th {
 }
 .ts-doxchrome .ts-sidebar .ts-panel {
   padding: 0;
-  overflow-y: scroll;
   background-color: #2d3c43;
 }
 .ts-doxchrome .ts-sidebar .ts-panel.appendix {

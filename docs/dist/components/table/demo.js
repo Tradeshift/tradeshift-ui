@@ -12,10 +12,10 @@ $.getJSON('assets/rowdata.json', function(json) {
 		var table = ts.ui.get('#demotable');
 		var toolb = ts.ui.get('#toolbar');
 
-		table.maximize();
-		table.selectable();
-		// table.configurable(); TODO!
-		table.cols(gettablecols());
+		table
+			.maximize()
+			.selectable()
+			.cols(gettablecols());
 		toolb.title(title).buttons([
 			{
 				label: 'Build Incrementally',

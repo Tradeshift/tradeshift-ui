@@ -1,6 +1,3 @@
-// @new-bordercolor: rgba(0,0,0,0.2); use this for better theming support???
-@new-bordercolor: @ts-color-gray-light; // for now use form field outline color
-@new-shadowcolor: @ts-color-gray-darker;
-
-@ts-shadow: 0 3px 6px fade(@ts-color-slate-lightest, 16%), 0 5px 10px fade(@ts-color-slate-lightest, 8%);
-// 0 5px 10px rgba(50,50,93,.1), 0 3px 6px rgba(0,0,0,.08), 0 0 1px rgba(50,50,93,.2) 
+@new-bordercolor: @ts-color-gray-light; // TODO: This may not work on dark(er) background, use black alpha?
+@new-shadowcolor: lime;
+@ts-shadow: 0 2px 2px rgba(0,0,0,0.1), 0 2px 8px rgba(0,0,0,0.05);

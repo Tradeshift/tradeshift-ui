@@ -28,7 +28,7 @@
 		]
 	},
 	{
-		"label": "UI Components",
+		"label": "UI Components…",
 		"icon": "docs-icon-modules-1",
 		"path": "components/",
 		"items": [
@@ -161,7 +161,7 @@
 		]
 	},
 	{
-		"label": "Appendix",
+		"label": "Appendix…",
 		"note": "MUST MANUALLY SYNCHRONIZE THE PAGE /#appendix/ TO THIS JSON!",
 		"path": "appendix/",
 		"icon": "docs-icon-video-games-space-invaders-1",

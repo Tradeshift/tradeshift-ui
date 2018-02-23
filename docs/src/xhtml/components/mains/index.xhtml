@@ -12,10 +12,10 @@
 							<article>
 								<h1>Main</h1>
 								<section class="desc">
-									<p>If your app sections are more or less hardcoded, or if you are sketching a prototype design, the Mains element may come in handy to configure tabs via HTML.</p>
+									<p><val>Main</val> and <val>Mains</val> may come in handy to configure Header tabs via HTML.</p>
 								</section>
 								<section>
-									<p>The <val>Main</val> component is a fairly unassuming part of the <a data-ts="Button" href="/#getstarted/layout.html">basic layout</a> where it functions to control the <code>flex</code>. Here it is, stuck between the <val>App</val> and <val>Content</val> sections.</p>
+									<p>The <val>Main</val> component is a fairly unassuming part of the <a data-ts="Button" href="/#getstarted/layout.html">basic layout</a> where it functions to control the <code>flex</code>. Here it is, stuck between the <val>App</val> and <val>Content</val>.</p>
 
 									<figure data-ts="DoxMarkup">
 										<script>
@@ -31,7 +31,7 @@
 										</script>
 									</figure>
 
-									<p>We can add multiple <val>Main</val> elements inside a containing <val>Mains</val> to automatically generate top level tabs in the Header. They must all be fitted with a <att>label</att> attribute.</p>
+									<p>We can add multiple <val>Main</val> elements inside a containing <val>Mains</val> to automatically generate top level tabs in the Header. They must be fitted with a <att>label</att>.</p>
 
 									<figure data-ts="DoxMarkup">
 										<script>
@@ -52,7 +52,12 @@
 										</script>
 									</figure>
 
-									<p>This way, you won't need to configure the tabs with special business logic for the tabs to hide and show Main content. The tabs will automatically be updated when you add or remove <val>Main</val> elements just as long as you remember to set the <att>label</att>.</p>
+									<p>The tabs will automatically be updated when you remove or append further <val>Main</val> elements, just as long as you remember to set the <att>label</att> attribute.</p>
+
+									<div data-ts="Note">
+										<i class="ts-icon-info"></i>
+										<p>Top level tabs may alternatively be configured via the <a data-ts="Button" href="/#components/header/tabs.html">Header API</a>.
+									</div>
 
 									<h3>Tab selection</h3>
 

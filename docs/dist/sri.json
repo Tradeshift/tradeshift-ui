@@ -1,0 +1,16 @@
+{
+  "@js": {
+    "hashes": {
+      "sha384": "VmapR4tLpjhj1Dc+9R4PyCgE8pLu4kNdXfjLfB6H+1c0wIKcxRF6IMNtV+DRB+TT"
+    },
+    "integrity": "sha384-VmapR4tLpjhj1Dc+9R4PyCgE8pLu4kNdXfjLfB6H+1c0wIKcxRF6IMNtV+DRB+TT",
+    "path": "public/ts-10.0.8.min.js"
+  },
+  "@css": {
+    "hashes": {
+      "sha384": "kGbp9PGpDY3c9W+KSdnfg7TDCx5r6MdjDK8R700+mrR2biH5PeNI/NGgf2DhELM9"
+    },
+    "integrity": "sha384-kGbp9PGpDY3c9W+KSdnfg7TDCx5r6MdjDK8R700+mrR2biH5PeNI/NGgf2DhELM9",
+    "path": "public/ts-10.0.8.min.css"
+  }
+}

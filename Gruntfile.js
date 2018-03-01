@@ -297,6 +297,49 @@ module.exports = function(grunt) {
 			}
 		},
 
+		// compute SRC hash (based on gzipped files) so they can be shown on the docs website
+		// (the docs website will copy this json file into the website once it has been build)
+		sri: {
+			dev: {
+				options: {
+					algorithms: ['sha384'],
+					dest: 'temp/sri.json',
+					pretty: true
+				},
+				files: [
+					{
+						src: 'dist/ts.js',
+						type: 'text/javascript',
+						id: 'js'
+					},
+					{
+						src: 'dist/ts.css',
+						type: 'text/css',
+						id: 'css'
+					}
+				]
+			},
+			cdn: {
+				options: {
+					algorithms: ['sha384'],
+					dest: 'temp/sri.json',
+					pretty: true
+				},
+				files: [
+					{
+						src: 'public/ts-<%= pkg.version %>.min.js',
+						type: 'text/javascript',
+						id: 'js'
+					},
+					{
+						src: 'public/ts-<%= pkg.version %>.min.css',
+						type: 'text/css',
+						id: 'css'
+					}
+				]
+			}
+		},
+
 		// gzip everything
 		compress: {
 			main: {
@@ -480,8 +523,15 @@ module.exports = function(grunt) {
 			`concurrent:${target}_generate_js`,
 			`concurrent:${target}_generate_css_and_concat_js`
 		];
-		if (target === 'cdn') {
-			out.push('compress'); // gzip everything
+		switch (target) {
+			// compute SHA hashes (in dev mode, for demonstration purposes only)
+			case 'dev':
+				out.push('sri:dev');
+				break;
+			case 'cdn':
+				// gzip everything, then compute the official SHA hashes
+				out.push('compress', 'sri:cdn');
+				break;
 		}
 		return out;
 	}

@@ -38,6 +38,38 @@
 							<div data-ts="Table" id="table1"></div>
 						</li>
 					</ul>
+					<p>You can also activate <em>collaboration</em> buttons with customized label and icon in the statusbar.</p>
+					<ul class="splitscreen">
+						<li>
+							<figure data-ts="DoxScript">
+								<script type="runnable">
+									var popup = ts.ui.Notification;
+									ts.ui.get('#table2', function(table) {
+										table.collabbutton([{
+											label: "Contact with the buyer",
+											icon: "comment",
+											onclick: function() {
+												ts.ui.Notification.success('Go contact with the buyer!');
+											}
+										},{
+											label: "Contact with colleagues",
+											icon: "comment",
+											onclick: function() {
+												ts.ui.Notification.success('Go contact with colleagues!');
+											}
+										}]).cols(['A', 'B', 'C', 'D']).rows([
+											[1, 4, 7, 10],
+											[2, 5, 8, 11],
+											[3, 6, 9, 12]
+										])
+									});
+								</script>
+							</figure>
+						</li>
+						<li>
+							<div data-ts="Table" id="table2"></div>
+						</li>
+					</ul>
 					<p>The button triggers a callback, but there is no default behavior associated. The API to initialize and resume a Collaboration thread will be defined elsewhere. When you are done with the button, you can hide it again.</p>
 					<ul class="splitscreen">
 						<li>

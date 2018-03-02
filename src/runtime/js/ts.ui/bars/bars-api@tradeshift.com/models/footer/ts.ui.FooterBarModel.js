@@ -154,16 +154,26 @@ ts.ui.FooterBarModel = (function using(PagerModel, ActionModel, chained) {
 		 * TODO: Move this thing to the general {ts.ui.ToolBarModel}
 		 * @returns {this|ts.ui.ActionModel}
 		 */
-		collabbutton: chained(function(onclick) {
+		collabbutton: chained(function() {
 			var actions = this.bufferbar.actions;
 			if (arguments.length) {
 				actions.clear();
-				if (onclick !== null) {
-					actions.push({
-						label: 'Collaborate On This',
-						icon: 'ts-icon-collaboration',
-						onclick: onclick
-					});
+				if (Array.isArray(arguments[0])) {
+					arguments[0].forEach(function (v) {
+						actions.push({
+							label: v.label,
+							icon: 'ts-icon-' + v.icon,
+							onclick: v.onclick
+						});
+					})
+				} else {
+					if (arguments[0] !== null) {
+						actions.push({
+							label: 'Collaborate On This',
+							icon: 'ts-icon-collaboration',
+							onclick: arguments[0]
+						});
+					}
 				}
 			} else {
 				return actions[0] || null;

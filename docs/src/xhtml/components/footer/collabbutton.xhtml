@@ -29,6 +29,26 @@
 						</script>
 					</figure>
 
+					<p>To add more buttons with customized label and icon, simply use an array as params of <code>configbutton</code>.</p>
+
+					<figure data-ts="DoxScript">
+						<script type="runnable">
+							ts.ui.Footer.collabbutton([{
+								label: "Contact with the buyer",
+								icon: "comment",
+								onclick: function() {
+									ts.ui.Notification.success('Go contact with the buyer!');
+								}
+							},{
+								label: "Contact with colleagues",
+								icon: "comment",
+								onclick: function() {
+									ts.ui.Notification.success('Go contact with colleagues!');
+								}
+							}]);
+						</script>
+					</figure>
+
 					<p>Note that the Footer doesn't automatically initialize or resume the collbaroration. The API for this will be provided elsewhere. You can hide the collaboration button by passing <code>null</code> to the same method.</p>
 
 					<figure data-ts="DoxScript">
@@ -44,7 +64,7 @@
 								methods: [
 									{
 										name: 'collabbutton',
-										args: '(<Function|null>)',
+										args: '(<Function|Array|null>)',
 										desc: 'Get or set the collaboration button. Pass `null` to remove the whole button.'
 									}
 								]

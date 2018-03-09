@@ -1,9 +1,9 @@
 {
   "@js": {
     "hashes": {
-      "sha384": "nnqDIdttgtgurrOlSNV1Nqj0W3ciE7TVX/unNhs7ZxPPc15bRmbIChp06C6JxZFp"
+      "sha384": "v3tVRUO7ZU9qKeUq4uvOEq2EYUzTDntQ7U9HYTQtDG64JJCvPEBIndzEtnW0yhW4"
     },
-    "integrity": "sha384-nnqDIdttgtgurrOlSNV1Nqj0W3ciE7TVX/unNhs7ZxPPc15bRmbIChp06C6JxZFp",
+    "integrity": "sha384-v3tVRUO7ZU9qKeUq4uvOEq2EYUzTDntQ7U9HYTQtDG64JJCvPEBIndzEtnW0yhW4",
     "path": "public/ts-10.0.10.min.js"
   },
   "@css": {

@@ -69,7 +69,7 @@ ts.ui.DocumentLayoutPlugin = ts.ui.Plugin.extend({
 		var point,
 			next,
 			points = [],
-			width = window.innerWidth || 0,
+			width = this._getwidth(document.documentElement),
 			presets = ts.ui.LayoutModel.BREAKPOINTS;
 		this._points.every(function(p) {
 			if ((next = p <= width)) {
@@ -82,6 +82,15 @@ ts.ui.DocumentLayoutPlugin = ts.ui.Plugin.extend({
 			breakpoints: points,
 			breakpoint: point
 		};
+	},
+
+	/**
+	 * Measure the document width in such a way that the iPhone might look OK.
+	 * @param {HTMLHtmlElement} root
+	 * @returns {number}
+	 */
+	_getwidth: function(root) {
+		return Math.max(root.clientWidth, root.offsetWidth, root.scrollWidth);
 	},
 
 	/**

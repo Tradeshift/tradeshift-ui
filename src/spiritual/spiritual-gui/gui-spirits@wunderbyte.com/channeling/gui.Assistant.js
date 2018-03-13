@@ -121,11 +121,40 @@ gui.Assistant = (function using(Crawler) {
 		 */
 		_maybepossessinline: function(elm) {
 			var res = null;
-			var att = elm.getAttribute(gui.attributes[0]);
-			if (att && gui.Type.isString(att) && !att.startsWith('[')) {
-				res = att !== '' ? gui.Object.lookup(att) || null : false; // strange return value implies no spirit for empty string
+			var fix = gui.attributes[0];
+			var att = elm.getAttribute(fix);
+			if (att && typeof att === 'string' && !att.startsWith('[')) {
+				res = att === '' ? false : this._findinlobalscope(att); // strange return value implies no spirit for empty string
 			}
 			return res;
+		},
+
+		/**
+		 * In the window scope, find the potential object to match that string. 
+		 * If it exists, and if it is indeed a spirit constructor, we return it.
+		 * @param {String} att
+		 * @returns {gui.Class|null}
+		 */
+		_findinlobalscope: function(att) {
+			var thing = gui.Object.lookup(att);
+			if (thing && this._spiritconstructor(thing)) {
+				return thing;
+			}
+			return null;
+		},
+
+		/**
+		 * Thing is really a spirit constructor?
+		 * @param {?} thing
+		 * @returns {boolean}
+		 */
+		_spiritconstructor: function(thing) {
+			return (
+				typeof thing === 'object' &&
+				thing.ancestors &&
+				typeof thing.ancestors === 'function' &&
+				thing.ancestors().indexOf(gui.Spirit) > -1
+			);
 		}
 	};
 })(gui.Crawler);

@@ -97,29 +97,17 @@ gui.Assistant = (function using(Crawler) {
 		 */
 		_maybepossess: function(elm, channels) {
 			var res = null;
-			var experimentalattribute = 'data-ts'; // TRADESHIFT HOTFIX
 			if (elm.nodeType === Node.ELEMENT_NODE) {
-				if (
-					gui.attributes.every(function(fix) {
-						if (fix === experimentalattribute) {
-							return true;
-						} else {
-							res = this._maybepossessinline(elm, fix);
-							return res === null;
+				res = this._maybepossessinline(elm);
+				if (res === null && channels) {
+					channels.every(function(def) {
+						var select = def[0];
+						var spirit = def[1];
+						if (gui.CSSPlugin.matches(elm, select)) {
+							res = spirit;
 						}
-					}, this)
-				) {
-					if (channels) {
-						channels.every(function(def) {
-							// TODO!!!!!!!!!!!!!!!!!!
-							var select = def[0];
-							var spirit = def[1];
-							if (gui.CSSPlugin.matches(elm, select)) {
-								res = spirit;
-							}
-							return res === null;
-						}, this);
-					}
+						return res === null;
+					});
 				}
 			}
 			return res;
@@ -129,22 +117,13 @@ gui.Assistant = (function using(Crawler) {
 		 * Test for spirit assigned using HTML inline attribute.
 		 * Special test for "[" accounts for {gui.Spirit#$debug}
 		 * @param {Element} elm
-		 * @param {Window} win
-		 * @param {String} fix
 		 * @returns {function} Spirit constructor
 		 */
-		_maybepossessinline: function(elm, fix) {
+		_maybepossessinline: function(elm) {
 			var res = null;
-			var att = elm.getAttribute(fix);
-			if (gui.Type.isString(att) && !att.startsWith('[')) {
-				if (att !== '') {
-					res = gui.Object.lookup(att);
-					if (!res) {
-						console.error(att + ' is not defined.');
-					}
-				} else {
-					res = false; // strange return value implies no spirit for empty string
-				}
+			var att = elm.getAttribute(gui.attributes[0]);
+			if (att && gui.Type.isString(att) && !att.startsWith('[')) {
+				res = att !== '' ? gui.Object.lookup(att) || null : false; // strange return value implies no spirit for empty string
 			}
 			return res;
 		}

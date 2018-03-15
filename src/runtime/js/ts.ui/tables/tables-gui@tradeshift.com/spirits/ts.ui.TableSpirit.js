@@ -792,9 +792,6 @@ ts.ui.TableSpirit = (function using(
 
 		/**
 		 * Make (all rows) scrollable.
-		 * @param @optional {function} onselect
-		 * @param @optional {function} onselectall
-		 * @param @optional {function} onunselectall
 		 * @returns {ts.ui.TableSpirit}
 		 */
 		scrollable: chained(function() {
@@ -804,7 +801,7 @@ ts.ui.TableSpirit = (function using(
 		}),
 
 		/**
-		 * Make (all rows) unselectable.
+		 * Make (all rows) unscrollable.
 		 * @returns {ts.ui.TableSpirit}
 		 */
 		unscrollable: chained(function() {

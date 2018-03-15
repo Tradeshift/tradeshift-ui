@@ -34,6 +34,7 @@ ts.ui.TableSpirit = (function using(
 	var CLASS_TEXTAREA = 'ts-table-input';
 	var CLASS_CLICKABLE = 'ts-clickable';
 	var CLASS_SELECTABLE = 'ts-selectable';
+	var CLASS_SCROLLABLE = 'ts-table-scrollable';
 	var CLASS_SELECTBUTTON = 'ts-table-checkbox-button';
 	var TABLE_MIN_HEIGHT = 267;
 
@@ -786,6 +787,29 @@ ts.ui.TableSpirit = (function using(
 			this.onunselectall = null;
 			this._renderqueue.push(function() {
 				this.css.remove(CLASS_SELECTABLE);
+			});
+		}),
+
+		/**
+		 * Make (all rows) scrollable.
+		 * @param @optional {function} onselect
+		 * @param @optional {function} onselectall
+		 * @param @optional {function} onunselectall
+		 * @returns {ts.ui.TableSpirit}
+		 */
+		scrollable: chained(function() {
+			this._renderqueue.push(function() {
+				this.css.add(CLASS_SCROLLABLE);
+			});
+		}),
+
+		/**
+		 * Make (all rows) unselectable.
+		 * @returns {ts.ui.TableSpirit}
+		 */
+		unscrollable: chained(function() {
+			this._renderqueue.push(function() {
+				this.css.remove(CLASS_SCROLLABLE);
 			});
 		}),
 

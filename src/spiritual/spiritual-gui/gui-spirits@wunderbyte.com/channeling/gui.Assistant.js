@@ -150,10 +150,9 @@ gui.Assistant = (function using(Crawler) {
 		 */
 		_spiritconstructor: function(thing) {
 			return (
-				typeof thing === 'object' &&
-				thing.ancestors &&
-				typeof thing.ancestors === 'function' &&
-				thing.ancestors().indexOf(gui.Spirit) > -1
+				typeof thing === 'function' &&
+				thing.$classname &&
+				gui.Class.ancestors(thing).indexOf(gui.Spirit) > -1
 			);
 		}
 	};

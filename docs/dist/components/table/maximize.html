@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en-us" class="ts-docs" spellcheck="false">
+
+<head>
+    <title>Table Maximize</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-10.0.10.min.js"></script>
+    <script src="/dist/assets/dox.min.js"></script>
+    <script src="/dist/assets/mark.min.js"></script>
+    <script src="/dist/assets/jquery-2.2.4.min.js"></script>
+    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-10.0.10.min.css">
+    <link rel="stylesheet" href="/dist/assets/dox.css">
+    <link rel="prefetch" title="Table" href="index.html">
+    <link rel="prefetch" title="Build" href="building.html">
+    <link rel="prefetch" title="Layout" href="layouting.html">
+    <link rel="prefetch" title="Maximize" href="maximize.html" class="hidden">
+    <link rel="prefetch" title="Style" href="styling.html">
+    <link rel="prefetch" title="Page" href="paging.html">
+    <link rel="prefetch" title="Format" href="formatting.html">
+    <link rel="prefetch" title="Sort" href="sorting.html">
+    <link rel="prefetch" title="Click" href="clicking.html">
+    <link rel="prefetch" title="Select" href="selecting.html">
+    <link rel="prefetch" title="Search" href="searching.html">
+    <link rel="prefetch" title="Edit" href="editing.html">
+    <link rel="prefetch" title="Filter" href="filtering.html">
+    <link rel="prefetch" title="Status" href="status.html">
+    <link rel="prefetch" title="Config" href="configuring.html">
+    <link rel="prefetch" title="Collab" href="collaborate.html">
+    <link rel="prefetch" title="Actions" href="actions.html">
+    <link rel="prefetch" title="Buttons" href="buttons.html">
+    <link rel="prefetch" title="Extras" href="extras.html">
+    <link rel="prefetch" title="Demo" href="demo.html">
+    <link rel="prefetch" title="Angular" href="angular.html" class="hidden">
+    <link rel="prefetch" title="Gutter" href="gutter.html" class="hidden">
+    <link rel="prefetch" title="Gallery" href="gallery.html" class="hidden">
+    <style>
+        #container {
+            width: 100%;
+            height: 300px;
+            background-color: lime;
+            position: relative;
+        }
+    </style>
+    <script>
+        ts.dox.tabs()
+    </script>
+</head>
+
+<body>
+    <header data-ts="TopBar"></header>
+    <main data-ts="Main">
+        <div data-ts="MainContent">
+            <article>
+                <h1><span>Maximize the Table</span></h1>
+                <section>
+                    <div id="container">
+                        <div data-ts="Table" id="mytable"></div>
+                    </div>
+                </section>
+                <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.get(&apos;%23mytable&apos;%2C%20function(table)%20%7B%0A%0A%09table.cols(%5B%0A%09%09%7Blabel%3A%20&apos;Level&apos;%2C%20type%3A%20&apos;ts-number&apos;%7D%2C%0A%09%09%7Blabel%3A%20&apos;Character&apos;%2C%20flex%3A%202%7D%2C%0A%09%09%7Blabel%3A%20&apos;Alignment&apos;%2C%20flex%3A%202%7D%2C%0A%09%5D)%3B%0A%09table.rows(%5B%0A%09%09%5B21%2C%20&apos;Paladin%20Knight&apos;%2C%20&apos;Lawful%20Good&apos;%5D%2C%0A%09%09%5B13%2C%20&apos;Barbarian%20Queen&apos;%2C%20&apos;Neutral%20Evil&apos;%5D%2C%0A%09%09%5B11%2C%20&apos;Global%20Senior%20Vice%20President%20of%20Sales&apos;%2C%20&apos;Chaotic%20Evil&apos;%5D%2C%0A%09%09%5B21%2C%20&apos;Paladin%20Knight&apos;%2C%20&apos;Lawful%20Good&apos;%5D%2C%0A%09%09%5B13%2C%20&apos;Barbarian%20Queen&apos;%2C%20&apos;Neutral%20Evil&apos;%5D%2C%0A%09%09%5B11%2C%20&apos;Global%20Senior%20Vice%20President%20of%20Sales&apos;%2C%20&apos;Chaotic%20Evil&apos;%5D%2C%0A%09%09%5B21%2C%20&apos;Paladin%20Knight&apos;%2C%20&apos;Lawful%20Good&apos;%5D%2C%0A%09%09%5B13%2C%20&apos;Barbarian%20Queen&apos;%2C%20&apos;Neutral%20Evil&apos;%5D%2C%0A%09%09%5B11%2C%20&apos;Global%20Senior%20Vice%20President%20of%20Sales&apos;%2C%20&apos;Chaotic%20Evil&apos;%5D%2C%0A%09%09%5B21%2C%20&apos;Paladin%20Knight&apos;%2C%20&apos;Lawful%20Good&apos;%5D%2C%0A%09%09%5B13%2C%20&apos;Barbarian%20Queen&apos;%2C%20&apos;Neutral%20Evil&apos;%5D%2C%0A%09%09%5B11%2C%20&apos;Global%20Senior%20Vice%20President%20of%20Sales&apos;%2C%20&apos;Chaotic%20Evil&apos;%5D%2C%0A%09%09%5B21%2C%20&apos;Paladin%20Knight&apos;%2C%20&apos;Lawful%20Good&apos;%5D%2C%0A%09%09%5B13%2C%20&apos;Barbarian%20Queen&apos;%2C%20&apos;Neutral%20Evil&apos;%5D%2C%0A%09%09%5B11%2C%20&apos;Global%20Senior%20Vice%20President%20of%20Sales&apos;%2C%20&apos;Chaotic%20Evil&apos;%5D%2C%0A%09%09%5B21%2C%20&apos;Paladin%20Knight&apos;%2C%20&apos;Lawful%20Good&apos;%5D%2C%0A%09%09%5B13%2C%20&apos;Barbarian%20Queen&apos;%2C%20&apos;Neutral%20Evil&apos;%5D%2C%0A%09%09%5B11%2C%20&apos;Global%20Senior%20Vice%20President%20of%20Sales&apos;%2C%20&apos;Chaotic%20Evil&apos;%5D%2C%0A%09%09%5B21%2C%20&apos;Paladin%20Knight&apos;%2C%20&apos;Lawful%20Good&apos;%5D%2C%0A%09%09%5B13%2C%20&apos;Barbarian%20Queen&apos;%2C%20&apos;Neutral%20Evil&apos;%5D%2C%0A%09%09%5B11%2C%20&apos;Global%20Senior%20Vice%20President%20of%20Sales&apos;%2C%20&apos;Chaotic%20Evil&apos;%5D%2C%0A%09%09%5B21%2C%20&apos;Paladin%20Knight&apos;%2C%20&apos;Lawful%20Good&apos;%5D%2C%0A%09%09%5B13%2C%20&apos;Barbarian%20Queen&apos;%2C%20&apos;Neutral%20Evil&apos;%5D%2C%0A%09%09%5B11%2C%20&apos;Global%20Senior%20Vice%20President%20of%20Sales&apos;%2C%20&apos;Chaotic%20Evil&apos;%5D%0A%09%5D)%3B%0A%0A%09%2F%2F%20table.maximize()%3B%0A%0A%09table.expand().optimize(function(rows)%20%7B%0A%09%09console.log(&apos;Can%20fit%20&apos;%20%2B%20rows%20%2B%20&apos;%20rows!&apos;)%3B%0A%09%7D)%3B%0A%09%0A%7D)%3B">
+                    <script type="runnable">
+                        ts.ui.get('#mytable', table => { table.cols([ {label: 'Level', type: 'ts-number'}, {label: 'Character', flex: 2}, {label: 'Alignment', flex: 2}, ]); table.rows([ [21, 'Paladin Knight', 'Lawful Good'], [13, 'Barbarian Queen', 'Neutral Evil'], [11, 'Global
+                        Senior Vice President of Sales', 'Chaotic Evil'], [21, 'Paladin Knight', 'Lawful Good'], [13, 'Barbarian Queen', 'Neutral Evil'], [11, 'Global Senior Vice President of Sales', 'Chaotic Evil'], [21, 'Paladin Knight', 'Lawful Good'],
+                        [13, 'Barbarian Queen', 'Neutral Evil'], [11, 'Global Senior Vice President of Sales', 'Chaotic Evil'], [21, 'Paladin Knight', 'Lawful Good'], [13, 'Barbarian Queen', 'Neutral Evil'], [11, 'Global Senior Vice President of Sales',
+                        'Chaotic Evil'], [21, 'Paladin Knight', 'Lawful Good'], [13, 'Barbarian Queen', 'Neutral Evil'], [11, 'Global Senior Vice President of Sales', 'Chaotic Evil'], [21, 'Paladin Knight', 'Lawful Good'], [13, 'Barbarian Queen', 'Neutral
+                        Evil'], [11, 'Global Senior Vice President of Sales', 'Chaotic Evil'], [21, 'Paladin Knight', 'Lawful Good'], [13, 'Barbarian Queen', 'Neutral Evil'], [11, 'Global Senior Vice President of Sales', 'Chaotic Evil'], [21, 'Paladin
+                        Knight', 'Lawful Good'], [13, 'Barbarian Queen', 'Neutral Evil'], [11, 'Global Senior Vice President of Sales', 'Chaotic Evil'] ]); // table.maximize(); table.expand().optimize(function(rows) { console.log('Can fit ' + rows + '
+                        rows!'); }); });
+                    </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                    <div class="tabpanels">
+                        <pre class="prism language-javascript">
+<code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#mytable&apos;</span><span class="token punctuation">,</span> table <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+	table<span class="token punctuation">.</span><span class="token function">cols<span class="token punctuation">(</span></span><span class="token punctuation">[</span>
+		<span class="token punctuation">{</span>label<span class="token punctuation">:</span> <span class="token string">&apos;Level&apos;</span><span class="token punctuation">,</span> type<span class="token punctuation">:</span> <span class="token string">&apos;ts-number&apos;</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+		<span class="token punctuation">{</span>label<span class="token punctuation">:</span> <span class="token string">&apos;Character&apos;</span><span class="token punctuation">,</span> flex<span class="token punctuation">:</span> <span class="token number">2</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+		<span class="token punctuation">{</span>label<span class="token punctuation">:</span> <span class="token string">&apos;Alignment&apos;</span><span class="token punctuation">,</span> flex<span class="token punctuation">:</span> <span class="token number">2</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+	<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	table<span class="token punctuation">.</span><span class="token function">rows<span class="token punctuation">(</span></span><span class="token punctuation">[</span>
+		<span class="token punctuation">[</span><span class="token number">21</span><span class="token punctuation">,</span> <span class="token string">&apos;Paladin Knight&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;Lawful Good&apos;</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+		<span class="token punctuation">[</span><span class="token number">13</span><span class="token punctuation">,</span> <span class="token string">&apos;Barbarian Queen&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;Neutral Evil&apos;</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+		<span class="token punctuation">[</span><span class="token number">11</span><span class="token punctuation">,</span> <span class="token string">&apos;Global Senior Vice President of Sales&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;Chaotic Evil&apos;</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+		<span class="token punctuation">[</span><span class="token number">21</span><span class="token punctuation">,</span> <span class="token string">&apos;Paladin Knight&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;Lawful Good&apos;</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+		<span class="token punctuation">[</span><span class="token number">13</span><span class="token punctuation">,</span> <span class="token string">&apos;Barbarian Queen&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;Neutral Evil&apos;</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+		<span class="token punctuation">[</span><span class="token number">11</span><span class="token punctuation">,</span> <span class="token string">&apos;Global Senior Vice President of Sales&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;Chaotic Evil&apos;</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+		<span class="token punctuation">[</span><span class="token number">21</span><span class="token punctuation">,</span> <span class="token string">&apos;Paladin Knight&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;Lawful Good&apos;</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+		<span class="token punctuation">[</span><span class="token number">13</span><span class="token punctuation">,</span> <span class="token string">&apos;Barbarian Queen&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;Neutral Evil&apos;</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+		<span class="token punctuation">[</span><span class="token number">11</span><span class="token punctuation">,</span> <span class="token string">&apos;Global Senior Vice President of Sales&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;Chaotic Evil&apos;</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+		<span class="token punctuation">[</span><span class="token number">21</span><span class="token punctuation">,</span> <span class="token string">&apos;Paladin Knight&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;Lawful Good&apos;</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+		<span class="token punctuation">[</span><span class="token number">13</span><span class="token punctuation">,</span> <span class="token string">&apos;Barbarian Queen&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;Neutral Evil&apos;</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+		<span class="token punctuation">[</span><span class="token number">11</span><span class="token punctuation">,</span> <span class="token string">&apos;Global Senior Vice President of Sales&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;Chaotic Evil&apos;</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+		<span class="token punctuation">[</span><span class="token number">21</span><span class="token punctuation">,</span> <span class="token string">&apos;Paladin Knight&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;Lawful Good&apos;</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+		<span class="token punctuation">[</span><span class="token number">13</span><span class="token punctuation">,</span> <span class="token string">&apos;Barbarian Queen&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;Neutral Evil&apos;</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+		<span class="token punctuation">[</span><span class="token number">11</span><span class="token punctuation">,</span> <span class="token string">&apos;Global Senior Vice President of Sales&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;Chaotic Evil&apos;</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+		<span class="token punctuation">[</span><span class="token number">21</span><span class="token punctuation">,</span> <span class="token string">&apos;Paladin Knight&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;Lawful Good&apos;</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+		<span class="token punctuation">[</span><span class="token number">13</span><span class="token punctuation">,</span> <span class="token string">&apos;Barbarian Queen&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;Neutral Evil&apos;</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+		<span class="token punctuation">[</span><span class="token number">11</span><span class="token punctuation">,</span> <span class="token string">&apos;Global Senior Vice President of Sales&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;Chaotic Evil&apos;</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+		<span class="token punctuation">[</span><span class="token number">21</span><span class="token punctuation">,</span> <span class="token string">&apos;Paladin Knight&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;Lawful Good&apos;</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+		<span class="token punctuation">[</span><span class="token number">13</span><span class="token punctuation">,</span> <span class="token string">&apos;Barbarian Queen&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;Neutral Evil&apos;</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+		<span class="token punctuation">[</span><span class="token number">11</span><span class="token punctuation">,</span> <span class="token string">&apos;Global Senior Vice President of Sales&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;Chaotic Evil&apos;</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+		<span class="token punctuation">[</span><span class="token number">21</span><span class="token punctuation">,</span> <span class="token string">&apos;Paladin Knight&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;Lawful Good&apos;</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+		<span class="token punctuation">[</span><span class="token number">13</span><span class="token punctuation">,</span> <span class="token string">&apos;Barbarian Queen&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;Neutral Evil&apos;</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+		<span class="token punctuation">[</span><span class="token number">11</span><span class="token punctuation">,</span> <span class="token string">&apos;Global Senior Vice President of Sales&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;Chaotic Evil&apos;</span><span class="token punctuation">]</span>
+	<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token comment" spellcheck="true">// table.maximize();
+</span>
+	table<span class="token punctuation">.</span><span class="token function">expand<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">optimize<span class="token punctuation">(</span></span><span class="token keyword">function</span><span class="token punctuation">(</span>rows<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		console<span class="token punctuation">.</span><span class="token function">log<span class="token punctuation">(</span></span><span class="token string">&apos;Can fit &apos;</span> <span class="token operator">+</span> rows <span class="token operator">+</span> <span class="token string">&apos; rows!&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
+</pre>
+                    </div>
+                </figure>
+            </article>
+        </div>
+    </main>
+    <aside data-ts="Note" class="sticky ts-bg-yellow">
+        <p>If you find a bug or need a feature&#x2026;</p>
+        <menu class="ts-buttons">
+            <li>
+                <a data-ts="Button" target="_blank" href="https://github.com/Tradeshift/tradeshift-ui/issues/new" title="Submit new issue" class="ts-secondary">
+		          <span>Create GitHub Issue&#x2026;</span>
+		        </a>
+            </li>
+        </menu>
+    </aside>
+</body>
+
+</html>

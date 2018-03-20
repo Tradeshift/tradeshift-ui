@@ -338,7 +338,7 @@ ts.ui.TableSpirit = (function using(
 		onbroadcast: function(b) {
 			this.super.onbroadcast(b);
 			if (b.type === gui.BROADCAST_RESIZE_END) {
-				if (this._ismaximized()) {
+				if (this._autooptimize) {
 					this._onbeforeresize(this._model);
 				}
 			}
@@ -356,10 +356,11 @@ ts.ui.TableSpirit = (function using(
 			if (this._crashproof()) {
 				if (this._ismaximized()) {
 					this._onafterresize(this._target);
-					this._maxpages();
+					if (this._autooptimize) {
+						this._maxpages();
+					}
 				} else {
 					this._layouteverything();
-					this._maxpages();
 				}
 			}
 		},
@@ -580,7 +581,26 @@ ts.ui.TableSpirit = (function using(
 
 		// Layout ..................................................................
 
+		expand: chained(function() {
+			this.css.add('ts-maximized');
+		}),
+
+		optimize: confirmed('(function)')(
+			chained(function(onresize) {
+				var sizeend = gui.BROADCAST_RESIZE_END;
+				this.broadcast.add(sizeend);
+				if (onresize) {
+					(this.onresize = onresize)(this._calcmax());
+				} else {
+					this._autooptimize = true;
+					this.max();
+					this._createpager();
+				}
+			})
+		),
+
 		/**
+		 * @deprecated
 		 * Maximize the layout to fill positioned container.
 		 * Optionally add resize callback for managing pager.
 		 * @param @optional {function} onresize
@@ -588,15 +608,10 @@ ts.ui.TableSpirit = (function using(
 		 */
 		maximize: confirmed('(function)')(
 			chained(function(onresize) {
-				var ended = gui.BROADCAST_RESIZE_END;
-				this.css.add('ts-maximized');
-				this.onresize = onresize || this.onresize;
-				this.broadcast.add(ended);
-				var maxrows = this.max();
-				this._createpager();
-				if (onresize) {
-					onresize(maxrows);
-				}
+				this.expand().optimize.call(this, onresize);
+				console.warn(
+					'Table.maximize() is deprecated. Please ' + 'use the methods expand() and optimize().'
+				);
 			})
 		),
 
@@ -614,7 +629,7 @@ ts.ui.TableSpirit = (function using(
 		max: confirmed('(number)')(
 			chained(function(n) {
 				var cname = 'ts-hasrows ts-maxrows';
-				var ismax = this._ismaximized();
+				var ismax = this._autooptimize;
 				var model = this._model;
 				if (arguments.length) {
 					if (ismax) {
@@ -628,7 +643,7 @@ ts.ui.TableSpirit = (function using(
 					}
 				} else {
 					if (ismax) {
-						return this._automax();
+						return this._autooptimize ? this._automax() : this._calcmax();
 					} else {
 						return model.maxrows;
 					}
@@ -1564,7 +1579,7 @@ ts.ui.TableSpirit = (function using(
 		 * @param {ts.ui.TableModel} model
 		 */
 		_onbeforeresize: function(model) {
-			if (this._ownpager && this._target === -1) {
+			if (this._autooptimize && this._ownpager && this._target === -1) {
 				var first = model.firstVisibleRow();
 				var index = first ? first.$index : 0;
 				this._target = index > 0 ? index : -1;
@@ -1579,16 +1594,16 @@ ts.ui.TableSpirit = (function using(
 		_onafterresize: function(index) {
 			this._layouteverything();
 			this._hackscrolling();
-			var max = this.max();
-			if (this._ownpager) {
-				if (index > -1) {
+			if (this._autooptimize) {
+				this.max();
+				if (this._ownpager && index > -1) {
 					this._resizing = true;
 					this.script.suspend();
 					this._bestpage(index);
 				}
 			}
 			if (this.onresize) {
-				this.onresize.call(this, max);
+				this.onresize.call(this, this._calcmax());
 			}
 		},
 

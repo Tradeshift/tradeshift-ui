@@ -165,24 +165,24 @@ ts.ui.SideBarSpirit = (function using(chained, Type, Client, GuiObject, Colors) 
 
 			/**
 			 * Show the SideBar (now that it's hidden in mobile view).
-			 * TODO: Call `DoorManPlugin.didopen() when transition is done!
 			 */
 			$onopen: function() {
 				this.css.add(ts.ui.CLASS_OPENING);
 				this._reflex();
 				this.tick.time(function slide() {
 					this.css.add(ts.ui.CLASS_OPEN);
+					this.doorman.didopen();
 				});
 			},
 
 			/**
 			 * Don't show the SideBar.
-			 * TODO: Call `DoorManPlugin.didopen() when transition is done!
 			 */
 			$onclose: function() {
 				this.css.remove(ts.ui.CLASS_OPEN);
 				this.tick.time(function undisplay() {
 					this.css.remove(ts.ui.CLASS_OPENING);
+					this.doorman.didclose();
 				}, ts.ui.TRANSITION_FAST);
 			},
 

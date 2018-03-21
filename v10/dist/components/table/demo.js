@@ -195,6 +195,7 @@ function buildIncrementally(table, rows) {
 	 * When the window is resized, the callback will fire again.
 	 */
 	table.maximize(function(max) {
+		console.log(max, Math.random());
 		maxrows = max;
 		updatepager();
 		updaterows();

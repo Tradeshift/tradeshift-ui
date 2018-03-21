@@ -62,6 +62,16 @@ describe('Channeling and exorcising spirits', function likethis() {
 		});
 	});
 
+	it('should possess the inline spirit (not channeled)', function(done) {
+		window.MySpirit = ts.ui.Spirit.extend();
+		var sandbox = this.sandbox;
+		sandbox.innerHTML = '<div data-ts="MySpirit"></div>';
+		sometime(function later() {
+			expect(hasSpirit(sandbox.firstChild)).toBe(true);
+			done();
+		});
+	});
+
 	it('should possess on appendChild', function() {
 		var elm = getSpiritElm();
 		this.sandbox.appendChild(elm);

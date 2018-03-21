@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Table Maximize</title>
+		<title>Table explode and optimize</title>
 		<object data="tabs.xhtml"></object>
 		<style>
 			#container {
 				width: 100%;
-				height: 300px;
-				background-color: lime;
+				height: 260px;
+				background-color: pink;
 				position: relative;
 			}
 		</style>
@@ -16,7 +16,11 @@
 		<header data-ts="TopBar"></header>
 		<main data-ts="Main">
 			<article>
-				<h1>Maximize the Table</h1>
+				<h1>Table explode and optimize 🚀</h1>
+				<div data-ts="Note">
+					<i class="ts-icon-warning"></i>
+					<p>This feature needs documentation..</p>
+				</div>
 				<section>
 					<div id="container">
 						<div data-ts="Table" id="mytable"></div>
@@ -25,45 +29,40 @@
 				<figure data-ts="DoxScript">
 					<script type="runnable">
 						ts.ui.get('#mytable', table => {
-
-							table.cols([
-								{label: 'Level', type: 'ts-number'},
-								{label: 'Character', flex: 2},
-								{label: 'Alignment', flex: 2},
-							]);
-							table.rows([
-								[21, 'Paladin Knight', 'Lawful Good'],
-								[13, 'Barbarian Queen', 'Neutral Evil'],
-								[11, 'Global Senior Vice President of Sales', 'Chaotic Evil'],
-								[21, 'Paladin Knight', 'Lawful Good'],
-								[13, 'Barbarian Queen', 'Neutral Evil'],
-								[11, 'Global Senior Vice President of Sales', 'Chaotic Evil'],
-								[21, 'Paladin Knight', 'Lawful Good'],
-								[13, 'Barbarian Queen', 'Neutral Evil'],
-								[11, 'Global Senior Vice President of Sales', 'Chaotic Evil'],
-								[21, 'Paladin Knight', 'Lawful Good'],
-								[13, 'Barbarian Queen', 'Neutral Evil'],
-								[11, 'Global Senior Vice President of Sales', 'Chaotic Evil'],
-								[21, 'Paladin Knight', 'Lawful Good'],
-								[13, 'Barbarian Queen', 'Neutral Evil'],
-								[11, 'Global Senior Vice President of Sales', 'Chaotic Evil'],
-								[21, 'Paladin Knight', 'Lawful Good'],
-								[13, 'Barbarian Queen', 'Neutral Evil'],
-								[11, 'Global Senior Vice President of Sales', 'Chaotic Evil'],
-								[21, 'Paladin Knight', 'Lawful Good'],
-								[13, 'Barbarian Queen', 'Neutral Evil'],
-								[11, 'Global Senior Vice President of Sales', 'Chaotic Evil'],
-								[21, 'Paladin Knight', 'Lawful Good'],
-								[13, 'Barbarian Queen', 'Neutral Evil'],
-								[11, 'Global Senior Vice President of Sales', 'Chaotic Evil']
-							]);
-
-							// table.maximize();
-
-							table.expand().optimize(function(rows) {
-								console.log('Can fit ' + rows + ' rows!');
-							});
-							
+							table
+								.explode()
+								.optimize()
+								.cols([
+									{label: 'Level', type: 'ts-number'},
+									{label: 'Character', flex: 2},
+									{label: 'Alignment', flex: 2},
+								])
+								.rows([
+									[21, 'Paladin Knight', 'Lawful Good'],
+									[13, 'Barbarian Queen', 'Neutral Evil'],
+									[11, 'Global Senior Vice President of Sales', 'Chaotic Evil'],
+									[21, 'Paladin Knight', 'Lawful Good'],
+									[13, 'Barbarian Queen', 'Neutral Evil'],
+									[11, 'Global Senior Vice President of Sales', 'Chaotic Evil'],
+									[21, 'Paladin Knight', 'Lawful Good'],
+									[13, 'Barbarian Queen', 'Neutral Evil'],
+									[11, 'Global Senior Vice President of Sales', 'Chaotic Evil'],
+									[21, 'Paladin Knight', 'Lawful Good'],
+									[13, 'Barbarian Queen', 'Neutral Evil'],
+									[11, 'Global Senior Vice President of Sales', 'Chaotic Evil'],
+									[21, 'Paladin Knight', 'Lawful Good'],
+									[13, 'Barbarian Queen', 'Neutral Evil'],
+									[11, 'Global Senior Vice President of Sales', 'Chaotic Evil'],
+									[21, 'Paladin Knight', 'Lawful Good'],
+									[13, 'Barbarian Queen', 'Neutral Evil'],
+									[11, 'Global Senior Vice President of Sales', 'Chaotic Evil'],
+									[21, 'Paladin Knight', 'Lawful Good'],
+									[13, 'Barbarian Queen', 'Neutral Evil'],
+									[11, 'Global Senior Vice President of Sales', 'Chaotic Evil'],
+									[21, 'Paladin Knight', 'Lawful Good'],
+									[13, 'Barbarian Queen', 'Neutral Evil'],
+									[11, 'Global Senior Vice President of Sales', 'Chaotic Evil']
+								])
 						});
 					</script>
 				</figure>

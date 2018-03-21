@@ -17,7 +17,7 @@ ts.ui.FrameSpirit = gui.IframeSpirit.extend(
 				gui.LIFE_IFRAME_ONHASH,
 				gui.LIFE_IFRAME_UNLOAD
 			]);
-			this.input.connect([ts.ui.LayoutModel, ts.ui.DeviceModel]);
+			this.input.connect([ts.ui.LayoutModel]);
 		},
 
 		/**
@@ -51,7 +51,6 @@ ts.ui.FrameSpirit = gui.IframeSpirit.extend(
 			this.super.oninput(input);
 			switch (input.type) {
 				case ts.ui.LayoutModel:
-				case ts.ui.DeviceModel:
 					this._models.push(input.data);
 					break;
 			}

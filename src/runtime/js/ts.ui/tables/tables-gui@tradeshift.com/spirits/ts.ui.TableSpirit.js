@@ -630,12 +630,32 @@ ts.ui.TableSpirit = (function using(
 		 */
 		maximize: confirmed('(function)')(
 			chained(function(onresize) {
-				this.explode().optimize.call(this, onresize);
+				this.explode().optimize.apply(this, arguments);
+				/*
+				 * There is no good reason to create this pager if the Table is a 
+				 * "backend" Table, but the old code did this and we know that one 
+				 * real world unit test will fail if we remove this, so let's keep 
+				 * it here (pointing out that this method is anyways deprecated now).
+				 */
+				this._createpager();
 				console.warn(
 					'Table.maximize() is deprecated. Please ' + 'use the methods expand() and optimize().'
 				);
 			})
 		),
+
+		/*
+		var ended = gui.BROADCAST_RESIZE_END;
+-				this.css.add('ts-maximized');
+-				this.onresize = onresize || this.onresize;
+-				this.broadcast.add(ended);
+-				var maxrows = this.max();
+-				this._createpager();
+-				if (onresize) {
+-					onresize(maxrows);
+-				}
++				this.explode().optimize.call(this, onresize);
+		*/
 
 		// Paging ..................................................................
 

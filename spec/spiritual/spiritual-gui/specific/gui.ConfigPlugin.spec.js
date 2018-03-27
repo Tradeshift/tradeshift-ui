@@ -40,11 +40,11 @@ describe('ts.ConfigPlugin', function likethis() {
 
 	// Expectations ..............................................................
 
-	it('should work with a ts.prefixed attribute', function() {
+	it('should work with a data-ts.prefixed attribute', function() {
 		var spirit = TestSpirit.summon();
 		var element = spirit.element;
 		this.sandbox.appendChild(element);
-		element.setAttribute('ts.stringmethod', 'twentythree');
+		element.setAttribute('data-ts.stringmethod', 'twentythree');
 		expect(spirit.stringvalue).toBe('twentythree');
 	});
 
@@ -61,7 +61,7 @@ describe('ts.ConfigPlugin', function likethis() {
 		var spirit = TestSpirit.summon();
 		var element = spirit.element;
 		this.sandbox.appendChild(element);
-		element.setAttribute('ts.numbermethod', '23');
+		element.setAttribute('data-ts.numbermethod', '23');
 		expect(spirit.numbervalue).toBe(23);
 	});
 
@@ -69,7 +69,7 @@ describe('ts.ConfigPlugin', function likethis() {
 		var spirit = TestSpirit.summon();
 		var element = spirit.element;
 		this.sandbox.appendChild(element);
-		element.setAttribute('ts.booleanmethod', 'true');
+		element.setAttribute('data-ts.booleanmethod', 'true');
 		expect(spirit.booleanvalue).toBe(true);
 	});
 
@@ -77,7 +77,7 @@ describe('ts.ConfigPlugin', function likethis() {
 		var spirit = TestSpirit.summon();
 		var element = spirit.element;
 		this.sandbox.appendChild(element);
-		element.setAttribute('ts.booleanvalue', 'false');
+		element.setAttribute('data-ts.booleanvalue', 'false');
 		expect(spirit.booleanvalue).toBe(false);
 	});
 });

@@ -19,11 +19,17 @@
     <link rel="prefetch" title="Rules" href="rules.html">
     <script>
         ts.ui.ready(function nastyhack() {
-            var version = ts.ui.version;
-            var figure = document.querySelector('figure');
-            var markup = figure.innerHTML;
-            figure.innerHTML = markup.replace(/\${ts.ui.version}/g, version);
-        });
+                    new gui.Request('/dist/sri.json').get().then(function(status, json) {
+                        ts.ui.ready(function nastyhack() {
+                            var version = ts.ui.version;
+                            var figure = document.querySelector('figure');
+                            var markup = figure.innerHTML;
+                            figure.innerHTML = markup
+                                .replace(/\${ts.ui.version}/g, version)
+                                .replace('${sricss}', json['@css'].integrity)
+                                .replace('${srijs}', json['@js'].integrity);
+                        });
+                    });
     </script>
     <script>
         ts.dox.tabs()
@@ -54,17 +60,24 @@
                                     });
                                 </script>
                             </p>
-                            <figure data-ts="DoxMarkup" data-ts.code="%3Clink%20rel%3D%22stylesheet%22%20href%3D%22%2F%2Fd5wfroyti11sa.cloudfront.net%2Fprod%2Fclient%2Fts-%24%7Bts.ui.version%7D.min.css%22%2F%3E%0A%3Cscript%20src%3D%22%2F%2Fd5wfroyti11sa.cloudfront.net%2Fprod%2Fclient%2Fts-%24%7Bts.ui.version%7D.min.js%22%3E%3C%2Fscript%3E">
+                            <figure data-ts="DoxMarkup" data-ts.code="%3Clink%20rel%3D%22stylesheet%22%20href%3D%22%2F%2Fd5wfroyti11sa.cloudfront.net%2Fprod%2Fclient%2Fts-%24%7Bts.ui.version%7D.min.css%22%20integrity%3D%22%24%7Bsricss%7D%22%20crossorigin%3D%22anonymous%22%2F%3E%0A%3Cscript%20src%3D%22%2F%2Fd5wfroyti11sa.cloudfront.net%2Fprod%2Fclient%2Fts-%24%7Bts.ui.version%7D.min.js%22%20integrity%3D%22%24%7Bsrijs%7D%22%20crossorigin%3D%22anonymous%22%3E%3C%2Fscript%3E">
+                                <script type="text/html">
+                                    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-${ts.ui.version}.min.css" integrity="${sricss}" crossorigin="anonymous" />
+                                    <scrxpt src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-${ts.ui.version}.min.js" integrity="${srijs}" crossorigin="anonymous"></scrxpt>
+                                </script>
                                 <ul data-ts="Panels">
                                     <li data-ts="Panel" data-ts.selected="true">
-                                        <pre class="prism language-markup"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>link</span> <span class="token attr-name">rel</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>stylesheet<span class="token punctuation">&quot;</span></span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>//d5wfroyti11sa.cloudfront.net/prod/client/ts-${ts.ui.version}.min.css<span class="token punctuation">&quot;</span></span><span class="token punctuation">/&gt;</span></span>
-<span class="token script"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>//d5wfroyti11sa.cloudfront.net/prod/client/ts-${ts.ui.version}.min.js<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span></span></code></pre>
+                                        <pre class="prism language-markup"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>link</span> <span class="token attr-name">rel</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>stylesheet<span class="token punctuation">&quot;</span></span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>//d5wfroyti11sa.cloudfront.net/prod/client/ts-${ts.ui.version}.min.css<span class="token punctuation">&quot;</span></span> <span class="token attr-name">integrity</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>${sricss}<span class="token punctuation">&quot;</span></span> <span class="token attr-name">crossorigin</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>anonymous<span class="token punctuation">&quot;</span></span><span class="token punctuation">/&gt;</span></span>
+<span class="token script"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>//d5wfroyti11sa.cloudfront.net/prod/client/ts-${ts.ui.version}.min.js<span class="token punctuation">&quot;</span></span> <span class="token attr-name">integrity</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>${srijs}<span class="token punctuation">&quot;</span></span> <span class="token attr-name">crossorigin</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>anonymous<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span></span></code></pre>
                                     </li>
                                 </ul>
                             </figure>
                             <p>UI components are initialized on the <code>DOMContentLoaded</code> event, but this might change some day. To make sure that all the components are initialized before you do something to them, you can wrap you code in a callback
                                 like this.</p>
                             <figure data-ts="DoxScript" data-ts.code="ts.ui.ready(function()%20%7B%0A%09var%20component%20%3D%20ts.ui.get(element)%3B%0A%09component.dosomething()%3B%0A%7D)%3B">
+                                <script type="text/html">
+                                    ts.ui.ready(function() { var component = ts.ui.get(element); component.dosomething(); });
+                                </script>
                                 <input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
                                 <div data-ts="Panel">
                                     <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token function">ready<span class="token punctuation">(</span></span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
@@ -79,6 +92,9 @@
                             </ul>
                             <p>You can perhaps make it easier for yourself by kickstarting your app with a <code>ts.ui.ready</code> callback, because then you wont&apos;t have to worry about it later on.</p>
                             <figure data-ts="DoxScript" data-ts.code="ts.ui.ready(function()%20%7B%0A%09boostrap_everything()%3B%0A%7D)%3B">
+                                <script type="text/html">
+                                    ts.ui.ready(function() { boostrap_everything(); });
+                                </script>
                                 <input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
                                 <div data-ts="Panel">
                                     <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token function">ready<span class="token punctuation">(</span></span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>

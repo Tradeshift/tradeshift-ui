@@ -107,6 +107,10 @@ module.exports = function(grunt) {
 		copy: {
 			target_local: getindexconfig('localtags'),
 			target_public: getindexconfig('publictags'),
+			sri: {
+				src: '../temp/sri.json',
+				dest: 'dist/sri.json'
+			},
 			libs: {
 				files: [
 					{
@@ -478,7 +482,8 @@ module.exports = function(grunt) {
 			'edbml:' + tags,
 			'copy:' + tags,
 			'copy:libs',
-			'copy:pageassets'
+			'copy:pageassets',
+			'copy:sri'
 		];
 		if (tags === 'target_public') {
 			out.push('uglify');

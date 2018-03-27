@@ -5,10 +5,16 @@
 		<object data="tabs.xhtml"></object>
 		<script>
 			ts.ui.ready(function nastyhack() {
-				var version =  ts.ui.version;
-				var figure = document.querySelector('figure');
-				var markup = figure.innerHTML;
-				figure.innerHTML = markup.replace(/\${ts.ui.version}/g, version);
+			new gui.Request('/dist/sri.json').get().then(function(status, json) {
+				ts.ui.ready(function nastyhack() {
+					var version =  ts.ui.version;
+					var figure = document.querySelector('figure');
+					var markup = figure.innerHTML;
+					figure.innerHTML = markup
+						.replace(/\${ts.ui.version}/g, version)
+						.replace('${sricss}', json['@css'].integrity)
+						.replace('${srijs}', json['@js'].integrity);
+				});
 			});
 		</script>
 	</head>
@@ -27,14 +33,14 @@
 						</script>
 					</p>
 					<figure data-ts="DoxMarkup">
-						<script>
-							<link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-${ts.ui.version}.min.css"/>
-							<scrxpt src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-${ts.ui.version}.min.js"></scrxpt>
+						<script type="text/html">
+							<link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-${ts.ui.version}.min.css" integrity="${sricss}" crossorigin="anonymous"/>
+							<scrxpt src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-${ts.ui.version}.min.js" integrity="${srijs}" crossorigin="anonymous"></scrxpt>
 						</script>
 					</figure>
 					<p>UI components are initialized on the <code>DOMContentLoaded</code> event, but this might change some day. To make sure that all the components are initialized before you do something to them, you can wrap you code in a callback like this.</p>
 					<figure data-ts="DoxScript">
-						<script>
+						<script type="text/html">
 							ts.ui.ready(function() {
 								var component = ts.ui.get(element);
 								component.dosomething();
@@ -47,7 +53,7 @@
 					</ul>
 					<p>You can perhaps make it easier for yourself by kickstarting your app with a <code>ts.ui.ready</code> callback, because then you wont&apos;t have to worry about it later on.</p>
 					<figure data-ts="DoxScript">
-						<script>
+						<script type="text/html">
 							ts.ui.ready(function() {
 								boostrap_everything();
 							});

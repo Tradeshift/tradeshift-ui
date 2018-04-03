@@ -22,6 +22,32 @@
                 <div data-ts="Panel">
                     <article>
                         <h1><span>DatePicker</span></h1>
+                        <form data-ts="Form">
+                            <fieldset>
+                                <label>
+									<span>Date</span>
+						<input type="date" value="2001-04-23" min="2014-01-01" max="2016-01-01">
+					</label>
+                            </fieldset>
+                            <fieldset>
+                                <label>
+							<span>Date Time</span>
+							<input id="datetime" type="datetime-local">
+						</label>
+                            </fieldset>
+                            <fieldset>
+                                <label>
+							<span>Time</span>
+							<input type="time" id="startTime" value="hh:mm">
+						</label>
+                            </fieldset>
+                            <fieldset>
+                                <label>
+							<span>Month Picker</span>
+							<input type="month">
+						</label>
+                            </fieldset>
+                        </form>
                         <section class="desc">
                             <p>Calendar widget that appears in Aside. Used in Forms for an implementation of &lt;input type=&quot;date&quot;&gt; elements.</p>
                         </section>

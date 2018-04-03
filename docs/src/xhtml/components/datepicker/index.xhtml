@@ -5,7 +5,42 @@
 	</head>
 	<body>
 			<article>
+
 				<h1>DatePicker</h1>
+				<form data-ts="Form">
+
+					<fieldset>
+						<label>
+									<span>Date</span>
+						<input type="date" value="2001-04-23"
+						min="2014-01-01"
+						max="2016-01-01"/></input>
+					</label>
+					</fieldset>
+
+					<fieldset>
+						<label>
+							<span>Date Time</span>
+							<input id="datetime" type="datetime-local"></input>
+						</label>
+					</fieldset>
+
+					<fieldset>
+						<label>
+							<span>Time</span>
+							<input type="time" id="startTime" value="hh:mm">
+						</label>
+					</fieldset>
+
+					<fieldset>
+						<label>
+							<span>Month Picker</span>
+							<input type="month">
+						</label>
+					</fieldset>
+
+
+				</form>
 				<section class="desc">
 					<p>Calendar widget that appears in Aside. Used in Forms for an implementation of &lt;input type="date"&gt; elements.</p>
 				</section>
@@ -82,7 +117,7 @@
 								<td><code>onselect</code></td>
 								<td><code>{void}</code></td>
 								<td>
-									Called whenever selection changes with two 
+									Called whenever selection changes with two
 									arguments <code>newval</code> and <code>oldval<code>.
 								</td>
 							</tr>
@@ -90,7 +125,7 @@
 								<td><code>onclosed</code></td>
 								<td><code>{void}</code></td>
 								<td>
-									Event listener for close event. Called after 
+									Event listener for close event. Called after
 									aside closing animation is completed.
 								</td>
 							</tr>

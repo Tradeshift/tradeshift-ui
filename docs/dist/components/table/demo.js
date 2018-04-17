@@ -12,7 +12,7 @@ $.getJSON('assets/rowdata.json', function(json) {
 		var table = ts.ui.get('#demotable');
 		var toolb = ts.ui.get('#toolbar');
 
-		table.maximize();
+		table.explode();
 		table.selectable();
 		// table.configurable(); TODO!
 		table.cols(gettablecols());
@@ -135,6 +135,7 @@ function gettablecols() {
  * @param {Array<Array<string|number|object>>} rows
  */
 function buildEverything(table, rows) {
+	table.optimize(); // autopaginate the data
 	table.rows(rows);
 	message('All data is loaded in memory\n(the Pager maintains itself).');
 }
@@ -190,12 +191,11 @@ function buildIncrementally(table, rows) {
 	});
 
 	/**
-	 * Maximize the table. The callback will informs us, how many
-	 * (standard) rows the table will fit in the size it now has.
-	 * When the window is resized, the callback will fire again.
+	 * Explode the Table again, this time with a callback to informs us,
+	 * how many (standard) rows the table will fit in the size it now has.
+	 * Called again when the window is resized, so we can update the Table.
 	 */
-	table.maximize(function(max) {
-		console.log(max, Math.random());
+	table.explode(function(max) {
 		maxrows = max;
 		updatepager();
 		updaterows();

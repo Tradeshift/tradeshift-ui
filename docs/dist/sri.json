@@ -1,16 +1,16 @@
 {
   "@js": {
     "hashes": {
-      "sha384": "CJnUJ3+ZzcyH/ID4VUADULOk4pCRVd632ZsWq6IrLvaNcJ68YYVwT3SaOOROZeiw"
+      "sha384": "wezp0jRXSvJvq8T0l9r1KEv1tezMf8uhyo/EsuVS3xnmnMLCv5HXhDctVGDScLAR"
     },
-    "integrity": "sha384-CJnUJ3+ZzcyH/ID4VUADULOk4pCRVd632ZsWq6IrLvaNcJ68YYVwT3SaOOROZeiw",
-    "path": "public/ts-10.0.17.min.js"
+    "integrity": "sha384-wezp0jRXSvJvq8T0l9r1KEv1tezMf8uhyo/EsuVS3xnmnMLCv5HXhDctVGDScLAR",
+    "path": "public/ts-10.0.19.min.js"
   },
   "@css": {
     "hashes": {
       "sha384": "kO15fdDynQLIAw10Mkuia+zNdp+gIpupZBAOfaeS0C5aV9O8dKZ4+sQkyLCMJnH2"
     },
     "integrity": "sha384-kO15fdDynQLIAw10Mkuia+zNdp+gIpupZBAOfaeS0C5aV9O8dKZ4+sQkyLCMJnH2",
-    "path": "public/ts-10.0.17.min.css"
+    "path": "public/ts-10.0.19.min.css"
   }
 }

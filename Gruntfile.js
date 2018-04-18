@@ -113,6 +113,10 @@ module.exports = function(grunt) {
 					},
 					{
 						src: 'src/runtime/less/include.less',
+						dest: 'dist/npm/ts-runtime.less' // keep this for legacy reasons...
+					},
+					{
+						src: 'src/runtime/less/include.less', // ... but encourage this!
 						dest: 'dist/npm/ts.less'
 					}
 				]

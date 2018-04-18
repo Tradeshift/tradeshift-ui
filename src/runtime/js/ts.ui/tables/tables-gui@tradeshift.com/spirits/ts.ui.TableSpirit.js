@@ -584,56 +584,76 @@ ts.ui.TableSpirit = (function using(
 		// Layout ..................................................................
 
 		/**
-		 * Expand to fill nearest position ancestor.
+		 * Expand to fill nearest positioned ancestor.  If the callback is 
+		 * provided, this can be used to manually calculate the optimal 
+		 * rowcount (backend-Table scenario).
+		 * @param {Function} onresize
 		 * @returns {this}
 		 */
-		explode: chained(function() {
-			this.css.add(CLASS_MAXIMIZED);
-		}),
+		explode: confirmed('(function)')(
+			chained(function(onresize) {
+				this.css.add(CLASS_MAXIMIZED);
+				if (arguments.length) {
+					this.broadcast.add(gui.BROADCAST_RESIZE_END);
+					this._maybecallresize(onresize);
+				}
+			})
+		),
 
 		/**
 		 * Don't expand no more.
 		 * @returns {this}
 		 */
 		implode: chained(function() {
-			this.css.add(CLASS_MAXIMIZED);
+			this.css.remove(CLASS_MAXIMIZED);
+			this.onresize = null;
 		}),
 
 		/**
 		 * Automatically optimize the rowcount per page to fill the screen 
 		 * (or nearest positioned ancestor) with as little need for scrolling 
-		 * as possible. If the callback is provided, this can be used to 
-		 * manually calculate the optimal rowcount (backend-Table scenario).
+		 * as possible.
+		 * TODO: Warning if `rows` are mounted before `optimize` is called (perf)
 		 * TODO: Console warn when not used in combination with `explode()`
 		 * @returns {this}
 		 */
-		optimize: confirmed('(function)')(
-			chained(function(onresize) {
-				var sizeend = gui.BROADCAST_RESIZE_END;
-				this.broadcast.add(sizeend);
-				if (onresize) {
-					this._maybecallresize(onresize);
-				} else {
-					this._autooptimize = true;
-					this.max();
-					this._createpager();
-				}
-			})
-		),
+		optimize: chained(function() {
+			this.broadcast.add(gui.BROADCAST_RESIZE_END);
+			this._autooptimize = true;
+			this.max();
+			this._createpager();
+		}),
+
+		/**
+		 * Just to revert the `optimize` method, however unlikely that might be.
+		 * @returns {this}
+		 */
+		deoptimize: chained(function() {
+			this._autooptimize = false;
+			this._model.toolbar.pager = null;
+			this._model.maxrows = 0;
+			if (!this.onresize) {
+				this.broadcast.remove(gui.BROADCAST_RESIZE_END);
+			}
+		}),
 
 		/**
 		 * @deprecated
-		 * Maximize the layout to fill positioned container.
-		 * Optionally add resize callback for managing pager.
+		 * Maximize the layout to fill positioned container AND automatically 
+		 * optimize+autopage the content. This procedure has been split into 
+		 * two distinct methods, but we will keep this for legacy reasons. 
+		 * In V4, this method is used both "backend" Tables even though the 
+		 * `optimize` method is called (which autopaginates the Table), this 
+		 * setup is of course wrong and we are just lucky that things work :/
+		 * TODO: If and when we have the documentation for these features,
+		 * show some warning in the console and prepare to deprecate this.
 		 * @param @optional {function} onresize
 		 * @returns {ts.ui.TableSpirit}
 		 */
 		maximize: confirmed('(function)')(
 			chained(function(onresize) {
-				this.explode().optimize.call(this, onresize);
-				console.warn(
-					'Table.maximize() is deprecated. Please ' + 'use the methods expand() and optimize().'
-				);
+				this.explode.apply(this, arguments);
+				this.optimize();
 			})
 		),
 

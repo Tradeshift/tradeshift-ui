@@ -14,6 +14,7 @@ $.getJSON('assets/rowdata.json', function(json) {
 
 		table.explode();
 		table.selectable();
+		// table.configurable(); TODO!
 		table.cols(gettablecols());
 		toolb.title(title).buttons([
 			{

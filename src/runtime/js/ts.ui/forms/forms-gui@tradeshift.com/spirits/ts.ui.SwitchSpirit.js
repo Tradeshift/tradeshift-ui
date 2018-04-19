@@ -16,27 +16,23 @@ ts.ui.SwitchSpirit = (function using(tick, time) {
 		},
 
 		/**
-		 * Attach to the DOM.
+		 * Attaching to the DOM.
 		 */
 		onattach: function() {
 			this.super.onattach();
 			this.event.add('change');
-			this.css.add([
-				// TODO: update these classnames what with the new stylee!
-				ts.ui.CLASS_SWITCHBOX,
-				ts.ui.CLASS_ENGINE
-			]);
-			this._switch = this._createswitch();
+			this._createswitch();
 			this._synchronize(true);
+			this.tick.add(tick).start(tick, time);
+			this.css.add([ts.ui.CLASS_SWITCHBOX, ts.ui.CLASS_ENGINE]);
 		},
 
 		/**
-		 * Syncrhonize on an interval so that we don't have to anticipate
-		 * all the strange stuff that Angular might do with our elements.
+		 * Detaching from the DOM.
 		 */
-		onready: function() {
-			this.super.onready();
-			this.tick.add(tick).start(tick, time);
+		ondetach: function() {
+			this.super.ondetach();
+			this.tick.remove(tick);
 		},
 
 		/**
@@ -81,27 +77,34 @@ ts.ui.SwitchSpirit = (function using(tick, time) {
 		// Private .................................................................
 
 		/**
-		 * The switch DHTML thing.
-		 * @type {HTMLDivElement}
-		 */
-		_switch: null,
-
-		/**
 		 * Snapshot checked status so that we know when it changes.
 		 * @type {boolean|null}
 		 */
 		_snapshot: null,
 
 		/**
-		 * Inject the switch while accounting for strange Angular quantum effects.
+		 * Fetch the switch element (and potentially create it).
+		 * @param {boolean} [create] - Create switch if it doesn't exist?
+		 * @returns {HTMLDivElement}
+		 */
+		_switch: function(create) {
+			if (create && !this._switch()) {
+				return this._createswitch();
+			} else {
+				var elm = this.dom.following(ts.ui.Spirit)[0];
+				return elm && elm.css.contains('ts-switcher') ? elm : null;
+			}
+		},
+
+		/**
+		 * Inject the switch. Let's remove any potential existing 
+		 * switch, accounting for strange Angular quantum effects.
 		 * @returns {ts.ui.Spirit}
 		 */
 		_createswitch: function() {
-			var oldswitch = this.dom.following(ts.ui.Spirit)[0];
-			if (oldswitch && oldswitch.css.contains('ts-switcher')) {
-				oldswitch.dom.remove();
-			}
-			return ts.ui.get(this.dom.after(this.dom.parseToNode(ts.ui.switchonly.edbml())));
+			var html = ts.ui.switchonly.edbml();
+			this._switch() ? this._switch().dom.remove() : void 0;
+			return ts.ui.get(this.dom.after(this.dom.parseToNode(html)));
 		},
 
 		/**
@@ -112,7 +115,7 @@ ts.ui.SwitchSpirit = (function using(tick, time) {
 		_synchronize: function(init) {
 			var checked = this.element.checked;
 			if (init || checked !== this._snapshot) {
-				this._switch.css.shift(checked, ts.ui.CLASS_CHECKED);
+				this._switch(true).css.shift(checked, ts.ui.CLASS_CHECKED);
 				this._snapshot = checked;
 				if (!init) {
 					this.action.dispatch(ts.ui.ACTION_SWITCH, checked);

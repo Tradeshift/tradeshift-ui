@@ -8,8 +8,8 @@ describe('ts.ui.tablecheck.edbml', function likethis() {
 			row = {},
 			fixed = true;
 		expect(gethtml(table, row, fixed)).toContain('ts-table-checkbox');
-		expect(gethtml(table, row, fixed)).toContain('<div class="ts-table-cell">');
-		expect(gethtml(table, row, fixed)).toContain('<button class="ts-table-checkbox-button"');
+		expect(gethtml(table, row, fixed)).toContain('ts-table-cell');
+		expect(gethtml(table, row, fixed)).toContain('ts-table-checkbox-button');
 	});
 
 	it('should contain ts-icon-checkboxon', function() {

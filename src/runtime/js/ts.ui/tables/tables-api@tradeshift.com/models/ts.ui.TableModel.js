@@ -267,6 +267,11 @@ ts.ui.TableModel = (function using(RowCollection, Type, Model) {
 		tempdirtyflag: -1,
 
 		/**
+		 * @type {boolean}
+		 */
+		floatinggutter: false,
+
+		/**
 		 * Render toolbar as a statusbar (multiline in mobile view).
 		 */
 		onconstruct: function() {

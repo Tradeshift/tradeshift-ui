@@ -33,7 +33,7 @@
 				</tbody>
 			</table>
 		</main>
-		if(table.selectable) {
+		if(table.floatinggutter) {
 			<aside data-ts="Spirit" id="${guid}-gutter" class="ts-table-gutter">
 				<table>
 					<tbody>

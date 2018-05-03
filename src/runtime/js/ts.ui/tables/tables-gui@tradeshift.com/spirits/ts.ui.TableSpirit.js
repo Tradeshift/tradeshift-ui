@@ -1185,6 +1185,16 @@ ts.ui.TableSpirit = (function using(
 			}
 		},
 
+		/**
+		 * The Table should or does show a "floating gutter" that stys 
+		 * fixed on horizontal scrolling (to make row selection easier)?
+		 * Note that `ts-scroll-x` was added by the {TableLayoutPlugin}.
+		 * @returns {boolean}
+		 */
+		$floatgutter: function() {
+			return this._model.selectable && this.css.contains('ts-scroll-x');
+		},
+
 		// Private .................................................................
 
 		/**
@@ -1308,6 +1318,21 @@ ts.ui.TableSpirit = (function using(
 			}
 			this._flush();
 			this._cnames(model, model.cols, model.rows, model.toolbar);
+			this._togglegutter(model);
+		},
+
+		/**
+		 * The Table needs to render *before* we can determine if the floating 
+		 * gutter needs to be displayed  (because this all depends on the final 
+		 * computed size of the table columns and stuff). If we can determine 
+		 * that is should be shown or hidden, and if this is different from 
+		 * the previous rendering, we will now trigger another re-rendering :/
+		 * but at least now, we will not render extra checkboxes that might 
+		 * confuse Selenium tests even though they are invisible to the user.
+		 * @param {ts.ui.TableModel} model
+		 */
+		_togglegutter: function(model) {
+			model.floatinggutter = this.$floatgutter();
 		},
 
 		/**
@@ -1390,7 +1415,7 @@ ts.ui.TableSpirit = (function using(
 			var path = '.ts-table-checkbox button';
 			var guts = this.queryplugin.getguts(true);
 			var menu = this.queryplugin.getmenu(true);
-			var buts = guts.dom.qall(path);
+			var buts = guts ? guts.dom.qall(path) : [];
 			var butt = menu.dom.qall(path);
 			buts
 				.concat(butt)
@@ -1941,15 +1966,6 @@ ts.ui.TableSpirit = (function using(
 			var rowheight = UNIT_DOUBLE;
 			var rowslimit = Math.ceil(availsize / rowheight);
 			return rowslimit;
-		},
-
-		/**
-		 * The Table should show a "floating gutter" that stys fixed
-		 * on horizontal scrolling (to make row selection easier)?
-		 * @returns {boolean}
-		 */
-		_floatgutter: function() {
-			return this._model.selectable && this.css.contains('ts-scroll-x');
 		},
 
 		/**

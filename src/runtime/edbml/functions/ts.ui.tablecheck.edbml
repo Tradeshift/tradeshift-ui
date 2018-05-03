@@ -3,17 +3,21 @@
 	<?param name="table" type="ts.ui.TableModel"?>
 	<?param name="row" type="ts.ui.TableRowModel"?>
 	<?param name="fixed" type="boolean"?>
+	<?param name="shown" type="boolean"?>
 	
 	@class = 'ts-table-addition ts-table-checkbox ';
 	@class +=  row.selected ? 'ts-checked' : '';
 	
 	<td @class>
 		@id =  table.$instanceid + (fixed ? '-fixed-' : '-floating-') + row.$index;
-		@class = row.selected ? 'ts-icon-checkboxon' : 'ts-icon-checkbox';
+		@class = 'ts-table-checkbox-button ' + (fixed ? 'ts-fixed' : 'ts-floating');
 		<div class="ts-table-cell">
-			<button class="ts-table-checkbox-button" @id data-index="${row.$index}" tabindex="-1">
-				<i @class></i>
-			</button>
+			if(shown !== false) {
+				<button @class @id data-index="${row.$index}" tabindex="-1">
+					@class = row.selected ? 'ts-icon-checkboxon' : 'ts-icon-checkbox';
+					<i @class></i>
+				</button>
+			}
 		</div>
 	</td>
 

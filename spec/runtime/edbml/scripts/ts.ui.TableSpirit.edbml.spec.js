@@ -27,16 +27,6 @@ describe('ts.ui.TableSpirit.edbml', function likethis() {
 		});
 	});
 
-	it('should contain gutter', function(done) {
-		getspirit().then(function(spirit) {
-			spirit.selectable().rows([{ cells: ['A', 'D', 'G'], selected: true }]);
-			sometime(function later() {
-				expect(spirit.element.innerHTML).toContain('ts-table-gutter');
-				done();
-			});
-		});
-	});
-
 	it('should contain a footer', function(done) {
 		getspirit().then(function(spirit) {
 			spirit.configbutton();

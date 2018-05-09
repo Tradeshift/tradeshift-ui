@@ -560,6 +560,21 @@
 	}
 }
 
+// Touch device specials .......................................................
+
+/**
+ * Hide the native SELECT and INPUT type=date on touch devices so that the native 
+ * controls won't appear whenever you touch the screen in their general vicinity.
+ * This is known to be a problem in Safari on iOS in particular. Note that this 
+ * must happen on touch devices only, otherwise we break keyboard TAB navigation.
+ */
+.ts-device-touch {
+    .ts-dateinput,
+    .ts-select {
+        display: none !important;
+    }
+}
+
 // Switches ....................................................................
 
 .ts-form {

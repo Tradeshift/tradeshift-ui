@@ -119,7 +119,7 @@ ts.ui.FieldSpirit = (function using(chained) {
 			 */
 			_label: function(action) {
 				var label, result;
-				if (this.dom.embedded()) {
+				if (!this.$destructed && this.dom.embedded()) {
 					if ((label = this.dom.parent(ts.ui.LabelSpirit))) {
 						if (action) {
 							result = action.call(this, label);

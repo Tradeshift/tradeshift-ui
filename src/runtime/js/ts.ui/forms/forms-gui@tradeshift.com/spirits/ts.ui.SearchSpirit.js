@@ -43,6 +43,7 @@ ts.ui.SearchSpirit = (function using(ButtonSpirit, CSSPlugin, Type, chained) {
 						this.dom.q('.ts-input').blur(); // IE dysfunction
 						this.tick.time(function() {
 							this._clear(this._model);
+							this._maybeinvoke(this.onidle, this.value);
 						}, 25);
 					}
 					break;

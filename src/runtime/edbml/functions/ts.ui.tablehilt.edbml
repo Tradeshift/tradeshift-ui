@@ -3,16 +3,19 @@
 	<?param name="table" type="ts.ui.TableModel"?>
 	<?param name="row" type="ts.ui.TableRowModel"?>
 	<?param name="icon" type="String"?> //todo(leo) we will support icon later
+	<?param name="shown" type="boolean"?>
 	
 	<td class="ts-table-addition ts-table-hilt">
 		@id =  table.$instanceid + icon + row.$index;
 		@class = icon ? 'icon' : '';
 		<div class="ts-table-cell">
-			<button @id data-index="${row.$index}" tabindex="-1">
-				if(icon) {
-					<i @class></i>
-				}
-			</button>
+			if(shown) {
+				<button @id data-index="${row.$index}" tabindex="-1">
+					if(icon) {
+						<i @class></i>
+					}
+				</button>
+			}
 		</div>
 	</td>
 

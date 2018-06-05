@@ -34,10 +34,18 @@
 					</p>
 					<figure data-ts="DoxMarkup">
 						<script type="text/html">
+							<link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-${ts.ui.version}.min.css"/>
+							<scrxpt src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-${ts.ui.version}.min.js"></scrxpt>
+						</script>
+					</figure>
+					<!--
+					<figure data-ts="DoxMarkup">
+						<script>
 							<link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-${ts.ui.version}.min.css" integrity="${sricss}" crossorigin="anonymous"/>
 							<scrxpt src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-${ts.ui.version}.min.js" integrity="${srijs}" crossorigin="anonymous"></scrxpt>
 						</script>
 					</figure>
+					-->
 					<p>UI components are initialized on the <code>DOMContentLoaded</code> event, but this might change some day. To make sure that all the components are initialized before you do something to them, you can wrap you code in a callback like this.</p>
 					<figure data-ts="DoxScript">
 						<script type="text/html">

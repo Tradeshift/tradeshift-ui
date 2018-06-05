@@ -8,7 +8,7 @@ describe('ts.ui.tablerows.edbml.js', function likethis() {
 			rows = [{ cells: [{}] }],
 			cols = [new ts.ui.TableColModel()];
 		expect(gethtml(table, rows, cols)).toContain('<tr data-index=');
-		expect(gethtml(table, rows, cols)).toContain('<div class="ts-table-cell">');
+		expect(gethtml(table, rows, cols)).toContain('ts-table-cell');
 	});
 
 	it('should contain ts-table-checkbox', function() {

@@ -32,9 +32,10 @@
 			if(table.selectable) {
 				if(selectable) {
 					var simulated = true;
-					renderCheck(table, row, simulated);
+					var show4real = !table.floatinggutter;
+					renderCheck(table, row, simulated, show4real);
 				} else {
-					renderHilt(table, row);	
+					renderHilt(table, row, null, show4real);
 				}
 			}
 			row.cells.forEach(function(cell, i) {

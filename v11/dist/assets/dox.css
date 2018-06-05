@@ -63,7 +63,7 @@ pre,
 var,
 kbd,
 samp {
-  font-family: 'Ubuntu Mono', 'Monaco', 'Consolas', 'Bitstream Vera Sans Mono', monospace;
+  font-family: 'Ubuntu Mono', 'Menlo', 'Monaco', 'Consolas', 'Bitstream Vera Sans Mono', monospace;
   word-spacing: -2px;
   -webkit-hyphens: none;
   -moz-hyphens: none;
@@ -136,7 +136,7 @@ figure .editcode {
   hyphens: none;
   padding: 0;
   opacity: 0;
-  font-family: 'Ubuntu Mono', 'Monaco', 'Consolas', 'Bitstream Vera Sans Mono', monospace;
+  font-family: 'Ubuntu Mono', 'Menlo', 'Monaco', 'Consolas', 'Bitstream Vera Sans Mono', monospace;
   width: 100%;
   height: 100% !important;
   padding: 20px 0 20px 20px;
@@ -937,7 +937,7 @@ article > h1 {
 .doc-typo span.extra {
   color: rgba(15, 21, 26, 0.5);
   margin-left: 40px;
-  font-family: 'Ubuntu Mono', 'Monaco', 'Consolas', 'Bitstream Vera Sans Mono', monospace;
+  font-family: 'Ubuntu Mono', 'Menlo', 'Monaco', 'Consolas', 'Bitstream Vera Sans Mono', monospace;
   font-size: 14px;
   float: right;
 }

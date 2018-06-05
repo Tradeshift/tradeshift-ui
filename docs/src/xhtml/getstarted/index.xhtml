@@ -5,15 +5,16 @@
 		<object data="tabs.xhtml"></object>
 		<script>
 			ts.ui.ready(function nastyhack() {
-			new gui.Request('/dist/sri.json').get().then(function(status, json) {
-				ts.ui.ready(function nastyhack() {
-					var version =  ts.ui.version;
-					var figure = document.querySelector('figure');
-					var markup = figure.innerHTML;
-					figure.innerHTML = markup
-						.replace(/\${ts.ui.version}/g, version)
-						.replace('${sricss}', json['@css'].integrity)
-						.replace('${srijs}', json['@js'].integrity);
+				new gui.Request('/dist/sri.json').get().then(function(status, json) {
+					ts.ui.ready(function nastyhack() {
+						var version =  ts.ui.version;
+						var figure = document.querySelector('figure');
+						var markup = figure.innerHTML;
+						figure.innerHTML = markup
+							.replace(/\${ts.ui.version}/g, version)
+							.replace('${sricss}', json['@css'].integrity)
+							.replace('${srijs}', json['@js'].integrity);
+					});
 				});
 			});
 		</script>

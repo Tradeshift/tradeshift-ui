@@ -31,8 +31,8 @@ article nav ul {
   margin-bottom: 0;
 }
 article h2 {
-  margin-top: 66px;
-  margin-bottom: 33px;
+  margin-top: 60px;
+  margin-bottom: 30px;
 }
 article h4,
 article h5 {
@@ -40,11 +40,11 @@ article h5 {
   letter-spacing: 0.25px;
 }
 section {
-  margin-bottom: 22px;
+  margin-bottom: 20px;
 }
 section.desc {
   font-style: italic;
-  margin-bottom: 44px;
+  margin-bottom: 40px;
   font-weight: 400 !important;
 }
 section.desc,
@@ -59,7 +59,7 @@ section ol li {
   letter-spacing: 0.25px;
 }
 dl {
-  margin-bottom: 22px;
+  margin-bottom: 20px;
 }
 dl dt {
   font-weight: bold;
@@ -68,7 +68,7 @@ dl dd {
   padding-left: 16px;
 }
 dl dd + dt {
-  margin-top: 22px;
+  margin-top: 20px;
 }
 code,
 pre,
@@ -120,7 +120,7 @@ figure .ts-toolbar {
   margin: 0;
 }
 figure .output {
-  padding: 22px;
+  padding: 20px;
 }
 figure .tabs {
   border-radius: 3px 3px 0 0;
@@ -141,11 +141,11 @@ figure .tabs:after {
 }
 figure .tabs button {
   display: inline-block;
-  padding: 5.5px 22px;
+  padding: 5px 20px;
   color: #7f7f7f;
 }
 figure .tabs button span {
-  line-height: 44px;
+  line-height: 40px;
 }
 figure .tabs button span + svg {
   position: relative;
@@ -169,8 +169,8 @@ figure .tabs button.tab:first-child {
   border-radius: 3px 0 0 0;
 }
 figure .tabs button.run {
-  padding-left: 22px;
-  padding-right: 22px;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 figure .tabs button.edit,
 figure .tabs button.revert {
@@ -204,7 +204,7 @@ figure .tabpanels .ts-textarea.editcode {
   font-family: 'Ubuntu Mono', 'Menlo', 'Monaco', 'Consolas', 'Bitstream Vera Sans Mono', monospace;
   width: 100%;
   height: 100% !important;
-  padding: 22px 0 22px 22px;
+  padding: 20px 0 20px 20px;
   overflow: auto;
   resize: none;
 }
@@ -217,17 +217,17 @@ figure .tabpanels .ts-textarea.editcode:not(:focus) {
   background-image: -ms-linear-gradient(#f5fbfe 50%, #ffffff 50%);
   background-image: -o-linear-gradient(#f5fbfe 50%, #ffffff 50%);
   background-image: linear-gradient(#f5fbfe 50%, #ffffff 50%);
-  background-size: 44px 44px;
+  background-size: 40px 40px;
   background-origin: content-box;
 }
 figure .message {
   position: absolute;
   top: 0;
   left: 100%;
-  margin-left: 11px;
+  margin-left: 10px;
   background-color: #fdfed5;
   color: #7f7348;
-  padding: 5.5px 11px;
+  padding: 5px 10px;
   white-space: nowrap;
   text-align: center;
   z-index: 1;
@@ -284,13 +284,13 @@ pre.prism {
   background-image: -ms-linear-gradient(#ffffff 50%, #f5fbfe 50%);
   background-image: -o-linear-gradient(#ffffff 50%, #f5fbfe 50%);
   background-image: linear-gradient(#ffffff 50%, #f5fbfe 50%);
-  background-size: 44px 44px;
+  background-size: 40px 40px;
   background-origin: content-box;
 }
 pre.prism code {
   font-size: 14px;
   display: block;
-  padding: 22px;
+  padding: 20px;
   padding-bottom: 0;
 }
 .token.comment,
@@ -375,7 +375,7 @@ table.api code {
 }
 #markdown table:first-child,
 table.api:first-child {
-  margin-top: 66px;
+  margin-top: 60px;
 }
 #markdown table td,
 table.api td,
@@ -383,7 +383,7 @@ table.api td,
 table.api th,
 #markdown table caption,
 table.api caption {
-  padding: 5.5px 11px;
+  padding: 5px 10px;
 }
 #markdown table caption,
 table.api caption,
@@ -403,7 +403,7 @@ table.api caption {
 }
 #markdown table td:first-child,
 table.api td:first-child {
-  padding-left: 22px;
+  padding-left: 20px;
 }
 #markdown table td:last-child,
 table.api td:last-child {
@@ -411,11 +411,11 @@ table.api td:last-child {
 }
 #markdown table tr:last-child td,
 table.api tr:last-child td {
-  padding-bottom: 11px;
+  padding-bottom: 10px;
 }
 #markdown table tbody:last-child tr:last-child td,
 table.api tbody:last-child tr:last-child td {
-  padding-bottom: 22px;
+  padding-bottom: 20px;
 }
 #markdown table {
   background: transparent;
@@ -427,13 +427,13 @@ table.api tbody:last-child tr:last-child td {
 }
 #markdown table tr td,
 #markdown table tr th {
-  padding: 11px;
+  padding: 10px;
 }
 #markdown table tr td:nth-child(1),
 #markdown table tr th:nth-child(1),
 #markdown table tr td:nth-child(2),
 #markdown table tr th:nth-child(2) {
-  padding: 11px;
+  padding: 10px;
   border-top: 1px solid #ffffff;
   border-bottom: 1px solid #ffffff;
 }
@@ -463,15 +463,15 @@ table.api th {
   padding-bottom: 0;
 }
 .doc-intro section {
-  max-width: 804px;
+  max-width: 824px;
   background: transparent;
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 0;
 }
 .doc-intro section.desc {
-  margin-bottom: 44px;
-  padding-right: 66px;
+  margin-bottom: 40px;
+  padding-right: 60px;
   font-style: normal;
 }
 .doc-intro section a {
@@ -481,12 +481,12 @@ table.api th {
 .doc-intro svg {
   display: block;
   text-align: center;
-  width: 88px;
-  height: 88px;
-  margin: 0 auto 22px;
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 20px;
 }
 .doc-intro .box-code {
-  padding-bottom: 66px;
+  padding-bottom: 60px;
   background-color: rgba(32, 160, 233, 0.04);
 }
 .doc-intro .box-code svg rect,
@@ -496,8 +496,8 @@ table.api th {
   fill: #20a0e9;
 }
 .doc-intro .box-design {
-  padding-top: 66px;
-  padding-bottom: 154px !important;
+  padding-top: 60px;
+  padding-bottom: 140px !important;
   background-color: rgba(134, 197, 92, 0.04);
 }
 .doc-intro .box-design svg rect,
@@ -507,14 +507,14 @@ table.api th {
   fill: #86c55c;
 }
 .doc-intro .intro-box {
-  padding: 44px;
+  padding: 40px;
 }
 .doc-intro .intro-box.desc {
   padding-top: 0;
-  padding-bottom: 22px;
+  padding-bottom: 20px;
 }
 .doc-intro .intro-box .intro-head {
-  padding-bottom: 44px;
+  padding-bottom: 40px;
 }
 .doc-intro .intro-box .intro-head.intro-developers svg {
   transform: scale(-1, 1);
@@ -531,8 +531,8 @@ table.api th {
 .doc-intro .intro-box .intro-container .intro-img {
   display: table-cell;
   vertical-align: top;
-  padding-left: 11px;
-  padding-right: 11px;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 .doc-intro .intro-box .intro-container .intro-cell,
 .doc-intro .intro-box .intro-container .intro-img {
@@ -559,7 +559,7 @@ table.api th {
   width: 100%;
 }
 .ts-mobile-only .doc-intro .intro-container .intro-cell {
-  margin-bottom: 44px;
+  margin-bottom: 40px;
 }
 .ts-mobile-only .doc-intro .intro-container .intro-img {
   display: none;
@@ -654,16 +654,16 @@ table.api th {
   display: none;
 }
 .ts-doxchrome .button-menu-open {
-  width: 66px;
+  width: 60px;
   left: auto;
 }
 .ts-doxchrome .button-menu-open i {
-  width: 66px;
-  max-width: 66px;
-  min-width: 66px;
-  height: 66px;
-  max-height: 66px;
-  min-height: 66px;
+  width: 60px;
+  max-width: 60px;
+  min-width: 60px;
+  height: 60px;
+  max-height: 60px;
+  min-height: 60px;
   background-color: #494949;
   color: #ffffff;
   position: absolute;
@@ -693,8 +693,8 @@ table.api th {
 .ts-doxchrome .ts-menu h3 {
   margin: 0;
   background-color: #353535;
-  padding: 5.5px;
-  padding-left: 22px;
+  padding: 5px;
+  padding-left: 20px;
   font-size: 11px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -707,7 +707,7 @@ table.api th {
 }
 .ts-doxchrome .ts-menu > li > a,
 .ts-doxchrome .ts-menu > li:last-child > a {
-  padding: 22px 11px 22px 33px;
+  padding: 20px 10px 20px 30px;
 }
 .ts-doxchrome .ts-menu > li > a {
   border-bottom: none;
@@ -724,7 +724,7 @@ table.api th {
 }
 .ts-doxchrome .ts-menu > li > a > i {
   top: 33%;
-  left: 22px;
+  left: 20px;
 }
 .ts-doxchrome .ts-menu > li > a.ts-checked {
   position: relative;
@@ -769,12 +769,12 @@ table.api th {
 }
 .ts-doxchrome .ts-menu > li.submenu.sliding menu {
   position: absolute;
-  top: 66px;
+  top: 60px;
 }
 .ts-doxchrome .ts-menu > li.resultsbanner {
-  height: 66px;
-  line-height: 66px;
-  padding-left: 22px;
+  height: 60px;
+  line-height: 60px;
+  padding-left: 20px;
   font-style: italic;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -807,7 +807,7 @@ table.api th {
 }
 .ts-doxchrome .ts-topbarspinner {
   z-index: 2001;
-  left: 220px;
+  left: 200px;
 }
 .ts-doxchrome .button-menu-open i {
   transition: opacity 0.2s;
@@ -830,13 +830,13 @@ table.api th {
   display: none;
 }
 .ts-doxchrome.collapse-some:before {
-  width: 66px;
+  width: 60px;
 }
 .ts-doxchrome.collapse-some .ts-cover:not(.ts-dox-blocking) {
-  max-width: 66px;
+  max-width: 60px;
 }
 .ts-doxchrome.collapse-some .ts-main {
-  left: 66px;
+  left: 60px;
 }
 .ts-doxchrome.collapse-some .button-menu-open {
   display: block;
@@ -853,7 +853,7 @@ table.api th {
   display: none;
 }
 .ts-doxchrome.collapse-some.uncollapse .ts-main {
-  transform: translate3d(254px, 0, 0);
+  transform: translate3d(260px, 0, 0);
 }
 .ts-doxchrome.collapse-some.uncollapse .ts-menu h3 {
   opacity: 1;
@@ -892,9 +892,9 @@ html {
   background-color: #ebebeb !important;
 }
 article {
-  padding: 66px;
-  max-width: 704px;
-  padding-bottom: 154px;
+  padding: 60px;
+  max-width: 640px;
+  padding-bottom: 140px;
 }
 #markdown img {
   max-width: 100%;
@@ -904,7 +904,7 @@ article {
   border-radius: 3px 3px 0 0;
   background: #ebebeb;
   padding: 0;
-  margin-bottom: 22px;
+  margin-bottom: 20px;
   overflow: hidden;
 }
 #markdown blockquote h4,
@@ -912,11 +912,11 @@ article {
 #markdown blockquote h6 {
   display: block;
   margin: 0;
-  padding: 0 22px;
+  padding: 0 20px;
   text-transform: uppercase;
   font-size: 12px;
   color: #ffffff;
-  line-height: 22px;
+  line-height: 20px;
 }
 #markdown blockquote h4 {
   background: rgba(114, 177, 72, 0.75);
@@ -929,29 +929,29 @@ article {
 }
 #markdown blockquote p {
   margin: 0;
-  padding: 11px 22px;
+  padding: 10px 20px;
 }
 #markdown blockquote ul,
 #markdown blockquote ol {
-  padding: 0 22px 0 44px;
+  padding: 0 20px 0 40px;
 }
 .dox-dropshadow {
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 .doc-responsive #breakpoints {
   background-color: #f5f5f5;
-  padding-bottom: 22px;
+  padding-bottom: 20px;
   border-radius: 3px;
 }
 .doc-responsive #breakpoints dl {
   width: 50%;
   float: left;
-  padding: 11px 22px;
+  padding: 10px 20px;
   margin: 0;
 }
 .doc-responsive #breakpoints dl dt {
   font-weight: 300;
-  padding-bottom: 11px;
+  padding-bottom: 10px;
 }
 .doc-responsive #breakpoints:after {
   content: '';
@@ -966,15 +966,15 @@ article {
   transition-delay: 0s;
   background: #f5f5f5;
   border: 1px solid #e1e1e1;
-  padding: 22px;
-  margin-bottom: 22px;
+  padding: 20px;
+  margin-bottom: 20px;
 }
 .doc-typo {
-  max-width: 660px;
+  max-width: 600px;
 }
 .doc-typo span.extra {
   color: rgba(30, 30, 30, 0.5);
-  margin-left: 44px;
+  margin-left: 40px;
   font-family: 'Ubuntu Mono', 'Menlo', 'Monaco', 'Consolas', 'Bitstream Vera Sans Mono', monospace;
   font-size: 14px;
   float: right;
@@ -991,7 +991,7 @@ article {
   justify-content: space-around;
 }
 #doc-colors-demo .color-row > div {
-  padding: 33px 11px;
+  padding: 30px 10px;
   flex-grow: 1;
   flex-basis: 1;
   overflow: hidden;
@@ -999,7 +999,7 @@ article {
 #doc-colors-demo .color-row > div .color-name {
   font-weight: 400;
   font-size: 14px;
-  margin-bottom: 11px;
+  margin-bottom: 10px;
 }
 #doc-colors-demo .color-row > div .color-code {
   font-family: 'Ubuntu Mono', 'Menlo', 'Monaco', 'Consolas', 'Bitstream Vera Sans Mono', monospace;
@@ -1244,16 +1244,16 @@ article {
   display: none;
 }
 .ts-mobile-only article {
-  padding: 44px 22px;
-  padding-bottom: 66px;
+  padding: 40px 20px;
+  padding-bottom: 60px;
 }
 .ts-mobile-only .splitscreen > li:last-child {
-  margin-top: 22px;
+  margin-top: 20px;
 }
 .ts-tablet .splitscreen-container {
   width: 80vw;
-  max-width: 1144px;
-  margin-bottom: 22px;
+  max-width: 1040px;
+  margin-bottom: 20px;
 }
 .ts-tablet .splitscreen {
   width: 100%;
@@ -1274,17 +1274,17 @@ article {
 }
 .ts-tablet .splitscreen > li + li {
   position: relative;
-  padding-left: 22px;
+  padding-left: 20px;
 }
 #results li {
   display: block;
-  padding-bottom: 22px;
+  padding-bottom: 20px;
 }
 .sticky {
   position: fixed;
-  right: 44px;
-  top: 33px;
-  padding: 22px;
+  right: 40px;
+  top: 30px;
+  padding: 20px;
   text-align: center;
   display: none;
 }
@@ -1292,18 +1292,18 @@ article {
   display: block;
 }
 .ts-has-toolbar-first-ts-micro .sticky {
-  top: 77px;
+  top: 70px;
 }
 .ts-has-toolbar-first-ts-macro .sticky,
 .ts-has-topbar .sticky {
-  top: 99px;
+  top: 90px;
 }
 .ts-has-toolbar-first-ts-micro.ts-has-toolbar-first-ts-macro .sticky,
 .ts-has-toolbar-first-ts-micro.ts-has-topbar .sticky {
-  top: 143px;
+  top: 130px;
 }
 .ts-has-toolbar-first-ts-micro.ts-has-toolbar-first-ts-macro.ts-has-topbar .sticky {
-  top: 209px;
+  top: 190px;
 }
 /* Not currently used!
 html.design.ts-bg-lite {

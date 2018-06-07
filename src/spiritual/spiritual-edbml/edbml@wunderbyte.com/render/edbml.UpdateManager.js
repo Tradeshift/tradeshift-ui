@@ -36,21 +36,17 @@ edbml.UpdateManager = (function using(
 		 */
 		update: function(html) {
 			if (!this._spirit.life.destructed) {
-				this._updates = new UpdateCollector();
+				var updates = (this._updates = new UpdateCollector());
 				this._functions = {};
-				if (!this._olddom) {
-					this._first(html);
-				} else {
-					this._next(html);
-					this._updates.collect(new FunctionUpdate(this._keyid, this._functions));
-				}
-				this._updates.eachRelevant(function(update) {
+				this._olddom ? this._next(html) : this._first(html);
+				updates.collect(new FunctionUpdate(this._keyid, this._functions));
+				updates.eachRelevant(function(update) {
 					update.update();
 					update.dispose();
 				});
 				if (this._updates) {
 					// huh? how can it be null?
-					this._updates.dispose();
+					updates.dispose();
 				}
 				this._updates = null;
 			}
@@ -304,9 +300,10 @@ edbml.UpdateManager = (function using(
 		 * @returns {boolean}
 		 */
 		_onlyedbmlchange: function(newval, oldval) {
+			var functions = this._functions;
 			if (
 				[newval, oldval].every(function(val) {
-					return val.includes('edbml.$');
+					return gui.KeyMaster.isKey(val) || val.includes('edbml.$');
 				})
 			) {
 				var newkey;
@@ -317,8 +314,8 @@ edbml.UpdateManager = (function using(
 						newkey = newkeys[i];
 						newval = newval.replace(newkey, '');
 						oldval = oldval.replace(oldkey, '');
-						this._functions[oldkey] = newkey;
-					}, this);
+						functions[oldkey] = newkey;
+					});
 					return newval === oldval;
 				}
 			}

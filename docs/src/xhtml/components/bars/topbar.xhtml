@@ -76,8 +76,9 @@
 					<figure data-ts="DoxScript">
 						<script type="runnable">
 							var tabs = ts.ui.TopBar.tabs();
-							tabs[4].label = 'Choose Me!';
-							tabs[4].onselect = function() {
+							var last = tabs.length - 1;
+							tabs[last].label = 'Choose Me!';
+							tabs[last].onselect = function() {
 								this.label = 'Thanks!';
 							};
 						</script>

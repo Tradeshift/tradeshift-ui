@@ -1,16 +1,16 @@
 {
   "@js": {
     "hashes": {
-      "sha384": "LPwtmrhMQGG9Y2iRlSRSyxCWkJNx+bi61Qw0+L6m4nzCAclGTOFWrwX2ElkJeG4g"
+      "sha384": "ajkP6MwZFQW5j+8PXDGzBz2MstqHk46i1jc4tq044GVvQ4tj0PyNXZS+Yk1Qj4FI"
     },
-    "integrity": "sha384-LPwtmrhMQGG9Y2iRlSRSyxCWkJNx+bi61Qw0+L6m4nzCAclGTOFWrwX2ElkJeG4g",
+    "integrity": "sha384-ajkP6MwZFQW5j+8PXDGzBz2MstqHk46i1jc4tq044GVvQ4tj0PyNXZS+Yk1Qj4FI",
     "path": "public/ts-10.0.24.min.js"
   },
   "@css": {
     "hashes": {
-      "sha384": "d4IIuiDGPkA29Y6gDnFA59+qv3E3OvQ4i8+lV2nH0XQ0iFbYxrrYeOo0qzC85T8b"
+      "sha384": "B7D3GGL6/S847eNkCZ1AAvZ0PPuB2dN4cDgWF80mzBGnHjBCLfp11zIYQ221YNHe"
     },
-    "integrity": "sha384-d4IIuiDGPkA29Y6gDnFA59+qv3E3OvQ4i8+lV2nH0XQ0iFbYxrrYeOo0qzC85T8b",
+    "integrity": "sha384-B7D3GGL6/S847eNkCZ1AAvZ0PPuB2dN4cDgWF80mzBGnHjBCLfp11zIYQ221YNHe",
     "path": "public/ts-10.0.24.min.css"
   }
 }

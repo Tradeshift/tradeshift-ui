@@ -23,7 +23,7 @@
 	}
 	.ts-sidebar {
 		.ts-toolbar {
-			background-color: @ts-color-slate-light;
+			background-color: @ts-color-slate;
 			&,
 			a,
 			button {
@@ -44,7 +44,7 @@
 		}
 		.ts-panel {
 			padding: 0;
-			background-color: @ts-color-slate-light;
+			background-color: @ts-color-slate;
 			&.appendix {
 				background-color: @ts-color-slate;
 			}
@@ -157,12 +157,12 @@
 			}
 			> a {
 				border-bottom: none;
-				background-color: @ts-color-slate-light;
+				background-color: @ts-color-slate;
 				color: @ts-color-white;
 				border-radius: 0;
 				&:hover:not(:disabled),
 				&:focus {
-					background-color: @ts-color-slate-lighter !important;
+					background-color: fade(@ts-color-slate-darker, 20%) !important;
 					&:before {
 						background-color: @ts-color-blue;
 					}
@@ -190,7 +190,7 @@
 				> .ts-menu {
 					> li {
 						> a {
-							background-color: @ts-color-slate;
+							background-color: @ts-color-slate-dark;
 							position: relative;
 							z-index: 2;
 							&:hover:not(:disabled),
@@ -237,7 +237,7 @@
 						right: 0;
 						width: @ts-unit-triple;
 						height: @ts-unit-triple;
-						line-height: @ts-unit-triple; 
+						line-height: @ts-unit-triple;
 						text-align: center;
 					}
 				}

@@ -8,7 +8,7 @@
   },
   "@css": {
     "hashes": {
-      "sha384": "B7D3GGL6/S847eNkCZ1AAvZ0PPuB2dN4cDgWF80mzBGnHjBCLfp11zIYQ221YNHe"
+      "sha384": "M+7nVVPH/8S+mfLCnei3BCp+5zK/eXEJlc0jpuyb2ghV8s3IDQY7RfdCV1usp6qQ"
     },
     "integrity": "sha384-B7D3GGL6/S847eNkCZ1AAvZ0PPuB2dN4cDgWF80mzBGnHjBCLfp11zIYQ221YNHe",
     "path": "public/ts-10.0.25.min.css"

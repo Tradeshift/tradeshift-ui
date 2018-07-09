@@ -49,81 +49,86 @@
 
 // Colors ......................................................................
 
-// Base
-@ts-color-white: hsl(0, 0%, 100%);
-@ts-color-black: hsl(204, 25%, 8%);
-
-// Red
-@ts-color-red-lightest: hsl(0, 57%, 90%);
-@ts-color-red-lighter: hsl(0, 59%, 80%);
-@ts-color-red-light: hsl(0, 59%, 60%);
-@ts-color-red: hsl(0, 100%, 37%);
-@ts-color-red-dark: hsl(0, 100%, 30%);
-@ts-color-red-darker: hsl(0, 100%, 24%);
-
-// Orange
-@ts-color-orange-lightest: hsl(32, 100%, 92%);
-@ts-color-orange-lighter: hsl(33, 100%, 84%);
-@ts-color-orange-light: hsl(33, 100%, 68%);
+// Base colors
+@ts-color-white:  hsl(0, 0%, 100%);
+@ts-color-black:  hsl(204, 25%, 8%);
+@ts-color-red: 	  hsl(0, 100%, 37%);
 @ts-color-orange: hsl(33, 100%, 50%);
-@ts-color-orange-dark: hsl(31, 100%, 47%);
-@ts-color-orange-darker: hsl(26, 100%, 41%);
-
-// Yellow
-@ts-color-yellow-lightest: hsl(44, 95%, 92%);
-@ts-color-yellow-lighter: hsl(45, 95%, 85%);
-@ts-color-yellow-light: hsl(44, 96%, 70%);
 @ts-color-yellow: hsl(44, 98%, 53%);
-@ts-color-yellow-dark: hsl(40, 100%, 52%);
-@ts-color-yellow-darker: hsl(34, 100%, 49%);
-
-// Green
-@ts-color-green-lightest: hsl(99, 59%, 90%);
-@ts-color-green-lighter: hsl(99, 60%, 81%);
-@ts-color-green-light: hsl(99, 61%, 63%);
-@ts-color-green: hsl(99, 85%, 42%);
-@ts-color-green-dark: hsl(101, 87%, 33%);
-@ts-color-green-darker: hsl(103, 91%, 26%);
-
-// Blue
-@ts-color-blue-lightest: hsl(199, 100%, 92%);
-@ts-color-blue-lighter: hsl(199, 100%, 84%);
-@ts-color-blue-light: hsl(199, 100%, 68%);
-@ts-color-blue: hsl(199, 100%, 50%);
-@ts-color-blue-dark: hsl(201, 100%, 40%);
-@ts-color-blue-darker: hsl(203, 100%, 32%);
-
-// Purple
-@ts-color-purple-lightest: hsl(295, 39%, 89%);
-@ts-color-purple-lighter: hsl(295, 40%, 78%);
-@ts-color-purple-light: hsl(295, 40%, 57%);
+@ts-color-green: 	hsl(99, 85%, 42%);
+@ts-color-blue: 	hsl(199, 100%, 50%);
 @ts-color-purple: hsl(295, 79%, 34%);
-@ts-color-purple-dark: hsl(294, 82%, 26%);
-@ts-color-purple-darker: hsl(296, 100%, 19%);
+@ts-color-pink: 	hsl(325, 98%, 33%);
+@ts-color-gray: 	hsl(0, 0%, 74%);
+@ts-color-slate: 	hsl(0, 0%, 20%);
 
-// Pink
-@ts-color-pink-lightest: hsl(325, 46%, 89%);
-@ts-color-pink-lighter: hsl(325, 48%, 78%);
-@ts-color-pink-light: hsl(325, 48%, 57%);
-@ts-color-pink: hsl(325, 98%, 33%);
-@ts-color-pink-dark: hsl(327, 99%, 26%);
-@ts-color-pink-darker: hsl(329, 100%, 21%);
+// Support for custom branding
+// @ts-custom-branding-color: @ts-color-blue;
+// .apply-custom-branding(@ts-custom-branding-color);
+// .apply-custom-branding(@ts-custom-branding-color) when (iscolor(@ts-custom-branding-color)) {
+//   @ts-color-gray: 	mix(hsl(0, 0%, 74%), @ts-custom-branding-color, 95%);
+//   @ts-color-slate: 	mix(hsl(0, 0%, 20%), @ts-custom-branding-color, 95%);
+// }
+// .apply-custom-branding(@ts-custom-branding-color) when not (iscolor(@ts-custom-branding-color)) {
+// 	@ts-color-gray: 	hsl(0, 0%, 74%);
+// 	@ts-color-slate: 	hsl(0, 0%, 20%);
+// }
 
-// Grey
-@ts-color-gray-lightest: hsl(204, 22%, 95%);
-@ts-color-gray-lighter: hsl(200, 21%, 92%);
-@ts-color-gray-light: hsl(198, 20%, 83%);
-@ts-color-gray: hsl(198, 20%, 67%);
-@ts-color-gray-dark: hsl(198, 20%, 59%);
-@ts-color-gray-darker: hsl(198, 20%, 49%);
+// Computed colors - use base color to generate color shades.
+@ts-color-red-lightest:			lighten(@ts-color-red, 55%);
+@ts-color-red-lighter: 			lighten(@ts-color-red, 45%);
+@ts-color-red-light:  			lighten(desaturate(@ts-color-red, 30%), 20%);
+@ts-color-red-dark: 				darken(@ts-color-red, 10%);
+@ts-color-red-darker: 			darken(@ts-color-red, 15%);
 
-// Slate
-@ts-color-slate-lightest: hsl(198, 20%, 39%);
-@ts-color-slate-lighter: hsl(199, 20%, 31%);
-@ts-color-slate-light: hsl(199, 20%, 22%);
-@ts-color-slate: hsl(196, 20%, 15%);
-@ts-color-slate-dark: hsl(196, 22%, 10%);
-@ts-color-slate-darker: hsl(197, 20%, 7%);
+@ts-color-orange-lightest: 	lighten(@ts-color-orange, 40%);
+@ts-color-orange-lighter:		lighten(@ts-color-orange, 35%);
+@ts-color-orange-light: 		lighten(@ts-color-orange, 20%);
+@ts-color-orange-dark: 			darken(@ts-color-orange, 10%);
+@ts-color-orange-darker: 		darken(@ts-color-orange, 15%);
+
+@ts-color-yellow-lightest: 	lighten(@ts-color-yellow, 40%);
+@ts-color-yellow-lighter: 	lighten(@ts-color-yellow, 35%);
+@ts-color-yellow-light: 		lighten(@ts-color-yellow, 20%);
+@ts-color-yellow-dark: 			darken(@ts-color-yellow, 10%);
+@ts-color-yellow-darker: 		darken(@ts-color-yellow, 15%);
+
+@ts-color-green-lightest: 	lighten(@ts-color-green, 50%);
+@ts-color-green-lighter: 		lighten(@ts-color-green, 35%);
+@ts-color-green-light: 			lighten(@ts-color-green, 20%);
+@ts-color-green-dark: 			darken(@ts-color-green, 10%);
+@ts-color-green-darker: 		darken(@ts-color-green, 15%);
+
+@ts-color-blue-lightest: 		lighten(@ts-color-blue, 40%);
+@ts-color-blue-lighter: 		lighten(@ts-color-blue, 35%);
+@ts-color-blue-light: 			lighten(@ts-color-blue, 20%);
+@ts-color-blue-dark: 				darken(@ts-color-blue, 10%);
+@ts-color-blue-darker: 			darken(@ts-color-blue, 15%);
+
+@ts-color-purple-lightest: 	lighten(@ts-color-purple, 55%);
+@ts-color-purple-lighter: 	lighten(@ts-color-purple, 50%);
+@ts-color-purple-light: 		lighten(desaturate(@ts-color-purple, 30%), 20%);
+@ts-color-purple-dark: 			darken(@ts-color-purple, 10%);
+@ts-color-purple-darker: 		darken(@ts-color-purple, 15%);
+
+@ts-color-pink-lightest: 		lighten(@ts-color-pink, 55%);
+@ts-color-pink-lighter: 		lighten(@ts-color-pink, 50%);
+@ts-color-pink-light: 			lighten(desaturate(@ts-color-pink, 40%), 20%);
+@ts-color-pink-dark: 				darken(@ts-color-pink, 10%);
+@ts-color-pink-darker: 			darken(@ts-color-pink, 15%);
+
+@ts-color-gray-lightest: 		lighten(@ts-color-gray, 20%);
+@ts-color-gray-lighter:  		lighten(@ts-color-gray, 18%);
+@ts-color-gray-light: 			lighten(@ts-color-gray, 16%);
+@ts-color-gray-dark: 				darken(@ts-color-gray, 10%);
+@ts-color-gray-darker: 			darken(@ts-color-gray, 15%);
+
+@ts-color-slate-lightest: 	lighten(@ts-color-slate, 20%);
+@ts-color-slate-lighter: 		lighten(@ts-color-slate, 10%);
+@ts-color-slate-light: 			lighten(@ts-color-slate, 3%);
+@ts-color-slate-dark: 			darken(@ts-color-slate, 3%);
+@ts-color-slate-darker: 		darken(@ts-color-slate, 5%);
+
 
 
 

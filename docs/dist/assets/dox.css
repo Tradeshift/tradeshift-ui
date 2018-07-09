@@ -142,7 +142,7 @@ figure .tabs:after {
 figure .tabs button {
   display: inline-block;
   padding: 5.5px 22px;
-  color: #7f7f7f;
+  color: #808080;
 }
 figure .tabs button span {
   line-height: 44px;
@@ -154,12 +154,12 @@ figure .tabs button span + svg {
   fill: currentColor;
 }
 figure .tabs button:hover {
-  background-color: rgba(215, 215, 215, 0.75);
+  background-color: rgba(214, 214, 214, 0.75);
   cursor: pointer;
 }
 figure .tabs button.selected {
   background-color: #ebebeb;
-  color: #757575;
+  color: #737373;
   cursor: default;
 }
 figure .tabs button.tab {
@@ -212,11 +212,11 @@ figure .tabpanels .ts-textarea.editcode:focus {
   background-color: #fdfed5;
 }
 figure .tabpanels .ts-textarea.editcode:not(:focus) {
-  background-image: -webkit-linear-gradient(#f5fbfe 50%, #ffffff 50%);
-  background-image: -moz-linear-gradient(#f5fbfe 50%, #ffffff 50%);
-  background-image: -ms-linear-gradient(#f5fbfe 50%, #ffffff 50%);
-  background-image: -o-linear-gradient(#f5fbfe 50%, #ffffff 50%);
-  background-image: linear-gradient(#f5fbfe 50%, #ffffff 50%);
+  background-image: -webkit-linear-gradient(#f0faff 50%, #ffffff 50%);
+  background-image: -moz-linear-gradient(#f0faff 50%, #ffffff 50%);
+  background-image: -ms-linear-gradient(#f0faff 50%, #ffffff 50%);
+  background-image: -o-linear-gradient(#f0faff 50%, #ffffff 50%);
+  background-image: linear-gradient(#f0faff 50%, #ffffff 50%);
   background-size: 44px 44px;
   background-origin: content-box;
 }
@@ -225,8 +225,8 @@ figure .message {
   top: 0;
   left: 100%;
   margin-left: 11px;
-  background-color: #fdfed5;
-  color: #7f7348;
+  background-color: #fff5dc;
+  color: #7c6e46;
   padding: 5.5px 11px;
   white-space: nowrap;
   text-align: center;
@@ -262,7 +262,7 @@ pre.prism {
   -moz-user-select: text;
   -ms-user-select: text;
   user-select: text;
-  color: #1e1e1e;
+  color: #0f151a;
   direction: ltr;
   text-align: left;
   letter-spacing: 0.25px;
@@ -279,11 +279,11 @@ pre.prism {
   padding: 0;
   overflow-y: visible;
   overflow-x: auto;
-  background-image: -webkit-linear-gradient(#ffffff 50%, #f5fbfe 50%);
-  background-image: -moz-linear-gradient(#ffffff 50%, #f5fbfe 50%);
-  background-image: -ms-linear-gradient(#ffffff 50%, #f5fbfe 50%);
-  background-image: -o-linear-gradient(#ffffff 50%, #f5fbfe 50%);
-  background-image: linear-gradient(#ffffff 50%, #f5fbfe 50%);
+  background-image: -webkit-linear-gradient(#ffffff 50%, #f0faff 50%);
+  background-image: -moz-linear-gradient(#ffffff 50%, #f0faff 50%);
+  background-image: -ms-linear-gradient(#ffffff 50%, #f0faff 50%);
+  background-image: -o-linear-gradient(#ffffff 50%, #f0faff 50%);
+  background-image: linear-gradient(#ffffff 50%, #f0faff 50%);
   background-size: 44px 44px;
   background-origin: content-box;
 }
@@ -366,7 +366,7 @@ pre.prism code {
 table.api {
   width: 100%;
   background-color: #ebebeb;
-  color: #494949;
+  color: #4d4d4d;
   font-weight: 300;
 }
 #markdown table code,
@@ -397,7 +397,7 @@ table.api th {
 }
 #markdown table caption,
 table.api caption {
-  background-color: #3f3f3f;
+  background-color: #3b3b3b;
   color: #ffffff;
   border-radius: 3px 3px 0 0;
 }
@@ -439,11 +439,11 @@ table.api tbody:last-child tr:last-child td {
 }
 #markdown table tr td:nth-child(1),
 #markdown table tr th:nth-child(1) {
-  background: rgba(114, 177, 72, 0.3);
+  background: rgba(80, 198, 16, 0.3);
 }
 #markdown table tr td:nth-child(2),
 #markdown table tr th:nth-child(2) {
-  background: rgba(191, 0, 0, 0.3);
+  background: rgba(189, 0, 0, 0.3);
 }
 table.api th {
   white-space: nowrap;
@@ -487,24 +487,24 @@ table.api th {
 }
 .doc-intro .box-code {
   padding-bottom: 66px;
-  background-color: rgba(32, 160, 233, 0.04);
+  background-color: rgba(0, 174, 255, 0.04);
 }
 .doc-intro .box-code svg rect,
 .doc-intro .box-code svg circle,
 .doc-intro .box-code svg polygon,
 .doc-intro .box-code svg path {
-  fill: #20a0e9;
+  fill: #00aeff;
 }
 .doc-intro .box-design {
   padding-top: 66px;
   padding-bottom: 154px !important;
-  background-color: rgba(134, 197, 92, 0.04);
+  background-color: rgba(133, 240, 76, 0.04);
 }
 .doc-intro .box-design svg rect,
 .doc-intro .box-design svg circle,
 .doc-intro .box-design svg polygon,
 .doc-intro .box-design svg path {
-  fill: #86c55c;
+  fill: #85f04c;
 }
 .doc-intro .intro-box {
   padding: 44px;
@@ -610,14 +610,14 @@ table.api th {
 .ts-doxchrome .ts-sidebar .ts-panel {
   padding: 0;
   overflow-y: scroll;
-  background-color: #3f3f3f;
+  background-color: #3b3b3b;
 }
 .ts-doxchrome .ts-sidebar .ts-panel::-webkit-scrollbar {
   width: 5px;
 }
 .ts-doxchrome .ts-sidebar .ts-panel::-webkit-scrollbar-thumb:vertical {
   margin: 5px;
-  background-color: #939393;
+  background-color: #969696;
   -webkit-border-radius: 5px;
 }
 .ts-doxchrome .ts-sidebar .ts-panel::-webkit-scrollbar-button:start:decrement,
@@ -664,7 +664,7 @@ table.api th {
   height: 66px;
   max-height: 66px;
   min-height: 66px;
-  background-color: #494949;
+  background-color: #4d4d4d;
   color: #ffffff;
   position: absolute;
   top: 0;
@@ -692,7 +692,7 @@ table.api th {
 }
 .ts-doxchrome .ts-menu h3 {
   margin: 0;
-  background-color: #353535;
+  background-color: #333333;
   padding: 5.5px;
   padding-left: 22px;
   font-size: 11px;
@@ -711,16 +711,16 @@ table.api th {
 }
 .ts-doxchrome .ts-menu > li > a {
   border-bottom: none;
-  background-color: #3f3f3f;
+  background-color: #3b3b3b;
   color: #ffffff;
 }
 .ts-doxchrome .ts-menu > li > a:hover:not(:disabled),
 .ts-doxchrome .ts-menu > li > a:focus {
-  background-color: #3f3f3f !important;
+  background-color: #3b3b3b !important;
 }
 .ts-doxchrome .ts-menu > li > a:hover:not(:disabled):before,
 .ts-doxchrome .ts-menu > li > a:focus:before {
-  background-color: #0c8cd5;
+  background-color: #008bcc;
 }
 .ts-doxchrome .ts-menu > li > a > i {
   top: 33%;
@@ -732,12 +732,12 @@ table.api th {
 }
 .ts-doxchrome .ts-menu > li > a.ts-checked,
 .ts-doxchrome .ts-menu > li > a.ts-checked:hover {
-  background-color: #366375 !important;
+  background-color: #3e6374 !important;
   color: #ffffff;
   cursor: default;
 }
 .ts-doxchrome .ts-menu > li > a.ts-checked:before {
-  background-color: #0c8cd5;
+  background-color: #008bcc;
 }
 .ts-doxchrome .ts-menu > li.submenu > a {
   position: relative;
@@ -745,7 +745,7 @@ table.api th {
 }
 .ts-doxchrome .ts-menu > li.submenu > a:not(.ts-checked),
 .ts-doxchrome .ts-menu > li.submenu > a:not(.ts-checked):hover {
-  background-color: #494949 !important;
+  background-color: #4d4d4d !important;
 }
 .ts-doxchrome .ts-menu > li.submenu > .ts-shadow {
   position: absolute;
@@ -779,7 +779,7 @@ table.api th {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  color: #e1e1e1;
+  color: #e3e3e3;
   position: relative;
   /*
 				.ts-shadow {
@@ -798,7 +798,7 @@ table.api th {
 }
 .ts-doxchrome #menucover {
   height: 0;
-  background-color: #3f3f3f;
+  background-color: #3b3b3b;
   top: 0;
   left: 0;
   width: 320px;
@@ -919,13 +919,13 @@ article {
   line-height: 22px;
 }
 #markdown blockquote h4 {
-  background: rgba(114, 177, 72, 0.75);
+  background: rgba(80, 198, 16, 0.75);
 }
 #markdown blockquote h5 {
-  background: rgba(191, 0, 0, 0.75);
+  background: rgba(189, 0, 0, 0.75);
 }
 #markdown blockquote h6 {
-  background: rgba(30, 30, 30, 0.75);
+  background: rgba(15, 21, 26, 0.75);
 }
 #markdown blockquote p {
   margin: 0;
@@ -939,7 +939,7 @@ article {
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 .doc-responsive #breakpoints {
-  background-color: #f5f5f5;
+  background-color: #f0f0f0;
   padding-bottom: 22px;
   border-radius: 3px;
 }
@@ -964,8 +964,8 @@ article {
   transition-duration: 0.2s;
   transition-timing-function: ease;
   transition-delay: 0s;
-  background: #f5f5f5;
-  border: 1px solid #e1e1e1;
+  background: #f0f0f0;
+  border: 1px solid #e3e3e3;
   padding: 22px;
   margin-bottom: 22px;
 }
@@ -973,7 +973,7 @@ article {
   max-width: 660px;
 }
 .doc-typo span.extra {
-  color: rgba(30, 30, 30, 0.5);
+  color: rgba(15, 21, 26, 0.5);
   margin-left: 44px;
   font-family: 'Ubuntu Mono', 'Menlo', 'Monaco', 'Consolas', 'Bitstream Vera Sans Mono', monospace;
   font-size: 14px;
@@ -1007,15 +1007,15 @@ article {
   opacity: 0.75;
 }
 #doc-colors-demo .ts-black {
-  background-color: #1e1e1e;
+  background-color: #0f151a;
   color: #ffffff;
 }
 #doc-colors-demo .ts-white {
   background-color: #ffffff;
-  color: #1e1e1e;
+  color: #0f151a;
 }
 #doc-colors-demo .ts-dark-darker {
-  background-color: #212121;
+  background-color: #262626;
   color: #ffffff;
 }
 #doc-colors-demo .ts-dark-dark {
@@ -1023,220 +1023,220 @@ article {
   color: #ffffff;
 }
 #doc-colors-demo .ts-dark {
-  background-color: #353535;
+  background-color: #333333;
   color: #ffffff;
 }
 #doc-colors-demo .ts-dark-lite {
-  background-color: #3f3f3f;
+  background-color: #3b3b3b;
   color: #ffffff;
 }
 #doc-colors-demo .ts-dark-liter {
-  background-color: #494949;
+  background-color: #4d4d4d;
   color: #ffffff;
 }
 #doc-colors-demo .ts-medium-darkest {
-  background-color: #616161;
+  background-color: #6e6e6e;
   color: #ffffff;
 }
 #doc-colors-demo .ts-medium-darker {
-  background-color: #6b6b6b;
+  background-color: #666666;
   color: #ffffff;
 }
 #doc-colors-demo .ts-medium-dark {
-  background-color: #757575;
+  background-color: #737373;
   color: #ffffff;
 }
 #doc-colors-demo .ts-medium {
-  background-color: #7f7f7f;
+  background-color: #808080;
   color: #ffffff;
 }
 #doc-colors-demo .ts-medium-lite {
-  background-color: #898989;
+  background-color: #878787;
   color: #ffffff;
 }
 #doc-colors-demo .ts-medium-liter {
-  background-color: #939393;
+  background-color: #969696;
   color: #ffffff;
 }
 #doc-colors-demo .ts-medium-litest {
-  background-color: #afafaf;
+  background-color: #bdbdbd;
   color: #ffffff;
 }
 #doc-colors-demo .ts-lite-darker {
-  background-color: #cdcdcd;
-  color: #1e1e1e;
+  background-color: #c9c9c9;
+  color: #0f151a;
 }
 #doc-colors-demo .ts-lite-dark {
-  background-color: #d7d7d7;
-  color: #1e1e1e;
+  background-color: #d6d6d6;
+  color: #0f151a;
 }
 #doc-colors-demo .ts-lite {
-  background-color: #e1e1e1;
-  color: #1e1e1e;
+  background-color: #e3e3e3;
+  color: #0f151a;
 }
 #doc-colors-demo .ts-lite-lite {
   background-color: #ebebeb;
-  color: #1e1e1e;
+  color: #0f151a;
 }
 #doc-colors-demo .ts-lite-liter {
-  background-color: #f5f5f5;
-  color: #1e1e1e;
+  background-color: #f0f0f0;
+  color: #0f151a;
 }
 #doc-colors-demo .ts-green {
-  background-color: #72b148;
+  background-color: #50c610;
   color: #ffffff;
 }
 #doc-colors-demo .ts-green-dark {
-  background-color: #5e9d34;
+  background-color: #3d970c;
   color: #ffffff;
 }
 #doc-colors-demo .ts-green-darker {
-  background-color: #4a8920;
+  background-color: #337f0a;
   color: #ffffff;
 }
 #doc-colors-demo .ts-green-lite {
-  background-color: #86c55c;
+  background-color: #85f04c;
   color: #ffffff;
 }
 #doc-colors-demo .ts-green-text {
   background-color: #ffffff;
-  color: #72b148;
+  color: #50c610;
 }
 #doc-colors-demo .ts-blue {
-  background-color: #20a0e9;
+  background-color: #00aeff;
   color: #ffffff;
 }
 #doc-colors-demo .ts-blue-dark {
-  background-color: #0c8cd5;
+  background-color: #008bcc;
   color: #ffffff;
 }
 #doc-colors-demo .ts-blue-darker {
-  background-color: #0078c1;
+  background-color: #007ab3;
   color: #ffffff;
 }
 #doc-colors-demo .ts-blue-lite {
-  background-color: #2bb4fd;
+  background-color: #1ab6ff;
   color: #ffffff;
 }
 #doc-colors-demo .ts-blue-liter {
-  background-color: #58b8ef;
+  background-color: #66cfff;
   color: #ffffff;
 }
 #doc-colors-demo .ts-blue-text {
   background-color: #ffffff;
-  color: #20a0e9;
+  color: #00aeff;
 }
 #doc-colors-demo .ts-liteblue {
-  background-color: #ecf7fd;
-  color: #1e1e1e;
+  background-color: #e6f7ff;
+  color: #0f151a;
 }
 #doc-colors-demo .ts-liteblue-dark {
-  background-color: #dcf1fd;
-  color: #1e1e1e;
+  background-color: #ccefff;
+  color: #0f151a;
 }
 #doc-colors-demo .ts-litegreen {
-  background-color: #b2d782;
+  background-color: #b5f692;
   color: #ffffff;
 }
 #doc-colors-demo .ts-darkblue {
-  background-color: #183f54;
+  background-color: #204b60;
   color: #ffffff;
 }
 #doc-colors-demo .ts-dustblue {
-  background-color: #366375;
+  background-color: #3e6374;
   color: #ffffff;
 }
 #doc-colors-demo .ts-darkgreen {
-  background-color: #18543f;
+  background-color: #205007;
   color: #ffffff;
 }
 #doc-colors-demo .ts-red {
-  background-color: #bf0000;
+  background-color: #bd0000;
   color: #ffffff;
 }
 #doc-colors-demo .ts-red-dark {
-  background-color: #ab0000;
+  background-color: #bd0000;
   color: #ffffff;
 }
 #doc-colors-demo .ts-red-darker {
-  background-color: #970000;
+  background-color: #8a0000;
   color: #ffffff;
 }
 #doc-colors-demo .ts-red-lite {
-  background-color: #e70000;
+  background-color: #de4545;
   color: #ffffff;
 }
 #doc-colors-demo .ts-red-text {
   background-color: #ffffff;
-  color: #bf0000;
+  color: #bd0000;
 }
 #doc-colors-demo .ts-darkred {
-  background-color: #e92020;
+  background-color: #de4545;
   color: #ffffff;
 }
 #doc-colors-demo .ts-darkred-lite {
-  background-color: #f8e5e5;
-  color: #1e1e1e;
+  background-color: #ffd6d6;
+  color: #0f151a;
 }
 #doc-colors-demo .ts-darkred-text {
   background-color: #ffffff;
-  color: #e92020;
+  color: #de4545;
 }
 #doc-colors-demo .ts-yellow {
-  background-color: #fdfed5;
-  color: #7f7348;
+  background-color: #fff5dc;
+  color: #7c6e46;
 }
 #doc-colors-demo .ts-yellow-dark {
-  background-color: #f4f2c9;
-  color: #7f7348;
+  background-color: #fbedc5;
+  color: #7c6e46;
 }
 #doc-colors-demo .ts-yellow-text {
-  background-color: #7f7348;
-  color: #fdfed5;
+  background-color: #7c6e46;
+  color: #fff5dc;
 }
 #doc-colors-demo .ts-orange-liter {
-  background-color: #faecd9;
-  color: #e69900;
+  background-color: #ffe8cc;
+  color: #ff8c00;
 }
 #doc-colors-demo .ts-orange-lite {
-  background-color: #f5e1b8;
-  color: #d15b00;
+  background-color: #ffddb3;
+  color: #cc7000;
 }
 #doc-colors-demo .ts-orange {
-  background-color: #e69900;
+  background-color: #ff8c00;
   color: #ffffff;
 }
 #doc-colors-demo .ts-orange-dark {
-  background-color: #d15b00;
+  background-color: #cc7000;
   color: #ffffff;
 }
 #doc-colors-demo .ts-orange-darker {
-  background-color: #422800;
+  background-color: #4c2a00;
   color: #ffffff;
 }
 #doc-colors-demo .ts-orange-text {
   background-color: #ffffff;
-  color: #e69900;
+  color: #ff8c00;
 }
 #doc-colors-demo .ts-purple {
-  background-color: #9434c8;
+  background-color: #90129b;
   color: #ffffff;
 }
 #doc-colors-demo .ts-purple-dark {
-  background-color: #802dad;
+  background-color: #650d6e;
   color: #ffffff;
 }
 #doc-colors-demo .ts-purple-darker {
-  background-color: #6c1999;
+  background-color: #500a57;
   color: #ffffff;
 }
 #doc-colors-demo .ts-purple-lite {
-  background-color: #a63ae0;
+  background-color: #ba50c3;
   color: #ffffff;
 }
 #doc-colors-demo .ts-purple-text {
   background-color: #ffffff;
-  color: #9434c8;
+  color: #90129b;
 }
 /* Breakpoints .............................................................. */
 .ts-mobile-only figure .message,

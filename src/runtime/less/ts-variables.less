@@ -8,7 +8,7 @@
 @ts-unit-double: (@ts-unit * 2);
 @ts-unit-triple: (@ts-unit * 3);
 @ts-width-aside: 320px;
-@ts-width-grails: (@ts-width-aside - @ts-unit-double);  // used for menu to allow Grails pages to fit in 1280px
+@ts-width-grails: (@ts-width-aside - @ts-unit-double);
 
 // Fonts .......................................................................
 
@@ -47,93 +47,163 @@
 
 // Colors ......................................................................
 
-// black and white
-@ts-black: rgb(30, 30, 30);
-@ts-white: rgb(255, 255, 255);
+// Base colors
+@ts-color-white:  hsl(0, 0%, 100%);
+@ts-color-black:  hsl(204, 25%, 8%);
+@ts-color-red: 	  hsl(0, 100%, 37%);
+@ts-color-orange: hsl(33, 100%, 50%);
+@ts-color-yellow: hsl(44, 98%, 53%);
+@ts-color-green: 	hsl(99, 85%, 42%);
+@ts-color-blue: 	hsl(199, 100%, 50%);
+@ts-color-purple: hsl(295, 79%, 34%);
+@ts-color-pink: 	hsl(325, 98%, 33%);
+@ts-color-gray: 	hsl(0, 0%, 74%);
+@ts-color-slate: 	hsl(0, 0%, 20%);
 
-// dark grey
-@ts-dark-liter: rgb(73, 73, 73);
-@ts-dark-lite: rgb(63, 63, 63);
-@ts-dark: rgb(53, 53, 53);
-@ts-dark-dark: rgb(43, 43, 43);
-@ts-dark-darker: rgb(33, 33, 33);
+// Support for custom branding
+// @ts-custom-branding-color: @ts-color-blue;
+// .apply-custom-branding(@ts-custom-branding-color);
+// .apply-custom-branding(@ts-custom-branding-color) when (iscolor(@ts-custom-branding-color)) {
+//   @ts-color-gray: 	mix(hsl(0, 0%, 74%), @ts-custom-branding-color, 95%);
+//   @ts-color-slate: 	mix(hsl(0, 0%, 20%), @ts-custom-branding-color, 95%);
+// }
+// .apply-custom-branding(@ts-custom-branding-color) when not (iscolor(@ts-custom-branding-color)) {
+// 	@ts-color-gray: 	hsl(0, 0%, 74%);
+// 	@ts-color-slate: 	hsl(0, 0%, 20%);
+// }
 
-// medium grey
-@ts-medium-litest: rgb(175, 175, 175);
-@ts-medium-liter: rgb(147, 147, 147);
-@ts-medium-lite: rgb(137, 137, 137);
-@ts-medium: rgb(127, 127, 127);
-@ts-medium-dark: rgb(117, 117, 117);
-@ts-medium-darker: rgb(107, 107, 107);
-@ts-medium-darkest: rgb(97, 97, 97);
+// Computed colors - use base color to generate color shades.
+@ts-color-red-lightest:			lighten(@ts-color-red, 55%);
+@ts-color-red-lighter: 			lighten(@ts-color-red, 45%);
+@ts-color-red-light:  			lighten(desaturate(@ts-color-red, 30%), 20%);
+@ts-color-red-dark: 				darken(@ts-color-red, 10%);
+@ts-color-red-darker: 			darken(@ts-color-red, 15%);
 
-// lite grey
-@ts-lite-liter: rgb(245, 245, 245);
-@ts-lite-lite: rgb(235, 235, 235);
-@ts-lite: rgb(225, 225, 225);
-@ts-lite-dark: rgb(215, 215, 215);
-@ts-lite-darker: rgb(205, 205, 205);
+@ts-color-orange-lightest: 	lighten(@ts-color-orange, 40%);
+@ts-color-orange-lighter:		lighten(@ts-color-orange, 35%);
+@ts-color-orange-light: 		lighten(@ts-color-orange, 20%);
+@ts-color-orange-dark: 			darken(@ts-color-orange, 10%);
+@ts-color-orange-darker: 		darken(@ts-color-orange, 15%);
 
-// green
-@ts-green-text: @ts-white;
-@ts-green-lite: rgb(134, 197, 92);
-@ts-green: rgb(114, 177, 72);
-@ts-green-dark: rgb(94, 157, 52);
-@ts-green-darker: rgb(74, 137, 32);
+@ts-color-yellow-lightest: 	lighten(@ts-color-yellow, 40%);
+@ts-color-yellow-lighter: 	lighten(@ts-color-yellow, 35%);
+@ts-color-yellow-light: 		lighten(@ts-color-yellow, 20%);
+@ts-color-yellow-dark: 			darken(@ts-color-yellow, 10%);
+@ts-color-yellow-darker: 		darken(@ts-color-yellow, 15%);
 
-// blue
-@ts-blue-text: @ts-white;
-@ts-blue-liter: rgb(88, 184, 239);
-@ts-blue-lite: rgb(43, 180, 253);
-@ts-blue: rgb(32, 160, 233);
-@ts-blue-dark: rgb(12, 140, 213);
-@ts-blue-darker: rgb(0, 120, 193);
+@ts-color-green-lightest: 	lighten(@ts-color-green, 50%);
+@ts-color-green-lighter: 		lighten(@ts-color-green, 35%);
+@ts-color-green-light: 			lighten(@ts-color-green, 20%);
+@ts-color-green-dark: 			darken(@ts-color-green, 10%);
+@ts-color-green-darker: 		darken(@ts-color-green, 15%);
 
-// pale blue
-@ts-liteblue-dark: rgb(220, 241, 253);
-@ts-liteblue: rgb(236, 247, 253);
+@ts-color-blue-lightest: 		lighten(@ts-color-blue, 40%);
+@ts-color-blue-lighter: 		lighten(@ts-color-blue, 35%);
+@ts-color-blue-light: 			lighten(@ts-color-blue, 20%);
+@ts-color-blue-dark: 				darken(@ts-color-blue, 10%);
+@ts-color-blue-darker: 			darken(@ts-color-blue, 15%);
 
-// pale green
-@ts-litegreen: rgb(178, 215, 130);
+@ts-color-purple-lightest: 	lighten(@ts-color-purple, 55%);
+@ts-color-purple-lighter: 	lighten(@ts-color-purple, 50%);
+@ts-color-purple-light: 		lighten(desaturate(@ts-color-purple, 30%), 20%);
+@ts-color-purple-dark: 			darken(@ts-color-purple, 10%);
+@ts-color-purple-darker: 		darken(@ts-color-purple, 15%);
 
-// dark blue
-@ts-darkblue: rgb(24, 63, 84);
-@ts-dustblue: rgb(54, 99, 117);
+@ts-color-pink-lightest: 		lighten(@ts-color-pink, 55%);
+@ts-color-pink-lighter: 		lighten(@ts-color-pink, 50%);
+@ts-color-pink-light: 			lighten(desaturate(@ts-color-pink, 40%), 20%);
+@ts-color-pink-dark: 				darken(@ts-color-pink, 10%);
+@ts-color-pink-darker: 			darken(@ts-color-pink, 15%);
 
-// dark green
-@ts-darkgreen: rgb(24, 84, 63);
+@ts-color-gray-lightest: 		lighten(@ts-color-gray, 20%);
+@ts-color-gray-lighter:  		lighten(@ts-color-gray, 18%);
+@ts-color-gray-light: 			lighten(@ts-color-gray, 16%);
+@ts-color-gray-dark: 				darken(@ts-color-gray, 10%);
+@ts-color-gray-darker: 			darken(@ts-color-gray, 15%);
 
-// red
-@ts-red-text: @ts-white;
-@ts-red-lite: rgb(231, 0, 0);
-@ts-red: rgb(191, 0, 0);
-@ts-red-dark: rgb(171, 0, 0);
-@ts-red-darker: rgb(151, 0, 0);
+@ts-color-slate-lightest: 	lighten(@ts-color-slate, 20%);
+@ts-color-slate-lighter: 		lighten(@ts-color-slate, 10%);
+@ts-color-slate-light: 			lighten(@ts-color-slate, 3%);
+@ts-color-slate-dark: 			darken(@ts-color-slate, 3%);
+@ts-color-slate-darker: 		darken(@ts-color-slate, 5%);
 
-// dark red
-@ts-darkred-text: @ts-white;
-@ts-darkred-lite: rgb(248, 229, 229);
-@ts-darkred: rgb(233, 32, 32);
 
-// yellow
-@ts-yellow-text: rgb(127, 115, 72);
-@ts-yellow-dark: rgb(244, 242, 201);
-@ts-yellow: rgb(253, 254, 213);
+// Map color to new values (extracted from v11)
 
-// orange
-@ts-orange-text: @ts-white;
-@ts-orange-liter: rgb(250, 236, 217);
-@ts-orange-lite: rgb(245, 225, 184);
-@ts-orange: rgb(230, 153, 0);
-@ts-orange-dark: rgb(209, 91, 0);
-@ts-orange-darker: rgb(66, 40, 0);
+// Noncolors
+@ts-black: @ts-color-black;
+@ts-white: @ts-color-white;
 
-// purple
-@ts-purple-text: @ts-white;
-@ts-purple-lite: rgb(166, 58, 224);
-@ts-purple: rgb(148, 52, 200);
-@ts-purple-dark: rgb(128, 45, 173);
-@ts-purple-darker: rgb(108, 25, 153);
+// Grays
+@ts-dark-liter:     @ts-color-slate-lighter;
+@ts-dark-lite:      @ts-color-slate-light;
+@ts-dark:           @ts-color-slate;
+@ts-dark-dark:      @ts-color-slate-dark;
+@ts-dark-darker:    @ts-color-slate-darker;
+@ts-medium-litest:  @ts-color-gray;
+@ts-medium-liter:   @ts-color-gray-darker;
+@ts-medium-lite:    lighten(@ts-color-slate-lightest, 13%);
+@ts-medium:         lighten(@ts-color-slate-lightest, 10%);
+@ts-medium-dark:    lighten(@ts-color-slate-lightest, 5%);
+@ts-medium-darker:  @ts-color-slate-lightest;
+@ts-medium-darkest: lighten(@ts-color-slate-lightest, 3%);
+@ts-lite-liter:     @ts-color-gray-lightest;
+@ts-lite-lite:      @ts-color-gray-lighter;
+@ts-lite:           lighten(@ts-color-gray, 15%);
+@ts-lite-dark:      lighten(@ts-color-gray, 10%);
+@ts-lite-darker:    lighten(@ts-color-gray, 5%);
+
+// Green
+@ts-green-text:     @ts-color-white;
+@ts-litegreen:      @ts-color-green-lighter;
+@ts-green-lite:     @ts-color-green-light;
+@ts-green:          @ts-color-green;
+@ts-green-dark:     @ts-color-green-dark;
+@ts-green-darker:   @ts-color-green-darker;
+@ts-darkgreen:      darken(@ts-color-green, 25%);
+
+// Blue
+@ts-blue-text:      @ts-white;
+@ts-blue-liter:     @ts-color-blue-light;
+@ts-blue-lite:      lighten(@ts-color-blue, 5%);
+@ts-blue:           @ts-color-blue;
+@ts-blue-dark:      @ts-color-blue-dark;
+@ts-blue-darker:    @ts-color-blue-darker;
+@ts-darkblue:       darken(desaturate(@ts-color-blue-darker, 50%), 10%);
+@ts-dustblue:       desaturate(@ts-color-blue-darker, 70%);
+@ts-liteblue-dark:  @ts-color-blue-lightest;
+@ts-liteblue:       lighten(@ts-color-blue-lightest, 5%);
+
+// Red
+@ts-red-text:       @ts-white;
+@ts-darkred-text:   @ts-white;
+@ts-red-lite:       @ts-color-red-light;
+@ts-red:            @ts-color-red;
+@ts-darkred:        @ts-color-red-light;
+@ts-red-dark:       @ts-color-red;
+@ts-red-darker:     @ts-color-red-dark;
+@ts-darkred-lite:   @ts-color-red-lightest;
+
+// Yellow
+@ts-yellow-text:    desaturate(@ts-color-yellow-darker, 70%);
+@ts-yellow-dark:    desaturate(@ts-color-yellow-lighter, 10%);
+@ts-yellow:         @ts-color-yellow-lightest;
+
+// Orange
+@ts-orange-text:    @ts-white;
+@ts-orange-liter:   @ts-color-orange-lightest;
+@ts-orange-lite:    @ts-color-orange-lighter;
+@ts-orange:         @ts-color-orange;
+@ts-orange-dark:    @ts-color-orange-dark;
+@ts-orange-darker:  darken(@ts-color-orange-darker, 20%);
+
+// Purple
+@ts-purple-text:    @ts-white;
+@ts-purple-lite:    @ts-color-purple-light;
+@ts-purple:         @ts-color-purple;
+@ts-purple-dark:    @ts-color-purple-dark;
+@ts-purple-darker:  @ts-color-purple-darker;
+
 
 // Animations ..................................................................
 

@@ -12,3 +12,17 @@
 	hyphens: none;
 	padding: 0;
 }
+
+// This mixin adds css classes for all the colors listed in @ts-colors.
+// Those classes are then used to generate the colors table on the documentation website.
+.add-classes(@colors, @i: 1) when (@i =< length(@colors)) {
+	@color: extract(@colors, @i);
+	.docs-@{color} {
+		background: @@color;
+		color: contrast(@@color);
+	}
+	.docs-@{color}:after {
+		// content: %("@%a: %a", @color, @@color);
+	}
+  .add-classes(@colors, (@i + 1));
+}

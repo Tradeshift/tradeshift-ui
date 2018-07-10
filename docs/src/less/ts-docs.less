@@ -19,6 +19,32 @@ article {
 	}
 }
 
+// This adds css classes for each color.
+// Those classes are then used to generate the colors table on the documentation website.
+.add-classes(@ts-colors);
+.docs-color {
+	padding: @ts-unit-half;
+	width: 16.65%;
+	height: (@ts-unit * 4);
+	float: left;
+	font-size: @ts-fontsize-mini;
+	text-align: center;
+	min-height: (@ts-unit * 2);
+	text-transform: uppercase;
+	font-weight: @ts-fontweight-semibold;
+	line-height: (@ts-unit-half * 3);
+	overflow: hidden;
+
+	&:first-line {
+    font-weight: @ts-fontweight;
+	}
+
+	&:hover {
+		cursor: pointer;
+	}
+}
+
+
 .ts-board article {
 	padding: @ts-unit;
 }

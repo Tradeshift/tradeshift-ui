@@ -857,6 +857,241 @@ article {
 article > h1 {
   display: none;
 }
+.docs-ts-color-red-lightest {
+  background: #ffd6d6;
+  color: #000000;
+}
+.docs-ts-color-red-lighter {
+  background: #ffa3a3;
+  color: #000000;
+}
+.docs-ts-color-red-light {
+  background: #de4545;
+  color: #ffffff;
+}
+.docs-ts-color-red {
+  background: #bd0000;
+  color: #ffffff;
+}
+.docs-ts-color-red-dark {
+  background: #8a0000;
+  color: #ffffff;
+}
+.docs-ts-color-red-darker {
+  background: #700000;
+  color: #ffffff;
+}
+.docs-ts-color-orange-lightest {
+  background: #ffe8cc;
+  color: #000000;
+}
+.docs-ts-color-orange-lighter {
+  background: #ffddb3;
+  color: #000000;
+}
+.docs-ts-color-orange-light {
+  background: #ffba66;
+  color: #000000;
+}
+.docs-ts-color-orange {
+  background: #ff8c00;
+  color: #ffffff;
+}
+.docs-ts-color-orange-dark {
+  background: #cc7000;
+  color: #ffffff;
+}
+.docs-ts-color-orange-darker {
+  background: #b36200;
+  color: #ffffff;
+}
+.docs-ts-color-yellow-lightest {
+  background: #fff5dc;
+  color: #000000;
+}
+.docs-ts-color-yellow-lighter {
+  background: #feeec2;
+  color: #000000;
+}
+.docs-ts-color-yellow-light {
+  background: #feda77;
+  color: #000000;
+}
+.docs-ts-color-yellow {
+  background: #fdbe12;
+  color: #000000;
+}
+.docs-ts-color-yellow-dark {
+  background: #d9a002;
+  color: #ffffff;
+}
+.docs-ts-color-yellow-darker {
+  background: #c08d02;
+  color: #ffffff;
+}
+.docs-ts-color-green-lightest {
+  background: #e5fcd9;
+  color: #000000;
+}
+.docs-ts-color-green-lighter {
+  background: #b5f692;
+  color: #000000;
+}
+.docs-ts-color-green-light {
+  background: #85f04c;
+  color: #000000;
+}
+.docs-ts-color-green {
+  background: #50c610;
+  color: #ffffff;
+}
+.docs-ts-color-green-dark {
+  background: #3d970c;
+  color: #ffffff;
+}
+.docs-ts-color-green-darker {
+  background: #337f0a;
+  color: #ffffff;
+}
+.docs-ts-color-blue-lightest {
+  background: #ccefff;
+  color: #000000;
+}
+.docs-ts-color-blue-lighter {
+  background: #b3e7ff;
+  color: #000000;
+}
+.docs-ts-color-blue-light {
+  background: #66cfff;
+  color: #000000;
+}
+.docs-ts-color-blue {
+  background: #00aeff;
+  color: #ffffff;
+}
+.docs-ts-color-blue-dark {
+  background: #008bcc;
+  color: #ffffff;
+}
+.docs-ts-color-blue-darker {
+  background: #007ab3;
+  color: #ffffff;
+}
+.docs-ts-color-purple-lightest {
+  background: #f5cdf9;
+  color: #000000;
+}
+.docs-ts-color-purple-lighter {
+  background: #f1b6f6;
+  color: #000000;
+}
+.docs-ts-color-purple-light {
+  background: #ba50c3;
+  color: #ffffff;
+}
+.docs-ts-color-purple {
+  background: #90129b;
+  color: #ffffff;
+}
+.docs-ts-color-purple-dark {
+  background: #650d6e;
+  color: #ffffff;
+}
+.docs-ts-color-purple-darker {
+  background: #500a57;
+  color: #ffffff;
+}
+.docs-ts-color-pink-lightest {
+  background: #fec2e5;
+  color: #000000;
+}
+.docs-ts-color-pink-lighter {
+  background: #fea9db;
+  color: #000000;
+}
+.docs-ts-color-pink-light {
+  background: #cd4293;
+  color: #ffffff;
+}
+.docs-ts-color-pink {
+  background: #a70262;
+  color: #ffffff;
+}
+.docs-ts-color-pink-dark {
+  background: #740144;
+  color: #ffffff;
+}
+.docs-ts-color-pink-darker {
+  background: #5b0135;
+  color: #ffffff;
+}
+.docs-ts-color-gray-lightest {
+  background: #f0f0f0;
+  color: #000000;
+}
+.docs-ts-color-gray-lighter {
+  background: #ebebeb;
+  color: #000000;
+}
+.docs-ts-color-gray-light {
+  background: #e6e6e6;
+  color: #000000;
+}
+.docs-ts-color-gray {
+  background: #bdbdbd;
+  color: #000000;
+}
+.docs-ts-color-gray-dark {
+  background: #a3a3a3;
+  color: #ffffff;
+}
+.docs-ts-color-gray-darker {
+  background: #969696;
+  color: #ffffff;
+}
+.docs-ts-color-slate-lightest {
+  background: #666666;
+  color: #ffffff;
+}
+.docs-ts-color-slate-lighter {
+  background: #4d4d4d;
+  color: #ffffff;
+}
+.docs-ts-color-slate-light {
+  background: #3b3b3b;
+  color: #ffffff;
+}
+.docs-ts-color-slate {
+  background: #333333;
+  color: #ffffff;
+}
+.docs-ts-color-slate-dark {
+  background: #2b2b2b;
+  color: #ffffff;
+}
+.docs-ts-color-slate-darker {
+  background: #262626;
+  color: #ffffff;
+}
+.docs-color {
+  padding: 10px;
+  width: 16.65%;
+  height: 80px;
+  float: left;
+  font-size: 12px;
+  text-align: center;
+  min-height: 40px;
+  text-transform: uppercase;
+  font-weight: 600;
+  line-height: 30px;
+  overflow: hidden;
+}
+.docs-color:first-line {
+  font-weight: 400;
+}
+.docs-color:hover {
+  cursor: pointer;
+}
 .ts-board article {
   padding: 20px;
 }

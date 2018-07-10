@@ -23,36 +23,88 @@
             <div data-ts="Content">
                 <div data-ts="Panel">
                     <article class="doc-colors-article">
-                        <section id="doc-colors-demo" data-ts="Spirit">
-                            <script class="gui-script" data-ts.scriptid="edbml.$1JJU8I1">
-                                edbml.declare("edbml.$1JJU8I1").as(function $edbml(colors
-                                    /*``*/
-                                ) {
-                                    'use strict';
-                                    var out = $edbml.$out,
-                                        $att = $edbml.$att,
-                                        $txt = edbml.safetext;
-                                    if (colors) {
-                                        out.html += '<table>';
-                                        colors.forEach(function(set) {
-                                            out.html += '<tr>';
-                                            for (var name in set) {
-                                                var code = set[name];
-                                                $att['style'] = 'background-color: ' + code;
-                                                out.html += '<td ' + $att.$('style') + '>' +
-                                                    '<code class="color-name">' + $txt(name) + '</code>' +
-                                                    '<br/>' +
-                                                    '<code class="color-code">' + $txt(code) + '</code>' +
-                                                    '</td>';
+                        <div id="doc-colors-demo" data-ts="Spirit">
+                            <div data-ts="Board" id="docs-colors">
+                                <div data-ts="Panel">
+                                    <script class="gui-script" data-ts.scriptid="edbml.$1JJU8I1">
+                                        edbml.declare("edbml.$1JJU8I1").as(function $edbml(
+                                            /*``*/
+                                        ) {
+                                            'use strict';
+                                            var out = $edbml.$out,
+                                                $txt = edbml.safetext,
+                                                $val = edbml.safeattr;
+
+                                            function getColorClasses() {
+                                                var rules = [];
+                                                for (var i = 0; i < document.styleSheets.length; i++) {
+                                                    var cssRules = [];
+                                                    try {
+                                                        // to get css rules (imposible for syles on a different domain)
+                                                        document.styleSheets[i].rules == 1 ? cssRules = [document.styleSheets[i].rules] : cssRules = document.styleSheets[i].rules;
+                                                    } catch (e) {}
+                                                    for (var x = 0; cssRules != null && x < cssRules.length; x++) {
+                                                        if (typeof cssRules[x].selectorText != 'undefined' && cssRules[x].selectorText.includes('docs-ts-') && !cssRules[x].selectorText.includes(':after')) {
+                                                            var rgbValues = cssRules[x].style.background.substring(cssRules[x].style.background.lastIndexOf('(') + 1, cssRules[x].style.background.lastIndexOf(')')).split(',');
+                                                            rules.push({
+                                                                'selector': cssRules[x].selectorText,
+                                                                'rgbValue': cssRules[x].style.background,
+                                                                'hexValue': rgbToHex(parseInt(rgbValues[0]), parseInt(rgbValues[1]), parseInt(rgbValues[2]))
+                                                            });
+                                                        }
+                                                    }
+                                                }
+                                                return rules;
                                             }
-                                            out.html += '</tr>';
+                                            document.getElementById('doc-colors-demo').addEventListener('click', function(e) {
+                                                if (e.target.classList.contains('docs-color')) {
+                                                    e.stopPropagation();
+                                                    var el = document.createElement('input');
+                                                    el.value = e.target.getAttribute('value');
+                                                    document.body.appendChild(el);
+                                                    el.select();
+                                                    document.execCommand('copy');
+                                                    ts.ui.Notification.success('Copied to clipboard!');
+                                                }
+                                            });
+                                            ts.ui.ready(function() {
+                                                var tableCells = document.getElementsByClassName('docs-color');
+                                                ts.ui.get('#docs-colors', function(board) {
+                                                    board.tabs([{
+                                                            label: 'RGB',
+                                                            onselect: function() {
+                                                                for (var i = 0; i < tableCells.length; i++) {
+                                                                    tableCells[i].setAttribute('value', tableCells[i].getAttribute('rgbValue'));
+                                                                    tableCells[i].innerHTML = cssClasses[i].selector.replace('.docs-', '') + '<br>' + cssClasses[i].rgbValue;
+                                                                }
+                                                            }
+                                                        },
+                                                        {
+                                                            label: 'HEX',
+                                                            onselect: function() {
+                                                                for (var i = 0; i < tableCells.length; i++) {
+                                                                    tableCells[i].setAttribute('value', tableCells[i].getAttribute('hexValue'));
+                                                                    tableCells[i].innerHTML = cssClasses[i].selector.replace('.docs-', '') + '<br>' + cssClasses[i].hexValue;
+                                                                }
+                                                            }
+                                                        }
+                                                    ]);
+                                                });
+                                            });
+
+                                            function rgbToHex(r, g, b) {
+                                                return '#' + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
+                                            }
+                                            var cssClasses = getColorClasses();
+                                            for (var colorClass in cssClasses) {
+                                                out.html += '<div class="docs-color ' + $val(cssClasses[colorClass].selector.replace('.', '')) + '" value="" rgbValue="' + $val(cssClasses[colorClass].rgbValue) + '" hexValue="' + $val(cssClasses[colorClass].hexValue) + '">' + $txt(cssClasses[colorClass].selector.replace('.docs-', '')) + ' <br>' + $txt(cssClasses[colorClass].rgbValue) + '</div>';
+                                            }
+                                            return out.write();
                                         });
-                                        out.html += '</table>';
-                                    }
-                                    return out.write();
-                                });
-                            </script>
-                        </section>
+                                    </script>
+                                </div>
+                            </div>
+                        </div>
                     </article>
                 </div>
             </div>

@@ -7,28 +7,86 @@
 	</head>
 	<body class="nosticky">
 		<article class="doc-colors-article">
-			<section id="doc-colors-demo" data-ts="Spirit">
-				<script type="text/edbml">
-					<?param name="colors"?>
-					if(colors) {
-						<table>
-							colors.forEach(function(set) {
-								<tr>
-								for (var name in set) {
-									var code = set[name];
-									@style = 'background-color: ' + code;
-									<td @style>
-										<code class="color-name">${name}</code>
-										<br/>
-										<code class="color-code">${code}</code>
-									</td>
-								}
-								</tr>
+			<div id="doc-colors-demo" data-ts="Spirit">
+				<div data-ts="Board" id="docs-colors">
+					<div data-ts="Panel">
+						<script type="text/edbml">
+
+						// Extract color classes from CSS
+						function getColorClasses() {
+							 var rules = [];
+							 for (var i = 0; i < document.styleSheets.length; i++) {
+								 var cssRules = [];
+								 try{ // to get css rules (imposible for syles on a different domain)
+									 document.styleSheets[i].rules == 1 ? cssRules = [ document.styleSheets[i].rules ] : cssRules = document.styleSheets[i].rules;
+								 }catch(e){}
+
+								 for(var x = 0; cssRules != null && x < cssRules.length; x++) {
+										 if(typeof cssRules[x].selectorText != "undefined" &&
+												cssRules[x].selectorText.includes("docs-ts-") &&
+												!cssRules[x].selectorText.includes(":after")) {
+														 var rgbValues = cssRules[x].style.background.substring(cssRules[x].style.background.lastIndexOf("(") + 1, cssRules[x].style.background.lastIndexOf(")")).split(",");
+														 rules.push({
+															 "selector": cssRules[x].selectorText,
+															 "rgbValue": cssRules[x].style.background,
+															 "hexValue": rgbToHex(parseInt(rgbValues[0]), parseInt(rgbValues[1]), parseInt(rgbValues[2]))
+														 });
+										 }
+								 }
+							 }
+							 return rules;
+						}
+
+						document.getElementById("doc-colors-demo").addEventListener('click', function(e){
+							if (e.target.classList.contains("docs-color")) {
+									e.stopPropagation();
+									var el = document.createElement('input');
+									el.value = e.target.getAttribute("value");
+									document.body.appendChild(el);
+									el.select();
+									document.execCommand('copy');
+									ts.ui.Notification.success('Copied to clipboard!');
+									// document.body.removeChild(el);
+							}
+						});
+
+						ts.ui.ready(function() {
+							var tableCells = document.getElementsByClassName("docs-color");
+							ts.ui.get('#docs-colors', function (board) {
+								board.tabs([{ label: 'RGB' ,
+									onselect: function(){
+										for(var i = 0; i < tableCells.length; i++){
+											tableCells[i].setAttribute("value", tableCells[i].getAttribute("rgbValue"));
+											tableCells[i].innerHTML = cssClasses[i].selector.replace('.docs-', '' ) + "<br>" + cssClasses[i].rgbValue;
+										}
+									}
+								},
+								{ label: 'HEX',
+									onselect: function(){
+										for(var i = 0; i < tableCells.length; i++){
+											tableCells[i].setAttribute("value", tableCells[i].getAttribute("hexValue"));
+											tableCells[i].innerHTML = cssClasses[i].selector.replace('.docs-', '' ) + "<br>" + cssClasses[i].hexValue;
+										}
+									}
+								}]);
 							});
-						</table>
-					}
-				</script>
-			</section>
+
+						});
+
+						function rgbToHex(r, g, b) {
+							return "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
+						}
+
+
+							var cssClasses = getColorClasses();
+							for (var colorClass in cssClasses) {
+								<div class="docs-color ${cssClasses[colorClass].selector.replace('.','')}" value="" rgbValue="${cssClasses[colorClass].rgbValue}" hexValue="${cssClasses[colorClass].hexValue}">${cssClasses[colorClass].selector.replace('.docs-', '' )} <br>${cssClasses[colorClass].rgbValue}</div>
+							}
+
+						</script>
+					</div>
+				</div>
+			</div>
 		</article>
 	</body>
 </html>

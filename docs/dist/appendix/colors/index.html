@@ -13,7 +13,6 @@
     <script src="/dist/assets/jquery-2.2.4.min.js"></script>
     <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-11.0.0-beta.11.min.css">
     <link rel="stylesheet" href="/dist/assets/dox.css">
-    <script src="index.js"></script>
     <link rel="stylesheet" href="index.css">
 </head>
 
@@ -26,48 +25,19 @@
                         <div id="doc-colors-demo" data-ts="Spirit">
                             <div data-ts="Board" id="docs-colors">
                                 <div data-ts="Panel">
-                                    <script class="gui-script" data-ts.scriptid="edbml.$1JJU8I1">
-                                        edbml.declare("edbml.$1JJU8I1").as(function $edbml(
+                                    <script class="gui-script" data-ts.scriptid="edbml.$1JJU8I0">
+                                        edbml.declare("edbml.$1JJU8I0").as(function $edbml(
                                             /*``*/
                                         ) {
                                             'use strict';
                                             var out = $edbml.$out,
                                                 $txt = edbml.safetext,
                                                 $val = edbml.safeattr;
-
-                                            function getColorClasses() {
-                                                var rules = [];
-                                                for (var i = 0; i < document.styleSheets.length; i++) {
-                                                    var cssRules = [];
-                                                    try {
-                                                        // to get css rules (imposible for syles on a different domain)
-                                                        document.styleSheets[i].rules == 1 ? cssRules = [document.styleSheets[i].rules] : cssRules = document.styleSheets[i].rules;
-                                                    } catch (e) {}
-                                                    for (var x = 0; cssRules != null && x < cssRules.length; x++) {
-                                                        if (typeof cssRules[x].selectorText != 'undefined' && cssRules[x].selectorText.includes('docs-ts-') && !cssRules[x].selectorText.includes(':after')) {
-                                                            var rgbValues = cssRules[x].style.background.substring(cssRules[x].style.background.lastIndexOf('(') + 1, cssRules[x].style.background.lastIndexOf(')')).split(',');
-                                                            rules.push({
-                                                                'selector': cssRules[x].selectorText,
-                                                                'rgbValue': cssRules[x].style.background,
-                                                                'hexValue': rgbToHex(parseInt(rgbValues[0]), parseInt(rgbValues[1]), parseInt(rgbValues[2]))
-                                                            });
-                                                        }
-                                                    }
-                                                }
-                                                return rules;
+                                            var cssClasses = getColorClasses();
+                                            for (var colorClass in cssClasses) {
+                                                out.html += '<div class="docs-color ' + $val(cssClasses[colorClass].selector.replace('.', '')) + '" value="" rgbValue="' + $val(cssClasses[colorClass].rgbValue) + '" hexValue="' + $val(cssClasses[colorClass].hexValue) + '">' + $txt(cssClasses[colorClass].selector.replace('.docs-', '')) + ' <br>' + $txt(cssClasses[colorClass].rgbValue) + '</div>';
                                             }
-                                            document.getElementById('doc-colors-demo').addEventListener('click', function(e) {
-                                                if (e.target.classList.contains('docs-color')) {
-                                                    e.stopPropagation();
-                                                    var el = document.createElement('input');
-                                                    el.value = e.target.getAttribute('value');
-                                                    document.body.appendChild(el);
-                                                    el.select();
-                                                    document.execCommand('copy');
-                                                    ts.ui.Notification.success('Copied to clipboard!');
-                                                }
-                                            });
-                                            ts.ui.ready(function() {
+                                            ts.ui.ready(function rendercolors() {
                                                 var tableCells = document.getElementsByClassName('docs-color');
                                                 ts.ui.get('#docs-colors', function(board) {
                                                     board.tabs([{
@@ -91,13 +61,43 @@
                                                     ]);
                                                 });
                                             });
+                                            document.getElementById('doc-colors-demo').addEventListener('click', function(e) {
+                                                if (e.target.classList.contains('docs-color')) {
+                                                    e.stopPropagation();
+                                                    var el = document.createElement('input');
+                                                    el.value = e.target.getAttribute('value');
+                                                    document.body.appendChild(el);
+                                                    el.select();
+                                                    document.execCommand('copy');
+                                                    ts.ui.Notification.success('Copied to clipboard!');
+                                                    document.body.removeChild(el);
+                                                }
+                                            });
 
                                             function rgbToHex(r, g, b) {
                                                 return '#' + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
                                             }
-                                            var cssClasses = getColorClasses();
-                                            for (var colorClass in cssClasses) {
-                                                out.html += '<div class="docs-color ' + $val(cssClasses[colorClass].selector.replace('.', '')) + '" value="" rgbValue="' + $val(cssClasses[colorClass].rgbValue) + '" hexValue="' + $val(cssClasses[colorClass].hexValue) + '">' + $txt(cssClasses[colorClass].selector.replace('.docs-', '')) + ' <br>' + $txt(cssClasses[colorClass].rgbValue) + '</div>';
+
+                                            function getColorClasses() {
+                                                var rules = [];
+                                                for (var i = 0; i < document.styleSheets.length; i++) {
+                                                    var cssRules = [];
+                                                    try {
+                                                        // to get css rules (imposible for syles on a different domain)
+                                                        document.styleSheets[i].cssRules == 1 ? cssRules = [document.styleSheets[i].cssRules] : cssRules = document.styleSheets[i].cssRules;
+                                                    } catch (e) {}
+                                                    for (var x = 0; cssRules != null && x < cssRules.length; x++) {
+                                                        if (typeof cssRules[x].selectorText != 'undefined' && cssRules[x].selectorText.includes('docs-ts-') && !cssRules[x].selectorText.includes(':after')) {
+                                                            var rgbValues = cssRules[x].style.background.substring(cssRules[x].style.background.lastIndexOf('(') + 1, cssRules[x].style.background.lastIndexOf(')')).split(',');
+                                                            rules.push({
+                                                                'selector': cssRules[x].selectorText,
+                                                                'rgbValue': 'rgb(' + rgbValues.join(',') + ')',
+                                                                'hexValue': rgbToHex(parseInt(rgbValues[0]), parseInt(rgbValues[1]), parseInt(rgbValues[2]))
+                                                            });
+                                                        }
+                                                    }
+                                                }
+                                                return rules;
                                             }
                                             return out.write();
                                         });

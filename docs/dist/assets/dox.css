@@ -96,7 +96,7 @@ figure > figcaption {
   margin: 10px 0 0 0;
 }
 figure.ts-layout > .ts-toolbar {
-  background-color: #f0f0f0;
+  background-color: #fcfcfc;
 }
 figure.ts-layout > .ts-panel,
 figure.ts-layout > .ts-panels {
@@ -294,7 +294,7 @@ pre.prism code {
 #markdown table,
 table.api {
   width: 100%;
-  background-color: #f0f0f0;
+  background-color: #fcfcfc;
 }
 #markdown table code,
 table.api code {
@@ -1026,15 +1026,15 @@ article > h1 {
   color: #ffffff;
 }
 .docs-ts-color-gray-lightest {
-  background: #f0f0f0;
+  background: #fcfcfc;
   color: #000000;
 }
 .docs-ts-color-gray-lighter {
-  background: #ebebeb;
+  background: #f0f0f0;
   color: #000000;
 }
 .docs-ts-color-gray-light {
-  background: #e6e6e6;
+  background: #d6d6d6;
   color: #000000;
 }
 .docs-ts-color-gray {
@@ -1066,11 +1066,11 @@ article > h1 {
   color: #ffffff;
 }
 .docs-ts-color-slate-dark {
-  background: #2b2b2b;
+  background: #262626;
   color: #ffffff;
 }
 .docs-ts-color-slate-darker {
-  background: #262626;
+  background: #1a1a1a;
   color: #ffffff;
 }
 .docs-color {
@@ -1137,7 +1137,7 @@ article > h1 {
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 .doc-responsive #breakpoints {
-  background-color: #ebebeb;
+  background-color: #f0f0f0;
   padding-bottom: 20px;
   border-radius: 3px;
 }
@@ -1162,7 +1162,7 @@ article > h1 {
   transition-duration: 0.2s;
   transition-timing-function: ease;
   transition-delay: 0s;
-  border: 1px solid #ebebeb;
+  border: 1px solid #f0f0f0;
   padding: 20px;
   margin-bottom: 20px;
 }

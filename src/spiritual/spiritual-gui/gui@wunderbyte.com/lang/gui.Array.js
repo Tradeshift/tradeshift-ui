@@ -99,5 +99,22 @@ gui.Array = {
 			);
 			return array.length;
 		}
+	},
+	diffSymmetric: function diffSymmetric(arr, otherArr) {
+		if (!Array.isArray(arr)) {
+			throw new TypeError('arr must be an Array');
+		}
+		if (!Array.isArray(otherArr)) {
+			throw new TypeError('otherArr must be an Array');
+		}
+		return arr
+			.filter(function(x) {
+				return otherArr.indexOf(x) === -1;
+			})
+			.concat(
+				otherArr.filter(function(x) {
+					return arr.indexOf(x) === -1;
+				})
+			);
 	}
 };

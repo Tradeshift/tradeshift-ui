@@ -323,7 +323,7 @@ ts.ui.AttentionPlugin = (function using(GuiArray, chained, notontouch) {
 		_restorefocus: function(last) {
 			gui.Tick.time(function() {
 				var act = document.activeElement;
-				if (act === document.body || act.tabIndex === -1) {
+				if (act && (act === document.body || act.tabIndex === -1)) {
 					if (gui.DOMPlugin.embedded(last)) {
 						last.focus();
 					}

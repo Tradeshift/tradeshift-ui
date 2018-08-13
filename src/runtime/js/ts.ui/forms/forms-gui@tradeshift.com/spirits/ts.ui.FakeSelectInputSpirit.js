@@ -496,11 +496,7 @@ ts.ui.FakeSelectInputSpirit = (function using(chained, confirmed, tick, time, gu
 				newindexes;
 			if (select.multiple) {
 				newindexes = this._getindexes(select.options);
-				if (
-					newindexes.some(function(i, x) {
-						return oldindexes[x] !== i;
-					})
-				) {
+				if (guiArray.diffSymmetric(newindexes, oldindexes).length > 0) {
 					did = true;
 					if (model) {
 						// make sure not to reassign the list (this would kill the observer)

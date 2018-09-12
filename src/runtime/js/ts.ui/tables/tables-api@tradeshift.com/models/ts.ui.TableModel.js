@@ -268,6 +268,11 @@ ts.ui.TableModel = (function using(RowCollection, Type, Model) {
 		tempdirtyflag: -1,
 
 		/**
+		 * @type {boolean}
+		 */
+		floatinggutter: false,
+
+		/**
 		 * Render toolbar as a statusbar (multiline in mobile view).
 		 */
 		onconstruct: function() {
@@ -707,9 +712,10 @@ ts.ui.TableModel = (function using(RowCollection, Type, Model) {
 		 * @returns {boolean}
 		 */
 		_rowcontains: function(row, index, value) {
-			var is = Array.isArray(row);
-			var cell = is ? row[index] : row.cells[index];
-			var text = String(is ? cell : cell.value).toLowerCase();
+			var list = Array.isArray(row);
+			var cell = list ? row[index] : row.cells[index];
+			var simp = typeof cell !== 'object';
+			var text = String(list || simp ? cell : cell.value).toLowerCase();
 			return text.includes(value);
 		}
 	});

@@ -234,10 +234,12 @@ gui.Document = (function() {
 		 * @param {boolean} hidden
 		 */
 		_onvisibilitychange: function(visible) {
-			var root = gui.get(document.documentElement);
-			if (visible && root) {
-				root.reflex();
-			}
+			gui.ready(function newchromeexception() {
+				var root = gui.get(document.documentElement);
+				if (visible && root) {
+					root.reflex();
+				}
+			});
 		},
 
 		/**

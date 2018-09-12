@@ -13,7 +13,6 @@ ts.ui.DocumentLayoutPlugin = ts.ui.Plugin.extend({
 	managelayout: function() {
 		this._points = this._computepoints();
 		new ts.ui.LayoutModel(this._computelayout()).output();
-		new ts.ui.DeviceModel(this._computedevice()).output();
 		this._updateBreakpoints();
 		gui.Broadcast.add(gui.BROADCAST_RESIZE_END, this);
 	},
@@ -64,13 +63,13 @@ ts.ui.DocumentLayoutPlugin = ts.ui.Plugin.extend({
 
 	/**
 	 * Compute layout.
-	 * @returns {object} or null if window size could not be determined...
+	 * @returns {object}
 	 */
 	_computelayout: function() {
 		var point,
 			next,
 			points = [],
-			width = window.innerWidth || 0,
+			width = this._getwidth(document.documentElement),
 			presets = ts.ui.LayoutModel.BREAKPOINTS;
 		this._points.every(function(p) {
 			if ((next = p <= width)) {
@@ -86,12 +85,12 @@ ts.ui.DocumentLayoutPlugin = ts.ui.Plugin.extend({
 	},
 
 	/**
-	 * Some kind of device model with
-	 * capabilities and what not.
-	 * TODO (jmo@): This sort of thing
+	 * Measure the document width in such a way that the iPhone might look OK.
+	 * @param {HTMLHtmlElement} root
+	 * @returns {number}
 	 */
-	_computedevice: function() {
-		return {};
+	_getwidth: function(root) {
+		return Math.max(root.clientWidth, root.offsetWidth, root.scrollWidth);
 	},
 
 	/**

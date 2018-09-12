@@ -97,29 +97,17 @@ gui.Assistant = (function using(Crawler) {
 		 */
 		_maybepossess: function(elm, channels) {
 			var res = null;
-			var experimentalattribute = 'data-ts'; // TRADESHIFT HOTFIX
 			if (elm.nodeType === Node.ELEMENT_NODE) {
-				if (
-					gui.attributes.every(function(fix) {
-						if (fix === experimentalattribute) {
-							return true;
-						} else {
-							res = this._maybepossessinline(elm, fix);
-							return res === null;
+				res = this._maybepossessinline(elm);
+				if (res === null && channels) {
+					channels.every(function(def) {
+						var select = def[0];
+						var spirit = def[1];
+						if (gui.CSSPlugin.matches(elm, select)) {
+							res = spirit;
 						}
-					}, this)
-				) {
-					if (channels) {
-						channels.every(function(def) {
-							// TODO!!!!!!!!!!!!!!!!!!
-							var select = def[0];
-							var spirit = def[1];
-							if (gui.CSSPlugin.matches(elm, select)) {
-								res = spirit;
-							}
-							return res === null;
-						}, this);
-					}
+						return res === null;
+					});
 				}
 			}
 			return res;
@@ -129,24 +117,43 @@ gui.Assistant = (function using(Crawler) {
 		 * Test for spirit assigned using HTML inline attribute.
 		 * Special test for "[" accounts for {gui.Spirit#$debug}
 		 * @param {Element} elm
-		 * @param {Window} win
-		 * @param {String} fix
 		 * @returns {function} Spirit constructor
 		 */
-		_maybepossessinline: function(elm, fix) {
+		_maybepossessinline: function(elm) {
 			var res = null;
+			var fix = gui.attributes[0];
 			var att = elm.getAttribute(fix);
-			if (gui.Type.isString(att) && !att.startsWith('[')) {
-				if (att !== '') {
-					res = gui.Object.lookup(att);
-					if (!res) {
-						console.error(att + ' is not defined.');
-					}
-				} else {
-					res = false; // strange return value implies no spirit for empty string
-				}
+			if (att && typeof att === 'string' && !att.startsWith('[')) {
+				res = att === '' ? false : this._findinlobalscope(att); // strange return value implies no spirit for empty string
 			}
 			return res;
+		},
+
+		/**
+		 * In the window scope, find the potential object to match that string. 
+		 * If it exists, and if it is indeed a spirit constructor, we return it.
+		 * @param {String} att
+		 * @returns {gui.Class|null}
+		 */
+		_findinlobalscope: function(att) {
+			var thing = gui.Object.lookup(att);
+			if (thing && this._spiritconstructor(thing)) {
+				return thing;
+			}
+			return null;
+		},
+
+		/**
+		 * Thing is really a spirit constructor?
+		 * @param {?} thing
+		 * @returns {boolean}
+		 */
+		_spiritconstructor: function(thing) {
+			return (
+				typeof thing === 'function' &&
+				thing.$classname &&
+				gui.Class.ancestors(thing).indexOf(gui.Spirit) > -1
+			);
 		}
 	};
 })(gui.Crawler);

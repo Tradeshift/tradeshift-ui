@@ -275,7 +275,7 @@ ts.ui.TableLayoutPlugin = (function using(Client, Tick) {
 		 * @param {ts.ui.TableModel} model
 		 */
 		_vfix: function(spirit, model) {
-			var floats = spirit._floatgutter();
+			var floats = spirit.$floatgutter();
 			var edits = model.editable;
 			var plug = spirit.queryplugin;
 			if (floats || edits) {
@@ -320,7 +320,7 @@ ts.ui.TableLayoutPlugin = (function using(Client, Tick) {
 				})
 				.forEach(function writeheight(height, index) {
 					var row = rows[index];
-					if (floats) {
+					if (floats && guts) {
 						setheight(guts[index], height);
 					}
 					if (edits) {

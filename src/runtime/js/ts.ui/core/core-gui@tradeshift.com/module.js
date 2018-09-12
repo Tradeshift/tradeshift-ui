@@ -72,7 +72,6 @@ ts.ui.CoreModule = gui.module('core-gui@tradeshift.com', {
 	 */
 	onbeforespiritualize: function() {
 		var ATTRIBUTE = /^\[data-ts=[a-zA-Z]+\]$/;
-
 		function allcssnames(constructor) {
 			return gui.Class
 				.ancestorsAndSelf(constructor)
@@ -153,11 +152,10 @@ ts.ui.CoreModule = gui.module('core-gui@tradeshift.com', {
 
 	/**
 	 * Use `data-ts` instead of `gui` for magic configuration attributes.
-	 * TODO: Remove the deprecated 'ts' after a few iterations (perform boost!)
 	 * @see wunderbyte.github.io/spiritual-gui/plugin-config.html
 	 */
 	_guiattributes: function() {
-		gui.attributes = ['ts', 'data-ts'];
+		gui.attributes = ['data-ts'];
 	},
 
 	/**

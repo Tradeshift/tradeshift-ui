@@ -1,6 +1,6 @@
 {
 	"name": "tradeshift-ui",
-	"version": "10.0.8",
+	"version": "10.0.28",
 	"private": true,
 	"description": "The Tradeshift UI Library & Framework",
 	"homepage": "https://ui.tradeshift.com/",
@@ -24,8 +24,8 @@
 		"lint": "yarn run eslint",
 		"eslint": "eslint --cache --config ./.eslintrc.json .",
 		"prettier": "prettier --write \"**/*.js\"",
-		"prettier-less": "prettier --write ---parser postcss \"**/*.less\"",
-		"prettier-json": "prettier --write ---parser json \"**/*.json\"",
+		"prettier-less": "prettier --write \"**/*.less\"",
+		"prettier-json": "prettier --write \"**/*.json\"",
 		"****** DIST *****": "",
 		"build": "grunt dist",
 		"deploy-s3": "node tasks/deploy.js",
@@ -36,14 +36,14 @@
 		"test": "yarn run eslint & grunt jasmine & wait && node tasks/browserstack.js",
 		"http": "static spec/jasmine -H '{\"Cache-Control\": \"no-cache, must-revalidate\"}'",
 		"****** NODE *****": "",
-		"postinstall": "cd docs && yarn",
+		"postinstall": "cd docs && yarn install --pure-lockfile",
 		"precommit": "lint-staged && grunt exec:docs_dist && git add -A docs",
 		"gh-pages": "grunt dist && node tasks/gh-pages.js"
 	},
 	"lint-staged": {
 		"*.js": ["prettier --write", "eslint --config ./.eslintrc.json", "git add"],
-		"*.json": ["prettier --write --parser json", "git add"],
-		"*.less": ["prettier --write --parser postcss", "git add"]
+		"*.json": ["prettier --write", "git add"],
+		"*.less": ["prettier --write", "git add"]
 	},
 	"browserslist": ["Last 2 versions", "ie 11"],
 	"devDependencies": {
@@ -63,7 +63,7 @@
 		"eslint-plugin-promise": "3.5.0",
 		"eslint-plugin-standard": "3.0.1",
 		"glob": "^7.1.2",
-		"grunt": "^1.0.1",
+		"grunt": "^1.0.2",
 		"grunt-asciify": "^0.2.2",
 		"grunt-concurrent": "^2.3.1",
 		"grunt-contrib-clean": "^1.0.0",
@@ -79,6 +79,7 @@
 		"grunt-spiritual-build": "^0.1.18",
 		"grunt-spiritual-dox": "^0.1.2",
 		"grunt-spiritual-edbml": "^0.3.0",
+		"grunt-sri": "^0.2.0",
 		"husky": "^0.14.3",
 		"less": "^2.7.2",
 		"lint-staged": "^4.2.1",

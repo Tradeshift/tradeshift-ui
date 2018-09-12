@@ -33,6 +33,7 @@ ts.ui.TableSpirit = (function using(
 	var ICON_OFF = 'ts-icon-checkbox';
 	var CLASS_TEXTAREA = 'ts-table-input';
 	var CLASS_CLICKABLE = 'ts-clickable';
+	var CLASS_MAXIMIZED = 'ts-maximized';
 	var CLASS_SELECTABLE = 'ts-selectable';
 	var CLASS_SELECTBUTTON = 'ts-table-checkbox-button';
 	var TABLE_MIN_HEIGHT = 267;
@@ -338,7 +339,7 @@ ts.ui.TableSpirit = (function using(
 		onbroadcast: function(b) {
 			this.super.onbroadcast(b);
 			if (b.type === gui.BROADCAST_RESIZE_END) {
-				if (this._ismaximized()) {
+				if (this._autooptimize) {
 					this._onbeforeresize(this._model);
 				}
 			}
@@ -356,10 +357,11 @@ ts.ui.TableSpirit = (function using(
 			if (this._crashproof()) {
 				if (this._ismaximized()) {
 					this._onafterresize(this._target);
-					this._maxpages();
+					if (this._autooptimize) {
+						this._maxpages();
+					}
 				} else {
 					this._layouteverything();
-					this._maxpages();
 				}
 			}
 		},
@@ -426,18 +428,19 @@ ts.ui.TableSpirit = (function using(
 		},
 
 		/**
-		 *
+		 * Open for implementation.
+		 * @param {string} name
+		 * @param {*} value
 		 */
-		onbutton: function(name, value) {
-			console.log(name, value);
-		},
+		onbutton: function(name, value) {},
 
 		/**
-		 *
+		 * Open for implementation.
+		 * @param {string} name
+		 * @param {*} value
+		 * @param {boolean} checked
 		 */
-		onswitch: function(name, value, checked) {
-			console.log(name, value, checked);
-		},
+		onswitch: function(name, value, checked) {},
 
 		/**
 		 * Handle tick to evaluate the `onselect` callback.
@@ -581,22 +584,76 @@ ts.ui.TableSpirit = (function using(
 		// Layout ..................................................................
 
 		/**
-		 * Maximize the layout to fill positioned container.
-		 * Optionally add resize callback for managing pager.
+		 * Expand to fill nearest positioned ancestor.  If the callback is 
+		 * provided, this can be used to manually calculate the optimal 
+		 * rowcount (backend-Table scenario).
+		 * @param {Function} onresize
+		 * @returns {this}
+		 */
+		explode: confirmed('(function)')(
+			chained(function(onresize) {
+				this.css.add(CLASS_MAXIMIZED);
+				if (arguments.length) {
+					this.broadcast.add(gui.BROADCAST_RESIZE_END);
+					this._maybecallresize(onresize);
+				}
+			})
+		),
+
+		/**
+		 * Don't expand no more.
+		 * @returns {this}
+		 */
+		implode: chained(function() {
+			this.css.remove(CLASS_MAXIMIZED);
+			this.onresize = null;
+		}),
+
+		/**
+		 * Automatically optimize the rowcount per page to fill the screen 
+		 * (or nearest positioned ancestor) with as little need for scrolling 
+		 * as possible.
+		 * TODO: Warning if `rows` are mounted before `optimize` is called (perf)
+		 * TODO: Console warn when not used in combination with `explode()`
+		 * @returns {this}
+		 */
+		optimize: chained(function() {
+			this.broadcast.add(gui.BROADCAST_RESIZE_END);
+			this._autooptimize = true;
+			this.max();
+			this._createpager();
+		}),
+
+		/**
+		 * Just to revert the `optimize` method, however unlikely that might be.
+		 * @returns {this}
+		 */
+		deoptimize: chained(function() {
+			this._autooptimize = false;
+			this._model.toolbar.pager = null;
+			this._model.maxrows = 0;
+			if (!this.onresize) {
+				this.broadcast.remove(gui.BROADCAST_RESIZE_END);
+			}
+		}),
+
+		/**
+		 * @deprecated
+		 * Maximize the layout to fill positioned container AND automatically 
+		 * optimize+autopage the content. This procedure has been split into 
+		 * two distinct methods, but we will keep this for legacy reasons. 
+		 * In V4, this method is used both "backend" Tables even though the 
+		 * `optimize` method is called (which autopaginates the Table), this 
+		 * setup is of course wrong and we are just lucky that things work :/
+		 * TODO: If and when we have the documentation for these features,
+		 * show some warning in the console and prepare to deprecate this.
 		 * @param @optional {function} onresize
 		 * @returns {ts.ui.TableSpirit}
 		 */
 		maximize: confirmed('(function)')(
 			chained(function(onresize) {
-				var ended = gui.BROADCAST_RESIZE_END;
-				this.css.add('ts-maximized');
-				this.onresize = onresize || this.onresize;
-				this.broadcast.add(ended);
-				var maxrows = this.max();
-				this._createpager();
-				if (onresize) {
-					onresize(maxrows);
-				}
+				this.explode.apply(this, arguments);
+				this.optimize();
 			})
 		),
 
@@ -614,10 +671,10 @@ ts.ui.TableSpirit = (function using(
 		max: confirmed('(number)')(
 			chained(function(n) {
 				var cname = 'ts-hasrows ts-maxrows';
-				var ismax = this._ismaximized();
+				var optim = this._autooptimize;
 				var model = this._model;
 				if (arguments.length) {
-					if (ismax) {
+					if (optim) {
 						maxerror();
 					} else {
 						model.maxrows = n;
@@ -626,12 +683,10 @@ ts.ui.TableSpirit = (function using(
 							this.css.shift(n, cname);
 						});
 					}
+				} else if (optim) {
+					return this._autooptimize ? this._automax() : this._calcmax();
 				} else {
-					if (ismax) {
-						return this._automax();
-					} else {
-						return model.maxrows;
-					}
+					return model.maxrows;
 				}
 			})
 		),
@@ -1130,6 +1185,16 @@ ts.ui.TableSpirit = (function using(
 			}
 		},
 
+		/**
+		 * The Table should or does show a "floating gutter" that stys 
+		 * fixed on horizontal scrolling (to make row selection easier)?
+		 * Note that `ts-scroll-x` was added by the {TableLayoutPlugin}.
+		 * @returns {boolean}
+		 */
+		$floatgutter: function() {
+			return this._model.selectable && this.css.contains('ts-scroll-x');
+		},
+
 		// Private .................................................................
 
 		/**
@@ -1231,6 +1296,13 @@ ts.ui.TableSpirit = (function using(
 		_cover: null,
 
 		/**
+		 * True when the Table is exploded (maximized) and configured to 
+		 * adjust the rowcount and pagecount for optimal fit on screen.
+		 * @type {boolean}
+		 */
+		_autooptimize: false,
+
+		/**
 		 * Do some DHTML whenever the EDBML has updated
 		 * and also after the window has been resized.
 		 * TODO: Precompute if or not all this is needed!
@@ -1246,6 +1318,21 @@ ts.ui.TableSpirit = (function using(
 			}
 			this._flush();
 			this._cnames(model, model.cols, model.rows, model.toolbar);
+			this._togglegutter(model);
+		},
+
+		/**
+		 * The Table needs to render *before* we can determine if the floating 
+		 * gutter needs to be displayed  (because this all depends on the final 
+		 * computed size of the table columns and stuff). If we can determine 
+		 * that is should be shown or hidden, and if this is different from 
+		 * the previous rendering, we will now trigger another re-rendering :/
+		 * but at least now, we will not render extra checkboxes that might 
+		 * confuse Selenium tests even though they are invisible to the user.
+		 * @param {ts.ui.TableModel} model
+		 */
+		_togglegutter: function(model) {
+			model.floatinggutter = this.$floatgutter();
 		},
 
 		/**
@@ -1328,7 +1415,7 @@ ts.ui.TableSpirit = (function using(
 			var path = '.ts-table-checkbox button';
 			var guts = this.queryplugin.getguts(true);
 			var menu = this.queryplugin.getmenu(true);
-			var buts = guts.dom.qall(path);
+			var buts = guts ? guts.dom.qall(path) : [];
 			var butt = menu.dom.qall(path);
 			buts
 				.concat(butt)
@@ -1564,7 +1651,7 @@ ts.ui.TableSpirit = (function using(
 		 * @param {ts.ui.TableModel} model
 		 */
 		_onbeforeresize: function(model) {
-			if (this._ownpager && this._target === -1) {
+			if (this._autooptimize && this._ownpager && this._target === -1) {
 				var first = model.firstVisibleRow();
 				var index = first ? first.$index : 0;
 				this._target = index > 0 ? index : -1;
@@ -1579,16 +1666,29 @@ ts.ui.TableSpirit = (function using(
 		_onafterresize: function(index) {
 			this._layouteverything();
 			this._hackscrolling();
-			var max = this.max();
-			if (this._ownpager) {
-				if (index > -1) {
+			if (this._autooptimize) {
+				this.max();
+				if (this._ownpager && index > -1) {
 					this._resizing = true;
 					this.script.suspend();
 					this._bestpage(index);
 				}
 			}
-			if (this.onresize) {
-				this.onresize.call(this, max);
+			this._maybecallresize();
+		},
+
+		/**
+		 * Call `onresize` if and when it is defined
+		 * and not previously called with same value.
+		 * @param {Function} [onresize] Define it now
+		 */
+		_maybecallresize: function(onresize) {
+			if ((this.onresize = onresize || this.onresize)) {
+				var max = this._calcmax();
+				if (this.onresize.__last !== max) {
+					this.onresize.call(this, max);
+					this.onresize.__last = max;
+				}
 			}
 		},
 
@@ -1847,13 +1947,12 @@ ts.ui.TableSpirit = (function using(
 
 		/**
 		 * Autotatically adjust maxrows to fit
-		 * in the Tables embedding container.
+		 * in the Tables embedding container 
+		 * and then return this number of rows.
 		 * @returns {number}
 		 */
 		_automax: function() {
-			var max = this._calcmax();
-			this._model.maxrows = max;
-			return max;
+			return (this._model.maxrows = this._calcmax());
 		},
 
 		/**
@@ -1867,16 +1966,6 @@ ts.ui.TableSpirit = (function using(
 			var rowheight = UNIT_DOUBLE;
 			var rowslimit = Math.ceil(availsize / rowheight);
 			return rowslimit;
-		},
-
-		/**
-		 * The Table should show a "floating gutter" that stys fixed
-		 * on horizontal scrolling (to make row selection easier)?
-		 * IE9 just doesn't have the guts to pull this off nicely.
-		 * @returns {boolean}
-		 */
-		_floatgutter: function() {
-			return !Client.isExplorer9 && this._model.selectable && this.css.contains('ts-scroll-x');
 		},
 
 		/**

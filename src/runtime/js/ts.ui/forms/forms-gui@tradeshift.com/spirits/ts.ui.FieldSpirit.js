@@ -7,41 +7,6 @@ ts.ui.FieldSpirit = (function using(chained) {
 	return ts.ui.Spirit.extend(
 		{
 			/**
-			 * Shortcut `this.element.value` with an automated
-			 * management of special classname for empty fields.
-			 * Also fixes the (browser-inherrent) dysfunction
-			 * where changing the value will move the caret to
-			 * the end of the field.
-			 * TODO: Global fix via https://github.com/wunderbyte/spiritual-edbml/issues/17
-			 * TODO: Move this to {ts.ui.InputSpirit} please...
-			 * @type {string}
-			 */
-			value: {
-				getter: function() {
-					return this.element.value;
-				},
-				setter: function(value) {
-					value = this._evaluated(value);
-					var idx = -1;
-					var elm = this.element;
-					var foc = document.activeElement;
-					if (foc && foc === elm) {
-						idx = elm.value.slice(0, elm.selectionStart).length;
-					}
-					elm.value = value;
-					if (idx > -1 && elm.type !== 'date') {
-						// can't select in date inputs
-						elm.setSelectionRange(idx, idx);
-					}
-					if (!this.$destructed) {
-						this._label(function(label) {
-							label.$empty(!value);
-						});
-					}
-				}
-			},
-
-			/**
 			 * Attach to the DOM.
 			 */
 			onattach: function() {
@@ -154,7 +119,7 @@ ts.ui.FieldSpirit = (function using(chained) {
 			 */
 			_label: function(action) {
 				var label, result;
-				if (this.dom.embedded()) {
+				if (!this.$destructed && this.dom.embedded()) {
 					if ((label = this.dom.parent(ts.ui.LabelSpirit))) {
 						if (action) {
 							result = action.call(this, label);

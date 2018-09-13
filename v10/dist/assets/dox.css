@@ -570,6 +570,9 @@ table.api th {
 .ts-mobile-only section.desc {
   padding-right: 0;
 }
+.doc-forms-test-2 .btn-select {
+  font-family: 'Ubuntu Mono', 'Menlo', 'Monaco', 'Consolas', 'Bitstream Vera Sans Mono', monospace;
+}
 .ts-doxchrome {
   /*
 	.ts-sidebar,

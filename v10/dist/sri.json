@@ -1,16 +1,16 @@
 {
   "@js": {
     "hashes": {
-      "sha384": "Mtqrqm2hwlQf5WtZEarvLXNbzzSAeER2xD2/2b7/9Ic09mNq/rFe+MsKRWOpYcbz"
+      "sha384": "BaZ0qVqQN64SIhOffSFzGoGEHialR8c1+W/LUeOg00h8q2jnadECZcZvohKuhNsT"
     },
-    "integrity": "sha384-Mtqrqm2hwlQf5WtZEarvLXNbzzSAeER2xD2/2b7/9Ic09mNq/rFe+MsKRWOpYcbz",
-    "path": "public/ts-10.0.25.min.js"
+    "integrity": "sha384-BaZ0qVqQN64SIhOffSFzGoGEHialR8c1+W/LUeOg00h8q2jnadECZcZvohKuhNsT",
+    "path": "public/ts-10.0.28.min.js"
   },
   "@css": {
     "hashes": {
-      "sha384": "B7D3GGL6/S847eNkCZ1AAvZ0PPuB2dN4cDgWF80mzBGnHjBCLfp11zIYQ221YNHe"
+      "sha384": "M+7nVVPH/8S+mfLCnei3BCp+5zK/eXEJlc0jpuyb2ghV8s3IDQY7RfdCV1usp6qQ"
     },
-    "integrity": "sha384-B7D3GGL6/S847eNkCZ1AAvZ0PPuB2dN4cDgWF80mzBGnHjBCLfp11zIYQ221YNHe",
-    "path": "public/ts-10.0.25.min.css"
+    "integrity": "sha384-M+7nVVPH/8S+mfLCnei3BCp+5zK/eXEJlc0jpuyb2ghV8s3IDQY7RfdCV1usp6qQ",
+    "path": "public/ts-10.0.28.min.css"
   }
 }

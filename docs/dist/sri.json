@@ -8,9 +8,9 @@
   },
   "@css": {
     "hashes": {
-      "sha384": "b9/3RvlByUZ0cvgE1AInnpaHtWiURL7khHSuPNareLtBq3B4KPBFQPoemG9YlYzY"
+      "sha384": "uFH/HHZKA/hQGEGcPhxQLzcH1dnxc2NzfI9cqQPPr+oSro3kM56f23S8yOvBuU0x"
     },
-    "integrity": "sha384-b9/3RvlByUZ0cvgE1AInnpaHtWiURL7khHSuPNareLtBq3B4KPBFQPoemG9YlYzY",
+    "integrity": "sha384-uFH/HHZKA/hQGEGcPhxQLzcH1dnxc2NzfI9cqQPPr+oSro3kM56f23S8yOvBuU0x",
     "path": "dist/ts.css"
   }
 }

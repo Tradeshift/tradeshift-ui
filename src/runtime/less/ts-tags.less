@@ -102,6 +102,9 @@
 	// Label/Icon
 	figcaption {
 		.ts-mixin-fix(@tag-icon-width, @tag-height);
+		align-items: center;
+		display: flex;
+		justify-content: center;
 		text-align: center;
 		vertical-align: top;
 	}
@@ -191,10 +194,10 @@
 			margin-right: 0;
 		}
 		&:after {
-			.ts-mixin-icon(@ts-fontsize-big);
+			.ts-mixin-icon(@ts-fontsize-medium);
 			position: absolute;
-			top: (@ts-unit - @ts-unit-quarter);
-			right: @ts-unit-quarter + 2px; // @TODO fix with SVGs...
+			top: (@ts-unit - @ts-unit-half) + 1px;
+			right: @ts-unit-eighth; 
 			vertical-align: top;
 			content: 'V'; // ts-icon-locked
 		}
@@ -228,10 +231,6 @@
 				color: @ts-black;
 			}
 		}
-	}
-
-	.ts-userimage {
-		margin-top: -2px;
 	}
 }
 

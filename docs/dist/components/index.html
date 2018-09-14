@@ -885,6 +885,60 @@
                     </div>
                 </section>
                 <section>
+                    <a data-ts="Button" href="/dist/components/tags/tag.html">
+                        <h3><span>Tags &amp; Labels</span></h3>
+                    </a>
+                    <p>A set of interactive keywords that help to label, organize, and categorize objects.</p>
+                    <div class="splitscreen-container">
+                        <ul class="splitscreen">
+                            <li>
+                                <figure data-ts="DoxMarkup" data-ts.code="%3Cscript%3E%0A%09const%20data%20%3D%20ts.ui.encode(%0A%09%09%5B%0A%09%09%09%5B&apos;Vision&apos;%2C%20%5B&apos;Blindsight&apos;%2C%20&apos;Truesight&apos;%2C%20&apos;Darkvision&apos;%5D%5D%0A%09%09%5D%0A%09)%3B%0A%09ts.ui.ready(()%20%3D%3E%20%7B%0A%09%09ts.ui.get(&apos;%23tag-clickable&apos;%2C%20tag%20%3D%3E%20%7B%0A%09%09%09tag.onclick%20%3D%20()%20%3D%3E%20%7B%0A%09%09%09%09ts.ui.Notification.success(&apos;Do%20you%20see%3F&apos;)%3B%0A%09%09%09%7D%3B%0A%09%09%7D)%3B%0A%09%7D)%3B%0A%3C%2Fscript%3E">
+                                    <script type="text/html">
+                                        <scrxpt>
+                                            const data = ts.ui.encode( [ ['Vision', ['Blindsight', 'Truesight', 'Darkvision']] ] ); ts.ui.ready(() => { ts.ui.get('#tag-clickable', tag => { tag.onclick = () => { ts.ui.Notification.success('Do you see?'); }; }); });
+                                        </scrxpt>
+                                    </script><input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
+                                    <div class="tabpanels">
+                                        <pre class="prism language-markup">
+<code><span class="token script"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">&gt;</span></span>
+	<span class="token keyword">const</span> data <span class="token operator">=</span> ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token function">encode<span class="token punctuation">(</span></span>
+		<span class="token punctuation">[</span>
+			<span class="token punctuation">[</span><span class="token string">&apos;Vision&apos;</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token string">&apos;Blindsight&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;Truesight&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;Darkvision&apos;</span><span class="token punctuation">]</span><span class="token punctuation">]</span>
+		<span class="token punctuation">]</span>
+	<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token function">ready<span class="token punctuation">(</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+		ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#tag-clickable&apos;</span><span class="token punctuation">,</span> tag <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+			tag<span class="token punctuation">.</span>onclick <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+				ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Notification<span class="token punctuation">.</span><span class="token function">success<span class="token punctuation">(</span></span><span class="token string">&apos;Do you see?&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+			<span class="token punctuation">}</span><span class="token punctuation">;</span>
+		<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span></span></code>
+</pre>
+                                    </div>
+                                </figure>
+                            </li>
+                            <li>
+                                <script>
+                                    const data = ts.ui.encode(
+                                        [
+                                            ['Vision', ['Blindsight', 'Truesight', 'Darkvision']]
+                                        ]
+                                    );
+                                    ts.ui.ready(() => {
+                                        ts.ui.get('#tag-clickable', tag => {
+                                            tag.onclick = () => {
+                                                ts.ui.Notification.success('Do you see?');
+                                            };
+                                        });
+                                    });
+                                </script>
+                                <figure id="tag-clickable" data-ts="Tag" data-ts.data="%5B%5B%22Vision%22%2C%5B%22Blindsight%22%2C%22Truesight%22%2C%22Darkvision%22%5D%5D%5D"></figure>
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+                <section>
                     <a data-ts="Button" href="/dist/components/times/">
                         <h3><span>Time</span></h3>
                     </a>

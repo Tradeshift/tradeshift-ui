@@ -1,0 +1,18 @@
+<!DOCTYPE edbml>
+<script>
+	<?param name="list" type="ts.ui.TagListModel"?>
+	
+	var id = list.$instanceid;
+	var tags = list.items;
+	
+	if(tags.length) {
+		<ul data-ts="Tags" id="${id}-tags">
+			tags.forEach(function (tag, index) {
+        <li id="${id}-${index}">
+    			out.html += tag.render();
+    		</li>
+      });
+		</ul>
+	}
+
+</script>

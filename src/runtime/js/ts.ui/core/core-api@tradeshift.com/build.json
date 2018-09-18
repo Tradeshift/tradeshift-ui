@@ -32,6 +32,9 @@
 	"models/notes/ts.ui.NoteModel.js",
 	"models/icons/ts.ui.IconModel.js",
 	"models/images/ts.ui.ImageModel.js",
+	"models/tags/ts.ui.TagModel.js",
+	"models/tags/ts.ui.TagCollection.js",
+	"models/tags/ts.ui.TagListModel.js",
 
 	"module.js"
 ]

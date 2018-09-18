@@ -111,6 +111,14 @@ gui.Type = {
 	},
 
 	/**
+	 * Is Map instance?
+	 * @returns {boolean}
+	 */
+	isMap: function(o) {
+		return o && o instanceof Map;
+	},
+
+	/**
 	 * Is function fit to be invoked via the "new" operator?
 	 * We assume so if the prototype reveals any properties.
 	 * @param {function} what

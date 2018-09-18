@@ -25,13 +25,13 @@
 			alignment-baseline="middle" +
 			font-size="${fontsize}" +
 			font-family="${stylesheet_url ? 'Open Sans' : 'Arial'}" +
-			font-weight="300" +
+			font-weight="400" +
 			fill="${col2}">${text}</text>
 	</svg>
 
-	/** 
-	 * Chrome apparently can't handle @import in SVG so we'll 
-	 * just inline the stylesheet until we figure this out. 
+	/**
+	 * Chrome apparently can't handle @import in SVG so we'll
+	 * just inline the stylesheet until we figure this out.
 	 * Must probably implement a more native SVG font setup.
 	 */
 	function stylesheet(imports) {
@@ -45,7 +45,7 @@
 	 }
 
 	/**
-	 * Get browser specific vertical allignment (for some reason). 
+	 * Get browser specific vertical allignment (for some reason).
 	 * TODO: Fine-tune this to the given `size` parameter
 	 * TODO: read comment about alignment on http://stackoverflow.com/questions/15422770/font-face-svg-not-working-properly-in-chrome
 	 * @param {object} Client

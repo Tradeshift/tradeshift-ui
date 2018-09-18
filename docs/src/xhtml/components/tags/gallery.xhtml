@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Tags</title>
+	<object data="tabs.xhtml"></object>
+</head>
+
+<body>
+<header data-ts="TopBar"></header>
+<main data-ts="Main" class="ts-bg-white">
+	<article>
+		<section>
+			<h3>Key-only</h3>
+			<figure data-ts="Tag">
+				<dl>
+					<dt>Key only</dt>
+				</dl>
+				<script type="text/edbml">
+					<figure	data-ts="Tag"	data-ts.data="Dragons!"></figure>
+				</script>
+				<output />
+			</figure>
+		</section>
+		<section>
+			<h3>Multiple Keys-only</h3>
+			<figure data-ts="Tag">
+				<script type="text/edbml">
+					<figure	data-ts="Tag"	data-ts.data="Dragons!"></figure>
+					<figure	data-ts="Tag"	data-ts.data="Unicorns!"></figure>
+					<figure	data-ts="Tag"	data-ts.data="Jackalopes!"></figure>
+				</script>
+				<output />
+			</figure>
+		</section>
+		<section>
+			<h3>Label-only</h3>
+			<figure data-ts="Tag">
+				<script type="text/edbml">
+					<figure	data-ts="Tag" data-ts.type="ts-success" data-ts.data="ts-success"></figure>
+				</script>
+				<output />
+			</figure>
+			<figure data-ts="Tag">
+				<script type="text/edbml">
+					<figure	data-ts="Tag" data-ts.type="ts-warning" data-ts.data="ts-warning"></figure>
+				</script>
+				<output />
+			</figure>
+			<figure data-ts="Tag">
+				<script type="text/edbml">
+					<figure	data-ts="Tag" data-ts.type="ts-danger" data-ts.data="ts-danger"></figure>
+				</script>
+				<output />
+			</figure>
+			<figure data-ts="Tag">
+				<script type="text/edbml">
+					<figure	data-ts="Tag" data-ts.type="ts-blue" data-ts.data="ts-blue"></figure>
+				</script>
+				<output />
+			</figure>
+			<figure data-ts="Tag">
+				<script type="text/edbml">
+					<figure	data-ts="Tag" data-ts.type="ts-success-lite" data-ts.data="ts-success-lite"></figure>
+				</script>
+				<output />
+			</figure>
+			<figure data-ts="Tag">
+				<script type="text/edbml">
+					<figure	data-ts="Tag" data-ts.type="ts-warning-lite" data-ts.data="ts-warning-lite"></figure>
+				</script>
+				<output />
+			</figure>
+			<figure data-ts="Tag">
+				<script type="text/edbml">
+					<figure	data-ts="Tag" data-ts.type="ts-danger-lite" data-ts.data="ts-danger-lite"></figure>
+				</script>
+				<output />
+			</figure>
+			<figure data-ts="Tag">
+				<script type="text/edbml">
+					<figure	data-ts="Tag" data-ts.type="ts-blue-lite" data-ts.data="ts-blue-lite"></figure>
+				</script>
+				<output />
+			</figure>
+		</section>
+		<section>
+			<h3>Value-only</h3>
+			<figure data-ts="Tag">
+				<script type="text/edbml">
+					<figure data-ts="Tag" data-ts.data="%5B%5Bnull%2C%22Roll%20a%20d20%22%5D%5D"></figure>
+				</script>
+				<output />
+			</figure>
+		</section>
+		<section>
+			<h3>Key-Value</h3>
+			<figure data-ts="Tag">
+				<script type="text/edbml">
+					<figure data-ts="Tag" data-ts.data="%5B%5B%22Area%20of%20Origin%22%2C%22The%20Sword%20Coast%22%5D%5D"></figure>
+				</script>
+			</figure>
+		</section>
+		<section>
+			<h3>Key with multiple values</h3>
+			<figure data-ts="Tag">
+				<script type="text/edbml">
+					<figure data-ts="Tag" data-ts.data="%5B%5B%22The%20Teeming%20Hive%20of%20Evil%22%2C%5B%22Skullport%22%2C%22Port%20of%20Shadows%22%5D%5D%5D"></figure>
+				</script>
+				<output />
+			</figure>
+		</section>
+		<section>
+			<h3>Multiple keys with single value</h3>
+			<figure data-ts="Tag">
+				<script type="text/edbml">
+					<figure data-ts="Tag" data-ts.data="%5B%5B%5B%22Facial%20Tentacles%22%2C%22Potent%20Psionics%22%5D%2C%22Mind%20Flayer%22%5D%5D"></figure>
+				</script>
+				<output />
+			</figure>
+		</section>
+		<section>
+			<h3>Multiple keys with multiple values</h3>
+			<figure data-ts="Tag">
+				<script type="text/edbml">
+					<figure data-ts="Tag" data-ts.data="%5B%5B%5B%22Magic-user%22%2C%22Undead%22%5D%2C%5B%22Lich%22%2C%22Vampire%22%5D%5D%5D"></figure>
+				</script>
+				<output />
+			</figure>
+		</section>
+		<section>
+			<h3>Optional label</h3>
+			<figure data-ts="Tag">
+				<script type="text/edbml">
+					<figure	data-ts="Tag"	data-ts.data="Dragons!"></figure>
+					<figure	data-ts="Tag"	data-ts.data="Unicorns!"></figure>
+					<figure	data-ts="Tag"	data-ts.data="Jackalopes!"></figure>
+				</script>
+				<output />
+			</figure>
+			<figure data-ts="Tag">
+				<script type="text/edbml">
+					<figure	data-ts="Tag" data-ts.type="ts-blue" data-ts.data="Mythical creatures"></figure>
+				</script>
+				<output />
+			</figure>
+		</section>
+		<section>
+			<h3>Optional icon</h3>
+			<figure data-ts="Tag">
+				<script type="text/edbml">
+					<figure data-ts="Tag" data-ts.icon="ts-icon-rating" data-ts.data="%5B%5B%22Dungeon%22%2C%22Tomb%20of%20Horrors%22%5D%5D"></figure>
+				</script>
+				<output/>
+			</figure>
+		</section>
+		<section>
+			<h3>Optional clickability</h3>
+			<figure id="tag-clickable" data-ts="Tag" data-ts.data="%5B%5B%22Vision%22%2C%5B%22Blindsight%22%2C%22Truesight%22%2C%22Darkvision%22%5D%5D%5D"></figure>
+			<script>
+				ts.ui.ready(() => {
+					ts.ui.get('#tag-clickable', tag => {
+						tag.onclick = () => {
+							ts.ui.Notification.success('Do you see?');
+						};
+					});
+				});
+			</script>
+		</section>
+		<section>
+			<h3>Optional delete button</h3>
+			<figure id="tag-deletable" data-ts="Tag" data-ts.data="%5B%5B%22Languages%22%2C%5B%22Sylvan%22%2C%22Common%22%2C%22Draconic%22%2C%22Giant%22%5D%5D%5D"></figure>
+			<script>
+				ts.ui.ready(() => {
+					ts.ui.get('#tag-deletable', tag => {
+						tag.ondelete = () => {
+							ts.ui.Notification.info('Tag disintegrated!');
+						}
+					});
+				});
+			</script>
+		</section>
+		<section>
+			<h3>Optional locked look</h3>
+			<figure data-ts="Tag">
+				<script type="text/edbml">
+					<figure data-ts="Tag" data-ts.locked="true" data-ts.data="%5B%5B%22Dungeon%22%2C%22Hidden%20Shrine%20of%20Tamoachan%22%5D%5D"></figure>
+				</script>
+				<output />
+			</figure>
+		</section>
+		<section>
+			<h3>List of Tags</h3>
+			<script>
+				ts.ui.ready(() => {
+					ts.ui.get('#tag-lich', tag => {
+						tag.data = new Map([
+							['Lich', 'Acererak']
+						]);
+						tag.icon = {
+							item: 'userimage',
+							name: 'Acererak',
+							src: 'assets/acererak.png'
+						};
+					});
+					ts.ui.get('#tag-beholder', tag => {
+						tag.data = new Map([
+							['Beholder', 'Xanathar']
+						]);
+						tag.icon = {
+							item: 'userimage',
+							name: 'Xanathar',
+							src: 'assets/xanathar.png'
+						};
+					});
+				});
+			</script>
+			<div>
+				<figure id="tag-lich" data-ts="Tag">
+				</figure>
+				<figure id="tag-beholder" data-ts="Tag">
+				</figure>
+			</div>
+		</section>
+	</article>
+</main>
+</body>
+
+</html>

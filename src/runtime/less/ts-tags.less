@@ -2,12 +2,12 @@
 
 // Tag .........................................................................
 
-@tag-padding: @ts-unit-quarter;
-@tag-margin: @ts-unit-quarter;
+@tag-padding: @ts-unit-half;
+@tag-margin: @ts-unit-half;
 @tag-spacing: @ts-unit-quarter;
-@tag-height: @ts-unit;
+@tag-height: @ts-unit-plus;
 @tag-icon-width: @tag-height;
-@tag-font-size: @ts-fontsize-small;
+@tag-font-size: @ts-fontsize;
 
 .ts-tag {
 	display: inline-flex;
@@ -183,7 +183,6 @@
 
 	// Locked look
 	&.ts-tag-locked {
-		padding-right: @tag-icon-width;
 		figcaption,
 		dd,
 		dt,
@@ -195,10 +194,10 @@
 		}
 		&:after {
 			.ts-mixin-icon(@ts-fontsize-medium);
-			position: absolute;
-			top: (@ts-unit - @ts-unit-half) + 1px;
-			right: @ts-unit-eighth; 
-			vertical-align: top;
+			.ts-mixin-fix(@tag-icon-width, @tag-height);
+			display: inline-block;
+			line-height: @tag-height;
+			color: @ts-medium;
 			content: 'V'; // ts-icon-locked
 		}
 		del {

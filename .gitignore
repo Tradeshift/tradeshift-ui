@@ -14,11 +14,11 @@ docs/screenshots/diffs/
 docs/screenshots/diffs.json
 
 # Temporary files
-tmp
-temp
-/dist
-public
-local-screenshots
+tmp/
+temp/
+dist/
+public/
+local-screenshots/
 integration_test/screenshots
 
 # IDE configs

@@ -1,7 +1,9 @@
 {
 	"name": "tradeshift-ui-docs",
 	"version": "0.0.0",
-	"versions": ["10.0.1-beta.0"],
+	"versions": [
+		"10.0.1-beta.0"
+	],
 	"private": true,
 	"devDependencies": {
 		"alce": "^1.2.0",

@@ -8,6 +8,10 @@ ts.ui.TableColModel = (function using(chained) {
 	// alphabetic sorting sequence
 	var SPECIAL = /[^A-z\d ]/gi;
 
+	// check if the string contains
+	// asian characters: https://stackoverflow.com/a/43419070
+	var ASIANCHARS = /[\u3040-\u30ff\u3400-\u4dbf\u4e00-\u9fff\uf900-\ufaff\uff66-\uff9f]/gi;
+
 	/**
 	 * Sort numerically.
 	 * @param {number} n1
@@ -43,11 +47,16 @@ ts.ui.TableColModel = (function using(chained) {
 
 	/**
 	 * This seems to tweak the alphabetical sorting favourably.
+	 * If the string contains Asian characters, return it as-is.
 	 * @param {string} string
 	 * @returns {string}
 	 */
 	function normalize(string) {
-		return string.toLowerCase().replace(SPECIAL, '');
+		if (string.match(ASIANCHARS)) {
+			return string;
+		} else {
+			return string.toLowerCase().replace(SPECIAL, '');
+		}
 	}
 
 	/**

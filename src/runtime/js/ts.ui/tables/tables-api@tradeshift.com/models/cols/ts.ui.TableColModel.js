@@ -5,8 +5,10 @@
  */
 ts.ui.TableColModel = (function using(chained) {
 	// remove special characters from
-	// alphabetic sorting sequence
-	var SPECIAL = /[^A-z\d ]/gi;
+	// alphabetic sorting sequence and also
+	// check if the string contains
+	// asian characters: https://stackoverflow.com/a/43419070
+	var SPECIAL = /[^A-z\u3040-\u30ff\u3400-\u4dbf\u4e00-\u9fff\uf900-\ufaff\uff66-\uff9f\d ]/gi;
 
 	/**
 	 * Sort numerically.

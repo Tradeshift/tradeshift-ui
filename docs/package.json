@@ -1,34 +1,35 @@
 {
-	"name": "tradeshift-ui-docs",
-	"version": "0.0.0",
-	"versions": [
-		"10.0.1-beta.0"
-	],
-	"private": true,
-	"devDependencies": {
-		"alce": "^1.2.0",
-		"browserstacktunnel-wrapper": "^2.0.0",
-		"chalk": "^1.1.3",
-		"cheerio": "0.22.0",
-		"es6-arrow-function": "^0.6.6",
-		"grunt": "^1.0.1",
-		"grunt-asciify": "^0.2.2",
-		"grunt-concurrent": "^2.3.0",
-		"grunt-contrib-clean": "^1.0.0",
-		"grunt-contrib-concat": "^1.0.1",
-		"grunt-contrib-connect": "^1.0.2",
-		"grunt-contrib-copy": "^1.0.0",
-		"grunt-contrib-less": "^1.3.0",
-		"grunt-contrib-uglify": "^3.0.1",
-		"grunt-contrib-watch": "^1.0.0",
-		"grunt-link-checker": "^0.2.0",
-		"grunt-spiritual-build": "^0.1.18",
-		"grunt-spiritual-edbml": "^0.3.0",
-		"image-diff": "^1.6.3",
-		"js-beautify": "^1.6.11",
-		"load-grunt-tasks": "^3.5.0",
-		"selenium-webdriver": "^3.3.0",
-		"serve-static": "^1.12.4",
-		"string": "^3.3.3"
-	}
+  "name": "tradeshift-ui-docs",
+  "version": "0.0.0",
+  "versions": [
+    "10.0.1-beta.0"
+  ],
+  "private": true,
+  "devDependencies": {
+    "alce": "^1.2.0",
+    "browserstacktunnel-wrapper": "^2.0.0",
+    "chalk": "^1.1.3",
+    "cheerio": "0.22.0",
+    "es6-arrow-function": "^0.6.6",
+    "grunt": "^1.0.1",
+    "grunt-asciify": "^0.2.2",
+    "grunt-concurrent": "^2.3.0",
+    "grunt-contrib-clean": "^1.0.0",
+    "grunt-contrib-concat": "^1.0.1",
+    "grunt-contrib-connect": "^1.0.2",
+    "grunt-contrib-copy": "^1.0.0",
+    "grunt-contrib-uglify": "^3.0.1",
+    "grunt-contrib-watch": "^1.0.0",
+    "grunt-exec": "^3.0.0",
+    "grunt-link-checker": "^0.2.0",
+    "grunt-spiritual-build": "^0.1.18",
+    "grunt-spiritual-edbml": "^0.3.0",
+    "image-diff": "^1.6.3",
+    "js-beautify": "^1.6.11",
+    "less": "^3.8.1",
+    "load-grunt-tasks": "^3.5.0",
+    "selenium-webdriver": "^3.3.0",
+    "serve-static": "^1.12.4",
+    "string": "^3.3.3"
+  }
 }

@@ -238,21 +238,6 @@ module.exports = function(grunt) {
 		},
 
 		postcss: {
-			compile_less_to_css: {
-				options: {
-					// parse less
-					parser: require('postcss-less-engine').parser,
-					processors: [
-						// understand less
-						require('postcss-less-engine')({
-							relativeUrls: true,
-							cleancss: false
-						})
-					]
-				},
-				files: { 'dist/ts.css': 'src/runtime/less/build.less' }
-			},
-
 			options: {
 				processors: [
 					// add .ts-device-mouse to all rules with :hover
@@ -407,6 +392,10 @@ module.exports = function(grunt) {
 
 		// execute command line stuff
 		exec: {
+			compile_less_to_css: {
+				command: './node_modules/.bin/lessc src/runtime/less/build.less dist/ts.css',
+				stdout: 'inherit'
+			},
 			s3_upload: {
 				command: 'npm run deploy-s3',
 				stdout: 'inherit'
@@ -506,7 +495,7 @@ module.exports = function(grunt) {
 
 	function compileAndMinifyLess(target = 'cdn') {
 		let out = [
-			'postcss:compile_less_to_css' // less -> css
+			'exec:compile_less_to_css' // less -> css
 		];
 		if (target === 'cdn') {
 			out.push('postcss:generate_minified_css'); // css -> min.css

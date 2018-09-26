@@ -6,3 +6,7 @@ ts.ui.DatePicker.localize({
 	dayNamesShort: ['日曜日', '月曜日', '火曜日', '水曜日', '木曜日', '金曜日', '土曜日'],
 	dayNamesMin: ['日曜', '月曜', '火曜', '水曜', '木曜', '金曜', '土曜']
 });
+
+ts.ui.Footer.localize({
+	collaboration: 'コラボレーションする'
+});

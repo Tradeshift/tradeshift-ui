@@ -32,3 +32,6 @@ ts.ui.DatePicker.localize({
 	dayNamesShort: ['Aha', 'Isn', 'Sel', 'Rab', 'kha', 'Jum', 'Sab'],
 	dayNamesMin: ['Ah', 'Is', 'Se', 'Ra', 'Kh', 'Ju', 'Sa']
 });
+ts.ui.Footer.localize({
+	collaboration: 'Bekerjasama Ini'
+});

@@ -6,32 +6,6 @@
  * @using {gui.Combo#chained} chained
  */
 ts.ui.FooterBarModel = (function using(PagerModel, ActionModel, chained) {
-	var translations = {
-		id: 'Berkolaborasi Pada Ini',
-		ms: 'Bekerjasama Ini',
-		es: 'Colabora En Esto',
-		da: 'Samarbejde På Dette',
-		de: 'Arbeite Daran',
-		'de-ch': 'Arbeite Daran',
-		'en-gb': 'Collaborate On This',
-		'en-us': 'Collaborate On This',
-		fr: 'Collaborer Sur Ce',
-		it: 'Collaborare Su Questo',
-		hu: 'Együttműködjenek Erről',
-		nl: 'Werk Hier Samen Aan',
-		'nb-no': 'Samarbeide På Dette',
-		pl: 'Współpracuj W Tym',
-		'pt-br': 'Colabore Com Isso',
-		'pt-pt': 'Colabore Com Isso',
-		ro: 'Colaborați Pe Acest Lucru',
-		sk: 'Spolupracujte Na Tom',
-		fi: 'Tee Yhteistyötä Tämän Kanssa',
-		'sv-se': 'Samarbeta På Detta',
-		ja: 'コラボレーションする',
-		'zh-cn': '合作就此',
-		'zh-tw': '合作就此'
-	};
-
 	return ts.ui.Model.extend({
 		/**
 		 * Friendly name.
@@ -186,7 +160,7 @@ ts.ui.FooterBarModel = (function using(PagerModel, ActionModel, chained) {
 				actions.clear();
 				if (onclick !== null) {
 					actions.push({
-						label: translations[document.documentElement.lang],
+						label: ts.ui.Footer.localize().collaboration,
 						icon: 'ts-icon-collaboration',
 						onclick: onclick
 					});

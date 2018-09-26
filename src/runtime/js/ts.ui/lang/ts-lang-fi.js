@@ -40,3 +40,6 @@ ts.ui.DatePicker.localize({
 	dayNamesShort: ['Sun', 'Maa', 'Tii', 'Kes', 'Tor', 'Per', 'Lau'],
 	dayNamesMin: ['Su', 'Ma', 'Ti', 'Ke', 'To', 'Pe', 'La']
 });
+ts.ui.Footer.localize({
+	collaboration: 'Tee Yhteistyötä Tämän Kanssa'
+});

@@ -6,3 +6,6 @@ ts.ui.DatePicker.localize({
 	dayNamesShort: ['週日', '週一', '週二', '週三', '週四', '週五', '週六'],
 	dayNamesMin: ['日', '一', '二', '三', '四', '五', '六']
 });
+ts.ui.Footer.localize({
+	collaboration: '合作就此'
+});

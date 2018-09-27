@@ -5,26 +5,24 @@
     <title>Button</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
-    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-10.0.28.min.js"></script>
+    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-10.1.0.min.js"></script>
     <script src="/v10/dist/assets/dox.min.js"></script>
     <script src="/v10/dist/assets/mark.min.js"></script>
     <script src="/v10/dist/assets/jquery-2.2.4.min.js"></script>
-    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-10.0.28.min.css">
+    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-10.1.0.min.css">
     <link rel="stylesheet" href="/v10/dist/assets/dox.css">
     <link rel="prefetch" title="Button" href="index.html">
     <link rel="prefetch" title="Buttons" href="buttons.html">
     <link rel="prefetch" title="Gallery" href="gallery.html">
     <script>
         function spin(selector) {
-            $(selector).attr("data-ts.busy", true);
-            setTimeout(function() {
-                $(selector).attr("data-ts.busy", false);
-            }, 3000);
-        }
-    </script>
-    <script>
-        ts.dox.tabs()
-    </script>
+				$(selector).attr("data-ts.busy", true);
+				setTimeout(function() {
+					$(selector).attr("data-ts.busy", false);
+				}, 3000);
+			}
+		</script>
+    <script>ts.dox.tabs()</script>
 </head>
 
 <body>
@@ -42,8 +40,8 @@
                         <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Atrue%2C%22runs%22%3Afalse%2C%22flip%22%3Atrue%7D">
                         <div class="tabpanels">
                             <div class="output"><button data-ts="Button">
-	<span>Default Button</span>
-</button></div>
+                                    <span>Default Button</span>
+                                </button></div>
                             <pre class="prism language-markup">
 <code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Button<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">&gt;</span></span>Default Button<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span>
@@ -56,14 +54,14 @@
                         <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Atrue%2C%22runs%22%3Afalse%2C%22flip%22%3Atrue%7D">
                         <div class="tabpanels">
                             <div class="output"><button data-ts="Button" class="ts-primary">
-	<span>Primary</span>
-</button>
+                                    <span>Primary</span>
+                                </button>
                                 <button data-ts="Button" class="ts-secondary">
-	<span>Secondary</span>
-</button>
+                                    <span>Secondary</span>
+                                </button>
                                 <button data-ts="Button" class="ts-tertiary">
-	<span>Tertiary</span>
-</button></div>
+                                    <span>Tertiary</span>
+                                </button></div>
                             <pre class="prism language-markup">
 <code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Button<span class="token punctuation">&quot;</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>ts-primary<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">&gt;</span></span>Primary<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span>
@@ -83,9 +81,9 @@
                         <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Atrue%2C%22runs%22%3Afalse%2C%22flip%22%3Atrue%7D">
                         <div class="tabpanels">
                             <div class="output"><button data-ts="Button" class="ts-primary">
-	<span style="display:none;">Button Text</span>
-	<i class="ts-icon-arrowright"></i>
-</button></div>
+                                    <span style="display:none;">Button Text</span>
+                                    <i class="ts-icon-arrowright"></i>
+                                </button></div>
                             <pre class="prism language-markup">
 <code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Button<span class="token punctuation">&quot;</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>ts-primary<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span> <span class="token attr-name">style</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>display:none;<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>Button Text<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span>
@@ -104,9 +102,9 @@
                         <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Atrue%2C%22runs%22%3Afalse%2C%22flip%22%3Atrue%7D">
                         <div class="tabpanels">
                             <div class="output"><button data-ts="Button" class="ts-primary">
-	<span class="ts-hide-mobile-only">Hidden In Mobile</span>
-	<i class="ts-show-mobile-only ts-icon-arrowright"></i>
-</button></div>
+                                    <span class="ts-hide-mobile-only">Hidden In Mobile</span>
+                                    <i class="ts-show-mobile-only ts-icon-arrowright"></i>
+                                </button></div>
                             <pre class="prism language-markup">
 <code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Button<span class="token punctuation">&quot;</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>ts-primary<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>ts-hide-mobile-only<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>Hidden In Mobile<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span>
@@ -129,8 +127,8 @@
                     </figure>
                     <p>
                         <button data-ts="Button" class="ts-primary" id="mybutton" onclick="spin(&apos;#mybutton&apos;)">
-							<span>show spinner</span>
-						</button>
+                            <span>show spinner</span>
+                        </button>
                     </p>
                     <h3><span>Micro Button</span></h3>
                     <p>You can add class <code class="attr-name">ts-micro</code> to get a micro button.</p>
@@ -138,14 +136,14 @@
                         <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Atrue%2C%22runs%22%3Afalse%2C%22flip%22%3Atrue%7D">
                         <div class="tabpanels">
                             <div class="output"><button data-ts="Button" class="ts-primary ts-micro">
-	<span>Primary</span>
-</button>
+                                    <span>Primary</span>
+                                </button>
                                 <button data-ts="Button" class="ts-secondary ts-micro">
-	<span>Secondary</span>
-</button>
+                                    <span>Secondary</span>
+                                </button>
                                 <button data-ts="Button" class="ts-tertiary ts-micro">
-	<span>Tertiary</span>
-</button></div>
+                                    <span>Tertiary</span>
+                                </button></div>
                             <pre class="prism language-markup">
 <code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Button<span class="token punctuation">&quot;</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>ts-primary ts-micro<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">&gt;</span></span>Primary<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span>
@@ -171,8 +169,8 @@
         <menu class="ts-buttons">
             <li>
                 <a data-ts="Button" target="_blank" href="https://github.com/Tradeshift/tradeshift-ui/issues/new" title="Submit new issue" class="ts-secondary">
-		          <span>Create GitHub Issue&#x2026;</span>
-		        </a>
+                    <span>Create GitHub Issue&#x2026;</span>
+                </a>
             </li>
         </menu>
     </aside>

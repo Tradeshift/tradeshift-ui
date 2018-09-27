@@ -5,11 +5,11 @@
     <title>Table Config</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
-    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-10.0.28.min.js"></script>
+    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-10.1.0.min.js"></script>
     <script src="/v10/dist/assets/dox.min.js"></script>
     <script src="/v10/dist/assets/mark.min.js"></script>
     <script src="/v10/dist/assets/jquery-2.2.4.min.js"></script>
-    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-10.0.28.min.css">
+    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-10.1.0.min.css">
     <link rel="stylesheet" href="/v10/dist/assets/dox.css">
     <link rel="prefetch" title="Table" href="index.html">
     <link rel="prefetch" title="Build" href="building.html">
@@ -34,9 +34,7 @@
     <link rel="prefetch" title="Angular" href="angular.html" class="hidden">
     <link rel="prefetch" title="Gutter" href="gutter.html" class="hidden">
     <link rel="prefetch" title="Gallery" href="gallery.html" class="hidden">
-    <script>
-        ts.dox.tabs()
-    </script>
+    <script>ts.dox.tabs()</script>
 </head>
 
 <body class="nosticky">
@@ -52,8 +50,17 @@
                             <li>
                                 <figure data-ts="DoxScript" class="runnable" data-ts.code="var%20popup%20%3D%20ts.ui.Notification%3B%0Ats.ui.get(&apos;%23table1&apos;%2C%20function(table)%20%7B%0A%09table.configbutton(function%20onclick()%20%7B%0A%09%09popup.success(&apos;Go%20configure!&apos;)%3B%0A%09%7D).cols(%5B&apos;A&apos;%2C%20&apos;B&apos;%2C%20&apos;C&apos;%2C%20&apos;D&apos;%5D).rows(%5B%0A%09%09%5B1%2C%204%2C%207%2C%2010%5D%2C%0A%09%09%5B2%2C%205%2C%208%2C%2011%5D%2C%0A%09%09%5B3%2C%206%2C%209%2C%2012%5D%0A%09%5D)%3B%0A%7D)%3B">
                                     <script type="runnable">
-                                        var popup = ts.ui.Notification; ts.ui.get('#table1', table => { table.configbutton(function onclick() { popup.success('Go configure!'); }).cols(['A', 'B', 'C', 'D']).rows([ [1, 4, 7, 10], [2, 5, 8, 11], [3, 6, 9, 12] ]); });
-                                    </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                                        var popup = ts.ui.Notification;
+									ts.ui.get('#table1', table => {
+										table.configbutton(function onclick() {
+											popup.success('Go configure!');
+										}).cols(['A', 'B', 'C', 'D']).rows([
+											[1, 4, 7, 10],
+											[2, 5, 8, 11],
+											[3, 6, 9, 12]
+										]);
+									});
+								</script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                                     <div class="tabpanels">
                                         <pre class="prism language-javascript">
 <code><span class="token keyword">var</span> popup <span class="token operator">=</span> ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Notification<span class="token punctuation">;</span>
@@ -75,12 +82,21 @@ ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</s
                             </li>
                         </ul>
                     </div>
-                    <p>The button triggers a callback, but there is otherwise no default UI associated. Since the visibility of columns is always a candidate for configuration, the <code>ColModel</code> supports a <code>visible</code> property that can be
-                        used to hide columns.</p>
+                    <p>The button triggers a callback, but there is otherwise no default UI associated. Since the visibility of columns is always a candidate for configuration, the <code>ColModel</code> supports a <code>visible</code> property that can be used to hide columns.</p>
                     <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.get(&apos;%23table1&apos;%2C%20function(table)%20%7B%0A%09var%20cols%20%3D%20table.cols()%3B%0A%09(function%20hide(index)%20%7B%0A%09%09cols%5Bindex%5D.visible%20%3D%20false%3B%0A%09%09if(index)%20%7B%0A%09%09%09setTimeout(function%20next()%20%7B%0A%09%09%09%09hide(--index)%3B%0A%09%09%09%7D%2C%201000)%3B%0A%09%09%7D%0A%09%7D(3))%3B%0A%7D)%3B">
                         <script type="runnable">
-                            ts.ui.get('#table1', table => { var cols = table.cols(); (function hide(index) { cols[index].visible = false; if(index) { setTimeout(function next() { hide(--index); }, 1000); } }(3)); });
-                        </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                            ts.ui.get('#table1', table => {
+								var cols = table.cols();
+								(function hide(index) {
+									cols[index].visible = false;
+									if(index) {
+										setTimeout(function next() {
+											hide(--index);
+										}, 1000);
+									}
+								}(3));
+							});
+						</script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                         <div class="tabpanels">
                             <pre class="prism language-javascript">
 <code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#table1&apos;</span><span class="token punctuation">,</span> table <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>

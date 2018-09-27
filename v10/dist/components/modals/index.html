@@ -5,51 +5,44 @@
     <title>Modal</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
-    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-10.0.28.min.js"></script>
+    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-10.1.0.min.js"></script>
     <script src="/v10/dist/assets/dox.min.js"></script>
     <script src="/v10/dist/assets/mark.min.js"></script>
     <script src="/v10/dist/assets/jquery-2.2.4.min.js"></script>
-    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-10.0.28.min.css">
+    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-10.1.0.min.css">
     <link rel="stylesheet" href="/v10/dist/assets/dox.css">
     <meta name="robots" content="noindex">
     <script>
         ts.ui.ready(function() { // TODO: build this stuff into the APITable!
-            var method;
-            ts.ui.get('html').action.add('ts-action-safe-link', {
-                onaction: function(a) {
-                    if ((method = ts.ui.ToolBar[a.data])) {
-                        method.call(ts.ui.ToolBar);
-                    }
-                }
-            })
-        });
-
-        function spinner() {
-            var modal = ts.ui.get('#example4')
-
-            function load(page) {
-                modal.spin();
-                setTimeout(function throttle() {
-                    $.get(page, function(html) {
-                        modal.html(html).stop();
-                    });
-                }, 200);
-            }
-            modal.tabs([{
-                    label: 'Page One',
-                    onselect: function() {
-                        load('page1.html');
-                    }
-                },
-                {
-                    label: 'Page Two',
-                    onselect: function() {
-                        load('page2.html');
-                    }
-                },
-            ]).open();
-        }
-    </script>
+				var method;
+				ts.ui.get('html').action.add('ts-action-safe-link', {
+					onaction: function(a) {
+						if((method = ts.ui.ToolBar[a.data])) {
+							method.call(ts.ui.ToolBar);
+						}
+					}
+				})
+			});
+			function spinner() {
+				var modal = ts.ui.get('#example4')
+				function load(page) {
+					modal.spin();
+					setTimeout(function throttle() {
+						$.get(page, function(html) {
+							modal.html(html).stop();
+						});
+					}, 200);
+				}
+				modal.tabs([
+					{label: 'Page One', onselect: function() {
+						load('page1.html');
+					}},
+					{label: 'Page Two',  onselect: function() {
+						load('page2.html');
+					}},
+				]).open();
+			}
+		</script>
 </head>
 
 <body>
@@ -66,11 +59,11 @@
                     <figure data-ts="DoxMarkup" data-ts.code="%3Cdialog%20data-ts%3D%22Modal%22%3E%0A%09%3Cdiv%20data-ts%3D%22Panel%22%3E%0A%09%09%3Cp%3EModal%20content.%3C%2Fp%3E%0A%09%3C%2Fdiv%3E%0A%3C%2Fdialog%3E">
                         <script type="text/html">
                             <dialog data-ts="Modal">
-                                <div data-ts="Panel">
-                                    <p>Modal content.</p>
-                                </div>
-                            </dialog>
-                        </script><input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
+								<div data-ts="Panel">
+									<p>Modal content.</p>
+								</div>
+							</dialog>
+						</script><input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
                         <div class="tabpanels">
                             <pre class="prism language-markup">
 <code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dialog</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Modal<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
@@ -85,14 +78,14 @@
                     <figure data-ts="DoxMarkup" data-ts.code="%3Cmain%20data-ts%3D%22Main%22%3E%0A%09%3Cp%3EMain%20content.%3C%2Fp%3E%0A%3C%2Fmain%3E%0A%3Cdialog%20data-ts%3D%22Modal%22%20data-ts.title%3D%22Example%20Modal%22%3E%0A%09%3Cdiv%20data-ts%3D%22Panel%22%3E%0A%09%09%3Cp%3EModal%20content.%3C%2Fp%3E%0A%09%3C%2Fdiv%3E%0A%3C%2Fdialog%3E">
                         <script type="text/html">
                             <main data-ts="Main">
-                                <p>Main content.</p>
-                            </main>
-                            <dialog data-ts="Modal" data-ts.title="Example Modal">
-                                <div data-ts="Panel">
-                                    <p>Modal content.</p>
-                                </div>
-                            </dialog>
-                        </script><input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
+								<p>Main content.</p>
+							</main>
+							<dialog data-ts="Modal" data-ts.title="Example Modal">
+								<div data-ts="Panel">
+									<p>Modal content.</p>
+								</div>
+							</dialog>
+						</script><input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
                         <div class="tabpanels">
                             <pre class="prism language-markup">
 <code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>main</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Main<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
@@ -113,19 +106,19 @@
                     <figure data-ts="DoxMarkup" data-ts.code="%3Cdialog%20data-ts%3D%22Modal%22%20id%3D%22example1%22%3E%0A%09%3Cdiv%20data-ts%3D%22Panel%22%3E%0A%09%09%3Cmain%20data-ts%3D%22Main%22%3E%0A%09%09%09%3Ch1%3EA%20Modal%20Example%3C%2Fh1%3E%0A%09%09%09%3Cp%3E%E2%80%A6%3C%2Fp%3E%0A%09%09%09%3Cp%3E%0A%09%09%09%09%3Cbutton%20onclick%3D%22ts.ui.get(&apos;%23example1&apos;).close()%22%20class%3D%22ts-primary%22%3E%0A%09%09%09%09%09%3Cspan%3EClose%20the%20Modal%3C%2Fspan%3E%0A%09%09%09%09%3C%2Fbutton%3E%0A%09%09%09%3C%2Fp%3E%0A%09%09%3C%2Fmain%3E%0A%09%3C%2Fdiv%3E%0A%3C%2Fdialog%3E">
                         <script type="text/html">
                             <dialog data-ts="Modal" id="example1">
-                                <div data-ts="Panel">
-                                    <main data-ts="Main">
-                                        <h1>A Modal Example</h1>
-                                        <p>…</p>
-                                        <p>
-                                            <button onclick="ts.ui.get('#example1').close()" class="ts-primary">
+								<div data-ts="Panel">
+									<main data-ts="Main">
+										<h1>A Modal Example</h1>
+										<p>…</p>
+										<p>
+											<button onclick="ts.ui.get('#example1').close()" class="ts-primary">
 												<span>Close the Modal</span>
 											</button>
-                                        </p>
-                                    </main>
-                                </div>
-                            </dialog>
-                        </script><input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
+										</p>
+									</main>
+								</div>
+							</dialog>
+						</script><input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
                         <div class="tabpanels">
                             <pre class="prism language-markup">
 <code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dialog</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Modal<span class="token punctuation">&quot;</span></span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>example1<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
@@ -144,12 +137,11 @@
 </pre>
                         </div>
                     </figure>
-                    <p>Let&apos;s see how that looks. To open the Modal, you can either set the <code class="attr-pair"><span>data-ts.open</span></code> attribute to <code class="attr-value">true</code> (using jQuery or something like that) or you can use
-                        the following API.</p>
+                    <p>Let&apos;s see how that looks. To open the Modal, you can either set the <code class="attr-pair"><span>data-ts.open</span></code> attribute to <code class="attr-value">true</code> (using jQuery or something like that) or you can use the following API.</p>
                     <figure data-ts="DoxScript" class="attention runnable" data-ts.code="ts.ui.get(&apos;%23example1&apos;).open()%3B%20%2F%2F%20you%20can%20pass%20an%20element%20instead%20of%20an%20ID">
                         <script type="runnable">
                             ts.ui.get('#example1').open(); // you can pass an element instead of an ID
-                        </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+						</script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                         <div class="tabpanels">
                             <pre class="prism language-javascript">
 <code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#example1&apos;</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">open<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// you can pass an element instead of an ID</span></code>
@@ -159,12 +151,19 @@
                 </section>
                 <section>
                     <h3><span>Adding some buttons</span></h3>
-                    <p>Buttons can be added as part of the content, but some Modals work better when the buttons are presented in a fixed StatusBar, for example when there is a lot of content (and scrolling). These buttons can be added using the API we know
-                        from the <a data-ts="Button" href="/v10/dist/components/bars/toolbar.html">ToolBar</a>.</p>
+                    <p>Buttons can be added as part of the content, but some Modals work better when the buttons are presented in a fixed StatusBar, for example when there is a lot of content (and scrolling). These buttons can be added using the API we know from the <a data-ts="Button" href="/v10/dist/components/bars/toolbar.html">ToolBar</a>.</p>
                     <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.get(&apos;%23example2&apos;%2C%20function(modal)%20%7B%0A%09modal.buttons(%5B%7B%0A%09%09label%3A%20&apos;Close%20the%20Modal&apos;%2C%0A%09%09type%3A%20&apos;ts-primary&apos;%2C%0A%09%09onclick%3A%20function()%20%7B%0A%09%09%09modal.close()%3B%0A%09%09%7D%0A%09%7D%5D).open()%3B%0A%7D)%3B">
                         <script type="runnable">
-                            ts.ui.get('#example2', modal => { modal.buttons([{ label: 'Close the Modal', type: 'ts-primary', onclick: function() { modal.close(); } }]).open(); });
-                        </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                            ts.ui.get('#example2', modal => {
+							modal.buttons([{
+								label: 'Close the Modal',
+								type: 'ts-primary',
+								onclick: function() {
+									modal.close();
+								}
+							}]).open();
+						});
+						</script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                         <div class="tabpanels">
                             <pre class="prism language-javascript">
 <code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#example2&apos;</span><span class="token punctuation">,</span> modal <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
@@ -196,8 +195,16 @@
                     <p>There&apos;s two ways to add tabs and one of them is likely to fit your workflow. First, we will add some tabs to the example modal using the API we know from the <a data-ts="Button" href="/v10/dist/components/bars/tabbar.html">TabBar</a>.</p>
                     <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.get(&apos;%23example1&apos;%2C%20function(modal)%20%7B%0A%09modal.tabs(%5B%0A%09%09%7Blabel%3A%20&apos;One&apos;%7D%2C%0A%09%09%7Blabel%3A%20&apos;Two&apos;%7D%2C%0A%09%09%7Blabel%3A%20&apos;Three&apos;%2C%20onselect%3A%20function()%20%7B%0A%09%09%09console.log(&apos;Tab%20three%20selected!&apos;)%3B%0A%09%09%7D%7D%2C%0A%09%5D).open()%3B%0A%7D)%3B">
                         <script type="runnable">
-                            ts.ui.get('#example1', modal => { modal.tabs([ {label: 'One'}, {label: 'Two'}, {label: 'Three', onselect: function() { console.log('Tab three selected!'); }}, ]).open(); });
-                        </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                            ts.ui.get('#example1', modal => {
+							modal.tabs([
+								{label: 'One'},
+								{label: 'Two'},
+								{label: 'Three', onselect: function() {
+									console.log('Tab three selected!');
+								}},
+							]).open();
+						});
+						</script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                         <div class="tabpanels">
                             <pre class="prism language-javascript">
 <code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#example1&apos;</span><span class="token punctuation">,</span> modal <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
@@ -212,20 +219,19 @@
 </pre>
                         </div>
                     </figure>
-                    <p>The tabs don&quot;t do anything by default, so what happens at <code>onselect</code> is completely up to you. If you decice to go with this approach, you should make sure to read the section on <a href="#busy-and-done">busy and done</a>                        further down the page.</p>
-                    <p>The alternative approach is to declare multiple <code class="attr-value">Panel</code> elements with a <code class="attr-pair"><span>data-ts.label</span></code> attribute and this will generate the tabs automatically as seen in <a data-ts="Button"
-                            onclick="ts.ui.get(&apos;#example3&apos;).open()">this example</a>.</p>
+                    <p>The tabs don&quot;t do anything by default, so what happens at <code>onselect</code> is completely up to you. If you decice to go with this approach, you should make sure to read the section on <a href="#busy-and-done">busy and done</a> further down the page.</p>
+                    <p>The alternative approach is to declare multiple <code class="attr-value">Panel</code> elements with a <code class="attr-pair"><span>data-ts.label</span></code> attribute and this will generate the tabs automatically as seen in <a data-ts="Button" onclick="ts.ui.get(&apos;#example3&apos;).open()">this example</a>.</p>
                     <figure data-ts="DoxMarkup" data-ts.code="%3Cdialog%20data-ts%3D%22Modal%22%3E%0A%09%3Cdiv%20data-ts%3D%22Panel%22%20data-ts.label%3D%22Details%22%3E%0A%09%09%3Cmain%20data-ts%3D%22Main%22%3E%E2%80%A6%3C%2Fmain%3E%0A%09%3C%2Fdiv%3E%0A%09%3Cdiv%20data-ts%3D%22Panel%22%20data-ts.label%3D%22More%20Details%22%3E%0A%09%09%3Cmain%20data-ts%3D%22Main%22%3E%E2%80%A6%3C%2Fmain%3E%0A%09%3C%2Fdiv%3E%0A%3C%2Fdialog%3E">
                         <script type="text/html">
                             <dialog data-ts="Modal">
-                                <div data-ts="Panel" data-ts.label="Details">
-                                    <main data-ts="Main">…</main>
-                                </div>
-                                <div data-ts="Panel" data-ts.label="More Details">
-                                    <main data-ts="Main">…</main>
-                                </div>
-                            </dialog>
-                        </script><input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
+								<div data-ts="Panel" data-ts.label="Details">
+									<main data-ts="Main">…</main>
+								</div>
+								<div data-ts="Panel" data-ts.label="More Details">
+									<main data-ts="Main">…</main>
+								</div>
+							</dialog>
+						</script><input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
                         <div class="tabpanels">
                             <pre class="prism language-markup">
 <code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dialog</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Modal<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
@@ -262,13 +268,28 @@
                 </section>
                 <section id="busy-and-done">
                     <h3><span>Busy and done</span></h3>
-                    <p>If you are loading the Modal tabs incrementally (so that the content is not hardcoded inside <code class="attr-value">Panels</code>), you may want to mark the Modal as <code>busy()</code> and <code>done()</code> to hide the content
-                        while loading. Importantly, if you are using <code class="attr-value">Main</code> to center the content, this will also instruct the Modal to center the the newly loaded content all over again.</p>
+                    <p>If you are loading the Modal tabs incrementally (so that the content is not hardcoded inside <code class="attr-value">Panels</code>), you may want to mark the Modal as <code>busy()</code> and <code>done()</code> to hide the content while loading. Importantly, if you are using <code class="attr-value">Main</code> to center the content, this will also instruct the Modal to center the the newly loaded content all over again.</p>
                     <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.get(&apos;%23example4&apos;%2C%20function(modal)%20%7B%0A%09function%20load(page)%20%7B%0A%09%09modal.busy()%3B%0A%09%09setTimeout(function%20throttle()%20%7B%0A%09%09%09%24.get(page%2C%20function(html)%20%7B%0A%09%09%09%09modal.html(html).done()%3B%0A%09%09%09%7D)%3B%0A%09%09%7D%2C%20200)%3B%0A%09%7D%0A%09modal.tabs(%5B%0A%09%09%7Blabel%3A%20&apos;Page%20One&apos;%2C%20onselect%3A%20function()%20%7B%0A%09%09%09load(&apos;page1.html&apos;)%3B%0A%09%09%7D%7D%2C%0A%09%09%7Blabel%3A%20&apos;Page%20Two&apos;%2C%20%20onselect%3A%20function()%20%7B%0A%09%09%09load(&apos;page2.html&apos;)%3B%0A%09%09%7D%7D%2C%0A%09%5D).open()%3B%0A%7D)%3B">
                         <script type="runnable">
-                            ts.ui.get('#example4', modal => { function load(page) { modal.busy(); setTimeout(function throttle() { $.get(page, function(html) { modal.html(html).done(); }); }, 200); } modal.tabs([ {label: 'Page One', onselect: function() { load('page1.html'); }},
-                            {label: 'Page Two', onselect: function() { load('page2.html'); }}, ]).open(); });
-                        </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                            ts.ui.get('#example4', modal => {
+								function load(page) {
+									modal.busy();
+									setTimeout(function throttle() {
+										$.get(page, function(html) {
+											modal.html(html).done();
+										});
+									}, 200);
+								}
+								modal.tabs([
+									{label: 'Page One', onselect: function() {
+										load('page1.html');
+									}},
+									{label: 'Page Two',  onselect: function() {
+										load('page2.html');
+									}},
+								]).open();
+							});
+						</script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                         <div class="tabpanels">
                             <pre class="prism language-javascript">
 <code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#example4&apos;</span><span class="token punctuation">,</span> modal <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
@@ -320,12 +341,16 @@
                     <p>If you return <code>false</code> in methods <code>onopen</code> and <code>onclose</code>, the Modal will respect that. You can also setup inline callbacks to be invoked when the Modal changes state.</p>
                     <figure data-ts="DoxMarkup" data-ts.code="%3Cdialog%20data-ts%3D%22Modal%22%0A%09data-ts.onopen%3D%22console.log(&apos;Will%20open&apos;)%22%0A%09data-ts.onopened%3D%22console.log(&apos;Did%20open&apos;)%22%0A%09data-ts.onclose%3D%22console.log(&apos;Will%20close&apos;)%22%0A%09data-ts.onclosed%3D%22console.log(&apos;Did%20close&apos;)%22%3E%0A%09%3Cdiv%20data-ts%3D%22Panel%22%3E%0A%09%09%3Cp%3EModal%20content.%3C%2Fp%3E%0A%09%3C%2Fdiv%3E%0A%3C%2Fdialog%3E">
                         <script type="text/html">
-                            <dialog data-ts="Modal" data-ts.onopen="console.log('Will open')" data-ts.onopened="console.log('Did open')" data-ts.onclose="console.log('Will close')" data-ts.onclosed="console.log('Did close')">
-                                <div data-ts="Panel">
-                                    <p>Modal content.</p>
-                                </div>
-                            </dialog>
-                        </script><input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
+                            <dialog data-ts="Modal"
+								data-ts.onopen="console.log('Will open')"
+								data-ts.onopened="console.log('Did open')"
+								data-ts.onclose="console.log('Will close')"
+								data-ts.onclosed="console.log('Did close')">
+								<div data-ts="Panel">
+									<p>Modal content.</p>
+								</div>
+							</dialog>
+						</script><input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
                         <div class="tabpanels">
                             <pre class="prism language-markup">
 <code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dialog</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Modal<span class="token punctuation">&quot;</span></span>
@@ -376,12 +401,11 @@ document<span class="token punctuation">.</span><span class="token function">add
                     <i class="ts-icon-info"></i>
                     <p>The suggested &quot;modal layout&quot; markup structure and CSS has not been finalized yet.</p>
                 </div>
-                <p>Modal ipsum dolor amet jerky sausage pork belly tenderloin burgdoggen kevin prosciutto beef ribs shoulder tri-tip salami ribeye turducken rump. Rump prosciutto ham, kevin picanha drumstick chuck pork chop. Short ribs tail shank, alcatra
-                    kevin spare ribs meatloaf beef. Pork loin salami flank andouille prosciutto chuck bresaola sirloin ribeye. Bacon picanha salami filet mignon capicola beef ribs. Venison jowl meatloaf jerky porchetta, brisket shank picanha.</p>
+                <p>Modal ipsum dolor amet jerky sausage pork belly tenderloin burgdoggen kevin prosciutto beef ribs shoulder tri-tip salami ribeye turducken rump. Rump prosciutto ham, kevin picanha drumstick chuck pork chop. Short ribs tail shank, alcatra kevin spare ribs meatloaf beef. Pork loin salami flank andouille prosciutto chuck bresaola sirloin ribeye. Bacon picanha salami filet mignon capicola beef ribs. Venison jowl meatloaf jerky porchetta, brisket shank picanha.</p>
                 <p>
                     <button onclick="ts.ui.get(&apos;#example1&apos;).close()" data-ts="Button" class="ts-primary">
-							<span>Close the Modal</span>
-						</button>
+                        <span>Close the Modal</span>
+                    </button>
                 </p>
             </main>
         </div>
@@ -390,9 +414,7 @@ document<span class="token punctuation">.</span><span class="token function">add
         <div data-ts="Panel">
             <main data-ts="Main">
                 <h1><span>A Modal Example</span></h1>
-                <p>Bacon ipsum dolor amet jerky sausage pork belly tenderloin burgdoggen kevin prosciutto beef ribs shoulder tri-tip salami ribeye turducken rump. Rump prosciutto ham, kevin picanha drumstick chuck pork chop. Short ribs tail shank, alcatra
-                    kevin spare ribs meatloaf beef. Pork loin salami flank andouille prosciutto chuck bresaola sirloin ribeye. Bacon picanha salami filet mignon capicola beef ribs. Venison jowl meatloaf jerky porchetta, brisket shank picanha drumstick
-                    capicola frankfurter.</p>
+                <p>Bacon ipsum dolor amet jerky sausage pork belly tenderloin burgdoggen kevin prosciutto beef ribs shoulder tri-tip salami ribeye turducken rump. Rump prosciutto ham, kevin picanha drumstick chuck pork chop. Short ribs tail shank, alcatra kevin spare ribs meatloaf beef. Pork loin salami flank andouille prosciutto chuck bresaola sirloin ribeye. Bacon picanha salami filet mignon capicola beef ribs. Venison jowl meatloaf jerky porchetta, brisket shank picanha drumstick capicola frankfurter.</p>
             </main>
         </div>
     </dialog>
@@ -403,15 +425,15 @@ document<span class="token punctuation">.</span><span class="token function">add
                 <form data-ts="Form">
                     <fieldset>
                         <label>
-								<span>Real name</span>
-								<input>
-							</label>
+                            <span>Real name</span>
+                            <input>
+                        </label>
                     </fieldset>
                     <fieldset>
                         <label>
-								<span>Username</span>
-								<input>
-							</label>
+                            <span>Username</span>
+                            <input>
+                        </label>
                     </fieldset>
                 </form>
             </main>
@@ -422,19 +444,19 @@ document<span class="token punctuation">.</span><span class="token function">add
                 <form data-ts="Form">
                     <fieldset>
                         <label>
-								<span>Age</span>
-								<input type="number">
-							</label>
+                            <span>Age</span>
+                            <input type="number">
+                        </label>
                     </fieldset>
                     <fieldset>
                         <label>
-								<span>Occupation</span>
-								<select>
-									<option value="a" selected>Developer</option>
-									<option value="b">Designer</option>
-									<option value="c">Manager</option>
-								</select>
-							</label>
+                            <span>Occupation</span>
+                            <select>
+                                <option value="a" selected>Developer</option>
+                                <option value="b">Designer</option>
+                                <option value="c">Manager</option>
+                            </select>
+                        </label>
                     </fieldset>
                 </form>
             </main>
@@ -464,8 +486,8 @@ document<span class="token punctuation">.</span><span class="token function">add
         <menu class="ts-buttons">
             <li>
                 <a data-ts="Button" target="_blank" href="https://github.com/Tradeshift/tradeshift-ui/issues/new" title="Submit new issue" class="ts-secondary">
-		          <span>Create GitHub Issue&#x2026;</span>
-		        </a>
+                    <span>Create GitHub Issue&#x2026;</span>
+                </a>
             </li>
         </menu>
     </aside>

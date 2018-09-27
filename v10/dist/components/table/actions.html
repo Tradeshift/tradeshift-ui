@@ -5,11 +5,11 @@
     <title>Table Actions</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
-    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-10.0.28.min.js"></script>
+    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-10.1.0.min.js"></script>
     <script src="/v10/dist/assets/dox.min.js"></script>
     <script src="/v10/dist/assets/mark.min.js"></script>
     <script src="/v10/dist/assets/jquery-2.2.4.min.js"></script>
-    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-10.0.28.min.css">
+    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-10.1.0.min.css">
     <link rel="stylesheet" href="/v10/dist/assets/dox.css">
     <link rel="prefetch" title="Table" href="index.html">
     <link rel="prefetch" title="Build" href="building.html">
@@ -34,9 +34,7 @@
     <link rel="prefetch" title="Angular" href="angular.html" class="hidden">
     <link rel="prefetch" title="Gutter" href="gutter.html" class="hidden">
     <link rel="prefetch" title="Gallery" href="gallery.html" class="hidden">
-    <script>
-        ts.dox.tabs()
-    </script>
+    <script>ts.dox.tabs()</script>
 </head>
 
 <body>
@@ -46,17 +44,40 @@
             <article>
                 <h1><span>Selection actions</span></h1>
                 <section>
-                    <p>The table <code>actions</code> are reserved for working with <em>selections</em>. They work much like the <a href="">buttons</a> except the <code>icon</code> should never be omitted from an action, since it is always displayed (and
-                        not just in mobile breakpoint). You can try to select something in this table.</p>
+                    <p>The table <code>actions</code> are reserved for working with <em>selections</em>. They work much like the <a href="">buttons</a> except the <code>icon</code> should never be omitted from an action, since it is always displayed (and not just in mobile breakpoint). You can try to select something in this table.</p>
                     <div class="splitscreen-container">
                         <ul class="splitscreen">
                             <li>
                                 <figure data-ts="DoxScript" class="attention runnable" data-ts.code="var%20table%20%3D%20ts.ui.get(&apos;%23table1&apos;)%3B%0Atable.cols(%5B&apos;One&apos;%2C%20&apos;Two&apos;%2C%20&apos;Three&apos;%5D).rows(%5B%0A%09%5B&apos;A&apos;%2C%20&apos;B&apos;%2C%20&apos;C&apos;%5D%2C%0A%09%5B&apos;D&apos;%2C%20&apos;E&apos;%2C%20&apos;F&apos;%5D%2C%0A%09%5B&apos;G&apos;%2C%20&apos;H&apos;%2C%20&apos;I&apos;%5D%2C%0A%5D).selectable(update)%3B%0Afunction%20update()%20%7B%0A%09var%20actions%20%3D%20table.actions()%3B%0A%09var%20maximum%20%3D%20table.rows().length%3B%0A%09var%20counter%20%3D%20table.selected().length%3B%0A%09if(counter%20%3E%200)%20%7B%0A%09%09table.status(counter%20%2B%20&apos;%20of%20&apos;%20%2B%20maximum%20%2B%20&apos;%20rows%20selected&apos;)%3B%0A%09%09if(!actions.length)%20%7B%0A%09%09%09actions.push(%0A%09%09%09%09%7B%20label%3A%20&apos;Delete&apos;%2C%20icon%3A%20&apos;ts-icon-delete&apos;%20%7D%2C%0A%09%09%09%09%7B%20label%3A%20&apos;Report&apos;%2C%20icon%3A%20&apos;ts-icon-halt&apos;%20%7D%2C%0A%09%09%09%09%7B%20label%3A%20&apos;Revert&apos;%2C%20icon%3A%20&apos;ts-icon-back&apos;%2C%20onclick%3A%20function()%20%7B%0A%09%09%09%09%09console.log(&apos;The%20revert%20action%20was%20clicked!&apos;)%3B%0A%09%09%09%09%7D%7D%0A%09%09%09)%3B%0A%09%09%7D%0A%09%7D%20else%20%7B%0A%09%09actions.clear()%3B%0A%09%09table.status(maximum%20%2B%20&apos;%20rows&apos;)%3B%0A%09%7D%0A%7D%0Aupdate()%3B">
                                     <script type="runnable">
-                                        var table = ts.ui.get('#table1'); table.cols(['One', 'Two', 'Three']).rows([ ['A', 'B', 'C'], ['D', 'E', 'F'], ['G', 'H', 'I'], ]).selectable(update); function update() { var actions = table.actions(); var maximum = table.rows().length; var counter =
-                                        table.selected().length; if(counter > 0) { table.status(counter + ' of ' + maximum + ' rows selected'); if(!actions.length) { actions.push( { label: 'Delete', icon: 'ts-icon-delete' }, { label: 'Report', icon: 'ts-icon-halt'
-                                        }, { label: 'Revert', icon: 'ts-icon-back', onclick: () => { console.log('The revert action was clicked!'); }} ); } } else { actions.clear(); table.status(maximum + ' rows'); } } update();
-                                    </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                                        var table = ts.ui.get('#table1');
+										table.cols(['One', 'Two', 'Three']).rows([
+											['A', 'B', 'C'],
+											['D', 'E', 'F'],
+											['G', 'H', 'I'],
+										]).selectable(update);
+										function update() {
+											var actions = table.actions();
+											var maximum = table.rows().length;
+											var counter = table.selected().length;
+											if(counter > 0) {
+												table.status(counter + ' of ' + maximum + ' rows selected');
+												if(!actions.length) {
+													actions.push(
+														{ label: 'Delete', icon: 'ts-icon-delete' },
+														{ label: 'Report', icon: 'ts-icon-halt' },
+														{ label: 'Revert', icon: 'ts-icon-back', onclick: () => {
+															console.log('The revert action was clicked!');
+														}}
+													);
+												}
+											} else {
+												actions.clear();
+												table.status(maximum + ' rows');
+											}
+										}
+										update();
+									</script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                                     <div class="tabpanels">
                                         <pre class="prism language-javascript">
 <code><span class="token keyword">var</span> table <span class="token operator">=</span> ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#table1&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -95,8 +116,7 @@ table<span class="token punctuation">.</span><span class="token function">cols<s
                             </li>
                         </ul>
                     </div>
-                    <p>The <code>actions</code> method both sets and gets the actions. If you omit the argument, you&quot;ll get the current actions (jQuery style). You can use array methods like <code>push</code>, <code>pop</code>, <code>shift</code>, <code>unshift</code>,
-                        <code>splice</code> and so on to manage actions, just note that the actions <code>length</code> is a readonly property.</p>
+                    <p>The <code>actions</code> method both sets and gets the actions. If you omit the argument, you&quot;ll get the current actions (jQuery style). You can use array methods like <code>push</code>, <code>pop</code>, <code>shift</code>, <code>unshift</code>, <code>splice</code> and so on to manage actions, just note that the actions <code>length</code> is a readonly property.</p>
                     <p>Here&quot;s a summary of the <code>actions</code> collection and <code>action</code> model.</p>
                     <div data-ts="DoxApi" data-ts.code="%7B%0A%09name%3A%20%22ts.ui.ActionCollection%22%2C%0A%09methods%3A%20%5B%0A%09%09%7B%0A%09%09%09name%3A%20%22push%22%2C%0A%09%09%09args%3A%20%22o1%2C%20o2%2C%20...%22%2C%0A%09%09%09desc%3A%20%22Add%20action(s)%20to%20the%20end%20of%20the%20collection.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20%22unshift%22%2C%0A%09%09%09args%3A%20%22o1%2C%20o2%2C%20...%22%2C%0A%09%09%09desc%3A%20%22Add%20action(s)%20to%20the%20front%20of%20the%20collection.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20%22pop%22%2C%0A%09%09%09desc%3A%20%22Remove%20and%20return%20the%20last%20action.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20%22shift%22%2C%0A%09%09%09desc%3A%20%22Remove%20and%20return%20the%20first%20action.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20%22splice%22%2C%0A%09%09%09args%3A%20%22i%2C%20d%2C%20o1%2C%20o2%2C%20...%22%2C%0A%09%09%09desc%3A%20%22Insert%20action(s)%20at%20%60i%60%2C%20optionally%20deleting%20%60d%60%20amount%20of%20actions.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20%22get%22%2C%0A%09%09%09args%3A%20%22string%7Cnumber%22%2C%0A%09%09%09desc%3A%20%22Get%20action%20by%20%60id%60%20or%20numeric%20index.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20%22clear%22%2C%0A%09%09%09desc%3A%20%22Remove%20all%20actions.%22%0A%09%09%7D%0A%09%5D%0A%7D">
                     </div>
@@ -111,8 +131,8 @@ table<span class="token punctuation">.</span><span class="token function">cols<s
         <menu class="ts-buttons">
             <li>
                 <a data-ts="Button" target="_blank" href="https://github.com/Tradeshift/tradeshift-ui/issues/new" title="Submit new issue" class="ts-secondary">
-		          <span>Create GitHub Issue&#x2026;</span>
-		        </a>
+                    <span>Create GitHub Issue&#x2026;</span>
+                </a>
             </li>
         </menu>
     </aside>

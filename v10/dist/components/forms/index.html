@@ -5,11 +5,11 @@
     <title>Form</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
-    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-10.0.28.min.js"></script>
+    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-10.1.0.min.js"></script>
     <script src="/v10/dist/assets/dox.min.js"></script>
     <script src="/v10/dist/assets/mark.min.js"></script>
     <script src="/v10/dist/assets/jquery-2.2.4.min.js"></script>
-    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-10.0.28.min.css">
+    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-10.1.0.min.css">
     <link rel="stylesheet" href="/v10/dist/assets/dox.css">
     <link rel="prefetch" title="HTML" href="index.html">
     <link rel="prefetch" title="Disabled / Readonly" href="disabled.html">
@@ -19,9 +19,7 @@
     <link rel="prefetch" title="Angular Test" href="test-1.html" class="hidden">
     <link rel="prefetch" title="Gallery" href="redesign.html">
     <link rel="prefetch" title="JQuery Test" href="test-2.html" class="hidden">
-    <script>
-        ts.dox.tabs()
-    </script>
+    <script>ts.dox.tabs()</script>
 </head>
 
 <body>
@@ -37,8 +35,8 @@
                     <p>Assign <code class="attr-pair"><span>data-ts</span>=&quot;<span>Form</span>&quot;</code> to a <code class="el">form</code> to initialize as a Form.</p>
                     <figure data-ts="DoxMarkup" data-ts.code="%3Cform%20data-ts%3D%22Form%22%3E%20...%20%20%3C%2Fform%3E">
                         <script type="text/html">
-                            <form data-ts="Form"> ... </form>
-                        </script><input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
+                            <form data-ts="Form"> ...  </form>
+						</script><input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
                         <div class="tabpanels">
                             <pre class="prism language-markup">
 <code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>form</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Form<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span> ...  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>form</span><span class="token punctuation">&gt;</span></span></code>
@@ -49,14 +47,14 @@
                     <figure data-ts="DoxMarkup" data-ts.code="%3Cform%20data-ts%3D%22Form%22%3E%0A%09%3Cfieldset%3E%0A%09%09%3Clabel%3E%0A%09%09%09%3Cspan%3E%20...%20%3C%2Fspan%3E%0A%09%09%09%3Cinput%2F%3E%0A%09%09%3C%2Flabel%3E%0A%09%3C%2Ffieldset%3E%0A%3C%2Fform%3E">
                         <script type="text/html">
                             <form data-ts="Form">
-                                <fieldset>
-                                    <label>
+								<fieldset>
+									<label>
 										<span> ... </span>
 										<input/>
 									</label>
-                                </fieldset>
-                            </form>
-                        </script><input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
+								</fieldset>
+							</form>
+						</script><input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
                         <div class="tabpanels">
                             <pre class="prism language-markup">
 <code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>form</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Form<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
@@ -71,28 +69,28 @@
                         </div>
                     </figure>
                     <h3><span>
-						<code class="el">textarea</code>
-					</span></h3>
+                            <code class="el">textarea</code>
+                        </span></h3>
                     <p>Starts out with three lines, but will expand up to ten as content is entered. The <code class="attr-pair"><span>rows</span></code> attribute can be used to adjust the initial amount of lines to show.</p>
                     <figure data-ts="DoxMarkup" data-ts.code="%3Cform%20data-ts%3D%22Form%22%3E%0A%09%3Cfieldset%3E%0A%09%09%3Clabel%3E%0A%09%09%09%3Cspan%3ETextarea%3C%2Fspan%3E%0A%09%09%09%3Ctextarea%3E%3C%2Ftextarea%3E%0A%09%09%3C%2Flabel%3E%0A%09%3C%2Ffieldset%3E%0A%3C%2Fform%3E">
                         <script type="text/html">
                             <form data-ts="Form">
-                                <fieldset>
-                                    <label>
+								<fieldset>
+									<label>
 										<span>Textarea</span>
 										<textarea></textarea>
 									</label>
-                                </fieldset>
-                            </form>
-                        </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Atrue%2C%22runs%22%3Afalse%2C%22flip%22%3Atrue%7D">
+								</fieldset>
+							</form>
+						</script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Atrue%2C%22runs%22%3Afalse%2C%22flip%22%3Atrue%7D">
                         <div class="tabpanels">
                             <div class="output">
                                 <form data-ts="Form">
                                     <fieldset>
                                         <label>
-			<span>Textarea</span>
-			<textarea></textarea>
-		</label>
+                                            <span>Textarea</span>
+                                            <textarea></textarea>
+                                        </label>
                                     </fieldset>
                                 </form>
                             </div>
@@ -108,26 +106,26 @@
 </pre>
                         </div>
                     </figure>
-                    <p>You can specify <code class="attr-pair"><span>type</span>=&quot;<span>submit</span>&quot;</code> to make the texarea submit the form on <kbd>ENTER</kbd>. In this mode, newlines may still be entered while pressing the <kbd>SHIFT</kbd>                        key.</p>
+                    <p>You can specify <code class="attr-pair"><span>type</span>=&quot;<span>submit</span>&quot;</code> to make the texarea submit the form on <kbd>ENTER</kbd>. In this mode, newlines may still be entered while pressing the <kbd>SHIFT</kbd> key.</p>
                     <figure data-ts="DoxMarkup" data-ts.code="%3Cform%20data-ts%3D%22Form%22%20action%3D%22javascript%3Aalert(&apos;Form%20submitted&apos;)%22%3E%0A%09%3Cfieldset%3E%0A%09%09%3Clabel%3E%0A%09%09%09%3Cspan%3EPress%20SHIFT%20to%20ENTER%20newlines%3C%2Fspan%3E%0A%09%09%09%3Ctextarea%20rows%3D%221%22%20type%3D%22submit%22%3E%3C%2Ftextarea%3E%0A%09%09%3C%2Flabel%3E%0A%09%3C%2Ffieldset%3E%0A%3C%2Fform%3E">
                         <script type="text/html">
                             <form data-ts="Form" action="javascript:alert('Form submitted')">
-                                <fieldset>
-                                    <label>
+								<fieldset>
+									<label>
 										<span>Press SHIFT to ENTER newlines</span>
 										<textarea rows="1" type="submit"></textarea>
 									</label>
-                                </fieldset>
-                            </form>
-                        </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Atrue%2C%22runs%22%3Afalse%2C%22flip%22%3Atrue%7D">
+								</fieldset>
+							</form>
+						</script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Atrue%2C%22runs%22%3Afalse%2C%22flip%22%3Atrue%7D">
                         <div class="tabpanels">
                             <div class="output">
                                 <form data-ts="Form" action="javascript:alert(&apos;Form submitted&apos;)">
                                     <fieldset>
                                         <label>
-			<span>Press SHIFT to ENTER newlines</span>
-			<textarea rows="1" type="submit"></textarea>
-		</label>
+                                            <span>Press SHIFT to ENTER newlines</span>
+                                            <textarea rows="1" type="submit"></textarea>
+                                        </label>
                                     </fieldset>
                                 </form>
                             </div>
@@ -144,29 +142,28 @@
                         </div>
                     </figure>
                     <h3><span>
-						<code class="el">input</code>
-						<code class="attr-pair"><span>type</span>=&quot;<span>text</span>&quot;</code>
-                        </span>
-                    </h3>
+                            <code class="el">input</code>
+                            <code class="attr-pair"><span>type</span>=&quot;<span>text</span>&quot;</code>
+                        </span></h3>
                     <figure data-ts="DoxMarkup" data-ts.code="%3Cform%20data-ts%3D%22Form%22%3E%0A%09%3Cfieldset%3E%0A%09%09%3Clabel%3E%0A%09%09%09%3Cspan%3EText%3C%2Fspan%3E%0A%09%09%09%3Cinput%20type%3D%22text%22%20required%2F%3E%0A%09%09%3C%2Flabel%3E%0A%09%3C%2Ffieldset%3E%0A%3C%2Fform%3E">
                         <script type="text/html">
                             <form data-ts="Form">
-                                <fieldset>
-                                    <label>
+								<fieldset>
+									<label>
 										<span>Text</span>
 										<input type="text" required/>
 									</label>
-                                </fieldset>
-                            </form>
-                        </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Atrue%2C%22runs%22%3Afalse%2C%22flip%22%3Atrue%7D">
+								</fieldset>
+							</form>
+						</script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Atrue%2C%22runs%22%3Afalse%2C%22flip%22%3Atrue%7D">
                         <div class="tabpanels">
                             <div class="output">
                                 <form data-ts="Form">
                                     <fieldset>
                                         <label>
-			<span>Text</span>
-			<input type="text" required>
-		</label>
+                                            <span>Text</span>
+                                            <input type="text" required>
+                                        </label>
                                     </fieldset>
                                 </form>
                             </div>
@@ -183,29 +180,28 @@
                         </div>
                     </figure>
                     <h3><span>
-						<code class="el">input</code>
-						<code class="attr-pair"><span>type</span>=&quot;<span>tel</span>&quot;</code>
-                        </span>
-                    </h3>
+                            <code class="el">input</code>
+                            <code class="attr-pair"><span>type</span>=&quot;<span>tel</span>&quot;</code>
+                        </span></h3>
                     <figure data-ts="DoxMarkup" data-ts.code="%3Cform%20data-ts%3D%22Form%22%3E%0A%09%3Cfieldset%3E%0A%09%09%3Clabel%3E%0A%09%09%09%3Cspan%3ETel%3C%2Fspan%3E%0A%09%09%09%3Cinput%20type%3D%22tel%22%20required%2F%3E%0A%09%09%3C%2Flabel%3E%0A%09%3C%2Ffieldset%3E%0A%3C%2Fform%3E">
                         <script type="text/html">
                             <form data-ts="Form">
-                                <fieldset>
-                                    <label>
+								<fieldset>
+									<label>
 										<span>Tel</span>
 										<input type="tel" required/>
 									</label>
-                                </fieldset>
-                            </form>
-                        </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Atrue%2C%22runs%22%3Afalse%2C%22flip%22%3Atrue%7D">
+								</fieldset>
+							</form>
+						</script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Atrue%2C%22runs%22%3Afalse%2C%22flip%22%3Atrue%7D">
                         <div class="tabpanels">
                             <div class="output">
                                 <form data-ts="Form">
                                     <fieldset>
                                         <label>
-			<span>Tel</span>
-			<input type="tel" required>
-		</label>
+                                            <span>Tel</span>
+                                            <input type="tel" required>
+                                        </label>
                                     </fieldset>
                                 </form>
                             </div>
@@ -222,29 +218,28 @@
                         </div>
                     </figure>
                     <h3><span>
-						<code class="el">input</code>
-						<code class="attr-pair"><span>type</span>=&quot;<span>email</span>&quot;</code>
-                        </span>
-                    </h3>
+                            <code class="el">input</code>
+                            <code class="attr-pair"><span>type</span>=&quot;<span>email</span>&quot;</code>
+                        </span></h3>
                     <figure data-ts="DoxMarkup" data-ts.code="%3Cform%20data-ts%3D%22Form%22%3E%0A%09%3Cfieldset%3E%0A%09%09%3Clabel%3E%0A%09%09%09%3Cspan%3EEmail%3C%2Fspan%3E%0A%09%09%09%3Cinput%20type%3D%22email%22%20required%2F%3E%0A%09%09%3C%2Flabel%3E%0A%09%3C%2Ffieldset%3E%0A%3C%2Fform%3E">
                         <script type="text/html">
                             <form data-ts="Form">
-                                <fieldset>
-                                    <label>
+								<fieldset>
+									<label>
 										<span>Email</span>
 										<input type="email" required/>
 									</label>
-                                </fieldset>
-                            </form>
-                        </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Atrue%2C%22runs%22%3Afalse%2C%22flip%22%3Atrue%7D">
+								</fieldset>
+							</form>
+						</script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Atrue%2C%22runs%22%3Afalse%2C%22flip%22%3Atrue%7D">
                         <div class="tabpanels">
                             <div class="output">
                                 <form data-ts="Form">
                                     <fieldset>
                                         <label>
-			<span>Email</span>
-			<input type="email" required>
-		</label>
+                                            <span>Email</span>
+                                            <input type="email" required>
+                                        </label>
                                     </fieldset>
                                 </form>
                             </div>
@@ -261,32 +256,31 @@
                         </div>
                     </figure>
                     <h3><span>
-						<code class="el">input</code>
-						<code class="attr-pair"><span>type</span>=&quot;<span>number</span>&quot;</code>
-                        </span>
-                    </h3>
+                            <code class="el">input</code>
+                            <code class="attr-pair"><span>type</span>=&quot;<span>number</span>&quot;</code>
+                        </span></h3>
                     <p>
                         Set the class <code class="attr-pair"><span>class</span>=&quot;<span>ts-right</span>&quot;</code> on the <code class="el">label</code> to make your number text align right.
                     </p>
                     <figure data-ts="DoxMarkup" data-ts.code="%3Cform%20data-ts%3D%22Form%22%3E%0A%09%3Cfieldset%3E%0A%09%09%3Clabel%3E%0A%09%09%09%3Cspan%3ENumber%3C%2Fspan%3E%0A%09%09%09%3Cinput%20type%3D%22number%22%2F%3E%0A%09%09%3C%2Flabel%3E%0A%09%3C%2Ffieldset%3E%0A%3C%2Fform%3E">
                         <script type="text/html">
                             <form data-ts="Form">
-                                <fieldset>
-                                    <label>
+								<fieldset>
+									<label>
 										<span>Number</span>
 										<input type="number"/>
 									</label>
-                                </fieldset>
-                            </form>
-                        </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Atrue%2C%22runs%22%3Afalse%2C%22flip%22%3Atrue%7D">
+								</fieldset>
+							</form>
+						</script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Atrue%2C%22runs%22%3Afalse%2C%22flip%22%3Atrue%7D">
                         <div class="tabpanels">
                             <div class="output">
                                 <form data-ts="Form">
                                     <fieldset>
                                         <label>
-			<span>Number</span>
-			<input type="number">
-		</label>
+                                            <span>Number</span>
+                                            <input type="number">
+                                        </label>
                                     </fieldset>
                                 </form>
                             </div>
@@ -303,32 +297,31 @@
                         </div>
                     </figure>
                     <h3><span>
-						<code class="el">input</code>
-						<code class="attr-pair"><span>type</span>=&quot;<span>date</span>&quot;</code>
-                        </span>
-                    </h3>
+                            <code class="el">input</code>
+                            <code class="attr-pair"><span>type</span>=&quot;<span>date</span>&quot;</code>
+                        </span></h3>
                     <figure data-ts="DoxMarkup" data-ts.code="%3Cform%20data-ts%3D%22Form%22%3E%0A%09%3Cfieldset%3E%0A%09%09%3Clabel%3E%0A%09%09%09%3Cspan%3EDate%3C%2Fspan%3E%0A%09%09%09%3Cinput%20type%3D%22date%22%0A%09%09%09%09value%3D%222015-01-01%22%0A%09%09%09%09min%3D%222014-01-01%22%0A%09%09%09%09max%3D%222016-01-01%22%2F%3E%0A%09%09%3C%2Flabel%3E%0A%09%3C%2Ffieldset%3E%0A%3C%2Fform%3E">
                         <script type="text/html">
                             <form data-ts="Form">
-                                <fieldset>
-                                    <label>
+								<fieldset>
+									<label>
 										<span>Date</span>
 										<input type="date"
 											value="2015-01-01"
 											min="2014-01-01"
 											max="2016-01-01"/>
 									</label>
-                                </fieldset>
-                            </form>
-                        </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Atrue%2C%22runs%22%3Afalse%2C%22flip%22%3Atrue%7D">
+								</fieldset>
+							</form>
+						</script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Atrue%2C%22runs%22%3Afalse%2C%22flip%22%3Atrue%7D">
                         <div class="tabpanels">
                             <div class="output">
                                 <form data-ts="Form">
                                     <fieldset>
                                         <label>
-			<span>Date</span>
-			<input type="date" value="2015-01-01" min="2014-01-01" max="2016-01-01">
-		</label>
+                                            <span>Date</span>
+                                            <input type="date" value="2015-01-01" min="2014-01-01" max="2016-01-01">
+                                        </label>
                                     </fieldset>
                                 </form>
                             </div>
@@ -348,10 +341,12 @@
                         </div>
                     </figure>
                     <h3><span>
-						<code class="el">select</code>
-					</span></h3>
+                            <code class="el">select</code>
+                        </span></h3>
                     <p>
-                        The <code class="el">select</code> will open in an Aside, but you&apos;ll mantain it like a normal <code class="el">select</code>. Note that the <code class="el">select</code> only triggers a
+                        The <code class="el">select</code> will open in an Aside, but you&apos;ll
+                        mantain it like a normal <code class="el">select</code>.
+                        Note that the <code class="el">select</code> only triggers a
                         <code>change</code> event when the Aside is fully closed!
                     </p>
                     <p>
@@ -360,8 +355,8 @@
                     <figure data-ts="DoxMarkup" data-ts.code="%3Cform%20data-ts%3D%22Form%22%3E%0A%09%3Cfieldset%3E%0A%09%09%3Clabel%3E%0A%09%09%09%3Cspan%3ESelect%3C%2Fspan%3E%0A%09%09%09%3Cselect%3E%0A%09%09%09%09%3Coption%20value%3D%22a%22%20selected%3EOne%3C%2Foption%3E%0A%09%09%09%09%3Coption%20value%3D%22b%22%3ETwo%3C%2Foption%3E%0A%09%09%09%09%3Coption%20value%3D%22c%22%3EThree%3C%2Foption%3E%0A%09%09%09%3C%2Fselect%3E%0A%09%09%3C%2Flabel%3E%0A%09%3C%2Ffieldset%3E%0A%3C%2Fform%3E">
                         <script type="text/html">
                             <form data-ts="Form">
-                                <fieldset>
-                                    <label>
+								<fieldset>
+									<label>
 										<span>Select</span>
 										<select>
 											<option value="a" selected>One</option>
@@ -369,21 +364,21 @@
 											<option value="c">Three</option>
 										</select>
 									</label>
-                                </fieldset>
-                            </form>
-                        </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Atrue%2C%22runs%22%3Afalse%2C%22flip%22%3Atrue%7D">
+								</fieldset>
+							</form>
+						</script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Atrue%2C%22runs%22%3Afalse%2C%22flip%22%3Atrue%7D">
                         <div class="tabpanels">
                             <div class="output">
                                 <form data-ts="Form">
                                     <fieldset>
                                         <label>
-			<span>Select</span>
-			<select>
-				<option value="a" selected>One</option>
-				<option value="b">Two</option>
-				<option value="c">Three</option>
-			</select>
-		</label>
+                                            <span>Select</span>
+                                            <select>
+                                                <option value="a" selected>One</option>
+                                                <option value="b">Two</option>
+                                                <option value="c">Three</option>
+                                            </select>
+                                        </label>
                                     </fieldset>
                                 </form>
                             </div>
@@ -411,8 +406,8 @@
                     <figure data-ts="DoxMarkup" data-ts.code="%3Cform%20data-ts%3D%22Form%22%3E%0A%09%3Cfieldset%3E%0A%09%09%3Clabel%3E%0A%09%09%09%3Cspan%3ESelect%20with%20placeholder%3C%2Fspan%3E%0A%09%09%09%3Cselect%20placeholder%3D%22Pick%20a%20number%22%3E%0A%09%09%09%09%3Coption%3E%3C%2Foption%3E%0A%09%09%09%09%3Coption%20value%3D%225%22%3E5%3C%2Foption%3E%0A%09%09%09%09%3Coption%20value%3D%2223%22%3E23%3C%2Foption%3E%0A%09%09%09%3C%2Fselect%3E%0A%09%09%3C%2Flabel%3E%0A%09%3C%2Ffieldset%3E%0A%3C%2Fform%3E">
                         <script type="text/html">
                             <form data-ts="Form">
-                                <fieldset>
-                                    <label>
+								<fieldset>
+									<label>
 										<span>Select with placeholder</span>
 										<select placeholder="Pick a number">
 											<option></option>
@@ -420,21 +415,21 @@
 											<option value="23">23</option>
 										</select>
 									</label>
-                                </fieldset>
-                            </form>
-                        </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Atrue%2C%22runs%22%3Afalse%2C%22flip%22%3Atrue%7D">
+								</fieldset>
+							</form>
+						</script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Atrue%2C%22runs%22%3Afalse%2C%22flip%22%3Atrue%7D">
                         <div class="tabpanels">
                             <div class="output">
                                 <form data-ts="Form">
                                     <fieldset>
                                         <label>
-			<span>Select with placeholder</span>
-			<select placeholder="Pick a number">
-				<option></option>
-				<option value="5">5</option>
-				<option value="23">23</option>
-			</select>
-		</label>
+                                            <span>Select with placeholder</span>
+                                            <select placeholder="Pick a number">
+                                                <option></option>
+                                                <option value="5">5</option>
+                                                <option value="23">23</option>
+                                            </select>
+                                        </label>
                                     </fieldset>
                                 </form>
                             </div>
@@ -457,21 +452,18 @@
                     <p>When a selection is made, the user can revert to the default (no selection) by clicking the selected option a second time. If you don&apos;t want to allow this, you should make sure to remove the empty <code class="el">option</code>.</p>
                     <div data-ts="Note">
                         <i class="ts-icon-info"></i>
-                        <p>This strange pattern ensures maximum compatibility with Angular 1.x, where an empty <code class="el">option</code> is automatically inserted until a selection is performed. To also allow <em>unselection</em> in Angular, you must
-                            manually create the empty <code class="el">option</code> and make sure that it is explicitly selected as default.</p>
+                        <p>This strange pattern ensures maximum compatibility with Angular 1.x, where an empty <code class="el">option</code> is automatically inserted until a selection is performed. To also allow <em>unselection</em> in Angular, you must manually create the empty <code class="el">option</code> and make sure that it is explicitly selected as default.</p>
                     </div>
                     <h3><span>
-						<code class="el">select</code>
-						<code class="attr-pair"><span>multiple
-					</span></code>
-                        </span>
-                    </h3>
-                    <p>The <code class="el">select</code> <code class="attr-pair"><span>multiple</span></code> only triggers a change when the <samp>Done</samp> button is pressed. You can customize the button label by adding a <code class="el">button</code>                        to the <code class="el">label</code> element, but note that this only configures the <em>text</em> on the button (eg. no event listeners are fired).</p>
+                            <code class="el">select</code>
+                            <code class="attr-pair"><span>multiple
+                                </span></code></span></h3>
+                    <p>The <code class="el">select</code> <code class="attr-pair"><span>multiple</span></code> only triggers a change when the <samp>Done</samp> button is pressed. You can customize the button label by adding a <code class="el">button</code> to the <code class="el">label</code> element, but note that this only configures the <em>text</em> on the button (eg. no event listeners are fired).</p>
                     <figure data-ts="DoxMarkup" data-ts.code="%3Cform%20data-ts%3D%22Form%22%3E%0A%09%3Cfieldset%3E%0A%09%09%3Clabel%3E%0A%09%09%09%3Cspan%3ESelect%20multiple%3C%2Fspan%3E%0A%09%09%09%3Cselect%20multiple%20id%3D%22multijohn%22%3E%0A%09%09%09%09%3Coption%20value%3D%22a%22%3EOne%3C%2Foption%3E%0A%09%09%09%09%3Coption%20value%3D%22b%22%3ETwo%3C%2Foption%3E%0A%09%09%09%09%3Coption%20value%3D%22c%22%3EThree%3C%2Foption%3E%0A%09%09%09%09%3Coption%20value%3D%22d%22%3EFour%3C%2Foption%3E%0A%09%09%09%09%3Coption%20value%3D%22e%22%3EFive%3C%2Foption%3E%0A%09%09%09%3C%2Fselect%3E%0A%09%09%09%3Cbutton%3ECool%2C%20apply%20changes!%3C%2Fbutton%3E%0A%09%09%3C%2Flabel%3E%0A%09%3C%2Ffieldset%3E%0A%3C%2Fform%3E">
                         <script type="text/html">
                             <form data-ts="Form">
-                                <fieldset>
-                                    <label>
+								<fieldset>
+									<label>
 										<span>Select multiple</span>
 										<select multiple id="multijohn">
 											<option value="a">One</option>
@@ -482,24 +474,24 @@
 										</select>
 										<button>Cool, apply changes!</button>
 									</label>
-                                </fieldset>
-                            </form>
-                        </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Atrue%2C%22runs%22%3Afalse%2C%22flip%22%3Atrue%7D">
+								</fieldset>
+							</form>
+						</script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Atrue%2C%22runs%22%3Afalse%2C%22flip%22%3Atrue%7D">
                         <div class="tabpanels">
                             <div class="output">
                                 <form data-ts="Form">
                                     <fieldset>
                                         <label>
-			<span>Select multiple</span>
-			<select multiple id="multijohn">
-				<option value="a">One</option>
-				<option value="b">Two</option>
-				<option value="c">Three</option>
-				<option value="d">Four</option>
-				<option value="e">Five</option>
-			</select>
-			<button>Cool, apply changes!</button>
-		</label>
+                                            <span>Select multiple</span>
+                                            <select multiple id="multijohn">
+                                                <option value="a">One</option>
+                                                <option value="b">Two</option>
+                                                <option value="c">Three</option>
+                                                <option value="d">Four</option>
+                                                <option value="e">Five</option>
+                                            </select>
+                                            <button>Cool, apply changes!</button>
+                                        </label>
                                     </fieldset>
                                 </form>
                             </div>
@@ -523,40 +515,39 @@
                         </div>
                     </figure>
                     <h3><span>
-						<code class="el">input</code>
-						<code class="attr-pair"><span>type</span>=&quot;<span>radio</span>&quot;</code>
-                        </span>
-                    </h3>
+                            <code class="el">input</code>
+                            <code class="attr-pair"><span>type</span>=&quot;<span>radio</span>&quot;</code>
+                        </span></h3>
                     <p>Radio element. Generally used to choose something.</p>
                     <figure data-ts="DoxMarkup" data-ts.code="%3Cform%20data-ts%3D%22Form%22%3E%0A%09%3Cfieldset%3E%0A%09%09%3Cspan%3EChoose%20wisely%3C%2Fspan%3E%0A%09%09%3Clabel%3E%0A%09%09%09%3Cinput%20type%3D%22radio%22%20name%3D%22radio%22%20checked%2F%3E%0A%09%09%09%3Cspan%3ERed%20pill%3C%2Fspan%3E%0A%09%09%3C%2Flabel%3E%0A%09%09%3Clabel%3E%0A%09%09%09%3Cinput%20type%3D%22radio%22%20name%3D%22radio%22%2F%3E%0A%09%09%09%3Cspan%3EBlue%20pill%3C%2Fspan%3E%0A%09%09%3C%2Flabel%3E%0A%09%3C%2Ffieldset%3E%0A%3C%2Fform%3E">
                         <script type="text/html">
                             <form data-ts="Form">
-                                <fieldset>
-                                    <span>Choose wisely</span>
-                                    <label>
+								<fieldset>
+									<span>Choose wisely</span>
+									<label>
 										<input type="radio" name="radio" checked/>
 										<span>Red pill</span>
 									</label>
-                                    <label>
+									<label>
 										<input type="radio" name="radio"/>
 										<span>Blue pill</span>
 									</label>
-                                </fieldset>
-                            </form>
-                        </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Atrue%2C%22runs%22%3Afalse%2C%22flip%22%3Atrue%7D">
+								</fieldset>
+							</form>
+						</script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Atrue%2C%22runs%22%3Afalse%2C%22flip%22%3Atrue%7D">
                         <div class="tabpanels">
                             <div class="output">
                                 <form data-ts="Form">
                                     <fieldset>
                                         <span>Choose wisely</span>
                                         <label>
-			<input type="radio" name="radio" checked>
-			<span>Red pill</span>
-		</label>
+                                            <input type="radio" name="radio" checked>
+                                            <span>Red pill</span>
+                                        </label>
                                         <label>
-			<input type="radio" name="radio">
-			<span>Blue pill</span>
-		</label>
+                                            <input type="radio" name="radio">
+                                            <span>Blue pill</span>
+                                        </label>
                                     </fieldset>
                                 </form>
                             </div>
@@ -578,40 +569,39 @@
                         </div>
                     </figure>
                     <h3><span>
-						<code class="el">input</code>
-						<code class="attr-pair"><span>type</span>=&quot;<span>checkbox</span>&quot;</code>
-                        </span>
-                    </h3>
+                            <code class="el">input</code>
+                            <code class="attr-pair"><span>type</span>=&quot;<span>checkbox</span>&quot;</code>
+                        </span></h3>
                     <p>Checkbox element. Generally used to indicate consent on forms.</p>
                     <figure data-ts="DoxMarkup" data-ts.code="%3Cform%20data-ts%3D%22Form%22%3E%0A%09%3Cfieldset%3E%0A%09%09%3Cspan%3ELegally%20Binding%20Contract%3C%2Fspan%3E%0A%09%09%3Clabel%3E%0A%09%09%09%3Cinput%20type%3D%22checkbox%22%2F%3E%0A%09%09%09%3Cspan%3EI%20agree%20to%20something%3C%2Fspan%3E%0A%09%09%3C%2Flabel%3E%0A%09%09%3Clabel%3E%0A%09%09%09%3Cinput%20type%3D%22checkbox%22%20checked%2F%3E%0A%09%09%09%3Cspan%3EI%20agree%20to%20something%20(by%20default)%3C%2Fspan%3E%0A%09%09%3C%2Flabel%3E%0A%09%3C%2Ffieldset%3E%0A%3C%2Fform%3E">
                         <script type="text/html">
                             <form data-ts="Form">
-                                <fieldset>
-                                    <span>Legally Binding Contract</span>
-                                    <label>
+								<fieldset>
+									<span>Legally Binding Contract</span>
+									<label>
 										<input type="checkbox"/>
 										<span>I agree to something</span>
 									</label>
-                                    <label>
+									<label>
 										<input type="checkbox" checked/>
 										<span>I agree to something (by default)</span>
 									</label>
-                                </fieldset>
-                            </form>
-                        </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Atrue%2C%22runs%22%3Afalse%2C%22flip%22%3Atrue%7D">
+								</fieldset>
+							</form>
+						</script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Atrue%2C%22runs%22%3Afalse%2C%22flip%22%3Atrue%7D">
                         <div class="tabpanels">
                             <div class="output">
                                 <form data-ts="Form">
                                     <fieldset>
                                         <span>Legally Binding Contract</span>
                                         <label>
-			<input type="checkbox">
-			<span>I agree to something</span>
-		</label>
+                                            <input type="checkbox">
+                                            <span>I agree to something</span>
+                                        </label>
                                         <label>
-			<input type="checkbox" checked>
-			<span>I agree to something (by default)</span>
-		</label>
+                                            <input type="checkbox" checked>
+                                            <span>I agree to something (by default)</span>
+                                        </label>
                                     </fieldset>
                                 </form>
                             </div>
@@ -633,41 +623,40 @@
                         </div>
                     </figure>
                     <h3><span>
-						<code class="el">input</code>
-						<code class="attr-pair"><span>type</span>=&quot;<span>textbox</span>&quot;</code>
-                        <span style="color:rgb(127,127,127);">(alternate version)</span>
-                        </span>
-                    </h3>
+                            <code class="el">input</code>
+                            <code class="attr-pair"><span>type</span>=&quot;<span>textbox</span>&quot;</code>
+                            <span style="color:rgb(127,127,127);">(alternate version)</span>
+                        </span></h3>
                     <p>We call it the <code>switch</code>. Used mainly for toggling preferences/settings. Note that <code>switch</code> differs from the <code>checkbox</code> only by the order of HTML elements.</p>
                     <figure data-ts="DoxMarkup" data-ts.code="%3Cform%20data-ts%3D%22Form%22%3E%0A%09%3Cfieldset%3E%0A%09%09%3Cspan%3ESettings%20Page%3C%2Fspan%3E%0A%09%09%3Clabel%3E%0A%09%09%09%3Cspan%3ESecret%20Feature%3C%2Fspan%3E%0A%09%09%09%3Cinput%20type%3D%22checkbox%22%2F%3E%0A%09%09%3C%2Flabel%3E%0A%09%09%3Clabel%3E%0A%09%09%09%3Cspan%3ESecret%20Feature%20(On%20by%20default)%3C%2Fspan%3E%0A%09%09%09%3Cinput%20type%3D%22checkbox%22%20checked%2F%3E%0A%09%09%3C%2Flabel%3E%0A%09%3C%2Ffieldset%3E%0A%3C%2Fform%3E">
                         <script type="text/html">
                             <form data-ts="Form">
-                                <fieldset>
-                                    <span>Settings Page</span>
-                                    <label>
+								<fieldset>
+									<span>Settings Page</span>
+									<label>
 										<span>Secret Feature</span>
 										<input type="checkbox"/>
 									</label>
-                                    <label>
+									<label>
 										<span>Secret Feature (On by default)</span>
 										<input type="checkbox" checked/>
 									</label>
-                                </fieldset>
-                            </form>
-                        </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Atrue%2C%22runs%22%3Afalse%2C%22flip%22%3Atrue%7D">
+								</fieldset>
+							</form>
+						</script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Atrue%2C%22runs%22%3Afalse%2C%22flip%22%3Atrue%7D">
                         <div class="tabpanels">
                             <div class="output">
                                 <form data-ts="Form">
                                     <fieldset>
                                         <span>Settings Page</span>
                                         <label>
-			<span>Secret Feature</span>
-			<input type="checkbox">
-		</label>
+                                            <span>Secret Feature</span>
+                                            <input type="checkbox">
+                                        </label>
                                         <label>
-			<span>Secret Feature (On by default)</span>
-			<input type="checkbox" checked>
-		</label>
+                                            <span>Secret Feature (On by default)</span>
+                                            <input type="checkbox" checked>
+                                        </label>
                                     </fieldset>
                                 </form>
                             </div>
@@ -693,22 +682,22 @@
                     <figure data-ts="DoxMarkup" data-ts.code="%3Cform%20data-ts%3D%22Form%22%3E%0A%09%3Cfieldset%3E%0A%09%09%3Clabel%20class%3D%22ts-error%22%3E%0A%09%09%09%3Cspan%3EText%3C%2Fspan%3E%0A%09%09%09%3Cinput%20type%3D%22text%22%2F%3E%0A%09%09%3C%2Flabel%3E%0A%09%3C%2Ffieldset%3E%0A%3C%2Fform%3E">
                         <script type="text/html">
                             <form data-ts="Form">
-                                <fieldset>
-                                    <label class="ts-error">
+								<fieldset>
+									<label class="ts-error">
 										<span>Text</span>
 										<input type="text"/>
 									</label>
-                                </fieldset>
-                            </form>
-                        </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Atrue%2C%22runs%22%3Afalse%2C%22flip%22%3Atrue%7D">
+								</fieldset>
+							</form>
+						</script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Atrue%2C%22runs%22%3Afalse%2C%22flip%22%3Atrue%7D">
                         <div class="tabpanels">
                             <div class="output">
                                 <form data-ts="Form">
                                     <fieldset>
                                         <label class="ts-error">
-			<span>Text</span>
-			<input type="text">
-		</label>
+                                            <span>Text</span>
+                                            <input type="text">
+                                        </label>
                                     </fieldset>
                                 </form>
                             </div>
@@ -732,9 +721,9 @@
                                 <form data-ts="Form">
                                     <fieldset>
                                         <label class="ts-error">
-			<span>Text</span>
-			<input type="text">
-		</label>
+                                            <span>Text</span>
+                                            <input type="text">
+                                        </label>
                                         <dl class="ts-errors">
                                             <dt>Text</dt>
                                             <dd>An explanation of the error in question</dd>
@@ -768,9 +757,9 @@
                                 <form data-ts="Form">
                                     <fieldset>
                                         <label>
-			<span>Text</span>
-			<input type="text">
-		</label>
+                                            <span>Text</span>
+                                            <input type="text">
+                                        </label>
                                         <dl class="ts-info">
                                             <dt>Text</dt>
                                             <dd>An information about the field</dd>
@@ -805,8 +794,8 @@
         <menu class="ts-buttons">
             <li>
                 <a data-ts="Button" target="_blank" href="https://github.com/Tradeshift/tradeshift-ui/issues/new" title="Submit new issue" class="ts-secondary">
-		          <span>Create GitHub Issue&#x2026;</span>
-		        </a>
+                    <span>Create GitHub Issue&#x2026;</span>
+                </a>
             </li>
         </menu>
     </aside>

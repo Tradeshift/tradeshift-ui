@@ -5,30 +5,28 @@
     <title>ToolBar</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
-    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-10.0.28.min.js"></script>
+    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-10.1.0.min.js"></script>
     <script src="/v10/dist/assets/dox.min.js"></script>
     <script src="/v10/dist/assets/mark.min.js"></script>
     <script src="/v10/dist/assets/jquery-2.2.4.min.js"></script>
-    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-10.0.28.min.css">
+    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-10.1.0.min.css">
     <link rel="stylesheet" href="/v10/dist/assets/dox.css">
     <link rel="prefetch" title="TopBar" href="topbar.html">
     <link rel="prefetch" title="TabBar" href="tabbar.html">
     <link rel="prefetch" title="ToolBar" href="toolbar.html">
     <script>
         ts.ui.ready(function() { // support color scheme links in API table
-            var method;
-            ts.ui.get('html').action.add('ts-action-safe-link', {
-                onaction: function(a) {
-                    if ((method = ts.ui.ToolBar[a.data])) {
-                        method.call(ts.ui.ToolBar);
-                    }
-                }
-            })
-        });
-    </script>
-    <script>
-        ts.dox.tabs()
-    </script>
+				var method;
+				ts.ui.get('html').action.add('ts-action-safe-link', {
+					onaction: function(a) {
+						if((method = ts.ui.ToolBar[a.data])) {
+							method.call(ts.ui.ToolBar);
+						}
+					}
+				})
+			});
+		</script>
+    <script>ts.dox.tabs()</script>
 </head>
 
 <body>
@@ -50,7 +48,7 @@
                         <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.ToolBar.title(&apos;My%20ToolBar&apos;)%3B">
                             <script type="runnable">
                                 ts.ui.ToolBar.title('My ToolBar');
-                            </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+							</script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                             <div class="tabpanels">
                                 <pre class="prism language-javascript">
 <code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>ToolBar<span class="token punctuation">.</span><span class="token function">title<span class="token punctuation">(</span></span><span class="token string">&apos;My ToolBar&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
@@ -63,8 +61,13 @@
                         <p>Add buttons to the ToolBar with the <code>buttons</code> method. This both sets and gets. If you omit the argument, you&quot;ll get the current buttons (jQuery style).</p>
                         <figure data-ts="DoxScript" class="attention runnable" data-ts.code="ts.ui.ToolBar.buttons(%5B%0A%09%7Blabel%20%3A%20&apos;Primary&apos;%2C%20type%20%3A%20&apos;ts-primary&apos;%7D%2C%0A%09%7Blabel%20%3A%20&apos;Secondary&apos;%2C%20type%20%3A%20&apos;ts-secondary&apos;%7D%2C%0A%09%7Blabel%20%3A%20&apos;Tertiary%20One&apos;%7D%2C%0A%09%7Blabel%20%3A%20&apos;Tertiary%20Two&apos;%7D%0A%5D)%3B">
                             <script type="runnable">
-                                ts.ui.ToolBar.buttons([ {label : 'Primary', type : 'ts-primary'}, {label : 'Secondary', type : 'ts-secondary'}, {label : 'Tertiary One'}, {label : 'Tertiary Two'} ]);
-                            </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                                ts.ui.ToolBar.buttons([
+								{label : 'Primary', type : 'ts-primary'},
+								{label : 'Secondary', type : 'ts-secondary'},
+								{label : 'Tertiary One'},
+								{label : 'Tertiary Two'}
+							]);
+						</script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                             <div class="tabpanels">
                                 <pre class="prism language-javascript">
 <code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>ToolBar<span class="token punctuation">.</span><span class="token function">buttons<span class="token punctuation">(</span></span><span class="token punctuation">[</span>
@@ -76,7 +79,7 @@
 </pre>
                             </div>
                         </figure>
-                        <p>You can use array methods like <code>push</code>, <code>pop</code>, <code>shift</code>, <code>unshift</code>, <code>splice</code>, <code>reverse</code> and so on to manage buttons. Just note that the buttons <code>length</code>                            is readonly.</p>
+                        <p>You can use array methods like <code>push</code>, <code>pop</code>, <code>shift</code>, <code>unshift</code>, <code>splice</code>, <code>reverse</code> and so on to manage buttons. Just note that the buttons <code>length</code> is readonly.</p>
                         <ul>
                             <li>The buttons <code class="attr-name">type</code> property works like the CSS <code class="attr-name">class</code> for a regular Button</li>
                             <li>The ToolBar will automatically sort all buttons from primary to tertiary.</li>
@@ -87,8 +90,14 @@
                         <p>
                             <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.ToolBar.buttons().splice(0%2C%201%2C%20%7B%0A%09label%20%3A%20&apos;Click%20me!&apos;%2C%0A%09type%20%3A%20&apos;ts-primary&apos;%2C%0A%09onclick%3A%20function()%20%7B%0A%09%09this.label%20%3D%20&apos;Thanks&apos;%3B%0A%09%7D%0A%7D)%3B">
                                 <script type="runnable">
-                                    ts.ui.ToolBar.buttons().splice(0, 1, { label : 'Click me!', type : 'ts-primary', onclick: function() { this.label = 'Thanks'; } });
-                                </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                                    ts.ui.ToolBar.buttons().splice(0, 1, {
+								label : 'Click me!',
+								type : 'ts-primary',
+								onclick: function() {
+									this.label = 'Thanks';
+								}
+							});
+						</script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                                 <div class="tabpanels">
                                     <pre class="prism language-javascript">
 <code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>ToolBar<span class="token punctuation">.</span><span class="token function">buttons<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">splice<span class="token punctuation">(</span></span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
@@ -105,8 +114,13 @@
                         <p>Fortunately, you can always change what happens when a button gets clicked.</p>
                         <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.ToolBar.buttons().forEach(function(button%2C%20index)%20%7B%0A%09button.label%20%3D%20%22Button%20%22%20%2B%20(index%20%2B%201)%3B%0A%09button.onclick%20%3D%20function()%20%7B%0A%09%09ts.ui.Notification.success(this.label)%3B%0A%09%7D%3B%0A%7D)%3B">
                             <script type="runnable">
-                                ts.ui.ToolBar.buttons().forEach(function(button, index) { button.label = "Button " + (index + 1); button.onclick = function() { ts.ui.Notification.success(this.label); }; });
-                            </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                                ts.ui.ToolBar.buttons().forEach(function(button, index) {
+								button.label = "Button " + (index + 1);
+								button.onclick = function() {
+									ts.ui.Notification.success(this.label);
+								};
+							});
+						</script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                             <div class="tabpanels">
                                 <pre class="prism language-javascript">
 <code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>ToolBar<span class="token punctuation">.</span><span class="token function">buttons<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">forEach<span class="token punctuation">(</span></span><span class="token keyword">function</span><span class="token punctuation">(</span>button<span class="token punctuation">,</span> index<span class="token punctuation">)</span> <span class="token punctuation">{</span>
@@ -119,12 +133,15 @@
                             </div>
                         </figure>
                         <h3>Query buttons</h3>
-                        <p>You can locate buttons by index in the <code>buttons</code> collection. But since this isn&quot;t likely to match the order in which they appear on screen, it&quot;s easier to give the buttons an <code>id</code> and find them using
-                            <code>buttons.get()</code>.</p>
+                        <p>You can locate buttons by index in the <code>buttons</code> collection. But since this isn&quot;t likely to match the order in which they appear on screen, it&quot;s easier to give the buttons an <code>id</code> and find them using <code>buttons.get()</code>.</p>
                         <figure data-ts="DoxScript" class="runnable" data-ts.code="var%20buttons%20%3D%20ts.ui.ToolBar.buttons()%3B%0Abuttons.push(%7B%20id%3A%20&apos;example-button&apos;%20%7D)%3B%0Avar%20button%20%3D%20buttons.get(&apos;example-button&apos;)%3B%0Abutton.label%20%3D%20&apos;My%20Button&apos;%3B%0Abutton.type%20%3D%20&apos;ts-secondary&apos;%3B">
                             <script type="runnable">
-                                var buttons = ts.ui.ToolBar.buttons(); buttons.push({ id: 'example-button' }); var button = buttons.get('example-button'); button.label = 'My Button'; button.type = 'ts-secondary';
-                            </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                                var buttons = ts.ui.ToolBar.buttons();
+							buttons.push({ id: 'example-button' });
+							var button = buttons.get('example-button');
+							button.label = 'My Button';
+							button.type = 'ts-secondary';
+						</script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                             <div class="tabpanels">
                                 <pre class="prism language-javascript">
 <code><span class="token keyword">var</span> buttons <span class="token operator">=</span> ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>ToolBar<span class="token punctuation">.</span><span class="token function">buttons<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -146,8 +163,14 @@ button<span class="token punctuation">.</span>type <span class="token operator">
                         <p>You can <code>hide()</code> and <code>show()</code> buttons. You can also toggle <code>visible</code>.</p>
                         <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.ToolBar.buttons().forEach(function(button)%20%7B%0A%09if(button.visible)%20%7B%0A%09%09button.hide()%3B%0A%09%7D%20else%20%7B%0A%09%09button.show()%3B%0A%09%7D%0A%7D)%3B">
                             <script type="runnable">
-                                ts.ui.ToolBar.buttons().forEach(function(button) { if(button.visible) { button.hide(); } else { button.show(); } });
-                            </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                                ts.ui.ToolBar.buttons().forEach(function(button) {
+								if(button.visible) {
+									button.hide();
+								} else {
+									button.show();
+								}
+							});
+						</script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                             <div class="tabpanels">
                                 <pre class="prism language-javascript">
 <code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>ToolBar<span class="token punctuation">.</span><span class="token function">buttons<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">forEach<span class="token punctuation">(</span></span><span class="token keyword">function</span><span class="token punctuation">(</span>button<span class="token punctuation">)</span> <span class="token punctuation">{</span>
@@ -164,8 +187,14 @@ button<span class="token punctuation">.</span>type <span class="token operator">
                         <p>You can <code>disable()</code> and <code>enable()</code> buttons. You can also toggle <code>disabled</code>.</p>
                         <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.ToolBar.buttons().forEach(function(button)%20%7B%0A%09if(button.disabled)%20%7B%0A%09%09button.enable()%3B%0A%09%7D%20else%20%7B%0A%09%09button.disable()%3B%0A%09%7D%0A%7D)%3B">
                             <script type="runnable">
-                                ts.ui.ToolBar.buttons().forEach(function(button) { if(button.disabled) { button.enable(); } else { button.disable(); } });
-                            </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                                ts.ui.ToolBar.buttons().forEach(function(button) {
+								if(button.disabled) {
+									button.enable();
+								} else {
+									button.disable();
+								}
+							});
+						</script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                             <div class="tabpanels">
                                 <pre class="prism language-javascript">
 <code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>ToolBar<span class="token punctuation">.</span><span class="token function">buttons<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">forEach<span class="token punctuation">(</span></span><span class="token keyword">function</span><span class="token punctuation">(</span>button<span class="token punctuation">)</span> <span class="token punctuation">{</span>
@@ -182,8 +211,12 @@ button<span class="token punctuation">.</span>type <span class="token operator">
                         <p>We can display a temporary progress indicator with the <code>busy</code> and <code>done</code> methods.</p>
                         <figure data-ts="DoxScript" class="runnable" data-ts.code="var%20button%20%3D%20ts.ui.ToolBar.buttons()%5B0%5D%3B%0Abutton.busy()%3B%0AsetTimeout(function()%20%7B%0A%09button.done()%3B%0A%7D%2C%201000)%3B">
                             <script type="runnable">
-                                var button = ts.ui.ToolBar.buttons()[0]; button.busy(); setTimeout(function() { button.done(); }, 1000);
-                            </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                                var button = ts.ui.ToolBar.buttons()[0];
+							button.busy();
+							setTimeout(function() {
+								button.done();
+							}, 1000);
+						</script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                             <div class="tabpanels">
                                 <pre class="prism language-javascript">
 <code><span class="token keyword">var</span> button <span class="token operator">=</span> ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>ToolBar<span class="token punctuation">.</span><span class="token function">buttons<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
@@ -197,8 +230,12 @@ button<span class="token punctuation">.</span><span class="token function">busy<
                         <p>The <code>busy</code> method supports an optional status message.</p>
                         <figure data-ts="DoxScript" class="runnable" data-ts.code="var%20button%20%3D%20ts.ui.ToolBar.buttons()%5B0%5D%3B%0Abutton.busy(&apos;Making%20progress&apos;)%3B%0AsetTimeout(function()%20%7B%0A%09button.done()%3B%0A%7D%2C%201000)%3B">
                             <script type="runnable">
-                                var button = ts.ui.ToolBar.buttons()[0]; button.busy('Making progress'); setTimeout(function() { button.done(); }, 1000);
-                            </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                                var button = ts.ui.ToolBar.buttons()[0];
+							button.busy('Making progress');
+							setTimeout(function() {
+								button.done();
+							}, 1000);
+						</script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                             <div class="tabpanels">
                                 <pre class="prism language-javascript">
 <code><span class="token keyword">var</span> button <span class="token operator">=</span> ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>ToolBar<span class="token punctuation">.</span><span class="token function">buttons<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
@@ -213,8 +250,15 @@ button<span class="token punctuation">.</span><span class="token function">busy<
                         <p>You can also <em>group buttons in arrays</em> to create button groups that look like this:</p>
                         <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.ToolBar.buttons(%5B%0A%09%7B%20label%3A%20&apos;Normal&apos;%7D%2C%0A%09%7B%20label%3A%20&apos;Normal&apos;%7D%2C%0A%09%5B%0A%09%09%7B%20label%3A%20&apos;Accept&apos;%2C%20type%3A%20&apos;ts-primary&apos;%20%7D%2C%0A%09%09%7B%20label%3A%20&apos;Reject&apos;%2C%20type%3A%20&apos;ts-danger&apos;%20%7D%09%0A%09%5D%0A%5D)%3B">
                             <script type="runnable">
-                                ts.ui.ToolBar.buttons([ { label: 'Normal'}, { label: 'Normal'}, [ { label: 'Accept', type: 'ts-primary' }, { label: 'Reject', type: 'ts-danger' } ] ]);
-                            </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                                ts.ui.ToolBar.buttons([
+								{ label: 'Normal'},
+								{ label: 'Normal'},
+								[
+									{ label: 'Accept', type: 'ts-primary' },
+									{ label: 'Reject', type: 'ts-danger' }	
+								]
+							]);
+						</script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                             <div class="tabpanels">
                                 <pre class="prism language-javascript">
 <code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>ToolBar<span class="token punctuation">.</span><span class="token function">buttons<span class="token punctuation">(</span></span><span class="token punctuation">[</span>
@@ -231,8 +275,12 @@ button<span class="token punctuation">.</span><span class="token function">busy<
                         <p>You can of course also create grouped buttons with icons instead of text.</p>
                         <figure data-ts="DoxScript" class="runnable" data-ts.code="var%20group%20%3D%20ts.ui.ToolBar.buttons()%5B2%5D%3B%0Agroup.push(%7B%0A%09icon%3A%20&apos;ts-icon-other&apos;%2C%0A%09type%3A%20&apos;ts-secondary&apos;%0A%7D)%3B">
                             <script type="runnable">
-                                var group = ts.ui.ToolBar.buttons()[2]; group.push({ icon: 'ts-icon-other', type: 'ts-secondary' });
-                            </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                                var group = ts.ui.ToolBar.buttons()[2];
+							group.push({
+								icon: 'ts-icon-other',
+								type: 'ts-secondary'
+							});
+						</script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                             <div class="tabpanels">
                                 <pre class="prism language-javascript">
 <code><span class="token keyword">var</span> group <span class="token operator">=</span> ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>ToolBar<span class="token punctuation">.</span><span class="token function">buttons<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
@@ -256,8 +304,12 @@ group<span class="token punctuation">.</span><span class="token function">push<s
                         <p>You&apos;ll get a dedicated search field by passing an object to the <code>search</code> method.</p>
                         <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.ToolBar.search(%7B%0A%09onsearch%3A%20function(value)%20%7B%0A%09%09ts.ui.Notification.success(value%20%7C%7C%20&apos;Search%20cleared&apos;)%3B%0A%09%7D%0A%7D)%3B">
                             <script type="runnable">
-                                ts.ui.ToolBar.search({ onsearch: function(value) { ts.ui.Notification.success(value || 'Search cleared'); } });
-                            </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                                ts.ui.ToolBar.search({
+									onsearch: function(value) {
+										ts.ui.Notification.success(value || 'Search cleared');
+									}
+								});
+							</script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                             <div class="tabpanels">
                                 <pre class="prism language-javascript">
 <code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>ToolBar<span class="token punctuation">.</span><span class="token function">search<span class="token punctuation">(</span></span><span class="token punctuation">{</span>
@@ -273,8 +325,9 @@ group<span class="token punctuation">.</span><span class="token function">push<s
                         <p>The search field expands when the field is focused by the user or whenever there&apos;s a non-empty value in the field. You can change the value like this:</p>
                         <figure data-ts="DoxScript" class="runnable" data-ts.code="var%20search%20%3D%20ts.ui.ToolBar.search()%3B%0Asearch.value%20%3D%20&apos;Hello%20world&apos;%3B">
                             <script type="runnable">
-                                var search = ts.ui.ToolBar.search(); search.value = 'Hello world';
-                            </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                                var search = ts.ui.ToolBar.search();
+								search.value = 'Hello world';
+							</script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                             <div class="tabpanels">
                                 <pre class="prism language-javascript">
 <code><span class="token keyword">var</span> search <span class="token operator">=</span> ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>ToolBar<span class="token punctuation">.</span><span class="token function">search<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -288,8 +341,12 @@ search<span class="token punctuation">.</span>value <span class="token operator"
                         <p>The <code>onsearch</code> callback gets invoked when when the user presses <kbd>ENTER</kbd>.</p>
                         <figure data-ts="DoxScript" class="runnable" data-ts.code="var%20search%20%3D%20ts.ui.ToolBar.search()%3B%0Asearch.value%20%3D%20&apos;Press%20ENTER%20here&apos;%3B%0Asearch.onsearch%20%3D%20function(value)%20%7B%0A%09ts.ui.Notification.success(value%20%7C%7C%20&apos;Search%20cleared&apos;)%3B%0A%7D%3B">
                             <script type="runnable">
-                                var search = ts.ui.ToolBar.search(); search.value = 'Press ENTER here'; search.onsearch = function(value) { ts.ui.Notification.success(value || 'Search cleared'); };
-                            </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                                var search = ts.ui.ToolBar.search();
+								search.value = 'Press ENTER here';
+								search.onsearch = function(value) {
+									ts.ui.Notification.success(value || 'Search cleared');
+								};
+							</script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                             <div class="tabpanels">
                                 <pre class="prism language-javascript">
 <code><span class="token keyword">var</span> search <span class="token operator">=</span> ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>ToolBar<span class="token punctuation">.</span><span class="token function">search<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -303,8 +360,12 @@ search<span class="token punctuation">.</span>onsearch <span class="token operat
                         <p>If defined, the <code>onidle</code> method gets called whenever the user pauses typing.</p>
                         <figure data-ts="DoxScript" class="runnable" data-ts.code="var%20search%20%3D%20ts.ui.ToolBar.search()%3B%0Asearch.value%20%3D%20&apos;Try%20it%20now!&apos;%3B%0Asearch.onidle%20%3D%20function(value)%20%7B%0A%09ts.ui.Notification.success(value)%3B%0A%7D%3B">
                             <script type="runnable">
-                                var search = ts.ui.ToolBar.search(); search.value = 'Try it now!'; search.onidle = function(value) { ts.ui.Notification.success(value); };
-                            </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                                var search = ts.ui.ToolBar.search();
+								search.value = 'Try it now!';
+								search.onidle = function(value) {
+									ts.ui.Notification.success(value);
+								};
+							</script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                             <div class="tabpanels">
                                 <pre class="prism language-javascript">
 <code><span class="token keyword">var</span> search <span class="token operator">=</span> ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>ToolBar<span class="token punctuation">.</span><span class="token function">search<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -322,8 +383,10 @@ search<span class="token punctuation">.</span>onidle <span class="token operator
                         <p>The <code>info</code> property doubles as both the <code>placeholder</code> when the field is expanded and the <code>title</code> (or tooltip) when the field is collapsed.</p>
                         <figure data-ts="DoxScript" class="runnable" data-ts.code="var%20search%20%3D%20ts.ui.ToolBar.search()%3B%0Asearch.info%20%3D%20&apos;Search%20amongst%20the%20things&apos;%3B%0Asearch.value%20%3D%20&apos;&apos;%3B%20%2F%2F%20collapse%20the%20field">
                             <script type="runnable">
-                                var search = ts.ui.ToolBar.search(); search.info = 'Search amongst the things'; search.value = ''; // collapse the field
-                            </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                                var search = ts.ui.ToolBar.search();
+								search.info = 'Search amongst the things';
+								search.value = ''; // collapse the field
+							</script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                             <div class="tabpanels">
                                 <pre class="prism language-javascript">
 <code><span class="token keyword">var</span> search <span class="token operator">=</span> ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>ToolBar<span class="token punctuation">.</span><span class="token function">search<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -338,8 +401,13 @@ search<span class="token punctuation">.</span>value <span class="token operator"
                         <p>You can <code>flex</code> the search field to make it stretch the available width of the ToolBar. In that case, it will remain expanded even when there&apos;s no default <code>value</code>.</p>
                         <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.ToolBar.search(%7B%0A%09tip%3A%20&apos;Flex%20all%20the%20way!&apos;%2C%0A%09flex%3A%201%0A%7D).buttons(%5B%0A%09%7B%20label%3A%20&apos;No%20Flex&apos;%2C%20type%3A%20&apos;ts-primary&apos;%20%7D%0A%5D)%3B">
                             <script type="runnable">
-                                ts.ui.ToolBar.search({ tip: 'Flex all the way!', flex: 1 }).buttons([ { label: 'No Flex', type: 'ts-primary' } ]);
-                            </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                                ts.ui.ToolBar.search({
+									tip: 'Flex all the way!',
+									flex: 1
+								}).buttons([
+									{ label: 'No Flex', type: 'ts-primary' }
+								]);
+							</script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                             <div class="tabpanels">
                                 <pre class="prism language-javascript">
 <code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>ToolBar<span class="token punctuation">.</span><span class="token function">search<span class="token punctuation">(</span></span><span class="token punctuation">{</span>
@@ -351,8 +419,7 @@ search<span class="token punctuation">.</span>value <span class="token operator"
 </pre>
                             </div>
                         </figure>
-                        <p>You can also assign <code>flex</code> to buttons, although that has little practical value. In the future, we may provide a more advanced distribution scheme. That&apos;s why we use a number instead of a boolean, but you should
-                            always use <samp>1</samp> for now.</p>
+                        <p>You can also assign <code>flex</code> to buttons, although that has little practical value. In the future, we may provide a more advanced distribution scheme. That&apos;s why we use a number instead of a boolean, but you should always use <samp>1</samp> for now.</p>
                     </section>
                     <section id="search-api" data-important="THIS GETS INCLUDED IN OTHER PAGES!">
                         <p>Here&apos; an overview of the properties and methods of the Search model.</p>
@@ -375,7 +442,7 @@ search<span class="token punctuation">.</span>value <span class="token operator"
                         <p>ToolBars can be positioned anywhere on the page.</p>
                     </section>
                     <section id="inline-toolbar-desc" data-important="THIS GETS INCLUDED IN OTHER PAGES!">
-                        <p>Assign <code class="attr-pair"><span>data-ts</span>=&quot;<span>ToolBar</span>&quot;</code> to a <code class="el">header</code> or <code class="el">menu</code> to initialize it as a ToolBar. Another attribute <code class="attr-pair"><span>data-ts.title</span></code>                            assigns a default title to the ToolBar.</p>
+                        <p>Assign <code class="attr-pair"><span>data-ts</span>=&quot;<span>ToolBar</span>&quot;</code> to a <code class="el">header</code> or <code class="el">menu</code> to initialize it as a ToolBar. Another attribute <code class="attr-pair"><span>data-ts.title</span></code> assigns a default title to the ToolBar.</p>
                         <figure data-ts="DoxMarkup" data-ts.code="%3Cheader%20data-ts%3D%22ToolBar%22%20data-ts.title%3D%22My%20ToolBar%22%3E%3C%2Fheader%3E">
                             <input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
                             <div class="tabpanels">
@@ -389,8 +456,14 @@ search<span class="token punctuation">.</span>value <span class="token operator"
                         <p>You can get a hold of the component using a CSS selector and call any of the methods we&apos;ve seen applicable to the Main ToolBar.</p>
                         <figure data-ts="DoxScript" class="attention runnable" data-ts.code="ts.ui.get(&apos;%23mytoolbar&apos;%2C%20function(toolbar)%20%7B%0A%09toolbar.buttons(%5B%0A%09%09%7Blabel%3A%20&apos;One&apos;%2C%20type%3A%20&apos;ts-primary&apos;%7D%2C%0A%09%09%7Blabel%3A%20&apos;Two&apos;%2C%20type%3A%20&apos;ts-secondary&apos;%7D%2C%0A%09%09%7Blabel%3A%20&apos;Three&apos;%7D%0A%09%5D)%3B%0A%7D)%3B">
                             <script type="runnable">
-                                ts.ui.get('#mytoolbar', toolbar => { toolbar.buttons([ {label: 'One', type: 'ts-primary'}, {label: 'Two', type: 'ts-secondary'}, {label: 'Three'} ]); });
-                            </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                                ts.ui.get('#mytoolbar', toolbar => {
+									toolbar.buttons([
+										{label: 'One', type: 'ts-primary'},
+										{label: 'Two', type: 'ts-secondary'},
+										{label: 'Three'}
+									]);
+								});
+							</script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                             <div class="tabpanels">
                                 <pre class="prism language-javascript">
 <code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#mytoolbar&apos;</span><span class="token punctuation">,</span> toolbar <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
@@ -407,7 +480,7 @@ search<span class="token punctuation">.</span>value <span class="token operator"
                         <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.get(&apos;%23mytoolbar&apos;).micro()%3B">
                             <script type="runnable">
                                 ts.ui.get('#mytoolbar').micro();
-                            </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+							</script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                             <div class="tabpanels">
                                 <pre class="prism language-javascript">
 <code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#mytoolbar&apos;</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">micro<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
@@ -417,8 +490,14 @@ search<span class="token punctuation">.</span>value <span class="token operator"
                         <p>The ToolBar will economize horizonatal space by collecting multiple tertiaray buttons in a menu (when you <code>Run This Code</code>, you may need to scroll the page back up to see it).</p>
                         <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.get(&apos;%23mytoolbar&apos;%2C%20function(toolbar)%20%7B%0A%09toolbar.buttons().push(%0A%09%09%7Blabel%3A%20&apos;Four&apos;%7D%2C%0A%09%09%7Blabel%3A%20&apos;Five&apos;%7D%2C%0A%09%09%7Blabel%3A%20&apos;Six&apos;%7D%0A%09)%3B%0A%7D)%3B">
                             <script type="runnable">
-                                ts.ui.get('#mytoolbar', toolbar => { toolbar.buttons().push( {label: 'Four'}, {label: 'Five'}, {label: 'Six'} ); });
-                            </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                                ts.ui.get('#mytoolbar', toolbar => {
+									toolbar.buttons().push(
+										{label: 'Four'},
+										{label: 'Five'},
+										{label: 'Six'}
+									);
+								});
+							</script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                             <div class="tabpanels">
                                 <pre class="prism language-javascript">
 <code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#mytoolbar&apos;</span><span class="token punctuation">,</span> toolbar <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
@@ -435,7 +514,7 @@ search<span class="token punctuation">.</span>value <span class="token operator"
                         <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.get(&apos;%23mytoolbar&apos;).uncompact()%3B">
                             <script type="runnable">
                                 ts.ui.get('#mytoolbar').uncompact();
-                            </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+							</script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                             <div class="tabpanels">
                                 <pre class="prism language-javascript">
 <code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#mytoolbar&apos;</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">uncompact<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
@@ -457,8 +536,8 @@ search<span class="token punctuation">.</span>value <span class="token operator"
         <menu class="ts-buttons">
             <li>
                 <a data-ts="Button" target="_blank" href="https://github.com/Tradeshift/tradeshift-ui/issues/new" title="Submit new issue" class="ts-secondary">
-		          <span>Create GitHub Issue&#x2026;</span>
-		        </a>
+                    <span>Create GitHub Issue&#x2026;</span>
+                </a>
             </li>
         </menu>
     </aside>

@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en-us" class="ts-docs" spellcheck="false">
+
+<head>
+    <title>Label</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-10.1.0.min.js"></script>
+    <script src="/v10/dist/assets/dox.min.js"></script>
+    <script src="/v10/dist/assets/mark.min.js"></script>
+    <script src="/v10/dist/assets/jquery-2.2.4.min.js"></script>
+    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-10.1.0.min.css">
+    <link rel="stylesheet" href="/v10/dist/assets/dox.css">
+    <link rel="prefetch" title="Tag" href="tag.html">
+    <link rel="prefetch" title="Tags" href="tags.html">
+    <link rel="prefetch" title="Label" href="label.html">
+    <link rel="prefetch" title="JSON" href="json.html">
+    <link rel="prefetch" title="Gallery" href="gallery.html">
+    <link rel="prefetch" title="Broken HTML" href="old.html" class="hidden">
+    <script>ts.dox.tabs()</script>
+</head>
+
+<body>
+    <header data-ts="TopBar"></header>
+    <main data-ts="Main" class="doc-tags">
+        <div data-ts="MainContent">
+            <article>
+                <h1><span>Label</span></h1>
+                <section class="desc">
+                    <p>Labels represent a non-interactive keyword that help label, organize, and categorize objects.</p>
+                </section>
+                <section>
+                    <p>Labels are simple tags with a special type that will give them some extra flair, to stand out in the crowd.</p>
+                </section>
+                <section>
+                    <h3><span>Colors</span></h3>
+                    <p>If your label is especially dangerous, we&apos;d recommend using the <code>ts-danger</code> <code>data-ts.type</code>.</p>
+                    <figure data-ts="DoxMarkup" data-ts.code="%3Cfigure%0A%09data-ts%3D%22Tag%22%0A%09data-ts.type%3D%22ts-danger%22%0A%09data-ts.data%3D%22ts-danger%22%3E%0A%3C%2Ffigure%3E">
+                        <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Atrue%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
+                        <div class="tabpanels">
+                            <pre class="prism language-markup">
+<code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>figure</span>
+	<span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Tag<span class="token punctuation">&quot;</span></span>
+	<span class="token attr-name">data-ts</span>.<span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>ts-danger<span class="token punctuation">&quot;</span></span>
+	<span class="token attr-name">data-ts</span>.<span class="token attr-name">data</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>ts-danger<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>figure</span><span class="token punctuation">&gt;</span></span></code>
+</pre>
+                            <div class="output">
+                                <figure data-ts="Tag" data-ts.type="ts-danger" data-ts.data="ts-danger">
+                                </figure>
+                            </div>
+                        </div>
+                    </figure>
+                    <figure data-ts="DoxMarkup" data-ts.code="%3Cscript%3E%0A%09const%20data%20%3D%20ts.ui.encode(%0A%09%09%5B%0A%09%09%09%5Bnull%2C%20&apos;ts-danger&apos;%5D%0A%09%09%5D%0A%09)%3B%0A%3C%2Fscript%3E%0A%3Cfigure%0A%09data-ts%3D%22Tag%22%0A%09data-ts.type%3D%22ts-danger%22%0A%09data-ts.data%3D%22%255B%255Bnull%252C%2522ts-danger%2522%255D%255D%22%3E%0A%3C%2Ffigure%3E">
+                        <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Atrue%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
+                        <div class="tabpanels">
+                            <pre class="prism language-markup">
+<code><span class="token script"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">&gt;</span></span>
+	<span class="token keyword">const</span> data <span class="token operator">=</span> ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token function">encode<span class="token punctuation">(</span></span>
+		<span class="token punctuation">[</span>
+			<span class="token punctuation">[</span><span class="token keyword">null</span><span class="token punctuation">,</span> <span class="token string">&apos;ts-danger&apos;</span><span class="token punctuation">]</span>
+		<span class="token punctuation">]</span>
+	<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>figure</span>
+	<span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Tag<span class="token punctuation">&quot;</span></span>
+	<span class="token attr-name">data-ts</span>.<span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>ts-danger<span class="token punctuation">&quot;</span></span>
+	<span class="token attr-name">data-ts</span>.<span class="token attr-name">data</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>%5B%5Bnull%2C%22ts-danger%22%5D%5D<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>figure</span><span class="token punctuation">&gt;</span></span></code>
+</pre>
+                            <div class="output">
+                                <figure data-ts="Tag" data-ts.type="ts-danger" data-ts.data="%5B%5Bnull%2C%22ts-danger%22%5D%5D">
+                                </figure>
+                            </div>
+                        </div>
+                    </figure>
+                    <p>For a somewhat less life threatening situation, there is the good old <code>ts-waning</code> <code>data-ts.type</code>.</p>
+                    <figure data-ts="DoxMarkup" data-ts.code="%3Cfigure%0A%09data-ts%3D%22Tag%22%0A%09data-ts.type%3D%22ts-warning%22%0A%09data-ts.data%3D%22ts-warning%22%3E%0A%3C%2Ffigure%3E">
+                        <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Atrue%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
+                        <div class="tabpanels">
+                            <pre class="prism language-markup">
+<code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>figure</span>
+	<span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Tag<span class="token punctuation">&quot;</span></span>
+	<span class="token attr-name">data-ts</span>.<span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>ts-warning<span class="token punctuation">&quot;</span></span>
+	<span class="token attr-name">data-ts</span>.<span class="token attr-name">data</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>ts-warning<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>figure</span><span class="token punctuation">&gt;</span></span></code>
+</pre>
+                            <div class="output">
+                                <figure data-ts="Tag" data-ts.type="ts-warning" data-ts.data="ts-warning">
+                                </figure>
+                            </div>
+                        </div>
+                    </figure>
+                    <figure data-ts="DoxMarkup" data-ts.code="%3Cscript%3E%0A%09const%20data%20%3D%20ts.ui.encode(%0A%09%09%5B%0A%09%09%09%5Bnull%2C%20&apos;ts-warning&apos;%5D%0A%09%09%5D%0A%09)%3B%0A%3C%2Fscript%3E%0A%3Cfigure%0A%09data-ts%3D%22Tag%22%0A%09data-ts.type%3D%22ts-warning%22%0A%09data-ts.data%3D%22%255B%255Bnull%252C%2522ts-warning%2522%255D%255D%22%3E%0A%3C%2Ffigure%3E">
+                        <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Atrue%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
+                        <div class="tabpanels">
+                            <pre class="prism language-markup">
+<code><span class="token script"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">&gt;</span></span>
+	<span class="token keyword">const</span> data <span class="token operator">=</span> ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token function">encode<span class="token punctuation">(</span></span>
+		<span class="token punctuation">[</span>
+			<span class="token punctuation">[</span><span class="token keyword">null</span><span class="token punctuation">,</span> <span class="token string">&apos;ts-warning&apos;</span><span class="token punctuation">]</span>
+		<span class="token punctuation">]</span>
+	<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>figure</span>
+	<span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Tag<span class="token punctuation">&quot;</span></span>
+	<span class="token attr-name">data-ts</span>.<span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>ts-warning<span class="token punctuation">&quot;</span></span>
+	<span class="token attr-name">data-ts</span>.<span class="token attr-name">data</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>%5B%5Bnull%2C%22ts-warning%22%5D%5D<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>figure</span><span class="token punctuation">&gt;</span></span></code>
+</pre>
+                            <div class="output">
+                                <figure data-ts="Tag" data-ts.type="ts-warning" data-ts.data="%5B%5Bnull%2C%22ts-warning%22%5D%5D">
+                                </figure>
+                            </div>
+                        </div>
+                    </figure>
+                    <p>There are those situations when everything is just going so well, so we made the <code>ts-success</code> <code>data-ts.type</code> for that special occasion.</p>
+                    <figure data-ts="DoxMarkup" data-ts.code="%3Cfigure%0A%09data-ts%3D%22Tag%22%0A%09data-ts.type%3D%22ts-success%22%0A%09data-ts.data%3D%22ts-success%22%3E%0A%3C%2Ffigure%3E">
+                        <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Atrue%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
+                        <div class="tabpanels">
+                            <pre class="prism language-markup">
+<code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>figure</span>
+	<span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Tag<span class="token punctuation">&quot;</span></span>
+	<span class="token attr-name">data-ts</span>.<span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>ts-success<span class="token punctuation">&quot;</span></span>
+	<span class="token attr-name">data-ts</span>.<span class="token attr-name">data</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>ts-success<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>figure</span><span class="token punctuation">&gt;</span></span></code>
+</pre>
+                            <div class="output">
+                                <figure data-ts="Tag" data-ts.type="ts-success" data-ts.data="ts-success">
+                                </figure>
+                            </div>
+                        </div>
+                    </figure>
+                    <figure data-ts="DoxMarkup" data-ts.code="%3Cscript%3E%0A%09const%20data%20%3D%20ts.ui.encode(%0A%09%09%5B%0A%09%09%09%5Bnull%2C%20&apos;ts-success&apos;%5D%0A%09%09%5D%0A%09)%3B%0A%3C%2Fscript%3E%0A%3Cfigure%0A%09data-ts%3D%22Tag%22%0A%09data-ts.type%3D%22ts-success%22%0A%09data-ts.data%3D%22%255B%255Bnull%252C%2522ts-success%2522%255D%255D%22%3E%0A%3C%2Ffigure%3E">
+                        <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Atrue%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
+                        <div class="tabpanels">
+                            <pre class="prism language-markup">
+<code><span class="token script"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">&gt;</span></span>
+	<span class="token keyword">const</span> data <span class="token operator">=</span> ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token function">encode<span class="token punctuation">(</span></span>
+		<span class="token punctuation">[</span>
+			<span class="token punctuation">[</span><span class="token keyword">null</span><span class="token punctuation">,</span> <span class="token string">&apos;ts-success&apos;</span><span class="token punctuation">]</span>
+		<span class="token punctuation">]</span>
+	<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>figure</span>
+	<span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Tag<span class="token punctuation">&quot;</span></span>
+	<span class="token attr-name">data-ts</span>.<span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>ts-success<span class="token punctuation">&quot;</span></span>
+	<span class="token attr-name">data-ts</span>.<span class="token attr-name">data</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>%5B%5Bnull%2C%22ts-success%22%5D%5D<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>figure</span><span class="token punctuation">&gt;</span></span></code>
+</pre>
+                            <div class="output">
+                                <figure data-ts="Tag" data-ts.type="ts-success" data-ts.data="%5B%5Bnull%2C%22ts-success%22%5D%5D">
+                                </figure>
+                            </div>
+                        </div>
+                    </figure>
+                    <p>It wouldn&apos;t be a Tradeshift UI Component, if there wasn&apos;t a <code>ts-blue</code> <code>data-ts.type</code>!</p>
+                    <figure data-ts="DoxMarkup" data-ts.code="%3Cfigure%0A%09data-ts%3D%22Tag%22%0A%09data-ts.type%3D%22ts-blue%22%0A%09data-ts.data%3D%22ts-blue%22%3E%0A%3C%2Ffigure%3E">
+                        <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Atrue%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
+                        <div class="tabpanels">
+                            <pre class="prism language-markup">
+<code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>figure</span>
+	<span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Tag<span class="token punctuation">&quot;</span></span>
+	<span class="token attr-name">data-ts</span>.<span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>ts-blue<span class="token punctuation">&quot;</span></span>
+	<span class="token attr-name">data-ts</span>.<span class="token attr-name">data</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>ts-blue<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>figure</span><span class="token punctuation">&gt;</span></span></code>
+</pre>
+                            <div class="output">
+                                <figure data-ts="Tag" data-ts.type="ts-blue" data-ts.data="ts-blue">
+                                </figure>
+                            </div>
+                        </div>
+                    </figure>
+                    <figure data-ts="DoxMarkup" data-ts.code="%3Cscript%3E%0A%09const%20data%20%3D%20ts.ui.encode(%0A%09%09%5B%0A%09%09%09%5Bnull%2C%20&apos;ts-blue&apos;%5D%0A%09%09%5D%0A%09)%3B%0A%3C%2Fscript%3E%0A%3Cfigure%0A%09data-ts%3D%22Tag%22%0A%09data-ts.type%3D%22ts-blue%22%0A%09data-ts.data%3D%22%255B%255Bnull%252C%2522ts-blue%2522%255D%255D%22%3E%0A%3C%2Ffigure%3E">
+                        <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Atrue%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
+                        <div class="tabpanels">
+                            <pre class="prism language-markup">
+<code><span class="token script"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">&gt;</span></span>
+	<span class="token keyword">const</span> data <span class="token operator">=</span> ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token function">encode<span class="token punctuation">(</span></span>
+		<span class="token punctuation">[</span>
+			<span class="token punctuation">[</span><span class="token keyword">null</span><span class="token punctuation">,</span> <span class="token string">&apos;ts-blue&apos;</span><span class="token punctuation">]</span>
+		<span class="token punctuation">]</span>
+	<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>figure</span>
+	<span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Tag<span class="token punctuation">&quot;</span></span>
+	<span class="token attr-name">data-ts</span>.<span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>ts-blue<span class="token punctuation">&quot;</span></span>
+	<span class="token attr-name">data-ts</span>.<span class="token attr-name">data</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>%5B%5Bnull%2C%22ts-blue%22%5D%5D<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>figure</span><span class="token punctuation">&gt;</span></span></code>
+</pre>
+                            <div class="output">
+                                <figure data-ts="Tag" data-ts.type="ts-blue" data-ts.data="%5B%5Bnull%2C%22ts-blue%22%5D%5D">
+                                </figure>
+                            </div>
+                        </div>
+                    </figure>
+                </section>
+            </article>
+        </div>
+    </main>
+    <aside data-ts="Note" class="sticky ts-bg-yellow">
+        <p>If you find a bug or need a feature&#x2026;</p>
+        <menu class="ts-buttons">
+            <li>
+                <a data-ts="Button" target="_blank" href="https://github.com/Tradeshift/tradeshift-ui/issues/new" title="Submit new issue" class="ts-secondary">
+                    <span>Create GitHub Issue&#x2026;</span>
+                </a>
+            </li>
+        </menu>
+    </aside>
+</body>
+
+</html>

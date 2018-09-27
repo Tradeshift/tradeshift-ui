@@ -5,11 +5,11 @@
     <title>Form Example</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
-    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-10.0.28.min.js"></script>
+    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-10.1.0.min.js"></script>
     <script src="/v10/dist/assets/dox.min.js"></script>
     <script src="/v10/dist/assets/mark.min.js"></script>
     <script src="/v10/dist/assets/jquery-2.2.4.min.js"></script>
-    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-10.0.28.min.css">
+    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-10.1.0.min.css">
     <link rel="stylesheet" href="/v10/dist/assets/dox.css">
     <link rel="prefetch" title="HTML" href="index.html">
     <link rel="prefetch" title="Disabled / Readonly" href="disabled.html">
@@ -21,15 +21,13 @@
     <link rel="prefetch" title="JQuery Test" href="test-2.html" class="hidden">
     <script>
         document.addEventListener('change', function(e) {
-            var section = document.querySelector('#bgcolor');
-            if (e.target.name && e.target.value.includes('ts-bg')) {
-                section.className = e.target.value;
-            }
-        });
-    </script>
-    <script>
-        ts.dox.tabs()
-    </script>
+			var section = document.querySelector('#bgcolor');
+			if (e.target.name && e.target.value.includes('ts-bg')) {
+				section.className = e.target.value;
+			}
+		});
+	</script>
+    <script>ts.dox.tabs()</script>
 </head>
 
 <body>
@@ -43,100 +41,100 @@
                         <form data-ts="Form">
                             <fieldset>
                                 <label>
-								<span>Text</span>
-								<input type="text" value="Text">
-							</label>
+                                    <span>Text</span>
+                                    <input type="text" value="Text">
+                                </label>
                             </fieldset>
                             <fieldset>
                                 <label>
-								<span>Text with custom icon</span>
-								<input type="text" value="Text" data-ts.icon="ts-icon-logout">
-							</label>
+                                    <span>Text with custom icon</span>
+                                    <input type="text" value="Text" data-ts.icon="ts-icon-logout">
+                                </label>
                             </fieldset>
                             <fieldset>
                                 <label>
-								<span>Text with no icon</span>
-								<input type="text" value="Text" data-ts.icon="">
-							</label>
+                                    <span>Text with no icon</span>
+                                    <input type="text" value="Text" data-ts.icon="">
+                                </label>
                             </fieldset>
                             <fieldset>
                                 <label>
-								<span>Textarea</span>
-								<textarea>Textarea</textarea>
-							</label>
+                                    <span>Textarea</span>
+                                    <textarea>Textarea</textarea>
+                                </label>
                             </fieldset>
                             <fieldset>
                                 <label>
-								<span>Select</span>
-								<select>
-									<option value="a">One</option>
-									<option value="b">Two</option>
-									<option value="c">Three</option>
-								</select>
-							</label>
+                                    <span>Select</span>
+                                    <select>
+                                        <option value="a">One</option>
+                                        <option value="b">Two</option>
+                                        <option value="c">Three</option>
+                                    </select>
+                                </label>
                             </fieldset>
                             <fieldset>
                                 <label>
-								<span>Select with placeholder</span>
-								<select placeholder="Please select something">
-									<option></option>
-									<option value="a">One</option>
-									<option value="b">Two</option>
-									<option value="c">Three</option>
-								</select>
-							</label>
+                                    <span>Select with placeholder</span>
+                                    <select placeholder="Please select something">
+                                        <option></option>
+                                        <option value="a">One</option>
+                                        <option value="b">Two</option>
+                                        <option value="c">Three</option>
+                                    </select>
+                                </label>
                             </fieldset>
                             <fieldset>
                                 <label>
-								<span>Select multiple</span>
-								<select multiple>
-									<option value="a" selected>One</option>
-									<option value="b" selected>Two</option>
-									<option value="c">Three</option>
-									<option value="d">Four</option>
-									<option value="e">Five</option>
-								</select>
-								<button>Cool, apply changes!</button>
-							</label>
+                                    <span>Select multiple</span>
+                                    <select multiple>
+                                        <option value="a" selected>One</option>
+                                        <option value="b" selected>Two</option>
+                                        <option value="c">Three</option>
+                                        <option value="d">Four</option>
+                                        <option value="e">Five</option>
+                                    </select>
+                                    <button>Cool, apply changes!</button>
+                                </label>
                             </fieldset>
                             <fieldset>
                                 <label>
-								<span>Date</span>
-								<input type="date" value="2016-12-24">
-							</label>
+                                    <span>Date</span>
+                                    <input type="date" value="2016-12-24">
+                                </label>
                             </fieldset>
                             <fieldset>
                                 <span>Radios</span>
                                 <label>
-								<input type="radio" name="radio" checked>
-								<span>Option One</span>
-							</label>
+                                    <input type="radio" name="radio" checked>
+                                    <span>Option One</span>
+                                </label>
                                 <label>
-								<input type="radio" name="radio">
-								<span>Option Two</span>
-							</label>
+                                    <input type="radio" name="radio">
+                                    <span>Option Two</span>
+                                </label>
                             </fieldset>
                             <fieldset>
                                 <span>Checkbox</span>
                                 <label>
-								<input type="checkbox">
-								<span>I agree</span>
-							</label>
+                                    <input type="checkbox">
+                                    <span>I agree</span>
+                                </label>
                                 <label>
-								<input type="checkbox" checked>
-								<span>I don&apos;t agree</span>
-							</label>
+                                    <input type="checkbox" checked>
+                                    <span>I don&apos;t agree</span>
+                                </label>
                             </fieldset>
                             <fieldset>
                                 <span>Switch</span>
                                 <label>
-								<span>I agree</span>
-								<input type="checkbox">
-							</label>
+                                    <span>I agree</span>
+                                    <input type="checkbox">
+                                </label>
                                 <label>
-								<span>I don&apos;t agree</span>
-								<input type="checkbox" checked>
-							</label>
+                                    <span>I don&apos;t agree</span>
+                                    <input type="checkbox" checked>
+                                </label>
                             </fieldset>
                         </form>
                     </section>
@@ -149,100 +147,100 @@
                         <form data-ts="Form">
                             <fieldset>
                                 <label>
-								<span>Text</span>
-								<input type="text" value="Text" disabled>
-							</label>
+                                    <span>Text</span>
+                                    <input type="text" value="Text" disabled>
+                                </label>
                             </fieldset>
                             <fieldset>
                                 <label>
-								<span>Text with custom icon</span>
-								<input type="text" value="Text" disabled data-ts.icon="ts-icon-send">
-							</label>
+                                    <span>Text with custom icon</span>
+                                    <input type="text" value="Text" disabled data-ts.icon="ts-icon-send">
+                                </label>
                             </fieldset>
                             <fieldset>
                                 <label>
-								<span>Text with no icon</span>
-								<input type="text" value="Text" disabled data-ts.icon="">
-							</label>
+                                    <span>Text with no icon</span>
+                                    <input type="text" value="Text" disabled data-ts.icon="">
+                                </label>
                             </fieldset>
                             <fieldset>
                                 <label>
-								<span>Textarea</span>
-								<textarea disabled>Textarea</textarea>
-							</label>
+                                    <span>Textarea</span>
+                                    <textarea disabled>Textarea</textarea>
+                                </label>
                             </fieldset>
                             <fieldset>
                                 <label>
-								<span>Select</span>
-								<select disabled>
-									<option value="a">One</option>
-									<option value="b">Two</option>
-									<option value="c">Three</option>
-								</select>
-							</label>
+                                    <span>Select</span>
+                                    <select disabled>
+                                        <option value="a">One</option>
+                                        <option value="b">Two</option>
+                                        <option value="c">Three</option>
+                                    </select>
+                                </label>
                             </fieldset>
                             <fieldset>
                                 <label>
-								<span>Select with placeholder</span>
-								<select disabled placeholder="Please select something">
-									<option></option>
-									<option value="a">One</option>
-									<option value="b">Two</option>
-									<option value="c">Three</option>
-								</select>
-							</label>
+                                    <span>Select with placeholder</span>
+                                    <select disabled placeholder="Please select something">
+                                        <option></option>
+                                        <option value="a">One</option>
+                                        <option value="b">Two</option>
+                                        <option value="c">Three</option>
+                                    </select>
+                                </label>
                             </fieldset>
                             <fieldset>
                                 <label>
-								<span>Select multiple</span>
-								<select multiple disabled>
-									<option value="a" selected>One</option>
-									<option value="b" selected>Two</option>
-									<option value="c">Three</option>
-									<option value="d">Four</option>
-									<option value="e">Five</option>
-								</select>
-								<button>Cool, apply changes!</button>
-							</label>
+                                    <span>Select multiple</span>
+                                    <select multiple disabled>
+                                        <option value="a" selected>One</option>
+                                        <option value="b" selected>Two</option>
+                                        <option value="c">Three</option>
+                                        <option value="d">Four</option>
+                                        <option value="e">Five</option>
+                                    </select>
+                                    <button>Cool, apply changes!</button>
+                                </label>
                             </fieldset>
                             <fieldset>
                                 <label>
-								<span>Date</span>
-								<input type="date" disabled value="2016-12-24">
-							</label>
+                                    <span>Date</span>
+                                    <input type="date" disabled value="2016-12-24">
+                                </label>
                             </fieldset>
                             <fieldset>
                                 <span>Radios</span>
                                 <label>
-								<input type="radio" name="radio" checked disabled>
-								<span>Option One</span>
-							</label>
+                                    <input type="radio" name="radio" checked disabled>
+                                    <span>Option One</span>
+                                </label>
                                 <label>
-								<input type="radio" name="radio" disabled>
-								<span>Option Two</span>
-							</label>
+                                    <input type="radio" name="radio" disabled>
+                                    <span>Option Two</span>
+                                </label>
                             </fieldset>
                             <fieldset>
                                 <span>Checkbox</span>
                                 <label>
-								<input type="checkbox" disabled>
-								<span>I agree</span>
-							</label>
+                                    <input type="checkbox" disabled>
+                                    <span>I agree</span>
+                                </label>
                                 <label>
-								<input type="checkbox" checked disabled>
-								<span>I don&apos;t agree</span>
-							</label>
+                                    <input type="checkbox" checked disabled>
+                                    <span>I don&apos;t agree</span>
+                                </label>
                             </fieldset>
                             <fieldset>
                                 <span>Switch</span>
                                 <label>
-								<span>I agree</span>
-								<input type="checkbox" disabled>
-							</label>
+                                    <span>I agree</span>
+                                    <input type="checkbox" disabled>
+                                </label>
                                 <label>
-								<span>I don&apos;t agree</span>
-								<input type="checkbox" checked disabled>
-							</label>
+                                    <span>I don&apos;t agree</span>
+                                    <input type="checkbox" checked disabled>
+                                </label>
                             </fieldset>
                         </form>
                         <div data-ts="Note">
@@ -259,67 +257,67 @@
                         <form data-ts="Form">
                             <fieldset>
                                 <label>
-								<span>Text</span>
-								<input type="text" value="Text" readonly>
-							</label>
+                                    <span>Text</span>
+                                    <input type="text" value="Text" readonly>
+                                </label>
                             </fieldset>
                             <fieldset>
                                 <label>
-								<span>Text with custom icon</span>
-								<input type="text" value="Text" readonly data-ts.icon="ts-icon-dispute">
-							</label>
+                                    <span>Text with custom icon</span>
+                                    <input type="text" value="Text" readonly data-ts.icon="ts-icon-dispute">
+                                </label>
                             </fieldset>
                             <fieldset>
                                 <label>
-								<span>Text with no icon</span>
-								<input type="text" value="Text" readonly data-ts.icon="">
-							</label>
+                                    <span>Text with no icon</span>
+                                    <input type="text" value="Text" readonly data-ts.icon="">
+                                </label>
                             </fieldset>
                             <fieldset>
                                 <label>
-								<span>Textarea</span>
-								<textarea readonly>Textarea</textarea>
-							</label>
+                                    <span>Textarea</span>
+                                    <textarea readonly>Textarea</textarea>
+                                </label>
                             </fieldset>
                             <fieldset>
                                 <label>
-								<span>Select</span>
-								<select readonly>
-									<option value="a">One</option>
-									<option value="b">Two</option>
-									<option value="c">Three</option>
-								</select>
-							</label>
+                                    <span>Select</span>
+                                    <select readonly>
+                                        <option value="a">One</option>
+                                        <option value="b">Two</option>
+                                        <option value="c">Three</option>
+                                    </select>
+                                </label>
                             </fieldset>
                             <fieldset>
                                 <label>
-								<span>Select with placeholder</span>
-								<select readonly placeholder="Please select something">
-									<option></option>
-									<option value="a">One</option>
-									<option value="b">Two</option>
-									<option value="c">Three</option>
-								</select>
-							</label>
+                                    <span>Select with placeholder</span>
+                                    <select readonly placeholder="Please select something">
+                                        <option></option>
+                                        <option value="a">One</option>
+                                        <option value="b">Two</option>
+                                        <option value="c">Three</option>
+                                    </select>
+                                </label>
                             </fieldset>
                             <fieldset>
                                 <label>
-								<span>Select multiple</span>
-								<select multiple readonly>
-									<option value="a" selected>One</option>
-									<option value="b" selected>Two</option>
-									<option value="c">Three</option>
-									<option value="d">Four</option>
-									<option value="e">Five</option>
-								</select>
-								<button>Cool, apply changes!</button>
-							</label>
+                                    <span>Select multiple</span>
+                                    <select multiple readonly>
+                                        <option value="a" selected>One</option>
+                                        <option value="b" selected>Two</option>
+                                        <option value="c">Three</option>
+                                        <option value="d">Four</option>
+                                        <option value="e">Five</option>
+                                    </select>
+                                    <button>Cool, apply changes!</button>
+                                </label>
                             </fieldset>
                             <fieldset>
                                 <label>
-								<span>Date</span>
-								<input type="date" readonly value="2016-12-24">
-							</label>
+                                    <span>Date</span>
+                                    <input type="date" readonly value="2016-12-24">
+                                </label>
                             </fieldset>
                         </form>
                         <div data-ts="Note">
@@ -330,9 +328,9 @@
                         <form data-ts="Form">
                             <fieldset>
                                 <label>
-								<span>Text</span>
-								<input type="text" value="The lock icon is now hidden" readonly class="ts-nolock">
-							</label>
+                                    <span>Text</span>
+                                    <input type="text" value="The lock icon is now hidden" readonly class="ts-nolock">
+                                </label>
                             </fieldset>
                         </form>
                     </section>
@@ -345,65 +343,65 @@
                         <form data-ts="Form">
                             <fieldset class="ts-multi">
                                 <label>
-								<span>Text Multi</span>
-								<input type="text" value="Text">
-							</label>
+                                    <span>Text Multi</span>
+                                    <input type="text" value="Text">
+                                </label>
                                 <label>
-								<span>Date Multi</span>
-								<input type="date" value="2016-12-24">
-							</label>
+                                    <span>Date Multi</span>
+                                    <input type="date" value="2016-12-24">
+                                </label>
                             </fieldset>
                             <fieldset class="ts-multi">
                                 <label>
-								<span>Textarea Multi</span>
-								<textarea>Textarea</textarea>
-							</label>
+                                    <span>Textarea Multi</span>
+                                    <textarea>Textarea</textarea>
+                                </label>
                                 <label>
-								<span>More Multi</span>
-								<textarea>Textarea</textarea>
-							</label>
+                                    <span>More Multi</span>
+                                    <textarea>Textarea</textarea>
+                                </label>
                             </fieldset>
                             <fieldset class="ts-multi">
                                 <label>
-								<span>Select Multi</span>
-								<select>
-									<option value="a">One</option>
-									<option value="b">Two</option>
-									<option value="c">Three</option>
-								</select>
-							</label>
+                                    <span>Select Multi</span>
+                                    <select>
+                                        <option value="a">One</option>
+                                        <option value="b">Two</option>
+                                        <option value="c">Three</option>
+                                    </select>
+                                </label>
                                 <label>
-								<span>Select Multi</span>
-								<select>
-									<option value="a">One</option>
-									<option value="b" selected>Two</option>
-									<option value="c">Three</option>
-								</select>
-							</label>
+                                    <span>Select Multi</span>
+                                    <select>
+                                        <option value="a">One</option>
+                                        <option value="b" selected>Two</option>
+                                        <option value="c">Three</option>
+                                    </select>
+                                </label>
                             </fieldset>
                             <fieldset class="ts-multi">
                                 <label>
-								<span>Multiselect multi</span>
-								<select multiple>
-									<option value="a" selected>One</option>
-									<option value="b">Two</option>
-									<option value="c">Three</option>
-									<option value="d">Four</option>
-									<option value="e">Five</option>
-								</select>
-								<button>Cool, apply changes!</button>
-							</label>
+                                    <span>Multiselect multi</span>
+                                    <select multiple>
+                                        <option value="a" selected>One</option>
+                                        <option value="b">Two</option>
+                                        <option value="c">Three</option>
+                                        <option value="d">Four</option>
+                                        <option value="e">Five</option>
+                                    </select>
+                                    <button>Cool, apply changes!</button>
+                                </label>
                                 <label>
-								<span>Multiselect multi</span>
-								<select multiple>
-									<option value="a" selected>One</option>
-									<option value="b" selected>Two</option>
-									<option value="c">Three</option>
-									<option value="d">Four</option>
-									<option value="e">Five</option>
-								</select>
-								<button>Cool, apply changes!</button>
-							</label>
+                                    <span>Multiselect multi</span>
+                                    <select multiple>
+                                        <option value="a" selected>One</option>
+                                        <option value="b" selected>Two</option>
+                                        <option value="c">Three</option>
+                                        <option value="d">Four</option>
+                                        <option value="e">Five</option>
+                                    </select>
+                                    <button>Cool, apply changes!</button>
+                                </label>
                             </fieldset>
                         </form>
                     </section>
@@ -416,9 +414,9 @@
                         <form data-ts="Form">
                             <fieldset>
                                 <label class="ts-error">
-								<span>Error</span>
-								<input type="text" value="Something wrong">
-							</label>
+                                    <span>Error</span>
+                                    <input type="text" value="Something wrong">
+                                </label>
                                 <dl class="ts-errors">
                                     <dt>Text</dt>
                                     <dd>An explanation of the error in question</dd>
@@ -427,9 +425,9 @@
                             </fieldset>
                             <fieldset>
                                 <label>
-								<span>Info</span>
-								<input type="text" value="What is this?">
-							</label>
+                                    <span>Info</span>
+                                    <input type="text" value="What is this?">
+                                </label>
                                 <dl class="ts-info">
                                     <dt>Text</dt>
                                     <dd>An information about the field</dd>
@@ -438,9 +436,9 @@
                             </fieldset>
                             <fieldset>
                                 <label>
-								<span>Disabled info</span>
-								<input type="text" value="What is this?" disabled>
-							</label>
+                                    <span>Disabled info</span>
+                                    <input type="text" value="What is this?" disabled>
+                                </label>
                                 <dl class="ts-info">
                                     <dt>Text</dt>
                                     <dd>An information about the field</dd>
@@ -458,8 +456,8 @@
                         <p>Check out the Form in that Aside.</p>
                         <p>
                             <button data-ts="Button" class="ts-primary" onclick="ts.ui.get(&apos;myaside&apos;).open()">
-							<span>Open the Aside&#x2026;</span>
-						</button>
+                                <span>Open the Aside&#x2026;</span>
+                            </button>
                         </p>
                     </section>
                 </article>
@@ -472,55 +470,55 @@
                             <fieldset>
                                 <span>Choose your color</span>
                                 <label>
-								<input type="radio" name="color" value="ts-bg-dark" checked="checked">
-								<span>Dark</span>
-							</label>
+                                    <input type="radio" name="color" value="ts-bg-dark" checked="checked">
+                                    <span>Dark</span>
+                                </label>
                                 <label>
-								<input type="radio" name="color" value="ts-bg-red">
-								<span>Red</span>
-							</label>
+                                    <input type="radio" name="color" value="ts-bg-red">
+                                    <span>Red</span>
+                                </label>
                                 <label>
-								<input type="radio" name="color" value="ts-bg-green">
-								<span>Green</span>
-							</label>
+                                    <input type="radio" name="color" value="ts-bg-green">
+                                    <span>Green</span>
+                                </label>
                                 <label>
-								<input type="radio" name="color" value="ts-bg-blue">
-								<span>Blue</span>
-							</label>
+                                    <input type="radio" name="color" value="ts-bg-blue">
+                                    <span>Blue</span>
+                                </label>
                                 <label>
-								<input type="radio" name="color" value="ts-bg-purple">
-								<span>Purple</span>
-							</label>
+                                    <input type="radio" name="color" value="ts-bg-purple">
+                                    <span>Purple</span>
+                                </label>
                                 <label>
-								<input type="radio" name="color" value="ts-bg-yellow">
-								<span>Yellow</span>
-							</label>
+                                    <input type="radio" name="color" value="ts-bg-yellow">
+                                    <span>Yellow</span>
+                                </label>
                                 <label>
-								<input type="radio" name="color" value="ts-bg-lite">
-								<span>Lite/White</span>
-							</label>
+                                    <input type="radio" name="color" value="ts-bg-lite">
+                                    <span>Lite/White</span>
+                                </label>
                             </fieldset>
                             <fieldset>
                                 <label>
-								<span>Text</span>
-								<input type="text" value="Text">
-							</label>
+                                    <span>Text</span>
+                                    <input type="text" value="Text">
+                                </label>
                             </fieldset>
                             <fieldset>
                                 <label>
-								<span>Select</span>
-								<select>
-									<option value="a">One</option>
-									<option value="b">Two</option>
-									<option value="c">Three</option>
-								</select>
-							</label>
+                                    <span>Select</span>
+                                    <select>
+                                        <option value="a">One</option>
+                                        <option value="b">Two</option>
+                                        <option value="c">Three</option>
+                                    </select>
+                                </label>
                             </fieldset>
                             <fieldset>
                                 <label>
-								<span>Date</span>
-								<input type="date" value="2016-12-24">
-							</label>
+                                    <span>Date</span>
+                                    <input type="date" value="2016-12-24">
+                                </label>
                             </fieldset>
                         </form>
                     </section>
@@ -534,77 +532,77 @@
             <form data-ts="Form">
                 <fieldset>
                     <label>
-						<span>Text</span>
-						<input type="text" value="Text">
-					</label>
+                        <span>Text</span>
+                        <input type="text" value="Text">
+                    </label>
                 </fieldset>
                 <fieldset>
                     <label>
-						<span>Textarea</span>
-						<textarea>Textarea</textarea>
-					</label>
+                        <span>Textarea</span>
+                        <textarea>Textarea</textarea>
+                    </label>
                 </fieldset>
                 <fieldset>
                     <label>
-						<span>Select</span>
-						<select>
-							<option value="a">One</option>
-							<option value="b">Two</option>
-							<option value="c">Three</option>
-						</select>
-					</label>
+                        <span>Select</span>
+                        <select>
+                            <option value="a">One</option>
+                            <option value="b">Two</option>
+                            <option value="c">Three</option>
+                        </select>
+                    </label>
                 </fieldset>
                 <fieldset>
                     <label>
-						<span>Select multiple</span>
-						<select multiple>
-							<option value="a" selected>One</option>
-							<option value="b" selected>Two</option>
-							<option value="c">Three</option>
-							<option value="d">Four</option>
-							<option value="e">Five</option>
-						</select>
-						<button>Cool, apply changes!</button>
-					</label>
+                        <span>Select multiple</span>
+                        <select multiple>
+                            <option value="a" selected>One</option>
+                            <option value="b" selected>Two</option>
+                            <option value="c">Three</option>
+                            <option value="d">Four</option>
+                            <option value="e">Five</option>
+                        </select>
+                        <button>Cool, apply changes!</button>
+                    </label>
                 </fieldset>
                 <fieldset>
                     <label>
-						<span>Date</span>
-						<input type="date" value="2016-12-24">
-					</label>
+                        <span>Date</span>
+                        <input type="date" value="2016-12-24">
+                    </label>
                 </fieldset>
                 <fieldset>
                     <span>Radios</span>
                     <label>
-						<input type="radio" name="radio" checked>
-						<span>Option One</span>
-					</label>
+                        <input type="radio" name="radio" checked>
+                        <span>Option One</span>
+                    </label>
                     <label>
-						<input type="radio" name="radio">
-						<span>Option Two</span>
-					</label>
+                        <input type="radio" name="radio">
+                        <span>Option Two</span>
+                    </label>
                 </fieldset>
                 <fieldset>
                     <span>Checkbox</span>
                     <label>
-						<input type="checkbox">
-						<span>I agree</span>
-					</label>
+                        <input type="checkbox">
+                        <span>I agree</span>
+                    </label>
                     <label>
-						<input type="checkbox" checked>
-						<span>I don&apos;t agree</span>
-					</label>
+                        <input type="checkbox" checked>
+                        <span>I don&apos;t agree</span>
+                    </label>
                 </fieldset>
                 <fieldset>
                     <span>Switch</span>
                     <label>
-						<span>I agree</span>
-						<input type="checkbox">
-					</label>
+                        <span>I agree</span>
+                        <input type="checkbox">
+                    </label>
                     <label>
-						<span>I don&apos;t agree</span>
-						<input type="checkbox" checked>
-					</label>
+                        <span>I don&apos;t agree</span>
+                        <input type="checkbox" checked>
+                    </label>
                 </fieldset>
             </form>
         </div>
@@ -614,8 +612,8 @@
         <menu class="ts-buttons">
             <li>
                 <a data-ts="Button" target="_blank" href="https://github.com/Tradeshift/tradeshift-ui/issues/new" title="Submit new issue" class="ts-secondary">
-		          <span>Create GitHub Issue&#x2026;</span>
-		        </a>
+                    <span>Create GitHub Issue&#x2026;</span>
+                </a>
             </li>
         </menu>
     </aside>

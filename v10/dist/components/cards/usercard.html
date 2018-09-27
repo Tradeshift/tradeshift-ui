@@ -5,23 +5,21 @@
     <title>UserCard</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
-    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-10.0.28.min.js"></script>
+    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-10.1.0.min.js"></script>
     <script src="/v10/dist/assets/dox.min.js"></script>
     <script src="/v10/dist/assets/mark.min.js"></script>
     <script src="/v10/dist/assets/jquery-2.2.4.min.js"></script>
-    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-10.0.28.min.css">
+    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-10.1.0.min.css">
     <link rel="stylesheet" href="/v10/dist/assets/dox.css">
     <link rel="prefetch" title="CompanyCard" href="companycard.html">
     <link rel="prefetch" title="UserCard" href="usercard.html">
     <link rel="prefetch" title="Extras" href="extras.html" class="hidden">
     <style>
         figure .output {
-            text-align: center;
-        }
-    </style>
-    <script>
-        ts.dox.tabs()
-    </script>
+		 		text-align: center;
+		 	}
+		</style>
+    <script>ts.dox.tabs()</script>
 </head>
 
 <body class="nosticky">
@@ -37,9 +35,19 @@
                     <p>The properties are all optional but you should at least include the name.</p>
                     <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.UserCard(%7B%0A%09id%3A%20&apos;6bf17754-f9de-4e31-aa31-bd3ff765b9c2&apos;%2C%0A%09data%3A%20%7B%0A%09%09name%3A%20&apos;Wired%20Earp&apos;%2C%0A%09%09image%3A%20&apos;assets%2Fwiredearp.png&apos;%2C%0A%09%09title%3A%20&apos;EDB%20Programmer&apos;%2C%0A%09%09role%3A%20&apos;Gentleman%20Spy&apos;%2C%0A%09%09email%3A%20&apos;jmo%40tradeshift.com&apos;%2C%0A%09%09company%3A%20&apos;Tradeshift&apos;%2C%0A%09%09companyUrl%3A%20&apos;http%3A%2F%2Ftradeshift.com%2F&apos;%0A%09%7D%0A%7D).open()%3B">
                         <script type="runnable">
-                            ts.ui.UserCard({ id: '6bf17754-f9de-4e31-aa31-bd3ff765b9c2', data: { name: 'Wired Earp', image: 'assets/wiredearp.png', title: 'EDB Programmer', role: 'Gentleman Spy', email: 'jmo@tradeshift.com', company: 'Tradeshift', companyUrl: 'http://tradeshift.com/'
-                            } }).open();
-                        </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                            ts.ui.UserCard({
+								id: '6bf17754-f9de-4e31-aa31-bd3ff765b9c2',
+								data: {
+									name: 'Wired Earp',
+									image: 'assets/wiredearp.png',
+									title: 'EDB Programmer',
+									role: 'Gentleman Spy',
+									email: 'jmo@tradeshift.com',
+									company: 'Tradeshift',
+									companyUrl: 'http://tradeshift.com/'
+								}
+							}).open();
+						</script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                         <div class="tabpanels">
                             <pre class="prism language-javascript">
 <code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token function">UserCard<span class="token punctuation">(</span></span><span class="token punctuation">{</span>

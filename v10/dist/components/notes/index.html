@@ -5,19 +5,19 @@
     <title>Note</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
-    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-10.0.28.min.js"></script>
+    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-10.1.0.min.js"></script>
     <script src="/v10/dist/assets/dox.min.js"></script>
     <script src="/v10/dist/assets/mark.min.js"></script>
     <script src="/v10/dist/assets/jquery-2.2.4.min.js"></script>
-    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-10.0.28.min.css">
+    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-10.1.0.min.css">
     <link rel="stylesheet" href="/v10/dist/assets/dox.css">
     <script>
-        function toggle( /*...selectors*/ ) {
-            Array.forEach(arguments, function(selector) {
-                ts.ui.get(selector).toggle();
-            });
-        }
-    </script>
+        function toggle(/*...selectors*/) {
+				Array.forEach(arguments, function(selector) {
+					ts.ui.get(selector).toggle();
+				});
+			}
+		</script>
 </head>
 
 <body>
@@ -27,14 +27,20 @@
             <article>
                 <h1><span>Note</span></h1>
                 <section class="desc">
-                    <p>You can use the Note to give information to the user about the whole page or a section of the page. The Note should however not be used to display errors or warning messages, please use the <a data-ts="Button" href="/v10/dist/components/notifications/">Notification</a>                        for that.</p>
+                    <p>You can use the Note to give information to the user about the whole page or a section of the page. The Note should however not be used to display errors or warning messages, please use the <a data-ts="Button" href="/v10/dist/components/notifications/">Notification</a> for that.</p>
                 </section>
                 <section>
                     <p>To explain to the user what the page is about, you can show a Note at the top. Note that there should never be more than one page-level Note!</p>
                     <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.Note(%7B%0A%09icon%3A%20&apos;ts-icon-heart&apos;%2C%0A%09text%3A%20&apos;This%20page%20explains%20how%20to%20use%20the%20Note%20component%20with%20some%20nice%20examples.&apos;%2C%0A%09onclose%3A%20function()%20%7B%0A%09%09ts.ui.Notification.success(&apos;The%20Note%20is%20gone...&apos;)%3B%0A%09%7D%0A%7D)%3B">
                         <script type="runnable">
-                            ts.ui.Note({ icon: 'ts-icon-heart', text: 'This page explains how to use the Note component with some nice examples.', onclose: function() { ts.ui.Notification.success('The Note is gone...'); } });
-                        </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                            ts.ui.Note({
+								icon: 'ts-icon-heart',
+								text: 'This page explains how to use the Note component with some nice examples.',
+								onclose: function() {
+									ts.ui.Notification.success('The Note is gone...');
+								}
+							});
+						</script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                         <div class="tabpanels">
                             <pre class="prism language-javascript">
 <code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token function">Note<span class="token punctuation">(</span></span><span class="token punctuation">{</span>
@@ -50,8 +56,16 @@
                     <p>You can add buttons to the Note. If you save a reference to the Note, you can close it with any button.</p>
                     <figure data-ts="DoxScript" class="runnable" data-ts.code="var%20note%20%3D%20ts.ui.Note(%7B%0A%09buttons%3A%20%5B%7B%0A%09%09label%3A%20&apos;Button&apos;%2C%0A%09%09type%3A%20&apos;ts-primary&apos;%2C%0A%09%09onclick%3A%20function()%20%7B%0A%09%09%09note.close()%3B%0A%09%09%7D%0A%09%7D%5D%0A%7D)%3B">
                         <script type="runnable">
-                            var note = ts.ui.Note({ buttons: [{ label: 'Button', type: 'ts-primary', onclick: function() { note.close(); } }] });
-                        </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                            var note = ts.ui.Note({
+								buttons: [{
+									label: 'Button',
+									type: 'ts-primary',
+									onclick: function() {
+										note.close();
+									}
+								}]
+							});
+						</script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                         <div class="tabpanels">
                             <pre class="prism language-javascript">
 <code><span class="token keyword">var</span> note <span class="token operator">=</span> ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token function">Note<span class="token punctuation">(</span></span><span class="token punctuation">{</span>
@@ -69,8 +83,14 @@
                     <p>You can also add some links via Markdown. When a link is clicked, the URL will be passed along to the <code>onlink</code> method. As you can see below, the URL can be just a key, it doesn&apos;t have to be real URL.
                         <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.Note(%7B%0A%09text%3A%20&apos;Choose%20link%20%5Bone%5D(ONE)%20or%20%5Btwo%5D(TWO)%20or%20%5Bthree%5D(THREE).&apos;%2C%0A%09onlink%3A%20function(url)%20%7B%0A%09%09ts.ui.Notification.success(url)%3B%0A%09%09this.close()%3B%0A%09%7D%0A%7D)%3B">
                             <script type="runnable">
-                                ts.ui.Note({ text: 'Choose link [one](ONE) or [two](TWO) or [three](THREE).', onlink: function(url) { ts.ui.Notification.success(url); this.close(); } });
-                            </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                                ts.ui.Note({
+								text: 'Choose link [one](ONE) or [two](TWO) or [three](THREE).',
+								onlink: function(url) {
+									ts.ui.Notification.success(url);
+									this.close();
+								}
+							});
+						</script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                             <div class="tabpanels">
                                 <pre class="prism language-javascript">
 <code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token function">Note<span class="token punctuation">(</span></span><span class="token punctuation">{</span>
@@ -138,10 +158,7 @@
                     <p>The Note will wrap to multiple lines if there&apos;s a lot of content inside.</p>
                     <div data-ts="Note">
                         <i class="ts-icon-followed"></i>
-                        <p>Arcane spell failure charm domain cover dragon type enemy experience points versus Tradeshift family domain fighter and hardness hit die initiative check intelligence melee attack roll miniature figure movement modes. Party planning
-                            domain point of origin powerful charge ray regeneration rogue special quality speed take 20 touch attack turned. Five-foot step ability class feature domain dying level luck domain negate ranged touch attack result speed surprise
-                            target total concealment unarmed strike. Armor class base save bonus check conjuration divine spell falling objects fly law domain school of Tradeshift shield bonus threatened square war domain. Ability damage acid effects
-                            burrow chaos domain class feature darkvision full-round action glamer subschool good subtype improved evasion incorporeal subtype ocean domain platinum piece size modifier</p>
+                        <p>Arcane spell failure charm domain cover dragon type enemy experience points versus Tradeshift family domain fighter and hardness hit die initiative check intelligence melee attack roll miniature figure movement modes. Party planning domain point of origin powerful charge ray regeneration rogue special quality speed take 20 touch attack turned. Five-foot step ability class feature domain dying level luck domain negate ranged touch attack result speed surprise target total concealment unarmed strike. Armor class base save bonus check conjuration divine spell falling objects fly law domain school of Tradeshift shield bonus threatened square war domain. Ability damage acid effects burrow chaos domain class feature darkvision full-round action glamer subschool good subtype improved evasion incorporeal subtype ocean domain platinum piece size modifier</p>
                     </div>
                     <p>You can use a Note in an <a data-ts="Button" onclick="toggle(&apos;#myaside&apos;);">Aside</a> or a SideBar, if you put the inline note as the first child of the ts-panel.</p>
                     <figure data-ts="DoxMarkup" data-ts.code="%3Caside%20data-ts%3D%22Aside%22%3E%0A%09%3Cdiv%20data-ts%3D%22Panel%22%3E%0A%09%09%3Cdiv%20data-ts%3D%22Note%22%3E%0A%09%09%09%3Ci%20class%3D%22ts-icon-heart%22%3E%3C%2Fi%3E%0A%09%09%09%3Cp%3ENote%20in%20the%20Aside!%3C%2Fp%3E%0A%09%09%3C%2Fdiv%3E%0A%09%3C%2Fdiv%3E%0A%3C%2Faside%3E">
@@ -176,8 +193,8 @@
         <menu class="ts-buttons">
             <li>
                 <a data-ts="Button" target="_blank" href="https://github.com/Tradeshift/tradeshift-ui/issues/new" title="Submit new issue" class="ts-secondary">
-		          <span>Create GitHub Issue&#x2026;</span>
-		        </a>
+                    <span>Create GitHub Issue&#x2026;</span>
+                </a>
             </li>
         </menu>
     </aside>

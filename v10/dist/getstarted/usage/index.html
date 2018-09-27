@@ -5,11 +5,11 @@
     <title>Usage</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
-    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-10.0.28.min.js"></script>
+    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-10.1.0.min.js"></script>
     <script src="/v10/dist/assets/dox.min.js"></script>
     <script src="/v10/dist/assets/mark.min.js"></script>
     <script src="/v10/dist/assets/jquery-2.2.4.min.js"></script>
-    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-10.0.28.min.css">
+    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-10.1.0.min.css">
     <link rel="stylesheet" href="/v10/dist/assets/dox.css">
 </head>
 
@@ -33,8 +33,7 @@
                         </div>
                     </figure>
                     <h3><span>Config attributes</span></h3>
-                    <p>Additional attributes may be used to configure the component. By convention, these will be prefixed with <code class="attr-name">data-ts.</code> (including the dot). The <code class="attr-name">data-ts.open</code> attribute would for
-                        example open the aside.</p>
+                    <p>Additional attributes may be used to configure the component. By convention, these will be prefixed with <code class="attr-name">data-ts.</code> (including the dot). The <code class="attr-name">data-ts.open</code> attribute would for example open the aside.</p>
                     <figure data-ts="DoxMarkup" data-ts.code="%3Caside%20data-ts%3D%22Aside%22%20data-ts.open%3D%22true%22%3E%20...%20%3C%2Faside%3E">
                         <input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
                         <div class="tabpanels">
@@ -44,8 +43,7 @@
                         </div>
                     </figure>
                     <h3><span>JS interface</span></h3>
-                    <p>The component may also expose a JavaScript API. For example, the <code class="attr-value">Aside</code> can be opened with a method call instead of an attribute. You can get hold of the implementation using <code>ts.ui.get</code>, which
-                        takes an element as argument.</p>
+                    <p>The component may also expose a JavaScript API. For example, the <code class="attr-value">Aside</code> can be opened with a method call instead of an attribute. You can get hold of the implementation using <code>ts.ui.get</code>, which takes an element as argument.</p>
                     <figure data-ts="DoxScript" data-ts.code="var%20myelement%20%3D%20document.querySelector(&apos;%23myaside&apos;)%3B%0Avar%20component%20%3D%20ts.ui.get(myelement)%3B%0Aconsole.log(component)%3B%20%2F%2F%20%5Bobject%20ts.ui.AsideSpirit%5D%0Acomponent.open()%3B">
                         <input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
                         <div class="tabpanels">
@@ -80,8 +78,8 @@ console<span class="token punctuation">.</span><span class="token function">log<
         <menu class="ts-buttons">
             <li>
                 <a data-ts="Button" target="_blank" href="https://github.com/Tradeshift/tradeshift-ui/issues/new" title="Submit new issue" class="ts-secondary">
-		          <span>Create GitHub Issue&#x2026;</span>
-		        </a>
+                    <span>Create GitHub Issue&#x2026;</span>
+                </a>
             </li>
         </menu>
     </aside>

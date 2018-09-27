@@ -160,7 +160,7 @@ ts.ui.FooterBarModel = (function using(PagerModel, ActionModel, chained) {
 				actions.clear();
 				if (onclick !== null) {
 					actions.push({
-						label: 'Collaborate On This',
+						label: ts.ui.Footer.localize().collaboration,
 						icon: 'ts-icon-collaboration',
 						onclick: onclick
 					});

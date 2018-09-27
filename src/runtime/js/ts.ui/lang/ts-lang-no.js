@@ -10,7 +10,7 @@ ts.ui.DatePicker.localize({
 		'Juli',
 		'August',
 		'September',
-		'oktober',
+		'Oktober',
 		'November',
 		'Desember'
 	],
@@ -31,4 +31,7 @@ ts.ui.DatePicker.localize({
 	dayNames: ['Søndag', 'Mandag', 'Tirsdag', 'Onsdag', 'Torsdag', 'Fredag', 'Lørdag'],
 	dayNamesShort: ['Søn', 'Man', 'Tir', 'Ons', 'Tor', 'Fre', 'Lør'],
 	dayNamesMin: ['Sø', 'Ma', 'Ti', 'On', 'To', 'Fr', 'Lø']
+});
+ts.ui.Footer.localize({
+	collaboration: 'Samarbeide På Dette'
 });

@@ -5,11 +5,11 @@
     <title>Table Select</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
-    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-10.0.28.min.js"></script>
+    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-10.1.0.min.js"></script>
     <script src="/v10/dist/assets/dox.min.js"></script>
     <script src="/v10/dist/assets/mark.min.js"></script>
     <script src="/v10/dist/assets/jquery-2.2.4.min.js"></script>
-    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-10.0.28.min.css">
+    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-10.1.0.min.css">
     <link rel="stylesheet" href="/v10/dist/assets/dox.css">
     <link rel="prefetch" title="Table" href="index.html">
     <link rel="prefetch" title="Build" href="building.html">
@@ -34,9 +34,7 @@
     <link rel="prefetch" title="Angular" href="angular.html" class="hidden">
     <link rel="prefetch" title="Gutter" href="gutter.html" class="hidden">
     <link rel="prefetch" title="Gallery" href="gallery.html" class="hidden">
-    <script>
-        ts.dox.tabs()
-    </script>
+    <script>ts.dox.tabs()</script>
 </head>
 
 <body class="nosticky">
@@ -52,9 +50,20 @@
                             <li>
                                 <figure data-ts="DoxScript" class="runnable" data-ts.code="var%20table%20%3D%20ts.ui.get(&apos;%23table1&apos;)%3B%0Avar%20popup%20%3D%20ts.ui.Notification%3B%0Atable.rows(%5B%0A%09%7Bcells%3A%20%5B&apos;A&apos;%2C%20&apos;D&apos;%2C%20&apos;G&apos;%5D%2C%20selected%3A%20true%7D%2C%0A%09%7Bcells%3A%20%5B&apos;B&apos;%2C%20&apos;E&apos;%2C%20&apos;H&apos;%5D%7D%2C%0A%09%7Bcells%3A%20%5B&apos;C&apos;%2C%20&apos;F&apos;%2C%20&apos;I&apos;%5D%7D%2C%0A%5D)%3B%0Atable.selectable(function%20debug(selected%2C%20unselected)%20%7B%0A%09popup.success(%5B%0A%09%09JSON.stringify(selected)%2C%0A%09%09JSON.stringify(unselected)%0A%09%5D.join(&apos;%2C%20&apos;))%3B%0A%7D)%3B">
                                     <script type="runnable">
-                                        var table = ts.ui.get('#table1'); var popup = ts.ui.Notification; table.rows([ {cells: ['A', 'D', 'G'], selected: true}, {cells: ['B', 'E', 'H']}, {cells: ['C', 'F', 'I']}, ]); table.selectable(function debug(selected, unselected) { popup.success([ JSON.stringify(selected),
-                                        JSON.stringify(unselected) ].join(', ')); });
-                                    </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                                        var table = ts.ui.get('#table1');
+										var popup = ts.ui.Notification;
+										table.rows([
+											{cells: ['A', 'D', 'G'], selected: true},
+											{cells: ['B', 'E', 'H']},
+											{cells: ['C', 'F', 'I']},
+										]);
+										table.selectable(function debug(selected, unselected) {
+											popup.success([
+												JSON.stringify(selected),
+												JSON.stringify(unselected)
+											].join(', '));
+										});
+									</script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                                     <div class="tabpanels">
                                         <pre class="prism language-javascript">
 <code><span class="token keyword">var</span> table <span class="token operator">=</span> ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#table1&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -85,9 +94,20 @@ table<span class="token punctuation">.</span><span class="token function">select
                             <li>
                                 <figure data-ts="DoxScript" class="runnable" data-ts.code="var%20table%20%3D%20ts.ui.get(&apos;%23table5&apos;)%3B%0Avar%20popup%20%3D%20ts.ui.Notification%3B%0Atable.rows(%5B%0A%09%7Bcells%3A%20%5B&apos;A&apos;%2C%20&apos;D&apos;%2C%20&apos;G&apos;%5D%7D%2C%0A%09%7Bcells%3A%20%5B&apos;B&apos;%2C%20&apos;E&apos;%2C%20&apos;H&apos;%5D%2C%20selectable%3A%20false%7D%2C%0A%09%7Bcells%3A%20%5B&apos;C&apos;%2C%20&apos;F&apos;%2C%20&apos;I&apos;%5D%7D%2C%0A%5D)%3B%0Atable.selectable(function%20debug(selected%2C%20unselected)%20%7B%0A%09popup.success(%5B%0A%09%09JSON.stringify(selected)%2C%0A%09%09JSON.stringify(unselected)%0A%09%5D.join(&apos;%2C%20&apos;))%3B%0A%7D)%3B">
                                     <script type="runnable">
-                                        var table = ts.ui.get('#table5'); var popup = ts.ui.Notification; table.rows([ {cells: ['A', 'D', 'G']}, {cells: ['B', 'E', 'H'], selectable: false}, {cells: ['C', 'F', 'I']}, ]); table.selectable(function debug(selected, unselected) { popup.success([
-                                        JSON.stringify(selected), JSON.stringify(unselected) ].join(', ')); });
-                                    </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                                        var table = ts.ui.get('#table5');
+										var popup = ts.ui.Notification;
+										table.rows([
+											{cells: ['A', 'D', 'G']},
+											{cells: ['B', 'E', 'H'], selectable: false},
+											{cells: ['C', 'F', 'I']},
+										]);
+										table.selectable(function debug(selected, unselected) {
+											popup.success([
+												JSON.stringify(selected),
+												JSON.stringify(unselected)
+											].join(', '));
+										});
+									</script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                                     <div class="tabpanels">
                                         <pre class="prism language-javascript">
 <code><span class="token keyword">var</span> table <span class="token operator">=</span> ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#table5&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -118,8 +138,14 @@ table<span class="token punctuation">.</span><span class="token function">select
                             <li>
                                 <figure data-ts="DoxScript" class="runnable" data-ts.code="var%20table%20%3D%20ts.ui.get(&apos;%23table3&apos;)%3B%0Atable.selectable().rows(%5B%0A%09%5B&apos;A&apos;%2C%20&apos;E&apos;%2C%20&apos;I&apos;%5D%2C%0A%09%5B&apos;B&apos;%2C%20&apos;F&apos;%2C%20&apos;J&apos;%5D%2C%0A%09%5B&apos;C&apos;%2C%20&apos;G&apos;%2C%20&apos;K&apos;%5D%2C%0A%09%5B&apos;D&apos;%2C%20&apos;H&apos;%2C%20&apos;L&apos;%5D%2C%0A%5D).select(0%2C%201).toggle(%5B2%2C%203%5D)%3B">
                                     <script type="runnable">
-                                        var table = ts.ui.get('#table3'); table.selectable().rows([ ['A', 'E', 'I'], ['B', 'F', 'J'], ['C', 'G', 'K'], ['D', 'H', 'L'], ]).select(0, 1).toggle([2, 3]);
-                                    </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                                        var table = ts.ui.get('#table3');
+										table.selectable().rows([
+											['A', 'E', 'I'],
+											['B', 'F', 'J'],
+											['C', 'G', 'K'],
+											['D', 'H', 'L'],
+										]).select(0, 1).toggle([2, 3]);
+									</script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                                     <div class="tabpanels">
                                         <pre class="prism language-javascript">
 <code><span class="token keyword">var</span> table <span class="token operator">=</span> ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#table3&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -142,7 +168,7 @@ table<span class="token punctuation">.</span><span class="token function">select
                     <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.get(&apos;%23table3&apos;).toggle()%3B">
                         <script type="runnable">
                             ts.ui.get('#table3').toggle();
-                        </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+						</script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                         <div class="tabpanels">
                             <pre class="prism language-javascript">
 <code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#table3&apos;</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toggle<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
@@ -152,8 +178,11 @@ table<span class="token punctuation">.</span><span class="token function">select
                     <p>You can retrieve the selected indexes (as an array) with the <code>selected</code> method.</p>
                     <figure data-ts="DoxScript" class="runnable" data-ts.code="var%20table%20%3D%20ts.ui.get(&apos;%23table3&apos;)%3B%0Avar%20array%20%3D%20table.selected()%3B%0Avar%20popup%20%3D%20ts.ui.Notification%3B%0Apopup.success(JSON.stringify(array))%3B">
                         <script type="runnable">
-                            var table = ts.ui.get('#table3'); var array = table.selected(); var popup = ts.ui.Notification; popup.success(JSON.stringify(array));
-                        </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                            var table = ts.ui.get('#table3');
+							var array = table.selected();
+							var popup = ts.ui.Notification;
+							popup.success(JSON.stringify(array));
+						</script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                         <div class="tabpanels">
                             <pre class="prism language-javascript">
 <code><span class="token keyword">var</span> table <span class="token operator">=</span> ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#table3&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -166,8 +195,14 @@ popup<span class="token punctuation">.</span><span class="token function">succes
                     <p>You can also confirm selection by passing one or more indexes (or an array).</p>
                     <figure data-ts="DoxScript" class="runnable" data-ts.code="var%20table%20%3D%20ts.ui.get(&apos;%23table3&apos;)%3B%0Avar%20popup%20%3D%20ts.ui.Notification%3B%0Aif(table.selected(0%2C%201%2C%202%2C%203))%20%7B%0A%09popup.success(&apos;All%20selected!&apos;)%3B%0A%7D%20else%20%7B%0A%09popup.warning(&apos;You%20must%20select%20them%20all.&apos;)%3B%0A%7D">
                         <script type="runnable">
-                            var table = ts.ui.get('#table3'); var popup = ts.ui.Notification; if(table.selected(0, 1, 2, 3)) { popup.success('All selected!'); } else { popup.warning('You must select them all.'); }
-                        </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                            var table = ts.ui.get('#table3');
+							var popup = ts.ui.Notification;
+							if(table.selected(0, 1, 2, 3)) {
+								popup.success('All selected!');
+							} else {
+								popup.warning('You must select them all.');
+							}
+						</script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                         <div class="tabpanels">
                             <pre class="prism language-javascript">
 <code><span class="token keyword">var</span> table <span class="token operator">=</span> ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#table3&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -186,8 +221,15 @@ popup<span class="token punctuation">.</span><span class="token function">succes
                             <li>
                                 <figure data-ts="DoxScript" class="runnable" data-ts.code="var%20table%20%3D%20ts.ui.get(&apos;%23table2&apos;)%3B%0Atable.selectable()%3B%0Atable.cols(%5B&apos;One&apos;%2C%20&apos;Two&apos;%2C%20&apos;Three&apos;%5D)%3B%0Atable.rows(%5B%0A%09%7Bcells%3A%20%5B&apos;A&apos;%2C%20&apos;D&apos;%2C%20&apos;G&apos;%5D%7D%2C%0A%09%7Bcells%3A%20%5B&apos;B&apos;%2C%20&apos;E&apos;%2C%20&apos;H&apos;%5D%7D%2C%0A%09%7Bcells%3A%20%5B&apos;C&apos;%2C%20&apos;F&apos;%2C%20&apos;I&apos;%5D%7D%2C%0A%5D)%3B">
                                     <script type="runnable">
-                                        var table = ts.ui.get('#table2'); table.selectable(); table.cols(['One', 'Two', 'Three']); table.rows([ {cells: ['A', 'D', 'G']}, {cells: ['B', 'E', 'H']}, {cells: ['C', 'F', 'I']}, ]);
-                                    </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                                        var table = ts.ui.get('#table2');
+									table.selectable();
+									table.cols(['One', 'Two', 'Three']);
+									table.rows([
+										{cells: ['A', 'D', 'G']},
+										{cells: ['B', 'E', 'H']},
+										{cells: ['C', 'F', 'I']},
+									]);
+								</script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                                     <div class="tabpanels">
                                         <pre class="prism language-javascript">
 <code><span class="token keyword">var</span> table <span class="token operator">=</span> ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#table2&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -213,8 +255,11 @@ table<span class="token punctuation">.</span><span class="token function">rows<s
                             <li>
                                 <figure data-ts="DoxScript" class="runnable" data-ts.code="%24.getJSON(&apos;assets%2Frowdata.json&apos;%2C%20function(json)%20%7B%0A%09var%20table%20%3D%20ts.ui.get(&apos;%23table4&apos;).selectable()%3B%0A%09table.cols(%5B&apos;ID&apos;%2C%20&apos;Name&apos;%2C%20&apos;Price&apos;%5D).rows(json).max(5)%3B%0A%7D)%3B">
                                     <script type="runnable">
-                                        $.getJSON('assets/rowdata.json', function(json) { var table = ts.ui.get('#table4').selectable(); table.cols(['ID', 'Name', 'Price']).rows(json).max(5); });
-                                    </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                                        $.getJSON('assets/rowdata.json', function(json) {
+										var table = ts.ui.get('#table4').selectable();
+										table.cols(['ID', 'Name', 'Price']).rows(json).max(5);
+									});
+								</script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                                     <div class="tabpanels">
                                         <pre class="prism language-javascript">
 <code>$<span class="token punctuation">.</span><span class="token function">getJSON<span class="token punctuation">(</span></span><span class="token string">&apos;assets/rowdata.json&apos;</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span>json<span class="token punctuation">)</span> <span class="token punctuation">{</span>
@@ -230,12 +275,11 @@ table<span class="token punctuation">.</span><span class="token function">rows<s
                             </li>
                         </ul>
                     </div>
-                    <p>If you are loading the table data incrementally (so you manage <a data-ts="Button" href="/v10/dist/components/table/paging.html">paging</a> yourself), you might like to know when <em>all</em> or <em>none</em> is selected via the menu.
-                        The Table supports two additional callbacks that can be assigned via <code>selectable()</code>.</p>
+                    <p>If you are loading the table data incrementally (so you manage <a data-ts="Button" href="/v10/dist/components/table/paging.html">paging</a> yourself), you might like to know when <em>all</em> or <em>none</em> is selected via the menu. The Table supports two additional callbacks that can be assigned via <code>selectable()</code>.</p>
                     <figure data-ts="DoxScript" data-ts.code="table.selectable(onselect%2C%20onselectall%2C%20onunselectall)%3B">
                         <script type="text/html">
                             table.selectable(onselect, onselectall, onunselectall);
-                        </script><input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
+						</script><input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
                         <div class="tabpanels">
                             <pre class="prism language-javascript">
 <code>table<span class="token punctuation">.</span><span class="token function">selectable<span class="token punctuation">(</span></span>onselect<span class="token punctuation">,</span> onselectall<span class="token punctuation">,</span> onunselectall<span class="token punctuation">)</span><span class="token punctuation">;</span></code>
@@ -245,8 +289,10 @@ table<span class="token punctuation">.</span><span class="token function">rows<s
                     <p>You can also assign these methods directly.</p>
                     <figure data-ts="DoxScript" data-ts.code="table.onselect%20%3D%20function(selected%2C%20unselected)%20%7B%7D%3B%0Atable.onselectall%20%3D%20function()%20%7B%20console.log(&apos;All&apos;)%3B%20%7D%3B%0Atable.onunselectall%20%3D%20function()%20%7B%20console.log(&apos;None&apos;)%3B%20%7D%3B">
                         <script type="text/html">
-                            table.onselect = function(selected, unselected) {}; table.onselectall = function() { console.log('All'); }; table.onunselectall = function() { console.log('None'); };
-                        </script><input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
+                            table.onselect = function(selected, unselected) {};
+							table.onselectall = function() { console.log('All'); };
+							table.onunselectall = function() { console.log('None'); };
+						</script><input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
                         <div class="tabpanels">
                             <pre class="prism language-javascript">
 <code>table<span class="token punctuation">.</span>onselect <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span>selected<span class="token punctuation">,</span> unselected<span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>

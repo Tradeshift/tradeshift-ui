@@ -5,20 +5,20 @@
     <title>Spinner</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
-    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-10.0.28.min.js"></script>
+    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-10.1.0.min.js"></script>
     <script src="/v10/dist/assets/dox.min.js"></script>
     <script src="/v10/dist/assets/mark.min.js"></script>
     <script src="/v10/dist/assets/jquery-2.2.4.min.js"></script>
-    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-10.0.28.min.css">
+    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-10.1.0.min.css">
     <link rel="stylesheet" href="/v10/dist/assets/dox.css">
     <script>
         function spin(elm) {
-            $(elm).attr("data-ts.busy", true);
-            setTimeout(function() {
-                $(elm).attr("data-ts.busy", false);
-            }, 1500);
-        }
-    </script>
+				$(elm).attr("data-ts.busy", true);
+				setTimeout(function() {
+					$(elm).attr("data-ts.busy", false);
+				}, 1500);
+			}
+		</script>
 </head>
 
 <body class="nosticky">
@@ -45,8 +45,12 @@
                     <p>Let&apos;s try that with jQuery.</p>
                     <figure data-ts="DoxScript" class="runnable" data-ts.code="var%20main%20%3D%20%24(&apos;main&apos;).first()%3B%0Amain.attr(&apos;data-ts.busy&apos;%2C%20&apos;Crunching%20data&apos;)%3B%0AsetTimeout(function()%20%7B%0A%09main.attr(&apos;data-ts.busy&apos;%2C%20&apos;&apos;)%3B%0A%7D%2C%201500)%3B">
                         <script type="runnable">
-                            var main = $('main').first(); main.attr('data-ts.busy', 'Crunching data'); setTimeout(function() { main.attr('data-ts.busy', ''); }, 1500);
-                        </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                            var main = $('main').first();
+							main.attr('data-ts.busy', 'Crunching data');
+							setTimeout(function() {
+								main.attr('data-ts.busy', '');
+							}, 1500);
+						</script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                         <div class="tabpanels">
                             <pre class="prism language-javascript">
 <code><span class="token keyword">var</span> main <span class="token operator">=</span> $<span class="token punctuation">(</span><span class="token string">&apos;main&apos;</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">first<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -60,8 +64,12 @@ main<span class="token punctuation">.</span><span class="token function">attr<sp
                     <p>If you want a blocking overlay, you can use the <code class="attr-pair"><span>data-ts.blocking</span></code> attribute.</p>
                     <figure data-ts="DoxScript" class="runnable" data-ts.code="var%20main%20%3D%20%24(&apos;main&apos;).first()%3B%0Amain.attr(&apos;data-ts.blocking&apos;%2C%20%22Crunching%20and%20blocking%22)%3B%0AsetTimeout(function()%20%7B%0A%09main.attr(&apos;data-ts.blocking&apos;%2C%20%22%22)%3B%0A%7D%2C%201500)%3B">
                         <script type="runnable">
-                            var main = $('main').first(); main.attr('data-ts.blocking', "Crunching and blocking"); setTimeout(function() { main.attr('data-ts.blocking', ""); }, 1500);
-                        </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                            var main = $('main').first();
+							main.attr('data-ts.blocking', "Crunching and blocking");
+							setTimeout(function() {
+								main.attr('data-ts.blocking', "");
+							}, 1500);
+						</script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                         <div class="tabpanels">
                             <pre class="prism language-javascript">
 <code><span class="token keyword">var</span> main <span class="token operator">=</span> $<span class="token punctuation">(</span><span class="token string">&apos;main&apos;</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">first<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -75,8 +83,7 @@ main<span class="token punctuation">.</span><span class="token function">attr<sp
                 </section>
                 <h3><span>Aside and SideBar</span></h3>
                 <section>
-                    <p>Assign the
-                        <attr>data-ts.busy</attr> attribute to an <code class="attr-value">Aside</code> or <code class="attr-value">SideBar</code> to initialize a Spinner.</p>
+                    <p>Assign the <attr>data-ts.busy</attr> attribute to an <code class="attr-value">Aside</code> or <code class="attr-value">SideBar</code> to initialize a Spinner.</p>
                     <figure data-ts="DoxMarkup" data-ts.code="%3Caside%20data-ts%3D%22Aside%22%20data-ts.busy%3D%22Chrunching%20data%22%3E%0A%09%3Cdiv%20data-ts%3D%22Panel%22%3E%0A%09%09%3Cp%3EAside%20content.%3C%2Fp%3E%0A%09%3C%2Fdiv%3E%0A%3C%2Faside%3E">
                         <input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
                         <div class="tabpanels">
@@ -92,8 +99,16 @@ main<span class="token punctuation">.</span><span class="token function">attr<sp
                     <p>It will look like this.</p>
                     <figure data-ts="DoxScript" class="runnable" data-ts.code="var%20aside%20%3D%20%24(%22%23myaside%22)%3B%0Aaside.attr(&apos;data-ts.open&apos;%2C%20true)%3B%0Aaside.attr(&apos;data-ts.busy&apos;%2C%20&apos;Crunching%20data&apos;)%3B%0AsetTimeout(function()%20%7B%0A%09aside.attr(&apos;data-ts.busy&apos;%2C%20&apos;&apos;)%3B%0A%09setTimeout(function()%20%7B%0A%09%09aside.attr(&apos;data-ts.open&apos;%2C%20false)%3B%0A%09%7D%2C%20250)%0A%7D%2C%201500)%3B">
                         <script type="runnable">
-                            var aside = $("#myaside"); aside.attr('data-ts.open', true); aside.attr('data-ts.busy', 'Crunching data'); setTimeout(function() { aside.attr('data-ts.busy', ''); setTimeout(function() { aside.attr('data-ts.open', false); }, 250) }, 1500);
-                        </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                            var aside = $("#myaside");
+							aside.attr('data-ts.open', true);
+							aside.attr('data-ts.busy', 'Crunching data');
+							setTimeout(function() {
+								aside.attr('data-ts.busy', '');
+								setTimeout(function() {
+									aside.attr('data-ts.open', false);
+								}, 250)
+							}, 1500);
+						</script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                         <div class="tabpanels">
                             <pre class="prism language-javascript">
 <code><span class="token keyword">var</span> aside <span class="token operator">=</span> $<span class="token punctuation">(</span><span class="token string">&quot;#myaside&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -124,8 +139,8 @@ aside<span class="token punctuation">.</span><span class="token function">attr<s
                     </figure>
                     <p>
                         <button data-ts="Button" class="ts-primary" onclick="spin(this)">
-							<span>Show Spinner</span>
-						</button>
+                            <span>Show Spinner</span>
+                        </button>
                     </p>
                 </section>
                 <h3><span>Table</span></h3>
@@ -136,9 +151,19 @@ aside<span class="token punctuation">.</span><span class="token function">attr<s
                             <li>
                                 <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.get(&apos;%23mytable&apos;%2C%20function(table)%20%7B%0A%09table.cols(%5B&apos;One&apos;%2C%20&apos;Two&apos;%2C%20&apos;Tree&apos;%5D)%3B%0A%09table.rows(%5B%0A%09%09%5B&apos;A&apos;%2C%20&apos;D&apos;%2C%20&apos;G&apos;%5D%2C%0A%09%09%5B&apos;B&apos;%2C%20&apos;E&apos;%2C%20&apos;H&apos;%5D%2C%0A%09%09%5B&apos;C&apos;%2C%20&apos;F&apos;%2C%20&apos;I&apos;%5D%0A%09%5D)%3B%0A%09%24(&apos;%23mytable&apos;).attr(&apos;data-ts.busy&apos;%2C%20&apos;Loading&apos;)%3B%0A%09setTimeout(function()%20%7B%0A%09%09%24(&apos;%23mytable&apos;).attr(&apos;data-ts.busy&apos;%2C%20&apos;&apos;)%3B%0A%09%7D%2C%201500)%3B%0A%7D)%3B">
                                     <script type="runnable">
-                                        ts.ui.get('#mytable', table => { table.cols(['One', 'Two', 'Tree']); table.rows([ ['A', 'D', 'G'], ['B', 'E', 'H'], ['C', 'F', 'I'] ]); $('#mytable').attr('data-ts.busy', 'Loading'); setTimeout(function() { $('#mytable').attr('data-ts.busy', ''); }, 1500);
-                                        });
-                                    </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                                        ts.ui.get('#mytable', table => {
+										table.cols(['One', 'Two', 'Tree']);
+										table.rows([
+											['A', 'D', 'G'],
+											['B', 'E', 'H'],
+											['C', 'F', 'I']
+										]);
+										$('#mytable').attr('data-ts.busy', 'Loading');
+										setTimeout(function() {
+											$('#mytable').attr('data-ts.busy', '');
+										}, 1500);
+									});
+								</script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                                     <div class="tabpanels">
                                         <pre class="prism language-javascript">
 <code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#mytable&apos;</span><span class="token punctuation">,</span> table <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>

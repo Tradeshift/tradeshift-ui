@@ -5,24 +5,22 @@
     <title>StatusBar</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
-    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-10.0.28.min.js"></script>
+    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-10.1.0.min.js"></script>
     <script src="/v10/dist/assets/dox.min.js"></script>
     <script src="/v10/dist/assets/mark.min.js"></script>
     <script src="/v10/dist/assets/jquery-2.2.4.min.js"></script>
-    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-10.0.28.min.css">
+    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-10.1.0.min.css">
     <link rel="stylesheet" href="/v10/dist/assets/dox.css">
     <link rel="prefetch" title="TopBar" href="topbar.html">
     <link rel="prefetch" title="TabBar" href="tabbar.html">
     <link rel="prefetch" title="ToolBar" href="toolbar.html">
     <script>
         function goto(index) {
-            var tabs = ts.ui.Main.tabbar().tabs();
-            tabs.selectedIndex = index;
-        }
-    </script>
-    <script>
-        ts.dox.tabs()
-    </script>
+			var tabs = ts.ui.Main.tabbar().tabs();
+			tabs.selectedIndex = index;
+		}	
+		</script>
+    <script>ts.dox.tabs()</script>
 </head>
 
 <body>
@@ -33,8 +31,7 @@
                 <article>
                     <h1><span>Main StatusBar is deprecated &#x1F61E;</span></h1>
                     <section class="desc">
-                        <p>This component is deprecated in favor of the <a data-ts="Button" href="/v10/dist/components/footer/">Footer</a>. In a future release, the TopBar and TabBar and ToolBar will be collected in the equivalent &quot;Header&quot;. You can
-                            still use the StatusBar as an <a data-ts="Button" href="javascript:goto(1)">inline</a> component</p>
+                        <p>This component is deprecated in favor of the <a data-ts="Button" href="/v10/dist/components/footer/">Footer</a>. In a future release, the TopBar and TabBar and ToolBar will be collected in the equivalent &quot;Header&quot;. You can still use the StatusBar as an <a data-ts="Button" href="javascript:goto(1)">inline</a> component</p>
                     </section>
                     <section class="desc">
                         <p>Although the StatusBar can display status messages and features a <a href="#pager">Pager</a>, it&apos;s perfectly alright to use it just to show some <a href="#buttons">buttons</a>.</p>
@@ -43,8 +40,10 @@
                         <p>You can show a status message with basic Markdown support.</p>
                         <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.StatusBar.message(%0A%09&apos;The%20status%20message%20supports%20**bold**%20and%20*italic*%20text.&apos;%0A)%3B">
                             <script type="runnable">
-                                ts.ui.StatusBar.message( 'The status message supports **bold** and *italic* text.' );
-                            </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                                ts.ui.StatusBar.message(
+									'The status message supports **bold** and *italic* text.'
+								);
+							</script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                             <div class="tabpanels">
                                 <pre class="prism language-javascript">
 <code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>StatusBar<span class="token punctuation">.</span><span class="token function">message<span class="token punctuation">(</span></span>
@@ -56,8 +55,10 @@
                         <p>If you call <code>linkable()</code>, you can also some links in the message. Beware of phishing!</p>
                         <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.StatusBar.linkable().message(%0A%09&apos;Please%20visit%20%5BTradeshift%5D(http%3A%2F%2Fwww.tradeshift.com)&apos;%0A)%3B">
                             <script type="runnable">
-                                ts.ui.StatusBar.linkable().message( 'Please visit [Tradeshift](http://www.tradeshift.com)' );
-                            </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                                ts.ui.StatusBar.linkable().message(
+									'Please visit [Tradeshift](http://www.tradeshift.com)'
+								);
+							</script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                             <div class="tabpanels">
                                 <pre class="prism language-javascript">
 <code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>StatusBar<span class="token punctuation">.</span><span class="token function">linkable<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">message<span class="token punctuation">(</span></span>
@@ -69,8 +70,11 @@
                         <p>You can pass a callback function to be invoked whenever a link is clicked.</p>
                         <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.StatusBar.linkable(function%20onclick(url)%20%7B%0A%09ts.ui.Notification.success(url)%3B%0A%09this.message(&apos;Thanks!&apos;)%3B%0A%7D).message(&apos;Please%20%5Bclick%20the%20link%5D(The%20URL%20can%20be%20any%20string)&apos;)%3B">
                             <script type="runnable">
-                                ts.ui.StatusBar.linkable(function onclick(url) { ts.ui.Notification.success(url); this.message('Thanks!'); }).message('Please [click the link](The URL can be any string)');
-                            </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                                ts.ui.StatusBar.linkable(function onclick(url) {
+									ts.ui.Notification.success(url);
+									this.message('Thanks!');
+								}).message('Please [click the link](The URL can be any string)');
+							</script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                             <div class="tabpanels">
                                 <pre class="prism language-javascript">
 <code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>StatusBar<span class="token punctuation">.</span><span class="token function">linkable<span class="token punctuation">(</span></span><span class="token keyword">function</span> <span class="token function">onclick<span class="token punctuation">(</span></span>url<span class="token punctuation">)</span> <span class="token punctuation">{</span>
@@ -86,8 +90,13 @@
                         <p>Add buttons to the StatusBar with the <code>buttons</code> method. This both sets and gets. If you omit the argument, you&quot;ll get the current buttons (jQuery style).</p>
                         <figure data-ts="DoxScript" class="attention runnable" data-ts.code="ts.ui.StatusBar.buttons(%5B%0A%09%7Blabel%20%3A%20&apos;Primary&apos;%2C%20type%20%3A%20&apos;ts-primary&apos;%7D%2C%0A%09%7Blabel%20%3A%20&apos;Secondary&apos;%2C%20type%20%3A%20&apos;ts-secondary&apos;%7D%2C%0A%09%7Blabel%20%3A%20&apos;Tertiary%20One&apos;%7D%2C%0A%09%7Blabel%20%3A%20&apos;Tertiary%20Two&apos;%7D%0A%5D)%3B">
                             <script type="runnable">
-                                ts.ui.StatusBar.buttons([ {label : 'Primary', type : 'ts-primary'}, {label : 'Secondary', type : 'ts-secondary'}, {label : 'Tertiary One'}, {label : 'Tertiary Two'} ]);
-                            </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                                ts.ui.StatusBar.buttons([
+								{label : 'Primary', type : 'ts-primary'},
+								{label : 'Secondary', type : 'ts-secondary'},
+								{label : 'Tertiary One'},
+								{label : 'Tertiary Two'}
+							]);
+						</script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                             <div class="tabpanels">
                                 <pre class="prism language-javascript">
 <code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>StatusBar<span class="token punctuation">.</span><span class="token function">buttons<span class="token punctuation">(</span></span><span class="token punctuation">[</span>
@@ -99,7 +108,7 @@
 </pre>
                             </div>
                         </figure>
-                        <p>You can use array methods like <code>push</code>, <code>pop</code>, <code>shift</code>, <code>unshift</code>, <code>splice</code>, <code>reverse</code> and so on to manage buttons. Just note that the buttons <code>length</code>                            is readonly.</p>
+                        <p>You can use array methods like <code>push</code>, <code>pop</code>, <code>shift</code>, <code>unshift</code>, <code>splice</code>, <code>reverse</code> and so on to manage buttons. Just note that the buttons <code>length</code> is readonly.</p>
                         <ul>
                             <li>The buttons <code class="attr-name">type</code> property works like the CSS <code class="attr-name">class</code> for a regular Button</li>
                             <li>The StatusBar will automatically sort all buttons from primary to tertiary.</li>
@@ -110,8 +119,14 @@
                         <p>
                             <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.StatusBar.buttons().splice(0%2C%201%2C%20%7B%0A%09label%20%3A%20&apos;Click%20me!&apos;%2C%0A%09type%20%3A%20&apos;ts-primary&apos;%2C%0A%09onclick%3A%20function()%20%7B%0A%09%09this.label%20%3D%20&apos;Thanks&apos;%3B%0A%09%7D%0A%7D)%3B">
                                 <script type="runnable">
-                                    ts.ui.StatusBar.buttons().splice(0, 1, { label : 'Click me!', type : 'ts-primary', onclick: function() { this.label = 'Thanks'; } });
-                                </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                                    ts.ui.StatusBar.buttons().splice(0, 1, {
+								label : 'Click me!',
+								type : 'ts-primary',
+								onclick: function() {
+									this.label = 'Thanks';
+								}
+							});
+						</script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                                 <div class="tabpanels">
                                     <pre class="prism language-javascript">
 <code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>StatusBar<span class="token punctuation">.</span><span class="token function">buttons<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">splice<span class="token punctuation">(</span></span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
@@ -128,8 +143,13 @@
                         <p>Fortunately, you can always change what happens when a button gets clicked.</p>
                         <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.StatusBar.buttons().forEach(function(button%2C%20index)%20%7B%0A%09button.label%20%3D%20%22Button%20%22%20%2B%20(index%20%2B%201)%3B%0A%09button.onclick%20%3D%20function()%20%7B%0A%09%09ts.ui.Notification.success(this.label)%3B%0A%09%7D%3B%0A%7D)%3B">
                             <script type="runnable">
-                                ts.ui.StatusBar.buttons().forEach(function(button, index) { button.label = "Button " + (index + 1); button.onclick = function() { ts.ui.Notification.success(this.label); }; });
-                            </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                                ts.ui.StatusBar.buttons().forEach(function(button, index) {
+								button.label = "Button " + (index + 1);
+								button.onclick = function() {
+									ts.ui.Notification.success(this.label);
+								};
+							});
+						</script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                             <div class="tabpanels">
                                 <pre class="prism language-javascript">
 <code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>StatusBar<span class="token punctuation">.</span><span class="token function">buttons<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">forEach<span class="token punctuation">(</span></span><span class="token keyword">function</span><span class="token punctuation">(</span>button<span class="token punctuation">,</span> index<span class="token punctuation">)</span> <span class="token punctuation">{</span>
@@ -142,12 +162,15 @@
                             </div>
                         </figure>
                         <h3>Query buttons</h3>
-                        <p>You can locate buttons by index in the <code>buttons</code> collection. But since this isn&quot;t likely to match the order in which they appear on screen, it&quot;s easier to give the buttons an <code>id</code> and find them using
-                            <code>buttons.get()</code>.</p>
+                        <p>You can locate buttons by index in the <code>buttons</code> collection. But since this isn&quot;t likely to match the order in which they appear on screen, it&quot;s easier to give the buttons an <code>id</code> and find them using <code>buttons.get()</code>.</p>
                         <figure data-ts="DoxScript" class="runnable" data-ts.code="var%20buttons%20%3D%20ts.ui.StatusBar.buttons()%3B%0Abuttons.push(%7B%20id%3A%20&apos;example-button&apos;%20%7D)%3B%0Avar%20button%20%3D%20buttons.get(&apos;example-button&apos;)%3B%0Abutton.label%20%3D%20&apos;My%20Button&apos;%3B%0Abutton.type%20%3D%20&apos;ts-secondary&apos;%3B">
                             <script type="runnable">
-                                var buttons = ts.ui.StatusBar.buttons(); buttons.push({ id: 'example-button' }); var button = buttons.get('example-button'); button.label = 'My Button'; button.type = 'ts-secondary';
-                            </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                                var buttons = ts.ui.StatusBar.buttons();
+							buttons.push({ id: 'example-button' });
+							var button = buttons.get('example-button');
+							button.label = 'My Button';
+							button.type = 'ts-secondary';
+						</script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                             <div class="tabpanels">
                                 <pre class="prism language-javascript">
 <code><span class="token keyword">var</span> buttons <span class="token operator">=</span> ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>StatusBar<span class="token punctuation">.</span><span class="token function">buttons<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -169,8 +192,14 @@ button<span class="token punctuation">.</span>type <span class="token operator">
                         <p>You can <code>hide()</code> and <code>show()</code> buttons. You can also toggle <code>visible</code>.</p>
                         <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.StatusBar.buttons().forEach(function(button)%20%7B%0A%09if(button.visible)%20%7B%0A%09%09button.hide()%3B%0A%09%7D%20else%20%7B%0A%09%09button.show()%3B%0A%09%7D%0A%7D)%3B">
                             <script type="runnable">
-                                ts.ui.StatusBar.buttons().forEach(function(button) { if(button.visible) { button.hide(); } else { button.show(); } });
-                            </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                                ts.ui.StatusBar.buttons().forEach(function(button) {
+								if(button.visible) {
+									button.hide();
+								} else {
+									button.show();
+								}
+							});
+						</script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                             <div class="tabpanels">
                                 <pre class="prism language-javascript">
 <code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>StatusBar<span class="token punctuation">.</span><span class="token function">buttons<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">forEach<span class="token punctuation">(</span></span><span class="token keyword">function</span><span class="token punctuation">(</span>button<span class="token punctuation">)</span> <span class="token punctuation">{</span>
@@ -187,8 +216,14 @@ button<span class="token punctuation">.</span>type <span class="token operator">
                         <p>You can <code>disable()</code> and <code>enable()</code> buttons. You can also toggle <code>disabled</code>.</p>
                         <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.StatusBar.buttons().forEach(function(button)%20%7B%0A%09if(button.disabled)%20%7B%0A%09%09button.enable()%3B%0A%09%7D%20else%20%7B%0A%09%09button.disable()%3B%0A%09%7D%0A%7D)%3B">
                             <script type="runnable">
-                                ts.ui.StatusBar.buttons().forEach(function(button) { if(button.disabled) { button.enable(); } else { button.disable(); } });
-                            </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                                ts.ui.StatusBar.buttons().forEach(function(button) {
+								if(button.disabled) {
+									button.enable();
+								} else {
+									button.disable();
+								}
+							});
+						</script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                             <div class="tabpanels">
                                 <pre class="prism language-javascript">
 <code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>StatusBar<span class="token punctuation">.</span><span class="token function">buttons<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">forEach<span class="token punctuation">(</span></span><span class="token keyword">function</span><span class="token punctuation">(</span>button<span class="token punctuation">)</span> <span class="token punctuation">{</span>
@@ -205,8 +240,12 @@ button<span class="token punctuation">.</span>type <span class="token operator">
                         <p>We can display a temporary progress indicator with the <code>busy</code> and <code>done</code> methods.</p>
                         <figure data-ts="DoxScript" class="runnable" data-ts.code="var%20button%20%3D%20ts.ui.StatusBar.buttons()%5B0%5D%3B%0Abutton.busy()%3B%0AsetTimeout(function()%20%7B%0A%09button.done()%3B%0A%7D%2C%201000)%3B">
                             <script type="runnable">
-                                var button = ts.ui.StatusBar.buttons()[0]; button.busy(); setTimeout(function() { button.done(); }, 1000);
-                            </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                                var button = ts.ui.StatusBar.buttons()[0];
+							button.busy();
+							setTimeout(function() {
+								button.done();
+							}, 1000);
+						</script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                             <div class="tabpanels">
                                 <pre class="prism language-javascript">
 <code><span class="token keyword">var</span> button <span class="token operator">=</span> ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>StatusBar<span class="token punctuation">.</span><span class="token function">buttons<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
@@ -220,8 +259,12 @@ button<span class="token punctuation">.</span><span class="token function">busy<
                         <p>The <code>busy</code> method supports an optional status message.</p>
                         <figure data-ts="DoxScript" class="runnable" data-ts.code="var%20button%20%3D%20ts.ui.StatusBar.buttons()%5B0%5D%3B%0Abutton.busy(&apos;Making%20progress&apos;)%3B%0AsetTimeout(function()%20%7B%0A%09button.done()%3B%0A%7D%2C%201000)%3B">
                             <script type="runnable">
-                                var button = ts.ui.StatusBar.buttons()[0]; button.busy('Making progress'); setTimeout(function() { button.done(); }, 1000);
-                            </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                                var button = ts.ui.StatusBar.buttons()[0];
+							button.busy('Making progress');
+							setTimeout(function() {
+								button.done();
+							}, 1000);
+						</script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                             <div class="tabpanels">
                                 <pre class="prism language-javascript">
 <code><span class="token keyword">var</span> button <span class="token operator">=</span> ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>StatusBar<span class="token punctuation">.</span><span class="token function">buttons<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
@@ -236,8 +279,15 @@ button<span class="token punctuation">.</span><span class="token function">busy<
                         <p>You can also <em>group buttons in arrays</em> to create button groups that look like this:</p>
                         <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.StatusBar.buttons(%5B%0A%09%7B%20label%3A%20&apos;Normal&apos;%7D%2C%0A%09%7B%20label%3A%20&apos;Normal&apos;%7D%2C%0A%09%5B%0A%09%09%7B%20label%3A%20&apos;Accept&apos;%2C%20type%3A%20&apos;ts-primary&apos;%20%7D%2C%0A%09%09%7B%20label%3A%20&apos;Reject&apos;%2C%20type%3A%20&apos;ts-danger&apos;%20%7D%09%0A%09%5D%0A%5D)%3B">
                             <script type="runnable">
-                                ts.ui.StatusBar.buttons([ { label: 'Normal'}, { label: 'Normal'}, [ { label: 'Accept', type: 'ts-primary' }, { label: 'Reject', type: 'ts-danger' } ] ]);
-                            </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                                ts.ui.StatusBar.buttons([
+								{ label: 'Normal'},
+								{ label: 'Normal'},
+								[
+									{ label: 'Accept', type: 'ts-primary' },
+									{ label: 'Reject', type: 'ts-danger' }	
+								]
+							]);
+						</script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                             <div class="tabpanels">
                                 <pre class="prism language-javascript">
 <code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>StatusBar<span class="token punctuation">.</span><span class="token function">buttons<span class="token punctuation">(</span></span><span class="token punctuation">[</span>
@@ -254,8 +304,12 @@ button<span class="token punctuation">.</span><span class="token function">busy<
                         <p>You can of course also create grouped buttons with icons instead of text.</p>
                         <figure data-ts="DoxScript" class="runnable" data-ts.code="var%20group%20%3D%20ts.ui.StatusBar.buttons()%5B2%5D%3B%0Agroup.push(%7B%0A%09icon%3A%20&apos;ts-icon-other&apos;%2C%0A%09type%3A%20&apos;ts-secondary&apos;%0A%7D)%3B">
                             <script type="runnable">
-                                var group = ts.ui.StatusBar.buttons()[2]; group.push({ icon: 'ts-icon-other', type: 'ts-secondary' });
-                            </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                                var group = ts.ui.StatusBar.buttons()[2];
+							group.push({
+								icon: 'ts-icon-other',
+								type: 'ts-secondary'
+							});
+						</script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                             <div class="tabpanels">
                                 <pre class="prism language-javascript">
 <code><span class="token keyword">var</span> group <span class="token operator">=</span> ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>StatusBar<span class="token punctuation">.</span><span class="token function">buttons<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
@@ -279,8 +333,14 @@ group<span class="token punctuation">.</span><span class="token function">push<s
                         <p>You can initialize a Pager in the StatusBar.</p>
                         <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.StatusBar.pager(%7B%0A%09pages%3A%2023%2C%0A%09page%3A%200%2C%0A%09onselect%3A%20function(page)%20%7B%0A%09%09console.log(page)%3B%0A%09%7D%0A%7D)%3B">
                             <script type="runnable">
-                                ts.ui.StatusBar.pager({ pages: 23, page: 0, onselect: function(page) { console.log(page); } });
-                            </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                                ts.ui.StatusBar.pager({
+									pages: 23,
+									page: 0,
+									onselect: function(page) {
+										console.log(page);
+									}
+								});
+							</script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                             <div class="tabpanels">
                                 <pre class="prism language-javascript">
 <code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>StatusBar<span class="token punctuation">.</span><span class="token function">pager<span class="token punctuation">(</span></span><span class="token punctuation">{</span>
@@ -313,7 +373,7 @@ group<span class="token punctuation">.</span><span class="token function">push<s
                         </div>
                     </section>
                     <section>
-                        <p>Assign <code class="attr-pair"><span>data-ts</span>=&quot;<span>StatusBar</span>&quot;</code> to a <code class="el">footer</code> or <code class="el">menu</code> to initialize it as a StatusBar. Another attribute <code class="attr-pair"><span>data-ts.message</span></code>                            displays the message.</p>
+                        <p>Assign <code class="attr-pair"><span>data-ts</span>=&quot;<span>StatusBar</span>&quot;</code> to a <code class="el">footer</code> or <code class="el">menu</code> to initialize it as a StatusBar. Another attribute <code class="attr-pair"><span>data-ts.message</span></code> displays the message.</p>
                         <figure data-ts="DoxMarkup" data-ts.code="%3Cfooter%20data-ts%3D%22StatusBar%22%20data-ts.message%3D%22This%20is%20my%20StatusBar%22%3E%3C%2Ffooter%3E">
                             <input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
                             <div class="tabpanels">
@@ -327,8 +387,16 @@ group<span class="token punctuation">.</span><span class="token function">push<s
                         <p>You can get a hold of the component using a CSS selector and call any of the methods we&apos;ve seen applicable to the Main ToolBar. Notice what happens when we add content.</p>
                         <figure data-ts="DoxScript" class="attention runnable" data-ts.code="ts.ui.get(&apos;%23mystatusbar&apos;%2C%20function(statusbar)%20%7B%0A%09statusbar.buttons(%5B%0A%09%09%7Blabel%3A%20&apos;One&apos;%2C%20type%3A%20&apos;ts-primary&apos;%7D%2C%0A%09%09%7Blabel%3A%20&apos;Two&apos;%2C%20type%3A%20&apos;ts-secondary&apos;%7D%2C%0A%09%09%7Blabel%3A%20&apos;Three&apos;%7D%0A%09%5D).pager(%7B%0A%09%09pages%3A%2023%0A%09%7D).message(&apos;The%20layout%20has%20changed!&apos;)%3B%0A%7D)%3B">
                             <script type="runnable">
-                                ts.ui.get('#mystatusbar', statusbar => { statusbar.buttons([ {label: 'One', type: 'ts-primary'}, {label: 'Two', type: 'ts-secondary'}, {label: 'Three'} ]).pager({ pages: 23 }).message('The layout has changed!'); });
-                            </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                                ts.ui.get('#mystatusbar', statusbar => {
+									statusbar.buttons([
+										{label: 'One', type: 'ts-primary'},
+										{label: 'Two', type: 'ts-secondary'},
+										{label: 'Three'}
+									]).pager({
+										pages: 23
+									}).message('The layout has changed!');
+								});
+							</script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                             <div class="tabpanels">
                                 <pre class="prism language-javascript">
 <code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#mystatusbar&apos;</span><span class="token punctuation">,</span> statusbar <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
@@ -343,12 +411,15 @@ group<span class="token punctuation">.</span><span class="token function">push<s
 </pre>
                             </div>
                         </figure>
-                        <p>Because there is limited horizontal space available, the StatusBar has snapped into a layout that is optimized for mobile phones. The exact layout depends on the features you enable, but you can in any case intercept this change
-                            with the <code>onlayout</code> callback.</p>
+                        <p>Because there is limited horizontal space available, the StatusBar has snapped into a layout that is optimized for mobile phones. The exact layout depends on the features you enable, but you can in any case intercept this change with the <code>onlayout</code> callback.</p>
                         <figure data-ts="DoxScript" class="runnable" data-ts.code="var%20statusbar%20%3D%20ts.ui.get(&apos;%23mystatusbar&apos;)%3B%0Astatusbar.onlayout%20%3D%20function()%20%7B%0A%09this.message(&apos;The%20layout%20has%20changed%20again!!!&apos;)%3B%0A%7D%3B%0Astatusbar.pager(null)%3B%20%2F%2F%20just%20to%20show%20that%20it%20works...">
                             <script type="runnable">
-                                var statusbar = ts.ui.get('#mystatusbar'); statusbar.onlayout = function() { this.message('The layout has changed again!!!'); }; statusbar.pager(null); // just to show that it works...
-                            </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                                var statusbar = ts.ui.get('#mystatusbar');
+								statusbar.onlayout = function() {
+									this.message('The layout has changed again!!!');
+								};
+								statusbar.pager(null); // just to show that it works...
+							</script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                             <div class="tabpanels">
                                 <pre class="prism language-javascript">
 <code><span class="token keyword">var</span> statusbar <span class="token operator">=</span> ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#mystatusbar&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -370,8 +441,8 @@ statusbar<span class="token punctuation">.</span><span class="token function">pa
         <menu class="ts-buttons">
             <li>
                 <a data-ts="Button" target="_blank" href="https://github.com/Tradeshift/tradeshift-ui/issues/new" title="Submit new issue" class="ts-secondary">
-		          <span>Create GitHub Issue&#x2026;</span>
-		        </a>
+                    <span>Create GitHub Issue&#x2026;</span>
+                </a>
             </li>
         </menu>
     </aside>

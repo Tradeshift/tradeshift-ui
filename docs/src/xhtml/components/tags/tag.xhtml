@@ -116,59 +116,14 @@
 			</figure>
 			<p>Now that you know how to pass complex data to components, it's time to go through the different kinds of things the tag can do.</p>
 		</section>
-		<section>
-			<h3>Key-only</h3>
-			<p>If you want to show an all uppercased <code>key</code> only, use a <code>string</code> for <code>data-ts.data</code>.</p>
-			<figure data-ts="DoxMarkup">
-				<script>
-					<figure
-						data-ts="Tag"
-						data-ts.data="Dragons!">
-					</figure>
-				</script>
-				<output />
-			</figure>
-		</section>
-		<section>
-			<h3>Icon-only</h3>
-			<p>If you only want to show a single icon, just use <code>data-ts.icon</code> and use the classname of an <a data-ts="Button" href="/#components/icons/css.html">Icon</a>.</p>
-			<figure data-ts="DoxMarkup">
-				<script>
-					<figure
-						data-ts="Tag"
-						data-ts.icon="ts-icon-timer">
-					</figure>
-				</script>
-				<output />
-			</figure>
 
-			<p>This also works with the <a data-ts="Button" href="/#components/userimages/index.html"><code>UserImages</code></a>, although they will be fixed at <code>16.5x16.5</code> pixels.</p>
-			<figure data-ts="DoxMarkup">
-				<script>
-					<scrxpt>
-						const icon = ts.ui.encode(
-							{
-								item: 'userimage',
-								name: 'Jiminy Jim Bobby "Robert" Bobbins',
-								src: '../userimages/assets/jim.png'
-							}
-						);
-					</scrxpt>
-					<figure
-						data-ts="Tag"
-						data-ts.icon="%7B%22item%22%3A%22userimage%22%2C%22name%22%3A%22Jiminy%20Jim%20Bobby%20%5C%22Robert%5C%22%20Bobbins%22%2C%22src%22%3A%22..%2Fuserimages%2Fassets%2Fjim.png%22%7D">
-					</figure>
-				</script>
-				<output />
-			</figure>
-		</section>
 		<section>
 			<h3>Value-only</h3>
 			<section data-ts="Note">
 				<i class="ts-icon-warning"></i>
 				<p>Any non-<code>string</code> passed to <code>data</code> will be converted into a <code>Map</code>, using non-unique <code>keys</code> will result in <strong>unreliable behavior</strong>!</p>
 			</section>
-			<p>If you fancy a simpler approach with lighter font weights and lowercase characters, use a <code>Map</code>-like <code>Array</code> with only a <code>value</code> and a falsy <code>key</code>.</p>
+			<p>Values are simple descriptors, with lighter font weights and lowercase characters. To render, use a <code>Map</code>-like <code>Array</code> with only a <code>value</code> and a falsy <code>key</code>.</p>
 			<figure data-ts="DoxMarkup">
 				<script>
 					<scrxpt>
@@ -312,53 +267,6 @@
 					<figure
 						data-ts="Tag"
 						data-ts.data="%5B%5B%22Acererak%22%5D%2C%5B%22Alignment%22%2C%5B%22Lawful%22%2C%22Evil%22%5D%5D%2C%5B%22Hobbies%22%2C%22Building%20Dungeons%22%5D%5D">
-					</figure>
-				</script>
-				<output />
-			</figure>
-		</section>
-		<section>
-			<h3>Icon</h3>
-			<p>Just like above, you can add an icon next to any combinaton of <code>keys</code> and <code>values</code>.</p>
-			<figure data-ts="DoxMarkup">
-				<script>
-					<scrxpt>
-						const data = ts.ui.encode(
-							[
-								['Dungeon', 'Tomb of Horrors']
-							]
-						);
-					</scrxpt>
-					<figure
-						data-ts="Tag"
-						data-ts.icon="ts-icon-rating"
-						data-ts.data="%5B%5B%22Dungeon%22%2C%22Tomb%20of%20Horrors%22%5D%5D">
-					</figure>
-				</script>
-				<output />
-			</figure>
-
-			<p>This also works with the <a data-ts="Button" href="/#components/userimages/index.html"><code>UserImages</code></a>, altough they will be fixed at <code>22x22</code> pixels.</p>
-			<figure data-ts="DoxMarkup">
-				<script>
-					<scrxpt>
-						const data = ts.ui.encode(
-							[
-								['Lich', 'Acererak']
-							]
-						);
-						const userimage = ts.ui.encode(
-							{
-								item: 'userimage',
-								name: 'Acererak',
-								src: 'assets/acererak.png'
-							}
-						);
-					</scrxpt>
-					<figure
-						data-ts="Tag"
-						data-ts.icon="%7B%22item%22%3A%22userimage%22%2C%22name%22%3A%22Acererak%22%2C%22src%22%3A%22assets%2Facererak.png%22%7D"
-						data-ts.data="%5B%5B%22Lich%22%2C%22Acererak%22%5D%5D">
 					</figure>
 				</script>
 				<output />

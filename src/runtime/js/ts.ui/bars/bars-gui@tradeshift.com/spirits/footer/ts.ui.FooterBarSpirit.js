@@ -66,7 +66,10 @@ ts.ui.FooterBarSpirit = (function using(
 		onenter: function() {
 			this.super.onenter();
 			if (this.guilayout.outsideMain()) {
-				this.css.add('ts-mainfooter ts-bg-lite');
+				// don't add these classes if the footer is inside a table
+				if (!this.element.parentNode.parentNode.classList.contains('ts-table')) {
+					this.css.add('ts-mainfooter ts-bg-lite');
+				}
 				this.guilayout.shiftGlobal(true, 'ts-has-footer');
 			}
 		},

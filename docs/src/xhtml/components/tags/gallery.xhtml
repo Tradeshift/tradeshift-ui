@@ -11,29 +11,6 @@
 <main data-ts="Main" class="ts-bg-white">
 	<article>
 		<section>
-			<h3>Key-only</h3>
-			<figure data-ts="Tag">
-				<dl>
-					<dt>Key only</dt>
-				</dl>
-				<script type="text/edbml">
-					<figure	data-ts="Tag"	data-ts.data="Dragons!"></figure>
-				</script>
-				<output />
-			</figure>
-		</section>
-		<section>
-			<h3>Multiple Keys-only</h3>
-			<figure data-ts="Tag">
-				<script type="text/edbml">
-					<figure	data-ts="Tag"	data-ts.data="Dragons!"></figure>
-					<figure	data-ts="Tag"	data-ts.data="Unicorns!"></figure>
-					<figure	data-ts="Tag"	data-ts.data="Jackalopes!"></figure>
-				</script>
-				<output />
-			</figure>
-		</section>
-		<section>
 			<h3>Label-only</h3>
 			<figure data-ts="Tag">
 				<script type="text/edbml">
@@ -61,19 +38,7 @@
 			</figure>
 			<figure data-ts="Tag">
 				<script type="text/edbml">
-					<figure	data-ts="Tag" data-ts.type="ts-success-lite" data-ts.data="ts-success-lite"></figure>
-				</script>
-				<output />
-			</figure>
-			<figure data-ts="Tag">
-				<script type="text/edbml">
 					<figure	data-ts="Tag" data-ts.type="ts-warning-lite" data-ts.data="ts-warning-lite"></figure>
-				</script>
-				<output />
-			</figure>
-			<figure data-ts="Tag">
-				<script type="text/edbml">
-					<figure	data-ts="Tag" data-ts.type="ts-danger-lite" data-ts.data="ts-danger-lite"></figure>
 				</script>
 				<output />
 			</figure>
@@ -146,15 +111,6 @@
 			</figure>
 		</section>
 		<section>
-			<h3>Optional icon</h3>
-			<figure data-ts="Tag">
-				<script type="text/edbml">
-					<figure data-ts="Tag" data-ts.icon="ts-icon-rating" data-ts.data="%5B%5B%22Dungeon%22%2C%22Tomb%20of%20Horrors%22%5D%5D"></figure>
-				</script>
-				<output/>
-			</figure>
-		</section>
-		<section>
 			<h3>Optional clickability</h3>
 			<figure id="tag-clickable" data-ts="Tag" data-ts.data="%5B%5B%22Vision%22%2C%5B%22Blindsight%22%2C%22Truesight%22%2C%22Darkvision%22%5D%5D%5D"></figure>
 			<script>
@@ -178,6 +134,22 @@
 						}
 					});
 				});
+				</script>
+		</section>
+		<section>
+			<h3>Optional click and delete</h3>
+			<figure id="tag-delete-click" data-ts="Tag" data-ts.data="%5B%5B%22Beholder%22%2C%22Xanathar%22%5D%5D"></figure>
+			<script>
+				ts.ui.ready(() => {
+					ts.ui.get('#tag-delete-click', tag => {
+						tag.onclick = () => {
+							ts.ui.Notification.info('Don\'t poke the beholder!');
+						};
+						tag.ondelete = () => {
+							ts.ui.Notification.warning('I hope you know what you\'re doing...');
+						}
+					});
+				});
 			</script>
 		</section>
 		<section>
@@ -190,28 +162,18 @@
 			</figure>
 		</section>
 		<section>
-			<h3>List of Tags</h3>
+			<h3>List of tags</h3>
 			<script>
 				ts.ui.ready(() => {
 					ts.ui.get('#tag-lich', tag => {
 						tag.data = new Map([
 							['Lich', 'Acererak']
 						]);
-						tag.icon = {
-							item: 'userimage',
-							name: 'Acererak',
-							src: 'assets/acererak.png'
-						};
 					});
 					ts.ui.get('#tag-beholder', tag => {
 						tag.data = new Map([
 							['Beholder', 'Xanathar']
 						]);
-						tag.icon = {
-							item: 'userimage',
-							name: 'Xanathar',
-							src: 'assets/xanathar.png'
-						};
 					});
 				});
 			</script>

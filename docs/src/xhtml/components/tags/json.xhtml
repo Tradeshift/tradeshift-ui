@@ -16,70 +16,6 @@
 			<p>When using the JSON API, you create the <code>FIGURE</code> element with <code>data-ts="Tag"</code>, use <code>ts.ui.get()</code> get a reference to it and call <code>render()</code> to pass it a new model.</p>
 		</section>
 		<section>
-			<h3>Key-only</h3>
-			<ul class="splitscreen">
-				<li>
-					<figure data-ts="DoxScript">
-						<script type="runnable">
-							ts.ui.get('#tag-keyonly', tag => {
-								tag.render({
-									data: 'Dragons!'
-								});
-							});
-						</script>
-					</figure>
-				</li>
-				<li>
-					<div class="doc-showcase">
-						<figure id="tag-keyonly" data-ts="Tag"></figure>
-					</div>
-				</li>
-			</ul>
-		</section>
-		<section>
-			<h3>Icon-only</h3>
-			<ul class="splitscreen">
-				<li>
-					<figure data-ts="DoxScript">
-						<script type="runnable">
-							ts.ui.get('#tag-icononly', tag => {
-								tag.render({
-									icon: 'ts-icon-timer'
-								});
-							});
-						</script>
-					</figure>
-				</li>
-				<li>
-					<div class="doc-showcase">
-						<figure id="tag-icononly" data-ts="Tag"></figure>
-					</div>
-				</li>
-			</ul>
-			<ul class="splitscreen">
-				<li>
-					<figure data-ts="DoxScript">
-						<script type="runnable">
-							ts.ui.get('#tag-userimageonly', tag => {
-								tag.render({
-									icon: {
-										item: 'userimage',
-										name: 'Jiminy Jim Bobby "Robert" Bobbins',
-										src: '../userimages/assets/jim.png'
-									}
-								});
-							});
-						</script>
-					</figure>
-				</li>
-				<li>
-					<div class="doc-showcase">
-						<figure id="tag-userimageonly" data-ts="Tag"></figure>
-					</div>
-				</li>
-			</ul>
-		</section>
-		<section>
 			<h3>Value-only</h3>
 			<ul class="splitscreen">
 				<li>
@@ -215,55 +151,6 @@
 				<li>
 					<div class="doc-showcase">
 						<figure id="tag-multikeysvals" data-ts="Tag"></figure>
-					</div>
-				</li>
-			</ul>
-		</section>
-		<section>
-			<h3>Icon</h3>
-			<ul class="splitscreen">
-				<li>
-					<figure data-ts="DoxScript">
-						<script type="runnable">
-							ts.ui.get('#tag-opticon', tag => {
-								tag.render({
-									icon: 'ts-icon-rating',
-									data: new Map([
-										['Dungeon', 'Tomb of Horrors']
-									])
-								});
-							});
-						</script>
-					</figure>
-				</li>
-				<li>
-					<div class="doc-showcase">
-						<figure id="tag-opticon" data-ts="Tag"></figure>
-					</div>
-				</li>
-			</ul>
-			<ul class="splitscreen">
-				<li>
-					<figure data-ts="DoxScript">
-						<script type="runnable">
-							ts.ui.get('#tag-optuserimage', tag => {
-								tag.render({
-									icon: {
-										item: 'userimage',
-										name: 'Acererak',
-										src: 'assets/acererak.png'
-									},
-									data: new Map([
-										['Lich', 'Acererak']
-									])
-								});
-							});
-						</script>
-					</figure>
-				</li>
-				<li>
-					<div class="doc-showcase">
-						<figure id="tag-optuserimage" data-ts="Tag"></figure>
 					</div>
 				</li>
 			</ul>
@@ -463,24 +350,14 @@
 								tag.render({
 									data: new Map([
 										['Lich', 'Acererak']
-									]),
-									icon: {
-										item: 'userimage',
-										name: 'Acererak',
-										src: 'assets/acererak.png'
-									}
+									])
 								});
 							});
 							ts.ui.get('#tags-beholder', tag => {
 								tag.render({
 									data: new Map([
 										['Beholder', 'Xanathar']
-									]),
-									icon: {
-										item: 'userimage',
-										name: 'Xanathar',
-										src: 'assets/xanathar.png'
-									}
+									])
 								});
 							});
 						</script>

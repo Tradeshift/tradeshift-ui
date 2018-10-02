@@ -11,7 +11,7 @@
 		"afterReleaseCommand": "echo Successfully released Tradeshift UI v${version}."
 	},
 	"buildCommand":
-		"grunt check_cdn:cdn && echo 'Building Tradeshift UI…' && grunt dist && echo 'Uploading to S3…' && grunt exec:s3_upload",
+		"grunt check_cdn:cdn && echo 'Building Tradeshift UI…' && grunt dist && npm run package-dist -- next && echo 'Uploading to S3…' && grunt exec:s3_upload",
 	"github": {
 		"release": true,
 		"releaseName": "v%s",
@@ -20,7 +20,6 @@
 	},
 	"npm": {
 		"publish": true,
-		"publishPath": "dist/npm",
-		"tag": "latest"
+		"publishPath": "dist/npm"
 	}
 }

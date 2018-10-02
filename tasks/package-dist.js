@@ -9,11 +9,23 @@ const fs = require('fs');
 const path = require('path');
 const packageJson = require('../package.json');
 
+const tag = process.argv.slice(2)[0];
+
 delete packageJson.scripts;
 delete packageJson.devDependencies;
 delete packageJson.browserslist;
 delete packageJson['lint-staged'];
 packageJson.main = 'ts.js';
+
+switch (tag) {
+	case 'next':
+		packageJson.publishConfig.tag = 'next';
+		break;
+	case 'latest':
+	default:
+		packageJson.publishConfig.tag = 'latest';
+		break;
+}
 
 try {
 	write('../dist/npm/package.json', packageJson);

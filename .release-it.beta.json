@@ -9,9 +9,13 @@
 		"commitMessage": "Pre-release v%s",
 		"tagName": "v%s",
 		"tagAnnotation": "Tradeshift UI v%s",
-		"beforeStartCommand": "npm run lint",
-		"buildCommand": "grunt dist",
-		"beforeStageCommand": "grunt exec:s3_upload"
+		"beforeStartCommand":
+			"echo 'S3 overwrite protection & code linting…' && grunt check_cdn:cdn && grunt clean && npm run lint"
+	},
+	"buildCommand": "echo 'Building Tradeshift UI…' && grunt dist",
+	"dist": {
+		"beforeStageCommand": "echo 'Uploading to S3…' && grunt exec:s3_upload",
+		"afterReleaseCommand": "echo Successfully released Tradeshift UI v${version}!"
 	},
 	"github": {
 		"release": true,

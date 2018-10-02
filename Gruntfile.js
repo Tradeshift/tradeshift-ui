@@ -438,10 +438,6 @@ module.exports = function(grunt) {
 			docs_grunt: {
 				command: 'cd docs && grunt',
 				stdout: 'inherit'
-			},
-			npm_package_json: {
-				command: 'npm run package-dist',
-				stdout: 'inherit'
 			}
 		},
 
@@ -507,7 +503,6 @@ module.exports = function(grunt) {
 			]
 		];
 		if (target === 'cdn') {
-			out.push('exec:npm_package_json'); // generate minimum viable package.json
 			out.push('copy:npm'); // copy LICENSE/README to npm folder
 		}
 		out.push('concat:spin'); // generate spin.js

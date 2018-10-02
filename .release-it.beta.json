@@ -1,9 +1,8 @@
 {
 	"non-interactive": true,
 	"verbose": true,
-	"increment": "prerelease",
+	"requireCleanWorkingDir": false,
 	"preRelease": "beta",
-	"requireCleanWorkingDir": true,
 	"changelogCommand": "echo \"### Commits\n$(git log --pretty=format:'* %s (%h)' [REV_RANGE])\"",
 	"src": {
 		"commitMessage": "Pre-release v%s",
@@ -13,7 +12,7 @@
 		"afterReleaseCommand": "echo Successfully released Tradeshift UI v${version}."
 	},
 	"buildCommand":
-		"grunt check_cdn:cdn && echo 'Building Tradeshift UI…' && grunt dist && echo 'Uploading to S3…' && grunt exec:s3_upload",
+		"grunt check_cdn:cdn && echo 'Building Tradeshift UI…' && grunt dist && npm run package-dist -- next && echo 'Uploading to S3…' && grunt exec:s3_upload",
 	"github": {
 		"release": true,
 		"releaseName": "Pre-release: v%s",
@@ -22,7 +21,6 @@
 	},
 	"npm": {
 		"publish": true,
-		"publishPath": "dist/npm",
-		"tag": "beta"
+		"publishPath": "dist/npm"
 	}
 }

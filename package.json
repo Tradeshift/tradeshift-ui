@@ -30,7 +30,7 @@
     "deploy-s3": "node tasks/deploy.js",
     "deploy-ali-oss": "node tasks/deploy_ali_oss.js",
     "release": "release-it --config=.release-it.json",
-    "prelease": "release-it --config=.release-it.beta.json",
+    "prelease": "release-it --config=.release-it.beta.json --npm.tag=next",
     "****** TEST *****": "",
     "test": "npm run eslint & grunt jasmine & wait && node tasks/browserstack.js",
     "http": "static spec/jasmine -H '{\"Cache-Control\": \"no-cache, must-revalidate\"}'",

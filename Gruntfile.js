@@ -100,6 +100,18 @@ module.exports = function(grunt) {
 						dest: 'dist/cdn/ts-<%= pkg.version %>.min.css'
 					}
 				]
+			},
+			npm: {
+				files: [
+					{
+						src: 'LICENSE.md',
+						dest: 'dist/npm/LICENSE.md'
+					},
+					{
+						src: 'README.md',
+						dest: 'dist/npm/README.md'
+					}
+				]
 			}
 		},
 
@@ -415,6 +427,10 @@ module.exports = function(grunt) {
 			docs_grunt: {
 				command: 'cd docs && grunt',
 				stdout: 'inherit'
+			},
+			npm_package_json: {
+				command: 'npm run package-dist',
+				stdout: 'inherit'
 			}
 		},
 
@@ -471,16 +487,21 @@ module.exports = function(grunt) {
 	}
 
 	function generateJsConcurrent(target = 'cdn') {
-		return [
+		const out = [
 			'edbml', // edbml -> js
 			[
 				// generate ts.js
 				`tsless:${returnDevForJasmine(target)}`, // generate ts.less
 				`copy:docs_${returnDevForJasmine(target)}` // copy ts-runtime.less over to the docs
-			],
-			'concat:spin', // generate spin.js
-			'guibundles' // generate ts-runtime-{api,gui}.js
+			]
 		];
+		if (target === 'cdn') {
+			out.push('exec:npm_package_json'); // generate minimum viable package.json
+			out.push('copy:npm'); // copy LICENSE/README to npm folder
+		}
+		out.push('concat:spin'); // generate spin.js
+		out.push('guibundles'); // generate ts-runtime-{api,gui}.js
+		return out;
 	}
 
 	function concatAndUglifyJs(target = 'cdn') {

@@ -2,11 +2,14 @@
 	"non-interactive": true,
 	"verbose": true,
 	"requireCleanWorkingDir": true,
+	"changelogCommand": "echo \"### Commits\n$(git log --pretty=format:'* %s (%h)' [REV_RANGE])\"",
 	"src": {
 		"commitMessage": "Release v%s",
 		"tagName": "v%s",
 		"tagAnnotation": "Tradeshift UI v%s",
-		"beforeStageCommand": "npm run lint && grunt release-deploy"
+		"beforeStartCommand": "npm run lint",
+		"buildCommand": "grunt dist",
+		"beforeStageCommand": "grunt exec:s3_upload"
 	},
 	"github": {
 		"release": true,

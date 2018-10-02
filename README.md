@@ -35,29 +35,106 @@ If you'd like to submit a feature request or report a bug, go to our [issues pag
 
 ## Git Hooks
 
-Watch out, whenever you create a commit, the pre-commit hook will generate the documentation files, so the committed version works with GitHub pages.
+Watch out, whenever you create a commit, the pre-commit hook will lint all staged files and it might commit all changes in each staged file, not just the staged lines.
 
-## Documentation
+## Docs
 
-If you want to browse our [documentation site](http://ui.tradeshift.com) you can do so easily.
+Our docs site is hosted by GitHub Pages at http://ui.tradeshift.com.
 
 ## Release & Deployment
 
+Make sure you are logged in to `npm` and you have the following environment variables set:
+
+```sh
+export AWS_ACCESS_KEY_ID=[Your AWS access key id]
+export AWS_SECRET_ACCESS_KEY=[Your AWS secret access key]
+export GH_ACCESS_TOK=[Your GitHub personal access token]
+```
+
+Releasing can be started using one of the following commands:
+
+```sh
+# Let's say the current version is v10.0.0
+
+# npm dist-tag ls
+# latest: 10.0.0
+
+	# Bump the patch version and release
+	> npm run release
+
+# npm dist-tag ls
+# latest: 10.0.1
+
+	# Bump the minor version and release
+	> npm run release -- minor
+
+# npm dist-tag ls
+# latest: 10.1.0
+
+	# Bump the major version and release
+	> npm run release -- major
+
+# npm dist-tag ls
+# latest: 11.0.0
+# 
+	# Bump the minor version and pre-release
+	> npm run prelease -- minor
+
+# npm dist-tag ls
+# latest: 11.0.0
+# next: 11.1.0-beta.0
+
+	# Bump the major version and pre-release
+	> npm run prelease -- major
+
+# npm dist-tag ls
+# latest: 11.0.0
+# next: 12.0.0-beta.0
+
+	# Bump the major version and pre-release
+	> npm run prelease -- --preRelease=rc
+
+# npm dist-tag ls
+# latest: 11.0.0
+# next: 12.0.0-rc.0
+```
+
+Any of these commands will essentially do the following steps:
+* `npm version ${increment || 'patch'}` # Bump the version and create a git tag 
+* `grunt dist` # Generate distributable files
+* `npm run deploy-s3` # Deploy those files to S3 (no overwrites!)
+* `git push` # Push the newly created commit and tag to GitHub
+* Release to GitHub _(could be pre-release)_ # Mark the tag as a GitHub Release
+* `npm publish` _(tag is latest or next)_ # Push the package to registry.npmjs.org
+
+Make sure to not do this on the `master` branch because it is protected from being pushed to directly and your code will get released to S3 but not to git/GitHub/npm.
+
+## Updating the docs
+
+We serve the docs site from the `gh-pages` branch and all generated files are present in the `.gitignore` of the `master`-style branches.
+The `gh-pages` branch only contains these generated files, one folder for each major version since we introduced versioning to the docs (`v10`).
+
 Make sure you have the following environment variables set:
 
-```
-export AWS_ACCESS_KEY_ID=[Your AWS Access Key ID]
-export AWS_SECRET_ACCESS_KEY=[Your AWS Secret Access Key]
+```sh
+export GH_USER_NAME=[Your GitHub username]
+export GH_ACCESS_TOK=[Your GitHub personal access token]
 ```
 
-If you have the correct AWS access keys to release a new version of tradeshift-ui, you can do so using the `npm run release` or `npm run prerelease` commands.
-It will bump the version inside `package.json`, commit, tag release, upload to S3/CloudFront and push to GitHub. Make sure to not do this on the `master` branch because it is protected from being pushed to directly.
+Run `npm run gh-pages`, which will do the following:
+* `grunt dist` # Generate distributable files
+* `cd tasks` # This is actually the CWD of the gh-pages script
+* `git clone ${GH_USER_NAME}:${GH_ACCESS_TOK}@github:Tradeshift/tradeshift-ui -b gh-pages --single-branch` # Clone the gh-pages branch to a new folder
+* Create a `v${majorVersion}` folder and/or replace its contents
+* Push the changes to `origin/gh-pages-update`
+
+From here, you should create a PR against `gh-pages` to update the docs site and once it's merged, GitHub Pages will update.
 
 ## Running tests
 
 Make sure you have a BrowserStack Automate account and have the following environment variables set:
 
-```
+```sh
 export BROWSERSTACK_USERNAME=[Your BrowserStack username]
 export BROWSERSTACK_KEY=[Your BrowserStack key]
 ```
@@ -76,13 +153,9 @@ We're currently testing on the following browsers:
 - Microsoft Edge (latest, previous)
 - IE11
 
-## Roadmap
-
-To stay up to date with upcoming releases and new features in the works, check out our [Milestones](https://github.com/Tradeshift/tradeshift-ui/milestones).
-
 ## Contribute
 
-If you would like to contribute to our codebase, just fork the repo and make a PR or just write to us on [Gitter](https://gitter.im/tradeshift-ui/Lobby), we're always looking for more input =)
+If you would like to contribute to our codebase, just fork the repo and make a PR.
 
 ## License
 

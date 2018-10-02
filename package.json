@@ -1,6 +1,6 @@
 {
   "name": "tradeshift-ui",
-  "version": "10.1.0",
+  "version": "11.0.0-alpha.0",
   "private": true,
   "description": "The Tradeshift UI Library & Framework",
   "homepage": "https://ui.tradeshift.com/",
@@ -41,11 +41,24 @@
     "gh-pages": "grunt dist && node tasks/gh-pages.js"
   },
   "lint-staged": {
-    "*.js": ["prettier --write", "eslint --config ./.eslintrc.json", "git add"],
-    "*.json": ["prettier --write", "git add"],
-    "*.less": ["prettier --write", "git add"]
+    "*.js": [
+      "prettier --write",
+      "eslint --config ./.eslintrc.json",
+      "git add"
+    ],
+    "*.json": [
+      "prettier --write",
+      "git add"
+    ],
+    "*.less": [
+      "prettier --write",
+      "git add"
+    ]
   },
-  "browserslist": ["Last 2 versions", "ie 11"],
+  "browserslist": [
+    "Last 2 versions",
+    "ie 11"
+  ],
   "devDependencies": {
     "alce": "^1.2.0",
     "ali-oss": "^4.10.1",

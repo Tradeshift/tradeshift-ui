@@ -32,3 +32,6 @@ ts.ui.DatePicker.localize({
 	dayNamesShort: ['Dum', 'Lun', 'Mar', 'Mie', 'Joi', 'Vin', 'Sâm'],
 	dayNamesMin: ['Du', 'Lu', 'Ma', 'Mi', 'Jo', 'Vi', 'Sâ']
 });
+ts.ui.Footer.localize({
+	collaboration: 'Colaborați Pe Acest Lucru'
+});

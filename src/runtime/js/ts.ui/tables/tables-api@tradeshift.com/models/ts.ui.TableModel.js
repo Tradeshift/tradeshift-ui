@@ -120,7 +120,8 @@ ts.ui.TableModel = (function using(RowCollection, Type, Model) {
 				button: ts.ui.ButtonModel,
 				switch: ts.ui.SwitchModel,
 				userimage: ts.ui.UserImageModel,
-				icon: ts.ui.IconModel
+				icon: ts.ui.IconModel,
+				tag: ts.ui.TagModel
 			}[item.toLowerCase()] ||
 			(function nomatch() {
 				console.error('"' + item + '" not matched to nothing');

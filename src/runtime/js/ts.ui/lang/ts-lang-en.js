@@ -43,3 +43,6 @@ ts.ui.Autocomplete.localize({
 		}
 	}
 });
+ts.ui.Footer.localize({
+	collaboration: 'Collaborate On This'
+});

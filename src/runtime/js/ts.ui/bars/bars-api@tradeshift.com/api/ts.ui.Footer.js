@@ -171,3 +171,34 @@ ts.ui.Footer = (function using(chained) {
 
 	return Footer;
 })(gui.Combo.chained);
+
+var locale;
+gui.Object.extend(ts.ui.Footer, {
+	/**
+	 * Localize. Note that this stuff has NOT been
+	 * rigged up for xframe (Greenfield) support.
+	 * @param {object} newlocale
+	 */
+	localize: function(newlocale) {
+		if (arguments.length) {
+			if (
+				!locale ||
+				Object.keys(locale).every(function(key) {
+					var has = newlocale.hasOwnProperty(key);
+					if (!has) {
+						console.error('Missing translations for ' + key);
+					}
+					return has;
+				})
+			) {
+				locale = newlocale;
+			}
+		} else {
+			return locale;
+		}
+	}
+});
+
+ts.ui.Footer.localize({
+	collaboration: 'Collaborate On This'
+});

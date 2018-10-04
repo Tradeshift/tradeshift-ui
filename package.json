@@ -21,7 +21,7 @@
 	"scripts": {
 		"****** LINT *****": "",
 		"prelint": "run-p -n prettier prettier-less prettier-json",
-		"lint": "yarn run eslint",
+		"lint": "npm run eslint",
 		"eslint": "eslint --cache --config ./.eslintrc.json .",
 		"prettier": "prettier --write \"**/*.js\"",
 		"prettier-less": "prettier --write \"**/*.less\"",
@@ -33,19 +33,32 @@
 		"release": "release-it --config=.release.json",
 		"prelease": "release-it --config=.prerelease.json",
 		"****** TEST *****": "",
-		"test": "yarn run eslint & grunt jasmine & wait && node tasks/browserstack.js",
+		"test": "npm run eslint & grunt jasmine & wait && node tasks/browserstack.js",
 		"http": "static spec/jasmine -H '{\"Cache-Control\": \"no-cache, must-revalidate\"}'",
 		"****** NODE *****": "",
-		"postinstall": "cd docs && yarn",
+		"postinstall": "cd docs && npm ci",
 		"precommit": "lint-staged && grunt exec:docs_dist && git add -A docs",
 		"gh-pages": "grunt dist && node tasks/gh-pages.js"
 	},
 	"lint-staged": {
-		"*.js": ["prettier --write", "eslint --config ./.eslintrc.json", "git add"],
-		"*.json": ["prettier --write", "git add"],
-		"*.less": ["prettier --write", "git add"]
+		"*.js": [
+			"prettier --write",
+			"eslint --config ./.eslintrc.json",
+			"git add"
+		],
+		"*.json": [
+			"prettier --write",
+			"git add"
+		],
+		"*.less": [
+			"prettier --write",
+			"git add"
+		]
 	},
-	"browserslist": ["Last 2 versions", "ie 11"],
+	"browserslist": [
+		"Last 2 versions",
+		"ie 11"
+	],
 	"devDependencies": {
 		"alce": "^1.2.0",
 		"ali-oss": "^4.10.1",

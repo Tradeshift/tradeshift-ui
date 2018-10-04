@@ -100,6 +100,7 @@ gui.Arguments = {
 			xpect === '*' ||
 			(xpect === 'node' && arg && arg.nodeType) ||
 			(xpect === 'constructor' && arg && gui.Type.isConstructor(arg)) ||
+			(xpect === 'map' && arg && gui.Type.isMap(arg)) ||
 			(xpect === 'element' && arg && arg.nodeType === Node.ELEMENT_NODE) ||
 			(xpect === 'spirit' && arg && arg.$instanceid && arg.element) ||
 			(!needs && input === 'undefined') ||

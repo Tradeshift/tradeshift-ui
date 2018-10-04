@@ -11,6 +11,18 @@ var stackconf = {
 	accessKey: process.env.BROWSERSTACK_KEY
 };
 
+var antiClickjack = [
+	'<style id="antiClickjack">body{display:none !important;}</style>',
+	'<script type="text/javascript">',
+	'			if (self === top) {',
+	"				var antiClickjack = document.getElementById('antiClickjack');",
+	'				antiClickjack.parentNode.removeChild(antiClickjack);',
+	'			} else {',
+	'				top.location = self.location;',
+	'			}',
+	'		</script>'
+];
+
 /**
  * @param {Grunt} grunt
  */
@@ -349,6 +361,7 @@ module.exports = function(grunt) {
 							.replace('${menujson}', json)
 							.replace('${svgicons}', svgs.replace(/\n\n*/g, '\n'))
 							.replace('${menuhtml}', seomenu(menu))
+							.replace('${security}', antiClickjack.join('\n'))
 					);
 				}
 			}

@@ -41,3 +41,6 @@ ts.ui.Autocomplete.localize({
 		}
 	}
 });
+ts.ui.Footer.localize({
+	collaboration: 'Együttműködjenek Erről'
+});

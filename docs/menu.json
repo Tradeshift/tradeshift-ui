@@ -144,6 +144,11 @@
 				"path": "components/table/"
 			},
 			{
+				"label": "Tags & Labels",
+				"icon": "docs-icon-tag-2",
+				"path": "components/tags/tag.html"
+			},
+			{
 				"label": "Time",
 				"icon": "docs-icon-time-bomb",
 				"path": "components/times/"

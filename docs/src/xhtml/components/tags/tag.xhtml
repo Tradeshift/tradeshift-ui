@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Tag</title>
+	<object data="tabs.xhtml"></object>
+</head>
+<body>
+<header data-ts="TopBar"></header>
+<main data-ts="Main" class="doc-tags">
+	<article>
+		<h1>Tag</h1>
+		<section class="desc">
+			<p>Tags represent a set of interactive keywords that help to label, organize, and categorize objects.</p>
+		</section>
+		<section>
+			<p>This is the API of the Tag component, all HTML attributes and JS properties correspond to the table below, you can use them to customize how your tag looks.</p>
+			<div data-ts="DoxApi">
+				<script type="application/json">
+					{
+						name: "ts.ui.TagSpirit",
+						properties: [
+							{
+								name: "type",
+								type: "string",
+								desc: "The CSS classname."
+							},
+							{
+								name: "icon",
+								type: "string|object",
+								desc: "The icon's classname as a string or a `ts.ui.UserImageModel`."
+							},
+							{
+								name: "tabindex",
+								type: "number",
+								desc: "The `tabindex` of the tag."
+							},
+							{
+								name: "data",
+								type: "(Map|Array|string)",
+								desc: "The `keys` and `values` of the tag or the only `key` as a string."
+							},
+							{
+								name: "locked",
+								type: "boolean",
+								desc: "Tag is locked?"
+							},
+							{
+								name: "deletable",
+								type: "boolean",
+								desc: "Tag is deletable? (only visually)"
+							},
+							{
+								name: "clickable",
+								type: "boolean",
+								desc: "Tag is clickable? (only visually)"
+							},
+							{
+								name: "onclick",
+								type: "(Function)",
+								desc: "Called whenever the tag gets clicked."
+							},
+							{
+								name: "ondelete",
+								type: "(Function)",
+								desc: "Called whenever the tag gets deleted."
+							}
+						],
+						methods: [
+							{
+								name: "click",
+								desc: "Trigger a click on the tag if `onclick` is set."
+							},
+							{
+								name: "delete",
+								desc: "Trigger removal of tag from DOM and call `ondelete` if it's set."
+							},
+							{
+								name: "render",
+								args: ["object"],
+								desc: "Use the argument as a model, replacing the existing one, and re-render the tag."
+							}
+						]
+					}
+				</script>
+			</div>
+		</section>
+		<section>
+			<h3>Passing complex data via HTML attributes</h3>
+			<p>Any properties that aren't <code>Functions</code> can be given value via HTML attributes, simply by writing <code>`data-ts.${propertyName}=${encodedValue}`</code>.</p>
+			<p>When passing complex data structures as HTML attributes, you need to <code>JSON.stringify()</code> the value and then pass it to <code>encodeURIComponent</code> to get a string that can be safely used as an attribute.</p>
+			<p>We supply <code>ts.ui.encode()</code> as a helper function that does just this.</p>
+			<figure data-ts="DoxMarkup">
+				<script>
+					<scrxpt>
+						// Prepare the data that we want to pass to the component
+						const dataToBeEncoded = {
+							thisDataIs: 'complex',
+							because: ['it', 'is', 'not', 'simple']
+						};
+						// Encode it using `ts.ui.encode()`
+						const encodedData = ts.ui.encode(
+							dataToBeEncoded
+						);
+						// Of couse, you could just use `encodeURIComponent(JSON.stringify())`,
+						// which could be especially useful during server-side rendering.
+						assert encodedData === encodeURIComponent(JSON.stringify(dataToBeEncoded));
+						// encodedData: "%7B%22thisDataIs%22%3A%22complex%22%2C%22because%22%3A%5B%22it%22%2C%22is%22%2C%22not%22%2C%22simple%22%5D%7D"
+
+						// Insert the value as an attribute of the component.
+						// (You'd probably handle this with React, Angular or some other client-side framework.)
+						document.write(
+							`<example-ts-component data-ts.exampleProperty=${encodedData}></example-ts-component>`
+						);
+					</scrxpt>
+				</script>
+			</figure>
+			<p>Now that you know how to pass complex data to components, it's time to go through the different kinds of things the tag can do.</p>
+		</section>
+
+		<section>
+			<h3>Value-only</h3>
+			<section data-ts="Note">
+				<i class="ts-icon-warning"></i>
+				<p>Any non-<code>string</code> passed to <code>data</code> will be converted into a <code>Map</code>, using non-unique <code>keys</code> will result in <strong>unreliable behavior</strong>!</p>
+			</section>
+			<p>Values are simple descriptors, with lighter font weights and lowercase characters. To render, use a <code>Map</code>-like <code>Array</code> with only a <code>value</code> and a falsy <code>key</code>.</p>
+			<figure data-ts="DoxMarkup">
+				<script>
+					<scrxpt>
+						const data = ts.ui.encode(
+							[
+								[null, 'Roll a d20']
+							]
+						);
+					</scrxpt>
+					<figure
+						data-ts="Tag"
+						data-ts.data="%5B%5Bnull%2C%22Roll%20a%20d20%22%5D%5D">
+					</figure>
+				</script>
+				<output />
+			</figure>
+		</section>
+
+		<p>It's also possible to set <code>data</code> (and all other attributes) later, through the JS API.</p>
+		<script>
+			ts.ui.ready(() => {
+				ts.ui.get('#tag-roll20', tag => {
+					tag.data = new Map([
+						[null, 'Roll a d20']
+					]);
+				});
+			});
+		</script>
+		<figure data-ts="DoxMarkup">
+			<script>
+				<scrxpt>
+					ts.ui.ready(() => {
+						ts.ui.get('#tag-roll20', tag => {
+							tag.data = new Map([
+								[null, 'Roll a d20']
+							]);
+						});
+					});
+				</scrxpt>
+				<figure
+					id="tag-roll20"
+					data-ts="Tag">
+				</figure>
+			</script>
+			<output />
+		</figure>
+		<section>
+			<h3>Key-Value</h3>
+			<p>If you need a <code>key</code> with a <code>value</code> attached to it, use the <code>Map</code>-like <code>Array</code> structure like before, but with a <code>key</code> and a <code>value</code> this time.</p>
+			<figure data-ts="DoxMarkup">
+				<script>
+					<scrxpt>
+						const data = ts.ui.encode(
+							[
+								['Area of Origin', 'The Sword Coast']
+							]
+						);
+					</scrxpt>
+					<figure
+						data-ts="Tag"
+						data-ts.data="%5B%5B%22Area%20of%20Origin%22%2C%22The%20Sword%20Coast%22%5D%5D">
+					</figure>
+				</script>
+				<output />
+			</figure>
+		</section>
+		<section>
+			<h3>Key with multiple values</h3>
+			<p>You can have a single <code>key</code> with multiple <code>values</code>, just make the <code>value</code> part of the <code>Map</code>-like <code>Array</code> an <code>Array</code>.</p>
+			<figure data-ts="DoxMarkup">
+				<script>
+					<scrxpt>
+						const data = ts.ui.encode(
+							[
+								['The Teeming Hive of Evil', ['Skullport', 'Port of Shadows']]
+							]
+						);
+					</scrxpt>
+					<figure
+						data-ts="Tag"
+						data-ts.data="%5B%5B%22The%20Teeming%20Hive%20of%20Evil%22%2C%5B%22Skullport%22%2C%22Port%20of%20Shadows%22%5D%5D%5D">
+					</figure>
+				</script>
+				<output />
+			</figure>
+		</section>
+		<section>
+			<h3>Multiple keys with single value</h3>
+			<p>Of course you could flip it around and use several <code>keys</code> for a single <code>value</code>.</p>
+			<figure data-ts="DoxMarkup">
+				<script>
+					<scrxpt>
+						const data = ts.ui.encode(
+							[
+								[['Facial Tentacles', 'Potent Psionics'], 'Mind Flayer']
+							]
+						);
+					</scrxpt>
+					<figure
+						data-ts="Tag"
+						data-ts.data="%5B%5B%5B%22Facial%20Tentacles%22%2C%22Potent%20Psionics%22%5D%2C%22Mind%20Flayer%22%5D%5D">
+					</figure>
+				</script>
+				<output />
+			</figure>
+		</section>
+		<section>
+			<h3>Multiple keys with multiple values</h3>
+			<p>It comes naturally that you can have several <code>keys</code> together with several <code>values</code>.</p>
+			<figure data-ts="DoxMarkup">
+				<script>
+					<scrxpt>
+						const data = ts.ui.encode(
+							[
+								[['Magic-user', 'Undead'], ['Lich', 'Vampire']]
+							]
+						);
+					</scrxpt>
+					<figure
+						data-ts="Tag"
+						data-ts.data="%5B%5B%5B%22Magic-user%22%2C%22Undead%22%5D%2C%5B%22Lich%22%2C%22Vampire%22%5D%5D%5D">
+					</figure>
+				</script>
+				<output />
+			</figure>
+		</section>
+		<section>
+			<h3>Multiple sets of key-values</h3>
+			<p>If you want to have several <code>key</code>/<code>value</code> sets in a single tag, just have more entries in your <code>Map</code>-like <code>Array</code>.</p>
+			<figure data-ts="DoxMarkup">
+				<script>
+					<scrxpt>
+						const data = ts.ui.encode(
+							[
+								['Acererak'],
+								['Alignment', ['Lawful', 'Evil']],
+								['Hobbies', 'Building Dungeons'],
+							]
+						);
+					</scrxpt>
+					<figure
+						data-ts="Tag"
+						data-ts.data="%5B%5B%22Acererak%22%5D%2C%5B%22Alignment%22%2C%5B%22Lawful%22%2C%22Evil%22%5D%5D%2C%5B%22Hobbies%22%2C%22Building%20Dungeons%22%5D%5D">
+					</figure>
+				</script>
+				<output />
+			</figure>
+		</section>
+		<section>
+			<h3>Clickable look & click handler</h3>
+			<p>If you want to make your tag look like it can be clicked, once you've initialized your tag, set the <code>onclick</code> handler.</p>
+			<script>
+				ts.ui.ready(() => {
+					ts.ui.get('#tag-clickable', tag => {
+						tag.onclick = () => {
+							ts.ui.Notification.success('Do you see?');
+						};
+					});
+				});
+			</script>
+			<figure data-ts="DoxMarkup">
+				<script>
+					<scrxpt>
+						const data = ts.ui.encode(
+							[
+								['Vision', ['Blindsight', 'Truesight', 'Darkvision']]
+							]
+						);
+						ts.ui.ready(() => {
+							ts.ui.get('#tag-clickable', tag => {
+								tag.onclick = () => {
+									ts.ui.Notification.success('Do you see?');
+								};
+							});
+						});
+					</scrxpt>
+					<figure
+						id="tag-clickable"
+						data-ts="Tag"
+						data-ts.data="%5B%5B%22Vision%22%2C%5B%22Blindsight%22%2C%22Truesight%22%2C%22Darkvision%22%5D%5D%5D">
+					</figure>
+				</script>
+				<output />
+			</figure>
+
+			<p>You can use your own click handler if you'd like.</p>
+			<section data-ts="Note">
+				<i class="ts-icon-info"></i>
+				<p>Make sure to set <code>data-ts.clickable="true"</code>, otherwise your tag won't look like it's clickable.</p>
+			</section>
+			<script>
+				ts.ui.ready(() => {
+					ts.ui.get('#tag-clickable-ownhandler', tag => {
+						tag.element.addEventListener('click', e => {
+							ts.ui.Notification.success('Do you see?');
+						});
+					});
+				});
+			</script>
+			<figure data-ts="DoxMarkup">
+				<script>
+					<scrxpt>
+						const data = ts.ui.encode(
+							[
+								['Vision', ['Blindsight', 'Truesight', 'Darkvision']]
+							]
+						);
+						ts.ui.ready(() => {
+							ts.ui.get('#tag-clickable-ownhandler', tag => {
+								tag.element.addEventListener('click', e => {
+									ts.ui.Notification.success('Do you see?');
+								});
+							});
+						});
+					</scrxpt>
+					<figure
+						id="tag-clickable-ownhandler"
+						data-ts="Tag"
+						data-ts.clickable="true"
+						data-ts.data="%5B%5B%22Vision%22%2C%5B%22Blindsight%22%2C%22Truesight%22%2C%22Darkvision%22%5D%5D%5D">
+					</figure>
+				</script>
+				<output />
+			</figure>
+		</section>
+		<section>
+			<h3>Delete button & delete handler</h3>
+			<p>If you want to be able to remove a tag, once you've initialized the tag, set the <code>ondelete</code> handler. This will create a <code>DEL</code> element as the last child of the tag.</p>
+			<section data-ts="Note">
+				<i class="ts-icon-warning"></i>
+				<p>When the <code>DEL</code> element is clicked, the tag will be removed from the DOM after a <code>setTimeout</code>. Don't try to read anything through the DOM at this point.</p>
+			</section>
+			<script>
+				ts.ui.ready(() => {
+					ts.ui.get('#tag-deletable', tag => {
+						tag.ondelete = () => {
+							ts.ui.Notification.info('Tag disintegrated!');
+						}
+					});
+				});
+			</script>
+			<figure data-ts="DoxMarkup">
+				<script>
+					<scrxpt>
+						const data = ts.ui.encode(
+							[
+								['Languages', ['Sylvan', 'Common', 'Draconic', 'Giant']]
+							]
+						);
+						ts.ui.ready(() => {
+							ts.ui.get('#tag-deletable', tag => {
+								tag.ondelete = () => {
+									ts.ui.Notification.info('Tag disintegrated!');
+								}
+							});
+						});
+					</scrxpt>
+					<figure
+						id="tag-deletable"
+						data-ts="Tag"
+						data-ts.data="%5B%5B%22Languages%22%2C%5B%22Sylvan%22%2C%22Common%22%2C%22Draconic%22%2C%22Giant%22%5D%5D%5D">
+					</figure>
+				</script>
+				<output />
+			</figure>
+
+			<p>Just like with <code>click</code>, you can use your own click handler for deletion if you'd like.</p>
+			<section data-ts="Note">
+				<i class="ts-icon-warning"></i>
+				 <p>You have to remember that only react when the user clicks on the <code>DEL</code> element by checking for <code>e.target.localName</code>.</p>
+			</section>
+			<script>
+				ts.ui.ready(() => {
+					ts.ui.get('#tag-deletable-ownhandler', tag => {
+						tag.element.addEventListener('click', e => {
+							if (e.target.localName === 'del') {
+								ts.ui.Notification.info('Tag disintegrated!');
+							}
+						});
+					});
+				});
+			</script>
+			<figure data-ts="DoxMarkup">
+				<script>
+					<scrxpt>
+						const data = ts.ui.encode(
+							[
+								['Languages', ['Sylvan', 'Common', 'Draconic', 'Giant']]
+							]
+						);
+						ts.ui.ready(() => {
+							ts.ui.get('#tag-deletable-ownhandler', tag => {
+								tag.element.addEventListener('click', e => {
+									if (e.target.localName === 'del') {
+										ts.ui.Notification.info('Tag disintegrated!');
+									}
+								});
+							});
+						});
+					</scrxpt>
+					<figure
+						id="tag-deletable-ownhandler"
+						data-ts="Tag"
+						data-ts.deletable="true"
+						data-ts.data="%5B%5B%22Languages%22%2C%5B%22Sylvan%22%2C%22Common%22%2C%22Draconic%22%2C%22Giant%22%5D%5D%5D">
+					</figure>
+				</script>
+				<output />
+			</figure>
+		</section>
+		<section>
+			<h3>Click & delete</h3>
+			<p>In case you want to handle <code>clicks</code> and have a <code>delete</code> button on the same tag, you can do that the same way as above.</p>
+			<script>
+				ts.ui.ready(() => {
+					ts.ui.get('#tag-delete-click', tag => {
+						tag.onclick = () => {
+							ts.ui.Notification.info('Don\'t poke the beholder!');
+						};
+						tag.ondelete = () => {
+							ts.ui.Notification.warning('I hope you know what you\'re doing...');
+						}
+					});
+				});
+			</script>
+			<figure data-ts="DoxMarkup">
+				<script>
+					<scrxpt>
+						const data = ts.ui.encode(
+							[
+								['Beholder', 'Xanathar']
+							]
+						);
+						ts.ui.ready(() => {
+							ts.ui.get('#tag-delete-click', tag => {
+								tag.onclick = () => {
+									ts.ui.Notification.info('Don\'t poke the beholder!');
+								};
+								tag.ondelete = () => {
+									ts.ui.Notification.warning('I hope you know what you\'re doing...');
+								}
+							});
+						});
+					</scrxpt>
+					<figure
+						id="tag-delete-click"
+						data-ts="Tag"
+						data-ts.data="%5B%5B%22Beholder%22%2C%22Xanathar%22%5D%5D">
+					</figure>
+				</script>
+				<output />
+			</figure>
+
+			<p>You can always handle your own <code>clicks</code> if that's what you're into.</p>
+			<section data-ts="Note">
+				<i class="ts-icon-warning"></i>
+				 <p>You still have to remember that only handle the <code>delete</code> <code>click</code> when the user clicks on the <code>DEL</code> element by checking for <code>e.target.localName</code>.</p>
+			</section>
+			<script>
+				ts.ui.ready(() => {
+					ts.ui.get('#tag-delete-click-ownhandler', tag => {
+						tag.element.addEventListener('click', e => {
+							if (e.target.localName === 'del') { // This is an important line!
+								ts.ui.Notification.warning('I hope you know what you\'re doing...');
+							} else {
+								ts.ui.Notification.info('Don\'t poke the beholder!');
+							}
+						});
+					});
+				});
+			</script>
+			<figure data-ts="DoxMarkup">
+				<script>
+					<scrxpt>
+						const data = ts.ui.encode(
+							[
+								['Beholder', 'Xanathar']
+							]
+						);
+						ts.ui.ready(() => {
+							ts.ui.get('#tag-delete-click-ownhandler', tag => {
+								tag.element.addEventListener('click', e => {
+									if (e.target.localName === 'del') {
+										ts.ui.Notification.warning('I hope you know what you\'re doing...');
+									} else {
+										ts.ui.Notification.info('Don\'t poke the beholder!');
+									}
+								});
+							});
+						});
+					</scrxpt>
+					<figure
+						id="tag-delete-click-ownhandler"
+						data-ts="Tag"
+						data-ts.clickable="true"
+						data-ts.deletable="true"
+						data-ts.data="%5B%5B%22Beholder%22%2C%22Xanathar%22%5D%5D">
+					</figure>
+				</script>
+				<output />
+			</figure>
+		</section>
+		<section>
+			<h3>Locked look</h3>
+			<p>If you want to lock down a tag, use <code>data-ts.locked="true"</code>.</p>
+			<section data-ts="Note">
+				<i class="ts-icon-info"></i>
+				<p>A locked tag will have its <code>DEL</code> button hidden and all <code>click</code>-related styling deactivated.</p>
+			</section>
+			<figure data-ts="DoxMarkup">
+				<script>
+					<scrxpt>
+						const data = ts.ui.encode(
+							[
+								['Dungeon', 'Hidden Shrine of Tamoachan']
+							]
+						);
+					</scrxpt>
+					<figure
+						data-ts="Tag"
+						data-ts.locked="true"
+						data-ts.data="%5B%5B%22Dungeon%22%2C%22Hidden%20Shrine%20of%20Tamoachan%22%5D%5D">
+					</figure>
+				</script>
+				<output />
+			</figure>
+		</section>
+	</article>
+</main>
+</body>
+</html>

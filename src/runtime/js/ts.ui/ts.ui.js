@@ -363,6 +363,10 @@ ts.ui = gui.namespace(
 			TIMING_SLOWDOWN: 'cubic-bezier(0,1,0,1)',
 			TIMING_SPEEDUP: 'cubic-bezier(1,0,1,0)',
 
+			// Timeouts ................................................................
+
+			TIMEOUT_UNFREEZE: 50,
+
 			// Z-indexes ...............................................................
 
 			ZINDEX_ASIDE: 2000, // duplicates @ts-zindex-aside in ts-variables.less
@@ -523,11 +527,20 @@ ts.ui = gui.namespace(
 				}
 			},
 
-			/** 
+			/**
 			 * Resume spiritualization and materialization.
 			 */
 			resume: function() {
 				gui.resume();
+			},
+
+			/**
+			 * Stringify stuff to be used as HTML attribute values.
+			 * @param {object} data
+			 * @returns {String}
+			 */
+			encode: function(data) {
+				return edbml.Att.$encode(data);
 			},
 
 			// Private .................................................................

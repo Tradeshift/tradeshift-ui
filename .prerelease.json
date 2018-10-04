@@ -8,7 +8,7 @@
 		"commitMessage": "Release v%s",
 		"tagName": "v%s",
 		"tagAnnotation": "Tradeshift UI v%s",
-		"beforeStageCommand": "yarn lint && grunt release-deploy"
+		"beforeStageCommand": "npm run lint && grunt release-deploy"
 	},
 	"github": {
 		"release": true,

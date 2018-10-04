@@ -32,3 +32,6 @@ ts.ui.DatePicker.localize({
 	dayNamesShort: ['Søn', 'Man', 'Tir', 'Ons', 'Tor', 'Fre', 'Lør'],
 	dayNamesMin: ['Sø', 'Ma', 'Ti', 'On', 'To', 'Fr', 'Lø']
 });
+ts.ui.Footer.localize({
+	collaboration: 'Samarbejde På Dette'
+});

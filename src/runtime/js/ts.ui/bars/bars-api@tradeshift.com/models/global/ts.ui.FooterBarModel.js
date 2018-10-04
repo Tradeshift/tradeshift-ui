@@ -168,7 +168,7 @@ ts.ui.FooterBarModel = (function using(
 				actions.clear();
 				if (onclick !== null) {
 					actions.push({
-						label: 'Collaborate On This',
+						label: ts.ui.Footer.localize().collaboration,
 						icon: 'ts-icon-collaboration',
 						onclick: onclick
 					});

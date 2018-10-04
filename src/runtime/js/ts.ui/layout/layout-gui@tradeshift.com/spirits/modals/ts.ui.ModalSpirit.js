@@ -47,7 +47,6 @@ ts.ui.ModalSpirit = (function using(Client, transition, chained) {
 		onready: function() {
 			this.super.onready();
 			this.dom.hide();
-			this._setup(this._panel());
 			this.css.shift(transition, 'ts-transition');
 		},
 
@@ -58,6 +57,9 @@ ts.ui.ModalSpirit = (function using(Client, transition, chained) {
 		 */
 		open: function(opt_open) {
 			var then = (this._then = new gui.Then());
+			if (!this._initialized) {
+				this._setup(this._panel());
+			}
 			if (!this.doorman.open(opt_open)) {
 				then.now(false); // TODO: such a good idea to return a "promise", then?
 			}
@@ -429,7 +431,8 @@ ts.ui.ModalSpirit = (function using(Client, transition, chained) {
 				this._head().closebutton(function() {
 					that.open(false);
 				});
-			} else {
+				this._initialized = true;
+			} else if (!Client.isExplorer) {
 				throw new Error('Expected a ts-panel');
 			}
 		},

@@ -59,7 +59,7 @@ gui.Spirit = gui.Class.create(
 		onconstruct: function() {},
 
 		/**
-		 * `onconfigure` gets callend immediately after construction. This
+		 * `onconfigure` gets callen immediately after construction. This
 		 * instructs the spirit to parse configuration attributes in markup.
 		 * TODO: Rename to `onconfig`
 		 * @see {gui.ConfigPlugin}
@@ -68,7 +68,7 @@ gui.Spirit = gui.Class.create(
 
 		/**
 		 * `onenter` gets called when the spirit element is first
-		 * encounted in the page DOM. This is only called once in
+		 * encountered in the page DOM. This is only called once in
 		 * the lifecycle of a spirit (unlike `attach`, see below).
 		 */
 		onenter: function() {},
@@ -95,7 +95,7 @@ gui.Spirit = gui.Class.create(
 		oninit: function() {},
 
 		/**
-		 * `ondetach` gets callend whenever the spirit element is about to
+		 * `ondetach` gets called whenever the spirit element is about to
 		 * be detached from the DOM tree. Unless the element is appended
 		 * somewhere else, this will schedule the spirit for destruction.
 		 */

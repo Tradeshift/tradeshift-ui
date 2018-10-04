@@ -33,7 +33,7 @@ describe('ts.ui.svgname.edbml', function likethis() {
 		expect(html).toContain('alignment-baseline="middle"');
 		expect(html).toContain('font-size="8.46');
 		expect(html).toContain('font-family="Open Sans"');
-		expect(html).toContain('font-weight="300"');
+		expect(html).toContain('font-weight="400"');
 		expect(html).toContain('fill="green"');
 		expect(html).toContain('test');
 		expect(html).toContain('</text>');

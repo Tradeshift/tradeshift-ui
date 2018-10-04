@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Tags</title>
+	<object data="tabs.xhtml"></object>
+</head>
+<body>
+<header data-ts="TopBar"></header>
+<main data-ts="Main" class="doc-tags">
+	<article>
+		<h1>Tags</h1>
+		<section class="desc">
+			<p>Group tags to unlock extra layout options.</p>
+		</section>
+		<section>
+			<h3>Inline Tags</h3>
+			<p>Whenever you put tags one after another, they will be displayed in an <code>inline</code> fashion.
+			<script>
+				ts.ui.ready(() => {
+					ts.ui.get('#tag-lich', tag => {
+						tag.data = new Map([
+							['Lich', 'Acererak']
+						]);
+					});
+					ts.ui.get('#tag-beholder', tag => {
+						tag.data = new Map([
+							['Beholder', 'Xanathar']
+						]);
+					});
+				});
+			</script>
+			<figure data-ts="DoxMarkup">
+				<script>
+					<scrxpt>
+						ts.ui.ready(() => {
+							ts.ui.get('#tag-lich', tag => {
+								tag.data = new Map([
+									['Lich', 'Acererak']
+								]);
+							});
+							ts.ui.get('#tag-beholder', tag => {
+								tag.data = new Map([
+									['Beholder', 'Xanathar']
+								]);
+							});
+						});
+					</scrxpt>
+					<div>
+						<figure
+							id="tag-lich"
+							data-ts="Tag">
+						</figure>
+						<figure
+							id="tag-beholder"
+							data-ts="Tag">
+						</figure>
+					</div>
+				</script>
+				<output />
+			</figure>
+		</section>
+
+		<section>
+			<h3>Block Tags</h3>
+			<section data-ts="Note">
+				<i class="ts-icon-todo"></i>
+				<p>This API is under construction.</p>
+			</section>
+		</section>
+	</article>
+</main>
+</body>
+</html>

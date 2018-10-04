@@ -653,6 +653,54 @@
 			</section>
 
 			<section>
+					<a data-ts="Button" href="/#components/tags/tag.html">
+						<h3>Tags & Labels</h3>
+					</a>
+
+					<p>A set of interactive keywords that help to label, organize, and categorize objects.</p>
+
+					<ul class="splitscreen">
+						<li>
+							<figure data-ts="DoxMarkup">
+								<script type="text/html">
+									<scrxpt>
+										const data = ts.ui.encode(
+											[
+												['Vision', ['Blindsight', 'Truesight', 'Darkvision']]
+											]
+										);
+										ts.ui.ready(() => {
+											ts.ui.get('#tag-clickable', tag => {
+												tag.onclick = () => {
+													ts.ui.Notification.success('Do you see?');
+												};
+											});
+										});
+									</scrxpt>
+								</script>
+							</figure>
+						</li>
+						<li>
+							<script>
+								const data = ts.ui.encode(
+									[
+										['Vision', ['Blindsight', 'Truesight', 'Darkvision']]
+									]
+								);
+								ts.ui.ready(() => {
+									ts.ui.get('#tag-clickable', tag => {
+										tag.onclick = () => {
+											ts.ui.Notification.success('Do you see?');
+										};
+									});
+								});
+							</script>
+							<figure id="tag-clickable" data-ts="Tag" data-ts.data="%5B%5B%22Vision%22%2C%5B%22Blindsight%22%2C%22Truesight%22%2C%22Darkvision%22%5D%5D%5D"></figure>
+						</li>
+					</ul>
+				</section>
+
+			<section>
 				<a data-ts="Button" href="/#components/times/">
 					<h3>Time</h3>
 				</a>

@@ -1,0 +1,7 @@
+<!DOCTYPE edbml>
+<script>
+	<?param name="tag" type="ts.ui.TagModel"?>
+	@id = 'tag' + tag.$instanceid;
+	
+	<figure data-ts="Tag" @id></figure>
+</script>

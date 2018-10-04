@@ -15,3 +15,5 @@ spec/jasmine
 docs/src/js/dox-api@tradeshift.com/search/lunr.js
 docs/tasks/prism.js
 src/runtime/js/ts.ui/core/core-gui@tradeshift.com/dependencies/fastclick.js
+package-lock.json
+package.json

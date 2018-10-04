@@ -1,0 +1,174 @@
+.doc-ts-black {
+  color: hsl(204, 25%, 8%);
+}
+.doc-ts-white {
+  color: hsl(0, 0%, 100%);
+}
+.doc-ts-dark-liter {
+  color: hsl(0, 0%, 30%);
+}
+.doc-ts-dark-lite {
+  color: hsl(0, 0%, 23%);
+}
+.doc-ts-dark {
+  color: hsl(0, 0%, 20%);
+}
+.doc-ts-dark-dark {
+  color: hsl(0, 0%, 15%);
+}
+.doc-ts-dark-darker {
+  color: hsl(0, 0%, 10%);
+}
+.doc-ts-medium-litest {
+  color: hsl(0, 0%, 74%);
+}
+.doc-ts-medium-liter {
+  color: hsl(0, 0%, 59%);
+}
+.doc-ts-medium-lite {
+  color: hsl(0, 0%, 53%);
+}
+.doc-ts-medium {
+  color: hsl(0, 0%, 50%);
+}
+.doc-ts-medium-dark {
+  color: hsl(0, 0%, 45%);
+}
+.doc-ts-medium-darker {
+  color: hsl(0, 0%, 40%);
+}
+.doc-ts-medium-darkest {
+  color: hsl(0, 0%, 43%);
+}
+.doc-ts-lite-liter {
+  color: hsl(0, 0%, 96%);
+}
+.doc-ts-lite-lite {
+  color: hsl(0, 0%, 94%);
+}
+.doc-ts-lite {
+  color: hsl(0, 0%, 89%);
+}
+.doc-ts-lite-dark {
+  color: hsl(0, 0%, 84%);
+}
+.doc-ts-lite-darker {
+  color: hsl(0, 0%, 79%);
+}
+.doc-ts-green-text {
+  color: hsl(0, 0%, 100%);
+}
+.doc-ts-litegreen {
+  color: hsl(99, 85%, 77%);
+}
+.doc-ts-green-lite {
+  color: hsl(99, 85%, 62%);
+}
+.doc-ts-green {
+  color: hsl(99, 85%, 42%);
+}
+.doc-ts-green-dark {
+  color: hsl(99, 85%, 32%);
+}
+.doc-ts-green-darker {
+  color: hsl(99, 85%, 27%);
+}
+.doc-ts-darkgreen {
+  color: hsl(99, 85%, 17%);
+}
+.doc-ts-blue-text {
+  color: hsl(0, 0%, 100%);
+}
+.doc-ts-blue-liter {
+  color: hsl(199, 100%, 70%);
+}
+.doc-ts-blue-lite {
+  color: hsl(199, 100%, 55%);
+}
+.doc-ts-blue {
+  color: hsl(199, 100%, 50%);
+}
+.doc-ts-blue-dark {
+  color: hsl(199, 100%, 40%);
+}
+.doc-ts-blue-darker {
+  color: hsl(199, 100%, 35%);
+}
+.doc-ts-darkblue {
+  color: hsl(199, 50%, 25%);
+}
+.doc-ts-dustblue {
+  color: hsl(199, 30%, 35%);
+}
+.doc-ts-liteblue-dark {
+  color: hsl(199, 100%, 90%);
+}
+.doc-ts-liteblue {
+  color: hsl(199, 100%, 95%);
+}
+.doc-ts-red-text {
+  color: hsl(0, 0%, 100%);
+}
+.doc-ts-darkred-text {
+  color: hsl(0, 0%, 100%);
+}
+.doc-ts-red-lite {
+  color: hsl(0, 70%, 57%);
+}
+.doc-ts-red {
+  color: hsl(0, 100%, 37%);
+}
+.doc-ts-darkred {
+  color: hsl(0, 70%, 57%);
+}
+.doc-ts-red-dark {
+  color: hsl(0, 100%, 37%);
+}
+.doc-ts-red-darker {
+  color: hsl(0, 100%, 27%);
+}
+.doc-ts-darkred-lite {
+  color: hsl(0, 100%, 92%);
+}
+.doc-ts-yellow-text {
+  color: hsl(44, 28%, 38%);
+}
+.doc-ts-yellow-dark {
+  color: hsl(44, 88%, 88%);
+}
+.doc-ts-yellow {
+  color: hsl(44, 98%, 93%);
+}
+.doc-ts-orange-text {
+  color: hsl(0, 0%, 100%);
+}
+.doc-ts-orange-liter {
+  color: hsl(33, 100%, 90%);
+}
+.doc-ts-orange-lite {
+  color: hsl(33, 100%, 85%);
+}
+.doc-ts-orange {
+  color: hsl(33, 100%, 50%);
+}
+.doc-ts-orange-dark {
+  color: hsl(33, 100%, 40%);
+}
+.doc-ts-orange-darker {
+  color: hsl(33, 100%, 15%);
+}
+.doc-ts-purple-text {
+  color: hsl(0, 0%, 100%);
+}
+.doc-ts-purple-lite {
+  color: hsl(295, 49%, 54%);
+}
+.doc-ts-purple {
+  color: hsl(295, 79%, 34%);
+}
+.doc-ts-purple-dark {
+  color: hsl(295, 79%, 24%);
+}
+.doc-ts-purple-darker {
+  color: hsl(295, 79%, 19%);
+}

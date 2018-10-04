@@ -3,159 +3,182 @@
 
 <head>
     <title>Notification</title>
-    <meta name="ts-app-title" content="Notification">
-    <link rel="ts-app-icon" href="/v11/dist/assets/icon.svg">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
-    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-11.0.0-beta.11.min.js"></script>
+    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-11.0.0-alpha.2.min.js"></script>
     <script src="/v11/dist/assets/dox.min.js"></script>
     <script src="/v11/dist/assets/mark.min.js"></script>
     <script src="/v11/dist/assets/jquery-2.2.4.min.js"></script>
-    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-11.0.0-beta.11.min.css">
+    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-11.0.0-alpha.2.min.css">
     <link rel="stylesheet" href="/v11/dist/assets/dox.css">
     <script>
         // Setup to quicktest the markdown parser
-        var TESTMARKDOWN = [
-            '# Headers',
-            'Paragraphs with **strong text**.\n', // becomes double newline
-            'Paragraphs with *italic text*.\n',
-            'Paragraphs with `source code`.\n',
-            '## links',
-            'This is [a link](http://www.tradeshift.com)',
-            '## Unordered lists',
-            '* One',
-            '* Two',
-            '  * Two 1',
-            '  * Two 2',
-            '## Ordered lists',
-            '1. One',
-            '2. Two',
-            '  1. Two 1',
-            '  2. Two 2'
-        ].join('\n')
-        if (false) {
-            setTimeout(function() {
-                (function testit(model) {
-                    var html = model.render();
-                    document.querySelector('article').innerHTML = html;
-                    console.log(html);
-                }(
-                    new ts.ui.TextModel({
-                        html: ts.ui.TextModel.HTML,
-                        text: TESTMARKDOWN
-                    })
-                ));
-            }, 500);
-        }
-    </script>
+		var TESTMARKDOWN = [
+			'# Headers',
+			'Paragraphs with **strong text**.\n', // becomes double newline
+			'Paragraphs with *italic text*.\n',
+			'Paragraphs with `source code`.\n',
+			'## links',
+			'This is [a link](http://www.tradeshift.com)',
+			'## Unordered lists',
+			'* One',
+			'* Two',
+			'  * Two 1',
+			'  * Two 2',
+			'## Ordered lists',
+			'1. One',
+			'2. Two',
+			'  1. Two 1',
+			'  2. Two 2'
+		].join('\n')
+		if(false) {
+			setTimeout(function() {
+				(function testit(model) {
+					var html = model.render();
+					document.querySelector('article').innerHTML = html;
+					console.log(html);
+				}(
+					new ts.ui.TextModel({
+						html: ts.ui.TextModel.HTML,
+						text: TESTMARKDOWN
+					})
+				));
+			}, 500);
+		}
+		</script>
 </head>
 
 <body>
-    <div data-ts="App">
-        <div data-ts="Main">
-            <div data-ts="Content">
-                <div data-ts="Panel">
-                    <article>
-                        <h1><span>Notification</span></h1>
-                        <section class="desc">
-                            <p>Simple modals for providing users with notifications much like the JavaScript <code>alert()</code> method. Basic markdown may be used for links and formatting.</p>
-                        </section>
-                        <section>
-                            <p>The <code>success</code> notification demands no user interaction.</p>
-                            <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.Notification.success(&apos;You%20did%20it!&apos;)%3B">
-                                <script type="runnable">
-                                    ts.ui.Notification.success('You did it!');
-                                </script>
-                                <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
-                                <div data-ts="Panel">
-                                    <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Notification<span class="token punctuation">.</span><span class="token function">success<span class="token punctuation">(</span></span><span class="token string">&apos;You did it!&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
-                            </figure>
-                            <p>The <code>info</code>, <code>warning</code> and <code>error</code> notification must be accepted by the user.</p>
-                            <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.Notification.info(&apos;You%20can%20do%20it.&apos;)%3B%0Ats.ui.Notification.warning(&apos;You%20will%20fail.&apos;)%3B%0Ats.ui.Notification.error(&apos;You%20are%20wrong.&apos;)%3B">
-                                <script type="runnable">
-                                    ts.ui.Notification.info('You can do it.'); ts.ui.Notification.warning('You will fail.'); ts.ui.Notification.error('You are wrong.');
-                                </script>
-                                <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
-                                <div data-ts="Panel">
-                                    <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Notification<span class="token punctuation">.</span><span class="token function">info<span class="token punctuation">(</span></span><span class="token string">&apos;You can do it.&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <header data-ts="TopBar"></header>
+    <main data-ts="Main">
+        <div data-ts="MainContent">
+            <article>
+                <h1><span>Notification</span></h1>
+                <section class="desc">
+                    <p>Simple modals for providing users with notifications much like the JavaScript <code>alert()</code> method. Basic markdown may be used for links and formatting.</p>
+                </section>
+                <section>
+                    <p>The <code>success</code> notification demands no user interaction.</p>
+                    <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.Notification.success(&apos;You%20did%20it!&apos;)%3B">
+                        <script type="runnable">
+                            ts.ui.Notification.success('You did it!');
+						</script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                        <div class="tabpanels">
+                            <pre class="prism language-javascript">
+<code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Notification<span class="token punctuation">.</span><span class="token function">success<span class="token punctuation">(</span></span><span class="token string">&apos;You did it!&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
+</pre>
+                        </div>
+                    </figure>
+                    <p>The <code>info</code>, <code>warning</code> and <code>error</code> notification must be accepted by the user.</p>
+                    <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.Notification.info(&apos;You%20can%20do%20it.&apos;)%3B%0Ats.ui.Notification.warning(&apos;You%20will%20fail.&apos;)%3B%0Ats.ui.Notification.error(&apos;You%20are%20wrong.&apos;)%3B">
+                        <script type="runnable">
+                            ts.ui.Notification.info('You can do it.');
+							ts.ui.Notification.warning('You will fail.');
+							ts.ui.Notification.error('You are wrong.');
+						</script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                        <div class="tabpanels">
+                            <pre class="prism language-javascript">
+<code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Notification<span class="token punctuation">.</span><span class="token function">info<span class="token punctuation">(</span></span><span class="token string">&apos;You can do it.&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Notification<span class="token punctuation">.</span><span class="token function">warning<span class="token punctuation">(</span></span><span class="token string">&apos;You will fail.&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Notification<span class="token punctuation">.</span><span class="token function">error<span class="token punctuation">(</span></span><span class="token string">&apos;You are wrong.&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
-                            </figure>
-                            <p>An optional second argument specifies the button text.</p>
-                            <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.Notification.warning(&apos;Beware&apos;%2C%20&apos;Understood&apos;)%3B">
-                                <script type="runnable">
-                                    ts.ui.Notification.warning('Beware', 'Understood');
-                                </script>
-                                <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
-                                <div data-ts="Panel">
-                                    <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Notification<span class="token punctuation">.</span><span class="token function">warning<span class="token punctuation">(</span></span><span class="token string">&apos;Beware&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;Understood&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
-                            </figure>
-                            <p>You can configure a callback for when the Notification gets accepted.</p>
-                            <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.Notification.info(&apos;You%20must%20accept%20it.&apos;%2C%20%7B%0A%09onaccept%3A%20function()%20%7B%0A%09%09ts.ui.Notification.success(&apos;We%20knew%20you%20would.&apos;)%3B%0A%09%7D%0A%7D)%3B">
-                                <script type="runnable">
-                                    ts.ui.Notification.info('You must accept it.', { onaccept: function() { ts.ui.Notification.success('We knew you would.'); } });
-                                </script>
-                                <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
-                                <div data-ts="Panel">
-                                    <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Notification<span class="token punctuation">.</span><span class="token function">info<span class="token punctuation">(</span></span><span class="token string">&apos;You must accept it.&apos;</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Notification<span class="token punctuation">.</span><span class="token function">error<span class="token punctuation">(</span></span><span class="token string">&apos;You are wrong.&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
+</pre>
+                        </div>
+                    </figure>
+                    <p>An optional second argument specifies the button text.</p>
+                    <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.Notification.warning(&apos;Beware&apos;%2C%20&apos;Understood&apos;)%3B">
+                        <script type="runnable">
+                            ts.ui.Notification.warning('Beware', 'Understood');
+						</script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                        <div class="tabpanels">
+                            <pre class="prism language-javascript">
+<code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Notification<span class="token punctuation">.</span><span class="token function">warning<span class="token punctuation">(</span></span><span class="token string">&apos;Beware&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;Understood&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
+</pre>
+                        </div>
+                    </figure>
+                    <p>You can configure a callback for when the Notification gets accepted.</p>
+                    <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.Notification.info(&apos;You%20must%20accept%20it.&apos;%2C%20%7B%0A%09onaccept%3A%20function()%20%7B%0A%09%09ts.ui.Notification.success(&apos;We%20knew%20you%20would.&apos;)%3B%0A%09%7D%0A%7D)%3B">
+                        <script type="runnable">
+                            ts.ui.Notification.info('You must accept it.', {
+								onaccept: function() {
+									ts.ui.Notification.success('We knew you would.');
+								}
+							});
+						</script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                        <div class="tabpanels">
+                            <pre class="prism language-javascript">
+<code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Notification<span class="token punctuation">.</span><span class="token function">info<span class="token punctuation">(</span></span><span class="token string">&apos;You must accept it.&apos;</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
 	onaccept<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
 		ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Notification<span class="token punctuation">.</span><span class="token function">success<span class="token punctuation">(</span></span><span class="token string">&apos;We knew you would.&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 	<span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
-                            </figure>
-                            <p>Notifications support basic markdown for formatting and links.</p>
-                            <figure data-ts="DoxMarkup" data-ts.code="Markdown%20for%20**bold%20text**%20and%20*italic%20text*%20and%20%60source%20code%60%0AMarkdown%20for%20a%20%5Bhyperlink%5D(http%3A%2F%2Fwww.example.com%2F)">
-                                <ul data-ts="Panels">
-                                    <li data-ts="Panel" data-ts.selected="true">
-                                        <pre class="prism language-markup"><code>Markdown for **bold text** and *italic text* and `source code`
-Markdown for a [hyperlink](http://www.example.com/)</code></pre>
-                                    </li>
-                                </ul>
-                            </figure>
-                            <p>When a link is clicked, the URL will be passed along to the <code>onlink</code> method. As you can see below, the URL can be just a key, it doesn&apos;t have to be real URL.</p>
-                            <figure data-ts="DoxScript" class="runnable" data-ts.code="var%20text%20%3D%20&apos;Choose%20link%20%5Bone%5D(ONE)%20or%20%5Btwo%5D(TWO)%20or%20%5Bthree%5D(THREE).&apos;%3B%0Ats.ui.Notification.info(text%2C%20%7B%0A%09onlink%3A%20function(url)%20%7B%0A%09%09this.accept().then(function%20onfadeout()%20%7B%0A%09%09%09ts.ui.Notification.success(url)%3B%0A%09%09%7D)%3B%0A%09%7D%0A%7D)%3B">
-                                <script type="runnable">
-                                    var text = 'Choose link [one](ONE) or [two](TWO) or [three](THREE).'; ts.ui.Notification.info(text, { onlink: function(url) { this.accept().then(function onfadeout() { ts.ui.Notification.success(url); }); } });
-                                </script>
-                                <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
-                                <div data-ts="Panel">
-                                    <pre class="prism language-javascript"><code><span class="token keyword">var</span> text <span class="token operator">=</span> <span class="token string">&apos;Choose link [one](ONE) or [two](TWO) or [three](THREE).&apos;</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
+</pre>
+                        </div>
+                    </figure>
+                    <p>Notifications support basic markdown for formatting and links.</p>
+                    <figure data-ts="DoxMarkup" data-ts.code="Markdown%20for%20**bold%20text**%20and%20*italic%20text*%20and%20%60source%20code%60%0AMarkdown%20for%20a%20%5Bhyperlink%5D(http%3A%2F%2Fwww.example.com%2F)">
+                        <input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
+                        <div class="tabpanels">
+                            <pre class="prism language-markup">
+<code>Markdown for **bold text** and *italic text* and `source code`
+Markdown for a [hyperlink](http://www.example.com/)</code>
+</pre>
+                        </div>
+                    </figure>
+                    <p>When a link is clicked, the URL will be passed along to the <code>onlink</code> method. As you can see below, the URL can be just a key, it doesn&apos;t have to be real URL.</p>
+                    <figure data-ts="DoxScript" class="runnable" data-ts.code="var%20text%20%3D%20&apos;Choose%20link%20%5Bone%5D(ONE)%20or%20%5Btwo%5D(TWO)%20or%20%5Bthree%5D(THREE).&apos;%3B%0Ats.ui.Notification.info(text%2C%20%7B%0A%09onlink%3A%20function(url)%20%7B%0A%09%09this.accept().then(function%20onfadeout()%20%7B%0A%09%09%09ts.ui.Notification.success(url)%3B%0A%09%09%7D)%3B%0A%09%7D%0A%7D)%3B">
+                        <script type="runnable">
+                            var text = 'Choose link [one](ONE) or [two](TWO) or [three](THREE).';
+							ts.ui.Notification.info(text, {
+								onlink: function(url) {
+									this.accept().then(function onfadeout() {
+										ts.ui.Notification.success(url);
+									});
+								}
+							});
+						</script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                        <div class="tabpanels">
+                            <pre class="prism language-javascript">
+<code><span class="token keyword">var</span> text <span class="token operator">=</span> <span class="token string">&apos;Choose link [one](ONE) or [two](TWO) or [three](THREE).&apos;</span><span class="token punctuation">;</span>
 ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Notification<span class="token punctuation">.</span><span class="token function">info<span class="token punctuation">(</span></span>text<span class="token punctuation">,</span> <span class="token punctuation">{</span>
 	onlink<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span>url<span class="token punctuation">)</span> <span class="token punctuation">{</span>
 		<span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">accept<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then<span class="token punctuation">(</span></span><span class="token keyword">function</span> <span class="token function">onfadeout<span class="token punctuation">(</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
 			ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Notification<span class="token punctuation">.</span><span class="token function">success<span class="token punctuation">(</span></span>url<span class="token punctuation">)</span><span class="token punctuation">;</span>
 		<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 	<span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
-                            </figure>
-                            <p>If the link should indeed link to something, make sure to provide the full protocol <code>http(s)://</code></p>
-                            <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.Notification.info(%0A%09&apos;Please%20visit%20%5BTradeshift%5D(http%3A%2F%2Fwww.tradeshift.com)&apos;%0A)%3B">
-                                <script type="runnable">
-                                    ts.ui.Notification.info( 'Please visit [Tradeshift](http://www.tradeshift.com)' );
-                                </script>
-                                <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
-                                <div data-ts="Panel">
-                                    <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Notification<span class="token punctuation">.</span><span class="token function">info<span class="token punctuation">(</span></span>
-	<span class="token string">&apos;Please visit [Tradeshift](http://www.tradeshift.com)&apos;</span>
-<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
-                            </figure>
-                            <p>Note that all links will open in a new tab (or window, depending on the browser settings), so you should not use links in Notifications for internal navigation, at least not just yet.</p>
-                        </section>
-                        <div data-ts="Note" class="sticky">
-                            <p>If you find a bug or need a feature&#x2026;</p>
-                            <menu data-ts="Buttons">
-                                <li>
-                                    <a data-ts="Button" target="_blank" href="https://github.com/Tradeshift/tradeshift-ui/issues/new" title="Submit new issue">
-		          <span>Create GitHub Issue&#x2026;</span>
-		        </a>
-                                </li>
-                            </menu>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
+</pre>
                         </div>
-                    </article>
-                </div>
-            </div>
+                    </figure>
+                    <p>If the link should indeed link to something, make sure to provide the full protocol <code>http(s)://</code></p>
+                    <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.Notification.info(%0A%09&apos;Please%20visit%20%5BTradeshift%5D(http%3A%2F%2Fwww.tradeshift.com)&apos;%0A)%3B">
+                        <script type="runnable">
+                            ts.ui.Notification.info(
+								'Please visit [Tradeshift](http://www.tradeshift.com)'
+							);
+						</script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                        <div class="tabpanels">
+                            <pre class="prism language-javascript">
+<code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Notification<span class="token punctuation">.</span><span class="token function">info<span class="token punctuation">(</span></span>
+	<span class="token string">&apos;Please visit [Tradeshift](http://www.tradeshift.com)&apos;</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span></code>
+</pre>
+                        </div>
+                    </figure>
+                    <p>Note that all links will open in a new tab (or window, depending on the browser settings), so you should not use links in Notifications for internal navigation, at least not just yet.</p>
+                </section>
+            </article>
         </div>
-    </div>
+    </main>
+    <aside data-ts="Note" class="sticky ts-bg-yellow">
+        <p>If you find a bug or need a feature&#x2026;</p>
+        <menu class="ts-buttons">
+            <li>
+                <a data-ts="Button" target="_blank" href="https://github.com/Tradeshift/tradeshift-ui/issues/new" title="Submit new issue" class="ts-secondary">
+                    <span>Create GitHub Issue&#x2026;</span>
+                </a>
+            </li>
+        </menu>
+    </aside>
 </body>
 
 </html>

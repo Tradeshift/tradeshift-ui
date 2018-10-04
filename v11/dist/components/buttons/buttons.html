@@ -3,62 +3,56 @@
 
 <head>
     <title>Buttons</title>
-    <meta name="ts-app-title" content="Buttons">
-    <link rel="ts-app-icon" href="/v11/dist/assets/icon.svg">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
-    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-11.0.0-beta.11.min.js"></script>
+    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-11.0.0-alpha.2.min.js"></script>
     <script src="/v11/dist/assets/dox.min.js"></script>
     <script src="/v11/dist/assets/mark.min.js"></script>
     <script src="/v11/dist/assets/jquery-2.2.4.min.js"></script>
-    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-11.0.0-beta.11.min.css">
+    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-11.0.0-alpha.2.min.css">
     <link rel="stylesheet" href="/v11/dist/assets/dox.css">
     <link rel="prefetch" title="Button" href="index.html">
     <link rel="prefetch" title="Buttons" href="buttons.html">
-    <link rel="prefetch" title="Gallery" href="gallery.html" class="hidden">
+    <link rel="prefetch" title="Gallery" href="gallery.html">
     <style>
         .ts-button span code {
-            text-transform: none;
-            letter-spacing: auto;
-        }
-    </style>
-    <script>
-        ts.dox.tabs()
-    </script>
+				text-transform: none;
+				letter-spacing: auto;
+			}
+		</style>
+    <script>ts.dox.tabs()</script>
 </head>
 
 <body>
-    <div data-ts="App">
-        <div data-ts="Main">
-            <div data-ts="Content">
-                <div data-ts="Panel">
-                    <article>
-                        <h1><span>Buttons</span></h1>
-                        <section class="desc">
-                            <p>Group buttons in menus to unlock advanced layout options.</p>
-                        </section>
-                        <section>
-                            <p>Assign <code class="attr-pair"><span>data-ts</span>=&quot;<span>Buttons</span>&quot;</code> attribute to a <code class="el">menu</code> to initialize it as a Buttons menu.</p>
-                            <figure data-ts="DoxMarkup" data-ts.code="%3Cmenu%20data-ts%3D%22Buttons%22%3E%0A%09%3Cli%3E%0A%09%09%3Cbutton%3E%0A%09%09%09%3Cspan%3EButton%20One%3C%2Fspan%3E%0A%09%09%3C%2Fbutton%3E%0A%09%3C%2Fli%3E%0A%09%3Cli%3E%0A%09%09%3Cbutton%3E%0A%09%09%09%3Cspan%3EButton%20Two%3C%2Fspan%3E%0A%09%09%3C%2Fbutton%3E%0A%09%3C%2Fli%3E%0A%3C%2Fmenu%3E">
-                                <ul data-ts="Panels">
-                                    <li data-ts="Panel" data-ts.label="Render" data-ts.selected="true">
-                                        <div class="output">
-                                            <menu data-ts="Buttons">
-                                                <li>
-                                                    <button>
-			<span>Button One</span>
-		</button>
-                                                </li>
-                                                <li>
-                                                    <button>
-			<span>Button Two</span>
-		</button>
-                                                </li>
-                                            </menu>
-                                        </div>
+    <header data-ts="TopBar"></header>
+    <main data-ts="Main">
+        <div data-ts="MainContent">
+            <article>
+                <h1><span>Buttons</span></h1>
+                <section class="desc">
+                    <p>Group buttons in menus to unlock advanced layout options.</p>
+                </section>
+                <section>
+                    <p>Assign <code class="attr-pair"><span>data-ts</span>=&quot;<span>Buttons</span>&quot;</code> attribute to a <code class="el">menu</code> to initialize it as a Buttons menu.</p>
+                    <figure data-ts="DoxMarkup" data-ts.code="%3Cmenu%20data-ts%3D%22Buttons%22%3E%0A%09%3Cli%3E%0A%09%09%3Cbutton%3E%0A%09%09%09%3Cspan%3EButton%20One%3C%2Fspan%3E%0A%09%09%3C%2Fbutton%3E%0A%09%3C%2Fli%3E%0A%09%3Cli%3E%0A%09%09%3Cbutton%3E%0A%09%09%09%3Cspan%3EButton%20Two%3C%2Fspan%3E%0A%09%09%3C%2Fbutton%3E%0A%09%3C%2Fli%3E%0A%3C%2Fmenu%3E">
+                        <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Atrue%2C%22runs%22%3Afalse%2C%22flip%22%3Atrue%7D">
+                        <div class="tabpanels">
+                            <div class="output">
+                                <menu data-ts="Buttons">
+                                    <li>
+                                        <button>
+                                            <span>Button One</span>
+                                        </button>
                                     </li>
-                                    <li data-ts="Panel" data-ts.label="Markup" data-ts.selected="false">
-                                        <pre class="prism language-markup"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>menu</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Buttons<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+                                    <li>
+                                        <button>
+                                            <span>Button Two</span>
+                                        </button>
+                                    </li>
+                                </menu>
+                            </div>
+                            <pre class="prism language-markup">
+<code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>menu</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Buttons<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span><span class="token punctuation">&gt;</span></span>
 		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span><span class="token punctuation">&gt;</span></span>
 			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">&gt;</span></span>Button One<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span>
@@ -69,33 +63,32 @@
 			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">&gt;</span></span>Button Two<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span>
 		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">&gt;</span></span>
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">&gt;</span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>menu</span><span class="token punctuation">&gt;</span></span></code></pre>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>menu</span><span class="token punctuation">&gt;</span></span></code>
+</pre>
+                        </div>
+                    </figure>
+                    <p>When in menus, buttons stack vertically and stretch to fill the width. You can omit the <code class="attr-name">ts-button</code> attribute on buttons, it is implied. You can also omit the <code class="attr-value">ts-tertiary</code> classname on the buttons, it is assumed by default.</p>
+                    <h3><span>Button layouts</span></h3>
+                    <p>The <code class="el">menu</code> can be assigned a classname to layout the buttons horizontally.</p>
+                    <figure data-ts="DoxMarkup" data-ts.code="%3Cmenu%20data-ts%3D%22Buttons%22%20class%3D%22ts-t-t%20ts-join%22%3E%0A%09%3Cli%3E%0A%09%09%3Cbutton%20class%3D%22ts-primary%22%3E%0A%09%09%09%3Cspan%3EAccept%3C%2Fspan%3E%0A%09%09%3C%2Fbutton%3E%0A%09%3C%2Fli%3E%0A%09%3Cli%3E%0A%09%09%3Cbutton%20class%3D%22ts-danger%22%3E%0A%09%09%09%3Cspan%3EReject%3C%2Fspan%3E%0A%09%09%3C%2Fbutton%3E%0A%09%3C%2Fli%3E%0A%3C%2Fmenu%3E">
+                        <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Atrue%2C%22runs%22%3Afalse%2C%22flip%22%3Atrue%7D">
+                        <div class="tabpanels">
+                            <div class="output">
+                                <menu data-ts="Buttons" class="ts-t-t ts-join">
+                                    <li>
+                                        <button class="ts-primary">
+                                            <span>Accept</span>
+                                        </button>
                                     </li>
-                                </ul>
-                            </figure>
-                            <p>When in menus, buttons stack vertically and stretch to fill the width. You can omit the <code class="attr-name">ts-button</code> attribute on buttons, it is implied. You can also omit the <code class="attr-value">ts-tertiary</code>                                classname on the buttons, it is assumed by default.</p>
-                            <h3><span>Button layouts</span></h3>
-                            <p>The <code class="el">menu</code> can be assigned a classname to layout the buttons horizontally.</p>
-                            <figure data-ts="DoxMarkup" data-ts.code="%3Cmenu%20data-ts%3D%22Buttons%22%20class%3D%22ts-t-t%20ts-join%22%3E%0A%09%3Cli%3E%0A%09%09%3Cbutton%20class%3D%22ts-primary%22%3E%0A%09%09%09%3Cspan%3EAccept%3C%2Fspan%3E%0A%09%09%3C%2Fbutton%3E%0A%09%3C%2Fli%3E%0A%09%3Cli%3E%0A%09%09%3Cbutton%20class%3D%22ts-danger%22%3E%0A%09%09%09%3Cspan%3EReject%3C%2Fspan%3E%0A%09%09%3C%2Fbutton%3E%0A%09%3C%2Fli%3E%0A%3C%2Fmenu%3E">
-                                <ul data-ts="Panels">
-                                    <li data-ts="Panel" data-ts.label="Render" data-ts.selected="true">
-                                        <div class="output">
-                                            <menu data-ts="Buttons" class="ts-t-t ts-join">
-                                                <li>
-                                                    <button class="ts-primary">
-			<span>Accept</span>
-		</button>
-                                                </li>
-                                                <li>
-                                                    <button class="ts-danger">
-			<span>Reject</span>
-		</button>
-                                                </li>
-                                            </menu>
-                                        </div>
+                                    <li>
+                                        <button class="ts-danger">
+                                            <span>Reject</span>
+                                        </button>
                                     </li>
-                                    <li data-ts="Panel" data-ts.label="Markup" data-ts.selected="false">
-                                        <pre class="prism language-markup"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>menu</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Buttons<span class="token punctuation">&quot;</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>ts-t-t ts-join<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+                                </menu>
+                            </div>
+                            <pre class="prism language-markup">
+<code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>menu</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Buttons<span class="token punctuation">&quot;</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>ts-t-t ts-join<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span><span class="token punctuation">&gt;</span></span>
 		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>ts-primary<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
 			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">&gt;</span></span>Accept<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span>
@@ -106,77 +99,71 @@
 			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">&gt;</span></span>Reject<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span>
 		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">&gt;</span></span>
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">&gt;</span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>menu</span><span class="token punctuation">&gt;</span></span></code></pre>
-                                    </li>
-                                </ul>
-                            </figure>
-                            <p>The classname <code class="attr-value">ts-t-t</code> indicates that two buttons should both display text instead of icons. If you add both, the layout will take care of hiding one or the other. A special classname <code class="attr-value">ts-join</code>                                has been added to join the buttons together. We support the following permutations.</p>
-                            <div data-ts="Note">
-                                <i class="ts-icon-warning"></i>
-                                <p>This implementation is likely to be <code>refactored</code> for more flexibility, so the following list of classnames may become deprecated in the future.</p>
-                            </div>
-                        </section>
-                        <section data-ts="Spirit">
-                            <script class="gui-script" data-ts.scriptid="edbml.$klDUi2">
-                                edbml.declare("edbml.$klDUi2").as(function $edbml(
-                                    /*``*/
-                                ) {
-                                    'use strict';
-                                    var out = $edbml.$out,
-                                        $txt = edbml.safetext,
-                                        $val = edbml.safeattr;
-                                    [
-                                        'ts-t-t',
-                                        'ts-i-t',
-                                        'ts-t-i',
-                                        'ts-i-i-t',
-                                        'ts-i-t-i',
-                                        'ts-t-i-i'
-                                    ].map(function(c) {
-                                        rendermenu(c);
-                                        return c;
-                                    }).forEach(function(c) {
-                                        rendermenu(c, 'ts-join');
-                                    });
-
-                                    function rendermenu(c1, c2) {
-                                        var cname = c1 + ' ' + (c2 || '');
-                                        out.html += '<menu data-ts="Buttons" class="' + $val(cname) + '">';
-                                        c1.substring('ts-'.length).split('-').forEach(function() {
-                                            out.html += '<li>' +
-                                                '<button>' +
-                                                '<span><code>' + $txt(cname) + '</code></span>' +
-                                                '<i class="ts-icon-followed"></i>' +
-                                                '</button>' +
-                                                '</li>';
-                                        });
-                                        out.html += '</menu>';
-                                    }
-                                    return out.write();
-                                });
-                            </script>
-                        </section>
-                        <section>
-                            <div data-ts="Note">
-                                <i class="ts-icon-info"></i>
-                                <p>The classname shown on buttons should in all cases go on the <code class="el">menu</code> element (and not on the <code class="el">button</code> elements).</p>
-                            </div>
-                        </section>
-                        <div data-ts="Note" class="sticky">
-                            <p>If you find a bug or need a feature&#x2026;</p>
-                            <menu data-ts="Buttons">
-                                <li>
-                                    <a data-ts="Button" target="_blank" href="https://github.com/Tradeshift/tradeshift-ui/issues/new" title="Submit new issue">
-		          <span>Create GitHub Issue&#x2026;</span>
-		        </a>
-                                </li>
-                            </menu>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>menu</span><span class="token punctuation">&gt;</span></span></code>
+</pre>
                         </div>
-                    </article>
-                </div>
-            </div>
+                    </figure>
+                    <p>The classname <code class="attr-value">ts-t-t</code> indicates that two buttons should both display text instead of icons. If you add both, the layout will take care of hiding one or the other. A special classname <code class="attr-value">ts-join</code> has been added to join the buttons together. We support the following permutations.</p>
+                </section>
+                <section data-ts="Spirit">
+                    <script class="gui-script" data-ts.scriptid="edbml.$klDUi2">
+                        edbml.declare("edbml.$klDUi2").as(function $edbml(
+                            /*``*/
+                        ) {
+                            'use strict';
+                            var out = $edbml.$out,
+                                $txt = edbml.safetext,
+                                $val = edbml.safeattr;
+                            [
+                                'ts-t-t',
+                                'ts-i-t',
+                                'ts-t-i',
+                                'ts-i-i-t',
+                                'ts-i-t-i',
+                                'ts-t-i-i'
+                            ].map(function(c) {
+                                rendermenu(c);
+                                return c;
+                            }).forEach(function(c) {
+                                rendermenu(c, 'ts-join');
+                            });
+
+                            function rendermenu(c1, c2) {
+                                var cname = c1 + ' ' + (c2 || '');
+                                out.html += '<menu data-ts="Buttons" class="' + $val(cname) + '">';
+                                c1.substring('ts-'.length).split('-').forEach(function() {
+                                    out.html += '<li>' +
+                                        '<button>' +
+                                        '<span><code>' + $txt(cname) + '</code></span>' +
+                                        '<i class="ts-icon-followed"></i>' +
+                                        '</button>' +
+                                        '</li>';
+                                });
+                                out.html += '</menu>';
+                            }
+                            return out.write();
+                        });
+                    </script>
+                </section>
+                <section>
+                    <div data-ts="Note">
+                        <i class="ts-icon-info"></i>
+                        <p>The classname shown on buttons should in all cases go on the <code class="el">menu</code> element (and not on the <code class="el">button</code> elements).</p>
+                    </div>
+                </section>
+            </article>
         </div>
-    </div>
+    </main>
+    <aside data-ts="Note" class="sticky ts-bg-yellow">
+        <p>If you find a bug or need a feature&#x2026;</p>
+        <menu class="ts-buttons">
+            <li>
+                <a data-ts="Button" target="_blank" href="https://github.com/Tradeshift/tradeshift-ui/issues/new" title="Submit new issue" class="ts-secondary">
+                    <span>Create GitHub Issue&#x2026;</span>
+                </a>
+            </li>
+        </menu>
+    </aside>
 </body>
 
 </html>

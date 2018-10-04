@@ -3,15 +3,13 @@
 
 <head>
     <title>Form Test</title>
-    <meta name="ts-app-title" content="Form Test">
-    <link rel="ts-app-icon" href="/v11/dist/assets/icon.svg">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
-    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-11.0.0-beta.11.min.js"></script>
+    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-11.0.0-alpha.2.min.js"></script>
     <script src="/v11/dist/assets/dox.min.js"></script>
     <script src="/v11/dist/assets/mark.min.js"></script>
     <script src="/v11/dist/assets/jquery-2.2.4.min.js"></script>
-    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-11.0.0-beta.11.min.css">
+    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-11.0.0-alpha.2.min.css">
     <link rel="stylesheet" href="/v11/dist/assets/dox.css">
     <meta name="robots" content="noindex">
     <link rel="prefetch" title="HTML" href="index.html">
@@ -19,99 +17,96 @@
     <link rel="prefetch" title="Custom Select" href="custom-select.html">
     <link rel="prefetch" title="Autocomplete" href="autocomplete.html">
     <link rel="prefetch" title="Error / Info" href="example.html">
-    <link rel="prefetch" title="Gallery" href="redesign.html">
     <link rel="prefetch" title="Angular Test" href="test-1.html" class="hidden">
+    <link rel="prefetch" title="Gallery" href="redesign.html">
+    <link rel="prefetch" title="JQuery Test" href="test-2.html" class="hidden">
     <script src="/v11/dist/assets/angular-1.3.6.min.js"></script>
     <script src="test-1.js"></script>
-    <script>
-        ts.dox.tabs()
-    </script>
+    <script>ts.dox.tabs()</script>
 </head>
 
 <body>
-    <div data-ts="App">
-        <div data-ts="Main">
-            <div data-ts="Content">
-                <div data-ts="Panel">
-                    <article>
-                        <h1><span>Testing fake inputs</span></h1>
-                        <section class="desc">
-                            <p>Testing the proxy elements created by <code>&lt;select&gt;</code> and <code>&lt;input type=&quot;date&quot;&gt;</code>.</p>
-                        </section>
-                        <section ng-app="app" ng-controller="TestController">
-                            <div data-ts="Note">
-                                <i class="ts-icon-todo"></i>
-                                <p>TODO: The <code>SELECT</code> updates on the <code>tick</code>, make it faster!</p>
+    <header data-ts="TopBar"></header>
+    <main data-ts="Main">
+        <div data-ts="MainContent">
+            <article>
+                <h1><span>Testing fake inputs</span></h1>
+                <section class="desc">
+                    <p>Testing the proxy elements created by <code>&lt;select&gt;</code>
+                        and <code>&lt;input type=&quot;date&quot;&gt;</code>.</p>
+                </section>
+                <section ng-app="app" ng-controller="TestController">
+                    <div data-ts="Note">
+                        <i class="ts-icon-todo"></i>
+                        <p>TODO: The <code>SELECT</code> updates on the <code>tick</code>, make it faster!</p>
+                    </div>
+                    <h3><span>This runs <em>inside</em> the Angular controller.</span></h3>
+                    <ul ng-repeat="level1 in testList1">
+                        <li ng-repeat="level2 in testList2">
+                            <div ng-repeat="level3 in testList3">
+                                <form data-ts="Form">
+                                    <fieldset>
+                                        <label>
+                                            <span>Select</span>
+                                            <select ng-model="typeOption" ng-disabled="selectDisabled" ng-options="option.value as option.name for option in typeOptions">
+                                            </select>
+                                        </label>
+                                    </fieldset>
+                                    <fieldset>
+                                        <label>
+                                            <span>Select multiple</span>
+                                            <select multiple="true" ng-model="selectedColors" ng-options="c.name+&apos; (&apos;+c.shade+&apos;)&apos; for c in colors">
+                                            </select>
+                                        </label>
+                                    </fieldset>
+                                    <fieldset>
+                                        <label>
+                                            <span>Date</span>
+                                            <input type="date" value="2015-01-01" min="2014-01-01" max="2016-01-01">
+                                        </label>
+                                    </fieldset>
+                                </form>
                             </div>
-                            <h3><span>This runs <em>inside</em> the Angular controller.</span></h3>
-                            <ul ng-repeat="level1 in testList1">
-                                <li ng-repeat="level2 in testList2">
-                                    <div ng-repeat="level3 in testList3">
-                                        <form data-ts="Form">
-                                            <fieldset>
-                                                <label>
-											<span>Select</span>
-											<select ng-model="typeOption" ng-disabled="selectDisabled" ng-options="option.value as option.name for option in typeOptions">
-											</select>
-										</label>
-                                            </fieldset>
-                                            <fieldset>
-                                                <label>
-											<span>Select multiple</span>
-											<select multiple="true" ng-model="selectedColors" ng-options="c.name+&apos; (&apos;+c.shade+&apos;)&apos; for c in colors">
-											</select>
-										</label>
-                                            </fieldset>
-                                            <fieldset>
-                                                <label>
-											<span>Date</span>
-											<input type="date" value="2015-01-01" min="2014-01-01" max="2016-01-01">
-										</label>
-                                            </fieldset>
-                                        </form>
-                                    </div>
-                                </li>
-                            </ul>
-                        </section>
-                        <section>
-                            <h3><span>This runs <em>outside</em> the Angular controller.</span></h3>
-                            <form data-ts="Form">
-                                <fieldset>
-                                    <label>
-								<span>Label</span>
-								<select id="outsideselect"></select>
-							</label>
-                                </fieldset>
-                                <fieldset>
-                                    <label>
-								<span>Select multiple</span>
-								<select multiple id="outsideselectmultiple"></select>
-								<button>Cool, apply changes!</button>
-							</label>
-                                </fieldset>
-                                <fieldset>
-                                    <label>
-								<span>Date</span>
-								<input type="date" value="2015-01-01" min="2014-01-01" max="2016-01-01">
-							</label>
-                                </fieldset>
-                            </form>
-                        </section>
-                        <div data-ts="Note" class="sticky">
-                            <p>If you find a bug or need a feature&#x2026;</p>
-                            <menu data-ts="Buttons">
-                                <li>
-                                    <a data-ts="Button" target="_blank" href="https://github.com/Tradeshift/tradeshift-ui/issues/new" title="Submit new issue">
-		          <span>Create GitHub Issue&#x2026;</span>
-		        </a>
-                                </li>
-                            </menu>
-                        </div>
-                    </article>
-                </div>
-            </div>
+                        </li>
+                    </ul>
+                </section>
+                <section>
+                    <h3><span>This runs <em>outside</em> the Angular controller.</span></h3>
+                    <form data-ts="Form">
+                        <fieldset>
+                            <label>
+                                <span>Label</span>
+                                <select id="outsideselect"></select>
+                            </label>
+                        </fieldset>
+                        <fieldset>
+                            <label>
+                                <span>Select multiple</span>
+                                <select multiple id="outsideselectmultiple"></select>
+                                <button>Cool, apply changes!</button>
+                            </label>
+                        </fieldset>
+                        <fieldset>
+                            <label>
+                                <span>Date</span>
+                                <input type="date" value="2015-01-01" min="2014-01-01" max="2016-01-01">
+                            </label>
+                        </fieldset>
+                    </form>
+                </section>
+            </article>
         </div>
-    </div>
+    </main>
+    <aside data-ts="Note" class="sticky ts-bg-yellow">
+        <p>If you find a bug or need a feature&#x2026;</p>
+        <menu class="ts-buttons">
+            <li>
+                <a data-ts="Button" target="_blank" href="https://github.com/Tradeshift/tradeshift-ui/issues/new" title="Submit new issue" class="ts-secondary">
+                    <span>Create GitHub Issue&#x2026;</span>
+                </a>
+            </li>
+        </menu>
+    </aside>
 </body>
 
 </html>

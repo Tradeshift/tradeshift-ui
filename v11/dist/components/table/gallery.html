@@ -3,15 +3,13 @@
 
 <head>
     <title>Table Gallery</title>
-    <meta name="ts-app-title" content="Table Gallery">
-    <link rel="ts-app-icon" href="/v11/dist/assets/icon.svg">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
-    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-11.0.0-beta.11.min.js"></script>
+    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-11.0.0-alpha.2.min.js"></script>
     <script src="/v11/dist/assets/dox.min.js"></script>
     <script src="/v11/dist/assets/mark.min.js"></script>
     <script src="/v11/dist/assets/jquery-2.2.4.min.js"></script>
-    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-11.0.0-beta.11.min.css">
+    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-11.0.0-alpha.2.min.css">
     <link rel="stylesheet" href="/v11/dist/assets/dox.css">
     <meta name="robots" content="noindex">
     <link rel="prefetch" title="Table" href="index.html">
@@ -44,22 +42,19 @@
 </head>
 
 <body class="nosticky">
-    <div data-ts="App">
-        <div data-ts="Main">
-            <div data-ts="Content">
-                <div data-ts="Panel">
-                    <article>
-                        <h1><span>Table gallery</span></h1>
-                        <p>Some screenshot candidates to spot regressions.</p>
-                        <div data-ts="Table" id="table1"></div>
-                        <div data-ts="Table" id="table2"></div>
-                        <div data-ts="Table" id="table3"></div>
-                        <div data-ts="Table" id="table4"></div>
-                    </article>
-                </div>
-            </div>
+    <header data-ts="TopBar"></header>
+    <main data-ts="Main">
+        <div data-ts="MainContent">
+            <article>
+                <h1><span>Table gallery</span></h1>
+                <p>Some screenshot candidates to spot regressions.</p>
+                <div data-ts="Table" id="table1"></div>
+                <div data-ts="Table" id="table2"></div>
+                <div data-ts="Table" id="table3"></div>
+                <div data-ts="Table" id="table4"></div>
+            </article>
         </div>
-    </div>
+    </main>
 </body>
 
 </html>

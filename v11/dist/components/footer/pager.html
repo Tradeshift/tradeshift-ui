@@ -3,15 +3,13 @@
 
 <head>
     <title>Footer Pager</title>
-    <meta name="ts-app-title" content="Footer Pager">
-    <link rel="ts-app-icon" href="/v11/dist/assets/icon.svg">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
-    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-11.0.0-beta.11.min.js"></script>
+    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-11.0.0-alpha.2.min.js"></script>
     <script src="/v11/dist/assets/dox.min.js"></script>
     <script src="/v11/dist/assets/mark.min.js"></script>
     <script src="/v11/dist/assets/jquery-2.2.4.min.js"></script>
-    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-11.0.0-beta.11.min.css">
+    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-11.0.0-alpha.2.min.css">
     <link rel="stylesheet" href="/v11/dist/assets/dox.css">
     <link rel="prefetch" title="Footer" href="index.html">
     <link rel="prefetch" title="Buttons" href="buttons.html">
@@ -20,63 +18,66 @@
     <link rel="prefetch" title="Config" href="configbutton.html">
     <link rel="prefetch" title="Collab" href="collabbutton.html">
     <link rel="prefetch" title="Gallery" href="gallery.html">
-    <script>
-        ts.dox.tabs()
-    </script>
+    <script>ts.dox.tabs()</script>
 </head>
 
 <body>
-    <div data-ts="App">
-        <div data-ts="Main">
-            <div data-ts="Content">
-                <div data-ts="Panel">
-                    <article>
-                        <h1><span>Footer pager</span></h1>
-                        <section>
-                            <p>The Footer features a <a date-ts="Button" href="/#components/pager/">Pager</a>. The <code>pager</code> method both sets and gets the Pager. If you omit the argument, you&quot;ll get the current Pager (jQuery style). You can
-                                pass <code>null</code> to the method to destroy the Pager once you are done with it.</p>
-                            <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.Footer.pager(%7B%0A%09pages%3A%2023%2C%0A%09page%3A%200%2C%0A%09onselect%3A%20function(index)%20%7B%0A%09%09console.log(index)%3B%0A%09%7D%0A%7D)%3B">
-                                <script type="runnable">
-                                    ts.ui.Footer.pager({ pages: 23, page: 0, onselect: function(index) { console.log(index); } });
-                                </script>
-                                <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
-                                <div data-ts="Panel">
-                                    <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Footer<span class="token punctuation">.</span><span class="token function">pager<span class="token punctuation">(</span></span><span class="token punctuation">{</span>
+    <header data-ts="TopBar"></header>
+    <main data-ts="Main">
+        <div data-ts="MainContent">
+            <article>
+                <h1><span>Footer pager</span></h1>
+                <section>
+                    <p>The Footer features a <a date-ts="Button" href="/#components/pager/">Pager</a>. The <code>pager</code> method both sets and gets the Pager. If you omit the argument, you&quot;ll get the current Pager (jQuery style). You can pass <code>null</code> to the method to destroy the Pager once you are done with it.</p>
+                    <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.Footer.pager(%7B%0A%09pages%3A%2023%2C%0A%09page%3A%200%2C%0A%09onselect%3A%20function(index)%20%7B%0A%09%09console.log(index)%3B%0A%09%7D%0A%7D)%3B">
+                        <script type="runnable">
+                            ts.ui.Footer.pager({
+								pages: 23,
+								page: 0,
+								onselect: function(index) {
+									console.log(index);
+								}
+							});
+						</script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                        <div class="tabpanels">
+                            <pre class="prism language-javascript">
+<code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Footer<span class="token punctuation">.</span><span class="token function">pager<span class="token punctuation">(</span></span><span class="token punctuation">{</span>
 	pages<span class="token punctuation">:</span> <span class="token number">23</span><span class="token punctuation">,</span>
 	page<span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
 	onselect<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span>index<span class="token punctuation">)</span> <span class="token punctuation">{</span>
 		console<span class="token punctuation">.</span><span class="token function">log<span class="token punctuation">(</span></span>index<span class="token punctuation">)</span><span class="token punctuation">;</span>
 	<span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
-                            </figure>
-                            <p>If you need to update the index later on, for example to support history navigation, it is recommended that you change the <code>page</code> property of the existing Pager instead of initializing a whole new Pager. You can
-                                just call the same method without arguments.</p>
-                            <p>
-                                <figure data-ts="DoxScript" data-ts.code="ts.ui.Footer.pager().page%20%3D%2023%3B">
-                                    <input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
-                                    <div data-ts="Panel">
-                                        <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Footer<span class="token punctuation">.</span><span class="token function">pager<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">.</span>page <span class="token operator">=</span> <span class="token number">23</span><span class="token punctuation">;</span></code></pre>
-                                    </div>
-                                </figure>
-                            </p>
-                        </section>
-                        <div data-ts="DoxApi" data-ts.code="%7B%0A%09name%3A%20%22ts.ui.PagerModel%22%2C%0A%09properties%3A%20%5B%0A%09%09%7B%0A%09%09%09name%3A%20%22pages%22%2C%0A%09%09%09type%3A%20%22number%22%2C%0A%09%09%09desc%3A%20%22The%20total%20amount%20of%20pages.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20%22page%22%2C%0A%09%09%09type%3A%20%22number%22%2C%0A%09%09%09desc%3A%20%22The%20current%20page%20index%2C%20zero%20based.%22%0A%09%09%7D%2C%0A%09%5D%2C%0A%09methods%3A%20%5B%0A%09%09%7B%0A%09%09%09name%3A%20%22onselect%22%2C%0A%09%09%09args%3A%20%22number%22%2C%0A%09%09%09desc%3A%20%22Called%20whenever%20a%20page%20is%20selected%3B%20and%20with%20the%20new%20index%20as%20argument.%22%0A%09%09%7D%0A%09%5D%0A%7D">
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
+</pre>
                         </div>
-                        <div data-ts="Note" class="sticky">
-                            <p>If you find a bug or need a feature&#x2026;</p>
-                            <menu data-ts="Buttons">
-                                <li>
-                                    <a data-ts="Button" target="_blank" href="https://github.com/Tradeshift/tradeshift-ui/issues/new" title="Submit new issue">
-		          <span>Create GitHub Issue&#x2026;</span>
-		        </a>
-                                </li>
-                            </menu>
-                        </div>
-                    </article>
+                    </figure>
+                    <p>If you need to update the index later on, for example to support history navigation, it is recommended that you change the <code>page</code> property of the existing Pager instead of initializing a whole new Pager. You can just call the same method without arguments.</p>
+                    <p>
+                        <figure data-ts="DoxScript" data-ts.code="ts.ui.Footer.pager().page%20%3D%2023%3B">
+                            <input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
+                            <div class="tabpanels">
+                                <pre class="prism language-javascript">
+<code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Footer<span class="token punctuation">.</span><span class="token function">pager<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">.</span>page <span class="token operator">=</span> <span class="token number">23</span><span class="token punctuation">;</span></code>
+</pre>
+                            </div>
+                        </figure>
+                    </p>
+                </section>
+                <div data-ts="DoxApi" data-ts.code="%7B%0A%09name%3A%20%22ts.ui.PagerModel%22%2C%0A%09properties%3A%20%5B%0A%09%09%7B%0A%09%09%09name%3A%20%22pages%22%2C%0A%09%09%09type%3A%20%22number%22%2C%0A%09%09%09desc%3A%20%22The%20total%20amount%20of%20pages.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20%22page%22%2C%0A%09%09%09type%3A%20%22number%22%2C%0A%09%09%09desc%3A%20%22The%20current%20page%20index%2C%20zero%20based.%22%0A%09%09%7D%2C%0A%09%5D%2C%0A%09methods%3A%20%5B%0A%09%09%7B%0A%09%09%09name%3A%20%22onselect%22%2C%0A%09%09%09args%3A%20%22number%22%2C%0A%09%09%09desc%3A%20%22Called%20whenever%20a%20page%20is%20selected%3B%20and%20with%20the%20new%20index%20as%20argument.%22%0A%09%09%7D%0A%09%5D%0A%7D">
                 </div>
-            </div>
+            </article>
         </div>
-    </div>
+    </main>
+    <aside data-ts="Note" class="sticky ts-bg-yellow">
+        <p>If you find a bug or need a feature&#x2026;</p>
+        <menu class="ts-buttons">
+            <li>
+                <a data-ts="Button" target="_blank" href="https://github.com/Tradeshift/tradeshift-ui/issues/new" title="Submit new issue" class="ts-secondary">
+                    <span>Create GitHub Issue&#x2026;</span>
+                </a>
+            </li>
+        </menu>
+    </aside>
 </body>
 <html lang="en-us" class="ts-docs" spellcheck="false">
 

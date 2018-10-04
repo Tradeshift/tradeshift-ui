@@ -3,15 +3,13 @@
 
 <head>
     <title>Automated Layout</title>
-    <meta name="ts-app-title" content="Automated Layout">
-    <link rel="ts-app-icon" href="/v11/dist/assets/icon.svg">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
-    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-11.0.0-beta.11.min.js"></script>
+    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-11.0.0-alpha.2.min.js"></script>
     <script src="/v11/dist/assets/dox.min.js"></script>
     <script src="/v11/dist/assets/mark.min.js"></script>
     <script src="/v11/dist/assets/jquery-2.2.4.min.js"></script>
-    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-11.0.0-beta.11.min.css">
+    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-11.0.0-alpha.2.min.css">
     <link rel="stylesheet" href="/v11/dist/assets/dox.css">
     <script>
         var LayoutModel = ts.ui.Model.extend({
@@ -99,7 +97,8 @@
                 '</div>' +
                 '</div>' +
                 '</article>' +
-                '</div>';
+                '</div>' +
+                '</main>';
             if (layout.toolBarAfter) {
                 out.html += '<footer data-ts="ToolBar" id="toolbar-after" data-ts.title="ToolBar after Main"></footer>';
             }
@@ -121,6 +120,16 @@
             }
         }]);
     </script>
+    <aside data-ts="Note" class="sticky ts-bg-yellow">
+        <p>If you find a bug or need a feature&#x2026;</p>
+        <menu class="ts-buttons">
+            <li>
+                <a data-ts="Button" target="_blank" href="https://github.com/Tradeshift/tradeshift-ui/issues/new" title="Submit new issue" class="ts-secondary">
+                    <span>Create GitHub Issue&#x2026;</span>
+                </a>
+            </li>
+        </menu>
+    </aside>
 </body>
 
 </html>

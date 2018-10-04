@@ -3,15 +3,13 @@
 
 <head>
     <title>Structure</title>
-    <meta name="ts-app-title" content="Structure">
-    <link rel="ts-app-icon" href="/v11/dist/assets/icon.svg">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
-    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-11.0.0-beta.11.min.js"></script>
+    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-11.0.0-alpha.2.min.js"></script>
     <script src="/v11/dist/assets/dox.min.js"></script>
     <script src="/v11/dist/assets/mark.min.js"></script>
     <script src="/v11/dist/assets/jquery-2.2.4.min.js"></script>
-    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-11.0.0-beta.11.min.css">
+    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-11.0.0-alpha.2.min.css">
     <link rel="stylesheet" href="/v11/dist/assets/dox.css">
     <link rel="stylesheet" href="../assets/css/design.css">
     <link rel="prefetch" title="UI Structure" href="index.html">
@@ -27,63 +25,56 @@
 </head>
 
 <body>
-    <div data-ts="App">
-        <div data-ts="Main">
-            <div data-ts="Content">
-                <div data-ts="Panel">
-                    <article>
-                        <h1><span>UI Structure</span></h1>
-                        <section class="desc">
-                            <p>Due to the responsive nature of Tradeshift, you should pay careful attention to how UI elements transform across screen sizes. The application&#x2019;s navigation elements transform as illustrated in the following.</p>
-                        </section>
-                        <section>
-                            <p><strong>Small &quot;phone size&quot; devices (&lt;600px):</strong> The Main area takes up as much space as possible, leaving only the TopBar with a shortcut to access the Global Menu. The TopBar buttons are moved to a hidden
-                                menu. The TopBar will slide out of sight when you scroll, to optimize the screen estate even further.</p>
-                            <figure>
-                                <img alt="Tradeshift on a phone" src="../assets/img/deviceanimation-phone-2.gif">
-                            </figure>
-                            <p><strong>Medium &quot;tablet size&quot; devices (600px to 1270px):</strong> The primary and secondary buttons are visible in the TopBar. Tertiary buttons, which are expected to be used less often, are hidden in a menu. The
-                                <a
-                                    data-ts="Button" href="/v11/dist/design/patterns/buttons.html">Buttons</a> page explains these categories in detail.</p>
-                            <figure>
-                                <img alt="Tradeshift on a tablet" src="../assets/img/deviceanimation-tablet-3.gif">
-                            </figure>
-                            <p><strong>Large &quot;desktop size&quot; devices (&gt;1270px):</strong> The Global Menu is expanded and the TopBar behaves as in &quot;tablet&quot; style.</p>
-                            <figure>
-                                <img alt="Tradeshift on a desktop" src="../assets/img/deviceanimation-desktop-2.gif">
-                            </figure>
-                            <dl>
-                                <dt>Global Menu</dt>
-                                <dd>The <em>Global Menu</em> is the primary way for the user to switch between the main functional areas. Core applications such as Document Creation and User Settings provide a Global Menu Item for the user to access these
-                                    applications directly. The Global Menu is present in all contexts and cannot be disabled. It will, however, expand and collapse based on available screen space.</dd>
-                                <dt>TopBar</dt>
-                                <dd>The <em>TopBar</em> serves multiple purposes and takes on different appearances. In the examples above, the TopBar contains buttons for actions, but other uses of the TopBar &#x2013; such as tabbed navigation &#x2013; are
-                                    possible.</dd>
-                                <dt>Main</dt>
-                                <dd><em>Main</em> is where most task solving takes place. Tradeshift applications are designed on a fluid grid, which lets applications &quot;fluidly&quot; fill out the entire main content area on all screen resolutions, up
-                                    to 1270 point width. Attempts should always be made, to fill out the main content area &#x2013; and if this is not possible, you should visually define the boundaries of the functionality.</dd>
-                            </dl>
-                            <!--
+    <header data-ts="TopBar"></header>
+    <main data-ts="Main">
+        <div data-ts="MainContent">
+            <div data-ts="MainFrame">
+                <article>
+                    <h1><span>UI Structure</span></h1>
+                    <section class="desc">
+                        <p>Due to the responsive nature of Tradeshift, you should pay careful attention to how UI elements transform across screen sizes. The application&#x2019;s navigation elements transform as illustrated in the following.</p>
+                    </section>
+                    <section>
+                        <p><strong>Small &quot;phone size&quot; devices (&lt;600px):</strong> The Main area takes up as much space as possible, leaving only the TopBar with a shortcut to access the Global Menu. The TopBar buttons are moved to a hidden menu. The TopBar will slide out of sight when you scroll, to optimize the screen estate even further.</p>
+                        <figure>
+                            <img alt="Tradeshift on a phone" src="../assets/img/deviceanimation-phone-2.gif">
+                        </figure>
+                        <p><strong>Medium &quot;tablet size&quot; devices (600px to 1270px):</strong> The primary and secondary buttons are visible in the TopBar. Tertiary buttons, which are expected to be used less often, are hidden in a menu. The <a data-ts="Button" href="/v11/dist/design/patterns/buttons.html">Buttons</a> page explains these categories in detail.</p>
+                        <figure>
+                            <img alt="Tradeshift on a tablet" src="../assets/img/deviceanimation-tablet-3.gif">
+                        </figure>
+                        <p><strong>Large &quot;desktop size&quot; devices (&gt;1270px):</strong> The Global Menu is expanded and the TopBar behaves as in &quot;tablet&quot; style.</p>
+                        <figure>
+                            <img alt="Tradeshift on a desktop" src="../assets/img/deviceanimation-desktop-2.gif">
+                        </figure>
+                        <dl>
+                            <dt>Global Menu</dt>
+                            <dd>The <em>Global Menu</em> is the primary way for the user to switch between the main functional areas. Core applications such as Document Creation and User Settings provide a Global Menu Item for the user to access these applications directly. The Global Menu is present in all contexts and cannot be disabled. It will, however, expand and collapse based on available screen space.</dd>
+                            <dt>TopBar</dt>
+                            <dd>The <em>TopBar</em> serves multiple purposes and takes on different appearances. In the examples above, the TopBar contains buttons for actions, but other uses of the TopBar &#x2013; such as tabbed navigation &#x2013; are possible.</dd>
+                            <dt>Main</dt>
+                            <dd><em>Main</em> is where most task solving takes place. Tradeshift applications are designed on a fluid grid, which lets applications &quot;fluidly&quot; fill out the entire main content area on all screen resolutions, up to 1270 point width. Attempts should always be made, to fill out the main content area &#x2013; and if this is not possible, you should visually define the boundaries of the functionality.</dd>
+                        </dl>
+                        <!--
 					<hr/>
 					<blockquote><h6>For Developers</h6><p>Read more about <a href="//tradeshift.github.io/#components/overview/layout.html" data-ts="Button"="">Components related to Layout</a>.</p></blockquote>
 					<p>Continue reading our Design Guidelines on the <a href="//tradeshift.github.io/#design/guidelines/gestures.html" data-ts="Button"="">Keyboard &amp; Gestures</a> page.</p>structure.html:34:17
 					-->
-                        </section>
-                        <div data-ts="Note" class="sticky">
-                            <p>If you find a bug or need a feature&#x2026;</p>
-                            <menu data-ts="Buttons">
-                                <li>
-                                    <a data-ts="Button" target="_blank" href="https://github.com/Tradeshift/tradeshift-ui/issues/new" title="Submit new issue">
-		          <span>Create GitHub Issue&#x2026;</span>
-		        </a>
-                                </li>
-                            </menu>
-                        </div>
-                    </article>
-                </div>
+                    </section>
+                </article>
             </div>
         </div>
-    </div>
+    </main>
+    <aside data-ts="Note" class="sticky ts-bg-yellow">
+        <p>If you find a bug or need a feature&#x2026;</p>
+        <menu class="ts-buttons">
+            <li>
+                <a data-ts="Button" target="_blank" href="https://github.com/Tradeshift/tradeshift-ui/issues/new" title="Submit new issue" class="ts-secondary">
+                    <span>Create GitHub Issue&#x2026;</span>
+                </a>
+            </li>
+        </menu>
+    </aside>
 </body>
 
 </html>

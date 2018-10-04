@@ -3,15 +3,13 @@
 
 <head>
     <title>Table Paging</title>
-    <meta name="ts-app-title" content="Table Paging">
-    <link rel="ts-app-icon" href="/v11/dist/assets/icon.svg">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
-    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-11.0.0-beta.11.min.js"></script>
+    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-11.0.0-alpha.2.min.js"></script>
     <script src="/v11/dist/assets/dox.min.js"></script>
     <script src="/v11/dist/assets/mark.min.js"></script>
     <script src="/v11/dist/assets/jquery-2.2.4.min.js"></script>
-    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-11.0.0-beta.11.min.css">
+    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-11.0.0-alpha.2.min.css">
     <link rel="stylesheet" href="/v11/dist/assets/dox.css">
     <link rel="prefetch" title="Table" href="index.html">
     <link rel="prefetch" title="Build" href="building.html">
@@ -36,31 +34,36 @@
     <link rel="prefetch" title="Angular" href="angular.html" class="hidden">
     <link rel="prefetch" title="Gutter" href="gutter.html" class="hidden">
     <link rel="prefetch" title="Gallery" href="gallery.html" class="hidden">
-    <script>
-        ts.dox.tabs()
-    </script>
+    <script>ts.dox.tabs()</script>
 </head>
 
 <body class="nosticky">
-    <div data-ts="App">
-        <div data-ts="Main">
-            <div data-ts="Content">
-                <div data-ts="Panel">
-                    <article>
-                        <h1><span>Paging the rows</span></h1>
-                        <section>
-                            <p>You can limit the number of visible rows with the <code>max</code> method. If the table contains more rows, a Pager will be created. An equivalent method <code>size</code> also fixes the height of the Table so that the pager
-                                (footer) never jump up and down.</p>
-                            <div class="splitscreen-container">
-                                <ul class="splitscreen">
-                                    <li>
-                                        <figure data-ts="DoxScript" class="attention runnable" data-ts.code="%24.getJSON(&apos;assets%2Frowdata.json&apos;%2C%20function(json)%20%7B%0A%09ts.ui.get(&apos;%23example9&apos;%2C%20function(table)%20%7B%0A%09%09table.cols(%5B%0A%09%09%09%7B%20label%3A%20&apos;ID&apos;%2C%20type%3A%20&apos;ts-number&apos;%20%7D%2C%0A%09%09%09%7B%20label%3A%20&apos;Name&apos;%2C%20flex%3A%202%20%7D%2C%0A%09%09%09%7B%20label%3A%20&apos;Price&apos;%2C%20type%3A%20&apos;ts-number&apos;%7D%0A%09%09%5D)%3B%0A%09%09table.rows(json).max(5)%3B%0A%09%7D)%3B%0A%7D)%3B">
-                                            <script type="runnable">
-                                                $.getJSON('assets/rowdata.json', function(json) { ts.ui.get('#example9', table => { table.cols([ { label: 'ID', type: 'ts-number' }, { label: 'Name', flex: 2 }, { label: 'Price', type: 'ts-number'} ]); table.rows(json).max(5); }); });
-                                            </script>
-                                            <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
-                                            <div data-ts="Panel">
-                                                <pre class="prism language-javascript"><code>$<span class="token punctuation">.</span><span class="token function">getJSON<span class="token punctuation">(</span></span><span class="token string">&apos;assets/rowdata.json&apos;</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span>json<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <header data-ts="TopBar"></header>
+    <main data-ts="Main">
+        <div data-ts="MainContent">
+            <article>
+                <h1><span>Paging the rows</span></h1>
+                <section>
+                    <p>You can limit the number of visible rows with the <code>max</code> method. If the table contains more rows, a Pager will be created. An equivalent method <code>size</code> also fixes the height of the Table so that the pager (footer) never jump up and down.</p>
+                    <div class="splitscreen-container">
+                        <ul class="splitscreen">
+                            <li>
+                                <figure data-ts="DoxScript" class="attention runnable" data-ts.code="%24.getJSON(&apos;assets%2Frowdata.json&apos;%2C%20function(json)%20%7B%0A%09ts.ui.get(&apos;%23example9&apos;%2C%20function(table)%20%7B%0A%09%09table.cols(%5B%0A%09%09%09%7B%20label%3A%20&apos;ID&apos;%2C%20type%3A%20&apos;ts-number&apos;%20%7D%2C%0A%09%09%09%7B%20label%3A%20&apos;Name&apos;%2C%20flex%3A%202%20%7D%2C%0A%09%09%09%7B%20label%3A%20&apos;Price&apos;%2C%20type%3A%20&apos;ts-number&apos;%7D%0A%09%09%5D)%3B%0A%09%09table.rows(json).max(5)%3B%0A%09%7D)%3B%0A%7D)%3B">
+                                    <script type="runnable">
+                                        $.getJSON('assets/rowdata.json', function(json) {
+									ts.ui.get('#example9', table => {
+										table.cols([
+											{ label: 'ID', type: 'ts-number' },
+											{ label: 'Name', flex: 2 },
+											{ label: 'Price', type: 'ts-number'}
+										]);
+										table.rows(json).max(5);
+									});
+								});
+							</script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                                    <div class="tabpanels">
+                                        <pre class="prism language-javascript">
+<code>$<span class="token punctuation">.</span><span class="token function">getJSON<span class="token punctuation">(</span></span><span class="token string">&apos;assets/rowdata.json&apos;</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span>json<span class="token punctuation">)</span> <span class="token punctuation">{</span>
 	ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#example9&apos;</span><span class="token punctuation">,</span> table <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
 		table<span class="token punctuation">.</span><span class="token function">cols<span class="token punctuation">(</span></span><span class="token punctuation">[</span>
 			<span class="token punctuation">{</span> label<span class="token punctuation">:</span> <span class="token string">&apos;ID&apos;</span><span class="token punctuation">,</span> type<span class="token punctuation">:</span> <span class="token string">&apos;ts-number&apos;</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
@@ -69,35 +72,59 @@
 		<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 		table<span class="token punctuation">.</span><span class="token function">rows<span class="token punctuation">(</span></span>json<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">max<span class="token punctuation">(</span></span><span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 	<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
-                                        </figure>
-                                    </li>
-                                    <li>
-                                        <div data-ts="Table" id="example9"></div>
-                                    </li>
-                                </ul>
-                            </div>
-                            <p>You can track the page with the <code>onpage</code> method, if for some reason you need that.</p>
-                            <figure data-ts="DoxScript" data-ts.code="table.onpage%20%3D%20function(index)%20%7B%0A%09console.log(index)%3B%20%2F%2F%20called%20whenever%20the%20user%20changes%20page%0A%7D%3B">
-                                <input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
-                                <div data-ts="Panel">
-                                    <pre class="prism language-javascript"><code>table<span class="token punctuation">.</span>onpage <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span>index<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
+</pre>
+                                    </div>
+                                </figure>
+                            </li>
+                            <li>
+                                <div data-ts="Table" id="example9"></div>
+                            </li>
+                        </ul>
+                    </div>
+                    <p>You can track the page with the <code>onpage</code> method, if for some reason you need that.</p>
+                    <figure data-ts="DoxScript" data-ts.code="table.onpage%20%3D%20function(index)%20%7B%0A%09console.log(index)%3B%20%2F%2F%20called%20whenever%20the%20user%20changes%20page%0A%7D%3B">
+                        <input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
+                        <div class="tabpanels">
+                            <pre class="prism language-javascript">
+<code>table<span class="token punctuation">.</span>onpage <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span>index<span class="token punctuation">)</span> <span class="token punctuation">{</span>
 	console<span class="token punctuation">.</span><span class="token function">log<span class="token punctuation">(</span></span>index<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// called whenever the user changes page
-</span><span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre>
-                                </div>
-                            </figure>
-                            <p>If you would like to manage paging yourself, because you have a billion products and don&apos;t want to fetch them all at once, you can create your own pager.</p>
-                            <div class="splitscreen-container">
-                                <ul class="splitscreen">
-                                    <li>
-                                        <figure data-ts="DoxScript" class="runnable" data-ts.code="var%20popup%20%3D%20ts.ui.Notification%3B%0Ats.ui.get(&apos;%23big-data-table&apos;%2C%20function(table)%20%7B%0A%09table.max(10).cols(%5B%0A%09%09%7B%20label%3A%20&apos;ID&apos;%2C%20type%3A%20&apos;ts-number&apos;%20%7D%2C%0A%09%09%7B%20label%3A%20&apos;Name&apos;%2C%20flex%3A%202%20%7D%2C%0A%09%09%7B%20label%3A%20&apos;Price&apos;%2C%20type%3A%20&apos;ts-number&apos;%7D%0A%09%5D)%3B%0A%09table.pager(%7B%0A%09%09pages%3A%205%2C%0A%09%09page%3A%200%2C%0A%09%09onselect%3A%20loadpage%0A%09%7D)%3B%0A%09function%20loadpage(index)%20%7B%0A%09%09var%20url%20%3D%20&apos;assets%2Fpage-&apos;%20%2B%20index%20%2B%20&apos;.json&apos;%3B%0A%09%09%24.getJSON(url%2C%20function(json)%20%7B%0A%09%09%09var%20n%20%3D%20json.length%3B%0A%09%09%09popup.success(&apos;Loaded%20&apos;%20%2B%20n%20%2B%20&apos;%20rows&apos;)%3B%0A%09%09%09table.rows(json)%3B%0A%09%09%7D)%3B%0A%09%7D%0A%09loadpage(0)%3B%0A%7D)%3B">
-                                            <script type="runnable">
-                                                var popup = ts.ui.Notification; ts.ui.get('#big-data-table', table => { table.max(10).cols([ { label: 'ID', type: 'ts-number' }, { label: 'Name', flex: 2 }, { label: 'Price', type: 'ts-number'} ]); table.pager({ pages: 5, page: 0, onselect: loadpage });
-                                                function loadpage(index) { var url = 'assets/page-' + index + '.json'; $.getJSON(url, function(json) { var n = json.length; popup.success('Loaded ' + n + ' rows'); table.rows(json); }); } loadpage(0); });
-                                            </script>
-                                            <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
-                                            <div data-ts="Panel">
-                                                <pre class="prism language-javascript"><code><span class="token keyword">var</span> popup <span class="token operator">=</span> ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Notification<span class="token punctuation">;</span>
+</span><span class="token punctuation">}</span><span class="token punctuation">;</span></code>
+</pre>
+                        </div>
+                    </figure>
+                    <p>If you would like to manage paging yourself, because you have a billion products and don&apos;t want to fetch them all at once, you can create your own pager.</p>
+                    <div class="splitscreen-container">
+                        <ul class="splitscreen">
+                            <li>
+                                <figure data-ts="DoxScript" class="runnable" data-ts.code="var%20popup%20%3D%20ts.ui.Notification%3B%0Ats.ui.get(&apos;%23big-data-table&apos;%2C%20function(table)%20%7B%0A%09table.max(10).cols(%5B%0A%09%09%7B%20label%3A%20&apos;ID&apos;%2C%20type%3A%20&apos;ts-number&apos;%20%7D%2C%0A%09%09%7B%20label%3A%20&apos;Name&apos;%2C%20flex%3A%202%20%7D%2C%0A%09%09%7B%20label%3A%20&apos;Price&apos;%2C%20type%3A%20&apos;ts-number&apos;%7D%0A%09%5D)%3B%0A%09table.pager(%7B%0A%09%09pages%3A%205%2C%0A%09%09page%3A%200%2C%0A%09%09onselect%3A%20loadpage%0A%09%7D)%3B%0A%09function%20loadpage(index)%20%7B%0A%09%09var%20url%20%3D%20&apos;assets%2Fpage-&apos;%20%2B%20index%20%2B%20&apos;.json&apos;%3B%0A%09%09%24.getJSON(url%2C%20function(json)%20%7B%0A%09%09%09var%20n%20%3D%20json.length%3B%0A%09%09%09popup.success(&apos;Loaded%20&apos;%20%2B%20n%20%2B%20&apos;%20rows&apos;)%3B%0A%09%09%09table.rows(json)%3B%0A%09%09%7D)%3B%0A%09%7D%0A%09loadpage(0)%3B%0A%7D)%3B">
+                                    <script type="runnable">
+                                        var popup = ts.ui.Notification;
+								ts.ui.get('#big-data-table', table => {
+									table.max(10).cols([
+										{ label: 'ID', type: 'ts-number' },
+										{ label: 'Name', flex: 2 },
+										{ label: 'Price', type: 'ts-number'}
+									]);
+									table.pager({
+										pages: 5,
+										page: 0,
+										onselect: loadpage
+									});
+									function loadpage(index) {
+										var url = 'assets/page-' + index + '.json';
+										$.getJSON(url, function(json) {
+											var n = json.length;
+											popup.success('Loaded ' + n + ' rows');
+											table.rows(json);
+										});
+									}
+									loadpage(0);
+								});
+							</script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                                    <div class="tabpanels">
+                                        <pre class="prism language-javascript">
+<code><span class="token keyword">var</span> popup <span class="token operator">=</span> ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Notification<span class="token punctuation">;</span>
 ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#big-data-table&apos;</span><span class="token punctuation">,</span> table <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
 	table<span class="token punctuation">.</span><span class="token function">max<span class="token punctuation">(</span></span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">cols<span class="token punctuation">(</span></span><span class="token punctuation">[</span>
 		<span class="token punctuation">{</span> label<span class="token punctuation">:</span> <span class="token string">&apos;ID&apos;</span><span class="token punctuation">,</span> type<span class="token punctuation">:</span> <span class="token string">&apos;ts-number&apos;</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
@@ -118,30 +145,31 @@ ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</s
 		<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 	<span class="token punctuation">}</span>
 	<span class="token function">loadpage<span class="token punctuation">(</span></span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
-                                        </figure>
-                                    </li>
-                                    <li>
-                                        <div data-ts="Table" id="big-data-table"></div>
-                                    </li>
-                                </ul>
-                            </div>
-                            <p>If you need to update the index later on, for example to support history navigation, it is recommended that you change the <code>page</code> property of the existing Pager instead of initializing a whole new Pager. You can
-                                just call the same method without arguments.</p>
-                            <p>
-                                <figure data-ts="DoxScript" data-ts.code="mytable.pager().page%20%3D%2023%3B">
-                                    <input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
-                                    <div data-ts="Panel">
-                                        <pre class="prism language-javascript"><code>mytable<span class="token punctuation">.</span><span class="token function">pager<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">.</span>page <span class="token operator">=</span> <span class="token number">23</span><span class="token punctuation">;</span></code></pre>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
+</pre>
                                     </div>
                                 </figure>
-                            </p>
-                        </section>
-                    </article>
-                </div>
-            </div>
+                            </li>
+                            <li>
+                                <div data-ts="Table" id="big-data-table"></div>
+                            </li>
+                        </ul>
+                    </div>
+                    <p>If you need to update the index later on, for example to support history navigation, it is recommended that you change the <code>page</code> property of the existing Pager instead of initializing a whole new Pager. You can just call the same method without arguments.</p>
+                    <p>
+                        <figure data-ts="DoxScript" data-ts.code="mytable.pager().page%20%3D%2023%3B">
+                            <input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
+                            <div class="tabpanels">
+                                <pre class="prism language-javascript">
+<code>mytable<span class="token punctuation">.</span><span class="token function">pager<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">.</span>page <span class="token operator">=</span> <span class="token number">23</span><span class="token punctuation">;</span></code>
+</pre>
+                            </div>
+                        </figure>
+                    </p>
+                </section>
+            </article>
         </div>
-    </div>
+    </main>
 </body>
 
 </html>

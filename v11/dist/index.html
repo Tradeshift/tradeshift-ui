@@ -1,30 +1,30 @@
 <!DOCTYPE html>
-<html class="ts-loading ts-bg-dark ts-docs" lang="en-us" spellcheck="false">
+<html class="ts-loading ts-docs" lang="en-us" spellcheck="false">
 
 <head>
+    ${security}
     <title>Tradeshift UI</title>
-    <meta name="ts-app-title" content="Tradeshift UI">
-    <link rel="ts-app-icon" href="/v11/dist/assets/icon.svg">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
-    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-11.0.0-beta.11.min.js"></script>
+    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-11.0.0-alpha.2.min.js"></script>
     <script src="/v11/dist/assets/dox.min.js"></script>
     <script src="/v11/dist/assets/mark.min.js"></script>
     <script src="/v11/dist/assets/jquery-2.2.4.min.js"></script>
-    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-11.0.0-beta.11.min.css">
+    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-11.0.0-alpha.2.min.css">
     <link rel="stylesheet" href="/v11/dist/assets/dox.css">
-    <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+    <link rel="icon" href="https://developers.tradeshift.com/icons/favicon-32x32.png">
     <script src="/v11/dist/assets/lunr.min.js"></script>
-    <meta name="ts.ui.topframe" content="false">
-    <meta name="ts.ui.appframe" content="false"> ${includes} ${menuhtml} ${svgicons}
+    ${includes}
+    ${menuhtml}
+    ${svgicons}
 </head>
 
 <body data-ts="DoxChrome">
     <div id="chrome">
         <button data-ts="Button" data-ts.type="action-open-menu" class="button-menu-open">
-				<i class="ts-icon-menuswitch"></i>
-			</button>
-        <aside data-ts="DoxSideBar" data-ts.title="KL" class="ts-bg-dark" data-ts.autoclose="false">
+            <i class="ts-icon-menuswitch"></i>
+        </button>
+        <aside data-ts="SideBar" data-ts.title="KL" class="ts-bg-dark" data-ts.autoclose="false">
             <div data-ts="Panel">
                 <menu data-ts="DoxMenu">
                     <script type="application/json">
@@ -35,14 +35,23 @@
                 </menu>
             </div>
         </aside>
-        <div data-ts="App">
-            <div data-ts="Main">
-                <div id="menucover" data-ts="DoxMenuCover"></div>
-                <button data-ts="Button" data-ts.type="action-close-menu" class="button-menu-close"></button>
-            </div>
-        </div>
+        <div id="menucover" data-ts="DoxMenuCover"></div>
+        <main data-ts="Main">
+            <button data-ts="Button" data-ts.type="action-close-menu" class="button-menu-close"></button>
+        </main>
+        <div data-ts="Spinner" data-ts.spinning="true" class="ts-topbarspinner"></div>
     </div>
     <iframe id="versions" src="/versions.html"></iframe>
+    <aside data-ts="Note" class="sticky ts-bg-yellow">
+        <p>If you find a bug or need a feature&#x2026;</p>
+        <menu class="ts-buttons">
+            <li>
+                <a data-ts="Button" target="_blank" href="https://github.com/Tradeshift/tradeshift-ui/issues/new" title="Submit new issue" class="ts-secondary">
+                    <span>Create GitHub Issue&#x2026;</span>
+                </a>
+            </li>
+        </menu>
+    </aside>
 </body>
 
 </html>

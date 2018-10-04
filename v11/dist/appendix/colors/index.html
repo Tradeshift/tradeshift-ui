@@ -3,27 +3,27 @@
 
 <head>
     <title>Colors</title>
-    <meta name="ts-app-title" content="Colors">
-    <link rel="ts-app-icon" href="/v11/dist/assets/icon.svg">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
-    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-11.0.0-beta.11.min.js"></script>
+    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-11.0.0-alpha.2.min.js"></script>
     <script src="/v11/dist/assets/dox.min.js"></script>
     <script src="/v11/dist/assets/mark.min.js"></script>
     <script src="/v11/dist/assets/jquery-2.2.4.min.js"></script>
-    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-11.0.0-beta.11.min.css">
+    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-11.0.0-alpha.2.min.css">
     <link rel="stylesheet" href="/v11/dist/assets/dox.css">
-    <script src="index.js"></script>
-    <link rel="stylesheet" href="index.css">
+    <script src="colors.js"></script>
+    <link rel="stylesheet" href="colors.css" id="doc-colors">
 </head>
 
 <body class="nosticky">
-    <div data-ts="App">
-        <div data-ts="Main">
-            <div data-ts="Content">
-                <div data-ts="Panel">
-                    <article class="doc-colors-article">
-                        <section id="doc-colors-demo" data-ts="Spirit">
+    <header data-ts="TopBar"></header>
+    <main data-ts="Main">
+        <div data-ts="MainContent">
+            <div class="ts-mainframe">
+                <article class="doc-colors-article">
+                    <h1><span>Colors</span></h1>
+                    <section>
+                        <div id="doc-colors-demo" data-ts="Spirit">
                             <script class="gui-script" data-ts.scriptid="edbml.$1JJU8I1">
                                 edbml.declare("edbml.$1JJU8I1").as(function $edbml(colors
                                     /*``*/
@@ -37,12 +37,13 @@
                                         colors.forEach(function(set) {
                                             out.html += '<tr>';
                                             for (var name in set) {
-                                                var code = set[name];
-                                                $att['style'] = 'background-color: ' + code;
-                                                out.html += '<td ' + $att.$('style') + '>' +
+                                                var color = set[name];
+                                                $att['style'] = 'background-color: ' + color.rgb;
+                                                $att['class'] = color.darkClass;
+                                                out.html += '<td ' + $att.$('style') + ' ' + $att.$('class') + '>' +
                                                     '<code class="color-name">' + $txt(name) + '</code>' +
                                                     '<br/>' +
-                                                    '<code class="color-code">' + $txt(code) + '</code>' +
+                                                    '<code class="color-code">' + $txt(color.hex) + '<br/>' + $txt(color.rgb) + '<br/>' + $txt(color.hsl) + '</code>' +
                                                     '</td>';
                                             }
                                             out.html += '</tr>';
@@ -52,12 +53,12 @@
                                     return out.write();
                                 });
                             </script>
-                        </section>
-                    </article>
-                </div>
+                        </div>
+                    </section>
+                </article>
             </div>
         </div>
-    </div>
+    </main>
 </body>
 
 </html>

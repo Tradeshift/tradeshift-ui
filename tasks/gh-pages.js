@@ -6,6 +6,7 @@ const ZERO = '0.0.0';
 const USER = process.env.GH_USER_NAME;
 const PASS = process.env.GH_ACCESS_TOK;
 const REPO = 'github.com/Tradeshift/tradeshift-ui.git';
+const forcesv = process.argv.slice(2)[0] === '-f';
 const logtask = msg => console.log(msg);
 const getjson = object => JSON.stringify(object, 0, 2);
 const abspath = (...paths) => path.join(__dirname, ...paths.map(String));
@@ -41,7 +42,7 @@ function doit(done) {
 	clone('gh-pages').then(() => {
 		const thisversion = localversion('../package.json');
 		const thatversion = majorversion('gh-pages/package.json', thisversion);
-		if (semv.gte(thisversion, thatversion)) {
+		if (forcesv || semv.gte(thisversion, thatversion)) {
 			logtask('Updating website');
 			injectdocs('v' + parseInt(thisversion, 10));
 			var versions = updateversions('gh-pages/package.json', thatversion, thisversion);

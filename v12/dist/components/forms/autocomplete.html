@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en-us" class="ts-docs" spellcheck="false">
+
+<head>
+    <title>Form Autocomplete</title>
+    <meta name="ts-app-title" content="Form Autocomplete">
+    <link rel="ts-app-icon" href="/v12/dist/assets/icon.svg">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.0.0-beta.0.min.js"></script>
+    <script src="/v12/dist/assets/dox.min.js"></script>
+    <script src="/v12/dist/assets/mark.min.js"></script>
+    <script src="/v12/dist/assets/jquery-2.2.4.min.js"></script>
+    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.0.0-beta.0.min.css">
+    <link rel="stylesheet" href="/v12/dist/assets/dox.css">
+    <link rel="prefetch" title="HTML" href="index.html">
+    <link rel="prefetch" title="Disabled / Readonly" href="disabled.html">
+    <link rel="prefetch" title="Custom Select" href="custom-select.html">
+    <link rel="prefetch" title="Autocomplete" href="autocomplete.html">
+    <link rel="prefetch" title="Error / Info" href="example.html">
+    <link rel="prefetch" title="Gallery" href="redesign.html">
+    <link rel="prefetch" title="Angular Test" href="test-1.html" class="hidden">
+    <link rel="prefetch" title="JQuery Test" href="test-2.html" class="hidden">
+    <script>ts.dox.tabs()</script>
+</head>
+
+<body class="nosticky">
+    <div data-ts="App">
+        <div data-ts="Main">
+            <div data-ts="Content">
+                <div data-ts="Panel">
+                    <article>
+                        <h1><span>Autocomplete</span></h1>
+                        <section class="desc">
+                            <p>You can have an input field suggest results to the user and can be navigated using the keyboard or the mouse.</p>
+                        </section>
+                        <section>
+                            <h3><span>Basic Usage</span></h3>
+                            <p>Loading the autocomplete data from a static array.</p>
+                            <div class="splitscreen-container">
+                                <ul class="splitscreen">
+                                    <li>
+                                        <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.get(&apos;%23mystaticautocomplete&apos;%2C%20function(autocomplete)%20%7B%0A%09autocomplete.data(%5B%0A%09%09%7B%20key%3A%200%2C%20value%3A%20&apos;zero&apos;%20%7D%2C%0A%09%09%7B%20key%3A%201%2C%20value%3A%20&apos;one&apos;%20%7D%2C%0A%09%09%7B%20key%3A%202%2C%20value%3A%20&apos;two&apos;%20%7D%2C%0A%09%09%7B%20key%3A%203%2C%20value%3A%20&apos;three&apos;%20%7D%2C%0A%09%09%7B%20key%3A%204%2C%20value%3A%20&apos;four&apos;%20%7D%2C%0A%09%09%7B%20key%3A%205%2C%20value%3A%20&apos;five&apos;%20%7D%2C%0A%09%09%7B%20key%3A%206%2C%20value%3A%20&apos;six&apos;%20%7D%2C%0A%09%09%7B%20key%3A%207%2C%20value%3A%20&apos;seven&apos;%20%7D%2C%0A%09%09%7B%20key%3A%208%2C%20value%3A%20&apos;eight&apos;%20%7D%2C%0A%09%09%7B%20key%3A%209%2C%20value%3A%20&apos;nine&apos;%20%7D%0A%09%5D)%3B%0A%7D)%3B">
+                                            <script type="runnable">
+                                                ts.ui.get('#mystaticautocomplete', autocomplete => {
+										autocomplete.data([
+											{ key: 0, value: 'zero' },
+											{ key: 1, value: 'one' },
+											{ key: 2, value: 'two' },
+											{ key: 3, value: 'three' },
+											{ key: 4, value: 'four' },
+											{ key: 5, value: 'five' },
+											{ key: 6, value: 'six' },
+											{ key: 7, value: 'seven' },
+											{ key: 8, value: 'eight' },
+											{ key: 9, value: 'nine' }
+										]);
+									});
+								</script>
+                                            <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                                            <div data-ts="Panel">
+                                                <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#mystaticautocomplete&apos;</span><span class="token punctuation">,</span> autocomplete <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+	autocomplete<span class="token punctuation">.</span><span class="token function">data<span class="token punctuation">(</span></span><span class="token punctuation">[</span>
+		<span class="token punctuation">{</span> key<span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">,</span> value<span class="token punctuation">:</span> <span class="token string">&apos;zero&apos;</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+		<span class="token punctuation">{</span> key<span class="token punctuation">:</span> <span class="token number">1</span><span class="token punctuation">,</span> value<span class="token punctuation">:</span> <span class="token string">&apos;one&apos;</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+		<span class="token punctuation">{</span> key<span class="token punctuation">:</span> <span class="token number">2</span><span class="token punctuation">,</span> value<span class="token punctuation">:</span> <span class="token string">&apos;two&apos;</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+		<span class="token punctuation">{</span> key<span class="token punctuation">:</span> <span class="token number">3</span><span class="token punctuation">,</span> value<span class="token punctuation">:</span> <span class="token string">&apos;three&apos;</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+		<span class="token punctuation">{</span> key<span class="token punctuation">:</span> <span class="token number">4</span><span class="token punctuation">,</span> value<span class="token punctuation">:</span> <span class="token string">&apos;four&apos;</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+		<span class="token punctuation">{</span> key<span class="token punctuation">:</span> <span class="token number">5</span><span class="token punctuation">,</span> value<span class="token punctuation">:</span> <span class="token string">&apos;five&apos;</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+		<span class="token punctuation">{</span> key<span class="token punctuation">:</span> <span class="token number">6</span><span class="token punctuation">,</span> value<span class="token punctuation">:</span> <span class="token string">&apos;six&apos;</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+		<span class="token punctuation">{</span> key<span class="token punctuation">:</span> <span class="token number">7</span><span class="token punctuation">,</span> value<span class="token punctuation">:</span> <span class="token string">&apos;seven&apos;</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+		<span class="token punctuation">{</span> key<span class="token punctuation">:</span> <span class="token number">8</span><span class="token punctuation">,</span> value<span class="token punctuation">:</span> <span class="token string">&apos;eight&apos;</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+		<span class="token punctuation">{</span> key<span class="token punctuation">:</span> <span class="token number">9</span><span class="token punctuation">,</span> value<span class="token punctuation">:</span> <span class="token string">&apos;nine&apos;</span> <span class="token punctuation">}</span>
+	<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
+                                        </figure>
+                                    </li>
+                                    <li>
+                                        <form data-ts="Form">
+                                            <fieldset>
+                                                <label>
+                                                    <span>Autocomplete from array</span>
+                                                    <input data-ts="AutoComplete" id="mystaticautocomplete">
+                                                </label>
+                                            </fieldset>
+                                        </form>
+                                    </li>
+                                </ul>
+                            </div>
+                        </section>
+                        <section>
+                            <h3><span>External Data</span></h3>
+                            <p>
+                                Loading all results from an external JSON endpoint but using the
+                                built in filtering.
+                            </p>
+                            <div class="splitscreen-container">
+                                <ul class="splitscreen">
+                                    <li>
+                                        <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.get(&apos;%23myadvancedautocomplete&apos;%2C%20function(autocomplete)%20%7B%0A%09%24.getJSON(&apos;assets%2Fautocomplete.json&apos;%2C%20function(json)%20%7B%0A%09%09autocomplete.data(json)%3B%0A%09%7D)%3B%0A%7D)%3B">
+                                            <script type="runnable">
+                                                ts.ui.get('#myadvancedautocomplete', autocomplete => {
+										$.getJSON('assets/autocomplete.json', function(json) {
+											autocomplete.data(json);
+										});
+									});
+								</script>
+                                            <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                                            <div data-ts="Panel">
+                                                <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#myadvancedautocomplete&apos;</span><span class="token punctuation">,</span> autocomplete <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+	$<span class="token punctuation">.</span><span class="token function">getJSON<span class="token punctuation">(</span></span><span class="token string">&apos;assets/autocomplete.json&apos;</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span>json<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		autocomplete<span class="token punctuation">.</span><span class="token function">data<span class="token punctuation">(</span></span>json<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
+                                        </figure>
+                                    </li>
+                                    <li>
+                                        <form data-ts="Form">
+                                            <fieldset>
+                                                <label>
+                                                    <span>Autocomplete from JSON</span>
+                                                    <input data-ts="AutoComplete" id="myadvancedautocomplete">
+                                                </label>
+                                            </fieldset>
+                                        </form>
+                                    </li>
+                                </ul>
+                            </div>
+                        </section>
+                        <section>
+                            <h3><span>Advanced Usage</span></h3>
+                            <p>
+                                It&apos;s possible to override the filtering functionality to supply the
+                                user with any data you&apos;d like.
+                            </p>
+                            <div class="splitscreen-container">
+                                <ul class="splitscreen">
+                                    <li>
+                                        <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.get(&apos;%23myfancyautocomplete&apos;%2C%20function(autocomplete)%20%7B%0A%09autocomplete.onfilter(function(filter)%20%7B%0A%09%09var%20output%20%3D%20%5B%5D%3B%0A%09%09for%20(var%20i%20%3D%20parseInt(Math.random()%20*%2010%20%2B%201%2C%2010)%3B%20i%20%3E%3D%200%3B%20i--)%20%7B%0A%09%09%09output.push(%7B%0A%09%09%09%09key%3A%20i%2C%0A%09%09%09%09value%3A%20Math.random().toString(36).substr(2%2C%205)%0A%09%09%09%7D)%3B%0A%09%09%7D%0A%09%09return%20output%3B%0A%09%7D)%3B%0A%7D)%3B">
+                                            <script type="runnable">
+                                                ts.ui.get('#myfancyautocomplete', autocomplete => {
+										autocomplete.onfilter(function(filter) {
+											var output = [];
+											for (var i = parseInt(Math.random() * 10 + 1, 10); i >= 0; i--) {
+												output.push({
+													key: i,
+													value: Math.random().toString(36).substr(2, 5)
+												});
+											}
+											return output;
+										});
+									});
+								</script>
+                                            <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                                            <div data-ts="Panel">
+                                                <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#myfancyautocomplete&apos;</span><span class="token punctuation">,</span> autocomplete <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+	autocomplete<span class="token punctuation">.</span><span class="token function">onfilter<span class="token punctuation">(</span></span><span class="token keyword">function</span><span class="token punctuation">(</span>filter<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		<span class="token keyword">var</span> output <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+		<span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">var</span> i <span class="token operator">=</span> <span class="token function">parseInt<span class="token punctuation">(</span></span>Math<span class="token punctuation">.</span><span class="token function">random<span class="token punctuation">(</span></span><span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">10</span> <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span> i <span class="token operator">&gt;=</span> <span class="token number">0</span><span class="token punctuation">;</span> i<span class="token operator">--</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+			output<span class="token punctuation">.</span><span class="token function">push<span class="token punctuation">(</span></span><span class="token punctuation">{</span>
+				key<span class="token punctuation">:</span> i<span class="token punctuation">,</span>
+				value<span class="token punctuation">:</span> Math<span class="token punctuation">.</span><span class="token function">random<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toString<span class="token punctuation">(</span></span><span class="token number">36</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">substr<span class="token punctuation">(</span></span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">)</span>
+			<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token punctuation">}</span>
+		<span class="token keyword">return</span> output<span class="token punctuation">;</span>
+	<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
+                                        </figure>
+                                    </li>
+                                    <li>
+                                        <form data-ts="Form">
+                                            <fieldset>
+                                                <label>
+                                                    <span>Autocomplete with custom results</span>
+                                                    <input data-ts="AutoComplete" id="myfancyautocomplete">
+                                                </label>
+                                            </fieldset>
+                                        </form>
+                                    </li>
+                                </ul>
+                            </div>
+                        </section>
+                        <section>
+                            <h3><span>Overriding <code class="attr-name">onselect</code></span></h3>
+                            <p>
+                                <code class="attr-name">onselect</code> can be overridden to run your
+                                own code when an element is selected (either with the keyboard
+                                or the mouse).
+                            </p>
+                            <div class="splitscreen-container">
+                                <ul class="splitscreen">
+                                    <li>
+                                        <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.get(&apos;%23myspecialautocomplete&apos;%2C%20function(autocomplete)%20%7B%0A%09autocomplete.data(%5B%0A%09%09%7B%20key%3A%200%2C%20value%3A%20&apos;zero&apos;%20%7D%2C%0A%09%09%7B%20key%3A%201%2C%20value%3A%20&apos;one&apos;%20%7D%0A%09%5D)%3B%0A%09autocomplete.onselect(function(item)%20%7B%0A%09%09ts.ui.Notification.success(&apos;%22&apos;%20%2B%20item.value%20%2B%20&apos;%22%20selected&apos;)%3B%0A%09%09return%20item.value%3B%0A%09%7D)%3B%0A%7D)%3B">
+                                            <script type="runnable">
+                                                ts.ui.get('#myspecialautocomplete', autocomplete => {
+										autocomplete.data([
+											{ key: 0, value: 'zero' },
+											{ key: 1, value: 'one' }
+										]);
+										autocomplete.onselect(function(item) {
+											ts.ui.Notification.success('"' + item.value + '" selected');
+											return item.value;
+										});
+									});
+								</script>
+                                            <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                                            <div data-ts="Panel">
+                                                <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#myspecialautocomplete&apos;</span><span class="token punctuation">,</span> autocomplete <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+	autocomplete<span class="token punctuation">.</span><span class="token function">data<span class="token punctuation">(</span></span><span class="token punctuation">[</span>
+		<span class="token punctuation">{</span> key<span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">,</span> value<span class="token punctuation">:</span> <span class="token string">&apos;zero&apos;</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+		<span class="token punctuation">{</span> key<span class="token punctuation">:</span> <span class="token number">1</span><span class="token punctuation">,</span> value<span class="token punctuation">:</span> <span class="token string">&apos;one&apos;</span> <span class="token punctuation">}</span>
+	<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	autocomplete<span class="token punctuation">.</span><span class="token function">onselect<span class="token punctuation">(</span></span><span class="token keyword">function</span><span class="token punctuation">(</span>item<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Notification<span class="token punctuation">.</span><span class="token function">success<span class="token punctuation">(</span></span><span class="token string">&apos;&quot;&apos;</span> <span class="token operator">+</span> item<span class="token punctuation">.</span>value <span class="token operator">+</span> <span class="token string">&apos;&quot; selected&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token keyword">return</span> item<span class="token punctuation">.</span>value<span class="token punctuation">;</span>
+	<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
+                                        </figure>
+                                    </li>
+                                    <li>
+                                        <form data-ts="Form">
+                                            <fieldset>
+                                                <label>
+                                                    <span>Autocomplete with special onselect</span>
+                                                    <input data-ts="AutoComplete" id="myspecialautocomplete">
+                                                </label>
+                                            </fieldset>
+                                        </form>
+                                    </li>
+                                </ul>
+                            </div>
+                        </section>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

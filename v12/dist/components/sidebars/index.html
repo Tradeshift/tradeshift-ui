@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en-us" class="ts-docs" spellcheck="false">
+
+<head>
+    <title>SideBars</title>
+    <meta name="ts-app-title" content="SideBars">
+    <link rel="ts-app-icon" href="/v12/dist/assets/icon.svg">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.0.0-beta.0.min.js"></script>
+    <script src="/v12/dist/assets/dox.min.js"></script>
+    <script src="/v12/dist/assets/mark.min.js"></script>
+    <script src="/v12/dist/assets/jquery-2.2.4.min.js"></script>
+    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.0.0-beta.0.min.css">
+    <link rel="stylesheet" href="/v12/dist/assets/dox.css">
+    <script src="/v12/dist/assets/template.js"></script>
+    <script src="index.js"></script>
+</head>
+
+<body class="nosticky">
+    <div data-ts="App">
+        <div data-ts="Main">
+            <div data-ts="Content">
+                <div data-ts="Panel">
+                    <article>
+                        <h1><span>SideBar</span></h1>
+                        <section class="desc">
+                            <p>The SideBar is a panel used for interactions directly related to the main <code class="attr-value">Content</code>, such as filtering and sorting a list of items.</p>
+                        </section>
+                        <section>
+                            <p>Assign <code class="attr-pair"><span>data-ts</span>=&quot;<span>SideBar</span>&quot;</code> to an <code class="el">aside</code> to initialize as a SideBar. The SideBar <em>must</em> be created with a child <code class="attr-value">Panel</code>.</p>
+                        </section>
+                        <figure data-ts="DoxMarkup" data-ts.code="%3Caside%20data-ts%3D%22SideBar%22%20data-ts.title%3D%22My%20SideBar%22%3E%0A%09%3Cdiv%20data-ts%3D%22Panel%22%3E%0A%09%09%3Cp%3ESideBar%20content.%3C%2Fp%3E%0A%09%3C%2Fdiv%3E%0A%3C%2Faside%3E">
+                            <script type="tex/html">
+                                <aside data-ts="SideBar" data-ts.title="My SideBar">
+										<div data-ts="Panel">
+											<p>SideBar content.</p>
+										</div>
+									</aside>
+								</script>
+                            <ul data-ts="Panels">
+                                <li data-ts="Panel" data-ts.selected="true">
+                                    <pre class="prism language-markup"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>aside</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>SideBar<span class="token punctuation">&quot;</span></span> <span class="token attr-name">data-ts</span>.<span class="token attr-name">title</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>My SideBar<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Panel<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>SideBar content.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>aside</span><span class="token punctuation">&gt;</span></span></code></pre>
+                                </li>
+                            </ul>
+                        </figure>
+                        <section class="ts-hide-mobile-only">
+                            <p>This sidebar should be positioned either before or after the <code class="attr-value">Content</code> element as seen in your <a data-ts="Button" href="/v12/dist/getstarted/layout.html">basic layout</a>.</p>
+                            <figure data-ts="DoxMarkup" data-ts.code="%3Cdiv%20data-ts%3D%22App%22%3E%0A%09%3Cdiv%20data-ts%3D%22Main%22%3E%0A%09%09%3C!--%20SideBar%20before%20Content%20goes%20here%20--%3E%0A%09%09%3Cdiv%20data-ts%3D%22Content%22%3E%3C%2Fdiv%3E%0A%09%09%3C!--%20SideBar%20after%20Content%20goes%20here%20--%3E%0A%09%09%3C%2Fdiv%3E%0A%09%3C%2Fdiv%3E%0A%3C%2Fdiv%3E">
+                                <script type="text/html">
+                                    <div data-ts="App">
+											<div data-ts="Main">
+												<!-- SideBar before Content goes here -->
+												<div data-ts="Content"></div>
+												<!-- SideBar after Content goes here -->
+												</div>
+											</div>
+										</div>
+									</script>
+                                <ul data-ts="Panels">
+                                    <li data-ts="Panel" data-ts.selected="true">
+                                        <pre class="prism language-markup"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>App<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Main<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+		<span class="token comment" spellcheck="true">&lt;!-- SideBar before Content goes here --&gt;</span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Content<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+		<span class="token comment" spellcheck="true">&lt;!-- SideBar after Content goes here --&gt;</span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span></code></pre>
+                                    </li>
+                                </ul>
+                            </figure>
+                            <p>You can toggle this position to witness the difference.</p>
+                            <form data-ts="Form">
+                                <fieldset>
+                                    <label>
+                                        <input type="radio" name="radio" onchange="showsidebar(&apos;#before-content&apos;)">
+                                        <span>Before <code class="attr-value">Content</code></span>
+                                    </label>
+                                    <label>
+                                        <input type="radio" name="radio" checked onchange="showsidebar(&apos;#after-content&apos;)">
+                                        <span>After <code class="attr-value">Content</code></span>
+                                    </label>
+                                    <!--
+										<label>
+											<input type="radio" name="radio" onchange="showsidebar('#before-app')"/>
+											<span>Before <val>App</val></span>
+										</label>
+										<label>
+											<input type="radio" name="radio" onchange="showsidebar('#after-app')"/>
+											<span>After <val>App</val></span>
+										</label>
+										-->
+                                </fieldset>
+                            </form>
+                        </section>
+                        <section class="ts-show-mobile-only">
+                            <div data-ts="Note">
+                                <p>TODO: Something special here for mobile breakpoint.</p>
+                            </div>
+                        </section>
+                        <section>
+                            <p>Before we dive into the SideBar features, here is the most important observation.</p>
+                            <div data-ts="Note">
+                                <i class="ts-icon-info"></i>
+                                <p>The SideBar will automatically become <strong>hidden</strong> in the mobile breakpoint.</p>
+                            </div>
+                            <p class="ts-hide-mobile-only">The mobile phone doesn&apos;t leave much room for SideBars, so we will just hide them. There is no <em>generalized</em> way to restore a hidden SideBar, so if you want the SideBar to be accessible to mobile users, you&apos;ll have to present a button in your content. The SideBar can be displayed with the <code>open</code> method.</p>
+                            <figure data-ts="DoxMarkup" data-ts.code="%3Cbutton%20data-ts%3D%22Button%22%20onclick%3D%22ts.ui.get(&apos;%23sidebar&apos;).open()%22%3E%0A%09%3Cspan%3EOpen%20The%20SideBar%3C%2Fspan%3E%0A%3C%2Fbutton%3E">
+                                <script type="tex/html">
+                                    <button data-ts="Button" onclick="ts.ui.get('#sidebar').open()">
+										<span>Open The SideBar</span>
+									</button>
+								</script>
+                                <ul data-ts="Panels">
+                                    <li data-ts="Panel" data-ts.selected="true">
+                                        <pre class="prism language-markup"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Button<span class="token punctuation">&quot;</span></span> <span class="token attr-name">onclick</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>ts.ui.get(&apos;#sidebar&apos;).open()<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">&gt;</span></span>Open The SideBar<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">&gt;</span></span></code></pre>
+                                    </li>
+                                </ul>
+                            </figure>
+                            <p class="ts-hide-mobile-only">The SideBar will open like an Aside; you can resize this page to see an example. Remember that the <a data-ts="Button" href="/v12/dist/appendix/responsive/">responsive classnames</a> can make it easy to hide and show stuff in the various breakpoints.</p>
+                            <p class="ts-show-mobile-only">The SideBar is hidden now, but you can open it if you like.</p>
+                            <menu data-ts="Buttons" class="ts-show-mobile-only">
+                                <li>
+                                    <button data-ts="Button" class="ts-primary" onclick="togglesidebar()">
+                                        <span>Open The SideBar</span>
+                                    </button>
+                                </li>
+                            </menu>
+                        </section>
+                        <section>
+                            <h3><span>SideBar tabs</span></h3>
+                            <p>SideBar tabs can be declared in the HTML via <code class="attr-value">Panels</code> and <code class="attr-pair"><span>label</span></code> attributes as seen in <button data-ts="Button" onclick="showsidebar(&apos;#after-content-with-tabs&apos;)">this example</button>.</p>
+                            <figure data-ts="DoxMarkup" data-ts.code="%3Caside%20data-ts%3D%22SideBar%22%20data-ts.title%3D%22SideBar%20With%20Tabs%22%3E%0A%09%3Cdiv%20data-ts%3D%22Panels%22%3E%0A%09%09%3Cdiv%20data-ts%3D%22Panel%22%20data-ts.label%3D%22One%22%3E%0A%09%09%09%3Cp%3EFirst%20panel%3C%2Fp%3E%0A%09%09%3C%2Fdiv%3E%0A%09%09%3Cdiv%20data-ts%3D%22Panel%22%20data-ts.label%3D%22Two%22%3E%0A%09%09%09%3Cp%3ESecond%20panel%3C%2Fp%3E%0A%09%09%3C%2Fdiv%3E%0A%09%3C%2Fdiv%3E%0A%3C%2Faside%3E">
+                                <script type="tex/html">
+                                    <aside data-ts="SideBar" data-ts.title="SideBar With Tabs">
+											<div data-ts="Panels">
+												<div data-ts="Panel" data-ts.label="One">
+													<p>First panel</p>
+												</div>
+												<div data-ts="Panel" data-ts.label="Two">
+													<p>Second panel</p>
+												</div>
+											</div>
+										</aside>
+									</script>
+                                <ul data-ts="Panels">
+                                    <li data-ts="Panel" data-ts.selected="true">
+                                        <pre class="prism language-markup"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>aside</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>SideBar<span class="token punctuation">&quot;</span></span> <span class="token attr-name">data-ts</span>.<span class="token attr-name">title</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>SideBar With Tabs<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Panels<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Panel<span class="token punctuation">&quot;</span></span> <span class="token attr-name">data-ts</span>.<span class="token attr-name">label</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>One<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>First panel<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Panel<span class="token punctuation">&quot;</span></span> <span class="token attr-name">data-ts</span>.<span class="token attr-name">label</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Two<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>Second panel<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>aside</span><span class="token punctuation">&gt;</span></span></code></pre>
+                                    </li>
+                                </ul>
+                            </figure>
+                            <p>&#x2014; or they can injected programatically via the <code>tabs</code> method. Remember that programatically cretated tabs don&apos;t do anything by default, so you will have to implement your own content switching mechanism via the <code>onselect</code> callback.</p>
+                            <figure data-ts="DoxScript" data-ts.code="ts.ui.get(&apos;%23mysidebar&apos;%2C%20function(sidebar)%20%7B%0A%09sidebar.tabs(%5B%0A%09%09%7Blabel%3A%20&apos;One&apos;%2C%20onselect()%20%7B%0A%09%09%09console.log(&apos;Select%201&apos;)%3B%0A%09%09%7D%7D%2C%0A%09%09%7Blabel%3A%20&apos;Two&apos;%2C%20onselect()%20%7B%0A%09%09%09console.log(&apos;Select%202&apos;)%3B%0A%09%09%7D%7D%0A%09%5D).open()%3B%0A%7D)%3B">
+                                <input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
+                                <div data-ts="Panel">
+                                    <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#mysidebar&apos;</span><span class="token punctuation">,</span> sidebar <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+	sidebar<span class="token punctuation">.</span><span class="token function">tabs<span class="token punctuation">(</span></span><span class="token punctuation">[</span>
+		<span class="token punctuation">{</span>label<span class="token punctuation">:</span> <span class="token string">&apos;One&apos;</span><span class="token punctuation">,</span> <span class="token function">onselect<span class="token punctuation">(</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+			console<span class="token punctuation">.</span><span class="token function">log<span class="token punctuation">(</span></span><span class="token string">&apos;Select 1&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+		<span class="token punctuation">{</span>label<span class="token punctuation">:</span> <span class="token string">&apos;Two&apos;</span><span class="token punctuation">,</span> <span class="token function">onselect<span class="token punctuation">(</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+			console<span class="token punctuation">.</span><span class="token function">log<span class="token punctuation">(</span></span><span class="token string">&apos;Select 2&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token punctuation">}</span><span class="token punctuation">}</span>
+	<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">open<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+                                </div>
+                            </figure>
+                        </section>
+                        <section>
+                            <p>Here&quot;s a summary of the <code>tabs</code> collection and <code>tab</code> model.</p>
+                            <div data-ts="DoxApi" data-ts.code="%7B%0A%09name%3A%20%22ts.ui.TabCollection%22%2C%0A%09properties%3A%20%5B%0A%09%09%7B%0A%09%09%09name%3A%20%22selectedIndex%22%2C%0A%09%09%09type%3A%20%22number%22%2C%0A%09%09%09desc%3A%20%22Get%20or%20set%20selected%20index.%22%0A%09%09%7D%0A%09%5D%2C%0A%09methods%3A%20%5B%0A%09%09%7B%0A%09%09%09name%3A%20%22push%22%2C%0A%09%09%09args%3A%20%22o1%2C%20o2%2C%20...%22%2C%0A%09%09%09desc%3A%20%22Add%20tab(s)%20to%20the%20end%20of%20the%20collection.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20%22unshift%22%2C%0A%09%09%09args%3A%20%22o1%2C%20o2%2C%20...%22%2C%0A%09%09%09desc%3A%20%22Add%20tab(s)%20to%20the%20front%20of%20the%20collection.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20%22pop%22%2C%0A%09%09%09desc%3A%20%22Remove%20and%20return%20the%20last%20tab.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20%22shift%22%2C%0A%09%09%09desc%3A%20%22Remove%20and%20return%20the%20first%20tab.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20%22splice%22%2C%0A%09%09%09args%3A%20%22i%2C%20d%2C%20o1%2C%20o2%2C%20...%22%2C%0A%09%09%09desc%3A%20%22Insert%20tab(s)%20at%20%60i%60%2C%20optionally%20deleting%20%60d%60%20amount%20of%20tabs.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20%22get%22%2C%0A%09%09%09args%3A%20%22string%7Cnumber%22%2C%0A%09%09%09desc%3A%20%22Get%20tab%20by%20%60id%60%20or%20numeric%20index.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20%22clear%22%2C%0A%09%09%09desc%3A%20%22Remove%20all%20tabs.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20%22showNew%22%2C%0A%09%09%09args%3A%20%22(function)%22%2C%0A%09%09%09desc%3A%20%22Show%20New-Tab%20button%20with%20an%20onclick%20callback.%20Use%20%60hideNew()%60%20to%20hide%20the%20button.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20%22onselect%22%2C%0A%09%09%09args%3A%20%22number%2C%20number%22%2C%0A%09%09%09desc%3A%20%22Open%20for%20implementation%3A%20Called%20whenever%20the%20selected%20index%20changes%20with%20two%20parameters%20%60newindex%60%20and%20%60oldindex%60.%22%0A%09%09%7D%0A%09%5D%0A%7D">
+                            </div>
+                            <div data-ts="DoxApi" data-ts.code="%7B%0A%09name%3A%20%22ts.ui.TabModel%22%2C%0A%09properties%3A%20%5B%0A%09%09%7B%0A%09%09%09name%3A%20%22id%22%2C%0A%09%09%09type%3A%20%22string%22%2C%0A%09%09%09desc%3A%20%22Optional%20tab%20%60id%60.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20%22label%22%2C%0A%09%09%09type%3A%20%22string%22%2C%0A%09%09%09desc%3A%20%22The%20tab%20label.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20%22icon%22%2C%0A%09%09%09type%3A%20%22string%22%2C%0A%09%09%09desc%3A%20%22The%20tab%20icon.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20%22selected%22%2C%0A%09%09%09type%3A%20%22boolean%22%2C%0A%09%09%09desc%3A%20%22Get%20or%20set%20selected%20status.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20%22closeable%22%2C%0A%09%09%09type%3A%20%22boolean%22%2C%0A%09%09%09desc%3A%20%22Tab%20can%20be%20closed%3F%20See%20also%20%60onclose%60%22%0A%09%09%7D%0A%09%5D%2C%0A%09methods%3A%20%5B%0A%09%09%7B%0A%09%09%09name%3A%20%22select%22%2C%0A%09%09%09desc%3A%20%22Select%20the%20tab.%20This%20will%20unselect%20some%20other%20tab.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20%22onselect%22%2C%0A%09%09%09desc%3A%20%22Called%20whenever%20the%20tab%20gets%20selected.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20%22onclose%22%2C%0A%09%09%09desc%3A%20%22Called%20whenever%20the%20tab%20gets%20closed.%22%0A%09%09%7D%0A%09%5D%0A%7D">
+                            </div>
+                        </section>
+                        <section>
+                            <h3><span>SideBar footer</span></h3>
+                            <p>You can insert a <code class="el">footer</code> in the SideBar for whatever purpose you can imagine. Note that if your SideBar features tabs, you may want to manually toggle the <code>display</code> of one or more <code class="el">footer</code> elements, since that doesn&apos;t happen automatically. Tab change can be intercepted with the <code>onselect</code> callback.</p>
+                            <figure data-ts="DoxMarkup" data-ts.code="%3Caside%20data-ts%3D%22SideBar%22%20data-ts.title%3D%22My%20SideBar%22%3E%0A%09%3Cdiv%20data-ts%3D%22Panel%22%3E%0A%09%09%3Cp%3ESideBar%20content.%3C%2Fp%3E%0A%09%3C%2Fdiv%3E%0A%09%3Cfooter%3E%0A%09%09%3Cp%3ESidebar%20footer.%3C%2Fp%3E%0A%09%3C%2Ffooter%3E%0A%3C%2Faside%3E">
+                                <script type="tex/html">
+                                    <aside data-ts="SideBar" data-ts.title="My SideBar">
+											<div data-ts="Panel">
+												<p>SideBar content.</p>
+											</div>
+											<footer>
+												<p>Sidebar footer.</p>
+											</footer>
+										</aside>
+									</script>
+                                <ul data-ts="Panels">
+                                    <li data-ts="Panel" data-ts.selected="true">
+                                        <pre class="prism language-markup"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>aside</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>SideBar<span class="token punctuation">&quot;</span></span> <span class="token attr-name">data-ts</span>.<span class="token attr-name">title</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>My SideBar<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Panel<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>SideBar content.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>footer</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>Sidebar footer.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>footer</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>aside</span><span class="token punctuation">&gt;</span></span></code></pre>
+                                    </li>
+                                </ul>
+                            </figure>
+                        </section>
+                        <section>
+                            <h3><span>Nested Aside</span></h3>
+                            <p>Asides can be nested directly inside the SideBar if they are relevant for the SideBars functionality. You can just <code>open</code> and <code>close</code> them like you would with a <a data-ts="Button" href="/v12/dist/components/asides/">regular Aside</a>.</p>
+                            <figure data-ts="DoxMarkup" data-ts.code="%3Caside%20data-ts%3D%22SideBar%22%20data-ts.title%3D%22My%20SideBar%22%3E%0A%09%3Cdiv%20data-ts%3D%22Panel%22%3E%0A%09%09%3Cp%3ESideBar%20content.%3C%2Fp%3E%0A%09%3C%2Fdiv%3E%0A%09%3Caside%20data-ts%3D%22Aside%22%20data-ts.title%3D%22My%20Aside%22%3E%0A%09%09%3Cdiv%20data-ts%3D%22Panel%22%3E%0A%09%09%09%3Cp%3Easide%20content.%3C%2Fp%3E%0A%09%09%3C%2Fdiv%3E%0A%09%3C%2Ffooter%3E%0A%3C%2Faside%3E">
+                                <script type="tex/html">
+                                    <aside data-ts="SideBar" data-ts.title="My SideBar">
+											<div data-ts="Panel">
+												<p>SideBar content.</p>
+											</div>
+											<aside data-ts="Aside" data-ts.title="My Aside">
+												<div data-ts="Panel">
+													<p>aside content.</p>
+												</div>
+											</footer>
+										</aside>
+									</script>
+                                <ul data-ts="Panels">
+                                    <li data-ts="Panel" data-ts.selected="true">
+                                        <pre class="prism language-markup"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>aside</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>SideBar<span class="token punctuation">&quot;</span></span> <span class="token attr-name">data-ts</span>.<span class="token attr-name">title</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>My SideBar<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Panel<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>SideBar content.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>aside</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Aside<span class="token punctuation">&quot;</span></span> <span class="token attr-name">data-ts</span>.<span class="token attr-name">title</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>My Aside<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Panel<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>aside content.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>footer</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>aside</span><span class="token punctuation">&gt;</span></span></code></pre>
+                                    </li>
+                                </ul>
+                            </figure>
+                        </section>
+                        <section data-ts="Spirit">
+                            <script class="gui-script" data-ts.scriptid="edbml.$AjKNz9">
+                                edbml.declare("edbml.$AjKNz9").as(function $edbml(
+                                    /*``*/
+                                ) {
+                                    'use strict';
+                                    var out = $edbml.$out;
+                                    if (location.hostname === 'localhost') {
+                                        out.html += '<h3>Hello developer!</h3>' +
+                                            '<p>Since you are on viewing this on <code>localhost</code> and since you have a giant monitor:</p>' +
+                                            '<menu data-ts="Buttons">' +
+                                            '<li>' +
+                                            '<a data-ts="Button" class="ts-primary" href="gallery.html">' +
+                                            '<span>Click here to open the SideBar Gallery</span>' +
+                                            '</a>' +
+                                            '</li>' +
+                                            '</menu>';
+                                    }
+                                    return out.write();
+                                });
+                            </script>
+                        </section>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- templates ......................................................... -->
+    <template id="before-app-template">
+        <aside data-ts="SideBar" id="before-app" data-ts.title="SideBar Before App">
+            <div data-ts="Panel">
+                <p>This SideBar is positioned before the <code class="attr-value">App</code> element in the <a data-ts="Button" href="/v12/dist/getstarted/layout.html">basic layout</a>.</p>
+            </div>
+        </aside>
+    </template>
+    <template id="after-app-template">
+        <aside data-ts="SideBar" id="after-app" data-ts.title="SideBar After App">
+            <div data-ts="Panel">
+                <p>This SideBar is positioned after the <code class="attr-value">App</code> element in the <a data-ts="Button" href="/v12/dist/getstarted/layout.html">basic layout</a>.</p>
+            </div>
+        </aside>
+    </template>
+    <template id="before-content-template">
+        <aside data-ts="SideBar" id="before-content" data-ts.title="SideBar Before Content">
+            <div data-ts="Panel" data-ts.label="Hansen">
+                <p>This SideBar is positioned before the <code class="attr-value">Content</code> element in the <a data-ts="Button" href="/v12/dist/getstarted/layout.html">basic layout</a>. It also features a nested <code class="attr-value">Aside</code>.</p>
+                <menu data-ts="Buttons">
+                    <li>
+                        <button data-ts="Button" onclick="ts.ui.get(&apos;#nestedaside&apos;).open()">
+                            <span>Open Nested Aside</span>
+                        </button>
+                    </li>
+                </menu>
+            </div>
+            <aside data-ts="Aside" id="nestedaside" data-ts.title="Nested Aside">
+                <div data-ts="Panel">
+                    <p>You can close the nested <code class="attr-value">Aside</code> now.</p>
+                    <menu data-ts="Buttons">
+                        <li>
+                            <button data-ts="Button" onclick="ts.ui.get(&apos;#nestedaside&apos;).close()">
+                                <span>Close Nested Aside</span>
+                            </button>
+                        </li>
+                    </menu>
+                </div>
+            </aside>
+        </aside>
+    </template>
+    <template id="after-content-template">
+        <aside data-ts="SideBar" id="after-content" data-ts.title="SideBar After Content">
+            <div data-ts="Panel">
+                <p>This SideBar is positioned after the <code class="attr-value">Content</code> element in the <a data-ts="Button" href="/v12/dist/getstarted/layout.html">basic layout</a>.</p>
+            </div>
+            <footer>
+                <p>This SideBar has a <code class="el">footer</code> below the <code class="attr-value">Panel</code>. This can be used for any purpose you can imagine.</p>
+            </footer>
+        </aside>
+    </template>
+    <template id="after-content-with-tabs-template">
+        <aside data-ts="SideBar" id="after-content" data-ts.title="SideBar With Tabs">
+            <div data-ts="Panels">
+                <div data-ts="Panel" data-ts.label="One">
+                    <p>First panel</p>
+                </div>
+                <div data-ts="Panel" data-ts.label="Two">
+                    <p>Second panel</p>
+                </div>
+            </div>
+        </aside>
+    </template>
+</body>
+
+</html>

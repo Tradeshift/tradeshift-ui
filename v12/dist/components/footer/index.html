@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en-us" class="ts-docs" spellcheck="false">
+
+<head>
+    <title>Footer</title>
+    <meta name="ts-app-title" content="Footer">
+    <link rel="ts-app-icon" href="/v12/dist/assets/icon.svg">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.0.0-beta.0.min.js"></script>
+    <script src="/v12/dist/assets/dox.min.js"></script>
+    <script src="/v12/dist/assets/mark.min.js"></script>
+    <script src="/v12/dist/assets/jquery-2.2.4.min.js"></script>
+    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.0.0-beta.0.min.css">
+    <link rel="stylesheet" href="/v12/dist/assets/dox.css">
+    <link rel="prefetch" title="Footer" href="index.html">
+    <link rel="prefetch" title="Buttons" href="buttons.html">
+    <link rel="prefetch" title="Actions" href="actions.html">
+    <link rel="prefetch" title="Pager" href="pager.html">
+    <link rel="prefetch" title="Config" href="configbutton.html">
+    <link rel="prefetch" title="Collab" href="collabbutton.html">
+    <link rel="prefetch" title="Gallery" href="gallery.html">
+    <script>ts.dox.tabs()</script>
+</head>
+
+<body>
+    <div data-ts="App">
+        <div data-ts="Main">
+            <div data-ts="Content">
+                <div data-ts="Panel">
+                    <article>
+                        <h1><span>Footer</span></h1>
+                        <section>
+                            <p>The Footer appears near the bottom of the page where it is commonly used to display some buttons. All features are controlled with an API that looks like this.</p>
+                            <figure data-ts="DoxScript" class="attention runnable" data-ts.code="ts.ui.Footer.buttons(%7B%0A%09label%3A%20&apos;Continue&apos;%2C%0A%09type%3A%20&apos;ts-primary&apos;%2C%0A%09onclick%3A%20function()%20%7B%0A%09%09top.location.hash%20%3D%20&apos;components%2Ffooter%2Fbuttons.html&apos;%3B%0A%09%7D%0A%7D)%3B">
+                                <script type="runnable">
+                                    ts.ui.Footer.buttons({
+								label: 'Continue',
+								type: 'ts-primary',
+								onclick: function() {
+									top.location.hash = 'components/footer/buttons.html';
+								}
+							});
+						</script>
+                                <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                                <div data-ts="Panel">
+                                    <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Footer<span class="token punctuation">.</span><span class="token function">buttons<span class="token punctuation">(</span></span><span class="token punctuation">{</span>
+	label<span class="token punctuation">:</span> <span class="token string">&apos;Continue&apos;</span><span class="token punctuation">,</span>
+	type<span class="token punctuation">:</span> <span class="token string">&apos;ts-primary&apos;</span><span class="token punctuation">,</span>
+	onclick<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		top<span class="token punctuation">.</span>location<span class="token punctuation">.</span>hash <span class="token operator">=</span> <span class="token string">&apos;components/footer/buttons.html&apos;</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
+                            </figure>
+                        </section>
+                        <section>
+                            <p>Here&apos;s a quick overview of the Footer API. You can read more in the following pages.</p>
+                            <div data-ts="DoxApi" data-ts.code="%7B%0A%09name%3A%20%22ts.ui.Footer%22%2C%0A%09methods%3A%20%5B%0A%09%09%7B%0A%09%09%09name%3A%20&apos;buttons&apos;%2C%0A%09%09%09args%3A%20&apos;(Array%3CObject%3E)&apos;%2C%0A%09%09%09desc%3A%20&apos;Get%20or%20set%20the%20general%20purpose%20buttons.&apos;%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20&apos;actions&apos;%2C%0A%09%09%09args%3A%20&apos;(Array%3CObject%3E)&apos;%2C%0A%09%09%09desc%3A%20&apos;Get%20or%20set%20the%20actions%20to%20handle%20seleced%20objects%20of%20any%20kind.&apos;%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20&apos;pager&apos;%2C%0A%09%09%09args%3A%20&apos;(Object)&apos;%2C%0A%09%09%09desc%3A%20&apos;Get%20or%20set%20the%20Pager%20that%20paginates%20all%20the%20things.&apos;%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20&apos;configbutton&apos;%2C%0A%09%09%09args%3A%20&apos;(%3CObject%3E)&apos;%2C%0A%09%09%09desc%3A%20&apos;Get%20or%20set%20the%20general%20purpose%20configuration%20button.&apos;%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20&apos;collabbutton&apos;%2C%0A%09%09%09args%3A%20&apos;(%3CObject%3E)&apos;%2C%0A%09%09%09desc%3A%20&apos;Get%20or%20set%20the%20dedicated%20collaboration%20button.&apos;%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20&apos;status&apos;%2C%0A%09%09%09args%3A%20&apos;(string)&apos;%2C%0A%09%09%09desc%3A%20&apos;Get%20or%20set%20the%20status%20message.&apos;%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20&apos;linkable&apos;%2C%0A%09%09%09args%3A%20&apos;(function)&apos;%2C%0A%09%09%09desc%3A%20&apos;Support%20links%20in%20status%20message.&apos;%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20&apos;unlinkable&apos;%2C%0A%09%09%09desc%3A%20&apos;Disable%20links%20in%20status%20message.&apos;%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20&apos;checkbox&apos;%2C%0A%09%09%09args%3A%20&apos;(%3CObject%3E)&apos;%2C%0A%09%09%09desc%3A%20&apos;Get%20or%20set%20the%20(selection)%20checkbox.&apos;%0A%09%09%7D%2C%0A%09%5D%0A%7D">
+                            </div>
+                        </section>
+                        <div data-ts="Note" class="sticky">
+                            <p>If you find a bug or need a feature&#x2026;</p>
+                            <menu data-ts="Buttons">
+                                <li>
+                                    <a data-ts="Button" target="_blank" href="https://github.com/Tradeshift/tradeshift-ui/issues/new" title="Submit new issue">
+                                        <span>Create GitHub Issue&#x2026;</span>
+                                    </a>
+                                </li>
+                            </menu>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<html lang="en-us" class="ts-docs" spellcheck="false">
+
+</html>
+
+</html>

@@ -40,7 +40,7 @@ function requestJSON(url, cb) {
 function bootstrap(package, menu, frame) {
 	var current = top.location.pathname.match(/^\/v\d*\//)[0];
 	var latest = getfolder(package.versions.reduce(function(res, ver) {
-		return res.includes('beta') ? ver : res;
+		return (res.includes('beta') || res.includes('alpha')) ? ver : res;
 	}, package.versions[0]));
 	var folders = new Map(package.versions.map(function(v) {
 		return [getfolder(v), v];
@@ -70,7 +70,7 @@ function getfolder(version) {
  */
 function updateText(current, latest, version) {
 	var safe = current === latest;
-	var beta = version.includes('beta');
+	var beta = (version.includes('beta') || version.includes('alpha'));
 	document.body.className = safe 
 		? ''
 		: beta

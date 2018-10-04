@@ -1,6 +1,6 @@
 {
   "name": "@tradeshift/tradeshift-ui",
-  "version": "11.0.0-beta.11",
+  "version": "12.0.0-beta.0",
   "description": "The Tradeshift UI Library & Framework",
   "homepage": "https://ui.tradeshift.com/",
   "bugs": {
@@ -41,11 +41,24 @@
     "package-dist": "node tasks/package-dist.js"
   },
   "lint-staged": {
-    "*.js": ["prettier --write", "eslint --config ./.eslintrc.json", "git add"],
-    "*.json": ["prettier --write", "git add"],
-    "*.less": ["prettier --write", "git add"]
+    "*.js": [
+      "prettier --write",
+      "eslint --config ./.eslintrc.json",
+      "git add"
+    ],
+    "*.json": [
+      "prettier --write",
+      "git add"
+    ],
+    "*.less": [
+      "prettier --write",
+      "git add"
+    ]
   },
-  "browserslist": ["Last 2 versions", "ie 11"],
+  "browserslist": [
+    "Last 2 versions",
+    "ie 11"
+  ],
   "devDependencies": {
     "alce": "^1.2.0",
     "ali-oss": "^4.10.1",

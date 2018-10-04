@@ -485,6 +485,8 @@ module.exports = function(grunt) {
 	function generateJsConcurrent(target = 'cdn') {
 		const out = [
 			'edbml', // edbml -> js
+			`tsless:dev`, // generate ts-runtime.less (needed for Docs!)
+			`copy:docs_dev`, // copy ts-runtime.less over to the docs (otherwise it will fail)
 			[
 				// generate ts.js
 				`tsless:${returnDevForJasmine(target)}`, // generate ts.less

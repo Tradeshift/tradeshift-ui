@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html class="ts-loading ts-bg-dark">
+<html class="ts-loading">
 	<head>
 		<style id="antiClickjack">body{display:none !important;}</style>
-		<script type="text/javascript">
+<script type="text/javascript">
 			if (self === top) {
 				var antiClickjack = document.getElementById('antiClickjack');
 				antiClickjack.parentNode.removeChild(antiClickjack);
@@ -11,44 +11,46 @@
 			}
 		</script>
 		<title>Tradeshift UI</title>
-		<link rel="icon" href="data:;base64,iVBORw0KGgo="/>
+		<link rel="icon" href="https://developers.tradeshift.com/icons/favicon-32x32.png"/>
 		<script src="/v11/dist/assets/lunr.min.js"></script>
-		<meta name="ts.ui.topframe" content="false"/>
-		<meta name="ts.ui.appframe" content="false"/>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width"/>
-		<script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-11.0.0-beta.11.min.js"></script>
+		<script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-11.0.0-alpha.2.min.js"></script>
 		<script src="/v11/dist/assets/dox.min.js"></script>
 		<script src="/v11/dist/assets/mark.min.js"></script>
 		<script src="/v11/dist/assets/jquery-2.2.4.min.js"></script>
-		<link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-11.0.0-beta.11.min.css"/>
+		<link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-11.0.0-alpha.2.min.css"/>
 		<link rel="stylesheet" href="/v11/dist/assets/dox.css"/>
 		<link rel="robots" href="/v11/dist/intro/"/>
 		<link rel="robots" href="/v11/dist/getstarted/"/>
+		<link rel="robots" href="/v11/dist/getstarted/layout/"/>
+		<link rel="robots" href="/v11/dist/getstarted/usage/"/>
+		<link rel="robots" href="/v11/dist/getstarted/rules/"/>
+		<link rel="robots" href="/v11/dist/design/"/>
+		<link rel="robots" href="/v11/dist/design/patterns/"/>
+		<link rel="robots" href="/v11/dist/design/copy/"/>
 		<link rel="robots" href="/v11/dist/components/"/>
 		<link rel="robots" href="/v11/dist/components/asides/"/>
-		<link rel="robots" href="/v11/dist/components/boards/"/>
+		<link rel="robots" href="/v11/dist/components/bars/topbar.html"/>
 		<link rel="robots" href="/v11/dist/components/buttons/"/>
 		<link rel="robots" href="/v11/dist/components/cards/companycard.html"/>
 		<link rel="robots" href="/v11/dist/components/datepicker/"/>
 		<link rel="robots" href="/v11/dist/components/dialogs/"/>
 		<link rel="robots" href="/v11/dist/components/footer/"/>
 		<link rel="robots" href="/v11/dist/components/forms/"/>
-		<link rel="robots" href="/v11/dist/components/header/"/>
 		<link rel="robots" href="/v11/dist/components/icons/"/>
-		<link rel="robots" href="/v11/dist/components/mains/"/>
 		<link rel="robots" href="/v11/dist/components/menus/"/>
 		<link rel="robots" href="/v11/dist/components/modals/"/>
 		<link rel="robots" href="/v11/dist/components/notes/"/>
 		<link rel="robots" href="/v11/dist/components/notifications/"/>
 		<link rel="robots" href="/v11/dist/components/pager/"/>
+		<link rel="robots" href="/v11/dist/components/panels/"/>
 		<link rel="robots" href="/v11/dist/components/search/"/>
 		<link rel="robots" href="/v11/dist/components/sidebars/"/>
 		<link rel="robots" href="/v11/dist/components/spinners/"/>
-		<link rel="robots" href="/v11/dist/components/tabbar/"/>
 		<link rel="robots" href="/v11/dist/components/table/"/>
+		<link rel="robots" href="/v11/dist/components/tags/tag.html"/>
 		<link rel="robots" href="/v11/dist/components/times/"/>
-		<link rel="robots" href="/v11/dist/components/toolbar/"/>
 		<link rel="robots" href="/v11/dist/components/userimages/"/>
 		<link rel="robots" href="/v11/dist/appendix/"/>
 		<link rel="robots" href="/v11/dist/appendix/responsive/"/>
@@ -58,6 +60,7 @@
 		<link rel="robots" href="/v11/dist/appendix/autofocus/"/>
 		
 		<svg xmlns="http://www.w3.org/2000/svg" style="display:none;">
+	<svg id="docs-icon-tag-2" width="24" height="24" viewBox="0 0 24 24"><path fill="#757575" d="M21.707 13.293l-11-11A.997.997 0 0 0 10 2H3a1 1 0 0 0-1 1v7c0 .266.105.519.293.707l11 11a1 1 0 0 0 1.636-.336l1.841-4.602 4.602-1.841a.999.999 0 0 0 .335-1.635zM7 9a2 2 0 1 1-.001-3.999A2 2 0 0 1 7 9z"/></svg>
 	<svg id="docs-icon-pen-brush" width="24" height="24" viewBox="0 0 24 24"><g fill="#767676"><path d="M6.146 9.917l1.653 1.745 2.828-2.827-1.74-1.658a2.983 2.983 0 0 0-.856-2.358c-2.268-2.269-3.433.309-5.976-2.233 0 0-.535 4.207 1.732 6.474a2.984 2.984 0 0 0 2.359.857zm16.19-.589L20.67 7.662l.634-.634a2.135 2.135 0 0 0 0-3.021 2.135 2.135 0 0 0-3.021 0l-2.049 2.048 3.981 3.981-2.122 2.122 1.414 1.414 2.829-2.828a1.001 1.001 0 0 0 0-1.416z"/><path d="M17.841 10.491L14.82 7.468l-9.61 9.61a1.02 1.02 0 0 0-.188.26l-1.608 3.215a1 1 0 0 0 1.342 1.342l3.214-1.607a.96.96 0 0 0 .26-.188l9.611-9.609zm-1.373 4.205l-2.828 2.828 3.877 3.89a2 2 0 1 0 2.828-2.828l-3.877-3.89z"/></g></svg>
 	<svg id="docs-icon-cloud-upload-2" width="24" height="24" viewBox="0 0 24 24"><path d="M13 0c-2.51 0-4.74 1.31-5.978 3.357.965.458 1.996 1.263 2.97 2.647l-.817.576C7.678 4.454 6.393 4 5 4 2.243 4 0 6.243 0 9s2.243 5 5 5h8c3.859 0 7-3.14 7-7 0-3.859-3.141-7-7-7zm10.707 19.292L19 14.585l-4.707 4.707 1.414 1.414L18 18.413V24h2v-5.587l2.293 2.293z" fill="#757575"/></svg>
 	<svg id="docs-icon-sign-no-entry" width="24" height="24" viewBox="0 0 24 24"><path d="M15.012 7.171V3h-2v6.171zm-3 3V1h-2v10h-1V3h-2v12h-1v-4h-2v4c0 .936.2 1.821.534 2.637l7.466-7.466zm8.293-5.464L2.819 22.192l1.414 1.414 2.829-2.829A7 7 0 0 0 18.012 15V9.828l3.707-3.707-1.414-1.414z" fill="#757575"/></svg>
@@ -94,27 +97,27 @@
 	<svg id="docs-icon-window-application-6" width="24" height="24" viewBox="0 0 24 24"><path d="M9 8.002H2V19c0 1.103.897 2 2 2h5V8.002zM7 19.003H4v-2h3v2zm0-3H4v-2h3v2zm-3-3v-2h3v2H4zm18-6.001V5c0-1.103-.896-2-2-2H4c-1.103 0-2 .897-2 2v2.002h20zM8 4a1 1 0 1 1 0 2 1 1 0 1 1 0-2zM5 4a1 1 0 1 1 0 2 1 1 0 1 1 0-2zm6 4.002V21h9c1.104 0 2-.897 2-2V8.002H11zm4 10.001h-2v-3h2v3zm5 1h-4v-4h4v4zm0-6h-7v-2h7v2z" fill="#757575"/></svg>
 	<svg id="docs-icon-focus-2" width="24" height="24" viewBox="0 0 24 24"><path d="M3 5h3V3H3c-1.104 0-2 .897-2 2v3h2V5zm18-2h-3v2h3v3h2V5c0-1.103-.896-2-2-2zM3 16H1v3a2 2 0 0 0 2 2h3v-2H3v-3zm18 3h-3v2h3a2 2 0 0 0 2-2v-3h-2v3zM5 7h14v10H5z" fill="#757575"/></svg>
 </svg>
+
 	</head>
 	<body data-ts="DoxChrome">
 		<div id="chrome">
 			<button data-ts="Button" data-ts.type="action-open-menu" class="button-menu-open">
 				<i class="ts-icon-menuswitch"></i>
 			</button>
-			<aside data-ts="DoxSideBar" data-ts.title="KL" class="ts-bg-dark" data-ts.autoclose="false">
+			<aside data-ts="SideBar" data-ts.title="KL" class="ts-bg-dark" data-ts.autoclose="false">
 				<div data-ts="Panel">
 					<menu data-ts="DoxMenu">
 						<script type="application/json">
-							[{"label":"Intro","icon":"docs-icon-interface-information","path":"intro/"},{"label":"Get Started","icon":"docs-icon-space-rocket","path":"getstarted/"},{"label":"Design Principles","icon":"docs-icon-pen-brush","path":"design/","hidden":true,"items":[{"label":"Design Patterns","icon":"docs-icon-programming-jigsaw","path":"design/patterns/"},{"label":"Product Copy","icon":"docs-icon-spelling-check-1","path":"design/copy/"}]},{"label":"UI Components…","icon":"docs-icon-modules-1","path":"components/","items":[{"label":"Aside","icon":"docs-icon-content-view-array","path":"components/asides/"},{"hidden":true,"label":"Bars (DEPRECATED)","icon":"docs-icon-expand-horizontal-7","path":"components/bars/topbar.html"},{"label":"Boards","icon":"docs-icon-grid","path":"components/boards/"},{"label":"Buttons","icon":"docs-icon-cursor-touch-1","path":"components/buttons/"},{"label":"Cards","icon":"docs-icon-credit-card","path":"components/cards/companycard.html"},{"label":"DatePicker","icon":"docs-icon-calendar-1","path":"components/datepicker/"},{"label":"Dialog","icon":"docs-icon-chat-bubble-square-question-mark","path":"components/dialogs/"},{"label":"Footer","icon":"docs-icon-video-games-space-invaders-1","path":"components/footer/"},{"label":"Forms","icon":"docs-icon-pencil-fill","path":"components/forms/"},{"label":"Header","icon":"docs-icon-video-games-space-invaders-1","path":"components/header/"},{"label":"Icons","icon":"docs-icon-file-images-svg","path":"components/icons/"},{"label":"Mains","icon":"docs-icon-video-games-space-invaders-1","path":"components/mains/"},{"label":"Menu","icon":"docs-icon-navigation-drawer-2","path":"components/menus/"},{"label":"Modal","icon":"docs-icon-chat-bubble-square-alert-2","path":"components/modals/"},{"label":"Note","icon":"docs-icon-paragraph-normal","path":"components/notes/"},{"label":"Notification","icon":"docs-icon-chat-bubble-square-alert-2","path":"components/notifications/"},{"label":"Pager","icon":"docs-icon-video-control-fast-forward","path":"components/pager/"},{"label":"Search","icon":"docs-icon-romance-find-love","path":"components/search/"},{"label":"SideBar","icon":"docs-icon-window-application-6","path":"components/sidebars/"},{"label":"Spinner","icon":"docs-icon-interface-loading","path":"components/spinners/"},{"label":"TabBar","icon":"docs-icon-expand-horizontal-7","path":"components/tabbar/"},{"label":"Table","icon":"docs-icon-grid","path":"components/table/"},{"label":"Time","icon":"docs-icon-time-bomb","path":"components/times/"},{"label":"ToolBar","icon":"docs-icon-expand-horizontal-7","path":"components/toolbar/"},{"label":"UserImage","icon":"docs-icon-user-target","path":"components/userimages/"}]},{"label":"Appendix…","note":"MUST MANUALLY SYNCHRONIZE THE PAGE /#appendix/ TO THIS JSON!","path":"appendix/","icon":"docs-icon-video-games-space-invaders-1","items":[{"label":"Responsive Design","icon":"docs-icon-devices","path":"appendix/responsive/"},{"label":"Colors","icon":"docs-icon-paint-palette","path":"appendix/colors/"},{"label":"Typography","icon":"docs-icon-spelling-check-1","path":"appendix/typo/"},{"label":"Markdown","icon":"docs-icon-font-size","path":"appendix/markdown/"},{"hidden":true,"label":"Automated Layout","icon":"docs-icon-window-application-6","path":"appendix/autolayout/"},{"label":"Automagic Focus","icon":"docs-icon-focus-2","path":"appendix/autofocus/"}]},{"label":"Playground","hidden":true,"icon":"docs-icon-video-games-space-invaders-1","items":[{"label":"Automated Layout","icon":"docs-icon-window-application-6","path":"playground/autolayout/"},{"label":"Automagic Focus","icon":"docs-icon-focus-2","path":"playground/autofocus/"}]},{"label":"The Lab","hidden":true,"icon":"docs-icon-beaker-science","items":[{"label":"Root Panels","icon":"docs-icon-window-tabs-3","path":"development/rootpanels/"}]},{"label":"Resources","icon":"docs-icon-file-tasks-add","hidden":true,"items":[{"label":"GitHub","icon":"docs-icon-files-coding-1","path":"https://github.com/Tradeshift/Client-Runtime"},{"label":"Spiritual","icon":"docs-icon-file-favorite-heart-1","path":"http://spiritual.js.org/"}]}]
+							[{"label":"Intro","icon":"docs-icon-interface-information","path":"intro/"},{"label":"Get Started","icon":"docs-icon-space-rocket","path":"getstarted/","items":[{"label":"Layout","icon":"docs-icon-window-application-7","path":"getstarted/layout/"},{"label":"Usage","icon":"docs-icon-cloud-upload-2","path":"getstarted/usage/"},{"label":"Basic Rules","icon":"docs-icon-sign-no-entry","path":"getstarted/rules/"}]},{"label":"Design Principles","icon":"docs-icon-pen-brush","path":"design/","items":[{"label":"Design Patterns","icon":"docs-icon-programming-jigsaw","path":"design/patterns/"},{"label":"Product Copy","icon":"docs-icon-spelling-check-1","path":"design/copy/"}]},{"label":"UI Components","icon":"docs-icon-modules-1","path":"components/","items":[{"label":"Aside","icon":"docs-icon-content-view-array","path":"components/asides/"},{"label":"Bars","icon":"docs-icon-expand-horizontal-7","path":"components/bars/topbar.html"},{"label":"Buttons","icon":"docs-icon-cursor-touch-1","path":"components/buttons/"},{"label":"Cards","icon":"docs-icon-credit-card","path":"components/cards/companycard.html"},{"label":"DatePicker","icon":"docs-icon-calendar-1","path":"components/datepicker/"},{"label":"Dialog","icon":"docs-icon-chat-bubble-square-question-mark","path":"components/dialogs/"},{"label":"Footer","icon":"docs-icon-video-games-space-invaders-1","path":"components/footer/"},{"label":"Forms","icon":"docs-icon-pencil-fill","path":"components/forms/"},{"label":"Icons","icon":"docs-icon-file-images-svg","path":"components/icons/"},{"label":"Menu","icon":"docs-icon-navigation-drawer-2","path":"components/menus/"},{"label":"Modal","icon":"docs-icon-chat-bubble-square-alert-2","path":"components/modals/"},{"label":"Note","icon":"docs-icon-paragraph-normal","path":"components/notes/"},{"label":"Notification","icon":"docs-icon-chat-bubble-square-alert-2","path":"components/notifications/"},{"label":"Pager","icon":"docs-icon-video-control-fast-forward","path":"components/pager/"},{"label":"Panels","icon":"docs-icon-video-control-fast-forward","path":"components/panels/"},{"label":"Search","icon":"docs-icon-romance-find-love","path":"components/search/"},{"label":"SideBar","icon":"docs-icon-window-application-6","path":"components/sidebars/"},{"label":"Spinner","icon":"docs-icon-interface-loading","path":"components/spinners/"},{"label":"Table","icon":"docs-icon-grid","path":"components/table/"},{"label":"Tags & Labels","icon":"docs-icon-tag-2","path":"components/tags/tag.html"},{"label":"Time","icon":"docs-icon-time-bomb","path":"components/times/"},{"label":"UserImage","icon":"docs-icon-user-target","path":"components/userimages/"}]},{"label":"Appendix","note":"MUST MANUALLY SYNCHRONIZE THE PAGE /#appendix/ TO THIS JSON!","path":"appendix/","icon":"docs-icon-video-games-space-invaders-1","items":[{"label":"Responsive Design","icon":"docs-icon-devices","path":"appendix/responsive/"},{"label":"Colors","icon":"docs-icon-paint-palette","path":"appendix/colors/"},{"label":"Typography","icon":"docs-icon-spelling-check-1","path":"appendix/typo/"},{"label":"Markdown","icon":"docs-icon-font-size","path":"appendix/markdown/"},{"hidden":true,"label":"Automated Layout","icon":"docs-icon-window-application-6","path":"appendix/autolayout/"},{"label":"Automagic Focus","icon":"docs-icon-focus-2","path":"appendix/autofocus/"}]},{"label":"Playground","hidden":true,"icon":"docs-icon-video-games-space-invaders-1","items":[{"label":"Automated Layout","icon":"docs-icon-window-application-6","path":"playground/autolayout/"},{"label":"Automagic Focus","icon":"docs-icon-focus-2","path":"playground/autofocus/"}]},{"label":"The Lab","hidden":true,"icon":"docs-icon-beaker-science","items":[{"label":"Root Panels","icon":"docs-icon-window-tabs-3","path":"development/rootpanels/"}]},{"label":"Resources","icon":"docs-icon-file-tasks-add","hidden":true,"items":[{"label":"GitHub","icon":"docs-icon-files-coding-1","path":"https://github.com/Tradeshift/Client-Runtime"},{"label":"Spiritual","icon":"docs-icon-file-favorite-heart-1","path":"http://spiritual.js.org/"}]}]
 						</script>
 					</menu>
 				</div>
 			</aside>
-			<div data-ts="App">
-				<div data-ts="Main">
-					<div id="menucover" data-ts="DoxMenuCover"></div>
-					<button data-ts="Button" data-ts.type="action-close-menu" class="button-menu-close"></button>
-				</div>
-			</div>
+			<div id="menucover" data-ts="DoxMenuCover"></div>
+			<main data-ts="Main">
+				<button data-ts="Button" data-ts.type="action-close-menu" class="button-menu-close"></button>
+			</main>
+			<div data-ts="Spinner" data-ts.spinning="true" class="ts-topbarspinner"></div>
 		</div>
 		<iframe id="versions" src="/versions.html"></iframe>
 	</body>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en-us" class="ts-docs" spellcheck="false">
+
+<head>
+    <title>Aside</title>
+    <meta name="ts-app-title" content="Aside">
+    <link rel="ts-app-icon" href="/v12/dist/assets/icon.svg">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.0.0-beta.0.min.js"></script>
+    <script src="/v12/dist/assets/dox.min.js"></script>
+    <script src="/v12/dist/assets/mark.min.js"></script>
+    <script src="/v12/dist/assets/jquery-2.2.4.min.js"></script>
+    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.0.0-beta.0.min.css">
+    <link rel="stylesheet" href="/v12/dist/assets/dox.css">
+    <meta name="robots" content="noindex">
+    <script src="asides.js"></script>
+    <style>
+        #metrics {
+            position: absolute;
+            z-index: 10000;
+            width: 320px;
+            top: 160px;
+            left: 50%;
+            margin-left: -160px;
+            background-color: rgb(253, 254, 213);
+            color: rgb(127, 115, 72);
+            padding: 22px;
+            border-radius: 3px;
+            box-shadow: 3px 3px 6px rgb(0, 0, 0, 0.75);
+        }
+
+        #metrics table {
+            width: 100%;
+        }
+
+        #metrics table td:last-child {
+            text-align: right;
+        }
+    </style>
+</head>
+
+<body class="nosticky">
+    <div id="metrics"></div>
+    <main data-ts="Main">
+        <aside data-ts="Aside" id="myaside" data-ts.title="Aside CSS Check">
+            <div data-ts="Panel">
+                <p>In this section, the form and the menu and the buttons are siblings. Check it.</p>
+                <form data-ts="Form">
+                    <fieldset>
+                        <label>
+                            <span>Textarea</span>
+                            <textarea></textarea>
+                        </label>
+                    </fieldset>
+                </form>
+                <menu data-ts="Menu">
+                    <li>
+                        <button>
+                            <span>Item One</span>
+                            <i class="ts-icon-rating"></i>
+                        </button>
+                    </li>
+                    <li>
+                        <button>
+                            <span>Item Two</span>
+                            <i class="ts-icon-rating"></i>
+                        </button>
+                    </li>
+                </menu>
+                <menu data-ts="Buttons">
+                    <li>
+                        <button class="ts-primary">
+                            <span>Button One</span>
+                        </button>
+                    </li>
+                    <li>
+                        <button class="ts-secondary">
+                            <span>Button Two</span>
+                        </button>
+                    </li>
+                </menu>
+            </div>
+        </aside>
+    </main>
+</body>
+
+</html>

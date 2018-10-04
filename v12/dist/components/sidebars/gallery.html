@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en-us" class="ts-docs" spellcheck="false">
+
+<head>
+    <title>SideBars Gallery</title>
+    <meta name="ts-app-title" content="SideBars Gallery">
+    <link rel="ts-app-icon" href="/v12/dist/assets/icon.svg">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.0.0-beta.0.min.js"></script>
+    <script src="/v12/dist/assets/dox.min.js"></script>
+    <script src="/v12/dist/assets/mark.min.js"></script>
+    <script src="/v12/dist/assets/jquery-2.2.4.min.js"></script>
+    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.0.0-beta.0.min.css">
+    <link rel="stylesheet" href="/v12/dist/assets/dox.css">
+    <meta name="robots" content="noindex">
+</head>
+
+<body class="nosticky">
+    <aside data-ts="SideBar" id="global-before" data-ts.title="Global SideBar">
+        <div data-ts="Panel">
+            <div data-ts="Note">
+                <i class="ts-icon-info"></i>
+                <p>This is an <strong>undocumented</strong> type of SideBar that can be used for bonus navigation and app settings and stuff.</p>
+            </div>
+            <p>Tradeshift venison flank andouille tail. Drumstick biltong spare ribs chuck. T-bone drumstick hamburger shankle doner ball tip leberkas pork belly brisket pastrami chicken salami pork chop chuck. Swine pastrami ground round, sausage doner pork chop shank bresaola tongue. Corned beef tail ribeye doner drumstick strip steak shoulder jerky ground round leberkas pastrami sirloin ball tip. Tail tri-tip filet mignon jowl jerky salami, pork belly venison swine cupim drumstick flank. Venison ground round brisket, boudin tri-tip kevin porchetta flank pork loin hamburger shank rump ham hock.</p>
+        </div>
+        <aside data-ts="Aside" data-ts.title="Nested Aside" id="myaside">
+            <div data-ts="Panel">
+                <p>Aside content.</p>
+            </div>
+        </aside>
+    </aside>
+    <div data-ts="App">
+        <div data-ts="Main">
+            <aside data-ts="SideBar" id="local-before" data-ts.title="Local SideBar">
+                <div data-ts="Panel">
+                    <p>Doner tenderloin beef alcatra pork beef ribs sausage jerky ground round kevin corned beef jowl prosciutto. Flank leberkas bresaola beef pork loin prosciutto brisket boudin capicola filet mignon drumstick turducken pork chuck. Tri-tip landjaeger pork loin, meatball turducken corned beef venison chicken pork cupim andouille ham hock. Turkey pork belly pig picanha frankfurter andouille, ball tip leberkas ground round ribeye jerky chicken meatloaf pork. Pastrami ground round filet mignon drumstick, pork loin biltong salami ham hock rump. Biltong flank pork loin, bacon shank shankle spare ribs drumstick beef shoulder meatloaf corned beef ground round t-bone fatback.</p>
+                </div>
+                <aside data-ts="Aside" data-ts.title="Nested Aside" id="myaside">
+                    <div data-ts="Panel">
+                        <p>Aside content.</p>
+                    </div>
+                </aside>
+            </aside>
+            <div data-ts="Content">
+                <div data-ts="Panel">
+                    <article>
+                        <h1><span>SideBar gallery</span></h1>
+                        <section>
+                            <p>Yes, you will need a big screen to witness all these SideBars in a single layout. But now that you have one, we can start adding all kinds of exotice features.</p>
+                            <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.Header.buttons(%5B%0A%09%7B%20label%3A%20&apos;Primary&apos;%2C%20type%3A%20&apos;ts-primary&apos;%2C%20icon%3A%20&apos;ts-icon-triangleup&apos;%20%7D%2C%0A%09%7B%20label%3A%20&apos;Secondary&apos;%2C%20type%3A%20&apos;ts-secondary&apos;%2C%20icon%3A%20&apos;ts-icon-triangledown&apos;%20%7D%2C%0A%09%7B%20label%3A%20&apos;Tertiary%20One&apos;%2C%20icon%3A%20&apos;ts-icon-triangleleft&apos;%20%7D%2C%0A%09%7B%20label%3A%20&apos;Tertiary%20Two&apos;%2C%20icon%3A%20&apos;ts-icon-triangleright&apos;%20%7D%2C%0A%09%7B%20label%3A%20&apos;Tertiary%20Three&apos;%2C%20icon%3A%20&apos;ts-icon-halt&apos;%2C%20onclick%3A%20function()%20%7B%0A%09%09ts.ui.Header.buttons().clear()%3B%0A%09%7D%7D%0A%5D)%3B">
+                                <script type="runnable">
+                                    ts.ui.Header.buttons([
+											{ label: 'Primary', type: 'ts-primary', icon: 'ts-icon-triangleup' },
+											{ label: 'Secondary', type: 'ts-secondary', icon: 'ts-icon-triangledown' },
+											{ label: 'Tertiary One', icon: 'ts-icon-triangleleft' },
+											{ label: 'Tertiary Two', icon: 'ts-icon-triangleright' },
+											{ label: 'Tertiary Three', icon: 'ts-icon-halt', onclick: () => {
+												ts.ui.Header.buttons().clear();
+											}}
+										]);
+									</script>
+                                <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                                <div data-ts="Panel">
+                                    <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Header<span class="token punctuation">.</span><span class="token function">buttons<span class="token punctuation">(</span></span><span class="token punctuation">[</span>
+	<span class="token punctuation">{</span> label<span class="token punctuation">:</span> <span class="token string">&apos;Primary&apos;</span><span class="token punctuation">,</span> type<span class="token punctuation">:</span> <span class="token string">&apos;ts-primary&apos;</span><span class="token punctuation">,</span> icon<span class="token punctuation">:</span> <span class="token string">&apos;ts-icon-triangleup&apos;</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+	<span class="token punctuation">{</span> label<span class="token punctuation">:</span> <span class="token string">&apos;Secondary&apos;</span><span class="token punctuation">,</span> type<span class="token punctuation">:</span> <span class="token string">&apos;ts-secondary&apos;</span><span class="token punctuation">,</span> icon<span class="token punctuation">:</span> <span class="token string">&apos;ts-icon-triangledown&apos;</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+	<span class="token punctuation">{</span> label<span class="token punctuation">:</span> <span class="token string">&apos;Tertiary One&apos;</span><span class="token punctuation">,</span> icon<span class="token punctuation">:</span> <span class="token string">&apos;ts-icon-triangleleft&apos;</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+	<span class="token punctuation">{</span> label<span class="token punctuation">:</span> <span class="token string">&apos;Tertiary Two&apos;</span><span class="token punctuation">,</span> icon<span class="token punctuation">:</span> <span class="token string">&apos;ts-icon-triangleright&apos;</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+	<span class="token punctuation">{</span> label<span class="token punctuation">:</span> <span class="token string">&apos;Tertiary Three&apos;</span><span class="token punctuation">,</span> icon<span class="token punctuation">:</span> <span class="token string">&apos;ts-icon-halt&apos;</span><span class="token punctuation">,</span> onclick<span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+		ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Header<span class="token punctuation">.</span><span class="token function">buttons<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">clear<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span><span class="token punctuation">}</span>
+<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
+                            </figure>
+                            <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.Header.tabs(%5B%0A%09%7B%20label%3A%20&apos;One&apos;%20%7D%2C%0A%09%7B%20label%3A%20&apos;Two&apos;%20%7D%2C%0A%09%7B%20label%3A%20&apos;Three&apos;%20%7D%0A%5D)%3B">
+                                <script type="runnable">
+                                    ts.ui.Header.tabs([
+											{ label: 'One' },
+											{ label: 'Two' },
+											{ label: 'Three' }
+										]);
+									</script>
+                                <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                                <div data-ts="Panel">
+                                    <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Header<span class="token punctuation">.</span><span class="token function">tabs<span class="token punctuation">(</span></span><span class="token punctuation">[</span>
+	<span class="token punctuation">{</span> label<span class="token punctuation">:</span> <span class="token string">&apos;One&apos;</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+	<span class="token punctuation">{</span> label<span class="token punctuation">:</span> <span class="token string">&apos;Two&apos;</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+	<span class="token punctuation">{</span> label<span class="token punctuation">:</span> <span class="token string">&apos;Three&apos;</span> <span class="token punctuation">}</span>
+<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
+                            </figure>
+                            <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.Header.search(%7B%0A%09info%3A%20&apos;Search%20amongst%20all%20the%20things&apos;%2C%0A%09onsearch%3A%20function(value)%20%7B%0A%09%09ts.ui.Notification.success(value%20%7C%7C%20&apos;Search%20cleared&apos;)%3B%0A%09%7D%2C%0A%09buttons%3A%20%5B%0A%09%09%7B%0A%09%09%09label%3A%20%22Let&apos;s%20Search%22%2C%0A%09%09%09icon%3A%20&apos;ts-icon-search&apos;%2C%0A%09%09%09onclick%3A%20function()%20%7B%0A%09%09%09%09this.search.search()%3B%0A%09%09%09%7D%0A%09%09%7D%0A%09%5D%0A%7D)%3B">
+                                <script type="runnable">
+                                    ts.ui.Header.search({
+											info: 'Search amongst all the things',
+											onsearch: function(value) {
+												ts.ui.Notification.success(value || 'Search cleared');
+											},
+											buttons: [
+												{
+													label: "Let's Search",
+													icon: 'ts-icon-search',
+													onclick: function() {
+														this.search.search();
+													}
+												}
+											]
+										});
+									</script>
+                                <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                                <div data-ts="Panel">
+                                    <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Header<span class="token punctuation">.</span><span class="token function">search<span class="token punctuation">(</span></span><span class="token punctuation">{</span>
+	info<span class="token punctuation">:</span> <span class="token string">&apos;Search amongst all the things&apos;</span><span class="token punctuation">,</span>
+	onsearch<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Notification<span class="token punctuation">.</span><span class="token function">success<span class="token punctuation">(</span></span>value <span class="token operator">||</span> <span class="token string">&apos;Search cleared&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span><span class="token punctuation">,</span>
+	buttons<span class="token punctuation">:</span> <span class="token punctuation">[</span>
+		<span class="token punctuation">{</span>
+			label<span class="token punctuation">:</span> <span class="token string">&quot;Let&apos;s Search&quot;</span><span class="token punctuation">,</span>
+			icon<span class="token punctuation">:</span> <span class="token string">&apos;ts-icon-search&apos;</span><span class="token punctuation">,</span>
+			onclick<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+				<span class="token keyword">this</span><span class="token punctuation">.</span>search<span class="token punctuation">.</span><span class="token function">search<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+			<span class="token punctuation">}</span>
+		<span class="token punctuation">}</span>
+	<span class="token punctuation">]</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
+                            </figure>
+                            <div data-ts="Board" id="tabboard">
+                                <ul data-ts="Panels">
+                                    <li data-ts="Panel" data-ts.label="Tabs">
+                                        <p>Panel One</p>
+                                    </li>
+                                    <li data-ts="Panel" data-ts.label="Nested tabs">
+                                        <p>Panel Two</p>
+                                        <div data-ts="Board">
+                                            <div data-ts="Panel">
+                                                <p>Nested box</p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li data-ts="Panel" data-ts.label="Tabs in Aside">
+                                        <p>Panel Three</p>
+                                        <p>
+                                            <button data-ts="Button" onclick="ts.ui.get(&apos;#myaside&apos;).open()" class="ts-primary">
+                                                <span>Open the Aside</span>
+                                            </button>
+                                        </p>
+                                    </li>
+                                </ul>
+                            </div>
+                            <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.Footer.pager(%7B%0A%09pages%3A%2023%2C%0A%09page%3A%200%2C%0A%09onselect%3A%20function(index)%20%7B%0A%09%09console.log(index)%3B%0A%09%7D%0A%7D)%3B">
+                                <script type="runnable">
+                                    ts.ui.Footer.pager({
+											pages: 23,
+											page: 0,
+											onselect: function(index) {
+												console.log(index);
+											}
+										});
+									</script>
+                                <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                                <div data-ts="Panel">
+                                    <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Footer<span class="token punctuation">.</span><span class="token function">pager<span class="token punctuation">(</span></span><span class="token punctuation">{</span>
+	pages<span class="token punctuation">:</span> <span class="token number">23</span><span class="token punctuation">,</span>
+	page<span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+	onselect<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span>index<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		console<span class="token punctuation">.</span><span class="token function">log<span class="token punctuation">(</span></span>index<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
+                            </figure>
+                            <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.Footer.buttons(%5B%0A%09%7B%20label%3A%20&apos;Button%201&apos;%2C%20type%3A%20&apos;ts-primary&apos;%20%7D%2C%0A%09%7B%20label%3A%20&apos;Button%202&apos;%2C%20type%3A%20&apos;ts-secondary&apos;%20%7D%2C%0A%09%7B%20label%3A%20&apos;Button%203&apos;%20%7D%2C%0A%09%7B%20label%3A%20&apos;Button%204&apos;%20%7D%2C%0A%09%7B%20label%3A%20&apos;Button%205&apos;%20%7D%0A%5D)%3B">
+                                <script type="runnable">
+                                    ts.ui.Footer.buttons([
+											{ label: 'Button 1', type: 'ts-primary' },
+											{ label: 'Button 2', type: 'ts-secondary' },
+											{ label: 'Button 3' },
+											{ label: 'Button 4' },
+											{ label: 'Button 5' }
+										]);
+									</script>
+                                <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                                <div data-ts="Panel">
+                                    <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Footer<span class="token punctuation">.</span><span class="token function">buttons<span class="token punctuation">(</span></span><span class="token punctuation">[</span>
+	<span class="token punctuation">{</span> label<span class="token punctuation">:</span> <span class="token string">&apos;Button 1&apos;</span><span class="token punctuation">,</span> type<span class="token punctuation">:</span> <span class="token string">&apos;ts-primary&apos;</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+	<span class="token punctuation">{</span> label<span class="token punctuation">:</span> <span class="token string">&apos;Button 2&apos;</span><span class="token punctuation">,</span> type<span class="token punctuation">:</span> <span class="token string">&apos;ts-secondary&apos;</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+	<span class="token punctuation">{</span> label<span class="token punctuation">:</span> <span class="token string">&apos;Button 3&apos;</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+	<span class="token punctuation">{</span> label<span class="token punctuation">:</span> <span class="token string">&apos;Button 4&apos;</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+	<span class="token punctuation">{</span> label<span class="token punctuation">:</span> <span class="token string">&apos;Button 5&apos;</span> <span class="token punctuation">}</span>
+<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
+                            </figure>
+                            <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.Footer.buttons().splice(2%2C%200%2C%0A%09%7B%20label%3A%20&apos;Bonus%20Button&apos;%2C%20type%3A%20&apos;ts-secondary&apos;%20%7D%0A)%3B">
+                                <script type="runnable">
+                                    ts.ui.Footer.buttons().splice(2, 0,
+											{ label: 'Bonus Button', type: 'ts-secondary' }
+										);
+									</script>
+                                <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                                <div data-ts="Panel">
+                                    <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Footer<span class="token punctuation">.</span><span class="token function">buttons<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">splice<span class="token punctuation">(</span></span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span>
+	<span class="token punctuation">{</span> label<span class="token punctuation">:</span> <span class="token string">&apos;Bonus Button&apos;</span><span class="token punctuation">,</span> type<span class="token punctuation">:</span> <span class="token string">&apos;ts-secondary&apos;</span> <span class="token punctuation">}</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
+                            </figure>
+                            <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.Footer.actions(%5B%0A%09%7B%20label%3A%20&apos;Move%20Up&apos;%2C%20icon%3A%20&apos;ts-icon-triangleup&apos;%20%7D%2C%0A%09%7B%20label%3A%20&apos;Move%20Down&apos;%2C%20icon%3A%20&apos;ts-icon-triangledown&apos;%20%7D%2C%0A%09%7B%20label%3A%20&apos;Move%20Left&apos;%2C%20icon%3A%20&apos;ts-icon-triangleleft&apos;%20%7D%2C%0A%09%7B%20label%3A%20&apos;Move%20Right&apos;%2C%20icon%3A%20&apos;ts-icon-triangleright&apos;%20%7D%2C%0A%09%7B%20label%3A%20&apos;Don%5C&apos;t%20Move&apos;%2C%20icon%3A%20&apos;ts-icon-halt&apos;%20%7D%0A%5D).status(&apos;Something%20is%20selected&apos;).checkbox(%7B%0A%09onclick%3A%20function()%20%7B%0A%09%09this.checked%20%3D%20!this.checked%3B%0A%09%7D%0A%7D)%3B">
+                                <script type="runnable">
+                                    ts.ui.Footer.actions([
+											{ label: 'Move Up', icon: 'ts-icon-triangleup' },
+											{ label: 'Move Down', icon: 'ts-icon-triangledown' },
+											{ label: 'Move Left', icon: 'ts-icon-triangleleft' },
+											{ label: 'Move Right', icon: 'ts-icon-triangleright' },
+											{ label: 'Don\'t Move', icon: 'ts-icon-halt' }
+										]).status('Something is selected').checkbox({
+											onclick: function() {
+												this.checked = !this.checked;
+											}
+										});
+									</script>
+                                <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                                <div data-ts="Panel">
+                                    <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Footer<span class="token punctuation">.</span><span class="token function">actions<span class="token punctuation">(</span></span><span class="token punctuation">[</span>
+	<span class="token punctuation">{</span> label<span class="token punctuation">:</span> <span class="token string">&apos;Move Up&apos;</span><span class="token punctuation">,</span> icon<span class="token punctuation">:</span> <span class="token string">&apos;ts-icon-triangleup&apos;</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+	<span class="token punctuation">{</span> label<span class="token punctuation">:</span> <span class="token string">&apos;Move Down&apos;</span><span class="token punctuation">,</span> icon<span class="token punctuation">:</span> <span class="token string">&apos;ts-icon-triangledown&apos;</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+	<span class="token punctuation">{</span> label<span class="token punctuation">:</span> <span class="token string">&apos;Move Left&apos;</span><span class="token punctuation">,</span> icon<span class="token punctuation">:</span> <span class="token string">&apos;ts-icon-triangleleft&apos;</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+	<span class="token punctuation">{</span> label<span class="token punctuation">:</span> <span class="token string">&apos;Move Right&apos;</span><span class="token punctuation">,</span> icon<span class="token punctuation">:</span> <span class="token string">&apos;ts-icon-triangleright&apos;</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+	<span class="token punctuation">{</span> label<span class="token punctuation">:</span> <span class="token string">&apos;Don\&apos;t Move&apos;</span><span class="token punctuation">,</span> icon<span class="token punctuation">:</span> <span class="token string">&apos;ts-icon-halt&apos;</span> <span class="token punctuation">}</span>
+<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">status<span class="token punctuation">(</span></span><span class="token string">&apos;Something is selected&apos;</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">checkbox<span class="token punctuation">(</span></span><span class="token punctuation">{</span>
+	onclick<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		<span class="token keyword">this</span><span class="token punctuation">.</span>checked <span class="token operator">=</span> <span class="token operator">!</span><span class="token keyword">this</span><span class="token punctuation">.</span>checked<span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
+                            </figure>
+                            <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.Footer.configbutton(function%20onclick()%20%7B%0A%09ts.ui.Notification.success(&apos;Go%20configure!&apos;)%3B%0A%7D).collabbutton(function%20onclick()%20%7B%0A%09ts.ui.Notification.success(&apos;Go%20collaborate!&apos;)%3B%0A%7D)%3B">
+                                <script type="runnable">
+                                    ts.ui.Footer.configbutton(function onclick() {
+											ts.ui.Notification.success('Go configure!');
+										}).collabbutton(function onclick() {
+											ts.ui.Notification.success('Go collaborate!');
+										});
+									</script>
+                                <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                                <div data-ts="Panel">
+                                    <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Footer<span class="token punctuation">.</span><span class="token function">configbutton<span class="token punctuation">(</span></span><span class="token keyword">function</span> <span class="token function">onclick<span class="token punctuation">(</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Notification<span class="token punctuation">.</span><span class="token function">success<span class="token punctuation">(</span></span><span class="token string">&apos;Go configure!&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">collabbutton<span class="token punctuation">(</span></span><span class="token keyword">function</span> <span class="token function">onclick<span class="token punctuation">(</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Notification<span class="token punctuation">.</span><span class="token function">success<span class="token punctuation">(</span></span><span class="token string">&apos;Go collaborate!&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
+                            </figure>
+                        </section>
+                    </article>
+                </div>
+            </div>
+            <aside data-ts="SideBar" id="local-after" data-ts.title="Local SideBar">
+                <div data-ts="Panel">
+                    <p>Drumstick short ribs kielbasa hamburger. Pig short loin ground round pork chop, pork kevin boudin bacon salami turducken tongue picanha. Bresaola cupim tri-tip meatloaf sirloin jowl alcatra ball tip porchetta ground round chicken short ribs brisket shankle tenderloin. Leberkas brisket drumstick salami, chicken shankle short loin spare ribs doner boudin hamburger frankfurter shoulder tenderloin. Tri-tip cupim porchetta shoulder pork loin ground round turkey ham pig, ribeye meatball leberkas landjaeger.</p>
+                </div>
+                <aside data-ts="Aside" data-ts.title="Nested Aside" id="myaside">
+                    <div data-ts="Panel">
+                        <p>Aside content.</p>
+                    </div>
+                </aside>
+            </aside>
+        </div>
+    </div>
+    <!--
+		<footer data-ts="ToolBar" data-ts.title="ToolBar after MAIN"></footer>
+		-->
+    <aside data-ts="SideBar" id="sidebar-after" data-ts.title="Global SideBar">
+        <div data-ts="Panels">
+            <div data-ts="Panel" data-ts.label="One">
+                <div data-ts="Note">
+                    <i class="ts-icon-info"></i>
+                    <p>This is an <strong>undocumented</strong> type of SideBar that can be used for support, documentation, tutorals and so on.</p>
+                </div>
+                <p>Bacon ipsum dolor amet turducken leberkas fatback, porchetta cow shoulder kielbasa drumstick shank bacon pork chop turkey. Drumstick filet mignon pig t-bone porchetta jerky. Sirloin beef ribs ball tip chuck, pork loin rump tenderloin meatball short loin pig tri-tip swine. Jerky frankfurter capicola beef ribs venison corned beef cupim prosciutto. Sausage fatback shoulder, pork loin salami beef ribs hamburger kevin tri-tip tenderloin pig jerky ham hock ham. Filet mignon bresaola kevin biltong flank chuck sirloin swine beef rump cow. Hamburger t-bone landjaeger turkey doner fatback corned beef pastrami spare ribs tongue brisket tenderloin ball tip sirloin.</p>
+            </div>
+            <div data-ts="Panel" data-ts.label="Two">
+                <p>Bacon ipsum dolor amet turducken leberkas fatback, porchetta cow shoulder kielbasa drumstick shank bacon pork chop turkey. Drumstick filet mignon pig t-bone porchetta jerky. Sirloin beef ribs ball tip chuck, pork loin rump tenderloin meatball short loin pig tri-tip swine. Jerky frankfurter capicola beef ribs venison corned beef cupim prosciutto. Sausage fatback shoulder, pork loin salami beef ribs hamburger kevin tri-tip tenderloin pig jerky ham hock ham. Filet mignon bresaola kevin biltong flank chuck sirloin swine beef rump cow. Hamburger t-bone landjaeger turkey doner fatback corned beef pastrami spare ribs tongue brisket tenderloin ball tip sirloin.</p>
+                <p>Doner tenderloin beef alcatra pork beef ribs sausage jerky ground round kevin corned beef jowl prosciutto. Flank leberkas bresaola beef pork loin prosciutto brisket boudin capicola filet mignon drumstick turducken pork chuck. Tri-tip landjaeger pork loin, meatball turducken corned beef venison chicken pork cupim andouille ham hock. Turkey pork belly pig picanha frankfurter andouille, ball tip leberkas ground round ribeye jerky chicken meatloaf pork. Pastrami ground round filet mignon drumstick, pork loin biltong salami ham hock rump. Biltong flank pork loin, bacon shank shankle spare ribs drumstick beef shoulder meatloaf corned beef ground round t-bone fatback.</p>
+                <p>Turducken corned beef swine, filet mignon meatball pork prosciutto flank t-bone pork belly. Spare ribs tri-tip rump kevin pork loin fatback chicken shoulder pork belly, beef ribs ham hock. Ball tip beef ribs alcatra cow bacon short loin ground round kevin ham hock jerky leberkas tenderloin. Beef corned beef bresaola, sausage chuck alcatra kielbasa ribeye turkey salami short loin prosciutto. Ham porchetta shank, pork belly ribeye prosciutto turkey cupim pork. Fatback swine tenderloin boudin filet mignon. Tail fatback shoulder boudin.</p>
+                <p>Drumstick short ribs kielbasa hamburger. Pig short loin ground round pork chop, pork kevin boudin bacon salami turducken tongue picanha. Bresaola cupim tri-tip meatloaf sirloin jowl alcatra ball tip porchetta ground round chicken short ribs brisket shankle tenderloin. Leberkas brisket drumstick salami, chicken shankle short loin spare ribs doner boudin hamburger frankfurter shoulder tenderloin. Tri-tip cupim porchetta shoulder pork loin ground round turkey ham pig, ribeye meatball leberkas landjaeger.</p>
+                <p>Jowl salami turkey pork loin sirloin tri-tip turducken tongue beef leberkas pastrami. Flank tenderloin pork chop, meatloaf chuck andouille boudin shoulder sausage ribeye. Boudin porchetta short ribs ribeye pork chop chicken shankle picanha turkey brisket biltong andouille. Brisket strip steak cow, picanha porchetta boudin short loin. Turkey cupim tail short loin.</p>
+                <p>Beef ribs tail tenderloin meatloaf corned beef leberkas short ribs alcatra pancetta drumstick. Sausage rump fatback boudin picanha ham hock, short ribs drumstick kielbasa. Beef andouille ribeye meatball tenderloin picanha ham hock shankle, fatback cow kielbasa boudin prosciutto bresaola short ribs. Turducken short ribs ground round tri-tip. Alcatra biltong brisket beef, pork t-bone boudin drumstick shank picanha cupim ham hock ribeye sausage.</p>
+                <p>Swine strip steak shank cow, kielbasa tongue biltong bacon porchetta brisket. Salami flank filet mignon pork chop beef frankfurter prosciutto. Cow turkey prosciutto brisket, tail pork chop pork loin boudin drumstick tenderloin frankfurter pork meatloaf hamburger. Alcatra sirloin short ribs pork chop flank. Bacon t-bone boudin pork belly meatloaf, chicken shoulder chuck landjaeger.</p>
+                <p>Meatloaf venison flank andouille tail. Drumstick biltong spare ribs chuck. T-bone drumstick hamburger shankle doner ball tip leberkas pork belly brisket pastrami chicken salami pork chop chuck. Swine pastrami ground round, sausage doner pork chop shank bresaola tongue. Corned beef tail ribeye doner drumstick strip steak shoulder jerky ground round leberkas pastrami sirloin ball tip. Tail tri-tip filet mignon jowl jerky salami, pork belly venison swine cupim drumstick flank. Venison ground round brisket, boudin tri-tip kevin porchetta flank pork loin hamburger shank rump ham hock.</p>
+            </div>
+        </div>
+        <aside data-ts="Aside" data-ts.title="Nested Aside">
+            <div data-ts="Panel">
+                <p>Aside content.</p>
+            </div>
+        </aside>
+        <!--
+			<div data-ts="Footer">
+				<p>Footer content. The button below is only relevant in <strong>mobile</strong> view.</p>
+				<p>
+					<button data-ts="Button" class="ts-tertiary" onclick="gui.get('sidebar-after').toggle()">
+						<span>Toggle SideBar</span>
+					</button>
+				</p>
+			</div>
+			-->
+    </aside>
+</body>
+
+</html>

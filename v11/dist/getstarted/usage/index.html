@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en-us" class="ts-docs" spellcheck="false">
+
+<head>
+    <title>Usage</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-11.0.0-alpha.2.min.js"></script>
+    <script src="/v11/dist/assets/dox.min.js"></script>
+    <script src="/v11/dist/assets/mark.min.js"></script>
+    <script src="/v11/dist/assets/jquery-2.2.4.min.js"></script>
+    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-11.0.0-alpha.2.min.css">
+    <link rel="stylesheet" href="/v11/dist/assets/dox.css">
+</head>
+
+<body>
+    <header data-ts="TopBar"></header>
+    <main data-ts="Main">
+        <div data-ts="MainContent">
+            <article>
+                <h1><span>Basic usage</span></h1>
+                <section class="desc">
+                    <p>You will use any combination of HTML attributes, CSS classnames and JavaScript interfaces to deal with the different components.</p>
+                </section>
+                <section>
+                    <p>Most components are used simply by adding the <code class="attr-name">data-ts</code> attribute to elements. The framework will recognize this attribute and add behavior and styling.</p>
+                    <figure data-ts="DoxMarkup" data-ts.code="%3Caside%20data-ts%3D%22Aside%22%3E%20...%20%3C%2Faside%3E">
+                        <input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
+                        <div class="tabpanels">
+                            <pre class="prism language-markup">
+<code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>aside</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Aside<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span> ... <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>aside</span><span class="token punctuation">&gt;</span></span></code>
+</pre>
+                        </div>
+                    </figure>
+                    <h3><span>Config attributes</span></h3>
+                    <p>Additional attributes may be used to configure the component. By convention, these will be prefixed with <code class="attr-name">data-ts.</code> (including the dot). The <code class="attr-name">data-ts.open</code> attribute would for example open the aside.</p>
+                    <figure data-ts="DoxMarkup" data-ts.code="%3Caside%20data-ts%3D%22Aside%22%20data-ts.open%3D%22true%22%3E%20...%20%3C%2Faside%3E">
+                        <input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
+                        <div class="tabpanels">
+                            <pre class="prism language-markup">
+<code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>aside</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Aside<span class="token punctuation">&quot;</span></span> <span class="token attr-name">data-ts</span>.<span class="token attr-name">open</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>true<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span> ... <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>aside</span><span class="token punctuation">&gt;</span></span></code>
+</pre>
+                        </div>
+                    </figure>
+                    <h3><span>JS interface</span></h3>
+                    <p>The component may also expose a JavaScript API. For example, the <code class="attr-value">Aside</code> can be opened with a method call instead of an attribute. You can get hold of the implementation using <code>ts.ui.get</code>, which takes an element as argument.</p>
+                    <figure data-ts="DoxScript" data-ts.code="var%20myelement%20%3D%20document.querySelector(&apos;%23myaside&apos;)%3B%0Avar%20component%20%3D%20ts.ui.get(myelement)%3B%0Aconsole.log(component)%3B%20%2F%2F%20%5Bobject%20ts.ui.AsideSpirit%5D%0Acomponent.open()%3B">
+                        <input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
+                        <div class="tabpanels">
+                            <pre class="prism language-javascript">
+<code><span class="token keyword">var</span> myelement <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector<span class="token punctuation">(</span></span><span class="token string">&apos;#myaside&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> component <span class="token operator">=</span> ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span>myelement<span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log<span class="token punctuation">(</span></span>component<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// [object ts.ui.AsideSpirit]
+</span>component<span class="token punctuation">.</span><span class="token function">open<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
+</pre>
+                        </div>
+                    </figure>
+                    <h3><span>API-only components</span></h3>
+                    <p>Components that embody more complex behavior will usually be dealt with through a pure JavaScript API, so without writing markup. This will come in handy when we decide to change the complex behavior at a later stage.</p>
+                    <figure data-ts="DoxScript" data-ts.code="ts.ui.DatePicker(%7B%0A%09title%3A%20%22Your%20Birthday%22%2C%0A%09value%3A%20&apos;1973-03-26&apos;%2C%0A%7D).open()%3B">
+                        <input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
+                        <div class="tabpanels">
+                            <pre class="prism language-javascript">
+<code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token function">DatePicker<span class="token punctuation">(</span></span><span class="token punctuation">{</span>
+	title<span class="token punctuation">:</span> <span class="token string">&quot;Your Birthday&quot;</span><span class="token punctuation">,</span>
+	value<span class="token punctuation">:</span> <span class="token string">&apos;1973-03-26&apos;</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">open<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
+</pre>
+                        </div>
+                    </figure>
+                    <p>When making apps with UI components, there&#x2019;s a few <a data-ts="Button" href="/v11/dist/getstarted/rules/">basic rules</a> we would like you to observe.</p>
+                </section>
+            </article>
+        </div>
+    </main>
+    <aside data-ts="Note" class="sticky ts-bg-yellow">
+        <p>If you find a bug or need a feature&#x2026;</p>
+        <menu class="ts-buttons">
+            <li>
+                <a data-ts="Button" target="_blank" href="https://github.com/Tradeshift/tradeshift-ui/issues/new" title="Submit new issue" class="ts-secondary">
+                    <span>Create GitHub Issue&#x2026;</span>
+                </a>
+            </li>
+        </menu>
+    </aside>
+</body>
+
+</html>

@@ -3,15 +3,13 @@
 
 <head>
     <title>Aside</title>
-    <meta name="ts-app-title" content="Aside">
-    <link rel="ts-app-icon" href="/v11/dist/assets/icon.svg">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
-    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-11.0.0-beta.11.min.js"></script>
+    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-11.0.0-alpha.2.min.js"></script>
     <script src="/v11/dist/assets/dox.min.js"></script>
     <script src="/v11/dist/assets/mark.min.js"></script>
     <script src="/v11/dist/assets/jquery-2.2.4.min.js"></script>
-    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-11.0.0-beta.11.min.css">
+    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-11.0.0-alpha.2.min.css">
     <link rel="stylesheet" href="/v11/dist/assets/dox.css">
     <meta name="robots" content="noindex">
     <script src="asides.js"></script>
@@ -42,47 +40,49 @@
 
 <body class="nosticky">
     <div id="metrics"></div>
+    <header data-ts="TopBar"></header>
     <main data-ts="Main">
-        <aside data-ts="Aside" id="myaside" data-ts.title="Aside CSS Check">
-            <div data-ts="Panel">
-                <p>In this section, the form and the menu and the buttons are siblings. Check it.</p>
-                <form data-ts="Form">
-                    <fieldset>
-                        <label>
-							<span>Textarea</span>
-							<textarea></textarea>
-						</label>
-                    </fieldset>
-                </form>
-                <menu data-ts="Menu">
-                    <li>
-                        <button>
-							<span>Item One</span>
-							<i class="ts-icon-rating"></i>
-						</button>
-                    </li>
-                    <li>
-                        <button>
-							<span>Item Two</span>
-							<i class="ts-icon-rating"></i>
-						</button>
-                    </li>
-                </menu>
-                <menu data-ts="Buttons">
-                    <li>
-                        <button class="ts-primary">
-							<span>Button One</span>
-						</button>
-                    </li>
-                    <li>
-                        <button class="ts-secondary">
-							<span>Button Two</span>
-						</button>
-                    </li>
-                </menu>
-            </div>
-        </aside>
+        <div data-ts="MainContent"></div>
     </main>
+    <aside data-ts="Aside" id="myaside" data-ts.title="Aside CSS Check">
+        <div data-ts="Panel">
+            <p>In this section, the form and the menu and the buttons are siblings. Check it.</p>
+            <form data-ts="Form">
+                <fieldset>
+                    <label>
+                        <span>Textarea</span>
+                        <textarea></textarea>
+                    </label>
+                </fieldset>
+            </form>
+            <menu data-ts="Menu">
+                <li>
+                    <button>
+                        <span>Item One</span>
+                        <i class="ts-icon-rating"></i>
+                    </button>
+                </li>
+                <li>
+                    <button>
+                        <span>Item Two</span>
+                        <i class="ts-icon-rating"></i>
+                    </button>
+                </li>
+            </menu>
+            <menu data-ts="Buttons">
+                <li>
+                    <button class="ts-primary">
+                        <span>Button One</span>
+                    </button>
+                </li>
+                <li>
+                    <button class="ts-secondary">
+                        <span>Button Two</span>
+                    </button>
+                </li>
+            </menu>
+        </div>
+    </aside>
 </body>
 
 </html>

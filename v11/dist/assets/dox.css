@@ -34,6 +34,11 @@ article h2 {
   margin-top: 60px;
   margin-bottom: 30px;
 }
+article h4,
+article h5 {
+  font-weight: 300;
+  letter-spacing: 0.25px;
+}
 section {
   margin-bottom: 20px;
 }
@@ -45,6 +50,13 @@ section.desc {
 section.desc,
 section.desc code {
   font-size: 16px;
+}
+section p,
+section dl,
+section ul li,
+section ol li {
+  font-weight: 300;
+  letter-spacing: 0.25px;
 }
 dl {
   margin-bottom: 20px;
@@ -64,6 +76,7 @@ var,
 kbd,
 samp {
   font-family: 'Ubuntu Mono', 'Menlo', 'Monaco', 'Consolas', 'Bitstream Vera Sans Mono', monospace;
+  font-size: 15px;
   word-spacing: -2px;
   -webkit-hyphens: none;
   -moz-hyphens: none;
@@ -86,38 +99,91 @@ h2 samp,
 h3 samp {
   font-size: inherit;
 }
+/* Remove font-weight hack for certain elements ..............................*/
+ul.splitscreen li:last-child,
+ul.splitscreen li:last-child p,
+ul.splitscreen li:last-child li {
+  font-weight: 400;
+  letter-spacing: 0px;
+}
+.output {
+  font-weight: 400;
+  letter-spacing: 0px;
+}
 figure {
+  background-color: hsl(0, 0%, 100%);
   position: relative;
 }
-figure > figcaption {
-  font-size: 12px;
-  font-style: italic;
-  text-align: center;
-  margin: 10px 0 0 0;
-}
-figure.ts-layout > .ts-toolbar {
-  background-color: #eff3f5;
-}
-figure.ts-layout > .ts-panel,
-figure.ts-layout > .ts-panels {
-  background-color: #ffffff;
-}
-figure.ts-layout > .ts-panel,
-figure.ts-layout > .ts-panels > .ts-panel {
-  padding: 0;
+figure .ts-toolbar {
+  background-color: hsl(0, 0%, 94%);
+  border-radius: 3px 3px 0 0;
+  margin: 0;
 }
 figure .output {
   padding: 20px;
 }
-figure .prism,
-figure .prism code {
-  border-radius: 3px;
+figure .tabs {
+  border-radius: 3px 3px 0 0;
+  margin: 0;
+  border: 1px solid hsl(0, 0%, 94%);
+  border-bottom: 0 none;
+  font-size: 12px;
+  text-align: right;
 }
-figure.ts-has-header .prism,
-figure.ts-has-header .prism code {
-  border-radius: 0 0 3px 3px;
+figure .tabs:empty {
+  border: 0 none;
 }
-figure .editcode {
+figure .tabs:after {
+  content: '';
+  clear: left;
+  display: block;
+  height: 0;
+}
+figure .tabs button {
+  display: inline-block;
+  padding: 5px 20px;
+  color: hsl(0, 0%, 50%);
+}
+figure .tabs button span {
+  line-height: 40px;
+}
+figure .tabs button span + svg {
+  position: relative;
+  top: 8px;
+  margin-left: 6px;
+  fill: currentColor;
+}
+figure .tabs button:hover {
+  background-color: hsla(0, 0%, 84%, 0.75);
+  cursor: pointer;
+}
+figure .tabs button.selected {
+  background-color: hsl(0, 0%, 94%);
+  color: hsl(0, 0%, 45%);
+  cursor: default;
+}
+figure .tabs button.tab {
+  float: left;
+}
+figure .tabs button.tab:first-child {
+  border-radius: 3px 0 0 0;
+}
+figure .tabs button.run {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+figure .tabs button.edit,
+figure .tabs button.revert {
+  float: left;
+}
+figure .tabs button.edit svg,
+figure .tabs button.revert svg {
+  top: 4px;
+}
+figure .tabpanels {
+  position: relative;
+}
+figure .tabpanels .ts-textarea.editcode {
   position: absolute;
   top: 0;
   right: 0;
@@ -135,28 +201,32 @@ figure .editcode {
   -ms-hyphens: none;
   hyphens: none;
   padding: 0;
-  opacity: 0;
   font-family: 'Ubuntu Mono', 'Menlo', 'Monaco', 'Consolas', 'Bitstream Vera Sans Mono', monospace;
   width: 100%;
   height: 100% !important;
   padding: 20px 0 20px 20px;
   overflow: auto;
   resize: none;
-  background-color: #ffffff;
 }
-figure .editcode:focus {
-  background-color: #fef4d7;
+figure .tabpanels .ts-textarea.editcode:focus {
+  background-color: #fdfed5;
 }
-figure.editmode .editcode,
-figure .editcode:focus {
-  opacity: 1;
+figure .tabpanels .ts-textarea.editcode:not(:focus) {
+  background-image: -webkit-linear-gradient(hsl(199, 100%, 97%) 50%, hsl(0, 0%, 100%) 50%);
+  background-image: -moz-linear-gradient(hsl(199, 100%, 97%) 50%, hsl(0, 0%, 100%) 50%);
+  background-image: -ms-linear-gradient(hsl(199, 100%, 97%) 50%, hsl(0, 0%, 100%) 50%);
+  background-image: -o-linear-gradient(hsl(199, 100%, 97%) 50%, hsl(0, 0%, 100%) 50%);
+  background-image: linear-gradient(hsl(199, 100%, 97%) 50%, hsl(0, 0%, 100%) 50%);
+  background-size: 40px 40px;
+  background-origin: content-box;
 }
 figure .message {
   position: absolute;
   top: 0;
   left: 100%;
   margin-left: 10px;
-  background-color: #fef4d7;
+  background-color: hsl(44, 98%, 93%);
+  color: hsl(44, 28%, 38%);
   padding: 5px 10px;
   white-space: nowrap;
   text-align: center;
@@ -192,7 +262,7 @@ pre.prism {
   -moz-user-select: text;
   -ms-user-select: text;
   user-select: text;
-  color: #0f151a;
+  color: hsl(204, 25%, 8%);
   direction: ltr;
   text-align: left;
   letter-spacing: 0.25px;
@@ -207,20 +277,21 @@ pre.prism {
   -ms-hyphens: none;
   hyphens: none;
   padding: 0;
-  background-image: -webkit-linear-gradient(#ffffff 50%, #f5fcff 50%);
-  background-image: -moz-linear-gradient(#ffffff 50%, #f5fcff 50%);
-  background-image: -ms-linear-gradient(#ffffff 50%, #f5fcff 50%);
-  background-image: -o-linear-gradient(#ffffff 50%, #f5fcff 50%);
-  background-image: linear-gradient(#ffffff 50%, #f5fcff 50%);
-  background-size: 40px 40px;
-  background-origin: content-box;
   overflow-y: visible;
   overflow-x: auto;
+  background-image: -webkit-linear-gradient(hsl(0, 0%, 100%) 50%, hsl(199, 100%, 97%) 50%);
+  background-image: -moz-linear-gradient(hsl(0, 0%, 100%) 50%, hsl(199, 100%, 97%) 50%);
+  background-image: -ms-linear-gradient(hsl(0, 0%, 100%) 50%, hsl(199, 100%, 97%) 50%);
+  background-image: -o-linear-gradient(hsl(0, 0%, 100%) 50%, hsl(199, 100%, 97%) 50%);
+  background-image: linear-gradient(hsl(0, 0%, 100%) 50%, hsl(199, 100%, 97%) 50%);
+  background-size: 40px 40px;
+  background-origin: content-box;
 }
 pre.prism code {
   font-size: 14px;
   display: block;
   padding: 20px;
+  padding-bottom: 0;
 }
 .token.comment,
 .token.block-comment,
@@ -294,7 +365,9 @@ pre.prism code {
 #markdown table,
 table.api {
   width: 100%;
-  background-color: #eff3f5;
+  background-color: hsl(0, 0%, 94%);
+  color: hsl(0, 0%, 30%);
+  font-weight: 300;
 }
 #markdown table code,
 table.api code {
@@ -318,10 +391,14 @@ table.api caption,
 table.api th {
   text-align: left;
 }
+#markdown table th,
+table.api th {
+  font-weight: 300;
+}
 #markdown table caption,
 table.api caption {
-  background-color: #506b77;
-  color: #ffffff;
+  background-color: hsl(0, 0%, 23%);
+  color: hsl(0, 0%, 100%);
   border-radius: 3px 3px 0 0;
 }
 #markdown table td:first-child,
@@ -331,10 +408,6 @@ table.api td:first-child {
 #markdown table td:last-child,
 table.api td:last-child {
   width: 100%;
-}
-#markdown table tr:first-child th,
-table.api tr:first-child th {
-  padding-top: 20px;
 }
 #markdown table tr:last-child td,
 table.api tr:last-child td {
@@ -346,6 +419,11 @@ table.api tbody:last-child tr:last-child td {
 }
 #markdown table {
   background: transparent;
+  font-weight: 300;
+}
+#markdown table tr {
+  border-top: 1px solid hsl(0, 0%, 94%);
+  border-bottom: 1px solid hsl(0, 0%, 94%);
 }
 #markdown table tr td,
 #markdown table tr th {
@@ -356,16 +434,16 @@ table.api tbody:last-child tr:last-child td {
 #markdown table tr td:nth-child(2),
 #markdown table tr th:nth-child(2) {
   padding: 10px;
-  border-top: 1px solid #ffffff;
-  border-bottom: 1px solid #ffffff;
+  border-top: 1px solid hsl(0, 0%, 100%);
+  border-bottom: 1px solid hsl(0, 0%, 100%);
 }
 #markdown table tr td:nth-child(1),
 #markdown table tr th:nth-child(1) {
-  background: rgba(80, 198, 16, 0.3);
+  background: hsla(99, 85%, 42%, 0.3);
 }
 #markdown table tr td:nth-child(2),
 #markdown table tr th:nth-child(2) {
-  background: rgba(189, 0, 0, 0.3);
+  background: hsla(0, 100%, 37%, 0.3);
 }
 table.api th {
   white-space: nowrap;
@@ -409,24 +487,24 @@ table.api th {
 }
 .doc-intro .box-code {
   padding-bottom: 60px;
-  background-color: rgba(0, 174, 255, 0.04);
+  background-color: hsla(199, 100%, 50%, 0.04);
 }
 .doc-intro .box-code svg rect,
 .doc-intro .box-code svg circle,
 .doc-intro .box-code svg polygon,
 .doc-intro .box-code svg path {
-  fill: #00aeff;
+  fill: hsl(199, 100%, 50%);
 }
 .doc-intro .box-design {
   padding-top: 60px;
   padding-bottom: 140px !important;
-  background-color: rgba(80, 198, 16, 0.04);
+  background-color: hsla(99, 85%, 62%, 0.04);
 }
 .doc-intro .box-design svg rect,
 .doc-intro .box-design svg circle,
 .doc-intro .box-design svg polygon,
 .doc-intro .box-design svg path {
-  fill: #8fda67;
+  fill: hsl(99, 85%, 62%);
 }
 .doc-intro .intro-box {
   padding: 40px;
@@ -492,6 +570,23 @@ table.api th {
 .ts-mobile-only section.desc {
   padding-right: 0;
 }
+.doc-tags .doc-showcase {
+  background: hsl(0, 0%, 100%);
+  padding: 20px;
+  margin-bottom: 20px;
+  overflow-x: visible;
+}
+.doc-forms-test-2 .btn-select {
+  font-family: 'Ubuntu Mono', 'Menlo', 'Monaco', 'Consolas', 'Bitstream Vera Sans Mono', monospace;
+}
+.ts-doxchrome {
+  /*
+	.ts-sidebar,
+	.ts-main {
+		top: 30px;
+	}
+	*/
+}
 .ts-doxchrome #chrome {
   position: absolute;
   top: 0;
@@ -499,8 +594,6 @@ table.api th {
   bottom: 0;
   left: 0;
   top: 30px;
-  display: flex;
-  flex-direction: row;
 }
 .ts-doxchrome #versions {
   height: 30px;
@@ -514,17 +607,8 @@ table.api th {
 .ts-doxchrome .ts-topbarspinner {
   visibility: hidden;
 }
-.ts-doxchrome .ts-sidebar .ts-toolbar {
-  background-color: #2d3c43;
-}
-.ts-doxchrome .ts-sidebar .ts-toolbar,
-.ts-doxchrome .ts-sidebar .ts-toolbar a,
-.ts-doxchrome .ts-sidebar .ts-toolbar button {
-  color: #ffffff;
-}
-.ts-doxchrome .ts-sidebar .ts-toolbar label.ts-focus,
-.ts-doxchrome .ts-sidebar .ts-toolbar label.ts-focus-on {
-  background-color: transparent;
+.ts-doxchrome .ts-sidebar {
+  z-index: 0 !important;
 }
 .ts-doxchrome .ts-sidebar .ts-toolbar-title label {
   -webkit-font-smoothing: antialiased;
@@ -534,17 +618,15 @@ table.api th {
 }
 .ts-doxchrome .ts-sidebar .ts-panel {
   padding: 0;
-  background-color: #2d3c43;
-}
-.ts-doxchrome .ts-sidebar .ts-panel.appendix {
-  background-color: #1f2a2e;
+  overflow-y: scroll;
+  background-color: hsl(0, 0%, 23%);
 }
 .ts-doxchrome .ts-sidebar .ts-panel::-webkit-scrollbar {
   width: 5px;
 }
 .ts-doxchrome .ts-sidebar .ts-panel::-webkit-scrollbar-thumb:vertical {
   margin: 5px;
-  background-color: #9ab2bc;
+  background-color: hsl(0, 0%, 59%);
   -webkit-border-radius: 5px;
 }
 .ts-doxchrome .ts-sidebar .ts-panel::-webkit-scrollbar-button:start:decrement,
@@ -554,12 +636,6 @@ table.api th {
 }
 .ts-doxchrome .ts-sidebar .ts-panel .ts-menu {
   margin: 0;
-}
-.ts-doxchrome .ts-sidebar .ts-panel:after {
-  content: '';
-}
-.ts-doxchrome .ts-sidebar:after {
-  content: none;
 }
 .ts-doxchrome.selectfirstitem .ts-sidebar > .ts-shadow {
   display: none;
@@ -571,15 +647,8 @@ table.api th {
 .ts-doxchrome .ts-main {
   overflow-x: hidden;
   overflow-y: hidden;
-  display: block;
-  min-height: 100%;
 }
 .ts-doxchrome .ts-main iframe {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
   width: 100%;
   height: 100%;
 }
@@ -590,7 +659,7 @@ table.api th {
   height: 100%;
   top: 0;
   left: 0;
-  z-index: 2998;
+  z-index: 10000;
   display: none;
 }
 .ts-doxchrome .button-menu-open {
@@ -604,8 +673,8 @@ table.api th {
   height: 60px;
   max-height: 60px;
   min-height: 60px;
-  background-color: #9ab2bc;
-  color: #ffffff;
+  background-color: hsl(0, 0%, 30%);
+  color: hsl(0, 0%, 100%);
   position: absolute;
   top: 0;
   left: 0;
@@ -613,13 +682,26 @@ table.api th {
 .ts-doxchrome .button-menu-open i:before {
   top: 50%;
 }
+.ts-mobile-only .ts-doxchrome .ts-sidebar.ts-autoclose.ts-3d {
+  transition-property: transform;
+  transition-duration: 0.2s;
+  transition-timing-function: cubic-bezier(0.23, 1, 0.32, 1);
+  transition-delay: 0s;
+  transform: translate3d(-100%, 0, 0);
+}
+.ts-mobile-only .ts-doxchrome .ts-sidebar.ts-autoclose.ts-3d.ts-open {
+  transform: translate3d(0, 0, 0);
+}
+.ts-mobile-only .ts-doxchrome .ts-sidebar.ts-autoclose.ts-2d {
+  top: 0;
+}
 .ts-engine-webkit .ts-doxchrome .ts-sidebar .ts-toolbar-title label {
   position: relative;
   top: 1px;
 }
 .ts-doxchrome .ts-menu h3 {
   margin: 0;
-  background-color: #9ab2bc;
+  background-color: hsl(0, 0%, 20%);
   padding: 5px;
   padding-left: 20px;
   font-size: 11px;
@@ -627,7 +709,7 @@ table.api th {
   -moz-osx-font-smoothing: grayscale;
   text-transform: uppercase;
   letter-spacing: 0.02em;
-  font-weight: 600;
+  font-weight: 400;
 }
 .ts-doxchrome .ts-menu i svg {
   margin-top: 0;
@@ -638,17 +720,16 @@ table.api th {
 }
 .ts-doxchrome .ts-menu > li > a {
   border-bottom: none;
-  background-color: #2d3c43;
-  color: #ffffff;
-  border-radius: 0;
+  background-color: hsl(0, 0%, 23%);
+  color: hsl(0, 0%, 100%);
 }
 .ts-doxchrome .ts-menu > li > a:hover:not(:disabled),
 .ts-doxchrome .ts-menu > li > a:focus {
-  background-color: #3f555f !important;
+  background-color: hsl(0, 0%, 23%) !important;
 }
 .ts-doxchrome .ts-menu > li > a:hover:not(:disabled):before,
 .ts-doxchrome .ts-menu > li > a:focus:before {
-  background-color: #00aeff;
+  background-color: hsl(199, 100%, 40%);
 }
 .ts-doxchrome .ts-menu > li > a > i {
   top: 33%;
@@ -660,47 +741,27 @@ table.api th {
 }
 .ts-doxchrome .ts-menu > li > a.ts-checked,
 .ts-doxchrome .ts-menu > li > a.ts-checked:hover {
-  background-color: #00aeff !important;
-  color: #ffffff;
+  background-color: hsl(199, 30%, 35%) !important;
+  color: hsl(0, 0%, 100%);
   cursor: default;
 }
-.ts-doxchrome .ts-menu > li.submenu {
-  /*
-				> .ts-shadow {
-					position: absolute;
-					height: 3px;
-					width: 100%;
-					background-image: linear-gradient(fade(red, 25%), transparent);
-					z-index: 1;
-				}
-				*/
-  /*
-				&:not(.open) {
-					a:after {
-						content: '▼';
-						position: absolute;
-						top: 0;
-						right: 0;
-						width: @ts-unit-triple;
-						height: @ts-unit-triple;
-						line-height: @ts-unit-triple; 
-						text-align: center;
-					}
-				}
-				*/
+.ts-doxchrome .ts-menu > li > a.ts-checked:before {
+  background-color: hsl(199, 100%, 40%);
 }
 .ts-doxchrome .ts-menu > li.submenu > a {
   position: relative;
   z-index: 2;
 }
-.ts-doxchrome .ts-menu > li.submenu > .ts-menu > li > a {
-  background-color: #1f2a2e;
-  position: relative;
-  z-index: 2;
+.ts-doxchrome .ts-menu > li.submenu > a:not(.ts-checked),
+.ts-doxchrome .ts-menu > li.submenu > a:not(.ts-checked):hover {
+  background-color: hsl(0, 0%, 30%) !important;
 }
-.ts-doxchrome .ts-menu > li.submenu > .ts-menu > li > a:hover:not(:disabled),
-.ts-doxchrome .ts-menu > li.submenu > .ts-menu > li > a:focus {
-  background-color: #2d3c43;
+.ts-doxchrome .ts-menu > li.submenu > .ts-shadow {
+  position: absolute;
+  height: 3px;
+  width: 100%;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.15), transparent);
+  z-index: 1;
 }
 .ts-doxchrome .ts-menu > li.submenu menu {
   width: 100%;
@@ -727,15 +788,26 @@ table.api th {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  color: #9ab2bc;
+  color: hsl(0, 0%, 89%);
   position: relative;
+  /*
+				.ts-shadow {
+					position: absolute;
+					height: 4px;
+					width: 100%;
+					bottom: 0;
+					left: 0;
+					background-image: linear-gradient(transparent, rgba(0,0,0,0.23));
+					z-index: 1;
+				}
+				*/
 }
 .ts-doxchrome .ts-menu > li.resultsbanner strong {
-  color: #ffffff;
+  color: hsl(0, 0%, 100%);
 }
 .ts-doxchrome #menucover {
   height: 0;
-  background-color: #9ab2bc;
+  background-color: hsl(0, 0%, 23%);
   top: 0;
   left: 0;
   width: 320px;
@@ -752,18 +824,11 @@ table.api th {
 .ts-loading .ts-doxchrome .button-menu-open i {
   opacity: 0;
 }
-.ts-doxchrome .ts-app {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 320px;
-}
 .ts-doxchrome .ts-cover:not(.ts-dox-blocking) {
   max-width: 320px;
 }
-.ts-doxchrome.collapse-some .ts-app,
-.ts-doxchrome.collapse-full .ts-app {
+.ts-doxchrome.collapse-some .ts-main,
+.ts-doxchrome.collapse-full .ts-main {
   transition-property: transform;
   transition-duration: 0.2s;
   transition-timing-function: cubic-bezier(0.23, 1, 0.32, 1);
@@ -773,17 +838,14 @@ table.api th {
 .ts-doxchrome.collapse-full .ts-sidebar .ts-toolbar-title label {
   display: none;
 }
-.ts-doxchrome.collapse-some .ts-app {
-  left: 60px;
-  width: calc(100% -  60px);
-  max-width: calc(100% -  60px);
-  min-width: calc(100% -  60px);
-}
 .ts-doxchrome.collapse-some:before {
   width: 60px;
 }
 .ts-doxchrome.collapse-some .ts-cover:not(.ts-dox-blocking) {
   max-width: 60px;
+}
+.ts-doxchrome.collapse-some .ts-main {
+  left: 60px;
 }
 .ts-doxchrome.collapse-some .button-menu-open {
   display: block;
@@ -799,7 +861,7 @@ table.api th {
 .ts-doxchrome.collapse-some.uncollapse .ts-topbarspinner {
   display: none;
 }
-.ts-doxchrome.collapse-some.uncollapse .ts-app {
+.ts-doxchrome.collapse-some.uncollapse .ts-main {
   transform: translate3d(260px, 0, 0);
 }
 .ts-doxchrome.collapse-some.uncollapse .ts-menu h3 {
@@ -811,32 +873,19 @@ table.api th {
 .ts-doxchrome.collapse-some:not(.uncollapse) .ts-search {
   display: none;
 }
-.ts-doxchrome.collapse-full .ts-app {
-  left: 0;
-}
 .ts-doxchrome.collapse-full:before {
   display: none;
 }
 .ts-doxchrome.collapse-full .ts-cover:not(.ts-dox-blocking) {
   display: none !important;
 }
+.ts-doxchrome.collapse-full .ts-main {
+  left: 0;
+}
 .ts-doxchrome.collapse-full .ts-topbarspinner {
   display: none;
 }
-.ts-doxchrome.collapse-full .ts-sidebar {
-  transform: translate3d(-100%, 0, 0);
-}
-.ts-doxchrome.collapse-full .ts-sidebar,
-.ts-doxchrome.collapse-full .ts-app {
-  transition-property: transform;
-  transition-duration: 0.2s;
-  transition-timing-function: cubic-bezier(0.23, 1, 0.32, 1);
-  transition-delay: 0s;
-}
-.ts-doxchrome.collapse-full.uncollapse .ts-sidebar {
-  transform: translate3d(0, 0, 0);
-}
-.ts-doxchrome.collapse-full.uncollapse .ts-app {
+.ts-doxchrome.collapse-full.uncollapse .ts-main {
   transform: translate3d(100%, 0, 0);
 }
 .ts-doxchrome.uncollapse .ts-sidebar .ts-toolbar-title label {
@@ -848,17 +897,13 @@ table.api th {
 .ts-doxchrome.uncollapse .button-menu-close {
   display: block;
 }
+html {
+  background-color: hsl(0, 0%, 94%) !important;
+}
 article {
   padding: 60px;
-  padding-top: 70px;
-  padding-bottom: 140px;
   max-width: 640px;
-}
-article > h1 {
-  display: none;
-}
-.ts-board article {
-  padding: 20px;
+  padding-bottom: 140px;
 }
 #markdown img {
   max-width: 100%;
@@ -866,6 +911,7 @@ article > h1 {
 }
 #markdown blockquote {
   border-radius: 3px 3px 0 0;
+  background: hsl(0, 0%, 94%);
   padding: 0;
   margin-bottom: 20px;
   overflow: hidden;
@@ -878,17 +924,17 @@ article > h1 {
   padding: 0 20px;
   text-transform: uppercase;
   font-size: 12px;
-  color: #ffffff;
+  color: hsl(0, 0%, 100%);
   line-height: 20px;
 }
 #markdown blockquote h4 {
-  background: rgba(80, 198, 16, 0.75);
+  background: hsla(99, 85%, 42%, 0.75);
 }
 #markdown blockquote h5 {
-  background: rgba(189, 0, 0, 0.75);
+  background: hsla(0, 100%, 37%, 0.75);
 }
 #markdown blockquote h6 {
-  background: rgba(15, 21, 26, 0.75);
+  background: hsla(204, 25%, 8%, 0.75);
 }
 #markdown blockquote p {
   margin: 0;
@@ -902,7 +948,7 @@ article > h1 {
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 .doc-responsive #breakpoints {
-  background-color: #e6ecef;
+  background-color: hsl(0, 0%, 96%);
   padding-bottom: 20px;
   border-radius: 3px;
 }
@@ -927,7 +973,8 @@ article > h1 {
   transition-duration: 0.2s;
   transition-timing-function: ease;
   transition-delay: 0s;
-  border: 1px solid #e6ecef;
+  background: hsl(0, 0%, 96%);
+  border: 1px solid hsl(0, 0%, 89%);
   padding: 20px;
   margin-bottom: 20px;
 }
@@ -935,11 +982,28 @@ article > h1 {
   max-width: 600px;
 }
 .doc-typo span.extra {
-  color: rgba(15, 21, 26, 0.5);
+  color: hsla(204, 25%, 8%, 0.5);
   margin-left: 40px;
   font-family: 'Ubuntu Mono', 'Menlo', 'Monaco', 'Consolas', 'Bitstream Vera Sans Mono', monospace;
   font-size: 14px;
   float: right;
+}
+.doc-colors-article {
+  max-width: 100%;
+}
+#doc-colors-demo td {
+  padding: 11px 22px;
+  white-space: nowrap;
+  color: hsl(204, 25%, 8%);
+}
+#doc-colors-demo td.doc-dark {
+  color: hsl(0, 0%, 100%);
+}
+#doc-colors-demo td code {
+  font-size: 12px;
+}
+#doc-colors-demo td code.color-name {
+  font-weight: 700;
 }
 /* Breakpoints .............................................................. */
 .ts-mobile-only figure .message,
@@ -994,18 +1058,24 @@ article > h1 {
 .ts-desktop-only .sticky {
   display: block;
 }
-.ts-has-header.ts-header-level-2 .sticky {
+.ts-has-toolbar-first-ts-micro .sticky {
   top: 70px;
 }
-.ts-has-header.ts-header-level-3 .sticky {
+.ts-has-toolbar-first-ts-macro .sticky,
+.ts-has-topbar .sticky {
   top: 90px;
 }
-.ts-has-header.ts-header-level-5 .sticky {
+.ts-has-toolbar-first-ts-micro.ts-has-toolbar-first-ts-macro .sticky,
+.ts-has-toolbar-first-ts-micro.ts-has-topbar .sticky {
   top: 130px;
 }
-.ts-has-header.ts-header-level-6 .sticky {
-  top: 150px;
-}
-.ts-has-header.ts-header-level-8 .sticky {
+.ts-has-toolbar-first-ts-micro.ts-has-toolbar-first-ts-macro.ts-has-topbar .sticky {
   top: 190px;
 }
+/* Not currently used!
+html.design.ts-bg-lite {
+	.ts-main {
+		background-color: @ts-white;
+	}
+}
+*/

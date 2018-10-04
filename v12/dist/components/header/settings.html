@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en-us" class="ts-docs" spellcheck="false">
+
+<head>
+    <title>Header Settings &amp; Support</title>
+    <meta name="ts-app-title" content="Header Settings &amp; Support">
+    <link rel="ts-app-icon" href="/v12/dist/assets/icon.svg">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.0.0-beta.0.min.js"></script>
+    <script src="/v12/dist/assets/dox.min.js"></script>
+    <script src="/v12/dist/assets/mark.min.js"></script>
+    <script src="/v12/dist/assets/jquery-2.2.4.min.js"></script>
+    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.0.0-beta.0.min.css">
+    <link rel="stylesheet" href="/v12/dist/assets/dox.css">
+    <link rel="prefetch" title="Header" href="index.html">
+    <link rel="prefetch" title="Tabs" href="tabs.html">
+    <link rel="prefetch" title="Buttons" href="buttons.html">
+    <link rel="prefetch" title="Search" href="search.html">
+    <link rel="prefetch" title="Navigation" href="navigation.html">
+    <link rel="prefetch" title="Settings &amp; Support" href="settings.html">
+    <script>ts.dox.tabs()</script>
+</head>
+
+<body>
+    <div data-ts="App">
+        <div data-ts="Main">
+            <div data-ts="Content">
+                <div data-ts="Panel">
+                    <article>
+                        <section>
+                            <p>We have some special buttons dedicated to global app <em>settings</em> and <em>support</em>. The buttons appear when you pass a callback to the dedicated methods.</p>
+                            <figure data-ts="DoxScript" class="attention runnable" data-ts.code="ts.ui.Header%0A%09.settingsbutton(function%20onclick()%20%7B%0A%09%09ts.ui.Notification.success(&apos;Settings&apos;)%3B%0A%09%7D)%0A%09.supportbutton(function%20onclick()%20%7B%0A%09%09ts.ui.Notification.success(&apos;Support&apos;)%3B%0A%09%7D)%3B">
+                                <script type="runnable">
+                                    ts.ui.Header
+							.settingsbutton(function onclick() {
+								ts.ui.Notification.success('Settings');
+							})
+							.supportbutton(function onclick() {
+								ts.ui.Notification.success('Support');
+							});
+					</script>
+                                <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                                <div data-ts="Panel">
+                                    <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Header
+	<span class="token punctuation">.</span><span class="token function">settingsbutton<span class="token punctuation">(</span></span><span class="token keyword">function</span> <span class="token function">onclick<span class="token punctuation">(</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Notification<span class="token punctuation">.</span><span class="token function">success<span class="token punctuation">(</span></span><span class="token string">&apos;Settings&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span><span class="token punctuation">)</span>
+	<span class="token punctuation">.</span><span class="token function">supportbutton<span class="token punctuation">(</span></span><span class="token keyword">function</span> <span class="token function">onclick<span class="token punctuation">(</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Notification<span class="token punctuation">.</span><span class="token function">success<span class="token punctuation">(</span></span><span class="token string">&apos;Support&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
+                            </figure>
+                            <p>You can make them go away by passing <code>null</code> instead.</p>
+                            <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.Header%0A%09.settingsbutton(null)%0A%09.supportbutton(null)%3B">
+                                <script type="runnable">
+                                    ts.ui.Header
+							.settingsbutton(null)
+							.supportbutton(null);
+					</script>
+                                <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                                <div data-ts="Panel">
+                                    <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Header
+	<span class="token punctuation">.</span><span class="token function">settingsbutton<span class="token punctuation">(</span></span><span class="token keyword">null</span><span class="token punctuation">)</span>
+	<span class="token punctuation">.</span><span class="token function">supportbutton<span class="token punctuation">(</span></span><span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
+                            </figure>
+                        </section>
+                        <section>
+                            <p>Here&apos; an overview of the Navigation methods.</p>
+                            <div data-ts="DoxApi" data-ts.code="%7B%0A%09name%3A%20%22ts.ui.Header%22%2C%0A%09methods%3A%20%5B%0A%09%09%7B%0A%09%09%09name%3A%20%22backbutton%22%2C%0A%09%09%09args%3A%20%22Function%7Cnull%22%2C%0A%09%09%09desc%3A%20%22Show%20the%20%60Back%60%20button%20with%20a%20callback.%20Pass%20%60null%60%20to%20hide%20the%20button%20again.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20%22forwardbutton%22%2C%0A%09%09%09args%3A%20%22Function%7Cnull%22%2C%0A%09%09%09desc%3A%20%22Show%20the%20%60Forward%60%20button%20with%20a%20callback.%20Pass%20%60null%60%20to%20hide%20the%20button.%22%0A%09%09%7D%0A%09%5D%0A%7D">
+                            </div>
+                        </section>
+                        <div data-ts="Note" class="sticky">
+                            <p>If you find a bug or need a feature&#x2026;</p>
+                            <menu data-ts="Buttons">
+                                <li>
+                                    <a data-ts="Button" target="_blank" href="https://github.com/Tradeshift/tradeshift-ui/issues/new" title="Submit new issue">
+                                        <span>Create GitHub Issue&#x2026;</span>
+                                    </a>
+                                </li>
+                            </menu>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<html lang="en-us" class="ts-docs" spellcheck="false">
+
+</html>
+
+</html>

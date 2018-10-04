@@ -16,7 +16,6 @@ $.getJSON('assets/rowdata.json', function(json) {
 		table.selectable();
 		// table.configurable(); TODO!
 		table.cols(gettablecols());
-
 		toolb.title(title).buttons([
 			{
 				label: 'Build Incrementally',

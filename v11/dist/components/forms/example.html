@@ -3,63 +3,62 @@
 
 <head>
     <title>Form Example</title>
-    <meta name="ts-app-title" content="Form Example">
-    <link rel="ts-app-icon" href="/v11/dist/assets/icon.svg">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
-    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-11.0.0-beta.11.min.js"></script>
+    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-11.0.0-alpha.2.min.js"></script>
     <script src="/v11/dist/assets/dox.min.js"></script>
     <script src="/v11/dist/assets/mark.min.js"></script>
     <script src="/v11/dist/assets/jquery-2.2.4.min.js"></script>
-    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-11.0.0-beta.11.min.css">
+    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-11.0.0-alpha.2.min.css">
     <link rel="stylesheet" href="/v11/dist/assets/dox.css">
     <link rel="prefetch" title="HTML" href="index.html">
     <link rel="prefetch" title="Disabled / Readonly" href="disabled.html">
     <link rel="prefetch" title="Custom Select" href="custom-select.html">
     <link rel="prefetch" title="Autocomplete" href="autocomplete.html">
     <link rel="prefetch" title="Error / Info" href="example.html">
-    <link rel="prefetch" title="Gallery" href="redesign.html">
     <link rel="prefetch" title="Angular Test" href="test-1.html" class="hidden">
+    <link rel="prefetch" title="Gallery" href="redesign.html">
+    <link rel="prefetch" title="JQuery Test" href="test-2.html" class="hidden">
     <script src="/v11/dist/assets/angular-1.3.6.min.js"></script>
     <script>
         function Controller($scope) {
-            $scope.model = {
-                poref: 'invalid',
-                gln: '1234567890123'
-            };
-        }
-        window.angular.module('app', []).controller('Controller', ['$scope', Controller]);
-    </script>
-    <script>
-        ts.dox.tabs()
-    </script>
+			$scope.model = {
+				poref: 'invalid',
+				gln: '1234567890123'
+			};
+		}
+		window.angular.module('app', []).controller('Controller', ['$scope', Controller]);
+	</script>
+    <script>ts.dox.tabs()</script>
 </head>
 
 <body ng-app="app" ng-controller="Controller as c">
-    <div data-ts="App">
-        <div data-ts="Main">
-            <div data-ts="Content">
-                <div data-ts="Panel">
-                    <article>
-                        <h1><span>Error/Info example</span></h1>
-                        <section class="desc">
-                            <p>
-                                Here you can see an example on how to use the error and info helpers for form fields using Angular 1 as an example framework.
-                            </p>
-                        </section>
-                        <section>
+    <header data-ts="TopBar"></header>
+    <main data-ts="Main">
+        <div data-ts="MainContent">
+            <article>
+                <h1><span>Error/Info example</span></h1>
+                <section class="desc">
+                    <p>
+                        Here you can see a full example on how to use the error and info
+                        helpers for form fields using AngularJS.
+                    </p>
+                </section>
+                <section>
+                    <figure>
+                        <div class="output">
                             <form data-ts="Form" name="form">
                                 <fieldset>
                                     <label>
-						<span>Text</span>
-						<input placeholder="Description">
-					</label>
+                                        <span>Text</span>
+                                        <input placeholder="Description">
+                                    </label>
                                 </fieldset>
                                 <fieldset>
                                     <label ng-class="{&apos;ts-error&apos;: form.poref.$invalid}">
-						<span>PO line item reference</span>
-						<input name="poref" ng-model="model.poref" pattern="[0-9]{1,4}" ng-required="">
-					</label>
+                                        <span>PO line item reference</span>
+                                        <input name="poref" ng-model="model.poref" pattern="[0-9]{1,4}" ng-required="">
+                                    </label>
                                     <dl class="ts-errors" ng-show="form.poref.$invalid">
                                         <dt>Error: PO line item reference</dt>
                                         <dd>Must be 4 numeric digits in length.</dd>
@@ -68,9 +67,9 @@
                                 </fieldset>
                                 <fieldset>
                                     <label ng-class="{&apos;ts-error&apos;: form.gln.$invalid}">
-						<span>GLN (Optional)</span>
-						<input name="gln" ng-model="model.gln" size="13" pattern="[0-9]{1,13}">
-					</label>
+                                        <span>GLN (Optional)</span>
+                                        <input name="gln" ng-model="model.gln" size="13" pattern="[0-9]{1,13}">
+                                    </label>
                                     <dl class="ts-info" ng-hide="form.gln.$invalid">
                                         <dt>Definition: GLN</dt>
                                         <dd>A GLN (Global Location Number) is a globally unique 13 digit numeric identifier that is used to access data about a location.</dd>
@@ -83,13 +82,16 @@
                                     </dl>
                                 </fieldset>
                             </form>
-                        </section>
-                        <section>
-                            <p>Here&apos;s the source for the form above:</p>
-                            <figure data-ts="DoxMarkup" data-ts.code="%3Cform%20data-ts%3D%22Form%22%20name%3D%22form%22%3E%0A%09%3Cfieldset%3E%0A%09%09%3Clabel%3E%0A%09%09%09%3Cspan%3EText%3C%2Fspan%3E%0A%09%09%09%3Cinput%20placeholder%3D%22Description%22%20%2F%3E%0A%09%09%3C%2Flabel%3E%0A%09%3C%2Ffieldset%3E%0A%09%3Cfieldset%3E%0A%09%09%3Clabel%20ng-class%3D%22%7B&apos;ts-error&apos;%3A%20form.poref.%24invalid%7D%22%3E%0A%09%09%09%3Cspan%3EPO%20line%20item%20reference%3C%2Fspan%3E%0A%09%09%09%3Cinput%20name%3D%22poref%22%20ng-model%3D%22model.poref%22%20pattern%3D%22%5B0-9%5D%7B1%2C4%7D%22%20ng-required%2F%3E%0A%09%09%3C%2Flabel%3E%0A%09%09%3Cdl%20class%3D%22ts-errors%22%20ng-show%3D%22form.poref.%24invalid%22%3E%0A%09%09%09%3Cdt%3EError%3A%20PO%20line%20item%20reference%3C%2Fdt%3E%0A%09%09%09%3Cdd%3EMust%20be%204%20numeric%20digits%20in%20length.%3C%2Fdd%3E%0A%09%09%09%3Cdd%3EMust%20be%20present%20on%20the%20related%20PO%20document.%3C%2Fdd%3E%0A%09%09%3C%2Fdl%3E%0A%09%3C%2Ffieldset%3E%0A%09%3Cfieldset%3E%0A%09%09%3Clabel%20ng-class%3D%22%7B&apos;ts-error&apos;%3A%20form.gln.%24invalid%7D%22%3E%0A%09%09%09%3Cspan%3EGLN%20(Optional)%3C%2Fspan%3E%0A%09%09%09%3Cinput%20name%3D%22gln%22%20ng-model%3D%22model.gln%22%20size%3D%2213%22%20pattern%3D%22%5B0-9%5D%7B1%2C13%7D%22%20%2F%3E%0A%09%09%3C%2Flabel%3E%0A%09%09%3Cdl%20class%3D%22ts-info%22%20ng-hide%3D%22form.gln.%24invalid%22%3E%0A%09%09%09%3Cdt%3EDefinition%3A%20GLN%3C%2Fdt%3E%0A%09%09%09%3Cdd%3EA%20GLN%20(Global%20Location%20Number)%20is%20a%20globally%20unique%2013%20digit%20numeric%20identifier%20that%20is%20used%20to%20access%20data%20about%20a%20location.%3C%2Fdd%3E%0A%09%09%09%3Cdd%3E%3Ca%20href%3D%22http%3A%2F%2Fen.wikipedia.org%2Fwiki%2FGlobal_Location_Number%22%3EMore%20information%20about%20the%20GLN%20System%3C%2Fa%3E%3C%2Fdd%3E%0A%09%09%3C%2Fdl%3E%0A%09%09%3Cdl%20class%3D%22ts-errors%22%20ng-show%3D%22form.gln.%24invalid%22%3E%0A%09%09%09%3Cdt%3EError%3A%20GLN%3C%2Fdt%3E%0A%09%09%09%3Cdd%3EMust%20be%2013%20numeric%20digits%20in%20length.%3C%2Fdd%3E%0A%09%09%09%3Cdd%3ECan%20only%20contain%20numbers.%3C%2Fdd%3E%0A%09%09%3C%2Fdl%3E%0A%09%3C%2Ffieldset%3E%0A%3C%2Fform%3E">
-                                <ul data-ts="Panels">
-                                    <li data-ts="Panel" data-ts.selected="true">
-                                        <pre class="prism language-markup"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>form</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Form<span class="token punctuation">&quot;</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>form<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+                        </div>
+                    </figure>
+                </section>
+                <section>
+                    <p>Here&apos;s the source for the form above:</p>
+                    <figure data-ts="DoxMarkup" data-ts.code="%3Cform%20data-ts%3D%22Form%22%20name%3D%22form%22%3E%0A%09%3Cfieldset%3E%0A%09%09%3Clabel%3E%0A%09%09%09%3Cspan%3EText%3C%2Fspan%3E%0A%09%09%09%3Cinput%20placeholder%3D%22Description%22%20%2F%3E%0A%09%09%3C%2Flabel%3E%0A%09%3C%2Ffieldset%3E%0A%09%3Cfieldset%3E%0A%09%09%3Clabel%20ng-class%3D%22%7B&apos;ts-error&apos;%3A%20form.poref.%24invalid%7D%22%3E%0A%09%09%09%3Cspan%3EPO%20line%20item%20reference%3C%2Fspan%3E%0A%09%09%09%3Cinput%20name%3D%22poref%22%20ng-model%3D%22model.poref%22%20pattern%3D%22%5B0-9%5D%7B1%2C4%7D%22%20ng-required%2F%3E%0A%09%09%3C%2Flabel%3E%0A%09%09%3Cdl%20class%3D%22ts-errors%22%20ng-show%3D%22form.poref.%24invalid%22%3E%0A%09%09%09%3Cdt%3EError%3A%20PO%20line%20item%20reference%3C%2Fdt%3E%0A%09%09%09%3Cdd%3EMust%20be%204%20numeric%20digits%20in%20length.%3C%2Fdd%3E%0A%09%09%09%3Cdd%3EMust%20be%20present%20on%20the%20related%20PO%20document.%3C%2Fdd%3E%0A%09%09%3C%2Fdl%3E%0A%09%3C%2Ffieldset%3E%0A%09%3Cfieldset%3E%0A%09%09%3Clabel%20ng-class%3D%22%7B&apos;ts-error&apos;%3A%20form.gln.%24invalid%7D%22%3E%0A%09%09%09%3Cspan%3EGLN%20(Optional)%3C%2Fspan%3E%0A%09%09%09%3Cinput%20name%3D%22gln%22%20ng-model%3D%22model.gln%22%20size%3D%2213%22%20pattern%3D%22%5B0-9%5D%7B1%2C13%7D%22%20%2F%3E%0A%09%09%3C%2Flabel%3E%0A%09%09%3Cdl%20class%3D%22ts-info%22%20ng-hide%3D%22form.gln.%24invalid%22%3E%0A%09%09%09%3Cdt%3EDefinition%3A%20GLN%3C%2Fdt%3E%0A%09%09%09%3Cdd%3EA%20GLN%20(Global%20Location%20Number)%20is%20a%20globally%20unique%2013%20digit%20numeric%20identifier%20that%20is%20used%20to%20access%20data%20about%20a%20location.%3C%2Fdd%3E%0A%09%09%09%3Cdd%3E%3Ca%20href%3D%22http%3A%2F%2Fen.wikipedia.org%2Fwiki%2FGlobal_Location_Number%22%3EMore%20information%20about%20the%20GLN%20System%3C%2Fa%3E%3C%2Fdd%3E%0A%09%09%3C%2Fdl%3E%0A%09%09%3Cdl%20class%3D%22ts-errors%22%20ng-show%3D%22form.gln.%24invalid%22%3E%0A%09%09%09%3Cdt%3EError%3A%20GLN%3C%2Fdt%3E%0A%09%09%09%3Cdd%3EMust%20be%2013%20numeric%20digits%20in%20length.%3C%2Fdd%3E%0A%09%09%09%3Cdd%3ECan%20only%20contain%20numbers.%3C%2Fdd%3E%0A%09%09%3C%2Fdl%3E%0A%09%3C%2Ffieldset%3E%0A%3C%2Fform%3E">
+                        <input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
+                        <div class="tabpanels">
+                            <pre class="prism language-markup">
+<code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>form</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Form<span class="token punctuation">&quot;</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>form<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>fieldset</span><span class="token punctuation">&gt;</span></span>
 		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>label</span><span class="token punctuation">&gt;</span></span>
 			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">&gt;</span></span>Text<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span>
@@ -123,26 +125,24 @@
 			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dd</span><span class="token punctuation">&gt;</span></span>Can only contain numbers.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dd</span><span class="token punctuation">&gt;</span></span>
 		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dl</span><span class="token punctuation">&gt;</span></span>
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>fieldset</span><span class="token punctuation">&gt;</span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>form</span><span class="token punctuation">&gt;</span></span></code></pre>
-                                    </li>
-                                </ul>
-                            </figure>
-                        </section>
-                        <div data-ts="Note" class="sticky">
-                            <p>If you find a bug or need a feature&#x2026;</p>
-                            <menu data-ts="Buttons">
-                                <li>
-                                    <a data-ts="Button" target="_blank" href="https://github.com/Tradeshift/tradeshift-ui/issues/new" title="Submit new issue">
-		          <span>Create GitHub Issue&#x2026;</span>
-		        </a>
-                                </li>
-                            </menu>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>form</span><span class="token punctuation">&gt;</span></span></code>
+</pre>
                         </div>
-                    </article>
-                </div>
-            </div>
+                    </figure>
+                </section>
+            </article>
         </div>
-    </div>
+    </main>
+    <aside data-ts="Note" class="sticky ts-bg-yellow">
+        <p>If you find a bug or need a feature&#x2026;</p>
+        <menu class="ts-buttons">
+            <li>
+                <a data-ts="Button" target="_blank" href="https://github.com/Tradeshift/tradeshift-ui/issues/new" title="Submit new issue" class="ts-secondary">
+                    <span>Create GitHub Issue&#x2026;</span>
+                </a>
+            </li>
+        </menu>
+    </aside>
 </body>
 
 </html>

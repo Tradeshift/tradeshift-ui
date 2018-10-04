@@ -3,15 +3,13 @@
 
 <head>
     <title>Table Sort</title>
-    <meta name="ts-app-title" content="Table Sort">
-    <link rel="ts-app-icon" href="/v11/dist/assets/icon.svg">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
-    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-11.0.0-beta.11.min.js"></script>
+    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-11.0.0-alpha.2.min.js"></script>
     <script src="/v11/dist/assets/dox.min.js"></script>
     <script src="/v11/dist/assets/mark.min.js"></script>
     <script src="/v11/dist/assets/jquery-2.2.4.min.js"></script>
-    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-11.0.0-beta.11.min.css">
+    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-11.0.0-alpha.2.min.css">
     <link rel="stylesheet" href="/v11/dist/assets/dox.css">
     <link rel="prefetch" title="Table" href="index.html">
     <link rel="prefetch" title="Build" href="building.html">
@@ -36,49 +34,55 @@
     <link rel="prefetch" title="Angular" href="angular.html" class="hidden">
     <link rel="prefetch" title="Gutter" href="gutter.html" class="hidden">
     <link rel="prefetch" title="Gallery" href="gallery.html" class="hidden">
-    <script>
-        ts.dox.tabs()
-    </script>
+    <script>ts.dox.tabs()</script>
 </head>
 
 <body class="nosticky">
-    <div data-ts="App">
-        <div data-ts="Main">
-            <div data-ts="Content">
-                <div data-ts="Panel">
-                    <article>
-                        <h1><span>Status messages</span></h1>
-                        <section>
-                            <p>We can show a message in the statusbar. The message could be something like &quot;Showing 10-20 out of 123 products&quot; or &quot;23 products selected&quot;.</p>
-                            <div class="splitscreen-container">
-                                <ul class="splitscreen">
-                                    <li>
-                                        <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.get(&apos;%23table1&apos;%2C%20function(table)%20%7B%0A%09table.status(&apos;This%20is%20the%20message.&apos;)%3B%0A%09table.rows(%5B%0A%09%09%5B1%2C%204%2C%207%5D%2C%0A%09%09%5B2%2C%205%2C%208%5D%2C%0A%09%09%5B3%2C%206%2C%209%5D%0A%09%5D)%3B%0A%7D)%3B">
-                                            <script type="runnable">
-                                                ts.ui.get('#table1', table => { table.status('This is the message.'); table.rows([ [1, 4, 7], [2, 5, 8], [3, 6, 9] ]); });
-                                            </script>
-                                            <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
-                                            <div data-ts="Panel">
-                                                <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#table1&apos;</span><span class="token punctuation">,</span> table <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+    <header data-ts="TopBar"></header>
+    <main data-ts="Main">
+        <div data-ts="MainContent">
+            <article>
+                <h1><span>Status messages</span></h1>
+                <section>
+                    <p>We can show a message in the statusbar. The message could be something like &quot;Showing 10-20 out of 123 products&quot; or &quot;23 products selected&quot;.</p>
+                    <div class="splitscreen-container">
+                        <ul class="splitscreen">
+                            <li>
+                                <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.get(&apos;%23table1&apos;%2C%20function(table)%20%7B%0A%09table.status(&apos;This%20is%20the%20message.&apos;)%3B%0A%09table.rows(%5B%0A%09%09%5B1%2C%204%2C%207%5D%2C%0A%09%09%5B2%2C%205%2C%208%5D%2C%0A%09%09%5B3%2C%206%2C%209%5D%0A%09%5D)%3B%0A%7D)%3B">
+                                    <script type="runnable">
+                                        ts.ui.get('#table1', table => {
+										table.status('This is the message.');
+										table.rows([
+											[1, 4, 7],
+											[2, 5, 8],
+											[3, 6, 9]
+										]);
+									});
+								</script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                                    <div class="tabpanels">
+                                        <pre class="prism language-javascript">
+<code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#table1&apos;</span><span class="token punctuation">,</span> table <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
 	table<span class="token punctuation">.</span><span class="token function">status<span class="token punctuation">(</span></span><span class="token string">&apos;This is the message.&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 	table<span class="token punctuation">.</span><span class="token function">rows<span class="token punctuation">(</span></span><span class="token punctuation">[</span>
 		<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">7</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
 		<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
 		<span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">,</span> <span class="token number">9</span><span class="token punctuation">]</span>
 	<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
-                                        </figure>
-                                    </li>
-                                    <li style="width:376px;">
-                                        <div data-ts="Table" id="table1" style="position: relative;"></div>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div data-ts="Note">
-                                <i class="ts-icon-todo"></i>
-                                <p>TODO: Note about markdown in the status message!</p>
-                            </div>
-                            <!--
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
+</pre>
+                                    </div>
+                                </figure>
+                            </li>
+                            <li style="width:376px;">
+                                <div data-ts="Table" id="table1" style="position: relative;"></div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div data-ts="Note">
+                        <i class="ts-icon-todo"></i>
+                        <p>TODO: Note about markdown in the status message!</p>
+                    </div>
+                    <!--
 					<p>In a small Table such as this one, which spans the width of an iPhone 6, the message will be presented on a separate line when we add more features.</p>
 					<figure data-ts="DoxScript">
 						<script type="runnable">
@@ -91,12 +95,10 @@
 					</figure>
 					<p>To avoid clipping, it is generally advised to keep the message nice and short.</p>
 					-->
-                        </section>
-                    </article>
-                </div>
-            </div>
+                </section>
+            </article>
         </div>
-    </div>
+    </main>
 </body>
 
 </html>

@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="en-us" class="ts-docs" spellcheck="false">
+
+<head>
+    <title>Form</title>
+    <meta name="ts-app-title" content="Form">
+    <link rel="ts-app-icon" href="/v12/dist/assets/icon.svg">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.0.0-beta.0.min.js"></script>
+    <script src="/v12/dist/assets/dox.min.js"></script>
+    <script src="/v12/dist/assets/mark.min.js"></script>
+    <script src="/v12/dist/assets/jquery-2.2.4.min.js"></script>
+    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.0.0-beta.0.min.css">
+    <link rel="stylesheet" href="/v12/dist/assets/dox.css">
+    <link rel="prefetch" title="HTML" href="index.html">
+    <link rel="prefetch" title="Disabled / Readonly" href="disabled.html">
+    <link rel="prefetch" title="Custom Select" href="custom-select.html">
+    <link rel="prefetch" title="Autocomplete" href="autocomplete.html">
+    <link rel="prefetch" title="Error / Info" href="example.html">
+    <link rel="prefetch" title="Gallery" href="redesign.html">
+    <link rel="prefetch" title="Angular Test" href="test-1.html" class="hidden">
+    <link rel="prefetch" title="JQuery Test" href="test-2.html" class="hidden">
+    <script>ts.dox.tabs()</script>
+</head>
+
+<body>
+    <div data-ts="App">
+        <div data-ts="Main">
+            <div data-ts="Content">
+                <div data-ts="Panel">
+                    <article>
+                        <h1><span>Form</span></h1>
+                        <section class="desc">
+                            <p>Provides styling and behavior for form controls and error messages.</p>
+                        </section>
+                        <section>
+                            <p>Assign <code class="attr-pair"><span>data-ts</span>=&quot;<span>Form</span>&quot;</code> to a <code class="el">form</code> to initialize as a Form.</p>
+                            <figure data-ts="DoxMarkup" data-ts.code="%3Cform%20data-ts%3D%22Form%22%3E%20...%20%20%3C%2Fform%3E">
+                                <script type="text/html">
+                                    <form data-ts="Form"> ...  </form>
+					</script>
+                                <ul data-ts="Panels">
+                                    <li data-ts="Panel" data-ts.selected="true">
+                                        <pre class="prism language-markup"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>form</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Form<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span> ...  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>form</span><span class="token punctuation">&gt;</span></span></code></pre>
+                                    </li>
+                                </ul>
+                            </figure>
+                            <p>Form components depend on specific internal element structure in order to initialize and style their contents. Most components adhere to this structure:</p>
+                            <figure data-ts="DoxMarkup" data-ts.code="%3Cform%20data-ts%3D%22Form%22%3E%0A%09%3Cfieldset%3E%0A%09%09%3Clabel%3E%0A%09%09%09%3Cspan%3E%20...%20%3C%2Fspan%3E%0A%09%09%09%3Cinput%2F%3E%0A%09%09%3C%2Flabel%3E%0A%09%3C%2Ffieldset%3E%0A%3C%2Fform%3E">
+                                <script type="text/html">
+                                    <form data-ts="Form">
+							<fieldset>
+								<label>
+									<span> ... </span>
+									<input/>
+								</label>
+							</fieldset>
+						</form>
+					</script>
+                                <ul data-ts="Panels">
+                                    <li data-ts="Panel" data-ts.selected="true">
+                                        <pre class="prism language-markup"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>form</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Form<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>fieldset</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>label</span><span class="token punctuation">&gt;</span></span>
+			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">&gt;</span></span> ... <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span>
+			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span><span class="token punctuation">/&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>label</span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>fieldset</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>form</span><span class="token punctuation">&gt;</span></span></code></pre>
+                                    </li>
+                                </ul>
+                            </figure>
+                            <h3><span>
+                                    <code class="el">textarea</code>
+                                </span></h3>
+                            <p>Starts out with three lines, but will expand up to ten as content is entered. The <code class="attr-pair"><span>rows</span></code> attribute can be used to adjust the initial amount of lines to show.</p>
+                            <figure data-ts="DoxMarkup" data-ts.code="%3Cform%20data-ts%3D%22Form%22%3E%0A%09%3Cfieldset%3E%0A%09%09%3Clabel%3E%0A%09%09%09%3Cspan%3ETextarea%3C%2Fspan%3E%0A%09%09%09%3Ctextarea%3E%3C%2Ftextarea%3E%0A%09%09%3C%2Flabel%3E%0A%09%3C%2Ffieldset%3E%0A%3C%2Fform%3E">
+                                <script type="text/html">
+                                    <form data-ts="Form">
+							<fieldset>
+								<label>
+									<span>Textarea</span>
+									<textarea></textarea>
+								</label>
+							</fieldset>
+						</form>
+					</script>
+                                <ul data-ts="Panels">
+                                    <li data-ts="Panel" data-ts.label="Render" data-ts.selected="true">
+                                        <div class="output">
+                                            <form data-ts="Form">
+                                                <fieldset>
+                                                    <label>
+                                                        <span>Textarea</span>
+                                                        <textarea></textarea>
+                                                    </label>
+                                                </fieldset>
+                                            </form>
+                                        </div>
+                                    </li>
+                                    <li data-ts="Panel" data-ts.label="Markup" data-ts.selected="false">
+                                        <pre class="prism language-markup"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>form</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Form<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>fieldset</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>label</span><span class="token punctuation">&gt;</span></span>
+			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">&gt;</span></span>Textarea<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span>
+			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>textarea</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>textarea</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>label</span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>fieldset</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>form</span><span class="token punctuation">&gt;</span></span></code></pre>
+                                    </li>
+                                </ul>
+                            </figure>
+                            <p>You can specify <code class="attr-pair"><span>type</span>=&quot;<span>submit</span>&quot;</code> to make the texarea submit the form on <kbd>ENTER</kbd>. In this mode, newlines may still be entered while pressing the <kbd>SHIFT</kbd> key.</p>
+                            <figure data-ts="DoxMarkup" data-ts.code="%3Cform%20data-ts%3D%22Form%22%20action%3D%22javascript%3Aalert(&apos;Form%20submitted&apos;)%22%3E%0A%09%3Cfieldset%3E%0A%09%09%3Clabel%3E%0A%09%09%09%3Cspan%3EPress%20SHIFT%20to%20ENTER%20newlines%3C%2Fspan%3E%0A%09%09%09%3Ctextarea%20rows%3D%221%22%20type%3D%22submit%22%3E%3C%2Ftextarea%3E%0A%09%09%3C%2Flabel%3E%0A%09%3C%2Ffieldset%3E%0A%3C%2Fform%3E">
+                                <script type="text/html">
+                                    <form data-ts="Form" action="javascript:alert('Form submitted')">
+							<fieldset>
+								<label>
+									<span>Press SHIFT to ENTER newlines</span>
+									<textarea rows="1" type="submit"></textarea>
+								</label>
+							</fieldset>
+						</form>
+					</script>
+                                <ul data-ts="Panels">
+                                    <li data-ts="Panel" data-ts.label="Render" data-ts.selected="true">
+                                        <div class="output">
+                                            <form data-ts="Form" action="javascript:alert(&apos;Form submitted&apos;)">
+                                                <fieldset>
+                                                    <label>
+                                                        <span>Press SHIFT to ENTER newlines</span>
+                                                        <textarea rows="1" type="submit"></textarea>
+                                                    </label>
+                                                </fieldset>
+                                            </form>
+                                        </div>
+                                    </li>
+                                    <li data-ts="Panel" data-ts.label="Markup" data-ts.selected="false">
+                                        <pre class="prism language-markup"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>form</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Form<span class="token punctuation">&quot;</span></span> <span class="token attr-name">action</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>javascript:alert(&apos;Form submitted&apos;)<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>fieldset</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>label</span><span class="token punctuation">&gt;</span></span>
+			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">&gt;</span></span>Press SHIFT to ENTER newlines<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span>
+			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>textarea</span> <span class="token attr-name">rows</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>1<span class="token punctuation">&quot;</span></span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>submit<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>textarea</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>label</span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>fieldset</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>form</span><span class="token punctuation">&gt;</span></span></code></pre>
+                                    </li>
+                                </ul>
+                            </figure>
+                            <h3><span>
+                                    <code class="el">input</code>
+                                    <code class="attr-pair"><span>type</span>=&quot;<span>text</span>&quot;</code>
+                                </span></h3>
+                            <figure data-ts="DoxMarkup" data-ts.code="%3Cform%20data-ts%3D%22Form%22%3E%0A%09%3Cfieldset%3E%0A%09%09%3Clabel%3E%0A%09%09%09%3Cspan%3EText%3C%2Fspan%3E%0A%09%09%09%3Cinput%20type%3D%22text%22%20required%2F%3E%0A%09%09%3C%2Flabel%3E%0A%09%3C%2Ffieldset%3E%0A%3C%2Fform%3E">
+                                <script type="text/html">
+                                    <form data-ts="Form">
+							<fieldset>
+								<label>
+									<span>Text</span>
+									<input type="text" required/>
+								</label>
+							</fieldset>
+						</form>
+					</script>
+                                <ul data-ts="Panels">
+                                    <li data-ts="Panel" data-ts.label="Render" data-ts.selected="true">
+                                        <div class="output">
+                                            <form data-ts="Form">
+                                                <fieldset>
+                                                    <label>
+                                                        <span>Text</span>
+                                                        <input type="text" required>
+                                                    </label>
+                                                </fieldset>
+                                            </form>
+                                        </div>
+                                    </li>
+                                    <li data-ts="Panel" data-ts.label="Markup" data-ts.selected="false">
+                                        <pre class="prism language-markup"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>form</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Form<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>fieldset</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>label</span><span class="token punctuation">&gt;</span></span>
+			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">&gt;</span></span>Text<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span>
+			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>text<span class="token punctuation">&quot;</span></span> <span class="token attr-name">required</span><span class="token punctuation">/&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>label</span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>fieldset</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>form</span><span class="token punctuation">&gt;</span></span></code></pre>
+                                    </li>
+                                </ul>
+                            </figure>
+                            <h3><span>
+                                    <code class="el">input</code>
+                                    <code class="attr-pair"><span>type</span>=&quot;<span>tel</span>&quot;</code>
+                                </span></h3>
+                            <figure data-ts="DoxMarkup" data-ts.code="%3Cform%20data-ts%3D%22Form%22%3E%0A%09%3Cfieldset%3E%0A%09%09%3Clabel%3E%0A%09%09%09%3Cspan%3ETel%3C%2Fspan%3E%0A%09%09%09%3Cinput%20type%3D%22tel%22%20required%2F%3E%0A%09%09%3C%2Flabel%3E%0A%09%3C%2Ffieldset%3E%0A%3C%2Fform%3E">
+                                <script type="text/html">
+                                    <form data-ts="Form">
+							<fieldset>
+								<label>
+									<span>Tel</span>
+									<input type="tel" required/>
+								</label>
+							</fieldset>
+						</form>
+					</script>
+                                <ul data-ts="Panels">
+                                    <li data-ts="Panel" data-ts.label="Render" data-ts.selected="true">
+                                        <div class="output">
+                                            <form data-ts="Form">
+                                                <fieldset>
+                                                    <label>
+                                                        <span>Tel</span>
+                                                        <input type="tel" required>
+                                                    </label>
+                                                </fieldset>
+                                            </form>
+                                        </div>
+                                    </li>
+                                    <li data-ts="Panel" data-ts.label="Markup" data-ts.selected="false">
+                                        <pre class="prism language-markup"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>form</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Form<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>fieldset</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>label</span><span class="token punctuation">&gt;</span></span>
+			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">&gt;</span></span>Tel<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span>
+			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>tel<span class="token punctuation">&quot;</span></span> <span class="token attr-name">required</span><span class="token punctuation">/&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>label</span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>fieldset</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>form</span><span class="token punctuation">&gt;</span></span></code></pre>
+                                    </li>
+                                </ul>
+                            </figure>
+                            <h3><span>
+                                    <code class="el">input</code>
+                                    <code class="attr-pair"><span>type</span>=&quot;<span>email</span>&quot;</code>
+                                </span></h3>
+                            <figure data-ts="DoxMarkup" data-ts.code="%3Cform%20data-ts%3D%22Form%22%3E%0A%09%3Cfieldset%3E%0A%09%09%3Clabel%3E%0A%09%09%09%3Cspan%3EEmail%3C%2Fspan%3E%0A%09%09%09%3Cinput%20type%3D%22email%22%20required%2F%3E%0A%09%09%3C%2Flabel%3E%0A%09%3C%2Ffieldset%3E%0A%3C%2Fform%3E">
+                                <script type="text/html">
+                                    <form data-ts="Form">
+							<fieldset>
+								<label>
+									<span>Email</span>
+									<input type="email" required/>
+								</label>
+							</fieldset>
+						</form>
+					</script>
+                                <ul data-ts="Panels">
+                                    <li data-ts="Panel" data-ts.label="Render" data-ts.selected="true">
+                                        <div class="output">
+                                            <form data-ts="Form">
+                                                <fieldset>
+                                                    <label>
+                                                        <span>Email</span>
+                                                        <input type="email" required>
+                                                    </label>
+                                                </fieldset>
+                                            </form>
+                                        </div>
+                                    </li>
+                                    <li data-ts="Panel" data-ts.label="Markup" data-ts.selected="false">
+                                        <pre class="prism language-markup"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>form</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Form<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>fieldset</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>label</span><span class="token punctuation">&gt;</span></span>
+			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">&gt;</span></span>Email<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span>
+			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>email<span class="token punctuation">&quot;</span></span> <span class="token attr-name">required</span><span class="token punctuation">/&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>label</span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>fieldset</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>form</span><span class="token punctuation">&gt;</span></span></code></pre>
+                                    </li>
+                                </ul>
+                            </figure>
+                            <h3><span>
+                                    <code class="el">input</code>
+                                    <code class="attr-pair"><span>type</span>=&quot;<span>number</span>&quot;</code>
+                                </span></h3>
+                            <p>
+                                Set the class <code class="attr-pair"><span>class</span>=&quot;<span>ts-right</span>&quot;</code> on the <code class="el">label</code> to make your number text align right.
+                            </p>
+                            <figure data-ts="DoxMarkup" data-ts.code="%3Cform%20data-ts%3D%22Form%22%3E%0A%09%3Cfieldset%3E%0A%09%09%3Clabel%3E%0A%09%09%09%3Cspan%3ENumber%3C%2Fspan%3E%0A%09%09%09%3Cinput%20type%3D%22number%22%2F%3E%0A%09%09%3C%2Flabel%3E%0A%09%3C%2Ffieldset%3E%0A%3C%2Fform%3E">
+                                <script type="text/html">
+                                    <form data-ts="Form">
+							<fieldset>
+								<label>
+									<span>Number</span>
+									<input type="number"/>
+								</label>
+							</fieldset>
+						</form>
+					</script>
+                                <ul data-ts="Panels">
+                                    <li data-ts="Panel" data-ts.label="Render" data-ts.selected="true">
+                                        <div class="output">
+                                            <form data-ts="Form">
+                                                <fieldset>
+                                                    <label>
+                                                        <span>Number</span>
+                                                        <input type="number">
+                                                    </label>
+                                                </fieldset>
+                                            </form>
+                                        </div>
+                                    </li>
+                                    <li data-ts="Panel" data-ts.label="Markup" data-ts.selected="false">
+                                        <pre class="prism language-markup"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>form</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Form<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>fieldset</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>label</span><span class="token punctuation">&gt;</span></span>
+			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">&gt;</span></span>Number<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span>
+			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>number<span class="token punctuation">&quot;</span></span><span class="token punctuation">/&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>label</span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>fieldset</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>form</span><span class="token punctuation">&gt;</span></span></code></pre>
+                                    </li>
+                                </ul>
+                            </figure>
+                            <h3><span>
+                                    <code class="el">input</code>
+                                    <code class="attr-pair"><span>type</span>=&quot;<span>date</span>&quot;</code>
+                                </span></h3>
+                            <figure data-ts="DoxMarkup" data-ts.code="%3Cform%20data-ts%3D%22Form%22%3E%0A%09%3Cfieldset%3E%0A%09%09%3Clabel%3E%0A%09%09%09%3Cspan%3EDate%3C%2Fspan%3E%0A%09%09%09%3Cinput%20type%3D%22date%22%0A%09%09%09%09value%3D%222015-01-01%22%0A%09%09%09%09min%3D%222014-01-01%22%0A%09%09%09%09max%3D%222016-01-01%22%2F%3E%0A%09%09%3C%2Flabel%3E%0A%09%3C%2Ffieldset%3E%0A%3C%2Fform%3E">
+                                <script type="text/html">
+                                    <form data-ts="Form">
+							<fieldset>
+								<label>
+									<span>Date</span>
+									<input type="date"
+										value="2015-01-01"
+										min="2014-01-01"
+										max="2016-01-01"/>
+								</label>
+							</fieldset>
+						</form>
+					</script>
+                                <ul data-ts="Panels">
+                                    <li data-ts="Panel" data-ts.label="Render" data-ts.selected="true">
+                                        <div class="output">
+                                            <form data-ts="Form">
+                                                <fieldset>
+                                                    <label>
+                                                        <span>Date</span>
+                                                        <input type="date" value="2015-01-01" min="2014-01-01" max="2016-01-01">
+                                                    </label>
+                                                </fieldset>
+                                            </form>
+                                        </div>
+                                    </li>
+                                    <li data-ts="Panel" data-ts.label="Markup" data-ts.selected="false">
+                                        <pre class="prism language-markup"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>form</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Form<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>fieldset</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>label</span><span class="token punctuation">&gt;</span></span>
+			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">&gt;</span></span>Date<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span>
+			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>date<span class="token punctuation">&quot;</span></span>
+				<span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>2015-01-01<span class="token punctuation">&quot;</span></span>
+				<span class="token attr-name">min</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>2014-01-01<span class="token punctuation">&quot;</span></span>
+				<span class="token attr-name">max</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>2016-01-01<span class="token punctuation">&quot;</span></span><span class="token punctuation">/&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>label</span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>fieldset</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>form</span><span class="token punctuation">&gt;</span></span></code></pre>
+                                    </li>
+                                </ul>
+                            </figure>
+                            <h3><span>
+                                    <code class="el">select</code>
+                                </span></h3>
+                            <p>
+                                The <code class="el">select</code> will open in an Aside, but you&apos;ll
+                                mantain it like a normal <code class="el">select</code>.
+                                Note that the <code class="el">select</code> only triggers a
+                                <code>change</code> event when the Aside is fully closed!
+                            </p>
+                            <p>
+                                Set the attribute <code class="attr-pair"><span>data-ts.custom</span>=&quot;<span>true</span>&quot;</code> to handle your own select event.
+                            </p>
+                            <figure data-ts="DoxMarkup" data-ts.code="%3Cform%20data-ts%3D%22Form%22%3E%0A%09%3Cfieldset%3E%0A%09%09%3Clabel%3E%0A%09%09%09%3Cspan%3ESelect%3C%2Fspan%3E%0A%09%09%09%3Cselect%3E%0A%09%09%09%09%3Coption%20value%3D%22a%22%20selected%3EOne%3C%2Foption%3E%0A%09%09%09%09%3Coption%20value%3D%22b%22%3ETwo%3C%2Foption%3E%0A%09%09%09%09%3Coption%20value%3D%22c%22%3EThree%3C%2Foption%3E%0A%09%09%09%3C%2Fselect%3E%0A%09%09%3C%2Flabel%3E%0A%09%3C%2Ffieldset%3E%0A%3C%2Fform%3E">
+                                <script type="text/html">
+                                    <form data-ts="Form">
+							<fieldset>
+								<label>
+									<span>Select</span>
+									<select>
+										<option value="a" selected>One</option>
+										<option value="b">Two</option>
+										<option value="c">Three</option>
+									</select>
+								</label>
+							</fieldset>
+						</form>
+					</script>
+                                <ul data-ts="Panels">
+                                    <li data-ts="Panel" data-ts.label="Render" data-ts.selected="true">
+                                        <div class="output">
+                                            <form data-ts="Form">
+                                                <fieldset>
+                                                    <label>
+                                                        <span>Select</span>
+                                                        <select>
+                                                            <option value="a" selected>One</option>
+                                                            <option value="b">Two</option>
+                                                            <option value="c">Three</option>
+                                                        </select>
+                                                    </label>
+                                                </fieldset>
+                                            </form>
+                                        </div>
+                                    </li>
+                                    <li data-ts="Panel" data-ts.label="Markup" data-ts.selected="false">
+                                        <pre class="prism language-markup"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>form</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Form<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>fieldset</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>label</span><span class="token punctuation">&gt;</span></span>
+			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">&gt;</span></span>Select<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span>
+			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>select</span><span class="token punctuation">&gt;</span></span>
+				<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>option</span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>a<span class="token punctuation">&quot;</span></span> <span class="token attr-name">selected</span><span class="token punctuation">&gt;</span></span>One<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>option</span><span class="token punctuation">&gt;</span></span>
+				<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>option</span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>b<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>Two<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>option</span><span class="token punctuation">&gt;</span></span>
+				<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>option</span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>c<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>Three<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>option</span><span class="token punctuation">&gt;</span></span>
+			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>select</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>label</span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>fieldset</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>form</span><span class="token punctuation">&gt;</span></span></code></pre>
+                                    </li>
+                                </ul>
+                            </figure>
+                            <p>You can configure the <code class="el">select</code> with a default placeholder in a two-step process.</p>
+                            <ul>
+                                <li>Add the <code class="attr-pair"><span>placeholder</span></code> attribute to the <code class="el">select</code></li>
+                                <li>Leave the first <code class="el">option</code> empty (no option text)</li>
+                            </ul>
+                            <figure data-ts="DoxMarkup" data-ts.code="%3Cform%20data-ts%3D%22Form%22%3E%0A%09%3Cfieldset%3E%0A%09%09%3Clabel%3E%0A%09%09%09%3Cspan%3ESelect%20with%20placeholder%3C%2Fspan%3E%0A%09%09%09%3Cselect%20placeholder%3D%22Pick%20a%20number%22%3E%0A%09%09%09%09%3Coption%3E%3C%2Foption%3E%0A%09%09%09%09%3Coption%20value%3D%225%22%3E5%3C%2Foption%3E%0A%09%09%09%09%3Coption%20value%3D%2223%22%3E23%3C%2Foption%3E%0A%09%09%09%3C%2Fselect%3E%0A%09%09%3C%2Flabel%3E%0A%09%3C%2Ffieldset%3E%0A%3C%2Fform%3E">
+                                <script type="text/html">
+                                    <form data-ts="Form">
+							<fieldset>
+								<label>
+									<span>Select with placeholder</span>
+									<select placeholder="Pick a number">
+										<option></option>
+										<option value="5">5</option>
+										<option value="23">23</option>
+									</select>
+								</label>
+							</fieldset>
+						</form>
+					</script>
+                                <ul data-ts="Panels">
+                                    <li data-ts="Panel" data-ts.label="Render" data-ts.selected="true">
+                                        <div class="output">
+                                            <form data-ts="Form">
+                                                <fieldset>
+                                                    <label>
+                                                        <span>Select with placeholder</span>
+                                                        <select placeholder="Pick a number">
+                                                            <option></option>
+                                                            <option value="5">5</option>
+                                                            <option value="23">23</option>
+                                                        </select>
+                                                    </label>
+                                                </fieldset>
+                                            </form>
+                                        </div>
+                                    </li>
+                                    <li data-ts="Panel" data-ts.label="Markup" data-ts.selected="false">
+                                        <pre class="prism language-markup"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>form</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Form<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>fieldset</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>label</span><span class="token punctuation">&gt;</span></span>
+			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">&gt;</span></span>Select with placeholder<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span>
+			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>select</span> <span class="token attr-name">placeholder</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Pick a number<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+				<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>option</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>option</span><span class="token punctuation">&gt;</span></span>
+				<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>option</span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>5<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>5<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>option</span><span class="token punctuation">&gt;</span></span>
+				<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>option</span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>23<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>23<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>option</span><span class="token punctuation">&gt;</span></span>
+			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>select</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>label</span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>fieldset</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>form</span><span class="token punctuation">&gt;</span></span></code></pre>
+                                    </li>
+                                </ul>
+                            </figure>
+                            <p>When a selection is made, the user can revert to the default (no selection) by clicking the selected option a second time. If you don&apos;t want to allow this, you should make sure to remove the empty <code class="el">option</code>.</p>
+                            <div data-ts="Note">
+                                <i class="ts-icon-info"></i>
+                                <p>This strange pattern ensures maximum compatibility with Angular 1.x, where an empty <code class="el">option</code> is automatically inserted until a selection is performed. To also allow <em>unselection</em> in Angular, you must manually create the empty <code class="el">option</code> and make sure that it is explicitly selected as default.</p>
+                            </div>
+                            <h3><span>
+                                    <code class="el">select</code>
+                                    <code class="attr-pair"><span>multiple
+                                        </span></code></span></h3>
+                            <p>The <code class="el">select</code> <code class="attr-pair"><span>multiple</span></code> only triggers a change when the <samp>Done</samp> button is pressed. You can customize the button label by adding a <code class="el">button</code> to the <code class="el">label</code> element, but note that this only configures the <em>text</em> on the button (eg. no event listeners are fired).</p>
+                            <figure data-ts="DoxMarkup" data-ts.code="%3Cform%20data-ts%3D%22Form%22%3E%0A%09%3Cfieldset%3E%0A%09%09%3Clabel%3E%0A%09%09%09%3Cspan%3ESelect%20multiple%3C%2Fspan%3E%0A%09%09%09%3Cselect%20multiple%20id%3D%22multijohn%22%3E%0A%09%09%09%09%3Coption%20value%3D%22a%22%3EOne%3C%2Foption%3E%0A%09%09%09%09%3Coption%20value%3D%22b%22%3ETwo%3C%2Foption%3E%0A%09%09%09%09%3Coption%20value%3D%22c%22%3EThree%3C%2Foption%3E%0A%09%09%09%09%3Coption%20value%3D%22d%22%3EFour%3C%2Foption%3E%0A%09%09%09%09%3Coption%20value%3D%22e%22%3EFive%3C%2Foption%3E%0A%09%09%09%3C%2Fselect%3E%0A%09%09%09%3Cbutton%3ECool%2C%20apply%20changes!%3C%2Fbutton%3E%0A%09%09%3C%2Flabel%3E%0A%09%3C%2Ffieldset%3E%0A%3C%2Fform%3E">
+                                <script type="text/html">
+                                    <form data-ts="Form">
+							<fieldset>
+								<label>
+									<span>Select multiple</span>
+									<select multiple id="multijohn">
+										<option value="a">One</option>
+										<option value="b">Two</option>
+										<option value="c">Three</option>
+										<option value="d">Four</option>
+										<option value="e">Five</option>
+									</select>
+									<button>Cool, apply changes!</button>
+								</label>
+							</fieldset>
+						</form>
+					</script>
+                                <ul data-ts="Panels">
+                                    <li data-ts="Panel" data-ts.label="Render" data-ts.selected="true">
+                                        <div class="output">
+                                            <form data-ts="Form">
+                                                <fieldset>
+                                                    <label>
+                                                        <span>Select multiple</span>
+                                                        <select multiple id="multijohn">
+                                                            <option value="a">One</option>
+                                                            <option value="b">Two</option>
+                                                            <option value="c">Three</option>
+                                                            <option value="d">Four</option>
+                                                            <option value="e">Five</option>
+                                                        </select>
+                                                        <button>Cool, apply changes!</button>
+                                                    </label>
+                                                </fieldset>
+                                            </form>
+                                        </div>
+                                    </li>
+                                    <li data-ts="Panel" data-ts.label="Markup" data-ts.selected="false">
+                                        <pre class="prism language-markup"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>form</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Form<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>fieldset</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>label</span><span class="token punctuation">&gt;</span></span>
+			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">&gt;</span></span>Select multiple<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span>
+			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>select</span> <span class="token attr-name">multiple</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>multijohn<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+				<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>option</span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>a<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>One<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>option</span><span class="token punctuation">&gt;</span></span>
+				<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>option</span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>b<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>Two<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>option</span><span class="token punctuation">&gt;</span></span>
+				<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>option</span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>c<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>Three<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>option</span><span class="token punctuation">&gt;</span></span>
+				<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>option</span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>d<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>Four<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>option</span><span class="token punctuation">&gt;</span></span>
+				<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>option</span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>e<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>Five<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>option</span><span class="token punctuation">&gt;</span></span>
+			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>select</span><span class="token punctuation">&gt;</span></span>
+			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span><span class="token punctuation">&gt;</span></span>Cool, apply changes!<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>label</span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>fieldset</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>form</span><span class="token punctuation">&gt;</span></span></code></pre>
+                                    </li>
+                                </ul>
+                            </figure>
+                            <h3><span>
+                                    <code class="el">input</code>
+                                    <code class="attr-pair"><span>type</span>=&quot;<span>radio</span>&quot;</code>
+                                </span></h3>
+                            <p>Radio element. Generally used to choose something.</p>
+                            <figure data-ts="DoxMarkup" data-ts.code="%3Cform%20data-ts%3D%22Form%22%3E%0A%09%3Cfieldset%3E%0A%09%09%3Cspan%3EChoose%20wisely%3C%2Fspan%3E%0A%09%09%3Clabel%3E%0A%09%09%09%3Cinput%20type%3D%22radio%22%20name%3D%22radio%22%20checked%2F%3E%0A%09%09%09%3Cspan%3ERed%20pill%3C%2Fspan%3E%0A%09%09%3C%2Flabel%3E%0A%09%09%3Clabel%3E%0A%09%09%09%3Cinput%20type%3D%22radio%22%20name%3D%22radio%22%2F%3E%0A%09%09%09%3Cspan%3EBlue%20pill%3C%2Fspan%3E%0A%09%09%3C%2Flabel%3E%0A%09%3C%2Ffieldset%3E%0A%3C%2Fform%3E">
+                                <script type="text/html">
+                                    <form data-ts="Form">
+							<fieldset>
+								<span>Choose wisely</span>
+								<label>
+									<input type="radio" name="radio" checked/>
+									<span>Red pill</span>
+								</label>
+								<label>
+									<input type="radio" name="radio"/>
+									<span>Blue pill</span>
+								</label>
+							</fieldset>
+						</form>
+					</script>
+                                <ul data-ts="Panels">
+                                    <li data-ts="Panel" data-ts.label="Render" data-ts.selected="true">
+                                        <div class="output">
+                                            <form data-ts="Form">
+                                                <fieldset>
+                                                    <span>Choose wisely</span>
+                                                    <label>
+                                                        <input type="radio" name="radio" checked>
+                                                        <span>Red pill</span>
+                                                    </label>
+                                                    <label>
+                                                        <input type="radio" name="radio">
+                                                        <span>Blue pill</span>
+                                                    </label>
+                                                </fieldset>
+                                            </form>
+                                        </div>
+                                    </li>
+                                    <li data-ts="Panel" data-ts.label="Markup" data-ts.selected="false">
+                                        <pre class="prism language-markup"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>form</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Form<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>fieldset</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">&gt;</span></span>Choose wisely<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>label</span><span class="token punctuation">&gt;</span></span>
+			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>radio<span class="token punctuation">&quot;</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>radio<span class="token punctuation">&quot;</span></span> <span class="token attr-name">checked</span><span class="token punctuation">/&gt;</span></span>
+			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">&gt;</span></span>Red pill<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>label</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>label</span><span class="token punctuation">&gt;</span></span>
+			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>radio<span class="token punctuation">&quot;</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>radio<span class="token punctuation">&quot;</span></span><span class="token punctuation">/&gt;</span></span>
+			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">&gt;</span></span>Blue pill<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>label</span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>fieldset</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>form</span><span class="token punctuation">&gt;</span></span></code></pre>
+                                    </li>
+                                </ul>
+                            </figure>
+                            <h3><span>
+                                    <code class="el">input</code>
+                                    <code class="attr-pair"><span>type</span>=&quot;<span>checkbox</span>&quot;</code>
+                                </span></h3>
+                            <p>Checkbox element. Generally used to indicate consent on forms.</p>
+                            <figure data-ts="DoxMarkup" data-ts.code="%3Cform%20data-ts%3D%22Form%22%3E%0A%09%3Cfieldset%3E%0A%09%09%3Cspan%3ELegally%20Binding%20Contract%3C%2Fspan%3E%0A%09%09%3Clabel%3E%0A%09%09%09%3Cinput%20type%3D%22checkbox%22%2F%3E%0A%09%09%09%3Cspan%3EI%20agree%20to%20something%3C%2Fspan%3E%0A%09%09%3C%2Flabel%3E%0A%09%09%3Clabel%3E%0A%09%09%09%3Cinput%20type%3D%22checkbox%22%20checked%2F%3E%0A%09%09%09%3Cspan%3EI%20agree%20to%20something%20(by%20default)%3C%2Fspan%3E%0A%09%09%3C%2Flabel%3E%0A%09%3C%2Ffieldset%3E%0A%3C%2Fform%3E">
+                                <script type="text/html">
+                                    <form data-ts="Form">
+							<fieldset>
+								<span>Legally Binding Contract</span>
+								<label>
+									<input type="checkbox"/>
+									<span>I agree to something</span>
+								</label>
+								<label>
+									<input type="checkbox" checked/>
+									<span>I agree to something (by default)</span>
+								</label>
+							</fieldset>
+						</form>
+					</script>
+                                <ul data-ts="Panels">
+                                    <li data-ts="Panel" data-ts.label="Render" data-ts.selected="true">
+                                        <div class="output">
+                                            <form data-ts="Form">
+                                                <fieldset>
+                                                    <span>Legally Binding Contract</span>
+                                                    <label>
+                                                        <input type="checkbox">
+                                                        <span>I agree to something</span>
+                                                    </label>
+                                                    <label>
+                                                        <input type="checkbox" checked>
+                                                        <span>I agree to something (by default)</span>
+                                                    </label>
+                                                </fieldset>
+                                            </form>
+                                        </div>
+                                    </li>
+                                    <li data-ts="Panel" data-ts.label="Markup" data-ts.selected="false">
+                                        <pre class="prism language-markup"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>form</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Form<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>fieldset</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">&gt;</span></span>Legally Binding Contract<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>label</span><span class="token punctuation">&gt;</span></span>
+			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>checkbox<span class="token punctuation">&quot;</span></span><span class="token punctuation">/&gt;</span></span>
+			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">&gt;</span></span>I agree to something<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>label</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>label</span><span class="token punctuation">&gt;</span></span>
+			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>checkbox<span class="token punctuation">&quot;</span></span> <span class="token attr-name">checked</span><span class="token punctuation">/&gt;</span></span>
+			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">&gt;</span></span>I agree to something (by default)<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>label</span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>fieldset</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>form</span><span class="token punctuation">&gt;</span></span></code></pre>
+                                    </li>
+                                </ul>
+                            </figure>
+                            <h3><span>
+                                    <code class="el">input</code>
+                                    <code class="attr-pair"><span>type</span>=&quot;<span>textbox</span>&quot;</code>
+                                    <span style="color:rgb(127,127,127);">(alternate version)</span>
+                                </span></h3>
+                            <p>We call it the <code>switch</code>. Used mainly for toggling preferences/settings. Note that <code>switch</code> differs from the <code>checkbox</code> only by the order of HTML elements.</p>
+                            <figure data-ts="DoxMarkup" data-ts.code="%3Cform%20data-ts%3D%22Form%22%3E%0A%09%3Cfieldset%3E%0A%09%09%3Cspan%3ESettings%20Page%3C%2Fspan%3E%0A%09%09%3Clabel%3E%0A%09%09%09%3Cspan%3ESecret%20Feature%3C%2Fspan%3E%0A%09%09%09%3Cinput%20type%3D%22checkbox%22%2F%3E%0A%09%09%3C%2Flabel%3E%0A%09%09%3Clabel%3E%0A%09%09%09%3Cspan%3ESecret%20Feature%20(On%20by%20default)%3C%2Fspan%3E%0A%09%09%09%3Cinput%20type%3D%22checkbox%22%20checked%2F%3E%0A%09%09%3C%2Flabel%3E%0A%09%3C%2Ffieldset%3E%0A%3C%2Fform%3E">
+                                <script type="text/html">
+                                    <form data-ts="Form">
+							<fieldset>
+								<span>Settings Page</span>
+								<label>
+									<span>Secret Feature</span>
+									<input type="checkbox"/>
+								</label>
+								<label>
+									<span>Secret Feature (On by default)</span>
+									<input type="checkbox" checked/>
+								</label>
+							</fieldset>
+						</form>
+					</script>
+                                <ul data-ts="Panels">
+                                    <li data-ts="Panel" data-ts.label="Render" data-ts.selected="true">
+                                        <div class="output">
+                                            <form data-ts="Form">
+                                                <fieldset>
+                                                    <span>Settings Page</span>
+                                                    <label>
+                                                        <span>Secret Feature</span>
+                                                        <input type="checkbox">
+                                                    </label>
+                                                    <label>
+                                                        <span>Secret Feature (On by default)</span>
+                                                        <input type="checkbox" checked>
+                                                    </label>
+                                                </fieldset>
+                                            </form>
+                                        </div>
+                                    </li>
+                                    <li data-ts="Panel" data-ts.label="Markup" data-ts.selected="false">
+                                        <pre class="prism language-markup"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>form</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Form<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>fieldset</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">&gt;</span></span>Settings Page<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>label</span><span class="token punctuation">&gt;</span></span>
+			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">&gt;</span></span>Secret Feature<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span>
+			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>checkbox<span class="token punctuation">&quot;</span></span><span class="token punctuation">/&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>label</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>label</span><span class="token punctuation">&gt;</span></span>
+			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">&gt;</span></span>Secret Feature (On by default)<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span>
+			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>checkbox<span class="token punctuation">&quot;</span></span> <span class="token attr-name">checked</span><span class="token punctuation">/&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>label</span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>fieldset</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>form</span><span class="token punctuation">&gt;</span></span></code></pre>
+                                    </li>
+                                </ul>
+                            </figure>
+                            <h2><span>Errors and info</span></h2>
+                            <p>To mark a control as invalid, simply add the class <code class="attr-value">ts-error</code> to the label.</p>
+                            <figure data-ts="DoxMarkup" data-ts.code="%3Cform%20data-ts%3D%22Form%22%3E%0A%09%3Cfieldset%3E%0A%09%09%3Clabel%20class%3D%22ts-error%22%3E%0A%09%09%09%3Cspan%3EText%3C%2Fspan%3E%0A%09%09%09%3Cinput%20type%3D%22text%22%2F%3E%0A%09%09%3C%2Flabel%3E%0A%09%3C%2Ffieldset%3E%0A%3C%2Fform%3E">
+                                <script type="text/html">
+                                    <form data-ts="Form">
+							<fieldset>
+								<label class="ts-error">
+									<span>Text</span>
+									<input type="text"/>
+								</label>
+							</fieldset>
+						</form>
+					</script>
+                                <ul data-ts="Panels">
+                                    <li data-ts="Panel" data-ts.label="Render" data-ts.selected="true">
+                                        <div class="output">
+                                            <form data-ts="Form">
+                                                <fieldset>
+                                                    <label class="ts-error">
+                                                        <span>Text</span>
+                                                        <input type="text">
+                                                    </label>
+                                                </fieldset>
+                                            </form>
+                                        </div>
+                                    </li>
+                                    <li data-ts="Panel" data-ts.label="Markup" data-ts.selected="false">
+                                        <pre class="prism language-markup"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>form</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Form<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>fieldset</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>label</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>ts-error<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">&gt;</span></span>Text<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span>
+			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>text<span class="token punctuation">&quot;</span></span><span class="token punctuation">/&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>label</span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>fieldset</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>form</span><span class="token punctuation">&gt;</span></span></code></pre>
+                                    </li>
+                                </ul>
+                            </figure>
+                            <p>To display an error message, one must mark the control as errored using the <code class="attr-value">ts-error</code> class, as well as add the error message markup to the page.</p>
+                            <figure data-ts="DoxMarkup" data-ts.code="%3Cform%20data-ts%3D%22Form%22%3E%0A%09%3Cfieldset%3E%0A%09%09%3Clabel%20class%3D%22ts-error%22%3E%0A%09%09%09%3Cspan%3EText%3C%2Fspan%3E%0A%09%09%09%3Cinput%20type%3D%22text%22%20%2F%3E%0A%09%09%3C%2Flabel%3E%0A%09%09%3Cdl%20class%3D%22ts-errors%22%3E%0A%09%09%09%3Cdt%3EText%3C%2Fdt%3E%0A%09%09%09%3Cdd%3EAn%20explanation%20of%20the%20error%20in%20question%3C%2Fdd%3E%0A%09%09%09%3Cdd%3EAnother%20explanation%20of%20the%20error%20in%20question%3C%2Fdd%3E%0A%09%09%3C%2Fdl%3E%0A%09%3C%2Ffieldset%3E%0A%3C%2Fform%3E">
+                                <ul data-ts="Panels">
+                                    <li data-ts="Panel" data-ts.label="Render" data-ts.selected="true">
+                                        <div class="output">
+                                            <form data-ts="Form">
+                                                <fieldset>
+                                                    <label class="ts-error">
+                                                        <span>Text</span>
+                                                        <input type="text">
+                                                    </label>
+                                                    <dl class="ts-errors">
+                                                        <dt>Text</dt>
+                                                        <dd>An explanation of the error in question</dd>
+                                                        <dd>Another explanation of the error in question</dd>
+                                                    </dl>
+                                                </fieldset>
+                                            </form>
+                                        </div>
+                                    </li>
+                                    <li data-ts="Panel" data-ts.label="Markup" data-ts.selected="false">
+                                        <pre class="prism language-markup"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>form</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Form<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>fieldset</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>label</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>ts-error<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">&gt;</span></span>Text<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span>
+			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>text<span class="token punctuation">&quot;</span></span> <span class="token punctuation">/&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>label</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dl</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>ts-errors<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dt</span><span class="token punctuation">&gt;</span></span>Text<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dt</span><span class="token punctuation">&gt;</span></span>
+			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dd</span><span class="token punctuation">&gt;</span></span>An explanation of the error in question<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dd</span><span class="token punctuation">&gt;</span></span>
+			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dd</span><span class="token punctuation">&gt;</span></span>Another explanation of the error in question<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dd</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dl</span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>fieldset</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>form</span><span class="token punctuation">&gt;</span></span></code></pre>
+                                    </li>
+                                </ul>
+                            </figure>
+                            <p>To display an info section, use the <code class="attr-value">ts-info</code> class.</p>
+                            <figure data-ts="DoxMarkup" data-ts.code="%3Cform%20data-ts%3D%22Form%22%3E%0A%09%3Cfieldset%3E%0A%09%09%3Clabel%3E%0A%09%09%09%3Cspan%3EText%3C%2Fspan%3E%0A%09%09%09%3Cinput%20type%3D%22text%22%20%2F%3E%0A%09%09%3C%2Flabel%3E%0A%09%09%3Cdl%20class%3D%22ts-info%22%3E%0A%09%09%09%3Cdt%3EText%3C%2Fdt%3E%0A%09%09%09%3Cdd%3EAn%20information%20about%20the%20field%3C%2Fdd%3E%0A%09%09%09%3Cdd%3EAnother%20information%20about%20the%20field%3C%2Fdd%3E%0A%09%09%3C%2Fdl%3E%0A%09%3C%2Ffieldset%3E%0A%3C%2Fform%3E">
+                                <ul data-ts="Panels">
+                                    <li data-ts="Panel" data-ts.label="Render" data-ts.selected="true">
+                                        <div class="output">
+                                            <form data-ts="Form">
+                                                <fieldset>
+                                                    <label>
+                                                        <span>Text</span>
+                                                        <input type="text">
+                                                    </label>
+                                                    <dl class="ts-info">
+                                                        <dt>Text</dt>
+                                                        <dd>An information about the field</dd>
+                                                        <dd>Another information about the field</dd>
+                                                    </dl>
+                                                </fieldset>
+                                            </form>
+                                        </div>
+                                    </li>
+                                    <li data-ts="Panel" data-ts.label="Markup" data-ts.selected="false">
+                                        <pre class="prism language-markup"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>form</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Form<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>fieldset</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>label</span><span class="token punctuation">&gt;</span></span>
+			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">&gt;</span></span>Text<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span>
+			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>text<span class="token punctuation">&quot;</span></span> <span class="token punctuation">/&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>label</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dl</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>ts-info<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dt</span><span class="token punctuation">&gt;</span></span>Text<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dt</span><span class="token punctuation">&gt;</span></span>
+			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dd</span><span class="token punctuation">&gt;</span></span>An information about the field<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dd</span><span class="token punctuation">&gt;</span></span>
+			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dd</span><span class="token punctuation">&gt;</span></span>Another information about the field<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dd</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dl</span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>fieldset</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>form</span><span class="token punctuation">&gt;</span></span></code></pre>
+                                    </li>
+                                </ul>
+                            </figure>
+                        </section>
+                        <div data-ts="Note" class="sticky">
+                            <p>If you find a bug or need a feature&#x2026;</p>
+                            <menu data-ts="Buttons">
+                                <li>
+                                    <a data-ts="Button" target="_blank" href="https://github.com/Tradeshift/tradeshift-ui/issues/new" title="Submit new issue">
+                                        <span>Create GitHub Issue&#x2026;</span>
+                                    </a>
+                                </li>
+                            </menu>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

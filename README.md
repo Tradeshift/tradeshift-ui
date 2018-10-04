@@ -78,25 +78,18 @@ Releasing can be started using one of the following commands:
 # latest: 11.0.0
 # 
 	# Bump the minor version and pre-release
-	> npm run prelease -- minor
+	> npm run prelease -- preminor --preRelease=beta
 
 # npm dist-tag ls
 # latest: 11.0.0
 # next: 11.1.0-beta.0
 
 	# Bump the major version and pre-release
-	> npm run prelease -- major
+	> npm run prelease -- premajor --preRelease=beta
 
 # npm dist-tag ls
 # latest: 11.0.0
 # next: 12.0.0-beta.0
-
-	# Bump the major version and pre-release
-	> npm run prelease -- --preRelease=rc
-
-# npm dist-tag ls
-# latest: 11.0.0
-# next: 12.0.0-rc.0
 ```
 
 Any of these commands will essentially do the following steps:

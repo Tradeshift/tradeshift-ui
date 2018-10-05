@@ -100,6 +100,18 @@ module.exports = function(grunt) {
 						dest: 'dist/cdn/ts-<%= pkg.version %>.min.css'
 					}
 				]
+			},
+			npm: {
+				files: [
+					{
+						src: 'LICENSE.md',
+						dest: 'dist/npm/LICENSE.md'
+					},
+					{
+						src: 'README.md',
+						dest: 'dist/npm/README.md'
+					}
+				]
 			}
 		},
 
@@ -476,7 +488,8 @@ module.exports = function(grunt) {
 			`tsless:dev`, // generate ts-runtime.less (needed for Docs!)
 			`copy:docs_dev` // copy ts-runtime.less over to the docs (otherwise it will fail)
 		];
-		if (out === 'cdn') {
+		if (target === 'cdn') {
+			out.push('copy:npm'); // copy LICENSE/README to npm folder
 			out.push([
 				// generate ts.js
 				`tsless:cdn`, // generate ts.less

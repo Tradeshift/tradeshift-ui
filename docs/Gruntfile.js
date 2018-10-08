@@ -318,7 +318,7 @@ module.exports = function(grunt) {
 				inline: true,
 				beautify: true,
 				attribute: 'data-ts',
-				process: function(html, source, target) {
+				process: function(html, source) {
 					var tags = grunt.template.process('<%=' + tagset + '%>');
 					return processor.process(html, tags, source);
 				}
@@ -337,7 +337,7 @@ module.exports = function(grunt) {
 			src: 'src/xhtml/index.xhtml',
 			dest: './index.html',
 			options: {
-				process: function(content, srcpath) {
+				process: function(content) {
 					var tags = grunt.template.process('<%=' + tagset + '%>');
 					var menu = grunt.file.readJSON('menu.json');
 					var svgs = grunt.file.read('src/svg/icons.svg');

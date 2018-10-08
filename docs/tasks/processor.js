@@ -490,13 +490,13 @@ function analytics($) {
 	$('body')
 		.first()
 		.append(
-			`<script async src="https://www.googletagmanager.com/gtag/js?id=UA-127106947-1"></script>
+			`<script async src="https://www.googletagmanager.com/gtag/js?id=\${gTagCode}"></script>
 			<script>
 				window.dataLayer = window.dataLayer || [];
 				function gtag() { dataLayer.push(arguments); }
 				gtag('js', new Date());
 
-				gtag('config', 'UA-127106947-1');
+				gtag('config', '\${gTagCode}');
 			</script>`
 		);
 

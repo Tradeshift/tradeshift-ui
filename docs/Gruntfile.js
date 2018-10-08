@@ -4,6 +4,7 @@ const btunneler = require('./tasks/tuneller.js');
 const bsshooter = require('./tasks/shooter.js');
 const cheerio = require('cheerio');
 const path = require('path');
+const fs = require('fs');
 const S = require('string');
 
 var stackconf = {
@@ -169,25 +170,35 @@ module.exports = function(grunt) {
 			}
 		},
 
-		less: {
-			global: {
-				files: {
-					'dist/assets/dox.css': 'src/less/ts-docs.less'
-				}
+		exec: {
+			less_global: {
+				command: './node_modules/.bin/lessc src/less/ts-docs.less dist/assets/dox.css'
 			},
-			local: {
-				options: {
-					paths: 'src/less' // not working :/
-				},
-				files: [
-					{
-						expand: true,
-						cwd: 'src/xhtml/',
-						src: ['**/*.less'],
-						dest: 'dist',
-						ext: '.css'
-					}
-				]
+			less_local: {
+				command: function() {
+					// @see https://gist.github.com/kethinov/6658166
+					const walkSync = function(dir, filelist) {
+						const files = fs.readdirSync(dir);
+						filelist = filelist || [];
+						files.forEach(function(file) {
+							if (fs.statSync(dir + file).isDirectory()) {
+								filelist = walkSync(dir + file + '/', filelist);
+							} else if (/.*\.less$/.test(file.toLowerCase())) {
+								filelist.push(dir + file);
+							}
+						});
+						return filelist;
+					};
+
+					return walkSync('src/xhtml/')
+						.map(
+							f =>
+								`./node_modules/.bin/lessc ${f} ${f
+									.replace('src/xhtml/', 'dist/')
+									.replace('.less', '.css')}`
+						)
+						.join('& ');
+				}
 			}
 		},
 
@@ -202,9 +213,14 @@ module.exports = function(grunt) {
 				tasks: ['copy:pageassets'],
 				options: { debounceDelay: 250 }
 			},
-			css: {
+			css_global: {
 				files: 'src/less/**/*.less',
-				tasks: ['less'],
+				tasks: ['exec:less_global'],
+				options: { debounceDelay: 250 }
+			},
+			css_local: {
+				files: 'src/xhtml/**/*.less',
+				tasks: ['exec:less_local'],
 				options: { debounceDelay: 250 }
 			},
 			edbml: {
@@ -214,7 +230,7 @@ module.exports = function(grunt) {
 			},
 			xhtml: {
 				files: ['src/xhtml/**/*', 'tasks/processor.js'],
-				tasks: ['copy:target_local', 'edbml:target_local', 'less:local'],
+				tasks: ['copy:target_local', 'edbml:target_local', 'exec:less_local'],
 				options: { debounceDelay: 250 }
 			},
 			json: {
@@ -495,7 +511,8 @@ module.exports = function(grunt) {
 		} else if (tags === 'target_local') {
 			out.push('concat:local');
 		}
-		out.push('less');
+		out.push('exec:less_global');
+		out.push('exec:less_local');
 		out.push('lunr');
 		return out;
 	}

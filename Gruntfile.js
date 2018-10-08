@@ -100,6 +100,18 @@ module.exports = function(grunt) {
 						dest: 'dist/cdn/ts-<%= pkg.version %>.min.css'
 					}
 				]
+			},
+			npm: {
+				files: [
+					{
+						src: 'LICENSE.md',
+						dest: 'dist/npm/LICENSE.md'
+					},
+					{
+						src: 'README.md',
+						dest: 'dist/npm/README.md'
+					}
+				]
 			}
 		},
 
@@ -238,21 +250,6 @@ module.exports = function(grunt) {
 		},
 
 		postcss: {
-			compile_less_to_css: {
-				options: {
-					// parse less
-					parser: require('postcss-less-engine').parser,
-					processors: [
-						// understand less
-						require('postcss-less-engine')({
-							relativeUrls: true,
-							cleancss: false
-						})
-					]
-				},
-				files: { 'dist/ts.css': 'src/runtime/less/build.less' }
-			},
-
 			options: {
 				processors: [
 					// add .ts-device-mouse to all rules with :hover
@@ -407,6 +404,10 @@ module.exports = function(grunt) {
 
 		// execute command line stuff
 		exec: {
+			compile_less_to_css: {
+				command: './node_modules/.bin/lessc src/runtime/less/build.less dist/ts.css',
+				stdout: 'inherit'
+			},
 			s3_upload: {
 				command: 'npm run deploy-s3',
 				stdout: 'inherit'
@@ -482,16 +483,22 @@ module.exports = function(grunt) {
 	}
 
 	function generateJsConcurrent(target = 'cdn') {
-		return [
+		const out = [
 			'edbml', // edbml -> js
-			[
-				// generate ts.js
-				`tsless:${returnDevForJasmine(target)}`, // generate ts.less
-				`copy:docs_${returnDevForJasmine(target)}` // copy ts-runtime.less over to the docs
-			],
-			'concat:spin', // generate spin.js
-			'guibundles' // generate ts-runtime-{api,gui}.js
+			`tsless:dev`, // generate ts-runtime.less (needed for Docs!)
+			`copy:docs_dev` // copy ts-runtime.less over to the docs (otherwise it will fail)
 		];
+		if (target === 'cdn') {
+			out.push('copy:npm'); // copy LICENSE/README to npm folder
+			out.push([
+				// generate ts.js
+				`tsless:cdn`, // generate ts.less
+				`copy:docs_cdn` // copy ts-runtime.less over to the docs
+			]);
+		}
+		out.push('concat:spin'); // generate spin.js
+		out.push('guibundles'); // generate ts-runtime-{api,gui}.js
+		return out;
 	}
 
 	function concatAndUglifyJs(target = 'cdn') {
@@ -499,14 +506,14 @@ module.exports = function(grunt) {
 			`concat:${returnDevForJasmine(target)}` // concat all files generated above
 		];
 		if (target === 'cdn') {
-			out.push(`uglify:${returnDevForJasmine(target)}`); // uglify
+			out.push(`uglify:cdn`); // uglify
 		}
 		return out;
 	}
 
 	function compileAndMinifyLess(target = 'cdn') {
 		let out = [
-			'postcss:compile_less_to_css' // less -> css
+			'exec:compile_less_to_css' // less -> css
 		];
 		if (target === 'cdn') {
 			out.push('postcss:generate_minified_css'); // css -> min.css
@@ -544,7 +551,7 @@ module.exports = function(grunt) {
 		let out = [];
 		if (target === 'cdn') {
 			out.push('size_report:cdn_gzip_vs_normal');
-			out.push(`size_report:${target}_loaded`);
+			out.push(`size_report:cdn_loaded`);
 		}
 		return out;
 	}

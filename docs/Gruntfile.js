@@ -336,11 +336,9 @@ module.exports = function(grunt) {
 				attribute: 'data-ts',
 				process: function(html, source) {
 					var tags = grunt.template.process('<%=' + tagset + '%>');
-					if (tagset === 'publictags') {
-						return processor.process(html, tags, source).replace('${gTagCode}', 'UA-127106947-1');
-					} else {
-						return processor.process(html, tags, source);
-					}
+					return processor
+						.process(html, tags, source)
+						.replace(/\${gTagCode}/g, tagset === 'publictags' ? 'UA-127106947-1' : '');
 				}
 			}
 		};

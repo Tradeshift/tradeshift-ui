@@ -1,9 +1,9 @@
 {
   "version": "0.0.34",
   "versions": [
-    "12.0.0-beta.0",
-    "11.0.0-alpha.2",
-    "10.1.0"
+		"10.1.0",
+		"11.0.0-alpha.2",
+    "12.0.0-beta.0"
   ],
   "devDependencies": {
     "node-static": "^0.7.10"

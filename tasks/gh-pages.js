@@ -2,10 +2,11 @@ const git = require('simple-git');
 const semv = require('semver');
 const file = require('fs');
 const path = require('path');
+const octo = require('octonode');
 const ZERO = '0.0.0';
 const USER = process.env.GH_USER_NAME;
 const PASS = process.env.GH_ACCESS_TOK;
-const REPO = 'github.com/Tradeshift/tradeshift-ui.git';
+const REPO = 'Tradeshift/tradeshift-ui';
 const forcesv = process.argv.slice(2)[0] === '-f';
 const logtask = msg => console.log(msg);
 const getjson = object => JSON.stringify(object, 0, 2);
@@ -16,6 +17,8 @@ const getfile = where => file.readFileSync(where, ncoding(true));
 const putfile = (data, where) => file.writeFileSync(where, data, ncoding());
 const getpckg = where => JSON.parse(getfile(abspath(where)));
 const setpckg = (where, object) => putfile(getjson(object), abspath(where));
+const message = ver => `Update docs for v${ver}`;
+const verhead = ver => `gh-pages-update/v${ver}`;
 
 /**
  * Confirm environment variables and clean the directory before we start.
@@ -26,6 +29,25 @@ const setpckg = (where, object) => putfile(getjson(object), abspath(where));
 		doit(function done() {
 			logtask('Cleaning up');
 			delpath('gh-pages');
+			logtask('Creating PR');
+			const ghub = octo.client(PASS);
+			const repo = ghub.repo(REPO);
+			const vers = localversion('../package.json');
+			repo.pr(
+				{
+					title: message(vers),
+					body: '@sampi @zdlm @tynandebold',
+					base: 'gh-pages',
+					head: verhead(vers)
+				},
+				function doneDone(err, pr) {
+					if (err) {
+						return logtask('Something went wrong.', getjson(err));
+					}
+					logtask('PR created');
+					logtask(pr.html_url);
+				}
+			);
 		});
 	} else {
 		USER || console.error('GH_USER_NAME missing!');
@@ -47,7 +69,7 @@ function doit(done) {
 			injectdocs('v' + parseInt(thisversion, 10));
 			var versions = updateversions('gh-pages/package.json', thatversion, thisversion);
 			updateredirect(abspath('gh-pages', 'index.html'), versions);
-			pushchanges('gh-pages', 'gh-pages-update', done);
+			pushchanges('gh-pages', thisversion, done);
 		} else {
 			logtask('ERROR: package.json version must *at least* be equal to the current version');
 			done();
@@ -61,7 +83,7 @@ function doit(done) {
  * @returns {Promise}
  */
 function clone(branch) {
-	const repo = `https://${USER}:${PASS}@${REPO}`;
+	const repo = `https://${USER}:${PASS}@github.com/${REPO}.git`;
 	const args = ['-b', 'gh-pages', '--single-branch'];
 	return new Promise(resolve => {
 		git(abspath()).clone(repo, branch, args, resolve);
@@ -118,22 +140,22 @@ function updateversions(where, source, target) {
 	pkg.versions = pkg.versions
 		.map(v => (v === source ? target : v))
 		.concat(source === ZERO ? [target] : [])
-		.sort(semv.lt);
+		.sort(semv.gt);
 	setpckg('gh-pages/package.json', pkg);
 	return pkg.versions;
 }
 
 /**
  * Make the `gh-pages` splash page `index.html` redirect 
- * to the newest version which is *not* a beta version.
+ * to the newest version which is *not* a pre-release.
  * Note that only the newest version must be marked as 
- * `beta` for this to work out, so please don't release 
- * any beta versions of the old releases from now on.
+ * pre-release for this to work out, so please don't release 
+ * any pre-release versions of the old releases from now on.
  */
 function updateredirect(where, versions) {
 	var vers = parseInt(
 		versions.reduce(function(res, ver) {
-			return res.includes('beta') ? ver : res;
+			return semv.prerelease(res) !== null ? ver : res;
 		}, versions[0]),
 		10
 	);
@@ -143,18 +165,19 @@ function updateredirect(where, versions) {
 
 /**
  * Commit everything and push to remote branch. 
- * You should now do a munual PR to `gh-pages`!
- * @param {string} source
- * @param {string} source
- * @param {Funciton} done
+ * You should now do a manual PR to `gh-pages`!
+ * @param {string} source Base Branch
+ * @param {string} version Version we're creating
+ * @param {Function} done
  */
-function pushchanges(source, target, done) {
+function pushchanges(source, version, done) {
+	const target = verhead(version);
 	logtask('Pushing', target);
 	git(abspath(source))
 		.branch([target])
 		.checkout(target)
 		.add('./*')
-		.commit('Update gh-pages')
+		.commit(message(version))
 		.push('origin', target, done);
 }
 

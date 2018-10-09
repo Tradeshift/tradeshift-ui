@@ -31,6 +31,8 @@ module.exports = {
 		$ = boilerplate($);
 		$ = chromelinks($);
 		$ = inittabs($);
+		$ = stickys($);
+		$ = analytics($);
 		$('html').addClass('ts-docs');
 		$('html').attr('spellcheck', false);
 		return publisher.publish(beautify($.html().replace(EMPTYLINE, '')));
@@ -564,5 +566,24 @@ function stickys($) {
 			</div>`
 			);
 	}
+	return $;
+}
+
+// Google Analytics ...........................................................
+
+function analytics($) {
+	$('body')
+		.first()
+		.append(
+			`<script async src="https://www.googletagmanager.com/gtag/js?id=\${gTagCode}"></script>
+			<script>
+				window.dataLayer = window.dataLayer || [];
+				function gtag() { dataLayer.push(arguments); }
+				gtag("js", new Date());
+
+				gtag("config", "\${gTagCode}");
+			</script>`
+		);
+
 	return $;
 }

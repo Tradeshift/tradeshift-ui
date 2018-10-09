@@ -220,11 +220,6 @@ module.exports = function(grunt) {
 				tasks: ['copy:pageassets'],
 				options: { debounceDelay: 250 }
 			},
-			txt: {
-				files: 'src/xhtml/**/*.txt',
-				tasks: ['copy:pageassets'],
-				options: { debounceDelay: 250 }
-			},
 			css_global: {
 				files: 'src/less/**/*.less',
 				tasks: ['exec:less_global'],
@@ -346,9 +341,11 @@ module.exports = function(grunt) {
 				inline: true,
 				beautify: true,
 				attribute: 'data-ts',
-				process: function(html, source, target) {
+				process: function(html, source) {
 					var tags = grunt.template.process('<%=' + tagset + '%>');
-					return processor.process(html, tags, source);
+					return processor
+						.process(html, tags, source)
+						.replace(/\${gTagCode}/g, tagset === 'publictags' ? 'UA-127106947-1' : '');
 				}
 			}
 		};
@@ -365,7 +362,7 @@ module.exports = function(grunt) {
 			src: 'src/xhtml/index.xhtml',
 			dest: './index.html',
 			options: {
-				process: function(content, srcpath) {
+				process: function(content) {
 					var tags = grunt.template.process('<%=' + tagset + '%>');
 					var menu = grunt.file.readJSON('menu.json');
 					var svgs = grunt.file.read('src/svg/icons.svg');

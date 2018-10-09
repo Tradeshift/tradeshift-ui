@@ -485,14 +485,16 @@ module.exports = function(grunt) {
 	function generateJsConcurrent(target = 'cdn') {
 		const out = [
 			'edbml', // edbml -> js
-			[
-				// generate ts.js
-				`tsless:${returnDevForJasmine(target)}`, // generate ts.less
-				`copy:docs_${returnDevForJasmine(target)}` // copy ts-runtime.less over to the docs
-			]
+			`tsless:dev`, // generate ts-runtime.less (needed for Docs!)
+			`copy:docs_dev` // copy ts-runtime.less over to the docs (otherwise it will fail)
 		];
 		if (target === 'cdn') {
 			out.push('copy:npm'); // copy LICENSE/README to npm folder
+			out.push([
+				// generate ts.js
+				`tsless:cdn`, // generate ts.less
+				`copy:docs_cdn` // copy ts-runtime.less over to the docs
+			]);
 		}
 		out.push('concat:spin'); // generate spin.js
 		out.push('guibundles'); // generate ts-runtime-{api,gui}.js
@@ -504,7 +506,7 @@ module.exports = function(grunt) {
 			`concat:${returnDevForJasmine(target)}` // concat all files generated above
 		];
 		if (target === 'cdn') {
-			out.push(`uglify:${returnDevForJasmine(target)}`); // uglify
+			out.push(`uglify:cdn`); // uglify
 		}
 		return out;
 	}
@@ -549,7 +551,7 @@ module.exports = function(grunt) {
 		let out = [];
 		if (target === 'cdn') {
 			out.push('size_report:cdn_gzip_vs_normal');
-			out.push(`size_report:${target}_loaded`);
+			out.push(`size_report:cdn_loaded`);
 		}
 		return out;
 	}

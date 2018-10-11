@@ -1,3 +1,5 @@
+@import '../../../less/ts-runtime.less';
+
 table {
 	width: 100%;
 	height: 100%;
@@ -6,17 +8,17 @@ table {
 th,
 td {
 	width: 100% / 7;
-	padding: 22px;
+	padding: @ts-unit;
 }
 th {
-	height: 66px;
+	height: @ts-unit-triple;
 	font-weight: normal;
 }
 td {
 	padding-top: 0;
 }
 section {
-	padding: 44px;
+	padding: @ts-unit-double;
 	margin-bottom: 0;
 }
 label {
@@ -27,9 +29,9 @@ label {
 }
 .nested {
 	position: absolute;
-	bottom: 44px;
+	bottom: @ts-unit-double;
 	.ts-bg-white {
-		padding: 11px;
+		padding: @ts-unit-half;
 		box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 	}
 }

@@ -62,7 +62,7 @@
 	&:before {
 		content: '';
 		.ts-mixin-maximize(@outset, @outset, @outset, @outset);
-		border-radius: @ts-unit + 2.5px;
+		border-radius: @ts-unit + @ts-unit-eighth;
 		border: @ts-unit-eighth solid transparent;
 	}
 	&.ts-ready:before {
@@ -82,8 +82,8 @@
 			.ts-mixin-button-text();
 		}
 		> i {
-			margin-left: -1000px;
-			margin-right: -1000px;
+			margin-left: (@ts-unit * -50);
+			margin-right: (@ts-unit * -50);
 		}
 	}
 	&.ts-action {

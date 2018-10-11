@@ -3,7 +3,7 @@
 	position: absolute;
 	box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.75);
 	&.ts-inscreen {
-		width: 480px;
+		width: (@ts-unit * 24);
 		height: @ts-width-aside;
 		left: 50%;
 		top: 20%;
@@ -55,7 +55,7 @@
 			&:after {
 				content: '';
 				top: -5px;
-				height: 5px;
+				height: @ts-unit-quarter;
 				width: 100%;
 				position: absolute;
 				pointer-events: none;

@@ -196,11 +196,11 @@
 			right: @ts-unit-half;
 			top: 50%;
 			z-index: 1;
-			margin-top: -10px;
+			margin-top: -@ts-unit-half;
 		}
 		&:after {
 			content: '';
-			border-bottom: 6px solid transparent;
+			border-bottom: (@ts-unit-quarter + 1px) solid transparent;
 			position: absolute;
 			right: 0;
 			left: 0;
@@ -527,7 +527,7 @@
 	left: 0;
 	right: 0;
 	&:not(.ts-tabbar):after {
-		height: 5px;
+		height: @ts-unit-quarter;
 		width: 100%;
 		position: absolute;
 		pointer-events: none;

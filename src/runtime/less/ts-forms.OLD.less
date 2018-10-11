@@ -54,7 +54,7 @@
 		> dt,
 		> dd {
 			position: relative;
-			padding-left: 19px;
+			padding-left: (@ts-unit - 1px);
 			&:before {
 				position: absolute;
 				content: '';
@@ -86,7 +86,7 @@
 				font-size: 35px;
 				line-height: 0;
 				position: absolute;
-				top: 9px;
+				top: (@ts-unit-half - 1px);
 				left: 3px;
 			}
 		}

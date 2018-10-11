@@ -3,7 +3,7 @@
  * @using {gui.Combo#chained} chained
  * @extends {ts.ui.Spirit}
  */
-ts.ui.SpinnerSpirit = (function using(chained) {
+ts.ui.SpinnerSpirit = (function using(chained, UNIT) {
 	return ts.ui.Spirit.extend(
 		{
 			/**
@@ -123,9 +123,9 @@ ts.ui.SpinnerSpirit = (function using(chained) {
 			defaults: function(options) {
 				var opts = {
 					lines: 12, // The number of lines to draw
-					length: 22, // The length of each line
+					length: UNIT, // The length of each line
 					width: 6, // The line thickness
-					radius: 22, // The radius of the inner circle
+					radius: UNIT, // The radius of the inner circle
 					scale: 1, // Scales overall size of the spinner
 					corners: 1, // Corner roundness (0..1)
 					color: '#555', // #rgb or #rrggbb or array of colors
@@ -166,4 +166,4 @@ ts.ui.SpinnerSpirit = (function using(chained) {
 			}
 		}
 	);
-})(gui.Combo.chained);
+})(gui.Combo.chained, ts.ui.UNIT);

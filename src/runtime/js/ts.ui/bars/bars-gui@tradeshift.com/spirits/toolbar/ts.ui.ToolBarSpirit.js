@@ -23,7 +23,9 @@ ts.ui.ToolBarSpirit = (function using(
 	SearchModel,
 	TopBar,
 	ButtonModel,
-	bgcolors
+	bgcolors,
+	UNIT,
+	UNIT_DOUBLE
 ) {
 	/*
 	 * When rendering as a statusbar, we'll split into multiple rows
@@ -770,9 +772,9 @@ ts.ui.ToolBarSpirit = (function using(
 				if (tabs && tabs.getLength()) {
 					if ((moretab = this.dom.q('.ts-tab-more', ts.ui.Spirit))) {
 						moretab.css.display = '';
-						avail = this._getavailwidth(22);
+						avail = this._getavailwidth(UNIT);
 						this._setmaxwidth(avail);
-						width = 44; // width of the more-tab button
+						width = UNIT_DOUBLE; // width of the more-tab button
 						dofit = this._toggletabs(tabs, width, avail);
 						moretab.css.display = dofit ? 'none' : '';
 						if (!dofit) {
@@ -817,7 +819,7 @@ ts.ui.ToolBarSpirit = (function using(
 			 * @param {number} avail
 			 */
 			_setmaxwidth: function(avail) {
-				var maxwidth = (avail - 95) / 2; // 88 means the width of more tab(44), two tabs of padding left and right(2 * 2 * 11) and the buffer(7)
+				var maxwidth = (avail - 87) / 2; // 87 means the width of more tab(40), two tabs of padding left and right(2 * 2 * 10) and the buffer(7)
 				this.dom.qall('.ts-tab-label').forEach(function(tab) {
 					tab.style.maxWidth = maxwidth + 'px';
 				});
@@ -921,5 +923,7 @@ ts.ui.ToolBarSpirit = (function using(
 	ts.ui.SearchModel,
 	ts.ui.TopBar,
 	ts.ui.ButtonModel,
-	ts.ui.BACKGROUND_COLORS
+	ts.ui.BACKGROUND_COLORS,
+	ts.ui.UNIT,
+	ts.ui.UNIT_DOUBLE
 );

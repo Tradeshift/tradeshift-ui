@@ -9,11 +9,11 @@
  * @extends {ts.ui.TextInputSpirit}
  * @using {gui.Type} Type
  * @using {gui.Client} Client
- * @using {number} unit
+ * @using {number} UNIT
  * @using {string} tick
  * @using {number} time
  */
-ts.ui.TextAreaSpirit = (function using(Type, Client, unit, tick, time) {
+ts.ui.TextAreaSpirit = (function using(Type, Client, UNIT, tick, time) {
 	return ts.ui.TextInputSpirit.extend(
 		{
 			/**
@@ -60,9 +60,9 @@ ts.ui.TextAreaSpirit = (function using(Type, Client, unit, tick, time) {
 					var val = att.value;
 					if (Type.isNumber(val)) {
 						// no weird Moustache template
-						this.css.minHeight = unit * val;
+						this.css.minHeight = UNIT * val;
 						if (val >= 10) {
-							this.css.maxHeight = unit * val;
+							this.css.maxHeight = UNIT * val;
 						}
 					}
 				}
@@ -147,10 +147,10 @@ ts.ui.TextAreaSpirit = (function using(Type, Client, unit, tick, time) {
 			 */
 			_autosize: function() {
 				var target,
-					padding = unit * 0.5;
+					padding = UNIT * 0.5;
 				var current = this.css.height || this.box.height;
 				this.css.height = 'auto';
-				if ((target = Math.floor(this.element.scrollHeight / unit) * unit) > 0) {
+				if ((target = Math.floor(this.element.scrollHeight / UNIT) * UNIT) > 0) {
 					this.css.height = target + padding;
 					if (current !== target) {
 						this._hotfixchrome(this.element);

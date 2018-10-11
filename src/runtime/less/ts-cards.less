@@ -8,7 +8,7 @@
 .ts-companycard.ts-details {
 	// TEMP: Companycard needs details rendering!
 	display: block;
-	max-width: 298px;
+	max-width: (@ts-width-aside - @ts-unit);
 	border: 1px solid @ts-lite;
 	background-color: @ts-white;
 	color: @ts-dark-dark;
@@ -20,7 +20,7 @@
 		top: auto;
 		background-color: @ts-lite-liter;
 		height: @ts-unit-double - 1px;
-		padding: @ts-unit-half 88px (@ts-unit-half - 1px) (@ts-unit-double - 1px);
+		padding: @ts-unit-half (@ts-unit * 4) (@ts-unit-half - 1px) (@ts-unit-double - 1px);
 	}
 	.ts-card-connection-icon {
 		width: @ts-unit-double - 1px;
@@ -64,7 +64,7 @@
 		&:first-child {
 		}
 		+ li {
-			margin-right: 88px;
+			margin-right: (@ts-unit * 4);
 		}
 		.ts-icon {
 			width: @ts-unit;
@@ -81,8 +81,8 @@
 	position: absolute;
 	right: -1px;
 	bottom: -1px;
-	width: 88px;
-	height: 88px;
+	width: (@ts-unit * 4);
+	height: (@ts-unit * 4);
 }
 .ts-companycard-logo {
 	width: 100%;

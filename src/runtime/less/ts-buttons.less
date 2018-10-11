@@ -63,7 +63,7 @@
 		content: '';
 		.ts-mixin-maximize(@outset, @outset, @outset, @outset);
 		border-radius: @ts-unit + 2.5px;
-		border: 2.75px solid transparent;
+		border: @ts-unit-eighth solid transparent;
 	}
 	&.ts-ready:before {
 		.ts-mixin-transition(border-color, @ts-transition-now);

@@ -6,17 +6,17 @@ table {
 th,
 td {
   width: 14.28571429%;
-  padding: 22px;
+  padding: 20px;
 }
 th {
-  height: 66px;
+  height: 60px;
   font-weight: normal;
 }
 td {
   padding-top: 0;
 }
 section {
-  padding: 44px;
+  padding: 40px;
   margin-bottom: 0;
 }
 label.ts-focus,
@@ -25,10 +25,10 @@ label.ts-focus-on {
 }
 .nested {
   position: absolute;
-  bottom: 44px;
+  bottom: 40px;
 }
 .nested .ts-bg-white {
-  padding: 11px;
+  padding: 10px;
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 p.todo {

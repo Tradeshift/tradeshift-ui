@@ -24,9 +24,9 @@
 }
 .ts-mobile .icons-container,
 .ts-mobile-only .icons-container {
-  padding-top: 44px;
+  padding-top: 40px;
 }
 .ts-tablet .icons-container {
   max-width: none;
-  padding: 44px 22px 88px 66px;
+  padding: 40px 20px 80px 60px;
 }

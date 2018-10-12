@@ -1,6 +1,6 @@
 table th,
 table td {
-  padding: 11px;
+  padding: 10px;
   text-align: left;
 }
 table th:nth-child(1) {

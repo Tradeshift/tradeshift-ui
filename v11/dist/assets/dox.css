@@ -449,7 +449,7 @@ table.api th {
   white-space: nowrap;
 }
 .ts-doxapi {
-  margin-bottom: 22px;
+  margin-bottom: 20px;
 }
 .ts-doxapi table.api:first-child {
   margin-top: 0;
@@ -578,14 +578,6 @@ table.api th {
 }
 .doc-forms-test-2 .btn-select {
   font-family: 'Ubuntu Mono', 'Menlo', 'Monaco', 'Consolas', 'Bitstream Vera Sans Mono', monospace;
-}
-.ts-doxchrome {
-  /*
-	.ts-sidebar,
-	.ts-main {
-		top: 30px;
-	}
-	*/
 }
 .ts-doxchrome #chrome {
   position: absolute;
@@ -816,7 +808,7 @@ table.api th {
 }
 .ts-doxchrome .ts-topbarspinner {
   z-index: 2001;
-  left: 200px;
+  left: 220px;
 }
 .ts-doxchrome .button-menu-open i {
   transition: opacity 0.2s;
@@ -992,7 +984,7 @@ article {
   max-width: 100%;
 }
 #doc-colors-demo td {
-  padding: 11px 22px;
+  padding: 10px 20px;
   white-space: nowrap;
   color: hsl(204, 25%, 8%);
 }

@@ -182,6 +182,10 @@ gui.ConfigPlugin = gui.Plugin.extend(
 			return function(json) {
 				div.setAttribute('onclick', 'this.json = ' + json);
 				div.click();
+				// IE11 on Win7 doesn't do anything when calling click()
+				if (div.json === undefined) {
+					div.onclick();
+				}
 				return div.json;
 			};
 		})(document.createElement('div')),

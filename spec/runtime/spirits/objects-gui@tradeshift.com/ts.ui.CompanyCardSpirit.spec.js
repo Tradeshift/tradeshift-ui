@@ -42,26 +42,23 @@ describe('ts.ui.CompanyCardSpirit', function likethis() {
 		});
 	});
 
-	// disable flaky test for IE machines...
-	if (!gui.Client.isExplorer && !gui.Client.isEdge) {
-		it('should generate HTML via ts.render="encodedjson"', function(done) {
-			var spirit,
-				dom = helper.createTestDom();
-			var encodedjson = encodeURIComponent(JSON.stringify(CARDDATA).trim());
-			dom.innerHTML = '<div data-ts="CompanyCard" data-ts.render="' + encodedjson + '"></div>';
-			sometime(function later() {
-				spirit = ts.ui.get(dom.querySelector('div'));
-				var html = spirit.element.innerHTML.replace(/&amp;/g, '&');
-				Object.keys(CARDDATA.data).forEach(function(key) {
-					if (key === 'connection') {
-						expect(html).toContain('Connected');
-					} else {
-						var value = CARDDATA.data[key];
-						expect(html).toContain(value);
-					}
-				});
-				done();
+	it('should generate HTML via ts.render="encodedjson"', function(done) {
+		var spirit,
+			dom = helper.createTestDom();
+		var encodedjson = encodeURIComponent(JSON.stringify(CARDDATA).trim());
+		dom.innerHTML = '<div data-ts="CompanyCard" data-ts.render="' + encodedjson + '"></div>';
+		sometime(function later() {
+			spirit = ts.ui.get(dom.querySelector('div'));
+			var html = spirit.element.innerHTML.replace(/&amp;/g, '&');
+			Object.keys(CARDDATA.data).forEach(function(key) {
+				if (key === 'connection') {
+					expect(html).toContain('Connected');
+				} else {
+					var value = CARDDATA.data[key];
+					expect(html).toContain(value);
+				}
 			});
+			done();
 		});
-	}
+	});
 });

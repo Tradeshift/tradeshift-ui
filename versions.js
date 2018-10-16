@@ -40,14 +40,24 @@ function requestJSON(url, cb) {
 function bootstrap(package, menu, frame) {
 	var current = top.location.pathname.match(/^\/v\d*\//)[0];
 	var latest = getfolder(package.versions.reduce(function(res, ver) {
-		return (res.includes('beta') || res.includes('alpha')) ? ver : res;
+		return (res.indexOf('beta') !== -1 || res.indexOf('alpha') !== -1) ? ver : res;
 	}, package.versions[0]));
-	var folders = new Map(package.versions.map(function(v) {
-		return [getfolder(v), v];
-	}));
+
+	var folders = [];
+	for (var i = 0, len = package.versions.length; i < len; i++) {
+		folders.push({
+			key: getfolder(package.versions[i]),
+			value: package.versions[i]
+		});
+	}
+
 	function update(next) {
+		var found = folders.filter(function (folder) {
+			return folder.key === next;
+		});		
+		
 		updateMenu(menu, package.versions, next);
-		updateText(next, latest, folders.get(next));
+		updateText(next, latest, found[0].value);
 	}
 	initMenu(menu, frame, update);
 	update(current);
@@ -70,7 +80,7 @@ function getfolder(version) {
  */
 function updateText(current, latest, version) {
 	var safe = current === latest;
-	var beta = (version.includes('beta') || version.includes('alpha'));
+	var beta = (version.indexOf('beta') !== -1 || version.indexOf('alpha') !== -1);	
 	document.body.className = safe 
 		? ''
 		: beta

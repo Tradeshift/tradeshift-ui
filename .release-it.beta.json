@@ -3,7 +3,8 @@
 	"verbose": true,
 	"requireCleanWorkingDir": false,
 	"preRelease": "beta",
-	"changelogCommand": "echo \"### Commits\n$(git log --pretty=format:'* %s (%h)' [REV_RANGE])\"",
+	"changelogCommand":
+		"echo \"### Commits\n$(git log --no-merges --pretty=format:'* %s (%h)' [REV_RANGE])\"",
 	"src": {
 		"commitMessage": "Pre-release v%s",
 		"tagName": "v%s",

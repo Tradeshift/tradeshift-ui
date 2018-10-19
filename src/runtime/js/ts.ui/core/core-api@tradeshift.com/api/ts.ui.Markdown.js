@@ -296,7 +296,7 @@ ts.ui.Markdown = (function using(linkparser) {
 		function parsecut(cut, idx, all) {
 			var ends = all.length - 1 === idx;
 			if (url.test(cut)) {
-				href = gethref(cut.replace(txt, ''), ends);
+				href = gethref(cut, ends);
 			}
 			var res = text && href ? donecut() : '';
 			if (txt.test(cut)) {

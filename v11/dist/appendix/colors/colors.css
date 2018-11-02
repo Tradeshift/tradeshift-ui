@@ -1,174 +1,174 @@
 .doc-ts-black {
-  color: hsl(204, 25%, 8%);
+  color: #1e1e1e;
 }
 .doc-ts-white {
-  color: hsl(0, 0%, 100%);
+  color: #ffffff;
 }
 .doc-ts-dark-liter {
-  color: hsl(0, 0%, 30%);
+  color: #494949;
 }
 .doc-ts-dark-lite {
-  color: hsl(0, 0%, 23%);
+  color: #3f3f3f;
 }
 .doc-ts-dark {
-  color: hsl(0, 0%, 20%);
+  color: #353535;
 }
 .doc-ts-dark-dark {
-  color: hsl(0, 0%, 15%);
+  color: #2b2b2b;
 }
 .doc-ts-dark-darker {
-  color: hsl(0, 0%, 10%);
+  color: #212121;
 }
 .doc-ts-medium-litest {
-  color: hsl(0, 0%, 74%);
+  color: #afafaf;
 }
 .doc-ts-medium-liter {
-  color: hsl(0, 0%, 59%);
+  color: #939393;
 }
 .doc-ts-medium-lite {
-  color: hsl(0, 0%, 53%);
+  color: #898989;
 }
 .doc-ts-medium {
-  color: hsl(0, 0%, 50%);
+  color: #7f7f7f;
 }
 .doc-ts-medium-dark {
-  color: hsl(0, 0%, 45%);
+  color: #757575;
 }
 .doc-ts-medium-darker {
-  color: hsl(0, 0%, 40%);
+  color: #6b6b6b;
 }
 .doc-ts-medium-darkest {
-  color: hsl(0, 0%, 43%);
+  color: #616161;
 }
 .doc-ts-lite-liter {
-  color: hsl(0, 0%, 96%);
+  color: #f5f5f5;
 }
 .doc-ts-lite-lite {
-  color: hsl(0, 0%, 94%);
+  color: #ebebeb;
 }
 .doc-ts-lite {
-  color: hsl(0, 0%, 89%);
+  color: #e1e1e1;
 }
 .doc-ts-lite-dark {
-  color: hsl(0, 0%, 84%);
+  color: #d7d7d7;
 }
 .doc-ts-lite-darker {
-  color: hsl(0, 0%, 79%);
+  color: #cdcdcd;
 }
 .doc-ts-green-text {
-  color: hsl(0, 0%, 100%);
+  color: #ffffff;
 }
 .doc-ts-litegreen {
-  color: hsl(99, 85%, 77%);
+  color: #b2d782;
 }
 .doc-ts-green-lite {
-  color: hsl(99, 85%, 62%);
+  color: #86c55c;
 }
 .doc-ts-green {
-  color: hsl(99, 85%, 42%);
+  color: #72b148;
 }
 .doc-ts-green-dark {
-  color: hsl(99, 85%, 32%);
+  color: #5e9d34;
 }
 .doc-ts-green-darker {
-  color: hsl(99, 85%, 27%);
+  color: #4a8920;
 }
 .doc-ts-darkgreen {
-  color: hsl(99, 85%, 17%);
+  color: #18543f;
 }
 .doc-ts-blue-text {
-  color: hsl(0, 0%, 100%);
+  color: #ffffff;
 }
 .doc-ts-blue-liter {
-  color: hsl(199, 100%, 70%);
+  color: #58b8ef;
 }
 .doc-ts-blue-lite {
-  color: hsl(199, 100%, 55%);
+  color: #2bb4fd;
 }
 .doc-ts-blue {
-  color: hsl(199, 100%, 50%);
+  color: #20a0e9;
 }
 .doc-ts-blue-dark {
-  color: hsl(199, 100%, 40%);
+  color: #0c8cd5;
 }
 .doc-ts-blue-darker {
-  color: hsl(199, 100%, 35%);
+  color: #0078c1;
 }
 .doc-ts-darkblue {
-  color: hsl(199, 50%, 25%);
+  color: #183f54;
 }
 .doc-ts-dustblue {
-  color: hsl(199, 30%, 35%);
+  color: #366375;
 }
 .doc-ts-liteblue-dark {
-  color: hsl(199, 100%, 90%);
+  color: #dcf1fd;
 }
 .doc-ts-liteblue {
-  color: hsl(199, 100%, 95%);
+  color: #ecf7fd;
 }
 .doc-ts-red-text {
-  color: hsl(0, 0%, 100%);
+  color: #ffffff;
 }
 .doc-ts-darkred-text {
-  color: hsl(0, 0%, 100%);
+  color: #ffffff;
 }
 .doc-ts-red-lite {
-  color: hsl(0, 70%, 57%);
+  color: #e70000;
 }
 .doc-ts-red {
-  color: hsl(0, 100%, 37%);
+  color: #bf0000;
 }
 .doc-ts-darkred {
-  color: hsl(0, 70%, 57%);
+  color: #e92020;
 }
 .doc-ts-red-dark {
-  color: hsl(0, 100%, 37%);
+  color: #ab0000;
 }
 .doc-ts-red-darker {
-  color: hsl(0, 100%, 27%);
+  color: #970000;
 }
 .doc-ts-darkred-lite {
-  color: hsl(0, 100%, 92%);
+  color: #f8e5e5;
 }
 .doc-ts-yellow-text {
-  color: hsl(44, 28%, 38%);
+  color: #7f7348;
 }
 .doc-ts-yellow-dark {
-  color: hsl(44, 88%, 88%);
+  color: #f4f2c9;
 }
 .doc-ts-yellow {
-  color: hsl(44, 98%, 93%);
+  color: #fdfed5;
 }
 .doc-ts-orange-text {
-  color: hsl(0, 0%, 100%);
+  color: #ffffff;
 }
 .doc-ts-orange-liter {
-  color: hsl(33, 100%, 90%);
+  color: #faecd9;
 }
 .doc-ts-orange-lite {
-  color: hsl(33, 100%, 85%);
+  color: #f5e1b8;
 }
 .doc-ts-orange {
-  color: hsl(33, 100%, 50%);
+  color: #e69900;
 }
 .doc-ts-orange-dark {
-  color: hsl(33, 100%, 40%);
+  color: #d15b00;
 }
 .doc-ts-orange-darker {
-  color: hsl(33, 100%, 15%);
+  color: #422800;
 }
 .doc-ts-purple-text {
-  color: hsl(0, 0%, 100%);
+  color: #ffffff;
 }
 .doc-ts-purple-lite {
-  color: hsl(295, 49%, 54%);
+  color: #a63ae0;
 }
 .doc-ts-purple {
-  color: hsl(295, 79%, 34%);
+  color: #9434c8;
 }
 .doc-ts-purple-dark {
-  color: hsl(295, 79%, 24%);
+  color: #802dad;
 }
 .doc-ts-purple-darker {
-  color: hsl(295, 79%, 19%);
+  color: #6c1999;
 }

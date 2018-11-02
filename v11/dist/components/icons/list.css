@@ -11,9 +11,9 @@
   font-size: 36px;
 }
 #icons tbody > tr > .ts-has-icon > .ts-table-cell {
-  height: 70px;
+  height: 77px;
   line-height: 0;
-  padding: 10px 0;
+  padding: 11px 0;
 }
 #icons tbody > tr > .ts-has-icon > .ts-table-cell i {
   top: 50%;
@@ -24,9 +24,9 @@
 }
 .ts-mobile .icons-container,
 .ts-mobile-only .icons-container {
-  padding-top: 40px;
+  padding-top: 44px;
 }
 .ts-tablet .icons-container {
   max-width: none;
-  padding: 40px 20px 80px 60px;
+  padding: 44px 22px 88px 66px;
 }

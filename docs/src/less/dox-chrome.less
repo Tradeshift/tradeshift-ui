@@ -140,6 +140,12 @@
 		i svg {
 			margin-top: 0;
 		}
+		&.ts-doxmenu > li > a {
+			background-color: @ts-dark-liter;
+			&:hover:not(:disabled) {
+				background-color: @ts-dark-liter !important;
+			}
+		}
 		> li {
 			&,
 			&:last-child {
@@ -212,6 +218,12 @@
 						position: absolute;
 						top: @ts-unit-triple;
 					}
+				}
+				> .ts-menu > li > a {
+					padding-left: @ts-unit * 2.5;
+				}
+				> .ts-menu > li > a > i {
+					padding-left: @ts-unit;
 				}
 			}
 			&.resultsbanner {

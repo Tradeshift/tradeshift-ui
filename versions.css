@@ -61,15 +61,22 @@ menu {
 	line-height: 30px;
 }
 header {
-	height: 30px;
-	line-height: 30px;
-	/*transition: background-color 0.15s;*/
-	text-align: right; 
+	-ms-flex-align: center;
+	-ms-flex-pack: justify;
+	-webkit-box-align: center;
+	-webkit-box-pack: justify;
+	align-items: center;
 	color: white;
-	padding-right: 130px;
-	padding-right: 6px;
 	cursor: pointer;
+	display: -ms-flexbox;
+	display: -webkit-box;
+	display: flex;
+	height: 40px;
+	justify-content: space-between;
+	line-height: 30px;
+	padding: 5px 11px;
 	position: relative;
+	text-align: right; 
 	z-index: 1;
 }
 header strong {
@@ -84,6 +91,12 @@ header strong:after {
 	vertical-align: middle;
 	position: relative;
 	top: -1px;
+}
+header label {
+	-webkit-font-smoothing: antialiased;
+	font-family: Tradeshifticons;
+	font-size: 36px;
+	font-weight: normal;
 }
 menu {
 	position: absolute;

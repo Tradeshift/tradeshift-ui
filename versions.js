@@ -123,7 +123,7 @@ function initMenu(menu, frame, update) {
 	function toggle() {
 		toggle.open = !toggle.open;
 		menu.style.display = toggle.open ? 'block' : 'none';
-		frame.style.height = toggle.open ? '100%' : '30px';
+		frame.style.height = toggle.open ? '100%' : '40px';
 	}
 	document.addEventListener('click', function(e) {
 		toggle();

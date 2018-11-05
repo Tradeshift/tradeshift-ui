@@ -2,7 +2,8 @@
 	"non-interactive": true,
 	"verbose": true,
 	"requireCleanWorkingDir": true,
-	"changelogCommand": "echo \"### Commits\n$(git log --pretty=format:'* %s (%h)' [REV_RANGE])\"",
+	"changelogCommand":
+		"echo \"### Commits\n$(git log --no-merges --pretty=format:'* %s (%h)' [REV_RANGE])\"",
 	"src": {
 		"commitMessage": "Release v%s",
 		"tagName": "v%s",

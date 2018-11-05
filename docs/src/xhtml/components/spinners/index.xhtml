@@ -101,12 +101,13 @@
 							<figure data-ts="DoxScript">
 								<script type="runnable">
 									ts.ui.get('#mytable', table => {
-										table.cols(['One', 'Two', 'Tree']).rows([
-											['A', 'E', 'I'],
-											['B', 'F', 'J'],
-											['C', 'G', 'K'],
-											['D', 'H', 'L']
-										]).busy();
+										table.cols(['One', 'Two', 'Three']);
+										table.rows([
+											['A', 'D', 'G'],
+											['B', 'E', 'H'],
+											['C', 'F', 'I']
+										]);
+										$('#mytable').attr('data-ts.busy', 'Loading');
 										setTimeout(function() {
 											table.done();
 										}, 1500);

@@ -5,12 +5,12 @@
 .ts-doxchrome {
 	#chrome {
 		.ts-mixin-maximize();
-		top: 30px;
 		display: flex;
 		flex-direction: row;
+		top: 40px;
 	}
 	#versions {
-		height: 30px;
+		height: 40px;
 		border: none;
 		position: absolute;
 		top: 0;
@@ -38,8 +38,7 @@
 		}
 		.ts-toolbar-title label {
 			-webkit-font-smoothing: antialiased;
-			font-family: Tradeshifticons;
-			font-size: @ts-fontsize-xxbig + 1px;
+			font-size: @ts-fontsize-big;
 			font-weight: normal;
 		}
 		.ts-panel {
@@ -148,6 +147,12 @@
 		i svg {
 			margin-top: 0;
 		}
+		&.ts-doxmenu > li > a {
+			background-color: @ts-color-slate-light;
+			&:hover:not(:disabled) {
+				background-color: @ts-color-slate-lighter;
+			}
+		}
 		> li {
 			&,
 			&:last-child {
@@ -242,6 +247,12 @@
 					}
 				}
 				*/
+				> .ts-menu > li > a {
+					padding-left: @ts-unit * 2.5;
+				}
+				> .ts-menu > li > a > i {
+					padding-left: @ts-unit;
+				}
 			}
 			&.resultsbanner {
 				height: @ts-unit-triple;

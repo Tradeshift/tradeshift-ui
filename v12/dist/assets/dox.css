@@ -501,12 +501,12 @@ table.api th {
   right: 0;
   bottom: 0;
   left: 0;
-  top: 30px;
   display: flex;
   flex-direction: row;
+  top: 40px;
 }
 .ts-doxchrome #versions {
-  height: 30px;
+  height: 40px;
   border: none;
   position: absolute;
   top: 0;
@@ -531,8 +531,7 @@ table.api th {
 }
 .ts-doxchrome .ts-sidebar .ts-toolbar-title label {
   -webkit-font-smoothing: antialiased;
-  font-family: Tradeshifticons;
-  font-size: 37px;
+  font-size: 18px;
   font-weight: normal;
 }
 .ts-doxchrome .ts-sidebar .ts-panel {
@@ -635,6 +634,12 @@ table.api th {
 .ts-doxchrome .ts-menu i svg {
   margin-top: 0;
 }
+.ts-doxchrome .ts-menu.ts-doxmenu > li > a {
+  background-color: hsl(199, 20%, 22%);
+}
+.ts-doxchrome .ts-menu.ts-doxmenu > li > a:hover:not(:disabled) {
+  background-color: hsl(199, 20%, 31%);
+}
 .ts-doxchrome .ts-menu > li > a,
 .ts-doxchrome .ts-menu > li:last-child > a {
   padding: 20px 10px 20px 30px;
@@ -721,6 +726,12 @@ table.api th {
 .ts-doxchrome .ts-menu > li.submenu.sliding menu {
   position: absolute;
   top: 60px;
+}
+.ts-doxchrome .ts-menu > li.submenu > .ts-menu > li > a {
+  padding-left: 50px;
+}
+.ts-doxchrome .ts-menu > li.submenu > .ts-menu > li > a > i {
+  padding-left: 20px;
 }
 .ts-doxchrome .ts-menu > li.resultsbanner {
   height: 60px;

@@ -3,7 +3,7 @@
  * @using {gui.Type} Type
  * @using {ts.ui.ButtonSpirit} ButtonSpirit
  */
-ts.ui.MenuSpirit = (function using(Type, ButtonSpirit) {
+ts.ui.MenuSpirit = (function using(Type, ButtonSpirit, UNIT_DOUBLE) {
 	return ts.ui.Spirit.extend(
 		{
 			/**
@@ -175,11 +175,11 @@ ts.ui.MenuSpirit = (function using(Type, ButtonSpirit) {
 			 * @returns {number} Returns the number of items to show
 			 */
 			$maxItemsCount: function(opt_elm) {
-				var itemh = 44; // HARDCODE ALERT
+				var itemh = UNIT_DOUBLE;
 				var total = opt_elm ? opt_elm.offsetHeight : window.innerHeight;
 				var avail = total / itemh;
 				return Math.ceil(avail);
 			}
 		}
 	);
-})(gui.Type, ts.ui.ButtonSpirit);
+})(gui.Type, ts.ui.ButtonSpirit, ts.ui.UNIT_DOUBLE);

@@ -3,11 +3,11 @@
 	position: absolute;
 	box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.75);
 	&.ts-inscreen {
-		width: 480px;
-		height: 320px;
+		width: (@ts-unit * 24);
+		height: @ts-width-aside;
 		left: 50%;
 		top: 20%;
-		margin-left: -220px;
+		margin-left: (@ts-unit * -10);
 		border-radius: @ts-radius;
 		> header {
 			border-radius: @ts-radius @ts-radius 0 0;
@@ -55,7 +55,7 @@
 			&:after {
 				content: '';
 				top: -5px;
-				height: 5px;
+				height: @ts-unit-quarter;
 				width: 100%;
 				position: absolute;
 				pointer-events: none;

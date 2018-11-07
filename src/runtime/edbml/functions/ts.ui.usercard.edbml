@@ -53,7 +53,7 @@
 		<p class="ts-usercard-image">
 			@src = image || null;
 			@alt = name || null;
-			@width = @height = isType('ts-details') ? 110 : 44;
+			@width = @height = isType('ts-details') ? (ts.ui.UNIT * 5) : ts.ui.UNIT_DOUBLE;
 			<img data-ts="UserImage" @src @alt @width @height/>
 		</p>
 	}

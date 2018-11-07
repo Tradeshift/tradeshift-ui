@@ -8,7 +8,7 @@
 	left: 0;
 	right: 0;
 	&:not(.ts-tabbar):after {
-		height: 4px;
+		height: (@ts-unit-quarter - 1px);
 		width: 100%;
 		position: absolute;
 		pointer-events: none;
@@ -208,10 +208,10 @@ body > .ts-panel {
 // Spinner in main .............................................................
 
 .ts-spinner-text {
-	margin-top: 65px;
+	margin-top: (@ts-unit-triple - 1px);
 	position: fixed;
 	z-index: @ts-zindex-spin;
 	width: 100%;
 	text-align: center;
-	font-size: 16px;
+	font-size: @ts-fontsize-medium;
 }

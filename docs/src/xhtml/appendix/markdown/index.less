@@ -1,18 +1,20 @@
+@import '../../../less/ts-runtime.less';
+
 article output {
 	display: block;
 	background-color: rgb(255, 255, 255);
 	border: 1px solid rgb(235, 235, 235);
-	padding: 22px 20px;
-	margin-bottom: 22px;
+	padding: @ts-unit (@ts-unit - 2px);
+	margin-bottom: @ts-unit;
 	border-radius: 2px;
 	position: relative;
 	&:before {
 		content: attr(id);
 		position: absolute;
 		text-transform: uppercase;
-		top: 11px;
-		right: 22px;
-		font-size: 11px;
+		top: @ts-unit-half;
+		right: @ts-unit;
+		font-size: @ts-fontsize-small;
 		font-weight: 600;
 		color: rgb(32, 160, 233);
 	}

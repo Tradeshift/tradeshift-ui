@@ -1,3 +1,5 @@
+@import '../../../less/ts-runtime.less';
+
 #icons {
 	-webkit-user-select: text;
 	-moz-user-select: text;
@@ -6,10 +8,10 @@
 	display: block;
 	white-space: nowrap;
 	li {
-		margin-bottom: 5.5px;
+		margin-bottom: @ts-unit-quarter;
 	}
 	button {
-		margin-right: 11px;
+		margin-right: @ts-unit-half;
 	}
 }
 
@@ -31,5 +33,5 @@
 }
 .ts-tablet article {
 	max-width: none;
-	padding: 44px 22px 88px 66px;
+	padding: @ts-unit-double @ts-unit (@ts-unit * 4) @ts-unit-triple;
 }

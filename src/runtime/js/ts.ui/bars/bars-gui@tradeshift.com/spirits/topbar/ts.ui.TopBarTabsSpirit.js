@@ -209,7 +209,7 @@ ts.ui.TopBarTabsSpirit = ts.ui.Spirit.extend({
 		value = this.isOpen ? value : 1 - value;
 		this._items.forEach(function(spirit, index) {
 			if (!spirit.life.destructed) {
-				spirit.sprite.y = 44 * value * index;
+				spirit.sprite.y = ts.ui.UNIT_DOUBLE * value * index;
 			}
 		});
 	},

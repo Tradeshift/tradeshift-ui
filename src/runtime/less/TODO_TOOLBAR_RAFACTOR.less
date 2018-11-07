@@ -187,7 +187,7 @@
 		em {
 			background-color: @ts-medium-litest;
 			color: @ts-black;
-			min-width: 22px;
+			min-width: @ts-unit;
 			text-align: center;
 			border-radius: @ts-radius;
 			font-size: @ts-fontsize-small;
@@ -196,11 +196,11 @@
 			right: @ts-unit-half;
 			top: 50%;
 			z-index: 1;
-			margin-top: 0 - 10px;
+			margin-top: -@ts-unit-half;
 		}
 		&:after {
 			content: '';
-			border-bottom: 6px solid transparent;
+			border-bottom: (@ts-unit-quarter + 1px) solid transparent;
 			position: absolute;
 			right: 0;
 			left: 0;
@@ -253,7 +253,7 @@
 		}
 		&.ts-tab-close {
 			.ts-button {
-				padding-right: 55px;
+				padding-right: (@ts-unit * 2.5);
 				.ts-close-bg {
 					width: @ts-unit-double;
 					height: @ts-unit-double;
@@ -316,7 +316,7 @@
 				.ts-button i {
 					top: @ts-unit-half;
 					&.ts-icon-add {
-						font-size: 18px;
+						font-size: @ts-fontsize-big;
 					}
 				}
 			}
@@ -527,7 +527,7 @@
 	left: 0;
 	right: 0;
 	&:not(.ts-tabbar):after {
-		height: 5px;
+		height: @ts-unit-quarter;
 		width: 100%;
 		position: absolute;
 		pointer-events: none;

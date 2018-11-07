@@ -28,7 +28,7 @@ ts.ui.TableSpirit = (function using(
 	ButtonSpirit,
 	PagerModel
 ) {
-	var UNIT = 22;
+	var UNIT = ts.ui.UNIT;
 	var UNIT_DOUBLE = UNIT * 2;
 	var ICON_OFF = 'ts-icon-checkbox';
 	var CLASS_TEXTAREA = 'ts-table-input';
@@ -2006,8 +2006,8 @@ ts.ui.TableSpirit = (function using(
 			if (rect.height >= TABLE_MIN_HEIGHT) {
 				opts.top = '116px';
 			} else {
-				opts.length = 22 * rect.height / TABLE_MIN_HEIGHT; // shrink the spinner
-				opts.radius = 22 * rect.height / TABLE_MIN_HEIGHT;
+				opts.length = ts.ui.UNIT * rect.height / TABLE_MIN_HEIGHT; // shrink the spinner
+				opts.radius = ts.ui.UNIT * rect.height / TABLE_MIN_HEIGHT;
 				opts.width = 6 * rect.height / TABLE_MIN_HEIGHT;
 			}
 			if (opts.message) {

@@ -433,7 +433,7 @@ ts.ui.FooterBarSpirit = (function using(
 		},
 
 		/**
-		 * Compute the total height of bars measured in units (currently at `22px`).
+		 * Compute the total height of bars measured in units (currently at `20px`).
 		 * @param {Array<ts.ui.ToolBarSpirit>} bars
 		 * @returns {number};
 		 */

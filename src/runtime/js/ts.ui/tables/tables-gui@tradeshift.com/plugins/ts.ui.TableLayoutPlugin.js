@@ -4,9 +4,7 @@
  * @using {gui.Client} Client
  * @using {gui.Tick} Tick
  */
-ts.ui.TableLayoutPlugin = (function using(Client, Tick) {
-	var UNIT = 22;
-	var UNIT_DOUBLE = UNIT * 2;
+ts.ui.TableLayoutPlugin = (function using(Client, Tick, UNIT, UNIT_DOUBLE) {
 	var COL_CELLS = '.ts-table-cols th:not(.ts-table-addition)';
 	var ROW_CELLS = '.ts-table-rows tr:first-child td:not(.ts-table-addition)';
 
@@ -217,7 +215,8 @@ ts.ui.TableLayoutPlugin = (function using(Client, Tick) {
 			if (model.rows.length) {
 				var rows = spirit.queryplugin.getrows();
 				var result = rows.scrollWidth;
-				var STRANGE_NUMBER = 63; // strange number!
+				var OLD_UNIT = 22;
+				var STRANGE_NUMBER = 63 * (OLD_UNIT / UNIT); // strange number!
 				if (result > width) {
 					width = width - (result - width) - STRANGE_NUMBER;
 					this._hflex1(spirit, model, width, cols, ths, tds);
@@ -331,4 +330,4 @@ ts.ui.TableLayoutPlugin = (function using(Client, Tick) {
 				});
 		}
 	});
-})(gui.Client, gui.Tick);
+})(gui.Client, gui.Tick, ts.ui.UNIT, ts.ui.UNIT_DOUBLE);

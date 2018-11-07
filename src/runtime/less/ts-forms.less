@@ -11,7 +11,7 @@
 	top: 0;
 	height: @ts-unit-plus;
 	padding-top: @ts-unit-half;
-	line-height: 11px;
+	line-height: @ts-unit-half;
 	text-transform: uppercase;
 	font-weight: @ts-fontweight-semibold;
 	font-size: @ts-fontsize-mini;
@@ -434,7 +434,7 @@
 		> dt,
 		> dd {
 			position: relative;
-			padding-left: 19px;
+			padding-left: (@ts-unit - 1px);
 			&:before {
 				position: absolute;
 				content: '';
@@ -455,7 +455,7 @@
 				font-family: @ts-fontstack-icon;
 				font-weight: @ts-fontweight;
 				font-size: @ts-fontsize-medium;
-				top: 12px;
+				top: (@ts-unit-half + 1px);
 				left: 0;
 				content: '!';
 			}
@@ -466,7 +466,7 @@
 				font-size: 35px;
 				line-height: 0;
 				position: absolute;
-				top: 9px;
+				top: (@ts-unit-half - 2px);
 				left: 3px;
 			}
 		}
@@ -552,9 +552,9 @@
 			display: none;
 		}
 	}
-	// Angular can (in rare and random cases) think that the fake element 
+	// Angular can (in rare and random cases) think that the fake element
 	// should be part of its template and we would end up seeing it twice.
-	// Angulars chaotic behavior cannot be debugged, so we'll just hide it.
+	// Angulars chaotic behavior cannot be debugged, so we’ll just hide it.
 	.ts-fake + .ts-fake {
 		display: none;
 	}
@@ -569,10 +569,10 @@
  * must happen on touch devices only, otherwise we break keyboard TAB navigation.
  */
 .ts-device-touch {
-    .ts-dateinput,
-    .ts-select {
-        display: none !important;
-    }
+	.ts-dateinput,
+	.ts-select {
+		display: none !important;
+	}
 }
 
 // Switches ....................................................................

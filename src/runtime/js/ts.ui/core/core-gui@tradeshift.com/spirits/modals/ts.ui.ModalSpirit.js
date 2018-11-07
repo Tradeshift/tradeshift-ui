@@ -4,7 +4,7 @@
  * @using {boolean} transition
  * @using {function} gui.Combo.chained
  */
-ts.ui.ModalSpirit = (function using(Client, transition, chained) {
+ts.ui.ModalSpirit = (function using(Client, transition, chained, UNIT_TRIPLE) {
 	var willopen = ts.ui.BROADCAST_MODAL_WILL_OPEN,
 		didopen = ts.ui.BROADCAST_MODAL_DID_OPEN,
 		willclose = ts.ui.BROADCAST_MODAL_WILL_CLOSE,
@@ -468,8 +468,8 @@ ts.ui.ModalSpirit = (function using(Client, transition, chained) {
 			this.css.remove('ts-overflow');
 			var height =
 				this._panel().naturalHeight() +
-				(this.css.contains('ts-hasheader') ? 66 : 0) +
-				(this.css.contains('ts-hasheader') ? 66 : 0);
+				(this.css.contains('ts-hasheader') ? UNIT_TRIPLE : 0) +
+				(this.css.contains('ts-hasheader') ? UNIT_TRIPLE : 0);
 			var breaks = height > avail;
 			height = breaks ? avail : height;
 			this.css.height = height;
@@ -560,4 +560,4 @@ ts.ui.ModalSpirit = (function using(Client, transition, chained) {
 			}
 		}
 	});
-})(gui.Client, gui.Client.hasTransitions, gui.Combo.chained);
+})(gui.Client, gui.Client.hasTransitions, gui.Combo.chained, ts.ui.UNIT_TRIPLE);

@@ -1,16 +1,15 @@
-/*
- * When `true`, the menu will not actually load anything 
- * (so that we can safely mess around with the styling). 
- * This should only ever be `true` while on localhost!!!
- */
-var develop = false;
+var menu;
+var json;
+var current = top.location.pathname.match(/^\/v\d*\//)[0];
 
 /*
  * Fetch the `package json` as soon as the DOM is ready.
  */
 addEventListener('DOMContentLoaded', function() {
 	requestJSON('package.json', function(json) {
-		bootstrap(json, document.querySelector('menu'), window.frameElement);
+		menu = document.querySelector('menu');
+		package = json; 
+		bootstrap(window.frameElement);
 	});
 });
 
@@ -37,10 +36,9 @@ function requestJSON(url, cb) {
  * version must be marked as `beta` for this to work out.
  * @param {Object} package
  */
-function bootstrap(package, menu, frame) {
-	var current = top.location.pathname.match(/^\/v\d*\//)[0];
+function bootstrap(frame) {
 	var latest = getfolder(package.versions.reduce(function(res, ver) {
-		return (res.indexOf('beta') !== -1 || res.indexOf('alpha') !== -1) ? ver : res;
+		return isPrerelease(res) ? ver : res;
 	}, package.versions[0]));
 
 	var folders = [];
@@ -51,16 +49,16 @@ function bootstrap(package, menu, frame) {
 		});
 	}
 
-	function update(next) {
+	function update() {
 		var found = folders.filter(function (folder) {
-			return folder.key === next;
+			return folder.key === current;
 		});		
 		
-		updateMenu(menu, package.versions, next);
-		updateText(next, latest, found[0].value);
+		updateMenu();
+		updateText(latest, found[0].value);
 	}
-	initMenu(menu, frame, update);
-	update(current);
+	initMenu(frame, update);
+	update();
 }
 
 /**
@@ -78,14 +76,14 @@ function getfolder(version) {
  * @param {string} latest
  * @param {string} version
  */
-function updateText(current, latest, version) {
+function updateText(latest, version) {
 	var safe = current === latest;
-	var beta = (version.indexOf('beta') !== -1 || version.indexOf('alpha') !== -1);	
+	var beta = isPrerelease(version);
 	document.body.className = safe 
 		? ''
 		: beta
-			? 'warning'
-			: 'danger';
+			? 'preview'
+			: 'obsolete';
 	document.querySelector('p').innerHTML = (safe
 		? 'This is the latest version'
 		: beta
@@ -100,13 +98,14 @@ function updateText(current, latest, version) {
  * @param {Array<string>} versions
  * @param {string} current
  */
-function updateMenu(menu, versions, current) {
-	menu.innerHTML = versions.map(function(ver) {
+function updateMenu() {
+	menu.innerHTML = package.versions.map(function(ver, idx) {
 		var dir = getfolder(ver);
-		var css = dir === current ? 'selected' : '';
+		var url = window.top.location.href.replace(current, dir);
+		var css = [dir === current ? 'selected' : '', (isPrerelease(ver) ? 'preview' : (idx ? 'obsolete' : ''))].join(' ');
 		return (
 			'<li class="' + css + '">' +
-				'<a href="' + dir + '" target="_top">' + ver + '</a>' +
+				'<a href="' + url + '" target="_top">' + ver + '</a>' +
 			'</li>'
 		);
 	}).join('\n');
@@ -119,22 +118,23 @@ function updateMenu(menu, versions, current) {
  * @param {HTMLIframeElement} frame
  * @param {Function} update
  */
-function initMenu(menu, frame, update) {
+function initMenu(frame, update) {
 	function toggle() {
 		toggle.open = !toggle.open;
 		menu.style.display = toggle.open ? 'block' : 'none';
 		frame.style.height = toggle.open ? '100%' : '40px';
 	}
 	document.addEventListener('click', function(e) {
+		updateMenu();
 		toggle();
-		if(e.target.href && develop) {
-			update(e.target.pathname);
-			e.preventDefault();
-		}
 	});
 	document.addEventListener('keypress', function(e) {
 		if (toggle.open && e.keyCode === 27) {
 			toggle();
 		}
 	});
+}
+
+function isPrerelease(version) {
+	return version.indexOf('-') !== -1;
 }

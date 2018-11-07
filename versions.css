@@ -73,7 +73,7 @@ header {
 	display: flex;
 	height: 40px;
 	justify-content: space-between;
-	line-height: 30px;
+	line-height: 40px;
 	padding: 5px 11px;
 	position: relative;
 	text-align: right; 
@@ -108,9 +108,11 @@ menu {
 	list-style: none;
 	padding: 0;
 	display: none;
+	cursor: pointer;
 }
 menu li {
 	margin: 0;
+	cursor: pointer;
 }
 menu a {
 	text-decoration: none;
@@ -118,11 +120,47 @@ menu a {
 	padding: 5px 30px;
 	cursor: pointer;
 	display: block;
-	color: white;
+	color: hsl(0, 0%, 100%);
 }
+menu a:hover {
+	background-color: hsl(199, 100%, 68%);
+}
+
 menu .selected a {
 	background-color: hsl(199, 100%, 50%);
 }
+
+menu .preview a {
+	color: hsl(34, 100%, 49%);
+}
+menu .preview a:hover {
+	background-color: hsl(31, 100%, 47%);
+	color: hsl(0, 0%, 100%);
+}
+menu .selected.preview a {
+	background-color: hsl(34, 100%, 49%);
+	color: hsl(0, 0%, 100%);
+}
+
+menu .obsolete a {
+	color: hsl(0, 100%, 37%);
+}
+menu .obsolete a:hover {
+	background-color: hsl(0, 100%, 30%);
+	color: hsl(0, 0%, 100%);
+}
+menu .selected.obsolete a {
+	background-color: hsl(0, 100%, 37%);
+	color: hsl(0, 0%, 100%);
+}
+
+.obsolete header {
+	background-color: hsl(0, 100%, 37%);
+}
+.preview header {
+	background-color: hsl(34, 100%, 49%);
+}
+
 .cover {
 	position: absolute;
 	top: 0;
@@ -136,10 +174,4 @@ iframe {
 	width: 100%;
 	border: none;
 	display: block;
-}
-.danger header {
-	background-color: hsl(0, 100%, 37%);
-}
-.warning header {
-	background-color: hsl(34, 100%, 49%);
 }

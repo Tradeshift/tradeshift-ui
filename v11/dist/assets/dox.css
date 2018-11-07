@@ -876,6 +876,12 @@ table.api th {
 .ts-doxchrome.collapse-some:not(.uncollapse) .ts-search {
   display: none;
 }
+.ts-doxchrome.collapse-some .ts-menu > li.submenu > .ts-menu > li > a {
+  padding-left: 40px;
+}
+.ts-doxchrome.collapse-some .ts-menu > li.submenu > .ts-menu > li > a > i {
+  padding-left: 0;
+}
 .ts-doxchrome.collapse-full:before {
   display: none;
 }

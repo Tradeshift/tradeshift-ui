@@ -439,7 +439,7 @@ table.api tbody:last-child tr:last-child td {
 }
 #markdown table tr td:nth-child(1),
 #markdown table tr th:nth-child(1) {
-  background: hsla(99, 85%, 42%, 0.3);
+  background: rgba(112, 208, 60, 0.3);
 }
 #markdown table tr td:nth-child(2),
 #markdown table tr th:nth-child(2) {
@@ -498,13 +498,13 @@ table.api th {
 .doc-intro .box-design {
   padding-top: 60px;
   padding-bottom: 140px !important;
-  background-color: hsla(99, 85%, 62%, 0.04);
+  background-color: hsla(99, 61%, 63%, 0.04);
 }
 .doc-intro .box-design svg rect,
 .doc-intro .box-design svg circle,
 .doc-intro .box-design svg polygon,
 .doc-intro .box-design svg path {
-  fill: hsl(99, 85%, 62%);
+  fill: #70d03c;
 }
 .doc-intro .intro-box {
   padding: 40px;
@@ -937,7 +937,7 @@ article {
   line-height: 20px;
 }
 #markdown blockquote h4 {
-  background: hsla(99, 85%, 42%, 0.75);
+  background: rgba(112, 208, 60, 0.75);
 }
 #markdown blockquote h5 {
   background: hsla(0, 100%, 37%, 0.75);

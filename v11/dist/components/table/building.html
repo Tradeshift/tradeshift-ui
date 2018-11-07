@@ -5,11 +5,11 @@
     <title>Table Build</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
-    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-11.0.1.min.js"></script>
+    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-11.0.2.min.js"></script>
     <script src="/v11/dist/assets/dox.min.js"></script>
     <script src="/v11/dist/assets/mark.min.js"></script>
     <script src="/v11/dist/assets/jquery-2.2.4.min.js"></script>
-    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-11.0.1.min.css">
+    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-11.0.2.min.css">
     <link rel="stylesheet" href="/v11/dist/assets/dox.css">
     <link rel="prefetch" title="Table" href="index.html">
     <link rel="prefetch" title="Build" href="building.html">
@@ -327,7 +327,7 @@
                         </ul>
                     </div>
                     <p>Here&apos; a summary of the methods that deal with building the Table.</p>
-                    <div data-ts="DoxApi" data-ts.code="%7B%0A%09name%3A%20%22ts.ui.TableSpirit%22%2C%0A%09methods%3A%20%5B%0A%09%09%7B%0A%09%09%09name%3A%20%22cols%22%2C%0A%09%09%09args%3A%20%5B%22(array)%22%5D%2C%0A%09%09%09desc%3A%20%22Set%20the%20columns.%20Omit%20the%20argument%20to%20get%20the%20columns.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20%22rows%22%2C%0A%09%09%09args%3A%20%5B%22(array)%22%5D%2C%0A%09%09%09desc%3A%20%22Set%20the%20rows.%20Note%20that%20while%20you%20can%20get%20the%20rows%20back%20by%20omitting%20the%20argument%2C%20any%20changes%20are%20not%20persisted%20until%20you%20assign%20them%20back%20again.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20%22row%22%2C%0A%09%09%09args%3A%20%5B%22number%22%2C%20%22(object%7Carray)%22%5D%2C%0A%09%09%09desc%3A%20%22Update%20a%20single%20row%20by%20rowindex.%20You%20can%20omit%20the%20last%20argument%20to%20get%20the%20row%2C%20but%20changes%20are%20not%20persisted%20until%20you%20set%20it.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20%22cell%22%2C%0A%09%09%09args%3A%20%5B%22number%22%2C%20%22number%22%2C%20%22(string%7Cobject)%22%5D%2C%0A%09%09%09desc%3A%20%22Update%20a%20single%20cell%20by%20rowindex%20and%20cellindex.%20You%20can%20omit%20the%20last%20argument%20to%20get%20the%20cell%2C%20but%20see%20the%20note%20above.%22%0A%09%09%7D%0A%09%5D%0A%7D">
+                    <div data-ts="DoxApi" data-ts.code="%7B%0A%09%22name%22%3A%20%22ts.ui.TableSpirit%22%2C%0A%09%22methods%22%3A%20%5B%0A%09%09%7B%0A%09%09%09%22name%22%3A%20%22cols%22%2C%0A%09%09%09%22args%22%3A%20%5B%22(array)%22%5D%2C%0A%09%09%09%22desc%22%3A%20%22Set%20the%20columns.%20Omit%20the%20argument%20to%20get%20the%20columns.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09%22name%22%3A%20%22rows%22%2C%0A%09%09%09%22args%22%3A%20%5B%22(array)%22%5D%2C%0A%09%09%09%22desc%22%3A%20%22Set%20the%20rows.%20Note%20that%20while%20you%20can%20get%20the%20rows%20back%20by%20omitting%20the%20argument%2C%20any%20changes%20are%20not%20persisted%20until%20you%20assign%20them%20back%20again.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09%22name%22%3A%20%22row%22%2C%0A%09%09%09%22args%22%3A%20%5B%22number%22%2C%20%22(object%7Carray)%22%5D%2C%0A%09%09%09%22desc%22%3A%20%22Update%20a%20single%20row%20by%20rowindex.%20You%20can%20omit%20the%20last%20argument%20to%20get%20the%20row%2C%20but%20changes%20are%20not%20persisted%20until%20you%20set%20it.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09%22name%22%3A%20%22cell%22%2C%0A%09%09%09%22args%22%3A%20%5B%22number%22%2C%20%22number%22%2C%20%22(string%7Cobject)%22%5D%2C%0A%09%09%09%22desc%22%3A%20%22Update%20a%20single%20cell%20by%20rowindex%20and%20cellindex.%20You%20can%20omit%20the%20last%20argument%20to%20get%20the%20cell%2C%20but%20see%20the%20note%20above.%22%0A%09%09%7D%0A%09%5D%0A%7D">
                     </div>
                     <!--
 					<p>

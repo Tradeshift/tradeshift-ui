@@ -65,7 +65,7 @@
   color: hsl(99, 85%, 62%);
 }
 .doc-ts-green {
-  color: hsl(99, 85%, 42%);
+  color: hsla(99, 85%, 42%, 0.04);
 }
 .doc-ts-green-dark {
   color: hsl(99, 85%, 32%);

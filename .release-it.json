@@ -1,5 +1,4 @@
 {
-	"non-interactive": true,
 	"verbose": true,
 	"requireCleanWorkingDir": true,
 	"changelogCommand":

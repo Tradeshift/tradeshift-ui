@@ -9,7 +9,7 @@ ts.ui.ready(function rendercolors() {
 		var rule = rules[i];
 		var color = rule.selectorText.substring(5);
 		var rgb = rule.style.color;
-		var channels = rgb.match(/rgb\((\d{1,3}), (\d{1,3}), (\d{1,3})\)/);
+		var channels = rgb.match(/rgba?\((\d{1,3}),\s*(\d{1,3}),\s*(\d{1,3})/);
 		var row = color.split('-')[1];
 		colors[row] = colors[row] || {};
 		var hsl = rgbToHsl(channels[1], channels[2], channels[3]);
@@ -60,16 +60,16 @@ function rgbToHsl(r, g, b) {
 		}
 		h /= 6;
 	}
-	h = Math.floor(h * 360);
-	s = Math.floor(s * 100);
-	l = Math.floor(l * 100);
+	h = Math.round(h * 360);
+	s = Math.round(s * 100);
+	l = Math.round(l * 100);
 
-	return ['hsl(' + h + ', ' + s + ', ' + l + ')', h, s, l];
+	return ['hsl(' + h + ', ' + s + '%, ' + l + '%)', h, s, l];
 }
 
 // @see https://gist.github.com/sabman/1018593
 function rgbToHex(rgb) {
-	rgb = rgb.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
+	rgb = rgb.match(/rgba?\((\d{1,3}),\s*(\d{1,3}),\s*(\d{1,3})/);
 	function hex(x) {
 		return ('0' + parseInt(x).toString(16)).slice(-2);
 	}

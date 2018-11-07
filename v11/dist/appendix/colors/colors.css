@@ -59,13 +59,13 @@
   color: hsl(0, 0%, 100%);
 }
 .doc-ts-litegreen {
-  color: hsl(99, 85%, 77%);
+  color: hsl(99, 60%, 81%);
 }
 .doc-ts-green-lite {
-  color: hsl(99, 85%, 62%);
+  color: hsl(99, 61%, 63%);
 }
 .doc-ts-green {
-  color: hsla(99, 85%, 42%, 0.04);
+  color: #70d03c;
 }
 .doc-ts-green-dark {
   color: hsl(99, 85%, 32%);

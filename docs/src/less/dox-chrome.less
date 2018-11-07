@@ -3,10 +3,10 @@
 .ts-doxchrome {
 	#chrome {
 		.ts-mixin-maximize();
-		top: @ts-unit-plus;
+		top: 40px;
 	}
 	#versions {
-		height: @ts-unit-plus;
+		height: 40px;
 		border: none;
 		position: absolute;
 		top: 0;
@@ -22,8 +22,7 @@
 		z-index: 0 !important;
 		.ts-toolbar-title label {
 			-webkit-font-smoothing: antialiased;
-			font-family: Tradeshifticons;
-			font-size: @ts-fontsize-xxbig + 1px;
+			font-size: @ts-fontsize-big;
 			font-weight: normal;
 		}
 		.ts-panel {
@@ -135,6 +134,12 @@
 		i svg {
 			margin-top: 0;
 		}
+		&.ts-doxmenu > li > a {
+			background-color: @ts-dark-liter;
+			&:hover:not(:disabled) {
+				background-color: @ts-dark-liter !important;
+			}
+		}
 		> li {
 			&,
 			&:last-child {
@@ -207,6 +212,12 @@
 						position: absolute;
 						top: @ts-unit-triple;
 					}
+				}
+				> .ts-menu > li > a {
+					padding-left: @ts-unit * 2.5;
+				}
+				> .ts-menu > li > a > i {
+					padding-left: @ts-unit;
 				}
 			}
 			&.resultsbanner {
@@ -325,6 +336,12 @@
 			.ts-search {
 				display: none;
 			}
+		}
+		.ts-menu > li.submenu > .ts-menu > li > a {
+			padding-left: @ts-unit-double;
+		}
+		.ts-menu > li.submenu > .ts-menu > li > a > i {
+			padding-left: 0;
 		}
 	}
 	&.collapse-full {

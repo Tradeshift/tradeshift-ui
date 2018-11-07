@@ -81,9 +81,9 @@
 @ts-color-yellow-dark: darken(@ts-color-yellow, 10%);
 @ts-color-yellow-darker: darken(@ts-color-yellow, 15%);
 
-@ts-color-green-lightest: lighten(@ts-color-green, 50%);
-@ts-color-green-lighter: lighten(@ts-color-green, 35%);
-@ts-color-green-light: lighten(@ts-color-green, 20%);
+@ts-color-green-lightest: hsl(99, 59%, 90%);
+@ts-color-green-lighter: hsl(99, 60%, 81%);
+@ts-color-green-light: hsl(99, 61%, 63%);
 @ts-color-green-dark: darken(@ts-color-green, 10%);
 @ts-color-green-darker: darken(@ts-color-green, 15%);
 
@@ -147,7 +147,7 @@
 	green-text: @ts-color-white;
 	litegreen: @ts-color-green-lighter;
 	green-lite: @ts-color-green-light;
-	green: @ts-color-green;
+	green: average(@ts-color-green-light, @ts-color-green);
 	green-dark: @ts-color-green-dark;
 	green-darker: @ts-color-green-darker;
 	darkgreen: darken(@ts-color-green, 25%);
@@ -222,7 +222,7 @@
 @ts-green-text: @ts-colors[green-text];
 @ts-litegreen: @ts-colors[litegreen];
 @ts-green-lite: @ts-colors[green-lite];
-@ts-green: fade(@ts-colors[green], 4%);
+@ts-green: @ts-colors[green];
 @ts-green-dark: @ts-colors[green-dark];
 @ts-green-darker: @ts-colors[green-darker];
 @ts-darkgreen: @ts-colors[darkgreen];

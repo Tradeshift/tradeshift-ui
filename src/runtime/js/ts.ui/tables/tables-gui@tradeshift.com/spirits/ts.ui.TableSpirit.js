@@ -1672,6 +1672,12 @@ ts.ui.TableSpirit = (function using(
 					this._resizing = true;
 					this.script.suspend();
 					this._bestpage(index);
+				} else {
+					var model = this._model;
+					var pager = this.pager();
+					if (this._ownpager && model.maxrows) {
+						pager.pages = model.pageCount();
+					}
 				}
 			}
 			this._maybecallresize();

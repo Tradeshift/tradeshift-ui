@@ -33,5 +33,5 @@ ts.ui.DatePicker.localize({
 	dayNamesMin: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa']
 });
 ts.ui.Footer.localize({
-	collaboration: 'Collaborate On This'
+	collaboration: 'Open Collaboration'
 });

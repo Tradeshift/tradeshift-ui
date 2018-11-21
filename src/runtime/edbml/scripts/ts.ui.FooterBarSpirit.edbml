@@ -22,12 +22,12 @@
 
 	function centerbar(model) {
 		<li data-ts="StatusBar" class="ts-footerbar-centerbar" id="${id}-centerbar" +
-			data-ts.model="?{model}" data-ts.visible="${footer.$showCenterBar(model)}"></li>
+			data-ts.model="?{model}" data-ts.visible="${footer.$showCenterBar(model)}" data-ts.notification="${footer.$showNotificationMarker(model)}"></li>
 	}
 
 	function backupbar(model) {
 		<li data-ts="ToolBar" class="ts-footerbar-backupbar" id="${id}-backupbar" +
-			data-ts.model="?{model}" data-ts.visible="${footer.$showBackupBar(model)}"></li>
+			data-ts.model="?{model}" data-ts.visible="${footer.$showBackupBar(model)}" data-ts.notification="${footer.$showNotificationMarker(model)}"></li>
 	}
 
 </script>

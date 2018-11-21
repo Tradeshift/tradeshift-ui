@@ -271,9 +271,16 @@
 
 // Animations ..................................................................
 
+@ts-debug-multiplier: 1;
+
 @ts-transition-now: 0.1s;
 @ts-transition-fast: 0.2s;
 @ts-transition-slow: 0.6s;
+
+@ts-duration-enter-mobile: 0.225s * @ts-debug-multiplier;
+@ts-duration-leave-mobile: 0.195s * @ts-debug-multiplier;
+@ts-easing-leave: cubic-bezier(0.4, 0, 1, 1);
+@ts-easing-enter: cubic-bezier(0, 0, 0.2, 1);
 
 // live examples in dropdown on http: //matthewlein.com/ceaser/
 @ts-timing-easeinquad: cubic-bezier(0.55, 0.085, 0.68, 0.53);

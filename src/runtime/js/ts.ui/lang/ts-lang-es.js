@@ -33,5 +33,5 @@ ts.ui.DatePicker.localize({
 	dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sa']
 });
 ts.ui.Footer.localize({
-	collaboration: 'Colabora En Esto'
+	collaboration: 'Colaboración Abierta'
 });

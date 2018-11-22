@@ -23,13 +23,13 @@
 						</script>
 					</figure>
 
-					<h3>Notification state</h3>
-					<p>The collaboration button can have two states: a default state and a notification state. The default state shows just the special button. The notification state shows a small notification badge over the icon. To show the button with the notification state, call the method with the onclick property and a callback, as show above, and also a notification property set to true.</p>
+					<h3>Showing a notification badge</h3>
+					<p>The collaboration button can have two states: a default state and a state showing a notification badge. The default state shows just the special button. The notification state shows the special button as well as a small notification badge over the icon. To show the button with the notification state, call the method with the onclick property and a callback, as show above, and also a badge property set to true.</p>
 
 					<figure data-ts="DoxScript">
 						<script type="runnable">
 							ts.ui.Footer.collabbutton({
-								notification: true,
+								badge: true,
 								onclick: function() {
 									ts.ui.Notification.success('Go collaborate!');
 								}
@@ -49,11 +49,27 @@
 						<script type="application/json">
 							{
 								"name": "ts.ui.Footer",
+								"methods": [
+									{
+										"name": "collabbutton",
+										"args": "(<Object|null>)",
+										"desc": "Get or set the collaboration button. Pass `null` to remove the whole button."
+									}
+								]
+							}
+						</script>
+					</div>
+					
+
+					<div data-ts="DoxApi">
+						<script type="application/json">
+							{
+								"name": "ts.ui.Footer.collabbutton",
 								"properties": [
 									{
-										"name": "notification",
+										"name": "badge",
 										"type": "boolean",
-										"desc": "Show a notification state."
+										"desc": "Show the button with a badge."
 									}
 								],
 								"methods": [
@@ -61,11 +77,6 @@
 										"name": "onclick",
 										"args": "(Function)",
 										"desc": "Get or set the collaboration button."
-									},
-									{
-										"name": "collabbutton",
-										"args": "(null)",
-										"desc": "Remove the whole button."
 									}
 								]
 							}

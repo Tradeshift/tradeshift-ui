@@ -164,7 +164,7 @@ ts.ui.FooterBarModel = (function using(PagerModel, ActionModel, chained) {
 						icon: 'ts-icon-comment',
 						onclick: args.onclick
 					});
-					if (args.notification === true) {
+					if (args.badge === true) {
 						this.centerbar.collabbutton = true;
 						this.backupbar.collabbutton = true;
 					} else {
@@ -233,11 +233,11 @@ ts.ui.FooterBarModel = (function using(PagerModel, ActionModel, chained) {
 		},
 
 		/**
-		 * Show a notification marker on collaboration icon
+		 * Show a badge on collaboration icon
 		 * @param {ts.ui.ToolBarModel} model
 		 * @returns {boolean}
 		 */
-		$showNotificationMarker: function(model) {
+		$showBadge: function(model) {
 			return model.collabbutton;
 		}
 	});

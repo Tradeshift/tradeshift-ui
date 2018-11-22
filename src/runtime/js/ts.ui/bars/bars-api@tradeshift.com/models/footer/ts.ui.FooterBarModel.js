@@ -165,11 +165,9 @@ ts.ui.FooterBarModel = (function using(PagerModel, ActionModel, chained) {
 						onclick: args.onclick
 					});
 					if (args.badge === true) {
-						this.centerbar.collabbutton = true;
-						this.backupbar.collabbutton = true;
+						this.centerbar.collabbutton = this.backupbar.collabbutton = true;
 					} else {
-						this.centerbar.collabbutton = false;
-						this.backupbar.collabbutton = false;
+						this.centerbar.collabbutton = this.backupbar.collabbutton = false;
 					}
 				}
 			} else {

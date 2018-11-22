@@ -5,11 +5,11 @@
     <title>Footer Gallery</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
-    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-11.0.3.min.js"></script>
+    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-11.1.0.min.js"></script>
     <script src="/v11/dist/assets/dox.min.js"></script>
     <script src="/v11/dist/assets/mark.min.js"></script>
     <script src="/v11/dist/assets/jquery-2.2.4.min.js"></script>
-    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-11.0.3.min.css">
+    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-11.1.0.min.css">
     <link rel="stylesheet" href="/v11/dist/assets/dox.css">
     <link rel="prefetch" title="Footer" href="index.html">
     <link rel="prefetch" title="Buttons" href="buttons.html">
@@ -134,20 +134,26 @@
                         </div>
                     </figure>
                     <p><strong>5</strong> Finally add the configuration and collaboration buttons.</p>
-                    <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.Footer.configbutton(function%20onclick()%20%7B%0A%09ts.ui.Notification.success(&apos;Go%20configure!&apos;)%3B%0A%7D).collabbutton(function%20onclick()%20%7B%0A%09ts.ui.Notification.success(&apos;Go%20collaborate!&apos;)%3B%0A%7D)%3B">
+                    <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.Footer.configbutton(function%20onclick()%20%7B%0A%09ts.ui.Notification.success(&apos;Go%20configure!&apos;)%3B%0A%7D).collabbutton(%7B%0A%09badge%3A%20true%2C%0A%09onclick%3A%20function()%20%7B%0A%09%09ts.ui.Notification.success(&apos;Go%20collaborate!&apos;)%3B%0A%09%7D%0A%7D)%3B">
                         <script type="runnable">
                             ts.ui.Footer.configbutton(function onclick() {
 								ts.ui.Notification.success('Go configure!');
-							}).collabbutton(function onclick() {
-								ts.ui.Notification.success('Go collaborate!');
+							}).collabbutton({
+								badge: true,
+								onclick: function() {
+									ts.ui.Notification.success('Go collaborate!');
+								}
 							});
 						</script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                         <div class="tabpanels">
                             <pre class="prism language-javascript">
 <code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Footer<span class="token punctuation">.</span><span class="token function">configbutton<span class="token punctuation">(</span></span><span class="token keyword">function</span> <span class="token function">onclick<span class="token punctuation">(</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
 	ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Notification<span class="token punctuation">.</span><span class="token function">success<span class="token punctuation">(</span></span><span class="token string">&apos;Go configure!&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">collabbutton<span class="token punctuation">(</span></span><span class="token keyword">function</span> <span class="token function">onclick<span class="token punctuation">(</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-	ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Notification<span class="token punctuation">.</span><span class="token function">success<span class="token punctuation">(</span></span><span class="token string">&apos;Go collaborate!&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">collabbutton<span class="token punctuation">(</span></span><span class="token punctuation">{</span>
+	badge<span class="token punctuation">:</span> <span class="token keyword">true</span><span class="token punctuation">,</span>
+	onclick<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Notification<span class="token punctuation">.</span><span class="token function">success<span class="token punctuation">(</span></span><span class="token string">&apos;Go collaborate!&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
 </pre>
                         </div>

@@ -14,10 +14,10 @@
 			}
 		}
 		&[data-ts\.notification] {
-			i.ts-icon-collaboration {
+			i.ts-icon-comment {
 				color: @ts-dark-liter;
 			}
-			i.ts-icon-collaboration + span {
+			i.ts-icon-comment + span {
 				color: @ts-dark-liter;
 			}
 		}
@@ -34,7 +34,7 @@
 
 .ts-toolbar.ts-spirit {
   &[data-ts\.notification="true"] {
-		.ts-icon-collaboration::after {
+		.ts-icon-comment::after {
 			animation-name: bounceLeft, pulseBlue;
 			animation-duration: @ts-duration-enter-mobile * 2s, @ts-duration-enter-mobile * 8s;
 			animation-timing-function: @ts-easing-enter, linear;
@@ -52,11 +52,11 @@
 			width: 12px;
 			z-index: 20;
 		}
-		i.ts-icon-collaboration + span {
+		i.ts-icon-comment + span {
 			overflow: visible;
 			z-index: 10;
 		}
-		i.ts-icon-collaboration + span::before {
+		i.ts-icon-comment + span::before {
 			animation-name: bounceLeft;
 			animation-duration: @ts-duration-enter-mobile * 2s;
 			animation-timing-function: @ts-easing-enter;

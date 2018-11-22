@@ -161,7 +161,7 @@ ts.ui.FooterBarModel = (function using(PagerModel, ActionModel, chained) {
 				if (args !== null) {
 					actions.push({
 						label: ts.ui.Footer.localize().collaboration,
-						icon: 'ts-icon-collaboration',
+						icon: 'ts-icon-comment',
 						onclick: args.onclick
 					});
 					if (args.notification === true) {

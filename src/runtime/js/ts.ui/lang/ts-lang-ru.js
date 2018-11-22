@@ -33,5 +33,5 @@ ts.ui.DatePicker.localize({
 	dayNamesMin: ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб']
 });
 ts.ui.Footer.localize({
-	collaboration: 'Сотрудничество в этом'
+	collaboration: 'Открытое сотрудничество'
 });

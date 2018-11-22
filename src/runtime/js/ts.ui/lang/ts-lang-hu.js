@@ -42,5 +42,5 @@ ts.ui.Autocomplete.localize({
 	}
 });
 ts.ui.Footer.localize({
-	collaboration: 'Együttműködjenek Erről'
+	collaboration: 'Nyissa Meg Az Együttműködést'
 });

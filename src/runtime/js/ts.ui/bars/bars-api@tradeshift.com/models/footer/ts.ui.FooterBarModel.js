@@ -154,16 +154,21 @@ ts.ui.FooterBarModel = (function using(PagerModel, ActionModel, chained) {
 		 * TODO: Move this thing to the general {ts.ui.ToolBarModel}
 		 * @returns {this|ts.ui.ActionModel}
 		 */
-		collabbutton: chained(function(onclick) {
+		collabbutton: chained(function(args) {
 			var actions = this.bufferbar.actions;
 			if (arguments.length) {
 				actions.clear();
-				if (onclick !== null) {
+				if (args !== null) {
 					actions.push({
 						label: ts.ui.Footer.localize().collaboration,
-						icon: 'ts-icon-collaboration',
-						onclick: onclick
+						icon: 'ts-icon-comment',
+						onclick: args.onclick
 					});
+					if (args.badge === true) {
+						this.centerbar.collabbutton = this.backupbar.collabbutton = true;
+					} else {
+						this.centerbar.collabbutton = this.backupbar.collabbutton = false;
+					}
 				}
 			} else {
 				return actions[0] || null;
@@ -223,6 +228,15 @@ ts.ui.FooterBarModel = (function using(PagerModel, ActionModel, chained) {
 		 */
 		$showBackupBar: function(model) {
 			return !!(model.buttons.getLength() || model.actions.getLength());
+		},
+
+		/**
+		 * Show a badge on collaboration icon
+		 * @param {ts.ui.ToolBarModel} model
+		 * @returns {boolean}
+		 */
+		$showBadge: function(model) {
+			return model.collabbutton;
 		}
 	});
 })(ts.ui.PagerModel, ts.ui.ActionModel, gui.Combo.chained);

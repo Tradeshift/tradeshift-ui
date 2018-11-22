@@ -9,22 +9,30 @@
 		<main data-ts="Main">
 			<article>
 				<h1>Footer collabbutton</h1>
-				<!--
-				<section class="desc">
-					<div data-ts="Note">
-						<i class="ts-icon-info"></i>
-						<p>This is an <strong>alpha</strong> preview. All features and APIs can be expected to change. The <code>collabutton</code> is particularly susceptible to changes in the near future!</p>
-					</div>
-				</section>
-				-->
 				<section>
 
-					<p>The Footer features a special button which is dedicated to launching the <em>collaboration</em> panel. To show the button, simply call the method <code>configbutton</code> with a callback.</p>
+					<p>The Footer features a special button which is dedicated to launching the <em>collaboration</em> panel. To show the button, call <code>collabbutton</code> with a onclick method and a callback.</p>
 
 					<figure data-ts="DoxScript">
 						<script type="runnable">
-							ts.ui.Footer.collabbutton(function onclick() {
-								ts.ui.Notification.success('Go collaborate!');
+							ts.ui.Footer.collabbutton({
+								onclick: function() {
+									ts.ui.Notification.success('Go collaborate!');
+								}
+							});
+						</script>
+					</figure>
+
+					<h3>Showing a notification badge</h3>
+					<p>The collaboration button can have two states: a default state and a state showing a notification badge. The default state shows just the special button. The notification state shows the special button as well as a small notification badge over the icon. To show the button with the notification state, call the method with the onclick property and a callback, as show above, and also a badge property set to true.</p>
+
+					<figure data-ts="DoxScript">
+						<script type="runnable">
+							ts.ui.Footer.collabbutton({
+								badge: true,
+								onclick: function() {
+									ts.ui.Notification.success('Go collaborate!');
+								}
 							});
 						</script>
 					</figure>
@@ -44,8 +52,31 @@
 								"methods": [
 									{
 										"name": "collabbutton",
-										"args": "(<Function|null>)",
+										"args": "(<Object|null>)",
 										"desc": "Get or set the collaboration button. Pass `null` to remove the whole button."
+									}
+								]
+							}
+						</script>
+					</div>
+					
+
+					<div data-ts="DoxApi">
+						<script type="application/json">
+							{
+								"name": "ts.ui.Footer.collabbutton",
+								"properties": [
+									{
+										"name": "badge",
+										"type": "boolean",
+										"desc": "Show the button with a badge."
+									}
+								],
+								"methods": [
+									{
+										"name": "onclick",
+										"args": "(Function)",
+										"desc": "Get or set the collaboration button."
 									}
 								]
 							}

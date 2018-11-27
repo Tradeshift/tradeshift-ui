@@ -376,12 +376,14 @@ module.exports = function(grunt) {
 		},
 
 		// local dev server
-		devserver: {
-			// kill -9 $(lsof -t -i :10111)
-			server: {},
-			options: {
-				base: '.',
-				port: 10111
+		connect: {
+			server: {
+				options: {
+					keepalive: true,
+					port: 10111,
+					open: false,
+					base: '.'
+				}
 			}
 		},
 
@@ -442,8 +444,8 @@ module.exports = function(grunt) {
 
 		// serve, watch, generate concurrently
 		concurrent: {
-			docs: ['devserver', 'watch', 'exec:docs_grunt'],
-			nodocs: ['devserver', 'watch', 'asciify:banner'],
+			docs: ['connect', 'watch', 'exec:docs_grunt'],
+			nodocs: ['connect', 'watch', 'asciify:banner'],
 			// Build for CDN
 			cdn_generate_js: {
 				tasks: generateJsConcurrent('cdn')

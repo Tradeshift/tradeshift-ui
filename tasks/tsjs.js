@@ -20,7 +20,7 @@ module.exports = {
 };
 
 /**
- * TODO: There is really no need for a special task 
+ * TODO: There is really no need for a special task
  * here now that the script doesn't inject the CSS.
  * @param {Grunt} grunt
  * @param {string} source

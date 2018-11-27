@@ -1,5 +1,5 @@
 /**
- * We're gonna have to implement this thing sometime soon, 
+ * We're gonna have to implement this thing sometime soon,
  * but we can't really do so now without *breaking* stuff.
  */
 ts.ui.Header = (function(TopBar, TabBar, ToolBar) {

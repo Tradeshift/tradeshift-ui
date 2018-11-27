@@ -435,9 +435,12 @@ ts.ui.ModalSpirit = (function using(Client, transition, chained, UNIT_TRIPLE) {
 			this.css.height = avail;
 			this.css.width = xxxxx;
 			this._autocenter();
-			this.tick.time(function unflicker() {
-				then.now(avail, false);
-			}, Client.isWebKit ? 100 : 200);
+			this.tick.time(
+				function unflicker() {
+					then.now(avail, false);
+				},
+				Client.isWebKit ? 100 : 200
+			);
 		},
 
 		/**
@@ -474,9 +477,12 @@ ts.ui.ModalSpirit = (function using(Client, transition, chained, UNIT_TRIPLE) {
 			height = breaks ? avail : height;
 			this.css.height = height;
 			this.css.shift(breaks, 'ts-overflow');
-			this.tick.time(function unflicker() {
-				then.now(height, breaks);
-			}, Client.isWebKit ? 100 : 200);
+			this.tick.time(
+				function unflicker() {
+					then.now(height, breaks);
+				},
+				Client.isWebKit ? 100 : 200
+			);
 		},
 
 		/**

@@ -156,8 +156,8 @@ ts.dox.ChromeSpirit = (function using(CSSPlugin, Then) {
 					break;
 				case 'click':
 					/*
-					 * The SideBar closebutton has been hacked to appear and we cannot 
-					 * assign a callback to this particular button, so we'll monitor 
+					 * The SideBar closebutton has been hacked to appear and we cannot
+					 * assign a callback to this particular button, so we'll monitor
 					 * the button like this (and close the menu whenever it is clicked)
 					 */
 					if (CSSPlugin.contains(e.target, 'ts-noborder')) {
@@ -205,9 +205,9 @@ ts.dox.ChromeSpirit = (function using(CSSPlugin, Then) {
 		_thenclosed: null,
 
 		/**
-			* Search query (while in search mode).
-			* @type {string}
-			*/
+		 * Search query (while in search mode).
+		 * @type {string}
+		 */
 		_searchquery: '',
 
 		/**
@@ -257,9 +257,12 @@ ts.dox.ChromeSpirit = (function using(CSSPlugin, Then) {
 			this._blocking(true);
 			this._menu.selectbestitem(path).then(function(first) {
 				this.css.shift(first, 'selectfirstitem');
-				this.tick.time(function() {
-					this._loadnext(path);
-				}, this._isopenmenu() ? 300 : 0);
+				this.tick.time(
+					function() {
+						this._loadnext(path);
+					},
+					this._isopenmenu() ? 300 : 0
+				);
 			}, this);
 		},
 

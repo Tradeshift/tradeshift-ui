@@ -24,7 +24,7 @@ module.exports = function(grunt) {
 		.merge('config.json', 'config.local.json');
 
 	/**
-	 * Supported language codes. This will become populated 
+	 * Supported language codes. This will become populated
 	 * as soon as we trawl the files in the `lang` folder.
 	 * @type {Set<String>}
 	 */
@@ -688,7 +688,7 @@ module.exports = function(grunt) {
 	}
 
 	/**
-	 * Transform JS inside some file into a `case` inside a `switch` statement 
+	 * Transform JS inside some file into a `case` inside a `switch` statement
 	 * whilst at the same time compiling the list of supported language codes.
 	 * @param {Set<string>} codes
 	 * @returns {Function}
@@ -709,10 +709,10 @@ module.exports = function(grunt) {
 	}
 
 	/**
-	 * Moment.js has been copy-pasted from the internet with *all* the possible 
-	 * language codes and that is considerably more than we need, so we'll remove 
+	 * Moment.js has been copy-pasted from the internet with *all* the possible
+	 * language codes and that is considerably more than we need, so we'll remove
 	 * the unneeded translations based on the list of supported language codes.
-	 * These translations fortunately follow a uniform pattern so that we can 
+	 * These translations fortunately follow a uniform pattern so that we can
 	 * simply include or reject them based on advanced analysis of JS comments.
 	 * Note: The language code `nb` is equivalent to our wrongly named `no` code.
 	 * @param {Set<string>} codes
@@ -724,6 +724,7 @@ module.exports = function(grunt) {
 			const short = [...codes].map(s => s.split('-')[0]);
 			const first = s => (s = s.trim()).slice(0, s.indexOf('\n'));
 			const trail = s => s.split('\n});')[1] || '';
+			// eslint-disable-next-line no-cond-assign
 			const match = s => ((s = s.match(/\[(.*)\]/)) ? s[1] : null);
 			const patch = s => s === 'nb';
 			const works = s => codes.has(s) || short.includes(s) || patch(s);

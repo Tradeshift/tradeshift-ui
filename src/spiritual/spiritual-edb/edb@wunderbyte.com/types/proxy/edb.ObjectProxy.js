@@ -146,7 +146,9 @@ edb.ObjectProxy = (function scoped() {
 									var oldval = target[key];
 									Type = handler.constructor;
 									var cast = Type.prototype[key];
-									switch (cast) { // TODO: filter function support!
+									switch (
+										cast // TODO: filter function support!
+									) {
 										case Object:
 										case Array:
 											if (gui.Type.isNull(value) || gui.Type.isComplex(value)) {

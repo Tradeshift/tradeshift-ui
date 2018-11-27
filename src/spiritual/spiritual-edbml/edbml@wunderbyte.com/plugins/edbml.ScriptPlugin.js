@@ -393,8 +393,16 @@ edbml.ScriptPlugin = (function using(
 					}, false)
 				) {
 					this.$input = new edb.InputPlugin();
-					this.$input.connect(required, this, true);
-					this.$input.connect(optional, this, false);
+					this.$input.connect(
+						required,
+						this,
+						true
+					);
+					this.$input.connect(
+						optional,
+						this,
+						false
+					);
 				}
 			}
 		},

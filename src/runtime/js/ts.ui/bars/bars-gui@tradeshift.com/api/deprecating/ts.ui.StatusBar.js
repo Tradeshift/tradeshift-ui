@@ -1,5 +1,5 @@
 /**
- * The StatusBar has been replace by the Footer, but we'll keep this deprecated 
+ * The StatusBar has been replace by the Footer, but we'll keep this deprecated
  * API around for some time yet. Note: The StatusBar API was never used in V4.
  * TODO: In a future release, remove this deprecated API once and for all.
  * @using {gui.Combo#chained}

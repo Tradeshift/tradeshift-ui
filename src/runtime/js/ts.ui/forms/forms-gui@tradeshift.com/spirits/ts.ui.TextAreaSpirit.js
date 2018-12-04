@@ -118,12 +118,12 @@ ts.ui.TextAreaSpirit = (function using(Type, Client, UNIT, tick, time) {
 						this._autosize();
 					} else if (this.css.get('height') === 'auto') {
 						/*
-					 * Hotfix for TODO (in top of file): This is expensive, but there
-					 * is no way for us to know if we started hidden and now we are
-					 * shown (spirits have an API to manage this, but nobody knows).
-					 * Perhaps some kind of transitioned property can be caught with
-					 * `transitionend` so that we can get away with something nicer?
-					 */
+						 * Hotfix for TODO (in top of file): This is expensive, but there
+						 * is no way for us to know if we started hidden and now we are
+						 * shown (spirits have an API to manage this, but nobody knows).
+						 * Perhaps some kind of transitioned property can be caught with
+						 * `transitionend` so that we can get away with something nicer?
+						 */
 						this._autosize();
 					}
 				}

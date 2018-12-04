@@ -3,8 +3,7 @@ describe('ts.ui.TopBar', function likethis() {
 
 	it('should be chainable', function() {
 		expect(
-			ts.ui.TopBar
-				.title('Hest')
+			ts.ui.TopBar.title('Hest')
 				.tabs([])
 				.buttons([])
 				.green()

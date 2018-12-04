@@ -73,8 +73,7 @@ ts.ui.CoreModule = gui.module('core-gui@tradeshift.com', {
 	onbeforespiritualize: function() {
 		var ATTRIBUTE = /^\[data-ts=[a-zA-Z]+\]$/;
 		function allcssnames(constructor) {
-			return gui.Class
-				.ancestorsAndSelf(constructor)
+			return gui.Class.ancestorsAndSelf(constructor)
 				.map(function(c) {
 					return c.$cssname || undefined;
 				})
@@ -143,8 +142,7 @@ ts.ui.CoreModule = gui.module('core-gui@tradeshift.com', {
 	 * and root level panels (that create TopBar tabs).
 	 */
 	_documentplugins: function() {
-		ts.ui.DocumentSpirit
-			.plugin('layoutplugin', ts.ui.DocumentLayoutPlugin)
+		ts.ui.DocumentSpirit.plugin('layoutplugin', ts.ui.DocumentLayoutPlugin)
 			.plugin('dialogplugin', ts.ui.DocumentDialogPlugin)
 			.plugin('asideplugin', ts.ui.DocumentAsidePlugin)
 			.plugin('panelplugin', ts.ui.DocumentPanelPlugin);

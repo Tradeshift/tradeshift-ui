@@ -59,9 +59,9 @@ gui.Crawler = (function using(Type) {
 							if (win.gui.hosted) {
 								// win.parent !== win
 								/*
-							 * @TODO: iframed document might have navigated elsewhere, stamp this in localstorage
-							 * @TODO: sit down and wonder if localstorage is even available in sandboxed iframes...
-							 */
+								 * @TODO: iframed document might have navigated elsewhere, stamp this in localstorage
+								 * @TODO: sit down and wonder if localstorage is even available in sandboxed iframes...
+								 */
 								if (win.gui.xhost) {
 									elm = null;
 									if (Type.isFunction(handler.transcend)) {
@@ -159,8 +159,8 @@ gui.Crawler = (function using(Type) {
 								this._descend(elm.firstElementChild, handler, arg, false);
 							} else if (this.global && elm.localName === 'iframe') {
 								/*
-							 * TODO: Make iframe transcend work even without spirit support.
-							 */
+								 * TODO: Make iframe transcend work even without spirit support.
+								 */
 								if ((spirit = elm.spirit) && spirit instanceof gui.IframeSpirit) {
 									if (Type.isFunction(handler.transcend)) {
 										handler.transcend(spirit.contentWindow, spirit.xguest, spirit.$instanceid);

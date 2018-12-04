@@ -225,7 +225,7 @@ ts.ui.DocumentPanelPlugin = (function using(MapList, GuiArray) {
 				? list
 				: snap.filter(function(clas) {
 						return list.indexOf(clas) === -1;
-					});
+				  });
 			if (panel) {
 				if (panel === shownpanel) {
 					root.css.shift(on, list);

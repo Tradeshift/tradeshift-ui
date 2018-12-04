@@ -61,8 +61,7 @@ ts.ui.SelectSpirit = ts.ui.FieldSpirit.extend({
 				if (elm.multiple) {
 					console.log(
 						'indexes: ' +
-							gui.Array
-								.from(ops)
+							gui.Array.from(ops)
 								.map(function(o, i) {
 									o.selected = Math.random() > 0.5;
 									return o.selected ? i : null;

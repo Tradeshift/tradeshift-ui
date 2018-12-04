@@ -159,8 +159,8 @@ gui.IframeSpirit = gui.Spirit.extend(
 		},
 
 		/*
-	 * Status invisible.
-	 */
+		 * Status invisible.
+		 */
 		oninvisible: function() {
 			this.super.oninvisible();
 			if (this.spiritualized) {
@@ -322,8 +322,8 @@ gui.IframeSpirit = gui.Spirit.extend(
 			var spirit = this.possess(iframe);
 			spirit.css.add('gui-iframe');
 			/*
-		 * TODO: should be moved to src() method (but fails)!!!!!
-		 */
+			 * TODO: should be moved to src() method (but fails)!!!!!
+			 */
 			if (src) {
 				if (gui.URL.external(src, doc)) {
 					var url = new gui.URL(doc, src);

@@ -428,9 +428,7 @@ describe('ts.ui.TableSpirit', function likethis() {
 			});
 		});
 
-		it('should retrieve the selected indexes (as an array) with the selected method', function(
-			done
-		) {
+		it('should retrieve the selected indexes (as an array) with the selected method', function(done) {
 			setup(function(spirit, dom) {
 				spirit
 					.selectable()
@@ -551,9 +549,7 @@ describe('ts.ui.TableSpirit', function likethis() {
 	});
 
 	describe('Filter', function() {
-		it('should support a button which can be assigned an icon and an onclick method', function(
-			done
-		) {
+		it('should support a button which can be assigned an icon and an onclick method', function(done) {
 			setup(function(spirit, dom) {
 				spirit.cols([
 					{

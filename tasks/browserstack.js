@@ -189,7 +189,7 @@ const succ = function() {
 /**
  * Check the report and pretty-print to the console
  * @see https://github.com/browserstack/browserstack-runner#usage-as-a-module
- * @param report BrowserStack report 
+ * @param report BrowserStack report
  * @returns {boolean} true on success, false on failure
  */
 const checkReport = function(report) {

@@ -170,8 +170,7 @@ edb.ObjectPopulator = (function using(isdefined, iscomplex, isfunction, isconstr
 						break;
 				}
 			});
-			gui.Object
-				.nonmethods(json)
+			gui.Object.nonmethods(json)
 				.filter(function(key) {
 					return pure.indexOf(key) === -1;
 				})

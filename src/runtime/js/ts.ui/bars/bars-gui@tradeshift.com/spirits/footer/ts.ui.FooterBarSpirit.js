@@ -164,7 +164,7 @@ ts.ui.FooterBarSpirit = (function using(
 
 		/**
 		 * [The status will be rendered in the `actionbar`!]
-		 * @param {string} [message] 
+		 * @param {string} [message]
 		 * @returns {this|string}
 		 */
 		status: chained(function(message) {
@@ -302,7 +302,7 @@ ts.ui.FooterBarSpirit = (function using(
 		_hidden: false,
 
 		/**
-		 * Since the buttons will be moved around, it's easier if we collect them 
+		 * Since the buttons will be moved around, it's easier if we collect them
 		 * in an "off-screen" buffer so that they don't belong anywhere in the UI.
 		 * @type {ts.ui.ButtonCollection}
 		 */
@@ -444,7 +444,7 @@ ts.ui.FooterBarSpirit = (function using(
 		},
 
 		/**
-		 * There's just no way that this can work with pure CSS, so here it is: 
+		 * There's just no way that this can work with pure CSS, so here it is:
 		 * Style the thing so that there is a 1px border separator between bars.
 		 */
 		_refresh: function() {

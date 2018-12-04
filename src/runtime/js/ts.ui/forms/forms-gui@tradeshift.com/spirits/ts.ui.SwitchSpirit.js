@@ -97,7 +97,7 @@ ts.ui.SwitchSpirit = (function using(tick, time) {
 		},
 
 		/**
-		 * Inject the switch. Let's remove any potential existing 
+		 * Inject the switch. Let's remove any potential existing
 		 * switch, accounting for strange Angular quantum effects.
 		 * @returns {ts.ui.Spirit}
 		 */

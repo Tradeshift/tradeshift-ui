@@ -426,7 +426,7 @@ ts.ui.SideShowSpirit = (function using(
 			},
 
 			/**
-			 * Confirm and setup the panel. We'll skip this in IE where 
+			 * Confirm and setup the panel. We'll skip this in IE where
 			 * React is known to render the DOM tree in reverse sometimes.
 			 * @return {ts.ui.Spirit}
 			 */

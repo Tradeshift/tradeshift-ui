@@ -45,7 +45,7 @@ gui.DOMObserver = (function using(Type, GuiArray) {
 	}
 
 	/**
-	 * Hostile or ignorant framework may set the `className` property to wipe 
+	 * Hostile or ignorant framework may set the `className` property to wipe
 	 * all classnames managed by the spirit. This will restore those classes.
 	 * @param {gui.Spirit} spirit
 	 */

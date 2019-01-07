@@ -154,17 +154,17 @@ ts.ui.FooterBarModel = (function using(PagerModel, ActionModel, chained) {
 		 * TODO: Move this thing to the general {ts.ui.ToolBarModel}
 		 * @returns {this|ts.ui.ActionModel}
 		 */
-		collabbutton: chained(function(args) {
+		collabbutton: chained(function(onclick) {
 			var actions = this.bufferbar.actions;
 			if (arguments.length) {
 				actions.clear();
-				if (args !== null) {
+				if (onclick !== null) {
 					actions.push({
 						label: ts.ui.Footer.localize().collaboration,
 						icon: 'ts-icon-comment',
-						onclick: args.onclick
+						onclick: onclick
 					});
-					if (args.badge === true) {
+					if (arguments[1]) {
 						this.centerbar.collabbutton = this.backupbar.collabbutton = true;
 					} else {
 						this.centerbar.collabbutton = this.backupbar.collabbutton = false;

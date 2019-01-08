@@ -84,7 +84,7 @@
 			}
 			if(email) {
 				<li class="ts-usercard-email">
-					<a href="mailto:${email}">${email}</a>
+					<a target="_top" href="mailto:${email}">${email}</a>
 				</li>
 			}
 		</ul>

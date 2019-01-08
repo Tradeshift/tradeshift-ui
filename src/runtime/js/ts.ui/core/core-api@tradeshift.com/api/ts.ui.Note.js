@@ -4,7 +4,7 @@
  * @returns {*|edb.Type}
  * @constructor
  */
-ts.ui.Note = function(opt_json) {
+ts.ui.Note = function (opt_json) {
 	if (ts.ui.Note._model) {
 		console.warn('Note model already exists! There can be only one!');
 		return ts.ui.Note._model;
@@ -19,7 +19,7 @@ ts.ui.Note = function(opt_json) {
  * Identification.
  * @return {string}
  */
-ts.ui.Note.toString = function() {
+ts.ui.Note.toString = function () {
 	return '[funtion ts.ui.Note]';
 };
 
@@ -35,18 +35,18 @@ ts.ui.Note.toString = function() {
 		 * @private
 		 */
 		_addSpirit: function getspirit() {
-			if (document.querySelector('.ts-maincontent ~ .ts-note')) {
+			if (document.querySelector('.ts-content ~ .ts-note')) {
 				ts.ui.Note._model.$isTopNote = true;
 			} else {
 				var noteSpirit = ts.ui.NoteSpirit.summon(ts.ui.Note._model);
 				ts.ui.Note._model.$isTopNote = true;
-				noteSpirit.dom.insertBefore(document.querySelector('.ts-maincontent'));
+				noteSpirit.dom.insertBefore(document.querySelector('.ts-content'));
 			}
 		},
 
 		/**
 		 * Handle (model) changes.
 		 */
-		onchange: function() {}
+		onchange: function () { }
 	});
 })();

@@ -4,7 +4,7 @@
  * @returns {*|edb.Type}
  * @constructor
  */
-ts.ui.Note = function (opt_json) {
+ts.ui.Note = function(opt_json) {
 	if (ts.ui.Note._model) {
 		console.warn('Note model already exists! There can be only one!');
 		return ts.ui.Note._model;
@@ -19,7 +19,7 @@ ts.ui.Note = function (opt_json) {
  * Identification.
  * @return {string}
  */
-ts.ui.Note.toString = function () {
+ts.ui.Note.toString = function() {
 	return '[funtion ts.ui.Note]';
 };
 
@@ -47,6 +47,6 @@ ts.ui.Note.toString = function () {
 		/**
 		 * Handle (model) changes.
 		 */
-		onchange: function () { }
+		onchange: function() {}
 	});
 })();

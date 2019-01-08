@@ -10,7 +10,11 @@
 						aside.open();
 					});
 					$(".ts-user-menu button").click(function(e){
+						$('.ts-icon-checked').remove();
+						$('.ts-user-menu li').removeClass('ts-checked');
 						var name = $(e.currentTarget).data("user");
+						$(e.currentTarget).parent('li').addClass('ts-checked');
+						$(e.currentTarget).append('<i class="ts-icon-checked"></i>');
 						$("#mySelect").val(name);
 						ts.ui.Notification.success(name);
 						aside.close()
@@ -102,12 +106,14 @@
 				<figure data-ts="DoxScript">
 					<script type="text/html">
 						$(".ts-user-menu button").click(function(e){
+							$('.ts-icon-checked').remove();
+							$('.ts-user-menu li').removeClass('ts-checked');
 							var name = $(e.currentTarget).data("user");
+							$(e.currentTarget).parent('li').addClass('ts-checked');
+							$(e.currentTarget).append('<i class="ts-icon-checked"></i>');
 							$("#mySelect").val(name);
 							ts.ui.Notification.success(name);
-							ts.ui.get("#myAside", aside => {
-								aside.close()
-							});
+							aside.close()
 						});
 					</script>
 				</figure>

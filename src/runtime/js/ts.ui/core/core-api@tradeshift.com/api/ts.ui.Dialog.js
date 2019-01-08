@@ -186,7 +186,7 @@ ts.ui.Dialog.DEFAULT_TIME = 1500;
 			case Dialog.ERROR:
 				return 'ts-icon-error';
 			case Dialog.DANGER:
-				return 'ts-icon-warning';
+				return 'ts-icon-remove';
 			case Dialog.CONFIRM:
 				return 'ts-icon-question';
 		}

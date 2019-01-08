@@ -126,11 +126,29 @@
 		.ts-dialog-icon {
 			color: @ts-color-orange;
 		}
+		.ts-dialog-buttons {
+			.ts-buttons{
+				li:first-child button{
+					background-color: @ts-color-orange;
+					color: @ts-color-white;
+					border-color: @ts-color-orange;
+				}
+			};
+		}
 	}
 	&.ts-dialog-danger,
 	&.ts-dialog-error {
 		.ts-dialog-icon {
 			color: @ts-color-red;
+		}
+		.ts-dialog-buttons {
+			.ts-buttons{
+				li:first-child button{
+					background-color: @ts-color-red;
+					color: @ts-color-white;
+					border-color: @ts-color-red;
+				}
+			};
 		}
 	}
 }

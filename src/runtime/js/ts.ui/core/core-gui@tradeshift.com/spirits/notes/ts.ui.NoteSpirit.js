@@ -33,7 +33,7 @@ ts.ui.NoteSpirit = (function using(Note, Type, Client, chained, confirmed) {
 			/**
 			 * Load edbml if we have a model.
 			 */
-			onconfigure: function () {
+			onconfigure: function() {
 				this.super.onconfigure();
 				if (this._ismodelled()) {
 					this.action.add(ts.ui.ACTION_SAFE_LINK);
@@ -46,7 +46,7 @@ ts.ui.NoteSpirit = (function using(Note, Type, Client, chained, confirmed) {
 			/**
 			 * Make background yellow & adjust container height if page-level Note.
 			 */
-			onready: function () {
+			onready: function() {
 				this.super.onready();
 				this._adjustVisible();
 			},
@@ -54,7 +54,7 @@ ts.ui.NoteSpirit = (function using(Note, Type, Client, chained, confirmed) {
 			/**
 			 * Adjust container height if page-level Note if values change.
 			 */
-			onrender: function () {
+			onrender: function() {
 				this.super.onrender();
 				this._adjustVisible();
 			},
@@ -63,7 +63,7 @@ ts.ui.NoteSpirit = (function using(Note, Type, Client, chained, confirmed) {
 			 * Handle closing transition event.
 			 * @param {Event} e
 			 */
-			onevent: function (e) {
+			onevent: function(e) {
 				this.super.onevent(e);
 				switch (e.type) {
 					case 'transitionend':
@@ -75,7 +75,7 @@ ts.ui.NoteSpirit = (function using(Note, Type, Client, chained, confirmed) {
 					case 'click':
 						this.$close();
 						gui.Tick.time(
-							function () {
+							function() {
 								this.css.add(CLASS_HIDDEN);
 							},
 							50,
@@ -90,7 +90,7 @@ ts.ui.NoteSpirit = (function using(Note, Type, Client, chained, confirmed) {
 			 * Handle action.
 			 * @param {gui.Action} a
 			 */
-			onaction: function (a) {
+			onaction: function(a) {
 				this.super.onaction(a);
 				if (a.type === ts.ui.ACTION_SAFE_LINK && this._ismodelled()) {
 					if (Type.isFunction(this._model.onlink)) {
@@ -104,9 +104,9 @@ ts.ui.NoteSpirit = (function using(Note, Type, Client, chained, confirmed) {
 			 * Handle (model) changes.
 			 * @param {Array<edb.Change>} changes
 			 */
-			onchange: function (changes) {
+			onchange: function(changes) {
 				this.super.onchange(changes);
-				changes.forEach(function (c) {
+				changes.forEach(function(c) {
 					if (c.object === this._model && c.name === 'open' && !c.newValue) {
 						this.close();
 					}
@@ -117,7 +117,7 @@ ts.ui.NoteSpirit = (function using(Note, Type, Client, chained, confirmed) {
 			 * Make it closeable.
 			 * @param {boolean} closeable
 			 */
-			closeable: function (closeable) {
+			closeable: function(closeable) {
 				if (closeable) {
 					var button = this.dom.prepend(
 						ts.ui.ButtonSpirit.summon(document, { icon: CLASS_CLOSE_ICON })
@@ -132,7 +132,7 @@ ts.ui.NoteSpirit = (function using(Note, Type, Client, chained, confirmed) {
 			 * Support alternative spelling (since none is more correct).
 			 * @alias {ts.ui.NoteSpirit#closable}
 			 */
-			closable: function () {
+			closable: function() {
 				return this.closeable.apply(arguments);
 			},
 
@@ -141,7 +141,7 @@ ts.ui.NoteSpirit = (function using(Note, Type, Client, chained, confirmed) {
 			 * icon-class: gui.CSSPlugin.add(i, classname);
 			 * @param {String} classname
 			 */
-			icon: chained(function (classname) {
+			icon: chained(function(classname) {
 				var i = this.dom.q('i') || this.dom.prepend(document.createElement('i'));
 				i.className = classname;
 				this._adjustVisible();
@@ -151,7 +151,7 @@ ts.ui.NoteSpirit = (function using(Note, Type, Client, chained, confirmed) {
 			 * Set text.
 			 * @param {String} text
 			 */
-			text: chained(function (text) {
+			text: chained(function(text) {
 				var p = this.dom.q('p') || this.dom.append(document.createElement('p'));
 				p.textContent = text;
 				this._adjustVisible();
@@ -161,8 +161,8 @@ ts.ui.NoteSpirit = (function using(Note, Type, Client, chained, confirmed) {
 			 * Close Note.
 			 * @returns {ts.ui.NoteSpirit}
 			 */
-			close: chained(function () {
-				this.$close().then(function () {
+			close: chained(function() {
+				this.$close().then(function() {
 					if (gui.Type.isFunction(this._model.onclose)) {
 						this._model.onclose();
 					}
@@ -183,11 +183,11 @@ ts.ui.NoteSpirit = (function using(Note, Type, Client, chained, confirmed) {
 			 * @returns {ts.ui.ButtonCollection|ts.ui.ToolBarSpirit}
 			 */
 			buttons: confirmed('(array)')(
-				chained(function (opt_json) {
+				chained(function(opt_json) {
 					var buttons = this.model().buttons;
 					if (arguments.length) {
 						buttons.clear(); // reusing the collection to preserve observers
-						opt_json.forEach(function (json) {
+						opt_json.forEach(function(json) {
 							buttons.push(json);
 						});
 					} else {
@@ -202,7 +202,7 @@ ts.ui.NoteSpirit = (function using(Note, Type, Client, chained, confirmed) {
 			 * Adjust Note visibility.
 			 * @private
 			 */
-			_adjustVisible: function () {
+			_adjustVisible: function() {
 				if (this._ismodelled() && this._model.onclose) {
 					this.css.add(CLASS_HAS_CLOSE);
 				} else {
@@ -232,7 +232,7 @@ ts.ui.NoteSpirit = (function using(Note, Type, Client, chained, confirmed) {
 			 * adjust the <p> padding right when the note has buttons.
 			 * @private
 			 */
-			_adjustContentPadding: function () {
+			_adjustContentPadding: function() {
 				var buttons = this.dom.q('.ts-note-buttons');
 				var para = this.dom.q('p');
 				if (buttons && para) {
@@ -245,7 +245,7 @@ ts.ui.NoteSpirit = (function using(Note, Type, Client, chained, confirmed) {
 			 * @param {boolean=} isRemove
 			 * @private
 			 */
-			_adjustPage: function (isRemove) {
+			_adjustPage: function(isRemove) {
 				if (this._ismodelled() && this._model.$isTopNote) {
 					var height = isRemove ? 0 : this.box.height;
 					var mainContentElement = document.querySelector('.ts-content');
@@ -260,13 +260,13 @@ ts.ui.NoteSpirit = (function using(Note, Type, Client, chained, confirmed) {
 			 * Start closing transition.
 			 * @returns {gui.Then|null}
 			 */
-			$close: function () {
+			$close: function() {
 				if (!this._closing) {
 					this._closing = new gui.Then();
 					this.event.add('transitionend');
 					this.css.add(CLASS_CLOSING);
 					gui.Tick.time(
-						function () {
+						function() {
 							this.css.add(CLASS_CLOSED);
 						},
 						0,
@@ -284,7 +284,7 @@ ts.ui.NoteSpirit = (function using(Note, Type, Client, chained, confirmed) {
 			 * @param {ts.ui.NoteModel=} opt_model
 			 * @return {ts.ui.NoteSpirit}
 			 */
-			summon: function (opt_model) {
+			summon: function(opt_model) {
 				var spirit = this.possess(document.createElement('div'));
 				spirit._model = opt_model || null;
 				return spirit;

@@ -871,7 +871,6 @@ ts.ui.ToolBarSpirit = (function using(
 					tabspirit,
 					taboffset,
 					tabsoffset = 0;
-				var oldie = Client.isExplorer9 || Client.isExplorer10;
 				var getspirit = function(tabmodel) {
 					return that.dom.q('#' + tabmodel.$instanceid, ts.ui.Spirit);
 				};
@@ -883,7 +882,7 @@ ts.ui.ToolBarSpirit = (function using(
 						tabspirit = getspirit(tabmodel);
 						if (isontop) {
 							tabspirit.css.display = '';
-							taboffset = tabspirit.box.width + (oldie ? 1 : 0);
+							taboffset = tabspirit.box.width;
 							isontop = tabsoffset + taboffset < availwidth - moreoffset;
 						}
 						if (isontop) {

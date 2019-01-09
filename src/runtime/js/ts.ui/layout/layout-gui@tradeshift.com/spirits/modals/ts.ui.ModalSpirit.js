@@ -217,9 +217,7 @@ ts.ui.ModalSpirit = (function using(Client, transition, chained) {
 		 * @param @optional {Function} callback
 		 * @param @optional {Object} thisp
 		 */
-		onflex: function(callback, thisp) {
-			this._autocenter(this._panel());
-		},
+		onflex: function(callback, thisp) {},
 
 		// Privileged ..............................................................
 
@@ -244,7 +242,6 @@ ts.ui.ModalSpirit = (function using(Client, transition, chained) {
 		 */
 		$selectTab: function(panel) {
 			this.super.$selectTab(panel);
-			this._autocenter(panel);
 			this._focus(panel);
 		},
 
@@ -395,8 +392,9 @@ ts.ui.ModalSpirit = (function using(Client, transition, chained) {
 		 * this nowadays, but we don't really want the Main to *stay* centered 
 		 * when you append more content to it (since that will move it incrementally 
 		 * upwards on the screen) so the JS layout  solution may still be alright.
+		 * Remove by leo, replace some JS layout with pure CSS for performance success. 
 		 * @param {ts.ui.PanelSpirit} panel
-		 */
+
 		_autocenter: function(panel) {
 			var box = this._box(panel);
 			var POS = 0.382;
@@ -407,6 +405,7 @@ ts.ui.ModalSpirit = (function using(Client, transition, chained) {
 				box.css.top = offset > 0 ? offset : 0;
 			}
 		},
+		*/
 
 		/**
 		 * Position Modal in the center of the screen.

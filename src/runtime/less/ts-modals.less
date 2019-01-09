@@ -17,7 +17,10 @@
 		> .ts-main, // ts-main is deprecated and can be remove at some point...
 		> .ts-box {
 			display: block;
-			position: relative;
+			position: absolute;
+			top: 50%; 
+			left: 50%;
+  			transform: translate(-50%,-50%);
 			max-width: (@ts-width-aside + @ts-unit-plus) * 2; // 640px usable
 			padding: @ts-unit-plus;
 			text-align: center;

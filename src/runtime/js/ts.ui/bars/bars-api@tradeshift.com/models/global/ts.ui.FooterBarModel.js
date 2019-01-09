@@ -169,9 +169,14 @@ ts.ui.FooterBarModel = (function using(
 				if (onclick !== null) {
 					actions.push({
 						label: ts.ui.Footer.localize().collaboration,
-						icon: 'ts-icon-collaboration',
+						icon: 'ts-icon-comment',
 						onclick: onclick
 					});
+					if (arguments[1]) {
+						this.centerbar.collabbutton = this.backupbar.collabbutton = true;
+					} else {
+						this.centerbar.collabbutton = this.backupbar.collabbutton = false;
+					}
 				}
 			} else {
 				return actions[0] || null;
@@ -231,6 +236,15 @@ ts.ui.FooterBarModel = (function using(
 		 */
 		$showBackupBar: function(model) {
 			return !!(model.buttons.getLength() || model.actions.getLength());
+		},
+
+		/**
+		 * Show a badge on collaboration icon
+		 * @param {ts.ui.ToolBarModel} model
+		 * @returns {boolean}
+		 */
+		$showBadge: function(model) {
+			return model.collabbutton;
 		}
 	});
 })(

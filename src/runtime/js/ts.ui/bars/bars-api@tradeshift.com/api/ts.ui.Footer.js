@@ -200,5 +200,5 @@ gui.Object.extend(ts.ui.Footer, {
 });
 
 ts.ui.Footer.localize({
-	collaboration: 'Collaborate On This'
+	collaboration: 'Open Collaboration'
 });

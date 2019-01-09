@@ -90,6 +90,12 @@ ts.ui.ToolBarSpirit = (function using(
 			},
 
 			/**
+			 * Sets whether there needs to be a badge shown via collaboration.
+			 * @type {boolean}
+			 */
+			badge: false,
+
+			/**
 			 * @see https://github.com/wunderbyte/spiritual-gui/issues/109
 			 */
 			onenter: function() {

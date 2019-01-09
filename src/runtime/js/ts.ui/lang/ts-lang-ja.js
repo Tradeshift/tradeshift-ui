@@ -8,5 +8,5 @@ ts.ui.DatePicker.localize({
 });
 
 ts.ui.Footer.localize({
-	collaboration: 'コラボレーションする'
+	collaboration: 'オープンコラボレーション'
 });

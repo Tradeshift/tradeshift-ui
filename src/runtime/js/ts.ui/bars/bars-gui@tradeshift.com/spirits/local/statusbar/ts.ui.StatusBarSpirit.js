@@ -22,6 +22,12 @@ ts.ui.StatusBarSpirit = (function using(PagerModel, Type, chained, confirmed) {
 		onlayout: null,
 
 		/**
+		 * Sets whether there needs to be a badge shown via collaboration.
+		 * @type {boolean}
+		 */
+		badge: false,
+
+		/**
 		 * Set the message.
 		 * @alias {ts.ui.StatusBarSpirit#title}
 		 * @param @optional {string} text

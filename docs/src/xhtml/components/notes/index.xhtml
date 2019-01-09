@@ -8,6 +8,15 @@
 					ts.ui.get(selector).toggle();
 				});
 			}
+
+			$(window).click(function(e) {
+				if (e.target.classList.contains('ts-secondary')) return;
+
+				if (ts.ui.Note._model) {
+					if (!e.target.classList.contains('ts-tertiary')) return;
+					ts.ui.Notification.warning('Please close the current Note before executing this example.');
+				}
+			});
 		</script>
 	</head>
 	<body>

@@ -803,6 +803,9 @@ ts.ui.ToolBarSpirit = (function using(
 					this.dom.q('.ts-tab-indicator', ts.ui.Spirit),
 					this.dom.q('.ts-tab.ts-selected', ts.ui.Spirit)
 				);
+				if (tabs.length === 1) {
+					this.dom.q('.ts-tab-indicator', ts.ui.Spirit).dom.hide();
+				}
 			},
 
 			/**

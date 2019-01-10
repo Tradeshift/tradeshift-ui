@@ -3,6 +3,7 @@
 	<?input name="header" type="ts.ui.HeaderBarModel"?>
 
 	var id = (this.$instanceid + header.$instanceid);
+	var color = header.color;
 
 	<ul class="ts-headerbar-bars">
 		headerbar(header.headerbar);
@@ -11,7 +12,7 @@
 	</ul>
 
 	function headerbar(model) {
-		<li data-ts="ToolBar" class="ts-headerbar-headerbar" id="${id}-headerbar" +
+		<li data-ts="ToolBar" class="ts-headerbar-headerbar ${color}" id="${id}-headerbar" +
 			data-ts.model="?{model}" data-ts.visible="${header.$showHeaderBar(model)}"></li>
 	}
 

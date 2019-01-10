@@ -70,6 +70,19 @@ ts.ui.HeaderBarModel = (function using(ToolBarModel, SearchModel, chained) {
 		},
 
 		/**
+		 * The color 
+		 * @type {string}
+		 */
+		color: {
+			getter: function() {
+				return this.headerbar.color;
+			},
+			setter: function(color) {
+				this.headerbar.color = color;
+			}
+		},
+
+		/**
 		 * The buttons.
 		 * @type {ts.ui.ButtonCollection}
 		 */

@@ -168,6 +168,18 @@ ts.ui.Header = (function using(chained) {
 		}),
 
 		/**
+		 * @param {string} [string]
+		 * @returns {this|string}
+		 */
+		color: chained(function(color) {
+			if (arguments.length) {
+				bar().color(color);
+			} else {
+				return bar().color();
+			}
+		}),
+
+		/**
 		 *
 		 */
 		localize: function(locale) {

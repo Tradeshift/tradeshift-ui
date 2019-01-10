@@ -92,6 +92,20 @@ ts.ui.HeaderBarSpirit = (function using(chained) {
 			}),
 
 			/**
+			 * Get or set the color of Header.
+			 * @param {string} [string]
+			 * @returns {this|string}
+			 */
+			color: chained(function(string) {
+				var model = this.model();
+				if (arguments.length) {
+					model.color = string;
+				} else {
+					return model.color;
+				}
+			}),
+
+			/**
 			 * Show the dedicated burger button. Pass `null` to hide it again.
 			 * @param {Function|null} onclick
 			 * @returns {this|ts.ui.ButtonModel}

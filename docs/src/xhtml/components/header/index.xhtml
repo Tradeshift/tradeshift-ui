@@ -8,7 +8,7 @@
 		<article>
 			<h1>Header</h1>
 			<section class="desc">
-				<p>Unless you know exactly what you are doing and why your app doesn't need a Header, you should always configure the Header with an icon and a title.</p>
+				<p>Unless you know exactly what you are doing and why your app doesn't need a Header, you should always configure the Header with an icon and a title. You can configure the color as well, the default one is white.</p>
 			</section>
 			<section>
 
@@ -17,6 +17,7 @@
 				<figure data-ts="DoxMarkup">
 					<script type="text/html">
 						<meta name="ts-app-title" content="Header"/>
+						<meta name="ts-app-color" content="ts-blue"/>
 						<link rel="ts-app-icon" href="assets/appicon.svg"/>	
 					</script>
 				</figure>
@@ -27,6 +28,7 @@
 					<script type="text/html">
 						<div data-ts="App" 
 							data-ts.title="Header"
+							data-ts.color="ts-blue"
 							data-ts.icon="assets/appicon.svg">	
 						</div>
 					</script>
@@ -36,9 +38,13 @@
 
 				<figure data-ts="DoxScript">
 					<script type="text/html">
-						ts.ui.Header.title('Header').icon('assets/appicon.svg');
+						ts.ui.Header.title('Header').icon('assets/appicon.svg').color('ts-blue');
 					</script>
 				</figure>
+				<div data-ts="Note">
+					<i class="ts-icon-info"></i>
+					<p>All colors we support are: <val>ts-blue,</val><val>ts-red,</val><val>ts-orange,</val><val>ts-yellow,</val><val>ts-green,</val><val>ts-purple,</val><val>ts-pink,</val><val>ts-gray,</val><val>ts-slate,</val><val>ts-black</val> and the default is white.</a>.
+				</div>
 			</section>
 			<section>
 				<p>Here's an overview of the Header API.</p>

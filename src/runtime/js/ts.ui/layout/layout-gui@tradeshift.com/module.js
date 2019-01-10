@@ -33,16 +33,23 @@ gui.module('layout-gui@tradeshift.com', {
 	 * Parse optional metatags to produce a nice header.
 	 */
 	onbeforespiritualize: function() {
-		function setupheader(meta, link) {
-			if (meta && meta.content) {
-				ts.ui.Header.title(meta.content);
+		function setupheader(title, color, link) {
+			if (title && title.content) {
+				ts.ui.Header.title(title.content);
+			}
+			if (color && color.content) {
+				ts.ui.Header.color(color.content);
 			}
 			if (link && link.getAttribute('href')) {
 				ts.ui.Header.icon(link.href);
 			}
 		}
-		(function init(meta, link) {
-			setupheader(document.head.querySelector(meta), document.head.querySelector(link));
-		})('meta[name=ts-app-title]', 'link[rel=ts-app-icon]');
+		(function init(title, color, link) {
+			setupheader(
+				document.head.querySelector(title),
+				document.head.querySelector(color),
+				document.head.querySelector(link)
+			);
+		})('meta[name=ts-app-title]', 'meta[name=ts-app-color]', 'link[rel=ts-app-icon]');
 	}
 });

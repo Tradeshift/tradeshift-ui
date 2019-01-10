@@ -3,6 +3,56 @@
 	position: relative;
 	background-color: @ts-color-white;
 	transition: opacity @ts-transition-fast;
+	.ts-headerbar-headerbar {
+		&.ts-blue {
+			background-color: @ts-color-blue;
+		}
+		&.ts-red {
+			background-color: @ts-color-red;
+		}
+		&.ts-orange {
+			background-color: @ts-color-orange;
+		}
+		&.ts-yellow {
+			background-color: @ts-color-yellow;
+		}
+		&.ts-green {
+			background-color: @ts-color-green;
+		}
+		&.ts-purple {
+			background-color: @ts-color-purple;
+		}
+		&.ts-pink {
+			background-color: @ts-color-pink;
+		}
+		&.ts-gray {
+			background-color: @ts-color-gray;
+		}
+		&.ts-slate {
+			background-color: @ts-color-slate;
+		}
+		&.ts-white {
+			background-color: @ts-color-white;
+		}
+		&.ts-black {
+			background-color: @ts-color-black;
+		}
+		&.ts-blue,
+		&.ts-red,
+		&.ts-orange,
+		&.ts-green,
+		&.ts-purple,
+		&.ts-slate,
+		&.ts-pink,
+		&.ts-black {
+			color: @ts-color-white;
+		}
+		&.ts-yellow,
+		&.ts-grey,
+		&.ts-white {
+			color: @ts-color-slate-lighter;
+		}
+	}
 	.ts-toolbar {
 		position: relative;
 		&[data-ts\.badge] {

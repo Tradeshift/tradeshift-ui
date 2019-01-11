@@ -105,7 +105,7 @@ ts.ui.LayoutModel = ts.ui.Model.extend(
 	{
 		// Static .................................................................
 
-		BREAKPOINTS: { 1270: 'desktop', 600: 'tablet', 0: 'mobile' },
+		BREAKPOINTS: { 1270: 'desktop', 650: 'tablet', 0: 'mobile' },
 		BREAKPOINT_MOBILE: 'mobile', // something the size of a phone
 		BREAKPOINT_TABLET: 'tablet', // something the size of a tablet
 		BREAKPOINT_DESKTOP: 'desktop' // something the size of a table

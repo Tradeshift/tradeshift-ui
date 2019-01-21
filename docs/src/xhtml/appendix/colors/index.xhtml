@@ -15,6 +15,9 @@
 							colors.forEach(function(set) {
 								var darkest = set[Object.keys(set)[Object.keys(set).length - 1]];
 								var colorTitle = Object.keys(set)[0].replace('@', '').replace('-lightest', '');
+								if (colorTitle === 'ts-color-white') {
+									colorTitle = 'ts-base-colors'
+								}
 								<div class="color">
 								<h5>${colorTitle}</h5>
 								var counter = 0;
@@ -22,7 +25,7 @@
 									counter++;
 									var code = set[name];
 									@style = 'background-color: ' + code + '; color: #ffffff';
-									if (counter <= 2 && !name.includes('slate')) {
+									if (counter <= 2 && !name.includes('slate') && !name.includes('black')) {
 										@style = 'background-color: ' + code + '; color: ' + darkest;
 									}
 									<div @style class="color-chip">

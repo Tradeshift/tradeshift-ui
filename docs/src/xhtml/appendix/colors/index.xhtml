@@ -11,21 +11,28 @@
 				<script type="text/edbml">
 					<?param name="colors"?>
 					if(colors) {
-						<table>
+						<div class="colors-wrapper">
 							colors.forEach(function(set) {
-								<tr>
+								var darkest = set[Object.keys(set)[Object.keys(set).length - 1]];
+								var colorTitle = Object.keys(set)[0].replace('@', '').replace('-lightest', '');
+								<div class="color">
+								<h5>${colorTitle}</h5>
+								var counter = 0;
 								for (var name in set) {
+									counter++;
 									var code = set[name];
-									@style = 'background-color: ' + code;
-									<td @style>
-										<code class="color-name">${name}</code>
-										<br/>
-										<code class="color-code">${code}</code>
-									</td>
+									@style = 'background-color: ' + code + '; color: #ffffff';
+									if (counter <= 2 && !name.includes('slate')) {
+										@style = 'background-color: ' + code + '; color: ' + darkest;
+									}
+									<div @style class="color-chip">
+										<span class="color-name">${name}</span>
+										<span class="color-code">${code}</span>
+									</div>
 								}
-								</tr>
+								</div>
 							});
-						</table>
+						</div>
 					}
 				</script>
 			</section>

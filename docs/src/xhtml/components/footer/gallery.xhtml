@@ -1,120 +1,114 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<title>Footer Gallery</title>
-		<object data="tabs.xhtml"></object>
-		<style>
-			section:not(.desc) > p > strong {
-				background-color: rgb(225, 225, 225);
-				font-weight: 600;
-				border-radius: 100%;
-				padding: 0 0.43em;
-				margin-right: 0.25em;
-			}
-		</style>
-	</head>
-	<body>
+
+<head>
+	<title>Footer Gallery</title>
+	<object data="tabs.xhtml"></object>
+	<style>
+		section:not(.desc)>p>strong {
+			background-color: rgb(225, 225, 225);
+			font-weight: 600;
+			border-radius: 100%;
+			padding: 0 0.43em;
+			margin-right: 0.25em;
+		}
+	</style>
+</head>
+
+<body>
+	<header data-ts="TopBar"></header>
+	<main data-ts="Main">
 		<article>
 			<h1>Footer gallery</h1>
 			<section class="desc">
-				<p>
-					Here you can test how the Footer behaves when you enable
-					<strong>all</strong> the features.
-				</p>
+				<p>Here you can test how the Footer behaves when you enable <strong>all</strong> the features.
 			</section>
 			<section>
+
 				<p><strong>1</strong> Add a pager.</p>
 
 				<figure data-ts="DoxScript" class="attention">
 					<script type="runnable">
-						ts.ui.Footer.pager({
-							pages: 23,
-							page: 0,
-							onselect: function(index) {
-								console.log(index);
-							}
-						});
-					</script>
+							ts.ui.Footer.pager({
+								pages: 23,
+								page: 0,
+								onselect: function(index) {
+									console.log(index);
+								}
+							});
+						</script>
 				</figure>
 
 				<p><strong>2</strong> Add some buttons.</p>
 
 				<figure data-ts="DoxScript">
 					<script type="runnable">
-						ts.ui.Footer.buttons([
-							{ label: 'Button 1', type: 'ts-primary' },
-							{ label: 'Button 2', type: 'ts-secondary' },
-							{ label: 'Button 3' },
-							{ label: 'Button 4' },
-							{ label: 'Button 5' }
-						]);
-					</script>
+							ts.ui.Footer.buttons([
+								{ label: 'Button 1', type: 'ts-primary' },
+								{ label: 'Button 2', type: 'ts-secondary' },
+								{ label: 'Button 3' },
+								{ label: 'Button 4' },
+								{ label: 'Button 5' }
+							]);
+						</script>
 				</figure>
 
-				<p>
-					<strong>3</strong> Add more buttons until they crash into the Pager. Behold the second
-					toolbar.
-				</p>
+				<p><strong>3</strong> Add more buttons until they crash into the Pager. Behold the second toolbar.</p>
 
 				<figure data-ts="DoxScript">
 					<script type="runnable">
-						ts.ui.Footer.buttons().splice(2, 0,
-							{ label: 'Bonus Button', type: 'ts-secondary' }
-						);
-					</script>
+							ts.ui.Footer.buttons().splice(2, 0,
+								{ label: 'Bonus Button', type: 'ts-secondary' }
+							);
+						</script>
 				</figure>
 
 				<p><strong>4</strong> The actions will appear in yet another toolbar. That's right.</p>
 
 				<figure data-ts="DoxScript">
 					<script type="runnable">
-						ts.ui.Footer.actions([
-							{ label: 'Move Up', icon: 'ts-icon-triangleup' },
-							{ label: 'Move Down', icon: 'ts-icon-triangledown' },
-							{ label: 'Move Left', icon: 'ts-icon-triangleleft' },
-							{ label: 'Move Right', icon: 'ts-icon-triangleright' },
-							{ label: 'Don\'t Move', icon: 'ts-icon-halt' }
-						]).status('Something is selected').checkbox({
-							onclick: function() {
-								this.checked = !this.checked;
-							}
-						});
-					</script>
+							ts.ui.Footer.actions([
+								{ label: 'Move Up', icon: 'ts-icon-triangleup' },
+								{ label: 'Move Down', icon: 'ts-icon-triangledown' },
+								{ label: 'Move Left', icon: 'ts-icon-triangleleft' },
+								{ label: 'Move Right', icon: 'ts-icon-triangleright' },
+								{ label: 'Don\'t Move', icon: 'ts-icon-halt' }
+							]).status('Something is selected').checkbox({
+								onclick: function() {
+									this.checked = !this.checked;
+								}
+							});
+						</script>
 				</figure>
 
 				<p><strong>5</strong> Finally add the configuration and collaboration buttons.</p>
 
 				<figure data-ts="DoxScript">
 					<script type="runnable">
-						ts.ui.Footer.configbutton(function onclick() {
-							ts.ui.Notification.success('Go configure!');
-						}).collabbutton(function onclick() {
-							ts.ui.Notification.success('Go collaborate!');
-						});
-					</script>
+							ts.ui.Footer.configbutton(function onclick() {
+								ts.ui.Notification.success('Go configure!');
+							}).collabbutton(function() {
+								ts.ui.Notification.success('Go collaborate!');
+							}, true);
+						</script>
 				</figure>
 
-				<p>
-					With the Footer fully equipped, we can try to hide and destroy these things again.
-				</p>
+				<p>With the Footer fully equipped, we can try to hide and destroy these things again.</p>
+
 
 				<h3>Hide something (or everything)</h3>
 
-				<p>
-					If you need to temporarily hide a single Footer member, you can call the associated method
-					without any arguments to get a hold of the thing and then call the <code>hide</code> and
-					<code>show</code> methods. You can also toggle the <code>visible</code> property.
-				</p>
+				<p>If you need to temporarily hide a single Footer member, you can call the associated method without any
+					arguments to get a hold of the thing and then call the <code>hide</code> and <code>show</code> methods. You
+					can also toggle the <code>visible</code> property.</p>
 
 				<figure data-ts="DoxScript">
 					<script type="runnable">
-						var thing, pause = action => setTimeout(action, 500);
-						(function toggle(things) {
-							if(things.length) {
-								if((thing = things.shift())) {
-									thing.hide();
-									pause(() => {
-										thing.show()
+							var thing, pause = action => setTimeout(action, 500);
+							(function toggle(things) {
+								if(things.length) {
+									if((thing = things.shift())) {
+										thing.hide();
 										pause(() => {
 											toggle(things);
 										});
@@ -189,6 +183,9 @@
 				</figure>
 			</section>
 		</article>
-	</body>
-	<html></html>
+</body>
+<html>
+
+</html>
+
 </html>

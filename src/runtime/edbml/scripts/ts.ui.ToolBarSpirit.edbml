@@ -101,6 +101,13 @@
 					if(!toolbar.compact) {
 						buttons.forEach(renderbutton);
 					} else if (mobilos && buttons.length > 1 && !hasicons(buttons)) {
+						buttons.forEach(function(button, index){
+							if (button.isPrimary()) {
+								renderbutton(button);
+								buttons.splice(index, 1);
+								return;
+							}
+						});
 						renderasidebutton(function onclick() {
 							spirit.putaside(buttons);
 						});

@@ -14,9 +14,9 @@
 						<div class="colors-wrapper">
 							colors.forEach(function(set) {
 								var darkest = set[Object.keys(set)[Object.keys(set).length - 1]];
-								var colorTitle = Object.keys(set)[0].replace('@', '').replace('-lightest', '');
-								if (colorTitle === 'ts-color-white') {
-									colorTitle = 'ts-base-colors'
+								var colorTitle = Object.keys(set)[0].replace('@', '').replace('-lightest', '').replace('ts-color-', '');
+								if (colorTitle === 'white') {
+									colorTitle = 'black and white'
 								}
 								<div class="color">
 								<h5>${colorTitle}</h5>

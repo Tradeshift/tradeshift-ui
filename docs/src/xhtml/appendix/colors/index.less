@@ -1,12 +1,20 @@
 article {
 	max-width: 100%;
 }
-#doc-colors-demo {
+article.doc-colors-article {
+	margin: 0 auto;
+	max-width: 960px;
+	padding-left: 0;
+	padding-right: 0;
+	
+	@media (max-width: 800px) {
+		padding-left: 20px;
+		padding-right: 20px;
+	}
+
 	.colors-wrapper {
 		display: flex;
 		flex-wrap: wrap;
-		margin: 0 auto;
-		max-width: 960px;
 	}
 
 	.color {
@@ -17,6 +25,24 @@ article {
 		margin: 10px;
 		padding: 10px;
 		width: 300px;
+		
+		&:nth-of-type(3n-2) {
+			margin-left: 0;
+		}
+
+		@media (min-width: 650px) and (max-width: 800px) {
+			&:nth-of-type(odd) {
+				margin-left: 0;
+			}
+
+			&:nth-of-type(even) {
+				margin-left: 10px;
+			}
+		}
+
+		@media (max-width: 650px) {
+			margin: 10px 0;
+		}
 	}
 
 	.color > h5 {
@@ -52,5 +78,28 @@ article {
 
 	.color-code {
 		text-transform: uppercase;
+	}
+
+	.color-dots {
+		align-items: center;
+		background: #fff;
+		border-radius: 3px;
+		border: 1px solid #CCD8DD;
+		box-shadow: 0 5px 10px 0 rgba(88, 124, 141, 0.1);
+		display: flex;
+		justify-content: space-around;
+		height: 100px;
+		margin-bottom: 15px;
+
+		.color-dot {
+			border-radius: 50%;
+			height: 50px;
+			width: 50px;
+
+			@media (max-width: 650px) {
+				height: 25px;
+				width: 25px;
+			}
+		}
 	}
 }

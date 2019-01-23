@@ -16,7 +16,7 @@ ts.ui.ready(function rendercolors() {
 			return +color;
 		});
 		var rgb = hslToHex(matches[0], matches[1], matches[2]);
-		return `\t\t` + quote(def.slice(def.indexOf('@'))) + ': ' + quote(rgb);
+		return '\t\t' + quote(def.slice(def.indexOf('@'))) + ': ' + quote(rgb);
 	}
 
 	function object(txt) {
@@ -63,7 +63,7 @@ ts.ui.ready(function rendercolors() {
 			g = hue2rgb(p, q, h);
 			b = hue2rgb(p, q, h - 1 / 3);
 		}
-		return `#${toHex(r)}${toHex(g)}${toHex(b)}`;
+		return '#' + toHex(r) + toHex(g) + toHex(b);
 	}
 
 	function hue2rgb(p, q, t) {

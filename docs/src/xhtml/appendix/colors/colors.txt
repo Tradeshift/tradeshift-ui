@@ -1,7 +1,3 @@
-// Base
-@ts-color-white: hsl(0, 0%, 100%);
-@ts-color-black: hsl(204, 25%, 8%);
-
 // Red
 @ts-color-red-lightest: hsl(0, 57%, 90%);
 @ts-color-red-lighter: hsl(0, 59%, 80%);
@@ -73,3 +69,7 @@
 @ts-color-slate: hsl(196, 20%, 15%);
 @ts-color-slate-dark: hsl(196, 22%, 10%);
 @ts-color-slate-darker: hsl(197, 20%, 7%);
+
+// Base
+@ts-color-white: hsl(0, 0%, 100%);
+@ts-color-black: hsl(204, 25%, 8%);

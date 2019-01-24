@@ -103,7 +103,7 @@ ts.ui.SideBarSpirit = (function using(LayoutSpirit, Type, Client, CSSPlugin, cha
 		// Privileged ..............................................................
 
 		/**
-		 * 
+		 *
 		 */
 		$onopen: function() {
 			if (this._autoclose) {
@@ -113,7 +113,7 @@ ts.ui.SideBarSpirit = (function using(LayoutSpirit, Type, Client, CSSPlugin, cha
 		},
 
 		/**
-		 * 
+		 *
 		 */
 		$onclose: function() {
 			if (this._autoclose) {

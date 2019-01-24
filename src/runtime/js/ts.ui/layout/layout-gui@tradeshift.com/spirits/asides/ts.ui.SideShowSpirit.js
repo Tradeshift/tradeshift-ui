@@ -228,7 +228,7 @@ ts.ui.SideShowSpirit = (function using(
 		_canclose: false,
 
 		/**
-		 * If this thing is nested in a SideBar, 
+		 * If this thing is nested in a SideBar,
 		 * make the header become less prominent.
 		 * TODO: Not if it's a *root* SideBar :/
 		 * @returns {ts.ui.HeaderBarSpirit}
@@ -250,7 +250,7 @@ ts.ui.SideShowSpirit = (function using(
 		},
 
 		/**
-		 * Confirm and setup the panel. We'll skip this in IE where 
+		 * Confirm and setup the panel. We'll skip this in IE where
 		 * React is known to render the DOM tree in reverse sometimes.
 		 * @return {ts.ui.Spirit}
 		 */
@@ -328,7 +328,7 @@ ts.ui.SideShowSpirit = (function using(
 			var deg, off;
 			function getoffset(now) {
 				deg = now / (end / 90);
-				deg = deg * Math.PI / 180;
+				deg = (deg * Math.PI) / 180;
 				off = open ? Math.sin(deg) : Math.cos(deg);
 				return off * 100;
 			}

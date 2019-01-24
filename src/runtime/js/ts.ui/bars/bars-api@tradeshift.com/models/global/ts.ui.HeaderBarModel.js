@@ -57,7 +57,7 @@ ts.ui.HeaderBarModel = (function using(ToolBarModel, SearchModel, chained) {
 		},
 
 		/**
-		 * TODO: should we even support this stuff? 
+		 * TODO: should we even support this stuff?
 		 * @type {string}
 		 */
 		icon: {
@@ -70,7 +70,7 @@ ts.ui.HeaderBarModel = (function using(ToolBarModel, SearchModel, chained) {
 		},
 
 		/**
-		 * The color 
+		 * The color
 		 * @type {string}
 		 */
 		color: {
@@ -152,7 +152,7 @@ ts.ui.HeaderBarModel = (function using(ToolBarModel, SearchModel, chained) {
 			return this._specialbutton(this.headerbar, 'helpbutton', onclick);
 		}),
 
-		/** 
+		/**
 		 * The dedicated back button.
 		 * @param {Function|null} onclick
 		 * @returns {this|ts.ui.ButtonModel}

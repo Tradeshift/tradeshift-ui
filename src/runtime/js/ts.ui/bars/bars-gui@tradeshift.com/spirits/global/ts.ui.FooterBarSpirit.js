@@ -119,7 +119,7 @@ ts.ui.FooterBarSpirit = (function using(
 
 			/**
 			 * [The status will be rendered in the `actionbar`!]
-			 * @param {string} [message] 
+			 * @param {string} [message]
 			 * @returns {this|string}
 			 */
 			status: chained(function(message) {
@@ -166,8 +166,8 @@ ts.ui.FooterBarSpirit = (function using(
 					}, this);
 					this._layout();
 					/**
-					 * Some race condition would make the Footer not render when 
-					 * configured before `gui.ready`, which should be most  real 
+					 * Some race condition would make the Footer not render when
+					 * configured before `gui.ready`, which should be most  real
 					 * life use cases. This should be considered a temporary fix.
 					 */
 					if (this.model().$show()) {
@@ -267,7 +267,7 @@ ts.ui.FooterBarSpirit = (function using(
 			// Private ...............................................................
 
 			/**
-			 * Since the buttons will be moved around, it's easier if we collect them 
+			 * Since the buttons will be moved around, it's easier if we collect them
 			 * in an "off-screen" buffer so that they don't belong anywhere in the UI.
 			 * @type {ts.ui.ButtonCollection}
 			 */

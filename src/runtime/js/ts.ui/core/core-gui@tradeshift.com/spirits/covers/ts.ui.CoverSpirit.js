@@ -45,7 +45,7 @@ ts.ui.CoverSpirit = (function using(chained, Client) {
 			/**
 			 * Fit with semitransparent background.
 			 * @param {boolean} is
-			 * @returns {this|boolean} 
+			 * @returns {this|boolean}
 			 */
 			opaque: chained(function(is) {
 				if (arguments.length) {
@@ -58,7 +58,7 @@ ts.ui.CoverSpirit = (function using(chained, Client) {
 			/**
 			 * Block all mouse events. Note that this is not the default behavior!
 			 * @param {boolean} is
-			 * @returns {this|boolean} 
+			 * @returns {this|boolean}
 			 */
 			blocking: chained(function(is) {
 				if (arguments.length) {

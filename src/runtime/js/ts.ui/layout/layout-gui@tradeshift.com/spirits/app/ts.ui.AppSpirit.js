@@ -41,7 +41,7 @@ ts.ui.AppSpirit = (function() {
 
 			/**
 			 * Called by the {ts.ui.PanelsPlugin} when a Main (in Mains) is selected.
-			 * Scroll the "sticky header" in mobile breakpoint so that it never shows 
+			 * Scroll the "sticky header" in mobile breakpoint so that it never shows
 			 * a weird, empty space (margin) in the top of the newly selected panel.
 			 * @param {ts.ui.PanelSpirit} panel - The associated panel (not the tab!)
 			 */
@@ -74,7 +74,7 @@ ts.ui.AppSpirit = (function() {
 			// Static ................................................................
 
 			/**
-			 * Instruct the the AppSpirit to inject the 
+			 * Instruct the the AppSpirit to inject the
 			 * Header and Footer as soon as possible.
 			 * @param {ts.ui.MajorBarSpirit} bar
 			 * @returns {ts.ui.MajorBarSpirit}

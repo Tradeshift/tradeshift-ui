@@ -125,7 +125,7 @@ ts.ui.Spirit = (function using(Type, GuiArray, confirmed, chained) {
 			},
 
 			/**
-			 * Get or create the local cover. The spirit should be 
+			 * Get or create the local cover. The spirit should be
 			 * position `relative` or `absolute` for this to work.
 			 * @returns {ts.ui.CoverSpirit}
 			 */

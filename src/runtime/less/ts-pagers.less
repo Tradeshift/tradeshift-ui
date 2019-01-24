@@ -56,7 +56,7 @@
 					content: '\2026';
 					position: absolute;
 					font-weight: @ts-fontweight;
-					font-size: 12px;
+					font-size: @ts-fontsize-mini;
 				}
 				&.ts-less span:before {
 					margin-left: -13px;
@@ -64,7 +64,7 @@
 				}
 				svg {
 					position: relative;
-					top: -12px;
+					top: (-@ts-unit-half - 1px);
 					fill: @ts-color-blue;
 				}
 				&.ts-pager-first svg {

@@ -65,14 +65,14 @@ ts.ui.EventPlugin = gui.EventPlugin.extend(
 		},
 
 		/*
-	 * TODO(jmo@): Account for `this._mouseenter` and `this._mouseleave`
-	 * pending investigation of whether or not Safari supports this stuff.
-	 * @param {boolean} add
-	 * @param {Node} target
-	 * @param {string} type
-	 * @param {object} handler
-	 * @param {boolean} capture
-	 */
+		 * TODO(jmo@): Account for `this._mouseenter` and `this._mouseleave`
+		 * pending investigation of whether or not Safari supports this stuff.
+		 * @param {boolean} add
+		 * @param {Node} target
+		 * @param {string} type
+		 * @param {object} handler
+		 * @param {boolean} capture
+		 */
 		_shiftHoverListener: function(add, target, type, handler, capture) {
 			this._hoverintent = add;
 			target = this._getelementtarget(target);

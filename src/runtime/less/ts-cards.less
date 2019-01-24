@@ -8,7 +8,7 @@
 .ts-companycard.ts-details {
 	// TEMP: Companycard needs details rendering!
 	display: block;
-	max-width: 298px;
+	max-width: (@ts-width-aside - @ts-unit);
 	background-color: @ts-color-white;
 	color: @ts-color-slate-lightest;
 	height: @cardheight;
@@ -21,7 +21,7 @@
 		top: auto;
 		background-color: @ts-color-gray-lighter;
 		height: @ts-unit-double - 1px;
-		padding: @ts-unit-half 88px (@ts-unit-half - 1px) (@ts-unit-double - 1px);
+		padding: @ts-unit-half (@ts-unit * 4) (@ts-unit-half - 1px) (@ts-unit-double - 1px);
 	}
 	.ts-card-connection-icon {
 		width: @ts-unit-double - 1px;
@@ -46,7 +46,7 @@
 }
 .ts-companycard-name {
 	margin: 0;
-	font-size: 16px;
+	font-size: @ts-fontsize-medium;
 	font-weight: @ts-fontweight-semibold;
 	max-height: @ts-unit-double;
 	overflow: hidden;
@@ -65,7 +65,7 @@
 		&:first-child {
 		}
 		+ li {
-			margin-right: 88px;
+			margin-right: (@ts-unit * 4);
 		}
 		.ts-icon {
 			width: @ts-unit;
@@ -82,8 +82,8 @@
 	position: absolute;
 	right: -1px;
 	bottom: -1px;
-	width: 88px;
-	height: 88px;
+	width: (@ts-unit * 4);
+	height: (@ts-unit * 4);
 }
 .ts-companycard-logo {
 	width: 100%;
@@ -146,7 +146,7 @@
 		}
 		.ts-usercard-name {
 			margin-top: 0;
-			font-size: 16px;
+			font-size: @ts-fontsize-medium;
 			font-weight: @ts-fontweight-semibold;
 			max-height: @ts-unit-double;
 			overflow: hidden;

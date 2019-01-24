@@ -3,7 +3,7 @@
 	<?param name="icon" type="string"?>
 	<?param name="size" type="number"?>
 
-	size = size || 22;
+	size = size || ts.ui.UNIT;
 
 	// grabbed from https://github.com/google/material-design-icons/tree/master/av/svg/production
 	<svg class="ts-svg-${icon}" xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" lineHeight="${size}" viewBox="0 0 24 24">

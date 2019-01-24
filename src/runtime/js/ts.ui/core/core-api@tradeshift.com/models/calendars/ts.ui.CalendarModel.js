@@ -103,8 +103,8 @@ ts.ui.CalendarModel = (function() {
 			},
 
 			/*
-		 *
-		 */
+			 *
+			 */
 			nextMonth: function() {
 				var newDate = this._getRelativeMonth(this.year, this._month, 1);
 				this._month = newDate.month;

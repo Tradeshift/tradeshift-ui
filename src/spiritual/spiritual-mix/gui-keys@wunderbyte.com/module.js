@@ -117,10 +117,10 @@ gui.KeysModule = gui.module('gui-keys@wunderbyte.com', {
 	},
 
 	/**
-	 * Doh! We would at one point broadcast every keystroke to support cross-frame 
-	 * keyboard shortcuts (which is still a future project), but then we realized 
-	 * that we had really build a cross-frame keylogger and now we only broadcast 
-	 * special keys such as UP, DOWN, LEFT, RIGHT, ENTER and ESCAPE and so on. 
+	 * Doh! We would at one point broadcast every keystroke to support cross-frame
+	 * keyboard shortcuts (which is still a future project), but then we realized
+	 * that we had really build a cross-frame keylogger and now we only broadcast
+	 * special keys such as UP, DOWN, LEFT, RIGHT, ENTER and ESCAPE and so on.
 	 * If needed, we could probably (safely) broadcast key combos such as `Shift+S`.
 	 * @see https://w3c.github.io/uievents/#fixed-virtual-key-codes
 	 * @param {boolean} down

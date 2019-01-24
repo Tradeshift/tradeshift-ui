@@ -210,7 +210,7 @@ gui = gui.Object.extend(
 			}
 		},
 
-		/** 
+		/**
 		 * Resume spiritualization and materialization.
 		 */
 		resume: function() {
@@ -306,7 +306,7 @@ gui = gui.Object.extend(
 		// Privileged ..............................................................
 
 		/**
-		 * Called on `Spirit.onready()` to eval callbacks accumulated 
+		 * Called on `Spirit.onready()` to eval callbacks accumulated
 		 * via `ts.ui.get(elm, callback)` (used in an async scenario).
 		 * @param {Element} elm
 		 */
@@ -347,8 +347,8 @@ gui = gui.Object.extend(
 		_managedgetters: [],
 
 		/**
-		 * If the spirit is ready, we'll just call that callback straight away. 
-		 * Otherwise monitor the element until the spirit is ready. This element 
+		 * If the spirit is ready, we'll just call that callback straight away.
+		 * Otherwise monitor the element until the spirit is ready. This element
 		 * will never be garbage collected unless at some point it gets a spirit :/
 		 * @param {Element} elm
 		 * @param {Function} callback

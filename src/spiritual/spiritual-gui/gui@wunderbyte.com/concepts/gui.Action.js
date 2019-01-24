@@ -367,9 +367,9 @@ gui.Action = (function using(confirmed, chained) {
 				crawler.global = action.global || false;
 				crawler[action.direction](target, {
 					/*
-				 * Evaluate action for spirit.
-				 * @param {gui.Spirit} spirit
-				 */
+					 * Evaluate action for spirit.
+					 * @param {gui.Spirit} spirit
+					 */
 					handleSpirit: function(spirit) {
 						var directive = gui.Crawler.CONTINUE;
 						if (spirit.action.contains(type)) {
@@ -383,12 +383,12 @@ gui.Action = (function using(confirmed, chained) {
 					},
 
 					/*
-				 * Teleport action across domains.
-				 * @see {gui.IframeSpirit}
-				 * @param {Window} win Remote window
-				 * @param {String} uri target origin
-				 * @param {String} key Spiritkey of xdomain IframeSpirit (who will relay the action)
-				 */
+					 * Teleport action across domains.
+					 * @see {gui.IframeSpirit}
+					 * @param {Window} win Remote window
+					 * @param {String} uri target origin
+					 * @param {String} key Spiritkey of xdomain IframeSpirit (who will relay the action)
+					 */
 					transcend: function(win, uri, key) {
 						var msg = gui.Action.stringify(action, key);
 						win.postMessage(msg, '*'); // uri

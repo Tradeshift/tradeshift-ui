@@ -15,67 +15,67 @@
 			<div data-ts="DoxApi">
 				<script type="application/json">
 					{
-						name: "ts.ui.TagSpirit",
-						properties: [
+						"name": "ts.ui.TagSpirit",
+						"properties": [
 							{
-								name: "type",
-								type: "string",
-								desc: "The CSS classname."
+								"name": "type",
+								"type": "string",
+								"desc": "The CSS classname."
 							},
 							{
-								name: "icon",
-								type: "string|object",
-								desc: "The icon's classname as a string or a `ts.ui.UserImageModel`."
+								"name": "icon",
+								"type": "string|object",
+								"desc": "The icon's classname as a string or a `ts.ui.UserImageModel`."
 							},
 							{
-								name: "tabindex",
-								type: "number",
-								desc: "The `tabindex` of the tag."
+								"name": "tabindex",
+								"type": "number",
+								"desc": "The `tabindex` of the tag."
 							},
 							{
-								name: "data",
-								type: "(Map|Array|string)",
-								desc: "The `keys` and `values` of the tag or the only `key` as a string."
+								"name": "data",
+								"type": "(Map|Array|string)",
+								"desc": "The `keys` and `values` of the tag or the only `key` as a string."
 							},
 							{
-								name: "locked",
-								type: "boolean",
-								desc: "Tag is locked?"
+								"name": "locked",
+								"type": "boolean",
+								"desc": "Tag is locked?"
 							},
 							{
-								name: "deletable",
-								type: "boolean",
-								desc: "Tag is deletable? (only visually)"
+								"name": "deletable",
+								"type": "boolean",
+								"desc": "Tag is deletable? (only visually)"
 							},
 							{
-								name: "clickable",
-								type: "boolean",
-								desc: "Tag is clickable? (only visually)"
+								"name": "clickable",
+								"type": "boolean",
+								"desc": "Tag is clickable? (only visually)"
 							},
 							{
-								name: "onclick",
-								type: "(Function)",
-								desc: "Called whenever the tag gets clicked."
+								"name": "onclick",
+								"type": "(Function)",
+								"desc": "Called whenever the tag gets clicked."
 							},
 							{
-								name: "ondelete",
-								type: "(Function)",
-								desc: "Called whenever the tag gets deleted."
+								"name": "ondelete",
+								"type": "(Function)",
+								"desc": "Called whenever the tag gets deleted."
 							}
 						],
-						methods: [
+						"methods": [
 							{
-								name: "click",
-								desc: "Trigger a click on the tag if `onclick` is set."
+								"name": "click",
+								"desc": "Trigger a click on the tag if `onclick` is set."
 							},
 							{
-								name: "delete",
-								desc: "Trigger removal of tag from DOM and call `ondelete` if it's set."
+								"name": "delete",
+								"desc": "Trigger removal of tag from DOM and call `ondelete` if it's set."
 							},
 							{
-								name: "render",
-								args: ["object"],
-								desc: "Use the argument as a model, replacing the existing one, and re-render the tag."
+								"name": "render",
+								"args": ["object"],
+								"desc": "Use the argument as a model, replacing the existing one, and re-render the tag."
 							}
 						]
 					}

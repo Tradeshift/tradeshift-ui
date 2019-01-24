@@ -172,25 +172,6 @@ gui.ConfigPlugin = gui.Plugin.extend(
 		SEPARATOR: '.',
 
 		/**
-		 * Hack to parse invalid JSON (with no quotes on keys)
-		 * as valid JSON, so basically a relaxed `JSON.parse`.
-		 * TODO: Now validate that we actually get an object!
-		 * @param {string} json
-		 * @returns {object}
-		 */
-		jsonify: (function(div) {
-			return function(json) {
-				div.setAttribute('onclick', 'this.json = ' + json);
-				div.click();
-				// IE11 on Win7 doesn't do anything when calling click()
-				if (div.json === undefined) {
-					div.onclick();
-				}
-				return div.json;
-			};
-		})(document.createElement('div')),
-
-		/**
 		 * JSONArray or JSONObject scrambled with encodeURIComponent?
 		 * If so, let's decode and parse this into an array or object.
 		 * @param {string} value
@@ -202,8 +183,12 @@ gui.ConfigPlugin = gui.Plugin.extend(
 					return value.startsWith(tokens[0]) && value.endsWith(tokens[1]);
 				})
 			) {
-				value = decodeURIComponent(value);
-				value = gui.ConfigPlugin.jsonify(value);
+				try {
+					value = decodeURIComponent(value);
+					value = JSON.parse(value);
+				} catch (e) {
+					console.error('Error evaluating encoded parameter.', e, value);
+				}
 			}
 			return value;
 		}

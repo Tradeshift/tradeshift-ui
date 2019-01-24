@@ -9,7 +9,7 @@ ts.ui.SearchSpirit = (function using(ButtonSpirit, CSSPlugin, Type, chained) {
 	/*
 	 * We'll make the spirit interface identical to the model interface so
 	 * that we can use them interchangeably whenever one makes more sense.
-	*/
+	 */
 	var methodnames = ['onsearch', 'onidle', 'onfocus', 'onblur'];
 
 	return ts.ui.Spirit.extend({
@@ -171,9 +171,9 @@ ts.ui.SearchSpirit = (function using(ButtonSpirit, CSSPlugin, Type, chained) {
 		}),
 
 		/**
- 		 * Search now!
- 		 * @returns {this}
- 		 */
+		 * Search now!
+		 * @returns {this}
+		 */
 		search: chained(function() {
 			this._model.search();
 		}),

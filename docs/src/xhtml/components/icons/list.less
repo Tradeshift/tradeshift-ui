@@ -16,7 +16,7 @@
 		}
 		&.icons-size-app {
 			i {
-				font-size: 36px; // App Icon Size
+				font-size: @ts-fontsize-xxbig; // App Icon Size
 			}
 		}
 	}
@@ -39,11 +39,12 @@
 		padding-bottom: 0;
 	}
 	.icons-container {
-		padding-top: 44px;
+		padding-top: @ts-unit-double;
 	}
 }
 .ts-tablet {
 	.icons-container {
-		max-width: 1280px;
+		max-width: none;
+		padding: @ts-unit-double @ts-unit (@ts-unit * 4) @ts-unit-triple;
 	}
 }

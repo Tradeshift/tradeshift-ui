@@ -118,9 +118,9 @@ ts.ui.AsideSpirit = (function using(chained, confirmed, Client, LayoutModel, not
 			onkey: function(k) {
 				this.super.onkey(k);
 				/*
-			 * TODO(jmo@): Consider whether or not this is
-			 * applicable to asides nested in drawers...
-			 */
+				 * TODO(jmo@): Consider whether or not this is
+				 * applicable to asides nested in drawers...
+				 */
 				if (k.down && k.type === 'Esc') {
 					this.open(false);
 				}
@@ -357,13 +357,13 @@ ts.ui.AsideSpirit = (function using(chained, confirmed, Client, LayoutModel, not
 			 */
 			_didopen: function() {
 				/*
-			 * The model (if exists) is able to halt the execution of 'onopen'
-			 * because it may need to run a performance optimization hack for
-			 * SELECT menus: Only the visible items are shown while sliding
-			 * the aside, the rest is rendered at this exact point in time.
-			 * Integration tests should then wait for 'onopened' to finish before
-			 * they attempt to select items in the aside (since they don't exist).
-			 */
+				 * The model (if exists) is able to halt the execution of 'onopen'
+				 * because it may need to run a performance optimization hack for
+				 * SELECT menus: Only the visible items are shown while sliding
+				 * the aside, the rest is rendered at this exact point in time.
+				 * Integration tests should then wait for 'onopened' to finish before
+				 * they attempt to select items in the aside (since they don't exist).
+				 */
 				if (this._ismodelled()) {
 					var model = this._model;
 					if (model.status === 'onopen') {
@@ -376,9 +376,9 @@ ts.ui.AsideSpirit = (function using(chained, confirmed, Client, LayoutModel, not
 				}
 
 				/*
-			 * ... otherwise go ahead with the 'onopen' procedure, noting that
-			 * integration tests can safely work with the aside from now on.
-			 */
+				 * ... otherwise go ahead with the 'onopen' procedure, noting that
+				 * integration tests can safely work with the aside from now on.
+				 */
 				this._updateworld(didopen);
 				this.action.add(ts.ui.ACTION_CLOSE);
 				this.broadcast.addGlobal(doclose);

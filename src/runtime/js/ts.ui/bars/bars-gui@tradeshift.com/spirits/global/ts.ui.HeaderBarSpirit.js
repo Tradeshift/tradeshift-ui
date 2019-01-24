@@ -18,9 +18,9 @@ ts.ui.HeaderBarSpirit = (function using(chained) {
 	return ts.ui.MajorBarSpirit.extend(
 		{
 			/*
-		 * Get (or set) the model. This will load the EDBML.
-		 * @param {object|ts.ui.ToolBarModel} model
-		 */
+			 * Get (or set) the model. This will load the EDBML.
+			 * @param {object|ts.ui.ToolBarModel} model
+			 */
 			model: ts.ui.Spirit.createModelMethod(ts.ui.HeaderBarModel, 'ts.ui.HeaderBarSpirit.edbml'),
 
 			/**
@@ -32,7 +32,7 @@ ts.ui.HeaderBarSpirit = (function using(chained) {
 			},
 
 			/**
-		 	 * Index the various bars and watch for rendering updates.
+			 * Index the various bars and watch for rendering updates.
 			 * @param {Object} summary
 			 */
 			onrender: function(summary) {

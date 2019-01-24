@@ -23,7 +23,7 @@ ts.ui.BoardSpirit = (function using(PanelsSpirit, PanelSpirit, chained) {
 
 	return ts.ui.LayoutSpirit.extend({
 		/**
-		 * Equalsize panels height to match the highest panel. 
+		 * Equalsize panels height to match the highest panel.
 		 * TODO: Pure CSS solution should be possible nowadays.
 		 * @param {boolean} enable
 		 * @returns {this}

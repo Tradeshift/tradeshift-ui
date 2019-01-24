@@ -11,8 +11,8 @@ ts.ui.TimeSpirit = (function using(moment, chained) {
 	var firsttime = null;
 
 	/**
-	 * There's two problems. First, our language code `no` for Nynorsk is not 
-	 * correctly declared in V4 as `nn-NO` according to the ISO standard and 
+	 * There's two problems. First, our language code `no` for Nynorsk is not
+	 * correctly declared in V4 as `nn-NO` according to the ISO standard and
 	 * second, Nynorsk is not defined in the Moment.js list of languages :/
 	 * We'll have to use Bokmål here, which for our purpose is identical.
 	 * @param {string|null} code
@@ -23,7 +23,7 @@ ts.ui.TimeSpirit = (function using(moment, chained) {
 	}
 
 	/**
-	 * Configure locale in Moment. The replaced underscore character has to do 
+	 * Configure locale in Moment. The replaced underscore character has to do
 	 * with some invalid language code that emerged from the depths of Grails.
 	 * @param {string|null} code
 	 */
@@ -65,7 +65,7 @@ ts.ui.TimeSpirit = (function using(moment, chained) {
 		// Private .................................................................
 
 		/**
-		 * The Time element itself can be localized with the `lang` attribute, 
+		 * The Time element itself can be localized with the `lang` attribute,
 		 * although this feature is TBH really just used for the unit tests.
 		 */
 		_update: function() {
@@ -79,7 +79,7 @@ ts.ui.TimeSpirit = (function using(moment, chained) {
 		/**
 		 * Set the time to the element text.
 		 * Just show the datetime if it is an invalid time.
-		 * @param {string|null} langcode 
+		 * @param {string|null} langcode
 		 */
 		_setText: function(langcode) {
 			var datetime = this.att.get('datetime');

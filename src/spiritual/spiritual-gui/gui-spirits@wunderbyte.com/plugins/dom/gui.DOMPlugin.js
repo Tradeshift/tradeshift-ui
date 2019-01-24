@@ -1040,14 +1040,14 @@ gui.DOMPlugin.mixin(
 			},
 			function map(name, base) {
 				/*
-			 * 1. Convert arguments to array of one or more elements
-			 * 2. Confirm array of elements (exception supressed pending IE9 issue)
-			 * 3. Invoke the base
-			 * 4. Return the input
-			 * TODO: DocumentFragment and friends
-			 * @param {String} name
-			 * @param {function} base
-			 */
+				 * 1. Convert arguments to array of one or more elements
+				 * 2. Confirm array of elements (exception supressed pending IE9 issue)
+				 * 3. Invoke the base
+				 * 4. Return the input
+				 * TODO: DocumentFragment and friends
+				 * @param {String} name
+				 * @param {function} base
+				 */
 				return function(things) {
 					var elms = Array.map(gui.Array.make(things), function(thing) {
 						return thing && thing instanceof gui.Spirit ? thing.element : thing;

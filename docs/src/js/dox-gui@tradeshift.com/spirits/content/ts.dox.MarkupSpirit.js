@@ -5,7 +5,7 @@
 ts.dox.MarkupSpirit = (function() {
 	return ts.dox.PrismSpirit.extend({
 		/**
-		 * 
+		 *
 		 */
 		onready: function() {
 			this.super.onready();

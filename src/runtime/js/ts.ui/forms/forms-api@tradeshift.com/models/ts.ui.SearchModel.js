@@ -7,10 +7,10 @@
  */
 ts.ui.SearchModel = (function(InputModel, ButtonCollection, chained) {
 	/**
-		 * Stamp the buttons with a reference to the search.
-		 * @param {ts.ui.ButtonCollection} buttons
-		 * @param {ts.ui.SearchModel} search
-		 */
+	 * Stamp the buttons with a reference to the search.
+	 * @param {ts.ui.ButtonCollection} buttons
+	 * @param {ts.ui.SearchModel} search
+	 */
 	function stamp(buttons, search) {
 		buttons.forEach(function(button) {
 			button.search = search;
@@ -52,8 +52,8 @@ ts.ui.SearchModel = (function(InputModel, ButtonCollection, chained) {
 		onsearch: null,
 
 		/**
-		 * Buttons related to search. These may not always be rendered: When 
-		 * the Search is used standalone, they get ignored. When the Search 
+		 * Buttons related to search. These may not always be rendered: When
+		 * the Search is used standalone, they get ignored. When the Search
 		 * is in the Header, they will be rendered as part of the searchbar.
 		 * @type {ts.ui.ButtonCollection}
 		 */

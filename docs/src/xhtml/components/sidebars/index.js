@@ -1,8 +1,8 @@
 var sidebars = ['#before-app', '#after-app', '#before-content', '#after-content'];
 
 /**
- * Show sidebar (called from inline HTML). The SideBar doesn't support `open` 
- * and `close` just yet (https://github.com/Tradeshift/tradeshift-ui/issues/371) 
+ * Show sidebar (called from inline HTML). The SideBar doesn't support `open`
+ * and `close` just yet (https://github.com/Tradeshift/tradeshift-ui/issues/371)
  * so we'll have to add and remove these SideBars from the DOM :/
  * @param {string} id
  */

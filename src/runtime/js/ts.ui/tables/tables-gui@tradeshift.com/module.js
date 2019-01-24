@@ -12,8 +12,7 @@ gui.module('tables-gui@tradeshift.com', {
 	 * (to split the code up in smaller pieces).
 	 */
 	oncontextinitialize: function() {
-		ts.ui.TableSpirit
-			.plugin('editorplugin', ts.ui.TableEditPlugin)
+		ts.ui.TableSpirit.plugin('editorplugin', ts.ui.TableEditPlugin)
 			.plugin('layoutplugin', ts.ui.TableLayoutPlugin)
 			.plugin('queryplugin', ts.ui.TableQueryPlugin);
 	}

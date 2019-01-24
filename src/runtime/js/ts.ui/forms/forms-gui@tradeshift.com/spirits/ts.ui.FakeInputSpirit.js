@@ -78,12 +78,12 @@ ts.ui.FakeInputSpirit = (function() {
 					break;
 				case 'keydown':
 					/*
-				 * All attempts to open the aside would fail :/
-				 * Keyboard handling simply disabled for the time
-				 * being, but we also need to `preventDefault` the
-				 * ENTER key to stop Chrome from showing native
-				 * select dropdowns and date pickers at this point.
-				 */
+					 * All attempts to open the aside would fail :/
+					 * Keyboard handling simply disabled for the time
+					 * being, but we also need to `preventDefault` the
+					 * ENTER key to stop Chrome from showing native
+					 * select dropdowns and date pickers at this point.
+					 */
 					switch (e.keyCode) {
 						case KEY_ENTER:
 						case KEY_SPACE:

@@ -100,7 +100,7 @@ function localversion(where) {
 }
 
 /**
- * Parse `package.json` to find the version that most 
+ * Parse `package.json` to find the version that most
  * closely matches the current version of this branch.
  * @param {string} where - Path to `package.json`
  * @param {string} version - current version (via `localversion` above)
@@ -116,7 +116,7 @@ function majorversion(where, version) {
 /**
  * Copy everything from the `docs` folder into the appropiate X
  * folder on `gh-pages` (which is named after the major version).
- * HTML and CSS and JS pages get passed through a function that 
+ * HTML and CSS and JS pages get passed through a function that
  * will rewrite absolute URLs so that they target the X folder.
  * @param {string} version (`v10` or `v13` or something like that)
  */
@@ -146,10 +146,10 @@ function updateversions(where, source, target) {
 }
 
 /**
- * Make the `gh-pages` splash page `index.html` redirect 
+ * Make the `gh-pages` splash page `index.html` redirect
  * to the newest version which is *not* a pre-release.
- * Note that only the newest version must be marked as 
- * pre-release for this to work out, so please don't release 
+ * Note that only the newest version must be marked as
+ * pre-release for this to work out, so please don't release
  * any pre-release versions of the old releases from now on.
  */
 function updateredirect(where, versions) {
@@ -164,7 +164,7 @@ function updateredirect(where, versions) {
 }
 
 /**
- * Commit everything and push to remote branch. 
+ * Commit everything and push to remote branch.
  * You should now do a manual PR to `gh-pages`!
  * @param {string} source Base Branch
  * @param {string} version Version we're creating
@@ -254,7 +254,7 @@ function copydir(src, dest, parser) {
 }
 
 /**
- * Copy file. Unless it is a HTML or CSS or JS file, 
+ * Copy file. Unless it is a HTML or CSS or JS file,
  * in which case we run it throught that parser first.
  * @param {string} src
  * @param {string} dest

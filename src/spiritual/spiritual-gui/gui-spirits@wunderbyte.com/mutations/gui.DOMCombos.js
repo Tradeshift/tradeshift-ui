@@ -123,8 +123,8 @@ gui.DOMCombos = (function using(before, after, around, provided, Type, guiArray,
 	});
 
 	/**
-	 * Hostile framework setting the `className` property with little or no 
-	 * concern about the Spirits *internally* managed classnames. Fortunately, 
+	 * Hostile framework setting the `className` property with little or no
+	 * concern about the Spirits *internally* managed classnames. Fortunately,
 	 * we have the classnames backed up and ready to be reapplied.
 	 */
 	var persistClassesAfter = after(function(name) {

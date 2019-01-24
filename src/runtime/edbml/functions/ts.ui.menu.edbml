@@ -97,7 +97,7 @@
 	 */
 	function getinlinestyle(optimized) {
 		if(optimized) {
-			var yspan = 44;
+			var yspan = ts.ui.UNIT_DOUBLE;
 			var total = items.length;
 			var start = items.indexOf(minis[0]);
 			menu.scrollContainingPanel(start * yspan);

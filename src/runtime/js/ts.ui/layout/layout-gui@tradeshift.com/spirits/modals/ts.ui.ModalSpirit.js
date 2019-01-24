@@ -4,7 +4,7 @@
  * @using {boolean} transition
  * @using {function} gui.Combo.chained
  */
-ts.ui.ModalSpirit = (function using(Client, transition, chained) {
+ts.ui.ModalSpirit = (function using(Client, transition, chained, UNIT_TRIPLE) {
 	var willopen = ts.ui.BROADCAST_MODAL_WILL_OPEN,
 		didopen = ts.ui.BROADCAST_MODAL_DID_OPEN,
 		willclose = ts.ui.BROADCAST_MODAL_WILL_CLOSE,
@@ -262,7 +262,7 @@ ts.ui.ModalSpirit = (function using(Client, transition, chained) {
 		},
 
 		/**
-		 * Get the Box (used for centering the content), if any. We'll also look for 
+		 * Get the Box (used for centering the content), if any. We'll also look for
 		 * the Main, even if this is not deprecated. TODO: Remove at some point...
 		 * @param {ts.ui.PanelSpirit} panel
 		 */
@@ -466,4 +466,4 @@ ts.ui.ModalSpirit = (function using(Client, transition, chained) {
 			}
 		}
 	});
-})(gui.Client, gui.Client.hasTransitions, gui.Combo.chained);
+})(gui.Client, gui.Client.hasTransitions, gui.Combo.chained, ts.ui.UNIT_TRIPLE);

@@ -1,5 +1,5 @@
 /**
- * The CSSPlugin can do all sorts of things, but we'll stick to testing 
+ * The CSSPlugin can do all sorts of things, but we'll stick to testing
  * the "persistence" feature for now: `className` doesn't wipe our CSS.
  */
 describe('gui.CSSPlugin', function likethis() {

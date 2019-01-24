@@ -117,7 +117,7 @@ gui.DOMChanger = {
 	},
 
 	/**
-	 * Overload DOM method. Same procedure for all browsers, except we abort 
+	 * Overload DOM method. Same procedure for all browsers, except we abort
 	 * for some (DOM4) methods that are supported in the particular browser.
 	 * @param {object} proto
 	 * @param {String} name

@@ -5,7 +5,7 @@
  * @using {gui.Arguments#confirmed} confirmed
  * @using {gui.Type.isFunction} isFunction
  */
-ts.ui.TagModel = (function using(chained, confirmed, isFunction) {
+ts.ui.TagModel = (function using(chained, confirmed, isFunction, UNIT) {
 	return ts.ui.Model.extend({
 		/**
 		 * Friendly name.
@@ -43,7 +43,7 @@ ts.ui.TagModel = (function using(chained, confirmed, isFunction) {
 								ModelC = ts.ui.IconModel(icon);
 								break;
 							case 'userimage':
-								icon.size = ts.ui.UNIT * 0.75; // fixed to the size of the tag
+								icon.size = UNIT * 0.75; // fixed to the size of the tag
 								ModelC = ts.ui.UserImageModel(icon);
 								break;
 							default:
@@ -198,4 +198,4 @@ ts.ui.TagModel = (function using(chained, confirmed, isFunction) {
 		 */
 		_ondelete: null
 	});
-})(gui.Combo.chained, gui.Arguments.confirmed, gui.Type.isFunction);
+})(gui.Combo.chained, gui.Arguments.confirmed, gui.Type.isFunction, ts.ui.UNIT);

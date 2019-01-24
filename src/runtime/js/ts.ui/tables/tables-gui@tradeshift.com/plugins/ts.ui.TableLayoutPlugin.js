@@ -198,13 +198,13 @@ ts.ui.TableLayoutPlugin = (function using(Client, Tick, UNIT, UNIT_DOUBLE) {
 		},
 
 		/**
-		 * At this point the `min-width` values may have been applied (if indeed 
-		 * the table was so small that it was needed) and so we might need to flex 
-		 * *again* with a new baseline width, accounting for how much "too big" 
-		 * the table has now become. It is possible that we still see a horizontal 
+		 * At this point the `min-width` values may have been applied (if indeed
+		 * the table was so small that it was needed) and so we might need to flex
+		 * *again* with a new baseline width, accounting for how much "too big"
+		 * the table has now become. It is possible that we still see a horizontal
 		 * scrollbar after this operation, but chances are better that the columns
 		 * will fit. TODO: Potentially calculate all this before we start flexing.
-		 * The variable `STRANGE_NUMBER` seems to make it work as expected, but 
+		 * The variable `STRANGE_NUMBER` seems to make it work as expected, but
 		 * not really sure why this is needed.
 		 * @param {ts.ui.TableSpirit} spirit
 		 * @param {ts.ui.TableModel} model
@@ -217,7 +217,8 @@ ts.ui.TableLayoutPlugin = (function using(Client, Tick, UNIT, UNIT_DOUBLE) {
 			if (model.rows.length) {
 				var rows = spirit.queryplugin.getrows();
 				var result = rows.scrollWidth;
-				var STRANGE_NUMBER = 63; // strange number!
+				var OLD_UNIT = 22;
+				var STRANGE_NUMBER = 63 * (OLD_UNIT / UNIT); // strange number!
 				if (result > width) {
 					width = width - (result - width) - STRANGE_NUMBER;
 					this._hflex1(spirit, model, width, cols, ths, tds);
@@ -239,9 +240,9 @@ ts.ui.TableLayoutPlugin = (function using(Client, Tick, UNIT, UNIT_DOUBLE) {
 		},
 
 		/**
-		 * Compute summed flex values. We can exclude the fixed `width` 
-		 * columns from this, but the `minwidth` columns should still 
-		 * behave flexed (if there is room enough for them to do so). 
+		 * Compute summed flex values. We can exclude the fixed `width`
+		 * columns from this, but the `minwidth` columns should still
+		 * behave flexed (if there is room enough for them to do so).
 		 * @param {Array<ts.ui.TableColModel} cols
 		 * @returns {number}
 		 */

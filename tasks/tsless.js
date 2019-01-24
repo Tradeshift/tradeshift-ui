@@ -9,7 +9,7 @@ const chalk = require('chalk');
 let commentState = false;
 
 /**
- * Underline used for styling cool comments 
+ * Underline used for styling cool comments
  * @type {string}
  */
 const EIGHTY_WIDE_UNDERLINE =

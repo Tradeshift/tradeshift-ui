@@ -55,9 +55,9 @@ ts.ui.CompanyCardSpirit = ts.ui.CardSpirit.extend(
 				.open();
 
 			/*
-		 * We need to implement a menu.onchange() callback of some kind
-		 * now that the menu items have been refactored to "simple" data.
-		 */
+			 * We need to implement a menu.onchange() callback of some kind
+			 * now that the menu items have been refactored to "simple" data.
+			 */
 			(function tempworkaround(menu) {
 				menu.addObserver({
 					onchange: function(changes) {

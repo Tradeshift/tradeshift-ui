@@ -130,7 +130,7 @@ gui.Assistant = (function using(Crawler) {
 		},
 
 		/**
-		 * In the window scope, find the potential object to match that string. 
+		 * In the window scope, find the potential object to match that string.
 		 * If it exists, and if it is indeed a spirit constructor, we return it.
 		 * @param {String} att
 		 * @returns {gui.Class|null}

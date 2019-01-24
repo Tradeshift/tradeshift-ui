@@ -11,9 +11,9 @@ ts.ui = gui.namespace(
 	'ts.ui',
 	(function using(Client, guiArray, confirmed, chained) {
 		/*
-	 * Supports a temp ad hoc API for breakpoint callbacks.
-	 * @type {Array<function>}
-	 */
+		 * Supports a temp ad hoc API for breakpoint callbacks.
+		 * @type {Array<function>}
+		 */
 		var breakpointers = [];
 
 		return {

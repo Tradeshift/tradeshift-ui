@@ -18,7 +18,6 @@
         rendermore();
       }
       if(tabs.length) {
-        console.log('TODO: getLength() really not working???');
       	@class = 'ts-tab-indicator';
       	@id = tabs.$instanceid + '-indicator';
 	      <li data-ts="Spirit" @id @class></li>

@@ -46,7 +46,7 @@
 			</div>
 			<div class="ts-companycard-branding">
 				if(data.logo) {
-					<img class="ts-companycard-logo" src="${data.logo}" width="88" alt=""/>
+					<img class="ts-companycard-logo" src="${data.logo}" width="${ts.ui.UNIT_QUADRUPLE}" alt=""/>
 				}
 			</div>
 			

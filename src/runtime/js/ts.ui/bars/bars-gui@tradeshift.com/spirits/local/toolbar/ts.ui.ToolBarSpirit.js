@@ -105,7 +105,7 @@ ts.ui.ToolBarSpirit = (function using(
 			},
 
 			/**
-			 * Allow subclass to add classname (in `onenter` or 
+			 * Allow subclass to add classname (in `onenter` or
 			 * `oncofigure`) before we fall back to `ts-macro`.
 			 */
 			onready: function() {
@@ -783,9 +783,9 @@ ts.ui.ToolBarSpirit = (function using(
 			},
 
 			/**
-			 * When "more tabs" are hidden in an Aside, make sure that thee selected 
-			 * tab is always visible by moving it to the second position. This fits 
-			 * the usecase of some app where the first tab is "home", but we should 
+			 * When "more tabs" are hidden in an Aside, make sure that thee selected
+			 * tab is always visible by moving it to the second position. This fits
+			 * the usecase of some app where the first tab is "home", but we should
 			 * probably make this configurable so that the first tab is not sacred.
 			 * @param {Array<ts.ui.TabCollection>} tabs
 			 */
@@ -845,7 +845,7 @@ ts.ui.ToolBarSpirit = (function using(
 			 * @param {number} avail
 			 */
 			_setmaxwidth: function(avail) {
-				var maxwidth = (avail - 95) / 2; // 88 means the width of more tab(44), two tabs of padding left and right(2 * 2 * 11) and the buffer(7)
+				var maxwidth = (avail - 87) / 2; // 87 means the width of more tab(40), two tabs of padding left and right(2 * 2 * 10) and the buffer(7)
 				this.dom.qall('.ts-tab-label').forEach(function(tab) {
 					tab.style.maxWidth = maxwidth + 'px';
 				});

@@ -22,7 +22,7 @@ ts.ui.UserImageModel = ts.ui.Model.extend({
 	src: '',
 
 	/**
-	 * Image dimension. Zero implies default (44px).
+	 * Image dimension. Zero implies default (40px).
 	 * @type {number}
 	 */
 	size: 0,

@@ -244,46 +244,46 @@
 					<div data-ts="DoxApi">
 						<script type="application/json">
 							{
-								name: "ts.ui.TableSpirit",
-								methods: [
+								"name": "ts.ui.TableSpirit",
+								"methods": [
 									{
-										name: "editable",
-										args: ["(function)"],
-										desc: "Make the Table editable with an optional callback that triggers whenever something is changed. The callback gets assigned to the Tables `onedit` method, see below."
+										"name": "editable",
+										"args": ["(function)"],
+										"desc": "Make the Table editable with an optional callback that triggers whenever something is changed. The callback gets assigned to the Tables `onedit` method, see below."
 									},
 									{
-										name: "onedit",
-										args: ["number", "number", "string", "string"],
-										desc: "Called whenever a cell changes value with arguments: rowindex, cellindex, newvalue, oldvalue."
+										"name": "onedit",
+										"args": ["number", "number", "string", "string"],
+										"desc": "Called whenever a cell changes value with arguments: rowindex, cellindex, newvalue, oldvalue."
 									},
 									{
-										name: "uneditable",
-										desc: "Make the Table not editable."
+										"name": "uneditable",
+										"desc": "Make the Table not editable."
 									},
 									{
-										name: "invalid",
-										args: ["number", "number"],
-										desc: "Mark the cell at given rowindex and cellindex invalid"
+										"name": "invalid",
+										"args": ["number", "number"],
+										"desc": "Mark the cell at given rowindex and cellindex invalid"
 									},
 									{
-										name: "valid",
-										args: ["number", "number"],
-										desc: "Mark the cell at given rowindex and cellindex valid. When you update the cell (see below), the cell automatically becomes valid."
+										"name": "valid",
+										"args": ["number", "number"],
+										"desc": "Mark the cell at given rowindex and cellindex valid. When you update the cell (see below), the cell automatically becomes valid."
 									},
 									{
-										name: "cell",
-										args: ["number", "number", "string|number|object"],
-										desc: "Update the cell at given rowindex and cellindex. Use the object argument (verbose syntax) to maintain both `text` and `value`."
+										"name": "cell",
+										"args": ["number", "number", "string|number|object"],
+										"desc": "Update the cell at given rowindex and cellindex. Use the object argument (verbose syntax) to maintain both `text` and `value`."
 									},
 									{
-										name: "focus",
-										args: ["number", "number"],
-										desc: "Focus the cell (textarea) at given rowindex and cellindex."
+										"name": "focus",
+										"args": ["number", "number"],
+										"desc": "Focus the cell (textarea) at given rowindex and cellindex."
 									},
 									{
-										name: "blur",
-										args: ["number", "number"],
-										desc: "Blur the cell at given rowindex and cellindex."
+										"name": "blur",
+										"args": ["number", "number"],
+										"desc": "Blur the cell at given rowindex and cellindex."
 									}
 								]
 							}

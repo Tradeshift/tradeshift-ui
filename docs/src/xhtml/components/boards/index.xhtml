@@ -57,9 +57,9 @@
 									<script type="runnable">
 										ts.ui.get('#board', board => {
 											board.buttons([
-												{ label: 'One' },
-												{ label: 'Two' },
-												{ label: 'Three', onselect() {
+												{ "label": 'One' },
+												{ "label": 'Two' },
+												{ "label": 'Three', onselect() {
 													ts.ui.Notification.success('Clicked!');
 												}}
 											]);
@@ -121,9 +121,9 @@
 									<script type="runnable">
 										ts.ui.get('#tabboard', board => {
 											board.tabs().push(
-												{ label: 'Four' },
-												{ label: 'Five' },
-												{ label: 'Six', onselect() {
+												{ "label": 'Four' },
+												{ "label": 'Five' },
+												{ "label": 'Six', onselect() {
 													ts.ui.Notification.success('Selected!');
 												}});
 										});

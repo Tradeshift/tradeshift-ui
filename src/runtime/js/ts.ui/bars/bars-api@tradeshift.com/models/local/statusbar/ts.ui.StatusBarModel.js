@@ -6,7 +6,7 @@
 ts.ui.StatusBarModel = (function using(chained) {
 	return ts.ui.ToolBarModel.extend({
 		/**
-		 * It's a long story and it involves a bug in the specification of EDBML. 
+		 * It's a long story and it involves a bug in the specification of EDBML.
 		 * If we don't migrate to Spiritual 2.0 soon, I promise to tell the story.
 		 * @type {ts.ui.PagerModel}
 		 */

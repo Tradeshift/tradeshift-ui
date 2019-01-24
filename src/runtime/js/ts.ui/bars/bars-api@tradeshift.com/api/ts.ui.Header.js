@@ -32,7 +32,7 @@ ts.ui.Header = (function using(chained) {
 	}
 
 	/**
-	 * Observe the {ts.ui.LayoutModel} to hide the header 
+	 * Observe the {ts.ui.LayoutModel} to hide the header
 	 * in mobile breakpoint whenever a SideBar is opened.
 	 * This could unfortunately not be solved by z-index :/
 	 */
@@ -184,9 +184,9 @@ ts.ui.Header = (function using(chained) {
 		 */
 		localize: function(locale) {
 			if (arguments.length) {
-				console.log('TODO: ts.ui.Header.localize');
+				// console.log('TODO: ts.ui.Header.localize');
 			} else {
-				console.log('TODO: ts.ui.Header.localize');
+				// console.log('TODO: ts.ui.Header.localize');
 			}
 		},
 

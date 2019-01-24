@@ -1,5 +1,5 @@
 /**
- * The DoorManPlugin attempts to ensure a unified interface 
+ * The DoorManPlugin attempts to ensure a unified interface
  * for opening and closing Asides, SideBars and Modals.
  * @extends {ts.ui.Plugin}
  * @using {gui.Type}
@@ -28,7 +28,7 @@ ts.ui.DoorManPlugin = (function(Type) {
 
 			/**
 			 * Open AND close the aside (setup to support HTML `data-ts.open="true|false"`).
-			 * The weird logic around `_suspended` ensures that internal state can be kept 
+			 * The weird logic around `_suspended` ensures that internal state can be kept
 			 * in sync with some external component that attempts to manage the state.
 			 * @param @optional {boolean} opt_open Omit to simply open.
 			 * @returns {boolean} True if allowed to open or close
@@ -111,9 +111,9 @@ ts.ui.DoorManPlugin = (function(Type) {
 			 * 2. The first event is prevented by React, stopping Aside from closing
 			 * 3. React component changes its state and calls `close` (a second time)
 			 * 4. The event is now *not* prevented and the Aside can finally close
-			 * This way, React can pretend to control the state of the Aside. Before we 
-			 * implement something like this again, we should at least check if this is 
-			 * also how React handles a normal `input.checked` or `select.selectedIndex` 
+			 * This way, React can pretend to control the state of the Aside. Before we
+			 * implement something like this again, we should at least check if this is
+			 * also how React handles a normal `input.checked` or `select.selectedIndex`
 			 * (eg. supresses the normal change until it can be synced from React state).
 			 * @param {boolean} open
 			 * @returns {boolean}

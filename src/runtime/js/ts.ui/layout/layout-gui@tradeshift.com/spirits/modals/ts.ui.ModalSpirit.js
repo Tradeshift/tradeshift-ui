@@ -262,7 +262,7 @@ ts.ui.ModalSpirit = (function using(Client, transition, chained) {
 		},
 
 		/**
-		 * Get the Box (used for centering the content), if any. We'll also look for 
+		 * Get the Box (used for centering the content), if any. We'll also look for
 		 * the Main, even if this is not deprecated. TODO: Remove at some point...
 		 * @param {ts.ui.PanelSpirit} panel
 		 */

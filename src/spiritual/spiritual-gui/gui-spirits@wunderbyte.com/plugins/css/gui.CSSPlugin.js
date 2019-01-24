@@ -362,9 +362,7 @@ gui.CSSPlugin = (function using(GuiArray, chained, confirmed) {
 			 */
 			_shorthand: function(prop, value) {
 				var short;
-				switch (
-					gui.Type.of(value) // not much of a difference (just yet)
-				) {
+				switch (gui.Type.of(value)) { // not much of a difference (just yet)
 					case 'number':
 						if ((short = this._numbershorthands[prop])) {
 							value = short.replace('@', value);

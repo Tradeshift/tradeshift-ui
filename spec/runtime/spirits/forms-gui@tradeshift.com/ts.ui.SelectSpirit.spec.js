@@ -40,7 +40,9 @@ describe('ts.ui.SelectSpirit', function likethis() {
 		});
 	});
 
-	it('should update the FakeSelectInputSpirit when programmatically modifying the selected options', function(done) {
+	it('should update the FakeSelectInputSpirit when programmatically modifying the selected options', function(
+		done
+	) {
 		var dom = helper.createTestDom();
 		/**
 		 * To not have 500ms of timeout for each step in this test,

@@ -15,8 +15,8 @@ ts.ui.SpinnerSpirit = (function using(defaults) {
 		{},
 		{
 			/**
-		 * @returns {ts.ui.SpinnerSpirit}
-		 */
+			 * @returns {ts.ui.SpinnerSpirit}
+			 */
 			summon: function(message, overrides) {
 				var outer = document.createElement('div');
 				var xxxxx = document.createElement('span');

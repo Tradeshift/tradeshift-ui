@@ -105,7 +105,7 @@ ts.ui.ToolBarSpirit = (function using(
 			},
 
 			/**
-			 * Allow subclass to add classname (in `onenter` or 
+			 * Allow subclass to add classname (in `onenter` or
 			 * `oncofigure`) before we fall back to `ts-macro`.
 			 */
 			onready: function() {
@@ -783,9 +783,9 @@ ts.ui.ToolBarSpirit = (function using(
 			},
 
 			/**
-			 * When "more tabs" are hidden in an Aside, make sure that thee selected 
-			 * tab is always visible by moving it to the second position. This fits 
-			 * the usecase of some app where the first tab is "home", but we should 
+			 * When "more tabs" are hidden in an Aside, make sure that thee selected
+			 * tab is always visible by moving it to the second position. This fits
+			 * the usecase of some app where the first tab is "home", but we should
 			 * probably make this configurable so that the first tab is not sacred.
 			 * @param {Array<ts.ui.TabCollection>} tabs
 			 */

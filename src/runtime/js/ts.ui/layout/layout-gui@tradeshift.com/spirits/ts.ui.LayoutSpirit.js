@@ -1,5 +1,5 @@
 /**
- * This things acts as base spirit for a number of widgets to ensure consistent 
+ * This things acts as base spirit for a number of widgets to ensure consistent
  * handling of toolbars, headers and footers plus basic CSS (via flex features).
  * @see {AppSpirit}
  * @see {SideShowSpirit}
@@ -22,10 +22,10 @@ ts.ui.LayoutSpirit = (function using(
 	chained
 ) {
 	/**
- 	 * @param {ts.ui.LayoutSpirit} layout
- 	 * @param {ts.ui.ToolBarSpirit} [toolbar]
- 	 * @returs {ts.ui.ToolBarSpirit}
- 	 */
+	 * @param {ts.ui.LayoutSpirit} layout
+	 * @param {ts.ui.ToolBarSpirit} [toolbar]
+	 * @returs {ts.ui.ToolBarSpirit}
+	 */
 	function gettoolbar(layout, toolbar) {
 		layout.css.add(['ts-has-header']);
 		return (
@@ -36,9 +36,9 @@ ts.ui.LayoutSpirit = (function using(
 
 	/**
 	 * @param {ts.ui.LayoutSpirit} layout
- 	 * @param {ts.ui.HeaderBarSpirit} [header]
- 	 * @returs {ts.ui.HeaderBarSpirit}
- 	 */
+	 * @param {ts.ui.HeaderBarSpirit} [header]
+	 * @returs {ts.ui.HeaderBarSpirit}
+	 */
 	function getheader(layout, header) {
 		layout.css.add(['ts-has-header']);
 		layout.action.add(ts.ui.ACTION_HEADER_LEVEL);
@@ -49,9 +49,9 @@ ts.ui.LayoutSpirit = (function using(
 
 	/**
 	 * @param {ts.ui.LayoutSpirit} layout
- 	 * @param {ts.ui.FooterBarSpirit} [footer]
- 	 * @returs {ts.ui.FooterBarSpirit}
- 	 */
+	 * @param {ts.ui.FooterBarSpirit} [footer]
+	 * @returs {ts.ui.FooterBarSpirit}
+	 */
 	function getfooter(layout, footer) {
 		layout.css.add(['ts-has-footer']);
 		layout.action.add(ts.ui.ACTION_FOOTER_LEVEL);

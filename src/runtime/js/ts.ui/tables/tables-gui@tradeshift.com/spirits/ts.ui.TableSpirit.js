@@ -207,7 +207,7 @@ ts.ui.TableSpirit = (function using(
 
 		/**
 		 * Open for implementation: Called when a new page is selected in Pager.
-		 * This is mostly relevant for "clientside" tables (mounting all pages) 
+		 * This is mostly relevant for "clientside" tables (mounting all pages)
 		 * where the Pager is not created and handled by the developer himself.
 		 * @type {function}
 		 */
@@ -527,8 +527,8 @@ ts.ui.TableSpirit = (function using(
 		// Layout ..................................................................
 
 		/**
-		 * Expand to fill nearest positioned ancestor.  If the callback is 
-		 * provided, this can be used to manually calculate the optimal 
+		 * Expand to fill nearest positioned ancestor.  If the callback is
+		 * provided, this can be used to manually calculate the optimal
 		 * rowcount (backend-Table scenario).
 		 * @param {Function} onresize
 		 * @returns {this}
@@ -553,8 +553,8 @@ ts.ui.TableSpirit = (function using(
 		}),
 
 		/**
-		 * Automatically optimize the rowcount per page to fill the screen 
-		 * (or nearest positioned ancestor) with as little need for scrolling 
+		 * Automatically optimize the rowcount per page to fill the screen
+		 * (or nearest positioned ancestor) with as little need for scrolling
 		 * as possible.
 		 * TODO: Warning if `rows` are mounted before `optimize` is called (perf)
 		 * TODO: Console warn when not used in combination with `explode()`
@@ -582,11 +582,11 @@ ts.ui.TableSpirit = (function using(
 
 		/**
 		 * @deprecated
-		 * Maximize the layout to fill positioned container AND automatically 
-		 * optimize+autopage the content. This procedure has been split into 
-		 * two distinct methods, but we will keep this for legacy reasons. 
-		 * In V4, this method is used both "backend" Tables even though the 
-		 * `optimize` method is called (which autopaginates the Table), this 
+		 * Maximize the layout to fill positioned container AND automatically
+		 * optimize+autopage the content. This procedure has been split into
+		 * two distinct methods, but we will keep this for legacy reasons.
+		 * In V4, this method is used both "backend" Tables even though the
+		 * `optimize` method is called (which autopaginates the Table), this
 		 * setup is of course wrong and we are just lucky that things work :/
 		 * TODO: If and when we have the documentation for these features,
 		 * show some warning in the console and prepare to deprecate this.
@@ -1141,7 +1141,7 @@ ts.ui.TableSpirit = (function using(
 		}),
 
 		/**
-		 * The Table should or does show a "floating gutter" that stys 
+		 * The Table should or does show a "floating gutter" that stys
 		 * fixed on horizontal scrolling (to make row selection easier)?
 		 * Note that `ts-scroll-x` was added by the {TableLayoutPlugin}.
 		 * @returns {boolean}
@@ -1263,7 +1263,7 @@ ts.ui.TableSpirit = (function using(
 		},
 
 		/**
-		 * True when the Table is exploded (maximized) and configured to 
+		 * True when the Table is exploded (maximized) and configured to
 		 * adjust the rowcount and pagecount for optimal fit on screen.
 		 * @type {boolean}
 		 */
@@ -1289,12 +1289,12 @@ ts.ui.TableSpirit = (function using(
 		},
 
 		/**
-		 * The Table needs to render *before* we can determine if the floating 
-		 * gutter needs to be displayed  (because this all depends on the final 
-		 * computed size of the table columns and stuff). If we can determine 
-		 * that is should be shown or hidden, and if this is different from 
+		 * The Table needs to render *before* we can determine if the floating
+		 * gutter needs to be displayed  (because this all depends on the final
+		 * computed size of the table columns and stuff). If we can determine
+		 * that is should be shown or hidden, and if this is different from
 		 * the previous rendering, we will now trigger another re-rendering :/
-		 * but at least now, we will not render extra checkboxes that might 
+		 * but at least now, we will not render extra checkboxes that might
 		 * confuse Selenium tests even though they are invisible to the user.
 		 * @param {ts.ui.TableModel} model
 		 */
@@ -1920,7 +1920,7 @@ ts.ui.TableSpirit = (function using(
 
 		/**
 		 * Autotatically adjust maxrows to fit
-		 * in the Tables embedding container 
+		 * in the Tables embedding container
 		 * and then return this number of rows.
 		 * @returns {number}
 		 */

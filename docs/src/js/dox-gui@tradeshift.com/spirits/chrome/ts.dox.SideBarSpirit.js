@@ -12,7 +12,7 @@ ts.dox.SideBarSpirit = ts.ui.SideBarSpirit.extend({
 	},
 
 	/**
-	 * Apparently we need to dispatch this action for the chrome to close menu. 
+	 * Apparently we need to dispatch this action for the chrome to close menu.
 	 * This method is triggered by the closebutton, which the Chrome has enabled.
 	 */
 	close: function() {
@@ -21,7 +21,7 @@ ts.dox.SideBarSpirit = ts.ui.SideBarSpirit.extend({
 	},
 
 	/**
-	 * This particular sidebar should just have a regular toolbar 
+	 * This particular sidebar should just have a regular toolbar
 	 * header (because we like how the Search looks in that one).
 	 * @returns {ts.ui.ToolBarSpirit}
 	 */

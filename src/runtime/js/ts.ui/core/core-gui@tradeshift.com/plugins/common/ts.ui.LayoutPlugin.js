@@ -75,8 +75,8 @@ ts.ui.LayoutPlugin = (function using(GuiArray, DOMPlugin, CSSPlugin, chained) {
 			/**
 			 * Apply classname based on the current height of some
 			 * descendant header or footer. This is known to affect
-			 * TableSpirit, PanelSpirit, ModalSpirit and DocumentSpirit 
-			 * (and it also runs on the StatusBarSpirit itself). This 
+			 * TableSpirit, PanelSpirit, ModalSpirit and DocumentSpirit
+			 * (and it also runs on the StatusBarSpirit itself). This
 			 * should of course all be replaced with Grid or Flex now.
 			 * @param {number} level
 			 * @param {string} [prefix]

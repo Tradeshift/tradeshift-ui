@@ -58,7 +58,7 @@ ts.ui.PanelSpirit = (function using(
 		},
 
 		/**
-		 * Panel is selected? This can be used to show the panel without triggering 
+		 * Panel is selected? This can be used to show the panel without triggering
 		 * the selection logic (for example to compute the height of the panel).
 		 * Note that this doesn't have any effect unless inside a {PanelsSpirit}.
 		 * @type {boolean} visible

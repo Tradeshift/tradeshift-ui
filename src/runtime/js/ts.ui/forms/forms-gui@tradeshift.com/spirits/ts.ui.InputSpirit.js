@@ -298,12 +298,12 @@ ts.ui.InputSpirit = (function using(chained, Type, Client) {
 				this.onidle = setup
 					? function() {
 							model.idle = true;
-					  }
+						}
 					: null;
 				this.onenterkey = setup
 					? function() {
 							model.enterkey = true;
-					  }
+						}
 					: null;
 				if (setup) {
 					if (model.value) {

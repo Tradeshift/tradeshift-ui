@@ -148,110 +148,111 @@
 				<p>Here"s a summary of the <code>buttons</code> collection and <code>button</code> model.</p>
 				<div data-ts="DoxApi">
 					<script type="application/json">
-					{
-						name: "ts.ui.ButtonCollection",
-						methods: [
-							{
-								name: "push",
-								args: "o1, o2, ...",
-								desc: "Add button(s) to the end of the collection."
-							},
-							{
-								name: "unshift",
-								args: "o1, o2, ...",
-								desc: "Add button(s) to the front of the collection."
-							},
-							{
-								name: "pop",
-								desc: "Remove and return the last button."
-							},
-							{
-								name: "shift",
-								desc: "Remove and return the first button."
-							},
-							{
-								name: "splice",
-								args: "i, d, o1, o2, ...",
-								desc: "Insert button(s) at `i`, optionally deleting `d` amount of buttons."
-							},
-							{
-								name: "get",
-								args: "string|number",
-								desc: "Get button by `id` or numeric index."
-							},
-							{
-								name: "clear",
-								desc: "Remove all buttons."
-							}
-						]
-					}
+						{
+							"name": "ts.ui.ButtonCollection",
+							"methods": [
+								{
+									"name": "push",
+									"args": "o1, o2, ...",
+									"desc": "Add button(s) to the end of the collection."
+								},
+								{
+									"name": "unshift",
+									"args": "o1, o2, ...",
+									"desc": "Add button(s) to the front of the collection."
+								},
+								{
+									"name": "pop",
+									"desc": "Remove and return the last button."
+								},
+								{
+									"name": "shift",
+									"desc": "Remove and return the first button."
+								},
+								{
+									"name": "splice",
+									"args": "i, d, o1, o2, ...",
+									"desc": "Insert button(s) at `i`, optionally deleting `d` amount of buttons."
+								},
+								{
+									"name": "get",
+									"args": "string|number",
+									"desc": "Get button by `id` or numeric index."
+								},
+								{
+									"name": "clear",
+									"desc": "Remove all buttons."
+								}
+							]
+						}
+
 					</script>
 				</div>
 				<div data-ts="DoxApi">
 					<script type="application/json">
 						{
-							name: "ts.ui.ButtonModel",
-							properties: [
+							"name": "ts.ui.ButtonModel",
+							"properties": [
 								{
-									name: "id",
-									type: "string",
-									desc: "Optional button `id`."
+									"name": "id",
+									"type": "string",
+									"desc": "Optional button `id`."
 								},
 								{
-									name: "label",
-									type: "string",
-									desc: "The buttons label."
+									"name": "label",
+									"type": "string",
+									"desc": "The buttons label."
 								},
 								{
-									name: "icon",
-									type: "string",
-									desc: "The button icon (label must be `null` or empty)."
+									"name": "icon",
+									"type": "string",
+									"desc": "The button icon (label must be `null` or empty)."
 								},
 								{
-									name: "info",
-									type: "string",
-									desc: "The button tooltip (hover text)."
+									"name": "info",
+									"type": "string",
+									"desc": "The button tooltip (hover text)."
 								},
 								{
-									name: "visible",
-									type: "boolean",
-									desc: "Button is visible?"
+									"name": "visible",
+									"type": "boolean",
+									"desc": "Button is visible?"
 								},
 								{
-									name: "disabled",
-									type: "boolean",
-									desc: "Button is disabled?"
+									"name": "disabled",
+									"type": "boolean",
+									"desc": "Button is disabled?"
 								}
 							],
-							methods: [
+							"methods": [
 								{
-									name: "onclick",
-									desc: "Called whenever the button gets clicked."
+									"name": "onclick",
+									"desc": "Called whenever the button gets clicked."
 								},
 								{
-									name: "busy",
-									args: "(string)",
-									desc: "Mark button busy with optional message."
+									"name": "busy",
+									"args": "(string)",
+									"desc": "Mark button busy with optional message."
 								},
 								{
-									name: "done",
-									desc: "Mark the button done (not busy)."
+									"name": "done",
+									"desc": "Mark the button done (not busy)."
 								},
 								{
-									name: "hide",
-									desc: "Hide the button."
+									"name": "hide",
+									"desc": "Hide the button."
 								},
 								{
-									name: "show",
-									desc: "Show the button."
+									"name": "show",
+									"desc": "Show the button."
 								},
 								{
-									name: "disable",
-									desc: "Disable the button."
+									"name": "disable",
+									"desc": "Disable the button."
 								},
 								{
-									name: "enable",
-									desc: "Enable the button."
+									"name": "enable",
+									"desc": "Enable the button."
 								}
 							]
 						}

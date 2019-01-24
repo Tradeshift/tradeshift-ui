@@ -176,56 +176,56 @@
 				<div data-ts="DoxApi">
 					<script type="application/json">
 						{
-							name: "ts.ui.TabCollection",
-							properties: [
+							"name": "ts.ui.TabCollection",
+							"properties": [
 								{
-									name: "selectedIndex",
-									type: "number",
-									desc: "Get or set selected index."
+									"name": "selectedIndex",
+									"type": "number",
+									"desc": "Get or set selected index."
 								}
 							],
-							methods: [
+							"methods": [
 								{
-									name: "push",
-									args: "o1, o2, ...",
-									desc: "Add tab(s) to the end of the collection."
+									"name": "push",
+									"args": "o1, o2, ...",
+									"desc": "Add tab(s) to the end of the collection."
 								},
 								{
-									name: "unshift",
-									args: "o1, o2, ...",
-									desc: "Add tab(s) to the front of the collection."
+									"name": "unshift",
+									"args": "o1, o2, ...",
+									"desc": "Add tab(s) to the front of the collection."
 								},
 								{
-									name: "pop",
-									desc: "Remove and return the last tab."
+									"name": "pop",
+									"desc": "Remove and return the last tab."
 								},
 								{
-									name: "shift",
-									desc: "Remove and return the first tab."
+									"name": "shift",
+									"desc": "Remove and return the first tab."
 								},
 								{
-									name: "splice",
-									args: "i, d, o1, o2, ...",
-									desc: "Insert tab(s) at `i`, optionally deleting `d` amount of tabs."
+									"name": "splice",
+									"args": "i, d, o1, o2, ...",
+									"desc": "Insert tab(s) at `i`, optionally deleting `d` amount of tabs."
 								},
 								{
-									name: "get",
-									args: "string|number",
-									desc: "Get tab by `id` or numeric index."
+									"name": "get",
+									"args": "string|number",
+									"desc": "Get tab by `id` or numeric index."
 								},
 								{
-									name: "clear",
-									desc: "Remove all tabs."
+									"name": "clear",
+									"desc": "Remove all tabs."
 								},
 								{
-									name: "showNew",
-									args: "(function)",
-									desc: "Show New-Tab button with an onclick callback. Use `hideNew()` to hide the button."
+									"name": "showNew",
+									"args": "(function)",
+									"desc": "Show New-Tab button with an onclick callback. Use `hideNew()` to hide the button."
 								},
 								{
-									name: "onselect",
-									args: "number, number",
-									desc: "Open for implementation: Called whenever the selected index changes with two parameters `newindex` and `oldindex`."
+									"name": "onselect",
+									"args": "number, number",
+									"desc": "Open for implementation: Called whenever the selected index changes with two parameters `newindex` and `oldindex`."
 								}
 							]
 						}
@@ -234,46 +234,46 @@
 				<div data-ts="DoxApi">
 					<script type="application/json">
 						{
-							name: "ts.ui.TabModel",
-							properties: [
+							"name": "ts.ui.TabModel",
+							"properties": [
 								{
-									name: "id",
-									type: "string",
-									desc: "Optional tab `id`."
+									"name": "id",
+									"type": "string",
+									"desc": "Optional tab `id`."
 								},
 								{
-									name: "label",
-									type: "string",
-									desc: "The tab label."
+									"name": "label",
+									"type": "string",
+									"desc": "The tab label."
 								},
 								{
-									name: "icon",
-									type: "string",
-									desc: "The tab icon."
+									"name": "icon",
+									"type": "string",
+									"desc": "The tab icon."
 								},
 								{
-									name: "selected",
-									type: "boolean",
-									desc: "Get or set selected status."
+									"name": "selected",
+									"type": "boolean",
+									"desc": "Get or set selected status."
 								},
 								{
-									name: "closeable",
-									type: "boolean",
-									desc: "Tab can be closed? See also `onclose`"
+									"name": "closeable",
+									"type": "boolean",
+									"desc": "Tab can be closed? See also `onclose`"
 								}
 							],
-							methods: [
+							"methods": [
 								{
-									name: "select",
-									desc: "Select the tab. This will unselect some other tab."
+									"name": "select",
+									"desc": "Select the tab. This will unselect some other tab."
 								},
 								{
-									name: "onselect",
-									desc: "Called whenever the tab gets selected."
+									"name": "onselect",
+									"desc": "Called whenever the tab gets selected."
 								},
 								{
-									name: "onclose",
-									desc: "Called whenever the tab gets closed."
+									"name": "onclose",
+									"desc": "Called whenever the tab gets closed."
 								}
 							]
 						}

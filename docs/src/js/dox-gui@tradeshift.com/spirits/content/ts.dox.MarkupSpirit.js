@@ -24,7 +24,9 @@ ts.dox.MarkupSpirit = (function() {
 		 */
 		_parseconfig: function(config) {
 			this.super._parseconfig(config);
-			console.log('TODO: MarkupSpirit._parseconfig');
+			/**
+			 * @TODO MarkupSpirit._parseconfig
+			 */
 			/*
 			this.super._parseconfig(config);
 			var flip = config.flip;

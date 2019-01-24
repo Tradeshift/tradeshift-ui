@@ -71,25 +71,24 @@ ts.ui.LayoutSpirit = (function using(
 			},
 
 			/**
-			 * TODO: finalize this
+			 * @TODO: finalize this
 			 */
 			title: chained(function(title) {
 				this._head().title(title);
 			}),
 
 			/**
-			 * TODO: finalize this
+			 * @TODO: finalize this
 			 */
 			icon: chained(function(icon) {
 				this._head().icon(icon);
 			}),
 
 			/**
-			 * TODO: finalize this
+			 * @TODO: finalize this
+			 * @TODO: SEARCH
 			 */
-			search: chained(function(search) {
-				console.log('TODO: SEARCH');
-			}),
+			search: chained(function(search) {}),
 
 			/**
 			 * Get or set the buttons in the statusbar.

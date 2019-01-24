@@ -155,7 +155,9 @@ ts.ui.LayoutPlugin = (function using(GuiArray, DOMPlugin, CSSPlugin, chained) {
 			 */
 			contains: function(cname) {
 				if (gui.debug) {
-					console.log('TODO: this must be synced to root panels setup');
+					/**
+					 * @TODO: this must be synced to root panels setup
+					 */
 				}
 				return ts.ui.get(document.documentElement).css.contains(cname);
 			}

@@ -154,18 +154,16 @@ ts.ui.Header = (function using(chained) {
 		}),
 
 		/**
+		 * @TODO hide
 		 * @returns {this}
 		 */
-		hide: chained(function() {
-			console.log('TODO: hide');
-		}),
+		hide: chained(function() {}),
 
 		/**
+		 * @TODO show
 		 * @returns {this}
 		 */
-		show: chained(function() {
-			console.log('TODO: show');
-		}),
+		show: chained(function() {}),
 
 		/**
 		 * @param {string} [string]
@@ -180,15 +178,9 @@ ts.ui.Header = (function using(chained) {
 		}),
 
 		/**
-		 *
+		 * @TODO TODO: ts.ui.Header.localize
 		 */
-		localize: function(locale) {
-			if (arguments.length) {
-				console.log('TODO: ts.ui.Header.localize');
-			} else {
-				console.log('TODO: ts.ui.Header.localize');
-			}
-		},
+		localize: function(locale) {},
 
 		/**
 		 * Get or set the Settings button.

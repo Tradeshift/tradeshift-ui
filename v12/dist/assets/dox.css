@@ -371,18 +371,22 @@ table.api th {
   white-space: nowrap;
 }
 .ts-doxapi {
-  margin-bottom: 22px;
+  margin-bottom: 20px;
 }
 .ts-doxapi table.api:first-child {
   margin-top: 0;
 }
 /* Intro page ............................................................... */
+.body-intro {
+  background: hsl(0, 0%, 100%);
+}
 .doc-intro {
   width: 100%;
   max-width: none;
   padding-left: 0;
   padding-right: 0;
   padding-bottom: 0;
+  background: hsl(0, 0%, 100%);
 }
 .doc-intro section {
   max-width: 824px;
@@ -659,7 +663,7 @@ table.api th {
   background-color: hsl(199, 100%, 50%);
 }
 .ts-doxchrome .ts-menu > li > a > i {
-  top: 33%;
+  top: 18px;
   left: 20px;
 }
 .ts-doxchrome .ts-menu > li > a.ts-checked {

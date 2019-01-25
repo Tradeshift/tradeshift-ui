@@ -12,7 +12,7 @@ article h2 a {
   color: #d7d7d7 !important;
   text-decoration: none;
   background-color: #6b6b6b;
-  padding: 4.5px 11px 6.5px 11px;
+  padding: 4px 10px 6px 10px;
   display: inline-block;
 }
 article h2 a:hover {
@@ -20,7 +20,7 @@ article h2 a:hover {
   background-color: #3f3f3f;
 }
 article ul {
-  margin-bottom: 66px;
+  margin-bottom: 60px;
   white-space: nowrap;
   font-size: 0;
 }

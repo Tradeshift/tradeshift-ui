@@ -3,13 +3,13 @@ figure:before {
   text-transform: uppercase;
   font-size: 11px;
   font-weight: 400;
-  padding: 5.5px 11px 5.5px 22px;
+  padding: 5px 10px 5px 20px;
   margin: 0;
   width: 100%;
 }
 figure p,
 figure dl {
-  padding: 22px;
+  padding: 20px;
 }
 figure p,
 figure dd {

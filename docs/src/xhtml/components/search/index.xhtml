@@ -4,12 +4,10 @@
 		<title>Search</title>
 	</head>
 	<body>
-		<header data-ts="TopBar"></header>
-		<main data-ts="Main">
 			<article>
 				<h1>Search</h1>
 				<section class="desc">
-					<p>The Search is prominently featured in the <a data-ts="Button" href="/#components/bars/toolbar.html">Main ToolBar</a>, but you can use it anywhere on the page if you like. Note that the API is in any case identical.</p>
+					<p>The Search is prominently featured in the <a data-ts="Button" href="/#components/header/">Header</a>, but you can use it anywhere on the page if you like. Note that the API is in any case identical.</p>
 				</section>
 				<section>
 					<p>You can initialize a Search with <att>data-ts="Search"</att>. The classname <val>ts-inset</val> will add an outline (so that we can see how it behaves on this white background).</p>
@@ -19,11 +17,17 @@
 							<div data-ts="Search" id="mysearch" class="ts-inset"></div>
 						</script>
 					</figure>
-				<section>
-				<section>
-					<object data="../bars/toolbar.xhtml#search-desc">
-						<replace input="ts.ui.ToolBar.search()" output="ts.ui.get('#mysearch')"/>
-					</object>
+					<figure data-ts="DoxScript">
+						<script type="runnable">
+							ts.ui.get('#mysearch', search => {
+								search.value = 'Press ENTER here';
+								search.info = 'Search amongst all the things';
+								search.onsearch = function(value) {
+									ts.ui.Notification.success(value || 'Search cleared');
+								}
+							});
+						</script>
+					</figure>
 				</section>
 				<p>To keep the field expanded at all times, simply assign the CSS classname <code>ts-expanded</code>.</p>
 				<section>
@@ -37,16 +41,124 @@
 						<output/>
 					</figure>
 				</section>
+
+				<section id="search-desc" data-important="THIS GETS INCLUDED IN OTHER PAGES!">
+					<p>The search field expands when the field is focused by the user or whenever there's a non-empty value in the field. You can change the value like this:</p>
+					<figure data-ts="DoxScript">
+						<script type="runnable">
+							var search = ts.ui.get('#mysearch');
+							search.value = 'Hello world';
+						</script>
+					</figure>
+				</section>
+
+				<section id="search-methods" data-important="THIS GETS INCLUDED IN OTHER PAGES!">
+					<h3>Search callbacks</h3>
+					<p>The <code>onsearch</code> callback gets invoked when when the user presses <kbd>ENTER</kbd>.</p>
+					<figure data-ts="DoxScript">
+						<script type="runnable">
+							var search = ts.ui.get('#mysearch');
+							search.value = 'Press ENTER here';
+							search.onsearch = function(value) {
+								ts.ui.Notification.success(value || 'Search cleared');
+							};
+						</script>
+					</figure>
+					<p>If defined, the <code>onidle</code> method gets called whenever the user pauses typing.</p>
+					<figure data-ts="DoxScript">
+						<script type="runnable">
+							var search = ts.ui.get('#mysearch');
+							search.value = 'Try it now!';
+							search.onidle = function(value) {
+								ts.ui.Notification.success(value);
+							};
+						</script>
+					</figure>
+					<p>The <code>onidle</code> method may also be called when the field loses focus. The <code>idletime</code> property controls the timeout value, default is <code>500</code> (milliseconds).</p>
+				</section>
+
+				<section>
+					<h3>Search info</h3>
+					<p>The <code>info</code> property doubles as both the <code>placeholder</code> when the field is expanded and the <code>title</code> (or tooltip) when the field is collapsed.</p>
+					<figure data-ts="DoxScript">
+						<script type="runnable">
+							var search = ts.ui.get('#mysearch');
+							search.info = 'Search amongst the things';
+							search.value = ''; // collapse the field
+						</script>
+					</figure>
+				</section>
+				
+				<section id="search-api" data-important="THIS GETS INCLUDED IN OTHER PAGES!">
+					<p>Here' an overview of the properties and methods of the Search model.</p>
+					<div data-ts="DoxApi">
+						<script type="application/json">
+							{
+								"name": "ts.ui.SearchSpirit",
+								"properties": [
+									{
+										"name": "value",
+										"type": "string",
+										"desc": "The search field value."
+									},
+									{
+										"name": "idletime",
+										"type": "number",
+										"desc": "Time before the user is considered idle."
+									},
+									{
+										"name": "info",
+										"type": "string",
+										"desc": "The placeholder and/or mouseover tooltip."
+									},
+									{
+										"name": "flex",
+										"type": "number",
+										"desc": "Fill the available width of the ToolBar. The value should be `1`."
+									}
+								],
+								"methods": [
+									{
+										"name": "onsearch",
+										"desc": "Called when the user presses ENTER."
+									},
+									{
+										"name": "onidle",
+										"desc": "Called when the user pauses typing."
+									},
+									{
+										"name": "onfocus",
+										"desc": "Called when the search field is focused."
+									},
+									{
+										"name": "onblur",
+										"desc": "Called when the search field gets blurred."
+									},
+									{
+										"name": "focus",
+										"desc": "Focus the search field."
+									},
+									{
+										"name": "blur",
+										"desc": "Blur the search field."
+									}
+								]
+							}
+						</script>
+					</div>
+				</section>
+
+				<!--
 				<section>
 					<object data="../bars/toolbar.xhtml#search-methods"></object>
 				</section>
 				<section>
 					<object data="../bars/toolbar.xhtml#search-api">
-						<replace input="ts.ui.SearchModel" output="ts.ui.SearchSpirit"/>
-						<replace input="Search model" output="Search component"/>
+						<replace input="ts.ui.SearchSpirit" output="ts.ui.SearchSpirit"/>
+						<replace input="Search model" output="Search model"/>
 					</object>
 				</section>
+				-->
 			</article>
-		</main>
 	</body>
 </html>

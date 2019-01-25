@@ -14,7 +14,7 @@ describe('ts.ui.SearchSpirit', function likethis() {
 		setup(function(spirit, dom) {
 			sometime(function later() {
 				expect(ts.ui.SearchSpirit.is(spirit)).toBe(true);
-				expect(dom.querySelector('.ts-button').innerHTML).toContain('ts-icon-close');
+				expect(dom.querySelector('.ts-button').innerHTML).toContain('ts-icon-remove');
 				expect(dom.querySelector('.ts-input').value).toBe('');
 				expect(spirit.element.className).toContain('ts-empty');
 				done();

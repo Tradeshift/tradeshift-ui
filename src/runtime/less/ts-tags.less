@@ -16,8 +16,8 @@
 	padding: 0;
 	margin: 0 @tag-margin @tag-margin 0;
 	border-radius: @ts-radius;
-	background: @ts-lite-liter;
-	color: @ts-black;
+	background: @ts-color-gray-lighter;
+	color: @ts-color-black;
 	line-height: 0;
 	font-size: 0;
 	border-collapse: separate;
@@ -168,7 +168,7 @@
 		figcaption,
 		dd,
 		dt {
-			color: @ts-blue;
+			color: @ts-color-blue;
 		}
 		.ts-device-mouse &:not(.ts-tag-locked):hover {
 			cursor: pointer;
@@ -176,7 +176,7 @@
 			dl,
 			dt,
 			dd {
-				color: @ts-blue-dark;
+				color: @ts-color-blue-dark;
 			}
 		}
 	}
@@ -187,7 +187,7 @@
 		dd,
 		dt,
 		&:after {
-			color: @ts-medium;
+			color: @ts-color-slate-lightest;
 		}
 		dl:last-child {
 			margin-right: 0;
@@ -197,7 +197,7 @@
 			.ts-mixin-fix(@tag-icon-width, @tag-height);
 			display: inline-block;
 			line-height: @tag-height;
-			color: @ts-medium;
+			color: @ts-color-slate-lightest;
 			content: 'V'; // ts-icon-locked
 		}
 		del {
@@ -221,13 +221,13 @@
 			.ts-mixin-fix(@tag-icon-width, @tag-height);
 			display: inline-block;
 			line-height: @tag-height;
-			color: @ts-medium;
+			color: @ts-color-slate-lightest;
 			content: '*'; // ts-icon-close
 		}
 		.ts-device-mouse &:hover {
 			cursor: pointer;
 			&:after {
-				color: @ts-black;
+				color: @ts-color-black;
 			}
 		}
 	}
@@ -247,83 +247,82 @@
 	}
 }
 
-
 .ts-tag {
 	// Color schemes .............................................................
 
 	&.ts-danger {
-		background: @ts-red;
+		background: @ts-color-red;
 		&,
 		figcaption,
 		dd,
 		dt {
-			color: @ts-red-text;
+			color: @ts-color-white;
 		}
 	}
 	&.ts-danger-lite {
-		background: @ts-red-lite;
+		background: @ts-color-red-light;
 		&,
 		figcaption,
 		dd,
 		dt {
-			color: @ts-red-darker;
+			color: @ts-color-red-darker;
 		}
 	}
 
 	&.ts-warning {
-		background: @ts-orange;
+		background: @ts-color-orange;
 		&,
 		figcaption,
 		dd,
 		dt {
-			color: @ts-orange-text;
+			color: @ts-color-white;
 		}
 	}
 	&.ts-warning-lite {
-		background: @ts-yellow;
+		background: @ts-color-yellow-lightest;
 		&,
 		figcaption,
 		dd,
 		dt {
-			color: @ts-yellow-text;
+			color: @ts-color-black;
 		}
 	}
 
 	&.ts-success {
-		background: @ts-green;
+		background: @ts-color-green;
 		&,
 		figcaption,
 		dd,
 		dt {
-			color: @ts-green-text;
+			color: @ts-color-white;
 		}
 	}
 	&.ts-success-lite {
-		background: @ts-litegreen;
+		background: @ts-color-green-lighter;
 		&,
 		figcaption,
 		dd,
 		dt {
-			color: @ts-green;
+			color: @ts-color-green;
 		}
 	}
 
 	&.ts-blue {
-		background: @ts-blue;
+		background: @ts-color-blue;
 		&,
 		figcaption,
 		dd,
 		dt {
-			color: @ts-blue-text;
+			color: @ts-color-white;
 		}
 	}
 	&.ts-blue-lite {
-		background: @ts-liteblue;
+		background: @ts-color-blue-lighter;
 		&,
 		figcaption,
 		dd,
 		dt {
-			color: @ts-blue;
+			color: @ts-color-blue-dark;
 		}
 	}
 }

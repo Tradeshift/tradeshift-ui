@@ -25,11 +25,14 @@
 ::-moz-selection,
 ::-webkit-selection,
 ::selection {
-	background: @ts-blue;
-	color: @ts-white;
+	background: @ts-color-blue;
+	color: @ts-color-white;
 }
 ::placeholder {
 	font-style: italic;
+}
+html {
+	background-color: @ts-color-gray-lighter;
 }
 html,
 body {
@@ -37,27 +40,19 @@ body {
 	padding: 0;
 	height: 100%;
 	overflow: hidden;
-	background: transparent !important;
 }
 body {
 	visibility: hidden; // hide everything during page load, see next declaration!
-	background-color: transparent !important;
 	font-family: @ts-fontstack;
 	font-weight: @ts-fontweight;
-	color: @ts-black;
+	color: @ts-color-black;
 	font-size: @ts-fontsize;
 	line-height: @ts-unit;
 	position: relative;
 	cursor: default;
 }
 .ts-ready body {
-	visibility: visible;
-}
-
-/* TODO: remove when the old scheme has been phased out ......................*/
-
-.ts-error-oldscheme {
-	outline: (@ts-unit-quarter - 1px) solid @ts-red;
+	visibility: visible !important;
 }
 
 /* TODO: move to Spiritual ...................................................*/

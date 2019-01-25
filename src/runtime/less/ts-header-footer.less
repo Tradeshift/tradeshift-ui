@@ -1,0 +1,179 @@
+.ts-footerbar,
+.ts-headerbar {
+	position: relative;
+	background-color: @ts-color-white;
+	transition: opacity @ts-transition-fast;
+	.ts-headerbar-headerbar {
+		&.ts-blue {
+			background-color: @ts-color-blue;
+		}
+		&.ts-red {
+			background-color: @ts-color-red;
+		}
+		&.ts-orange {
+			background-color: @ts-color-orange;
+		}
+		&.ts-yellow {
+			background-color: @ts-color-yellow;
+		}
+		&.ts-green {
+			background-color: @ts-color-green;
+		}
+		&.ts-purple {
+			background-color: @ts-color-purple;
+		}
+		&.ts-pink {
+			background-color: @ts-color-pink;
+		}
+		&.ts-gray {
+			background-color: @ts-color-gray;
+		}
+		&.ts-slate {
+			background-color: @ts-color-slate;
+		}
+		&.ts-white {
+			background-color: @ts-color-white;
+		}
+		&.ts-black {
+			background-color: @ts-color-black;
+		}
+		&.ts-blue,
+		&.ts-red,
+		&.ts-orange,
+		&.ts-green,
+		&.ts-purple,
+		&.ts-slate,
+		&.ts-pink,
+		&.ts-black {
+			color: @ts-color-white;
+		}
+		&.ts-yellow,
+		&.ts-grey,
+		&.ts-white {
+			color: @ts-color-slate-lighter;
+		}
+	}
+	.ts-toolbar {
+		position: relative;
+		&[data-ts\.badge] {
+			i.ts-icon-comment {
+				color: @ts-color-slate-lighter;
+			}
+			i.ts-icon-comment + span {
+				color: @ts-color-slate-lighter;
+			}
+		}
+	}
+	.ts-footerbar-bufferbar {
+		position: absolute;
+		left: 0;
+		right: 0;
+		z-index: 100;
+		visibility: hidden;
+		bottom: 0 - @ts-unit-triple;
+	}
+	> menu {
+		margin: 0;
+	}
+}
+.ts-footerbar {
+	background-color: @ts-color-gray-lightest;
+	.ts-toolbar:after {
+		content: none;
+	}
+	.ts-footerbar-actionbar {
+		background-color: @ts-color-slate-lightest;
+		color: @ts-color-white;
+		.ts-button.ts-action {
+			color: @ts-color-white;
+			background-color: transparent !important;
+			transition: opacity @ts-transition-now;
+			&:disabled {
+				opacity: 0.4;
+			}
+		}
+	}
+	.ts-footerbar-backupbar {
+		&:before {
+			.ts-mixin-maximize();
+			content: '';
+			height: 1px;
+			bottom: auto;
+			background-color: @new-bordercolor;
+		}
+	}
+}
+
+.ts-toolbar.ts-spirit {
+  &[data-ts\.badge="true"] {
+		.ts-icon-comment::after {
+			animation-name: bounceLeft, pulseBlue;
+			animation-duration: @ts-duration-enter-mobile * 2s, @ts-duration-enter-mobile * 8s;
+			animation-timing-function: @ts-easing-enter, linear;
+			animation-delay: 0s, @ts-duration-enter-mobile * 8s;
+			animation-direction: normal, alternate;
+			animation-iteration-count: 1, infinite;
+			background: @ts-color-blue;
+			border-radius: 50%;
+			border: 2px solid @ts-color-gray-lightest;
+			content: '';
+			height: 12px;
+			position: absolute;
+			right: -2px;
+			top: 0px;
+			width: 12px;
+			z-index: 20;
+		}
+		i.ts-icon-comment + span {
+			overflow: visible;
+			z-index: 10;
+		}
+		i.ts-icon-comment + span::before {
+			animation-name: bounceLeft;
+			animation-duration: @ts-duration-enter-mobile * 2s;
+			animation-timing-function: @ts-easing-enter;
+			animation-delay: 0s;
+			animation-direction: normal;
+			animation-iteration-count: 1;
+			background-color: @ts-color-gray-lightest;
+			border-radius: 50%;
+			content: '';
+			height: 12px;
+			left: -10px;
+			position: absolute;
+			top: 10px;
+			width: 12px;
+		}
+  }
+}
+
+ @keyframes bounceLeft {
+	0% {
+		transform: translateX(100%);
+	}
+	23% {
+		transform: translateX(0);
+	}
+	54% {
+		transform: translateX(7px);
+	}
+	77% {
+		transform: translateX(0);
+	}
+	92% {
+		transform: translateX(2px);
+	}
+	100% {
+		transform: translateX(0);
+	}
+}
+
+ @keyframes pulseBlue {
+	0%,
+	33% {
+		opacity: 1;
+	}
+	100% {
+		opacity: 0.5;
+	}
+}

@@ -5,78 +5,29 @@
 	<object data="tabs.xhtml"></object>
 </head>
 <body>
-<header data-ts="TopBar"></header>
-<main data-ts="Main">
 	<article>
 		<h1>API-only components</h1>
 		<section class="desc">
 			<p>These components will insert themselves into the DOM and generally don't come with a HTML API. Some of them are known to affect the general page layout.</p>
 		</section>
 		<section>
-			<h3><a data-ts="Button" href="/#components/bars/topbar.html">TopBar</a></h3>
-			<p>The TopBar provides tabs for navigation and buttons for contextual actions.</p>
-			<div data-ts="Note">
-				<i class="ts-icon-warning"></i>
-				<p>Beware that this API will be replaced be the <code>ts.ui.Header</code> in a future release.</p>
-			</div>
+			<h3><a data-ts="Button" href="/#components/header/">Header</a></h3>
+			<p>The Header <strong>↑</strong> provides tabs for navigation and buttons that affect the entire app.</p>
 			<figure data-ts="DoxScript">
 				<script type="runnable">
-					ts.ui.TopBar.buttons([
+					ts.ui.Header.buttons([
 						{label: 'Button', type: 'ts-primary'},
 						{label: 'Button', type: 'ts-secondary'},
 						{label: 'Button', onclick: function() {
 							console.log('Clicked');
 						}}
 					]);
-				</script>
-			</figure>
-		</section>
-		<section>
-			<h3><a data-ts="Button" href="/#components/bars/tabbar.html">Main TabBar</a></h3>
-			<p>The Main TabBar provides second level tabbed navigation.</p>
-			<div data-ts="Note">
-				<i class="ts-icon-warning"></i>
-				<p>Beware that this API will be replaced be the <code>ts.ui.Header</code> in a future release.</p>
-			</div>
-			<figure data-ts="DoxScript">
-				<script type="runnable">
-					ts.ui.TabBar.tabs([
-						{label: 'Tab One'},
-						{label: 'Tab Two'},
-						{label: 'Tab Three', onselect: function() {
-							console.log('Selected');
-						}}
-					]);
-				</script>
-			</figure>
-		</section>
-		<section>
-			<h3><a data-ts="Button" href="/#components/bars/toolbar.html">Main ToolBar</a></h3>
-			<p>The Main ToolBar features a Search and even more buttons for contextual actions.</p>
-			<div data-ts="Note">
-				<i class="ts-icon-warning"></i>
-				<p>Beware that this API will be replaced be the <code>ts.ui.Header</code> in a future release.</p>
-			</div>
-			<figure data-ts="DoxScript">
-				<script type="runnable">
-					ts.ui.ToolBar.buttons([
-						{label: 'Button', type: 'ts-primary'},
-						{label: 'Button', type: 'ts-secondary'},
-						{label: 'Button', onclick: function() {
-							console.log('Clicked');
-						}}
-					]).search({
-						info: 'Search amongst the things',
-						onsearch: function(value) {
-							console.log(value);
-						}
-					});;
 				</script>
 			</figure>
 		</section>
 		<section>
 			<h3><a data-ts="Button" href="/#components/footer/">Footer</a></h3>
-			<p>The Footer is positioned below the Main area where it usually functions to display some buttons. But the Footer also supports <code>actions</code>, which are reserved for working with selected objects of any kind, as well as a Pager and a dedicated Collaboration button.</p>
+			<p>The Footer features buttons that relate to the Main area and <em>actions</em> that are reserved for working with selected objects of any kind.</p>
 			<figure data-ts="DoxScript">
 				<script type="runnable">
 					ts.ui.Footer.buttons([
@@ -181,6 +132,5 @@
 			</figure>
 		</section>
 	</article>
-</main>
 </body>
 </html>

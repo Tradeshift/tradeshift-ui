@@ -208,7 +208,7 @@ ts.ui = gui.namespace(
 			CLASS_NOLOCK: 'ts-nolock',
 			CLASS_HASLABEL: 'ts-haslabel',
 
-			// background colors
+			// background colors (deprecated!)
 			CLASS_BG_LITE: 'ts-bg-lite',
 			CLASS_BG_WHITE: 'ts-bg-white',
 			CLASS_BG_DARK: 'ts-bg-dark',
@@ -261,8 +261,8 @@ ts.ui = gui.namespace(
 			ACTION_PANEL_HIDE: 'ts-action-panel-hide',
 			ACTION_PAGER_SELECT: 'ts-action-pager-select',
 			ACTION_STATUSBAR_LEVEL: 'ts-action-statusbar-level',
+			ACTION_HEADER_LEVEL: 'ts-action-header-level',
 			ACTION_FOOTER_LEVEL: 'ts-action-footer-level',
-			ACTION_ROOT_CLASSNAMES: 'ts-action-root-classnames',
 
 			// postmessages
 			MESSAGE_BUSY: 'ts-busy',
@@ -289,7 +289,7 @@ ts.ui = gui.namespace(
 
 			// local broadcasts
 			BROADCAST_COMPLETED: 'ts-broadcast-completed',
-			BROADCAST_TERMINATE: 'ts-broadcast-terminate',
+			// BROADCAST_TERMINATE: 'ts-broadcast-terminate',
 			BROADCAST_DIALOG_WILL_OPEN: 'ts-broadcast-dialog-will-open',
 			BROADCAST_DIALOG_GO_OPEN: 'ts-broadcast-dialog-go-open',
 			BROADCAST_DIALOG_DID_OPEN: 'ts-broadcast-dialog-did-open',
@@ -304,10 +304,10 @@ ts.ui = gui.namespace(
 
 			// global broadcasts
 			BROADCAST_GLOBAL_MODEL_UPDATE: 'ts-broadcast-g-model-update',
-			BROADCAST_GLOBAL_STATUS_BUSY_BLOCKING: 'ts-broadcast-g-status-busy-blocking',
-			BROADCAST_GLOBAL_STATUS_DONE_BLOCKING: 'ts-broadcast-g-status-done-blocking',
-			BROADCAST_GLOBAL_STATUS_BUSY: 'ts-broadcast-g-status-busy',
-			BROADCAST_GLOBAL_STATUS_DONE: 'ts-broadcast-g-status-done',
+			// BROADCAST_GLOBAL_STATUS_BUSY_BLOCKING: 'ts-broadcast-g-status-busy-blocking',
+			// BROADCAST_GLOBAL_STATUS_DONE_BLOCKING: 'ts-broadcast-g-status-done-blocking',
+			// BROADCAST_GLOBAL_STATUS_BUSY: 'ts-broadcast-g-status-busy',
+			// BROADCAST_GLOBAL_STATUS_DONE: 'ts-broadcast-g-status-done',
 			BROADCAST_GLOBAL_ALL_BUSY: 'ts-broadcast-g-all-busy',
 			BROADCAST_GLOBAL_ALL_DONE: 'ts-broadcast-g-all-done',
 			BROADCAST_GLOBAL_DIALOGS_WILL_ON: 'ts-broadcast-g-dialogs-will-on',
@@ -320,9 +320,9 @@ ts.ui = gui.namespace(
 			BROADCAST_GLOBAL_ASIDES_DID_OFF: 'ts-broadcast-g-asides-did-off',
 			BROADCAST_GLOBAL_ASIDES_DO_CLOSE: 'ts-broadcast-g-asides-do-close',
 			BROADCAST_GLOBAL_PROGRESSBAR: 'ts-broadcast-g-progressbar',
-			BROADCAST_GLOBAL_APP_LOADING: 'ts-broadcast-g-app-loading',
-			BROADCAST_GLOBAL_APP_ABORTED: 'ts-broadcast-g-app-aborted',
-			BROADCAST_GLOBAL_APP_COMPLETE: 'ts-broadcast-g-app-complete',
+			// BROADCAST_GLOBAL_APP_LOADING: 'ts-broadcast-g-app-loading',
+			// BROADCAST_GLOBAL_APP_ABORTED: 'ts-broadcast-g-app-aborted',
+			// BROADCAST_GLOBAL_APP_COMPLETE: 'ts-broadcast-g-app-complete',
 			BROADCAST_GLOBAL_TOPBAR_UPDATE: 'ts-broadcast-g-topbar-update',
 			BROADCAST_GLOBAL_TOPBAR_READY: 'ts-broadcast-g-topbar-ready',
 			BROADCAST_GLOBAL_TOPBAR_UPDATE_DEFAULT_TITLE: 'ts-broadcast-g-topbar-update-default-title',
@@ -485,6 +485,7 @@ ts.ui = gui.namespace(
 			 * @param {function} callback Two args: newpoint + oldpoint
 			 */
 			addBreakPointListener: function(callback) {
+				console.error('addBreakPointListener is deprecated');
 				breakpointers.push(callback);
 			},
 
@@ -562,6 +563,7 @@ ts.ui = gui.namespace(
 );
 
 /**
+ * @deprecated
  * Match method names to some background
  * colors for various coloring purposes.
  * @type {Map<string, string>}
@@ -579,6 +581,7 @@ ts.ui.BACKGROUND_COLORS = {
 };
 
 /**
+ * @deprecated
  * Match method names to some colors.
  * @type {Map<string, string>}
  */

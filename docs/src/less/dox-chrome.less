@@ -1,8 +1,12 @@
-// Chrome .....................................................................
+@import '../../../src/runtime/less/ts-variables.less';
+
+// Chrome ......................................................................
 
 .ts-doxchrome {
 	#chrome {
 		.ts-mixin-maximize();
+		display: flex;
+		flex-direction: row;
 		top: 40px;
 	}
 	#versions {
@@ -13,13 +17,25 @@
 		z-index: @ts-zindex-max;
 		width: 100%;
 	}
-
 	.ts-sidebar,
 	.ts-topbarspinner {
 		visibility: hidden;
 	}
 	.ts-sidebar {
-		z-index: 0 !important;
+		.ts-toolbar {
+			background-color: @ts-color-slate-light;
+			&,
+			a,
+			button {
+				color: @ts-color-white;
+			}
+			label {
+				&.ts-focus,
+				&.ts-focus-on {
+					background-color: transparent;
+				}
+			}
+		}
 		.ts-toolbar-title label {
 			-webkit-font-smoothing: antialiased;
 			font-size: @ts-fontsize-big;
@@ -27,14 +43,16 @@
 		}
 		.ts-panel {
 			padding: 0;
-			overflow-y: scroll;
-			background-color: @ts-dark-lite;
+			background-color: @ts-color-slate-light;
+			&.appendix {
+				background-color: @ts-color-slate;
+			}
 			&::-webkit-scrollbar {
 				width: 5px;
 			}
 			&::-webkit-scrollbar-thumb:vertical {
 				margin: 5px;
-				background-color: @ts-medium-liter;
+				background-color: @ts-color-gray;
 				-webkit-border-radius: 5px;
 			}
 			&::-webkit-scrollbar-button:start:decrement,
@@ -45,6 +63,12 @@
 			.ts-menu {
 				margin: 0;
 			}
+			&:after {
+				content: ''; // why does this make the scrollbar look cool in Chrome?
+			}
+		}
+		&:after {
+			content: none;
 		}
 	}
 	&.selectfirstitem {
@@ -63,7 +87,10 @@
 	.ts-main {
 		overflow-x: hidden;
 		overflow-y: hidden;
+		display: block;
+		min-height: 100%;
 		iframe {
+			.ts-mixin-maximize();
 			width: 100%;
 			height: 100%;
 		}
@@ -75,7 +102,7 @@
 		height: 100%;
 		top: 0;
 		left: 0;
-		z-index: @ts-zindex-max;
+		z-index: @ts-zindex-dialog-cover - 1;
 		display: none;
 	}
 	.button-menu-open {
@@ -83,28 +110,14 @@
 		left: auto;
 		i {
 			.ts-mixin-fix(@ts-unit-triple, @ts-unit-triple);
-			background-color: @ts-dark-liter;
-			color: @ts-white;
+			background-color: @ts-color-gray;
+			color: @ts-color-white;
 			position: absolute;
 			top: 0;
 			left: 0;
 			&:before {
 				top: 50%;
 			}
-		}
-	}
-}
-.ts-mobile-only {
-	.ts-doxchrome .ts-sidebar.ts-autoclose {
-		&.ts-3d {
-			.ts-mixin-transition-transform(@ts-transition-fast, @ts-timing-easeoutquint);
-			.ts-mixin-translate3d(-100%, 0);
-			&.ts-open {
-				.ts-mixin-translate3d(0, 0);
-			}
-		}
-		&.ts-2d {
-			top: 0;
 		}
 	}
 }
@@ -125,7 +138,7 @@
 	.ts-menu {
 		h3 {
 			margin: 0;
-			background-color: @ts-dark;
+			background-color: @ts-color-gray;
 			padding: @ts-unit-quarter;
 			padding-left: @ts-unit;
 			font-size: @ts-fontsize-small;
@@ -135,9 +148,9 @@
 			margin-top: 0;
 		}
 		&.ts-doxmenu > li > a {
-			background-color: @ts-dark-liter;
+			background-color: @ts-color-slate-light;
 			&:hover:not(:disabled) {
-				background-color: @ts-dark-liter !important;
+				background-color: @ts-color-slate-lighter;
 			}
 		}
 		> li {
@@ -149,17 +162,19 @@
 			}
 			> a {
 				border-bottom: none;
-				background-color: @ts-dark-lite;
-				color: @ts-white;
+				background-color: @ts-color-slate-light;
+				color: @ts-color-white;
+				border-radius: 0;
 				&:hover:not(:disabled),
 				&:focus {
-					background-color: @ts-dark-lite !important;
+					background-color: @ts-color-slate-lighter !important;
 					&:before {
-						background-color: @ts-blue-dark;
+						background-color: @ts-color-blue;
 					}
 				}
 				> i {
-					top: 33%;
+					@icon-height: 24px;
+					top: (@ts-unit-triple - @icon-height) / 2;
 					left: @ts-unit;
 				}
 				&.ts-checked {
@@ -167,12 +182,9 @@
 					z-index: 3;
 					&,
 					&:hover {
-						background-color: @ts-dustblue !important;
-						color: @ts-white;
+						background-color: @ts-color-blue !important;
+						color: @ts-color-white;
 						cursor: default;
-					}
-					&:before {
-						background-color: @ts-blue-dark;
 					}
 				}
 			}
@@ -181,19 +193,28 @@
 					position: relative;
 					z-index: 2;
 				}
-				> a:not(.ts-checked) {
-					&,
-					&:hover {
-						background-color: @ts-dark-liter !important;
+				> .ts-menu {
+					> li {
+						> a {
+							background-color: @ts-color-slate;
+							position: relative;
+							z-index: 2;
+							&:hover:not(:disabled),
+							&:focus {
+								background-color: @ts-color-slate-light;
+							}
+						}
 					}
 				}
+				/*
 				> .ts-shadow {
 					position: absolute;
 					height: 3px;
 					width: 100%;
-					background-image: linear-gradient(rgba(0, 0, 0, 0.15), transparent);
+					background-image: linear-gradient(fade(red, 25%), transparent);
 					z-index: 1;
 				}
+				*/
 				menu {
 					width: 100%;
 					display: none;
@@ -213,6 +234,20 @@
 						top: @ts-unit-triple;
 					}
 				}
+				/*
+				&:not(.open) {
+					a:after {
+						content: '▼';
+						position: absolute;
+						top: 0;
+						right: 0;
+						width: @ts-unit-triple;
+						height: @ts-unit-triple;
+						line-height: @ts-unit-triple; 
+						text-align: center;
+					}
+				}
+				*/
 				> .ts-menu > li > a {
 					padding-left: @ts-unit * 2.5;
 				}
@@ -228,29 +263,17 @@
 				overflow: hidden;
 				text-overflow: ellipsis;
 				white-space: nowrap;
-				color: @ts-lite;
+				color: @ts-color-gray;
 				position: relative;
-				//background-color: @ts-dark-liter;
 				strong {
-					color: @ts-white;
+					color: @ts-color-white;
 				}
-				/*
-				.ts-shadow {
-					position: absolute;
-					height: 4px;
-					width: 100%;
-					bottom: 0;
-					left: 0;
-					background-image: linear-gradient(transparent, rgba(0,0,0,0.23));
-					z-index: 1;
-				}
-				*/
 			}
 		}
 	}
 	#menucover {
 		height: 0;
-		background-color: @ts-dark-lite;
+		background-color: @ts-color-gray;
 		top: 0;
 		left: 0;
 		width: @ts-width-aside;
@@ -264,7 +287,8 @@
 .ts-doxchrome {
 	.ts-topbarspinner {
 		z-index: @ts-zindex-aside + 1;
-		left: @ts-unit * 11;
+		left: @ts-unit * 10;
+		// top: 30px;
 	}
 	.button-menu-open i {
 		transition: opacity @ts-transition-fast;
@@ -281,12 +305,19 @@
 // Layouts .....................................................................
 
 .ts-doxchrome {
+	.ts-app {
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: @ts-width-aside;
+	}
 	.ts-cover:not(.ts-dox-blocking) {
 		max-width: @ts-width-aside;
 	}
 	&.collapse-some,
 	&.collapse-full {
-		.ts-main {
+		.ts-app {
 			.ts-mixin-transition-transform(@ts-transition-fast, @ts-timing-easeoutquint);
 		}
 		.ts-sidebar {
@@ -296,14 +327,15 @@
 		}
 	}
 	&.collapse-some {
+		.ts-app {
+			left: @ts-unit-triple;
+			.ts-mixin-fixwidth(calc(~'100% - '@ts-unit-triple));
+		}
 		&:before {
 			width: @ts-unit-triple;
 		}
 		.ts-cover:not(.ts-dox-blocking) {
 			max-width: @ts-unit-triple;
-		}
-		.ts-main {
-			left: @ts-unit-triple;
 		}
 		.button-menu-open {
 			display: block;
@@ -320,7 +352,7 @@
 			.ts-topbarspinner {
 				display: none;
 			}
-			.ts-main {
+			.ts-app {
 				.ts-mixin-translate3d(@ts-width-aside - @ts-unit-triple, 0, 0);
 			}
 			.ts-menu h3 {
@@ -345,20 +377,30 @@
 		}
 	}
 	&.collapse-full {
+		.ts-app {
+			left: 0;
+		}
 		&:before {
 			display: none;
 		}
 		.ts-cover:not(.ts-dox-blocking) {
 			display: none !important;
 		}
-		.ts-main {
-			left: 0;
-		}
 		.ts-topbarspinner {
 			display: none;
 		}
+		.ts-sidebar {
+			.ts-mixin-translate3d(0 - 100%, 0, 0);
+		}
+		.ts-sidebar,
+		.ts-app {
+			.ts-mixin-transition-transform(@ts-transition-fast, @ts-timing-easeoutquint);
+		}
 		&.uncollapse {
-			.ts-main {
+			.ts-sidebar {
+				.ts-mixin-translate3d(0, 0, 0);
+			}
+			.ts-app {
 				.ts-mixin-translate3d(100%, 0, 0);
 			}
 		}

@@ -7,8 +7,7 @@ gui.module('gui-layout@wunderbyte.com', {
 	 */
 	plugin: {
 		tween: gui.TweenPlugin,
-		transition: gui.TransitionPlugin,
-		visibility: gui.VisibilityPlugin
+		transition: gui.TransitionPlugin
 	},
 
 	/**
@@ -25,16 +24,6 @@ gui.module('gui-layout@wunderbyte.com', {
 		 * Handle transiton end.
 		 * @param {gui.TransitionEnd} transition
 		 */
-		ontransition: function(transition) {},
-
-		/**
-		 * Handle visibility.
-		 */
-		onvisible: function() {},
-
-		/**
-		 * Handle invisibility.
-		 */
-		oninvisible: function() {}
+		ontransition: function(transition) {}
 	}
 });

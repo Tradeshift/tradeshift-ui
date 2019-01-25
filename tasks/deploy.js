@@ -63,7 +63,7 @@ fs.readdir(params.localDir, (readErr, items) => {
 		});
 		uploader.on('progress', () => {
 			if (uploader.progressTotal > 0) {
-				const percentage = (uploader.progressAmount / uploader.progressTotal) * 100;
+				const percentage = uploader.progressAmount / uploader.progressTotal * 100;
 				console.log(chalk.magenta(`[${file}] `) + chalk.magenta(`${percentage || 0}%`));
 			}
 		});

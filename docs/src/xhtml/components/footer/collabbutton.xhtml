@@ -5,14 +5,11 @@
 		<object data="tabs.xhtml"></object>
 	</head>
 	<body>
-		<header data-ts="TopBar"></header>
-		<main data-ts="Main">
 			<article>
 				<h1>Footer collabbutton</h1>
 				<section>
 
-					<p>The Footer features a special button which is dedicated to launching the <em>collaboration</em> panel. To show the
-						button, simply call the method <code>configbutton</code> with a callback.</p>
+					<p>The Footer features a special button which is dedicated to launching the <em>collaboration</em> panel. To show the button, simply call the method <code>configbutton</code> with a callback.</p>
 
 					<figure data-ts="DoxScript">
 						<script type="runnable">
@@ -23,8 +20,11 @@
 					</figure>
 
 					<h3>Showing a notification badge</h3>
-					<p>The collaboration button can have two states: a default state and a state showing a notification badge. The default state shows just the special button. The notification state shows the special button as well as a small notification badge over the icon. To show the button with the notification state, add <code>true</code> as a second argument to the <code>configbutton</code> method.</p>
-
+					<p>The collaboration button can have two states: a default state and a state showing a notification badge. The default
+						state shows just the special button. The notification state shows the special button as well as a small notification
+						badge over the icon. To show the button with the notification state, add <code>true</code> as a second argument to the
+						<code>configbutton</code> method.</p>
+					
 					<figure data-ts="DoxScript">
 						<script type="runnable">
 							ts.ui.Footer.collabbutton(function onclick() {
@@ -39,7 +39,7 @@
 						<script type="runnable">
 							ts.ui.Footer.collabbutton(null);
 						</script>
-					</figure>					
+					</figure>
 
 					<div data-ts="DoxApi">
 						<script type="application/json">
@@ -58,6 +58,5 @@
 					
 				</section>
 			</article>
-		</main>
 	</body>
 <html>

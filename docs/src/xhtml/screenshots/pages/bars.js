@@ -1,11 +1,13 @@
 function initTopBar() {
 	ts.ui.TopBar.tabs().showNew();
-	ts.ui.TopBar.tabs([
-		{ label: 'Components' },
-		{ label: 'Icon Tab', icon: 'ts-icon-todo' },
-		{ label: 'Counter Tab', counter: 8 },
-		{ label: 'Closeable Tab', closeable: true }
-	]).buttons([{ label: 'Primary', type: 'ts-primary' }]);
+	ts.ui.TopBar
+		.tabs([
+			{ label: 'Components' },
+			{ label: 'Icon Tab', icon: 'ts-icon-todo' },
+			{ label: 'Counter Tab', counter: 8 },
+			{ label: 'Closeable Tab', closeable: true }
+		])
+		.buttons([{ label: 'Primary', type: 'ts-primary' }]);
 }
 
 function initTabBar() {
@@ -18,7 +20,8 @@ function initTabBar() {
 }
 
 function initToolBar() {
-	ts.ui.ToolBar.search({})
+	ts.ui.ToolBar
+		.search({})
 		.title('Main ToolBar')
 		.buttons([
 			{ label: 'Primary', type: 'ts-primary' },

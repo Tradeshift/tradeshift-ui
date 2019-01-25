@@ -46,8 +46,7 @@ ts.ui.DatePicker.localize = function(config) {};
 		var aside,
 			id = model.$instanceid;
 		if (open) {
-			asides[id] = (
-				asides[id] ||
+			asides[id] = (asides[id] ||
 				ts.ui.Aside({
 					title: model.title,
 					items: [model],

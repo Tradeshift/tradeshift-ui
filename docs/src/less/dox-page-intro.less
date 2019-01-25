@@ -1,6 +1,11 @@
-@import 'ts-runtime.less';
+@import '../../../src/runtime/less/ts-mixins.less';
+@import '../../../src/runtime/less/ts-variables.less';
 
 /* Intro page ............................................................... */
+
+.body-intro {
+	background: @ts-color-white;
+}
 
 .doc-intro {
 	width: 100%;
@@ -8,6 +13,7 @@
 	padding-left: 0;
 	padding-right: 0;
 	padding-bottom: 0;
+	background: @ts-color-white;
 	section {
 		max-width: 1024px - @ts-unit-triple - 7 * @ts-unit;
 		background: transparent;
@@ -33,26 +39,26 @@
 	}
 	.box-code {
 		padding-bottom: @ts-unit-triple;
-		background-color: fade(@ts-blue, 4%);
+		background-color: fade(@ts-color-blue, 4%);
 		svg {
 			rect,
 			circle,
 			polygon,
 			path {
-				fill: @ts-blue;
+				fill: @ts-color-blue;
 			}
 		}
 	}
 	.box-design {
 		padding-top: @ts-unit-triple;
 		padding-bottom: @ts-unit * 7 !important;
-		background-color: fade(@ts-green-lite, 4%);
+		background-color: fade(@ts-color-green, 4%);
 		svg {
 			rect,
 			circle,
 			polygon,
 			path {
-				fill: @ts-green;
+				fill: @ts-color-green-light;
 			}
 		}
 	}

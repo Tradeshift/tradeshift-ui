@@ -36,6 +36,12 @@ ts.ui.LayoutModel = ts.ui.Model.extend(
 		menuopen: false,
 
 		/**
+		 * SideBar is open? This information is relevant for the mobile breakpoint.
+		 * @type {boolean}
+		 */
+		sidebaropen: false,
+
+		/**
 		 * Someone is busy doing something that blocks the UI?
 		 * TODO(jmo@): We are currently not maintaining this boolean right.
 		 * @see {ts.ui.StatusPlugin}
@@ -99,7 +105,7 @@ ts.ui.LayoutModel = ts.ui.Model.extend(
 	{
 		// Static .................................................................
 
-		BREAKPOINTS: { 1270: 'desktop', 600: 'tablet', 0: 'mobile' },
+		BREAKPOINTS: { 1270: 'desktop', 650: 'tablet', 0: 'mobile' },
 		BREAKPOINT_MOBILE: 'mobile', // something the size of a phone
 		BREAKPOINT_TABLET: 'tablet', // something the size of a tablet
 		BREAKPOINT_DESKTOP: 'desktop' // something the size of a table

@@ -59,9 +59,8 @@ ts.ui.LayoutPlugin = (function using(GuiArray, DOMPlugin, CSSPlugin, chained) {
 			 * @returns {ts.ui.LayoutPlugin}
 			 */
 			shiftGlobal: chained(function(on, cnames) {
-				this.spirit.action.dispatch(ts.ui.ACTION_ROOT_CLASSNAMES, {
-					classes: GuiArray.make(cnames),
-					enabled: !!on
+				ts.ui.get(document.documentElement, function(root) {
+					root.css.shift(on, GuiArray.make(cnames));
 				});
 			}),
 
@@ -75,9 +74,10 @@ ts.ui.LayoutPlugin = (function using(GuiArray, DOMPlugin, CSSPlugin, chained) {
 
 			/**
 			 * Apply classname based on the current height of some
-			 * descendant StatusBarSpirit. This is known to affect
-			 * TableSpirit, PanelSpirit and DocumentSpirit (and it
-			 * also runs on the StatusBarSpirit itself).
+			 * descendant header or footer. This is known to affect
+			 * TableSpirit, PanelSpirit, ModalSpirit and DocumentSpirit
+			 * (and it also runs on the StatusBarSpirit itself). This
+			 * should of course all be replaced with Grid or Flex now.
 			 * @param {number} level
 			 * @param {string} [prefix]
 			 */
@@ -90,7 +90,34 @@ ts.ui.LayoutPlugin = (function using(GuiArray, DOMPlugin, CSSPlugin, chained) {
 				});
 			},
 
+			/**
+			 * Append the spinner.
+			 * @param {string} [message]
+			 */
+			startSpinning: chained(function(message) {
+				console.log('start', message);
+				if (!this._spinner) {
+					this._spinner = this.spirit.dom.append(ts.ui.SpinnerSpirit.summon());
+				}
+			}),
+
+			/**
+			 * Remove the spinner.
+			 */
+			stopSpinning: chained(function() {
+				console.log('stop');
+				if (this._spinner) {
+					this._spinner.dom.remove();
+				}
+			}),
+
 			// Private .................................................................
+
+			/**
+			 * Spirit of the spinner.
+			 * @type {ts.ui.SpinnerSpirit}
+			 */
+			_spinner: null,
 
 			/**
 			 * Spirit is inside some kind of Aside?
@@ -128,7 +155,9 @@ ts.ui.LayoutPlugin = (function using(GuiArray, DOMPlugin, CSSPlugin, chained) {
 			 */
 			contains: function(cname) {
 				if (gui.debug) {
-					console.log('TODO: this must be synced to root panels setup');
+					/**
+					 * @TODO: this must be synced to root panels setup
+					 */
 				}
 				return ts.ui.get(document.documentElement).css.contains(cname);
 			}

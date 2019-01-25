@@ -12,40 +12,39 @@
 		</script>
 	</head>
 	<body class="nosticky">
-		<header data-ts="TopBar"></header>
-		<main data-ts="Main">
 			<article>
 				<h1>Spinner</h1>
 				<section class="desc">
-					<p>The Spinner can be used with Main, Aside, Table, SideBar and Button.</p>
+					<p>The Spinner can be used with App, Aside, Table, SideBar and Button.</p>
 				</section>
 				<section>
-					<p>You can assign the <att>data-ts.busy</att> to the <val>Main</val> element to initialize a Spinner.</p>
+					<p>You can assign the <att>data-ts.busy</att> to the <val>App</val> element to initialize a Spinner.</p>
 					<figure data-ts="DoxMarkup">
 						<script>
-							<main data-ts="Main" ts.busy="Busy message!">
-								<h1>Main content</h1>
-							</main>
+							<div data-ts="App" data-ts.busy="string or boolean"></div>
 						</script>
 					</figure>
-					<p>Let's try that with jQuery.</p>
+					<p>The attribute value can be <code>true</code> or <code>false</code> or perhaps an optional loading messsage. The Spinner can also be controlled with an equivalent JavaScript API as seen below.</p>
+
 					<figure data-ts="DoxScript">
 						<script type="runnable">
-							var main = $('main').first();
-							main.attr('data-ts.busy', 'Crunching data');
-							setTimeout(function() {
-								main.attr('data-ts.busy', '');
-							}, 1500);
+							ts.ui.get('.ts-app', app => {
+								app.busy('Chrunching data');
+								setTimeout(() => {
+									app.done();
+								}, 1500);
+							});
 						</script>
 					</figure>
 					<p>If you want a blocking overlay, you can use the <att>data-ts.blocking</att> attribute.</p>
 					<figure data-ts="DoxScript">
 						<script type="runnable">
-							var main = $('main').first();
-							main.attr('data-ts.blocking', "Crunching and blocking");
-							setTimeout(function() {
-								main.attr('data-ts.blocking', "");
-							}, 1500);
+							ts.ui.get('.ts-app', app => {
+								app.blocking('Chrunching data');
+								setTimeout(() => {
+									app.done();
+								}, 1500);
+							});
 						</script>
 					</figure>
 				</section>
@@ -62,18 +61,19 @@
 							</aside>
 						</script>
 					</figure>
-					<p>It will look like this.</p>
+					<p>You can also use the equivalent API.</p>
 					<figure data-ts="DoxScript">
 						<script type="runnable">
-							var aside = $("#myaside");
-							aside.attr('data-ts.open', true);
-							aside.attr('data-ts.busy', 'Crunching data');
-							setTimeout(function() {
-								aside.attr('data-ts.busy', '');
-								setTimeout(function() {
-									aside.attr('data-ts.open', false);
-								}, 250)
-							}, 1500);
+							ts.ui.get('#myaside', aside => {
+								aside.busy('Loading');
+								aside.open();
+								setTimeout(() => {
+									aside.done();
+									setTimeout(() => {
+										aside.close();
+									}, 250);
+								}, 1500);
+							});
 						</script>
 					</figure>
 				</section>
@@ -95,7 +95,7 @@
 				</section>
 				<h3>Table</h3>
 				<section>
-					<p>Assign the <att>data-ts.busy</att> attribute to a <val>Table</val> to initialize a Spinner.</p>
+					<p>You can assign the <att>data-ts.busy</att> attribute to a <val>Table</val> to initialize a Spinner; or you can use the <code>busy</code> and <code>done</code> methods like this.</p>
 					<ul class="splitscreen">
 						<li>
 							<figure data-ts="DoxScript">
@@ -109,7 +109,7 @@
 										]);
 										$('#mytable').attr('data-ts.busy', 'Loading');
 										setTimeout(function() {
-											$('#mytable').attr('data-ts.busy', '');
+											table.done();
 										}, 1500);
 									});
 								</script>
@@ -121,11 +121,8 @@
 					</ul>
 				</section>
 			</article>
-		</main>
 		<aside data-ts="Aside" id="myaside" data-ts.title="Aside Header">
-			<div data-ts="Panel">
-				<p>Aside content.</p>
-			</div>
+			<div data-ts="Panel"></div>
 		</aside>
 	</body>
 </html>

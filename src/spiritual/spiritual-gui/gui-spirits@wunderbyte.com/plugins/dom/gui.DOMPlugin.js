@@ -11,6 +11,19 @@ gui.DOMPlugin = (function using(chained, guide, observer) {
 	return gui.Plugin.extend(
 		{
 			/**
+			 * Visible?
+			 * @type {boolean}
+			 */
+			visible: {
+				getter: function() {
+					return !this.spirit.css.contains(gui.CLASS_HIDDEN);
+				},
+				setter: function(is) {
+					(is && this.show()) || this.hide();
+				}
+			},
+
+			/**
 			 * Set or get element id.
 			 * @param @optional {String} id
 			 * @returns {String|gui.DOMPlugin}
@@ -79,16 +92,7 @@ gui.DOMPlugin = (function using(chained, guide, observer) {
 			 * @returns {this}
 			 */
 			hide: chained(function() {
-				if (!this.spirit.css.contains(gui.CLASS_HIDDEN)) {
-					this.spirit.css.add(gui.CLASS_HIDDEN);
-					if (gui.hasModule('gui-layout@wunderbyte.com')) {
-						// TODO: - fix
-						if (this.spirit.visibility) {
-							// some kind of Selenium corner case
-							this.spirit.visibility.off();
-						}
-					}
-				}
+				this.spirit.css.add(gui.CLASS_HIDDEN);
 			}),
 
 			/**
@@ -97,15 +101,7 @@ gui.DOMPlugin = (function using(chained, guide, observer) {
 			 * @returns {this}
 			 */
 			show: chained(function() {
-				if (this.spirit.css.contains(gui.CLASS_HIDDEN)) {
-					this.spirit.css.remove(gui.CLASS_HIDDEN);
-					if (gui.hasModule('gui-layout@wunderbyte.com')) {
-						if (this.spirit.visibility) {
-							// some kind of Selenium corner case
-							this.spirit.visibility.on();
-						}
-					}
-				}
+				this.spirit.css.remove(gui.CLASS_HIDDEN);
 			}),
 
 			/**
@@ -586,7 +582,7 @@ gui.DOMPlugin.mixin(
 				var result = null,
 					spirit = null,
 					el = this.spirit.element;
-				if (type) {
+				if (arguments.length) {
 					while ((el = el.nextElementSibling) !== null) {
 						spirit = el.spirit;
 						if (spirit !== null && spirit instanceof type) {
@@ -609,7 +605,7 @@ gui.DOMPlugin.mixin(
 				var result = null,
 					spirit = null,
 					el = this.spirit.element;
-				if (type) {
+				if (arguments.length) {
 					while ((el = el.previousElementSibling) !== null) {
 						spirit = el.spirit;
 						if (spirit !== null && spirit instanceof type) {
@@ -632,7 +628,7 @@ gui.DOMPlugin.mixin(
 				var result = null,
 					spirit = null,
 					el = this.spirit.element.firstElementChild;
-				if (type) {
+				if (arguments.length) {
 					while (result === null && el !== null) {
 						spirit = el.spirit;
 						if (spirit !== null && spirit instanceof type) {
@@ -655,7 +651,7 @@ gui.DOMPlugin.mixin(
 				var result = null,
 					spirit = null,
 					el = this.spirit.element.lastElementChild;
-				if (type) {
+				if (arguments.length) {
 					while (result === null && el !== null) {
 						spirit = el.spirit;
 						if (spirit !== null && spirit instanceof type) {
@@ -676,9 +672,9 @@ gui.DOMPlugin.mixin(
 			 */
 			parent: function(type) {
 				var result = this.spirit.element.parentNode;
-				if (result && type) {
+				if (result && arguments.length) {
 					var spirit = result.spirit;
-					if (spirit && spirit instanceof type) {
+					if (spirit && type.is(spirit)) {
 						result = spirit;
 					} else {
 						result = null;
@@ -694,7 +690,7 @@ gui.DOMPlugin.mixin(
 			 */
 			child: function(type) {
 				var result = this.spirit.element.firstElementChild;
-				if (result && type) {
+				if (result && arguments.length) {
 					result = this.children(type)[0] || null;
 				}
 				return result;
@@ -708,10 +704,10 @@ gui.DOMPlugin.mixin(
 			 */
 			children: function(type) {
 				var result = gui.Array.from(this.spirit.element.children);
-				if (type) {
+				if (arguments.length) {
 					result = result
 						.filter(function(elm) {
-							return elm.spirit && elm.spirit instanceof type;
+							return elm.spirit && type.is(elm.spirit);
 						})
 						.map(function(elm) {
 							return elm.spirit;
@@ -821,12 +817,12 @@ gui.DOMPlugin.mixin(
 			 * @returns {Array<element|gui.Spirit>}
 			 */
 			following: function(type) {
-				var result = [],
-					spirit,
-					el = this.spirit.element;
+				var result = [];
+				var spirit;
+				var el = this.spirit.element;
 				while ((el = el.nextElementSibling)) {
-					if (type) {
-						if ((spirit = el.spirit) && spirit instanceof type) {
+					if (arguments.length) {
+						if ((spirit = el.spirit) && type.is(spirit)) {
 							result.push(spirit);
 						}
 					} else {
@@ -842,12 +838,12 @@ gui.DOMPlugin.mixin(
 			 * @returns {Array<element|gui.Spirit>}
 			 */
 			preceding: function(type) {
-				var result = [],
-					spirit,
-					el = this.spirit.element;
+				var result = [];
+				var spirit;
+				var el = this.spirit.element;
 				while ((el = el.previousElementSibling)) {
-					if (type) {
-						if ((spirit = el.spirit) && spirit instanceof type) {
+					if (arguments.length) {
+						if ((spirit = el.spirit) && type.is(spirit)) {
 							result.push(spirit);
 						}
 					} else {
@@ -898,21 +894,20 @@ gui.DOMPlugin.mixin(
 			return this; // or what?
 		},
 
-		// @todo implement prependChild()
-		// /**
-		// * Prepend spirit (element) to another spirit or element.
-		// * @param {object} thing
-		// * @returns {this} or what?
-		// */
-		// prependTo: function(thing) {
-		//	var elm = this.spirit.element;
-		//	if (gui.Type.isSpirit(thing)) {
-		//		thing.dom.prepend(elm);
-		//	} else if (gui.Type.isElement(thing)) {
-		//		thing.prependChild(elm);
-		//	}
-		//	return this; // or what?
-		// },
+		/**
+		 * Prepend spirit (element) to another spirit or element (as the first child).
+		 * @param {object} thing
+		 * @returns {this} or what?
+		 */
+		prependTo: function(thing) {
+			var elm = this.spirit.element;
+			if (gui.Type.isSpirit(thing)) {
+				thing.dom.prepend(elm);
+			} else if (gui.Type.isElement(thing)) {
+				thing.insertBefore(elm, thing.firstChild);
+			}
+			return this; // or what?
+		},
 
 		/**
 		 * Insert spirit (element) before another spirit or element

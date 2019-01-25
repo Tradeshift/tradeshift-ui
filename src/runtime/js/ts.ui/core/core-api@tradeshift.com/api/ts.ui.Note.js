@@ -35,12 +35,12 @@ ts.ui.Note.toString = function() {
 		 * @private
 		 */
 		_addSpirit: function getspirit() {
-			if (document.querySelector('.ts-maincontent ~ .ts-note')) {
+			if (document.querySelector('.ts-content ~ .ts-note')) {
 				ts.ui.Note._model.$isTopNote = true;
 			} else {
 				var noteSpirit = ts.ui.NoteSpirit.summon(ts.ui.Note._model);
 				ts.ui.Note._model.$isTopNote = true;
-				noteSpirit.dom.insertBefore(document.querySelector('.ts-maincontent'));
+				noteSpirit.dom.insertBefore(document.querySelector('.ts-content'));
 			}
 		},
 

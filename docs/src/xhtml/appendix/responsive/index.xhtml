@@ -10,9 +10,6 @@
 		</style>
 	</head>
 	<body>
-		<header data-ts="TopBar"></header>
-		<main data-ts="Main">
-			<div class="ts-mainframe">
 				<article class="doc-responsive">
 					<h1>Responsive Design</h1>
 					<section class="desc">
@@ -72,18 +69,15 @@
 					</section>
 					<section>
 						<h3>Find the current breakpoint</h3>
-						<p>The current breakpoint is determined via CSS classnames on the <code>html</code> element. You can use a function such as this to lookup the current breakpoint; it returns a class.</p>
+						<p>The current breakpoint is determined via CSS classnames on the <code>html</code> element. You can use a function such as this to lookup the current breakpoint (CSS classname).</p>
 						<figure data-ts="DoxScript">
 							<script>
 								function breakpoint() {
-									var cname = document.documentElement.className;
 									return([
 										'ts-mobile-only',
 										'ts-tablet-only',
 										'ts-desktop-only'
-									].find(function(c) {
-										return cname.includes(c);
-									}));
+									].find(c => document.documentElement.classList.contains(c)));
 								}
 							</script>
 						</figure>
@@ -100,7 +94,5 @@
 						</figure>
 					</section>
 				</article>
-			</div>
-		</main>
 	</body>
 </html>

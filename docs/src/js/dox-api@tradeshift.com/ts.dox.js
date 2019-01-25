@@ -97,7 +97,8 @@ ts.dox = gui.namespace(
 		 */
 		function parselinks() {
 			var tabs = document.head.querySelectorAll('link[rel=prefetch]');
-			return gui.Array.from(tabs)
+			return gui.Array
+				.from(tabs)
 				.filter(function(link) {
 					return !!link.getAttribute('title');
 				})
@@ -120,6 +121,13 @@ ts.dox = gui.namespace(
 			booting: true,
 
 			/**
+			 *
+			 */
+			title: function(title) {
+				ts.ui.Header.title(title);
+			},
+
+			/**
 			 * Show those tabs. Omit the argument to build from `link` tags in HEAD
 			 * @param @optional {Array<Array>} tabs (can be omitted)
 			 */
@@ -131,7 +139,7 @@ ts.dox = gui.namespace(
 					var fold = path.replace(file, '');
 					var indx = file === '';
 					if (hasrelevant(tabs)) {
-						ts.ui.TopBar.tabs(
+						ts.ui.Header.tabs(
 							tabs.filter(visibletab).map(function(tab) {
 								return createtab(tab, file, fold, indx, tab[2] === true);
 							})

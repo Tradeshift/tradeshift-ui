@@ -20,6 +20,7 @@ module.exports = {
 		var EMPTYLINE = /^\s*[\r\n]/gm;
 		tags = tags.split(',');
 		var $ = cheerio.load(html);
+		$ = stickys($);
 		$ = localization($);
 		$ = headtags($, tags);
 		$ = headertags($);
@@ -27,7 +28,7 @@ module.exports = {
 		$ = splitscreen($);
 		$ = specialtags($);
 		$ = highlite($);
-		$ = maincontent($);
+		$ = boilerplate($);
 		$ = chromelinks($);
 		$ = inittabs($);
 		$ = stickys($);
@@ -40,12 +41,23 @@ module.exports = {
 
 // Private .....................................................................
 
-function maincontent($) {
-	$('body > main').each(function(i, main) {
-		main = $(main);
-		var mainContent = $('<div data-ts="MainContent"></div>');
-		mainContent.append(main.children());
-		main.append(mainContent);
+/**
+ * If the root element is simply `<article>` machine will inject basic layout.
+ */
+function boilerplate($) {
+	$('body > article').each(function(i, article) {
+		article = $(article);
+		const boiler = $(`
+			<div data-ts="App">
+				<div data-ts="Main">
+					<div data-ts="Content">
+						<div data-ts="Panel">
+						</div>
+					</div>
+				</div>
+			</div>`);
+		boiler.find('[data-ts=Panel]').append(article);
+		$('body').prepend(boiler);
 	});
 	return $;
 }
@@ -54,10 +66,44 @@ function maincontent($) {
  * Insert tags into HEAD section of HTML.
  */
 function headtags($, tags) {
+	const appname = $('title').text();
+	tags = appbanner($, tags, appname);
 	inserttags($, tags, $('title'));
 	lesstocss($);
 	return $;
 }
+
+/**
+ * Stuff used in the app header.
+ * @param {$} $
+ * @param {Array<string>} tags
+ * @param {string} appname
+ * @returns {Array<string>}
+ */
+function appbanner($, tags, appname) {
+	const meta = $('meta[name=ts-app-title]')[0];
+	const link = $('link[rel=ts-app-icon]')[0];
+	return [
+		meta ? '' : `<meta name="ts-app-title" content="${appname}"/>`,
+		link ? '' : `<link rel="ts-app-icon" href="/dist/assets/icon.svg"/>`,
+		...tags
+	];
+}
+
+/**
+ * NOT USED but this would configure the banner via attributes on the AppSpirit.
+ * @param {$} $
+ * @returns {$}
+ *
+function appheader($) {
+	const app = $('[data-ts=App]');
+	if(app[0]) {
+		app.attr('data-ts.title', $('title').text());
+		app.attr('data-ts.icon', '/dist/assets/icon.svg');
+	}
+	return $;
+}
+*/
 
 /**
  * LESS files get compiled, reflect that in LINK tags.
@@ -181,31 +227,67 @@ function setup($, figure, script, klass, type, lang, gram, code) {
  * @param {boolean} flip
  */
 function getelement(klass, html, code, runs, edit, outs, flip) {
-	var output = outs ? getoutput(code) : '';
+	var output = outs ? getoutput(code, flip) : '';
 	var x = {
 		show: outs || runs,
 		outs: outs,
 		runs: runs,
 		flip: flip
 	};
-	return [
-		'<input type="hidden" value="' + encodeURIComponent(JSON.stringify(x)) + '"/>',
-		'<div class="tabpanels">',
-		[outs ? (flip ? output : '') : ''],
-		'<pre class="prism ' + klass + '">',
-		'<code>' + html + '</code>',
-		'</pre>',
-		[outs ? (flip ? '' : output) : ''],
-		'</div>'
-	].join('\n');
+	const args = [klass, html, output, runs, edit, outs, flip, x];
+	switch (klass) {
+		case 'language-markup':
+			return markupbox(...args);
+		case 'language-javascript':
+			return scriptbox(...args);
+	}
 }
 
 /**
  * @param {string} code
  * @returns {string}
  */
-function getoutput(code) {
-	return '<div class="output">' + code + '</div>';
+function getoutput(code, flip) {
+	return `
+		<li data-ts="Panel" data-ts.label="Render" data-ts.selected="${flip}">
+			<div class="output">${code}</div>
+		</li>`;
+}
+
+/**
+ * @param {string} klass
+ * @param {string} html
+ * @param {string} output
+ * @param {boolean} runs
+ * @param {boolean} edit
+ * @param {boolean} flip
+ * @param {Object} x
+ */
+function markupbox(klass, html, output, runs, edit, outs, flip, x) {
+	return [
+		`
+		<ul data-ts="Panels">`,
+		[outs ? (flip ? output : '') : ''],
+		`<li data-ts="Panel" ${output ? 'data-ts.label="Markup"' : ''} data-ts.selected="${!flip}">
+				<pre class="prism ${klass}"><code>${html}</code></pre>
+			</li>`,
+		[outs ? (flip ? '' : output) : ''],
+		'</ul>'
+	].join('\n');
+}
+
+/**
+ *
+ */
+function scriptbox(klass, html, output, runs, edit, outs, flip, x) {
+	return (
+		`
+		<input type="hidden" value="${encodeURIComponent(JSON.stringify(x))}"/>
+		<div data-ts="Panel">
+			<pre class="prism ${klass}"><code>${html}</code></pre>` +
+		(runs ? `<textarea data-ts="TextArea" class="editcode"></textarea>` : '') +
+		`</div>`
+	);
 }
 
 // Typography ..................................................................
@@ -468,18 +550,21 @@ function stickys($) {
 	const tooltip = 'Submit new issue';
 	const body = $('body');
 	if (!body.hasClass('nosticky')) {
-		body.first().append(
-			`<aside data-ts="Note" class="sticky ts-bg-yellow">
+		body
+			.find('body > article')
+			.first()
+			.append(
+				`<div data-ts="Note" class="sticky">
 			  <p>If you find a bug or need a feature…</p>
-		    <menu class="ts-buttons">
+		    <menu data-ts="Buttons">
 		      <li>
-		        <a data-ts="Button" target="_blank" href="${newissue}" title="${tooltip}" class="ts-secondary">
+		        <a data-ts="Button" target="_blank" href="${newissue}" title="${tooltip}">
 		          <span>Create GitHub Issue…</span>
 		        </a>
 		      </li>
 			  </menu>
-			</aside>`
-		);
+			</div>`
+			);
 	}
 	return $;
 }

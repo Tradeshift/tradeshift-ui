@@ -13,7 +13,6 @@ ts.ui.NoteSpirit = (function using(Note, Type, Client, chained, confirmed) {
 	var CLASS_CLOSING = ts.ui.CLASS_CLOSING;
 	var CLASS_CLOSED = ts.ui.CLASS_CLOSED;
 	var CLASS_HAS_CLOSE = 'ts-has-close';
-	var CLASS_YELLOW_BG = ts.ui.CLASS_BG_YELLOW;
 	var CLASS_CLOSE_ICON = 'ts-icon-close';
 	var CLASS_CLOSE_BUTTON = 'ts-note-close';
 	var CLASS_HIDDEN = ts.ui.CLASS_HIDDEN;
@@ -49,7 +48,6 @@ ts.ui.NoteSpirit = (function using(Note, Type, Client, chained, confirmed) {
 			 */
 			onready: function() {
 				this.super.onready();
-				this.css.add(CLASS_YELLOW_BG);
 				this._adjustVisible();
 			},
 
@@ -250,7 +248,7 @@ ts.ui.NoteSpirit = (function using(Note, Type, Client, chained, confirmed) {
 			_adjustPage: function(isRemove) {
 				if (this._ismodelled() && this._model.$isTopNote) {
 					var height = isRemove ? 0 : this.box.height;
-					var mainContentElement = document.querySelector('.ts-maincontent');
+					var mainContentElement = document.querySelector('.ts-content');
 					mainContentElement.spirit.css.marginTop = height;
 					ts.ui.get(document.documentElement).reflex();
 				}

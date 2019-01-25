@@ -1,4 +1,5 @@
-@import 'ts-runtime.less';
+@import '../../../src/runtime/less/ts-mixins.less';
+@import '../../../src/runtime/less/ts-variables.less';
 @import 'dox-variables.less';
 @import 'dox-mixins.less';
 @import 'dox-fonts.less';
@@ -6,18 +7,21 @@
 @import 'dox-syntax.less';
 @import 'dox-table.less';
 @import 'dox-page-intro.less';
-@import 'dox-page-tags.less';
 @import 'dox-page-forms-test-2.less';
 @import 'dox-chrome.less';
 
-html {
-	background-color: @ts-lite-lite !important;
+article {
+	padding: @ts-unit * 3;
+	padding-top: @ts-unit * 3.5;
+	padding-bottom: @ts-unit * 7;
+	max-width: @docs-width + (@ts-unit * 3 * 2);
+	> h1 {
+		display: none; // experimentally attempt to survive on the Header title...
+	}
 }
 
-article {
-	padding: (@ts-unit * 3);
-	max-width: @docs-width + (@ts-unit * 3 * 2);
-	padding-bottom: @ts-unit * 7;
+.ts-board article {
+	padding: @ts-unit;
 }
 
 #markdown {
@@ -27,7 +31,7 @@ article {
 	}
 	blockquote {
 		.ts-mixin-rounded-t();
-		background: @ts-lite-lite;
+		// background: @ts-lite-lite;
 		padding: 0;
 		margin-bottom: @ts-unit;
 		overflow: hidden;
@@ -39,19 +43,19 @@ article {
 			padding: 0 @ts-unit;
 			text-transform: uppercase;
 			font-size: @ts-fontsize-mini;
-			color: @ts-white;
+			color: @ts-color-white;
 			line-height: @ts-unit;
 		}
 		// "good copy" is h4, "bad copy" is h5
 		h4 {
-			background: fade(@ts-green, 75%);
+			background: fade(@ts-color-green, 75%);
 		}
 		h5 {
-			background: fade(@ts-red, 75%);
+			background: fade(@ts-color-red, 75%);
 		}
 		// h6 is just a normal gray heading
 		h6 {
-			background: fade(@ts-black, 75%);
+			background: fade(@ts-color-black, 75%);
 		}
 		p {
 			margin: 0;
@@ -70,7 +74,7 @@ article {
 
 .doc-responsive {
 	#breakpoints {
-		background-color: @ts-lite-liter;
+		background-color: @ts-color-gray-lighter;
 		padding-bottom: @ts-unit;
 		border-radius: 3px;
 		dl {
@@ -93,8 +97,7 @@ article {
 
 	.docs-responsive-demo {
 		.ts-mixin-transition();
-		background: @ts-lite-liter;
-		border: 1px solid @ts-lite;
+		border: 1px solid @ts-color-gray-lighter;
 		padding: @ts-unit;
 		margin-bottom: @ts-unit;
 	}
@@ -103,30 +106,11 @@ article {
 .doc-typo {
 	max-width: @ts-unit * 30;
 	span.extra {
-		color: fade(@ts-black, 50%);
+		color: fade(@ts-color-black, 50%);
 		margin-left: @ts-unit-double;
 		font-family: @ts-fontstack-mono;
 		font-size: @ts-fontsize;
 		float: right;
-	}
-}
-.doc-colors-article {
-	max-width: 100%;
-}
-#doc-colors-demo {
-	td {
-		padding: @ts-unit-half @ts-unit;
-		white-space: nowrap;
-		color: @ts-black;
-		&.doc-dark {
-			color: @ts-white;
-		}
-		code {
-			font-size: @ts-fontsize-mini;
-			&.color-name {
-				font-weight: @ts-fontweight-bold;
-			}
-		}
 	}
 }
 
@@ -205,35 +189,20 @@ article {
 .ts-desktop-only .sticky {
 	display: block;
 }
-.ts-has-toolbar-first-ts-micro {
-	.sticky {
-		top: @ts-unit-double + @ts-unit-plus;
+.ts-has-header {
+	&.ts-header-level-2 .sticky {
+		top: @ts-unit-plus + (@ts-unit * 2);
+	}
+	&.ts-header-level-3 .sticky {
+		top: @ts-unit-plus + (@ts-unit * 3);
+	}
+	&.ts-header-level-5 .sticky {
+		top: @ts-unit-plus + (@ts-unit * 5);
+	}
+	&.ts-header-level-6 .sticky {
+		top: @ts-unit-plus + (@ts-unit * 6);
+	}
+	&.ts-header-level-8 .sticky {
+		top: @ts-unit-plus + (@ts-unit * 8);
 	}
 }
-.ts-has-toolbar-first-ts-macro,
-.ts-has-topbar {
-	.sticky {
-		top: @ts-unit-triple + @ts-unit-plus;
-	}
-}
-.ts-has-toolbar-first-ts-micro.ts-has-toolbar-first-ts-macro,
-.ts-has-toolbar-first-ts-micro.ts-has-topbar {
-	.sticky {
-		top: @ts-unit-triple + @ts-unit-double + @ts-unit-plus;
-	}
-}
-.ts-has-toolbar-first-ts-micro.ts-has-toolbar-first-ts-macro.ts-has-topbar {
-	.sticky {
-		top: @ts-unit-triple + @ts-unit-triple + @ts-unit-double + @ts-unit-plus;
-	}
-}
-
-// Section-specific styling ....................................................
-
-/* Not currently used!
-html.design.ts-bg-lite {
-	.ts-main {
-		background-color: @ts-white;
-	}
-}
-*/

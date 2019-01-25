@@ -1,9 +1,20 @@
 @import 'ts-variables.less';
 
+h1 {
+	font-weight: @ts-fontweight;
+}
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-weight: @ts-fontweight;
+	// TODO: font-weight: @ts-fontweight-semibold; ???
+}
+
 h1,
 h2,
 h3 {
-	font-weight: 400;
 	> span {
 		// baseline shift
 		position: relative;
@@ -64,7 +75,7 @@ ul:not([class]) {
 			top: @ts-unit-quarter * 1.5;
 			width: @ts-unit-quarter;
 			height: @ts-unit-quarter;
-			background-color: @ts-medium;
+			background-color: @ts-color-gray;
 		}
 	}
 }

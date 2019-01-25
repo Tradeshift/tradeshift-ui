@@ -67,6 +67,7 @@ ts.ui.DoorManPlugin = (function(Type) {
 				this.spirit.event.dispatch(domevent.DIDOPEN, {
 					bubbles: true
 				});
+				// instructed closed while opening?
 				if (!this._stayopen) {
 					this.spirit.close();
 				}
@@ -81,6 +82,7 @@ ts.ui.DoorManPlugin = (function(Type) {
 				this.spirit.event.dispatch(domevent.DIDCLOSE, {
 					bubbles: true
 				});
+				// instructed open while closing?
 				if (this._stayopen) {
 					this.spirit.open();
 				}

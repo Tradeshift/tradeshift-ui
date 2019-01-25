@@ -2,27 +2,28 @@
 <html>
 	<head>
 		<title>Get Started</title>
+		<object data="tabs.xhtml"></object>
 		<script>
-			new gui.Request('/dist/sri.json').get().then(function(status, json) {
-				ts.ui.ready(function nastyhack() {
-					var version =  ts.ui.version;
-					var figure = document.querySelector('figure');
-					var markup = figure.innerHTML;
-					figure.innerHTML = markup
-						.replace(/\${ts.ui.version}/g, version)
-						.replace('${sricss}', json['@css'].integrity)
-						.replace('${srijs}', json['@js'].integrity);
+			ts.ui.ready(function nastyhack() {
+				new gui.Request('/dist/sri.json').get().then(function(status, json) {
+					ts.ui.ready(function nastyhack() {
+						var version =  ts.ui.version;
+						var figure = document.querySelector('figure');
+						var markup = figure.innerHTML;
+						figure.innerHTML = markup
+							.replace(/\${ts.ui.version}/g, version)
+							.replace('${sricss}', json['@css'].integrity)
+							.replace('${srijs}', json['@js'].integrity);
+					});
 				});
 			});
 		</script>
 	</head>
 	<body>
-		<header data-ts="TopBar"></header>
-		<main data-ts="Main">
 			<article>
 				<h1>Get started</h1>
 				<section class="desc">
-					<p>This is a good starting point also for visual designers who prefer to work in HTML, because the script will inject the stylesheet along with the fonts and icons etc.</p>
+					<p>This is a good starting point also for visual designers who prefer to work in HTML, because the stylesheet delivers all the fonts and icons etc.</p>
 				</section>
 				<section>
 					<p data-ts="Spirit">
@@ -33,7 +34,7 @@
 						</script>
 					</p>
 					<figure data-ts="DoxMarkup">
-						<script>
+						<script type="text/html">
 							<link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-${ts.ui.version}.min.css"/>
 							<scrxpt src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-${ts.ui.version}.min.js"></scrxpt>
 						</script>
@@ -48,7 +49,7 @@
 					-->
 					<p>UI components are initialized on the <code>DOMContentLoaded</code> event, but this might change some day. To make sure that all the components are initialized before you do something to them, you can wrap your code in a callback like this.</p>
 					<figure data-ts="DoxScript">
-						<script>
+						<script type="text/html">
 							ts.ui.ready(function() {
 								var component = ts.ui.get(element);
 								component.dosomething();
@@ -61,15 +62,14 @@
 					</ul>
 					<p>You can perhaps make it easier for yourself by kickstarting your app with a <code>ts.ui.ready</code> callback, because then you wont&apos;t have to worry about it later on.</p>
 					<figure data-ts="DoxScript">
-						<script>
+						<script type="text/html">
 							ts.ui.ready(function() {
 								boostrap_everything();
 							});
 						</script>
 					</figure>
-					<p>Before we begin, you&apos;ll need to mark up your page with the <a data-ts="Button" href="/#getstarted/layout/">basic layout</a>.</p>
+					<p>Before we begin, you&apos;ll need to mark up your page with the <a data-ts="Button" href="/#getstarted/layout.html">basic layout</a>.</p>
 				</section>
 			</article>
-		</main>
 	</body>
 </html>

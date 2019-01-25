@@ -53,15 +53,44 @@ gui.SpritePlugin = (function() {
 		},
 
 		/**
-		 * Scale.
+		 * Scale both.
 		 * @type {number}
 		 */
 		scale: {
 			getter: function() {
-				return this._gro;
+				return this._scx;
 			},
 			setter: function(scale) {
-				this._gro = scale;
+				this._scx = scale;
+				this._scy = scale;
+				this._apply();
+			}
+		},
+
+		/**
+		 * Scale X.
+		 * @type {number}
+		 */
+		xscale: {
+			getter: function() {
+				return this._scx;
+			},
+			setter: function(scale) {
+				this._scx = scale;
+				this._apply();
+			}
+		},
+
+		/**
+		 * Scale Y.
+		 * @type {number}
+		 */
+		yscale: {
+			getter: function() {
+				return this._scx;
+			},
+			setter: function(scale) {
+				this._scx = scale;
 				this._apply();
 			}
 		},
@@ -113,9 +142,7 @@ gui.SpritePlugin = (function() {
 		 */
 		onconstruct: function() {
 			this.super.onconstruct();
-			this._pos = new gui.Position();
-			this._org = new gui.Position();
-			this._gro = 1;
+			this._reset();
 		},
 
 		/**
@@ -129,6 +156,7 @@ gui.SpritePlugin = (function() {
 				this.spirit.css.left = '';
 				this.spirit.css.top = '';
 			}
+			this._reset();
 		},
 
 		// Private ...............................................
@@ -140,10 +168,16 @@ gui.SpritePlugin = (function() {
 		_pos: null,
 
 		/**
-		 * Scale.
+		 * Scale X.
 		 * @type {number}
 		 */
-		_gro: null,
+		_scx: null,
+
+		/**
+		 * Scale Y.
+		 * @type {number}
+		 */
+		_scy: null,
 
 		/**
 		 * Origin offset tracking.
@@ -178,7 +212,8 @@ gui.SpritePlugin = (function() {
 		_apply: function() {
 			var coords = this._pos;
 			var origin = this._org;
-			var scaled = parseFloat(this._gro);
+			var xscale = parseFloat(this._scx);
+			var yscale = parseFloat(this._scy);
 			var tforms = [coords.x, coords.y, coords.z].map(parseFloat);
 			var offset = [origin.x, origin.y, origin.z].map(parseFloat);
 			var plugin = this.spirit.css;
@@ -188,7 +223,14 @@ gui.SpritePlugin = (function() {
 			if (gui.Client.has3D) {
 				plugin.style({
 					'-beta-transform-origin': offset.join('px ') + 'px',
-					'-beta-transform': 'translate3d(' + tforms.join('px,') + 'px) scale(' + scaled + ')'
+					'-beta-transform':
+						'translate3d(' +
+						tforms.join('px,') +
+						'px) scaleX(' +
+						xscale +
+						') scaleY(' +
+						yscale +
+						')'
 				});
 			} else {
 				var iepos = this._defpos(plugin);
@@ -196,9 +238,19 @@ gui.SpritePlugin = (function() {
 					left: Math.round(iepos.x + tforms[0] + offset[0]),
 					top: Math.round(iepos.y + tforms[1] + offset[1]),
 					msTransformOrigin: offset[0] + 'px' + ' ' + offset[1] + 'px',
-					msTransform: 'scale(' + scaled + ')'
+					msTransform: 'scaleX(' + xscale + ') scaleY(' + yscale + ')'
 				});
 			}
+		},
+
+		/**
+		 * Reset to initial values.
+		 */
+		_reset: function() {
+			this._pos = new gui.Position();
+			this._org = new gui.Position();
+			this._scx = 1;
+			this._scy = 1;
 		}
 	});
 })();

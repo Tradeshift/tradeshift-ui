@@ -1,0 +1,17 @@
+[
+	"spirits/ts.ui.LayoutSpirit.js",
+	"spirits/panels/ts.ui.PanelSpirit.js",
+	"spirits/panels/ts.ui.PanelsSpirit.js",
+	"spirits/boards/ts.ui.BoardSpirit.js",
+	"spirits/asides/ts.ui.SideShowSpirit.js",
+	"spirits/asides/ts.ui.AsideSpirit.js",
+	"spirits/asides/ts.ui.SideBarSpirit.js",
+	"spirits/modals/ts.ui.BoxSpirit.js",
+	"spirits/modals/ts.ui.ModalSpirit.js",
+	"spirits/app/ts.ui.AppSpirit.js",
+	"spirits/main/ts.ui.MainSpirit.js",
+	"spirits/main/ts.ui.MainsSpirit.js",
+	"spirits/main/ts.ui.ContentSpirit.js",
+	"spirits/main/ts.ui.MainContentSpirit.js",
+	"module.js"
+]

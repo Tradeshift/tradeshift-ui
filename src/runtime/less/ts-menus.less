@@ -9,23 +9,16 @@
 		padding: 0;
 		> button,
 		> a {
-			border-bottom: 1px solid @ts-white;
-			background-color: @ts-liteblue;
-			&:before {
-				.ts-mixin-maximize();
-				content: '';
-				right: auto;
-				width: @ts-unit-quarter;
-			}
+			border-bottom: 1px solid transparent; // TODO: delete if OK
+			background-color: transparent;
+			color: @ts-color-black;
+			font-weight: @ts-fontweight-semibold;
 			&:focus:not(:active) {
 				outline: none;
-				&:before {
-					background-color: @ts-blue;
-				}
 			}
 			&:hover:not(:disabled),
 			&:focus {
-				background-color: @ts-liteblue-dark;
+				background-color: @ts-color-blue-lightest;
 			}
 			&:not(.ts-object) {
 				.ts-mixin-unselectable();
@@ -42,8 +35,8 @@
 					padding-right: @ts-unit-plus; // icon on the right by default
 				}
 				> sub {
-					text-transform: uppercase;
-					font-size: @ts-fontsize-small;
+					font-size: @ts-fontsize-mini;
+					font-weight: @ts-fontweight;
 					line-height: @ts-unit;
 				}
 				> img,
@@ -85,57 +78,30 @@
 				}
 			}
 			&:disabled {
-				color: @ts-medium-litest;
-				background-color: @ts-lite-liter;
+				color: @ts-color-gray-light;
+				background-color: transparent;
 				cursor: not-allowed;
-			}
-		}
-		&:first-child {
-			> button,
-			> a {
-				.ts-mixin-rounded-t ();
-				&:focus:before {
-					.ts-mixin-rounded-tl ();
-				}
-			}
-		}
-		&:last-child {
-			> button,
-			> a {
-				border-bottom: none;
-				&:not(.ts-object) {
-					padding-bottom: @ts-unit-half;
-				}
-				.ts-mixin-rounded-b ();
-				&:focus:before {
-					.ts-mixin-rounded-bl ();
-				}
 			}
 		}
 		&:only-child {
 			> button,
 			> a {
 				.ts-mixin-rounded ();
-				&:focus:before {
-					.ts-mixin-rounded-l ( );
-				}
 			}
 		}
 		&.ts-checked {
 			> button,
 			> a {
 				&:disabled {
-					background-color: @ts-lite;
-					color: @ts-medium-lite;
+					background-color: @ts-color-gray-lighter;
+					color: @ts-color-gray;
 				}
 				&:not(:disabled) {
-					&,
-					&:hover {
-						background-color: @ts-blue;
-						color: @ts-white;
-					}
-					&:focus:before {
-						background-color: @ts-blue-dark;
+					background-color: @ts-color-blue;
+					color: @ts-color-white;
+					&:hover,
+					&:focus {
+						background-color: @ts-color-blue-dark;
 					}
 				}
 			}

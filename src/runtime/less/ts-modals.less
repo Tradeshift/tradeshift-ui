@@ -1,44 +1,40 @@
 .ts-modal {
+	.ts-mixin-maximize();
 	z-index: @ts-zindex-modal;
-	position: absolute;
-	box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.75);
-	&.ts-inscreen {
-		width: (@ts-unit * 24);
-		height: @ts-width-aside;
-		left: 50%;
-		top: 20%;
-		margin-left: (@ts-unit * -10);
-		border-radius: @ts-radius;
-		> header {
-			border-radius: @ts-radius @ts-radius 0 0;
-		}
-		> footer {
-			border-radius: 0 0 @ts-radius @ts-radius;
-		}
+	border-radius: 0;
+	width: 100%;
+	height: 100%;
+	> .ts-panels {
+		position: relative;
 	}
-	&.ts-fullscreen {
-	}
-	> .ts-panel {
-		.ts-mixin-maximize();
-		padding-bottom: 0;
-		background-color: @ts-white;
+	> .ts-panels > .ts-panel,
+	> .ts-panel, {
+		background-color: @ts-color-white;
 		overflow: hidden;
-		&:after {
-			// firefox dysfunction :(
-			content: '!';
-			display: block;
-			visibility: hidden;
+		> .ts-cover {
+			background-color: @ts-color-white;
 		}
-		> .ts-main {
+		> .ts-main, // ts-main is deprecated and can be remove at some point...
+		> .ts-box {
+			display: block;
+			position: absolute;
+			top: 50%; 
+			left: 50%;
+  			transform: translate(-50%,-50%);
 			max-width: (@ts-width-aside + @ts-unit-plus) * 2; // 640px usable
 			padding: @ts-unit-plus;
 			text-align: center;
 			overflow-x: visible;
 			overflow-y: visible;
-			background-color: transparent;
 			margin-left: auto;
 			margin-right: auto;
 			bottom: auto;
+			height: auto;
+
+		}
+		> .ts-main {
+			background-color: transparent;
+			flex: none;
 		}
 	}
 	&.ts-overflow {
@@ -47,68 +43,22 @@
 			overflow-x: hidden;
 		}
 	}
-	> footer {
-		position: absolute;
-		bottom: 0;
-		width: 100%;
-		&.ts-bg-lite {
-			&:after {
-				content: '';
-				top: -5px;
-				height: @ts-unit-quarter;
-				width: 100%;
-				position: absolute;
-				pointer-events: none;
-				background: linear-gradient(0deg, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0));
-			}
-		}
-	}
-	&.ts-hastabs {
-		top: @ts-unit-double;
-	}
-	&.ts-hasheader {
-		> .ts-panel {
-			top: @ts-unit-triple;
-		}
-		&.ts-hastabs {
-			> .ts-panel {
-				top: @ts-unit-triple + @ts-unit-double;
-			}
-		}
-	}
-	&.ts-hasfooter {
-		> .ts-panel {
-			bottom: @ts-unit-triple;
-		}
-		&.ts-level-1-5 > .ts-panel {
-			bottom: (@ts-unit-triple * 1.5);
-		}
-		&.ts-level-2 > .ts-panel {
-			bottom: @ts-unit-triple * 2;
-		}
-		&.ts-level-2-5 > .ts-panel {
-			bottom: @ts-unit-triple * 2.5;
-		}
-		&.ts-level-3 > .ts-panel {
-			bottom: @ts-unit-triple * 3;
-		}
-	}
 	&.ts-transition {
 		will-change: transform;
 		transition-property: transform, opacity;
 		transition-duration: @ts-transition-now;
 		.ts-mixin-transform-origin(50%, 50%);
-		.ts-mixin-scale(1.075);
+		.ts-mixin-scale(0.96);
 		opacity: 0;
 		&.ts-opening,
 		&.ts-open {
-			.ts-mixin-transition-timing(ease-out);
+			.ts-mixin-transition-timing('ease-out');
 			.ts-mixin-scale(1);
 			opacity: 1;
 		}
 		&.ts-closing {
-			.ts-mixin-transition-timing(ease-in);
-			.ts-mixin-scale(0.925);
+			.ts-mixin-transition-timing('ease-in');
+			.ts-mixin-scale(0.96);
 			opacity: 0;
 		}
 		&.ts-opening,

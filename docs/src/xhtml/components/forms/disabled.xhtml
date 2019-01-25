@@ -5,8 +5,6 @@
 	<object data="tabs.xhtml"></object>
 </head>
 <body>
-<header data-ts="TopBar"></header>
-<main data-ts="Main">
 	<article>
 		<h1>Disabled and readonly fields</h1>
 		<section class="desc">
@@ -41,7 +39,9 @@
 						<fieldset>
 							<label>
 								<span>Disabled Text</span>
-								<input type="text" disabled/>
+								<input type="text" disabled
+									value="Disabled Text"
+								/>
 							</label>
 						</fieldset>
 					</form>
@@ -64,7 +64,9 @@
 						<fieldset>
 							<label>
 								<span>Readonly Text</span>
-								<input type="text" readonly/>
+								<input type="text" readonly
+									value="Readonly text"
+								/>
 							</label>
 						</fieldset>
 					</form>
@@ -237,6 +239,7 @@
 					<form data-ts="Form" data-ts.preview="true">
 						<fieldset>
 							<label>
+								<span>Preview Text</span>
 								<input type="text" value="preview form"/>
 							</label>
 						</fieldset>
@@ -245,6 +248,5 @@
 			</figure>
 		</section>
 	</article>
-</main>
 </body>
 </html>

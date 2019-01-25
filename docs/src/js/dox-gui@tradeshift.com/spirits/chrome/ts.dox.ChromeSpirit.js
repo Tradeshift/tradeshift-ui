@@ -16,8 +16,6 @@ ts.dox.ChromeSpirit = (function using(CSSPlugin, Then) {
 		MENUON = ts.ui.BROADCAST_GLOBAL_MENU_OPEN,
 		TITLE = ts.ui.ACTION_GLOBAL_DOCUMENT_TITLE,
 		ONROTATE = gui.BROADCAST_ORIENTATIONCHANGE,
-		LOADING = ts.ui.BROADCAST_GLOBAL_APP_LOADING,
-		COMPLETE = ts.ui.BROADCAST_GLOBAL_APP_COMPLETE,
 		ASIDESON = ts.ui.BROADCAST_GLOBAL_ASIDES_WILL_ON,
 		ASIDESOFF = ts.ui.BROADCAST_GLOBAL_ASIDES_WILL_OFF,
 		DIALOGSON = ts.ui.BROADCAST_GLOBAL_DIALOGS_WILL_BLOCK,
@@ -29,13 +27,14 @@ ts.dox.ChromeSpirit = (function using(CSSPlugin, Then) {
 		 */
 		onready: function() {
 			this.super.onready();
-			this._sbar = this.dom.q('.ts-sidebar', ts.ui.SideBarSpirit);
+			this._app = this.dom.q('.ts-app', ts.ui.AppSpirit);
+			this._sbar = this.dom.q('.ts-sidebar', ts.dox.SideBarSpirit);
 			this._menu = this.dom.q('.ts-menu', ts.dox.MenuSpirit);
 			this._main = this.dom.q('.ts-main', ts.ui.MainSpirit);
 			this._menu.life.add(gui.LIFE_RENDER, this);
 			this.event.add('message', window);
 			this.event.add('hashchange', window);
-			this.event.add('transitionend', this._main);
+			this.event.add('transitionend', this._app);
 			this.action.add([ONDOM, ONSEARCH, MENUOPEN, MENUCLOSE]).addGlobal([TITLE, DOLOAD]);
 			this.broadcast
 				.addGlobal([TITLE, MENUON, ONROTATE, ASIDESON, ASIDESOFF, DIALOGSON, DIALOGSOFF])
@@ -257,12 +256,9 @@ ts.dox.ChromeSpirit = (function using(CSSPlugin, Then) {
 			this._blocking(true);
 			this._menu.selectbestitem(path).then(function(first) {
 				this.css.shift(first, 'selectfirstitem');
-				this.tick.time(
-					function() {
-						this._loadnext(path);
-					},
-					this._isopenmenu() ? 300 : 0
-				);
+				this.tick.time(function() {
+					this._loadnext(path);
+				}, this._isopenmenu() ? 300 : 0);
 			}, this);
 		},
 
@@ -283,7 +279,6 @@ ts.dox.ChromeSpirit = (function using(CSSPlugin, Then) {
 
 		/**
 		 * Subsequent page loaded in iframe: Switch from one iframe to the other.
-		 * Allowing the layout to stabilize first so that we don't notice flicker
 		 * (we create new iframes to avoid browser history local to the iframes).
 		 */
 		_nextload: function() {
@@ -296,7 +291,7 @@ ts.dox.ChromeSpirit = (function using(CSSPlugin, Then) {
 					this._oldframe.dom.remove();
 					this._oldframe = null;
 				}
-			}, 50);
+			});
 		},
 
 		/**
@@ -315,7 +310,7 @@ ts.dox.ChromeSpirit = (function using(CSSPlugin, Then) {
 			} else {
 				path = this._searchquery ? path + '?query=' + this._searchquery : path;
 				this._oldframe = this.dom.qdoc('iframe', ts.ui.FrameSpirit) || null;
-				this._main.dom.append(ts.ui.FrameSpirit.summon('dist/' + path));
+				this._main.dom.prepend(ts.ui.FrameSpirit.summon('dist/' + path));
 			}
 		},
 
@@ -389,13 +384,16 @@ ts.dox.ChromeSpirit = (function using(CSSPlugin, Then) {
 		},
 
 		/**
+		 * DISABLED FOR NOW (used for spinner in the Header, if we need that)
 		 * This toggles the classname `ts-loading`
 		 * on the root HTML element in all frames.
 		 * TODO: Support ABORTED if and when we get a 404.
 		 * @param {boolean} loading
 		 */
 		_showloading: function(loading) {
-			this.broadcast.dispatchGlobal(loading ? LOADING : COMPLETE);
+			// LOADING = ts.ui.BROADCAST_GLOBAL_APP_LOADING,
+			// COMPLETE = ts.ui.BROADCAST_GLOBAL_APP_COMPLETE,
+			// this.broadcast.dispatchGlobal(loading ? LOADING : COMPLETE);
 		},
 
 		/**
@@ -499,17 +497,3 @@ function search(query) {
 		})[0];
 	});
 }
-
-/**
- * get slice string
- * @param	{String} query string
- * @param	{Array} content array
- * @return {String}	results
- *
-function getContent(query, content) {
-	var queryIndex = content.indexOf(query);
-	var start = queryIndex - 10 > 0 ? queryIndex - 10 : 0;
-	var end = queryIndex + 10 > content.length - 1 ? content.length - 1 : queryIndex + 10;
-	return content.slice(start, end).join(' ') + '...'; //replace(query, '<code>' + query + '</code>') + '...';
-}
-*/

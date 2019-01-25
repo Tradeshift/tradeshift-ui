@@ -8,6 +8,7 @@
  * @using {gui.Position} Position
  * @using {gui.Client} Client
  * @using {gui.Key} key
+ * @using {number} UNIT
  */
 ts.ui.TableEditPlugin = (function(CSSPlugin, DOMPlugin, Position, Client, Key, UNIT) {
 	var CLASS_CONTAINER = 'ts-table-cell';

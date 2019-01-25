@@ -3,43 +3,52 @@
 	<?input name="toolbar" type="ts.ui.ToolBarModel"?>
 	<?input name="layout" type="ts.ui.LayoutModel"?>
 	<?function name="renderTabs" src="ts.ui.toolbartabs.edbml"?>
-	
+
 	var spirit = this;
 	var id = spirit.$instanceid + toolbar.$instanceid;
 	var mobilos = layout.isMobilePoint();
 	var topbar =  ts.ui.TopBarModel.is(toolbar);
 	var statusbar = ts.ui.StatusBarModel.is(toolbar);
 	var hasrealtitle = !!toolbar.title;
-	
+
 	renderleft(
 		toolbar.title || (topbar ? toolbar.defaultTitle : ''),
+		toolbar.icon,
+		toolbar.burgerbutton,
+		toolbar.backbutton,
+		toolbar.forwardbutton,
 		toolbar.status,
 		toolbar.search,
 		toolbar.tabs,
-		toolbar.navigation,
 		toolbar.checkbox,
 		toolbar.$allactions()
 	);
 	rendercenter(id, toolbar.pager);
-	renderright(id, toolbar.$allbuttons());
-	renderspinner(topbar && mobilos);
+	if(toolbar.search && toolbar.search.buttons.length) {
+		rendersearchbuttons(id, toolbar.search.buttons);
+	} else {
+		rendernormalbuttons(id, toolbar.$allbuttons());
+	}
 	
-	function renderleft(title, status, search, tabs, navigation, checkbox, actions) {
-		var hasnavi = !!(topbar && navigation && navigation.getLength());
+	function renderleft(title, icon, burger, back, forward, status, search, tabs, checkbox, actions) {
+		var hasnavi = back || forward;
 		var hastabs = !!tabs.getLength();
 		var hasactions = !!actions.length;
 		if(mobilos || status || search || checkbox || hasactions || hastabs || hasnavi || (topbar ? hasrealtitle : title)) {
-			if(topbar && mobilos && hastabs) {
-				renderTabs(spirit, tabs, id, mobilos);
-			}
 			<menu id="${id}-items" class="ts-toolbar-menu ts-left">
-				if (topbar) {
-					renderNav(navigation);
-				}
-				if ((!mobilos || !topbar) && hastabs && !hasnavi) {
+				back && renderspecialbutton(back, 'back');
+				forward && renderspecialbutton(forward, 'forward');
+				if(hastabs && !hasnavi) {
 					renderTabs(spirit, tabs, id, mobilos);
 				} else {
-				 if(search) {
+					if(burger) {
+						renderspecialbutton(burger, 'burger');
+					} else if(icon) {
+						<li id="${id}-icon" class="ts-toolbar-item ts-toolbar-icon">
+							<img src="${icon}" width="40" height="40"/>
+						</li>
+					}
+					if(search) {
 						@class = klass('ts-toolbar-search', search);
 						<li id="${id}-search" @class>
 							out.html += search.render();
@@ -67,31 +76,57 @@
 			</menu>
 		}
 	}
+
+	function renderright(id, content) {
+		<menu id="${id}-buttons" class="ts-toolbar-menu ts-right">
+			content();
+		</menu>
+	}
 	
 	function showPager(pager) {
 		return !!(statusbar && pager && pager.pages && pager.visible);
 	}
 
-	function renderright(id, buttons) {
-		if(buttons.length || toolbar.configbutton || toolbar.closebutton) {
-			<menu id="${id}-buttons" class="ts-toolbar-menu ts-right">
+	function renderspecialbutton(button, string) {
+
+		<li id="${id}-${string}" class="ts-toolbar-item ts-toolbar-${string}">
+			out.html += button.render();
+		</li>
+	}
+
+	function rendernormalbuttons(id, buttons) {
+		if(buttons.length || toolbar.configbutton || toolbar.helpbutton || toolbar.closebutton) {
+			renderright(id, function content() {
 				if(buttons.length) {
 					if(!toolbar.compact) {
-						toolbar.$allbuttons().forEach(renderbutton);
+						buttons.forEach(renderbutton);
 					} else if (mobilos && buttons.length > 1 && !hasicons(buttons)) {
+						buttons.forEach(function(button, index){
+							if (button.isPrimary()) {
+								renderbutton(button);
+								buttons.splice(index, 1);
+								return;
+							}
+						});
 						renderasidebutton(function onclick() {
-							spirit.putaside(toolbar.$allbuttons());
+							spirit.putaside(buttons);
 						});
 					} else {
 						renderbuttons(
-							toolbar.$specialbuttons(),
-							toolbar.$normalbuttons()
+							toolbar.$specialbuttons(mobilos),
+							toolbar.$normalbuttons(mobilos)
 						);
 					}
 				}
-				[toolbar.configbutton, toolbar.closebutton].forEach(renderbutton);
-			</menu>
+				[toolbar.configbutton, toolbar.helpbutton, toolbar.closebutton].forEach(renderbutton);
+			});
 		}
+	}
+
+	function rendersearchbuttons(id, searchbuttons) {
+		renderright(id, function content() {
+			searchbuttons.forEach(renderbutton);
+		});
 	}
 
 	// all buttons has icons (or is primary) so that we can keep them in mobile?
@@ -136,7 +171,7 @@
 	function renderasidebutton(action) {
 		@class = "ts-toolbar-item ts-item";
 		<li @class id="${id}-aside">
-			<button data-ts="Button" class="ts-tertiary" +
+			<button data-ts="Button" class="ts-tertiary ts-noborder" +
 				onclick="#{action()}" tabindex="-1">
 				<i class="ts-icon-other"></i>
 			</button>
@@ -192,35 +227,5 @@
 	function using(search) {
 		return search && (search.focused || search.value || search.flex);
 	}
-	
-	
-	// SPINNER ...................................................................
-	
-	// in the TopBar, we'll render the Spinner in mobile brakpoint.
-	function renderspinner(on) {
-		@id = id + '-spinner';
-		@class = 'ts-topbarspinner';
-		if(on) {
-			<div data-ts="Spinner" @id @class data-ts.spinning="true"></div>
-		}
-	}
-
-		
-	// BACK/FORWARD/MENUTOGGLE ...................................................
-
-	// render back and forward buttons
-	function renderNav(navbuttons) {
-		if(navbuttons.getLength() || mobilos) {
-			menubutton(navbuttons).forEach(renderbutton);
-		}
-	}
-
-	// inject the menubutton in mobile
-	// TODO(jmo@): edb.Array.concat should return simple Array!!!!!!!!!!!!!!!!!!!!
-	function menubutton(navbuttons) {
-		var buttons = mobilos ? [toolbar.menubutton] : [];
-		return buttons.concat(gui.Array.from(navbuttons));
-	}
-
 
 </script>

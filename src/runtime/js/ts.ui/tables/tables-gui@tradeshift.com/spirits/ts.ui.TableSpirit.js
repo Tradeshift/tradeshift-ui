@@ -13,6 +13,7 @@
  * @using {ts.ui.TableRowModel} TableRowModel
  * @using {ts.ui.ButtonSpiri	t} ButtonSpirit
  * @using {ts.ui.PagerModel} pager
+ * @using {number} UNIT_DOUBLE
  */
 ts.ui.TableSpirit = (function using(
 	Type,
@@ -26,17 +27,15 @@ ts.ui.TableSpirit = (function using(
 	confirmed,
 	TableRowModel,
 	ButtonSpirit,
-	PagerModel
+	PagerModel,
+	UNIT_DOUBLE
 ) {
-	var UNIT = ts.ui.UNIT;
-	var UNIT_DOUBLE = UNIT * 2;
 	var ICON_OFF = 'ts-icon-checkbox';
 	var CLASS_TEXTAREA = 'ts-table-input';
 	var CLASS_CLICKABLE = 'ts-clickable';
 	var CLASS_MAXIMIZED = 'ts-maximized';
 	var CLASS_SELECTABLE = 'ts-selectable';
 	var CLASS_SELECTBUTTON = 'ts-table-checkbox-button';
-	var TABLE_MIN_HEIGHT = 267;
 
 	/**
 	 * Is something simple?
@@ -164,30 +163,6 @@ ts.ui.TableSpirit = (function using(
 
 	return ts.ui.Spirit.extend({
 		/**
-		 * @param {string} busy
-		 */
-		busy: function(busy) {
-			var opts = { message: busy, position: 'absolute' };
-			var that = this;
-			if (this.box.height && this.dom.q('.ts-table-body')) {
-				this._initspin(opts);
-				if (busy) {
-					this.guistatus.busy(this.$instanceid);
-				} else {
-					this.guistatus.done(this.$instanceid);
-				}
-			} else {
-				// not rendered, we'll try again when something has changed...
-				this.life.add(gui.LIFE_RENDER, {
-					onlife: function() {
-						that.life.remove(gui.LIFE_RENDER);
-						that.busy(busy);
-					}
-				});
-			}
-		},
-
-		/**
 		 * Open for implementation: Called whenever a cell is clicked.
 		 * @type {function}
 		 * @param {object} cell
@@ -211,15 +186,6 @@ ts.ui.TableSpirit = (function using(
 		 * @param {number} maxrows that can be fitted in a single page.
 		 */
 		onresize: null,
-
-		/**
-		 * Open for implementation: Called when configbutton is clicked.
-		 * Carefully named not to conflict with `onconfigure` which will
-		 * eventually be renamed to `onconfig` in Spiritual core.
-		 * @type {function}
-		 *
-		onconf: null,
-		*/
 
 		/**
 		 * Open for implementation: Called when a link is clicked somewhere
@@ -274,6 +240,7 @@ ts.ui.TableSpirit = (function using(
 			this.super.onconfigure();
 			this.action.add([ts.ui.ACTION_CLICK, ts.ui.ACTION_SWITCH]);
 			this.event.add('click');
+			this.css.add('ts-table-list'); // TODO: Merge into default CSS when approved!
 			this._rowsadd = [];
 			this._rowsoff = [];
 			this._scroll = new Position();
@@ -400,30 +367,6 @@ ts.ui.TableSpirit = (function using(
 					this._onextra(this.onswitch, a.target, a.data);
 					a.consume();
 					break;
-			}
-		},
-
-		/**
-		 * Button or Switch or something was triggered.
-		 * @param {ts.ui.Spirit} spirit
-		 * @param {function|null} action
-		 */
-		_onextra: function(action, spirit /* ...rest */) {
-			var name,
-				value,
-				elm = spirit.element;
-			if (Type.isFunction(action)) {
-				var args = gui.Array.from(arguments).slice(2);
-				var posi = this.queryplugin.getpos(elm);
-				if ((name = elm.getAttribute('name'))) {
-					if ((value = elm.getAttribute('value'))) {
-						value = Type.cast(value);
-						if (Type.isString(value)) {
-							value = ConfigPlugin.jsonvaluate(value);
-						}
-					}
-					action.apply(this, [name, value || undefined].concat(args).concat([posi.y, posi.x]));
-				}
 			}
 		},
 
@@ -1185,6 +1128,18 @@ ts.ui.TableSpirit = (function using(
 			}
 		},
 
+		// Loading .................................................................
+
+		/**
+		 * @param {string|boolean} [arg]
+		 * @returns {this}
+		 */
+		busy: chained(function(arg) {
+			if (this._ismaximized() || this.queryplugin.getbody()) {
+				this.super.busy(arg);
+			}
+		}),
+
 		/**
 		 * The Table should or does show a "floating gutter" that stys
 		 * fixed on horizontal scrolling (to make row selection easier)?
@@ -1284,16 +1239,28 @@ ts.ui.TableSpirit = (function using(
 		_errormessage: null,
 
 		/**
-		 * Spirit of the spinner.
-		 * @type {ts.ui.SpinnerSpirit}
+		 * Button or Switch or something was triggered.
+		 * @param {ts.ui.Spirit} spirit
+		 * @param {function|null} action
 		 */
-		_spinner: null,
-
-		/**
-		 * Spinnig blocking DIV.
-		 * @type {HTMLDivElement}
-		 */
-		_cover: null,
+		_onextra: function(action, spirit /* ...rest */) {
+			var name,
+				value,
+				elm = spirit.element;
+			if (Type.isFunction(action)) {
+				var args = gui.Array.from(arguments).slice(2);
+				var posi = this.queryplugin.getpos(elm);
+				if ((name = elm.getAttribute('name'))) {
+					if ((value = elm.getAttribute('value'))) {
+						value = Type.cast(value);
+						if (Type.isString(value)) {
+							value = ConfigPlugin.jsonvaluate(value);
+						}
+					}
+					action.apply(this, [name, value || undefined].concat(args).concat([posi.y, posi.x]));
+				}
+			}
+		},
 
 		/**
 		 * True when the Table is exploded (maximized) and configured to
@@ -1998,46 +1965,6 @@ ts.ui.TableSpirit = (function using(
 			var show = !cols.length || cols.some(visible);
 			this.css.shift(rows.length && show, 'ts-hasrows');
 			this.css.shift(cols.length && show, 'ts-hascols');
-		},
-
-		/**
-		 * If you set the attribute ts.busy is true, you will see the spinner in the table
-		 * param {object} opts
-		 */
-		_initspin: function(opts) {
-			if (!this._spinner) {
-				this._spinner = ts.ui.SpinnerSpirit.summon();
-			}
-			var rect = this.element.getBoundingClientRect();
-			if (rect.height >= TABLE_MIN_HEIGHT) {
-				opts.top = '116px';
-			} else {
-				opts.length = (ts.ui.UNIT * rect.height) / TABLE_MIN_HEIGHT; // shrink the spinner
-				opts.radius = (ts.ui.UNIT * rect.height) / TABLE_MIN_HEIGHT;
-				opts.width = (6 * rect.height) / TABLE_MIN_HEIGHT;
-			}
-			if (opts.message) {
-				this._createCover(rect);
-				this._spinner.spin(this.dom.q('.ts-table-body'), opts);
-			} else if (this._cover) {
-				this._spinner.stop();
-				this.element.removeChild(this._cover);
-				this._cover = null;
-			}
-		},
-
-		/**
-		 * @todo If any other elements need a cover, the code should move to ts.ui.CoverSpirit.js
-		 * param {object} rect, element.getBoundingClientRect()
-		 */
-		_createCover: function(rect) {
-			if (this._cover) {
-				return;
-			}
-			var cover = document.createElement('div');
-			cover.className += 'ts-cover ts-tablecover';
-			this.element.appendChild(cover);
-			this._cover = cover;
 		}
 	});
 })(
@@ -2052,5 +1979,6 @@ ts.ui.TableSpirit = (function using(
 	gui.Arguments.confirmed,
 	ts.ui.TableRowModel,
 	ts.ui.ButtonSpirit,
-	ts.ui.PagerModel
+	ts.ui.PagerModel,
+	ts.ui.UNIT_DOUBLE
 );

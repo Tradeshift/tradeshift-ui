@@ -1,0 +1,29 @@
+<!DOCTYPE edbml>
+<script>
+	<?input name="header" type="ts.ui.HeaderBarModel"?>
+
+	var id = (this.$instanceid + header.$instanceid);
+	var color = header.color;
+
+	<ul class="ts-headerbar-bars">
+		headerbar(header.headerbar);
+		centerbar(header.centerbar);
+		buttonbar(header.buttonbar);
+	</ul>
+
+	function headerbar(model) {
+		<li data-ts="ToolBar" class="ts-headerbar-headerbar ${color}" id="${id}-headerbar" +
+			data-ts.model="?{model}" data-ts.visible="${header.$showHeaderBar(model)}"></li>
+	}
+
+	function centerbar(model) {
+		<li data-ts="ToolBar" class="ts-headerbar-centerbar ts-micro" id="${id}-centerbar" +
+			data-ts.model="?{model}" data-ts.visible="${header.$showCenterBar(model)}"></li>
+	}
+
+	function buttonbar(model) {
+		<li data-ts="ToolBar" class="ts-headerbar-buttonbar" id="${id}-buttonbar" +
+			data-ts.model="?{model}" data-ts.visible="${header.$showButtonBar(model)}"></li>
+	}
+
+</script>

@@ -7,11 +7,11 @@
     <link rel="ts-app-icon" href="/v12/dist/assets/icon.svg">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
-    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.0.0-beta.0.min.js"></script>
+    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.0.0.min.js"></script>
     <script src="/v12/dist/assets/dox.min.js"></script>
     <script src="/v12/dist/assets/mark.min.js"></script>
     <script src="/v12/dist/assets/jquery-2.2.4.min.js"></script>
-    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.0.0-beta.0.min.css">
+    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.0.0.min.css">
     <link rel="stylesheet" href="/v12/dist/assets/dox.css">
     <meta name="robots" content="noindex">
     <style>
@@ -62,32 +62,32 @@
                         </section>
                         <section id="doc-break-demo" data-ts="Spirit">
                             <script class="gui-script" data-ts.scriptid="edbml.$5Wctf0">
-                                edbml.declare("edbml.$5Wctf0").as(function $edbml(
-						/*``*/){
-						  'use strict';
-						  var out = $edbml.$out,
-						    $txt = edbml.safetext,
-						    $val = edbml.safeattr;
-						  var clazzNames = [
-						  'ts-show-mobile-only',
-						  'ts-show-tablet-only',
-						  'ts-show-desktop-only',
-						  'ts-hide-mobile-only',
-						  'ts-hide-tablet-only',
-						  'ts-hide-desktop-only',
-						  'ts-show-desktop',
-						  'ts-show-tablet',
-						  'ts-show-mobile',
-						  'ts-hide-desktop',
-						  'ts-hide-tablet',
-						  'ts-hide-mobile'
-						];
-						  clazzNames.forEach(function(clazz){
-						    out.html += '<div class="docs-responsive-demo ' + $val(clazz) + '">' +
-						                '<code>.' + $txt(clazz) + '</code>' +
-						                '</div>';
-						  });
-						  return out.write();
+                                edbml.declare('edbml.$5Wctf0').as(function $edbml() {
+						/*``*/
+							'use strict';
+							var out = $edbml.$out,
+								$txt = edbml.safetext,
+								$val = edbml.safeattr;
+							var clazzNames = [
+								'ts-show-mobile-only',
+								'ts-show-tablet-only',
+								'ts-show-desktop-only',
+								'ts-hide-mobile-only',
+								'ts-hide-tablet-only',
+								'ts-hide-desktop-only',
+								'ts-show-desktop',
+								'ts-show-tablet',
+								'ts-show-mobile',
+								'ts-hide-desktop',
+								'ts-hide-tablet',
+								'ts-hide-mobile'
+							];
+							clazzNames.forEach(function(clazz) {
+								out.html += '<div class="docs-responsive-demo ' + $val(clazz) + '">' +
+								            '<code>.' + $txt(clazz) + '</code>' +
+								            '</div>';
+							});
+							return out.write();
 						});
 						</script>
                         </section>

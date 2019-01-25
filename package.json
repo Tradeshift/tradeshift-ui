@@ -33,8 +33,7 @@
     "prelease": "release-it --config=.release-it.beta.json --npm.tag=next",
     "****** TEST *****": "",
     "test": "npm run eslint & grunt jasmine & wait && node tasks/browserstack.js",
-    "http":
-      "static spec/jasmine -H '{\"Cache-Control\": \"no-cache, must-revalidate\"}' -a 0.0.0.0",
+    "http": "static spec/jasmine -H '{\"Cache-Control\": \"no-cache, must-revalidate\"}' -a 0.0.0.0",
     "****** NODE *****": "",
     "postinstall": "cd docs && npm ci",
     "precommit": "lint-staged",
@@ -42,11 +41,24 @@
     "package-dist": "node tasks/package-dist.js"
   },
   "lint-staged": {
-    "*.js": ["prettier --write", "eslint --config ./.eslintrc.json", "git add"],
-    "*.json": ["prettier --write", "git add"],
-    "*.less": ["prettier --write", "git add"]
+    "*.js": [
+      "prettier --write",
+      "eslint --config ./.eslintrc.json",
+      "git add"
+    ],
+    "*.json": [
+      "prettier --write",
+      "git add"
+    ],
+    "*.less": [
+      "prettier --write",
+      "git add"
+    ]
   },
-  "browserslist": ["Last 2 versions", "ie 11"],
+  "browserslist": [
+    "Last 2 versions",
+    "ie 11"
+  ],
   "devDependencies": {
     "alce": "^1.2.0",
     "ali-oss": "^4.10.1",

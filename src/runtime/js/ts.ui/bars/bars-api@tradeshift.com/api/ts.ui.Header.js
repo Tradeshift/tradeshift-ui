@@ -178,7 +178,7 @@ ts.ui.Header = (function using(chained) {
 		}),
 
 		/**
-		 * @TODO TODO: ts.ui.Header.localize
+		 * @TODO ts.ui.Header.localize
 		 */
 		localize: function(locale) {},
 

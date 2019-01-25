@@ -85,16 +85,18 @@ ts.ui.ready(function rendercolors() {
 
 		colorChips.forEach(function(colorChip) {
 			colorChip.addEventListener('click', function(e) {
-				var input = document.createElement('input');
-				input.id = 'copyInput';
-				input.value = e.target.querySelector('.color-code').textContent;
-				document.body.appendChild(input);
+				try {
+					var input = document.createElement('input');
+					input.id = 'copyInput';
+					input.value = e.target.querySelector('.color-name').textContent;
+					document.body.appendChild(input);
 
-				var copyText = document.getElementById('copyInput');
-				copyText.select();
-				document.execCommand('copy');
-				ts.ui.Notification.success('Color ' + copyText.value + ' copied to your clipboard.');
-				document.body.removeChild(input);
+					var copyText = document.getElementById('copyInput');
+					copyText.select();
+					document.execCommand('copy');
+					ts.ui.Notification.success('Color ' + copyText.value + ' copied to your clipboard.');
+					document.body.removeChild(input);
+				} catch (e) {}
 			});
 		});
 	}

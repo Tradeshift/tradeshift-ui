@@ -7,11 +7,11 @@
     <link rel="ts-app-icon" href="/v12/dist/assets/icon.svg">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
-    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.0.0-beta.0.min.js"></script>
+    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.0.0.min.js"></script>
     <script src="/v12/dist/assets/dox.min.js"></script>
     <script src="/v12/dist/assets/mark.min.js"></script>
     <script src="/v12/dist/assets/jquery-2.2.4.min.js"></script>
-    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.0.0-beta.0.min.css">
+    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.0.0.min.css">
     <link rel="stylesheet" href="/v12/dist/assets/dox.css">
     <link rel="prefetch" title="HTML" href="index.html">
     <link rel="prefetch" title="Disabled / Readonly" href="disabled.html">
@@ -28,17 +28,21 @@
 						aside.open();
 					});
 					$(".ts-user-menu button").click(function(e){
+						$('.ts-icon-checked').remove();
+						$('.ts-user-menu li').removeClass('ts-checked');
 						var name = $(e.currentTarget).data("user");
+						$(e.currentTarget).parent('li').addClass('ts-checked');
+						$(e.currentTarget).append('<i class="ts-icon-checked"></i>');
 						$("#mySelect").val(name);
 						ts.ui.Notification.success(name);
-						aside.close()
+						aside.close();
 					});
 				});
 			});
 		</script>
     <style>
         .user-container div {
-				margin: 11px;
+				margin: 10px;
 				cursor: pointer;
 			}
 		</style>
@@ -179,26 +183,30 @@
                         </section>
                         <section>
                             <p>4. Update the <code class="el">select</code> whenever something is clicked in the Aside.</p>
-                            <figure data-ts="DoxScript" data-ts.code="%24(%22.ts-user-menu%20button%22).click(function(e)%7B%0A%09var%20name%20%3D%20%24(e.currentTarget).data(%22user%22)%3B%0A%09%24(%22%23mySelect%22).val(name)%3B%0A%09ts.ui.Notification.success(name)%3B%0A%09ts.ui.get(%22%23myAside%22%2C%20function(aside)%20%7B%0A%09%09aside.close()%0A%09%7D)%3B%0A%7D)%3B">
+                            <figure data-ts="DoxScript" data-ts.code="%24(%22.ts-user-menu%20button%22).click(function(e)%7B%0A%09%24(&apos;.ts-icon-checked&apos;).remove()%3B%0A%09%24(&apos;.ts-user-menu%20li&apos;).removeClass(&apos;ts-checked&apos;)%3B%0A%09var%20name%20%3D%20%24(e.currentTarget).data(%22user%22)%3B%0A%09%24(e.currentTarget).parent(&apos;li&apos;).addClass(&apos;ts-checked&apos;)%3B%0A%09%24(e.currentTarget).append(&apos;%3Ci%20class%3D%22ts-icon-checked%22%3E%3C%2Fi%3E&apos;)%3B%0A%09%24(%22%23mySelect%22).val(name)%3B%0A%09ts.ui.Notification.success(name)%3B%0A%09aside.close()%3B%0A%7D)%3B">
                                 <script type="text/html">
                                     $(".ts-user-menu button").click(function(e){
+							$('.ts-icon-checked').remove();
+							$('.ts-user-menu li').removeClass('ts-checked');
 							var name = $(e.currentTarget).data("user");
+							$(e.currentTarget).parent('li').addClass('ts-checked');
+							$(e.currentTarget).append('<i class="ts-icon-checked"></i>');
 							$("#mySelect").val(name);
 							ts.ui.Notification.success(name);
-							ts.ui.get("#myAside", aside => {
-								aside.close()
-							});
+							aside.close();
 						});
 					</script>
                                 <input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
                                 <div data-ts="Panel">
                                     <pre class="prism language-javascript"><code>$<span class="token punctuation">(</span><span class="token string">&quot;.ts-user-menu button&quot;</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">click<span class="token punctuation">(</span></span><span class="token keyword">function</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span><span class="token punctuation">{</span>
+	$<span class="token punctuation">(</span><span class="token string">&apos;.ts-icon-checked&apos;</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">remove<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	$<span class="token punctuation">(</span><span class="token string">&apos;.ts-user-menu li&apos;</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">removeClass<span class="token punctuation">(</span></span><span class="token string">&apos;ts-checked&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 	<span class="token keyword">var</span> name <span class="token operator">=</span> $<span class="token punctuation">(</span>e<span class="token punctuation">.</span>currentTarget<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">data<span class="token punctuation">(</span></span><span class="token string">&quot;user&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	$<span class="token punctuation">(</span>e<span class="token punctuation">.</span>currentTarget<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">parent<span class="token punctuation">(</span></span><span class="token string">&apos;li&apos;</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">addClass<span class="token punctuation">(</span></span><span class="token string">&apos;ts-checked&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	$<span class="token punctuation">(</span>e<span class="token punctuation">.</span>currentTarget<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">append<span class="token punctuation">(</span></span><span class="token string">&apos;&lt;i class=&quot;ts-icon-checked&quot;&gt;&lt;/i&gt;&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 	$<span class="token punctuation">(</span><span class="token string">&quot;#mySelect&quot;</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">val<span class="token punctuation">(</span></span>name<span class="token punctuation">)</span><span class="token punctuation">;</span>
 	ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Notification<span class="token punctuation">.</span><span class="token function">success<span class="token punctuation">(</span></span>name<span class="token punctuation">)</span><span class="token punctuation">;</span>
-	ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&quot;#myAside&quot;</span><span class="token punctuation">,</span> aside <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
-		aside<span class="token punctuation">.</span><span class="token function">close<span class="token punctuation">(</span></span><span class="token punctuation">)</span>
-	<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	aside<span class="token punctuation">.</span><span class="token function">close<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
                                 </div>
                             </figure>

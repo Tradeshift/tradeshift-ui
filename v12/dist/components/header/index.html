@@ -7,11 +7,11 @@
     <link rel="ts-app-icon" href="/v12/dist/assets/icon.svg">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
-    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.0.0-beta.0.min.js"></script>
+    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.0.0.min.js"></script>
     <script src="/v12/dist/assets/dox.min.js"></script>
     <script src="/v12/dist/assets/mark.min.js"></script>
     <script src="/v12/dist/assets/jquery-2.2.4.min.js"></script>
-    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.0.0-beta.0.min.css">
+    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.0.0.min.css">
     <link rel="stylesheet" href="/v12/dist/assets/dox.css">
     <link rel="prefetch" title="Header" href="index.html">
     <link rel="prefetch" title="Tabs" href="tabs.html">
@@ -30,27 +30,30 @@
                     <article>
                         <h1><span>Header</span></h1>
                         <section class="desc">
-                            <p>Unless you know exactly what you are doing and why your app doesn&apos;t need a Header, you should always configure the Header with an icon and a title.</p>
+                            <p>Unless you know exactly what you are doing and why your app doesn&apos;t need a Header, you should always configure the Header with an icon and a title. You can configure the color as well, the default one is white.</p>
                         </section>
                         <section>
                             <p>These can be configured via metatags in the document <code>head</code> section</p>
-                            <figure data-ts="DoxMarkup" data-ts.code="%3Cmeta%20name%3D%22ts-app-title%22%20content%3D%22Header%22%2F%3E%0A%3Clink%20rel%3D%22ts-app-icon%22%20href%3D%22assets%2Fappicon.svg%22%2F%3E">
+                            <figure data-ts="DoxMarkup" data-ts.code="%3Cmeta%20name%3D%22ts-app-title%22%20content%3D%22Header%22%2F%3E%0A%3Cmeta%20name%3D%22ts-app-color%22%20content%3D%22ts-blue%22%2F%3E%0A%3Clink%20rel%3D%22ts-app-icon%22%20href%3D%22assets%2Fappicon.svg%22%2F%3E">
                                 <script type="text/html">
                                     <meta name="ts-app-title" content="Header"/>
+						<meta name="ts-app-color" content="ts-blue"/>
 						<link rel="ts-app-icon" href="assets/appicon.svg"/>	
 					</script>
                                 <ul data-ts="Panels">
                                     <li data-ts="Panel" data-ts.selected="true">
                                         <pre class="prism language-markup"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>ts-app-title<span class="token punctuation">&quot;</span></span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Header<span class="token punctuation">&quot;</span></span><span class="token punctuation">/&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>ts-app-color<span class="token punctuation">&quot;</span></span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>ts-blue<span class="token punctuation">&quot;</span></span><span class="token punctuation">/&gt;</span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>link</span> <span class="token attr-name">rel</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>ts-app-icon<span class="token punctuation">&quot;</span></span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>assets/appicon.svg<span class="token punctuation">&quot;</span></span><span class="token punctuation">/&gt;</span></span></code></pre>
                                     </li>
                                 </ul>
                             </figure>
                             <p>&#x2014; or via attributes on the <code class="attr-value">App</code> element as seen in your <a data-ts="Button" href="/v12/dist/getstarted/layout.html">basic layout</a></p>
-                            <figure data-ts="DoxMarkup" data-ts.code="%3Cdiv%20data-ts%3D%22App%22%20%0A%09data-ts.title%3D%22Header%22%0A%09data-ts.icon%3D%22assets%2Fappicon.svg%22%3E%09%0A%3C%2Fdiv%3E">
+                            <figure data-ts="DoxMarkup" data-ts.code="%3Cdiv%20data-ts%3D%22App%22%20%0A%09data-ts.title%3D%22Header%22%0A%09data-ts.color%3D%22ts-blue%22%0A%09data-ts.icon%3D%22assets%2Fappicon.svg%22%3E%09%0A%3C%2Fdiv%3E">
                                 <script type="text/html">
                                     <div data-ts="App" 
 							data-ts.title="Header"
+							data-ts.color="ts-blue"
 							data-ts.icon="assets/appicon.svg">	
 						</div>
 					</script>
@@ -58,25 +61,31 @@
                                     <li data-ts="Panel" data-ts.selected="true">
                                         <pre class="prism language-markup"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>App<span class="token punctuation">&quot;</span></span> 
 	<span class="token attr-name">data-ts</span>.<span class="token attr-name">title</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Header<span class="token punctuation">&quot;</span></span>
+	<span class="token attr-name">data-ts</span>.<span class="token attr-name">color</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>ts-blue<span class="token punctuation">&quot;</span></span>
 	<span class="token attr-name">data-ts</span>.<span class="token attr-name">icon</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>assets/appicon.svg<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>	
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span></code></pre>
                                     </li>
                                 </ul>
                             </figure>
                             <p>&#x2014; or with JavaScript via the <code>ts.ui.Header</code> API.</p>
-                            <figure data-ts="DoxScript" data-ts.code="ts.ui.Header.title(&apos;Header&apos;).icon(&apos;assets%2Fappicon.svg&apos;)%3B">
+                            <figure data-ts="DoxScript" data-ts.code="ts.ui.Header.title(&apos;Header&apos;).icon(&apos;assets%2Fappicon.svg&apos;).color(&apos;ts-blue&apos;)%3B">
                                 <script type="text/html">
-                                    ts.ui.Header.title('Header').icon('assets/appicon.svg');
+                                    ts.ui.Header.title('Header').icon('assets/appicon.svg').color('ts-blue');
 					</script>
                                 <input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
                                 <div data-ts="Panel">
-                                    <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Header<span class="token punctuation">.</span><span class="token function">title<span class="token punctuation">(</span></span><span class="token string">&apos;Header&apos;</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">icon<span class="token punctuation">(</span></span><span class="token string">&apos;assets/appicon.svg&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+                                    <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Header<span class="token punctuation">.</span><span class="token function">title<span class="token punctuation">(</span></span><span class="token string">&apos;Header&apos;</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">icon<span class="token punctuation">(</span></span><span class="token string">&apos;assets/appicon.svg&apos;</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">color<span class="token punctuation">(</span></span><span class="token string">&apos;ts-blue&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
                                 </div>
                             </figure>
+                            <div data-ts="Note">
+                                <i class="ts-icon-info"></i>
+                                <p>All colors we support are: <code class="attr-value">ts-blue,</code><code class="attr-value">ts-red,</code><code class="attr-value">ts-orange,</code><code class="attr-value">ts-yellow,</code><code class="attr-value">ts-green,</code><code class="attr-value">ts-purple,</code><code class="attr-value">ts-pink,</code><code class="attr-value">ts-gray,</code><code class="attr-value">ts-slate,</code><code class="attr-value">ts-black</code> and the default is white..
+                                </p>
+                            </div>
                         </section>
                         <section>
                             <p>Here&apos;s an overview of the Header API.</p>
-                            <div data-ts="DoxApi" data-ts.code="%7B%0A%09name%3A%20%22ts.ui.Header%22%2C%0A%09methods%3A%20%5B%0A%09%09%7B%0A%09%09%09name%3A%20&apos;tabs&apos;%2C%0A%09%09%09args%3A%20&apos;(Array%3CObject%3E)&apos;%2C%0A%09%09%09desc%3A%20&apos;Get%20or%20set%20the%20%5Btabs%5D(%2F%23components%2Fheader%2Ftabs.html)&apos;%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20&apos;buttons&apos;%2C%0A%09%09%09args%3A%20&apos;(Array%3CObject%3E)&apos;%2C%0A%09%09%09desc%3A%20&apos;Get%20or%20set%20the%20%5Bbuttons%5D(%2F%23components%2Fheader%2Fbuttons.html).&apos;%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20&apos;search&apos;%2C%0A%09%09%09args%3A%20&apos;(Object)&apos;%2C%0A%09%09%09desc%3A%20&apos;Get%20or%20set%20the%20%5Bsearch%5D(%2F%23components%2Fheader%2Fsearch.html)&apos;%0A%09%09%7D%0A%09%5D%0A%7D">
+                            <div data-ts="DoxApi" data-ts.code="%7B%0A%09%22name%22%3A%20%22ts.ui.Header%22%2C%0A%09%22methods%22%3A%20%5B%0A%09%09%7B%0A%09%09%09%22name%22%3A%20%22tabs%22%2C%0A%09%09%09%22args%22%3A%20%22(Array%3CObject%3E)%22%2C%0A%09%09%09%22desc%22%3A%20%22Get%20or%20set%20the%20%5Btabs%5D(%2F%23components%2Fheader%2Ftabs.html)%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09%22name%22%3A%20%22buttons%22%2C%0A%09%09%09%22args%22%3A%20%22(Array%3CObject%3E)%22%2C%0A%09%09%09%22desc%22%3A%20%22Get%20or%20set%20the%20%5Bbuttons%5D(%2F%23components%2Fheader%2Fbuttons.html).%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09%22name%22%3A%20%22search%22%2C%0A%09%09%09%22args%22%3A%20%22(Object)%22%2C%0A%09%09%09%22desc%22%3A%20%22Get%20or%20set%20the%20%5Bsearch%5D(%2F%23components%2Fheader%2Fsearch.html)%22%0A%09%09%7D%0A%09%5D%0A%7D">
                             </div>
                         </section>
                         <div data-ts="Note" class="sticky">

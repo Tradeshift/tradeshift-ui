@@ -7,11 +7,11 @@
     <link rel="ts-app-icon" href="/v12/dist/assets/icon.svg">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
-    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.0.0-beta.0.min.js"></script>
+    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.0.0.min.js"></script>
     <script src="/v12/dist/assets/dox.min.js"></script>
     <script src="/v12/dist/assets/mark.min.js"></script>
     <script src="/v12/dist/assets/jquery-2.2.4.min.js"></script>
-    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.0.0-beta.0.min.css">
+    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.0.0.min.css">
     <link rel="stylesheet" href="/v12/dist/assets/dox.css">
     <script>
         var LayoutModel = ts.ui.Model.extend({
@@ -25,7 +25,7 @@
     </script>
     <style>
         .ts-form {
-            margin-top: -22px;
+            margin-top: -20px;
             /* hack for empty SPAN */
         }
 
@@ -37,89 +37,102 @@
 
 <body data-ts="Spirit" id="body">
     <script class="gui-script" data-ts.scriptid="edbml.$iSNtu1">
-        edbml.declare("edbml.$iSNtu1").as(function $edbml(
-            /*``*/
-        ) {
-            'use strict';
-            var out = $edbml.$out,
-                $set = edbml.$set,
-                $txt = edbml.safetext,
-                $val = edbml.safeattr,
-                layout = $edbml.$input(LayoutModel);
-            if (layout.topBar) {
-                out.html += '<header data-ts="TopBar" id="topbar" data-ts.title="TopBar"></header>';
-            }
-            if (layout.sideBarBefore) {
-                out.html += '<aside data-ts="SideBar" id="sidebar-before" data-ts.title="SideBar before Main">' +
-                    '<div data-ts="Panel">' +
-                    '<p>SideBar content.</p>' +
-                    '</div>' +
-                    '<footer data-ts="Footer">' +
-                    '<p>Optional SideBar footer.</p>' +
-                    '</footer>' +
-                    '</aside>';
-            }
-            if (layout.toolBarBefore) {
-                out.html += '<header id="toolbar-before" data-ts="ToolBar" data-ts.title="ToolBar before Main"></header>';
-            }
-            out.html += '<main data-ts="Main" id="main">' +
-                '<div data-ts="MainContent">' +
-                '<article>' +
-                '<div class="article-maxwidth">' +
-                '<h1>Automated layout</h1>' +
-                '<section>' +
-                '<p> We don&apos;t have a lot of layouts yet, but the page will automatically transform into a classic "three column layout with fixed header(s) and footer" as certain components are added. You can toggle these components in the checklist.' +
-                '</p>' +
-                '<form data-ts="Form">' +
-                '<fieldset>' +
-                '<span></span>';
-
-            function checkbox(text, prop, localhost) {
-                if (!localhost || location.hostname === 'localhost') {
-                    out.html += '<label>';
-                    var $1 = $set(function(value, checked) {
-                        layout[prop] = checked;
-                    }, this);
-                    out.html += '<input type="checkbox" checked="' + $val(layout[prop]) + '" onchange="edbml.$run(this, \'' + $1 + '\');"/>' +
-                        '<span>' + $txt(text) + '</span>' +
-                        '</label>';
+        edbml
+            .declare('edbml.$iSNtu1')
+            .as(function $edbml() {
+                /*``*/
+                'use strict';
+                var out = $edbml.$out,
+                    $set = edbml.$set,
+                    $txt = edbml.safetext,
+                    $val = edbml.safeattr,
+                    layout = $edbml.$input(LayoutModel);
+                if (layout.topBar) {
+                    out.html +=
+                        '<header data-ts="TopBar" id="topbar" data-ts.title="TopBar"></header>';
                 }
-            }
-            checkbox('TopBar', 'topBar');
-            checkbox('ToolBar before Main (DEPRECATED)', 'toolBarBefore', true);
-            checkbox('ToolBar after Main (DEPRECATED)', 'toolBarAfter', true);
-            checkbox('SideBar before Main', 'sideBarBefore');
-            checkbox('SideBar after Main', 'sideBarAfter');
-            out.html += '</fieldset>' +
-                '</form>' +
-                '</section>' +
-                '<div id="note" data-ts="Note" class="ts-show-mobile-only">' +
-                '<i class="ts-icon-todo"></i>' +
-                '<p>TODO: Save this page in mobile breakpoint!</p>' +
-                '</div>' +
-                '</div>' +
-                '</article>' +
-                '</div>';
-            if (layout.toolBarAfter) {
-                out.html += '<footer data-ts="ToolBar" id="toolbar-after" data-ts.title="ToolBar after Main"></footer>';
-            }
-            if (layout.sideBarAfter) {
-                out.html += '<aside data-ts="SideBar" id="sidebar-after" data-ts.title="SideBar after Main">' +
-                    '<div data-ts="Panel">' +
-                    '<p>SideBar content.</p>' +
+                if (layout.sideBarBefore) {
+                    out.html +=
+                        '<aside data-ts="SideBar" id="sidebar-before" data-ts.title="SideBar before Main">';
+                    out.html += '<div data-ts="Panel">' +
+                        '<p>SideBar content.</p>' +
+                        '</div>' +
+                        '<footer data-ts="Footer">' +
+                        '<p>Optional SideBar footer.</p>' +
+                        '</footer>' +
+                        '</aside>';
+                }
+                if (layout.toolBarBefore) {
+                    out.html +=
+                        '<header id="toolbar-before" data-ts="ToolBar" data-ts.title="ToolBar before Main"></header>';
+                }
+                out.html += '<main data-ts="Main" id="main">' +
+                    '<div data-ts="MainContent">' +
+                    '<article>' +
+                    '<div class="article-maxwidth">' +
+                    '<h1>Automated layout</h1>' +
+                    '<section>';
+                out.html +=
+                    '<p> We don&apos;t have a lot of layouts yet, but the page will automatically transform into a classic "three column layout with fixed header(s) and footer" as certain components are added. You can toggle these components in the checklist.';
+                out.html += '</p>' +
+                    '<form data-ts="Form">' +
+                    '<fieldset>' +
+                    '<span></span>';
+
+                function checkbox(text, prop, localhost) {
+                    if (!localhost || location.hostname === 'localhost') {
+                        out.html += '<label>';
+                        var $1 = $set(function(value, checked) {
+                            layout[prop] = checked;
+                        }, this);
+                        out.html +=
+                            '<input type="checkbox" checked="' +
+                            $val(layout[prop]) +
+                            '" onchange="edbml.$run(this, \'' +
+                            $1 +
+                            '\');"/>';
+                        out.html += '<span>' + $txt(text) + '</span>' +
+                            '</label>';
+                    }
+                }
+                checkbox('TopBar', 'topBar');
+                checkbox('ToolBar before Main (DEPRECATED)', 'toolBarBefore', true);
+                checkbox('ToolBar after Main (DEPRECATED)', 'toolBarAfter', true);
+                checkbox('SideBar before Main', 'sideBarBefore');
+                checkbox('SideBar after Main', 'sideBarAfter');
+                out.html += '</fieldset>' +
+                    '</form>' +
+                    '</section>' +
+                    '<div id="note" data-ts="Note" class="ts-show-mobile-only">' +
+                    '<i class="ts-icon-todo"></i>' +
+                    '<p>TODO: Save this page in mobile breakpoint!</p>' +
                     '</div>' +
-                    '<footer data-ts="Footer">' +
-                    '<p>Optional SideBar footer.</p>' +
-                    '</footer>' +
-                    '</aside>';
-            }
-            return out.write();
-        }).withInstructions([{
-            input: {
-                name: "layout",
-                type: "LayoutModel"
-            }
-        }]);
+                    '</div>' +
+                    '</article>' +
+                    '</div>';
+                if (layout.toolBarAfter) {
+                    out.html +=
+                        '<footer data-ts="ToolBar" id="toolbar-after" data-ts.title="ToolBar after Main"></footer>';
+                }
+                if (layout.sideBarAfter) {
+                    out.html +=
+                        '<aside data-ts="SideBar" id="sidebar-after" data-ts.title="SideBar after Main">';
+                    out.html += '<div data-ts="Panel">' +
+                        '<p>SideBar content.</p>' +
+                        '</div>' +
+                        '<footer data-ts="Footer">' +
+                        '<p>Optional SideBar footer.</p>' +
+                        '</footer>' +
+                        '</aside>';
+                }
+                return out.write();
+            })
+            .withInstructions([{
+                input: {
+                    name: 'layout',
+                    type: 'LayoutModel'
+                }
+            }]);
     </script>
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-127106947-1"></script>
     <script>

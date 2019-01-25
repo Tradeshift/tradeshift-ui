@@ -7,11 +7,11 @@
     <link rel="ts-app-icon" href="/v12/dist/assets/icon.svg">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
-    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.0.0-beta.0.min.js"></script>
+    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.0.1.min.js"></script>
     <script src="/v12/dist/assets/dox.min.js"></script>
     <script src="/v12/dist/assets/mark.min.js"></script>
     <script src="/v12/dist/assets/jquery-2.2.4.min.js"></script>
-    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.0.0-beta.0.min.css">
+    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.0.1.min.css">
     <link rel="stylesheet" href="/v12/dist/assets/dox.css">
     <link rel="prefetch" title="Footer" href="index.html">
     <link rel="prefetch" title="Buttons" href="buttons.html">
@@ -30,14 +30,6 @@
                 <div data-ts="Panel">
                     <article>
                         <h1><span>Footer collabbutton</span></h1>
-                        <!--
-				<section class="desc">
-					<div data-ts="Note">
-						<i class="ts-icon-info"></i>
-						<p>This is an <strong>alpha</strong> preview. All features and APIs can be expected to change. The <code>collabutton</code> is particularly susceptible to changes in the near future!</p>
-					</div>
-				</section>
-				-->
                         <section>
                             <p>The Footer features a special button which is dedicated to launching the <em>collaboration</em> panel. To show the button, simply call the method <code>configbutton</code> with a callback.</p>
                             <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.Footer.collabbutton(function%20onclick()%20%7B%0A%09ts.ui.Notification.success(&apos;Go%20collaborate!&apos;)%3B%0A%7D)%3B">
@@ -52,6 +44,23 @@
 	ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Notification<span class="token punctuation">.</span><span class="token function">success<span class="token punctuation">(</span></span><span class="token string">&apos;Go collaborate!&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
                             </figure>
+                            <h3><span>Showing a notification badge</span></h3>
+                            <p>The collaboration button can have two states: a default state and a state showing a notification badge. The default
+                                state shows just the special button. The notification state shows the special button as well as a small notification
+                                badge over the icon. To show the button with the notification state, add <code>true</code> as a second argument to the
+                                <code>configbutton</code> method.</p>
+                            <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.Footer.collabbutton(function%20onclick()%20%7B%0A%09ts.ui.Notification.success(&apos;Go%20collaborate!&apos;)%3B%0A%7D%2C%20true)%3B">
+                                <script type="runnable">
+                                    ts.ui.Footer.collabbutton(function onclick() {
+								ts.ui.Notification.success('Go collaborate!');
+							}, true);
+						</script>
+                                <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                                <div data-ts="Panel">
+                                    <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Footer<span class="token punctuation">.</span><span class="token function">collabbutton<span class="token punctuation">(</span></span><span class="token keyword">function</span> <span class="token function">onclick<span class="token punctuation">(</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Notification<span class="token punctuation">.</span><span class="token function">success<span class="token punctuation">(</span></span><span class="token string">&apos;Go collaborate!&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token keyword">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
+                            </figure>
                             <p>Note that the Footer doesn&apos;t automatically initialize or resume the collbaroration. The API for this will be provided elsewhere. You can hide the collaboration button by passing <code>null</code> to the same method.</p>
                             <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.Footer.collabbutton(null)%3B">
                                 <script type="runnable">
@@ -61,7 +70,7 @@
                                 <div data-ts="Panel">
                                     <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Footer<span class="token punctuation">.</span><span class="token function">collabbutton<span class="token punctuation">(</span></span><span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
                             </figure>
-                            <div data-ts="DoxApi" data-ts.code="%7B%0A%09name%3A%20%22ts.ui.Footer%22%2C%0A%09methods%3A%20%5B%0A%09%09%7B%0A%09%09%09name%3A%20&apos;collabbutton&apos;%2C%0A%09%09%09args%3A%20&apos;(%3CFunction%7Cnull%3E)&apos;%2C%0A%09%09%09desc%3A%20&apos;Get%20or%20set%20the%20collaboration%20button.%20Pass%20%60null%60%20to%20remove%20the%20whole%20button.&apos;%0A%09%09%7D%0A%09%5D%0A%7D">
+                            <div data-ts="DoxApi" data-ts.code="%7B%0A%09%22name%22%3A%20%22ts.ui.Footer%22%2C%0A%09%22methods%22%3A%20%5B%0A%09%09%7B%0A%09%09%09%22name%22%3A%20%22collabbutton%22%2C%0A%09%09%09%22args%22%3A%20%22(%3CFunction%7Ctrue%7Cnull%3E)%22%2C%0A%09%09%09%22desc%22%3A%20%22Get%20or%20set%20the%20collaboration%20button.%20Pass%20%60true%60%20as%20a%20second%20argument%20to%20show%20a%20notification%20badge.%20Pass%20%60null%60%20to%20remove%20the%20whole%20button.%22%0A%09%09%7D%0A%09%5D%0A%7D">
                             </div>
                         </section>
                         <div data-ts="Note" class="sticky">

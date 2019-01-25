@@ -1,7 +1,8 @@
 {
 	"verbose": true,
 	"requireCleanWorkingDir": true,
-	"changelogCommand": "echo \"### Commits\n$(git log --no-merges --pretty=format:'* %s (%h)' [REV_RANGE])\"",
+	"changelogCommand":
+		"echo \"### Commits\n$(git log --no-merges --pretty=format:'* %s (%h)' [REV_RANGE])\"",
 	"src": {
 		"commitMessage": "Release v%s",
 		"tagName": "v%s",
@@ -9,7 +10,8 @@
 		"beforeStartCommand": "grunt clean && npm run lint",
 		"afterReleaseCommand": "echo Successfully released Tradeshift UI v${version}."
 	},
-	"buildCommand": "grunt check_cdn:cdn && echo 'Building Tradeshift UI…' && grunt dist && npm run package-dist -- latest && echo 'Uploading to S3…' && grunt exec:s3_upload",
+	"buildCommand":
+		"grunt check_cdn:cdn && echo 'Building Tradeshift UI…' && grunt dist && npm run package-dist -- latest && echo 'Uploading to S3…' && grunt exec:s3_upload",
 	"github": {
 		"release": true,
 		"releaseName": "v%s",

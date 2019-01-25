@@ -21,7 +21,7 @@
 				"path": "design/patterns/"
 			},
 			{
-				"label": "Product Copy",
+				"label": "UI Copy",
 				"icon": "docs-icon-spelling-check-1",
 				"path": "design/copy/"
 			}
@@ -70,7 +70,7 @@
 			},
 			{
 				"label": "Footer",
-				"icon": "docs-icon-video-games-space-invaders-1",
+				"icon": "docs-icon-boots-1",
 				"path": "components/footer/"
 			},
 			{
@@ -80,7 +80,7 @@
 			},
 			{
 				"label": "Header",
-				"icon": "docs-icon-video-games-space-invaders-1",
+				"icon": "docs-icon-alien-head",
 				"path": "components/header/"
 			},
 			{
@@ -90,7 +90,7 @@
 			},
 			{
 				"label": "Mains",
-				"icon": "docs-icon-video-games-space-invaders-1",
+				"icon": "docs-icon-plug-1",
 				"path": "components/mains/"
 			},
 			{
@@ -110,7 +110,7 @@
 			},
 			{
 				"label": "Notification",
-				"icon": "docs-icon-chat-bubble-square-alert-2",
+				"icon": "docs-icon-interface-alert-triangle",
 				"path": "components/notifications/"
 			},
 			{
@@ -169,7 +169,7 @@
 		"label": "Appendix…",
 		"note": "MUST MANUALLY SYNCHRONIZE THE PAGE /#appendix/ TO THIS JSON!",
 		"path": "appendix/",
-		"icon": "docs-icon-video-games-space-invaders-1",
+		"icon": "docs-icon-content-book-5",
 		"items": [
 			{
 				"label": "Responsive Design",
@@ -192,61 +192,9 @@
 				"path": "appendix/markdown/"
 			},
 			{
-				"hidden": true,
-				"label": "Automated Layout",
-				"icon": "docs-icon-window-application-6",
-				"path": "appendix/autolayout/"
-			},
-			{
 				"label": "Automagic Focus",
 				"icon": "docs-icon-focus-2",
 				"path": "appendix/autofocus/"
-			}
-		]
-	},
-	{
-		"label": "Playground",
-		"hidden": true,
-		"icon": "docs-icon-video-games-space-invaders-1",
-		"items": [
-			{
-				"label": "Automated Layout",
-				"icon": "docs-icon-window-application-6",
-				"path": "playground/autolayout/"
-			},
-			{
-				"label": "Automagic Focus",
-				"icon": "docs-icon-focus-2",
-				"path": "playground/autofocus/"
-			}
-		]
-	},
-	{
-		"label": "The Lab",
-		"hidden": true,
-		"icon": "docs-icon-beaker-science",
-		"items": [
-			{
-				"label": "Root Panels",
-				"icon": "docs-icon-window-tabs-3",
-				"path": "development/rootpanels/"
-			}
-		]
-	},
-	{
-		"label": "Resources",
-		"icon": "docs-icon-file-tasks-add",
-		"hidden": true,
-		"items": [
-			{
-				"label": "GitHub",
-				"icon": "docs-icon-files-coding-1",
-				"path": "https://github.com/Tradeshift/Client-Runtime"
-			},
-			{
-				"label": "Spiritual",
-				"icon": "docs-icon-file-favorite-heart-1",
-				"path": "http://spiritual.js.org/"
 			}
 		]
 	}

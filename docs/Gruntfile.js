@@ -5,7 +5,6 @@ const bsshooter = require('./tasks/shooter.js');
 const cheerio = require('cheerio');
 const path = require('path');
 const fs = require('fs');
-const S = require('string');
 
 var stackconf = {
 	username: process.env.BROWSERSTACK_USERNAME,
@@ -457,6 +456,12 @@ module.exports = function(grunt) {
 		function indexPages() {
 			var pagesIndex = [];
 			grunt.file.recurse(prefix, function(abspath, rootdir, subdir, filename) {
+				/**
+				 * Don't parse the hidden design docs
+				 */
+				if (abspath.includes('dist/design')) {
+					return;
+				}
 				grunt.verbose.writeln('Parse file:', abspath);
 				pagesIndex.push(processFile(abspath, filename));
 			});
@@ -464,7 +469,7 @@ module.exports = function(grunt) {
 		}
 		function processFile(abspath, filename) {
 			var pageIndex;
-			if (S(filename).endsWith('.html')) {
+			if ((filename || '').endsWith('.html')) {
 				pageIndex = processHTMLFile(abspath, filename);
 			}
 			return pageIndex;
@@ -475,19 +480,43 @@ module.exports = function(grunt) {
 			var dom = cheerio.load(raw.substring(ix1, ix2));
 			return dom.root().text();
 		}
+
 		function processHTMLFile(abspath, filename) {
 			var raw = grunt.file.read(abspath);
 			if (!(raw.includes('robots') && raw.includes('noindex'))) {
 				var content = ignoreHTML(raw);
-				var title = S(raw).between('<title>', '</title>').s;
-				var href = S(abspath).chompLeft(prefix).s;
+
+				// var title = require('string')(raw).between('<title>', '</title>').s;
+				var title;
+				var left = '<title>';
+				var right = '</title>';
+				var startPos = raw.indexOf(left);
+				var endPos = raw.indexOf(right, startPos + left.length);
+				if (endPos === -1 && !!right) {
+					title = '';
+				} else if (endPos === -1 && !right) {
+					title = raw.substring(startPos + left.length);
+				} else {
+					title = raw.slice(startPos + left.length, endPos);
+				}
+
+				// var href = require('string')(abspath).chompLeft(prefix).s;
+				var href = abspath;
+				if (abspath.indexOf(prefix) === 0) {
+					href = abspath.slice(prefix.length);
+				}
+
+				// content = require('string')(content).trim().stripTags().stripPunctuation().s;
+				content = content
+					.trim()
+					.replace(RegExp('</?[^<>]*>', 'gi'), '')
+					.replace(/[^\w\s]|_/g, '')
+					.replace(/\s+/g, ' ');
+
 				return {
 					title: title,
 					href: href,
-					content: S(content)
-						.trim()
-						.stripTags()
-						.stripPunctuation().s
+					content: content
 				};
 			}
 		}

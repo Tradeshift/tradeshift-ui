@@ -182,6 +182,13 @@ ts.ui.CalendarSpirit = (function() {
 			onselect: null,
 
 			/**
+			 * Customized function used for adding additional restrictions on what days can be selected
+			 * from the calendar/datePicker.
+			 * @type {function}
+			 */
+			onrendercell: null,
+
+			/**
 			 * Load default template and
 			 */
 			onconfigure: function() {
@@ -190,7 +197,7 @@ ts.ui.CalendarSpirit = (function() {
 
 				// if supplied, import settings from the {ts.ui.DatePickerModel}
 				if (this._ismodelled()) {
-					['min', 'max', 'value'].forEach(function(key) {
+					['min', 'max', 'value', 'onrendercell'].forEach(function(key) {
 						this[key] = this._model[key];
 					}, this);
 				}
@@ -464,6 +471,10 @@ ts.ui.CalendarSpirit = (function() {
 				var minDay = this._minDay(min, year, month);
 				var maxDay = this._maxDay(max, year, month);
 
+				// If no day limiter is passed, then we will create a new function for the day limiter which passes in all days
+				// as selectable dates
+				var onrendercell = this.onrendercell || function() {};
+
 				this.script.run(
 					labels,
 					mname,
@@ -474,7 +485,8 @@ ts.ui.CalendarSpirit = (function() {
 					prevMonth,
 					nextMonth,
 					minDay,
-					maxDay
+					maxDay,
+					onrendercell
 				);
 			}
 		},

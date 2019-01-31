@@ -11,6 +11,7 @@
 	<?param name="nextMonth" type="string"?>
 	<?param name="minDay" type="number"?>
 	<?param name="maxDay" type="number"?>
+	<?param name="onrendercell" type="function"?>
 
 	<table>
 		<thead>
@@ -33,7 +34,7 @@
 			});
 		</tbody>
 	</table>
-	
+
 	function renderbuttons(prev, label, next) {
 		renderbutton(prev, 'ts-icon-triangleleft');
 		<th><label>${label}</label></th>
@@ -51,11 +52,17 @@
 	}
 
 	function rendercell(cell) {
+		var cellValue = cell.stringify();
+		var cellData = getcelldata(cell);
+		onrendercell(cellData);
+
+		cell.cellData = cellData;
+
 		var other = cell.prev || cell.next;
 		var allow = allowcell(cell, other);
 		@name = allow ? 'accept' : 'reject';
-		@value = allow ? cell.stringify() : null;
-		@class = classname({
+		@value = allow ? cellValue : null; 
+		@class = classname(cell, {
 			'ts-calendar-other' : other,
 			'ts-calendar-today' : cell.today,
 			'ts-selected' : cell.selected,
@@ -68,10 +75,36 @@
 		</td>
 	}
 
-	function classname(classes) {
-		return Object.keys(classes).filter(function(c) {
+	function getcelldata(cell){
+		var cellData = {};
+		var prop;
+
+		for(prop in cell){
+			cellData[prop] = cell[prop];
+		}
+
+		return cellData;
+	}
+
+	function classname(cell, classes) {
+		var combinedClasses;
+		var duplicateClassIndex = {};
+		var customClasses = (cell.cellData.className || '').split(' ');
+		var internalClasses = Object.keys(classes).filter(function(c) {
 			return classes[c];
-		}).join(' ') || null;
+		}) || [];
+
+		combinedClasses = internalClasses.concat(customClasses).filter(function(c){
+			if(duplicateClassIndex[c])
+			{
+				return false;
+			}
+
+			duplicateClassIndex[c] = true;
+			return true;
+		});
+
+		return combinedClasses.join(' ') || null;
 	}
 
 	function allowcell(cell, other) {
@@ -79,7 +112,8 @@
 		return (
 			minDay !== all && maxDay !== (1 - all) &&
 			!lower(cell.day, minDay, !other, !prevMonth, cell.prev) &&
-			!upper(cell.day, maxDay, !other, !nextMonth, cell.next)
+			!upper(cell.day, maxDay, !other, !nextMonth, cell.next) &&
+			cell.cellData.selectable !== false
 		);
 	}
 

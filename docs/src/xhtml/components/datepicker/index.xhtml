@@ -35,7 +35,13 @@
 								value: '1984-05-23',
 								min: '1984-01-01',
 								max: '1985-12-24',
+								dayLimiter: function(date){
+									// Limit selection of weekends
+									var jsDate = new Date(date.year, date.month, date.day);
+									return ![0,6].includes(jsDate.getDay());
+								},
 								onselect: function() {
+									ts.ui.Notification.success(this.value);
 									this.close();
 								},
 								onclosed: function() {
@@ -82,7 +88,7 @@
 								<td><code>onselect</code></td>
 								<td><code>{void}</code></td>
 								<td>
-									Called whenever selection changes with two 
+									Called whenever selection changes with two
 									arguments <code>newval</code> and <code>oldval<code>.
 								</td>
 							</tr>
@@ -90,7 +96,7 @@
 								<td><code>onclosed</code></td>
 								<td><code>{void}</code></td>
 								<td>
-									Event listener for close event. Called after 
+									Event listener for close event. Called after
 									aside closing animation is completed.
 								</td>
 							</tr>

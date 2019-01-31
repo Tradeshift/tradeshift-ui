@@ -11,6 +11,7 @@
 	<?param name="nextMonth" type="string"?>
 	<?param name="minDay" type="number"?>
 	<?param name="maxDay" type="number"?>
+	<?param name="dayLimiter" type="function"?>
 
 	<table>
 		<thead>
@@ -33,7 +34,7 @@
 			});
 		</tbody>
 	</table>
-	
+
 	function renderbuttons(prev, label, next) {
 		renderbutton(prev, 'ts-icon-triangleleft');
 		<th><label>${label}</label></th>
@@ -79,7 +80,8 @@
 		return (
 			minDay !== all && maxDay !== (1 - all) &&
 			!lower(cell.day, minDay, !other, !prevMonth, cell.prev) &&
-			!upper(cell.day, maxDay, !other, !nextMonth, cell.next)
+			!upper(cell.day, maxDay, !other, !nextMonth, cell.next) &&
+			dayLimiter(cell)
 		);
 	}
 

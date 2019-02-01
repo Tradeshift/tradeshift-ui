@@ -90,6 +90,8 @@ ts.ui.PagerSpirit = (function using(Type, ButtonSpirit, CSSPlugin) {
 		 */
 		onselect: null,
 
+		emitExternalChanges: true,
+
 		/**
 		 * Handle changes. Note that the model also has an `onselect`
 		 * method, this evaluates the *spirits* `onselect` method.
@@ -100,8 +102,13 @@ ts.ui.PagerSpirit = (function using(Type, ButtonSpirit, CSSPlugin) {
 		onchange: function(changes) {
 			var model = this._model;
 			changes.forEach(function(change) {
-				if (change.object === model && change.name === 'page') {
+				if (
+					change.object === model &&
+					change.name === 'page' &&
+					(this.emitExternalChanges || model._internalNav)
+				) {
 					this._onchange(change.newValue);
+					model._internalNav = false;
 				}
 			}, this);
 		},
@@ -151,9 +158,12 @@ ts.ui.PagerSpirit = (function using(Type, ButtonSpirit, CSSPlugin) {
 		_navigate: function(button, model) {
 			var page = button.getAttribute('data-page');
 			var jump = button.getAttribute('data-jump');
+
 			if (page) {
+				model._internalNav = true;
 				model.page = Type.cast(page);
 			} else if (jump) {
+				model._internalNav = true;
 				model[jump]();
 			}
 		}

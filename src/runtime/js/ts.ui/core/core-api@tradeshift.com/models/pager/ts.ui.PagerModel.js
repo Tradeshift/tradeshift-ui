@@ -156,6 +156,8 @@ ts.ui.PagerModel = (function using(chained) {
 
 		// Private .................................................................
 
+		_internalNav: false,
+
 		/**
 		 * Increment `this.init`.
 		 */

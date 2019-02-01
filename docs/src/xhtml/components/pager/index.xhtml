@@ -13,9 +13,9 @@
 					<p>Assign <att>data-ts="Pager"</att> to a <elm>menu</elm> or <elm>nav</elm> to initialize it as a Pager. The component may be configured in HTML, complete with an inline callback, like in this example.</p>
 					<figure data-ts="DoxMarkup">
 						<script>
-							<menu data-ts="Pager" 
-								data-ts.pages="8" 
-								data-ts.page="0" 
+							<menu data-ts="Pager"
+								data-ts.pages="8"
+								data-ts.page="0"
 								data-ts.onselect="console.log(this.page)">
 							</menu>
 						</script>
@@ -24,16 +24,31 @@
 					<p>&mdash; or you can configure it via a JavaScript API, like in this example.</p>
 					<figure data-ts="DoxScript">
 						<script type="runnable">
+							let domPager = document.getElementById('mypager');
+							let domPageJump = document.getElementById('pagejumper');
+
 							ts.ui.get('#mypager', pager => {
 								pager.pages = 8;
 								pager.page = 0;
+								pager.emitExternalChanges = false;
 								pager.onselect = function(page) {
 									console.log(page);
 								};
+
+								domPageJump.onclick = function(){
+									pager.page = 0;
+								}
 							});
 						</script>
 					</figure>
+
 					<menu data-ts="Pager" id="mypager"></menu>
+					<p>
+						<button id='pagejumper' data-ts="Button" class="ts-primary">
+							<span>Jump to Page 1</span>
+						</button>
+					</p>
+
 					<p>As you can see, the Pager has no default outline and this will make it easier to embed into other components. Here's a short summary of the Pagers properties and methods.</p>
 				</section>
 				<section id="pager-api" data-important="THIS GETS INCLUDED INTO OTHER PAGES!">

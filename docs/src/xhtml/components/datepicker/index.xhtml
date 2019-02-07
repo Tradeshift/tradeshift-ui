@@ -35,10 +35,12 @@
 								value: '1984-05-23',
 								min: '1984-01-01',
 								max: '1985-12-24',
-								dayLimiter: function(date){
-									// Limit selection of weekends
-									var jsDate = new Date(date.year, date.month, date.day);
-									return ![0,6].includes(jsDate.getDay());
+								onrendercell: function(cell){
+									var jsDate = new Date(cell.year, cell.month, cell.day);
+									var isWeekday = ![0,6].includes(jsDate.getDay());
+
+									cell.selectable = isWeekday;
+									cell.className = (isWeekday ? 'weekday' : 'weekend');
 								},
 								onselect: function() {
 									ts.ui.Notification.success(this.value);
@@ -83,6 +85,15 @@
 								<td><code>close</code></td>
 								<td><code>{void}</code></td>
 								<td>Close the DatePicker</td>
+							</tr>
+							<tr>
+								<td><code>onrendercell</code></td>
+								<td><code>{void}</code></td>
+								<td>
+									Called whenever the datepicker renders a cell, used to determine if a cell is selectable through
+									the <code>cell.selectable</code> property. Can also be an injection point for adding in specialized
+									classes for the current cell with <code>cell.className</code>.
+								</td>
 							</tr>
 							<tr>
 								<td><code>onselect</code></td>

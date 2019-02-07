@@ -186,7 +186,7 @@ ts.ui.CalendarSpirit = (function() {
 			 * from the calendar/datePicker.
 			 * @type {function}
 			 */
-			dayLimiter: null,
+			onrendercell: null,
 
 			/**
 			 * Load default template and
@@ -197,7 +197,7 @@ ts.ui.CalendarSpirit = (function() {
 
 				// if supplied, import settings from the {ts.ui.DatePickerModel}
 				if (this._ismodelled()) {
-					['min', 'max', 'value', 'dayLimiter'].forEach(function(key) {
+					['min', 'max', 'value', 'onrendercell'].forEach(function(key) {
 						this[key] = this._model[key];
 					}, this);
 				}
@@ -473,11 +473,7 @@ ts.ui.CalendarSpirit = (function() {
 
 				// If no day limiter is passed, then we will create a new function for the day limiter which passes in all days
 				// as selectable dates
-				var dayLimiter =
-					this.dayLimiter ||
-					function() {
-						return true;
-					};
+				var onrendercell = this.onrendercell || function() {};
 
 				this.script.run(
 					labels,
@@ -490,7 +486,7 @@ ts.ui.CalendarSpirit = (function() {
 					nextMonth,
 					minDay,
 					maxDay,
-					dayLimiter
+					onrendercell
 				);
 			}
 		},

@@ -85,10 +85,10 @@ function updateText(latest, version) {
 			? 'preview'
 			: 'obsolete';
 	document.querySelector('p').innerHTML = (safe
-		? 'This is the latest version'
+		? 'Latest'
 		: beta
-			? 'This is a developer preview'
-			: 'This is an obsolete version') +
+			? 'Preview'
+			: 'Obsolete') +
 		'<strong>' + version + '</strong>';
 }
 

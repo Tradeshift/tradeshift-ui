@@ -19,12 +19,13 @@
   },
   "scripts": {
     "****** LINT *****": "",
-    "prelint": "run-p -n prettier prettier-less prettier-json",
+    "prelint": "run-p -n prettier prettier-less prettier-json prettier-xhtml",
     "lint": "npm run eslint",
     "eslint": "eslint --cache --config ./.eslintrc.json .",
     "prettier": "prettier --write \"**/*.js\"",
     "prettier-less": "prettier --write \"**/*.less\"",
     "prettier-json": "prettier --write \"**/*.json\"",
+    "prettier-xhtml": "prettier --write \"**/*.{xhtml,html}\"",
     "****** DIST *****": "",
     "build": "grunt dist",
     "deploy-s3": "node tasks/deploy.js",
@@ -38,9 +39,13 @@
     "http": "static spec/jasmine -H '{\"Cache-Control\": \"no-cache, must-revalidate\"}' -a 0.0.0.0",
     "****** NODE *****": "",
     "postinstall": "cd docs && npm ci",
-    "precommit": "lint-staged",
     "gh-pages": "grunt dist && node tasks/gh-pages.js",
     "package-dist": "node tasks/package-dist.js"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
   },
   "lint-staged": {
     "*.js": [
@@ -95,15 +100,15 @@
     "grunt-spiritual-dox": "^0.1.2",
     "grunt-spiritual-edbml-tmpfix": "^0.3.1",
     "grunt-sri": "^0.2.0",
-    "husky": "^0.14.3",
+    "husky": "^1.3.1",
     "less": "^3.9.0",
-    "lint-staged": "^4.2.1",
+    "lint-staged": "^8.1.3",
     "load-grunt-tasks": "^3.5.2",
     "node-static": "^0.7.10",
     "npm-run-all": "^4.1.1",
     "octonode": "^0.9.4",
     "postcss-clean": "^1.0.2",
-    "prettier": "1.7.0",
+    "prettier": "1.16.4",
     "release-it": "7.6.1",
     "s3": "^4.4.0",
     "semver": "^5.4.1",

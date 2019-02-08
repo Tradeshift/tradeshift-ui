@@ -265,10 +265,13 @@ ts.ui.DialogSpirit = (function using(Dialog, Client, chained, Type) {
 				if (this._ismodelled()) {
 					this._model.$finalize(); // thus will trigger re-render...
 				}
-				this.tick.time(function wait_for_finalize() {
-					// wait for re-render
-					this._willopen();
-				}, oldie ? 100 : 10);
+				this.tick.time(
+					function wait_for_finalize() {
+						// wait for re-render
+						this._willopen();
+					},
+					oldie ? 100 : 10
+				);
 			}),
 
 			/**

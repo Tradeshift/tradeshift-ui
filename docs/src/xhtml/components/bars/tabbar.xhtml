@@ -4,16 +4,17 @@
 		<title>TabBar</title>
 		<object data="tabs.xhtml"></object>
 		<script>
-			ts.ui.ready(function() { // support color scheme links in API table
+			ts.ui.ready(function() {
+				// support color scheme links in API table
 				var method;
 				ts.ui.get('html').action.add('ts-action-safe-link', {
 					onaction: function(a) {
 						var tabbar = ts.ui.get('#mytabbar');
-						if((method = tabbar[a.data])) {
+						if ((method = tabbar[a.data])) {
 							method.call(tabbar);
 						}
 					}
-				})
+				});
 			});
 		</script>
 	</head>
@@ -22,39 +23,47 @@
 			<div data-ts="Main">
 				<div data-ts="Content">
 					<div data-ts="Panel">
-						<div data-ts="Board"> <!-- STYLES IN HTML ABOVE!!! -->
+						<div data-ts="Board">
+							<!-- STYLES IN HTML ABOVE!!! -->
 							<ul data-ts="Panels">
 								<li data-ts="Panel" data-ts.label="Main TabBar">
 									<article>
 										<h1>Main TabBar</h1>
 										<section class="desc" data-ts="Note">
 											<i class="ts-icon-warning"></i>
-											<p>Second level navigation is in danger of becoming deprecated, so please be cautious with this design pattern.</p>
+											<p>
+												Second level navigation is in danger of becoming deprecated, so please be
+												cautious with this design pattern.
+											</p>
 										</section>
 										<section id="tabs">
 											<object data="topbar.xhtml#tabs-desc">
-												<replace input="TopBar" output="TabBar"/>
-												<replace input="[4" output="[2"/>
-												<replace input="(4" output="(2"/>
-												<replace input="selectedIndex = 1" output="selectedIndex = 0"/>
+												<replace input="TopBar" output="TabBar" />
+												<replace input="[4" output="[2" />
+												<replace input="(4" output="(2" />
+												<replace input="selectedIndex = 1" output="selectedIndex = 0" />
 												<replace id="tabs-init">
 													<script>
 														ts.ui.TabBar.tabs([
-															{label: 'Main TabBar'},
-															{label: 'Inline TabBar'}
+															{ label: 'Main TabBar' },
+															{ label: 'Inline TabBar' }
 														]);
 													</script>
-												</object>
-											</link>
+												</replace>
+											</object>
 										</section>
 										<section>
 											<object data="topbar.xhtml#tabs-api">
-												<replace input="TopBar" output="TabBar"/>
+												<replace input="TopBar" output="TabBar" />
 											</object>
 										</section>
 										<h2 id="buttons">TabBar.buttons</h2>
 										<section>
-											<p>It's perfectly alright to add buttons to the TabBar, either to avoid wasting space on a separate ToolBar or because the buttons will affect content in all the tabs.</p>
+											<p>
+												It's perfectly alright to add buttons to the TabBar, either to avoid wasting
+												space on a separate ToolBar or because the buttons will affect content in
+												all the tabs.
+											</p>
 											<figure data-ts="DoxScript">
 												<script type="runnable">
 													ts.ui.TabBar.buttons([
@@ -64,7 +73,10 @@
 													]);
 												</script>
 											</figure>
-											<p>If the buttons affect the selected tab only, remember to <code>clear</code> the buttons when a new tab is selected.</p>
+											<p>
+												If the buttons affect the selected tab only, remember to
+												<code>clear</code> the buttons when a new tab is selected.
+											</p>
 											<figure data-ts="DoxScript">
 												<script type="runnable">
 													ts.ui.TabBar.buttons().clear();
@@ -73,7 +85,7 @@
 										</section>
 										<section>
 											<object data="topbar.xhtml#buttons-api">
-												<replace input="TopBar" output="TabBar"/>
+												<replace input="TopBar" output="TabBar" />
 											</object>
 										</section>
 									</article>
@@ -85,13 +97,20 @@
 											<p>TabBars can be positioned anywhere on the page.</p>
 										</section>
 										<section>
-											<p>Assign <att>data-ts="TabBar"</att> to a <elm>header</elm> or <elm>nav</elm> to initialize it as a TabBar.</p>
+											<p>
+												Assign <att>data-ts="TabBar"</att> to a <elm>header</elm> or
+												<elm>nav</elm> to initialize it as a TabBar.
+											</p>
 											<figure data-ts="DoxMarkup">
-												<script>
+												<script type="text/html">
 													<header data-ts="TabBar"></header>
 												</script>
 											</figure>
-										 	<p>All features are controlled through a JavaScript API. You can get a hold of the component using a CSS selector and call any of the methods we've seen applicable to the Main TabBar.</p>
+											<p>
+												All features are controlled through a JavaScript API. You can get a hold of
+												the component using a CSS selector and call any of the methods we've seen
+												applicable to the Main TabBar.
+											</p>
 											<figure data-ts="DoxScript">
 												<script type="runnable">
 													ts.ui.get('#mytabbar', tabbar => {
@@ -139,7 +158,7 @@
 														]
 													}
 												</script>
-											<div>
+											</div>
 										</section>
 									</article>
 								</li>

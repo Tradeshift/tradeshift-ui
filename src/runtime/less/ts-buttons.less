@@ -79,7 +79,7 @@
 		line-height: 0;
 	}
 	&:not(:disabled):after {
-		.ts-mixin-maximize(0-@ts-unit-half,0,0-@ts-unit-half,0);
+		.ts-mixin-maximize(0-@ts-unit-half, 0, 0-@ts-unit-half, 0);
 	}
 	&.ts-action {
 		font-size: @ts-fontsize;
@@ -117,7 +117,7 @@
 		position: relative;
 		display: inline-block;
 		&.ts-ready {
-			&, 
+			&,
 			> i:before {
 				.ts-mixin-transition-colors(@ts-transition-now);
 			}
@@ -521,9 +521,9 @@ menu .ts-button {
 	&.ts-tertiary,
 	&.ts-secondary {
 		background-color: fade(@ts-color-white, 50%);
-		color: @ts-color-black; 
-	  border: 1px solid @new-bordercolor;
-	  &:hover {
+		color: @ts-color-black;
+		border: 1px solid @new-bordercolor;
+		&:hover {
 			background-color: fade(@new-bordercolor, 50%);
 		}
 		&:focus:before {
@@ -593,8 +593,8 @@ menu .ts-button {
 	&.ts-accept,
 	&.ts-warning,
 	&.ts-danger {
- 		&:not(.ts-action) {
- 			opacity: 0.5;
+		&:not(.ts-action) {
+			opacity: 0.5;
 			color: @ts-color-black;
 			background-color: fade(@new-bordercolor, 50%);
 			&:after {
@@ -620,11 +620,11 @@ menu .ts-button {
 
 // Loading bar..................................................................
 
-.ts-mixin-keyframes(move-progress-bar, {
-	background-position: 0 0;
-}, {
-	background-position: @ts-unit-double @ts-unit-double;
-});
+.ts-mixin-keyframes(
+	move-progress-bar,
+	{background-position: 0 0;},
+	{background-position: @ts-unit-double @ts-unit-double;}
+);
 .ts-button.ts-is-loading {
 	background-color: transparent !important;
 	pointer-events: none;
@@ -643,7 +643,10 @@ menu .ts-button {
 		content: '';
 		background-size: @ts-unit-double @ts-unit-double;
 		.ts-mixin-maximize();
-		.ts-mixin-progress-bar-gradient(fade(@ts-color-gray-light, 65%), fade(@ts-color-gray-lighter, 65%));
+		.ts-mixin-progress-bar-gradient(
+			fade(@ts-color-gray-light, 65%),
+			fade(@ts-color-gray-lighter, 65%)
+		);
 		.ts-mixin-animation(move-progress-bar, 1s, linear, infinite);
 		margin: @ts-unit-half;
 	}

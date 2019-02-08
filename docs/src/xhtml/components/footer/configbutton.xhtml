@@ -5,9 +5,9 @@
 		<object data="tabs.xhtml"></object>
 	</head>
 	<body>
-			<article>
-				<h1>Footer configbutton</h1>
-				<!--
+		<article>
+			<h1>Footer configbutton</h1>
+			<!--
 				<section class="desc">
 					<div data-ts="Note">
 						<i class="ts-icon-info"></i>
@@ -15,42 +15,49 @@
 					</div>
 				</section>
 				-->
-				<section>
+			<section>
+				<p>
+					There Footer can be fitted with a special button for the purpose of configuring things. To
+					show the button, simply call the method
+					<code>configbutton</code> with a callback.
+				</p>
 
-					<p>There Footer can be fitted with a special button for the purpose of configuring things. To show the button, simply call the method <code>configbutton</code> with a callback.</p>
+				<figure data-ts="DoxScript">
+					<script type="runnable">
+						ts.ui.Footer.configbutton(function onclick() {
+							ts.ui.Notification.success('Go configure!');
+						});
+					</script>
+				</figure>
 
-					<figure data-ts="DoxScript">
-						<script type="runnable">
-							ts.ui.Footer.configbutton(function onclick() {
-								ts.ui.Notification.success('Go configure!');
-							});
-						</script>
-					</figure>
+				<p>
+					What happens when you click the button is completely up to you. Fortunately, you can also
+					hide the button again by passing
+					<code>null</code> to the same method.
+				</p>
 
-					<p>What happens when you click the button is completely up to you. Fortunately, you can also hide the button again by passing <code>null</code> to the same method.</p>
+				<figure data-ts="DoxScript">
+					<script type="runnable">
+						ts.ui.Footer.configbutton(null);
+					</script>
+				</figure>
 
-					<figure data-ts="DoxScript">
-						<script type="runnable">
-							ts.ui.Footer.configbutton(null);
-						</script>
-					</figure>
-
-					<div data-ts="DoxApi">
-						<script type="application/json">
-							{
-								"name": "ts.ui.Footer",
-								"methods": [
-									{
-										"name": "configbutton",
-										"args": "(<Function|null>)",
-										"desc": "Get or set the general purpose configuration button. Pass `null` to remove it."
-									}
-								]
-							}
-						</script>
-					</div>
-					
-				</section>
-			</article>
+				<div data-ts="DoxApi">
+					<script type="application/json">
+						{
+							"name": "ts.ui.Footer",
+							"methods": [
+								{
+									"name": "configbutton",
+									"args": "(<Function|null>)",
+									"desc": "Get or set the general purpose configuration button. Pass `null` to remove it."
+								}
+							]
+						}
+					</script>
+				</div>
+			</section>
+		</article>
 	</body>
-<html>
+	<html></html>
+</html>

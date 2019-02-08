@@ -5,58 +5,68 @@
 		<object data="tabs.xhtml"></object>
 	</head>
 	<body>
-			<article>
-				<h1>Footer collabbutton</h1>
-				<section>
+		<article>
+			<h1>Footer collabbutton</h1>
+			<section>
+				<p>
+					The Footer features a special button which is dedicated to launching the
+					<em>collaboration</em> panel. To show the button, simply call the method
+					<code>configbutton</code> with a callback.
+				</p>
 
-					<p>The Footer features a special button which is dedicated to launching the <em>collaboration</em> panel. To show the button, simply call the method <code>configbutton</code> with a callback.</p>
+				<figure data-ts="DoxScript">
+					<script type="runnable">
+						ts.ui.Footer.collabbutton(function onclick() {
+							ts.ui.Notification.success('Go collaborate!');
+						});
+					</script>
+				</figure>
 
-					<figure data-ts="DoxScript">
-						<script type="runnable">
-							ts.ui.Footer.collabbutton(function onclick() {
-								ts.ui.Notification.success('Go collaborate!');
-							});
-						</script>
-					</figure>
+				<h3>Showing a notification badge</h3>
+				<p>
+					The collaboration button can have two states: a default state and a state showing a
+					notification badge. The default state shows just the special button. The notification
+					state shows the special button as well as a small notification badge over the icon. To
+					show the button with the notification state, add <code>true</code> as a second argument to
+					the <code>configbutton</code> method.
+				</p>
 
-					<h3>Showing a notification badge</h3>
-					<p>The collaboration button can have two states: a default state and a state showing a notification badge. The default
-						state shows just the special button. The notification state shows the special button as well as a small notification
-						badge over the icon. To show the button with the notification state, add <code>true</code> as a second argument to the
-						<code>configbutton</code> method.</p>
-					
-					<figure data-ts="DoxScript">
-						<script type="runnable">
-							ts.ui.Footer.collabbutton(function onclick() {
-								ts.ui.Notification.success('Go collaborate!');
-							}, true);
-						</script>
-					</figure>
+				<figure data-ts="DoxScript">
+					<script type="runnable">
+						ts.ui.Footer.collabbutton(function onclick() {
+							ts.ui.Notification.success('Go collaborate!');
+						}, true);
+					</script>
+				</figure>
 
-					<p>Note that the Footer doesn't automatically initialize or resume the collbaroration. The API for this will be provided elsewhere. You can hide the collaboration button by passing <code>null</code> to the same method.</p>
+				<p>
+					Note that the Footer doesn't automatically initialize or resume the collbaroration. The
+					API for this will be provided elsewhere. You can hide the collaboration button by passing
+					<code>null</code> to the same method.
+				</p>
 
-					<figure data-ts="DoxScript">
-						<script type="runnable">
-							ts.ui.Footer.collabbutton(null);
-						</script>
-					</figure>
+				<figure data-ts="DoxScript">
+					<script type="runnable">
+						ts.ui.Footer.collabbutton(null);
+					</script>
+				</figure>
 
-					<div data-ts="DoxApi">
-						<script type="application/json">
-							{
-								"name": "ts.ui.Footer",
-								"methods": [
-									{
-										"name": "collabbutton",
-										"args": "(<Function|true|null>)",
-										"desc": "Get or set the collaboration button. Pass `true` as a second argument to show a notification badge. Pass `null` to remove the whole button."
-									}
-								]
-							}
-						</script>
-					</div>
-					
-				</section>
-			</article>
+				<div data-ts="DoxApi">
+					<script type="application/json">
+						{
+							"name": "ts.ui.Footer",
+							"methods": [
+								{
+									"name": "collabbutton",
+									"args": "(<Function|true|null>)",
+									"desc": "Get or set the collaboration button. Pass `true` as a second argument to show a notification badge. Pass `null` to remove the whole button."
+								}
+							]
+						}
+					</script>
+				</div>
+			</section>
+		</article>
 	</body>
-<html>
+	<html></html>
+</html>

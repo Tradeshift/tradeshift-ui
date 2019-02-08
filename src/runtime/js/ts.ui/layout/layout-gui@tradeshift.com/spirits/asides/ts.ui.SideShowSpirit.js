@@ -328,7 +328,7 @@ ts.ui.SideShowSpirit = (function using(
 			var deg, off;
 			function getoffset(now) {
 				deg = now / (end / 90);
-				deg = deg * Math.PI / 180;
+				deg = (deg * Math.PI) / 180;
 				off = open ? Math.sin(deg) : Math.cos(deg);
 				return off * 100;
 			}

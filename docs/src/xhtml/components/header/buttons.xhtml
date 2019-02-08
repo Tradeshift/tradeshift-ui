@@ -7,7 +7,10 @@
 	<body>
 		<article>
 			<section id="buttons-desc" data-important="THIS GETS INCLUDED IN OTHER PAGES!">
-				<p>Add buttons to the TopBar with the <code>buttons</code> method. This both sets and gets. If you omit the argument, you"ll get the current buttons (jQuery style).</p>
+				<p>
+					Add buttons to the TopBar with the <code>buttons</code> method. This both sets and gets.
+					If you omit the argument, you"ll get the current buttons (jQuery style).
+				</p>
 				<figure data-ts="DoxScript" class="attention">
 					<script type="runnable">
 						ts.ui.TopBar.buttons([
@@ -18,26 +21,47 @@
 						]);
 					</script>
 				</figure>
-				<p>You can use array methods like <code>push</code>, <code>pop</code>, <code>shift</code>, <code>unshift</code>, <code>splice</code>, <code>reverse</code> and so on to manage buttons. Just note that the buttons <code>length</code> is readonly.</p>
+				<p>
+					You can use array methods like <code>push</code>, <code>pop</code>, <code>shift</code>,
+					<code>unshift</code>, <code>splice</code>, <code>reverse</code> and so on to manage
+					buttons. Just note that the buttons <code>length</code> is readonly.
+				</p>
 				<ul>
-					<li>The buttons <code class="attr-name">type</code> property works like the CSS <code class="attr-name">class</code> for a regular Button</li>
-					<li>The TopBar will automatically sort all buttons from primary to tertiary.</li>
-					<li>If there"s more than one tertiary button, these will be pushed to an Aside.</li>
-					<li>In the mobile breakpoint, even secondary buttons will be pushed to the Aside.</li>
+					<li>
+						The buttons <code class="attr-name">type</code> property works like the CSS
+						<code class="attr-name">class</code> for a regular Button
+					</li>
+					<li>
+						The TopBar will automatically sort all buttons from primary to tertiary.
+					</li>
+					<li>
+						If there"s more than one tertiary button, these will be pushed to an Aside.
+					</li>
+					<li>
+						In the mobile breakpoint, even secondary buttons will be pushed to the Aside.
+					</li>
 				</ul>
-				<p>Buttons won"t actually do anything unless you define the <code>onclick</code> method.<p>
-				<figure data-ts="DoxScript">
-					<script type="runnable">
-						ts.ui.TopBar.buttons().splice(0, 1, {
-							label : 'Click me!',
-							type : 'ts-primary',
-							onclick: function() {
-								this.label = 'Thanks';
-							}
-						});
-					</script>
-				</figure>
-				<p>Fortunately, you can always change what happens when a button gets clicked.</p>
+				<p>
+					Buttons won"t actually do anything unless you define the
+					<code>onclick</code> method.
+				</p>
+				<p>
+					<figure data-ts="DoxScript">
+						<script type="runnable">
+							ts.ui.TopBar.buttons().splice(0, 1, {
+								label : 'Click me!',
+								type : 'ts-primary',
+								onclick: function() {
+									this.label = 'Thanks';
+								}
+							});
+						</script>
+					</figure>
+				</p>
+
+				<p>
+					Fortunately, you can always change what happens when a button gets clicked.
+				</p>
 				<figure data-ts="DoxScript">
 					<script type="runnable">
 						ts.ui.TopBar.buttons().forEach((button, index) => {
@@ -50,7 +74,12 @@
 				</figure>
 
 				<h3>Query buttons</h3>
-				<p>You can locate buttons by index in the <code>buttons</code> collection. But since this isn"t likely to match the order in which they appear on screen, it"s easier to give the buttons an <code>id</code> and find them using <code>buttons.get()</code>.</p>
+				<p>
+					You can locate buttons by index in the
+					<code>buttons</code> collection. But since this isn"t likely to match the order in which
+					they appear on screen, it"s easier to give the buttons an <code>id</code> and find them
+					using <code>buttons.get()</code>.
+				</p>
 				<figure data-ts="DoxScript">
 					<script type="runnable">
 						var buttons = ts.ui.TopBar.buttons();
@@ -68,9 +97,12 @@
 					<p>TODO: Note about the <code>info</code> property for view in Aside!</p>
 				</div>
 				-->
-				
+
 				<h3>Hide buttons</h3>
-				<p>You can <code>hide()</code> and <code>show()</code> buttons. You can also toggle <code>visible</code>.</p>
+				<p>
+					You can <code>hide()</code> and <code>show()</code> buttons. You can also toggle
+					<code>visible</code>.
+				</p>
 				<figure data-ts="DoxScript">
 					<script type="runnable">
 						ts.ui.TopBar.buttons().forEach(button => {
@@ -83,8 +115,11 @@
 					</script>
 				</figure>
 
-				<h3>Disable buttons</h3>					
-				<p>You can <code>disable()</code> and <code>enable()</code> buttons. You can also toggle <code>disabled</code>.</p>
+				<h3>Disable buttons</h3>
+				<p>
+					You can <code>disable()</code> and <code>enable()</code> buttons. You can also toggle
+					<code>disabled</code>.
+				</p>
 				<figure data-ts="DoxScript">
 					<script type="runnable">
 						ts.ui.TopBar.buttons().forEach(button => {
@@ -96,9 +131,12 @@
 						});
 					</script>
 				</figure>
-				
-				<h3>Busy buttons</h3>					
-				<p>We can display a temporary progress indicator with the <code>busy</code> and <code>done</code> methods.</p>					
+
+				<h3>Busy buttons</h3>
+				<p>
+					We can display a temporary progress indicator with the
+					<code>busy</code> and <code>done</code> methods.
+				</p>
 				<figure data-ts="DoxScript">
 					<script type="runnable">
 						var button = ts.ui.TopBar.buttons()[0];
@@ -118,9 +156,11 @@
 						}, 1000);
 					</script>
 				</figure>
-				
+
 				<h3>Button groups</h3>
-				<p>You can also <em>group buttons in arrays</em> to create button groups that look like this:</p>
+				<p>
+					You can also <em>group buttons in arrays</em> to create button groups that look like this:
+				</p>
 				<figure data-ts="DoxScript">
 					<script type="runnable">
 						ts.ui.TopBar.buttons([
@@ -128,12 +168,14 @@
 							{ label: 'Normal'},
 							[
 								{ label: 'Accept', type: 'ts-primary' },
-								{ label: 'Reject', type: 'ts-danger' }	
+								{ label: 'Reject', type: 'ts-danger' }
 							]
 						]);
 					</script>
 				</figure>
-				<p>You can of course also create grouped buttons with icons instead of text.</p>
+				<p>
+					You can of course also create grouped buttons with icons instead of text.
+				</p>
 				<figure data-ts="DoxScript">
 					<script type="runnable">
 						var group = ts.ui.TopBar.buttons()[2];
@@ -145,7 +187,9 @@
 				</figure>
 			</section>
 			<section id="buttons-api" data-important="THIS GETS INCLUDED IN OTHER PAGES!">
-				<p>Here"s a summary of the <code>buttons</code> collection and <code>button</code> model.</p>
+				<p>
+					Here"s a summary of the <code>buttons</code> collection and <code>button</code> model.
+				</p>
 				<div data-ts="DoxApi">
 					<script type="application/json">
 						{
@@ -185,7 +229,6 @@
 								}
 							]
 						}
-
 					</script>
 				</div>
 				<div data-ts="DoxApi">
@@ -261,4 +304,5 @@
 			</section>
 		</article>
 	</body>
-<html>
+	<html></html>
+</html>

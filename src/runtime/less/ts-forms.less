@@ -599,7 +599,7 @@
 		> span {
 			display: block;
 			line-height: @ts-unit;
-			width: calc(~'100% - '@ts-unit-double);
+			width: calc(~'100% - ' @ts-unit-double);
 			text-align: left;
 			float: left;
 		}
@@ -647,7 +647,7 @@
 			background-color: @ts-color-gray-lighter;
 			&,
 			> i {
-				.ts-mixin-transition(all,0.1s,ease-out);
+				.ts-mixin-transition(all, 0.1s, ease-out);
 			}
 			> i {
 				height: @ts-unit;

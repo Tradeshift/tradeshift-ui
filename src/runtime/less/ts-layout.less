@@ -21,7 +21,7 @@ body {
 	height: 100%;
 	margin: 0;
 	padding: 0;
-  overflow: hidden;
+	overflow: hidden;
 }
 .ts-app {
 	flex: 1 0 0px;
@@ -79,13 +79,13 @@ body,
 	.ts-has-sidebar-last {
 		> .ts-content,
 		> .ts-app {
-			.ts-mixin-fixwidth(calc(~'100% - '@ts-width-aside));
+			.ts-mixin-fixwidth(calc(~'100% - ' @ts-width-aside));
 		}
 	}
 	.ts-has-sidebar-first.ts-has-sidebar-last {
 		> .ts-content,
 		> .ts-app {
-			.ts-mixin-fixwidth(calc(~'100% - '@ts-width-aside * 2));
+			.ts-mixin-fixwidth(calc(~'100% - ' @ts-width-aside * 2));
 		}
 	}
 }
@@ -212,14 +212,14 @@ body,
 // 	}
 // 	&.ts-has-header {
 // 		.ts-content > .ts-panel {
-// 			background-image: linear-gradient(@new-shadowcolor, transparent);			
+// 			background-image: linear-gradient(@new-shadowcolor, transparent);
 // 		}
 // 	}
 // 	&.ts-has-footer {
 // 		.ts-content > .ts-panel {
 // 			background-image: linear-gradient(transparent, @new-shadowcolor);
 // 			background-position: 0 100%;
-// 		}	
+// 		}
 // 	}
 // 	&.ts-has-header.ts-has-footer {
 // 		.ts-content > .ts-panel {
@@ -248,7 +248,7 @@ body,
 	}
 }
 .ts-mobile-only {
-	.ts-sideshow  {
+	.ts-sideshow {
 		.ts-mixin-fixwidth(100%);
 	}
 	.ts-app {

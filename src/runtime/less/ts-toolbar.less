@@ -21,7 +21,8 @@
 			.ts-mixin-fixheight(@ts-unit-triple);
 			.ts-button {
 				display: inline-block;
-				&, &:hover {
+				&,
+				&:hover {
 					background-color: transparent !important; // TODO: rounded + hovercolor
 				}
 			}
@@ -41,7 +42,6 @@
 		}
 	}
 	&.ts-left {
-		
 	}
 	&.ts-right {
 		right: 0;
@@ -178,7 +178,6 @@
 		left: 0;
 		bottom: 0px;
 		width: 100px;
-		
 	}
 	.ts-button {
 		.ts-mixin-menuitem();
@@ -399,7 +398,8 @@
 							font-size: 27px !important;
 							top: 2px;
 						}
-						&.ts-icon-checkboxon, &.ts-icon-checkbox-indeterminate {
+						&.ts-icon-checkboxon,
+						&.ts-icon-checkbox-indeterminate {
 							color: @ts-color-blue;
 						}
 						&.ts-icon-checkbox {

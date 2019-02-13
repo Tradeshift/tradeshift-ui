@@ -8,7 +8,7 @@
 		position: relative;
 	}
 	> .ts-panels > .ts-panel,
-	> .ts-panel, {
+	> .ts-panel {
 		background-color: @ts-color-white;
 		overflow: hidden;
 		> .ts-cover {
@@ -18,9 +18,9 @@
 		> .ts-box {
 			display: block;
 			position: absolute;
-			top: 50%; 
+			top: 50%;
 			left: 50%;
-  			transform: translate(-50%,-50%);
+			transform: translate(-50%, -50%);
 			max-width: (@ts-width-aside + @ts-unit-plus) * 2; // 640px usable
 			padding: @ts-unit-plus;
 			text-align: center;
@@ -30,7 +30,6 @@
 			margin-right: auto;
 			bottom: auto;
 			height: auto;
-
 		}
 		> .ts-main {
 			background-color: transparent;

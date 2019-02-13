@@ -2,14 +2,16 @@
 <html lang="ja">
 	<head>
 		<title>Screenshots</title>
-		<meta name="robots" content="noindex"/>
+		<meta name="robots" content="noindex" />
 		<script>
-		ts.ui.ready(function() {
-			ts.ui.DatePicker({
-				title: 'Japanese?',
-				value: '1973-03-26'
-			}).open();
-		});
+			ts.ui.ready(function() {
+				ts.ui
+					.DatePicker({
+						title: 'Japanese?',
+						value: '1973-03-26'
+					})
+					.open();
+			});
 		</script>
 	</head>
 	<body class="nosticky">
@@ -17,27 +19,23 @@
 			<aside data-ts="SideBar" data-ts.title="SideBar OK?">
 				<div data-ts="Panel"></div>
 			</aside>
-				<div data-ts="Panel" data-ts.label="One">
-					<article>
-						<h1>Panel One</h1>
-					</article>
-				</div>
-				<div data-ts="Panel" data-ts.label="Two">
-					<article>
-						<h1>Panel Two</h1>
-					</article>
-				</div>
-				<div data-ts="Panel" data-ts.label="Three">
-					<article>
-						<h1>Panel Three</h1>
-					</article>
-				</div>
+			<div data-ts="Panel" data-ts.label="One">
+				<article>
+					<h1>Panel One</h1>
+				</article>
+			</div>
+			<div data-ts="Panel" data-ts.label="Two">
+				<article>
+					<h1>Panel Two</h1>
+				</article>
+			</div>
+			<div data-ts="Panel" data-ts.label="Three">
+				<article>
+					<h1>Panel Three</h1>
+				</article>
+			</div>
 		</div>
-		<div data-ts="Panel" data-ts.label="Two">
-
-		</div>
-		<div data-ts="Panel" data-ts.label="Three">
-
-		</div>
+		<div data-ts="Panel" data-ts.label="Two"></div>
+		<div data-ts="Panel" data-ts.label="Three"></div>
 	</body>
 </html>

@@ -166,7 +166,7 @@
 	.ts-mixin-transition-delay(@delay);
 }
 .ts-mixin-transition-transform( @length : @ts-transition-fast, @easing : ease, @delay : 0s ) {
-	.ts-mixin-transition( transform, @length, @easing, @delay );
+	.ts-mixin-transition(transform, @length, @easing, @delay);
 }
 .ts-mixin-transition-duration(@length: @ts-transition-fast) {
 	transition-duration: @length;
@@ -258,6 +258,13 @@
 // Loading bar .................................................................
 .ts-mixin-progress-bar-gradient(@color1: black, @color2: white) {
 	background-image: linear-gradient(
-		-45deg, @color1 25%, @color2 25%, @color2 50%, @color1 50%, @color1 75%, @color2 75%, @color2
+		-45deg,
+		@color1 25%,
+		@color2 25%,
+		@color2 50%,
+		@color1 50%,
+		@color1 75%,
+		@color2 75%,
+		@color2
 	);
 }

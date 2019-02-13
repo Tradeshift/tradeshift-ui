@@ -3,12 +3,15 @@
 	<head>
 		${security}
 		<title>Tradeshift UI</title>
-		<link rel="icon" href="https://developers.tradeshift.com/icons/favicon-32x32.png"/>
+		<link rel="icon" href="https://developers.tradeshift.com/icons/favicon-32x32.png" />
 		<script src="/dist/assets/lunr.min.js"></script>
-		<meta name="ts.ui.topframe" content="false"/>
-		<meta name="ts.ui.appframe" content="false"/>
+		<meta name="ts.ui.topframe" content="false" />
+
+		<meta name="ts.ui.appframe" content="false" />
 		${includes}
+		<script></script>
 		${menuhtml}
+		<script></script>
 		${svgicons}
 	</head>
 	<body data-ts="DoxChrome">
@@ -16,7 +19,12 @@
 			<button data-ts="Button" data-ts.type="action-open-menu" class="button-menu-open">
 				<i class="ts-icon-menuswitch"></i>
 			</button>
-			<aside data-ts="DoxSideBar" data-ts.title="Search the docs..." class="ts-bg-dark" data-ts.autoclose="false">
+			<aside
+				data-ts="DoxSideBar"
+				data-ts.title="Search the docs..."
+				class="ts-bg-dark"
+				data-ts.autoclose="false"
+			>
 				<div data-ts="Panel">
 					<menu data-ts="DoxMenu">
 						<script type="application/json">
@@ -28,7 +36,11 @@
 			<div data-ts="App">
 				<div data-ts="Main">
 					<div id="menucover" data-ts="DoxMenuCover"></div>
-					<button data-ts="Button" data-ts.type="action-close-menu" class="button-menu-close"></button>
+					<button
+						data-ts="Button"
+						data-ts.type="action-close-menu"
+						class="button-menu-close"
+					></button>
 				</div>
 			</div>
 		</div>

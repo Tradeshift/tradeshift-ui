@@ -1,136 +1,155 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<title>API-only Components</title>
-	<object data="tabs.xhtml"></object>
-</head>
-<body>
-	<article>
-		<h1>API-only components</h1>
-		<section class="desc">
-			<p>These components will insert themselves into the DOM and generally don't come with a HTML API. Some of them are known to affect the general page layout.</p>
-		</section>
-		<section>
-			<h3><a data-ts="Button" href="/#components/header/">Header</a></h3>
-			<p>The Header <strong>↑</strong> provides tabs for navigation and buttons that affect the entire app.</p>
-			<figure data-ts="DoxScript">
-				<script type="runnable">
-					ts.ui.Header.buttons([
-						{label: 'Button', type: 'ts-primary'},
-						{label: 'Button', type: 'ts-secondary'},
-						{label: 'Button', onclick: function() {
-							console.log('Clicked');
-						}}
-					]);
-				</script>
-			</figure>
-		</section>
-		<section>
-			<h3><a data-ts="Button" href="/#components/footer/">Footer</a></h3>
-			<p>The Footer features buttons that relate to the Main area and <em>actions</em> that are reserved for working with selected objects of any kind.</p>
-			<figure data-ts="DoxScript">
-				<script type="runnable">
-					ts.ui.Footer.buttons([
-						{label: 'Button', type: 'ts-primary'},
-						{label: 'Button', type: 'ts-secondary'},
-						{label: 'Button', onclick: () => {
-							console.log('Button clicked');
-						}}
-					]).actions([
-						{label: 'Action', icon: 'ts-icon-followed'},
-						{label: 'Action', icon: 'ts-icon-favorites'},
-						{label: 'Action', icon: 'ts-icon-code', onclick: () => {
-							console.log('Action clicked');
-						}}
-					]).status('Hello World');
-				</script>
-			</figure>
-		</section>
-		<section>
-			<h3><a data-ts="Button" href="/#components/datepicker/">DatePicker</a></h3>
-			<p>A easy way to select dates.</p>
-			<figure data-ts="DoxScript">
-				<script type="runnable">
-					ts.ui.DatePicker({
-						title: "Your Birthday",
-						value: '1984-05-23',
-						min: '1984-01-01',
-						max: '1985-12-24',
-						onselect: function(date) {
-							ts.ui.Notification.success(date + ' selected');
-							this.close();
-						},
-						onclosed: function() {
-							this.dispose();
-						}
-					}).open();
-				</script>
-			</figure>
-		</section>
-		<section>
-			<h3><a data-ts="Button" href="/#components/dialogs/">Dialog</a></h3>
-			<p>Works much like the JavaScript <code>confirm()</code> method.</p>
-			<figure data-ts="DoxScript">
-				<script type="runnable">
-					ts.ui.Dialog.confirm('Show the Warning dialog?', 'Show It', 'Nope', {
-						onaccept: function() {
-							ts.ui.Dialog.warning('Show the Danger dialog?', 'Of Course', {
-								onaccept: function() {
-									ts.ui.Dialog.danger('That could be dangerous.', 'Got it');
-								}
-							});
-						},
-					});
-				</script>
-			</figure>
-		</section>
-		<section>
-			<h3><a data-ts="Button" href="/#components/notifications/">Notification</a></h3>
-			<p>Themed variants of the JavaScript <code>alert()</code> method.</p>
-			<figure data-ts="DoxScript">
-				<script type="runnable">
-          ts.ui.Notification.success('Notification.success');
-          ts.ui.Notification.info('Notification.info');
-          ts.ui.Notification.warning('Notification.warning');
-          ts.ui.Notification.error('Notification.error');
-				</script>
-			</figure>
-		</section>
-		<section>
-			<h3><a data-ts="Button" href="/#components/notes/">Note</a></h3>
-			<p>A nice way to inform the user about something in general. This is <strong>not</strong> for status messages! The Note attaches to the top of the page, so you will have to scroll back up...</p>
-			<figure data-ts="DoxScript">
-				<script type="runnable">
-					ts.ui.Note({
-						icon: 'ts-icon-heart',
-						text: 'This is the Note. Thanks for scrolling up.',
-						onclose: function() {
-							ts.ui.Notification.success('The Note is gone...');
-						}
-					});
-				</script>
-			</figure>
-		</section>
-		<section>
-			<h3><a data-ts="Button" href="/#components/cards/usercard.html">UserCard</a></h3>
-			<p>Show some details about a user.</p>
-			<figure data-ts="DoxScript">
-				<script type="runnable">
-					ts.ui.UserCard({
-						id: '6bf17754-f9de-4e31-aa31-bd3ff765b9c2',
-						data: {
-							name: 'Wired Earp',
-							image: 'assets/wiredearp.png',
-							title: 'EDB Programmer',
-							role: 'Gentleman Spy',
-							email: 'jmo@tradeshift.com',
-							company: 'Tradeshift',
-							companyUrl: 'http://tradeshift.com/'
-						}
-					}).open();
-				</script>
-			</figure>
-		</section>
-	</article>
-</body>
+	<head>
+		<title>API-only Components</title>
+		<object data="tabs.xhtml"></object>
+	</head>
+	<body>
+		<article>
+			<h1>API-only components</h1>
+			<section class="desc">
+				<p>
+					These components will insert themselves into the DOM and generally don't come with a HTML
+					API. Some of them are known to affect the general page layout.
+				</p>
+			</section>
+			<section>
+				<h3><a data-ts="Button" href="/#components/header/">Header</a></h3>
+				<p>
+					The Header <strong>↑</strong> provides tabs for navigation and buttons that affect the
+					entire app.
+				</p>
+				<figure data-ts="DoxScript">
+					<script type="runnable">
+						ts.ui.Header.buttons([
+							{label: 'Button', type: 'ts-primary'},
+							{label: 'Button', type: 'ts-secondary'},
+							{label: 'Button', onclick: function() {
+								console.log('Clicked');
+							}}
+						]);
+					</script>
+				</figure>
+			</section>
+			<section>
+				<h3><a data-ts="Button" href="/#components/footer/">Footer</a></h3>
+				<p>
+					The Footer features buttons that relate to the Main area and
+					<em>actions</em> that are reserved for working with selected objects of any kind.
+				</p>
+				<figure data-ts="DoxScript">
+					<script type="runnable">
+						ts.ui.Footer.buttons([
+							{label: 'Button', type: 'ts-primary'},
+							{label: 'Button', type: 'ts-secondary'},
+							{label: 'Button', onclick: () => {
+								console.log('Button clicked');
+							}}
+						]).actions([
+							{label: 'Action', icon: 'ts-icon-followed'},
+							{label: 'Action', icon: 'ts-icon-favorites'},
+							{label: 'Action', icon: 'ts-icon-code', onclick: () => {
+								console.log('Action clicked');
+							}}
+						]).status('Hello World');
+					</script>
+				</figure>
+			</section>
+			<section>
+				<h3>
+					<a data-ts="Button" href="/#components/datepicker/">DatePicker</a>
+				</h3>
+				<p>A easy way to select dates.</p>
+				<figure data-ts="DoxScript">
+					<script type="runnable">
+						ts.ui.DatePicker({
+							title: "Your Birthday",
+							value: '1984-05-23',
+							min: '1984-01-01',
+							max: '1985-12-24',
+							onselect: function(date) {
+								ts.ui.Notification.success(date + ' selected');
+								this.close();
+							},
+							onclosed: function() {
+								this.dispose();
+							}
+						}).open();
+					</script>
+				</figure>
+			</section>
+			<section>
+				<h3><a data-ts="Button" href="/#components/dialogs/">Dialog</a></h3>
+				<p>Works much like the JavaScript <code>confirm()</code> method.</p>
+				<figure data-ts="DoxScript">
+					<script type="runnable">
+						ts.ui.Dialog.confirm('Show the Warning dialog?', 'Show It', 'Nope', {
+							onaccept: function() {
+								ts.ui.Dialog.warning('Show the Danger dialog?', 'Of Course', {
+									onaccept: function() {
+										ts.ui.Dialog.danger('That could be dangerous.', 'Got it');
+									}
+								});
+							},
+						});
+					</script>
+				</figure>
+			</section>
+			<section>
+				<h3>
+					<a data-ts="Button" href="/#components/notifications/">Notification</a>
+				</h3>
+				<p>Themed variants of the JavaScript <code>alert()</code> method.</p>
+				<figure data-ts="DoxScript">
+					<script type="runnable">
+						ts.ui.Notification.success('Notification.success');
+						ts.ui.Notification.info('Notification.info');
+						ts.ui.Notification.warning('Notification.warning');
+						ts.ui.Notification.error('Notification.error');
+					</script>
+				</figure>
+			</section>
+			<section>
+				<h3><a data-ts="Button" href="/#components/notes/">Note</a></h3>
+				<p>
+					A nice way to inform the user about something in general. This is
+					<strong>not</strong> for status messages! The Note attaches to the top of the page, so you
+					will have to scroll back up...
+				</p>
+				<figure data-ts="DoxScript">
+					<script type="runnable">
+						ts.ui.Note({
+							icon: 'ts-icon-heart',
+							text: 'This is the Note. Thanks for scrolling up.',
+							onclose: function() {
+								ts.ui.Notification.success('The Note is gone...');
+							}
+						});
+					</script>
+				</figure>
+			</section>
+			<section>
+				<h3>
+					<a data-ts="Button" href="/#components/cards/usercard.html">UserCard</a>
+				</h3>
+				<p>Show some details about a user.</p>
+				<figure data-ts="DoxScript">
+					<script type="runnable">
+						ts.ui.UserCard({
+							id: '6bf17754-f9de-4e31-aa31-bd3ff765b9c2',
+							data: {
+								name: 'Wired Earp',
+								image: 'assets/wiredearp.png',
+								title: 'EDB Programmer',
+								role: 'Gentleman Spy',
+								email: 'jmo@tradeshift.com',
+								company: 'Tradeshift',
+								companyUrl: 'http://tradeshift.com/'
+							}
+						}).open();
+					</script>
+				</figure>
+			</section>
+		</article>
+	</body>
 </html>

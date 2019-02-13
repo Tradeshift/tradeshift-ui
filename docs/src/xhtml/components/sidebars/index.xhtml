@@ -13,10 +13,16 @@
 						<article>
 							<h1>SideBar</h1>
 							<section class="desc">
-								<p>The SideBar is a panel used for interactions directly related to the main <val>Content</val>, such as filtering and sorting a list of items.</p>
+								<p>
+									The SideBar is a panel used for interactions directly related to the main
+									<val>Content</val>, such as filtering and sorting a list of items.
+								</p>
 							</section>
 							<section>
-								<p>Assign <att>data-ts="SideBar"</att> to an <elm>aside</elm> to initialize as a SideBar. The SideBar <em>must</em> be created with a child <val>Panel</val>.</p>
+								<p>
+									Assign <att>data-ts="SideBar"</att> to an <elm>aside</elm> to initialize as a
+									SideBar. The SideBar <em>must</em> be created with a child <val>Panel</val>.
+								</p>
 							</section>
 							<figure data-ts="DoxMarkup">
 								<script type="tex/html">
@@ -28,7 +34,11 @@
 								</script>
 							</figure>
 							<section class="ts-hide-mobile-only">
-								<p>This sidebar should be positioned either before or after the <val>Content</val> element as seen in your <a data-ts="Button" href="/#getstarted/layout.html">basic layout</a>.</p>
+								<p>
+									This sidebar should be positioned either before or after the
+									<val>Content</val> element as seen in your
+									<a data-ts="Button" href="/#getstarted/layout.html">basic layout</a>.
+								</p>
 								<figure data-ts="DoxMarkup">
 									<script type="text/html">
 										<div data-ts="App">
@@ -45,11 +55,16 @@
 								<form data-ts="Form">
 									<fieldset>
 										<label>
-											<input type="radio" name="radio" onchange="showsidebar('#before-content')"/>
+											<input type="radio" name="radio" onchange="showsidebar('#before-content')" />
 											<span>Before <val>Content</val></span>
 										</label>
 										<label>
-											<input type="radio" name="radio" checked onchange="showsidebar('#after-content')"/>
+											<input
+												type="radio"
+												name="radio"
+												checked
+												onchange="showsidebar('#after-content')"
+											/>
 											<span>After <val>Content</val></span>
 										</label>
 										<!--
@@ -71,21 +86,38 @@
 								</div>
 							</section>
 							<section>
-								<p>Before we dive into the SideBar features, here is the most important observation.</p>
+								<p>
+									Before we dive into the SideBar features, here is the most important observation.
+								</p>
 								<div data-ts="Note">
 									<i class="ts-icon-info"></i>
-									<p>The SideBar will automatically become <strong>hidden</strong> in the mobile breakpoint.</p>
+									<p>
+										The SideBar will automatically become
+										<strong>hidden</strong> in the mobile breakpoint.
+									</p>
 								</div>
-								<p class="ts-hide-mobile-only">The mobile phone doesn't leave much room for SideBars, so we will just hide them. There is no <em>generalized</em> way to restore a hidden SideBar, so if you want the SideBar to be accessible to mobile users, you'll have to present a button in your content. The SideBar can be displayed with the <code>open</code> method.</p>
+								<p class="ts-hide-mobile-only">
+									The mobile phone doesn't leave much room for SideBars, so we will just hide them.
+									There is no <em>generalized</em> way to restore a hidden SideBar, so if you want
+									the SideBar to be accessible to mobile users, you'll have to present a button in
+									your content. The SideBar can be displayed with the <code>open</code> method.
+								</p>
 								<figure data-ts="DoxMarkup">
-								<script type="tex/html">
-									<button data-ts="Button" onclick="ts.ui.get('#sidebar').open()">
-										<span>Open The SideBar</span>
-									</button>
-								</script>
-							</figure>
-								<p class="ts-hide-mobile-only">The SideBar will open like an Aside; you can resize this page to see an example. Remember that the <a data-ts="Button" href="/#appendix/responsive/">responsive classnames</a> can make it easy to hide and show stuff in the various breakpoints.</p>
-								<p class="ts-show-mobile-only">The SideBar is hidden now, but you can open it if you like.</p>
+									<script type="tex/html">
+										<button data-ts="Button" onclick="ts.ui.get('#sidebar').open()">
+											<span>Open The SideBar</span>
+										</button>
+									</script>
+								</figure>
+								<p class="ts-hide-mobile-only">
+									The SideBar will open like an Aside; you can resize this page to see an example.
+									Remember that the
+									<a data-ts="Button" href="/#appendix/responsive/">responsive classnames</a>
+									can make it easy to hide and show stuff in the various breakpoints.
+								</p>
+								<p class="ts-show-mobile-only">
+									The SideBar is hidden now, but you can open it if you like.
+								</p>
 								<menu data-ts="Buttons" class="ts-show-mobile-only">
 									<li>
 										<button data-ts="Button" class="ts-primary" onclick="togglesidebar()">
@@ -96,7 +128,13 @@
 							</section>
 							<section>
 								<h3>SideBar tabs</h3>
-								<p>SideBar tabs can be declared in the HTML via <val>Panels</val> and <att>label</att> attributes</li> as seen in <button data-ts="Button" onclick="showsidebar('#after-content-with-tabs')">this example</button>.</p>
+								<p>
+									SideBar tabs can be declared in the HTML via
+									<val>Panels</val> and <att>label</att> attributes as seen in
+									<button data-ts="Button" onclick="showsidebar('#after-content-with-tabs')">
+										this example</button
+									>.
+								</p>
 								<figure data-ts="DoxMarkup">
 									<script type="tex/html">
 										<aside data-ts="SideBar" data-ts.title="SideBar With Tabs">
@@ -111,30 +149,49 @@
 										</aside>
 									</script>
 								</figure>
-								<p>&mdash; or they can injected programatically via the <code>tabs</code> method. Remember that programatically cretated tabs don't do anything by default, so you will have to implement your own content switching mechanism via the <code>onselect</code> callback.</p>
+								<p>
+									&mdash; or they can injected programatically via the
+									<code>tabs</code> method. Remember that programatically cretated tabs don't do
+									anything by default, so you will have to implement your own content switching
+									mechanism via the <code>onselect</code> callback.
+								</p>
 								<figure data-ts="DoxScript">
 									<script>
 										ts.ui.get('#mysidebar', sidebar => {
-											sidebar.tabs([
-												{label: 'One', onselect() {
-													console.log('Select 1');
-												}},
-												{label: 'Two', onselect() {
-													console.log('Select 2');
-												}}
-											]).open();
+											sidebar
+												.tabs([
+													{
+														label: 'One',
+														onselect() {
+															console.log('Select 1');
+														}
+													},
+													{
+														label: 'Two',
+														onselect() {
+															console.log('Select 2');
+														}
+													}
+												])
+												.open();
 										});
 									</script>
 								</figure>
 							</section>
 							<section>
 								<object data="../header/tabs.xhtml#tabs-api">
-									<replace input="TopBar" output="TabBar"/>
+									<replace input="TopBar" output="TabBar" />
 								</object>
 							</section>
 							<section>
 								<h3>SideBar footer</h3>
-								<p>You can insert a <elm>footer</elm> in the SideBar for whatever purpose you can imagine. Note that if your SideBar features tabs, you may want to manually toggle the <code>display</code> of one or more <elm>footer</elm> elements, since that doesn't happen automatically. Tab change can be intercepted with the <code>onselect</code> callback.</p>
+								<p>
+									You can insert a <elm>footer</elm> in the SideBar for whatever purpose you can
+									imagine. Note that if your SideBar features tabs, you may want to manually toggle
+									the <code>display</code> of one or more <elm>footer</elm> elements, since that
+									doesn't happen automatically. Tab change can be intercepted with the
+									<code>onselect</code> callback.
+								</p>
 								<figure data-ts="DoxMarkup">
 									<script type="tex/html">
 										<aside data-ts="SideBar" data-ts.title="My SideBar">
@@ -150,7 +207,12 @@
 							</section>
 							<section>
 								<h3>Nested Aside</h3>
-								<p>Asides can be nested directly inside the SideBar if they are relevant for the SideBars functionality. You can just <code>open</code> and <code>close</code> them like you would with a <a data-ts="Button" href="/#components/asides/">regular Aside</a>.</p>
+								<p>
+									Asides can be nested directly inside the SideBar if they are relevant for the
+									SideBars functionality. You can just
+									<code>open</code> and <code>close</code> them like you would with a
+									<a data-ts="Button" href="/#components/asides/">regular Aside</a>.
+								</p>
 								<figure data-ts="DoxMarkup">
 									<script type="tex/html">
 										<aside data-ts="SideBar" data-ts.title="My SideBar">
@@ -188,25 +250,35 @@
 		</div>
 
 		<!-- templates ......................................................... -->
-		
+
 		<template id="before-app-template">
 			<aside data-ts="SideBar" id="before-app" data-ts.title="SideBar Before App">
 				<div data-ts="Panel">
-					<p>This SideBar is positioned before the <val>App</val> element in the <a data-ts="Button" href="/#getstarted/layout.html">basic layout</a>.</p>
+					<p>
+						This SideBar is positioned before the <val>App</val> element in the
+						<a data-ts="Button" href="/#getstarted/layout.html">basic layout</a>.
+					</p>
 				</div>
 			</aside>
 		</template>
 		<template id="after-app-template">
 			<aside data-ts="SideBar" id="after-app" data-ts.title="SideBar After App">
 				<div data-ts="Panel">
-					<p>This SideBar is positioned after the <val>App</val> element in the <a data-ts="Button" href="/#getstarted/layout.html">basic layout</a>.</p>
+					<p>
+						This SideBar is positioned after the <val>App</val> element in the
+						<a data-ts="Button" href="/#getstarted/layout.html">basic layout</a>.
+					</p>
 				</div>
 			</aside>
 		</template>
 		<template id="before-content-template">
 			<aside data-ts="SideBar" id="before-content" data-ts.title="SideBar Before Content">
 				<div data-ts="Panel" data-ts.label="Hansen">
-					<p>This SideBar is positioned before the <val>Content</val> element in the <a data-ts="Button" href="/#getstarted/layout.html">basic layout</a>. It also features a nested <val>Aside</val>.</p>
+					<p>
+						This SideBar is positioned before the <val>Content</val> element in the
+						<a data-ts="Button" href="/#getstarted/layout.html">basic layout</a>. It also features a
+						nested <val>Aside</val>.
+					</p>
 					<menu data-ts="Buttons">
 						<li>
 							<button data-ts="Button" onclick="ts.ui.get('#nestedaside').open()">
@@ -232,10 +304,16 @@
 		<template id="after-content-template">
 			<aside data-ts="SideBar" id="after-content" data-ts.title="SideBar After Content">
 				<div data-ts="Panel">
-					<p>This SideBar is positioned after the <val>Content</val> element in the <a data-ts="Button" href="/#getstarted/layout.html">basic layout</a>.</p>
+					<p>
+						This SideBar is positioned after the <val>Content</val> element in the
+						<a data-ts="Button" href="/#getstarted/layout.html">basic layout</a>.
+					</p>
 				</div>
 				<footer>
-					<p>This SideBar has a <elm>footer</elm> below the <val>Panel</val>. This can be used for any purpose you can imagine.</p>
+					<p>
+						This SideBar has a <elm>footer</elm> below the <val>Panel</val>. This can be used for
+						any purpose you can imagine.
+					</p>
 				</footer>
 			</aside>
 		</template>

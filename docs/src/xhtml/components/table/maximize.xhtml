@@ -13,55 +13,62 @@
 		</style>
 	</head>
 	<body>
-			<article>
-				<h1>Table explode and optimize 🚀</h1>
-				<p>You can use <code>expand</code> simply maximizes the layout. You can check the full screen table <a data-ts="Button" href="/#components/table/demo.html">here</a> </p>
-					<p><code>Optimize</code> can be used to limit the number of rows shown, either automatically or manually based on the information provided via the onresize callback</p>
-				<section>
-					<div id="container">
-						<div data-ts="Table" id="mytable"></div>
-					</div>
-				</section>
-				<figure data-ts="DoxScript">
-					<script type="runnable">
-						ts.ui.get('#mytable', table => {
-							table
-								.explode()
-								.optimize()
-								.cols([
-									{label: 'Level', type: 'ts-number'},
-									{label: 'Character', flex: 2},
-									{label: 'Alignment', flex: 2},
-								])
-								.rows([
-									[21, 'Paladin Knight', 'Lawful Good'],
-									[13, 'Barbarian Queen', 'Neutral Evil'],
-									[11, 'Global Senior Vice President of Sales', 'Chaotic Evil'],
-									[21, 'Paladin Knight', 'Lawful Good'],
-									[13, 'Barbarian Queen', 'Neutral Evil'],
-									[11, 'Global Senior Vice President of Sales', 'Chaotic Evil'],
-									[21, 'Paladin Knight', 'Lawful Good'],
-									[13, 'Barbarian Queen', 'Neutral Evil'],
-									[11, 'Global Senior Vice President of Sales', 'Chaotic Evil'],
-									[21, 'Paladin Knight', 'Lawful Good'],
-									[13, 'Barbarian Queen', 'Neutral Evil'],
-									[11, 'Global Senior Vice President of Sales', 'Chaotic Evil'],
-									[21, 'Paladin Knight', 'Lawful Good'],
-									[13, 'Barbarian Queen', 'Neutral Evil'],
-									[11, 'Global Senior Vice President of Sales', 'Chaotic Evil'],
-									[21, 'Paladin Knight', 'Lawful Good'],
-									[13, 'Barbarian Queen', 'Neutral Evil'],
-									[11, 'Global Senior Vice President of Sales', 'Chaotic Evil'],
-									[21, 'Paladin Knight', 'Lawful Good'],
-									[13, 'Barbarian Queen', 'Neutral Evil'],
-									[11, 'Global Senior Vice President of Sales', 'Chaotic Evil'],
-									[21, 'Paladin Knight', 'Lawful Good'],
-									[13, 'Barbarian Queen', 'Neutral Evil'],
-									[11, 'Global Senior Vice President of Sales', 'Chaotic Evil']
-								])
-						});
-					</script>
-				</figure>
-			</article>
+		<article>
+			<h1>Table explode and optimize 🚀</h1>
+			<p>
+				You can use <code>expand</code> simply maximizes the layout. You can check the full screen
+				table
+				<a data-ts="Button" href="/#components/table/demo.html">here</a>
+			</p>
+			<p>
+				<code>Optimize</code> can be used to limit the number of rows shown, either automatically or
+				manually based on the information provided via the onresize callback
+			</p>
+			<section>
+				<div id="container">
+					<div data-ts="Table" id="mytable"></div>
+				</div>
+			</section>
+			<figure data-ts="DoxScript">
+				<script type="runnable">
+					ts.ui.get('#mytable', table => {
+						table
+							.explode()
+							.optimize()
+							.cols([
+								{label: 'Level', type: 'ts-number'},
+								{label: 'Character', flex: 2},
+								{label: 'Alignment', flex: 2},
+							])
+							.rows([
+								[21, 'Paladin Knight', 'Lawful Good'],
+								[13, 'Barbarian Queen', 'Neutral Evil'],
+								[11, 'Global Senior Vice President of Sales', 'Chaotic Evil'],
+								[21, 'Paladin Knight', 'Lawful Good'],
+								[13, 'Barbarian Queen', 'Neutral Evil'],
+								[11, 'Global Senior Vice President of Sales', 'Chaotic Evil'],
+								[21, 'Paladin Knight', 'Lawful Good'],
+								[13, 'Barbarian Queen', 'Neutral Evil'],
+								[11, 'Global Senior Vice President of Sales', 'Chaotic Evil'],
+								[21, 'Paladin Knight', 'Lawful Good'],
+								[13, 'Barbarian Queen', 'Neutral Evil'],
+								[11, 'Global Senior Vice President of Sales', 'Chaotic Evil'],
+								[21, 'Paladin Knight', 'Lawful Good'],
+								[13, 'Barbarian Queen', 'Neutral Evil'],
+								[11, 'Global Senior Vice President of Sales', 'Chaotic Evil'],
+								[21, 'Paladin Knight', 'Lawful Good'],
+								[13, 'Barbarian Queen', 'Neutral Evil'],
+								[11, 'Global Senior Vice President of Sales', 'Chaotic Evil'],
+								[21, 'Paladin Knight', 'Lawful Good'],
+								[13, 'Barbarian Queen', 'Neutral Evil'],
+								[11, 'Global Senior Vice President of Sales', 'Chaotic Evil'],
+								[21, 'Paladin Knight', 'Lawful Good'],
+								[13, 'Barbarian Queen', 'Neutral Evil'],
+								[11, 'Global Senior Vice President of Sales', 'Chaotic Evil']
+							])
+					});
+				</script>
+			</figure>
+		</article>
 	</body>
 </html>

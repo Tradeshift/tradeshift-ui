@@ -4,37 +4,41 @@
 		<title>UserCard</title>
 		<object data="tabs.xhtml"></object>
 		<style>
-		 	figure .output {
-		 		text-align: center;
-		 	}
+			figure .output {
+				text-align: center;
+			}
 		</style>
 	</head>
 	<body class="nosticky">
-			<article>
-				<h1>UserCard</h1>
-				<section class="desc">
-					<p>In this first iteration, the UserCard can simply show some user details in an Aside.</p>
-				</section>
-				<section>
-					<p>The properties are all optional but you should at least include the name.</p>
-					<figure data-ts="DoxScript">
-						<script type="runnable">
-							ts.ui.UserCard({
-								id: '6bf17754-f9de-4e31-aa31-bd3ff765b9c2',
-								data: {
-									name: 'Wired Earp',
-									image: 'assets/wiredearp.png',
-									title: 'EDB Programmer',
-									role: 'Gentleman Spy',
-									email: 'jmo@tradeshift.com',
-									company: 'Tradeshift',
-									companyUrl: 'http://tradeshift.com/'
-								}
-							}).open();
-						</script>
-					</figure>
-
-				<!--
+		<article>
+			<h1>UserCard</h1>
+			<section class="desc">
+				<p>
+					In this first iteration, the UserCard can simply show some user details in an Aside.
+				</p>
+			</section>
+			<section>
+				<p>
+					The properties are all optional but you should at least include the name.
+				</p>
+				<figure data-ts="DoxScript">
+					<script type="runnable">
+						ts.ui.UserCard({
+							id: '6bf17754-f9de-4e31-aa31-bd3ff765b9c2',
+							data: {
+								name: 'Wired Earp',
+								image: 'assets/wiredearp.png',
+								title: 'EDB Programmer',
+								role: 'Gentleman Spy',
+								email: 'jmo@tradeshift.com',
+								company: 'Tradeshift',
+								companyUrl: 'http://tradeshift.com/'
+							}
+						}).open();
+					</script>
+				</figure>
+			</section>
+			<!--
 				<section>
 					<li>You can initialize a UserCard with the <code class="attr-name">ts-usercard</code> attribute.
 					<figure docs-markuli>
@@ -99,8 +103,6 @@
 					<p class="todo">Encode that JSON for this example.
 					<li>Remember to <code>trim()</code> the JSON string before you encode it.
 				</section>
-				-->
-
-			</article>
+				--></article>
 	</body>
 </html>

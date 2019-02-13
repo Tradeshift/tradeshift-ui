@@ -7,7 +7,7 @@
 			ts.ui.ready(function nastyhack() {
 				new gui.Request('/dist/sri.json').get().then(function(status, json) {
 					ts.ui.ready(function nastyhack() {
-						var version =  ts.ui.version;
+						var version = ts.ui.version;
 						var figure = document.querySelector('figure');
 						var markup = figure.innerHTML;
 						figure.innerHTML = markup
@@ -20,56 +20,71 @@
 		</script>
 	</head>
 	<body>
-			<article>
-				<h1>Get started</h1>
-				<section class="desc">
-					<p>This is a good starting point also for visual designers who prefer to work in HTML, because the stylesheet delivers all the fonts and icons etc.</p>
-				</section>
-				<section>
-					<p data-ts="Spirit">
-						<script type="text/edbml">
-							<span>To get Tradeshift UI up and running on your page, simply include +
-							<code>ts.js</code> and <code>ts.css</code> in an appropriate version. The latest version +
-							is <code>${ts.ui.version}</code>
-						</script>
-					</p>
+		<article>
+			<h1>Get started</h1>
+			<section class="desc">
+				<p>
+					This is a good starting point also for visual designers who prefer to work in HTML,
+					because the stylesheet delivers all the fonts and icons etc.
+				</p>
+			</section>
+			<section>
+				<p data-ts="Spirit">
+					<script type="text/edbml">
+						<span>To get Tradeshift UI up and running on your page, simply include +
+						<code>ts.js</code> and <code>ts.css</code> in an appropriate version. The latest version +
+						is <code>${ts.ui.version}</code>
+					</script>
+				</p>
+				<figure data-ts="DoxMarkup">
+					<script type="text/html">
+						<link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-${ts.ui.version}.min.css"/>
+						<scrxpt src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-${ts.ui.version}.min.js"></scrxpt>
+					</script>
+				</figure>
+				<!--
 					<figure data-ts="DoxMarkup">
 						<script type="text/html">
-							<link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-${ts.ui.version}.min.css"/>
-							<scrxpt src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-${ts.ui.version}.min.js"></scrxpt>
-						</script>
-					</figure>
-					<!--
-					<figure data-ts="DoxMarkup">
-						<script>
 							<link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-${ts.ui.version}.min.css" integrity="${sricss}" crossorigin="anonymous"/>
 							<scrxpt src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-${ts.ui.version}.min.js" integrity="${srijs}" crossorigin="anonymous"></scrxpt>
 						</script>
 					</figure>
 					-->
-					<p>UI components are initialized on the <code>DOMContentLoaded</code> event, but this might change some day. To make sure that all the components are initialized before you do something to them, you can wrap your code in a callback like this.</p>
-					<figure data-ts="DoxScript">
-						<script type="text/html">
-							ts.ui.ready(function() {
-								var component = ts.ui.get(element);
-								component.dosomething();
-							});
-						</script>
-					</figure>
-					<ul>
-						<li>Before <code>DOMContentLoaded</code> the callback will be executed later.</li>
-						<li>After <code>DOMContentLoaded</code> the callback will execute immedeately.</li>
-					</ul>
-					<p>You can perhaps make it easier for yourself by kickstarting your app with a <code>ts.ui.ready</code> callback, because then you wont&apos;t have to worry about it later on.</p>
-					<figure data-ts="DoxScript">
-						<script type="text/html">
-							ts.ui.ready(function() {
-								boostrap_everything();
-							});
-						</script>
-					</figure>
-					<p>Before we begin, you&apos;ll need to mark up your page with the <a data-ts="Button" href="/#getstarted/layout.html">basic layout</a>.</p>
-				</section>
-			</article>
+				<p>
+					UI components are initialized on the
+					<code>DOMContentLoaded</code> event, but this might change some day. To make sure that all
+					the components are initialized before you do something to them, you can wrap your code in
+					a callback like this.
+				</p>
+				<figure data-ts="DoxScript">
+					<script type="text/html">
+						ts.ui.ready(function() {
+							var component = ts.ui.get(element);
+							component.dosomething();
+						});
+					</script>
+				</figure>
+				<ul>
+					<li>Before <code>DOMContentLoaded</code> the callback will be executed later.</li>
+					<li>After <code>DOMContentLoaded</code> the callback will execute immedeately.</li>
+				</ul>
+				<p>
+					You can perhaps make it easier for yourself by kickstarting your app with a
+					<code>ts.ui.ready</code> callback, because then you wont&apos;t have to worry about it
+					later on.
+				</p>
+				<figure data-ts="DoxScript">
+					<script type="text/html">
+						ts.ui.ready(function() {
+							boostrap_everything();
+						});
+					</script>
+				</figure>
+				<p>
+					Before we begin, you&apos;ll need to mark up your page with the
+					<a data-ts="Button" href="/#getstarted/layout.html">basic layout</a>.
+				</p>
+			</section>
+		</article>
 	</body>
 </html>

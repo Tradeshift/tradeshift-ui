@@ -1,6 +1,9 @@
 const chalk = require('chalk');
 const browserStackRunner = require('browserstack-runner');
 const config = require('../browserstack.json');
+const browsers = require('../browserstack.browsers.json');
+
+config.browsers = browsers;
 
 /**
  * FigletJS ASCII ART

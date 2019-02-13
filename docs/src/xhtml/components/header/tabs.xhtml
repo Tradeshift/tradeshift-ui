@@ -7,7 +7,10 @@
 	<body>
 		<article>
 			<section>
-				<p>Top level navigational tabs can be mounted via the <code>tabs</code> method as shown.</p>
+				<p>
+					Top level navigational tabs can be mounted via the
+					<code>tabs</code> method as shown.
+				</p>
 				<figure data-ts="DoxScript">
 					<script type="text/html">
 						ts.ui.Header.tabs([
@@ -20,7 +23,10 @@
 					</script>
 				</figure>
 
-				<p>&mdash; but since the page already has tabs, we will instead append a new tab to the existing collection. If you omit the argument, you"ll get the current tabs (jQuery style).</p>
+				<p>
+					&mdash; but since the page already has tabs, we will instead append a new tab to the
+					existing collection. If you omit the argument, you"ll get the current tabs (jQuery style).
+				</p>
 				<figure data-ts="DoxScript" class="attention">
 					<script type="runnable">
 						var tabs = ts.ui.Header.tabs();
@@ -35,17 +41,31 @@
 
 				<div data-ts="Note">
 					<i class="ts-icon-info"></i>
-					<p>If you prefer the markup-driven approach, top level tabs may alternatively be configured declaratively via the <a data-ts="Button" href="/#components/mains/">Mains</a> component.
+					<p>
+						If you prefer the markup-driven approach, top level tabs may alternatively be configured
+						declaratively via the
+						<a data-ts="Button" href="/#components/mains/">Mains</a> component.
+					</p>
 				</div>
 			</section>
 			<section id="tabs-desc" data-important="THIS GETS INCLUDED IN OTHER PAGES!">
+				<p>
+					You can use array methods like <code>push</code>, <code>pop</code>, <code>shift</code>,
+					<code>unshift</code>, <code>splice</code> and so on to manage tabs, just note that the
+					tabs <code>length</code> is a readonly property. Also note that tabs don"t do anything by
+					default, so what happens at <code>onselect</code> is completely up to you.
+				</p>
 
-				<p>You can use array methods like <code>push</code>, <code>pop</code>, <code>shift</code>, <code>unshift</code>, <code>splice</code> and so on to manage tabs, just note that the tabs <code>length</code> is a readonly property. Also note that tabs don"t do anything by default, so what happens at <code>onselect</code> is completely up to you.</p>
-				
 				<h3>Second level tabs</h3>
-				<p>We supported two levels of tabs before. one is in the header, and use the normal tabs as the second level tabs. We remove the tabs in the header right now. If you want to have two levels of tabs, you can use the normal tabs as the first level, and use TabBox as the second level. Read more about <a data-ts="Button" href="/#components/boards/">boards</a></p>
+				<p>
+					We supported two levels of tabs before. one is in the header, and use the normal tabs as
+					the second level tabs. We remove the tabs in the header right now. If you want to have two
+					levels of tabs, you can use the normal tabs as the first level, and use TabBox as the
+					second level. Read more about
+					<a data-ts="Button" href="/#components/boards/">boards</a>
+				</p>
 				<figure data-ts="DoxMarkup">
-					<script>
+					<script type="text/html">
 						<div data-ts="Board">
 							<ul data-ts="Panels">
 								<li data-ts="Panel" data-ts.label="One"></li>
@@ -70,7 +90,10 @@
 				</div>
 
 				<h3>Updating tabs</h3>
-				<p>We can at any time change what happens when a tab gets selected. We can also change the tab label if we like, although perhaps this could become confusing.</p>
+				<p>
+					We can at any time change what happens when a tab gets selected. We can also change the
+					tab label if we like, although perhaps this could become confusing.
+				</p>
 				<figure data-ts="DoxScript">
 					<script type="runnable">
 						var tabs = ts.ui.Header.tabs();
@@ -80,9 +103,11 @@
 						};
 					</script>
 				</figure>
-				
+
 				<h3>Selecting tabs</h3>
-				<p>We can programatically select a tab using one of these approaches.</p>
+				<p>
+					We can programatically select a tab using one of these approaches.
+				</p>
 				<figure data-ts="DoxScript">
 					<script>
 						ts.ui.Header.tabs()[4].select();
@@ -93,9 +118,13 @@
 						ts.ui.Header.tabs().selectedIndex = 1;
 					</script>
 				</figure>
-				
+
 				<h3>Querying tabs</h3>
-				<p>This will all become a lot easier if we give all the tabs an <code>id</code> and use <code>tabs.get()</code></p>
+				<p>
+					This will all become a lot easier if we give all the tabs an
+					<code>id</code> and use
+					<code>tabs.get()</code>
+				</p>
 				<figure data-ts="DoxScript">
 					<script type="runnable">
 						var tabs = ts.ui.Header.tabs();
@@ -106,9 +135,13 @@
 						tabs.get('example-tab').select();
 					</script>
 				</figure>
-				
+
 				<h3>Tabs icons</h3>
-				<p>You can add a tab with an <a data-ts="Button" href="/#components/icons/css.html">icon</a> if somehow that tab is special.</p>
+				<p>
+					You can add a tab with an
+					<a data-ts="Button" href="/#components/icons/css.html">icon</a> if somehow that tab is
+					special.
+				</p>
 				<figure data-ts="DoxScript">
 					<script type="runnable">
 						ts.ui.Header.tabs().push ({
@@ -117,7 +150,7 @@
 						});
 					</script>
 				</figure>
-				
+
 				<h3>Tab counters</h3>
 				<p>You can add a counter to the tabs for whatever reason you like.</p>
 				<figure data-ts="DoxScript">
@@ -137,7 +170,11 @@
 				</figure>
 
 				<h3>Closeable tabs</h3>
-				<p>You can create closeable tabs, but note that the tab must be selected before it can be closed. You can <code>return false</code> in the <code>onclose</code> method to prevent the tab from closing (if this would otherwise cause data loss).</p>
+				<p>
+					You can create closeable tabs, but note that the tab must be selected before it can be
+					closed. You can <code>return false</code> in the <code>onclose</code> method to prevent
+					the tab from closing (if this would otherwise cause data loss).
+				</p>
 				<figure data-ts="DoxScript">
 					<script type="runnable">
 						ts.ui.Header.tabs().push ({
@@ -150,9 +187,14 @@
 						});
 					</script>
 				</figure>
-				
+
 				<h3>New-Tab button</h3>
-				<p>You can allow the user to create new tabs via a special button as seen in popular browsers. Note that the button just triggers a callback and that the new tab must be created manually. In the example below, the <code>selected</code> property also selects the tab.</p>
+				<p>
+					You can allow the user to create new tabs via a special button as seen in popular
+					browsers. Note that the button just triggers a callback and that the new tab must be
+					created manually. In the example below, the
+					<code>selected</code> property also selects the tab.
+				</p>
 				<figure data-ts="DoxScript">
 					<script type="runnable">
 						var tabs = ts.ui.Header.tabs();
@@ -282,4 +324,5 @@
 			</section>
 		</article>
 	</body>
-<html>
+	<html></html>
+</html>

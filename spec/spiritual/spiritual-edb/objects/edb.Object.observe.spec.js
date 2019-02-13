@@ -57,8 +57,20 @@ describe('edb.Object.observe()', function likethis() {
 		john.onchange = function(changes) {
 			var type = edb.ObjectChange.TYPE_UPDATE;
 			expect(changes).toEqual([
-				{ object: hans, name: 'name', newValue: 'Jens', oldValue: 'Hans', type: type },
-				{ object: hans, name: 'nickname', newValue: 'Jones', oldValue: 'Hanzi', type: type },
+				{
+					object: hans,
+					name: 'name',
+					newValue: 'Jens',
+					oldValue: 'Hans',
+					type: type
+				},
+				{
+					object: hans,
+					name: 'nickname',
+					newValue: 'Jones',
+					oldValue: 'Hanzi',
+					type: type
+				},
 				{ object: hans, name: 'age', newValue: 46, oldValue: 23, type: type }
 			]);
 			done();

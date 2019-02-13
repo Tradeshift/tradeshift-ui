@@ -21,10 +21,15 @@
 						<article>
 							<h1>Aside</h1>
 							<section class="desc">
-								<p>Side-panel used for small user interactions, such as selecting a date.</p>
+								<p>
+									Side-panel used for small user interactions, such as selecting a date.
+								</p>
 							</section>
 							<section>
-								<p>The <val>Aside</val> component <em>must</em> be created with a child component <val>Panel</val>.</p>
+								<p>
+									The <val>Aside</val> component <em>must</em> be created with a child component
+									<val>Panel</val>.
+								</p>
 								<figure data-ts="DoxMarkup">
 									<script type="text/html">
 										<aside data-ts="Aside">
@@ -34,7 +39,11 @@
 										</aside>
 									</script>
 								</figure>
-								<p>You can create the <val>Aside</val> wherever you like, just make sure that it's positioned outside of the <val>Main</val> element when it opens. Perhaps you can simply place it in the <elm>body</elm>.</p>
+								<p>
+									You can create the <val>Aside</val> wherever you like, just make sure that it's
+									positioned outside of the <val>Main</val> element when it opens. Perhaps you can
+									simply place it in the <elm>body</elm>.
+								</p>
 								<figure data-ts="DoxMarkup">
 									<script type="text/html">
 										<div data-ts="App">
@@ -51,7 +60,10 @@
 
 							<h3>Adding a header</h3>
 							<section>
-								<p>The <att>data-ts.title</att> attribute configures the Aside with a <a data-ts="Button" onclick="toggle('#myaside');">nice header</a>.</p>
+								<p>
+									The <att>data-ts.title</att> attribute configures the Aside with a
+									<a data-ts="Button" onclick="toggle('#myaside');">nice header</a>.
+								</p>
 								<figure data-ts="DoxMarkup">
 									<script type="text/html">
 										<aside data-ts="Aside" data-ts.title="Aside Header">
@@ -81,7 +93,9 @@
 										$('#myaside').attr('data-ts.open', true);
 									</script>
 								</figure>
-								<p>If you are doing that, you might as well open the Aside via the certified API.</p>
+								<p>
+									If you are doing that, you might as well open the Aside via the certified API.
+								</p>
 								<figure data-ts="DoxScript">
 									<script type="runnable">
 										ts.ui.get('#myaside').open();
@@ -91,8 +105,11 @@
 
 							<h3>Adding some tabs</h3>
 							<section>
-								<p>If an <val>Aside</val> contains more than one <val>Panel</val>,
-								we will automatically create a TabBar to switch between the panels like in <a data-ts="Button" onclick="ts.ui.get('#aside2').open()">this example</a>.</p>
+								<p>
+									If an <val>Aside</val> contains more than one <val>Panel</val>, we will
+									automatically create a TabBar to switch between the panels like in
+									<a data-ts="Button" onclick="ts.ui.get('#aside2').open()">this example</a>.
+								</p>
 								<figure data-ts="DoxMarkup">
 									<script type="text/html">
 										<aside data-ts="Aside">
@@ -107,7 +124,10 @@
 										</aside>
 									</script>
 								</figure>
-								<p>The tabs can also be created programatically. In that case, the panel switching mechanism must be implemented manually somehow.</p>
+								<p>
+									The tabs can also be created programatically. In that case, the panel switching
+									mechanism must be implemented manually somehow.
+								</p>
 								<figure data-ts="DoxScript">
 									<script type="runnable">
 										ts.ui.get('#aside3', aside => {
@@ -122,7 +142,11 @@
 										});
 									</script>
 								</figure>
-								<p>You can also mix the two approaches to dynamically update tabs that were created with <att>Panel</att> elements. This will for example assign an <code>onselect</code> callback to the third tab.</p>
+								<p>
+									You can also mix the two approaches to dynamically update tabs that were created
+									with <att>Panel</att> elements. This will for example assign an
+									<code>onselect</code> callback to the third tab.
+								</p>
 								<figure data-ts="DoxScript">
 									<script type="text/html">
 										ts.ui.get('#myaside', aside => {
@@ -133,7 +157,9 @@
 										});
 									</script>
 								</figure>
-								<p>To remove all dynamically created tabs, you can simply clear the tab collection.</p>
+								<p>
+									To remove all dynamically created tabs, you can simply clear the tab collection.
+								</p>
 								<figure data-ts="DoxScript">
 									<script type="text/html">
 										ts.ui.get('#myaside', aside => {
@@ -145,7 +171,13 @@
 
 							<h3>Adding some buttons</h3>
 							<section>
-								<p>It's common for Asides to show a group of buttons, usually following a set of form fields. To make sure that they always look the same, the certified way to add this group of buttons is via a <a data-ts="Button" href="/#components/buttons/buttons.html">Buttons</a> menu.</p>
+								<p>
+									It's common for Asides to show a group of buttons, usually following a set of form
+									fields. To make sure that they always look the same, the certified way to add this
+									group of buttons is via a
+									<a data-ts="Button" href="/#components/buttons/buttons.html">Buttons</a>
+									menu.
+								</p>
 								<figure data-ts="DoxMarkup">
 									<script type="text/html">
 										<aside data-ts="Aside">
@@ -168,7 +200,7 @@
 									</script>
 								</figure>
 							</section>
-							
+
 							<h3>Showing the spinner</h3>
 							<section>
 								<p>The <att>data-ts.busy</att> attribute can be set to show the spinner</p>
@@ -201,11 +233,14 @@
 
 							<h3>Tracking the state</h3>
 							<section>
-								<p>You can setup inline callbacks to be invoked when the aside changes state using one of <code class="attr-name">onopen</code>, 
-									<code class="attr-name">onopened</code>, 
-									<code class="attr-name">onclose</code> and 
-									<code class="attr-name">onclosed</code>. 
-									You can also do this with <a data-ts="Button" href="/#components/asides/js.html">event listeners</a> if you like.
+								<p>
+									You can setup inline callbacks to be invoked when the aside changes state using
+									one of
+									<code class="attr-name">onopen</code>, <code class="attr-name">onopened</code>,
+									<code class="attr-name">onclose</code> and
+									<code class="attr-name">onclosed</code>. You can also do this with
+									<a data-ts="Button" href="/#components/asides/js.html">event listeners</a>
+									if you like.
 								</p>
 								<figure data-ts="DoxMarkup">
 									<script type="text/html">
@@ -224,7 +259,10 @@
 
 							<h3>Stacking Asides</h3>
 							<section>
-								<p>Asides will automatically stack themselves whenever <a data-ts="Button" onclick="toggle('#one')">new asides open</a>.</p>
+								<p>
+									Asides will automatically stack themselves whenever
+									<a data-ts="Button" onclick="toggle('#one')">new asides open</a>.
+								</p>
 								<ul>
 									<li>The old Asides will slide elegantly to the right</li>
 									<li>The new Aside will float the top of the z-index</li>
@@ -240,26 +278,62 @@
 
 		<aside data-ts="Aside" id="myaside" data-ts.title="Aside Title">
 			<div data-ts="Panel">
-				<p>Bacon ipsum dolor sit pölsesnack, jerky pork belly short loin sausage andouille kevin capicola ham hamburger doner. Shank prosciutto flank kevin ribeye short ribs swine ham pork porchetta spare ribs kielbasa beef ribs. Prosciutto pancetta shank boudin. Corned beef shoulder capicola, turducken prosciutto pork belly sirloin shankle brisket chuck leberkas tail beef. Sirloin meatloaf pastrami beef ribs. Ball tip pastrami landjaeger, brisket Tradeshift strip steak short loin pancetta meatball corned beef tenderloin beef ribs spare ribs. Tradeshift sausage strip steak ham, ribeye pork loin meatball turkey corned beef shoulder. Leberkas jerky sirloin boudin, turducken ham hock pastrami. Doner pig boudin sausage, ball tip leberkas ground round beef jowl kielbasa tongue shankle spare ribs tail shoulder. Fatback pork kielbasa ham, doner pig short loin short ribs pancetta. Pancetta jerky biltong short loin capicola beef. Pork belly strip steak venison brisket shoulder beef filet mignon shank tenderloin tri-tip ground round shankle cow.</p>
+				<p>
+					Bacon ipsum dolor sit pölsesnack, jerky pork belly short loin sausage andouille kevin
+					capicola ham hamburger doner. Shank prosciutto flank kevin ribeye short ribs swine ham
+					pork porchetta spare ribs kielbasa beef ribs. Prosciutto pancetta shank boudin. Corned
+					beef shoulder capicola, turducken prosciutto pork belly sirloin shankle brisket chuck
+					leberkas tail beef. Sirloin meatloaf pastrami beef ribs. Ball tip pastrami landjaeger,
+					brisket Tradeshift strip steak short loin pancetta meatball corned beef tenderloin beef
+					ribs spare ribs. Tradeshift sausage strip steak ham, ribeye pork loin meatball turkey
+					corned beef shoulder. Leberkas jerky sirloin boudin, turducken ham hock pastrami. Doner
+					pig boudin sausage, ball tip leberkas ground round beef jowl kielbasa tongue shankle spare
+					ribs tail shoulder. Fatback pork kielbasa ham, doner pig short loin short ribs pancetta.
+					Pancetta jerky biltong short loin capicola beef. Pork belly strip steak venison brisket
+					shoulder beef filet mignon shank tenderloin tri-tip ground round shankle cow.
+				</p>
 			</div>
 		</aside>
-		
+
 		<aside data-ts="Aside" id="aside2" data-ts.title="Declarative Tabs">
 			<ul data-ts="Panels">
 				<li data-ts="Panel" data-ts.label="tab 1">
-					<p>Bacon ipsum dolor sit pölsesnack, jerky pork belly short loin sausage andouille kevin capicola ham hamburger doner. Shank prosciutto flank kevin ribeye short ribs swine ham pork porchetta spare ribs kielbasa beef ribs. Prosciutto pancetta shank boudin. Corned beef shoulder capicola, turducken prosciutto pork belly sirloin shankle brisket chuck leberkas tail beef. Sirloin meatloaf pastrami beef ribs. Ball tip pastrami landjaeger, brisket Tradeshift strip steak short loin pancetta meatball corned beef tenderloin beef ribs spare ribs. Tradeshift sausage strip steak ham, ribeye pork loin meatball turkey corned beef shoulder. Leberkas jerky sirloin boudin, turducken ham hock pastrami. Doner pig boudin sausage, ball tip leberkas ground round beef jowl kielbasa tongue shankle spare ribs tail shoulder. Fatback pork kielbasa ham, doner pig short loin short ribs pancetta. Pancetta jerky biltong short loin capicola beef. Pork belly strip steak venison brisket shoulder beef filet mignon shank tenderloin tri-tip ground round shankle cow.</p>
+					<p>
+						Bacon ipsum dolor sit pölsesnack, jerky pork belly short loin sausage andouille kevin
+						capicola ham hamburger doner. Shank prosciutto flank kevin ribeye short ribs swine ham
+						pork porchetta spare ribs kielbasa beef ribs. Prosciutto pancetta shank boudin. Corned
+						beef shoulder capicola, turducken prosciutto pork belly sirloin shankle brisket chuck
+						leberkas tail beef. Sirloin meatloaf pastrami beef ribs. Ball tip pastrami landjaeger,
+						brisket Tradeshift strip steak short loin pancetta meatball corned beef tenderloin beef
+						ribs spare ribs. Tradeshift sausage strip steak ham, ribeye pork loin meatball turkey
+						corned beef shoulder. Leberkas jerky sirloin boudin, turducken ham hock pastrami. Doner
+						pig boudin sausage, ball tip leberkas ground round beef jowl kielbasa tongue shankle
+						spare ribs tail shoulder. Fatback pork kielbasa ham, doner pig short loin short ribs
+						pancetta. Pancetta jerky biltong short loin capicola beef. Pork belly strip steak
+						venison brisket shoulder beef filet mignon shank tenderloin tri-tip ground round shankle
+						cow.
+					</p>
 				</li>
 				<li data-ts="Panel" data-ts.label="tab 2">
-					<p>Tradeshift salami burger mit invoice pastrami, shankle venison meatball pork belly capicola ribeye sirloin doner Aside. Tail kielbasa beef ribs landjaeger pork belly. T-bone pig andouille, doner ham sirloin short ribs meatloaf salami strip steak tenderloin short loin tri-tip pork loin. Pastrami jowl sirloin, kevin jerky filet mignon bacon pork chop brisket pancetta. Spare ribs ground round pork belly pork chop doner swine, fatback bresaola. Picanha beef ribs burgdoggen bacon sausage rump. Porchetta turkey ribeye, tenderloin landjaeger spare ribs strip steak pork belly t-bone. Tenderloin t-bone ham, doner corned beef chuck fatback ground round short ribs tri-tip. Landjaeger ribeye brisket boudin tongue pork kevin frankfurter. Swine capicola filet mignon, cow spare ribs ribeye salami sausage porchetta hamburger short ribs corned beef.</p>
+					<p>
+						Tradeshift salami burger mit invoice pastrami, shankle venison meatball pork belly
+						capicola ribeye sirloin doner Aside. Tail kielbasa beef ribs landjaeger pork belly.
+						T-bone pig andouille, doner ham sirloin short ribs meatloaf salami strip steak
+						tenderloin short loin tri-tip pork loin. Pastrami jowl sirloin, kevin jerky filet mignon
+						bacon pork chop brisket pancetta. Spare ribs ground round pork belly pork chop doner
+						swine, fatback bresaola. Picanha beef ribs burgdoggen bacon sausage rump. Porchetta
+						turkey ribeye, tenderloin landjaeger spare ribs strip steak pork belly t-bone.
+						Tenderloin t-bone ham, doner corned beef chuck fatback ground round short ribs tri-tip.
+						Landjaeger ribeye brisket boudin tongue pork kevin frankfurter. Swine capicola filet
+						mignon, cow spare ribs ribeye salami sausage porchetta hamburger short ribs corned beef.
+					</p>
 				</li>
 			</ul>
 		</aside>
 
-		
 		<aside data-ts="Aside" id="aside3" data-ts.title="Programmatic Tabs">
 			<div data-ts="Panel"></div>
 		</aside>
-		
 
 		<aside data-ts="Aside" id="one" data-ts.title="Aside One">
 			<div data-ts="Panel">
@@ -270,7 +344,6 @@
 						</button>
 					</li>
 				</menu>
-				</p>
 			</div>
 		</aside>
 
@@ -297,6 +370,5 @@
 				</menu>
 			</div>
 		</aside>
-
 	</body>
 </html>

@@ -39,7 +39,6 @@ describe('gui.Sprite', function likethis() {
 			this.sandbox.appendChild(spirit.element);
 			spirit.setSpriteStuff();
 			var cssText = this.sandbox.children[0].style.cssText;
-			console.log('1', cssText);
 			expect(cssText.includes('transform-origin: 10.01px 10.01px 10.01px;')).toBe(true);
 			expect(
 				cssText.includes(
@@ -57,7 +56,6 @@ describe('gui.Sprite', function likethis() {
 			this.sandbox.appendChild(spirit.element);
 			spirit.setSpriteStuff();
 			var cssText = this.sandbox.children[0].style.cssText;
-			console.log('2', cssText);
 			expect(cssText.indexOf('left: 20px;')).toBeGreaterThan(-1);
 			expect(cssText.indexOf('top: 20px;')).toBeGreaterThan(-1);
 			expect(cssText.indexOf('-ms-transform-origin: 10.01px 10.01px;')).toBeGreaterThan(-1);

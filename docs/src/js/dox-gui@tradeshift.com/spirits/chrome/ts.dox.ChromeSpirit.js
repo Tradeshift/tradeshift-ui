@@ -256,9 +256,12 @@ ts.dox.ChromeSpirit = (function using(CSSPlugin, Then) {
 			this._blocking(true);
 			this._menu.selectbestitem(path).then(function(first) {
 				this.css.shift(first, 'selectfirstitem');
-				this.tick.time(function() {
-					this._loadnext(path);
-				}, this._isopenmenu() ? 300 : 0);
+				this.tick.time(
+					function() {
+						this._loadnext(path);
+					},
+					this._isopenmenu() ? 300 : 0
+				);
 			}, this);
 		},
 

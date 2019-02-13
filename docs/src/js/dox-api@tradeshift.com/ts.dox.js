@@ -97,8 +97,7 @@ ts.dox = gui.namespace(
 		 */
 		function parselinks() {
 			var tabs = document.head.querySelectorAll('link[rel=prefetch]');
-			return gui.Array
-				.from(tabs)
+			return gui.Array.from(tabs)
 				.filter(function(link) {
 					return !!link.getAttribute('title');
 				})

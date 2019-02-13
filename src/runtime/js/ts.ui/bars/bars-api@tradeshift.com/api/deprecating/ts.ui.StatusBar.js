@@ -14,7 +14,7 @@ ts.ui.StatusBar = (function using(chained) {
 		return function() {
 			console.warn(
 				'Deprecated API is deprecated: The StatusBar has been replaced with ' +
-					'the Footer as seen on http://ui.tradeshift.com/#components/footer/'
+					'the Footer as seen on https://ui.tradeshift.com/#components/footer/'
 			);
 			return action.apply(this, arguments);
 		};

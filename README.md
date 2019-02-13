@@ -1,12 +1,10 @@
-[![travis.org Build Status](https://travis-ci.org/Tradeshift/tradeshift-ui.svg?branch=master)](https://travis-ci.org/Tradeshift/tradeshift-ui)
-[![devDependencies](https://img.shields.io/david/dev/Tradeshift/tradeshift-ui.svg?style=flat-square)](https://david-dm.org/Tradeshift/tradeshift-ui/?type=dev)
+[![travis.org Build Status](https://travis-ci.org/Tradeshift/tradeshift-ui.svg?branch=master)](https://travis-ci.org/Tradeshift/tradeshift-ui) [![devDependencies](https://img.shields.io/david/dev/Tradeshift/tradeshift-ui.svg?style=flat-square)](https://david-dm.org/Tradeshift/tradeshift-ui/?type=dev)
 
 ---
 
-# [Tradeshift UI](http://ui.tradeshift.com)
+# [Tradeshift UI](https://ui.tradeshift.com)
 
-Tradeshift UI is a UI library to help you create apps that implement the [Tradeshift Design Principles](http://ui.tradeshift.com/#design/).
-Check out our [documentation site](http://ui.tradeshift.com) to learn more about how it works and try out live code examples.
+Tradeshift UI is a UI library to help you create apps that implement the [Tradeshift Design Principles](https://ui.tradeshift.com/#design/). Check out our [documentation site](https://ui.tradeshift.com) to learn more about how it works and try out live code examples.
 
 If you want to know about what the latest version is and what's new, check out our [releases page](http://github.com/Tradeshift/tradeshift-ui/releases).
 
@@ -39,7 +37,7 @@ Watch out, whenever you create a commit, the pre-commit hook will lint all stage
 
 ## Docs
 
-Our docs site is hosted by GitHub Pages at http://ui.tradeshift.com.
+Our docs site is hosted by GitHub Pages at https://ui.tradeshift.com.
 
 ## Release & Deployment
 
@@ -76,7 +74,7 @@ Releasing can be started using one of the following commands:
 
 # npm dist-tag ls
 # latest: 11.0.0
-# 
+#
 	# Bump the minor version and pre-release
 	> npm run prelease -- minor --preRelease=beta
 
@@ -100,19 +98,19 @@ Releasing can be started using one of the following commands:
 ```
 
 Any of these commands will essentially do the following steps:
-* `npm version ${increment || 'patch'}` # Bump the version and create a git tag 
-* `grunt dist` # Generate distributable files
-* `npm run deploy-s3` # Deploy those files to S3 (no overwrites!)
-* `git push` # Push the newly created commit and tag to GitHub
-* Release to GitHub _(could be pre-release)_ # Mark the tag as a GitHub Release
-* `npm publish` _(tag is latest or next)_ # Push the package to registry.npmjs.org
+
+- `npm version ${increment || 'patch'}` # Bump the version and create a git tag
+- `grunt dist` # Generate distributable files
+- `npm run deploy-s3` # Deploy those files to S3 (no overwrites!)
+- `git push` # Push the newly created commit and tag to GitHub
+- Release to GitHub _(could be pre-release)_ # Mark the tag as a GitHub Release
+- `npm publish` _(tag is latest or next)_ # Push the package to registry.npmjs.org
 
 Make sure to not do this on the `master` branch because it is protected from being pushed to directly and your code will get released to S3 but not to git/GitHub/npm.
 
 ## Updating the docs
 
-We serve the docs site from the `gh-pages` branch and all generated files are present in the `.gitignore` of the `master`-style branches.
-The `gh-pages` branch only contains these generated files, one folder for each major version since we introduced versioning to the docs (`v10`).
+We serve the docs site from the `gh-pages` branch and all generated files are present in the `.gitignore` of the `master`-style branches. The `gh-pages` branch only contains these generated files, one folder for each major version since we introduced versioning to the docs (`v10`).
 
 Make sure you have the following environment variables set:
 
@@ -122,11 +120,12 @@ export GH_ACCESS_TOK=[Your GitHub personal access token]
 ```
 
 Run `npm run gh-pages`, which will do the following:
-* `grunt dist` # Generate distributable files
-* `cd tasks` # This is actually the CWD of the gh-pages script
-* `git clone ${GH_USER_NAME}:${GH_ACCESS_TOK}@github:Tradeshift/tradeshift-ui -b gh-pages --single-branch` # Clone the gh-pages branch to a new folder
-* Create a `v${majorVersion}` folder and/or replace its contents
-* Push the changes to `origin/gh-pages-update`
+
+- `grunt dist` # Generate distributable files
+- `cd tasks` # This is actually the CWD of the gh-pages script
+- `git clone ${GH_USER_NAME}:${GH_ACCESS_TOK}@github:Tradeshift/tradeshift-ui -b gh-pages --single-branch` # Clone the gh-pages branch to a new folder
+- Create a `v${majorVersion}` folder and/or replace its contents
+- Push the changes to `origin/gh-pages-update`
 
 From here, you should create a PR against `gh-pages` to update the docs site and once it's merged, GitHub Pages will update.
 

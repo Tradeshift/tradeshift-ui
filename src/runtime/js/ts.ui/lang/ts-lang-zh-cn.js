@@ -33,5 +33,5 @@ ts.ui.DatePicker.localize({
 	dayNamesMin: ['日', '一', '二', '三', '四', '五', '六']
 });
 ts.ui.Footer.localize({
-	collaboration: '开放式协作'
+	collaboration: '打开对话'
 });

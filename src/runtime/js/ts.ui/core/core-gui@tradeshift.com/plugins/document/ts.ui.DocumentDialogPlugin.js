@@ -66,14 +66,7 @@ ts.ui.DocumentDialogPlugin = (function() {
 					}
 					break;
 				case modal_willopen:
-					if (!b.target.$fullscreen) {
-						this._updateblocking(true);
-					}
-					break;
 				case modal_willclose:
-					if (!b.target.$fullscreen) {
-						this._updateblocking(false);
-					}
 					break;
 			}
 		},

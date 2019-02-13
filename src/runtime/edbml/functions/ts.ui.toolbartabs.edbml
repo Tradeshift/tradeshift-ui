@@ -17,6 +17,14 @@
       if(!(topbar && mobilos)) {
         rendermore();
       }
+      if(tabs.length) {
+        /**
+         * @TODO getLength() really not working???
+         */
+      	@class = 'ts-tab-indicator';
+      	@id = tabs.$instanceid + '-indicator';
+	      <li data-ts="Spirit" @id @class></li>
+	     }
     </ul>
   }(ts.ui.TopBarSpirit.is(spirit)));
 

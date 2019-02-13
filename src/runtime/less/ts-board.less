@@ -1,0 +1,51 @@
+@import 'ts-variables-new.less';
+
+.ts-board {
+	.ts-mixin-rounded();
+	margin-bottom: @ts-unit;
+	> .ts-panel,
+	> .ts-panels > .ts-panel {
+		padding: @ts-unit;
+		overflow: visible;
+	}
+	&.ts-equalsize {
+		> .ts-panels {
+			overflow: hidden;
+			.ts-panel {
+				height: 100%;
+			}
+		}
+	}
+	> .ts-toolbar {
+		.ts-mixin-rounded(@ts-radius, @ts-radius, 0, 0);
+		.ts-tab,
+		.ts-tab-label,
+		.ts-tab .ts-button {
+			&:first-of-type {
+				.ts-mixin-rounded(@ts-radius, 0, 0, 0);
+			}
+		}
+	}
+	.ts-panels,
+	.ts-panel {
+		flex: none;
+		height: auto;
+	}
+	&:not(.ts-plain) {
+		background-color: @ts-color-white;
+		box-shadow: @ts-shadow;
+		border: 1px solid @new-bordercolor;
+		> .ts-toolbar {
+			&:after {
+				content: '';
+				bottom: 0;
+			}
+		}
+	}
+}
+
+// one single board in Content will produce a full screen board.
+.ts-content > .ts-panel > .ts-board:only-child {
+	min-height: calc(~'100% - ' @ts-unit-double);
+	margin: @ts-unit;
+}

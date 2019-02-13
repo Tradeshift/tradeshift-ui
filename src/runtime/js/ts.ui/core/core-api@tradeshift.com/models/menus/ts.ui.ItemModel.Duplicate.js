@@ -74,7 +74,9 @@ ts.ui.ItemModel = (function using(chained) {
 								}.bind(this)
 							);
 						} else {
-							console.log('TODO: implement onunselect?');
+							/**
+							 * @TODO: implement onunselect?
+							 */
 						}
 					}
 				}, this);

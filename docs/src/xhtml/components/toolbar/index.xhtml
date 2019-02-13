@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>ToolBar</title>
+	</head>
+	<body>
+		<div data-ts="App">
+			<div data-ts="Main">
+				<div data-ts="Content">
+					<header data-ts="ToolBar" id="toolbar" data-ts.title="Hello World"></header>
+					<div data-ts="Panel">
+						<article>
+							<section class="desc">
+								<p>Hello world.</p>
+							</section>
+							<section>
+								<p>
+									Assign the <att>data.ts="ToolBar"</att> attribute to a <elm>header</elm> or
+									<elm>footer</elm> to initialize it as a ToolBar. The
+									<att>data-ts.title</att> attribute works to configure an optional title.
+								</p>
+								<figure data-ts="DoxMarkup">
+									<script type="text/html">
+										<header data-ts="ToolBar" data-ts.title="Hello World"></header>
+									</script>
+								</figure>
+								<p>
+									ToolBars can be positioned anywhere on the page, but on this page we've positioned
+									before the <val>Panel</val> element in the
+									<a data-ts="Button" href="#getstarted/layout.html">basic layout</a>. This way, it
+									stays fixed on the top when the panel is scrolling. You can try this at home using
+									the following markup structure.
+								</p>
+								<figure data-ts="DoxMarkup">
+									<script type="text/html">
+										<div data-ts="App">
+											<div data-ts="Main">
+												<div data-ts="Content">
+													<header data-ts="ToolBar"></header>
+													<div data-ts="Panel"></div>
+												</div>
+											</div>
+										</div>
+									</script>
+								</figure>
+							</section>
+							<h3 id="buttons">ToolBar buttons</h3>
+							<section>
+								<object data="../header/buttons.xhtml#buttons-desc">
+									<replace input="ts.ui.TopBar" output="ts.ui.get('#toolbar')" />
+								</object>
+							</section>
+							<section>
+								<object data="../header/buttons.xhtml#buttons-api">
+									<replace input="TopBar" output="TabBar" />
+								</object>
+							</section>
+
+							<h2 id="search">ToolBar.search</h2>
+							<section>
+								<p>
+									You'll get a dedicated search field by passing an object to the
+									<code>search</code> method.
+								</p>
+								<figure data-ts="DoxScript">
+									<script type="runnable">
+										ts.ui.get('#toolbar').search({
+											onsearch: function(value) {
+												ts.ui.Notification.success(value || 'Search cleared');
+											}
+										});
+									</script>
+								</figure>
+							</section>
+
+							<section>
+								<object data="../search/index.xhtml#search-methods">
+									<replace input="ts.ui.ToolBar" output="ts.ui.get('#toolbar')" />
+									<replace input="ts.ui.get('#mysearch')" output="ts.ui.get('#toolbar').search()" />
+								</object>
+							</section>
+
+							<section>
+								<h3>Search flex</h3>
+								<p>
+									You can <code>flex</code> the search field to make it stretch the available width
+									of the ToolBar. In that case, it will remain expanded even when there's no default
+									<code>value</code>.
+								</p>
+								<figure data-ts="DoxScript">
+									<script type="runnable">
+										ts.ui.get('#toolbar').search({
+											info: 'Flex all the way!',
+											flex: 1
+										});
+									</script>
+								</figure>
+								<p>
+									You can also assign <code>flex</code> to buttons, although that has little
+									practical value. In the future, we may provide a more advanced distribution
+									scheme. That's why we use a number instead of a boolean, but you should always use
+									<samp>1</samp> for now.
+								</p>
+							</section>
+
+							<section>
+								<object data="../search/index.xhtml#search-api">
+									<replace input="ts.ui.SearchSpirit" output="ts.ui.SearchModel" />
+									<replace input="Search component" output="Search model" />
+								</object>
+							</section>
+
+							<section>
+								<p>
+									&mdash; and here's a final overview of the ToolBar methods.
+								</p>
+								<div data-ts="DoxApi">
+									<script type="application/json">
+										{
+											"name": "ts.ui.ToolBar",
+											"methods": [
+												{
+													"name": "title",
+													"args": "(string)",
+													"desc": "Get or set the title."
+												},
+												{
+													"name": "buttons",
+													"args": "(array)",
+													"desc": "Get or set the buttons."
+												},
+												{
+													"name": "search",
+													"args": "(object)",
+													"desc": "Get or set the search configuration."
+												},
+												{
+													"name": "clear",
+													"desc": "Delete title, buttons and search. Note that this will not hide the ToolBar, see below."
+												},
+												{
+													"name": "hide",
+													"desc": "Hide the ToolBar. Once hidden, you can use `show` to show it again."
+												},
+												{
+													"name": "showClose",
+													"args": "(function)",
+													"desc": "Show closing `X` button with an optional callback."
+												},
+												{
+													"name": "hideClose",
+													"desc": "Hide the closing `X` button."
+												},
+												{
+													"name": "green",
+													"desc": "Change the general color scheme to [green](green)."
+												},
+												{
+													"name": "blue",
+													"desc": "Change the general color scheme to [blue](blue)."
+												},
+												{
+													"name": "purple",
+													"desc": "Change the general color scheme to [purple](purple)."
+												},
+												{
+													"name": "dark",
+													"desc": "Change the general color scheme to [dark](dark)"
+												},
+												{
+													"name": "lite",
+													"desc": "Revert back to the [default](lite) color scheme."
+												}
+											]
+										}
+									</script>
+								</div>
+							</section>
+						</article>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

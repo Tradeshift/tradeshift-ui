@@ -32,7 +32,7 @@ hr {
 	border: none;
 	background-color: transparent;
 	color: transparent;
-	border-bottom: 1px dotted @ts-lite-darker;
+	border-bottom: 1px dotted @ts-color-gray-light;
 	margin: @ts-unit 0 (@ts-unit - 1px) 0;
 }
 samp,
@@ -47,7 +47,9 @@ a {
 }
 button,
 a {
-	color: @ts-blue;
+	color: @ts-color-blue;
+	touch-action: manipulation;
+	user-drag: none;
 }
 button:not([disabled]),
 a {
@@ -56,18 +58,14 @@ a {
 		cursor: inherit;
 	}
 }
-p a:hover {
-	text-decoration: underline;
+button:not(:disabled):hover,
+a:hover {
+	text-decoration: underline; // overwritten later on in "ts-buttons.less"
 }
 button {
 	background-color: transparent;
 	border: none;
 }
-/*
-em { // hmmm.........
-	font-style: normal;
-}
-*/
 input:not([type='checkbox']):not([type='radio']),
 button,
 select,
@@ -79,11 +77,11 @@ textarea {
 	line-height: inherit;
 }
 ::-webkit-input-placeholder {
-	color: @ts-medium-litest;
+	color: @ts-color-gray-light;
 	font-style: italic;
 }
 input:-moz-placeholder {
-	color: @ts-medium-litest;
+	color: @ts-color-gray-light;
 	font-style: italic;
 }
 input::-webkit-outer-spin-button,
@@ -96,7 +94,7 @@ input:not([type='checkbox']):not([type='radio']) {
 	&[disabled],
 	&[readonly] {
 		cursor: default;
-		color: @ts-black; // TODO: foks on iOS
+		color: @ts-color-black; // TODO: foks on iOS
 	}
 }
 input::-ms-clear,

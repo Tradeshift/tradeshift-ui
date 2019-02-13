@@ -5,12 +5,15 @@
 		<object data="tabs.xhtml"></object>
 	</head>
 	<body class="nosticky">
-		<header data-ts="TopBar"></header>
-		<main data-ts="Main">
-			<article>
-				<h1>Paging the rows</h1>
-				<section>
-				<p>You can limit the number of visible rows with the <code>max</code> method. If the table contains more rows, a Pager will be created. An equivalent method <code>size</code> also fixes the height of the Table so that the pager (footer) never jump up and down.</p>
+		<article>
+			<h1>Paging the rows</h1>
+			<section>
+				<p>
+					You can limit the number of visible rows with the
+					<code>max</code> method. If the table contains more rows, a Pager will be created. An
+					equivalent method <code>size</code> also fixes the height of the Table so that the pager
+					(footer) never jump up and down.
+				</p>
 				<ul class="splitscreen">
 					<li>
 						<figure data-ts="DoxScript" class="attention">
@@ -32,7 +35,10 @@
 						<div data-ts="Table" id="example9"></div>
 					</li>
 				</ul>
-				<p>You can track the page with the <code>onpage</code> method, if for some reason you need that.</p>
+				<p>
+					You can track the page with the <code>onpage</code> method, if for some reason you need
+					that.
+				</p>
 				<figure data-ts="DoxScript">
 					<script>
 						table.onpage = function(index) {
@@ -40,7 +46,10 @@
 						};
 					</script>
 				</figure>
-				<p>If you would like to manage paging yourself, because you have a billion products and don't want to fetch them all at once, you can create your own pager.</p>
+				<p>
+					If you would like to manage paging yourself, because you have a billion products and don't
+					want to fetch them all at once, you can create your own pager.
+				</p>
 				<ul class="splitscreen">
 					<li>
 						<figure data-ts="DoxScript">
@@ -74,13 +83,18 @@
 						<div data-ts="Table" id="big-data-table"></div>
 					</li>
 				</ul>
-				<p>If you need to update the index later on, for example to support history navigation, it is recommended that you change the <code>page</code> property of the existing Pager instead of initializing a whole new Pager. You can just call the same method without arguments.<p>
+				<p>
+					If you need to update the index later on, for example to support history navigation, it is
+					recommended that you change the
+					<code>page</code> property of the existing Pager instead of initializing a whole new
+					Pager. You can just call the same method without arguments.
+				</p>
 				<figure data-ts="DoxScript">
 					<script type="text/plain">
 						mytable.pager().page = 23;
 					</script>
 				</figure>
-			</article>
-		</main>
+			</section>
+		</article>
 	</body>
 </html>

@@ -1,23 +1,35 @@
 .ts-sidebar {
 	z-index: @ts-zindex-main;
+	overflow-x: hidden;
+	/*
 	> .ts-header,
 	> .ts-footer {
 		z-index: @ts-zindex-main + 1;
 	}
-	.ts-mixin-maximize();
-	.ts-aside {
-		box-shadow: none;
-	}
-	.ts-panel {
+	*/
+	> .ts-panel,
+	> .ts-panels > .ts-panel,
+	> .ts-aside > .ts-panel,
+	> .ts-aside > .ts-panels > .ts-panel {
 		overflow-y: auto;
 	}
-	.ts-toolbar {
+	> .ts-toolbar {
 		margin: 0;
+	}
+	> .ts-aside {
+		box-shadow: none;
+		z-index: 1;
+		&.ts-opening,
+		&.ts-closing {
+			&:after {
+				left: 0;
+				content: '';
+			}
+		}
 	}
 }
 .ts-tablet {
 	.ts-sidebar {
-		width: @ts-width-aside;
 		&.ts-sidebar-first {
 			right: auto;
 		}
@@ -26,7 +38,16 @@
 		}
 	}
 }
+.ts-mobile-only {
+	.ts-sidebar {
+		.ts-mixin-maximize();
+		left: auto;
+		z-index: @ts-zindex-aside - 1;
+		box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+	}
+}
 
+/*
 .ts-mobile-only {
 	.ts-sidebar {
 		z-index: @ts-zindex-aside - 1;
@@ -59,8 +80,23 @@
 		}
 	}
 }
-.ts-tablet.ts-has-topbar {
-	.ts-sidebar {
-		top: @ts-unit-triple;
+*/
+
+/*
+ * Pending design decision
+ *
+.ts-tablet.ts-has-header {
+	&.ts-header-level-3,
+	&.ts-header-level-6 {
+		.ts-sidebar {
+			top: @ts-unit * 3;
+		}
+	}
+	&.ts-header-level-5,
+	&.ts-header-level-8 {
+		.ts-sidebar {
+			top: @ts-unit * 5;
+		}
 	}
 }
+*/

@@ -1,4 +1,4 @@
-describe('ts.ui.PagerSpirit.edbml', function likethis() {
+describe('ts.ui.SearchSpirit.edbml', function likethis() {
 	function getDom(html) {
 		var dom = helper.createTestDom();
 		dom.innerHTML = html;
@@ -21,10 +21,10 @@ describe('ts.ui.PagerSpirit.edbml', function likethis() {
 		});
 	});
 
-	it('should contain close icon', function(done) {
+	it('should contain remove (clear) icon', function(done) {
 		var dom = getDom('<div data-ts="Search" class="ts-inset"></div>');
 		sometime(function later() {
-			expect(dom.innerHTML).toContain('<i class="ts-icon-close"></i>');
+			expect(dom.innerHTML).toContain('<i class="ts-icon-remove"></i>');
 			done();
 		});
 	});

@@ -8,15 +8,7 @@ ts.ui.CoreModule = gui.module('core-gui@tradeshift.com', {
 	channel: [
 		// stuff that the framework uses
 		['html', ts.ui.DocumentSpirit],
-
-		// stuff that developers use
-		['[data-ts=Main]', ts.ui.MainSpirit],
-		['[data-ts=MainContent]', ts.ui.MainContentSpirit],
 		['[data-ts=Frame]', ts.ui.FrameSpirit],
-		['[data-ts=Aside]', ts.ui.AsideSpirit],
-		['[data-ts=SideBar]', ts.ui.SideBarSpirit],
-		['[data-ts=Footer]', ts.ui.AsideFooterSpirit],
-		['[data-ts=Panel]', ts.ui.PanelSpirit],
 		['[data-ts=Menu]', ts.ui.MenuSpirit],
 		['[data-ts=Button]', ts.ui.ButtonSpirit],
 		['[data-ts=Buttons]', ts.ui.ButtonMenuSpirit],
@@ -26,7 +18,6 @@ ts.ui.CoreModule = gui.module('core-gui@tradeshift.com', {
 		['[data-ts=Note]', ts.ui.NoteSpirit],
 		['[data-ts=Icon]', ts.ui.NextIconSpirit],
 		['[data-ts=Spinner]', ts.ui.SpinnerSpirit],
-		['[data-ts=Modal]', ts.ui.ModalSpirit],
 		['[data-ts=Tag]', ts.ui.TagSpirit],
 		['[data-ts=Tags]', ts.ui.TagListSpirit],
 		['[data-ts=Spirit]', ts.ui.Spirit]
@@ -49,7 +40,6 @@ ts.ui.CoreModule = gui.module('core-gui@tradeshift.com', {
 	 * Setup plugins (for all spirits).
 	 */
 	plugin: {
-		guistatus: ts.ui.StatusPlugin,
 		guilayout: ts.ui.LayoutPlugin,
 		attention: ts.ui.AttentionPlugin
 	},
@@ -62,7 +52,6 @@ ts.ui.CoreModule = gui.module('core-gui@tradeshift.com', {
 		this._specialplugins();
 		this._documentplugins();
 		this._guiattributes();
-		this._defaultcolors();
 	},
 
 	/**
@@ -131,9 +120,9 @@ ts.ui.CoreModule = gui.module('core-gui@tradeshift.com', {
 	 * TODO: SideShowSpirit should also refactor to use the PanelsPlugin
 	 */
 	_specialplugins: function() {
-		ts.ui.ModalSpirit.plugin('panels', ts.ui.PanelsPlugin);
-		ts.ui.ModalSpirit.plugin('doorman', ts.ui.DoorManPlugin);
-		ts.ui.SideShowSpirit.plugin('doorman', ts.ui.DoorManPlugin);
+		// ts.ui.ModalSpirit.plugin('panels', ts.ui.PanelsPlugin);
+		// ts.ui.ModalSpirit.plugin('doorman', ts.ui.DoorManPlugin);
+		// ts.ui.SideShowSpirit.plugin('doorman', ts.ui.DoorManPlugin);
 	},
 
 	/**
@@ -144,8 +133,7 @@ ts.ui.CoreModule = gui.module('core-gui@tradeshift.com', {
 	_documentplugins: function() {
 		ts.ui.DocumentSpirit.plugin('layoutplugin', ts.ui.DocumentLayoutPlugin)
 			.plugin('dialogplugin', ts.ui.DocumentDialogPlugin)
-			.plugin('asideplugin', ts.ui.DocumentAsidePlugin)
-			.plugin('panelplugin', ts.ui.DocumentPanelPlugin);
+			.plugin('asideplugin', ts.ui.DocumentAsidePlugin);
 	},
 
 	/**
@@ -154,17 +142,5 @@ ts.ui.CoreModule = gui.module('core-gui@tradeshift.com', {
 	 */
 	_guiattributes: function() {
 		gui.attributes = ['data-ts'];
-	},
-
-	/**
-	 * Assign a default "colorspace". This will cause
-	 * reflow, so it's wise to hardcode it in the HMTL.
-	 */
-	_defaultcolors: function() {
-		var cssp = gui.CSSPlugin;
-		var html = document.documentElement;
-		if (!html.className.includes('ts-bg')) {
-			cssp.add(html, 'ts-bg-lite');
-		}
 	}
 });

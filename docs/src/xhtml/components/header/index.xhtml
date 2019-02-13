@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Header</title>
+		<object data="_tabs.xhtml"></object>
+	</head>
+	<body>
+		<article>
+			<h1>Header</h1>
+			<section class="desc">
+				<p>
+					Unless you know exactly what you are doing and why your app doesn't need a Header, you
+					should always configure the Header with an icon and a title. You can configure the color
+					as well, the default one is white.
+				</p>
+			</section>
+			<section>
+				<p>
+					These can be configured via metatags in the document
+					<code>head</code> section
+				</p>
+
+				<figure data-ts="DoxMarkup">
+					<script type="text/html">
+						<meta name="ts-app-title" content="Header"/>
+						<meta name="ts-app-color" content="ts-blue"/>
+						<link rel="ts-app-icon" href="assets/appicon.svg"/>
+					</script>
+				</figure>
+
+				<p>
+					&mdash; or via attributes on the <val>App</val> element as seen in your
+					<a data-ts="Button" href="/#getstarted/layout.html">basic layout</a>
+				</p>
+
+				<figure data-ts="DoxMarkup">
+					<script type="text/html">
+						<div data-ts="App"
+							data-ts.title="Header"
+							data-ts.color="ts-blue"
+							data-ts.icon="assets/appicon.svg">
+						</div>
+					</script>
+				</figure>
+
+				<p>&mdash; or with JavaScript via the <code>ts.ui.Header</code> API.</p>
+
+				<figure data-ts="DoxScript">
+					<script type="text/html">
+						ts.ui.Header.title('Header').icon('assets/appicon.svg').color('ts-blue');
+					</script>
+				</figure>
+				<div data-ts="Note">
+					<i class="ts-icon-info"></i>
+					<p>
+						All colors we support are: <val>ts-blue,</val><val>ts-red,</val><val>ts-orange,</val
+						><val>ts-yellow,</val><val>ts-green,</val><val>ts-purple,</val><val>ts-pink,</val
+						><val>ts-gray,</val><val>ts-slate,</val><val>ts-black</val> and the default is white.
+					</p>
+				</div>
+			</section>
+			<section>
+				<p>Here's an overview of the Header API.</p>
+				<div data-ts="DoxApi">
+					<script type="application/json">
+						{
+							"name": "ts.ui.Header",
+							"methods": [
+								{
+									"name": "tabs",
+									"args": "(Array<Object>)",
+									"desc": "Get or set the [tabs](/#components/header/tabs.html)"
+								},
+								{
+									"name": "buttons",
+									"args": "(Array<Object>)",
+									"desc": "Get or set the [buttons](/#components/header/buttons.html)."
+								},
+								{
+									"name": "search",
+									"args": "(Object)",
+									"desc": "Get or set the [search](/#components/header/search.html)"
+								}
+							]
+						}
+					</script>
+				</div>
+			</section>
+		</article>
+	</body>
+	<html></html>
+</html>

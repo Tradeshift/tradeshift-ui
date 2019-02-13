@@ -1,0 +1,277 @@
+@import 'ts-variables-new.less';
+
+// LayoutSpirit ................................................................
+
+.ts-layout {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	> header,
+	> footer,
+	> .ts-panel,
+	> .ts-panels {
+		margin: 0;
+	}
+}
+
+// Basic layout ................................................................
+
+html,
+body {
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+}
+.ts-app {
+	flex: 1 0 0px;
+	display: flex;
+	flex-direction: column;
+	.ts-mixin-fixwidth(100%);
+}
+body,
+.ts-main,
+.ts-mains {
+	display: flex;
+	flex-direction: row;
+	flex: 1 0 0px;
+}
+.ts-main {
+	position: relative;
+	z-index: @ts-zindex-main;
+	&.ts-panel {
+		overflow: hidden;
+	}
+}
+.ts-sideshow,
+.ts-content {
+	display: flex;
+	flex-direction: column;
+}
+.ts-content {
+	.ts-mixin-fixwidth(100%);
+}
+.ts-panels,
+.ts-panel {
+	flex: 1 0 0px;
+	position: relative;
+	height: 0;
+}
+.ts-panel {
+	-webkit-overflow-scrolling: touch;
+	overflow-x: hidden;
+	overflow-y: scroll;
+}
+.ts-panels {
+	display: flex;
+	flex-direction: column;
+	> .ts-panel {
+		&:not(.ts-selected) {
+			display: none;
+		}
+	}
+}
+
+// Sidebar scenarios ...........................................................
+
+.ts-tablet {
+	.ts-has-sidebar-first,
+	.ts-has-sidebar-last {
+		> .ts-content,
+		> .ts-app {
+			.ts-mixin-fixwidth(calc(~'100% - ' @ts-width-aside));
+		}
+	}
+	.ts-has-sidebar-first.ts-has-sidebar-last {
+		> .ts-content,
+		> .ts-app {
+			.ts-mixin-fixwidth(calc(~'100% - ' @ts-width-aside * 2));
+		}
+	}
+}
+
+// Decorations .................................................................
+
+/**
+ * Branding color (temp setup)
+ *
+.ts-app > .ts-headerbar .ts-toolbar {
+	background-color: @ts-color-blue;
+	color: @ts-color-white;
+}
+*/
+
+// header and footer borders
+.ts-toolbar,
+.ts-headerbar,
+.ts-footerbar {
+	position: relative;
+	&:after {
+		height: 1px;
+		position: absolute;
+		left: 0;
+		right: 0;
+		pointer-events: none;
+		background-color: @new-bordercolor;
+	}
+}
+
+// header border
+.ts-headerbar {
+	&:after {
+		bottom: 0;
+		content: '';
+	}
+	.ts-headerbar-buttonbar {
+		&:after {
+			top: 0;
+			content: '';
+		}
+	}
+}
+
+// footer border
+.ts-footerbar:after {
+	top: 0;
+	content: '';
+}
+
+// fixed toolbar border
+.ts-app > .ts-toolbar,
+.ts-content > .ts-toolbar {
+	&:after {
+		bottom: 0;
+		content: '';
+	}
+}
+
+// sideshow borders
+.ts-sideshow {
+	position: relative;
+	&:after {
+		width: 1px;
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		pointer-events: none;
+		background-color: @new-bordercolor;
+		z-index: 2000000; // above the nested aside - TODO: find the exact number!
+	}
+}
+
+// sidebar borders
+.ts-sidebar {
+	&.ts-sidebar-first {
+		&:after {
+			right: 0;
+			content: '';
+		}
+	}
+	&.ts-sidebar-last {
+		&:after {
+			left: 0;
+			content: '';
+		}
+	}
+}
+
+// no border next to scrollbar
+.ts-scrollbars-on {
+	.ts-content + .ts-sidebar.ts-sidebar-last {
+		&:after {
+			content: none;
+		}
+	}
+}
+
+.ts-sideshow {
+	> .ts-panel ~ footer,
+	> .ts-panels ~ footer {
+		//background-color: yellow;
+		position: relative;
+		&:after {
+			.ts-mixin-maximize();
+			content: '';
+			height: 1px;
+			bottom: auto;
+			pointer-events: none;
+			background-color: @new-bordercolor;
+		}
+	}
+}
+
+// dropshadows in main content area
+// .ts-app {
+// 	&.ts-has-header,
+// 	&.ts-has-footer {
+// 		.ts-content > .ts-panel {
+// 			background-repeat: no-repeat;
+// 			background-size: 100% 3px;
+// 			// background-image: none !important; // only works with white header :/
+// 		}
+// 	}
+// 	&.ts-has-header {
+// 		.ts-content > .ts-panel {
+// 			background-image: linear-gradient(@new-shadowcolor, transparent);
+// 		}
+// 	}
+// 	&.ts-has-footer {
+// 		.ts-content > .ts-panel {
+// 			background-image: linear-gradient(transparent, @new-shadowcolor);
+// 			background-position: 0 100%;
+// 		}
+// 	}
+// 	&.ts-has-header.ts-has-footer {
+// 		.ts-content > .ts-panel {
+// 			background-image: linear-gradient(@new-shadowcolor, transparent), linear-gradient(transparent, @new-shadowcolor);
+// 			background-repeat: no-repeat, no-repeat;
+// 			background-size: 100% 3px, 100% 3px;
+// 			background-position: 0 0, 0 100%;
+// 		}
+// 	}
+// }
+
+// Breakpoints .................................................................
+
+.ts-tablet {
+	.ts-sideshow {
+		.ts-mixin-fixwidth(@ts-width-aside);
+	}
+}
+.mixin-panel-buffer(@padding) {
+	.ts-main {
+		> .ts-content {
+			> .ts-panel {
+				padding-top: @padding;
+			}
+		}
+	}
+}
+.ts-mobile-only {
+	.ts-sideshow {
+		.ts-mixin-fixwidth(100%);
+	}
+	.ts-app {
+		> .ts-headerbar {
+			position: absolute;
+			width: 100%;
+			will-change: transform;
+			z-index: @ts-zindex-main + 1;
+		}
+		.ts-sideshow {
+			.ts-mixin-fixwidth(100%);
+		}
+		&.ts-header-level-3 {
+			.mixin-panel-buffer(@ts-unit * 3);
+		}
+		&.ts-header-level-5 {
+			.mixin-panel-buffer(@ts-unit * 5);
+		}
+		&.ts-header-level-6 {
+			.mixin-panel-buffer(@ts-unit * 6);
+		}
+		&.ts-header-level-8 {
+			.mixin-panel-buffer(@ts-unit * 8);
+		}
+	}
+}

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Mains</title>
+	</head>
+	<body class="nosticky">
+		<div data-ts="App">
+			<ul data-ts="Mains" id="mains">
+				<li data-ts="Main" data-ts.label="One">
+					<div data-ts="Content">
+						<div data-ts="Panel">
+							<article>
+								<h1>Main</h1>
+								<section class="desc">
+									<p>
+										<val>Main</val> and <val>Mains</val> may come in handy to configure Header tabs
+										via HTML.
+									</p>
+								</section>
+								<section>
+									<p>
+										The <val>Main</val> component is a fairly unassuming part of the
+										<a data-ts="Button" href="/#getstarted/layout.html">basic layout</a>
+										where it functions to control the <code>flex</code>. Here it is, stuck between
+										the <val>App</val> and <val>Content</val>.
+									</p>
+
+									<figure data-ts="DoxMarkup">
+										<script type="text/html">
+											<div data-ts="App">
+												<div data-ts="Main">
+													<div data-ts="Content">
+														<div data-ts="Panel">
+															<em>Welcome to my app.</em>
+														</div>
+													</div>
+												</div>
+											</div>
+										</script>
+									</figure>
+
+									<p>
+										We can add multiple <val>Main</val> elements inside a containing
+										<val>Mains</val> to automatically generate top level tabs in the Header. They
+										must be fitted with a <att>label</att>.
+									</p>
+
+									<figure data-ts="DoxMarkup">
+										<script type="text/html">
+											<div data-ts="App">
+												<ul data-ts="Mains">
+													<li data-ts="Main" data-ts.label="One">
+														<div data-ts="Content">
+															<div data-ts="Panel">…</div>
+														</div>
+													</li>
+													<li data-ts="Main" data-ts.label="One">
+														<div data-ts="Content">
+															<div data-ts="Panel">…</div>
+														</div>
+													</li>
+												</ul>
+											</div>
+										</script>
+									</figure>
+
+									<p>
+										The tabs will automatically be updated when you remove or append further
+										<val>Main</val> elements, just as long as you remember to set the
+										<att>label</att> attribute.
+									</p>
+
+									<div data-ts="Note">
+										<i class="ts-icon-info"></i>
+										<p>
+											Top level tabs may alternatively be configured via the
+											<a data-ts="Button" href="/#components/header/tabs.html">Header API</a>.
+										</p>
+									</div>
+
+									<h3>Tab selection</h3>
+
+									<p>
+										You can set the default selection with the
+										<att>selected</att> attribute.
+									</p>
+
+									<figure data-ts="DoxMarkup">
+										<script type="text/html">
+											<div data-ts="Main"
+												data-ts.label="Tab"
+												data-ts.selected="true">
+											</div>
+										</script>
+									</figure>
+
+									<p>
+										You can track tab selection with the inline event listener
+										<att>onselect</att>.
+									</p>
+
+									<figure data-ts="DoxMarkup">
+										<script type="text/html">
+											<div data-ts="Main"
+												data-ts.label="Tab"
+												data-ts.onselect="alert('selected')">
+											</div>
+										</script>
+									</figure>
+
+									<p>
+										You can of course still also manage tabs via the
+										<a data-ts="Button" href="/#components/header/tabs.html">Header API</a>, just
+										remember that tabs added this way will not inject the corresponding
+										<val>Main</val> element, so you must figure out an alternative way of showing
+										the appropriate content when <code>onselect</code> happens.
+									</p>
+
+									<figure data-ts="DoxScript">
+										<script type="runnable">
+											ts.ui.Header.tabs().push({
+												label: 'Bonus Tab',
+												onselect: function() {
+													ts.ui.Notification.success('Selected!');
+												}
+											});
+										</script>
+									</figure>
+
+									<!-- TODO: some screenshot test for this!
+									<figure data-ts="DoxScript">
+										<script type="runnable">
+											var mains = document.querySelector('[data-ts=Mains]');
+											var temp = document.createElement('template');
+											temp.innerHTML = [
+												'<li data-ts="Main" data-ts.label="Three">',
+												  '<div data-ts="Content">',
+												    '<div data-ts="Panel">',
+												      '<article>',
+												        '<p>Panel Three</p>',
+												      '</article>',
+												    '</div>',
+												  '</div>',
+												'</li>'
+											].join('');
+											mains.appendChild(temp.content);
+										</script>
+									</figure>
+									-->
+								</section>
+							</article>
+						</div>
+					</div>
+				</li>
+				<li data-ts="Main" data-ts.label="Two">
+					<div data-ts="Content">
+						<div data-ts="Panel">
+							<article>
+								<section>
+									<p>This is the second <val>Main</val> element.</p>
+									<p>There is nothing much to see here.</p>
+								</section>
+							</article>
+						</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</body>
+</html>

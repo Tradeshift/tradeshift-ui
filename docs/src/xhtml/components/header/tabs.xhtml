@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Header Tabs</title>
+		<object data="_tabs.xhtml"></object>
+	</head>
+	<body>
+		<article>
+			<section>
+				<p>
+					Top level navigational tabs can be mounted via the
+					<code>tabs</code> method as shown.
+				</p>
+				<figure data-ts="DoxScript">
+					<script type="text/html">
+						ts.ui.Header.tabs([
+							{label: 'One'},
+							{label: 'Two'},
+							{label: 'Three', onselect() {
+								console.log('selected');
+							}}
+						]);
+					</script>
+				</figure>
+
+				<p>
+					&mdash; but since the page already has tabs, we will instead append a new tab to the
+					existing collection. If you omit the argument, you"ll get the current tabs (jQuery style).
+				</p>
+				<figure data-ts="DoxScript" class="attention">
+					<script type="runnable">
+						var tabs = ts.ui.Header.tabs();
+						tabs.push({
+							label: 'Bonus Tab',
+							onselect: function() {
+								ts.ui.Notification.success(`${this.label} selected`)
+							}
+						});
+					</script>
+				</figure>
+
+				<div data-ts="Note">
+					<i class="ts-icon-info"></i>
+					<p>
+						If you prefer the markup-driven approach, top level tabs may alternatively be configured
+						declaratively via the
+						<a data-ts="Button" href="/#components/mains/">Mains</a> component.
+					</p>
+				</div>
+			</section>
+			<section id="tabs-desc" data-important="THIS GETS INCLUDED IN OTHER PAGES!">
+				<p>
+					You can use array methods like <code>push</code>, <code>pop</code>, <code>shift</code>,
+					<code>unshift</code>, <code>splice</code> and so on to manage tabs, just note that the
+					tabs <code>length</code> is a readonly property. Also note that tabs don"t do anything by
+					default, so what happens at <code>onselect</code> is completely up to you.
+				</p>
+
+				<h3>Second level tabs</h3>
+				<p>
+					We supported two levels of tabs before. one is in the header, and use the normal tabs as
+					the second level tabs. We remove the tabs in the header right now. If you want to have two
+					levels of tabs, you can use the normal tabs as the first level, and use TabBox as the
+					second level. Read more about
+					<a data-ts="Button" href="/#components/boards/">boards</a>
+				</p>
+				<figure data-ts="DoxMarkup">
+					<script type="text/html">
+						<div data-ts="Board">
+							<ul data-ts="Panels">
+								<li data-ts="Panel" data-ts.label="One"></li>
+								<li data-ts="Panel" data-ts.label="Two"></li>
+								<li data-ts="Panel" data-ts.label="Three"></li>
+							</ul>
+						</div>
+					</script>
+				</figure>
+				<div data-ts="Board" id="tabboard">
+					<ul data-ts="Panels">
+						<li data-ts="Panel" data-ts.label="One">
+							<p>One</p>
+						</li>
+						<li data-ts="Panel" data-ts.label="Two">
+							<p>Two</p>
+						</li>
+						<li data-ts="Panel" data-ts.label="Three">
+							<p>Three</p>
+						</li>
+					</ul>
+				</div>
+
+				<h3>Updating tabs</h3>
+				<p>
+					We can at any time change what happens when a tab gets selected. We can also change the
+					tab label if we like, although perhaps this could become confusing.
+				</p>
+				<figure data-ts="DoxScript">
+					<script type="runnable">
+						var tabs = ts.ui.Header.tabs();
+						tabs[4].label = 'Choose Me!';
+						tabs[4].onselect = function() {
+							this.label = 'Thanks!';
+						};
+					</script>
+				</figure>
+
+				<h3>Selecting tabs</h3>
+				<p>
+					We can programatically select a tab using one of these approaches.
+				</p>
+				<figure data-ts="DoxScript">
+					<script>
+						ts.ui.Header.tabs()[4].select();
+					</script>
+				</figure>
+				<figure data-ts="DoxScript">
+					<script>
+						ts.ui.Header.tabs().selectedIndex = 1;
+					</script>
+				</figure>
+
+				<h3>Querying tabs</h3>
+				<p>
+					This will all become a lot easier if we give all the tabs an
+					<code>id</code> and use
+					<code>tabs.get()</code>
+				</p>
+				<figure data-ts="DoxScript">
+					<script type="runnable">
+						var tabs = ts.ui.Header.tabs();
+						tabs.splice(4, 0, {
+							label: 'Example Tab',
+							id: 'example-tab'
+						});
+						tabs.get('example-tab').select();
+					</script>
+				</figure>
+
+				<h3>Tabs icons</h3>
+				<p>
+					You can add a tab with an
+					<a data-ts="Button" href="/#components/icons/css.html">icon</a> if somehow that tab is
+					special.
+				</p>
+				<figure data-ts="DoxScript">
+					<script type="runnable">
+						ts.ui.Header.tabs().push ({
+							label: 'Icon Tab',
+							icon: 'ts-icon-todo'
+						});
+					</script>
+				</figure>
+
+				<h3>Tab counters</h3>
+				<p>You can add a counter to the tabs for whatever reason you like.</p>
+				<figure data-ts="DoxScript">
+					<script type="runnable">
+						ts.ui.Header.tabs().forEach(function(tab){
+							tab.counter = Math.ceil(Math.random() * 10);
+						});
+					</script>
+				</figure>
+				<p>When the counter reaches zero, it disappears.</p>
+				<figure data-ts="DoxScript">
+					<script type="runnable">
+						ts.ui.Header.tabs().forEach(function(tab){
+							tab.counter --;
+						});
+					</script>
+				</figure>
+
+				<h3>Closeable tabs</h3>
+				<p>
+					You can create closeable tabs, but note that the tab must be selected before it can be
+					closed. You can <code>return false</code> in the <code>onclose</code> method to prevent
+					the tab from closing (if this would otherwise cause data loss).
+				</p>
+				<figure data-ts="DoxScript">
+					<script type="runnable">
+						ts.ui.Header.tabs().push ({
+							label: 'Closeable Tab',
+							closeable: true,
+							selected: true,
+							onclose : function() {
+								ts.ui.Notification.success(this.label + ' closed');
+							},
+						});
+					</script>
+				</figure>
+
+				<h3>New-Tab button</h3>
+				<p>
+					You can allow the user to create new tabs via a special button as seen in popular
+					browsers. Note that the button just triggers a callback and that the new tab must be
+					created manually. In the example below, the
+					<code>selected</code> property also selects the tab.
+				</p>
+				<figure data-ts="DoxScript">
+					<script type="runnable">
+						var tabs = ts.ui.Header.tabs();
+						tabs.showNew(function onclick() {
+							tabs.push({
+								label: 'My New Tab',
+								selected: true
+							});
+						});
+					</script>
+				</figure>
+				<p>If you regret this later on, you can also hide the button.</p>
+				<figure data-ts="DoxScript">
+					<script type="runnable">
+						ts.ui.Header.tabs().hideNew();
+					</script>
+				</figure>
+			</section>
+			<section id="tabs-api" data-important="THIS GETS INCLUDED IN OTHER PAGES!">
+				<p>Here"s a summary of the <code>tabs</code> collection and <code>tab</code> model.</p>
+				<div data-ts="DoxApi">
+					<script type="application/json">
+						{
+							"name": "ts.ui.TabCollection",
+							"properties": [
+								{
+									"name": "selectedIndex",
+									"type": "number",
+									"desc": "Get or set selected index."
+								}
+							],
+							"methods": [
+								{
+									"name": "push",
+									"args": "o1, o2, ...",
+									"desc": "Add tab(s) to the end of the collection."
+								},
+								{
+									"name": "unshift",
+									"args": "o1, o2, ...",
+									"desc": "Add tab(s) to the front of the collection."
+								},
+								{
+									"name": "pop",
+									"desc": "Remove and return the last tab."
+								},
+								{
+									"name": "shift",
+									"desc": "Remove and return the first tab."
+								},
+								{
+									"name": "splice",
+									"args": "i, d, o1, o2, ...",
+									"desc": "Insert tab(s) at `i`, optionally deleting `d` amount of tabs."
+								},
+								{
+									"name": "get",
+									"args": "string|number",
+									"desc": "Get tab by `id` or numeric index."
+								},
+								{
+									"name": "clear",
+									"desc": "Remove all tabs."
+								},
+								{
+									"name": "showNew",
+									"args": "(function)",
+									"desc": "Show New-Tab button with an onclick callback. Use `hideNew()` to hide the button."
+								},
+								{
+									"name": "onselect",
+									"args": "number, number",
+									"desc": "Open for implementation: Called whenever the selected index changes with two parameters `newindex` and `oldindex`."
+								}
+							]
+						}
+					</script>
+				</div>
+				<div data-ts="DoxApi">
+					<script type="application/json">
+						{
+							"name": "ts.ui.TabModel",
+							"properties": [
+								{
+									"name": "id",
+									"type": "string",
+									"desc": "Optional tab `id`."
+								},
+								{
+									"name": "label",
+									"type": "string",
+									"desc": "The tab label."
+								},
+								{
+									"name": "icon",
+									"type": "string",
+									"desc": "The tab icon."
+								},
+								{
+									"name": "selected",
+									"type": "boolean",
+									"desc": "Get or set selected status."
+								},
+								{
+									"name": "closeable",
+									"type": "boolean",
+									"desc": "Tab can be closed? See also `onclose`"
+								}
+							],
+							"methods": [
+								{
+									"name": "select",
+									"desc": "Select the tab. This will unselect some other tab."
+								},
+								{
+									"name": "onselect",
+									"desc": "Called whenever the tab gets selected."
+								},
+								{
+									"name": "onclose",
+									"desc": "Called whenever the tab gets closed."
+								}
+							]
+						}
+					</script>
+				</div>
+			</section>
+		</article>
+	</body>
+	<html></html>
+</html>

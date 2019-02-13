@@ -262,15 +262,12 @@ ts.ui.MainFrameSpirit = ts.ui.Spirit.extend({
 	 */
 	_loading: function(is) {
 		this.loading = is;
-		var status = 'loading ' + this._href;
 		var classn = ts.ui.CLASS_READY;
 		if (is) {
-			this.guistatus.busyBlocking(status);
 			this.css.remove(classn);
 		} else {
 			gui.Tick.time(
 				function() {
-					this.guistatus.doneBlocking(status);
 					this.css.add(classn);
 				},
 				100,

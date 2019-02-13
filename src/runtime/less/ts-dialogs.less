@@ -4,12 +4,15 @@
 .ts-dialog {
 	position: absolute;
 	border-radius: @ts-radius;
+	background-color: @ts-color-white;
+	box-shadow: @ts-shadow;
+	border: 1px solid @new-bordercolor;
 	z-index: @ts-zindex-dialog;
 	top: 20%;
 	left: 50%;
 	width: @local-variable-dialog-width; // equal aside body
 	margin-left: @local-variable-dialog-minus;
-	color: @ts-white;
+	color: @ts-color-black;
 	.ts-dialog-head,
 	.ts-dialog-body,
 	.ts-dialog-buttons {
@@ -71,17 +74,17 @@
 				border-radius: @ts-radius;
 			}
 			> fieldset {
-				background-color: @ts-dark-liter;
+				background-color: @ts-color-gray-dark;
 				&:not(:last-child) {
 					margin-bottom: @ts-unit-half;
 				}
 				.ts-textlabel:not(.ts-focus) {
 					> span,
 					.ts-field {
-						color: @ts-white;
+						color: @ts-color-white;
 					}
 					&:after {
-						border-bottom-color: @ts-white;
+						border-bottom-color: @ts-color-white;
 					}
 				}
 			}
@@ -106,6 +109,47 @@
 		&.ts-opening,
 		&.ts-closing {
 			pointer-events: none;
+		}
+	}
+	&.ts-dialog-success {
+		// TOTAL FASTFIX! WAS OTHERWISE INVISIBLE :/
+		.ts-dialog-icon {
+			color: @ts-color-green;
+		}
+	}
+	&.ts-dialog-confirm,
+	&.ts-dialog-info {
+		.ts-dialog-icon {
+			color: @ts-color-blue;
+		}
+	}
+	&.ts-dialog-warning {
+		.ts-dialog-icon {
+			color: @ts-color-orange;
+		}
+		.ts-dialog-buttons {
+			.ts-buttons {
+				li:first-child button {
+					background-color: @ts-color-orange;
+					color: @ts-color-white;
+					border-color: @ts-color-orange;
+				}
+			}
+		}
+	}
+	&.ts-dialog-danger,
+	&.ts-dialog-error {
+		.ts-dialog-icon {
+			color: @ts-color-red;
+		}
+		.ts-dialog-buttons {
+			.ts-buttons {
+				li:first-child button {
+					background-color: @ts-color-red;
+					color: @ts-color-white;
+					border-color: @ts-color-red;
+				}
+			}
 		}
 	}
 }

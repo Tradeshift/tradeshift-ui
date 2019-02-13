@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Layout</title>
+		<object data="tabs.xhtml"></object>
+	</head>
+	<body>
+		<article>
+			<h1>Layout</h1>
+			<section class="desc">
+				<p>
+					This is the minimum viable HTML boilerplate for Tradeshift UI to work out.
+				</p>
+			</section>
+			<section>
+				<p>
+					The layout involves an amount of boilerplate for the
+					<code>flex</code> based layout to work in all dimensions as you add more features to the
+					app. It is important to declare the markup exactly as stated and without any additional
+					elements.
+				</p>
+				<figure data-ts="DoxMarkup">
+					<script type="text/html">
+						<!DOCTYPE html>
+						<html>
+							<head>
+								<title>My App</title>
+								<meta name="viewport" content="width=device-width"/>
+								<meta name="ts-app-title" content="My App"/>
+								<link rel="ts-app-icon" href="my-icon.svg"/>
+							</head>
+							<body>
+								<div data-ts="App">
+									<div data-ts="Main">
+										<div data-ts="Content">
+											<div data-ts="Panel">
+												<em>Start building your app here!</em>
+											</div>
+										</div>
+									</div>
+								</div>
+							</body>
+						</html>
+					</script>
+				</figure>
+				<p>
+					You may want to tweak the <code>viewport</code> meta tag, but this is a good starting
+					point.
+				</p>
+				<p>
+					The <code>ts-app-title</code> and <code>ts-app-icon</code> configures the titlebar as seen
+					on top of this page, but you may alternatively configure the title and icon via the
+					<a data-ts="Button" href="/#components/header/">Header API</a>. Note that the
+					<val>Panel</val> will render the page scrollbar instead of the HTML element. Also note
+					that if you're using <a data-ts="Button" href="/#components/asides/">Asides</a>, it’s
+					important to place them outside <val>Main</val> like this:
+				</p>
+				<figure data-ts="DoxMarkup">
+					<script type="text/html">
+						<div data-ts="App">
+							<main data-ts="Main">…</main>
+							<aside ts-aside>…</aside>
+						</div>
+					</script>
+				</figure>
+				<p>
+					With this in mind, you are ready to
+					<a data-ts="Button" href="/#getstarted/usage.html">start using components</a>.
+				</p>
+			</section>
+		</article>
+	</body>
+</html>

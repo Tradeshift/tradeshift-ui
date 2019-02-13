@@ -26,10 +26,9 @@
     "grunt-spiritual-edbml-tmpfix": "^0.3.1",
     "image-diff": "^1.6.3",
     "js-beautify": "^1.6.11",
-    "less": "^3.8.1",
+    "less": "^3.9.0",
     "load-grunt-tasks": "^3.5.0",
     "selenium-webdriver": "^3.3.0",
-    "serve-static": "^1.12.4",
-    "string": "^3.3.3"
+    "serve-static": "^1.12.4"
   }
 }

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Header Navigation</title>
+		<object data="_tabs.xhtml"></object>
+	</head>
+	<body>
+		<article>
+			<section>
+				<p>
+					The Header features a dedicated <samp>Back</samp> button to support "drill down"
+					navigation. The buttons appear when you pass a callback function to the
+					<code>backbutton</code> method.
+				</p>
+				<figure data-ts="DoxScript" class="attention">
+					<script type="runnable">
+						ts.ui.Header.backbutton(function onclick() {
+							ts.ui.Notification.success('Go back!');
+						});
+					</script>
+				</figure>
+				<p>
+					You should of course not forget to hook your navigation up to the browsers native
+					<samp>Back</samp> button. If and when needed, you can of course also display a
+					<samp>Forward</samp> button.
+				</p>
+				<figure data-ts="DoxScript">
+					<script type="runnable">
+						ts.ui.Header.forwardbutton(function onclick() {
+							ts.ui.Notification.success('Go forward!');
+						});
+					</script>
+				</figure>
+				<p>
+					Once the navigation is completed, you can hide the buttons again by passing
+					<code>null</code> as an argument.
+				</p>
+				<figure data-ts="DoxScript">
+					<script type="runnable">
+						ts.ui.Header.backbutton(null).forwardbutton(null);
+					</script>
+				</figure>
+			</section>
+			<section>
+				<p>Here' an overview of the Navigation methods.</p>
+				<div data-ts="DoxApi">
+					<script type="application/json">
+						{
+							"name": "ts.ui.Header",
+							"methods": [
+								{
+									"name": "backbutton",
+									"args": "Function|null",
+									"desc": "Show the `Back` button with a callback. Pass `null` to hide the button again."
+								},
+								{
+									"name": "forwardbutton",
+									"args": "Function|null",
+									"desc": "Show the `Forward` button with a callback. Pass `null` to hide the button."
+								}
+							]
+						}
+					</script>
+				</div>
+			</section>
+		</article>
+	</body>
+	<html></html>
+</html>

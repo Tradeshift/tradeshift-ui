@@ -1,34 +1,9 @@
-// Mixins ......................................................................
-
-.mixin-temp(@selected: pink, @unselected: @ts-white, @bground: @ts-white) {
-	.ts-toolbar-tabs {
-		.ts-button {
-			color: @unselected;
-			&:after {
-				display: none;
-			}
-		}
-		.ts-selected .ts-button {
-			background-color: @bground;
-			color: @selected;
-		}
-	}
-}
-
 // Styles both ToolBar, TopBar and TabBar! .....................................
 
 .ts-toolbar {
 	.ts-mixin-unselectable();
 	.ts-mixin-fixheight(@ts-unit-triple);
-	background-color: @ts-lite-liter;
 	white-space: nowrap;
-	.ts-button {
-		margin: 0;
-	}
-}
-.ts-main .ts-toolbar {
-	position: relative;
-	width: 100%;
 }
 .ts-toolbar-menu {
 	position: absolute;
@@ -46,20 +21,31 @@
 			.ts-mixin-fixheight(@ts-unit-triple);
 			.ts-button {
 				display: inline-block;
+				&,
+				&:hover {
+					background-color: transparent !important; // TODO: rounded + hovercolor
+				}
 			}
 			.ts-action {
 				padding-left: 0;
 				padding-right: 0;
 			}
 		}
+		> li {
+			&.ts-toolbar-icon {
+				padding-left: @ts-unit-half;
+				padding-right: @ts-unit-half;
+				img {
+					display: block;
+				}
+			}
+		}
+	}
+	&.ts-left {
 	}
 	&.ts-right {
 		right: 0;
-		li {
-			text-align: right;
-			&:first-child {
-				padding-left: @ts-unit-half;
-			}
+		.ts-toolbar-item {
 			&:last-child {
 				padding-right: @ts-unit-half;
 			}
@@ -138,9 +124,6 @@
 	min-height: @ts-unit-double;
 	padding-left: @ts-unit-half;
 	padding-right: @ts-unit-half;
-	&.ts-flex {
-		padding-right: @ts-unit-quarter * 0.5;
-	}
 	&.ts-searching {
 		width: @ts-width-aside;
 		padding-right: @ts-unit-half;
@@ -153,6 +136,19 @@
 	.ts-toolbar-search.ts-flex {
 		padding-right: @ts-unit-half;
 	}
+}
+.ts-hasright {
+	.ts-toolbar-search {
+		&.ts-flex {
+			padding-right: @ts-unit-quarter * 0.5;
+		}
+	}
+}
+
+// Theming .....................................................................
+
+.ts-content > .ts-toolbar {
+	background-color: @ts-color-white;
 }
 
 // Tabs ........................................................................
@@ -171,10 +167,17 @@
 	}
 	button.ts-button {
 		display: inline;
-		background-color: lime !important;
 	}
 	.ts-tab {
 		padding: 0;
+	}
+	.ts-tab-indicator {
+		height: 2px;
+		background-color: @ts-color-black;
+		position: absolute;
+		left: 0;
+		bottom: 0px;
+		width: 100px;
 	}
 	.ts-button {
 		.ts-mixin-menuitem();
@@ -183,30 +186,30 @@
 		margin: 0;
 		border-right: 1px solid transparent;
 		em {
-			background-color: @ts-medium-litest;
-			color: @ts-black;
-			min-width: @ts-unit;
+			background-color: @ts-color-gray-lighter;
+			color: @ts-color-slate-lightest;
+			min-width: 22px;
 			text-align: center;
 			border-radius: @ts-radius;
 			font-size: @ts-fontsize-small;
-			font-weight: bold;
+			font-weight: @ts-fontweight-semibold;
 			position: absolute;
 			right: @ts-unit-half;
 			top: 50%;
 			z-index: 1;
-			margin-top: -(@ts-unit-half - 1px);
-		}
-		&:after {
-			content: '';
-			border-bottom: (@ts-unit-quarter + 1px) solid transparent;
-			position: absolute;
-			right: 0;
-			left: 0;
-			bottom: 0;
+			margin-top: 0 - 10px;
 		}
 		&:hover {
 			span {
 				text-decoration: none;
+				color: @ts-color-black;
+			}
+			em {
+				background-color: @ts-color-black;
+				color: @ts-color-white;
+			}
+			.ts-tab-icon {
+				color: @ts-color-black;
 			}
 		}
 		.ts-tab-icon {
@@ -219,7 +222,7 @@
 			white-space: nowrap;
 		}
 	}
-	li {
+	.ts-tab {
 		display: inline-block;
 		&.ts-counter {
 			.ts-button {
@@ -230,11 +233,11 @@
 			.ts-button {
 				cursor: default;
 				em {
-					background-color: @ts-red;
-					color: @ts-white;
+					background-color: @ts-color-black;
+					color: @ts-color-white;
 				}
 				&:after {
-					border-color: @ts-blue;
+					border-color: @ts-color-blue;
 				}
 				i {
 					cursor: pointer;
@@ -245,7 +248,7 @@
 		&:not(.ts-selected) {
 			.ts-button:hover {
 				&:after {
-					border-color: @ts-blue;
+					border-color: @ts-color-blue;
 				}
 			}
 		}
@@ -273,10 +276,29 @@
 	}
 }
 
+// Initial transitions supressed via JS ........................................
+
+.ts-toolbar.ts-transition {
+	.ts-toolbar-tabs {
+		.ts-button {
+			.ts-mixin-transition-colors(@ts-transition-now);
+		}
+		.ts-tab-indicator {
+			.ts-mixin-transition-transform(@ts-transition-now * 0.5, @ts-timing-easeinoutexpo);
+		}
+	}
+}
+
 // Tabs buttons (add new, show more ) ..........................................
 
 .ts-toolbar-tabs {
-	li {
+	.ts-tab {
+		.ts-button {
+			color: @ts-color-slate-lightest;
+		}
+		&.ts-selected .ts-button {
+			color: @ts-color-black;
+		}
 		&.ts-tab-button {
 			overflow: hidden;
 			vertical-align: top;
@@ -309,7 +331,7 @@
 }
 .ts-macro {
 	.ts-toolbar-tabs {
-		li {
+		.ts-tab {
 			&.ts-tab-button {
 				.ts-button i {
 					top: @ts-unit-half;
@@ -321,41 +343,6 @@
 		}
 	}
 }
-.ts-toolbar {
-	&.ts-bg-dark .ts-toolbar-tabs {
-		.ts-button {
-			color: @ts-lite;
-			background-color: @ts-dark-liter;
-			border-right-color: @ts-dark-lite;
-		}
-		.ts-selected .ts-button {
-			background-color: @ts-dustblue;
-			color: @ts-white;
-		}
-	}
-	&.ts-bg-lite,
-	&.ts-bg-white {
-		.mixin-temp(@ts-blue, @ts-medium);
-	}
-	&.ts-bg-blue {
-		.mixin-temp(@ts-blue);
-	}
-	&.ts-bg-green {
-		.mixin-temp(@ts-green);
-	}
-	&.ts-bg-yellow {
-		.mixin-temp(@ts-yellow, @ts-yellow-text, @ts-yellow-text);
-	}
-	&.ts-bg-orange {
-		.mixin-temp(@ts-orange, @ts-orange-text, @ts-orange-text);
-	}
-	&.ts-bg-red {
-		.mixin-temp(@ts-red);
-	}
-	&.ts-bg-purple {
-		.mixin-temp(@ts-purple);
-	}
-}
 
 // Statusbar ...................................................................
 
@@ -365,68 +352,7 @@
 		.ts-toolbar-item.ts-action:first-child {
 			padding-left: @ts-unit;
 		}
-		/*
-		.ts-toolbar-title {
-			&:first-child {
-				padding-left: @ts-unit-plus;
-			}
-			&:not(:first-child) {
-				padding-left: 0 !important;
-			}
-			label {
-				font-size: @ts-fontsize;
-				top: 0;	
-			}
-		}
-		*/
 	}
-	/*
-	&.ts-small {
-		&.ts-level-4-5,
-		&.ts-level-6,
-		&.ts-level-7-5,
-		&.ts-level-9 {
-			.ts-toolbar-menu {
-				display: block;
-				width: 100%;
-			}
-			.ts-left,
-			.ts-right {
-				position: absolute;
-				text-align: center;
-				float: none;
-			}
-			.ts-right {
-				bottom: 0;
-			}
-		}
-		&.ts-level-4-5,
-		&.ts-level-7-5 {
-			.ts-left {
-				.ts-toolbar-item {
-					padding: 0;
-				}
-			}
-			&.ts-hascenter {
-				.ts-left {
-					top: @ts-unit-triple - @ts-unit-quarter;
-				}
-			}
-		}
-		&.ts-level-4-5 {
-			.ts-mixin-fixheight((@ts-unit-triple * 1.5) + @ts-unit-quarter);
-		}
-		&.ts-level-6 {
-			.ts-mixin-fixheight(@ts-unit-triple * 2);
-		}
-		&.ts-level-7-5 {
-			.ts-mixin-fixheight(@ts-unit-triple * 2.5);
-		}
-		&.ts-level-9 {
-			.ts-mixin-fixheight(@ts-unit-triple * 3);
-		}
-	}
-	*/
 }
 
 // Micro toolbar ...............................................................
@@ -435,7 +361,7 @@
 	.ts-mixin-fixheight(@ts-unit-double);
 	.ts-left {
 		&,
-		& > li {
+		& > .ts-tab {
 			.ts-mixin-fixheight(@ts-unit-double);
 			.ts-action {
 				height: @ts-unit-plus;
@@ -447,18 +373,26 @@
 			&.ts-toolbar-title,
 			&.ts-toolbar-status {
 				&:first-child {
-					padding-left: @ts-unit - @ts-unit-quarter;
+					padding-left: @ts-unit;
 				}
 				label {
+					font-size: @ts-fontsize;
 					padding-top: @ts-unit-quarter;
 					padding-bottom: @ts-unit-quarter;
-					font-size: @ts-fontsize;
+				}
+			}
+			&.ts-toolbar-title {
+				label {
+					font-weight: 600;
 				}
 			}
 			&.ts-toolbar-checkbox {
 				padding: 0 !important;
 				.ts-button {
 					.ts-mixin-fix(@ts-unit-double, @ts-unit-double);
+					&:hover {
+						text-decoration: none;
+					}
 					i {
 						&:before {
 							font-size: 27px !important;
@@ -466,10 +400,10 @@
 						}
 						&.ts-icon-checkboxon,
 						&.ts-icon-checkbox-indeterminate {
-							color: @ts-blue;
+							color: @ts-color-blue;
 						}
 						&.ts-icon-checkbox {
-							color: @ts-medium-litest;
+							color: @ts-color-gray-light;
 						}
 					}
 				}
@@ -481,10 +415,12 @@
 		.ts-mixin-fixheight(@ts-unit-double);
 	}
 	.ts-toolbar-tabs {
+		padding-left: @ts-unit-half;
 		.ts-button {
 			padding: @ts-unit-half;
 			span {
-				.ts-mixin-label-text();
+				font-size: @ts-fontsize;
+				font-weight: @ts-fontweight-semibold;
 			}
 			&:after {
 				display: none;
@@ -509,6 +445,9 @@
 	.ts-tab-more {
 		.ts-button {
 			.ts-mixin-fixheight(@ts-unit-double);
+			&:hover {
+				color: @ts-color-black;
+			}
 		}
 	}
 }
@@ -538,7 +477,7 @@
 	}
 	+ .ts-button {
 		&:after {
-			border-left: 1px solid @ts-white;
+			border-left: 1px solid @ts-color-white;
 		}
 		&.ts-tertiary {
 			&:after {
@@ -558,7 +497,7 @@
 	left: 0;
 	right: 0;
 	&:not(.ts-tabbar):after {
-		height: @ts-unit-quarter;
+		height: 5px;
 		width: 100%;
 		position: absolute;
 		pointer-events: none;

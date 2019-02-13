@@ -289,6 +289,12 @@ ts.ui.DialogSpirit = (function using(Dialog, Client, chained, Type) {
 				this._trapattention();
 				if (this._ismodelled()) {
 					switch (this._model.type) {
+						case Dialog.SUCCESS:
+							break;
+						default:
+							this.css.add('ts-bg-darkened'); // this now only affects the button outline!
+							break;
+						/*
 						case Dialog.INFO:
 						case Dialog.CONFIRM:
 							this.css.add('ts-bg-darkened');
@@ -303,6 +309,7 @@ ts.ui.DialogSpirit = (function using(Dialog, Client, chained, Type) {
 						case Dialog.DANGER:
 							this.css.add('ts-bg-red');
 							break;
+						*/
 					}
 				}
 				this.broadcast.dispatch(willopen);

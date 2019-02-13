@@ -140,7 +140,7 @@ function updateversions(where, source, target) {
 	pkg.versions = pkg.versions
 		.map(v => (v === source ? target : v))
 		.concat(source === ZERO ? [target] : [])
-		.sort(semv.gt);
+		.sort(semv.lt);
 	setpckg('gh-pages/package.json', pkg);
 	return pkg.versions;
 }

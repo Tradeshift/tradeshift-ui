@@ -44,7 +44,6 @@ describe('ts.ui.SideBarSpirit', function likethis() {
 			spirit.element.setAttribute('data-ts.busy', 'Moth');
 			sometime(function later() {
 				expect(spirit.element.innerHTML).toContain('Moth');
-				expect(spirit.element.innerHTML).toContain('ts-spinner-text');
 				done();
 			});
 		});

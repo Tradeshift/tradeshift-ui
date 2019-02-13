@@ -1,12 +1,15 @@
+@color-table-selected: @ts-color-gray-lightest;
+
 .ts-table {
 	.ts-mixin-unselectable();
+	background-color: @ts-color-white;
 	margin-bottom: @ts-unit;
 	overflow: hidden;
 	position: relative;
 	display: block;
 	&.ts-hascols,
 	&.ts-hasrows {
-		border: 1px solid @ts-medium-litest;
+		// border: 1px solid @ts-color-gray-lighter;
 	}
 	table {
 		table-layout: fixed;
@@ -21,7 +24,7 @@
 		}
 	}
 	td {
-		border: 1px solid @ts-lite-dark;
+		border: 1px solid @ts-color-gray-lighter;
 		-webkit-user-select: text;
 		-moz-user-select: text;
 		user-select: text;
@@ -60,8 +63,8 @@
 		}
 	}
 	th {
-		border: 1px solid @ts-lite-darker;
-		border-bottom-color: @ts-medium-litest;
+		border: 1px solid @ts-color-gray-lighter;
+		border-bottom-color: @ts-color-gray-lighter;
 		border-top: none;
 		overflow: hidden;
 	}
@@ -94,9 +97,10 @@
 		position: relative;
 	}
 	.ts-table-cols {
-		background-color: @ts-lite;
+		background-color: @ts-color-white;
 	}
 	.ts-table-gutter {
+		background-color: @ts-color-white;
 		z-index: 2;
 	}
 	.ts-table-cols,
@@ -124,9 +128,9 @@
 			position: relative;
 			display: block;
 			height: 100%;
-			min-height: @ts-unit-double - 1px;
+			min-height: @ts-unit-double;
 			width: 100%;
-			color: @ts-medium-litest;
+			color: @ts-color-gray-light;
 			i {
 				.ts-mixin-maximize();
 				font-size: 27px;
@@ -136,28 +140,28 @@
 		}
 		&.ts-checked {
 			button {
-				color: @ts-blue;
+				color: @ts-color-blue;
 			}
 		}
 	}
 	.ts-table-new-row {
 		font-style: italic;
-		color: @ts-medium-liter;
+		color: @ts-color-gray;
 	}
 	.ts-table-hilt {
 		button {
 			cursor: default;
 		}
 	}
-
 	.ts-table-checkbox {
 		cursor: pointer;
 	}
-
 	.ts-table-cols,
 	.ts-table-menu:not(.ts-open) {
 		th {
-			background-color: @ts-lite;
+			&.ts-selected {
+				background-color: @color-table-selected;
+			}
 		}
 	}
 	.ts-table-cols {
@@ -176,7 +180,7 @@
 			-ms-text-overflow: ellipsis;
 			overflow: hidden;
 			white-space: nowrap;
-			color: @ts-black;
+			color: @ts-color-black;
 			text-align: left;
 			span {
 				.ts-mixin-label-text();
@@ -191,14 +195,17 @@
 				font-size: @ts-fontsize;
 				display: none;
 			}
+			&:hover {
+				text-decoration: none;
+			}
 		}
 		.ts-default {
-			color: @ts-black;
+			color: @ts-color-black;
 			position: relative;
 			z-index: 1;
 			float: left;
 			&:hover {
-				color: @ts-blue;
+				color: @ts-color-blue;
 			}
 		}
 		.ts-search {
@@ -211,7 +218,7 @@
 			}
 		}
 		.ts-selected {
-			background-color: @ts-lite-dark;
+			background-color: @color-table-selected;
 			.ts-button-sort {
 				padding-right: @ts-unit-double !important;
 				i {
@@ -222,11 +229,14 @@
 		.ts-table-checkbox,
 		.ts-table-hilt,
 		.ts-table-numbered {
-			background-color: @ts-lite;
-			border: 1px solid @ts-lite-darker;
-			border-bottom-color: @ts-medium-litest;
+			/*
+			// background-color: @ts-color-gray-lighter;
+			border: 1px solid @ts-color-gray-light;
+			border-bottom-color: @ts-color-gray-light;
 			border-left: none;
 			border-top: none;
+			border: none !important;
+			*/
 		}
 	}
 	&:not(.ts-hasrows):not(.ts-maximized):not(.ts-maxrows) {
@@ -235,6 +245,9 @@
 				border-bottom: none;
 			}
 		}
+	}
+	.ts-table-rows {
+		background-color: @ts-color-gray-lighter;
 	}
 	.ts-table-rows,
 	.ts-table-gutter {
@@ -252,9 +265,9 @@
 			}
 		}
 		td {
-			background-color: @ts-white;
+			// background-color: @ts-color-white;
 			&.ts-table-hilt {
-				background-color: @ts-lite-lite;
+				background-color: @ts-color-gray-lighter;
 			}
 			+ td:not(.ts-number) {
 				.ts-table-cell {
@@ -282,7 +295,8 @@
 	.ts-table-rows {
 		display: block;
 		overflow: hidden;
-		background-color: @ts-lite-liter;
+		//background-color: @ts-color-gray-lighter;
+		//background-color: lime;
 		table {
 			position: relative;
 		}
@@ -300,8 +314,8 @@
 				min-height: 100% !important;
 			}
 			&:focus {
-				color: @ts-black;
-				background-color: @ts-yellow;
+				color: @ts-color-black;
+				background-color: @ts-color-yellow-lightest;
 				//z-index: 2;
 			}
 		}
@@ -313,23 +327,23 @@
 			display: none;
 			z-index: 3;
 			&:focus {
-				border-color: @ts-medium-litest;
-				outline-color: @ts-medium-litest;
+				border-color: @ts-color-gray-light;
+				outline-color: @ts-color-gray-light;
 			}
 		}
 		.ts-editable {
 			.ts-table-line:focus {
-				border-color: @ts-blue;
-				outline-color: @ts-blue;
+				border-color: @ts-color-blue;
+				outline-color: @ts-color-blue;
 			}
 		}
 		td {
-			background-color: @ts-white;
+			background-color: @ts-color-white;
 			&.ts-selected {
-				background-color: @ts-lite-liter;
+				background-color: @color-table-selected;
 			}
 			&.ts-table-editmode {
-				background-color: @ts-yellow !important;
+				background-color: @ts-color-yellow-lightest !important;
 			}
 			&.ts-table-editmode,
 			&.ts-table-invalid {
@@ -344,12 +358,12 @@
 			}
 			&.ts-table-invalid {
 				.ts-table-line:focus {
-					border-color: @ts-darkred;
-					outline-color: @ts-darkred;
+					border-color: @ts-color-red;
+					outline-color: @ts-color-red;
 				}
 				.ts-table-input:not(:focus) {
-					background: @ts-darkred-lite;
-					color: @ts-darkred;
+					background: @ts-color-red-lighter;
+					color: @ts-color-black;
 				}
 			}
 			&:not(.ts-wrap) {
@@ -402,12 +416,12 @@
 					position: absolute;
 					width: @ts-unit-double;
 					height: @ts-unit-double;
-					background-color: @ts-lite;
+					background-color: @ts-color-gray-lighter;
 					left: 100%;
 				}
 				&.ts-selected {
 					fieldset:after {
-						background-color: @ts-lite-dark;
+						background-color: @color-table-selected;
 					}
 				}
 			}
@@ -420,15 +434,15 @@
 	}
 	.ts-table-row-selected {
 		td {
-			background-color: @ts-liteblue;
+			background-color: @ts-color-blue-lightest;
 			&.ts-selected {
-				background-color: @ts-liteblue-dark;
+				background-color: @ts-color-blue-lighter;
 			}
 		}
 	}
 	.ts-table-row-unselectable {
-		background-color: @ts-lite-lite;
-		color: @ts-medium;
+		background-color: @ts-color-gray-lighter;
+		color: @ts-color-gray;
 		td {
 			background-color: transparent;
 		}
@@ -436,19 +450,16 @@
 	.ts-table-foot {
 		padding: 0;
 		.ts-footerbar {
-			border-top: 1px solid @ts-medium-litest;
-			.ts-toolbar {
-				background-color: @ts-lite-lite;
+			&:after {
+				display: none;
 			}
+			/*
+			.ts-toolbar {
+				background-color: @ts-color-gray-lightest;
+			}
+			*/
 		}
 	}
-	/*
-	&.ts-hastool:not(.ts-hasrows) {
-		.ts-table-foot {
-			border-top: none;
-		}
-	}
-	*/
 	.ts-table-gutter,
 	.ts-table-menu {
 		overflow: hidden;
@@ -456,7 +467,7 @@
 		width: @ts-unit-double;
 	}
 	.ts-table-gutter {
-		border-right: 1px solid @ts-lite-dark;
+		border-right: 1px solid @ts-color-gray-lighter;
 		top: 0;
 		right: auto;
 		bottom: auto;
@@ -464,7 +475,7 @@
 		display: none;
 	}
 	.ts-table-menu {
-		border-right: 1px solid @ts-medium-litest;
+		border-right: 1px solid @ts-color-gray-light;
 		table {
 			width: auto;
 		}
@@ -519,6 +530,7 @@
 	}
 	&.ts-maximized {
 		.ts-mixin-maximize();
+		border: none;
 		margin-bottom: 0;
 		.ts-table-body {
 			.ts-mixin-maximize(@ts-unit-double, 0, 0, 0);
@@ -530,6 +542,13 @@
 				overflow-y: scroll !important; // TODO: toogle just-in-time on rowdata
 			}
 		}
+		/*
+		 * TODO: This???
+		 *
+		.ts-table-rows {
+			padding: @ts-unit;
+		}
+		*/
 		.ts-table-foot {
 			position: absolute;
 			bottom: 0;
@@ -546,41 +565,32 @@
 			bottom: @ts-unit * 8;
 		}
 	}
-
-	// Spinner text ............................................................
-	.ts-spinner-text {
-		position: absolute;
+	> .ts-cover {
+		background-color: rgba(255, 255, 255, 0.7);
+		.ts-spinner {
+			top: 50%;
+		}
 	}
 }
 
 // Table List ..................................................................
 
 .ts-table.ts-table-list {
-	border: none !important;
+	// TODO: merge this into default CSS (when approved)
 	td {
-		border: none !important;
-	}
-	tr {
-		border-bottom: 1px solid @ts-lite-dark;
+		border: none;
+		border-bottom: 1px solid @ts-color-gray-lighter;
 	}
 	th {
-		border: none !important;
-		border-bottom: 1px solid @ts-lite-dark;
-		background-color: @ts-white !important;
+		border: none;
+		border-bottom: 1px solid @new-bordercolor;
+		background-color: @ts-color-white;
 	}
-
 	.ts-table-menu {
 		border-right: none;
 	}
-
 	.ts-table-foot {
 		border-top: none;
-	}
-
-	.ts-table-foot {
-		.ts-toolbar {
-			background-color: @ts-white;
-		}
 	}
 }
 
@@ -589,7 +599,7 @@
 .ts-engine-gecko {
 	//.ts-table-gutter,
 	.ts-table-menu {
-		border-top: 1px solid @ts-lite-dark;
+		// border-top: 1px solid @ts-color-gray-lighter; TODO! OFFSET ONE PX!
 	}
 	.ts-wrapping {
 		.ts-table-gutter {
@@ -597,14 +607,6 @@
 	}
 }
 .ts-engine-webkit {
-	.ts-table-rows,
-	.ts-table-cols {
-		.ts-table-checkbox,
-		.ts-table-hilt {
-			// but why???
-			.ts-mixin-fixwidth(@ts-unit-double - 2px);
-		}
-	}
 	.ts-table-gutter {
 		.ts-table-checkbox,
 		.ts-table-hilt {

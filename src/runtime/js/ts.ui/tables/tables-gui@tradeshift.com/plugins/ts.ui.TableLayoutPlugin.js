@@ -3,6 +3,8 @@
  * @extends {ts.ui.Plugin}
  * @using {gui.Client} Client
  * @using {gui.Tick} Tick
+ * @using {number} UNIT
+ * @using {number} UNIT_DOUBLE
  */
 ts.ui.TableLayoutPlugin = (function using(Client, Tick, UNIT, UNIT_DOUBLE) {
 	var COL_CELLS = '.ts-table-cols th:not(.ts-table-addition)';

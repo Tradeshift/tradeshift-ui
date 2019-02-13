@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Header Buttons</title>
+		<object data="_tabs.xhtml"></object>
+	</head>
+	<body>
+		<article>
+			<section id="buttons-desc" data-important="THIS GETS INCLUDED IN OTHER PAGES!">
+				<p>
+					Add buttons to the TopBar with the <code>buttons</code> method. This both sets and gets.
+					If you omit the argument, you"ll get the current buttons (jQuery style).
+				</p>
+				<figure data-ts="DoxScript" class="attention">
+					<script type="runnable">
+						ts.ui.TopBar.buttons([
+							{label : 'Primary', type : 'ts-primary'},
+							{label : 'Secondary', type : 'ts-secondary'},
+							{label : 'Tertiary One'},
+							{label : 'Tertiary Two'}
+						]);
+					</script>
+				</figure>
+				<p>
+					You can use array methods like <code>push</code>, <code>pop</code>, <code>shift</code>,
+					<code>unshift</code>, <code>splice</code>, <code>reverse</code> and so on to manage
+					buttons. Just note that the buttons <code>length</code> is readonly.
+				</p>
+				<ul>
+					<li>
+						The buttons <code class="attr-name">type</code> property works like the CSS
+						<code class="attr-name">class</code> for a regular Button
+					</li>
+					<li>
+						The TopBar will automatically sort all buttons from primary to tertiary.
+					</li>
+					<li>
+						If there"s more than one tertiary button, these will be pushed to an Aside.
+					</li>
+					<li>
+						In the mobile breakpoint, even secondary buttons will be pushed to the Aside.
+					</li>
+				</ul>
+				<p>
+					Buttons won"t actually do anything unless you define the
+					<code>onclick</code> method.
+				</p>
+				<p>
+					<figure data-ts="DoxScript">
+						<script type="runnable">
+							ts.ui.TopBar.buttons().splice(0, 1, {
+								label : 'Click me!',
+								type : 'ts-primary',
+								onclick: function() {
+									this.label = 'Thanks';
+								}
+							});
+						</script>
+					</figure>
+				</p>
+
+				<p>
+					Fortunately, you can always change what happens when a button gets clicked.
+				</p>
+				<figure data-ts="DoxScript">
+					<script type="runnable">
+						ts.ui.TopBar.buttons().forEach((button, index) => {
+							button.label = "Button " + (index + 1);
+							button.onclick = function() {
+								ts.ui.Notification.success(this.label);
+							};
+						});
+					</script>
+				</figure>
+
+				<h3>Query buttons</h3>
+				<p>
+					You can locate buttons by index in the
+					<code>buttons</code> collection. But since this isn"t likely to match the order in which
+					they appear on screen, it"s easier to give the buttons an <code>id</code> and find them
+					using <code>buttons.get()</code>.
+				</p>
+				<figure data-ts="DoxScript">
+					<script type="runnable">
+						var buttons = ts.ui.TopBar.buttons();
+						buttons.push({ id: 'example-button' });
+						var button = buttons.get('example-button');
+						button.label = 'My Button';
+						button.type = 'ts-secondary';
+					</script>
+				</figure>
+
+				<!--
+				<h3>Icon buttons</h3>
+				<div data-ts="Note">
+					<i class="ts-icon-todo"></i>
+					<p>TODO: Note about the <code>info</code> property for view in Aside!</p>
+				</div>
+				-->
+
+				<h3>Hide buttons</h3>
+				<p>
+					You can <code>hide()</code> and <code>show()</code> buttons. You can also toggle
+					<code>visible</code>.
+				</p>
+				<figure data-ts="DoxScript">
+					<script type="runnable">
+						ts.ui.TopBar.buttons().forEach(button => {
+							if(button.visible) {
+								button.hide();
+							} else {
+								button.show();
+							}
+						});
+					</script>
+				</figure>
+
+				<h3>Disable buttons</h3>
+				<p>
+					You can <code>disable()</code> and <code>enable()</code> buttons. You can also toggle
+					<code>disabled</code>.
+				</p>
+				<figure data-ts="DoxScript">
+					<script type="runnable">
+						ts.ui.TopBar.buttons().forEach(button => {
+							if(button.disabled) {
+								button.enable();
+							} else {
+								button.disable();
+							}
+						});
+					</script>
+				</figure>
+
+				<h3>Busy buttons</h3>
+				<p>
+					We can display a temporary progress indicator with the
+					<code>busy</code> and <code>done</code> methods.
+				</p>
+				<figure data-ts="DoxScript">
+					<script type="runnable">
+						var button = ts.ui.TopBar.buttons()[0];
+						button.busy();
+						setTimeout(() => {
+							button.done();
+						}, 1000);
+					</script>
+				</figure>
+				<p>The <code>busy</code> method supports an optional status message.</p>
+				<figure data-ts="DoxScript">
+					<script type="runnable">
+						var button = ts.ui.TopBar.buttons()[0];
+						button.busy('Making progress');
+						setTimeout(() => {
+							button.done();
+						}, 1000);
+					</script>
+				</figure>
+
+				<h3>Button groups</h3>
+				<p>
+					You can also <em>group buttons in arrays</em> to create button groups that look like this:
+				</p>
+				<figure data-ts="DoxScript">
+					<script type="runnable">
+						ts.ui.TopBar.buttons([
+							{ label: 'Normal'},
+							{ label: 'Normal'},
+							[
+								{ label: 'Accept', type: 'ts-primary' },
+								{ label: 'Reject', type: 'ts-danger' }
+							]
+						]);
+					</script>
+				</figure>
+				<p>
+					You can of course also create grouped buttons with icons instead of text.
+				</p>
+				<figure data-ts="DoxScript">
+					<script type="runnable">
+						var group = ts.ui.TopBar.buttons()[2];
+						group.push({
+							icon: 'ts-icon-other',
+							type: 'ts-danger'
+						});
+					</script>
+				</figure>
+			</section>
+			<section id="buttons-api" data-important="THIS GETS INCLUDED IN OTHER PAGES!">
+				<p>
+					Here"s a summary of the <code>buttons</code> collection and <code>button</code> model.
+				</p>
+				<div data-ts="DoxApi">
+					<script type="application/json">
+						{
+							"name": "ts.ui.ButtonCollection",
+							"methods": [
+								{
+									"name": "push",
+									"args": "o1, o2, ...",
+									"desc": "Add button(s) to the end of the collection."
+								},
+								{
+									"name": "unshift",
+									"args": "o1, o2, ...",
+									"desc": "Add button(s) to the front of the collection."
+								},
+								{
+									"name": "pop",
+									"desc": "Remove and return the last button."
+								},
+								{
+									"name": "shift",
+									"desc": "Remove and return the first button."
+								},
+								{
+									"name": "splice",
+									"args": "i, d, o1, o2, ...",
+									"desc": "Insert button(s) at `i`, optionally deleting `d` amount of buttons."
+								},
+								{
+									"name": "get",
+									"args": "string|number",
+									"desc": "Get button by `id` or numeric index."
+								},
+								{
+									"name": "clear",
+									"desc": "Remove all buttons."
+								}
+							]
+						}
+					</script>
+				</div>
+				<div data-ts="DoxApi">
+					<script type="application/json">
+						{
+							"name": "ts.ui.ButtonModel",
+							"properties": [
+								{
+									"name": "id",
+									"type": "string",
+									"desc": "Optional button `id`."
+								},
+								{
+									"name": "label",
+									"type": "string",
+									"desc": "The buttons label."
+								},
+								{
+									"name": "icon",
+									"type": "string",
+									"desc": "The button icon (label must be `null` or empty)."
+								},
+								{
+									"name": "info",
+									"type": "string",
+									"desc": "The button tooltip (hover text)."
+								},
+								{
+									"name": "visible",
+									"type": "boolean",
+									"desc": "Button is visible?"
+								},
+								{
+									"name": "disabled",
+									"type": "boolean",
+									"desc": "Button is disabled?"
+								}
+							],
+							"methods": [
+								{
+									"name": "onclick",
+									"desc": "Called whenever the button gets clicked."
+								},
+								{
+									"name": "busy",
+									"args": "(string)",
+									"desc": "Mark button busy with optional message."
+								},
+								{
+									"name": "done",
+									"desc": "Mark the button done (not busy)."
+								},
+								{
+									"name": "hide",
+									"desc": "Hide the button."
+								},
+								{
+									"name": "show",
+									"desc": "Show the button."
+								},
+								{
+									"name": "disable",
+									"desc": "Disable the button."
+								},
+								{
+									"name": "enable",
+									"desc": "Enable the button."
+								}
+							]
+						}
+					</script>
+				</div>
+			</section>
+		</article>
+	</body>
+	<html></html>
+</html>

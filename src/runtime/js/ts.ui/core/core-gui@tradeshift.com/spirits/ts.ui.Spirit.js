@@ -4,8 +4,9 @@
  * @using {gui.Type} Type
  * @using {gui.Array} GuiArray
  * @using {gui.Arguments#confirmed} confirmed
+ * @using {gui.Combo#chained} chained
  */
-ts.ui.Spirit = (function using(Type, GuiArray, confirmed) {
+ts.ui.Spirit = (function using(Type, GuiArray, confirmed, chained) {
 	return gui.Spirit.extend(
 		{
 			/**
@@ -13,11 +14,66 @@ ts.ui.Spirit = (function using(Type, GuiArray, confirmed) {
 			 */
 			onconstruct: function() {
 				this.super.onconstruct();
-				this._confirmattributes(gui.debug);
 				this._configureclassnames(this.css);
 			},
 
-			// Private .................................................................
+			/**
+			 * Show or hide cover with spinner and optional message.
+			 * Support triggering via attribute `data-ts.busy="arg"`
+			 * @param {string|boolean} arg
+			 * @returns {this}
+			 */
+			busy: chained(function(arg) {
+				var cover = this._childcover();
+				if (arg === false || arg === '') {
+					if (--this._busycount === 0) {
+						cover.fadeOut().then(function() {
+							cover
+								.opaque(false)
+								.blocking(false)
+								.stop();
+						});
+					} else if (this._busycount < 0) {
+						this._busycount = 0;
+					}
+				} else {
+					if (++this._busycount === 1) {
+						cover.spin(arg);
+						cover.fadeIn();
+					}
+				}
+			}),
+
+			/**
+			 * @returns {this}
+			 */
+			done: chained(function() {
+				this.busy(false);
+			}),
+
+			/**
+			 * Show or hide the blocking cover with optional message.
+			 * Support triggering via attribute `data-ts.busy="arg"`
+			 * @returns {this}
+			 */
+			blocking: function(arg) {
+				if (!arguments.length || !!arg) {
+					this._childcover()
+						.opaque(true)
+						.blocking(true);
+					this.busy.apply(this, arguments);
+				} else {
+					this.done();
+				}
+			},
+
+			// Private ...............................................................
+
+			/**
+			 * Counting busy bees.
+			 * @type {boolean}
+			 */
+			_busycount: 0,
 
 			/**
 			 * The spirit can have a model associated. This usually
@@ -33,26 +89,6 @@ ts.ui.Spirit = (function using(Type, GuiArray, confirmed) {
 			 */
 			_ismodelled: function() {
 				return this._model !== null;
-			},
-
-			/**
-			 * Validate that the `gui` attribute is not used around here.
-			 * For TS spirits, we'll be using the `ts` attribute instead.
-			 * @param {boolean} debug
-			 */
-			_confirmattributes: function(debug) {
-				if (
-					debug &&
-					this.att.all().some(function(att) {
-						return att.name === 'gui' || att.name.startsWith('gui.');
-					})
-				) {
-					console.warn(
-						'The "gui" attribute should not used. Use the "ts" ' +
-							'attribute to configure the ' +
-							this.$classname
-					);
-				}
 			},
 
 			/**
@@ -88,7 +124,17 @@ ts.ui.Spirit = (function using(Type, GuiArray, confirmed) {
 				return !!action;
 			},
 
-			// Privileged ..............................................................
+			/**
+			 * Get or create the local cover. The spirit should be
+			 * position `relative` or `absolute` for this to work.
+			 * @returns {ts.ui.CoverSpirit}
+			 */
+			_childcover: function() {
+				var Cover = ts.ui.CoverSpirit;
+				return this.dom.child(Cover) || this.dom.append(Cover.summon());
+			},
+
+			// Privileged ............................................................
 
 			/**
 			 * Overwrites the default debugging (in Spiritual core).
@@ -105,10 +151,54 @@ ts.ui.Spirit = (function using(Type, GuiArray, confirmed) {
 			}
 		},
 		{
-			// Xstatic ..............................................................
+			// Xstatic ...............................................................
+
+			/**
+			 * Current localization.
+			 * @type {Object<string, string>}
+			 */
+			localization: null,
+
+			/**
+			 * New localization.
+			 * TODO: Refactor all localization to use this method.
+			 * @param {Object<string, string>
+			 */
+			localize: chained(function(arg) {
+				var current = this.localization;
+				if (arguments.length) {
+					switch (gui.Type.of(arg)) {
+						case 'object':
+							var newlocale = arg;
+							if (
+								!current ||
+								Object.keys(current).every(function(key) {
+									var has = newlocale.hasOwnProperty(key);
+									if (!has) {
+										console.error('Missing translations for ' + key);
+									}
+									return has;
+								})
+							) {
+								this.localization = newlocale;
+							}
+							break;
+						case 'string':
+							var key = arg;
+							if (current && current.hasOwnProperty(key)) {
+								return current[key];
+							} else {
+								console.error('Missing translations for ' + key);
+							}
+							break;
+					}
+				} else {
+					return current;
+				}
+			})
 		},
 		{
-			// Static ...............................................................
+			// Static ................................................................
 
 			/**
 			 * Spirit name as refered to in the documentation
@@ -157,13 +247,9 @@ ts.ui.Spirit = (function using(Type, GuiArray, confirmed) {
 					var model = opt_json;
 					if (model) {
 						if (opt_json !== this._model) {
-							if (!Model.is(model)) {
-								model = new Model(opt_json);
-							}
+							model = Model.is(model) ? model : new Model(opt_json);
 							this._model = model;
-							if (!this.script.loaded) {
-								this.script.load(edbml);
-							}
+							this.script.load(edbml);
 							this.script.input(model);
 						}
 					} else {
@@ -174,4 +260,4 @@ ts.ui.Spirit = (function using(Type, GuiArray, confirmed) {
 			})
 		}
 	);
-})(gui.Type, gui.Array, gui.Arguments.confirmed);
+})(gui.Type, gui.Array, gui.Arguments.confirmed, gui.Combo.chained);

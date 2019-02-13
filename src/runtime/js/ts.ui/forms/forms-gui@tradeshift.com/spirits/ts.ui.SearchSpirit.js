@@ -35,6 +35,7 @@ ts.ui.SearchSpirit = (function using(ButtonSpirit, CSSPlugin, Type, chained) {
 				case 'focus':
 				case 'blur':
 					this._isfocused = e.type === 'focus';
+					this.css.shift(this._isfocused, 'ts-focus');
 					this._update(this._model);
 					break;
 				case 'click':
@@ -234,6 +235,7 @@ ts.ui.SearchSpirit = (function using(ButtonSpirit, CSSPlugin, Type, chained) {
 			model.removeObserver(this);
 			model.clear();
 			this.css.add('ts-empty');
+			this.css.remove('ts-focus');
 			this.tick.time(function reset() {
 				model.addObserver(this);
 			});

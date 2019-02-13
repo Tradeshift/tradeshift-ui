@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Testing</title>
+		<script>
+			var script = document.createElement('script');
+			script.src = '//172.31.98.151:10111/dist/ts.js';
+			setTimeout(function() {
+				document.head.appendChild(script);
+				console.log('Did it work?');
+			}, 1000);
+		</script>
+	</head>
+	<body>
+		<button data-ts="Button" class="ts-primary">Hell World</button>
+	</body>
+</html>

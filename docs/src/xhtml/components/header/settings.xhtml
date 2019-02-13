@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Header Settings &amp; Support</title>
+		<object data="_tabs.xhtml"></object>
+	</head>
+	<body>
+		<article>
+			<section>
+				<p>
+					We have some special buttons dedicated to global app
+					<em>settings</em> and <em>support</em>. The buttons appear when you pass a callback to the
+					dedicated methods.
+				</p>
+				<figure data-ts="DoxScript" class="attention">
+					<script type="runnable">
+						ts.ui.Header
+							.settingsbutton(function onclick() {
+								ts.ui.Notification.success('Settings');
+							})
+							.supportbutton(function onclick() {
+								ts.ui.Notification.success('Support');
+							});
+					</script>
+				</figure>
+				<p>You can make them go away by passing <code>null</code> instead.</p>
+				<figure data-ts="DoxScript">
+					<script type="runnable">
+						ts.ui.Header
+							.settingsbutton(null)
+							.supportbutton(null);
+					</script>
+				</figure>
+			</section>
+			<section>
+				<p>Here' an overview of the Navigation methods.</p>
+				<div data-ts="DoxApi">
+					<script type="application/json">
+						{
+							"name": "ts.ui.Header",
+							"methods": [
+								{
+									"name": "backbutton",
+									"args": "Function|null",
+									"desc": "Show the `Back` button with a callback. Pass `null` to hide the button again."
+								},
+								{
+									"name": "forwardbutton",
+									"args": "Function|null",
+									"desc": "Show the `Forward` button with a callback. Pass `null` to hide the button."
+								}
+							]
+						}
+					</script>
+				</div>
+			</section>
+		</article>
+	</body>
+	<html></html>
+</html>

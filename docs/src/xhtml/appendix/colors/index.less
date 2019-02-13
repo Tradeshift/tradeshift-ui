@@ -1,0 +1,105 @@
+article {
+	max-width: 100%;
+}
+article.doc-colors-article {
+	margin: 0 auto;
+	max-width: 960px;
+	padding-left: 0;
+	padding-right: 0;
+
+	@media (max-width: 800px) {
+		padding-left: 20px;
+		padding-right: 20px;
+	}
+
+	.colors-wrapper {
+		display: flex;
+		flex-wrap: wrap;
+	}
+
+	.color {
+		background: #ffffff;
+		border-radius: 3px 3px 3px 3px;
+		border: 1px solid #ccd8dd;
+		box-shadow: 0 5px 10px 0 rgba(88, 124, 141, 0.1);
+		margin: 10px;
+		padding: 10px;
+		width: 300px;
+
+		&:nth-of-type(3n-2) {
+			margin-left: 0;
+		}
+
+		@media (min-width: 650px) and (max-width: 800px) {
+			&:nth-of-type(odd) {
+				margin-left: 0;
+			}
+
+			&:nth-of-type(even) {
+				margin-left: 10px;
+			}
+		}
+
+		@media (max-width: 650px) {
+			margin: 10px 0;
+		}
+	}
+
+	.color > h5 {
+		color: #192226;
+		font-family: 'Open Sans';
+		font-size: 13px;
+		font-weight: 600;
+		height: 20px;
+		line-height: 20px;
+		margin: 0 0 10px;
+		text-transform: uppercase;
+	}
+
+	.color > .color-chip {
+		align-items: center;
+		border-radius: 3px;
+		display: flex;
+		font-size: 12px;
+		font-weight: 600;
+		height: 50px;
+		justify-content: space-between;
+		margin-bottom: 2px;
+		padding: 0 10px;
+
+		&:hover {
+			cursor: pointer;
+		}
+	}
+
+	.color:last-of-type div:first-of-type {
+		border: 1px solid #0f151a;
+	}
+
+	.color-code {
+		text-transform: uppercase;
+	}
+
+	.color-dots {
+		align-items: center;
+		background: #fff;
+		border-radius: 3px;
+		border: 1px solid #ccd8dd;
+		box-shadow: 0 5px 10px 0 rgba(88, 124, 141, 0.1);
+		display: flex;
+		justify-content: space-around;
+		height: 100px;
+		margin-bottom: 15px;
+
+		.color-dot {
+			border-radius: 50%;
+			height: 50px;
+			width: 50px;
+
+			@media (max-width: 650px) {
+				height: 25px;
+				width: 25px;
+			}
+		}
+	}
+}

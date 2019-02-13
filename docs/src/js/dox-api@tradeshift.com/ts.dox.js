@@ -120,6 +120,13 @@ ts.dox = gui.namespace(
 			booting: true,
 
 			/**
+			 *
+			 */
+			title: function(title) {
+				ts.ui.Header.title(title);
+			},
+
+			/**
 			 * Show those tabs. Omit the argument to build from `link` tags in HEAD
 			 * @param @optional {Array<Array>} tabs (can be omitted)
 			 */
@@ -131,7 +138,7 @@ ts.dox = gui.namespace(
 					var fold = path.replace(file, '');
 					var indx = file === '';
 					if (hasrelevant(tabs)) {
-						ts.ui.TopBar.tabs(
+						ts.ui.Header.tabs(
 							tabs.filter(visibletab).map(function(tab) {
 								return createtab(tab, file, fold, indx, tab[2] === true);
 							})

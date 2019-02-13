@@ -6,6 +6,8 @@
  */
 ts.ui.CoverSpirit = (function using(chained, Client) {
 	var MOUSE_EVENTS = Client.isTouchDevice ? 'touchstart mouseenter' : 'mousedown mouseenter';
+	var CLASS_BLOCKING = 'ts-blocking';
+	var CLASS_OPAQUE = 'ts-opaque';
 	var CLASS_VISIBLE = ts.ui.CLASS_VISIBLE;
 	var CLASS_COVER = ts.ui.CLASS_COVER;
 	return ts.ui.Spirit.extend(
@@ -22,7 +24,7 @@ ts.ui.CoverSpirit = (function using(chained, Client) {
 
 			/**
 			 * Show the cover.
-			 * @return {ts.ui.CoverSpirit}
+			 * @returns {this}
 			 */
 			show: chained(function() {
 				this._fadeout = false;
@@ -31,41 +33,67 @@ ts.ui.CoverSpirit = (function using(chained, Client) {
 			}),
 
 			/**
-			 * Hide the cover.
-			 * @return {ts.ui.CoverSpirit}
+			 * Hide the cover (and remove potential spinner).
+			 * @returns {this}
 			 */
 			hide: chained(function() {
 				this._fadeout = false;
 				this.event.remove(MOUSE_EVENTS);
-				this.dom.hide();
+				this.dom.html('').hide();
 			}),
 
 			/**
-			 * Start spinning (on a transparent background, unless you CSS this).
+			 * Fit with semitransparent background.
+			 * @param {boolean} is
+			 * @returns {this|boolean}
+			 */
+			opaque: chained(function(is) {
+				if (arguments.length) {
+					this.css.shift(is, CLASS_OPAQUE);
+				} else {
+					return this.css.contains(CLASS_OPAQUE);
+				}
+			}),
+
+			/**
+			 * Block all mouse events. Note that this is not the default behavior!
+			 * @param {boolean} is
+			 * @returns {this|boolean}
+			 */
+			blocking: chained(function(is) {
+				if (arguments.length) {
+					this.css.shift(is, CLASS_BLOCKING);
+				} else {
+					return this.css.contains(CLASS_BLOCKING);
+				}
+			}),
+
+			/**
+			 * Start spinning.
 			 * @param @optional {string} message
-			 * @returns {ts.ui.CoverSpirit}
+			 * @returns {this}
 			 */
 			spin: chained(function(message) {
-				this._spinner = this._spinner || ts.ui.SpinnerSpirit.summon();
-				this._spinner.spin(this.element, {
-					message: message || ''
-				});
+				message = typeof message === 'string' ? message : '';
+				this.dom.append(
+					ts.ui.SpinnerSpirit.summon(message, {
+						color: this.blocking() ? 'rgb(255,255,255)' : 'rgb(85,85,85)'
+					})
+				);
 			}),
 
 			/**
 			 * Stop spinning.
-			 * @return {ts.ui.CoverSpirit}
+			 * @returns {this}
 			 */
 			stop: chained(function() {
-				if (this._spinner) {
-					this._spinner.stop();
-				}
+				this.dom.html();
 			}),
 
 			/**
 			 * Show or hide the cover.
 			 * @param {boolean} show
-			 * @return {ts.ui.CoverSpirit}
+			 * @returns {this}
 			 */
 			shift: chained(function(show) {
 				if (show) {
@@ -78,7 +106,7 @@ ts.ui.CoverSpirit = (function using(chained, Client) {
 			/**
 			 * Position the cover.
 			 * @param {gui.Geometry|object} geo
-			 * @return {ts.ui.CoverSpirit}
+			 * @returns {this}
 			 */
 			position: chained(function(geo) {
 				this.css.style({
@@ -91,22 +119,27 @@ ts.ui.CoverSpirit = (function using(chained, Client) {
 
 			/**
 			 * Show and fade to no opacity.
+			 * @returns {gui.Then}
 			 */
 			fadeIn: function() {
 				this.show();
+				this._then = new gui.Then();
 				if (!this.css.contains(CLASS_VISIBLE)) {
 					this.css.add(CLASS_VISIBLE);
 				}
+				return this._then;
 			},
 
 			/**
 			 * Fade to full opacity and hide.
+			 * @returns {gui.Then}
 			 */
 			fadeOut: function() {
+				this._then = new gui.Then();
 				if (this.css.contains(CLASS_VISIBLE)) {
-					this._fadeout = true;
 					this.css.remove(CLASS_VISIBLE);
 				}
+				return this._then;
 			},
 
 			/**
@@ -130,8 +163,14 @@ ts.ui.CoverSpirit = (function using(chained, Client) {
 						}
 						break;
 					case 'transitionend':
-						if (this._fadeout && e.target === this.element) {
-							this.hide();
+						if (e.target === this.element) {
+							if (!this.css.contains(CLASS_VISIBLE)) {
+								this.hide();
+							}
+							if (this._then) {
+								this._then.now();
+								this._then = null;
+							}
 						}
 						break;
 				}
@@ -140,13 +179,18 @@ ts.ui.CoverSpirit = (function using(chained, Client) {
 			// Private ...............................................................
 
 			/**
+			 * @type {gui.Then}
+			 */
+			_then: null,
+
+			/**
 			 * Spirit of the Spinner.
 			 * @type {ts.ui.SpinnerSpirit}
 			 */
 			_spinner: null
 		},
 		{
-			// Static ...............................................................
+			// Static ................................................................
 
 			/**
 			 * Summon spirit.

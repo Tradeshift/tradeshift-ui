@@ -149,26 +149,6 @@ gui.IframeSpirit = gui.Spirit.extend(
 		},
 
 		/**
-		 * Status visible.
-		 */
-		onvisible: function() {
-			this.super.onvisible();
-			if (this.spiritualized) {
-				this._visibility();
-			}
-		},
-
-		/*
-		 * Status invisible.
-		 */
-		oninvisible: function() {
-			this.super.oninvisible();
-			if (this.spiritualized) {
-				this._visibility();
-			}
-		},
-
-		/**
 		 * Get and set the iframe source. Set in markup using <iframe gui.src="x"/>
 		 * if you need to postpone iframe loading until the spirit gets initialized.
 		 * @param @optional {String} src
@@ -240,7 +220,7 @@ gui.IframeSpirit = gui.Spirit.extend(
 			while (this._postbox.length) {
 				this.postMessage(this._postbox.shift());
 			}
-			this._visibility();
+			// this._visibility();
 		},
 
 		/**
@@ -291,19 +271,6 @@ gui.IframeSpirit = gui.Spirit.extend(
 		_sandboxed: function() {
 			var sandbox = this.element.sandbox;
 			return sandbox && sandbox.length; // && !sandbox.includes ( "allow-same-origin" );
-		},
-
-		/**
-		 * Teleport visibility crawler to hosted document.
-		 * Action intercepted by the {gui.DocumentSpirit}.
-		 */
-		_visibility: function() {
-			if (gui.hasModule('gui-layout@wunderbyte.com')) {
-				// TODO: - fix
-				if (gui.Type.isDefined(this.life.visible)) {
-					this.action.descendGlobal(gui.$ACTION_XFRAME_VISIBILITY, this.life.visible);
-				}
-			}
 		}
 	},
 	{

@@ -4,7 +4,7 @@
 
 	var id = table.$instanceid;
 	@class = 'ts-table-menu ts-engine-' + gui.Client.agent;
-	@class += table.menuopen ? ' ts-open ts-bg-white' : '';
+	@class += table.menuopen ? ' ts-open' : '';
 
 	<aside @class id="${id}-menu" data-ts="Spirit">
 		<table>

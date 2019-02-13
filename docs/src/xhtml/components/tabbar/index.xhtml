@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>TabBar</title>
+	</head>
+	<body>
+		<div data-ts="App">
+			<div data-ts="Main">
+				<div data-ts="Content">
+					<header data-ts="TabBar" id="mytabbar"></header>
+					<div data-ts="Panel">
+						<article>
+							<section class="desc">
+								<p>
+									ToolBar can be positioned anywhere on the page. If you need tabs specifically for
+									top level navigation within your app, refer instead to the
+									<a data-ts="Button" href="/#components/header/tabs.html">Header</a>.
+								</p>
+							</section>
+							<section>
+								<p>
+									Assign <att>data-ts="TabBar"</att> to a <elm>header</elm> or <elm>footer</elm> or
+									<elm>nav</elm> to initialize it as a TabBar.
+								</p>
+								<figure data-ts="DoxMarkup">
+									<script type="text/html">
+										<header data-ts="TabBar"></header>
+									</script>
+								</figure>
+								<p>
+									On this page, we've positioned the TabBar the
+									<val>Panel</val> element so it stays fixed while scrolling. Please note that this
+									is for educational purposes only. Tabs for top level navigation should ordinarily
+									be assigned via the
+									<a data-ts="Button" href="/#components/header/tabs.html">Header API</a>.
+								</p>
+
+								<p>
+									TabBar features are controlled through a JavaScript API. You can get a hold of the
+									component using a CSS selector and call the <code>tabs</code> method like this.
+								</p>
+								<figure data-ts="DoxScript">
+									<script type="runnable">
+										ts.ui.get('#mytabbar', tabbar => {
+											tabbar.tabs([
+												{ label: 'One' },
+												{ label: 'Two' },
+												{ label: 'Three', onselect() {
+													console.log('selected');
+												}}
+											]);
+										});
+									</script>
+								</figure>
+								<p>
+									If you omit the argument, you"ll get the current tabs (jQuery style).
+								</p>
+
+								<object data="../header/tabs.xhtml#tabs-desc">
+									<replace input="ts.ui.Header.tabs()" output="ts.ui.get('#mytabbar').tabs()" />
+									<replace input="4" output="2" />
+									<!-- not optimal -->
+								</object>
+
+								<object data="../header/tabs.xhtml#tabs-api"></object>
+
+								<p>&mdash; and here's finally an overview of the TabBar.</p>
+								<div data-ts="DoxApi">
+									<script type="application/json">
+										{
+											"name": "ts.ui.TabBarSpirit",
+											"methods": [
+												{
+													"name": "tabs",
+													"args": "(array)",
+													"desc": "Get or set the tabs."
+												},
+												{
+													"name": "buttons",
+													"args": "(array)",
+													"desc": "Get or set the buttons."
+												},
+												{
+													"name": "clear",
+													"desc": "Clear all tabs and buttons."
+												},
+												{
+													"name": "uncompact",
+													"desc": "Don't collect multiple tertiary buttons in a menu. You can call `compact` to restore default behavior."
+												}
+											]
+										}
+									</script>
+								</div>
+							</section>
+						</article>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

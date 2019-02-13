@@ -24,11 +24,11 @@
 	<body data-ts="Spirit" id="body">
 		<script type="text/edbml">
 			<?input name="layout" type="LayoutModel"?>
-			
+
 			if(layout.topBar) {
 				<header data-ts="TopBar" id="topbar" data-ts.title="TopBar"></header>
 			}
-			
+
 			if(layout.sideBarBefore) {
 				<aside data-ts="SideBar" id="sidebar-before" data-ts.title="SideBar before Main">
 					<div data-ts="Panel">
@@ -39,7 +39,7 @@
 					</footer>
 				</aside>
 			}
-			
+
 			if(layout.toolBarBefore) {
 				<header id="toolbar-before" data-ts="ToolBar" data-ts.title="ToolBar before Main"></header>
 			}
@@ -52,7 +52,7 @@
 							<section>
 								<p> +
 									We don&apos;t have a lot of layouts yet, but the page will automatically transform into a classic +
-									"three column layout with fixed header(s) and footer" as certain components are added. + 
+									"three column layout with fixed header(s) and footer" as certain components are added. +
 									You can toggle these components in the checklist.
 								</p>
 								<form data-ts="Form">
@@ -81,12 +81,11 @@
 						</div>
 					</article>
 				</div>
-			</main>
-			
+
 			if(layout.toolBarAfter) {
 				<footer data-ts="ToolBar" id="toolbar-after" data-ts.title="ToolBar after Main"></footer>
 			}
-			
+
 			if(layout.sideBarAfter) {
 				<aside data-ts="SideBar" id="sidebar-after" data-ts.title="SideBar after Main">
 					<div data-ts="Panel">
@@ -97,7 +96,6 @@
 					</footer>
 				</aside>
 			}
-			
 		</script>
 	</body>
 </html>

@@ -1,9 +1,7 @@
 #markdown table,
 table.api {
 	width: 100%;
-	background-color: @ts-lite-lite;
-	color: @ts-dark-liter;
-	font-weight: @ts-fontweight-light;
+	background-color: @ts-color-gray-lightest;
 	code {
 		white-space: nowrap;
 	}
@@ -20,11 +18,11 @@ table.api {
 		text-align: left;
 	}
 	th {
-		font-weight: @ts-fontweight-light;
+		//font-weight: @ts-fontweight-light;
 	}
 	caption {
-		background-color: @ts-dark-lite;
-		color: @ts-white;
+		background-color: @ts-color-slate-lightest;
+		color: @ts-color-white;
 		.ts-mixin-rounded-t;
 	}
 	td {
@@ -34,6 +32,9 @@ table.api {
 		&:last-child {
 			width: 100%;
 		}
+	}
+	tr:first-child th {
+		padding-top: @ts-unit;
 	}
 	tr:last-child td {
 		padding-bottom: @ts-unit-half;
@@ -46,25 +47,24 @@ table.api {
 }
 #markdown table {
 	background: transparent;
-	font-weight: @ts-fontweight-light;
+	//font-weight: @ts-fontweight-light;
 	tr {
-		border-top: 1px solid @ts-lite-lite;
-		border-bottom: 1px solid @ts-lite-lite;
+		//border-top: 1px solid @ts-lite-lite;
+		//border-bottom: 1px solid @ts-lite-lite;
 		td,
 		th {
 			padding: @ts-unit-half;
 			&:nth-child(1),
 			&:nth-child(2) {
 				padding: @ts-unit-half;
-				border-top: 1px solid @ts-white;
-				border-bottom: 1px solid @ts-white;
+				border-top: 1px solid @ts-color-white;
+				border-bottom: 1px solid @ts-color-white;
 			}
-
 			&:nth-child(1) {
-				background: fade(@ts-green, 30%);
+				background: fade(@ts-color-green, 30%);
 			}
 			&:nth-child(2) {
-				background: fade(@ts-red, 30%);
+				background: fade(@ts-color-red, 30%);
 			}
 		}
 	}

@@ -112,6 +112,22 @@ ts.ui.ModalSpirit = (function using(Client, transition, chained) {
 		}),
 
 		/**
+		 * Get the footer
+		 * @returns {ts.ui.FooterBarSpirit}
+		 */
+		footer: chained(function() {
+			return this._foot();
+		}),
+
+		/**
+		 * Get the header
+		 * @returns {ts.ui.HeaderBarSpirit}
+		 */
+		header: chained(function() {
+			return this._head();
+		}),
+
+		/**
 		 * Inject HTML into the Main or Panel (that
 		 * is currently selected, in case of tabs).
 		 * This serves an example in the Docs, mostly.

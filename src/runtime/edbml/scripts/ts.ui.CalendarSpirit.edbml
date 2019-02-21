@@ -11,6 +11,7 @@
 	<?param name="nextMonth" type="string"?>
 	<?param name="minDay" type="number"?>
 	<?param name="maxDay" type="number"?>
+	<?param name="onrendercell" type="function"?>
 
 	<table>
 		<thead>
@@ -33,7 +34,7 @@
 			});
 		</tbody>
 	</table>
-	
+
 	function renderbuttons(prev, label, next) {
 		renderbutton(prev, 'ts-icon-triangleleft');
 		<th><label>${label}</label></th>
@@ -51,11 +52,13 @@
 	}
 
 	function rendercell(cell) {
+		onrendercell(cell);
+
 		var other = cell.prev || cell.next;
 		var allow = allowcell(cell, other);
 		@name = allow ? 'accept' : 'reject';
 		@value = allow ? cell.stringify() : null;
-		@class = classname({
+		@class = classname(cell.className, {
 			'ts-calendar-other' : other,
 			'ts-calendar-today' : cell.today,
 			'ts-selected' : cell.selected,
@@ -68,18 +71,27 @@
 		</td>
 	}
 
-	function classname(classes) {
-		return Object.keys(classes).filter(function(c) {
-			return classes[c];
-		}).join(' ') || null;
+	function classname(userClasses, tsClasses) {
+		var classes =
+			Object.keys(tsClasses).filter(function(c) {
+				return tsClasses[c];
+			}) || [];
+
+		return classes.concat(
+			(userClasses || '').split(' ').filter(function(c) {
+				return classes.indexOf(c) < 0;
+			})
+		).join(' ');
 	}
+
 
 	function allowcell(cell, other) {
 		var all = Number.MAX_VALUE;
 		return (
 			minDay !== all && maxDay !== (1 - all) &&
 			!lower(cell.day, minDay, !other, !prevMonth, cell.prev) &&
-			!upper(cell.day, maxDay, !other, !nextMonth, cell.next)
+			!upper(cell.day, maxDay, !other, !nextMonth, cell.next) &&
+			cell.selectable !== false
 		);
 	}
 

@@ -7,11 +7,11 @@
     <link rel="ts-app-icon" href="/v12/dist/assets/icon.svg">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
-    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.0.1.min.js"></script>
+    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.1.2.min.js"></script>
     <script src="/v12/dist/assets/dox.min.js"></script>
     <script src="/v12/dist/assets/mark.min.js"></script>
     <script src="/v12/dist/assets/jquery-2.2.4.min.js"></script>
-    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.0.1.min.css">
+    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.1.2.min.css">
     <link rel="stylesheet" href="/v12/dist/assets/dox.css">
     <link rel="prefetch" title="Table" href="index.html">
     <link rel="prefetch" title="Build" href="building.html">
@@ -47,26 +47,30 @@
                     <article>
                         <h1><span>Sorting the columns</span></h1>
                         <section>
-                            <p>You can make the Table <code>sortable</code> with a callback that triggers whenever a column is clicked. We ship the Table with a built-in sort mechanism, but you&apos;ll still need to call it. The <code>sort</code> method takes a column index and a direction.</p>
+                            <p>
+                                You can make the Table <code>sortable</code> with a callback that triggers whenever a
+                                column is clicked. We ship the Table with a built-in sort mechanism, but you&apos;ll still need
+                                to call it. The <code>sort</code> method takes a column index and a direction.
+                            </p>
                             <div class="splitscreen-container">
                                 <ul class="splitscreen">
                                     <li>
                                         <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.get(&apos;%23example6&apos;%2C%20function(table)%20%7B%0A%09table.cols(%0A%09%09%5B&apos;Animal&apos;%2C%20%7Blabel%3A%20&apos;Price&apos;%2C%20type%3A%20&apos;ts-number&apos;%7D%5D%0A%09).rows(%5B%0A%09%09%5B&apos;Donkey&apos;%2C%20700%5D%2C%0A%09%09%5B&apos;Baboon&apos;%2C%201500%5D%2C%0A%09%09%5B&apos;Coyote&apos;%2C%20250%5D%2C%0A%09%09%5B&apos;Albatross&apos;%2C%2050%5D%0A%09%5D).sortable(function(index%2C%20ascending)%20%7B%0A%09%09table.sort(index%2C%20ascending)%3B%0A%09%7D)%3B%0A%09table.sort(0%2C%20true)%3B%0A%7D)%3B">
                                             <script type="runnable">
                                                 ts.ui.get('#example6', table => {
-										table.cols(
-											['Animal', {label: 'Price', type: 'ts-number'}]
-										).rows([
-											['Donkey', 700],
-											['Baboon', 1500],
-											['Coyote', 250],
-											['Albatross', 50]
-										]).sortable(function(index, ascending) {
-											table.sort(index, ascending);
-										});
-										table.sort(0, true);
+									table.cols(
+										['Animal', {label: 'Price', type: 'ts-number'}]
+									).rows([
+										['Donkey', 700],
+										['Baboon', 1500],
+										['Coyote', 250],
+										['Albatross', 50]
+									]).sortable(function(index, ascending) {
+										table.sort(index, ascending);
 									});
-								</script>
+									table.sort(0, true);
+								});
+							</script>
                                             <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                                             <div data-ts="Panel">
                                                 <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#example6&apos;</span><span class="token punctuation">,</span> table <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
@@ -89,28 +93,33 @@
                                     </li>
                                 </ul>
                             </div>
-                            <p>The <code>index</code> is the column index and the <code>ascending</code> argument alternates whenever the same col is clicked twice. If you manage your own sorting routine, you can control the appearance of the column using <code>selected</code> and <code>ascending</code>.</p>
+                            <p>
+                                The <code>index</code> is the column index and the <code>ascending</code> argument
+                                alternates whenever the same col is clicked twice. If you manage your own sorting routine,
+                                you can control the appearance of the column using <code>selected</code> and
+                                <code>ascending</code>.
+                            </p>
                             <div class="splitscreen-container">
                                 <ul class="splitscreen">
                                     <li>
                                         <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.get(&apos;%23example12&apos;%2C%20function(table)%20%7B%0A%09table.cols(%5B%0A%09%09%7B%0A%09%09%09label%3A%20&apos;Example&apos;%2C%0A%09%09%09selected%3A%20true%2C%0A%09%09%09ascending%3A%20false%0A%09%09%7D%0A%09%5D)%3B%0A%09setInterval(function()%20%7B%0A%09%09var%20col%20%3D%20table.cols()%5B0%5D%3B%0A%09%09if((col.selected%20%3D%20!col.selected))%20%7B%0A%09%09%09col.ascending%20%3D%20!col.ascending%3B%0A%09%09%7D%0A%09%7D%2C%201000)%3B%0A%7D)%3B">
                                             <script type="runnable">
                                                 ts.ui.get('#example12', table => {
-										table.cols([
-											{
-												label: 'Example',
-												selected: true,
-												ascending: false
-											}
-										]);
-										setInterval(function() {
-											var col = table.cols()[0];
-											if((col.selected = !col.selected)) {
-												col.ascending = !col.ascending;
-											}
-										}, 1000);
-									});
-								</script>
+									table.cols([
+										{
+											label: 'Example',
+											selected: true,
+											ascending: false
+										}
+									]);
+									setInterval(function() {
+										var col = table.cols()[0];
+										if((col.selected = !col.selected)) {
+											col.ascending = !col.ascending;
+										}
+									}, 1000);
+								});
+							</script>
                                             <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                                             <div data-ts="Panel">
                                                 <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#example12&apos;</span><span class="token punctuation">,</span> table <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
@@ -135,41 +144,46 @@
                                     </li>
                                 </ul>
                             </div>
-                            <p>Importantly note that the cell values must all be declared as <em>numbers</em> in order to sort numerically. You can declare a hidden value while showing a human readable text using verbose syntax:</p>
-                            <figure data-ts="DoxScript" data-ts.code="table.rows(%5B%0A%09%5B%0A%09%09%7Bvalue%3A%201%2C%20text%3A%20&apos;One&apos;%7D%2C%0A%09%09%7Bvalue%3A%202%2C%20text%3A%20&apos;Two&apos;%7D%2C%0A%09%09%7Bvalue%3A%203%2C%20text%3A%20&apos;Three&apos;%7D%0A%09%5D%0A%5D)%3B">
+                            <p>
+                                Importantly note that the cell values must all be declared as
+                                <em>numbers</em> in order to sort numerically. You can declare a hidden value while
+                                showing a human readable text using verbose syntax:
+                            </p>
+                            <figure data-ts="DoxScript" data-ts.code="table.rows(%5B%0A%09%5B%7B%20value%3A%201%2C%20text%3A%20&apos;One&apos;%20%7D%2C%20%7B%20value%3A%202%2C%20text%3A%20&apos;Two&apos;%20%7D%2C%20%7B%20value%3A%203%2C%20text%3A%20&apos;Three&apos;%20%7D%5D%0A%5D)%3B">
                                 <input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
                                 <div data-ts="Panel">
                                     <pre class="prism language-javascript"><code>table<span class="token punctuation">.</span><span class="token function">rows<span class="token punctuation">(</span></span><span class="token punctuation">[</span>
-	<span class="token punctuation">[</span>
-		<span class="token punctuation">{</span>value<span class="token punctuation">:</span> <span class="token number">1</span><span class="token punctuation">,</span> text<span class="token punctuation">:</span> <span class="token string">&apos;One&apos;</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
-		<span class="token punctuation">{</span>value<span class="token punctuation">:</span> <span class="token number">2</span><span class="token punctuation">,</span> text<span class="token punctuation">:</span> <span class="token string">&apos;Two&apos;</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
-		<span class="token punctuation">{</span>value<span class="token punctuation">:</span> <span class="token number">3</span><span class="token punctuation">,</span> text<span class="token punctuation">:</span> <span class="token string">&apos;Three&apos;</span><span class="token punctuation">}</span>
-	<span class="token punctuation">]</span>
+	<span class="token punctuation">[</span><span class="token punctuation">{</span> value<span class="token punctuation">:</span> <span class="token number">1</span><span class="token punctuation">,</span> text<span class="token punctuation">:</span> <span class="token string">&apos;One&apos;</span> <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> value<span class="token punctuation">:</span> <span class="token number">2</span><span class="token punctuation">,</span> text<span class="token punctuation">:</span> <span class="token string">&apos;Two&apos;</span> <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> value<span class="token punctuation">:</span> <span class="token number">3</span><span class="token punctuation">,</span> text<span class="token punctuation">:</span> <span class="token string">&apos;Three&apos;</span> <span class="token punctuation">}</span><span class="token punctuation">]</span>
 <span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
                                 </div>
                             </figure>
                             <h3><span>Custom sort</span></h3>
-                            <p>Standard sorting only deals with numbers and strings. If you need some kind of more advanced sorting, for example if the <code>value</code> contains arrays or objects, you can implement custom sort per column via the <code>sort</code> method.</p>
+                            <p>
+                                Standard sorting only deals with numbers and strings. If you need some kind of more
+                                advanced sorting, for example if the
+                                <code>value</code> contains arrays or objects, you can implement custom sort per column
+                                via the <code>sort</code> method.
+                            </p>
                             <div class="splitscreen-container">
                                 <ul class="splitscreen">
                                     <li>
                                         <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.get(&apos;%23example7&apos;%2C%20function(table)%20%7B%0A%09table.cols(%5B%0A%09%09%7B%0A%09%09%09label%3A%20&apos;Fruit&apos;%2C%0A%09%09%09sort%3A%20function(val1%2C%20val2%2C%20ascending)%20%7B%20%2F%2F%20sort%20random!%0A%09%09%09%09return%20Math.random()%20%3E%200.5%20%3F%201%20%3A%20-1%3B%0A%09%09%09%7D%0A%09%09%7D%0A%09%5D)%0A%09.rows(%5B%5B&apos;Banana&apos;%5D%2C%20%5B&apos;Apple&apos;%5D%2C%20%5B&apos;Grape&apos;%5D%2C%20%5B&apos;Pear&apos;%5D%5D)%0A%09.sortable(function(index%2C%20ascending)%20%7B%0A%09%09table.sort(index%2C%20ascending)%3B%0A%09%7D)%3B%0A%7D)%3B">
                                             <script type="runnable">
                                                 ts.ui.get('#example7', table => {
-										table.cols([
-											{
-												label: 'Fruit',
-												sort: function(val1, val2, ascending) { // sort random!
-													return Math.random() > 0.5 ? 1 : -1;
-												}
+									table.cols([
+										{
+											label: 'Fruit',
+											sort: function(val1, val2, ascending) { // sort random!
+												return Math.random() > 0.5 ? 1 : -1;
 											}
-										])
-										.rows([['Banana'], ['Apple'], ['Grape'], ['Pear']])
-										.sortable(function(index, ascending) {
-											table.sort(index, ascending);
-										});
+										}
+									])
+									.rows([['Banana'], ['Apple'], ['Grape'], ['Pear']])
+									.sortable(function(index, ascending) {
+										table.sort(index, ascending);
 									});
-								</script>
+								});
+							</script>
                                             <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                                             <div data-ts="Panel">
                                                 <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#example7&apos;</span><span class="token punctuation">,</span> table <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>

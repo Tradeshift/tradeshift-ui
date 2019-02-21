@@ -11,18 +11,20 @@
 			}
 		</script>
 		<title>Tradeshift UI</title>
-		<link rel="icon" href="https://developers.tradeshift.com/icons/favicon-32x32.png"/>
+		<link rel="icon" href="https://developers.tradeshift.com/icons/favicon-32x32.png" />
 		<script src="/v12/dist/assets/lunr.min.js"></script>
-		<meta name="ts.ui.topframe" content="false"/>
-		<meta name="ts.ui.appframe" content="false"/>
+		<meta name="ts.ui.topframe" content="false" />
+
+		<meta name="ts.ui.appframe" content="false" />
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width"/>
-		<script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.0.1.min.js"></script>
+		<script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.1.2.min.js"></script>
 		<script src="/v12/dist/assets/dox.min.js"></script>
 		<script src="/v12/dist/assets/mark.min.js"></script>
 		<script src="/v12/dist/assets/jquery-2.2.4.min.js"></script>
-		<link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.0.1.min.css"/>
+		<link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.1.2.min.css"/>
 		<link rel="stylesheet" href="/v12/dist/assets/dox.css"/>
+		<script></script>
 		<link rel="robots" href="/v12/dist/intro/"/>
 		<link rel="robots" href="/v12/dist/getstarted/"/>
 		<link rel="robots" href="/v12/dist/components/"/>
@@ -58,6 +60,7 @@
 		<link rel="robots" href="/v12/dist/appendix/markdown/"/>
 		<link rel="robots" href="/v12/dist/appendix/autofocus/"/>
 		
+		<script></script>
 		<svg xmlns="http://www.w3.org/2000/svg" style="display:none;">
 	<svg id="docs-icon-tag-2" width="24" height="24" viewBox="0 0 24 24"><path fill="#757575" d="M21.707 13.293l-11-11A.997.997 0 0 0 10 2H3a1 1 0 0 0-1 1v7c0 .266.105.519.293.707l11 11a1 1 0 0 0 1.636-.336l1.841-4.602 4.602-1.841a.999.999 0 0 0 .335-1.635zM7 9a2 2 0 1 1-.001-3.999A2 2 0 0 1 7 9z"/></svg>
 	<svg id="docs-icon-pen-brush" width="24" height="24" viewBox="0 0 24 24"><g fill="#767676"><path d="M6.146 9.917l1.653 1.745 2.828-2.827-1.74-1.658a2.983 2.983 0 0 0-.856-2.358c-2.268-2.269-3.433.309-5.976-2.233 0 0-.535 4.207 1.732 6.474a2.984 2.984 0 0 0 2.359.857zm16.19-.589L20.67 7.662l.634-.634a2.135 2.135 0 0 0 0-3.021 2.135 2.135 0 0 0-3.021 0l-2.049 2.048 3.981 3.981-2.122 2.122 1.414 1.414 2.829-2.828a1.001 1.001 0 0 0 0-1.416z"/><path d="M17.841 10.491L14.82 7.468l-9.61 9.61a1.02 1.02 0 0 0-.188.26l-1.608 3.215a1 1 0 0 0 1.342 1.342l3.214-1.607a.96.96 0 0 0 .26-.188l9.611-9.609zm-1.373 4.205l-2.828 2.828 3.877 3.89a2 2 0 1 0 2.828-2.828l-3.877-3.89z"/></g></svg>
@@ -108,7 +111,12 @@
 			<button data-ts="Button" data-ts.type="action-open-menu" class="button-menu-open">
 				<i class="ts-icon-menuswitch"></i>
 			</button>
-			<aside data-ts="DoxSideBar" data-ts.title="Search the docs..." class="ts-bg-dark" data-ts.autoclose="false">
+			<aside
+				data-ts="DoxSideBar"
+				data-ts.title="Search the docs..."
+				class="ts-bg-dark"
+				data-ts.autoclose="false"
+			>
 				<div data-ts="Panel">
 					<menu data-ts="DoxMenu">
 						<script type="application/json">
@@ -120,7 +128,11 @@
 			<div data-ts="App">
 				<div data-ts="Main">
 					<div id="menucover" data-ts="DoxMenuCover"></div>
-					<button data-ts="Button" data-ts.type="action-close-menu" class="button-menu-close"></button>
+					<button
+						data-ts="Button"
+						data-ts.type="action-close-menu"
+						class="button-menu-close"
+					></button>
 				</div>
 			</div>
 		</div>

@@ -7,11 +7,11 @@
     <link rel="ts-app-icon" href="/v12/dist/assets/icon.svg">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
-    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.0.1.min.js"></script>
+    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.1.2.min.js"></script>
     <script src="/v12/dist/assets/dox.min.js"></script>
     <script src="/v12/dist/assets/mark.min.js"></script>
     <script src="/v12/dist/assets/jquery-2.2.4.min.js"></script>
-    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.0.1.min.css">
+    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.1.2.min.css">
     <link rel="stylesheet" href="/v12/dist/assets/dox.css">
     <script src="index.js"></script>
     <link rel="stylesheet" href="index.css">
@@ -25,13 +25,13 @@
                     <article class="doc-colors-article">
                         <div>
                             <h1><span>Color Palette</span></h1>
-                            <p>The following colors are part of UI components and can be referenced in Less with the variable name on the left.</p>
+                            <p>
+                                The following colors are part of UI components and can be referenced in Less with the
+                                variable name on the left.
+                            </p>
                             <section id="doc-colors-demo" data-ts="Spirit">
                                 <script class="gui-script" data-ts.scriptid="edbml.$1JJU8I1">
-                                    edbml.declare('edbml.$1JJU8I1').as(function $edbml(
-                                        colors
-                                        /*``*/
-                                    ) {
+                                    edbml.declare('edbml.$1JJU8I1').as(function $edbml(colors) {
                                         'use strict';
                                         var out = $edbml.$out,
                                             $att = $edbml.$att,
@@ -75,7 +75,10 @@
                                 </script>
                             </section>
                             <h2><span>Core Colors</span></h2>
-                            <p>Core colors are chosen to look good together, comply with WCAG 2.0 standards and provide an accessabile experience for visually impaired and color blind users.</p>
+                            <p>
+                                Core colors are chosen to look good together, comply with WCAG 2.0 standards and provide
+                                an accessabile experience for visually impaired and color blind users.
+                            </p>
                             <div class="color-dots">
                                 <div style="background-color: #00B0FF;" class="color-dot"></div>
                                 <div style="background-color: #4FC610;" class="color-dot"></div>
@@ -85,9 +88,12 @@
                                 <div style="background-color: #8E1299;" class="color-dot"></div>
                                 <div style="background-color: #A70261;" class="color-dot"></div>
                             </div>
-                            <p>All Core Colors have a reserved for special meaning within Tradeshift&#x2019;s UI:</p>
+                            <p>
+                                All Core Colors have a reserved for special meaning within Tradeshift&#x2019;s UI:
+                            </p>
                             <ul>
-                                <li>@ts-color-blue
+                                <li>
+                                    @ts-color-blue
                                     <ul>
                                         <li>Main color of the primary action (CTA)</li>
                                         <li>Accent color</li>
@@ -95,39 +101,49 @@
                                         <li>Active states</li>
                                     </ul>
                                 </li>
-                                <li>@ts-color-green
+                                <li>
+                                    @ts-color-green
                                     <ul>
                                         <li>Positive statuses</li>
                                         <li>Accepting agreements</li>
                                         <li>Creating new objects on the platform</li>
                                     </ul>
                                 </li>
-                                <li>@ts-color-orange
+                                <li>
+                                    @ts-color-orange
                                     <ul>
                                         <li>Warning messages / icons</li>
                                         <li>Highlight important information (note)</li>
                                     </ul>
                                 </li>
-                                <li>@ts-color-red
+                                <li>
+                                    @ts-color-red
                                     <ul>
                                         <li>Danger messages (deletion confirmation)</li>
                                         <li>Rejecting action / Negative actions</li>
                                         <li>Error states and messages</li>
                                     </ul>
                                 </li>
-                                <li>@ts-color-purple
+                                <li>
+                                    @ts-color-purple
                                     <ul>
-                                        <li>Reserved for Ada (Tradeshift&#x2019;s machine learning assistant)</li>
+                                        <li>
+                                            Reserved for Ada (Tradeshift&#x2019;s machine learning assistant)
+                                        </li>
                                     </ul>
                                 </li>
-                                <li>@ts-color-pink
+                                <li>
+                                    @ts-color-pink
                                     <ul>
                                         <li>Reserved for Tradeshift GO.</li>
                                     </ul>
                                 </li>
                             </ul>
                             <h2><span>Gray Shades</span></h2>
-                            <p>Tradeshift&#x2019;s color palette has 12 distinct shades of gray. Those are recommanded for backgrounds, negative space, separators, borders and shadows.</p>
+                            <p>
+                                Tradeshift&#x2019;s color palette has 12 distinct shades of gray. Those are recommanded for
+                                backgrounds, negative space, separators, borders and shadows.
+                            </p>
                             <div class="color-dots">
                                 <div style="background-color: #EFF3F5;" class="color-dot"></div>
                                 <div style="background-color: #E6ECEF;" class="color-dot"></div>
@@ -144,30 +160,39 @@
                             </div>
                             <p>Here are some of the uses of greay shades in Tradeshift&#x2019;s UI:</p>
                             <ul>
-                                <li>@ts-color-gray-lightest
+                                <li>
+                                    @ts-color-gray-lightest
                                     <ul>
                                         <li>Used for footer&#x2019;s background</li>
                                     </ul>
                                 </li>
-                                <li>@ts-color-gray-lighter
+                                <li>
+                                    @ts-color-gray-lighter
                                     <ul>
-                                        <li>Background of the page. Ensures high contrast with white boards on top of it.</li>
+                                        <li>
+                                            Background of the page. Ensures high contrast with white boards on top of it.
+                                        </li>
                                         <li>Disabled states for form elements.</li>
                                     </ul>
                                 </li>
-                                <li>@ts-color-gray-light
+                                <li>
+                                    @ts-color-gray-light
                                     <ul>
-                                        <li>Borders (board, input fields, checkboxes, radios, buttons, etc)</li>
+                                        <li>
+                                            Borders (board, input fields, checkboxes, radios, buttons, etc)
+                                        </li>
                                         <li>Separators (tabbed navigation, table seaparators, etc)</li>
                                         <li>Default color of the icons</li>
                                     </ul>
                                 </li>
-                                <li>@ts-color-slate-lighter
+                                <li>
+                                    @ts-color-slate-lighter
                                     <ul>
                                         <li>Chrome&#x2019;s hover background</li>
                                     </ul>
                                 </li>
-                                <li>@ts-color-slate-light
+                                <li>
+                                    @ts-color-slate-light
                                     <ul>
                                         <li>Chrome&#x2019;s background</li>
                                     </ul>

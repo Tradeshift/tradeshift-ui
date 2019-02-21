@@ -7,16 +7,16 @@
     <link rel="ts-app-icon" href="/v12/dist/assets/icon.svg">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
-    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.0.1.min.js"></script>
+    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.1.2.min.js"></script>
     <script src="/v12/dist/assets/dox.min.js"></script>
     <script src="/v12/dist/assets/mark.min.js"></script>
     <script src="/v12/dist/assets/jquery-2.2.4.min.js"></script>
-    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.0.1.min.css">
+    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.1.2.min.css">
     <link rel="stylesheet" href="/v12/dist/assets/dox.css">
     <meta name="robots" content="noindex">
     <style>
         .docs-responsive-demo {
-				background-color: rgb(255,255,255) !important;
+				background-color: rgb(255, 255, 255) !important;
 			}
 		</style>
 </head>
@@ -29,7 +29,10 @@
                     <article class="doc-responsive">
                         <h1><span>Responsive Design</span></h1>
                         <section class="desc">
-                            <p>Here&apos;s the list of classnames that can be used to toggle display based on breakpoint; they work on all elements.</p>
+                            <p>
+                                Here&apos;s the list of classnames that can be used to toggle display based on breakpoint;
+                                they work on all elements.
+                            </p>
                         </section>
                         <section id="breakpoints">
                             <dl>
@@ -63,53 +66,57 @@
                         <section id="doc-break-demo" data-ts="Spirit">
                             <script class="gui-script" data-ts.scriptid="edbml.$5Wctf0">
                                 edbml.declare('edbml.$5Wctf0').as(function $edbml() {
-						/*``*/
-							'use strict';
-							var out = $edbml.$out,
-								$txt = edbml.safetext,
-								$val = edbml.safeattr;
-							var clazzNames = [
-								'ts-show-mobile-only',
-								'ts-show-tablet-only',
-								'ts-show-desktop-only',
-								'ts-hide-mobile-only',
-								'ts-hide-tablet-only',
-								'ts-hide-desktop-only',
-								'ts-show-desktop',
-								'ts-show-tablet',
-								'ts-show-mobile',
-								'ts-hide-desktop',
-								'ts-hide-tablet',
-								'ts-hide-mobile'
-							];
-							clazzNames.forEach(function(clazz) {
-								out.html += '<div class="docs-responsive-demo ' + $val(clazz) + '">' +
-								            '<code>.' + $txt(clazz) + '</code>' +
-								            '</div>';
-							});
-							return out.write();
-						});
-						</script>
+					'use strict';
+					var out = $edbml.$out,
+						$txt = edbml.safetext,
+						$val = edbml.safeattr;
+					var clazzNames = [
+						'ts-show-mobile-only',
+						'ts-show-tablet-only',
+						'ts-show-desktop-only',
+						'ts-hide-mobile-only',
+						'ts-hide-tablet-only',
+						'ts-hide-desktop-only',
+						'ts-show-desktop',
+						'ts-show-tablet',
+						'ts-show-mobile',
+						'ts-hide-desktop',
+						'ts-hide-tablet',
+						'ts-hide-mobile'
+					];
+					clazzNames.forEach(function(clazz) {
+						out.html += '<div class="docs-responsive-demo ' + $val(clazz) + '">' +
+						            '<code>.' + $txt(clazz) + '</code>' +
+						            '</div>';
+					});
+					return out.write();
+				});
+				</script>
                         </section>
                         <section>
                             <h3><span>Find the current breakpoint</span></h3>
-                            <p>The current breakpoint is determined via CSS classnames on the <code>html</code> element. You can use a function such as this to lookup the current breakpoint (CSS classname).</p>
-                            <figure data-ts="DoxScript" data-ts.code="function%20breakpoint()%20%7B%0A%09return(%5B%0A%09%09&apos;ts-mobile-only&apos;%2C%0A%09%09&apos;ts-tablet-only&apos;%2C%0A%09%09&apos;ts-desktop-only&apos;%0A%09%5D.find(function(c)%20%7B%0A%20%20%20%20%20%20%20%20return%20document.documentElement.classList.contains(c)%3B%0A%20%20%20%20%7D))%3B%0A%7D">
+                            <p>
+                                The current breakpoint is determined via CSS classnames on the
+                                <code>html</code> element. You can use a function such as this to lookup the current
+                                breakpoint (CSS classname).
+                            </p>
+                            <figure data-ts="DoxScript" data-ts.code="function%20breakpoint()%20%7B%0A%09return%20%5B&apos;ts-mobile-only&apos;%2C%20&apos;ts-tablet-only&apos;%2C%20&apos;ts-desktop-only&apos;%5D.find(function(c)%20%7B%0A%20%20%20%20%20%20%20%20return%20document.documentElement.classList.contains(c)%3B%0A%20%20%20%20%7D%0A%09)%3B%0A%7D">
                                 <input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
                                 <div data-ts="Panel">
                                     <pre class="prism language-javascript"><code><span class="token keyword">function</span> <span class="token function">breakpoint<span class="token punctuation">(</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-	<span class="token keyword">return</span><span class="token punctuation">(</span><span class="token punctuation">[</span>
-		<span class="token string">&apos;ts-mobile-only&apos;</span><span class="token punctuation">,</span>
-		<span class="token string">&apos;ts-tablet-only&apos;</span><span class="token punctuation">,</span>
-		<span class="token string">&apos;ts-desktop-only&apos;</span>
-	<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">find<span class="token punctuation">(</span></span>c <span class="token operator">=</span><span class="token operator">&gt;</span> document<span class="token punctuation">.</span>documentElement<span class="token punctuation">.</span>classList<span class="token punctuation">.</span><span class="token function">contains<span class="token punctuation">(</span></span>c<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token keyword">return</span> <span class="token punctuation">[</span><span class="token string">&apos;ts-mobile-only&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;ts-tablet-only&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;ts-desktop-only&apos;</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">find<span class="token punctuation">(</span></span>c <span class="token operator">=</span><span class="token operator">&gt;</span>
+		document<span class="token punctuation">.</span>documentElement<span class="token punctuation">.</span>classList<span class="token punctuation">.</span><span class="token function">contains<span class="token punctuation">(</span></span>c<span class="token punctuation">)</span>
+	<span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span></code></pre>
                                 </div>
                             </figure>
                         </section>
                         <section>
                             <h3><span>Observing the breakpoint</span></h3>
-                            <p>You can setup an event listener for <code>ts-breakpoint</code> to get notified whenever the breakpoint changes. Again, the current breakpoint is determined via CSS classes.</p>
+                            <p>
+                                You can setup an event listener for <code>ts-breakpoint</code> to get notified whenever
+                                the breakpoint changes. Again, the current breakpoint is determined via CSS classes.
+                            </p>
                             <figure data-ts="DoxScript" data-ts.code="document.addEventListener(&apos;ts-breakpoint&apos;%2C%20function()%20%7B%0A%09console.log(breakpoint())%3B%20%2F%2F%20see%20above%0A%7D)%3B">
                                 <input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
                                 <div data-ts="Panel">

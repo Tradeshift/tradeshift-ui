@@ -7,11 +7,11 @@
     <link rel="ts-app-icon" href="/v12/dist/assets/icon.svg">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
-    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.0.1.min.js"></script>
+    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.1.2.min.js"></script>
     <script src="/v12/dist/assets/dox.min.js"></script>
     <script src="/v12/dist/assets/mark.min.js"></script>
     <script src="/v12/dist/assets/jquery-2.2.4.min.js"></script>
-    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.0.1.min.css">
+    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.1.2.min.css">
     <link rel="stylesheet" href="/v12/dist/assets/dox.css">
     <link rel="prefetch" title="HTML" href="index.html">
     <link rel="prefetch" title="Disabled / Readonly" href="disabled.html">
@@ -32,7 +32,10 @@
                     <article>
                         <h1><span>Autocomplete</span></h1>
                         <section class="desc">
-                            <p>You can have an input field suggest results to the user and can be navigated using the keyboard or the mouse.</p>
+                            <p>
+                                You can have an input field suggest results to the user and can be navigated using the
+                                keyboard or the mouse.
+                            </p>
                         </section>
                         <section>
                             <h3><span>Basic Usage</span></h3>
@@ -43,20 +46,20 @@
                                         <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.get(&apos;%23mystaticautocomplete&apos;%2C%20function(autocomplete)%20%7B%0A%09autocomplete.data(%5B%0A%09%09%7B%20key%3A%200%2C%20value%3A%20&apos;zero&apos;%20%7D%2C%0A%09%09%7B%20key%3A%201%2C%20value%3A%20&apos;one&apos;%20%7D%2C%0A%09%09%7B%20key%3A%202%2C%20value%3A%20&apos;two&apos;%20%7D%2C%0A%09%09%7B%20key%3A%203%2C%20value%3A%20&apos;three&apos;%20%7D%2C%0A%09%09%7B%20key%3A%204%2C%20value%3A%20&apos;four&apos;%20%7D%2C%0A%09%09%7B%20key%3A%205%2C%20value%3A%20&apos;five&apos;%20%7D%2C%0A%09%09%7B%20key%3A%206%2C%20value%3A%20&apos;six&apos;%20%7D%2C%0A%09%09%7B%20key%3A%207%2C%20value%3A%20&apos;seven&apos;%20%7D%2C%0A%09%09%7B%20key%3A%208%2C%20value%3A%20&apos;eight&apos;%20%7D%2C%0A%09%09%7B%20key%3A%209%2C%20value%3A%20&apos;nine&apos;%20%7D%0A%09%5D)%3B%0A%7D)%3B">
                                             <script type="runnable">
                                                 ts.ui.get('#mystaticautocomplete', autocomplete => {
-										autocomplete.data([
-											{ key: 0, value: 'zero' },
-											{ key: 1, value: 'one' },
-											{ key: 2, value: 'two' },
-											{ key: 3, value: 'three' },
-											{ key: 4, value: 'four' },
-											{ key: 5, value: 'five' },
-											{ key: 6, value: 'six' },
-											{ key: 7, value: 'seven' },
-											{ key: 8, value: 'eight' },
-											{ key: 9, value: 'nine' }
-										]);
-									});
-								</script>
+									autocomplete.data([
+										{ key: 0, value: 'zero' },
+										{ key: 1, value: 'one' },
+										{ key: 2, value: 'two' },
+										{ key: 3, value: 'three' },
+										{ key: 4, value: 'four' },
+										{ key: 5, value: 'five' },
+										{ key: 6, value: 'six' },
+										{ key: 7, value: 'seven' },
+										{ key: 8, value: 'eight' },
+										{ key: 9, value: 'nine' }
+									]);
+								});
+							</script>
                                             <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                                             <div data-ts="Panel">
                                                 <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#mystaticautocomplete&apos;</span><span class="token punctuation">,</span> autocomplete <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
@@ -91,8 +94,7 @@
                         <section>
                             <h3><span>External Data</span></h3>
                             <p>
-                                Loading all results from an external JSON endpoint but using the
-                                built in filtering.
+                                Loading all results from an external JSON endpoint but using the built in filtering.
                             </p>
                             <div class="splitscreen-container">
                                 <ul class="splitscreen">
@@ -100,11 +102,11 @@
                                         <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.get(&apos;%23myadvancedautocomplete&apos;%2C%20function(autocomplete)%20%7B%0A%09%24.getJSON(&apos;assets%2Fautocomplete.json&apos;%2C%20function(json)%20%7B%0A%09%09autocomplete.data(json)%3B%0A%09%7D)%3B%0A%7D)%3B">
                                             <script type="runnable">
                                                 ts.ui.get('#myadvancedautocomplete', autocomplete => {
-										$.getJSON('assets/autocomplete.json', function(json) {
-											autocomplete.data(json);
-										});
+									$.getJSON('assets/autocomplete.json', function(json) {
+										autocomplete.data(json);
 									});
-								</script>
+								});
+							</script>
                                             <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                                             <div data-ts="Panel">
                                                 <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#myadvancedautocomplete&apos;</span><span class="token punctuation">,</span> autocomplete <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
@@ -130,8 +132,8 @@
                         <section>
                             <h3><span>Advanced Usage</span></h3>
                             <p>
-                                It&apos;s possible to override the filtering functionality to supply the
-                                user with any data you&apos;d like.
+                                It&apos;s possible to override the filtering functionality to supply the user with any data
+                                you&apos;d like.
                             </p>
                             <div class="splitscreen-container">
                                 <ul class="splitscreen">
@@ -139,18 +141,18 @@
                                         <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.get(&apos;%23myfancyautocomplete&apos;%2C%20function(autocomplete)%20%7B%0A%09autocomplete.onfilter(function(filter)%20%7B%0A%09%09var%20output%20%3D%20%5B%5D%3B%0A%09%09for%20(var%20i%20%3D%20parseInt(Math.random()%20*%2010%20%2B%201%2C%2010)%3B%20i%20%3E%3D%200%3B%20i--)%20%7B%0A%09%09%09output.push(%7B%0A%09%09%09%09key%3A%20i%2C%0A%09%09%09%09value%3A%20Math.random().toString(36).substr(2%2C%205)%0A%09%09%09%7D)%3B%0A%09%09%7D%0A%09%09return%20output%3B%0A%09%7D)%3B%0A%7D)%3B">
                                             <script type="runnable">
                                                 ts.ui.get('#myfancyautocomplete', autocomplete => {
-										autocomplete.onfilter(function(filter) {
-											var output = [];
-											for (var i = parseInt(Math.random() * 10 + 1, 10); i >= 0; i--) {
-												output.push({
-													key: i,
-													value: Math.random().toString(36).substr(2, 5)
-												});
-											}
-											return output;
-										});
+									autocomplete.onfilter(function(filter) {
+										var output = [];
+										for (var i = parseInt(Math.random() * 10 + 1, 10); i >= 0; i--) {
+											output.push({
+												key: i,
+												value: Math.random().toString(36).substr(2, 5)
+											});
+										}
+										return output;
 									});
-								</script>
+								});
+							</script>
                                             <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                                             <div data-ts="Panel">
                                                 <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#myfancyautocomplete&apos;</span><span class="token punctuation">,</span> autocomplete <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
@@ -183,9 +185,8 @@
                         <section>
                             <h3><span>Overriding <code class="attr-name">onselect</code></span></h3>
                             <p>
-                                <code class="attr-name">onselect</code> can be overridden to run your
-                                own code when an element is selected (either with the keyboard
-                                or the mouse).
+                                <code class="attr-name">onselect</code> can be overridden to run your own code when an
+                                element is selected (either with the keyboard or the mouse).
                             </p>
                             <div class="splitscreen-container">
                                 <ul class="splitscreen">
@@ -193,16 +194,16 @@
                                         <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.get(&apos;%23myspecialautocomplete&apos;%2C%20function(autocomplete)%20%7B%0A%09autocomplete.data(%5B%0A%09%09%7B%20key%3A%200%2C%20value%3A%20&apos;zero&apos;%20%7D%2C%0A%09%09%7B%20key%3A%201%2C%20value%3A%20&apos;one&apos;%20%7D%0A%09%5D)%3B%0A%09autocomplete.onselect(function(item)%20%7B%0A%09%09ts.ui.Notification.success(&apos;%22&apos;%20%2B%20item.value%20%2B%20&apos;%22%20selected&apos;)%3B%0A%09%09return%20item.value%3B%0A%09%7D)%3B%0A%7D)%3B">
                                             <script type="runnable">
                                                 ts.ui.get('#myspecialautocomplete', autocomplete => {
-										autocomplete.data([
-											{ key: 0, value: 'zero' },
-											{ key: 1, value: 'one' }
-										]);
-										autocomplete.onselect(function(item) {
-											ts.ui.Notification.success('"' + item.value + '" selected');
-											return item.value;
-										});
+									autocomplete.data([
+										{ key: 0, value: 'zero' },
+										{ key: 1, value: 'one' }
+									]);
+									autocomplete.onselect(function(item) {
+										ts.ui.Notification.success('"' + item.value + '" selected');
+										return item.value;
 									});
-								</script>
+								});
+							</script>
                                             <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                                             <div data-ts="Panel">
                                                 <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#myspecialautocomplete&apos;</span><span class="token punctuation">,</span> autocomplete <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>

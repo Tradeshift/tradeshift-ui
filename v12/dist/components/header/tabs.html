@@ -7,11 +7,11 @@
     <link rel="ts-app-icon" href="/v12/dist/assets/icon.svg">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
-    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.0.1.min.js"></script>
+    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.1.2.min.js"></script>
     <script src="/v12/dist/assets/dox.min.js"></script>
     <script src="/v12/dist/assets/mark.min.js"></script>
     <script src="/v12/dist/assets/jquery-2.2.4.min.js"></script>
-    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.0.1.min.css">
+    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.1.2.min.css">
     <link rel="stylesheet" href="/v12/dist/assets/dox.css">
     <link rel="prefetch" title="Header" href="index.html">
     <link rel="prefetch" title="Tabs" href="tabs.html">
@@ -29,7 +29,10 @@
                 <div data-ts="Panel">
                     <article>
                         <section>
-                            <p>Top level navigational tabs can be mounted via the <code>tabs</code> method as shown.</p>
+                            <p>
+                                Top level navigational tabs can be mounted via the
+                                <code>tabs</code> method as shown.
+                            </p>
                             <figure data-ts="DoxScript" data-ts.code="ts.ui.Header.tabs(%5B%0A%09%7Blabel%3A%20&apos;One&apos;%7D%2C%0A%09%7Blabel%3A%20&apos;Two&apos;%7D%2C%0A%09%7Blabel%3A%20&apos;Three&apos;%2C%20onselect()%20%7B%0A%09%09console.log(&apos;selected&apos;)%3B%0A%09%7D%7D%0A%5D)%3B">
                                 <script type="text/html">
                                     ts.ui.Header.tabs([
@@ -51,7 +54,10 @@
 <span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
                                 </div>
                             </figure>
-                            <p>&#x2014; but since the page already has tabs, we will instead append a new tab to the existing collection. If you omit the argument, you&quot;ll get the current tabs (jQuery style).</p>
+                            <p>
+                                &#x2014; but since the page already has tabs, we will instead append a new tab to the
+                                existing collection. If you omit the argument, you&quot;ll get the current tabs (jQuery style).
+                            </p>
                             <figure data-ts="DoxScript" class="attention runnable" data-ts.code="var%20tabs%20%3D%20ts.ui.Header.tabs()%3B%0Atabs.push(%7B%0A%09label%3A%20&apos;Bonus%20Tab&apos;%2C%0A%09onselect%3A%20function()%20%7B%0A%09%09ts.ui.Notification.success(%60%24%7Bthis.label%7D%20selected%60)%0A%09%7D%0A%7D)%3B">
                                 <script type="runnable">
                                     var tabs = ts.ui.Header.tabs();
@@ -74,15 +80,38 @@ tabs<span class="token punctuation">.</span><span class="token function">push<sp
                             </figure>
                             <div data-ts="Note">
                                 <i class="ts-icon-info"></i>
-                                <p>If you prefer the markup-driven approach, top level tabs may alternatively be configured declaratively via the <a data-ts="Button" href="/v12/dist/components/mains/">Mains</a> component.
+                                <p>
+                                    If you prefer the markup-driven approach, top level tabs may alternatively be configured
+                                    declaratively via the
+                                    <a data-ts="Button" href="/v12/dist/components/mains/">Mains</a> component.
                                 </p>
                             </div>
                         </section>
                         <section id="tabs-desc" data-important="THIS GETS INCLUDED IN OTHER PAGES!">
-                            <p>You can use array methods like <code>push</code>, <code>pop</code>, <code>shift</code>, <code>unshift</code>, <code>splice</code> and so on to manage tabs, just note that the tabs <code>length</code> is a readonly property. Also note that tabs don&quot;t do anything by default, so what happens at <code>onselect</code> is completely up to you.</p>
+                            <p>
+                                You can use array methods like <code>push</code>, <code>pop</code>, <code>shift</code>,
+                                <code>unshift</code>, <code>splice</code> and so on to manage tabs, just note that the
+                                tabs <code>length</code> is a readonly property. Also note that tabs don&quot;t do anything by
+                                default, so what happens at <code>onselect</code> is completely up to you.
+                            </p>
                             <h3><span>Second level tabs</span></h3>
-                            <p>We supported two levels of tabs before. one is in the header, and use the normal tabs as the second level tabs. We remove the tabs in the header right now. If you want to have two levels of tabs, you can use the normal tabs as the first level, and use TabBox as the second level. Read more about <a data-ts="Button" href="/v12/dist/components/boards/">boards</a></p>
+                            <p>
+                                We supported two levels of tabs before. one is in the header, and use the normal tabs as
+                                the second level tabs. We remove the tabs in the header right now. If you want to have two
+                                levels of tabs, you can use the normal tabs as the first level, and use TabBox as the
+                                second level. Read more about
+                                <a data-ts="Button" href="/v12/dist/components/boards/">boards</a>
+                            </p>
                             <figure data-ts="DoxMarkup" data-ts.code="%3Cdiv%20data-ts%3D%22Board%22%3E%0A%09%3Cul%20data-ts%3D%22Panels%22%3E%0A%09%09%3Cli%20data-ts%3D%22Panel%22%20data-ts.label%3D%22One%22%3E%3C%2Fli%3E%0A%09%09%3Cli%20data-ts%3D%22Panel%22%20data-ts.label%3D%22Two%22%3E%3C%2Fli%3E%0A%09%09%3Cli%20data-ts%3D%22Panel%22%20data-ts.label%3D%22Three%22%3E%3C%2Fli%3E%0A%09%3C%2Ful%3E%0A%3C%2Fdiv%3E">
+                                <script type="text/html">
+                                    <div data-ts="Board">
+							<ul data-ts="Panels">
+								<li data-ts="Panel" data-ts.label="One"></li>
+								<li data-ts="Panel" data-ts.label="Two"></li>
+								<li data-ts="Panel" data-ts.label="Three"></li>
+							</ul>
+						</div>
+					</script>
                                 <ul data-ts="Panels">
                                     <li data-ts="Panel" data-ts.selected="true">
                                         <pre class="prism language-markup"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Board<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
@@ -109,7 +138,10 @@ tabs<span class="token punctuation">.</span><span class="token function">push<sp
                                 </ul>
                             </div>
                             <h3><span>Updating tabs</span></h3>
-                            <p>We can at any time change what happens when a tab gets selected. We can also change the tab label if we like, although perhaps this could become confusing.</p>
+                            <p>
+                                We can at any time change what happens when a tab gets selected. We can also change the
+                                tab label if we like, although perhaps this could become confusing.
+                            </p>
                             <figure data-ts="DoxScript" class="runnable" data-ts.code="var%20tabs%20%3D%20ts.ui.Header.tabs()%3B%0Atabs%5B4%5D.label%20%3D%20&apos;Choose%20Me!&apos;%3B%0Atabs%5B4%5D.onselect%20%3D%20function()%20%7B%0A%09this.label%20%3D%20&apos;Thanks!&apos;%3B%0A%7D%3B">
                                 <script type="runnable">
                                     var tabs = ts.ui.Header.tabs();
@@ -127,7 +159,9 @@ tabs<span class="token punctuation">[</span><span class="token number">4</span><
 <span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
                             </figure>
                             <h3><span>Selecting tabs</span></h3>
-                            <p>We can programatically select a tab using one of these approaches.</p>
+                            <p>
+                                We can programatically select a tab using one of these approaches.
+                            </p>
                             <figure data-ts="DoxScript" data-ts.code="ts.ui.Header.tabs()%5B4%5D.select()%3B">
                                 <input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
                                 <div data-ts="Panel">
@@ -141,7 +175,11 @@ tabs<span class="token punctuation">[</span><span class="token number">4</span><
                                 </div>
                             </figure>
                             <h3><span>Querying tabs</span></h3>
-                            <p>This will all become a lot easier if we give all the tabs an <code>id</code> and use <code>tabs.get()</code></p>
+                            <p>
+                                This will all become a lot easier if we give all the tabs an
+                                <code>id</code> and use
+                                <code>tabs.get()</code>
+                            </p>
                             <figure data-ts="DoxScript" class="runnable" data-ts.code="var%20tabs%20%3D%20ts.ui.Header.tabs()%3B%0Atabs.splice(4%2C%200%2C%20%7B%0A%09label%3A%20&apos;Example%20Tab&apos;%2C%0A%09id%3A%20&apos;example-tab&apos;%0A%7D)%3B%0Atabs.get(&apos;example-tab&apos;).select()%3B">
                                 <script type="runnable">
                                     var tabs = ts.ui.Header.tabs();
@@ -161,7 +199,11 @@ tabs<span class="token punctuation">.</span><span class="token function">splice<
 tabs<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;example-tab&apos;</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">select<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
                             </figure>
                             <h3><span>Tabs icons</span></h3>
-                            <p>You can add a tab with an <a data-ts="Button" href="/v12/dist/components/icons/css.html">icon</a> if somehow that tab is special.</p>
+                            <p>
+                                You can add a tab with an
+                                <a data-ts="Button" href="/v12/dist/components/icons/css.html">icon</a> if somehow that tab is
+                                special.
+                            </p>
                             <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.Header.tabs().push%20(%7B%0A%09label%3A%20&apos;Icon%20Tab&apos;%2C%0A%09icon%3A%20&apos;ts-icon-todo&apos;%0A%7D)%3B">
                                 <script type="runnable">
                                     ts.ui.Header.tabs().push ({
@@ -204,7 +246,11 @@ tabs<span class="token punctuation">.</span><span class="token keyword">get</spa
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
                             </figure>
                             <h3><span>Closeable tabs</span></h3>
-                            <p>You can create closeable tabs, but note that the tab must be selected before it can be closed. You can <code>return false</code> in the <code>onclose</code> method to prevent the tab from closing (if this would otherwise cause data loss).</p>
+                            <p>
+                                You can create closeable tabs, but note that the tab must be selected before it can be
+                                closed. You can <code>return false</code> in the <code>onclose</code> method to prevent
+                                the tab from closing (if this would otherwise cause data loss).
+                            </p>
                             <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.Header.tabs().push%20(%7B%0A%09label%3A%20&apos;Closeable%20Tab&apos;%2C%0A%09closeable%3A%20true%2C%0A%09selected%3A%20true%2C%0A%09onclose%20%3A%20function()%20%7B%0A%09%09ts.ui.Notification.success(this.label%20%2B%20&apos;%20closed&apos;)%3B%0A%09%7D%2C%0A%7D)%3B">
                                 <script type="runnable">
                                     ts.ui.Header.tabs().push ({
@@ -228,7 +274,12 @@ tabs<span class="token punctuation">.</span><span class="token keyword">get</spa
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
                             </figure>
                             <h3><span>New-Tab button</span></h3>
-                            <p>You can allow the user to create new tabs via a special button as seen in popular browsers. Note that the button just triggers a callback and that the new tab must be created manually. In the example below, the <code>selected</code> property also selects the tab.</p>
+                            <p>
+                                You can allow the user to create new tabs via a special button as seen in popular
+                                browsers. Note that the button just triggers a callback and that the new tab must be
+                                created manually. In the example below, the
+                                <code>selected</code> property also selects the tab.
+                            </p>
                             <figure data-ts="DoxScript" class="runnable" data-ts.code="var%20tabs%20%3D%20ts.ui.Header.tabs()%3B%0Atabs.showNew(function%20onclick()%20%7B%0A%09tabs.push(%7B%0A%09%09label%3A%20&apos;My%20New%20Tab&apos;%2C%0A%09%09selected%3A%20true%0A%09%7D)%3B%0A%7D)%3B">
                                 <script type="runnable">
                                     var tabs = ts.ui.Header.tabs();

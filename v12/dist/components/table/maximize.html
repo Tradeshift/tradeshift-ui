@@ -7,11 +7,11 @@
     <link rel="ts-app-icon" href="/v12/dist/assets/icon.svg">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
-    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.0.1.min.js"></script>
+    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.1.2.min.js"></script>
     <script src="/v12/dist/assets/dox.min.js"></script>
     <script src="/v12/dist/assets/mark.min.js"></script>
     <script src="/v12/dist/assets/jquery-2.2.4.min.js"></script>
-    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.0.1.min.css">
+    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.1.2.min.css">
     <link rel="stylesheet" href="/v12/dist/assets/dox.css">
     <link rel="prefetch" title="Table" href="index.html">
     <link rel="prefetch" title="Build" href="building.html">
@@ -54,8 +54,15 @@
                 <div data-ts="Panel">
                     <article>
                         <h1><span>Table explode and optimize &#x1F680;</span></h1>
-                        <p>You can use <code>expand</code> simply maximizes the layout. You can check the full screen table <a data-ts="Button" href="/v12/dist/components/table/demo.html">here</a> </p>
-                        <p><code>Optimize</code> can be used to limit the number of rows shown, either automatically or manually based on the information provided via the onresize callback</p>
+                        <p>
+                            You can use <code>expand</code> simply maximizes the layout. You can check the full screen
+                            table
+                            <a data-ts="Button" href="/v12/dist/components/table/demo.html">here</a>
+                        </p>
+                        <p>
+                            <code>Optimize</code> can be used to limit the number of rows shown, either automatically or
+                            manually based on the information provided via the onresize callback
+                        </p>
                         <section>
                             <div id="container">
                                 <div data-ts="Table" id="mytable"></div>
@@ -64,42 +71,42 @@
                         <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.get(&apos;%23mytable&apos;%2C%20function(table)%20%7B%0A%09table%0A%09%09.explode()%0A%09%09.optimize()%0A%09%09.cols(%5B%0A%09%09%09%7Blabel%3A%20&apos;Level&apos;%2C%20type%3A%20&apos;ts-number&apos;%7D%2C%0A%09%09%09%7Blabel%3A%20&apos;Character&apos;%2C%20flex%3A%202%7D%2C%0A%09%09%09%7Blabel%3A%20&apos;Alignment&apos;%2C%20flex%3A%202%7D%2C%0A%09%09%5D)%0A%09%09.rows(%5B%0A%09%09%09%5B21%2C%20&apos;Paladin%20Knight&apos;%2C%20&apos;Lawful%20Good&apos;%5D%2C%0A%09%09%09%5B13%2C%20&apos;Barbarian%20Queen&apos;%2C%20&apos;Neutral%20Evil&apos;%5D%2C%0A%09%09%09%5B11%2C%20&apos;Global%20Senior%20Vice%20President%20of%20Sales&apos;%2C%20&apos;Chaotic%20Evil&apos;%5D%2C%0A%09%09%09%5B21%2C%20&apos;Paladin%20Knight&apos;%2C%20&apos;Lawful%20Good&apos;%5D%2C%0A%09%09%09%5B13%2C%20&apos;Barbarian%20Queen&apos;%2C%20&apos;Neutral%20Evil&apos;%5D%2C%0A%09%09%09%5B11%2C%20&apos;Global%20Senior%20Vice%20President%20of%20Sales&apos;%2C%20&apos;Chaotic%20Evil&apos;%5D%2C%0A%09%09%09%5B21%2C%20&apos;Paladin%20Knight&apos;%2C%20&apos;Lawful%20Good&apos;%5D%2C%0A%09%09%09%5B13%2C%20&apos;Barbarian%20Queen&apos;%2C%20&apos;Neutral%20Evil&apos;%5D%2C%0A%09%09%09%5B11%2C%20&apos;Global%20Senior%20Vice%20President%20of%20Sales&apos;%2C%20&apos;Chaotic%20Evil&apos;%5D%2C%0A%09%09%09%5B21%2C%20&apos;Paladin%20Knight&apos;%2C%20&apos;Lawful%20Good&apos;%5D%2C%0A%09%09%09%5B13%2C%20&apos;Barbarian%20Queen&apos;%2C%20&apos;Neutral%20Evil&apos;%5D%2C%0A%09%09%09%5B11%2C%20&apos;Global%20Senior%20Vice%20President%20of%20Sales&apos;%2C%20&apos;Chaotic%20Evil&apos;%5D%2C%0A%09%09%09%5B21%2C%20&apos;Paladin%20Knight&apos;%2C%20&apos;Lawful%20Good&apos;%5D%2C%0A%09%09%09%5B13%2C%20&apos;Barbarian%20Queen&apos;%2C%20&apos;Neutral%20Evil&apos;%5D%2C%0A%09%09%09%5B11%2C%20&apos;Global%20Senior%20Vice%20President%20of%20Sales&apos;%2C%20&apos;Chaotic%20Evil&apos;%5D%2C%0A%09%09%09%5B21%2C%20&apos;Paladin%20Knight&apos;%2C%20&apos;Lawful%20Good&apos;%5D%2C%0A%09%09%09%5B13%2C%20&apos;Barbarian%20Queen&apos;%2C%20&apos;Neutral%20Evil&apos;%5D%2C%0A%09%09%09%5B11%2C%20&apos;Global%20Senior%20Vice%20President%20of%20Sales&apos;%2C%20&apos;Chaotic%20Evil&apos;%5D%2C%0A%09%09%09%5B21%2C%20&apos;Paladin%20Knight&apos;%2C%20&apos;Lawful%20Good&apos;%5D%2C%0A%09%09%09%5B13%2C%20&apos;Barbarian%20Queen&apos;%2C%20&apos;Neutral%20Evil&apos;%5D%2C%0A%09%09%09%5B11%2C%20&apos;Global%20Senior%20Vice%20President%20of%20Sales&apos;%2C%20&apos;Chaotic%20Evil&apos;%5D%2C%0A%09%09%09%5B21%2C%20&apos;Paladin%20Knight&apos;%2C%20&apos;Lawful%20Good&apos;%5D%2C%0A%09%09%09%5B13%2C%20&apos;Barbarian%20Queen&apos;%2C%20&apos;Neutral%20Evil&apos;%5D%2C%0A%09%09%09%5B11%2C%20&apos;Global%20Senior%20Vice%20President%20of%20Sales&apos;%2C%20&apos;Chaotic%20Evil&apos;%5D%0A%09%09%5D)%0A%7D)%3B">
                             <script type="runnable">
                                 ts.ui.get('#mytable', table => {
-							table
-								.explode()
-								.optimize()
-								.cols([
-									{label: 'Level', type: 'ts-number'},
-									{label: 'Character', flex: 2},
-									{label: 'Alignment', flex: 2},
-								])
-								.rows([
-									[21, 'Paladin Knight', 'Lawful Good'],
-									[13, 'Barbarian Queen', 'Neutral Evil'],
-									[11, 'Global Senior Vice President of Sales', 'Chaotic Evil'],
-									[21, 'Paladin Knight', 'Lawful Good'],
-									[13, 'Barbarian Queen', 'Neutral Evil'],
-									[11, 'Global Senior Vice President of Sales', 'Chaotic Evil'],
-									[21, 'Paladin Knight', 'Lawful Good'],
-									[13, 'Barbarian Queen', 'Neutral Evil'],
-									[11, 'Global Senior Vice President of Sales', 'Chaotic Evil'],
-									[21, 'Paladin Knight', 'Lawful Good'],
-									[13, 'Barbarian Queen', 'Neutral Evil'],
-									[11, 'Global Senior Vice President of Sales', 'Chaotic Evil'],
-									[21, 'Paladin Knight', 'Lawful Good'],
-									[13, 'Barbarian Queen', 'Neutral Evil'],
-									[11, 'Global Senior Vice President of Sales', 'Chaotic Evil'],
-									[21, 'Paladin Knight', 'Lawful Good'],
-									[13, 'Barbarian Queen', 'Neutral Evil'],
-									[11, 'Global Senior Vice President of Sales', 'Chaotic Evil'],
-									[21, 'Paladin Knight', 'Lawful Good'],
-									[13, 'Barbarian Queen', 'Neutral Evil'],
-									[11, 'Global Senior Vice President of Sales', 'Chaotic Evil'],
-									[21, 'Paladin Knight', 'Lawful Good'],
-									[13, 'Barbarian Queen', 'Neutral Evil'],
-									[11, 'Global Senior Vice President of Sales', 'Chaotic Evil']
-								])
-						});
-					</script>
+						table
+							.explode()
+							.optimize()
+							.cols([
+								{label: 'Level', type: 'ts-number'},
+								{label: 'Character', flex: 2},
+								{label: 'Alignment', flex: 2},
+							])
+							.rows([
+								[21, 'Paladin Knight', 'Lawful Good'],
+								[13, 'Barbarian Queen', 'Neutral Evil'],
+								[11, 'Global Senior Vice President of Sales', 'Chaotic Evil'],
+								[21, 'Paladin Knight', 'Lawful Good'],
+								[13, 'Barbarian Queen', 'Neutral Evil'],
+								[11, 'Global Senior Vice President of Sales', 'Chaotic Evil'],
+								[21, 'Paladin Knight', 'Lawful Good'],
+								[13, 'Barbarian Queen', 'Neutral Evil'],
+								[11, 'Global Senior Vice President of Sales', 'Chaotic Evil'],
+								[21, 'Paladin Knight', 'Lawful Good'],
+								[13, 'Barbarian Queen', 'Neutral Evil'],
+								[11, 'Global Senior Vice President of Sales', 'Chaotic Evil'],
+								[21, 'Paladin Knight', 'Lawful Good'],
+								[13, 'Barbarian Queen', 'Neutral Evil'],
+								[11, 'Global Senior Vice President of Sales', 'Chaotic Evil'],
+								[21, 'Paladin Knight', 'Lawful Good'],
+								[13, 'Barbarian Queen', 'Neutral Evil'],
+								[11, 'Global Senior Vice President of Sales', 'Chaotic Evil'],
+								[21, 'Paladin Knight', 'Lawful Good'],
+								[13, 'Barbarian Queen', 'Neutral Evil'],
+								[11, 'Global Senior Vice President of Sales', 'Chaotic Evil'],
+								[21, 'Paladin Knight', 'Lawful Good'],
+								[13, 'Barbarian Queen', 'Neutral Evil'],
+								[11, 'Global Senior Vice President of Sales', 'Chaotic Evil']
+							])
+					});
+				</script>
                             <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                             <div data-ts="Panel">
                                 <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#mytable&apos;</span><span class="token punctuation">,</span> table <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>

@@ -7,11 +7,11 @@
     <link rel="ts-app-icon" href="/v12/dist/assets/icon.svg">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
-    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.0.1.min.js"></script>
+    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.1.2.min.js"></script>
     <script src="/v12/dist/assets/dox.min.js"></script>
     <script src="/v12/dist/assets/mark.min.js"></script>
     <script src="/v12/dist/assets/jquery-2.2.4.min.js"></script>
-    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.0.1.min.css">
+    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.1.2.min.css">
     <link rel="stylesheet" href="/v12/dist/assets/dox.css">
     <script src="index.js"></script>
     <style>
@@ -38,17 +38,29 @@
                     <article>
                         <h1><span>Automagic focus</span></h1>
                         <section class="desc">
-                            <p>On this page, we&apos;ve added a <strong tabindex="0" autofocus>yellow outline</strong> to the focused element.</p>
+                            <p>
+                                On this page, we&apos;ve added a
+                                <strong tabindex="0" autofocus>yellow outline</strong> to the focused element.
+                            </p>
                         </section>
                         <section>
-                            <p>Keyboard support is always a work in progress, but we have a system to ensure that something is in theory always focused. Note that there is no default focus, but you can set the default focus with the HTML <code class="attr-pair"><span>autofocus</span></code> attribute.</p>
+                            <p>
+                                Keyboard support is always a work in progress, but we have a system to ensure that
+                                something is in theory always focused. Note that there is no default focus, but you can
+                                set the default focus with the HTML
+                                <code class="attr-pair"><span>autofocus</span></code> attribute.
+                            </p>
                             <!-- BUG APPEARS FIXED NOW?
 					<div data-ts="Note">
 						<i class="ts-icon-warning"></i>
 						<p>On page load, the <att>autofocus</att> attribute does not work in Firefox if the user entered via the main menu (so in the parent frame) because of a security precaution in the browser, so you should not rely much on that.</p>
 					</div>
 					-->
-                            <p>In Notifications and Asides, we&apos;ll always attempt to focus something even if we can&apos;t find any element with the <code class="attr-pair"><span>autofocus</span></code> attribute. Click the buttons to see.</p>
+                            <p>
+                                In Notifications and Asides, we&apos;ll always attempt to focus something even if we can&apos;t find
+                                any element with the
+                                <code class="attr-pair"><span>autofocus</span></code> attribute. Click the buttons to see.
+                            </p>
                             <menu data-ts="Buttons" class="ts-t-t">
                                 <li>
                                     <button data-ts="Button" class="ts-secondary" onclick="notification()">
@@ -120,7 +132,10 @@
             </menu>
             <div data-ts="Note">
                 <i class="ts-icon-error"></i>
-                <p>It appears we have a bug. If you do click that button, the focus will be lost. But you can try to close them one at a time by clicking the <code>X</code> in the corner.</p>
+                <p>
+                    It appears we have a bug. If you do click that button, the focus will be lost. But you
+                    can try to close them one at a time by clicking the <code>X</code> in the corner.
+                </p>
             </div>
         </div>
     </aside>

@@ -7,11 +7,11 @@
     <link rel="ts-app-icon" href="/v12/dist/assets/icon.svg">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
-    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.0.1.min.js"></script>
+    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.1.2.min.js"></script>
     <script src="/v12/dist/assets/dox.min.js"></script>
     <script src="/v12/dist/assets/mark.min.js"></script>
     <script src="/v12/dist/assets/jquery-2.2.4.min.js"></script>
-    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.0.1.min.css">
+    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.1.2.min.css">
     <link rel="stylesheet" href="/v12/dist/assets/dox.css">
     <link rel="prefetch" title="Table" href="index.html">
     <link rel="prefetch" title="Build" href="building.html">
@@ -47,7 +47,12 @@
                     <article>
                         <h1><span>Paging the rows</span></h1>
                         <section>
-                            <p>You can limit the number of visible rows with the <code>max</code> method. If the table contains more rows, a Pager will be created. An equivalent method <code>size</code> also fixes the height of the Table so that the pager (footer) never jump up and down.</p>
+                            <p>
+                                You can limit the number of visible rows with the
+                                <code>max</code> method. If the table contains more rows, a Pager will be created. An
+                                equivalent method <code>size</code> also fixes the height of the Table so that the pager
+                                (footer) never jump up and down.
+                            </p>
                             <div class="splitscreen-container">
                                 <ul class="splitscreen">
                                     <li>
@@ -83,7 +88,10 @@
                                     </li>
                                 </ul>
                             </div>
-                            <p>You can track the page with the <code>onpage</code> method, if for some reason you need that.</p>
+                            <p>
+                                You can track the page with the <code>onpage</code> method, if for some reason you need
+                                that.
+                            </p>
                             <figure data-ts="DoxScript" data-ts.code="table.onpage%20%3D%20function(index)%20%7B%0A%09console.log(index)%3B%20%2F%2F%20called%20whenever%20the%20user%20changes%20page%0A%7D%3B">
                                 <input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
                                 <div data-ts="Panel">
@@ -92,7 +100,10 @@
 </span><span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre>
                                 </div>
                             </figure>
-                            <p>If you would like to manage paging yourself, because you have a billion products and don&apos;t want to fetch them all at once, you can create your own pager.</p>
+                            <p>
+                                If you would like to manage paging yourself, because you have a billion products and don&apos;t
+                                want to fetch them all at once, you can create your own pager.
+                            </p>
                             <div class="splitscreen-container">
                                 <ul class="splitscreen">
                                     <li>
@@ -152,15 +163,18 @@ ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</s
                                     </li>
                                 </ul>
                             </div>
-                            <p>If you need to update the index later on, for example to support history navigation, it is recommended that you change the <code>page</code> property of the existing Pager instead of initializing a whole new Pager. You can just call the same method without arguments.</p>
                             <p>
-                                <figure data-ts="DoxScript" data-ts.code="mytable.pager().page%20%3D%2023%3B">
-                                    <input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
-                                    <div data-ts="Panel">
-                                        <pre class="prism language-javascript"><code>mytable<span class="token punctuation">.</span><span class="token function">pager<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">.</span>page <span class="token operator">=</span> <span class="token number">23</span><span class="token punctuation">;</span></code></pre>
-                                    </div>
-                                </figure>
+                                If you need to update the index later on, for example to support history navigation, it is
+                                recommended that you change the
+                                <code>page</code> property of the existing Pager instead of initializing a whole new
+                                Pager. You can just call the same method without arguments.
                             </p>
+                            <figure data-ts="DoxScript" data-ts.code="mytable.pager().page%20%3D%2023%3B">
+                                <input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
+                                <div data-ts="Panel">
+                                    <pre class="prism language-javascript"><code>mytable<span class="token punctuation">.</span><span class="token function">pager<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">.</span>page <span class="token operator">=</span> <span class="token number">23</span><span class="token punctuation">;</span></code></pre>
+                                </div>
+                            </figure>
                         </section>
                     </article>
                 </div>

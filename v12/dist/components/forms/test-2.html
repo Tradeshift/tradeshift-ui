@@ -7,11 +7,11 @@
     <link rel="ts-app-icon" href="/v12/dist/assets/icon.svg">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
-    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.0.1.min.js"></script>
+    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.1.2.min.js"></script>
     <script src="/v12/dist/assets/dox.min.js"></script>
     <script src="/v12/dist/assets/mark.min.js"></script>
     <script src="/v12/dist/assets/jquery-2.2.4.min.js"></script>
-    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.0.1.min.css">
+    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.1.2.min.css">
     <link rel="stylesheet" href="/v12/dist/assets/dox.css">
     <link rel="prefetch" title="HTML" href="index.html">
     <link rel="prefetch" title="Disabled / Readonly" href="disabled.html">
@@ -36,7 +36,10 @@
                 <p>Just testing some JQuery manipulation of the multi-select.</p>
             </section>
             <section>
-                <p>What you can see here is that using <code>prop()</code> and <code>attr()</code> both work for unselecting options, but only <code>.prop()</code> works when selecting them.</p>
+                <p>
+                    What you can see here is that using <code>prop()</code> and <code>attr()</code> both
+                    work for unselecting options, but only <code>.prop()</code> works when selecting them.
+                </p>
                 <form data-ts="Form">
                     <fieldset>
                         <label>
@@ -53,22 +56,54 @@
                     </fieldset>
                 </form>
                 <menu data-ts="Buttons">
-                    <li><button class="btn-select ts-primary" data-selector="option" data-method="attr" data-value="true"></button></li>
-                    <li><button class="btn-select ts-primary" data-selector="option" data-method="prop" data-value="true"></button></li>
-                    <li><button class="btn-select ts-danger" data-selector="option" data-method="attr" data-value="false"></button></li>
-                    <li><button class="btn-select ts-danger" data-selector="option" data-method="prop" data-value="false"></button></li>
-                    <li><button class="btn-select ts-secondary" data-selector="option[value=&apos;a&apos;]" data-method="attr" data-value="true"></button></li>
-                    <li><button class="btn-select ts-secondary" data-selector="option[value=&apos;a&apos;]" data-method="prop" data-value="true"></button></li>
-                    <li><button class="btn-select ts-secondary" data-selector="option[value=&apos;a&apos;]" data-method="attr" data-value="false"></button></li>
-                    <li><button class="btn-select ts-secondary" data-selector="option[value=&apos;a&apos;]" data-method="prop" data-value="false"></button></li>
-                    <li><button class="btn-select ts-secondary" data-selector="option[value=&apos;b&apos;]" data-method="attr" data-value="true"></button></li>
-                    <li><button class="btn-select ts-secondary" data-selector="option[value=&apos;b&apos;]" data-method="prop" data-value="true"></button></li>
-                    <li><button class="btn-select ts-secondary" data-selector="option[value=&apos;b&apos;]" data-method="attr" data-value="false"></button></li>
-                    <li><button class="btn-select ts-secondary" data-selector="option[value=&apos;b&apos;]" data-method="prop" data-value="false"></button></li>
-                    <li><button class="btn-select ts-secondary" data-selector="option[value=&apos;c&apos;]" data-method="attr" data-value="true"></button></li>
-                    <li><button class="btn-select ts-secondary" data-selector="option[value=&apos;c&apos;]" data-method="prop" data-value="true"></button></li>
-                    <li><button class="btn-select ts-secondary" data-selector="option[value=&apos;c&apos;]" data-method="attr" data-value="false"></button></li>
-                    <li><button class="btn-select ts-secondary" data-selector="option[value=&apos;c&apos;]" data-method="prop" data-value="false"></button></li>
+                    <li>
+                        <button class="btn-select ts-primary" data-selector="option" data-method="attr" data-value="true"></button>
+                    </li>
+                    <li>
+                        <button class="btn-select ts-primary" data-selector="option" data-method="prop" data-value="true"></button>
+                    </li>
+                    <li>
+                        <button class="btn-select ts-danger" data-selector="option" data-method="attr" data-value="false"></button>
+                    </li>
+                    <li>
+                        <button class="btn-select ts-danger" data-selector="option" data-method="prop" data-value="false"></button>
+                    </li>
+                    <li>
+                        <button class="btn-select ts-secondary" data-selector="option[value=&apos;a&apos;]" data-method="attr" data-value="true"></button>
+                    </li>
+                    <li>
+                        <button class="btn-select ts-secondary" data-selector="option[value=&apos;a&apos;]" data-method="prop" data-value="true"></button>
+                    </li>
+                    <li>
+                        <button class="btn-select ts-secondary" data-selector="option[value=&apos;a&apos;]" data-method="attr" data-value="false"></button>
+                    </li>
+                    <li>
+                        <button class="btn-select ts-secondary" data-selector="option[value=&apos;a&apos;]" data-method="prop" data-value="false"></button>
+                    </li>
+                    <li>
+                        <button class="btn-select ts-secondary" data-selector="option[value=&apos;b&apos;]" data-method="attr" data-value="true"></button>
+                    </li>
+                    <li>
+                        <button class="btn-select ts-secondary" data-selector="option[value=&apos;b&apos;]" data-method="prop" data-value="true"></button>
+                    </li>
+                    <li>
+                        <button class="btn-select ts-secondary" data-selector="option[value=&apos;b&apos;]" data-method="attr" data-value="false"></button>
+                    </li>
+                    <li>
+                        <button class="btn-select ts-secondary" data-selector="option[value=&apos;b&apos;]" data-method="prop" data-value="false"></button>
+                    </li>
+                    <li>
+                        <button class="btn-select ts-secondary" data-selector="option[value=&apos;c&apos;]" data-method="attr" data-value="true"></button>
+                    </li>
+                    <li>
+                        <button class="btn-select ts-secondary" data-selector="option[value=&apos;c&apos;]" data-method="prop" data-value="true"></button>
+                    </li>
+                    <li>
+                        <button class="btn-select ts-secondary" data-selector="option[value=&apos;c&apos;]" data-method="attr" data-value="false"></button>
+                    </li>
+                    <li>
+                        <button class="btn-select ts-secondary" data-selector="option[value=&apos;c&apos;]" data-method="prop" data-value="false"></button>
+                    </li>
                 </menu>
             </section>
         </article>

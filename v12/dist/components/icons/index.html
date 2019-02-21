@@ -7,19 +7,17 @@
     <link rel="ts-app-icon" href="/v12/dist/assets/icon.svg">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
-    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.0.1.min.js"></script>
+    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.1.2.min.js"></script>
     <script src="/v12/dist/assets/dox.min.js"></script>
     <script src="/v12/dist/assets/mark.min.js"></script>
     <script src="/v12/dist/assets/jquery-2.2.4.min.js"></script>
-    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.0.1.min.css">
+    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.1.2.min.css">
     <link rel="stylesheet" href="/v12/dist/assets/dox.css">
     <link rel="prefetch" title="HTML" href="index.html">
     <link rel="prefetch" title="CSS" href="css.html">
     <link rel="prefetch" title="All Icons" href="list.html" class="hidden">
     <link rel="prefetch" title="IconSpirit" href="iconspirit.html" class="hidden">
-    <script>
-        ts.dox.tabs()
-    </script>
+    <script>ts.dox.tabs()</script>
 </head>
 
 <body>
@@ -30,17 +28,28 @@
                     <article>
                         <h1><span>Icons</span></h1>
                         <section class="desc">
-                            <p>A library of icons that work great with <a data-ts="Button" href="/v12/dist/components/buttons/index.html">Buttons</a>.</p>
+                            <p>
+                                A library of icons that work great with
+                                <a data-ts="Button" href="/v12/dist/components/buttons/index.html">Buttons</a>.
+                            </p>
                         </section>
                         <section>
-                            <p>Assign any of the <a data-ts="Button" href="/v12/dist/components/icons/css.html">icon classnames</a> to an <code class="el">i</code> element to get an icon. Note that we like to reserve <code class="el">i</code> for icons, so if you need to emphasize text, consider using <code class="el">em</code>.</p>
-                            <figure data-ts="DoxMarkup" data-ts.code="%3Ci%20class%3D%22ts-icon-myapps%22%2F%3E">
+                            <p>
+                                Assign any of the
+                                <a data-ts="Button" href="/v12/dist/components/icons/css.html">icon classnames</a>
+                                to an <code class="el">i</code> element to get an icon. Note that we like to reserve <code class="el">i</code> for
+                                icons, so if you need to emphasize text, consider using <code class="el">em</code>.
+                            </p>
+                            <figure data-ts="DoxMarkup" data-ts.code="%3Ci%20class%3D%22ts-icon-myapps%22%20%3E%3C%2Fi%3E">
+                                <script type="text/html">
+                                    <i class="ts-icon-myapps" ></i>
+					</script>
                                 <ul data-ts="Panels">
                                     <li data-ts="Panel" data-ts.label="Render" data-ts.selected="true">
                                         <div class="output"><i class="ts-icon-myapps"></i></div>
                                     </li>
                                     <li data-ts="Panel" data-ts.label="Markup" data-ts.selected="false">
-                                        <pre class="prism language-markup"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>i</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>ts-icon-myapps<span class="token punctuation">&quot;</span></span><span class="token punctuation">/&gt;</span></span></code></pre>
+                                        <pre class="prism language-markup"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>i</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>ts-icon-myapps<span class="token punctuation">&quot;</span></span> <span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>i</span><span class="token punctuation">&gt;</span></span></code></pre>
                                     </li>
                                 </ul>
                             </figure>

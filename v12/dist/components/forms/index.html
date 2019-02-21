@@ -7,11 +7,11 @@
     <link rel="ts-app-icon" href="/v12/dist/assets/icon.svg">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
-    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.0.1.min.js"></script>
+    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.1.2.min.js"></script>
     <script src="/v12/dist/assets/dox.min.js"></script>
     <script src="/v12/dist/assets/mark.min.js"></script>
     <script src="/v12/dist/assets/jquery-2.2.4.min.js"></script>
-    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.0.1.min.css">
+    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.1.2.min.css">
     <link rel="stylesheet" href="/v12/dist/assets/dox.css">
     <link rel="prefetch" title="HTML" href="index.html">
     <link rel="prefetch" title="Disabled / Readonly" href="disabled.html">
@@ -32,7 +32,9 @@
                     <article>
                         <h1><span>Form</span></h1>
                         <section class="desc">
-                            <p>Provides styling and behavior for form controls and error messages.</p>
+                            <p>
+                                Provides styling and behavior for form controls and error messages.
+                            </p>
                         </section>
                         <section>
                             <p>Assign <code class="attr-pair"><span>data-ts</span>=&quot;<span>Form</span>&quot;</code> to a <code class="el">form</code> to initialize as a Form.</p>
@@ -46,7 +48,10 @@
                                     </li>
                                 </ul>
                             </figure>
-                            <p>Form components depend on specific internal element structure in order to initialize and style their contents. Most components adhere to this structure:</p>
+                            <p>
+                                Form components depend on specific internal element structure in order to initialize and
+                                style their contents. Most components adhere to this structure:
+                            </p>
                             <figure data-ts="DoxMarkup" data-ts.code="%3Cform%20data-ts%3D%22Form%22%3E%0A%09%3Cfieldset%3E%0A%09%09%3Clabel%3E%0A%09%09%09%3Cspan%3E%20...%20%3C%2Fspan%3E%0A%09%09%09%3Cinput%2F%3E%0A%09%09%3C%2Flabel%3E%0A%09%3C%2Ffieldset%3E%0A%3C%2Fform%3E">
                                 <script type="text/html">
                                     <form data-ts="Form">
@@ -74,7 +79,10 @@
                             <h3><span>
                                     <code class="el">textarea</code>
                                 </span></h3>
-                            <p>Starts out with three lines, but will expand up to ten as content is entered. The <code class="attr-pair"><span>rows</span></code> attribute can be used to adjust the initial amount of lines to show.</p>
+                            <p>
+                                Starts out with three lines, but will expand up to ten as content is entered. The
+                                <code class="attr-pair"><span>rows</span></code> attribute can be used to adjust the initial amount of lines to show.
+                            </p>
                             <figure data-ts="DoxMarkup" data-ts.code="%3Cform%20data-ts%3D%22Form%22%3E%0A%09%3Cfieldset%3E%0A%09%09%3Clabel%3E%0A%09%09%09%3Cspan%3ETextarea%3C%2Fspan%3E%0A%09%09%09%3Ctextarea%3E%3C%2Ftextarea%3E%0A%09%09%3C%2Flabel%3E%0A%09%3C%2Ffieldset%3E%0A%3C%2Fform%3E">
                                 <script type="text/html">
                                     <form data-ts="Form">
@@ -111,7 +119,11 @@
                                     </li>
                                 </ul>
                             </figure>
-                            <p>You can specify <code class="attr-pair"><span>type</span>=&quot;<span>submit</span>&quot;</code> to make the texarea submit the form on <kbd>ENTER</kbd>. In this mode, newlines may still be entered while pressing the <kbd>SHIFT</kbd> key.</p>
+                            <p>
+                                You can specify <code class="attr-pair"><span>type</span>=&quot;<span>submit</span>&quot;</code> to make the texarea submit the form on
+                                <kbd>ENTER</kbd>. In this mode, newlines may still be entered while pressing the
+                                <kbd>SHIFT</kbd> key.
+                            </p>
                             <figure data-ts="DoxMarkup" data-ts.code="%3Cform%20data-ts%3D%22Form%22%20action%3D%22javascript%3Aalert(&apos;Form%20submitted&apos;)%22%3E%0A%09%3Cfieldset%3E%0A%09%09%3Clabel%3E%0A%09%09%09%3Cspan%3EPress%20SHIFT%20to%20ENTER%20newlines%3C%2Fspan%3E%0A%09%09%09%3Ctextarea%20rows%3D%221%22%20type%3D%22submit%22%3E%3C%2Ftextarea%3E%0A%09%09%3C%2Flabel%3E%0A%09%3C%2Ffieldset%3E%0A%3C%2Fform%3E">
                                 <script type="text/html">
                                     <form data-ts="Form" action="javascript:alert('Form submitted')">
@@ -273,7 +285,8 @@
                                     <code class="attr-pair"><span>type</span>=&quot;<span>number</span>&quot;</code>
                                 </span></h3>
                             <p>
-                                Set the class <code class="attr-pair"><span>class</span>=&quot;<span>ts-right</span>&quot;</code> on the <code class="el">label</code> to make your number text align right.
+                                Set the class <code class="attr-pair"><span>class</span>=&quot;<span>ts-right</span>&quot;</code> on the <code class="el">label</code> to make your number text
+                                align right.
                             </p>
                             <figure data-ts="DoxMarkup" data-ts.code="%3Cform%20data-ts%3D%22Form%22%3E%0A%09%3Cfieldset%3E%0A%09%09%3Clabel%3E%0A%09%09%09%3Cspan%3ENumber%3C%2Fspan%3E%0A%09%09%09%3Cinput%20type%3D%22number%22%2F%3E%0A%09%09%3C%2Flabel%3E%0A%09%3C%2Ffieldset%3E%0A%3C%2Fform%3E">
                                 <script type="text/html">
@@ -361,14 +374,11 @@
                                     <code class="el">select</code>
                                 </span></h3>
                             <p>
-                                The <code class="el">select</code> will open in an Aside, but you&apos;ll
-                                mantain it like a normal <code class="el">select</code>.
-                                Note that the <code class="el">select</code> only triggers a
+                                The <code class="el">select</code> will open in an Aside, but you&apos;ll mantain it like a normal
+                                <code class="el">select</code>. Note that the <code class="el">select</code> only triggers a
                                 <code>change</code> event when the Aside is fully closed!
                             </p>
-                            <p>
-                                Set the attribute <code class="attr-pair"><span>data-ts.custom</span>=&quot;<span>true</span>&quot;</code> to handle your own select event.
-                            </p>
+                            <p>Set the attribute <code class="attr-pair"><span>data-ts.custom</span>=&quot;<span>true</span>&quot;</code> to handle your own select event.</p>
                             <figure data-ts="DoxMarkup" data-ts.code="%3Cform%20data-ts%3D%22Form%22%3E%0A%09%3Cfieldset%3E%0A%09%09%3Clabel%3E%0A%09%09%09%3Cspan%3ESelect%3C%2Fspan%3E%0A%09%09%09%3Cselect%3E%0A%09%09%09%09%3Coption%20value%3D%22a%22%20selected%3EOne%3C%2Foption%3E%0A%09%09%09%09%3Coption%20value%3D%22b%22%3ETwo%3C%2Foption%3E%0A%09%09%09%09%3Coption%20value%3D%22c%22%3EThree%3C%2Foption%3E%0A%09%09%09%3C%2Fselect%3E%0A%09%09%3C%2Flabel%3E%0A%09%3C%2Ffieldset%3E%0A%3C%2Fform%3E">
                                 <script type="text/html">
                                     <form data-ts="Form">
@@ -417,7 +427,9 @@
                                     </li>
                                 </ul>
                             </figure>
-                            <p>You can configure the <code class="el">select</code> with a default placeholder in a two-step process.</p>
+                            <p>
+                                You can configure the <code class="el">select</code> with a default placeholder in a two-step process.
+                            </p>
                             <ul>
                                 <li>Add the <code class="attr-pair"><span>placeholder</span></code> attribute to the <code class="el">select</code></li>
                                 <li>Leave the first <code class="el">option</code> empty (no option text)</li>
@@ -470,16 +482,31 @@
                                     </li>
                                 </ul>
                             </figure>
-                            <p>When a selection is made, the user can revert to the default (no selection) by clicking the selected option a second time. If you don&apos;t want to allow this, you should make sure to remove the empty <code class="el">option</code>.</p>
+                            <p>
+                                When a selection is made, the user can revert to the default (no selection) by clicking
+                                the selected option a second time. If you don&apos;t want to allow this, you should make sure
+                                to remove the empty
+                                <code class="el">option</code>.
+                            </p>
                             <div data-ts="Note">
                                 <i class="ts-icon-info"></i>
-                                <p>This strange pattern ensures maximum compatibility with Angular 1.x, where an empty <code class="el">option</code> is automatically inserted until a selection is performed. To also allow <em>unselection</em> in Angular, you must manually create the empty <code class="el">option</code> and make sure that it is explicitly selected as default.</p>
+                                <p>
+                                    This strange pattern ensures maximum compatibility with Angular 1.x, where an empty
+                                    <code class="el">option</code> is automatically inserted until a selection is performed. To also
+                                    allow <em>unselection</em> in Angular, you must manually create the empty
+                                    <code class="el">option</code> and make sure that it is explicitly selected as default.
+                                </p>
                             </div>
                             <h3><span>
                                     <code class="el">select</code>
-                                    <code class="attr-pair"><span>multiple
-                                        </span></code></span></h3>
-                            <p>The <code class="el">select</code> <code class="attr-pair"><span>multiple</span></code> only triggers a change when the <samp>Done</samp> button is pressed. You can customize the button label by adding a <code class="el">button</code> to the <code class="el">label</code> element, but note that this only configures the <em>text</em> on the button (eg. no event listeners are fired).</p>
+                                    <code class="attr-pair"><span>multiple</span></code>
+                                </span></h3>
+                            <p>
+                                The <code class="el">select</code> <code class="attr-pair"><span>multiple</span></code> only triggers a change when the
+                                <samp>Done</samp> button is pressed. You can customize the button label by adding a
+                                <code class="el">button</code> to the <code class="el">label</code> element, but note that this only configures the
+                                <em>text</em> on the button (eg. no event listeners are fired).
+                            </p>
                             <figure data-ts="DoxMarkup" data-ts.code="%3Cform%20data-ts%3D%22Form%22%3E%0A%09%3Cfieldset%3E%0A%09%09%3Clabel%3E%0A%09%09%09%3Cspan%3ESelect%20multiple%3C%2Fspan%3E%0A%09%09%09%3Cselect%20multiple%20id%3D%22multijohn%22%3E%0A%09%09%09%09%3Coption%20value%3D%22a%22%3EOne%3C%2Foption%3E%0A%09%09%09%09%3Coption%20value%3D%22b%22%3ETwo%3C%2Foption%3E%0A%09%09%09%09%3Coption%20value%3D%22c%22%3EThree%3C%2Foption%3E%0A%09%09%09%09%3Coption%20value%3D%22d%22%3EFour%3C%2Foption%3E%0A%09%09%09%09%3Coption%20value%3D%22e%22%3EFive%3C%2Foption%3E%0A%09%09%09%3C%2Fselect%3E%0A%09%09%09%3Cbutton%3ECool%2C%20apply%20changes!%3C%2Fbutton%3E%0A%09%09%3C%2Flabel%3E%0A%09%3C%2Ffieldset%3E%0A%3C%2Fform%3E">
                                 <script type="text/html">
                                     <form data-ts="Form">
@@ -654,7 +681,11 @@
                                     <code class="attr-pair"><span>type</span>=&quot;<span>textbox</span>&quot;</code>
                                     <span style="color:rgb(127,127,127);">(alternate version)</span>
                                 </span></h3>
-                            <p>We call it the <code>switch</code>. Used mainly for toggling preferences/settings. Note that <code>switch</code> differs from the <code>checkbox</code> only by the order of HTML elements.</p>
+                            <p>
+                                We call it the <code>switch</code>. Used mainly for toggling preferences/settings. Note
+                                that <code>switch</code> differs from the <code>checkbox</code> only by the order of HTML
+                                elements.
+                            </p>
                             <figure data-ts="DoxMarkup" data-ts.code="%3Cform%20data-ts%3D%22Form%22%3E%0A%09%3Cfieldset%3E%0A%09%09%3Cspan%3ESettings%20Page%3C%2Fspan%3E%0A%09%09%3Clabel%3E%0A%09%09%09%3Cspan%3ESecret%20Feature%3C%2Fspan%3E%0A%09%09%09%3Cinput%20type%3D%22checkbox%22%2F%3E%0A%09%09%3C%2Flabel%3E%0A%09%09%3Clabel%3E%0A%09%09%09%3Cspan%3ESecret%20Feature%20(On%20by%20default)%3C%2Fspan%3E%0A%09%09%09%3Cinput%20type%3D%22checkbox%22%20checked%2F%3E%0A%09%09%3C%2Flabel%3E%0A%09%3C%2Ffieldset%3E%0A%3C%2Fform%3E">
                                 <script type="text/html">
                                     <form data-ts="Form">
@@ -707,7 +738,10 @@
                                 </ul>
                             </figure>
                             <h2><span>Errors and info</span></h2>
-                            <p>To mark a control as invalid, simply add the class <code class="attr-value">ts-error</code> to the label.</p>
+                            <p>
+                                To mark a control as invalid, simply add the class
+                                <code class="attr-value">ts-error</code> to the label.
+                            </p>
                             <figure data-ts="DoxMarkup" data-ts.code="%3Cform%20data-ts%3D%22Form%22%3E%0A%09%3Cfieldset%3E%0A%09%09%3Clabel%20class%3D%22ts-error%22%3E%0A%09%09%09%3Cspan%3EText%3C%2Fspan%3E%0A%09%09%09%3Cinput%20type%3D%22text%22%2F%3E%0A%09%09%3C%2Flabel%3E%0A%09%3C%2Ffieldset%3E%0A%3C%2Fform%3E">
                                 <script type="text/html">
                                     <form data-ts="Form">
@@ -744,7 +778,10 @@
                                     </li>
                                 </ul>
                             </figure>
-                            <p>To display an error message, one must mark the control as errored using the <code class="attr-value">ts-error</code> class, as well as add the error message markup to the page.</p>
+                            <p>
+                                To display an error message, one must mark the control as errored using the
+                                <code class="attr-value">ts-error</code> class, as well as add the error message markup to the page.
+                            </p>
                             <figure data-ts="DoxMarkup" data-ts.code="%3Cform%20data-ts%3D%22Form%22%3E%0A%09%3Cfieldset%3E%0A%09%09%3Clabel%20class%3D%22ts-error%22%3E%0A%09%09%09%3Cspan%3EText%3C%2Fspan%3E%0A%09%09%09%3Cinput%20type%3D%22text%22%20%2F%3E%0A%09%09%3C%2Flabel%3E%0A%09%09%3Cdl%20class%3D%22ts-errors%22%3E%0A%09%09%09%3Cdt%3EText%3C%2Fdt%3E%0A%09%09%09%3Cdd%3EAn%20explanation%20of%20the%20error%20in%20question%3C%2Fdd%3E%0A%09%09%09%3Cdd%3EAnother%20explanation%20of%20the%20error%20in%20question%3C%2Fdd%3E%0A%09%09%3C%2Fdl%3E%0A%09%3C%2Ffieldset%3E%0A%3C%2Fform%3E">
                                 <ul data-ts="Panels">
                                     <li data-ts="Panel" data-ts.label="Render" data-ts.selected="true">

@@ -7,11 +7,11 @@
     <link rel="ts-app-icon" href="/v12/dist/assets/icon.svg">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
-    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.0.1.min.js"></script>
+    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.1.2.min.js"></script>
     <script src="/v12/dist/assets/dox.min.js"></script>
     <script src="/v12/dist/assets/mark.min.js"></script>
     <script src="/v12/dist/assets/jquery-2.2.4.min.js"></script>
-    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.0.1.min.css">
+    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.1.2.min.css">
     <link rel="stylesheet" href="/v12/dist/assets/dox.css">
     <link rel="prefetch" title="Header" href="index.html">
     <link rel="prefetch" title="Tabs" href="tabs.html">
@@ -29,7 +29,10 @@
                 <div data-ts="Panel">
                     <article>
                         <section id="buttons-desc" data-important="THIS GETS INCLUDED IN OTHER PAGES!">
-                            <p>Add buttons to the TopBar with the <code>buttons</code> method. This both sets and gets. If you omit the argument, you&quot;ll get the current buttons (jQuery style).</p>
+                            <p>
+                                Add buttons to the TopBar with the <code>buttons</code> method. This both sets and gets.
+                                If you omit the argument, you&quot;ll get the current buttons (jQuery style).
+                            </p>
                             <figure data-ts="DoxScript" class="attention runnable" data-ts.code="ts.ui.TopBar.buttons(%5B%0A%09%7Blabel%20%3A%20&apos;Primary&apos;%2C%20type%20%3A%20&apos;ts-primary&apos;%7D%2C%0A%09%7Blabel%20%3A%20&apos;Secondary&apos;%2C%20type%20%3A%20&apos;ts-secondary&apos;%7D%2C%0A%09%7Blabel%20%3A%20&apos;Tertiary%20One&apos;%7D%2C%0A%09%7Blabel%20%3A%20&apos;Tertiary%20Two&apos;%7D%0A%5D)%3B">
                                 <script type="runnable">
                                     ts.ui.TopBar.buttons([
@@ -48,25 +51,41 @@
 	<span class="token punctuation">{</span>label <span class="token punctuation">:</span> <span class="token string">&apos;Tertiary Two&apos;</span><span class="token punctuation">}</span>
 <span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
                             </figure>
-                            <p>You can use array methods like <code>push</code>, <code>pop</code>, <code>shift</code>, <code>unshift</code>, <code>splice</code>, <code>reverse</code> and so on to manage buttons. Just note that the buttons <code>length</code> is readonly.</p>
+                            <p>
+                                You can use array methods like <code>push</code>, <code>pop</code>, <code>shift</code>,
+                                <code>unshift</code>, <code>splice</code>, <code>reverse</code> and so on to manage
+                                buttons. Just note that the buttons <code>length</code> is readonly.
+                            </p>
                             <ul>
-                                <li>The buttons <code class="attr-name">type</code> property works like the CSS <code class="attr-name">class</code> for a regular Button</li>
-                                <li>The TopBar will automatically sort all buttons from primary to tertiary.</li>
-                                <li>If there&quot;s more than one tertiary button, these will be pushed to an Aside.</li>
-                                <li>In the mobile breakpoint, even secondary buttons will be pushed to the Aside.</li>
+                                <li>
+                                    The buttons <code class="attr-name">type</code> property works like the CSS
+                                    <code class="attr-name">class</code> for a regular Button
+                                </li>
+                                <li>
+                                    The TopBar will automatically sort all buttons from primary to tertiary.
+                                </li>
+                                <li>
+                                    If there&quot;s more than one tertiary button, these will be pushed to an Aside.
+                                </li>
+                                <li>
+                                    In the mobile breakpoint, even secondary buttons will be pushed to the Aside.
+                                </li>
                             </ul>
-                            <p>Buttons won&quot;t actually do anything unless you define the <code>onclick</code> method.</p>
+                            <p>
+                                Buttons won&quot;t actually do anything unless you define the
+                                <code>onclick</code> method.
+                            </p>
                             <p>
                                 <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.TopBar.buttons().splice(0%2C%201%2C%20%7B%0A%09label%20%3A%20&apos;Click%20me!&apos;%2C%0A%09type%20%3A%20&apos;ts-primary&apos;%2C%0A%09onclick%3A%20function()%20%7B%0A%09%09this.label%20%3D%20&apos;Thanks&apos;%3B%0A%09%7D%0A%7D)%3B">
                                     <script type="runnable">
                                         ts.ui.TopBar.buttons().splice(0, 1, {
-							label : 'Click me!',
-							type : 'ts-primary',
-							onclick: function() {
-								this.label = 'Thanks';
-							}
-						});
-					</script>
+								label : 'Click me!',
+								type : 'ts-primary',
+								onclick: function() {
+									this.label = 'Thanks';
+								}
+							});
+						</script>
                                     <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                                     <div data-ts="Panel">
                                         <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>TopBar<span class="token punctuation">.</span><span class="token function">buttons<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">splice<span class="token punctuation">(</span></span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
@@ -78,7 +97,9 @@
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
                                 </figure>
                             </p>
-                            <p>Fortunately, you can always change what happens when a button gets clicked.</p>
+                            <p>
+                                Fortunately, you can always change what happens when a button gets clicked.
+                            </p>
                             <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.TopBar.buttons().forEach(function(button%2C%20index)%20%7B%0A%09button.label%20%3D%20%22Button%20%22%20%2B%20(index%20%2B%201)%3B%0A%09button.onclick%20%3D%20function()%20%7B%0A%09%09ts.ui.Notification.success(this.label)%3B%0A%09%7D%3B%0A%7D)%3B">
                                 <script type="runnable">
                                     ts.ui.TopBar.buttons().forEach((button, index) => {
@@ -98,7 +119,12 @@
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
                             </figure>
                             <h3><span>Query buttons</span></h3>
-                            <p>You can locate buttons by index in the <code>buttons</code> collection. But since this isn&quot;t likely to match the order in which they appear on screen, it&quot;s easier to give the buttons an <code>id</code> and find them using <code>buttons.get()</code>.</p>
+                            <p>
+                                You can locate buttons by index in the
+                                <code>buttons</code> collection. But since this isn&quot;t likely to match the order in which
+                                they appear on screen, it&quot;s easier to give the buttons an <code>id</code> and find them
+                                using <code>buttons.get()</code>.
+                            </p>
                             <figure data-ts="DoxScript" class="runnable" data-ts.code="var%20buttons%20%3D%20ts.ui.TopBar.buttons()%3B%0Abuttons.push(%7B%20id%3A%20&apos;example-button&apos;%20%7D)%3B%0Avar%20button%20%3D%20buttons.get(&apos;example-button&apos;)%3B%0Abutton.label%20%3D%20&apos;My%20Button&apos;%3B%0Abutton.type%20%3D%20&apos;ts-secondary&apos;%3B">
                                 <script type="runnable">
                                     var buttons = ts.ui.TopBar.buttons();
@@ -123,7 +149,10 @@ button<span class="token punctuation">.</span>type <span class="token operator">
 				</div>
 				-->
                             <h3><span>Hide buttons</span></h3>
-                            <p>You can <code>hide()</code> and <code>show()</code> buttons. You can also toggle <code>visible</code>.</p>
+                            <p>
+                                You can <code>hide()</code> and <code>show()</code> buttons. You can also toggle
+                                <code>visible</code>.
+                            </p>
                             <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.TopBar.buttons().forEach(function(button)%20%7B%0A%09if(button.visible)%20%7B%0A%09%09button.hide()%3B%0A%09%7D%20else%20%7B%0A%09%09button.show()%3B%0A%09%7D%0A%7D)%3B">
                                 <script type="runnable">
                                     ts.ui.TopBar.buttons().forEach(button => {
@@ -145,7 +174,10 @@ button<span class="token punctuation">.</span>type <span class="token operator">
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
                             </figure>
                             <h3><span>Disable buttons</span></h3>
-                            <p>You can <code>disable()</code> and <code>enable()</code> buttons. You can also toggle <code>disabled</code>.</p>
+                            <p>
+                                You can <code>disable()</code> and <code>enable()</code> buttons. You can also toggle
+                                <code>disabled</code>.
+                            </p>
                             <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.TopBar.buttons().forEach(function(button)%20%7B%0A%09if(button.disabled)%20%7B%0A%09%09button.enable()%3B%0A%09%7D%20else%20%7B%0A%09%09button.disable()%3B%0A%09%7D%0A%7D)%3B">
                                 <script type="runnable">
                                     ts.ui.TopBar.buttons().forEach(button => {
@@ -167,7 +199,10 @@ button<span class="token punctuation">.</span>type <span class="token operator">
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
                             </figure>
                             <h3><span>Busy buttons</span></h3>
-                            <p>We can display a temporary progress indicator with the <code>busy</code> and <code>done</code> methods.</p>
+                            <p>
+                                We can display a temporary progress indicator with the
+                                <code>busy</code> and <code>done</code> methods.
+                            </p>
                             <figure data-ts="DoxScript" class="runnable" data-ts.code="var%20button%20%3D%20ts.ui.TopBar.buttons()%5B0%5D%3B%0Abutton.busy()%3B%0AsetTimeout(function()%20%7B%0A%09button.done()%3B%0A%7D%2C%201000)%3B">
                                 <script type="runnable">
                                     var button = ts.ui.TopBar.buttons()[0];
@@ -202,15 +237,17 @@ button<span class="token punctuation">.</span><span class="token function">busy<
 <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token number">1000</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
                             </figure>
                             <h3><span>Button groups</span></h3>
-                            <p>You can also <em>group buttons in arrays</em> to create button groups that look like this:</p>
-                            <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.TopBar.buttons(%5B%0A%09%7B%20label%3A%20&apos;Normal&apos;%7D%2C%0A%09%7B%20label%3A%20&apos;Normal&apos;%7D%2C%0A%09%5B%0A%09%09%7B%20label%3A%20&apos;Accept&apos;%2C%20type%3A%20&apos;ts-primary&apos;%20%7D%2C%0A%09%09%7B%20label%3A%20&apos;Reject&apos;%2C%20type%3A%20&apos;ts-danger&apos;%20%7D%09%0A%09%5D%0A%5D)%3B">
+                            <p>
+                                You can also <em>group buttons in arrays</em> to create button groups that look like this:
+                            </p>
+                            <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.TopBar.buttons(%5B%0A%09%7B%20label%3A%20&apos;Normal&apos;%7D%2C%0A%09%7B%20label%3A%20&apos;Normal&apos;%7D%2C%0A%09%5B%0A%09%09%7B%20label%3A%20&apos;Accept&apos;%2C%20type%3A%20&apos;ts-primary&apos;%20%7D%2C%0A%09%09%7B%20label%3A%20&apos;Reject&apos;%2C%20type%3A%20&apos;ts-danger&apos;%20%7D%0A%09%5D%0A%5D)%3B">
                                 <script type="runnable">
                                     ts.ui.TopBar.buttons([
 							{ label: 'Normal'},
 							{ label: 'Normal'},
 							[
 								{ label: 'Accept', type: 'ts-primary' },
-								{ label: 'Reject', type: 'ts-danger' }	
+								{ label: 'Reject', type: 'ts-danger' }
 							]
 						]);
 					</script>
@@ -221,11 +258,13 @@ button<span class="token punctuation">.</span><span class="token function">busy<
 	<span class="token punctuation">{</span> label<span class="token punctuation">:</span> <span class="token string">&apos;Normal&apos;</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
 	<span class="token punctuation">[</span>
 		<span class="token punctuation">{</span> label<span class="token punctuation">:</span> <span class="token string">&apos;Accept&apos;</span><span class="token punctuation">,</span> type<span class="token punctuation">:</span> <span class="token string">&apos;ts-primary&apos;</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
-		<span class="token punctuation">{</span> label<span class="token punctuation">:</span> <span class="token string">&apos;Reject&apos;</span><span class="token punctuation">,</span> type<span class="token punctuation">:</span> <span class="token string">&apos;ts-danger&apos;</span> <span class="token punctuation">}</span>	
+		<span class="token punctuation">{</span> label<span class="token punctuation">:</span> <span class="token string">&apos;Reject&apos;</span><span class="token punctuation">,</span> type<span class="token punctuation">:</span> <span class="token string">&apos;ts-danger&apos;</span> <span class="token punctuation">}</span>
 	<span class="token punctuation">]</span>
 <span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
                             </figure>
-                            <p>You can of course also create grouped buttons with icons instead of text.</p>
+                            <p>
+                                You can of course also create grouped buttons with icons instead of text.
+                            </p>
                             <figure data-ts="DoxScript" class="runnable" data-ts.code="var%20group%20%3D%20ts.ui.TopBar.buttons()%5B2%5D%3B%0Agroup.push(%7B%0A%09icon%3A%20&apos;ts-icon-other&apos;%2C%0A%09type%3A%20&apos;ts-danger&apos;%0A%7D)%3B">
                                 <script type="runnable">
                                     var group = ts.ui.TopBar.buttons()[2];
@@ -244,7 +283,9 @@ group<span class="token punctuation">.</span><span class="token function">push<s
                             </figure>
                         </section>
                         <section id="buttons-api" data-important="THIS GETS INCLUDED IN OTHER PAGES!">
-                            <p>Here&quot;s a summary of the <code>buttons</code> collection and <code>button</code> model.</p>
+                            <p>
+                                Here&quot;s a summary of the <code>buttons</code> collection and <code>button</code> model.
+                            </p>
                             <div data-ts="DoxApi" data-ts.code="%7B%0A%09%22name%22%3A%20%22ts.ui.ButtonCollection%22%2C%0A%09%22methods%22%3A%20%5B%0A%09%09%7B%0A%09%09%09%22name%22%3A%20%22push%22%2C%0A%09%09%09%22args%22%3A%20%22o1%2C%20o2%2C%20...%22%2C%0A%09%09%09%22desc%22%3A%20%22Add%20button(s)%20to%20the%20end%20of%20the%20collection.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09%22name%22%3A%20%22unshift%22%2C%0A%09%09%09%22args%22%3A%20%22o1%2C%20o2%2C%20...%22%2C%0A%09%09%09%22desc%22%3A%20%22Add%20button(s)%20to%20the%20front%20of%20the%20collection.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09%22name%22%3A%20%22pop%22%2C%0A%09%09%09%22desc%22%3A%20%22Remove%20and%20return%20the%20last%20button.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09%22name%22%3A%20%22shift%22%2C%0A%09%09%09%22desc%22%3A%20%22Remove%20and%20return%20the%20first%20button.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09%22name%22%3A%20%22splice%22%2C%0A%09%09%09%22args%22%3A%20%22i%2C%20d%2C%20o1%2C%20o2%2C%20...%22%2C%0A%09%09%09%22desc%22%3A%20%22Insert%20button(s)%20at%20%60i%60%2C%20optionally%20deleting%20%60d%60%20amount%20of%20buttons.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09%22name%22%3A%20%22get%22%2C%0A%09%09%09%22args%22%3A%20%22string%7Cnumber%22%2C%0A%09%09%09%22desc%22%3A%20%22Get%20button%20by%20%60id%60%20or%20numeric%20index.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09%22name%22%3A%20%22clear%22%2C%0A%09%09%09%22desc%22%3A%20%22Remove%20all%20buttons.%22%0A%09%09%7D%0A%09%5D%0A%7D">
                             </div>
                             <div data-ts="DoxApi" data-ts.code="%7B%0A%09%22name%22%3A%20%22ts.ui.ButtonModel%22%2C%0A%09%22properties%22%3A%20%5B%0A%09%09%7B%0A%09%09%09%22name%22%3A%20%22id%22%2C%0A%09%09%09%22type%22%3A%20%22string%22%2C%0A%09%09%09%22desc%22%3A%20%22Optional%20button%20%60id%60.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09%22name%22%3A%20%22label%22%2C%0A%09%09%09%22type%22%3A%20%22string%22%2C%0A%09%09%09%22desc%22%3A%20%22The%20buttons%20label.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09%22name%22%3A%20%22icon%22%2C%0A%09%09%09%22type%22%3A%20%22string%22%2C%0A%09%09%09%22desc%22%3A%20%22The%20button%20icon%20(label%20must%20be%20%60null%60%20or%20empty).%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09%22name%22%3A%20%22info%22%2C%0A%09%09%09%22type%22%3A%20%22string%22%2C%0A%09%09%09%22desc%22%3A%20%22The%20button%20tooltip%20(hover%20text).%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09%22name%22%3A%20%22visible%22%2C%0A%09%09%09%22type%22%3A%20%22boolean%22%2C%0A%09%09%09%22desc%22%3A%20%22Button%20is%20visible%3F%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09%22name%22%3A%20%22disabled%22%2C%0A%09%09%09%22type%22%3A%20%22boolean%22%2C%0A%09%09%09%22desc%22%3A%20%22Button%20is%20disabled%3F%22%0A%09%09%7D%0A%09%5D%2C%0A%09%22methods%22%3A%20%5B%0A%09%09%7B%0A%09%09%09%22name%22%3A%20%22onclick%22%2C%0A%09%09%09%22desc%22%3A%20%22Called%20whenever%20the%20button%20gets%20clicked.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09%22name%22%3A%20%22busy%22%2C%0A%09%09%09%22args%22%3A%20%22(string)%22%2C%0A%09%09%09%22desc%22%3A%20%22Mark%20button%20busy%20with%20optional%20message.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09%22name%22%3A%20%22done%22%2C%0A%09%09%09%22desc%22%3A%20%22Mark%20the%20button%20done%20(not%20busy).%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09%22name%22%3A%20%22hide%22%2C%0A%09%09%09%22desc%22%3A%20%22Hide%20the%20button.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09%22name%22%3A%20%22show%22%2C%0A%09%09%09%22desc%22%3A%20%22Show%20the%20button.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09%22name%22%3A%20%22disable%22%2C%0A%09%09%09%22desc%22%3A%20%22Disable%20the%20button.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09%22name%22%3A%20%22enable%22%2C%0A%09%09%09%22desc%22%3A%20%22Enable%20the%20button.%22%0A%09%09%7D%0A%09%5D%0A%7D">

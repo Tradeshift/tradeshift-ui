@@ -52,17 +52,13 @@
 	}
 
 	function rendercell(cell) {
-		var cellValue = cell.stringify();
-		var cellData = getcelldata(cell);
-		onrendercell(cellData);
-
-		cell.cellData = cellData;
+		onrendercell(cell);
 
 		var other = cell.prev || cell.next;
 		var allow = allowcell(cell, other);
 		@name = allow ? 'accept' : 'reject';
-		@value = allow ? cellValue : null; 
-		@class = classname(cell, {
+		@value = allow ? cell.stringify() : null;
+		@class = classname(cell.className, {
 			'ts-calendar-other' : other,
 			'ts-calendar-today' : cell.today,
 			'ts-selected' : cell.selected,
@@ -75,37 +71,19 @@
 		</td>
 	}
 
-	function getcelldata(cell){
-		var cellData = {};
-		var prop;
+	function classname(userClasses, tsClasses) {
+		var classes =
+			Object.keys(tsClasses).filter(function(c) {
+				return tsClasses[c];
+			}) || [];
 
-		for(prop in cell){
-			cellData[prop] = cell[prop];
-		}
-
-		return cellData;
+		return classes.concat(
+			(userClasses || '').split(' ').filter(function(c) {
+				return classes.indexOf(c) < 0;
+			})
+		).join(' ');
 	}
 
-	function classname(cell, classes) {
-		var combinedClasses;
-		var duplicateClassIndex = {};
-		var customClasses = (cell.cellData.className || '').split(' ');
-		var internalClasses = Object.keys(classes).filter(function(c) {
-			return classes[c];
-		}) || [];
-
-		combinedClasses = internalClasses.concat(customClasses).filter(function(c){
-			if(duplicateClassIndex[c])
-			{
-				return false;
-			}
-
-			duplicateClassIndex[c] = true;
-			return true;
-		});
-
-		return combinedClasses.join(' ') || null;
-	}
 
 	function allowcell(cell, other) {
 		var all = Number.MAX_VALUE;
@@ -113,7 +91,7 @@
 			minDay !== all && maxDay !== (1 - all) &&
 			!lower(cell.day, minDay, !other, !prevMonth, cell.prev) &&
 			!upper(cell.day, maxDay, !other, !nextMonth, cell.next) &&
-			cell.cellData.selectable !== false
+			cell.selectable !== false
 		);
 	}
 

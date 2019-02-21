@@ -35,6 +35,26 @@
 								value: '1984-05-23',
 								min: '1984-01-01',
 								max: '1985-12-24',
+								onselect: function() {
+									this.close();
+								},
+								onclosed: function() {
+									this.dispose();
+								}
+							}).open();
+						</script>
+					</figure>
+					<p>
+						You can also use the <code>onrendercell</code> callback to manually adjust which cells are selectable, as well
+						add in additional classes per cell for styling purposes.
+					</p>
+					<figure data-ts="DoxScript">
+						<script type="runnable">
+							ts.ui.DatePicker({
+								title: "Manually Set Clickable Dates",
+								value: '1984-05-23',
+								min: '1984-01-01',
+								max: '1985-12-24',
 								onrendercell: function(cell){
 									var jsDate = new Date(cell.year, cell.month, cell.day);
 									var isWeekday = ![0,6].includes(jsDate.getDay());
@@ -53,71 +73,55 @@
 						</script>
 					</figure>
 					<p>The object argument configures a <code>ts.ui.DatePickerModel</code> as outlined below.</p>
-					<table class="api">
-						<caption>
-							<code>ts.ui.DatePickerModel</code>
-						</caption>
-						<tbody>
-							<tr>
-								<th colspan="3">Instance properties</th>
-							</tr>
-							<tr>
-								<td><code>title</code></td>
-								<td><code>{string}</code></td>
-								<td>Appears as the title of the DatePicker</td>
-							</tr>
-							<tr>
-								<td><code>value<code></td>
-								<td><code>{string}</code></td>
-								<td>
-									The selected date. Must be dash-separated, ISO 8601 formatted date string e.g. <code>2015-01-01</code>
-								</td>
-							</tr>
-							<tr>
-								<th colspan="3">Instance methods</th>
-							</tr>
-							<tr>
-								<td><code>open</code></td>
-								<td><code>{void}</code></td>
-								<td>Open the DatePicker</td>
-							</tr>
-							<tr>
-								<td><code>close</code></td>
-								<td><code>{void}</code></td>
-								<td>Close the DatePicker</td>
-							</tr>
-							<tr>
-								<td><code>onrendercell</code></td>
-								<td><code>{void}</code></td>
-								<td>
-									Called whenever the datepicker renders a cell, used to determine if a cell is selectable through
-									the <code>cell.selectable</code> property. Can also be an injection point for adding in specialized
-									classes for the current cell with <code>cell.className</code>.
-								</td>
-							</tr>
-							<tr>
-								<td><code>onselect</code></td>
-								<td><code>{void}</code></td>
-								<td>
-									Called whenever selection changes with two
-									arguments <code>newval</code> and <code>oldval<code>.
-								</td>
-							</tr>
-							<tr>
-								<td><code>onclosed</code></td>
-								<td><code>{void}</code></td>
-								<td>
-									Event listener for close event. Called after
-									aside closing animation is completed.
-								</td>
-							</tr>
-							<tr>
-								<td><code>dispose</code></td>
-								<td><code>{void}</code></td>
-								<td>Cleanup the DataPicker (recommended)</td>
-							</tr>
-						</tbody>
-					</table>
+					<div data-ts="DoxApi">
+						<script type="application.json">
+						{
+							"name": "ts.ui.DatePickerModel",
+							"properties": [
+								{
+									"name": "title",
+									"type": "string",
+									"desc": "Appears as the title of the DatePicker"
+								},
+								{
+									"name": "value",
+									"type": "string",
+									"desc": "The selected date. Must be dash-separated, ISO 8601 formatted date string e.g. 2015-01-01"
+								},
+								{
+									"name": "open",
+									"type": "void",
+									"desc": "Open the DatePicker"
+								},
+								{
+									"name": "close",
+									"type": "void",
+									"desc": "Close the DatePicker"
+								},
+								{
+									"name": "onrendercell",
+									"type": "void",
+									"desc": " Called whenever the datepicker renders a cell, used to determine if a cell is selectable through the `cell.selectable` property. Can also be an injection point for adding in specialized classes for the current cell with `cell.className`"
+								},
+								{
+									"name": "onselect",
+									"type": "void",
+									"desc": "Called whenever selection changes with two arguments `newval` and `oldval`"
+								},
+								{
+									"name": "onclosed",
+									"type": "void",
+									"desc": "Event listener for close event. Called after aside closing animation is completed."
+								},
+								{
+									"name": "dispose",
+									"type": "void",
+									"desc": "Cleanup the DataPicker (recommended)"
+								}
+							]
+						}
+						</script>
+					</div>
 				</section>
 			</article>
 	</body>

@@ -7,11 +7,11 @@
     <link rel="ts-app-icon" href="/v12/dist/assets/icon.svg">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
-    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.0.1.min.js"></script>
+    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.1.2.min.js"></script>
     <script src="/v12/dist/assets/dox.min.js"></script>
     <script src="/v12/dist/assets/mark.min.js"></script>
     <script src="/v12/dist/assets/jquery-2.2.4.min.js"></script>
-    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.0.1.min.css">
+    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.1.2.min.css">
     <link rel="stylesheet" href="/v12/dist/assets/dox.css">
     <link rel="prefetch" title="Inline" href="index.html">
     <link rel="prefetch" title="API-only" href="api-only.html">
@@ -26,7 +26,12 @@
                     <article>
                         <h1><span>Inline components</span></h1>
                         <section class="desc">
-                            <p>These components depend on special markup structures and some may expose features though a JavaScript API. Other than specifying the <code>data-ts</code> attribute as shown, there is no need to initialize the components in any special way.</p>
+                            <p>
+                                These components depend on special markup structures and some may expose features though a
+                                JavaScript API. Other than specifying the
+                                <code>data-ts</code> attribute as shown, there is no need to initialize the components in
+                                any special way.
+                            </p>
                         </section>
                         <section>
                             <a data-ts="Button" href="/v12/dist/components/buttons/">
@@ -128,7 +133,24 @@
                             <div class="splitscreen-container">
                                 <ul class="splitscreen">
                                     <li>
-                                        <figure data-ts="DoxMarkup" data-ts.code="%3Cdiv%20data-ts%3D%22CompanyCard%22%3E%0A%09%3Cscript%20type%3D%22application%2Fjson%22%3E%0A%09%09%7B%0A%09%09%09%22id%22%3A%20%226bf17754-f9de-4e31-aa31-bd3ff765b9c2%22%2C%0A%09%09%09%22data%22%3A%20%7B%0A%09%09%09%09%22name%22%3A%20%22Tradeshift%22%2C%0A%09%09%09%09%22logo%22%3A%20%22assets%2Flogo.png%22%2C%0A%09%09%09%09%22size%22%3A%20%22100%E2%80%93249%22%2C%0A%09%09%09%09%22location%22%3A%20%22San%20Francisco%2C%20California%22%2C%0A%09%09%09%09%22industry%22%3A%20%22Software%20%26%20IT%22%2C%0A%09%09%09%09%22connection%22%3A%202%0A%09%09%09%7D%0A%09%09%7D%0A%09%09%3C%2Fscript%3E%0A%09%3C%2Fdiv%3E">
+                                        <figure data-ts="DoxMarkup" data-ts.code="%3Cdiv%20data-ts%3D%22CompanyCard%22%3E%0A%09%3Cscript%20type%3D%22application%2Fjson%22%3E%0A%09%09%7B%0A%09%09%09%22id%22%3A%20%226bf17754-f9de-4e31-aa31-bd3ff765b9c2%22%2C%0A%09%09%09%22data%22%3A%20%7B%0A%09%09%09%09%22name%22%3A%20%22Tradeshift%22%2C%0A%09%09%09%09%22logo%22%3A%20%22assets%2Flogo.png%22%2C%0A%09%09%09%09%22size%22%3A%20%22100%E2%80%93249%22%2C%0A%09%09%09%09%22location%22%3A%20%22San%20Francisco%2C%20California%22%2C%0A%09%09%09%09%22industry%22%3A%20%22Software%20%26%20IT%22%2C%0A%09%09%09%09%22connection%22%3A%202%0A%09%09%09%7D%0A%09%09%7D%0A%09%3C%2Fscript%3E%0A%3C%2Fdiv%3E">
+                                            <script type="text/html">
+                                                <div data-ts="CompanyCard">
+									<scrxpt type="application/json">
+										{
+											"id": "6bf17754-f9de-4e31-aa31-bd3ff765b9c2",
+											"data": {
+												"name": "Tradeshift",
+												"logo": "assets/logo.png",
+												"size": "100–249",
+												"location": "San Francisco, California",
+												"industry": "Software & IT",
+												"connection": 2
+											}
+										}
+									</scrxpt>
+								</div>
+							</script>
                                             <ul data-ts="Panels">
                                                 <li data-ts="Panel" data-ts.selected="true">
                                                     <pre class="prism language-markup"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>CompanyCard<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
@@ -144,8 +166,8 @@
 				<span class="token string">&quot;connection&quot;</span><span class="token punctuation">:</span> <span class="token number">2</span>
 			<span class="token punctuation">}</span>
 		<span class="token punctuation">}</span>
-		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span></span>
-	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span></code></pre>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span></code></pre>
                                                 </li>
                                             </ul>
                                         </figure>
@@ -178,14 +200,14 @@
                             <div class="splitscreen-container">
                                 <ul class="splitscreen">
                                     <li>
-                                        <figure data-ts="DoxMarkup" data-ts.code="%3Cform%20data-ts%3D%22Form%22%3E%0A%09%3Cfieldset%3E%0A%09%09%3Clabel%3E%0A%09%09%09%3Cspan%3EText%3C%2Fspan%3E%0A%09%09%09%3Cinput%20type%3D%22text%22%20required%2F%3E%0A%09%3C%2Flabel%3E%0A%09%3C%2Ffieldset%3E%0A%3C%2Fform%3E">
+                                        <figure data-ts="DoxMarkup" data-ts.code="%3Cform%20data-ts%3D%22Form%22%3E%0A%09%3Cfieldset%3E%0A%09%09%3Clabel%3E%0A%09%09%09%3Cspan%3EText%3C%2Fspan%3E%0A%09%09%09%3Cinput%20type%3D%22text%22%20required%20%2F%3E%0A%09%09%3C%2Flabel%3E%0A%09%3C%2Ffieldset%3E%0A%3C%2Fform%3E">
                                             <script type="text/html">
                                                 <form data-ts="Form">
 									<fieldset>
 										<label>
 											<span>Text</span>
-											<input type="text" required/>
-									</label>
+											<input type="text" required />
+										</label>
 									</fieldset>
 								</form>
 							</script>
@@ -195,8 +217,8 @@
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>fieldset</span><span class="token punctuation">&gt;</span></span>
 		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>label</span><span class="token punctuation">&gt;</span></span>
 			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">&gt;</span></span>Text<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span>
-			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>text<span class="token punctuation">&quot;</span></span> <span class="token attr-name">required</span><span class="token punctuation">/&gt;</span></span>
-	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>label</span><span class="token punctuation">&gt;</span></span>
+			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>text<span class="token punctuation">&quot;</span></span> <span class="token attr-name">required</span> <span class="token punctuation">/&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>label</span><span class="token punctuation">&gt;</span></span>
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>fieldset</span><span class="token punctuation">&gt;</span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>form</span><span class="token punctuation">&gt;</span></span></code></pre>
                                                 </li>
@@ -584,25 +606,43 @@
                             <a data-ts="Button" href="/v12/dist/components/icons/">
                                 <h3><span>Icons</span></h3>
                             </a>
-                            <p>We support <a data-ts="Button" href="/v12/dist/components/icons/">a range</a> of icons. Here are a few randomly selected ones.</p>
+                            <p>
+                                We support
+                                <a data-ts="Button" href="/v12/dist/components/icons/">a range</a> of icons. Here are a few
+                                randomly selected ones.
+                            </p>
                             <div class="splitscreen-container">
                                 <ul class="splitscreen">
                                     <li>
-                                        <figure data-ts="DoxMarkup" data-ts.code="%3Ci%20class%3D%22ts-icon-apps%22%20%2F%3E%0A%3Ci%20class%3D%22ts-icon-myapps%22%20%2F%3E%0A%3Ci%20class%3D%22ts-icon-archive%22%20%2F%3E%0A%3Ci%20class%3D%22ts-icon-broadcastmessage%22%20%2F%3E%0A%3Ci%20class%3D%22ts-icon-cart%22%20%2F%3E%0A%3Ci%20class%3D%22ts-icon-discovery%22%20%2F%3E%0A%3Ci%20class%3D%22ts-icon-dispute%22%20%2F%3E%0A%3Ci%20class%3D%22ts-icon-halt%22%20%2F%3E%0A%3Ci%20class%3D%22ts-icon-heart%22%20%2F%3E%0A%3Ci%20class%3D%22ts-icon-pay%22%20%2F%3E%0A%3Ci%20class%3D%22ts-icon-timer%22%20%2F%3E%0A%3Ci%20class%3D%22ts-icon-send%22%20%2F%3E">
+                                        <figure data-ts="DoxMarkup" data-ts.code="%3Ci%20class%3D%22ts-icon-apps%22%20%3E%3C%2Fi%3E%0A%3Ci%20class%3D%22ts-icon-myapps%22%20%3E%3C%2Fi%3E%0A%3Ci%20class%3D%22ts-icon-archive%22%20%3E%3C%2Fi%3E%0A%3Ci%20class%3D%22ts-icon-broadcastmessage%22%20%3E%3C%2Fi%3E%0A%3Ci%20class%3D%22ts-icon-cart%22%20%3E%3C%2Fi%3E%0A%3Ci%20class%3D%22ts-icon-discovery%22%20%3E%3C%2Fi%3E%0A%3Ci%20class%3D%22ts-icon-dispute%22%20%3E%3C%2Fi%3E%0A%3Ci%20class%3D%22ts-icon-halt%22%20%3E%3C%2Fi%3E%0A%3Ci%20class%3D%22ts-icon-heart%22%20%3E%3C%2Fi%3E%0A%3Ci%20class%3D%22ts-icon-pay%22%20%3E%3C%2Fi%3E%0A%3Ci%20class%3D%22ts-icon-timer%22%20%3E%3C%2Fi%3E%0A%3Ci%20class%3D%22ts-icon-send%22%20%3E%3C%2Fi%3E">
+                                            <script type="text/html">
+                                                <i class="ts-icon-apps" ></i>
+								<i class="ts-icon-myapps" ></i>
+								<i class="ts-icon-archive" ></i>
+								<i class="ts-icon-broadcastmessage" ></i>
+								<i class="ts-icon-cart" ></i>
+								<i class="ts-icon-discovery" ></i>
+								<i class="ts-icon-dispute" ></i>
+								<i class="ts-icon-halt" ></i>
+								<i class="ts-icon-heart" ></i>
+								<i class="ts-icon-pay" ></i>
+								<i class="ts-icon-timer" ></i>
+								<i class="ts-icon-send" ></i>
+							</script>
                                             <ul data-ts="Panels">
                                                 <li data-ts="Panel" data-ts.selected="true">
-                                                    <pre class="prism language-markup"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>i</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>ts-icon-apps<span class="token punctuation">&quot;</span></span> <span class="token punctuation">/&gt;</span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>i</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>ts-icon-myapps<span class="token punctuation">&quot;</span></span> <span class="token punctuation">/&gt;</span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>i</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>ts-icon-archive<span class="token punctuation">&quot;</span></span> <span class="token punctuation">/&gt;</span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>i</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>ts-icon-broadcastmessage<span class="token punctuation">&quot;</span></span> <span class="token punctuation">/&gt;</span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>i</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>ts-icon-cart<span class="token punctuation">&quot;</span></span> <span class="token punctuation">/&gt;</span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>i</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>ts-icon-discovery<span class="token punctuation">&quot;</span></span> <span class="token punctuation">/&gt;</span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>i</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>ts-icon-dispute<span class="token punctuation">&quot;</span></span> <span class="token punctuation">/&gt;</span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>i</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>ts-icon-halt<span class="token punctuation">&quot;</span></span> <span class="token punctuation">/&gt;</span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>i</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>ts-icon-heart<span class="token punctuation">&quot;</span></span> <span class="token punctuation">/&gt;</span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>i</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>ts-icon-pay<span class="token punctuation">&quot;</span></span> <span class="token punctuation">/&gt;</span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>i</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>ts-icon-timer<span class="token punctuation">&quot;</span></span> <span class="token punctuation">/&gt;</span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>i</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>ts-icon-send<span class="token punctuation">&quot;</span></span> <span class="token punctuation">/&gt;</span></span></code></pre>
+                                                    <pre class="prism language-markup"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>i</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>ts-icon-apps<span class="token punctuation">&quot;</span></span> <span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>i</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>i</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>ts-icon-myapps<span class="token punctuation">&quot;</span></span> <span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>i</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>i</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>ts-icon-archive<span class="token punctuation">&quot;</span></span> <span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>i</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>i</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>ts-icon-broadcastmessage<span class="token punctuation">&quot;</span></span> <span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>i</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>i</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>ts-icon-cart<span class="token punctuation">&quot;</span></span> <span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>i</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>i</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>ts-icon-discovery<span class="token punctuation">&quot;</span></span> <span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>i</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>i</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>ts-icon-dispute<span class="token punctuation">&quot;</span></span> <span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>i</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>i</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>ts-icon-halt<span class="token punctuation">&quot;</span></span> <span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>i</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>i</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>ts-icon-heart<span class="token punctuation">&quot;</span></span> <span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>i</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>i</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>ts-icon-pay<span class="token punctuation">&quot;</span></span> <span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>i</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>i</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>ts-icon-timer<span class="token punctuation">&quot;</span></span> <span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>i</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>i</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>ts-icon-send<span class="token punctuation">&quot;</span></span> <span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>i</span><span class="token punctuation">&gt;</span></span></code></pre>
                                                 </li>
                                             </ul>
                                         </figure>
@@ -628,7 +668,9 @@
                             <a data-ts="Button" href="/v12/dist/components/buttons/">
                                 <h3><span>Menu</span></h3>
                             </a>
-                            <p>Not to be confused with the main navigation, this is simply a list of selectable items.</p>
+                            <p>
+                                Not to be confused with the main navigation, this is simply a list of selectable items.
+                            </p>
                             <div class="splitscreen-container">
                                 <ul class="splitscreen">
                                     <li>
@@ -693,9 +735,12 @@
                         </section>
                         <section>
                             <a data-ts="Button" href="/v12/dist/components/notes/">
-                                <h3><span><span>Note</span></span></h3>
+                                <h3><span>Note</span></h3>
                             </a>
-                            <p>A nice way to inform the user about something on the page. This is <b>not</b> for status messages! It also works on page-level.</p>
+                            <p>
+                                A nice way to inform the user about something on the page. This is
+                                <b>not</b> for status messages! It also works on page-level.
+                            </p>
                             <div class="splitscreen-container">
                                 <ul class="splitscreen">
                                     <li>
@@ -734,6 +779,9 @@
                                 <ul class="splitscreen">
                                     <li>
                                         <figure data-ts="DoxMarkup" data-ts.code="%3Cdiv%20data-ts%3D%22Search%22%20id%3D%22mysearch%22%20class%3D%22ts-inset%22%3E%3C%2Fdiv%3E">
+                                            <script type="text/html">
+                                                <div data-ts="Search" id="mysearch" class="ts-inset"></div>
+							</script>
                                             <ul data-ts="Panels">
                                                 <li data-ts="Panel" data-ts.selected="true">
                                                     <pre class="prism language-markup"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Search<span class="token punctuation">&quot;</span></span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>mysearch<span class="token punctuation">&quot;</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>ts-inset<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span></code></pre>
@@ -749,8 +797,8 @@
                         </section>
                         <section>
                             <a data-ts="Button" href="/v12/dist/components/bars/tabbar.html">
-                                <span>TabBar
-                                </span></a>
+                                <h3><span>TabBar</span></h3>
+                            </a>
                             <p>An easy way to show tabs. Also works on page-level.</p>
                             <div class="splitscreen-container">
                                 <ul class="splitscreen">
@@ -807,8 +855,8 @@
 									var tabbar = ts.ui.get('#tabbar-example');
 									tabbar.tabs([
 										{
-											label: "Tab One",
-											onselect : function() {
+											label: 'Tab One',
+											onselect: function() {
 												if (firstload) {
 													firstload = false;
 												} else {
@@ -817,8 +865,8 @@
 											}
 										},
 										{
-											label: "Tab Two",
-											onselect : function() {
+											label: 'Tab Two',
+											onselect: function() {
 												ts.ui.Notification.success(this.label);
 											}
 										}
@@ -834,7 +882,9 @@
                             <a data-ts="Button" href="/v12/dist/components/table/">
                                 <h3><span>Table</span></h3>
                             </a>
-                            <p>Ranging from spreadsheet-style editing to just showing some tabular data.</p>
+                            <p>
+                                Ranging from spreadsheet-style editing to just showing some tabular data.
+                            </p>
                             <div class="splitscreen-container">
                                 <ul class="splitscreen">
                                     <li>
@@ -877,20 +927,20 @@
                                         <div data-ts="Table" id="table-example"></div>
                                         <script>
                                             gui.Broadcast.add(gui.BROADCAST_DID_SPIRITUALIZE, {
-							onbroadcast: function() {
-								var table = ts.ui.get('#table-example');
-								table.cols([
-									{label: 'Level', type: 'ts-number'},
-									{label: 'Character', flex: 2},
-									{label: 'Alignment', flex: 2},
-								]);
-								table.rows([
-									[21, 'Paladin Knight', 'Lawful Good'],
-									[13, 'Barbarian Queen', 'Neutral Evil'],
-									[11, 'Global Senior Vice President of Sales', 'Chaotic Evil']
-								]);
-							}
-						});
+								onbroadcast: function() {
+									var table = ts.ui.get('#table-example');
+									table.cols([
+										{ label: 'Level', type: 'ts-number' },
+										{ label: 'Character', flex: 2 },
+										{ label: 'Alignment', flex: 2 }
+									]);
+									table.rows([
+										[21, 'Paladin Knight', 'Lawful Good'],
+										[13, 'Barbarian Queen', 'Neutral Evil'],
+										[11, 'Global Senior Vice President of Sales', 'Chaotic Evil']
+									]);
+								}
+							});
 						</script>
                                     </li>
                                 </ul>
@@ -900,27 +950,29 @@
                             <a data-ts="Button" href="/v12/dist/components/tags/tag.html">
                                 <h3><span>Tags &amp; Labels</span></h3>
                             </a>
-                            <p>A set of interactive keywords that help to label, organize, and categorize objects.</p>
+                            <p>
+                                A set of interactive keywords that help to label, organize, and categorize objects.
+                            </p>
                             <div class="splitscreen-container">
                                 <ul class="splitscreen">
                                     <li>
                                         <figure data-ts="DoxMarkup" data-ts.code="%3Cscript%3E%0A%09const%20data%20%3D%20ts.ui.encode(%0A%09%09%5B%0A%09%09%09%5B&apos;Vision&apos;%2C%20%5B&apos;Blindsight&apos;%2C%20&apos;Truesight&apos;%2C%20&apos;Darkvision&apos;%5D%5D%0A%09%09%5D%0A%09)%3B%0A%09ts.ui.ready(()%20%3D%3E%20%7B%0A%09%09ts.ui.get(&apos;%23tag-clickable&apos;%2C%20tag%20%3D%3E%20%7B%0A%09%09%09tag.onclick%20%3D%20()%20%3D%3E%20%7B%0A%09%09%09%09ts.ui.Notification.success(&apos;Do%20you%20see%3F&apos;)%3B%0A%09%09%09%7D%3B%0A%09%09%7D)%3B%0A%09%7D)%3B%0A%3C%2Fscript%3E">
                                             <script type="text/html">
                                                 <scrxpt>
-										const data = ts.ui.encode(
-											[
-												['Vision', ['Blindsight', 'Truesight', 'Darkvision']]
-											]
-										);
-										ts.ui.ready(() => {
-											ts.ui.get('#tag-clickable', tag => {
-												tag.onclick = () => {
-													ts.ui.Notification.success('Do you see?');
-												};
-											});
+									const data = ts.ui.encode(
+										[
+											['Vision', ['Blindsight', 'Truesight', 'Darkvision']]
+										]
+									);
+									ts.ui.ready(() => {
+										ts.ui.get('#tag-clickable', tag => {
+											tag.onclick = () => {
+												ts.ui.Notification.success('Do you see?');
+											};
 										});
-									</scrxpt>
-								</script>
+									});
+								</scrxpt>
+							</script>
                                             <ul data-ts="Panels">
                                                 <li data-ts="Panel" data-ts.selected="true">
                                                     <pre class="prism language-markup"><code><span class="token script"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">&gt;</span></span>
@@ -943,19 +995,15 @@
                                     </li>
                                     <li>
                                         <script>
-                                            const data = ts.ui.encode(
-									[
-										['Vision', ['Blindsight', 'Truesight', 'Darkvision']]
-									]
-								);
-								ts.ui.ready(() => {
-									ts.ui.get('#tag-clickable', tag => {
-										tag.onclick = () => {
-											ts.ui.Notification.success('Do you see?');
-										};
-									});
+                                            const data = ts.ui.encode([['Vision', ['Blindsight', 'Truesight', 'Darkvision']]]);
+							ts.ui.ready(() => {
+								ts.ui.get('#tag-clickable', tag => {
+									tag.onclick = () => {
+										ts.ui.Notification.success('Do you see?');
+									};
 								});
-							</script>
+							});
+						</script>
                                         <figure id="tag-clickable" data-ts="Tag" data-ts.data="%5B%5B%22Vision%22%2C%5B%22Blindsight%22%2C%22Truesight%22%2C%22Darkvision%22%5D%5D%5D"></figure>
                                     </li>
                                 </ul>

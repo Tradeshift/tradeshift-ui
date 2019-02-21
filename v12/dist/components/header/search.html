@@ -7,11 +7,11 @@
     <link rel="ts-app-icon" href="/v12/dist/assets/icon.svg">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
-    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.0.1.min.js"></script>
+    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.1.2.min.js"></script>
     <script src="/v12/dist/assets/dox.min.js"></script>
     <script src="/v12/dist/assets/mark.min.js"></script>
     <script src="/v12/dist/assets/jquery-2.2.4.min.js"></script>
-    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.0.1.min.css">
+    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.1.2.min.css">
     <link rel="stylesheet" href="/v12/dist/assets/dox.css">
     <link rel="prefetch" title="Header" href="index.html">
     <link rel="prefetch" title="Tabs" href="tabs.html">
@@ -29,7 +29,11 @@
                 <div data-ts="Panel">
                     <article>
                         <section>
-                            <p>The <code>search</code> method reveals a dedicated search bar. The <code>info</code> property acts as placeholder and the <code>onsearch</code> method gets called whenever the user presses <code>ENTER</code>.</p>
+                            <p>
+                                The <code>search</code> method reveals a dedicated search bar. The
+                                <code>info</code> property acts as placeholder and the <code>onsearch</code> method gets
+                                called whenever the user presses <code>ENTER</code>.
+                            </p>
                             <figure data-ts="DoxScript" class="attention runnable" data-ts.code="ts.ui.Header.search(%7B%0A%09info%3A%20&apos;Search%20amongst%20all%20the%20things&apos;%2C%0A%09onsearch%3A%20function(value)%20%7B%0A%09%09ts.ui.Notification.success(value%20%7C%7C%20&apos;(nothing)&apos;)%3B%0A%09%7D%0A%7D)%3B">
                                 <script type="runnable">
                                     ts.ui.Header.search({
@@ -48,7 +52,9 @@
 	<span class="token punctuation">}</span>
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
                             </figure>
-                            <p>If defined, the <code>onidle</code> method gets called whenever the user pauses typing.</p>
+                            <p>
+                                If defined, the <code>onidle</code> method gets called whenever the user pauses typing.
+                            </p>
                             <figure data-ts="DoxScript" class="runnable" data-ts.code="var%20search%20%3D%20ts.ui.Header.search()%3B%0Asearch.value%20%3D%20&apos;Try%20it%20now!&apos;%3B%0Asearch.onidle%20%3D%20function(value)%20%7B%0A%09ts.ui.Notification.success(value)%3B%0A%7D%3B">
                                 <script type="runnable">
                                     var search = ts.ui.Header.search();
@@ -65,7 +71,11 @@ search<span class="token punctuation">.</span>onidle <span class="token operator
 	ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Notification<span class="token punctuation">.</span><span class="token function">success<span class="token punctuation">(</span></span>value<span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
                             </figure>
-                            <p>The <code>onidle</code> method will also be called when the field loses focus. The <code>idletime</code> property controls the timeout value, default is <code>500</code> (milliseconds). You can also add one or more buttons to the Search.</p>
+                            <p>
+                                The <code>onidle</code> method will also be called when the field loses focus. The
+                                <code>idletime</code> property controls the timeout value, default is
+                                <code>500</code> (milliseconds). You can also add one or more buttons to the Search.
+                            </p>
                             <figure data-ts="DoxScript" class="runnable" data-ts.code="var%20search%20%3D%20ts.ui.Header.search()%3B%0Asearch.buttons.push(%7B%0A%09label%3A%20&apos;Search%20Now!&apos;%2C%0A%09onclick%3A%20function()%20%7B%0A%09%09search.search()%3B%0A%09%7D%0A%7D)%3B">
                                 <script type="runnable">
                                     var search = ts.ui.Header.search();
@@ -86,7 +96,10 @@ search<span class="token punctuation">.</span>buttons<span class="token punctuat
 	<span class="token punctuation">}</span>
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
                             </figure>
-                            <p>The buttons have a <code>search</code> property that references the Search model. This will come in handy when you configure the Search via a single JSON payload.</p>
+                            <p>
+                                The buttons have a <code>search</code> property that references the Search model. This
+                                will come in handy when you configure the Search via a single JSON payload.
+                            </p>
                             <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.Header.search(%7B%0A%09info%3A%20&apos;Search%20amongst%20all%20the%20things&apos;%2C%0A%09buttons%3A%20%5B%7B%0A%09%09label%3A%20&apos;Advanced%20Search&apos;%2C%0A%09%09onclick%3A%20function()%20%7B%0A%09%09%09console.log(&apos;Loading%20advanced%20search...&apos;)%3B%0A%09%09%09this.search.hide()%3B%0A%09%09%7D%0A%09%7D%5D%0A%7D)%3B">
                                 <script type="runnable">
                                     ts.ui.Header.search({
@@ -114,7 +127,13 @@ search<span class="token punctuation">.</span>buttons<span class="token punctuat
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
                             </figure>
                         </section>
-                        <p>If you are using <a data-ts="Button" href="/v12/dist/components/header/tabs.html">tabs</a>, remember that the Search is conceptually scoped to the current tab. You would most often want to clear the entire Search whenever the user switches tab. This event can be tracked with the tabs <code>onselect</code> callback.</p>
+                        <p>
+                            If you are using
+                            <a data-ts="Button" href="/v12/dist/components/header/tabs.html">tabs</a>, remember that the Search
+                            is conceptually scoped to the current tab. You would most often want to clear the entire
+                            Search whenever the user switches tab. This event can be tracked with the tabs
+                            <code>onselect</code> callback.
+                        </p>
                         <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.Header.search(null)%3B">
                             <script type="runnable">
                                 ts.ui.Header.search(null);

@@ -7,11 +7,11 @@
     <link rel="ts-app-icon" href="/v12/dist/assets/icon.svg">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
-    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.0.1.min.js"></script>
+    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.1.2.min.js"></script>
     <script src="/v12/dist/assets/dox.min.js"></script>
     <script src="/v12/dist/assets/mark.min.js"></script>
     <script src="/v12/dist/assets/jquery-2.2.4.min.js"></script>
-    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.0.1.min.css">
+    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.1.2.min.css">
     <link rel="stylesheet" href="/v12/dist/assets/dox.css">
     <link rel="prefetch" title="HTML" href="index.html">
     <link rel="prefetch" title="Disabled / Readonly" href="disabled.html">
@@ -23,17 +23,19 @@
     <link rel="prefetch" title="JQuery Test" href="test-2.html" class="hidden">
     <script>
         ts.ui.ready(function() {
-				ts.ui.get("#myAside", function(aside) {
-					$("#mySelect").click(function(){
+				ts.ui.get('#myAside', function(aside) {
+					$('#mySelect').click(function() {
 						aside.open();
 					});
-					$(".ts-user-menu button").click(function(e){
+					$('.ts-user-menu button').click(function(e) {
 						$('.ts-icon-checked').remove();
 						$('.ts-user-menu li').removeClass('ts-checked');
-						var name = $(e.currentTarget).data("user");
-						$(e.currentTarget).parent('li').addClass('ts-checked');
+						var name = $(e.currentTarget).data('user');
+						$(e.currentTarget)
+							.parent('li')
+							.addClass('ts-checked');
 						$(e.currentTarget).append('<i class="ts-icon-checked"></i>');
-						$("#mySelect").val(name);
+						$('#mySelect').val(name);
 						ts.ui.Notification.success(name);
 						aside.close();
 					});
@@ -57,7 +59,10 @@
                     <article>
                         <h1><span>Custom Select</span></h1>
                         <section class="desc">
-                            <p>You can handle the <code>onclick</code> event on a <code class="el">select</code> element to make a custom implementation. Here&apos;s a step by step guide to make your own User Selector.</p>
+                            <p>
+                                You can handle the <code>onclick</code> event on a <code class="el">select</code> element to make a
+                                custom implementation. Here&apos;s a step by step guide to make your own User Selector.
+                            </p>
                         </section>
                         <section>
                             <p>1. Create the <code class="el">select</code> with <code class="attr-pair"><span>data-ts.custom</span>=&quot;<span>true</span>&quot;</code>.</p>

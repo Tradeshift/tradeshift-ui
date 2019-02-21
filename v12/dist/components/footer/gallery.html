@@ -7,11 +7,11 @@
     <link rel="ts-app-icon" href="/v12/dist/assets/icon.svg">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
-    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.0.1.min.js"></script>
+    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.1.2.min.js"></script>
     <script src="/v12/dist/assets/dox.min.js"></script>
     <script src="/v12/dist/assets/mark.min.js"></script>
     <script src="/v12/dist/assets/jquery-2.2.4.min.js"></script>
-    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.0.1.min.css">
+    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.1.2.min.css">
     <link rel="stylesheet" href="/v12/dist/assets/dox.css">
     <link rel="prefetch" title="Footer" href="index.html">
     <link rel="prefetch" title="Buttons" href="buttons.html">
@@ -22,12 +22,12 @@
     <link rel="prefetch" title="Gallery" href="gallery.html">
     <style>
         section:not(.desc) > p > strong {
-			background-color: rgb(225,225,225);
-			font-weight: 600;
-			border-radius: 100%;
-			padding: 0 0.43em;
-			margin-right: 0.25em;
-		}
+				background-color: rgb(225, 225, 225);
+				font-weight: 600;
+				border-radius: 100%;
+				padding: 0 0.43em;
+				margin-right: 0.25em;
+			}
 		</style>
     <script>ts.dox.tabs()</script>
 </head>
@@ -40,7 +40,10 @@
                     <article>
                         <h1><span>Footer gallery</span></h1>
                         <section class="desc">
-                            <p>Here you can test how the Footer behaves when you enable <strong>all</strong> the features.</p>
+                            <p>
+                                Here you can test how the Footer behaves when you enable
+                                <strong>all</strong> the features.
+                            </p>
                         </section>
                         <section>
                             <p><strong>1</strong> Add a pager.</p>
@@ -85,7 +88,10 @@
 	<span class="token punctuation">{</span> label<span class="token punctuation">:</span> <span class="token string">&apos;Button 5&apos;</span> <span class="token punctuation">}</span>
 <span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
                             </figure>
-                            <p><strong>3</strong> Add more buttons until they crash into the Pager. Behold the second toolbar.</p>
+                            <p>
+                                <strong>3</strong> Add more buttons until they crash into the Pager. Behold the second
+                                toolbar.
+                            </p>
                             <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.Footer.buttons().splice(2%2C%200%2C%0A%09%7B%20label%3A%20&apos;Bonus%20Button&apos;%2C%20type%3A%20&apos;ts-secondary&apos;%20%7D%0A)%3B">
                                 <script type="runnable">
                                     ts.ui.Footer.buttons().splice(2, 0,
@@ -144,9 +150,15 @@
 	ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Notification<span class="token punctuation">.</span><span class="token function">success<span class="token punctuation">(</span></span><span class="token string">&apos;Go collaborate!&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
                             </figure>
-                            <p>With the Footer fully equipped, we can try to hide and destroy these things again.</p>
+                            <p>
+                                With the Footer fully equipped, we can try to hide and destroy these things again.
+                            </p>
                             <h3><span>Hide something (or everything)</span></h3>
-                            <p>If you need to temporarily hide a single Footer member, you can call the associated method without any arguments to get a hold of the thing and then call the <code>hide</code> and <code>show</code> methods. You can also toggle the <code>visible</code> property.</p>
+                            <p>
+                                If you need to temporarily hide a single Footer member, you can call the associated method
+                                without any arguments to get a hold of the thing and then call the <code>hide</code> and
+                                <code>show</code> methods. You can also toggle the <code>visible</code> property.
+                            </p>
                             <figure data-ts="DoxScript" class="runnable" data-ts.code="var%20thing%2C%20pause%20%3D%20function(action)%20%7B%0A%20%20%20%20return%20setTimeout(action%2C%20500)%3B%0A%7D%3B%0A(function%20toggle(things)%20%7B%0A%09if(things.length)%20%7B%0A%09%09if((thing%20%3D%20things.shift()))%20%7B%0A%09%09%09thing.hide()%3B%0A%09%09%09pause(function()%20%7B%0A%09%09%09%09thing.show()%0A%09%09%09%09pause(function()%20%7B%0A%09%09%09%09%09toggle(things)%3B%0A%09%09%09%09%7D)%3B%0A%09%09%09%7D)%3B%0A%09%09%7D%20else%20%7B%0A%09%09%09toggle(things)%3B%0A%09%09%7D%0A%09%7D%0A%7D)(%5B%0A%09ts.ui.Footer.buttons()%2C%0A%09ts.ui.Footer.actions()%2C%0A%09ts.ui.Footer.pager()%2C%0A%09ts.ui.Footer.checkbox()%2C%0A%09ts.ui.Footer.collabbutton()%2C%0A%09ts.ui.Footer.configbutton()%0A%5D)%3B">
                                 <script type="runnable">
                                     var thing, pause = action => setTimeout(action, 500);
@@ -199,39 +211,48 @@
 	ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Footer<span class="token punctuation">.</span><span class="token function">configbutton<span class="token punctuation">(</span></span><span class="token punctuation">)</span>
 <span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
                             </figure>
-                            <p>Remember that the hidden thing <em>remains hidden</em> until you show it again. You can of course also <code>show</code> and <code>hide</code> the whole Footer. Again note that it will <em>remain hidden</em>.</p>
-                            <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.Footer.hide()%3B%0AsetTimeout(function()%20%7B%0A%09ts.ui.Footer.show()%3B%09%0A%7D%2C%20500)%3B">
+                            <p>
+                                Remember that the hidden thing <em>remains hidden</em> until you show it again. You can of
+                                course also <code>show</code> and <code>hide</code> the whole Footer. Again note that it
+                                will <em>remain hidden</em>.
+                            </p>
+                            <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.Footer.hide()%3B%0AsetTimeout(function()%20%7B%0A%09ts.ui.Footer.show()%3B%0A%7D%2C%20500)%3B">
                                 <script type="runnable">
                                     ts.ui.Footer.hide();
 						setTimeout(() => {
-							ts.ui.Footer.show();	
+							ts.ui.Footer.show();
 						}, 500);
 					</script>
                                 <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                                 <div data-ts="Panel">
                                     <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Footer<span class="token punctuation">.</span><span class="token function">hide<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token function">setTimeout<span class="token punctuation">(</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
-	ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Footer<span class="token punctuation">.</span><span class="token function">show<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>	
+	ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Footer<span class="token punctuation">.</span><span class="token function">show<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token number">500</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
                             </figure>
                             <h3><span>Clear something (or everything)</span></h3>
-                            <p>If you are sure that you won&apos;t need to show a configured Footer member again at some point in the future, it is advised that you completely destroy it instead of just hide it. You can do this by passing <code>null</code> to the associated method.</p>
+                            <p>
+                                If you are sure that you won&apos;t need to show a configured Footer member again at some point
+                                in the future, it is advised that you completely destroy it instead of just hide it. You
+                                can do this by passing
+                                <code>null</code> to the associated method.
+                            </p>
                             <figure data-ts="DoxScript" class="runnable" data-ts.code="(function%20destructive(actions)%20%7B%0A%09actions.shift()()%3B%0A%09if(actions.length)%20%7B%0A%09%09setTimeout(function()%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20return%20destructive(actions)%3B%0A%20%20%20%20%20%20%20%20%7D%2C%20500)%3B%0A%09%7D%0A%7D)(%5B%0A%09function()%20%7B%0A%20%20%20%20%20%20%20%20return%20ts.ui.Footer.pager(null)%3B%0A%20%20%20%20%7D%2C%0A%09function()%20%7B%0A%20%20%20%20%20%20%20%20return%20ts.ui.Footer.status(null)%3B%0A%20%20%20%20%7D%2C%0A%09function()%20%7B%0A%20%20%20%20%20%20%20%20return%20ts.ui.Footer.checkbox(null)%3B%0A%20%20%20%20%7D%2C%0A%09function()%20%7B%0A%20%20%20%20%20%20%20%20return%20ts.ui.Footer.buttons(null)%3B%0A%20%20%20%20%7D%2C%0A%09function()%20%7B%0A%20%20%20%20%20%20%20%20return%20ts.ui.Footer.actions(null)%3B%0A%20%20%20%20%7D%2C%0A%09function()%20%7B%0A%20%20%20%20%20%20%20%20return%20ts.ui.Footer.collabbutton(null)%3B%0A%20%20%20%20%7D%2C%0A%09function()%20%7B%0A%20%20%20%20%20%20%20%20return%20ts.ui.Footer.configbutton(null)%3B%0A%20%20%20%20%7D%2C%0A%5D)%3B">
                                 <script type="runnable">
                                     (function destructive(actions) {
-						actions.shift()();
-						if(actions.length) {
-							setTimeout(() => destructive(actions), 500);
-						}
-					})([
-						() => ts.ui.Footer.pager(null),
-						() => ts.ui.Footer.status(null),
-						() => ts.ui.Footer.checkbox(null),
-						() => ts.ui.Footer.buttons(null),
-						() => ts.ui.Footer.actions(null),
-						() => ts.ui.Footer.collabbutton(null),
-						() => ts.ui.Footer.configbutton(null),
-					]);
+							actions.shift()();
+							if(actions.length) {
+								setTimeout(() => destructive(actions), 500);
+							}
+						})([
+							() => ts.ui.Footer.pager(null),
+							() => ts.ui.Footer.status(null),
+							() => ts.ui.Footer.checkbox(null),
+							() => ts.ui.Footer.buttons(null),
+							() => ts.ui.Footer.actions(null),
+							() => ts.ui.Footer.collabbutton(null),
+							() => ts.ui.Footer.configbutton(null),
+						]);
 					</script>
                                 <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                                 <div data-ts="Panel">
@@ -250,7 +271,10 @@
 	<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">&gt;</span> ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Footer<span class="token punctuation">.</span><span class="token function">configbutton<span class="token punctuation">(</span></span><span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
 <span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
                             </figure>
-                            <p>You can of course also just <code>clear</code> everything and the Footer will automatically hide.</p>
+                            <p>
+                                You can of course also just <code>clear</code> everything and the Footer will
+                                automatically hide.
+                            </p>
                             <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.Footer.clear()%3B">
                                 <script type="runnable">
                                     ts.ui.Footer.clear();

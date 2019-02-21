@@ -7,11 +7,11 @@
     <link rel="ts-app-icon" href="/v12/dist/assets/icon.svg">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
-    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.0.1.min.js"></script>
+    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.1.2.min.js"></script>
     <script src="/v12/dist/assets/dox.min.js"></script>
     <script src="/v12/dist/assets/mark.min.js"></script>
     <script src="/v12/dist/assets/jquery-2.2.4.min.js"></script>
-    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.0.1.min.css">
+    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.1.2.min.css">
     <link rel="stylesheet" href="/v12/dist/assets/dox.css">
     <link rel="prefetch" title="Table" href="index.html">
     <link rel="prefetch" title="Build" href="building.html">
@@ -36,9 +36,7 @@
     <link rel="prefetch" title="Angular" href="angular.html" class="hidden">
     <link rel="prefetch" title="Gutter" href="gutter.html" class="hidden">
     <link rel="prefetch" title="Gallery" href="gallery.html" class="hidden">
-    <script>
-        ts.dox.tabs()
-    </script>
+    <script>ts.dox.tabs()</script>
 </head>
 
 <body>
@@ -49,15 +47,24 @@
                     <article>
                         <h1><span>Table</span></h1>
                         <section>
-                            <p>Contrary to common belief, the <code class="attr-pair"><span>data-ts</span>=&quot;<span>Table</span>&quot;</code> attribute should not be assigned to a <code class="el">table</code> element because the component will create that table itself. Instead, we can assign it to a <code class="el">div</code>.</p>
+                            <p>
+                                Contrary to common belief, the <code class="attr-pair"><span>data-ts</span>=&quot;<span>Table</span>&quot;</code> attribute should not be assigned
+                                to a <code class="el">table</code> element because the component will create that table itself.
+                                Instead, we can assign it to a <code class="el">div</code>.
+                            </p>
                             <figure data-ts="DoxMarkup" data-ts.code="%3Cdiv%20data-ts%3D%22Table%22%3E%3C%2Fdiv%3E">
+                                <script type="text/html">
+                                    <div data-ts="Table"></div>
+					</script>
                                 <ul data-ts="Panels">
                                     <li data-ts="Panel" data-ts.selected="true">
                                         <pre class="prism language-markup"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Table<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span></code></pre>
                                     </li>
                                 </ul>
                             </figure>
-                            <p>All features are controlled through an API as outlined on the following pages.</p>
+                            <p>
+                                All features are controlled through an API as outlined on the following pages.
+                            </p>
                         </section>
                         <div data-ts="Note" class="sticky">
                             <p>If you find a bug or need a feature&#x2026;</p>

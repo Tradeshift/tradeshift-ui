@@ -7,11 +7,11 @@
     <link rel="ts-app-icon" href="/v12/dist/assets/icon.svg">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
-    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.0.1.min.js"></script>
+    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.1.2.min.js"></script>
     <script src="/v12/dist/assets/dox.min.js"></script>
     <script src="/v12/dist/assets/mark.min.js"></script>
     <script src="/v12/dist/assets/jquery-2.2.4.min.js"></script>
-    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.0.1.min.css">
+    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.1.2.min.css">
     <link rel="stylesheet" href="/v12/dist/assets/dox.css">
     <link rel="prefetch" title="Header" href="index.html">
     <link rel="prefetch" title="Tabs" href="tabs.html">
@@ -29,7 +29,11 @@
                 <div data-ts="Panel">
                     <article>
                         <section>
-                            <p>The Header features a dedicated <samp>Back</samp> button to support &quot;drill down&quot; navigation. The buttons appear when you pass a callback function to the <code>backbutton</code> method.</p>
+                            <p>
+                                The Header features a dedicated <samp>Back</samp> button to support &quot;drill down&quot;
+                                navigation. The buttons appear when you pass a callback function to the
+                                <code>backbutton</code> method.
+                            </p>
                             <figure data-ts="DoxScript" class="attention runnable" data-ts.code="ts.ui.Header.backbutton(function%20onclick()%20%7B%0A%09ts.ui.Notification.success(&apos;Go%20back!&apos;)%3B%0A%7D)%3B">
                                 <script type="runnable">
                                     ts.ui.Header.backbutton(function onclick() {
@@ -42,7 +46,11 @@
 	ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Notification<span class="token punctuation">.</span><span class="token function">success<span class="token punctuation">(</span></span><span class="token string">&apos;Go back!&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
                             </figure>
-                            <p>You should of course not forget to hook your navigation up to the browsers native <samp>Back</samp> button. If and when needed, you can of course also display a <samp>Forward</samp> button.</p>
+                            <p>
+                                You should of course not forget to hook your navigation up to the browsers native
+                                <samp>Back</samp> button. If and when needed, you can of course also display a
+                                <samp>Forward</samp> button.
+                            </p>
                             <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.Header.forwardbutton(function%20onclick()%20%7B%0A%09ts.ui.Notification.success(&apos;Go%20forward!&apos;)%3B%0A%7D)%3B">
                                 <script type="runnable">
                                     ts.ui.Header.forwardbutton(function onclick() {
@@ -55,7 +63,10 @@
 	ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Notification<span class="token punctuation">.</span><span class="token function">success<span class="token punctuation">(</span></span><span class="token string">&apos;Go forward!&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
                             </figure>
-                            <p>Once the navigation is completed, you can hide the buttons again by passing <code>null</code> as an argument.</p>
+                            <p>
+                                Once the navigation is completed, you can hide the buttons again by passing
+                                <code>null</code> as an argument.
+                            </p>
                             <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.Header.backbutton(null).forwardbutton(null)%3B">
                                 <script type="runnable">
                                     ts.ui.Header.backbutton(null).forwardbutton(null);

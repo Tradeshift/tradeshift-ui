@@ -38,7 +38,7 @@ ts.ui.CalendarSpirit = (function() {
 	/**
 	 * Exposed for easier unit testing.
 	 */
-	ts.ui.__generateDays = function(year, month, currentYear, currentMonth, currentDay) {
+	ts.ui.__generateDays = function(year, month, currentYear, currentMonth, currentDay, noStartingValue) {
 		year = parseInt(year, 10);
 		month = parseInt(month, 10);
 		currentDay = parseInt(currentDay, 10);
@@ -56,7 +56,7 @@ ts.ui.CalendarSpirit = (function() {
 			ts.lib.Date.getDaysInMonth(year, month - 1),
 			startDay,
 			Math.ceil((numDays + startDay) / 7),
-			year === currentYear && month === currentMonth,
+			year === currentYear && month === currentMonth && !noStartingValue,
 			year === ts.lib.Date.getCurrentFullYear() && month === ts.lib.Date.getCurrentMonth()
 		);
 	};
@@ -206,7 +206,7 @@ ts.ui.CalendarSpirit = (function() {
 				if (ts.lib.Date) {
 					this._labels = this._generateLabels();
 					this._today = ts.lib.Date.getCurrentDay();
-					this._current = ts.lib.Date.dateStringToObject(this.value || 'today');
+					this._current = this._getCurrentDate();
 					this._year = this._current.year;
 					this._month = this._current.month;
 					if (this.min) {
@@ -224,6 +224,27 @@ ts.ui.CalendarSpirit = (function() {
 					this.script.load(ts.ui.CalendarSpirit.edbml);
 					this._render();
 				}
+			},
+
+			_getCurrentDate: function(){
+				var currentDate = 'today';
+
+				if(this.value){
+					currentDate = this.value;
+				}
+				else
+				{
+					this._noStartingValue = true;
+
+					if(this.min){
+						currentDate = this.min;
+					}
+					else if(this.max){
+						currentDate = this.max;
+					}
+				}
+
+				return ts.lib.Date.dateStringToObject(currentDate);
 			},
 
 			/**
@@ -277,6 +298,11 @@ ts.ui.CalendarSpirit = (function() {
 			 * @type {Map}
 			 */
 			_current: null,
+
+			/**
+			 * @type {Map}
+			 */
+			_noStartingValue: false,
 
 			/**
 			 * @type {Map}
@@ -407,7 +433,8 @@ ts.ui.CalendarSpirit = (function() {
 					month,
 					this._current.year,
 					this._current.month,
-					this._current.day
+					this._current.day,
+					this._noStartingValue
 				);
 			},
 

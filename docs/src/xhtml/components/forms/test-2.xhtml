@@ -6,170 +6,167 @@
 		<script src="test-2.js"></script>
 	</head>
 	<body>
-		<header data-ts="TopBar"></header>
-		<main data-ts="Main">
-			<article class="doc-forms-test-2">
-				<h1>JQuery Test</h1>
-				<section class="desc">
-					<p>Just testing some JQuery manipulation of the multi-select.</p>
-				</section>
-				<section>
-					<p>
-						What you can see here is that using <code>prop()</code> and <code>attr()</code> both
-						work for unselecting options, but only <code>.prop()</code> works when selecting them.
-					</p>
-					<form data-ts="Form">
-						<fieldset>
-							<label>
-								<span>Select multiple</span>
-								<select multiple id="multi-select">
-									<option value="a">One</option>
-									<option value="b">Two</option>
-									<option value="c">Three</option>
-									<option value="d">Four</option>
-									<option value="e">Five</option>
-								</select>
-								<button>Cool, apply changes!</button>
-							</label>
-						</fieldset>
-					</form>
+		<article class="doc-forms-test-2">
+			<h1>JQuery Test</h1>
+			<section class="desc">
+				<p>Just testing some JQuery manipulation of the multi-select.</p>
+			</section>
+			<section>
+				<p>
+					What you can see here is that using <code>prop()</code> and <code>attr()</code> both
+					work for unselecting options, but only <code>.prop()</code> works when selecting them.
+				</p>
+				<form data-ts="Form">
+					<fieldset>
+						<label>
+							<span>Select multiple</span>
+							<select multiple id="multi-select">
+								<option value="a">One</option>
+								<option value="b">Two</option>
+								<option value="c">Three</option>
+								<option value="d">Four</option>
+								<option value="e">Five</option>
+							</select>
+							<button>Cool, apply changes!</button>
+						</label>
+					</fieldset>
+				</form>
 
-					<menu data-ts="Buttons">
-						<li>
-							<button
-								class="btn-select ts-primary"
-								data-selector="option"
-								data-method="attr"
-								data-value="true"
-							></button>
-						</li>
-						<li>
-							<button
-								class="btn-select ts-primary"
-								data-selector="option"
-								data-method="prop"
-								data-value="true"
-							></button>
-						</li>
+				<menu data-ts="Buttons">
+					<li>
+						<button
+							class="btn-select ts-primary"
+							data-selector="option"
+							data-method="attr"
+							data-value="true"
+						></button>
+					</li>
+					<li>
+						<button
+							class="btn-select ts-primary"
+							data-selector="option"
+							data-method="prop"
+							data-value="true"
+						></button>
+					</li>
 
-						<li>
-							<button
-								class="btn-select ts-danger"
-								data-selector="option"
-								data-method="attr"
-								data-value="false"
-							></button>
-						</li>
-						<li>
-							<button
-								class="btn-select ts-danger"
-								data-selector="option"
-								data-method="prop"
-								data-value="false"
-							></button>
-						</li>
+					<li>
+						<button
+							class="btn-select ts-danger"
+							data-selector="option"
+							data-method="attr"
+							data-value="false"
+						></button>
+					</li>
+					<li>
+						<button
+							class="btn-select ts-danger"
+							data-selector="option"
+							data-method="prop"
+							data-value="false"
+						></button>
+					</li>
 
-						<li>
-							<button
-								class="btn-select ts-secondary"
-								data-selector="option[value='a']"
-								data-method="attr"
-								data-value="true"
-							></button>
-						</li>
-						<li>
-							<button
-								class="btn-select ts-secondary"
-								data-selector="option[value='a']"
-								data-method="prop"
-								data-value="true"
-							></button>
-						</li>
-						<li>
-							<button
-								class="btn-select ts-secondary"
-								data-selector="option[value='a']"
-								data-method="attr"
-								data-value="false"
-							></button>
-						</li>
-						<li>
-							<button
-								class="btn-select ts-secondary"
-								data-selector="option[value='a']"
-								data-method="prop"
-								data-value="false"
-							></button>
-						</li>
+					<li>
+						<button
+							class="btn-select ts-secondary"
+							data-selector="option[value='a']"
+							data-method="attr"
+							data-value="true"
+						></button>
+					</li>
+					<li>
+						<button
+							class="btn-select ts-secondary"
+							data-selector="option[value='a']"
+							data-method="prop"
+							data-value="true"
+						></button>
+					</li>
+					<li>
+						<button
+							class="btn-select ts-secondary"
+							data-selector="option[value='a']"
+							data-method="attr"
+							data-value="false"
+						></button>
+					</li>
+					<li>
+						<button
+							class="btn-select ts-secondary"
+							data-selector="option[value='a']"
+							data-method="prop"
+							data-value="false"
+						></button>
+					</li>
 
-						<li>
-							<button
-								class="btn-select ts-secondary"
-								data-selector="option[value='b']"
-								data-method="attr"
-								data-value="true"
-							></button>
-						</li>
-						<li>
-							<button
-								class="btn-select ts-secondary"
-								data-selector="option[value='b']"
-								data-method="prop"
-								data-value="true"
-							></button>
-						</li>
-						<li>
-							<button
-								class="btn-select ts-secondary"
-								data-selector="option[value='b']"
-								data-method="attr"
-								data-value="false"
-							></button>
-						</li>
-						<li>
-							<button
-								class="btn-select ts-secondary"
-								data-selector="option[value='b']"
-								data-method="prop"
-								data-value="false"
-							></button>
-						</li>
+					<li>
+						<button
+							class="btn-select ts-secondary"
+							data-selector="option[value='b']"
+							data-method="attr"
+							data-value="true"
+						></button>
+					</li>
+					<li>
+						<button
+							class="btn-select ts-secondary"
+							data-selector="option[value='b']"
+							data-method="prop"
+							data-value="true"
+						></button>
+					</li>
+					<li>
+						<button
+							class="btn-select ts-secondary"
+							data-selector="option[value='b']"
+							data-method="attr"
+							data-value="false"
+						></button>
+					</li>
+					<li>
+						<button
+							class="btn-select ts-secondary"
+							data-selector="option[value='b']"
+							data-method="prop"
+							data-value="false"
+						></button>
+					</li>
 
-						<li>
-							<button
-								class="btn-select ts-secondary"
-								data-selector="option[value='c']"
-								data-method="attr"
-								data-value="true"
-							></button>
-						</li>
-						<li>
-							<button
-								class="btn-select ts-secondary"
-								data-selector="option[value='c']"
-								data-method="prop"
-								data-value="true"
-							></button>
-						</li>
-						<li>
-							<button
-								class="btn-select ts-secondary"
-								data-selector="option[value='c']"
-								data-method="attr"
-								data-value="false"
-							></button>
-						</li>
-						<li>
-							<button
-								class="btn-select ts-secondary"
-								data-selector="option[value='c']"
-								data-method="prop"
-								data-value="false"
-							></button>
-						</li>
-					</menu>
-				</section>
-			</article>
-		</main>
+					<li>
+						<button
+							class="btn-select ts-secondary"
+							data-selector="option[value='c']"
+							data-method="attr"
+							data-value="true"
+						></button>
+					</li>
+					<li>
+						<button
+							class="btn-select ts-secondary"
+							data-selector="option[value='c']"
+							data-method="prop"
+							data-value="true"
+						></button>
+					</li>
+					<li>
+						<button
+							class="btn-select ts-secondary"
+							data-selector="option[value='c']"
+							data-method="attr"
+							data-value="false"
+						></button>
+					</li>
+					<li>
+						<button
+							class="btn-select ts-secondary"
+							data-selector="option[value='c']"
+							data-method="prop"
+							data-value="false"
+						></button>
+					</li>
+				</menu>
+			</section>
+		</article>
 	</body>
 </html>

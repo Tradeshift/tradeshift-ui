@@ -437,6 +437,7 @@ ts.ui.FakeSelectInputSpirit = (function using(chained, confirmed, tick, time, gu
 			if (
 				cornercase ||
 				[
+					this._changedlabel(select, this.element.value, model),
 					this._changedlength(select, this._optionslength, model),
 					this._changedindex(select, this._selectedIndex, model),
 					this._changedindexes(select, this._selectedIndexes, model)
@@ -446,6 +447,22 @@ ts.ui.FakeSelectInputSpirit = (function using(chained, confirmed, tick, time, gu
 			) {
 				this._updatestatus();
 			}
+		},
+
+		/**
+		 * Sync to SELECT: Options label changed or not?
+		 * @param {HTMLSelectElement} select
+		 * @param {string} oldlabel
+		 * @returns {boolean}
+		 */
+		_changedlabel: function(select, oldlabel) {
+			var did = false;
+			if (!select.multiple && select.selectedIndex > -1) {
+				if (oldlabel !== select.options[select.selectedIndex].text) {
+					did = true;
+				}
+			}
+			return did;
 		},
 
 		/**

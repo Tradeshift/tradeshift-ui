@@ -4,77 +4,86 @@
 		<title>DatePicker</title>
 	</head>
 	<body>
-			<article>
-				<h1>DatePicker</h1>
-				<section class="desc">
-					<p>Calendar widget that appears in Aside. Used in Forms for an implementation of &lt;input type="date"&gt; elements.</p>
-				</section>
-				<section>
-					<p>The DatePicker can be launched with a JavaScript API. You should implement the <code>onselect</code> method to get notified whenever the user picks a date. Note that you must manually <code>open</code> and <code>close</code> the DatePicker.</p>
-					<figure data-ts="DoxScript">
-						<script type="runnable">
-							var datePicker = ts.ui.DatePicker({
-								title: "Your Birthday",
-								value: '1973-03-26',
-								onselect: function(newval, oldval) {
-									ts.ui.Notification.success(this.value);
-									this.close();
-								},
-								onclosed: function() {
-									this.dispose();
-								}
-							});
-							datePicker.open();
-						</script>
-					</figure>
-					<p>You can specify a <code>min</code> and <code>max</code> value.</p>
-					<figure data-ts="DoxScript">
-						<script type="runnable">
-							ts.ui.DatePicker({
-								title: "Your Birthday",
-								value: '1984-05-23',
-								min: '1984-01-01',
-								max: '1985-12-24',
-								onselect: function() {
-									this.close();
-								},
-								onclosed: function() {
-									this.dispose();
-								}
-							}).open();
-						</script>
-					</figure>
-					<p>
-						You can also use the <code>onrendercell</code> callback to manually adjust which cells are selectable, as well
-						add in additional classes per cell for styling purposes.
-					</p>
-					<figure data-ts="DoxScript">
-						<script type="runnable">
-							ts.ui.DatePicker({
-								title: "Manually Set Clickable Dates",
-								value: '1984-05-23',
-								min: '1984-01-01',
-								max: '1985-12-24',
-								onrendercell: function(cell){
-									var jsDate = new Date(cell.year, cell.month, cell.day);
-									var isWeekday = ![0,6].includes(jsDate.getDay());
+		<article>
+			<h1>DatePicker</h1>
+			<section class="desc">
+				<p>
+					Calendar widget that appears in Aside. Used in Forms for an implementation of &lt;input
+					type="date"&gt; elements.
+				</p>
+			</section>
+			<section>
+				<p>
+					The DatePicker can be launched with a JavaScript API. You should implement the
+					<code>onselect</code> method to get notified whenever the user picks a date. Note that you
+					must manually <code>open</code> and <code>close</code> the DatePicker.
+				</p>
+				<figure data-ts="DoxScript">
+					<script type="runnable">
+						var datePicker = ts.ui.DatePicker({
+							title: "Your Birthday",
+							value: '1973-03-26',
+							onselect: function(newval, oldval) {
+								ts.ui.Notification.success(this.value);
+								this.close();
+							},
+							onclosed: function() {
+								this.dispose();
+							}
+						});
+						datePicker.open();
+					</script>
+				</figure>
+				<p>You can specify a <code>min</code> and <code>max</code> value.</p>
+				<figure data-ts="DoxScript">
+					<script type="runnable">
+						ts.ui.DatePicker({
+							title: "Your Birthday",
+							value: '1984-05-23',
+							min: '1984-01-01',
+							max: '1985-12-24',
+							onselect: function() {
+								this.close();
+							},
+							onclosed: function() {
+								this.dispose();
+							}
+						}).open();
+					</script>
+				</figure>
+				<p>
+					You can also use the <code>onrendercell</code> callback to manually adjust which cells are
+					selectable, as well add in additional classes per cell for styling purposes.
+				</p>
+				<figure data-ts="DoxScript">
+					<script type="runnable">
+						ts.ui.DatePicker({
+							title: "Manually Set Clickable Dates",
+							value: '1984-05-23',
+							min: '1984-01-01',
+							max: '1985-12-24',
+							onrendercell: function(cell){
+								var jsDate = new Date(cell.year, cell.month, cell.day);
+								var isWeekday = ![0,6].includes(jsDate.getDay());
 
-									cell.selectable = isWeekday;
-									cell.className = (isWeekday ? 'weekday' : 'weekend');
-								},
-								onselect: function() {
-									ts.ui.Notification.success(this.value);
-									this.close();
-								},
-								onclosed: function() {
-									this.dispose();
-								}
-							}).open();
-						</script>
-					</figure>
-					<p>The object argument configures a <code>ts.ui.DatePickerModel</code> as outlined below.</p>
-					<div data-ts="DoxApi">
-						<script type="application.json">
+								cell.selectable = isWeekday;
+								cell.className = (isWeekday ? 'weekday' : 'weekend');
+							},
+							onselect: function() {
+								ts.ui.Notification.success(this.value);
+								this.close();
+							},
+							onclosed: function() {
+								this.dispose();
+							}
+						}).open();
+					</script>
+				</figure>
+				<p>
+					The object argument configures a <code>ts.ui.DatePickerModel</code> as outlined below.
+				</p>
+				<div data-ts="DoxApi">
+					<script type="application.json">
 						{
 							"name": "ts.ui.DatePickerModel",
 							"properties": [
@@ -120,9 +129,9 @@
 								}
 							]
 						}
-						</script>
-					</div>
-				</section>
-			</article>
+					</script>
+				</div>
+			</section>
+		</article>
 	</body>
 </html>

@@ -38,7 +38,7 @@ ts.ui.CalendarSpirit = (function() {
 	/**
 	 * Exposed for easier unit testing.
 	 */
-	ts.ui.__generateDays = function(year, month, currentYear, currentMonth, currentDay, noStartingValue) {
+	ts.ui.__generateDays = function(year, month, currentYear, currentMonth, currentDay, startingValue) {
 		year = parseInt(year, 10);
 		month = parseInt(month, 10);
 		currentDay = parseInt(currentDay, 10);
@@ -56,7 +56,7 @@ ts.ui.CalendarSpirit = (function() {
 			ts.lib.Date.getDaysInMonth(year, month - 1),
 			startDay,
 			Math.ceil((numDays + startDay) / 7),
-			year === currentYear && month === currentMonth && !noStartingValue,
+			year === currentYear && month === currentMonth && startingValue,
 			year === ts.lib.Date.getCurrentFullYear() && month === ts.lib.Date.getCurrentMonth()
 		);
 	};
@@ -234,7 +234,7 @@ ts.ui.CalendarSpirit = (function() {
 				}
 				else
 				{
-					this._noStartingValue = true;
+					this._startingValue = false;
 
 					if(this.min){
 						currentDate = this.min;
@@ -300,9 +300,11 @@ ts.ui.CalendarSpirit = (function() {
 			_current: null,
 
 			/**
-			 * @type {Map}
+			 * Internal flag to determine if the datePicker component should have a starting value. Used to determine
+			 * if a date should be pre-selected and omitted from being clickable.
+			 * @type {Boolean}
 			 */
-			_noStartingValue: false,
+			_startingValue: true,
 
 			/**
 			 * @type {Map}
@@ -434,7 +436,7 @@ ts.ui.CalendarSpirit = (function() {
 					this._current.year,
 					this._current.month,
 					this._current.day,
-					this._noStartingValue
+					this._startingValue
 				);
 			},
 

@@ -33,6 +33,14 @@ ts.ui.TimeSpirit = (function using(moment, chained) {
 
 	return ts.ui.Spirit.extend({
 		/**
+		 * Set up innerHTML.
+		 */
+		onconfigure: function() {
+			this.super.onconfigure();
+			this.element.innerHTML = this._getInnerHTML();
+		},
+
+		/**
 		 * Setup on enter.
 		 */
 		onenter: function() {
@@ -84,27 +92,32 @@ ts.ui.TimeSpirit = (function using(moment, chained) {
 		_setText: function(langcode) {
 			var datetime = this.att.get('datetime');
 			var realtime = this.att.get('realtime');
-			if (!datetime) {
+			var element = this.dom.q('span');
+			if (!datetime || !element) {
 				return;
 			}
 			if (realtime && !issame) {
-				this.element.textContent = this._getTime(datetime, realtime);
-				this.element.title = moment(datetime).format('MMM Do YYYY, h:mm:ss a');
+				element.textContent = this._getTime(datetime, realtime);
+				element.setAttribute('data-ts.title', moment(datetime).format('MMM Do YYYY, h:mm:ss a'));
 				return;
 			}
 			if (moment(datetime).isValid()) {
-				this.element.textContent = moment(datetime).fromNow();
-				this.element.title = moment(datetime).format('MMM Do YYYY, h:mm:ss a');
+				element.textContent = moment(datetime).fromNow();
+				element.setAttribute('data-ts.title', moment(datetime).format('MMM Do YYYY, h:mm:ss a'));
 			} else {
 				if (parseInt(datetime, 10) && moment(parseInt(datetime, 10)).isValid()) {
 					datetime = parseInt(datetime, 10);
-					this.element.textContent = moment(datetime).fromNow();
-					this.element.title = moment(datetime).format('MMM Do YYYY, h:mm:ss a');
+					element.textContent = moment(datetime).fromNow();
+					element.setAttribute('data-ts.title', moment(datetime).format('MMM Do YYYY, h:mm:ss a'));
 				} else {
-					this.element.textContent = datetime;
-					this.element.title = datetime;
+					element.textContent = datetime;
+					element.setAttribute('data-ts.title', datetime);
 				}
 			}
+		},
+
+		_getInnerHTML: function() {
+			return '<span data-ts="Tooltip" data-ts.title=""></span>';
 		},
 
 		/**

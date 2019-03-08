@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Tooltip</title>
+	</head>
+	<body class="nosticky">
+		<article>
+			<h1>Tooltip</h1>
+			<section class="desc">
+				<p>
+					Use the tooltip to show more information to client. Try to hover the <val>Tooltip</val>. 
+				</p>
+			</section>
+			<figure data-ts="DoxMarkup">
+				<output />
+				<script type="text/html">
+					<div data-ts="Tooltip" data-ts.title="This my tooltip">Tooltip<div>
+				</script>
+			</figure>
+			<section class="desc">
+				<p>
+					You need to assign the <att>data-ts.title</att> to the <val>Tooltip</val> element to initialize a tooltip. 
+				</p>
+			</section>
+			<figure data-ts="DoxMarkup">
+				<script type="text/html">
+					<div data-ts="Tooltip" data-ts.title="This my tooltip">Tooltip<div>
+				</script>
+			</figure>
+			<div data-ts="DoxApi">
+					<script type="application/json">
+						{
+							"name": "ts.ui.TooltipSpirit",
+							"properties": [
+								{
+									"name": "title",
+									"type": "string",
+									"desc": "The description you want to show"
+								},
+								{
+									"name": "left",
+									"type": "(number)",
+									"desc": "The adjustment of left."
+								},
+								{
+									"name": "top",
+									"type": "(number)",
+									"desc": "The adjustment of top."
+								}
+							]
+						}
+					</script>
+				</div>
+		</article>
+	</body>
+</html>

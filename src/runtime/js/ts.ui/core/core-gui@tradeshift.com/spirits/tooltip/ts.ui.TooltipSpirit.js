@@ -65,20 +65,24 @@ ts.ui.TooltipSpirit = (function using(Client, CSSPlugin) {
 			var styleId = 'pseudoStyles';
 			var style = document.getElementById(styleId);
 			if (style) {
-				style.remove();
+				style.parentNode.removeChild(style);
 			}
 			style = document.createElement('style');
 			style.id = styleId;
 			var width = parseInt(window.getComputedStyle(element, ':before').width);
 			var height = parseInt(window.getComputedStyle(element, ':before').height);
-			var left =
-				x + width + Client.scrollBarSize + 10 < document.body.clientWidth
-					? x + 10 + 'px'
-					: document.body.clientWidth - Client.scrollBarSize - width + 'px';
-			var top =
-				y + height + 10 < document.body.clientHeight
-					? y + 10 + 'px'
-					: document.body.clientHeight - height + 'px';
+			var left = x + 10 + 'px';
+			var top = y + 10 + 'px';
+			if (!Client.isExplorer) {
+				left =
+					x + width + Client.scrollBarSize + 10 < document.body.clientWidth
+						? x + 10 + 'px'
+						: document.body.clientWidth - Client.scrollBarSize - width + 'px';
+				top =
+					y + height + 10 < document.body.clientHeight
+						? y + 10 + 'px'
+						: document.body.clientHeight - height + 'px';
+			}
 			style.innerHTML = selector + ':before{left:' + left + ';top:' + top + '}';
 			head.appendChild(style);
 		}

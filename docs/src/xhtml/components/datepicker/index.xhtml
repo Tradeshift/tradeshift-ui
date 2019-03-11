@@ -77,29 +77,31 @@
 									this.dispose();
 								}
 							}).open();
-						</script>
-					</figure>
-					<p>Here is an example DatePicker where a value is NOT set ahead of time.</p>
-					<figure data-ts="DoxScript">
-						<script type="runnable">
-							ts.ui.DatePicker({
-								title: "Date Range with no starting value",
-								value: null,
-								min: '2019-01-01',
-								max: '2019-03-31',
-								onselect: function() {
-									ts.ui.Notification.success(this.value);
-									this.close();
-								},
-								onclosed: function() {
-									this.dispose();
-								}
-							}).open();
-						</script>
-					</figure>
-					<p>The object argument configures a <code>ts.ui.DatePickerModel</code> as outlined below.</p>
-					<div data-ts="DoxApi">
-						<script type="application.json">
+					</script>
+				</figure>
+				<p>Here is an example DatePicker where a value is NOT set ahead of time.</p>
+				<figure data-ts="DoxScript">
+					<script type="runnable">
+						ts.ui.DatePicker({
+							title: "Date Range with no starting value",
+							value: null,
+							min: '2019-01-01',
+							max: '2019-03-31',
+							onselect: function() {
+								ts.ui.Notification.success(this.value);
+								this.close();
+							},
+							onclosed: function() {
+								this.dispose();
+							}
+						}).open();
+					</script>
+				</figure>
+				<p>
+					The object argument configures a <code>ts.ui.DatePickerModel</code> as outlined below.
+				</p>
+				<div data-ts="DoxApi">
+					<script type="application.json">
 						{
 							"name": "ts.ui.DatePickerModel",
 							"properties": [

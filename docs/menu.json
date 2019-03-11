@@ -195,6 +195,11 @@
 				"label": "Automagic Focus",
 				"icon": "docs-icon-focus-2",
 				"path": "appendix/autofocus/"
+			},
+			{
+				"label": "ts.io",
+				"icon": "docs-icon-plug-1",
+				"path": "appendix/tsio/"
 			}
 		]
 	}

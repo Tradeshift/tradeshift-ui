@@ -38,7 +38,14 @@ ts.ui.CalendarSpirit = (function() {
 	/**
 	 * Exposed for easier unit testing.
 	 */
-	ts.ui.__generateDays = function(year, month, currentYear, currentMonth, currentDay, startingValue) {
+	ts.ui.__generateDays = function(
+		year,
+		month,
+		currentYear,
+		currentMonth,
+		currentDay,
+		startingValue
+	) {
 		year = parseInt(year, 10);
 		month = parseInt(month, 10);
 		currentDay = parseInt(currentDay, 10);
@@ -226,20 +233,17 @@ ts.ui.CalendarSpirit = (function() {
 				}
 			},
 
-			_getCurrentDate: function(){
+			_getCurrentDate: function() {
 				var currentDate = 'today';
 
-				if(this.value){
+				if (this.value) {
 					currentDate = this.value;
-				}
-				else
-				{
+				} else {
 					this._startingValue = false;
 
-					if(this.min){
+					if (this.min) {
 						currentDate = this.min;
-					}
-					else if(this.max){
+					} else if (this.max) {
 						currentDate = this.max;
 					}
 				}

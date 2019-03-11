@@ -77,7 +77,7 @@ describe('ts.ui.CalendarSpirit', function() {
 
 		describe('a month containing a selected day', function() {
 			beforeEach(function() {
-				this.monthData = ts.ui.__generateDays('2014', '8', '2014', '8', '1');
+				this.monthData = ts.ui.__generateDays('2014', '8', '2014', '8', '1', true);
 			});
 
 			it('has the first day selected', function() {

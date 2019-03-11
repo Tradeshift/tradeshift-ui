@@ -159,6 +159,11 @@
 				"path": "components/toolbar/"
 			},
 			{
+				"label": "Tooltip",
+				"icon": "docs-icon-chat-bubble-square-alert-2",
+				"path": "components/tooltip/"
+			},
+			{
 				"label": "UserImage",
 				"icon": "docs-icon-user-target",
 				"path": "components/userimages/"

@@ -1,0 +1,29 @@
+@import 'ts-variables-new.less';
+
+[data-ts='Tooltip']:before {
+	position: fixed;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: max-content;
+	height: @ts-unit-double;
+	padding: @ts-unit-half;
+	border-radius: 3px;
+	content: attr(data-ts\.title);
+	background: @ts-color-black;
+	color: @ts-color-white;
+	font-size: @ts-fontsize;
+	opacity: 0;
+	overflow: hidden;
+	pointer-events: none;
+	z-index: @ts-zindex-max;
+}
+
+[data-ts='Tooltip']:hover {
+	cursor: pointer;
+	&:before {
+		opacity: 1;
+		transition: 0.2s ease opacity;
+		transition-delay: 0.2s;
+	}
+}

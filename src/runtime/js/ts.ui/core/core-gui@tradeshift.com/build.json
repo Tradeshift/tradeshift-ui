@@ -32,6 +32,7 @@
 	"spirits/notes/ts.ui.NoteSpirit.js",
 	"spirits/tags/ts.ui.TagSpirit.js",
 	"spirits/tags/ts.ui.TagListSpirit.js",
+	"spirits/tooltip/ts.ui.TooltipSpirit.js",
 
 	"module.js"
 ]

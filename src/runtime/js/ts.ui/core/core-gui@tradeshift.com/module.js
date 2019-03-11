@@ -20,6 +20,7 @@ ts.ui.CoreModule = gui.module('core-gui@tradeshift.com', {
 		['[data-ts=Spinner]', ts.ui.SpinnerSpirit],
 		['[data-ts=Tag]', ts.ui.TagSpirit],
 		['[data-ts=Tags]', ts.ui.TagListSpirit],
+		['[data-ts=Tooltip]', ts.ui.TooltipSpirit],
 		['[data-ts=Spirit]', ts.ui.Spirit]
 	],
 

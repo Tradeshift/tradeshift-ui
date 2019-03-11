@@ -2,8 +2,8 @@
 <html lang="en-us" class="ts-docs" spellcheck="false">
 
 <head>
-    <title>Bars</title>
-    <meta name="ts-app-title" content="Bars">
+    <title>ts.io</title>
+    <meta name="ts-app-title" content="ts.io">
     <link rel="ts-app-icon" href="/v12/dist/assets/icon.svg">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
@@ -13,32 +13,35 @@
     <script src="/v12/dist/assets/jquery-2.2.4.min.js"></script>
     <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.1.3.min.css">
     <link rel="stylesheet" href="/v12/dist/assets/dox.css">
-    <meta name="robots" content="noindex">
-    <script src="bars.js"></script>
 </head>
 
-<body class="nosticky">
+<body>
     <div data-ts="App">
         <div data-ts="Main">
             <div data-ts="Content">
                 <div data-ts="Panel">
                     <article>
-                        <h1><span>Inline Bars</span></h1>
-                        <section>
-                            <header id="toolbar" data-ts="ToolBar" data-ts.title="Inline ToolBar" class="ts-bg-green"></header>
-                            <header id="tabbar" data-ts="TabBar" class="ts-bg-blue"></header>
-                            <footer id="statusbar" data-ts="StatusBar" data-ts.message="Inline StatusBar" class="ts-bg-purple"></footer>
+                        <h1><span>ts.io</span></h1>
+                        <section class="desc">
+                            <p>
+                                <a target="_blank" href="https://github.com/tradeshift/io">ts.io</a> is an inter-app communication method. As part of the migration to TSUI V12, you might need to do this in order to abstract asides that rely on TSUI V11 away from your application. <a target="_blank" href="https://github.com/tradeshift/io">Read the documentation here</a>
+                            </p>
                         </section>
+                        <div data-ts="Note" class="sticky">
+                            <p>If you find a bug or need a feature&#x2026;</p>
+                            <menu data-ts="Buttons">
+                                <li>
+                                    <a data-ts="Button" target="_blank" href="https://github.com/Tradeshift/tradeshift-ui/issues/new" title="Submit new issue">
+                                        <span>Create GitHub Issue&#x2026;</span>
+                                    </a>
+                                </li>
+                            </menu>
+                        </div>
                     </article>
                 </div>
             </div>
         </div>
     </div>
-    <aside data-ts="SideBar" id="mysidebar" data-ts.title="SideBar OK?">
-        <div data-ts="Panel">
-            <p>Just testing that the SideBar is shown.</p>
-        </div>
-    </aside>
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-127106947-1"></script>
     <script>
         window.dataLayer = window.dataLayer || [];

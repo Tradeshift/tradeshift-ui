@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en-us" class="ts-docs" spellcheck="false">
+
+<head>
+    <title>Tooltip</title>
+    <meta name="ts-app-title" content="Tooltip">
+    <link rel="ts-app-icon" href="/v12/dist/assets/icon.svg">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.1.3.min.js"></script>
+    <script src="/v12/dist/assets/dox.min.js"></script>
+    <script src="/v12/dist/assets/mark.min.js"></script>
+    <script src="/v12/dist/assets/jquery-2.2.4.min.js"></script>
+    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.1.3.min.css">
+    <link rel="stylesheet" href="/v12/dist/assets/dox.css">
+</head>
+
+<body class="nosticky">
+    <div data-ts="App">
+        <div data-ts="Main">
+            <div data-ts="Content">
+                <div data-ts="Panel">
+                    <article>
+                        <h1><span>Tooltip</span></h1>
+                        <section class="desc">
+                            <p>
+                                Use the tooltip to show more information to client. Try to hover the <code class="attr-value">Tooltip</code>.
+                            </p>
+                        </section>
+                        <figure data-ts="DoxMarkup" data-ts.code="%3Cdiv%20data-ts%3D%22Tooltip%22%20data-ts.title%3D%22This%20my%20tooltip%22%3ETooltip%3Cdiv%3E">
+                            <script type="text/html">
+                                <div data-ts="Tooltip" data-ts.title="This my tooltip">Tooltip<div>
+				</script>
+                            <ul data-ts="Panels">
+                                <li data-ts="Panel" data-ts.label="Render" data-ts.selected="true">
+                                    <div class="output">
+                                        <div data-ts="Tooltip" data-ts.title="This my tooltip">Tooltip<div></div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li data-ts="Panel" data-ts.label="Markup" data-ts.selected="false">
+                                    <pre class="prism language-markup"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Tooltip<span class="token punctuation">&quot;</span></span> <span class="token attr-name">data-ts</span>.<span class="token attr-name">title</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>This my tooltip<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>Tooltip<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">&gt;</span></span></code></pre>
+                                </li>
+                            </ul>
+                        </figure>
+                        <section class="desc">
+                            <p>
+                                You need to assign the <code class="attr-pair"><span>data-ts.title</span></code> to the <code class="attr-value">Tooltip</code> element to initialize a tooltip.
+                            </p>
+                        </section>
+                        <figure data-ts="DoxMarkup" data-ts.code="%3Cdiv%20data-ts%3D%22Tooltip%22%20data-ts.title%3D%22This%20my%20tooltip%22%3ETooltip%3Cdiv%3E">
+                            <script type="text/html">
+                                <div data-ts="Tooltip" data-ts.title="This my tooltip">Tooltip<div>
+				</script>
+                            <ul data-ts="Panels">
+                                <li data-ts="Panel" data-ts.selected="true">
+                                    <pre class="prism language-markup"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Tooltip<span class="token punctuation">&quot;</span></span> <span class="token attr-name">data-ts</span>.<span class="token attr-name">title</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>This my tooltip<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>Tooltip<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">&gt;</span></span></code></pre>
+                                </li>
+                            </ul>
+                        </figure>
+                        <div data-ts="DoxApi" data-ts.code="%7B%0A%09%22name%22%3A%20%22ts.ui.TooltipSpirit%22%2C%0A%09%22properties%22%3A%20%5B%0A%09%09%7B%0A%09%09%09%22name%22%3A%20%22title%22%2C%0A%09%09%09%22type%22%3A%20%22string%22%2C%0A%09%09%09%22desc%22%3A%20%22The%20description%20you%20want%20to%20show%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09%22name%22%3A%20%22left%22%2C%0A%09%09%09%22type%22%3A%20%22(number)%22%2C%0A%09%09%09%22desc%22%3A%20%22The%20adjustment%20of%20left.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09%22name%22%3A%20%22top%22%2C%0A%09%09%09%22type%22%3A%20%22(number)%22%2C%0A%09%09%09%22desc%22%3A%20%22The%20adjustment%20of%20top.%22%0A%09%09%7D%0A%09%5D%0A%7D">
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-127106947-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag("js", new Date());
+        gtag("config", "UA-127106947-1");
+    </script>
+</body>
+
+</html>

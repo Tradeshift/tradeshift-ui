@@ -18,21 +18,24 @@
     <link rel="prefetch" title="ToolBar" href="toolbar.html">
     <script>
         ts.ui.ready(function() {
-				// support color scheme links in API table
-				var method;
-				ts.ui.get('html').action.add('ts-action-safe-link', {
-					onaction: function(a) {
-						if ((method = ts.ui.TopBar[a.data])) {
-							method.call(ts.ui.TopBar);
-						}
-					}
-				});
-			});
-			function restoreTopBar() {
-				ts.dox.tabs();
-			}
-		</script>
-    <script>ts.dox.tabs()</script>
+            // support color scheme links in API table
+            var method;
+            ts.ui.get('html').action.add('ts-action-safe-link', {
+                onaction: function(a) {
+                    if ((method = ts.ui.TopBar[a.data])) {
+                        method.call(ts.ui.TopBar);
+                    }
+                }
+            });
+        });
+
+        function restoreTopBar() {
+            ts.dox.tabs();
+        }
+    </script>
+    <script>
+        ts.dox.tabs()
+    </script>
 </head>
 
 <body>

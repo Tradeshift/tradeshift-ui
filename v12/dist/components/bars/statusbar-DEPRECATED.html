@@ -18,11 +18,13 @@
     <link rel="prefetch" title="ToolBar" href="toolbar.html">
     <script>
         function goto(index) {
-				var tabs = ts.ui.Main.tabbar().tabs();
-				tabs.selectedIndex = index;
-			}
-		</script>
-    <script>ts.dox.tabs()</script>
+            var tabs = ts.ui.Main.tabbar().tabs();
+            tabs.selectedIndex = index;
+        }
+    </script>
+    <script>
+        ts.dox.tabs()
+    </script>
 </head>
 
 <body>
@@ -418,7 +420,7 @@ group<span class="token punctuation">.</span><span class="token function">push<s
                 <figure data-ts="DoxMarkup" data-ts.code="%3Cfooter%20data-ts%3D%22StatusBar%22%20data-ts.message%3D%22This%20is%20my%20StatusBar%22%3E%3C%2Ffooter%3E">
                     <script type="text/html">
                         <footer data-ts="StatusBar" data-ts.message="This is my StatusBar"></footer>
-						</script>
+                    </script>
                     <ul data-ts="Panels">
                         <li data-ts="Panel" data-ts.selected="true">
                             <pre class="prism language-markup"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>footer</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>StatusBar<span class="token punctuation">&quot;</span></span> <span class="token attr-name">data-ts</span>.<span class="token attr-name">message</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>This is my StatusBar<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>footer</span><span class="token punctuation">&gt;</span></span></code></pre>

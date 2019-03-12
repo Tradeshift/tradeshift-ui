@@ -14,21 +14,21 @@
     <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.2.0.min.css">
     <link rel="stylesheet" href="/v12/dist/assets/dox.css">
     <script>
-        function toggle(/*...selectors*/) {
-				Array.forEach(arguments, function(selector) {
-					ts.ui.get(selector).toggle();
-				});
-			}
-			$(window).click(function(e) {
-				if (e.target.classList.contains('ts-secondary')) return;
-				if (ts.ui.Note._model) {
-					if (!e.target.classList.contains('ts-tertiary')) return;
-					ts.ui.Notification.warning(
-						'Please close the current Note before executing this example.'
-					);
-				}
-			});
-		</script>
+        function toggle( /*...selectors*/ ) {
+            Array.forEach(arguments, function(selector) {
+                ts.ui.get(selector).toggle();
+            });
+        }
+        $(window).click(function(e) {
+            if (e.target.classList.contains('ts-secondary')) return;
+            if (ts.ui.Note._model) {
+                if (!e.target.classList.contains('ts-tertiary')) return;
+                ts.ui.Notification.warning(
+                    'Please close the current Note before executing this example.'
+                );
+            }
+        });
+    </script>
 </head>
 
 <body>
@@ -138,10 +138,10 @@
                             <figure data-ts="DoxMarkup" data-ts.code="%3Cdiv%20data-ts%3D%22Note%22%3E%0A%09%3Ci%20class%3D%22ts-icon-heart%22%3E%3C%2Fi%3E%0A%09%3Cp%3EYou%20love%20the%20Note!%3C%2Fp%3E%0A%3C%2Fdiv%3E">
                                 <script type="text/html">
                                     <div data-ts="Note">
-							<i class="ts-icon-heart"></i>
-							<p>You love the Note!</p>
-						</div>
-					</script>
+                                        <i class="ts-icon-heart"></i>
+                                        <p>You love the Note!</p>
+                                    </div>
+                                </script>
                                 <ul data-ts="Panels">
                                     <li data-ts="Panel" data-ts.label="Render" data-ts.selected="true">
                                         <div class="output">
@@ -163,9 +163,9 @@
                             <figure data-ts="DoxMarkup" data-ts.code="%3Cdiv%20data-ts%3D%22Note%22%3E%0A%09%3Cp%3EThis%20is%20the%20iconless%20Note!%3C%2Fp%3E%0A%3C%2Fdiv%3E">
                                 <script type="text/html">
                                     <div data-ts="Note">
-							<p>This is the iconless Note!</p>
-						</div>
-					</script>
+                                        <p>This is the iconless Note!</p>
+                                    </div>
+                                </script>
                                 <ul data-ts="Panels">
                                     <li data-ts="Panel" data-ts.label="Render" data-ts.selected="true">
                                         <div class="output">
@@ -185,9 +185,9 @@
                             <figure data-ts="DoxMarkup" data-ts.code="%3Cdiv%20data-ts%3D%22Note%22%20data-ts.closeable%3D%22true%22%3E%0A%09%3Cp%3EThis%20is%20the%20closeable%20inline%20Note!%3C%2Fp%3E%0A%3C%2Fdiv%3E">
                                 <script type="text/html">
                                     <div data-ts="Note" data-ts.closeable="true">
-							<p>This is the closeable inline Note!</p>
-						</div>
-					</script>
+                                        <p>This is the closeable inline Note!</p>
+                                    </div>
+                                </script>
                                 <ul data-ts="Panels">
                                     <li data-ts="Panel" data-ts.label="Render" data-ts.selected="true">
                                         <div class="output">
@@ -230,14 +230,14 @@
                             <figure data-ts="DoxMarkup" data-ts.code="%3Caside%20data-ts%3D%22Aside%22%3E%0A%09%3Cdiv%20data-ts%3D%22Panel%22%3E%0A%09%09%3Cdiv%20data-ts%3D%22Note%22%3E%0A%09%09%09%3Ci%20class%3D%22ts-icon-heart%22%20%3E%3C%2Fi%3E%0A%09%09%09%3Cp%3ENote%20in%20the%20Aside!%3C%2Fp%3E%0A%09%09%3C%2Fdiv%3E%0A%09%3C%2Fdiv%3E%0A%3C%2Faside%3E">
                                 <script type="text/html">
                                     <aside data-ts="Aside">
-							<div data-ts="Panel">
-								<div data-ts="Note">
-									<i class="ts-icon-heart" ></i>
-									<p>Note in the Aside!</p>
-								</div>
-							</div>
-						</aside>
-					</script>
+                                        <div data-ts="Panel">
+                                            <div data-ts="Note">
+                                                <i class="ts-icon-heart"></i>
+                                                <p>Note in the Aside!</p>
+                                            </div>
+                                        </div>
+                                    </aside>
+                                </script>
                                 <ul data-ts="Panels">
                                     <li data-ts="Panel" data-ts.selected="true">
                                         <pre class="prism language-markup"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>aside</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Aside<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>

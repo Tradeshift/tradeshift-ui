@@ -38,47 +38,53 @@
     <link rel="prefetch" title="Gallery" href="gallery.html" class="hidden">
     <script>
         function getbutton(label, name, value) {
-				return {
-					item: 'Button',
-					type: 'ts-secondary ts-micro',
-					label: label,
-					name: name,
-					value: value
-				};
-			}
-			function getswitch(name, value, checked) {
-				return {
-					item: 'Switch',
-					name: name,
-					value: value,
-					checked: checked
-				};
-			}
-			function geticon(type, color) {
-				return {
-					item: 'Icon',
-					type: type,
-					color: color || 'black'
-				};
-			}
-			function getimage(src, width, height) {
-				return {
-					item: 'Image',
-					src: src,
-					width: width || 100,
-					height: height || 100,
-					background: true
-				};
-			}
-			function getuserimage(name, src) {
-				return {
-					item: 'UserImage',
-					name: name,
-					src: src
-				};
-			}
-		</script>
-    <script>ts.dox.tabs()</script>
+            return {
+                item: 'Button',
+                type: 'ts-secondary ts-micro',
+                label: label,
+                name: name,
+                value: value
+            };
+        }
+
+        function getswitch(name, value, checked) {
+            return {
+                item: 'Switch',
+                name: name,
+                value: value,
+                checked: checked
+            };
+        }
+
+        function geticon(type, color) {
+            return {
+                item: 'Icon',
+                type: type,
+                color: color || 'black'
+            };
+        }
+
+        function getimage(src, width, height) {
+            return {
+                item: 'Image',
+                src: src,
+                width: width || 100,
+                height: height || 100,
+                background: true
+            };
+        }
+
+        function getuserimage(name, src) {
+            return {
+                item: 'UserImage',
+                name: name,
+                src: src
+            };
+        }
+    </script>
+    <script>
+        ts.dox.tabs()
+    </script>
 </head>
 
 <body class="nosticky">

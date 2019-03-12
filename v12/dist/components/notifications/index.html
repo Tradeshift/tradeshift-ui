@@ -15,39 +15,39 @@
     <link rel="stylesheet" href="/v12/dist/assets/dox.css">
     <script>
         // Setup to quicktest the markdown parser
-			var TESTMARKDOWN = [
-				'# Headers',
-				'Paragraphs with **strong text**.\n', // becomes double newline
-				'Paragraphs with *italic text*.\n',
-				'Paragraphs with `source code`.\n',
-				'## links',
-				'This is [a link](http://www.tradeshift.com)',
-				'## Unordered lists',
-				'* One',
-				'* Two',
-				'  * Two 1',
-				'  * Two 2',
-				'## Ordered lists',
-				'1. One',
-				'2. Two',
-				'  1. Two 1',
-				'  2. Two 2'
-			].join('\n');
-			if (false) {
-				setTimeout(function() {
-					(function testit(model) {
-						var html = model.render();
-						document.querySelector('article').innerHTML = html;
-						console.log(html);
-					})(
-						new ts.ui.TextModel({
-							html: ts.ui.TextModel.HTML,
-							text: TESTMARKDOWN
-						})
-					);
-				}, 500);
-			}
-		</script>
+        var TESTMARKDOWN = [
+            '# Headers',
+            'Paragraphs with **strong text**.\n', // becomes double newline
+            'Paragraphs with *italic text*.\n',
+            'Paragraphs with `source code`.\n',
+            '## links',
+            'This is [a link](http://www.tradeshift.com)',
+            '## Unordered lists',
+            '* One',
+            '* Two',
+            '  * Two 1',
+            '  * Two 2',
+            '## Ordered lists',
+            '1. One',
+            '2. Two',
+            '  1. Two 1',
+            '  2. Two 2'
+        ].join('\n');
+        if (false) {
+            setTimeout(function() {
+                (function testit(model) {
+                    var html = model.render();
+                    document.querySelector('article').innerHTML = html;
+                    console.log(html);
+                })(
+                    new ts.ui.TextModel({
+                        html: ts.ui.TextModel.HTML,
+                        text: TESTMARKDOWN
+                    })
+                );
+            }, 500);
+        }
+    </script>
 </head>
 
 <body>
@@ -121,8 +121,8 @@ ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</s
                             <figure data-ts="DoxMarkup" data-ts.code="Markdown%20for%20**bold%20text**%20and%20*italic%20text*%20and%20%60source%20code%60%0AMarkdown%20for%20a%20%5Bhyperlink%5D(http%3A%2F%2Fwww.example.com%2F)">
                                 <script type="text/html">
                                     Markdown for **bold text** and *italic text* and `source code`
-						Markdown for a [hyperlink](http://www.example.com/)
-					</script>
+                                    Markdown for a [hyperlink](http://www.example.com/)
+                                </script>
                                 <ul data-ts="Panels">
                                     <li data-ts="Panel" data-ts.selected="true">
                                         <pre class="prism language-markup"><code>Markdown for **bold text** and *italic text* and `source code`

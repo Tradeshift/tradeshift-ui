@@ -16,9 +16,9 @@
     <meta name="robots" content="noindex">
     <style>
         .docs-responsive-demo {
-				background-color: rgb(255, 255, 255) !important;
-			}
-		</style>
+            background-color: rgb(255, 255, 255) !important;
+        }
+    </style>
 </head>
 
 <body>
@@ -66,33 +66,33 @@
                         <section id="doc-break-demo" data-ts="Spirit">
                             <script class="gui-script" data-ts.scriptid="edbml.$5Wctf0">
                                 edbml.declare('edbml.$5Wctf0').as(function $edbml() {
-				/*``*/
-					'use strict';
-					var out = $edbml.$out,
-						$txt = edbml.safetext,
-						$val = edbml.safeattr;
-					var clazzNames = [
-						'ts-show-mobile-only',
-						'ts-show-tablet-only',
-						'ts-show-desktop-only',
-						'ts-hide-mobile-only',
-						'ts-hide-tablet-only',
-						'ts-hide-desktop-only',
-						'ts-show-desktop',
-						'ts-show-tablet',
-						'ts-show-mobile',
-						'ts-hide-desktop',
-						'ts-hide-tablet',
-						'ts-hide-mobile'
-					];
-					clazzNames.forEach(function(clazz) {
-						out.html += '<div class="docs-responsive-demo ' + $val(clazz) + '">' +
-						            '<code>.' + $txt(clazz) + '</code>' +
-						            '</div>';
-					});
-					return out.write();
-				});
-				</script>
+                                    /*``*/
+                                    'use strict';
+                                    var out = $edbml.$out,
+                                        $txt = edbml.safetext,
+                                        $val = edbml.safeattr;
+                                    var clazzNames = [
+                                        'ts-show-mobile-only',
+                                        'ts-show-tablet-only',
+                                        'ts-show-desktop-only',
+                                        'ts-hide-mobile-only',
+                                        'ts-hide-tablet-only',
+                                        'ts-hide-desktop-only',
+                                        'ts-show-desktop',
+                                        'ts-show-tablet',
+                                        'ts-show-mobile',
+                                        'ts-hide-desktop',
+                                        'ts-hide-tablet',
+                                        'ts-hide-mobile'
+                                    ];
+                                    clazzNames.forEach(function(clazz) {
+                                        out.html += '<div class="docs-responsive-demo ' + $val(clazz) + '">' +
+                                            '<code>.' + $txt(clazz) + '</code>' +
+                                            '</div>';
+                                    });
+                                    return out.write();
+                                });
+                            </script>
                         </section>
                         <section>
                             <h3><span>Find the current breakpoint</span></h3>

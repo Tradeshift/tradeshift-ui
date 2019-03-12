@@ -23,32 +23,34 @@
     <link rel="prefetch" title="JQuery Test" href="test-2.html" class="hidden">
     <script>
         ts.ui.ready(function() {
-				ts.ui.get('#myAside', function(aside) {
-					$('#mySelect').click(function() {
-						aside.open();
-					});
-					$('.ts-user-menu button').click(function(e) {
-						$('.ts-icon-checked').remove();
-						$('.ts-user-menu li').removeClass('ts-checked');
-						var name = $(e.currentTarget).data('user');
-						$(e.currentTarget)
-							.parent('li')
-							.addClass('ts-checked');
-						$(e.currentTarget).append('<i class="ts-icon-checked"></i>');
-						$('#mySelect').val(name);
-						ts.ui.Notification.success(name);
-						aside.close();
-					});
-				});
-			});
-		</script>
+            ts.ui.get('#myAside', function(aside) {
+                $('#mySelect').click(function() {
+                    aside.open();
+                });
+                $('.ts-user-menu button').click(function(e) {
+                    $('.ts-icon-checked').remove();
+                    $('.ts-user-menu li').removeClass('ts-checked');
+                    var name = $(e.currentTarget).data('user');
+                    $(e.currentTarget)
+                        .parent('li')
+                        .addClass('ts-checked');
+                    $(e.currentTarget).append('<i class="ts-icon-checked"></i>');
+                    $('#mySelect').val(name);
+                    ts.ui.Notification.success(name);
+                    aside.close();
+                });
+            });
+        });
+    </script>
     <style>
         .user-container div {
-				margin: 10px;
-				cursor: pointer;
-			}
-		</style>
-    <script>ts.dox.tabs()</script>
+            margin: 10px;
+            cursor: pointer;
+        }
+    </style>
+    <script>
+        ts.dox.tabs()
+    </script>
 </head>
 
 <body class="nosticky">
@@ -69,19 +71,19 @@
                             <figure data-ts="DoxMarkup" data-ts.code="%3Cform%20data-ts%3D%22Form%22%3E%0A%09%3Cfieldset%3E%0A%09%09%3Clabel%3E%0A%09%09%09%3Cspan%3ESelect%3C%2Fspan%3E%0A%09%09%09%3Cselect%20id%3D%22mySelect%22%20data-ts.custom%3D%22true%22%3E%0A%09%09%09%09%3Coption%20value%3D%22%22%3E%3C%2Foption%3E%0A%09%09%09%09%3Coption%20value%3D%22jimbob%22%3EJim%20Bob%20Johnson%3C%2Foption%3E%0A%09%09%09%09%3Coption%20value%3D%22karl%22%3EKarl%20Benson%3C%2Foption%3E%0A%09%09%09%09%3Coption%20value%3D%22marshall%22%3EMarshall%20Garrett%3C%2Foption%3E%0A%09%09%09%3C%2Fselect%3E%0A%09%09%3C%2Flabel%3E%0A%09%3C%2Ffieldset%3E%0A%3C%2Fform%3E">
                                 <script type="text/html">
                                     <form data-ts="Form">
-							<fieldset>
-								<label>
-									<span>Select</span>
-									<select id="mySelect" data-ts.custom="true">
-										<option value=""></option>
-										<option value="jimbob">Jim Bob Johnson</option>
-										<option value="karl">Karl Benson</option>
-										<option value="marshall">Marshall Garrett</option>
-									</select>
-								</label>
-							</fieldset>
-						</form>
-					</script>
+                                        <fieldset>
+                                            <label>
+                                                <span>Select</span>
+                                                <select id="mySelect" data-ts.custom="true">
+                                                    <option value=""></option>
+                                                    <option value="jimbob">Jim Bob Johnson</option>
+                                                    <option value="karl">Karl Benson</option>
+                                                    <option value="marshall">Marshall Garrett</option>
+                                                </select>
+                                            </label>
+                                        </fieldset>
+                                    </form>
+                                </script>
                                 <ul data-ts="Panels">
                                     <li data-ts="Panel" data-ts.selected="true">
                                         <pre class="prism language-markup"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>form</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Form<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
@@ -106,11 +108,11 @@
                             <figure data-ts="DoxScript" data-ts.code="%24(%22%23mySelect%22).click(function()%7B%0A%09ts.ui.get(%22%23myAside%22%2C%20function(aside)%20%7B%0A%09%09aside.open()%3B%0A%09%7D)%3B%0A%7D)%3B">
                                 <script type="text/html">
                                     $("#mySelect").click(function(){
-							ts.ui.get("#myAside", aside => {
-								aside.open();
-							});
-						});
-					</script>
+                                    ts.ui.get("#myAside", aside => {
+                                    aside.open();
+                                    });
+                                    });
+                                </script>
                                 <input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
                                 <div data-ts="Panel">
                                     <pre class="prism language-javascript"><code>$<span class="token punctuation">(</span><span class="token string">&quot;#mySelect&quot;</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">click<span class="token punctuation">(</span></span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
@@ -126,33 +128,33 @@
                             <figure data-ts="DoxMarkup" data-ts.code="%3Caside%20data-ts%3D%22Aside%22%20data-ts.title%3D%22Custom%20Select%22%20id%3D%22myAside%22%3E%0A%09%3Cdiv%20data-ts%3D%22Panel%22%3E%0A%09%09%3Cmenu%20data-ts%3D%22Menu%22%20class%3D%22ts-user-menu%22%3E%0A%09%09%09%3Cli%3E%0A%09%09%09%09%3Cbutton%20data-user%3D%22jimbob%22%3E%0A%09%09%09%09%09%3Cimg%20data-ts%3D%22UserImage%22%20src%3D%22assets%2Fjim.png%22%20alt%3D%22Jim%20Bob%20Johnson%22%2F%3E%0A%09%09%09%09%09%3Cspan%3EJim%20Bob%20Johnson%3C%2Fspan%3E%0A%09%09%09%09%09%3Csub%3Ejimbob%40company.com%3C%2Fsub%3E%0A%09%09%09%09%3C%2Fbutton%3E%0A%09%09%09%3C%2Fli%3E%0A%09%09%09%3Cli%3E%0A%09%09%09%09%3Cbutton%20data-user%3D%22karl%22%3E%0A%09%09%09%09%09%3Cimg%20data-ts%3D%22UserImage%22%20alt%3D%22Karl%20Benson%22%2F%3E%0A%09%09%09%09%09%3Cspan%3EKarl%20Benson%3C%2Fspan%3E%0A%09%09%09%09%09%3Csub%3Ekarl%40company.com%3C%2Fsub%3E%0A%09%09%09%09%3C%2Fbutton%3E%0A%09%09%09%3C%2Fli%3E%0A%09%09%09%3Cli%3E%0A%09%09%09%09%3Cbutton%20data-user%3D%22marshall%22%3E%0A%09%09%09%09%09%3Cimg%20data-ts%3D%22UserImage%22%20alt%3D%22Marshall%20Garrett%22%2F%3E%0A%09%09%09%09%09%3Cspan%3EMarshall%20Garrett%3C%2Fspan%3E%0A%09%09%09%09%09%3Csub%3Emarshall%40company.com%3C%2Fsub%3E%0A%09%09%09%09%3C%2Fbutton%3E%0A%09%09%09%3C%2Fli%3E%0A%09%09%3C%2Fmenu%3E%0A%09%3C%2Fdiv%3E%0A%3C%2Faside%3E">
                                 <script type="text/html">
                                     <aside data-ts="Aside" data-ts.title="Custom Select" id="myAside">
-							<div data-ts="Panel">
-								<menu data-ts="Menu" class="ts-user-menu">
-									<li>
-										<button data-user="jimbob">
-											<img data-ts="UserImage" src="assets/jim.png" alt="Jim Bob Johnson"/>
-											<span>Jim Bob Johnson</span>
-											<sub>jimbob@company.com</sub>
-										</button>
-									</li>
-									<li>
-										<button data-user="karl">
-											<img data-ts="UserImage" alt="Karl Benson"/>
-											<span>Karl Benson</span>
-											<sub>karl@company.com</sub>
-										</button>
-									</li>
-									<li>
-										<button data-user="marshall">
-											<img data-ts="UserImage" alt="Marshall Garrett"/>
-											<span>Marshall Garrett</span>
-											<sub>marshall@company.com</sub>
-										</button>
-									</li>
-								</menu>
-							</div>
-						</aside>
-					</script>
+                                        <div data-ts="Panel">
+                                            <menu data-ts="Menu" class="ts-user-menu">
+                                                <li>
+                                                    <button data-user="jimbob">
+                                                        <img data-ts="UserImage" src="assets/jim.png" alt="Jim Bob Johnson" />
+                                                        <span>Jim Bob Johnson</span>
+                                                        <sub>jimbob@company.com</sub>
+                                                    </button>
+                                                </li>
+                                                <li>
+                                                    <button data-user="karl">
+                                                        <img data-ts="UserImage" alt="Karl Benson" />
+                                                        <span>Karl Benson</span>
+                                                        <sub>karl@company.com</sub>
+                                                    </button>
+                                                </li>
+                                                <li>
+                                                    <button data-user="marshall">
+                                                        <img data-ts="UserImage" alt="Marshall Garrett" />
+                                                        <span>Marshall Garrett</span>
+                                                        <sub>marshall@company.com</sub>
+                                                    </button>
+                                                </li>
+                                            </menu>
+                                        </div>
+                                    </aside>
+                                </script>
                                 <ul data-ts="Panels">
                                     <li data-ts="Panel" data-ts.selected="true">
                                         <pre class="prism language-markup"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>aside</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Aside<span class="token punctuation">&quot;</span></span> <span class="token attr-name">data-ts</span>.<span class="token attr-name">title</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Custom Select<span class="token punctuation">&quot;</span></span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>myAside<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
@@ -191,16 +193,16 @@
                             <figure data-ts="DoxScript" data-ts.code="%24(%22.ts-user-menu%20button%22).click(function(e)%7B%0A%09%24(&apos;.ts-icon-checked&apos;).remove()%3B%0A%09%24(&apos;.ts-user-menu%20li&apos;).removeClass(&apos;ts-checked&apos;)%3B%0A%09var%20name%20%3D%20%24(e.currentTarget).data(%22user%22)%3B%0A%09%24(e.currentTarget).parent(&apos;li&apos;).addClass(&apos;ts-checked&apos;)%3B%0A%09%24(e.currentTarget).append(&apos;%3Ci%20class%3D%22ts-icon-checked%22%3E%3C%2Fi%3E&apos;)%3B%0A%09%24(%22%23mySelect%22).val(name)%3B%0A%09ts.ui.Notification.success(name)%3B%0A%09aside.close()%3B%0A%7D)%3B">
                                 <script type="text/html">
                                     $(".ts-user-menu button").click(function(e){
-							$('.ts-icon-checked').remove();
-							$('.ts-user-menu li').removeClass('ts-checked');
-							var name = $(e.currentTarget).data("user");
-							$(e.currentTarget).parent('li').addClass('ts-checked');
-							$(e.currentTarget).append('<i class="ts-icon-checked"></i>');
-							$("#mySelect").val(name);
-							ts.ui.Notification.success(name);
-							aside.close();
-						});
-					</script>
+                                    $('.ts-icon-checked').remove();
+                                    $('.ts-user-menu li').removeClass('ts-checked');
+                                    var name = $(e.currentTarget).data("user");
+                                    $(e.currentTarget).parent('li').addClass('ts-checked');
+                                    $(e.currentTarget).append('<i class="ts-icon-checked"></i>');
+                                    $("#mySelect").val(name);
+                                    ts.ui.Notification.success(name);
+                                    aside.close();
+                                    });
+                                </script>
                                 <input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
                                 <div data-ts="Panel">
                                     <pre class="prism language-javascript"><code>$<span class="token punctuation">(</span><span class="token string">&quot;.ts-user-menu button&quot;</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">click<span class="token punctuation">(</span></span><span class="token keyword">function</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span><span class="token punctuation">{</span>

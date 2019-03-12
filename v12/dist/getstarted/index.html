@@ -19,20 +19,22 @@
     <link rel="prefetch" title="Rules" href="rules.html">
     <script>
         ts.ui.ready(function nastyhack() {
-				new gui.Request('/v12/dist/sri.json').get().then(function(status, json) {
-					ts.ui.ready(function nastyhack() {
-						var version = ts.ui.version;
-						var figure = document.querySelector('figure');
-						var markup = figure.innerHTML;
-						figure.innerHTML = markup
-							.replace(/\${ts.ui.version}/g, version)
-							.replace('${sricss}', json['@css'].integrity)
-							.replace('${srijs}', json['@js'].integrity);
-					});
-				});
-			});
-		</script>
-    <script>ts.dox.tabs()</script>
+            new gui.Request('/v12/dist/sri.json').get().then(function(status, json) {
+                ts.ui.ready(function nastyhack() {
+                    var version = ts.ui.version;
+                    var figure = document.querySelector('figure');
+                    var markup = figure.innerHTML;
+                    figure.innerHTML = markup
+                        .replace(/\${ts.ui.version}/g, version)
+                        .replace('${sricss}', json['@css'].integrity)
+                        .replace('${srijs}', json['@js'].integrity);
+                });
+            });
+        });
+    </script>
+    <script>
+        ts.dox.tabs()
+    </script>
 </head>
 
 <body>
@@ -52,23 +54,23 @@
                             <p data-ts="Spirit">
                                 <script class="gui-script" data-ts.scriptid="edbml.$Z2dVzsb1">
                                     edbml.declare('edbml.$Z2dVzsb1').as(function $edbml() {
-					/*``*/
-						'use strict';
-						var out = $edbml.$out,
-							$txt = edbml.safetext;
-						out.html +=
-							'<span>To get Tradeshift UI up and running on your page, simply include <code>ts.js</code> and <code>ts.css</code> in an appropriate version. The latest version is <code>' +
-							$txt(ts.ui.version) +
-							'</code>';
-						return out.write();
-					});
-					</script>
+                                        /*``*/
+                                        'use strict';
+                                        var out = $edbml.$out,
+                                            $txt = edbml.safetext;
+                                        out.html +=
+                                            '<span>To get Tradeshift UI up and running on your page, simply include <code>ts.js</code> and <code>ts.css</code> in an appropriate version. The latest version is <code>' +
+                                            $txt(ts.ui.version) +
+                                            '</code>';
+                                        return out.write();
+                                    });
+                                </script>
                             </p>
                             <figure data-ts="DoxMarkup" data-ts.code="%3Clink%20rel%3D%22stylesheet%22%20href%3D%22%2F%2Fd5wfroyti11sa.cloudfront.net%2Fprod%2Fclient%2Fts-%24%7Bts.ui.version%7D.min.css%22%2F%3E%0A%3Cscript%20src%3D%22%2F%2Fd5wfroyti11sa.cloudfront.net%2Fprod%2Fclient%2Fts-%24%7Bts.ui.version%7D.min.js%22%3E%3C%2Fscript%3E">
                                 <script type="text/html">
-                                    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-${ts.ui.version}.min.css"/>
-						<scrxpt src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-${ts.ui.version}.min.js"></scrxpt>
-					</script>
+                                    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-${ts.ui.version}.min.css" />
+                                    <scrxpt src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-${ts.ui.version}.min.js"></scrxpt>
+                                </script>
                                 <ul data-ts="Panels">
                                     <li data-ts="Panel" data-ts.selected="true">
                                         <pre class="prism language-markup"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>link</span> <span class="token attr-name">rel</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>stylesheet<span class="token punctuation">&quot;</span></span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>//d5wfroyti11sa.cloudfront.net/prod/client/ts-${ts.ui.version}.min.css<span class="token punctuation">&quot;</span></span><span class="token punctuation">/&gt;</span></span>
@@ -93,10 +95,10 @@
                             <figure data-ts="DoxScript" data-ts.code="ts.ui.ready(function()%20%7B%0A%09var%20component%20%3D%20ts.ui.get(element)%3B%0A%09component.dosomething()%3B%0A%7D)%3B">
                                 <script type="text/html">
                                     ts.ui.ready(function() {
-							var component = ts.ui.get(element);
-							component.dosomething();
-						});
-					</script>
+                                    var component = ts.ui.get(element);
+                                    component.dosomething();
+                                    });
+                                </script>
                                 <input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
                                 <div data-ts="Panel">
                                     <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token function">ready<span class="token punctuation">(</span></span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
@@ -117,9 +119,9 @@
                             <figure data-ts="DoxScript" data-ts.code="ts.ui.ready(function()%20%7B%0A%09boostrap_everything()%3B%0A%7D)%3B">
                                 <script type="text/html">
                                     ts.ui.ready(function() {
-							boostrap_everything();
-						});
-					</script>
+                                    boostrap_everything();
+                                    });
+                                </script>
                                 <input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
                                 <div data-ts="Panel">
                                     <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token function">ready<span class="token punctuation">(</span></span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>

@@ -38,31 +38,40 @@
     <link rel="prefetch" title="Gallery" href="gallery.html" class="hidden">
     <style>
         #mytable th.oldprice {
-				background-color: rgb(250, 200, 200);
-			}
-			#mytable td.oldprice {
-				background-color: rgb(255, 225, 225);
-			}
-			#mytable th.newprice {
-				background-color: rgb(200, 250, 200);
-			}
-			#mytable td.newprice {
-				background-color: rgb(225, 255, 225);
-			}
-			#example2 td.pale-red {
-				background-color: rgb(255, 225, 225);
-			}
-			#example2 td.pale-green {
-				background-color: rgb(225, 255, 225);
-			}
-			#example2 td.pale-blue {
-				background-color: rgb(225, 225, 255);
-			}
-			#example3 td.very-special {
-				background-color: rgb(225, 225, 255);
-			}
-		</style>
-    <script>ts.dox.tabs()</script>
+            background-color: rgb(250, 200, 200);
+        }
+
+        #mytable td.oldprice {
+            background-color: rgb(255, 225, 225);
+        }
+
+        #mytable th.newprice {
+            background-color: rgb(200, 250, 200);
+        }
+
+        #mytable td.newprice {
+            background-color: rgb(225, 255, 225);
+        }
+
+        #example2 td.pale-red {
+            background-color: rgb(255, 225, 225);
+        }
+
+        #example2 td.pale-green {
+            background-color: rgb(225, 255, 225);
+        }
+
+        #example2 td.pale-blue {
+            background-color: rgb(225, 225, 255);
+        }
+
+        #example3 td.very-special {
+            background-color: rgb(225, 225, 255);
+        }
+    </style>
+    <script>
+        ts.dox.tabs()
+    </script>
 </head>
 
 <body class="nosticky">
@@ -121,7 +130,7 @@
                             <figure data-ts="DoxMarkup" data-ts.code="%3Cstyle%20type%3D%22text%2Fless%22%3E%0A%09%23mytable%20%7B%0A%09%09th%20%7B%0A%09%09%09%26.oldprice%20%7B%0A%09%09%09%09background%3A%20red%3B%0A%09%09%09%7D%0A%09%09%09%26.newprice%20%7B%0A%09%09%09%09background%3A%20green%3B%0A%09%09%09%7D%0A%09%09%7D%0A%09%09td%20%7B%0A%09%09%09%26.oldprice%20%7B%0A%09%09%09%09background%3A%20pink%3B%0A%09%09%09%7D%0A%09%09%09%26.newprice%20%7B%0A%09%09%09%09background%3A%20lime%3B%0A%09%09%09%7D%0A%09%09%7D%0A%09%7D%0A%3C%2Fstyle%3E">
                                 <script type="text/html">
                                     <style type="text/less">
-							#mytable {
+                                        #mytable {
 								th {
 									&.oldprice {
 										background: red;
@@ -140,7 +149,7 @@
 								}
 							}
 						</style>
-					</script>
+                                </script>
                                 <ul data-ts="Panels">
                                     <li data-ts="Panel" data-ts.selected="true">
                                         <pre class="prism language-markup"><code><span class="token style"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>style</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>text/less<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>

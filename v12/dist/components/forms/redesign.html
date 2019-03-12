@@ -23,13 +23,15 @@
     <link rel="prefetch" title="JQuery Test" href="test-2.html" class="hidden">
     <script>
         document.addEventListener('change', function(e) {
-				var section = document.querySelector('#bgcolor');
-				if (e.target.name && e.target.value.includes('ts-bg')) {
-					section.className = e.target.value;
-				}
-			});
-		</script>
-    <script>ts.dox.tabs()</script>
+            var section = document.querySelector('#bgcolor');
+            if (e.target.name && e.target.value.includes('ts-bg')) {
+                section.className = e.target.value;
+            }
+        });
+    </script>
+    <script>
+        ts.dox.tabs()
+    </script>
 </head>
 
 <body>

@@ -19,7 +19,9 @@
     <link rel="prefetch" title="JSON" href="json.html">
     <link rel="prefetch" title="Gallery" href="gallery.html">
     <link rel="prefetch" title="Broken HTML" href="old.html" class="hidden">
-    <script>ts.dox.tabs()</script>
+    <script>
+        ts.dox.tabs()
+    </script>
 </head>
 
 <body>
@@ -39,41 +41,41 @@
                                 <code>inline</code> fashion.
                                 <script>
                                     ts.ui.ready(() => {
-							ts.ui.get('#tag-lich', tag => {
-								tag.data = new Map([['Lich', 'Acererak']]);
-							});
-							ts.ui.get('#tag-beholder', tag => {
-								tag.data = new Map([['Beholder', 'Xanathar']]);
-							});
-						});
-					</script>
+                                        ts.ui.get('#tag-lich', tag => {
+                                            tag.data = new Map([
+                                                ['Lich', 'Acererak']
+                                            ]);
+                                        });
+                                        ts.ui.get('#tag-beholder', tag => {
+                                            tag.data = new Map([
+                                                ['Beholder', 'Xanathar']
+                                            ]);
+                                        });
+                                    });
+                                </script>
                                 <figure data-ts="DoxMarkup" data-ts.code="%3Cscript%3E%0A%09ts.ui.ready(()%20%3D%3E%20%7B%0A%09%09ts.ui.get(&apos;%23tag-lich&apos;%2C%20tag%20%3D%3E%20%7B%0A%09%09%09tag.data%20%3D%20new%20Map(%5B%0A%09%09%09%09%5B&apos;Lich&apos;%2C%20&apos;Acererak&apos;%5D%0A%09%09%09%5D)%3B%0A%09%09%7D)%3B%0A%09%09ts.ui.get(&apos;%23tag-beholder&apos;%2C%20tag%20%3D%3E%20%7B%0A%09%09%09tag.data%20%3D%20new%20Map(%5B%0A%09%09%09%09%5B&apos;Beholder&apos;%2C%20&apos;Xanathar&apos;%5D%0A%09%09%09%5D)%3B%0A%09%09%7D)%3B%0A%09%7D)%3B%0A%3C%2Fscript%3E%0A%3Cdiv%3E%0A%09%3Cfigure%0A%09%09id%3D%22tag-lich%22%0A%09%09data-ts%3D%22Tag%22%3E%0A%09%3C%2Ffigure%3E%0A%09%3Cfigure%0A%09%09id%3D%22tag-beholder%22%0A%09%09data-ts%3D%22Tag%22%3E%0A%09%3C%2Ffigure%3E%0A%3C%2Fdiv%3E">
                                     <script type="text/html">
                                         <scrxpt>
-								ts.ui.ready(() => {
-									ts.ui.get('#tag-lich', tag => {
-										tag.data = new Map([
-											['Lich', 'Acererak']
-										]);
-									});
-									ts.ui.get('#tag-beholder', tag => {
-										tag.data = new Map([
-											['Beholder', 'Xanathar']
-										]);
-									});
-								});
-							</scrxpt>
-							<div>
-								<figure
-									id="tag-lich"
-									data-ts="Tag">
-								</figure>
-								<figure
-									id="tag-beholder"
-									data-ts="Tag">
-								</figure>
-							</div>
-						</script>
+                                            ts.ui.ready(() => {
+                                            ts.ui.get('#tag-lich', tag => {
+                                            tag.data = new Map([
+                                            ['Lich', 'Acererak']
+                                            ]);
+                                            });
+                                            ts.ui.get('#tag-beholder', tag => {
+                                            tag.data = new Map([
+                                            ['Beholder', 'Xanathar']
+                                            ]);
+                                            });
+                                            });
+                                        </scrxpt>
+                                        <div>
+                                            <figure id="tag-lich" data-ts="Tag">
+                                            </figure>
+                                            <figure id="tag-beholder" data-ts="Tag">
+                                            </figure>
+                                        </div>
+                                    </script>
                                     <ul data-ts="Panels">
                                         <li data-ts="Panel" data-ts.label="Markup" data-ts.selected="true">
                                             <pre class="prism language-markup"><code><span class="token script"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">&gt;</span></span>

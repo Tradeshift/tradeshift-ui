@@ -106,11 +106,7 @@ ts.ui.TabModel = (function using(chained) {
 		 * @param {Array<gui.Change>} changes
 		 */
 		onchange: function(changes) {
-			changes.forEach(function(c) {
-				if (c.name === 'selected' && c.newValue) {
-					this._doselect();
-				}
-			}, this);
+			// Just call _doselect
 		},
 
 		/**
@@ -119,6 +115,7 @@ ts.ui.TabModel = (function using(chained) {
 		 */
 		select: chained(function() {
 			this.selected = true;
+			this._doselect();
 		}),
 
 		/**

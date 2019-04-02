@@ -37,6 +37,11 @@ ts.ui.DateInputSpirit = (function(tick, time) {
 		onready: function() {
 			this.super.onready();
 			this.tick.add(tick).start(tick, time);
+
+			// Change the original input into a plain text field to suppress the native datepicker cross-browser.
+			// If javascript is disabled for any reason, the browser will gracefully fallback to the native date picker
+			this.element.type = 'text';
+
 			this._createfake(ts.ui.FakeDateInputSpirit).proxy(this.element);
 		},
 

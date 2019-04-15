@@ -3,6 +3,16 @@
 	<?input name="aside" type="ts.ui.AsideModel"?>
 	this.title(aside.title);
 	<div data-ts="Panel" id="${this.$instanceid}-panel">
+		if(aside.note) {
+			<div data-ts="Note">
+				<p>${aside.note}</p>
+			</div>
+		}
 		out.html += aside.items.render();
 	</div>
+	if(aside.footer) {
+		<footer>
+			out.html += aside.footer.render();
+		</footer>
+	}
 </script>

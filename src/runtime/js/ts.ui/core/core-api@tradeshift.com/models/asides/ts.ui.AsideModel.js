@@ -30,6 +30,12 @@ ts.ui.AsideModel = (function using(chained) {
 		title: null,
 
 		/**
+		 * Aside Note.
+		 * @type {String}
+		 */
+		note: '',
+
+		/**
 		 * Current aside status (for xframe synchronization).
 		 * Matches one of onopen|onopened|onclose|onclosed
 		 * @type {string}
@@ -95,6 +101,12 @@ ts.ui.AsideModel = (function using(chained) {
 		 * @type {boolean}
 		 */
 		suspendopen: false,
+
+		/**
+		 * Make a footer for the aside. Only support buttons in the footer right now.
+		 * @type {object}
+		 */
+		footer: null,
 
 		/**
 		 * Make sure that `items` exist.

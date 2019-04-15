@@ -97,6 +97,39 @@
 						}).open();
 					</script>
 				</figure>
+				<p>You can set and change a note for the datepicker.</p>
+				<figure data-ts="DoxScript">
+					<script type="runnable">
+						ts.ui.DatePicker({
+							title: 'The note is under the header',
+							value: '2019-01-01',
+							note: 'Have a nice day',
+							onselect: function() {
+								this.close();
+							},
+							onclosed: function() {
+								this.dispose();
+							}
+						}).open();
+					</script>
+				</figure>
+				<p>You can also make a deselect datepicker.</p>
+				<figure data-ts="DoxScript">
+					<script type="runnable">
+						ts.ui.DatePicker({
+							title: 'Deselect the date',
+							value: '2019-01-01',
+							deselectable: true,
+							onselect: function() {
+								ts.ui.Notification.success('You deselected the date');
+								this.close();
+							},
+							onclosed: function() {
+								this.dispose();
+							}
+						}).open();
+					</script>
+				</figure>
 				<p>
 					The object argument configures a <code>ts.ui.DatePickerModel</code> as outlined below.
 				</p>
@@ -114,6 +147,16 @@
 									"name": "value",
 									"type": "string",
 									"desc": "The selected date. Must be dash-separated, ISO 8601 formatted date string e.g. 2015-01-01"
+								},
+								{
+									"name": "note",
+									"type": "string",
+									"desc": "The note of the datepicker to show some information"
+								},
+								{
+									"name": "deselectable",
+									"type": "boolean",
+									"desc": "The datapicker is deselectable?"
 								},
 								{
 									"name": "open",

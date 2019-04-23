@@ -1581,7 +1581,7 @@ ts.ui.TableSpirit = (function using(
 			}
 			if ((this._clickable && this.onclick) || edits) {
 				var rows = this.queryplugin.getrows();
-				if (this._contains(rows, elm)) {
+				if (elm.nodeName !== 'TBODY' && this._contains(rows, elm)) {
 					this._onrowsclick(elm, edits);
 				}
 			}

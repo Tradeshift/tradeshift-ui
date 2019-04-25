@@ -30,7 +30,8 @@ ts.ui.DatePicker.localize({
 	],
 	dayNames: ['Domenica', 'Lunedi', 'Martedì', 'Mercoledì', 'Gioverdi', 'Venerdì', 'Sabato'],
 	dayNamesShort: ['Dom', 'Lun', 'Mar', 'Mer', 'Gio', 'Ven', 'Sab'],
-	dayNamesMin: ['Do', 'Lu', 'Ma', 'Me', 'Gi', 'Ve', 'Sa']
+	dayNamesMin: ['Do', 'Lu', 'Ma', 'Me', 'Gi', 'Ve', 'Sa'],
+	deselect: 'Deselezionare'
 });
 ts.ui.Footer.localize({
 	collaboration: 'Collaborazione Aperta'

@@ -38,7 +38,8 @@ ts.ui.DatePicker.localize({
 		'Lauantai'
 	],
 	dayNamesShort: ['Sun', 'Maa', 'Tii', 'Kes', 'Tor', 'Per', 'Lau'],
-	dayNamesMin: ['Su', 'Ma', 'Ti', 'Ke', 'To', 'Pe', 'La']
+	dayNamesMin: ['Su', 'Ma', 'Ti', 'Ke', 'To', 'Pe', 'La'],
+	deselect: 'Poista'
 });
 ts.ui.Footer.localize({
 	collaboration: 'Deschideți Colaborarea'

@@ -19,6 +19,17 @@ ts.ui.DatePickerModel = (function using(chained) {
 		title: null,
 
 		/**
+		 * DatePicker Note.
+		 * @type {String}
+		 */
+		note: '',
+
+		/**
+		 * Can be deselected
+		 */
+		deselectable: false,
+
+		/**
 		 * Picker is open?
 		 */
 		isOpen: false,

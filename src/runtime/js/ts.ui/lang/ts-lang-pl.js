@@ -30,7 +30,8 @@ ts.ui.DatePicker.localize({
 	],
 	dayNames: ['Niedziela', 'Poniedziałek', 'Wtorek', 'Środa', 'Czwartek', 'Piątek', 'Sobota'],
 	dayNamesShort: ['Nie', 'Pon', 'Wto', 'Śro', 'Czw', 'Pią', 'Sob'],
-	dayNamesMin: ['Ni', 'Po', 'Wt', 'Śr', 'Cz', 'Pi', 'So']
+	dayNamesMin: ['Ni', 'Po', 'Wt', 'Śr', 'Cz', 'Pi', 'So'],
+	deselect: 'Odznacz'
 });
 ts.ui.Footer.localize({
 	collaboration: 'Otwarta Współpraca'

@@ -30,7 +30,8 @@ ts.ui.DatePicker.localize({
 	],
 	dayNames: ['Søndag', 'Mandag', 'Tirsdag', 'Onsdag', 'Torsdag', 'Fredag', 'Lørdag'],
 	dayNamesShort: ['Søn', 'Man', 'Tir', 'Ons', 'Tor', 'Fre', 'Lør'],
-	dayNamesMin: ['Sø', 'Ma', 'Ti', 'On', 'To', 'Fr', 'Lø']
+	dayNamesMin: ['Sø', 'Ma', 'Ti', 'On', 'To', 'Fr', 'Lø'],
+	deselect: 'Fjern valg'
 });
 ts.ui.Footer.localize({
 	collaboration: 'Åpen Samarbeid'

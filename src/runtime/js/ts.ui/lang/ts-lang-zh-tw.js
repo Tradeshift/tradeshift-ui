@@ -30,7 +30,8 @@ ts.ui.DatePicker.localize({
 	],
 	dayNames: ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'],
 	dayNamesShort: ['週日', '週一', '週二', '週三', '週四', '週五', '週六'],
-	dayNamesMin: ['日', '一', '二', '三', '四', '五', '六']
+	dayNamesMin: ['日', '一', '二', '三', '四', '五', '六'],
+	deselect: '取消選擇'
 });
 ts.ui.Footer.localize({
 	collaboration: '打開對話'

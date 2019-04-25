@@ -45,12 +45,25 @@ ts.ui.DatePicker.localize = function(config) {};
 	function toggle(model, open) {
 		var aside,
 			id = model.$instanceid;
+		var deselect = {
+			label: ts.ui.DatePicker.localize().deselect,
+			type: 'ts-secondary',
+			onclick: function() {
+				model.value = '';
+			}
+		};
+		if (!model.value) {
+			deselect.disabled = 'disabled';
+		}
+		var footer = model.deselectable ? ts.ui.Buttons({ items: [deselect] }) : null;
 		if (open) {
 			asides[id] = (
 				asides[id] ||
 				ts.ui.Aside({
 					title: model.title,
 					items: [model],
+					note: model.note,
+					footer: footer,
 					onclosed: function() {
 						if (gui.Type.isFunction(model.onclosed)) {
 							model.onclosed();
@@ -186,5 +199,11 @@ ts.ui.DatePicker.localize({
 	 * Compact day names.
 	 * @type {Array<string>}
 	 */
-	dayNamesMin: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa']
+	dayNamesMin: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
+
+	/**
+	 * Deselect button label.
+	 * @type {string}
+	 */
+	deselect: 'Deselect'
 });

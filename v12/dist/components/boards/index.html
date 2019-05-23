@@ -7,11 +7,11 @@
     <link rel="ts-app-icon" href="/v12/dist/assets/icon.svg">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
-    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.2.0.min.js"></script>
+    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.2.4.min.js"></script>
     <script src="/v12/dist/assets/dox.min.js"></script>
     <script src="/v12/dist/assets/mark.min.js"></script>
     <script src="/v12/dist/assets/jquery-2.2.4.min.js"></script>
-    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.2.0.min.css">
+    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.2.4.min.css">
     <link rel="stylesheet" href="/v12/dist/assets/dox.css">
 </head>
 
@@ -79,13 +79,13 @@
                                 <a data-ts="Button" href="/v12/dist/components/header/buttons.html">Header API</a>, so
                                 please refer to that section for details on setup and usage
                             </p>
-                            <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.get(&apos;%23board&apos;%2C%20function(board)%20%7B%0A%09board.buttons(%5B%0A%09%09%7B%20label%3A%20&apos;One&apos;%20%7D%2C%0A%09%09%7B%20label%3A%20&apos;Two&apos;%20%7D%2C%0A%09%09%7B%20label%3A%20&apos;Three&apos;%2C%20onselect()%20%7B%0A%09%09%09ts.ui.Notification.success(&apos;Clicked!&apos;)%3B%0A%09%09%7D%7D%0A%09%5D)%3B%0A%7D)%3B">
+                            <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.get(&apos;%23board&apos;%2C%20function(board)%20%7B%0A%09board.buttons(%5B%0A%09%09%7B%20label%3A%20&apos;One&apos;%20%7D%2C%0A%09%09%7B%20label%3A%20&apos;Two&apos;%20%7D%2C%0A%09%09%7B%20label%3A%20&apos;Three&apos;%2C%20onclick()%20%7B%0A%09%09%09ts.ui.Notification.success(&apos;Clicked!&apos;)%3B%0A%09%09%7D%7D%0A%09%5D)%3B%0A%7D)%3B">
                                 <script type="runnable">
                                     ts.ui.get('#board', board => {
 											board.buttons([
 												{ label: 'One' },
 												{ label: 'Two' },
-												{ label: 'Three', onselect() {
+												{ label: 'Three', onclick() {
 													ts.ui.Notification.success('Clicked!');
 												}}
 											]);
@@ -97,7 +97,7 @@
 	board<span class="token punctuation">.</span><span class="token function">buttons<span class="token punctuation">(</span></span><span class="token punctuation">[</span>
 		<span class="token punctuation">{</span> label<span class="token punctuation">:</span> <span class="token string">&apos;One&apos;</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
 		<span class="token punctuation">{</span> label<span class="token punctuation">:</span> <span class="token string">&apos;Two&apos;</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
-		<span class="token punctuation">{</span> label<span class="token punctuation">:</span> <span class="token string">&apos;Three&apos;</span><span class="token punctuation">,</span> <span class="token function">onselect<span class="token punctuation">(</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		<span class="token punctuation">{</span> label<span class="token punctuation">:</span> <span class="token string">&apos;Three&apos;</span><span class="token punctuation">,</span> <span class="token function">onclick<span class="token punctuation">(</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
 			ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Notification<span class="token punctuation">.</span><span class="token function">success<span class="token punctuation">(</span></span><span class="token string">&apos;Clicked!&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 		<span class="token punctuation">}</span><span class="token punctuation">}</span>
 	<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>

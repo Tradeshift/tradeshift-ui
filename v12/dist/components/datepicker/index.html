@@ -7,11 +7,11 @@
     <link rel="ts-app-icon" href="/v12/dist/assets/icon.svg">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
-    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.2.0.min.js"></script>
+    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.2.4.min.js"></script>
     <script src="/v12/dist/assets/dox.min.js"></script>
     <script src="/v12/dist/assets/mark.min.js"></script>
     <script src="/v12/dist/assets/jquery-2.2.4.min.js"></script>
-    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.2.0.min.css">
+    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.2.4.min.css">
     <link rel="stylesheet" href="/v12/dist/assets/dox.css">
 </head>
 
@@ -176,10 +176,70 @@ datePicker<span class="token punctuation">.</span><span class="token function">o
 	<span class="token punctuation">}</span>
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">open<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
                             </figure>
+                            <p>You can set and change a note for the datepicker.</p>
+                            <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.DatePicker(%7B%0A%09title%3A%20&apos;The%20note%20is%20under%20the%20header&apos;%2C%0A%09value%3A%20&apos;2019-01-01&apos;%2C%0A%09note%3A%20&apos;Have%20a%20nice%20day&apos;%2C%0A%09onselect%3A%20function()%20%7B%0A%09%09this.close()%3B%0A%09%7D%2C%0A%09onclosed%3A%20function()%20%7B%0A%09%09this.dispose()%3B%0A%09%7D%0A%7D).open()%3B">
+                                <script type="runnable">
+                                    ts.ui.DatePicker({
+							title: 'The note is under the header',
+							value: '2019-01-01',
+							note: 'Have a nice day',
+							onselect: function() {
+								this.close();
+							},
+							onclosed: function() {
+								this.dispose();
+							}
+						}).open();
+					</script>
+                                <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                                <div data-ts="Panel">
+                                    <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token function">DatePicker<span class="token punctuation">(</span></span><span class="token punctuation">{</span>
+	title<span class="token punctuation">:</span> <span class="token string">&apos;The note is under the header&apos;</span><span class="token punctuation">,</span>
+	value<span class="token punctuation">:</span> <span class="token string">&apos;2019-01-01&apos;</span><span class="token punctuation">,</span>
+	note<span class="token punctuation">:</span> <span class="token string">&apos;Have a nice day&apos;</span><span class="token punctuation">,</span>
+	onselect<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		<span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">close<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span><span class="token punctuation">,</span>
+	onclosed<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		<span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">dispose<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">open<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
+                            </figure>
+                            <p>You can also make a deselect datepicker.</p>
+                            <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.DatePicker(%7B%0A%09title%3A%20&apos;Deselect%20the%20date&apos;%2C%0A%09value%3A%20&apos;2019-01-01&apos;%2C%0A%09deselectable%3A%20true%2C%0A%09onselect%3A%20function()%20%7B%0A%09%09ts.ui.Notification.success(&apos;You%20deselected%20the%20date&apos;)%3B%0A%09%09this.close()%3B%0A%09%7D%2C%0A%09onclosed%3A%20function()%20%7B%0A%09%09this.dispose()%3B%0A%09%7D%0A%7D).open()%3B">
+                                <script type="runnable">
+                                    ts.ui.DatePicker({
+							title: 'Deselect the date',
+							value: '2019-01-01',
+							deselectable: true,
+							onselect: function() {
+								ts.ui.Notification.success('You deselected the date');
+								this.close();
+							},
+							onclosed: function() {
+								this.dispose();
+							}
+						}).open();
+					</script>
+                                <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                                <div data-ts="Panel">
+                                    <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token function">DatePicker<span class="token punctuation">(</span></span><span class="token punctuation">{</span>
+	title<span class="token punctuation">:</span> <span class="token string">&apos;Deselect the date&apos;</span><span class="token punctuation">,</span>
+	value<span class="token punctuation">:</span> <span class="token string">&apos;2019-01-01&apos;</span><span class="token punctuation">,</span>
+	deselectable<span class="token punctuation">:</span> <span class="token keyword">true</span><span class="token punctuation">,</span>
+	onselect<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Notification<span class="token punctuation">.</span><span class="token function">success<span class="token punctuation">(</span></span><span class="token string">&apos;You deselected the date&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">close<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span><span class="token punctuation">,</span>
+	onclosed<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		<span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">dispose<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">open<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
+                            </figure>
                             <p>
                                 The object argument configures a <code>ts.ui.DatePickerModel</code> as outlined below.
                             </p>
-                            <div data-ts="DoxApi" data-ts.code="%7B%0A%09%22name%22%3A%20%22ts.ui.DatePickerModel%22%2C%0A%09%22properties%22%3A%20%5B%0A%09%09%7B%0A%09%09%09%22name%22%3A%20%22title%22%2C%0A%09%09%09%22type%22%3A%20%22string%22%2C%0A%09%09%09%22desc%22%3A%20%22Appears%20as%20the%20title%20of%20the%20DatePicker%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09%22name%22%3A%20%22value%22%2C%0A%09%09%09%22type%22%3A%20%22string%22%2C%0A%09%09%09%22desc%22%3A%20%22The%20selected%20date.%20Must%20be%20dash-separated%2C%20ISO%208601%20formatted%20date%20string%20e.g.%202015-01-01%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09%22name%22%3A%20%22open%22%2C%0A%09%09%09%22type%22%3A%20%22void%22%2C%0A%09%09%09%22desc%22%3A%20%22Open%20the%20DatePicker%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09%22name%22%3A%20%22close%22%2C%0A%09%09%09%22type%22%3A%20%22void%22%2C%0A%09%09%09%22desc%22%3A%20%22Close%20the%20DatePicker%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09%22name%22%3A%20%22onrendercell%22%2C%0A%09%09%09%22type%22%3A%20%22void%22%2C%0A%09%09%09%22desc%22%3A%20%22%20Called%20whenever%20the%20datepicker%20renders%20a%20cell%2C%20used%20to%20determine%20if%20a%20cell%20is%20selectable%20through%20the%20%60cell.selectable%60%20property.%20Can%20also%20be%20an%20injection%20point%20for%20adding%20in%20specialized%20classes%20for%20the%20current%20cell%20with%20%60cell.className%60%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09%22name%22%3A%20%22onselect%22%2C%0A%09%09%09%22type%22%3A%20%22void%22%2C%0A%09%09%09%22desc%22%3A%20%22Called%20whenever%20selection%20changes%20with%20two%20arguments%20%60newval%60%20and%20%60oldval%60%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09%22name%22%3A%20%22onclosed%22%2C%0A%09%09%09%22type%22%3A%20%22void%22%2C%0A%09%09%09%22desc%22%3A%20%22Event%20listener%20for%20close%20event.%20Called%20after%20aside%20closing%20animation%20is%20completed.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09%22name%22%3A%20%22dispose%22%2C%0A%09%09%09%22type%22%3A%20%22void%22%2C%0A%09%09%09%22desc%22%3A%20%22Cleanup%20the%20DataPicker%20(recommended)%22%0A%09%09%7D%0A%09%5D%0A%7D">
+                            <div data-ts="DoxApi" data-ts.code="%7B%0A%09%22name%22%3A%20%22ts.ui.DatePickerModel%22%2C%0A%09%22properties%22%3A%20%5B%0A%09%09%7B%0A%09%09%09%22name%22%3A%20%22title%22%2C%0A%09%09%09%22type%22%3A%20%22string%22%2C%0A%09%09%09%22desc%22%3A%20%22Appears%20as%20the%20title%20of%20the%20DatePicker%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09%22name%22%3A%20%22value%22%2C%0A%09%09%09%22type%22%3A%20%22string%22%2C%0A%09%09%09%22desc%22%3A%20%22The%20selected%20date.%20Must%20be%20dash-separated%2C%20ISO%208601%20formatted%20date%20string%20e.g.%202015-01-01%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09%22name%22%3A%20%22note%22%2C%0A%09%09%09%22type%22%3A%20%22string%22%2C%0A%09%09%09%22desc%22%3A%20%22The%20note%20of%20the%20datepicker%20to%20show%20some%20information%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09%22name%22%3A%20%22deselectable%22%2C%0A%09%09%09%22type%22%3A%20%22boolean%22%2C%0A%09%09%09%22desc%22%3A%20%22The%20datapicker%20is%20deselectable%3F%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09%22name%22%3A%20%22open%22%2C%0A%09%09%09%22type%22%3A%20%22void%22%2C%0A%09%09%09%22desc%22%3A%20%22Open%20the%20DatePicker%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09%22name%22%3A%20%22close%22%2C%0A%09%09%09%22type%22%3A%20%22void%22%2C%0A%09%09%09%22desc%22%3A%20%22Close%20the%20DatePicker%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09%22name%22%3A%20%22onrendercell%22%2C%0A%09%09%09%22type%22%3A%20%22void%22%2C%0A%09%09%09%22desc%22%3A%20%22%20Called%20whenever%20the%20datepicker%20renders%20a%20cell%2C%20used%20to%20determine%20if%20a%20cell%20is%20selectable%20through%20the%20%60cell.selectable%60%20property.%20Can%20also%20be%20an%20injection%20point%20for%20adding%20in%20specialized%20classes%20for%20the%20current%20cell%20with%20%60cell.className%60%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09%22name%22%3A%20%22onselect%22%2C%0A%09%09%09%22type%22%3A%20%22void%22%2C%0A%09%09%09%22desc%22%3A%20%22Called%20whenever%20selection%20changes%20with%20two%20arguments%20%60newval%60%20and%20%60oldval%60%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09%22name%22%3A%20%22onclosed%22%2C%0A%09%09%09%22type%22%3A%20%22void%22%2C%0A%09%09%09%22desc%22%3A%20%22Event%20listener%20for%20close%20event.%20Called%20after%20aside%20closing%20animation%20is%20completed.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09%22name%22%3A%20%22dispose%22%2C%0A%09%09%09%22type%22%3A%20%22void%22%2C%0A%09%09%09%22desc%22%3A%20%22Cleanup%20the%20DataPicker%20(recommended)%22%0A%09%09%7D%0A%09%5D%0A%7D">
                             </div>
                         </section>
                         <div data-ts="Note" class="sticky">

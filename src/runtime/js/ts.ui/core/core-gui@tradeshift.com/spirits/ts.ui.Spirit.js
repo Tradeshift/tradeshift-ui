@@ -147,6 +147,9 @@ ts.ui.Spirit = (function using(Type, GuiArray, confirmed, chained) {
 			 * @returns {ts.ui.CoverSpirit}
 			 */
 			_childcover: function() {
+				if (this._cover) {
+					return this._cover;
+				}
 				var Cover = ts.ui.CoverSpirit;
 				this._cover = this.dom.child(Cover) || this.dom.append(Cover.summon());
 				return this._cover;

@@ -59,6 +59,25 @@
 						});
 					</script>
 				</figure>
+				<p>
+					You can use the function of <code>spin(message)</code> to change the message of the spinner
+				</p>
+				<figure data-ts="DoxScript">
+					<script type="runnable">
+						ts.ui.get('.ts-app', app => {
+							app.blocking('Chrunching data');
+							setTimeout(() => {
+								app.spin('The data is coming');
+							}, 1000);
+							setTimeout(() => {
+								app.spin('Good luck');
+							}, 2000);
+							setTimeout(() => {
+								app.done();
+							}, 3000);
+						});
+					</script>
+				</figure>
 			</section>
 
 			<h3>Aside and SideBar</h3>

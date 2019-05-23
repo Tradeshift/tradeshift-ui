@@ -75,11 +75,15 @@ ts.ui.CoverSpirit = (function using(chained, Client) {
 			 */
 			spin: chained(function(message) {
 				message = typeof message === 'string' ? message : '';
-				this.dom.append(
-					ts.ui.SpinnerSpirit.summon(message, {
-						color: this.blocking() ? 'rgb(255,255,255)' : 'rgb(85,85,85)'
-					})
-				);
+				if (this._spinner) {
+					this._spinner.text(message);
+				} else {
+					this.dom.append(
+						(this._spinner = ts.ui.SpinnerSpirit.summon(message, {
+							color: this.blocking() ? 'rgb(255,255,255)' : 'rgb(85,85,85)'
+						}))
+					);
+				}
 			}),
 
 			/**

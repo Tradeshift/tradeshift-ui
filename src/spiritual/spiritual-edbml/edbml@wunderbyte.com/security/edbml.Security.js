@@ -13,7 +13,7 @@ edbml.Security = (function using(safeelm, safemap, unsafexp) {
 		 */
 		$safetext: function(string) {
 			safeelm.firstChild.data = String(string);
-			return safeelm.innerHTML;
+			return safeelm.innerText;
 		},
 
 		/**

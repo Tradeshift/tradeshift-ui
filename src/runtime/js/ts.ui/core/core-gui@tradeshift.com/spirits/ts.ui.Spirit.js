@@ -52,6 +52,17 @@ ts.ui.Spirit = (function using(Type, GuiArray, confirmed, chained) {
 			}),
 
 			/**
+			 * Change message.
+			 * @param @optional {string} message
+			 * @returns {this}
+			 */
+			spinnerMessage: chained(function(message) {
+				if (this._cover) {
+					this._cover.spin(message);
+				}
+			}),
+
+			/**
 			 * Show or hide the blocking cover with optional message.
 			 * Support triggering via attribute `data-ts.busy="arg"`
 			 * @returns {this}
@@ -68,6 +79,12 @@ ts.ui.Spirit = (function using(Type, GuiArray, confirmed, chained) {
 			},
 
 			// Private ...............................................................
+
+			/**
+			 * Local cover.
+			 * @type {ts.ui.CoverSpirit}
+			 */
+			_cover: null,
 
 			/**
 			 * Counting busy bees.
@@ -130,8 +147,12 @@ ts.ui.Spirit = (function using(Type, GuiArray, confirmed, chained) {
 			 * @returns {ts.ui.CoverSpirit}
 			 */
 			_childcover: function() {
+				if (this._cover) {
+					return this._cover;
+				}
 				var Cover = ts.ui.CoverSpirit;
-				return this.dom.child(Cover) || this.dom.append(Cover.summon());
+				this._cover = this.dom.child(Cover) || this.dom.append(Cover.summon());
+				return this._cover;
 			},
 
 			// Privileged ............................................................

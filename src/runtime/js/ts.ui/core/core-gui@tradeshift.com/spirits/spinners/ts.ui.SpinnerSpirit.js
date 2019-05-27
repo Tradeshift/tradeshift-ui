@@ -12,7 +12,17 @@ ts.ui.SpinnerSpirit = (function using(defaults) {
 	}
 
 	return ts.ui.Spirit.extend(
-		{},
+		{
+			/**
+			 * @param {String} change spinner message
+			 */
+			text: function(message) {
+				var span = this.dom.q('span');
+				if (span) {
+					span.innerText = message;
+				}
+			}
+		},
 		{
 			/**
 			 * @returns {ts.ui.SpinnerSpirit}

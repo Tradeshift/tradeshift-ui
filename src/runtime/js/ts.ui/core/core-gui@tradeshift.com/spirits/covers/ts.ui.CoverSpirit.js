@@ -10,6 +10,8 @@ ts.ui.CoverSpirit = (function using(chained, Client) {
 	var CLASS_OPAQUE = 'ts-opaque';
 	var CLASS_VISIBLE = ts.ui.CLASS_VISIBLE;
 	var CLASS_COVER = ts.ui.CLASS_COVER;
+	var COLOR_WHITE = 'rgb(255,255,255)';
+	var COLOR_DARK = 'rgb(85,85,85)';
 	return ts.ui.Spirit.extend(
 		{
 			/**
@@ -75,11 +77,15 @@ ts.ui.CoverSpirit = (function using(chained, Client) {
 			 */
 			spin: chained(function(message) {
 				message = typeof message === 'string' ? message : '';
-				this.dom.append(
-					ts.ui.SpinnerSpirit.summon(message, {
-						color: this.blocking() ? 'rgb(255,255,255)' : 'rgb(85,85,85)'
-					})
-				);
+				if (this._spinner) {
+					this._spinner.text(message);
+				} else {
+					this.dom.append(
+						(this._spinner = ts.ui.SpinnerSpirit.summon(message, {
+							color: this.blocking() ? COLOR_WHITE : COLOR_DARK
+						}))
+					);
+				}
 			}),
 
 			/**

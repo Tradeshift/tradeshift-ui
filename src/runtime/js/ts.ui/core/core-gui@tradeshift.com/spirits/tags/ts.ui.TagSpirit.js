@@ -182,6 +182,19 @@ ts.ui.TagSpirit = (function using(chained, confirmed, isFunction, arrayFrom, obj
 		},
 
 		/**
+		 * Do we need to remove the element directly
+		 * @type {boolean}
+		 */
+		doremove: {
+			getter: function() {
+				return this._model.doremove;
+			},
+			setter: confirmed('boolean')(function(doremove) {
+				this._model.doremove = doremove;
+			})
+		},
+
+		/**
 		 * Tag is deletable? (only visually).
 		 * @type {boolean}
 		 */
@@ -247,9 +260,21 @@ ts.ui.TagSpirit = (function using(chained, confirmed, isFunction, arrayFrom, obj
 		 */
 		delete: chained(function() {
 			this._model.delete();
-			this.tick.time(function selfdestruct() {
-				this.dom.remove();
-			});
+			if (this._model.doremove) {
+				this.remove();
+			}
+		}),
+
+		/**
+		 * Remove that tag.
+		 * @returns {ts.ui.TagSpirit}
+		 */
+		remove: chained(function() {
+			if (this._model.doremove) {
+				this.tick.time(function selfdestruct() {
+					this.dom.remove();
+				});
+			}
 		}),
 
 		// Private .................................................................

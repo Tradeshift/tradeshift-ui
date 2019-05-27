@@ -99,6 +99,12 @@ ts.ui.TagModel = (function using(chained, confirmed, isFunction, UNIT) {
 		deletable: false,
 
 		/**
+		 * Remove the html element when call delete
+		 * @type {boolean}
+		 */
+		doremove: true,
+
+		/**
 		 * Is the tag clickable?
 		 * @type {boolean}
 		 */

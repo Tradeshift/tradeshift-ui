@@ -67,10 +67,10 @@
 						ts.ui.get('.ts-app', app => {
 							app.blocking('Chrunching data');
 							setTimeout(() => {
-								app.spin('The data is coming');
+								app.spinnerMessage('The data is coming');
 							}, 1000);
 							setTimeout(() => {
-								app.spin('Good luck');
+								app.spinnerMessage('Good luck');
 							}, 2000);
 							setTimeout(() => {
 								app.done();

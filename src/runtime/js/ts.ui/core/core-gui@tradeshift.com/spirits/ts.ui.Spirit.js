@@ -56,7 +56,7 @@ ts.ui.Spirit = (function using(Type, GuiArray, confirmed, chained) {
 			 * @param @optional {string} message
 			 * @returns {this}
 			 */
-			spin: chained(function(message) {
+			spinnerMessage: chained(function(message) {
 				if (this._cover) {
 					this._cover.spin(message);
 				}

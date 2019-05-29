@@ -88,6 +88,26 @@ ts.ui.FooterBarSpirit = (function using(
 			}),
 
 			/**
+			 * Hide the action bar
+			 * @returns {this}
+			 */
+			hideActions: chained(function() {
+				if (this._actionbar) {
+					this._actionbar.hide();
+				}
+			}),
+
+			/**
+			 * Show the action bar
+			 * @returns {this}
+			 */
+			showActions: chained(function() {
+				if (this._actionbar) {
+					this._actionbar.show();
+				}
+			}),
+
+			/**
 			 * Get or set the pager. Pass `null` to remove the pager.
 			 * [The pager will be rendered in the `centerbar`!]
 			 * @param @optional {Object|ts.ui.PagerModel|null} [json]

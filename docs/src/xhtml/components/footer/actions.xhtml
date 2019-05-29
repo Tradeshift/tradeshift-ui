@@ -109,6 +109,36 @@
 					<replace input="button" output="action" />
 				</object>
 
+				<h3>Action bar</h3>
+
+				<p>
+					We can <code>hide</code> or <code>show</code> action bar. Before the operations, you must init the actionbar first.
+				</p>
+
+				<figure data-ts="DoxScript">
+					<script type="runnable">
+						ts.ui.Footer.actions([
+							{ label: 'Move Up', icon: 'ts-icon-triangleup' },
+							{ label: 'Move Down', icon: 'ts-icon-triangledown' },
+							{ label: 'Move Left', icon: 'ts-icon-triangleleft' },
+							{ label: 'Move Right', icon: 'ts-icon-triangleright' },
+							{ label: 'Don\'t Move', icon: 'ts-icon-halt'}
+						]);
+					</script>
+				</figure>
+
+				<figure data-ts="DoxScript">
+					<script type="runnable">
+						ts.ui.Footer.hideActions();
+					</script>
+				</figure>
+
+				<figure data-ts="DoxScript">
+					<script type="runnable">
+						ts.ui.Footer.showActions();
+					</script>
+				</figure>
+
 				<h3 id="status">Status message</h3>
 
 				<p>

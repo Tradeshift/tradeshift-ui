@@ -54,6 +54,11 @@
 									"desc": "Tag is deletable? (only visually)"
 								},
 								{
+									"name": "doremove",
+									"type": "boolean",
+									"desc": "Remove the element, when you set it true, default is true"
+								},
+								{
 									"name": "clickable",
 									"type": "boolean",
 									"desc": "Tag is clickable? (only visually)"
@@ -76,7 +81,11 @@
 								},
 								{
 									"name": "delete",
-									"desc": "Trigger removal of tag from DOM and call `ondelete` if it's set."
+									"desc": "Trigger removal of tag from DOM, when the property doreomve is true and call `ondelete` if it's set."
+								},
+								{
+									"name": "remove",
+									"desc": "Trigger removal of tag from DOM."
 								},
 								{
 									"name": "render",
@@ -487,6 +496,67 @@
 							id="tag-deletable-ownhandler"
 							data-ts="Tag"
 							data-ts.deletable="true"
+							data-ts.data="%5B%5B%22Languages%22%2C%5B%22Sylvan%22%2C%22Common%22%2C%22Draconic%22%2C%22Giant%22%5D%5D%5D">
+						</figure>
+					</script>
+					<output />
+				</figure>
+			</section>
+			<section>
+				<h3>Delete & Remove</h3>
+				<p>
+					If you want the user to confirm before you remove the tag from the DOM. You need to set <code>doremove</code> to false first,
+					and call <code>remove</code> on your confirm callback
+				</p>
+	
+				<script>
+					ts.ui.ready(() => {
+						ts.ui.get('#tag-remove', tag => {
+							tag.doremove = false;
+							tag.ondelete = () => {
+								ts.ui.Dialog.confirm('Do you want to delete the tag?', {
+								onaccept: function() {
+									tag.doremove = true;
+									tag.remove();
+									ts.ui.Notification.success('Tag removed');
+								},
+								oncancel: function() {
+									ts.ui.Notification.success('No, I do not want to delete it');
+								}
+							});
+							};
+						});
+					});
+				</script>
+				<figure data-ts="DoxMarkup">
+					<script type="text/html">
+						<scrxpt>
+							const data = ts.ui.encode(
+								[
+									['Languages', ['Sylvan', 'Common', 'Draconic', 'Giant']]
+								]
+							);
+							ts.ui.ready(() => {
+								ts.ui.get('#tag-remove', tag => {
+									tag.doremove = false;
+									tag.ondelete = () => {
+										ts.ui.Dialog.confirm('Do you want to delete the tag?', {
+										onaccept: function() {
+											tag.doremove = true;
+											tag.remove();
+											ts.ui.Notification.success('Tag removed');
+										},
+										oncancel: function() {
+											ts.ui.Notification.success('No, I do not want to delete it');
+										}
+									});
+									};
+								});
+							});
+						</scrxpt>
+						<figure
+							id="tag-remove"
+							data-ts="Tag"
 							data-ts.data="%5B%5B%22Languages%22%2C%5B%22Sylvan%22%2C%22Common%22%2C%22Draconic%22%2C%22Giant%22%5D%5D%5D">
 						</figure>
 					</script>

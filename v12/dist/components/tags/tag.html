@@ -7,11 +7,11 @@
     <link rel="ts-app-icon" href="/v12/dist/assets/icon.svg">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
-    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.2.4.min.js"></script>
+    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.2.5.min.js"></script>
     <script src="/v12/dist/assets/dox.min.js"></script>
     <script src="/v12/dist/assets/mark.min.js"></script>
     <script src="/v12/dist/assets/jquery-2.2.4.min.js"></script>
-    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.2.4.min.css">
+    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.2.5.min.css">
     <link rel="stylesheet" href="/v12/dist/assets/dox.css">
     <link rel="prefetch" title="Tag" href="tag.html">
     <link rel="prefetch" title="Tags" href="tags.html">
@@ -42,7 +42,7 @@
                                 This is the API of the Tag component, all HTML attributes and JS properties correspond to
                                 the table below, you can use them to customize how your tag looks.
                             </p>
-                            <div data-ts="DoxApi" data-ts.code="%7B%0A%09%22name%22%3A%20%22ts.ui.TagSpirit%22%2C%0A%09%22properties%22%3A%20%5B%0A%09%09%7B%0A%09%09%09%22name%22%3A%20%22type%22%2C%0A%09%09%09%22type%22%3A%20%22string%22%2C%0A%09%09%09%22desc%22%3A%20%22The%20CSS%20classname.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09%22name%22%3A%20%22icon%22%2C%0A%09%09%09%22type%22%3A%20%22string%7Cobject%22%2C%0A%09%09%09%22desc%22%3A%20%22The%20icon&apos;s%20classname%20as%20a%20string%20or%20a%20%60ts.ui.UserImageModel%60.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09%22name%22%3A%20%22tabindex%22%2C%0A%09%09%09%22type%22%3A%20%22number%22%2C%0A%09%09%09%22desc%22%3A%20%22The%20%60tabindex%60%20of%20the%20tag.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09%22name%22%3A%20%22data%22%2C%0A%09%09%09%22type%22%3A%20%22(Map%7CArray%7Cstring)%22%2C%0A%09%09%09%22desc%22%3A%20%22The%20%60keys%60%20and%20%60values%60%20of%20the%20tag%20or%20the%20only%20%60key%60%20as%20a%20string.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09%22name%22%3A%20%22locked%22%2C%0A%09%09%09%22type%22%3A%20%22boolean%22%2C%0A%09%09%09%22desc%22%3A%20%22Tag%20is%20locked%3F%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09%22name%22%3A%20%22deletable%22%2C%0A%09%09%09%22type%22%3A%20%22boolean%22%2C%0A%09%09%09%22desc%22%3A%20%22Tag%20is%20deletable%3F%20(only%20visually)%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09%22name%22%3A%20%22clickable%22%2C%0A%09%09%09%22type%22%3A%20%22boolean%22%2C%0A%09%09%09%22desc%22%3A%20%22Tag%20is%20clickable%3F%20(only%20visually)%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09%22name%22%3A%20%22onclick%22%2C%0A%09%09%09%22type%22%3A%20%22(Function)%22%2C%0A%09%09%09%22desc%22%3A%20%22Called%20whenever%20the%20tag%20gets%20clicked.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09%22name%22%3A%20%22ondelete%22%2C%0A%09%09%09%22type%22%3A%20%22(Function)%22%2C%0A%09%09%09%22desc%22%3A%20%22Called%20whenever%20the%20tag%20gets%20deleted.%22%0A%09%09%7D%0A%09%5D%2C%0A%09%22methods%22%3A%20%5B%0A%09%09%7B%0A%09%09%09%22name%22%3A%20%22click%22%2C%0A%09%09%09%22desc%22%3A%20%22Trigger%20a%20click%20on%20the%20tag%20if%20%60onclick%60%20is%20set.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09%22name%22%3A%20%22delete%22%2C%0A%09%09%09%22desc%22%3A%20%22Trigger%20removal%20of%20tag%20from%20DOM%20and%20call%20%60ondelete%60%20if%20it&apos;s%20set.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09%22name%22%3A%20%22render%22%2C%0A%09%09%09%22args%22%3A%20%5B%22object%22%5D%2C%0A%09%09%09%22desc%22%3A%20%22Use%20the%20argument%20as%20a%20model%2C%20replacing%20the%20existing%20one%2C%20and%20re-render%20the%20tag.%22%0A%09%09%7D%0A%09%5D%0A%7D">
+                            <div data-ts="DoxApi" data-ts.code="%7B%0A%09%22name%22%3A%20%22ts.ui.TagSpirit%22%2C%0A%09%22properties%22%3A%20%5B%0A%09%09%7B%0A%09%09%09%22name%22%3A%20%22type%22%2C%0A%09%09%09%22type%22%3A%20%22string%22%2C%0A%09%09%09%22desc%22%3A%20%22The%20CSS%20classname.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09%22name%22%3A%20%22icon%22%2C%0A%09%09%09%22type%22%3A%20%22string%7Cobject%22%2C%0A%09%09%09%22desc%22%3A%20%22The%20icon&apos;s%20classname%20as%20a%20string%20or%20a%20%60ts.ui.UserImageModel%60.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09%22name%22%3A%20%22tabindex%22%2C%0A%09%09%09%22type%22%3A%20%22number%22%2C%0A%09%09%09%22desc%22%3A%20%22The%20%60tabindex%60%20of%20the%20tag.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09%22name%22%3A%20%22data%22%2C%0A%09%09%09%22type%22%3A%20%22(Map%7CArray%7Cstring)%22%2C%0A%09%09%09%22desc%22%3A%20%22The%20%60keys%60%20and%20%60values%60%20of%20the%20tag%20or%20the%20only%20%60key%60%20as%20a%20string.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09%22name%22%3A%20%22locked%22%2C%0A%09%09%09%22type%22%3A%20%22boolean%22%2C%0A%09%09%09%22desc%22%3A%20%22Tag%20is%20locked%3F%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09%22name%22%3A%20%22deletable%22%2C%0A%09%09%09%22type%22%3A%20%22boolean%22%2C%0A%09%09%09%22desc%22%3A%20%22Tag%20is%20deletable%3F%20(only%20visually)%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09%22name%22%3A%20%22doremove%22%2C%0A%09%09%09%22type%22%3A%20%22boolean%22%2C%0A%09%09%09%22desc%22%3A%20%22Remove%20the%20element%2C%20when%20you%20set%20it%20true%2C%20default%20is%20true%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09%22name%22%3A%20%22clickable%22%2C%0A%09%09%09%22type%22%3A%20%22boolean%22%2C%0A%09%09%09%22desc%22%3A%20%22Tag%20is%20clickable%3F%20(only%20visually)%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09%22name%22%3A%20%22onclick%22%2C%0A%09%09%09%22type%22%3A%20%22(Function)%22%2C%0A%09%09%09%22desc%22%3A%20%22Called%20whenever%20the%20tag%20gets%20clicked.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09%22name%22%3A%20%22ondelete%22%2C%0A%09%09%09%22type%22%3A%20%22(Function)%22%2C%0A%09%09%09%22desc%22%3A%20%22Called%20whenever%20the%20tag%20gets%20deleted.%22%0A%09%09%7D%0A%09%5D%2C%0A%09%22methods%22%3A%20%5B%0A%09%09%7B%0A%09%09%09%22name%22%3A%20%22click%22%2C%0A%09%09%09%22desc%22%3A%20%22Trigger%20a%20click%20on%20the%20tag%20if%20%60onclick%60%20is%20set.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09%22name%22%3A%20%22delete%22%2C%0A%09%09%09%22desc%22%3A%20%22Trigger%20removal%20of%20tag%20from%20DOM%2C%20when%20the%20property%20doreomve%20is%20true%20and%20call%20%60ondelete%60%20if%20it&apos;s%20set.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09%22name%22%3A%20%22remove%22%2C%0A%09%09%09%22desc%22%3A%20%22Trigger%20removal%20of%20tag%20from%20DOM.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09%22name%22%3A%20%22render%22%2C%0A%09%09%09%22args%22%3A%20%5B%22object%22%5D%2C%0A%09%09%09%22desc%22%3A%20%22Use%20the%20argument%20as%20a%20model%2C%20replacing%20the%20existing%20one%2C%20and%20re-render%20the%20tag.%22%0A%09%09%7D%0A%09%5D%0A%7D">
                             </div>
                         </section>
                         <section>
@@ -698,6 +698,102 @@
                                     <li data-ts="Panel" data-ts.label="Render" data-ts.selected="false">
                                         <div class="output">
                                             <figure id="tag-deletable-ownhandler" data-ts="Tag" data-ts.deletable="true" data-ts.data="%5B%5B%22Languages%22%2C%5B%22Sylvan%22%2C%22Common%22%2C%22Draconic%22%2C%22Giant%22%5D%5D%5D">
+                                            </figure>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </figure>
+                        </section>
+                        <section>
+                            <h3><span>Delete &amp; Remove</span></h3>
+                            <p>
+                                If you want the user to confirm before you remove the tag from the DOM. You need to set
+                                <code>doremove</code> to false first, and call <code>remove</code> on your confirm
+                                callback
+                            </p>
+                            <script>
+                                ts.ui.ready(() => {
+                                    ts.ui.get('#tag-remove', tag => {
+                                        tag.doremove = false;
+                                        tag.ondelete = () => {
+                                            ts.ui.Dialog.confirm('Do you want to delete the tag?', {
+                                                onaccept: function() {
+                                                    tag.doremove = true;
+                                                    tag.remove();
+                                                    ts.ui.Notification.success('Tag removed');
+                                                },
+                                                oncancel: function() {
+                                                    ts.ui.Notification.success('No, I do not want to delete it');
+                                                }
+                                            });
+                                        };
+                                    });
+                                });
+                            </script>
+                            <figure data-ts="DoxMarkup" data-ts.code="%3Cscript%3E%0A%09const%20data%20%3D%20ts.ui.encode(%0A%09%09%5B%0A%09%09%09%5B&apos;Languages&apos;%2C%20%5B&apos;Sylvan&apos;%2C%20&apos;Common&apos;%2C%20&apos;Draconic&apos;%2C%20&apos;Giant&apos;%5D%5D%0A%09%09%5D%0A%09)%3B%0A%09ts.ui.ready(()%20%3D%3E%20%7B%0A%09%09ts.ui.get(&apos;%23tag-remove&apos;%2C%20tag%20%3D%3E%20%7B%0A%09%09%09tag.doremove%20%3D%20false%3B%0A%09%09%09tag.ondelete%20%3D%20()%20%3D%3E%20%7B%0A%09%09%09%09ts.ui.Dialog.confirm(&apos;Do%20you%20want%20to%20delete%20the%20tag%3F&apos;%2C%20%7B%0A%09%09%09%09onaccept%3A%20function()%20%7B%0A%09%09%09%09%09tag.doremove%20%3D%20true%3B%0A%09%09%09%09%09tag.remove()%3B%0A%09%09%09%09%09ts.ui.Notification.success(&apos;Tag%20removed&apos;)%3B%0A%09%09%09%09%7D%2C%0A%09%09%09%09oncancel%3A%20function()%20%7B%0A%09%09%09%09%09ts.ui.Notification.success(&apos;No%2C%20I%20do%20not%20want%20to%20delete%20it&apos;)%3B%0A%09%09%09%09%7D%0A%09%09%09%7D)%3B%0A%09%09%09%7D%3B%0A%09%09%7D)%3B%0A%09%7D)%3B%0A%3C%2Fscript%3E%0A%3Cfigure%0A%09id%3D%22tag-remove%22%0A%09data-ts%3D%22Tag%22%0A%09data-ts.data%3D%22%255B%255B%2522Languages%2522%252C%255B%2522Sylvan%2522%252C%2522Common%2522%252C%2522Draconic%2522%252C%2522Giant%2522%255D%255D%255D%22%3E%0A%3C%2Ffigure%3E">
+                                <script type="text/html">
+                                    <scrxpt>
+                                        const data = ts.ui.encode(
+                                        [
+                                        ['Languages', ['Sylvan', 'Common', 'Draconic', 'Giant']]
+                                        ]
+                                        );
+                                        ts.ui.ready(() => {
+                                        ts.ui.get('#tag-remove', tag => {
+                                        tag.doremove = false;
+                                        tag.ondelete = () => {
+                                        ts.ui.Dialog.confirm('Do you want to delete the tag?', {
+                                        onaccept: function() {
+                                        tag.doremove = true;
+                                        tag.remove();
+                                        ts.ui.Notification.success('Tag removed');
+                                        },
+                                        oncancel: function() {
+                                        ts.ui.Notification.success('No, I do not want to delete it');
+                                        }
+                                        });
+                                        };
+                                        });
+                                        });
+                                    </scrxpt>
+                                    <figure id="tag-remove" data-ts="Tag" data-ts.data="%5B%5B%22Languages%22%2C%5B%22Sylvan%22%2C%22Common%22%2C%22Draconic%22%2C%22Giant%22%5D%5D%5D">
+                                    </figure>
+                                </script>
+                                <ul data-ts="Panels">
+                                    <li data-ts="Panel" data-ts.label="Markup" data-ts.selected="true">
+                                        <pre class="prism language-markup"><code><span class="token script"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">&gt;</span></span>
+	<span class="token keyword">const</span> data <span class="token operator">=</span> ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token function">encode<span class="token punctuation">(</span></span>
+		<span class="token punctuation">[</span>
+			<span class="token punctuation">[</span><span class="token string">&apos;Languages&apos;</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token string">&apos;Sylvan&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;Common&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;Draconic&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;Giant&apos;</span><span class="token punctuation">]</span><span class="token punctuation">]</span>
+		<span class="token punctuation">]</span>
+	<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token function">ready<span class="token punctuation">(</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+		ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#tag-remove&apos;</span><span class="token punctuation">,</span> tag <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+			tag<span class="token punctuation">.</span>doremove <span class="token operator">=</span> <span class="token keyword">false</span><span class="token punctuation">;</span>
+			tag<span class="token punctuation">.</span>ondelete <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+				ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Dialog<span class="token punctuation">.</span><span class="token function">confirm<span class="token punctuation">(</span></span><span class="token string">&apos;Do you want to delete the tag?&apos;</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+				onaccept<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+					tag<span class="token punctuation">.</span>doremove <span class="token operator">=</span> <span class="token keyword">true</span><span class="token punctuation">;</span>
+					tag<span class="token punctuation">.</span><span class="token function">remove<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+					ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Notification<span class="token punctuation">.</span><span class="token function">success<span class="token punctuation">(</span></span><span class="token string">&apos;Tag removed&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+				<span class="token punctuation">}</span><span class="token punctuation">,</span>
+				oncancel<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+					ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Notification<span class="token punctuation">.</span><span class="token function">success<span class="token punctuation">(</span></span><span class="token string">&apos;No, I do not want to delete it&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+				<span class="token punctuation">}</span>
+			<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+			<span class="token punctuation">}</span><span class="token punctuation">;</span>
+		<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>figure</span>
+	<span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>tag-remove<span class="token punctuation">&quot;</span></span>
+	<span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Tag<span class="token punctuation">&quot;</span></span>
+	<span class="token attr-name">data-ts</span>.<span class="token attr-name">data</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>%5B%5B%22Languages%22%2C%5B%22Sylvan%22%2C%22Common%22%2C%22Draconic%22%2C%22Giant%22%5D%5D%5D<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>figure</span><span class="token punctuation">&gt;</span></span></code></pre>
+                                    </li>
+                                    <li data-ts="Panel" data-ts.label="Render" data-ts.selected="false">
+                                        <div class="output">
+                                            <figure id="tag-remove" data-ts="Tag" data-ts.data="%5B%5B%22Languages%22%2C%5B%22Sylvan%22%2C%22Common%22%2C%22Draconic%22%2C%22Giant%22%5D%5D%5D">
                                             </figure>
                                         </div>
                                     </li>

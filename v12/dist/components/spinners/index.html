@@ -7,11 +7,11 @@
     <link rel="ts-app-icon" href="/v12/dist/assets/icon.svg">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
-    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.2.4.min.js"></script>
+    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.2.5.min.js"></script>
     <script src="/v12/dist/assets/dox.min.js"></script>
     <script src="/v12/dist/assets/mark.min.js"></script>
     <script src="/v12/dist/assets/jquery-2.2.4.min.js"></script>
-    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.2.4.min.css">
+    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.2.5.min.css">
     <link rel="stylesheet" href="/v12/dist/assets/dox.css">
     <script>
         function spin(elm) {
@@ -93,6 +93,40 @@
 	<span class="token function">setTimeout<span class="token punctuation">(</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
 		app<span class="token punctuation">.</span><span class="token function">done<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 	<span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token number">1500</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
+                            </figure>
+                            <p>
+                                You can use the function of <code>spin(message)</code> to change the message of the
+                                spinner
+                            </p>
+                            <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.get(&apos;.ts-app&apos;%2C%20function(app)%20%7B%0A%09app.blocking(&apos;Chrunching%20data&apos;)%3B%0A%09setTimeout(function()%20%7B%0A%09%09app.spinnerMessage(&apos;The%20data%20is%20coming&apos;)%3B%0A%09%7D%2C%201000)%3B%0A%09setTimeout(function()%20%7B%0A%09%09app.spinnerMessage(&apos;Good%20luck&apos;)%3B%0A%09%7D%2C%202000)%3B%0A%09setTimeout(function()%20%7B%0A%09%09app.done()%3B%0A%09%7D%2C%203000)%3B%0A%7D)%3B">
+                                <script type="runnable">
+                                    ts.ui.get('.ts-app', app => {
+							app.blocking('Chrunching data');
+							setTimeout(() => {
+								app.spinnerMessage('The data is coming');
+							}, 1000);
+							setTimeout(() => {
+								app.spinnerMessage('Good luck');
+							}, 2000);
+							setTimeout(() => {
+								app.done();
+							}, 3000);
+						});
+					</script>
+                                <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                                <div data-ts="Panel">
+                                    <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;.ts-app&apos;</span><span class="token punctuation">,</span> app <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+	app<span class="token punctuation">.</span><span class="token function">blocking<span class="token punctuation">(</span></span><span class="token string">&apos;Chrunching data&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token function">setTimeout<span class="token punctuation">(</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+		app<span class="token punctuation">.</span><span class="token function">spinnerMessage<span class="token punctuation">(</span></span><span class="token string">&apos;The data is coming&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token number">1000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token function">setTimeout<span class="token punctuation">(</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+		app<span class="token punctuation">.</span><span class="token function">spinnerMessage<span class="token punctuation">(</span></span><span class="token string">&apos;Good luck&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token number">2000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token function">setTimeout<span class="token punctuation">(</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+		app<span class="token punctuation">.</span><span class="token function">done<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token number">3000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
                             </figure>
                         </section>

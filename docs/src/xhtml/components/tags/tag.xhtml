@@ -505,25 +505,26 @@
 			<section>
 				<h3>Delete & Remove</h3>
 				<p>
-					If you want the user to confirm before you remove the tag from the DOM. You need to set <code>doremove</code> to false first,
-					and call <code>remove</code> on your confirm callback
+					If you want the user to confirm before you remove the tag from the DOM. You need to set
+					<code>doremove</code> to false first, and call <code>remove</code> on your confirm
+					callback
 				</p>
-	
+
 				<script>
 					ts.ui.ready(() => {
 						ts.ui.get('#tag-remove', tag => {
 							tag.doremove = false;
 							tag.ondelete = () => {
 								ts.ui.Dialog.confirm('Do you want to delete the tag?', {
-								onaccept: function() {
-									tag.doremove = true;
-									tag.remove();
-									ts.ui.Notification.success('Tag removed');
-								},
-								oncancel: function() {
-									ts.ui.Notification.success('No, I do not want to delete it');
-								}
-							});
+									onaccept: function() {
+										tag.doremove = true;
+										tag.remove();
+										ts.ui.Notification.success('Tag removed');
+									},
+									oncancel: function() {
+										ts.ui.Notification.success('No, I do not want to delete it');
+									}
+								});
 							};
 						});
 					});

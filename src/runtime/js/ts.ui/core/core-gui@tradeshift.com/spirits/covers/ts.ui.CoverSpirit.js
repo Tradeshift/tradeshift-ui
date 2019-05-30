@@ -93,6 +93,7 @@ ts.ui.CoverSpirit = (function using(chained, Client) {
 			 * @returns {this}
 			 */
 			stop: chained(function() {
+				this._spinner = null;
 				this.dom.html();
 			}),
 

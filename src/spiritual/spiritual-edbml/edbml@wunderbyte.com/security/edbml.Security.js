@@ -63,11 +63,11 @@ edbml.Security = (function using(safeelm, safemap, safedecode, unsafexp) {
 	 * May be we need more later, depends on
 	 * the requirment of the user
 	 */
-	function safedecode(s) {
-		if (!s) {
-			return s;
+	function safedecode(string) {
+		if (!string) {
+			return string;
 		}
-		return s.replace(/&amp;/g, '&');
+		return string.replace(/&amp;/g, '&');
 	},
 	/*
 	 * (UNSAFE) regular expression to figure out some basic

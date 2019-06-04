@@ -2,9 +2,10 @@
  * Central security service.
  * @using {HTMLDivElement} safeelm
  * @using {Map<string,string>} safemap
+ * @using {String} safedecode
  * @using {RegExp} unsafexp
  */
-edbml.Security = (function using(safeelm, safemap, unsafexp) {
+edbml.Security = (function using(safeelm, safemap, safedecode, unsafexp) {
 	return {
 		/**
 		 * Escape potentially unsafe string for use in HTML element context.
@@ -13,7 +14,7 @@ edbml.Security = (function using(safeelm, safemap, unsafexp) {
 		 */
 		$safetext: function(string) {
 			safeelm.firstChild.data = String(string);
-			return safeelm.innerHTML;
+			return safedecode(safeelm.innerHTML);
 		},
 
 		/**
@@ -56,6 +57,18 @@ edbml.Security = (function using(safeelm, safemap, unsafexp) {
 			"'": '&#39;'
 		};
 	})(),
+	/*
+	 * Replace safe characters in innerHTML
+	 * Only & is a safe character right now
+	 * May be we need more later, depends on
+	 * the requirment of the user
+	 */
+	function safedecode(s) {
+		if (!s) {
+			return s;
+		}
+		return s.replace(/&amp;/g, '&');
+	},
 	/*
 	 * (UNSAFE) regular expression to figure out some basic
 	 * entities that should be escaped in HTML attributes.

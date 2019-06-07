@@ -941,7 +941,7 @@ ts.ui.TableSpirit = (function using(
 			var cols = model.cols;
 			var col = cols[colindex];
 			if (this._model.sortable) {
-				if (col) {
+				if (col && col.sortable) {
 					if (Type.isBoolean(ascending)) {
 						col.ascending = ascending;
 					}
@@ -950,7 +950,11 @@ ts.ui.TableSpirit = (function using(
 						col.selected = true;
 					});
 				} else {
-					throw new Error('Could not sort column at ' + colindex + '. Does it exist?');
+					throw new Error(
+						'Could not sort column at ' +
+							colindex +
+							'. Does it exist? Or the col sortable is false.'
+					);
 				}
 			} else {
 				throw new Error('Table must be sortable()');

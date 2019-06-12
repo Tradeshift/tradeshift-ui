@@ -11,7 +11,8 @@
 				<p>
 					You can make the Table <code>sortable</code> with a callback that triggers whenever a
 					column is clicked. We ship the Table with a built-in sort mechanism, but you'll still need
-					to call it. The <code>sort</code> method takes a column index and a direction.
+					to call it. The <code>sort</code> method takes a column index and a direction. If you set 
+					<code>sortable</code> to false for one column, that column is unsortable.
 				</p>
 				<ul class="splitscreen">
 					<li>
@@ -19,7 +20,7 @@
 							<script type="runnable">
 								ts.ui.get('#example6', table => {
 									table.cols(
-										['Animal', {label: 'Price', type: 'ts-number'}]
+										['Animal', {label: 'Price', type: 'ts-number', sortable:false}]
 									).rows([
 										['Donkey', 700],
 										['Baboon', 1500],

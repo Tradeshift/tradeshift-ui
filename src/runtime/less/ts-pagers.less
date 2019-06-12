@@ -17,17 +17,16 @@
 				// border: 1px solid @ts-color-gray-lighter;
 				// border-color: @ts-color-gray-light;
 				display: inline-block;
-				width: @ts-unit-double;
+				min-width: @ts-unit-double;
 				height: @ts-unit-double;
 				position: relative;
-				overflow: hidden;
+				vertical-align: middle;
+				padding: 0 @ts-unit-quarter;
 				span,
 				i {
-					.ts-mixin-maximize();
 					font-size: @ts-fontsize;
 					font-weight: @ts-fontweight-semibold;
-					line-height: 0;
-					padding-top: @ts-unit;
+					line-height: @ts-unit-double;
 				}
 				&:disabled {
 					// background-color: fade(@ts-color-gray-lighter, 25%);
@@ -54,17 +53,15 @@
 				&.ts-more span:after,
 				&.ts-less span:before {
 					content: '\2026';
-					position: absolute;
 					font-weight: @ts-fontweight;
 					font-size: @ts-fontsize-mini;
 				}
 				&.ts-less span:before {
-					margin-left: -13px;
 					//display: none;
 				}
 				svg {
 					position: relative;
-					top: (-@ts-unit-half - 1px);
+					top: @ts-unit-quarter + 2;
 					fill: @ts-color-blue;
 				}
 				&.ts-pager-first svg {

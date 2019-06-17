@@ -149,6 +149,13 @@ ts.ui.TableColModel = (function using(chained) {
 		}),
 
 		/**
+		 * Cells in this column are sortable? Please note that
+		 * This works only on the sortable tables!
+		 * @type {boolean}
+		 */
+		sortable: true,
+
+		/**
 		 * Show the column.
 		 * @returns {ts.ui.TableColModel}
 		 */

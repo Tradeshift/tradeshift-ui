@@ -150,7 +150,7 @@ ts.ui.TableColModel = (function using(chained) {
 
 		/**
 		 * Cells in this column are sortable? Please note that
-		 * this is could be sort only the talbe is sortable!
+		 * This works only on the sortable tables!
 		 * @type {boolean}
 		 */
 		sortable: true,

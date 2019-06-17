@@ -941,20 +941,18 @@ ts.ui.TableSpirit = (function using(
 			var cols = model.cols;
 			var col = cols[colindex];
 			if (this._model.sortable) {
-				if (col && col.sortable) {
-					if (Type.isBoolean(ascending)) {
-						col.ascending = ascending;
+				if (col) {
+					if (col.sortable) {
+						if (Type.isBoolean(ascending)) {
+							col.ascending = ascending;
+						}
+						model.sort(col);
+						this.tick.next(function ifnotmanuallyclicked() {
+							col.selected = true;
+						});
 					}
-					model.sort(col);
-					this.tick.next(function ifnotmanuallyclicked() {
-						col.selected = true;
-					});
 				} else {
-					throw new Error(
-						'Could not sort column at ' +
-							colindex +
-							'. Does it exist? Or the col sortable is false.'
-					);
+					throw new Error('Could not sort column at ' + colindex + '. Does it exist?');
 				}
 			} else {
 				throw new Error('Table must be sortable()');
@@ -1758,16 +1756,18 @@ ts.ui.TableSpirit = (function using(
 					if (this._hasclass(elm, 'ts-button-sort')) {
 						var i = this.queryplugin.getindex(elm);
 						var c = model.cols[i];
-						if (c.selected) {
-							c.ascending = !c.ascending;
+						if (c.sortable) {
+							if (c.selected) {
+								c.ascending = !c.ascending;
+							}
+							if (this.onsort) {
+								perfwarning(length > 3000);
+								this.onsort(i, c.ascending);
+							}
+							this._selectcol(c);
+							this._flag = 'sorting';
+							this._resetscrolling();
 						}
-						if (this.onsort) {
-							perfwarning(length > 3000);
-							this.onsort(i, c.ascending);
-						}
-						this._selectcol(c);
-						this._flag = 'sorting';
-						this._resetscrolling();
 					}
 				}
 			}

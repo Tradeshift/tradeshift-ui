@@ -7,11 +7,11 @@
     <link rel="ts-app-icon" href="/v12/dist/assets/icon.svg">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
-    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.2.7.min.js"></script>
+    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.2.8.min.js"></script>
     <script src="/v12/dist/assets/dox.min.js"></script>
     <script src="/v12/dist/assets/mark.min.js"></script>
     <script src="/v12/dist/assets/jquery-2.2.4.min.js"></script>
-    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.2.7.min.css">
+    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.2.8.min.css">
     <link rel="stylesheet" href="/v12/dist/assets/dox.css">
     <link rel="prefetch" title="Table" href="index.html">
     <link rel="prefetch" title="Build" href="building.html">
@@ -52,16 +52,17 @@
                             <p>
                                 You can make the Table <code>sortable</code> with a callback that triggers whenever a
                                 column is clicked. We ship the Table with a built-in sort mechanism, but you&apos;ll still need
-                                to call it. The <code>sort</code> method takes a column index and a direction.
+                                to call it. The <code>sort</code> method takes a column index and a direction. If you set
+                                <code>sortable</code> to false for one column, that column is unsortable.
                             </p>
                             <div class="splitscreen-container">
                                 <ul class="splitscreen">
                                     <li>
-                                        <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.get(&apos;%23example6&apos;%2C%20function(table)%20%7B%0A%09table.cols(%0A%09%09%5B&apos;Animal&apos;%2C%20%7Blabel%3A%20&apos;Price&apos;%2C%20type%3A%20&apos;ts-number&apos;%7D%5D%0A%09).rows(%5B%0A%09%09%5B&apos;Donkey&apos;%2C%20700%5D%2C%0A%09%09%5B&apos;Baboon&apos;%2C%201500%5D%2C%0A%09%09%5B&apos;Coyote&apos;%2C%20250%5D%2C%0A%09%09%5B&apos;Albatross&apos;%2C%2050%5D%0A%09%5D).sortable(function(index%2C%20ascending)%20%7B%0A%09%09table.sort(index%2C%20ascending)%3B%0A%09%7D)%3B%0A%09table.sort(0%2C%20true)%3B%0A%7D)%3B">
+                                        <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.get(&apos;%23example6&apos;%2C%20function(table)%20%7B%0A%09table.cols(%0A%09%09%5B&apos;Animal&apos;%2C%20%7Blabel%3A%20&apos;Price&apos;%2C%20type%3A%20&apos;ts-number&apos;%2C%20sortable%3Afalse%7D%5D%0A%09).rows(%5B%0A%09%09%5B&apos;Donkey&apos;%2C%20700%5D%2C%0A%09%09%5B&apos;Baboon&apos;%2C%201500%5D%2C%0A%09%09%5B&apos;Coyote&apos;%2C%20250%5D%2C%0A%09%09%5B&apos;Albatross&apos;%2C%2050%5D%0A%09%5D).sortable(function(index%2C%20ascending)%20%7B%0A%09%09table.sort(index%2C%20ascending)%3B%0A%09%7D)%3B%0A%09table.sort(0%2C%20true)%3B%0A%7D)%3B">
                                             <script type="runnable">
                                                 ts.ui.get('#example6', table => {
 									table.cols(
-										['Animal', {label: 'Price', type: 'ts-number'}]
+										['Animal', {label: 'Price', type: 'ts-number', sortable:false}]
 									).rows([
 										['Donkey', 700],
 										['Baboon', 1500],
@@ -77,7 +78,7 @@
                                             <div data-ts="Panel">
                                                 <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#example6&apos;</span><span class="token punctuation">,</span> table <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
 	table<span class="token punctuation">.</span><span class="token function">cols<span class="token punctuation">(</span></span>
-		<span class="token punctuation">[</span><span class="token string">&apos;Animal&apos;</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>label<span class="token punctuation">:</span> <span class="token string">&apos;Price&apos;</span><span class="token punctuation">,</span> type<span class="token punctuation">:</span> <span class="token string">&apos;ts-number&apos;</span><span class="token punctuation">}</span><span class="token punctuation">]</span>
+		<span class="token punctuation">[</span><span class="token string">&apos;Animal&apos;</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>label<span class="token punctuation">:</span> <span class="token string">&apos;Price&apos;</span><span class="token punctuation">,</span> type<span class="token punctuation">:</span> <span class="token string">&apos;ts-number&apos;</span><span class="token punctuation">,</span> sortable<span class="token punctuation">:</span><span class="token keyword">false</span><span class="token punctuation">}</span><span class="token punctuation">]</span>
 	<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">rows<span class="token punctuation">(</span></span><span class="token punctuation">[</span>
 		<span class="token punctuation">[</span><span class="token string">&apos;Donkey&apos;</span><span class="token punctuation">,</span> <span class="token number">700</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
 		<span class="token punctuation">[</span><span class="token string">&apos;Baboon&apos;</span><span class="token punctuation">,</span> <span class="token number">1500</span><span class="token punctuation">]</span><span class="token punctuation">,</span>

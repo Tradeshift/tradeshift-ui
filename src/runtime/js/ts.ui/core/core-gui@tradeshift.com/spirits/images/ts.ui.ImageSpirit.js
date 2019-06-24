@@ -51,13 +51,17 @@ ts.ui.ImageSpirit = (function using(fontcss, UNIT_DOUBLE) {
 		return (
 			'data:image/svg+xml;base64,' +
 			window.btoa(
-				ts.ui.svgname.edbml(
-					getinitials(name),
-					getcolorval(name, 50),
-					getcolorval(name, -180),
-					width || height || UNIT_DOUBLE,
-					getfontsheet(gui.Client.agent),
-					fontcss
+				unescape(
+					encodeURIComponent(
+						ts.ui.svgname.edbml(
+							getinitials(name),
+							getcolorval(name, 50),
+							getcolorval(name, -180),
+							width || height || UNIT_DOUBLE,
+							getfontsheet(gui.Client.agent),
+							fontcss
+						)
+					)
 				)
 			)
 		);

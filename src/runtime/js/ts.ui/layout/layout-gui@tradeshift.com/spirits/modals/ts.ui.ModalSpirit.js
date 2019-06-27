@@ -165,7 +165,7 @@ ts.ui.ModalSpirit = (function using(Client, transition, chained) {
 		 */
 		onkey: function(key) {
 			this.super.onkey(key);
-			if (key.type === 'Esc') {
+			if (key.down && key.type === 'Esc') {
 				this.close();
 			}
 		},

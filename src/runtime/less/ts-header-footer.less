@@ -47,6 +47,23 @@
 		&.ts-pink,
 		&.ts-black {
 			color: @ts-color-white;
+			.ts-primary {
+				background-color: @ts-color-white;
+				border-color: @ts-color-white;
+				color: @ts-color-black;
+				&:hover {
+					background-color: fade(@ts-color-white, 50%);
+				}
+			}
+			.ts-tertiary,
+			.ts-secondary {
+				background-color: transparent;
+				border-color: @ts-color-white;
+				color: @ts-color-white;
+				&:hover {
+					background-color: fade(transparent, 10%);
+				}
+			}
 		}
 		&.ts-yellow,
 		&.ts-grey,

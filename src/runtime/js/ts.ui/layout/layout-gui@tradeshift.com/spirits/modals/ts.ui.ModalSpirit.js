@@ -162,11 +162,17 @@ ts.ui.ModalSpirit = (function using(Client, transition, chained) {
 		/**
 		 * Handle key.
 		 * @param {gui.Key} key
+		 * If a dialog is open, the Esc will dismiss the dialog first
 		 */
 		onkey: function(key) {
 			this.super.onkey(key);
 			if (key.down && key.type === 'Esc') {
-				this.close();
+				var hasOpenDialog = document.querySelector(
+					'div.ts-open[data-ts-spirit="ts.ui.DialogSpirit"]'
+				);
+				if (!hasOpenDialog) {
+					this.close();
+				}
 			}
 		},
 

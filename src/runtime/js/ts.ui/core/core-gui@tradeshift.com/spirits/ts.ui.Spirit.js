@@ -20,6 +20,8 @@ ts.ui.Spirit = (function using(Type, GuiArray, confirmed, chained) {
 			/**
 			 * Show or hide cover with spinner and optional message.
 			 * Support triggering via attribute `data-ts.busy="arg"`
+			 * The setTimeout is for async call for catched, the cover
+			 * won't be dismissed
 			 * @param {string|boolean} arg
 			 * @returns {this}
 			 */

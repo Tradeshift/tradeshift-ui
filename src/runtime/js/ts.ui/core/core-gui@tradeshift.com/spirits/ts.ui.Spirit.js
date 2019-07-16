@@ -20,28 +20,34 @@ ts.ui.Spirit = (function using(Type, GuiArray, confirmed, chained) {
 			/**
 			 * Show or hide cover with spinner and optional message.
 			 * Support triggering via attribute `data-ts.busy="arg"`
+			 * The setTimeout is for async call for catched, the cover
+			 * won't be dismissed
 			 * @param {string|boolean} arg
 			 * @returns {this}
 			 */
 			busy: chained(function(arg) {
-				var cover = this._childcover();
-				if (arg === false || arg === '') {
-					if (--this._busycount === 0) {
-						cover.fadeOut().then(function() {
-							cover
-								.opaque(false)
-								.blocking(false)
-								.stop();
-						});
-					} else if (this._busycount < 0) {
-						this._busycount = 0;
+				var self = this;
+				setTimeout(function() {
+					var cover = self._childcover();
+					if (arg === false || arg === '') {
+						if (--self._busycount === 0) {
+							cover.fadeOut(); // the fadeOut callback is not working when open a new tab in the browser.
+							setTimeout(function() {
+								cover
+									.opaque(false)
+									.blocking(false)
+									.stop();
+							}, 10);
+						} else if (self._busycount < 0) {
+							self._busycount = 0;
+						}
+					} else {
+						if (++self._busycount === 1) {
+							cover.spin(arg);
+							cover.fadeIn();
+						}
 					}
-				} else {
-					if (++this._busycount === 1) {
-						cover.spin(arg);
-						cover.fadeIn();
-					}
-				}
+				}, 10);
 			}),
 
 			/**

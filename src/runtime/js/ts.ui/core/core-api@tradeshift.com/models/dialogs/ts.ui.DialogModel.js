@@ -256,8 +256,23 @@ ts.ui.DialogModel = (function using(
 		cancelButton: chained(function(json) {
 			var label = Constants.LABEL_CANCEL;
 			if (json !== null) {
-				this._addButton(3, getbutton(json, 'cancel', label));
+				// Cancel button should always be the last one.
+				this._addButton(this.buttons.length, getbutton(json, 'cancel', label));
 			}
+		}),
+
+		/**
+		 * Adds the custom action buttons. For cases that there are more options than just accept or remove
+		 * @param {array} actions
+		 * @return {ts.ui.DialogModel}
+		 */
+		customButtons: chained(function(actions) {
+			var self = this;
+			actions.forEach(function(action, index) {
+				if (action !== null) {
+					self._addButton(index + 1, getbutton(action));
+				}
+			});
 		}),
 
 		/**
@@ -356,6 +371,7 @@ ts.ui.DialogModel = (function using(
 		_addButton: function(index, json) {
 			var that = this;
 			var maxi = this.buttons.length;
+			var onclick = json.onclick;
 			index = index > maxi ? maxi : index;
 			index = index < 0 ? 0 : index;
 			this.buttons.splice(
@@ -367,6 +383,10 @@ ts.ui.DialogModel = (function using(
 						that._close().then(function onfadeout() {
 							if (action) {
 								action.call(that);
+							}
+							// call the provided callback for custom actions
+							if (onclick) {
+								onclick();
 							}
 						});
 					}

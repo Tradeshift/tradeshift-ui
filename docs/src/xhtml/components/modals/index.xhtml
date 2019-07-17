@@ -118,6 +118,37 @@
 						ts.ui.get('#example1').open(); // you can pass an element instead of an ID
 					</script>
 				</figure>
+
+				<h3>Micro Size</h3>
+				<p>
+					You can add <att>ts-micro</att> class name to the modal element to have smaller modal with
+					extra padding.
+				</p>
+				<figure data-ts="DoxMarkup">
+					<script type="text/html">
+						<dialog data-ts="Modal" id="exampleMicro" class="ts-micro">
+							<div data-ts="Panel">
+								<article data-ts="Box">
+									<h1>A Micro Modal Example</h1>
+									<p>…</p>
+									<p>
+										<button onclick="ts.ui.get('#exampleMicro').close()" class="ts-primary">
+											<span>Close the Modal</span>
+										</button>
+									</p>
+								</article>
+							</div>
+						</dialog>
+					</script>
+				</figure>
+				<p>
+					And here you can try it out to see how it looks:
+				</p>
+				<figure data-ts="DoxScript" class="attention">
+					<script type="runnable">
+						ts.ui.get('#exampleMicro').open(); // you can pass an element instead of an ID
+					</script>
+				</figure>
 			</section>
 
 			<section>
@@ -510,6 +541,31 @@
 		<dialog data-ts="Modal" id="example4" data-ts.title="Busy Modal">
 			<div data-ts="Panel">
 				<div data-ts="Box"></div>
+			</div>
+		</dialog>
+
+		<dialog data-ts="Modal" id="exampleMicro" class="ts-micro" data-ts.title="Example Modal">
+			<div data-ts="Panel">
+				<div data-ts="Box">
+					<h1>A Micro Modal Example</h1>
+					<p>
+						Micro Modal ipsum dolor amet jerky sausage pork belly tenderloin burgdoggen kevin
+						prosciutto beef ribs shoulder tri-tip salami ribeye turducken rump. Rump prosciutto ham,
+						kevin picanha drumstick chuck pork chop. Short ribs tail shank, alcatra kevin spare ribs
+						meatloaf beef. Pork loin salami flank andouille prosciutto chuck bresaola sirloin
+						ribeye. Bacon picanha salami filet mignon capicola beef ribs. Venison jowl meatloaf
+						jerky porchetta, brisket shank picanha.
+					</p>
+					<p>
+						<button
+							onclick="ts.ui.get('#exampleMicro').close()"
+							data-ts="Button"
+							class="ts-primary"
+						>
+							<span>Close the Modal</span>
+						</button>
+					</p>
+				</div>
 			</div>
 		</dialog>
 	</body>

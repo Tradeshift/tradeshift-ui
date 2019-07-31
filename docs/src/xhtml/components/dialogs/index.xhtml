@@ -40,7 +40,8 @@
 					</script>
 				</figure>
 				<p>You can add a third string argument to specify the Cancel text.</p>
-
+			</section>
+			<section>
 				<h3>Buttons setup</h3>
 				<p>
 					Dialog buttons are secondary (blue) by default, but you can choose to make the
@@ -67,6 +68,27 @@
 					</script>
 				</figure>
 
+				<p>
+					If you need more buttons for different actions then you can add the `actions` option
+				</p>
+				<figure data-ts="DoxScript">
+					<script type="runnable">
+					ts.ui.Dialog.danger('Are you sure you want to delete the document?', 'Delete document', {
+						primary: 'accept',
+						actions: [
+							{
+								label : 'Archive Document',
+								onclick: function(){
+									ts.ui.Notification.info('You archive the document.');
+								}
+							}
+						]
+					});
+					</script>
+				</figure>
+
+			</section>
+			<section>
 				<h3>Warning dialogs</h3>
 				<p>
 					You can launch special dialogs to confirm choices of more dire consequence.
@@ -84,7 +106,8 @@
 						});
 					</script>
 				</figure>
-
+			</section>
+			<section>
 				<h3>Dialog icons</h3>
 				<p>
 					You can point the <code>icon</code> property to an alternative
@@ -104,5 +127,4 @@
 			</section>
 		</article>
 	</body>
-	<html></html>
 </html>

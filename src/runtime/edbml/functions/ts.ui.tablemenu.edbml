@@ -22,10 +22,10 @@
 					if(table.menuopen) {
 						<th class="ts-table-choices">
 							<button data-action="select-page" class="ts-button ts-tertiary">
-								<span>This Page</span>
+								<span class="t">This Page</span>
 							</button>
 							<button data-action="select-all" class="ts-button ts-tertiary">
-								<span>All Pages</span>
+								<span class="t">All Pages</span>
 							</button>
 						</th>
 						<th class="ts-table-choices-close">

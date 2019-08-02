@@ -308,6 +308,8 @@ ts.ui.ModalSpirit = (function using(Client, transition, chained) {
 				this.doorman.didopen();
 				this._focus(this._panel());
 			} else {
+				// fade in start
+				this._addCover();
 				this.dom.show();
 				this.reflex();
 				this._cloak(true);
@@ -350,6 +352,8 @@ ts.ui.ModalSpirit = (function using(Client, transition, chained) {
 					}
 				});
 			} else {
+				// fade out start
+				this._removeCover();
 				this.key.remove('Esc');
 				this.broadcast.dispatch(willclose);
 				this.css.add('ts-closing').remove('ts-open');
@@ -359,6 +363,26 @@ ts.ui.ModalSpirit = (function using(Client, transition, chained) {
 					this._fadeOut(true);
 				}
 			}
+		},
+
+		_addCover: function() {
+			var self = this;
+			var cover = document.createElement('div');
+			cover.classList.add('ts-modal-cover');
+			document.body.appendChild(cover);
+			cover.classList.add(ts.ui.CLASS_VISIBLE);
+
+			cover.addEventListener('click', function() {
+				self.close();
+			});
+		},
+
+		_removeCover: function() {
+			var cover = document.querySelector('.ts-modal-cover');
+			cover.classList.remove(ts.ui.CLASS_VISIBLE);
+			window.setTimeout(function() {
+				cover.parentNode.removeChild(cover);
+			}, 500);
 		},
 
 		/**

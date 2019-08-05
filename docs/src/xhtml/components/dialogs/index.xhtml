@@ -73,20 +73,19 @@
 				</p>
 				<figure data-ts="DoxScript">
 					<script type="runnable">
-					ts.ui.Dialog.danger('Are you sure you want to delete the document?', 'Delete document', {
-						primary: 'accept',
-						actions: [
-							{
-								label : 'Archive Document',
-								onclick: function(){
-									ts.ui.Notification.info('You archive the document.');
+						ts.ui.Dialog.danger('Are you sure you want to delete the document?', 'Delete document', {
+							primary: 'accept',
+							actions: [
+								{
+									label : 'Archive Document',
+									onclick: function(){
+										ts.ui.Notification.info('You archive the document.');
+									}
 								}
-							}
-						]
-					});
+							]
+						});
 					</script>
 				</figure>
-
 			</section>
 			<section>
 				<h3>Warning dialogs</h3>

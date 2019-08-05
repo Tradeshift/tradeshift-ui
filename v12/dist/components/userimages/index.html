@@ -7,11 +7,11 @@
     <link rel="ts-app-icon" href="/v12/dist/assets/icon.svg">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
-    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.2.8.min.js"></script>
+    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.3.0.min.js"></script>
     <script src="/v12/dist/assets/dox.min.js"></script>
     <script src="/v12/dist/assets/mark.min.js"></script>
     <script src="/v12/dist/assets/jquery-2.2.4.min.js"></script>
-    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.2.8.min.css">
+    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.3.0.min.css">
     <link rel="stylesheet" href="/v12/dist/assets/dox.css">
     <link rel="prefetch" title="UserImage" href="index.html">
     <link rel="prefetch" title="JSON API" href="json.html">
@@ -41,7 +41,7 @@
                                 image somehow failed to load. You also can define initials in parentheses. For
                                 example:Karl Alfonso Benson (KB), you will get KB as an initials
                             </p>
-                            <figure data-ts="DoxMarkup" data-ts.code="%3Cimg%20data-ts%3D%22UserImage%22%20src%3D%22assets%2Fjim.png%22%20alt%3D%22Jim%20Bob%20Johnson%22%2F%3E%0A%3Cimg%20data-ts%3D%22UserImage%22%20alt%3D%22Karl%20Benson%22%2F%3E%0A%3Cimg%20data-ts%3D%22UserImage%22%20alt%3D%22Marshall%20Garrett%22%2F%3E%0A%3Cimg%20data-ts%3D%22UserImage%22%20alt%3D%22Kelvin%20Castro%22%2F%3E%0A%3Cimg%20data-ts%3D%22UserImage%22%20alt%3D%22Natalie%20Carr%22%2F%3E%0A%3Cimg%20data-ts%3D%22UserImage%22%20alt%3D%22Rochelle%20Cox%22%2F%3E%0A%3Cimg%20data-ts%3D%22UserImage%22%20alt%3D%22Mae%20Schultz%22%2F%3E%0A%3Cimg%20data-ts%3D%22UserImage%22%20alt%3D%22Jimmie%20Edwards%22%2F%3E%0A%3Cimg%20data-ts%3D%22UserImage%22%20alt%3D%22Cindy%20Jordan%22%2F%3E%0A%3Cimg%20data-ts%3D%22UserImage%22%20alt%3D%22Karl%20Alfonso%20Benson%20(KB)%22%2F%3E">
+                            <figure data-ts="DoxMarkup" data-ts.code="%3Cimg%20data-ts%3D%22UserImage%22%20src%3D%22assets%2Fjim.png%22%20alt%3D%22Jim%20Bob%20Johnson%22%2F%3E%0A%3Cimg%20data-ts%3D%22UserImage%22%20alt%3D%22Karl%20Benson%22%2F%3E%0A%3Cimg%20data-ts%3D%22UserImage%22%20alt%3D%22Marshall%20Garrett%22%2F%3E%0A%3Cimg%20data-ts%3D%22UserImage%22%20alt%3D%22Kelvin%20Castro%22%2F%3E%0A%3Cimg%20data-ts%3D%22UserImage%22%20alt%3D%22Natalie%20Carr%22%2F%3E%0A%3Cimg%20data-ts%3D%22UserImage%22%20alt%3D%22Rochelle%20Cox%22%2F%3E%0A%3Cimg%20data-ts%3D%22UserImage%22%20alt%3D%22Mae%20Schultz%22%2F%3E%0A%3Cimg%20data-ts%3D%22UserImage%22%20alt%3D%22Jimmie%20Edwards%22%2F%3E%0A%3Cimg%20data-ts%3D%22UserImage%22%20alt%3D%22Cindy%20Jordan%22%2F%3E%0A%3Cimg%20data-ts%3D%22UserImage%22%20alt%3D%22Karl%20Alfonso%20Benson%20(KB)%22%2F%3E%0A%3Cimg%20data-ts%3D&apos;UserImage&apos;%20alt%3D&apos;%E5%BC%A0%E4%B8%81%E4%BA%AE&apos;%20%2F%3E">
                                 <script type="text/html">
                                     <img data-ts="UserImage" src="assets/jim.png" alt="Jim Bob Johnson" />
                                     <img data-ts="UserImage" alt="Karl Benson" />
@@ -53,6 +53,7 @@
                                     <img data-ts="UserImage" alt="Jimmie Edwards" />
                                     <img data-ts="UserImage" alt="Cindy Jordan" />
                                     <img data-ts="UserImage" alt="Karl Alfonso Benson (KB)" />
+                                    <img data-ts='UserImage' alt='张丁亮' />
                                 </script>
                                 <ul data-ts="Panels">
                                     <li data-ts="Panel" data-ts.label="Render" data-ts.selected="true">
@@ -65,7 +66,8 @@
                                             <img data-ts="UserImage" alt="Mae Schultz">
                                             <img data-ts="UserImage" alt="Jimmie Edwards">
                                             <img data-ts="UserImage" alt="Cindy Jordan">
-                                            <img data-ts="UserImage" alt="Karl Alfonso Benson (KB)"></div>
+                                            <img data-ts="UserImage" alt="Karl Alfonso Benson (KB)">
+                                            <img data-ts="UserImage" alt="&#x5F20;&#x4E01;&#x4EAE;"></div>
                                     </li>
                                     <li data-ts="Panel" data-ts.label="Markup" data-ts.selected="false">
                                         <pre class="prism language-markup"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>UserImage<span class="token punctuation">&quot;</span></span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>assets/jim.png<span class="token punctuation">&quot;</span></span> <span class="token attr-name">alt</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Jim Bob Johnson<span class="token punctuation">&quot;</span></span><span class="token punctuation">/&gt;</span></span>
@@ -77,7 +79,8 @@
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>UserImage<span class="token punctuation">&quot;</span></span> <span class="token attr-name">alt</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Mae Schultz<span class="token punctuation">&quot;</span></span><span class="token punctuation">/&gt;</span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>UserImage<span class="token punctuation">&quot;</span></span> <span class="token attr-name">alt</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Jimmie Edwards<span class="token punctuation">&quot;</span></span><span class="token punctuation">/&gt;</span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>UserImage<span class="token punctuation">&quot;</span></span> <span class="token attr-name">alt</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Cindy Jordan<span class="token punctuation">&quot;</span></span><span class="token punctuation">/&gt;</span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>UserImage<span class="token punctuation">&quot;</span></span> <span class="token attr-name">alt</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Karl Alfonso Benson (KB)<span class="token punctuation">&quot;</span></span><span class="token punctuation">/&gt;</span></span></code></pre>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>UserImage<span class="token punctuation">&quot;</span></span> <span class="token attr-name">alt</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Karl Alfonso Benson (KB)<span class="token punctuation">&quot;</span></span><span class="token punctuation">/&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span>&apos;UserImage&apos;</span> <span class="token attr-name">alt</span><span class="token attr-value"><span class="token punctuation">=</span>&apos;&#x5F20;&#x4E01;&#x4EAE;&apos;</span> <span class="token punctuation">/&gt;</span></span></code></pre>
                                     </li>
                                 </ul>
                             </figure>

@@ -7,11 +7,11 @@
     <link rel="ts-app-icon" href="/v12/dist/assets/icon.svg">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
-    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.2.8.min.js"></script>
+    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.3.0.min.js"></script>
     <script src="/v12/dist/assets/dox.min.js"></script>
     <script src="/v12/dist/assets/mark.min.js"></script>
     <script src="/v12/dist/assets/jquery-2.2.4.min.js"></script>
-    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.2.8.min.css">
+    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.3.0.min.css">
     <link rel="stylesheet" href="/v12/dist/assets/dox.css">
 </head>
 
@@ -73,6 +73,8 @@
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
                             </figure>
                             <p>You can add a third string argument to specify the Cancel text.</p>
+                        </section>
+                        <section>
                             <h3><span>Buttons setup</span></h3>
                             <p>
                                 Dialog buttons are secondary (blue) by default, but you can choose to make the
@@ -110,6 +112,39 @@
 	focused<span class="token punctuation">:</span> <span class="token string">&apos;accept&apos;</span>
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
                             </figure>
+                            <p>
+                                If you need more buttons for different actions then you can add the `actions` option
+                            </p>
+                            <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.Dialog.danger(&apos;Are%20you%20sure%20you%20want%20to%20delete%20the%20document%3F&apos;%2C%20&apos;Delete%20document&apos;%2C%20%7B%0A%09primary%3A%20&apos;accept&apos;%2C%0A%09actions%3A%20%5B%0A%09%09%7B%0A%09%09%09label%20%3A%20&apos;Archive%20Document&apos;%2C%0A%09%09%09onclick%3A%20function()%7B%0A%09%09%09%09ts.ui.Notification.info(&apos;You%20archive%20the%20document.&apos;)%3B%0A%09%09%09%7D%0A%09%09%7D%0A%09%5D%0A%7D)%3B">
+                                <script type="runnable">
+                                    ts.ui.Dialog.danger('Are you sure you want to delete the document?', 'Delete document', {
+							primary: 'accept',
+							actions: [
+								{
+									label : 'Archive Document',
+									onclick: function(){
+										ts.ui.Notification.info('You archive the document.');
+									}
+								}
+							]
+						});
+					</script>
+                                <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                                <div data-ts="Panel">
+                                    <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Dialog<span class="token punctuation">.</span><span class="token function">danger<span class="token punctuation">(</span></span><span class="token string">&apos;Are you sure you want to delete the document?&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;Delete document&apos;</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+	primary<span class="token punctuation">:</span> <span class="token string">&apos;accept&apos;</span><span class="token punctuation">,</span>
+	actions<span class="token punctuation">:</span> <span class="token punctuation">[</span>
+		<span class="token punctuation">{</span>
+			label <span class="token punctuation">:</span> <span class="token string">&apos;Archive Document&apos;</span><span class="token punctuation">,</span>
+			onclick<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+				ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Notification<span class="token punctuation">.</span><span class="token function">info<span class="token punctuation">(</span></span><span class="token string">&apos;You archive the document.&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+			<span class="token punctuation">}</span>
+		<span class="token punctuation">}</span>
+	<span class="token punctuation">]</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
+                            </figure>
+                        </section>
+                        <section>
                             <h3><span>Warning dialogs</span></h3>
                             <p>
                                 You can launch special dialogs to confirm choices of more dire consequence.
@@ -138,6 +173,8 @@
 	<span class="token punctuation">}</span>
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
                             </figure>
+                        </section>
+                        <section>
                             <h3><span>Dialog icons</span></h3>
                             <p>
                                 You can point the <code>icon</code> property to an alternative
@@ -188,8 +225,5 @@
         gtag("config", "UA-127106947-1");
     </script>
 </body>
-<html lang="en-us" class="ts-docs" spellcheck="false">
-
-</html>
 
 </html>

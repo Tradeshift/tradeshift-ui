@@ -94,6 +94,38 @@
 						mytable.pager().page = 23;
 					</script>
 				</figure>
+				<p>
+					You can set a pager <code>status</code> message that will be shown on the Pager. Only use this for big 
+					layouts as the text can overlap with the pages if not enough room. 
+				</p>
+				<ul class="splitscreen">
+					<li>
+						<figure data-ts="DoxScript">
+							<script type="runnable">
+								$.getJSON('assets/rowdata.json', function(json) {
+									ts.ui.get('#example-pager-status', table => {
+										table
+											.cols([
+												{ label: 'ID', type: 'ts-number' },
+												{ label: 'Name', flex: 2 },
+												{ label: 'Price', type: 'ts-number'}
+											])
+											.rows(json)
+											.max(5)
+											.pager({
+												pages: 5,
+												page: 0,
+												status: '1-5 of 25'
+											})
+									});
+								});
+							</script>
+						</figure>
+					</li>
+					<li>
+						<div data-ts="Table" id="example-pager-status"></div>
+					</li>
+				</ul>
 			</section>
 		</article>
 	</body>

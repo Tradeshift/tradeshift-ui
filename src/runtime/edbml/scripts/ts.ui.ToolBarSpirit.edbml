@@ -10,7 +10,7 @@
 	var topbar =  ts.ui.TopBarModel.is(toolbar);
 	var statusbar = ts.ui.StatusBarModel.is(toolbar);
 	var hasrealtitle = !!toolbar.title;
-
+	var pagerStatus = toolbar.pager ? toolbar.pager.status : null;
 	renderleft(
 		toolbar.title || (topbar ? toolbar.defaultTitle : ''),
 		toolbar.icon,
@@ -18,23 +18,26 @@
 		toolbar.backbutton,
 		toolbar.forwardbutton,
 		toolbar.status,
+		pagerStatus,
 		toolbar.search,
 		toolbar.tabs,
 		toolbar.checkbox,
 		toolbar.$allactions()
 	);
+
 	rendercenter(id, toolbar.pager);
+
 	if(toolbar.search && toolbar.search.buttons.length) {
 		rendersearchbuttons(id, toolbar.search.buttons);
 	} else {
 		rendernormalbuttons(id, toolbar.$allbuttons());
 	}
 	
-	function renderleft(title, icon, burger, back, forward, status, search, tabs, checkbox, actions) {
+	function renderleft(title, icon, burger, back, forward, status, pagerStatus, search, tabs, checkbox, actions) {
 		var hasnavi = back || forward;
 		var hastabs = !!tabs.getLength();
 		var hasactions = !!actions.length;
-		if(mobilos || status || search || checkbox || hasactions || hastabs || hasnavi || (topbar ? hasrealtitle : title)) {
+		if(mobilos || status || pagerStatus || search || checkbox || hasactions || hastabs || hasnavi || (topbar ? hasrealtitle : title)) {
 			<menu id="${id}-items" class="ts-toolbar-menu ts-left">
 				back && renderspecialbutton(back, 'back');
 				forward && renderspecialbutton(forward, 'forward');
@@ -43,7 +46,7 @@
 				} else {
 					if(burger) {
 						renderspecialbutton(burger, 'burger');
-					} else if(icon) {
+					} else if (icon) {
 						<li id="${id}-icon" class="ts-toolbar-item ts-toolbar-icon">
 							<img src="${icon}" width="40" height="40"/>
 						</li>
@@ -57,8 +60,8 @@
 					if(checkbox && checkbox.visible) {
 						rendercheckbox(checkbox);
 					}
-					if(title || status) {
-						renderlabels(title, status, search, hasactions);
+					if(title || status || pagerStatus) {
+						renderlabels(title, status, pagerStatus, search, hasactions);
 					}
 					actions.forEach(renderbutton);
 				}
@@ -194,21 +197,28 @@
 		</li>
 	}
 
-	// title (big text) or status message (with markdown)
-	function renderlabels(title, status, search, hasactions) {
+	// title (big text) or status message (with markdown) or pager status (without markdown)
+	function renderlabels(title, status, pagerStatus, search, hasactions) {
 		if(!search || !using(search)) {
 			if(title) {
 				@class = klass('ts-toolbar-title', null, !hasactions);
 				<li id="${id}-title" @class>
 					<label>${title}</label>
 				</li>
-			} else {
+			} else if (status) {
 				@class = klass('ts-toolbar-status', null, !hasactions);
 				<li id="${id}-status" @class>
 					<label>
 						var whitelist = ['strong', 'em', 'strike', 'code'];
 						if(toolbar.linkable) whitelist.push('a');
 						out.html += ts.ui.Markdown.parse(status, whitelist);
+					</label>
+				</li>
+			} else if (pagerStatus) {
+				@class = klass('ts-toolbar-status ts-show-desktop-only');
+				<li id="${id}-status" @class>
+					<label>
+						out.html += pagerStatus;
 					</label>
 				</li>
 			}

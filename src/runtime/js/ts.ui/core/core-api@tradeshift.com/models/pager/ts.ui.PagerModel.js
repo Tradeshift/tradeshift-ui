@@ -55,6 +55,14 @@ ts.ui.PagerModel = (function using(chained) {
 		onselect: null,
 
 		/**
+		 * Status message that is displayed on the same line as the pager.
+		 * This should be used only on a big table where the horizontal space enough to fit the text.
+		 * Does not work for smaller layouts.
+		 * @type {string}
+		 */
+		status: null,
+
+		/**
 		 * Observe myself.
 		 * Too late now, but next time: `onselect` should fire on newup (if defined)
 		 */

@@ -221,9 +221,6 @@ ts.ui = gui.namespace(
 
 			// amazing colors
 			CLASS_BLACK: 'ts-color-black',
-			CLASS_DARK: 'ts-color-dark',
-			CLASS_MEDIUM: 'ts-color-medium',
-			CLASS_LITE: 'ts-color-lite',
 			CLASS_WHITE: 'ts-color-white',
 			CLASS_BLUE: 'ts-color-blue',
 			CLASS_GREEN: 'ts-color-green',
@@ -231,6 +228,7 @@ ts.ui = gui.namespace(
 			CLASS_ORANGE: 'ts-color-orange',
 			CLASS_RED: 'ts-color-red',
 			CLASS_PURPLE: 'ts-color-purple',
+			CLASS_GRAY_LIGHT: 'ts-color-gray-light',
 
 			// Icons ...................................................................
 
@@ -587,16 +585,14 @@ ts.ui.BACKGROUND_COLORS = {
  */
 ts.ui.COLORS = {
 	black: ts.ui.CLASS_BLACK,
-	dark: ts.ui.CLASS_DARK,
-	medium: ts.ui.CLASS_MEDIUM,
-	lite: ts.ui.CLASS_LITE,
 	white: ts.ui.CLASS_WHITE,
 	blue: ts.ui.CLASS_BLUE,
 	green: ts.ui.CLASS_GREEN,
 	purple: ts.ui.CLASS_PURPLE,
 	yellow: ts.ui.CLASS_YELLOW,
 	orange: ts.ui.CLASS_ORANGE,
-	red: ts.ui.CLASS_RED
+	red: ts.ui.CLASS_RED,
+	'gray-light': ts.ui.CLASS_GRAY_LIGHT
 };
 
 /**

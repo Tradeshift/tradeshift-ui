@@ -121,12 +121,13 @@
 			font-size: @ts-fontsize-mini;
 			font-weight: @ts-fontweight;
 			border-radius: @ts-radius;
-			padding-top: @ts-unit-quarter - 1px;
-			padding-bottom: @ts-unit-quarter - 1px;
-			padding-left: @ts-unit-half;
-			padding-right: 0;
+			padding: @ts-unit-quarter - 1px @ts-unit-half;
 			background-color: @ts-color-white;
 			height: @ts-unit-plus;
+			white-space: nowrap;
+			word-wrap: normal;
+			overflow: hidden;
+			text-overflow: ellipsis;
 		}
 		&.ts-textarea {
 			max-height: @ts-unit * 10;
@@ -553,6 +554,10 @@
 		width: 0;
 		height: 0;
 		padding: 0 !important;
+	}
+	.ts-select + .ts-text,
+	.ts-dateinput + .ts-text {
+		padding-right: @ts-unit-plus;
 	}
 	.ts-select {
 		option {

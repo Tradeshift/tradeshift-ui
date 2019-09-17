@@ -94,6 +94,36 @@
 						mytable.pager().page = 23;
 					</script>
 				</figure>
+				<p>
+					If you would like to show page status, you need to set <code>total</code> and <code>number</code>, which are the total of items in the table and the number of items of a page.
+				</p>
+				<ul class="splitscreen">
+					<li>
+						<figure data-ts="DoxScript">
+							<script type="runnable">
+								$.getJSON('assets/rowdata.json', function(json) {
+									ts.ui.get('#page-status-table', table => {
+										table.cols([
+											{ label: 'ID', type: 'ts-number' },
+											{ label: 'Name', flex: 2 },
+											{ label: 'Price', type: 'ts-number'}
+										]);
+										table.rows(json).max(5);
+										table.pager({
+											pages: 5,
+											page: 0,
+											number: 5,
+											total: json.length
+										});
+									});
+								});
+							</script>
+						</figure>
+					</li>
+					<li>
+						<div data-ts="Table" id="page-status-table"></div>
+					</li>
+				</ul>
 			</section>
 		</article>
 	</body>

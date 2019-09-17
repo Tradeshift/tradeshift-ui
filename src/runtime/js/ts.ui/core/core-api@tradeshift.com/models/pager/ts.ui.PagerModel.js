@@ -36,6 +36,24 @@ ts.ui.PagerModel = (function using(chained) {
 		init: 0,
 
 		/**
+		 * The number of items of a page.
+		 * @type {number}
+		 */
+		number: 0,
+
+		/**
+		 * The total number of items.
+		 * @type {number}
+		 */
+		total: 0,
+
+		/**
+		 * The status message of the pager.
+		 * @type {String}
+		 */
+		status: '',
+
+		/**
 		 * For when used in a flexible scenario (toolbars).
 		 * @type {number}
 		 */
@@ -61,6 +79,7 @@ ts.ui.PagerModel = (function using(chained) {
 		onconstruct: function() {
 			this.super.onconstruct();
 			this._initup();
+			this._initstatus();
 			this.addObserver(this);
 		},
 
@@ -126,6 +145,7 @@ ts.ui.PagerModel = (function using(chained) {
 					if (this.onselect) {
 						this.onselect(c.newValue);
 					}
+					this._initstatus();
 				}
 			}, this);
 		},
@@ -176,6 +196,19 @@ ts.ui.PagerModel = (function using(chained) {
 			while (page < this.init && this.init > 0) {
 				this.init--;
 			}
+		},
+
+		/**
+		 * sete page status
+		 */
+		_initstatus: function() {
+			var page = this.page;
+			var total = this.total;
+			var number = this.number;
+			this.status =
+				number > 0 && total > 0
+					? page * number + 1 + ' - ' + (page + 1) * number + ' / ' + total
+					: '';
 		}
 	});
 })(gui.Combo.chained);

@@ -622,6 +622,9 @@ ts.ui.TableSpirit = (function using(
 					} else {
 						model.maxrows = n;
 						this._createpager();
+						if (model.toolbar.pager) {
+							model.toolbar.pager.number = n;
+						}
 						this._renderqueue.push(function() {
 							this.css.shift(n, cname);
 						});
@@ -646,6 +649,29 @@ ts.ui.TableSpirit = (function using(
 			chained(function(n) {
 				this.$fixedsize = n;
 				this.max(n);
+			})
+		),
+
+		/**
+		 * Get or set the total of the items
+		 * Show the information in the pager status
+		 * @param @optional {number} n
+		 * @returns {number|ts.ui.TableSpirit}
+		 */
+		total: confirmed('(number)')(
+			chained(function(n) {
+				var model = this._model;
+				var toolb = model.toolbar;
+				var pager = toolb.pager;
+				if (arguments.length) {
+					model.total = n;
+					if (pager) {
+						pager.total = n;
+						this._createpager(pager);
+					}
+				} else {
+					return model.total;
+				}
 			})
 		),
 

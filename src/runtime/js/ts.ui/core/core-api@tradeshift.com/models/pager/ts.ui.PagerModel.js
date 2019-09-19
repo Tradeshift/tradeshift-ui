@@ -207,7 +207,7 @@ ts.ui.PagerModel = (function using(chained) {
 			var number = this.number;
 			this.status =
 				number > 0 && total > 0
-					? page * number + 1 + ' - ' + (page + 1) * number + ' / ' + total
+					? page * number + 1 + ' - ' + (page + 1) * number + ' (' + total + ')'
 					: '';
 		}
 	});

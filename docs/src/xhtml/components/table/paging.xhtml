@@ -47,6 +47,31 @@
 					</script>
 				</figure>
 				<p>
+					You can set the <code>max</code> and <code>total</code> method to show pager status in the
+					footer.
+				</p>
+				<ul class="splitscreen">
+					<li>
+						<figure data-ts="DoxScript">
+							<script type="runnable">
+								$.getJSON('assets/rowdata.json', function(json) {
+									ts.ui.get('#example10', table => {
+										table.cols([
+											{ label: 'ID', type: 'ts-number' },
+											{ label: 'Name', flex: 2 },
+											{ label: 'Price', type: 'ts-number'}
+										]);
+										table.rows(json).max(5).total(json.length);
+									});
+								});
+							</script>
+						</figure>
+					</li>
+					<li>
+						<div data-ts="Table" id="example10"></div>
+					</li>
+				</ul>
+				<p>
 					If you would like to manage paging yourself, because you have a billion products and don't
 					want to fetch them all at once, you can create your own pager.
 				</p>
@@ -95,27 +120,37 @@
 					</script>
 				</figure>
 				<p>
-					If you would like to show page status, you need to set <code>total</code> and <code>number</code>, which are the total of items in the table and the number of items of a page.
+					If you would like to manage paging by yourself and show page status, you need to set
+					<code>total</code> and <code>number</code>, which are the total of items in the table and
+					the number of items of a page.
 				</p>
 				<ul class="splitscreen">
 					<li>
 						<figure data-ts="DoxScript">
 							<script type="runnable">
-								$.getJSON('assets/rowdata.json', function(json) {
-									ts.ui.get('#page-status-table', table => {
-										table.cols([
-											{ label: 'ID', type: 'ts-number' },
-											{ label: 'Name', flex: 2 },
-											{ label: 'Price', type: 'ts-number'}
-										]);
-										table.rows(json).max(5);
-										table.pager({
-											pages: 5,
-											page: 0,
-											number: 5,
-											total: json.length
-										});
+								var popup = ts.ui.Notification;
+								ts.ui.get('#page-status-table', table => {
+									table.max(10).cols([
+										{ label: 'ID', type: 'ts-number' },
+										{ label: 'Name', flex: 2 },
+										{ label: 'Price', type: 'ts-number'}
+									]);
+									table.pager({
+										pages: 5,
+										page: 0,
+										number: 10,
+										total: 50,
+										onselect: loadpage
 									});
+									function loadpage(index) {
+										var url = 'assets/page-' + index + '.json';
+										$.getJSON(url, function(json) {
+											var n = json.length;
+											popup.success('Loaded ' + n + ' rows');
+											table.rows(json);
+										});
+									}
+									loadpage(0);
 								});
 							</script>
 						</figure>

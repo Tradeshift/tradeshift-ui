@@ -667,7 +667,7 @@ ts.ui.TableSpirit = (function using(
 					model.total = n;
 					if (pager) {
 						pager.total = n;
-						this._createpager(pager);
+						pager._initstatus();
 					}
 				} else {
 					return model.total;

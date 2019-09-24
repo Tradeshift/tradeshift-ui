@@ -21,7 +21,8 @@
 		toolbar.search,
 		toolbar.tabs,
 		toolbar.checkbox,
-		toolbar.$allactions()
+		toolbar.$allactions(),
+		toolbar.pager	
 	);
 	rendercenter(id, toolbar.pager);
 	if(toolbar.search && toolbar.search.buttons.length) {
@@ -30,7 +31,7 @@
 		rendernormalbuttons(id, toolbar.$allbuttons());
 	}
 	
-	function renderleft(title, icon, burger, back, forward, status, search, tabs, checkbox, actions) {
+	function renderleft(title, icon, burger, back, forward, status, search, tabs, checkbox, actions, pager) {
 		var hasnavi = back || forward;
 		var hastabs = !!tabs.getLength();
 		var hasactions = !!actions.length;
@@ -63,6 +64,10 @@
 					actions.forEach(renderbutton);
 				}
 			</menu>
+		} else if(showPagerStatus(pager)) {
+			<menu id="${id}-items" class="ts-toolbar-menu ts-left">
+				renderlabels(null, pager.status);
+			</menu>
 		}
 	}
 
@@ -85,6 +90,10 @@
 	
 	function showPager(pager) {
 		return !!(statusbar && pager && pager.pages && pager.visible);
+	}
+
+	function showPagerStatus(pager) {
+		return !!(showPager(pager) && pager.status);
 	}
 
 	function renderspecialbutton(button, string) {

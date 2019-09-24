@@ -1,3 +1,3 @@
-@Tradeshift/ui
+@Tradeshift/TradeshiftUI
 
 Fixes issue #

@@ -361,6 +361,9 @@ ts.ui.SideShowSpirit = (function using(
 		 * @param {number} pct
 		 */
 		_position: function(pct) {
+			if (this.element.className.indexOf('ts-sidebar-first') > 0) {
+				pct = -pct;
+			}
 			this.css.set('-beta-transform', 'translate3d(' + pct + '%,0,0)');
 		},
 

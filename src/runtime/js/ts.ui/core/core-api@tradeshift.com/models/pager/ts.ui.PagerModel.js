@@ -205,10 +205,9 @@ ts.ui.PagerModel = (function using(chained) {
 			var page = this.page;
 			var total = this.total;
 			var number = Math.min(this.number, total);
-			this.status =
-				number > 0 && total > 0
-					? page * number + 1 + ' - ' + (page + 1) * number + ' (' + total + ')'
-					: '';
+			var start = page * number + 1;
+			var end = (page + 1) * number < total ? (page + 1) * number : total;
+			this.status = number > 0 && total > 0 ? start + ' - ' + end + ' (' + total + ')' : '';
 		}
 	});
 })(gui.Combo.chained);

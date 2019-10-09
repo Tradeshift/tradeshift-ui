@@ -206,7 +206,7 @@ ts.ui.PagerModel = (function using(chained) {
 			var total = this.total;
 			var number = Math.min(this.number, total);
 			var start = page * number + 1;
-			var end = (page + 1) * number < total ? (page + 1) * number : total;
+			var end = Math.min((page + 1) * number, total);
 			this.status = number > 0 && total > 0 ? start + ' - ' + end + ' (' + total + ')' : '';
 		}
 	});

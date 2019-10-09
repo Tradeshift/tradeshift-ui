@@ -204,11 +204,10 @@ ts.ui.PagerModel = (function using(chained) {
 		_initstatus: function() {
 			var page = this.page;
 			var total = this.total;
-			var number = this.number;
-			this.status =
-				number > 0 && total > 0
-					? page * number + 1 + ' - ' + (page + 1) * number + ' (' + total + ')'
-					: '';
+			var number = Math.min(this.number, total);
+			var start = page * number + 1;
+			var end = Math.min((page + 1) * number, total);
+			this.status = number > 0 && total > 0 ? start + ' - ' + end + ' (' + total + ')' : '';
 		}
 	});
 })(gui.Combo.chained);

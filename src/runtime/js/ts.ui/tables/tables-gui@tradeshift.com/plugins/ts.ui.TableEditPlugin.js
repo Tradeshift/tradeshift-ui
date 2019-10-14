@@ -477,6 +477,10 @@ ts.ui.TableEditPlugin = (function(CSSPlugin, DOMPlugin, Position, Client, Key, U
 		_resolveinvalid: function(cell) {
 			var spirit = this.spirit;
 			var model = spirit._model;
+			// The cell is invalid when the row is empty
+			if (!model.rows.length) {
+				return false;
+			}
 			if ((cell = this._getcellmodel(spirit, model, cell))) {
 				if (!cell.valid && cell.message) {
 					spirit.$errormessage(cell.message);

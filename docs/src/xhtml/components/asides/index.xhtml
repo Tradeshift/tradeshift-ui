@@ -75,6 +75,27 @@
 								</figure>
 							</section>
 
+							<h3>Adding a footer</h3>
+							<section>
+								<p>
+									You can insert a footer in the Aside. Note that
+									<a data-ts="Button" onclick="toggle('#myfooter');">the footer</a> will fixed at
+									the bottom of the aside.
+								</p>
+								<figure data-ts="DoxMarkup">
+									<script type="text/html">
+										<aside data-ts="Aside" data-ts.title="Aside Footer">
+											<div data-ts="Panel">
+												<p>Aside content.</p>
+											</div>
+											<footer>
+												<p>Aside footer.</p>
+											</footer>
+										</aside>
+									</script>
+								</figure>
+							</section>
+
 							<h3>Opening the aside</h3>
 							<section>
 								<p>The <att>data-ts.open</att> attribute can be flipped to toggle the Aside.</p>
@@ -293,6 +314,28 @@
 					shoulder beef filet mignon shank tenderloin tri-tip ground round shankle cow.
 				</p>
 			</div>
+		</aside>
+
+		<aside data-ts="Aside" id="myfooter" data-ts.title="Aside with footer">
+			<div data-ts="Panel">
+				<p>
+					Bacon ipsum dolor sit pölsesnack, jerky pork belly short loin sausage andouille kevin
+					capicola ham hamburger doner. Shank prosciutto flank kevin ribeye short ribs swine ham
+					pork porchetta spare ribs kielbasa beef ribs. Prosciutto pancetta shank boudin. Corned
+					beef shoulder capicola, turducken prosciutto pork belly sirloin shankle brisket chuck
+					leberkas tail beef. Sirloin meatloaf pastrami beef ribs. Ball tip pastrami landjaeger,
+					brisket Tradeshift strip steak short loin pancetta meatball corned beef tenderloin beef
+					ribs spare ribs. Tradeshift sausage strip steak ham, ribeye pork loin meatball turkey
+					corned beef shoulder. Leberkas jerky sirloin boudin, turducken ham hock pastrami. Doner
+					pig boudin sausage, ball tip leberkas ground round beef jowl kielbasa tongue shankle spare
+					ribs tail shoulder. Fatback pork kielbasa ham, doner pig short loin short ribs pancetta.
+					Pancetta jerky biltong short loin capicola beef. Pork belly strip steak venison brisket
+					shoulder beef filet mignon shank tenderloin tri-tip ground round shankle cow.
+				</p>
+			</div>
+			<footer>
+				<p>Aside footer.</p>
+			</footer>
 		</aside>
 
 		<aside data-ts="Aside" id="aside2" data-ts.title="Declarative Tabs">

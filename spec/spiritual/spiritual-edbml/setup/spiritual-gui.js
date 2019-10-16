@@ -8452,9 +8452,17 @@ switch (hack) {
 		 * @returns {number}
 		 */
 			compare: function(node1, node2) {
-				node1 = node1 instanceof gui.Spirit ? node1.element : node1;
-				node2 = node2 instanceof gui.Spirit ? node2.element : node2;
-				return node1.compareDocumentPosition(node2);
+				// When we used `ts-ui` and `elements` at the same time in ie11 it caused
+				// this error: Invalid Calling Object
+				// This will stop the web component crashing and not being able to be added
+				// after loading the `ts-ui`
+				try {
+					node1 = node1 instanceof gui.Spirit ? node1.element : node1;
+					node2 = node2 instanceof gui.Spirit ? node2.element : node2;
+					return node1.compareDocumentPosition(node2);	
+				} catch (e) {
+					return 1;
+				}
 			},
 
 		/**

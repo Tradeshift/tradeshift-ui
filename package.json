@@ -60,6 +60,10 @@
     "*.less": [
       "prettier --write",
       "git add"
+    ],
+    "*.{xhtml,html}": [
+      "prettier --write",
+      "git add"
     ]
   },
   "browserslist": [

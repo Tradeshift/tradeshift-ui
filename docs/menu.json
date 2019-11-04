@@ -205,6 +205,11 @@
 				"label": "ts.io",
 				"icon": "docs-icon-plug-1",
 				"path": "appendix/tsio/"
+			},
+			{
+				"label": "Elements",
+				"icon": "docs-icon-modules-1",
+				"path": "appendix/elements/"
 			}
 		]
 	}

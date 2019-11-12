@@ -84,6 +84,16 @@ input:-moz-placeholder {
 	color: @ts-color-gray-light;
 	font-style: italic;
 }
+// IE11
+input:-ms-input-placeholder {
+	color: @ts-color-gray-light !important;
+	font-style: italic;
+}
+// Edge
+input::-ms-input-placeholder {
+	color: @ts-color-gray-light;
+	font-style: italic;
+}
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
 	-webkit-appearance: none;

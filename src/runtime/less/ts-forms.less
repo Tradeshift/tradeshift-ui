@@ -138,6 +138,8 @@
 			padding-right: @ts-unit-half;
 			padding-bottom: 0;
 			resize: none;
+			white-space: pre-wrap;
+			overflow: auto;
 		}
 		&[type='number'] {
 			font-size: 13px;
@@ -926,7 +928,16 @@
 // Preview .....................................................................
 
 .ts-form {
+	// TODO: For the placeholder in the preview mode we are showing a gray text which can be misleading
+	// maybe we should just hide it in preview mode
 	&.ts-preview {
+		.ts-readonly {
+			&:not(.ts-option):not(.ts-switchlabel) {
+				&:after {
+					display: none;
+				}
+			}
+		}
 		.ts-datelabel,
 		.ts-fakelabel {
 			&:before {
@@ -935,17 +946,13 @@
 		}
 		.ts-field.ts-text,
 		.ts-field.ts-select {
+			cursor: default;
 			border: 1px solid transparent;
 			padding-left: 0;
 			padding-right: 0;
 			&.ts-fakeselectinput {
 				display: none;
 			}
-		}
-		&:after {
-			content: '';
-			.ts-mixin-maximize();
-			position: relative;
 		}
 	}
 }

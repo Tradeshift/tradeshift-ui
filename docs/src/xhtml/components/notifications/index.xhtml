@@ -125,6 +125,28 @@
 					so you should not use links in Notifications for internal navigation, at least not just
 					yet.
 				</p>
+				<p>
+					You can config those callbacks for Notification. such as <code>onopen</code>,
+					<code>onopened</code> , <code>onclose</code>, <code>onclosed</code>.
+				</p>
+				<figure data-ts="DoxScript">
+					<script type="runnable">
+						ts.ui.Notification.success('You did it!', {
+							onopen: function() {
+								console.log('The Notification is going to open!');
+							},
+							onopened: function() {
+								console.log('The Notification is opened!');
+							},
+							onclose: function() {
+								console.log('The Notification is going to close!');
+							},
+							onclosed: function() {
+								console.log('The Notification is closed!');
+							},
+						});
+					</script>
+				</figure>
 			</section>
 		</article>
 	</body>

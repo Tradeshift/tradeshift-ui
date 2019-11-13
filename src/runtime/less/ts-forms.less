@@ -931,6 +931,13 @@
 	// TODO: For the placeholder in the preview mode we are showing a gray text which can be misleading
 	// maybe we should just hide it in preview mode
 	&.ts-preview {
+		.ts-readonly {
+			&:not(.ts-option):not(.ts-switchlabel) {
+				&:after {
+					display: none;
+				}
+			}
+		}
 		.ts-datelabel,
 		.ts-fakelabel {
 			&:before {

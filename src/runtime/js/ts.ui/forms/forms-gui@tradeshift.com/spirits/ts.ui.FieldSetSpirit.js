@@ -43,6 +43,10 @@ ts.ui.FieldSetSpirit = (function() {
 			var form = this.dom.parent(ts.ui.FormSpirit);
 			if (form && form.css.contains(ts.ui.CLASS_PREVIEW)) {
 				this.element.setAttribute('disabled', 'disabled');
+				var fieldEl = this.element.querySelector('.' + ts.ui.CLASS_FIELD);
+				if (fieldEl) {
+					fieldEl.setAttribute('readonly', 'readonly');
+				}
 			}
 		},
 

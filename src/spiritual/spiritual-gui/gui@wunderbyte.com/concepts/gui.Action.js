@@ -388,10 +388,14 @@ gui.Action = (function using(confirmed, chained) {
 					 * @param {Window} win Remote window
 					 * @param {String} uri target origin
 					 * @param {String} key Spiritkey of xdomain IframeSpirit (who will relay the action)
+					 * SetTimeout because the bug in IE11. It will show null exception when you remove
+					 * an iframe.
 					 */
 					transcend: function(win, uri, key) {
 						var msg = gui.Action.stringify(action, key);
-						win.postMessage(msg, '*'); // uri
+						setTimeout(function() {
+							win.postMessage(msg, '*'); // uri
+						}, 10);
 					}
 				});
 				return action;

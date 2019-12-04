@@ -388,8 +388,9 @@ gui.Action = (function using(confirmed, chained) {
 					 * @param {Window} win Remote window
 					 * @param {String} uri target origin
 					 * @param {String} key Spiritkey of xdomain IframeSpirit (who will relay the action)
-					 * SetTimeout because the bug in IE11. It will show null exception when you remove
-					 * an iframe.
+					 * SetTimeout because the bug in IE11. It will show null exception when you ues ts.io
+					 * tradeshift-ui and ts-elements polyfill and remove an iframe. Here will send message
+					 * to the deleted iframe. The webcomponents polyfill will show the error in IE11.
 					 */
 					transcend: function(win, uri, key) {
 						var msg = gui.Action.stringify(action, key);

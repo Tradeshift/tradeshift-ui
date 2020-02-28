@@ -1824,10 +1824,11 @@ ts.ui.TableSpirit = (function using(
 					this.onclick(pos.y, pos.x);
 				}
 				if (editable) {
-					while (elem.localName !== 'td') {
+					// the elem could be outside of a table cell, so we could go up to the root and find nothing.
+					while (elem && elem.localName !== 'td') {
 						elem = elem.parentNode;
 					}
-					if ((area = elem.querySelector('.' + CLASS_TEXTAREA))) {
+					if (elem && (area = elem.querySelector('.' + CLASS_TEXTAREA))) {
 						area.focus();
 					}
 				}

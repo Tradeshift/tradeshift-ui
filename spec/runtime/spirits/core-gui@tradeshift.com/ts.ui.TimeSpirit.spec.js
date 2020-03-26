@@ -42,7 +42,7 @@ describe('ts.ui.TimeSpirit', function likethis() {
 			ro: '2 ani în urmă',
 			ru: '2 года назад',
 			se: 'maŋit 2 jagit',
-			'sv-SE': 'för 2 år sedan',
+			sv: 'för 2 år sedan',
 			'zh-CN': '2 年前',
 			'zh-TW': '2 年前'
 		};

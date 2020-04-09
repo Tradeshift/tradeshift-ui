@@ -29,6 +29,7 @@
 				</p>
 			</section>
 			<section>
+				<h3>CDN version</h3>
 				<p data-ts="Spirit">
 					<script type="text/edbml">
 						<span>To get Tradeshift UI up and running on your page, simply include +
@@ -50,6 +51,51 @@
 						</script>
 					</figure>
 					-->
+				<h3>NPM version</h3>
+				<p>
+					Tradeshift UI is also available as a
+					<a href="https://www.npmjs.com/package/@tradeshift/tradeshift-ui" target="_blank">
+						npm package </a
+					>. You can simply install it in your project executing the following command
+				</p>
+				<figure data-ts="DoxMarkup">
+					<script type="text/html">
+						npm i @tradeshift/tradeshift-ui --save
+					</script>
+				</figure>
+				<p>
+					then don't forget to import <code>ts.js</code> and <code>ts.css</code> in your main
+					application entrypoint
+				</p>
+				<figure data-ts="DoxMarkup">
+					<script type="text/html">
+						import '@tradeshift/tradeshift-ui';
+						import '@tradeshift/tradeshift-ui/ts.css';
+					</script>
+				</figure>
+				<p>
+					there is a style helpers in the package, so you can import it somewhere in your shared
+					styles module. Please note that since it is a <code>less</code> file, you should equip
+					your build pipeline with less files loader
+				</p>
+				<figure data-ts="DoxMarkup">
+					<script type="text/html">
+						@import '~@tradeshift/tradeshift-ui/ts-runtime';
+					</script>
+				</figure>
+				<h3>Typescript</h3>
+				<p>
+					For Typescript projects, we also supply the library with type definitions. Take a look at
+					<a href="https://www.npmjs.com/package/@tradeshift/tradeshift-ui-types" target="_blank">
+						this package </a
+					>and add it to your Typescript application
+				</p>
+				<figure data-ts="DoxMarkup">
+					<script type="text/html">
+						npm i @tradeshift/tradeshift-ui-types --save
+					</script>
+				</figure>
+				<h3>Initialization</h3>
 				<p>
 					UI components are initialized on the
 					<code>DOMContentLoaded</code> event, but this might change some day. To make sure that all

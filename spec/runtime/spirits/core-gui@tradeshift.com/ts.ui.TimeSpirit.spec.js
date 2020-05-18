@@ -47,6 +47,7 @@ describe('ts.ui.TimeSpirit', function likethis() {
 			'zh-TW': '2 年前'
 		};
 		var codes = Object.keys(tests);
+		const currentYear = Number(new Date().getUTCFullYear());
 		codes.forEach(function(code, i) {
 			setup(function(spirit) {
 				var html = spirit.element.innerHTML.replace(/\d/g, '');
@@ -55,7 +56,11 @@ describe('ts.ui.TimeSpirit', function likethis() {
 				if (i === codes.length - 1) {
 					done();
 				}
-			}, '<time data-ts="Time" lang="' + code + '" datetime="2015-11-04 03:59:33"></time>');
+			}, '<time data-ts="Time" lang="' +
+				code +
+				'" datetime="' +
+				(currentYear - 2) +
+				'-11-04 03:59:33"></time>');
 		});
 	});
 });

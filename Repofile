@@ -1,0 +1,19 @@
+{
+	"description": "Tradeshift UI is a framework-agnostic JavaScript library to help Tradeshift App developers to create cohesive user experiences and to provide reusable UI components. https://ui.tradeshift.com",
+	"topics": [
+		"ui",
+		"components",
+		"tradeshift",
+		"reusable",
+		"webcomponents",
+		"client-side",
+		"javascript",
+		"css",
+		"spiritual",
+		"edbml",
+		"edb"
+	],
+	"extraChecks": [
+		"Travis CI - Pull Request"
+	]
+}

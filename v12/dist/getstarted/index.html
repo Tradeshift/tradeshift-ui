@@ -7,11 +7,11 @@
     <link rel="ts-app-icon" href="/v12/dist/assets/icon.svg">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
-    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.3.6.min.js"></script>
+    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.3.10.min.js"></script>
     <script src="/v12/dist/assets/dox.min.js"></script>
     <script src="/v12/dist/assets/mark.min.js"></script>
     <script src="/v12/dist/assets/jquery-2.2.4.min.js"></script>
-    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.3.6.min.css">
+    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.3.10.min.css">
     <link rel="stylesheet" href="/v12/dist/assets/dox.css">
     <link rel="prefetch" title="Setup" href="index.html">
     <link rel="prefetch" title="Layout" href="layout.html">
@@ -51,6 +51,7 @@
                             </p>
                         </section>
                         <section>
+                            <h3><span>CDN version</span></h3>
                             <p data-ts="Spirit">
                                 <script class="gui-script" data-ts.scriptid="edbml.$Z2dVzsb1">
                                     edbml.declare('edbml.$Z2dVzsb1').as(function $edbml() {
@@ -85,6 +86,70 @@
 						</script>
 					</figure>
 					-->
+                            <h3><span>NPM version</span></h3>
+                            <p>
+                                Tradeshift UI is also available as a
+                                <a href="https://www.npmjs.com/package/@tradeshift/tradeshift-ui" target="_blank">
+                                    npm package </a>. You can simply install it in your project executing the following command
+                            </p>
+                            <figure data-ts="DoxMarkup" data-ts.code="npm%20i%20%40tradeshift%2Ftradeshift-ui%20--save">
+                                <script type="text/html">
+                                    npm i @tradeshift/tradeshift-ui --save
+                                </script>
+                                <ul data-ts="Panels">
+                                    <li data-ts="Panel" data-ts.selected="true">
+                                        <pre class="prism language-markup"><code>npm i @tradeshift/tradeshift-ui --save</code></pre>
+                                    </li>
+                                </ul>
+                            </figure>
+                            <p>
+                                then don&apos;t forget to import <code>ts.js</code> and <code>ts.css</code> in your main
+                                application entrypoint
+                            </p>
+                            <figure data-ts="DoxMarkup" data-ts.code="import%20&apos;%40tradeshift%2Ftradeshift-ui&apos;%3B%0Aimport%20&apos;%40tradeshift%2Ftradeshift-ui%2Fts.css&apos;%3B">
+                                <script type="text/html">
+                                    import '@tradeshift/tradeshift-ui';
+                                    import '@tradeshift/tradeshift-ui/ts.css';
+                                </script>
+                                <ul data-ts="Panels">
+                                    <li data-ts="Panel" data-ts.selected="true">
+                                        <pre class="prism language-markup"><code>import &apos;@tradeshift/tradeshift-ui&apos;;
+import &apos;@tradeshift/tradeshift-ui/ts.css&apos;;</code></pre>
+                                    </li>
+                                </ul>
+                            </figure>
+                            <p>
+                                there is a style helpers in the package, so you can import it somewhere in your shared
+                                styles module. Please note that since it is a <code>less</code> file, you should equip
+                                your build pipeline with less files loader
+                            </p>
+                            <figure data-ts="DoxMarkup" data-ts.code="%40import%20&apos;~%40tradeshift%2Ftradeshift-ui%2Fts-runtime&apos;%3B">
+                                <script type="text/html">
+                                    @import '~@tradeshift/tradeshift-ui/ts-runtime';
+                                </script>
+                                <ul data-ts="Panels">
+                                    <li data-ts="Panel" data-ts.selected="true">
+                                        <pre class="prism language-markup"><code>@import &apos;~@tradeshift/tradeshift-ui/ts-runtime&apos;;</code></pre>
+                                    </li>
+                                </ul>
+                            </figure>
+                            <h3><span>Typescript</span></h3>
+                            <p>
+                                For Typescript projects, we also supply the library with type definitions. Take a look at
+                                <a href="https://www.npmjs.com/package/@tradeshift/tradeshift-ui-types" target="_blank">
+                                    this package </a>and add it to your Typescript application
+                            </p>
+                            <figure data-ts="DoxMarkup" data-ts.code="npm%20i%20%40tradeshift%2Ftradeshift-ui-types%20--save">
+                                <script type="text/html">
+                                    npm i @tradeshift/tradeshift-ui-types --save
+                                </script>
+                                <ul data-ts="Panels">
+                                    <li data-ts="Panel" data-ts.selected="true">
+                                        <pre class="prism language-markup"><code>npm i @tradeshift/tradeshift-ui-types --save</code></pre>
+                                    </li>
+                                </ul>
+                            </figure>
+                            <h3><span>Initialization</span></h3>
                             <p>
                                 UI components are initialized on the
                                 <code>DOMContentLoaded</code> event, but this might change some day. To make sure that all

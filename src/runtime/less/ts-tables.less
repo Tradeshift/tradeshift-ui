@@ -473,6 +473,15 @@
 		bottom: auto;
 		left: 0;
 		display: none;
+
+		.ts-table-checkbox {
+			display: block;
+		}
+
+		tr:first-child .ts-table-checkbox {
+			//hacky fix for weird misaligned checkboxes
+			margin-top: 1px;
+		}
 	}
 	.ts-table-menu {
 		border-right: 1px solid @ts-color-gray-light;

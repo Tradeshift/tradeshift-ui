@@ -80,9 +80,11 @@
 												this.icon = isodd ? 'ts-icon-delete' : 'ts-icon-addfilter';
 												this.info = isodd ? 'Show all rows' : 'Show odd rows';
 												table.cols()[0].label = isodd ? 'Odd numbers' : 'All numbers';
-												table.rows().forEach(function(row, i) {
+												var newRows = table.rows().map(function (row, i) {
 													row.visible = isodd ? (i % 2 === 0) : true;
+													return row;
 												});
+												table.rows(newRows);
 											}
 										}
 									}

@@ -2013,3 +2013,8 @@ ts.ui.TableSpirit = (function using(
 	ts.ui.PagerModel,
 	ts.ui.UNIT_DOUBLE
 );
+
+ts.ui.TableSpirit.localize({
+	thisPage: 'This Page',
+	allPages: 'All Pages'
+});

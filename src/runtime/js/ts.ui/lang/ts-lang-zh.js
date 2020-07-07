@@ -36,3 +36,11 @@ ts.ui.DatePicker.localize({
 ts.ui.Footer.localize({
 	collaboration: '打开对话'
 });
+ts.ui.ToolBarSpirit.localize({
+	options: '选项',
+	more: '更多...'
+});
+ts.ui.TableSpirit.localize({
+	thisPage: '当前页',
+	allPages: '所有页'
+});

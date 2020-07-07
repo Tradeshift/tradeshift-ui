@@ -5,6 +5,9 @@
 	var id = table.$instanceid;
 	@class = 'ts-table-menu ts-engine-' + gui.Client.agent;
 	@class += table.menuopen ? ' ts-open' : '';
+	
+	var selectPageLabel = ts.ui.TableSpirit.localize('thisPage');
+	var selectAllLabel = ts.ui.TableSpirit.localize('allPages');
 
 	<aside @class id="${id}-menu" data-ts="Spirit">
 		<table>
@@ -22,10 +25,10 @@
 					if(table.menuopen) {
 						<th class="ts-table-choices">
 							<button data-action="select-page" class="ts-button ts-tertiary">
-								<span>This Page</span>
+								<span>${selectPageLabel}</span>
 							</button>
 							<button data-action="select-all" class="ts-button ts-tertiary">
-								<span>All Pages</span>
+								<span>${selectAllLabel}</span>
 							</button>
 						</th>
 						<th class="ts-table-choices-close">

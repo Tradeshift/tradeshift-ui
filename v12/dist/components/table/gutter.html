@@ -7,11 +7,11 @@
     <link rel="ts-app-icon" href="/v12/dist/assets/icon.svg">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
-    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.3.10.min.js"></script>
+    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.4.3.min.js"></script>
     <script src="/v12/dist/assets/dox.min.js"></script>
     <script src="/v12/dist/assets/mark.min.js"></script>
     <script src="/v12/dist/assets/jquery-2.2.4.min.js"></script>
-    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.3.10.min.css">
+    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.4.3.min.css">
     <link rel="stylesheet" href="/v12/dist/assets/dox.css">
     <meta name="robots" content="noindex">
     <link rel="prefetch" title="Table" href="index.html">
@@ -59,16 +59,16 @@
                             <div class="splitscreen-container">
                                 <ul class="splitscreen">
                                     <li>
-                                        <figure data-ts="DoxScript" class="runnable" data-ts.code="%24.getJSON(&apos;assets%2Frowdata.json&apos;%2C%20function(json)%20%7B%0A%09ts.ui.get(&apos;%23table&apos;%2C%20function(table)%20%7B%0A%09%09table.selectable()%3B%0A%09%09table.cols(%5B%0A%09%09%09%7Blabel%3A%20&apos;ID&apos;%2C%20minwidth%3A%20300%7D%2C%0A%09%09%09%7Blabel%3A%20&apos;Name&apos;%2Cminwidth%3A%20300%7D%2C%0A%09%09%09%7Blabel%3A%20&apos;Price&apos;%2C%20minwidth%3A%20300%7D%0A%09%09%5D).rows(json).max(5)%3B%0A%09%7D)%0A%7D)%3B">
+                                        <figure data-ts="DoxScript" class="runnable" data-ts.code="%24.getJSON(&apos;assets%2Frowdata.json&apos;%2C%20function(json)%20%7B%0A%09ts.ui.get(&apos;%23table&apos;%2C%20function(table)%20%7B%0A%09%09table.selectable()%3B%0A%09%09table.cols(%5B%0A%09%09%09%7Blabel%3A%20&apos;ID&apos;%2C%20minwidth%3A%20300%7D%2C%0A%09%09%09%7Blabel%3A%20&apos;Name&apos;%2Cminwidth%3A%20300%2C%20wrap%3A%20true%7D%2C%0A%09%09%09%7Blabel%3A%20&apos;Price&apos;%2C%20minwidth%3A%20300%7D%0A%09%09%5D).rows(json).max(10)%3B%0A%09%7D)%0A%7D)%3B">
                                             <script type="runnable">
                                                 $.getJSON('assets/rowdata.json', function(json) {
 									ts.ui.get('#table', table => {
 										table.selectable();
 										table.cols([
 											{label: 'ID', minwidth: 300},
-											{label: 'Name',minwidth: 300},
+											{label: 'Name',minwidth: 300, wrap: true},
 											{label: 'Price', minwidth: 300}
-										]).rows(json).max(5);
+										]).rows(json).max(10);
 									})
 								});
 							</script>
@@ -79,9 +79,9 @@
 		table<span class="token punctuation">.</span><span class="token function">selectable<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 		table<span class="token punctuation">.</span><span class="token function">cols<span class="token punctuation">(</span></span><span class="token punctuation">[</span>
 			<span class="token punctuation">{</span>label<span class="token punctuation">:</span> <span class="token string">&apos;ID&apos;</span><span class="token punctuation">,</span> minwidth<span class="token punctuation">:</span> <span class="token number">300</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
-			<span class="token punctuation">{</span>label<span class="token punctuation">:</span> <span class="token string">&apos;Name&apos;</span><span class="token punctuation">,</span>minwidth<span class="token punctuation">:</span> <span class="token number">300</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+			<span class="token punctuation">{</span>label<span class="token punctuation">:</span> <span class="token string">&apos;Name&apos;</span><span class="token punctuation">,</span>minwidth<span class="token punctuation">:</span> <span class="token number">300</span><span class="token punctuation">,</span> wrap<span class="token punctuation">:</span> <span class="token keyword">true</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
 			<span class="token punctuation">{</span>label<span class="token punctuation">:</span> <span class="token string">&apos;Price&apos;</span><span class="token punctuation">,</span> minwidth<span class="token punctuation">:</span> <span class="token number">300</span><span class="token punctuation">}</span>
-		<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">rows<span class="token punctuation">(</span></span>json<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">max<span class="token punctuation">(</span></span><span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">rows<span class="token punctuation">(</span></span>json<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">max<span class="token punctuation">(</span></span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 	<span class="token punctuation">}</span><span class="token punctuation">)</span>
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
                                         </figure>

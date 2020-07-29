@@ -7,11 +7,11 @@
     <link rel="ts-app-icon" href="/v12/dist/assets/icon.svg">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
-    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.3.10.min.js"></script>
+    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.4.3.min.js"></script>
     <script src="/v12/dist/assets/dox.min.js"></script>
     <script src="/v12/dist/assets/mark.min.js"></script>
     <script src="/v12/dist/assets/jquery-2.2.4.min.js"></script>
-    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.3.10.min.css">
+    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.4.3.min.css">
     <link rel="stylesheet" href="/v12/dist/assets/dox.css">
     <link rel="prefetch" title="Table" href="index.html">
     <link rel="prefetch" title="Build" href="building.html">
@@ -133,7 +133,7 @@ mycol<span class="token punctuation">.</span>button<span class="token punctuatio
                             <div class="splitscreen-container">
                                 <ul class="splitscreen">
                                     <li>
-                                        <figure data-ts="DoxScript" class="runnable" data-ts.code="var%20table%20%3D%20ts.ui.get(&apos;%23table2&apos;)%3B%0Avar%20popup%20%3D%20ts.ui.Notification%3B%0Avar%20isodd%20%3D%20false%3B%0Atable.rows(%5B%5B1%5D%2C%20%5B2%5D%2C%20%5B3%5D%2C%20%5B4%5D%2C%20%5B5%5D%2C%20%5B6%5D%2C%20%5B7%5D%5D).cols(%5B%0A%09%7B%0A%09%09label%3A%20&apos;All%20numbers&apos;%2C%0A%09%09type%3A%20&apos;ts-number&apos;%2C%0A%09%09button%3A%20%7B%0A%09%09%09icon%3A%20&apos;ts-icon-addfilter&apos;%2C%0A%09%09%09info%3A%20&apos;Show%20odd%20rows&apos;%2C%0A%09%09%09onclick%3A%20function()%20%7B%0A%09%09%09%09isodd%20%3D%20!isodd%3B%0A%09%09%09%09this.icon%20%3D%20isodd%20%3F%20&apos;ts-icon-delete&apos;%20%3A%20&apos;ts-icon-addfilter&apos;%3B%0A%09%09%09%09this.info%20%3D%20isodd%20%3F%20&apos;Show%20all%20rows&apos;%20%3A%20&apos;Show%20odd%20rows&apos;%3B%0A%09%09%09%09table.cols()%5B0%5D.label%20%3D%20isodd%20%3F%20&apos;Odd%20numbers&apos;%20%3A%20&apos;All%20numbers&apos;%3B%0A%09%09%09%09table.rows().forEach(function(row%2C%20i)%20%7B%0A%09%09%09%09%09row.visible%20%3D%20isodd%20%3F%20(i%20%25%202%20%3D%3D%3D%200)%20%3A%20true%3B%0A%09%09%09%09%7D)%3B%0A%09%09%09%7D%0A%09%09%7D%0A%09%7D%0A%5D)%3B">
+                                        <figure data-ts="DoxScript" class="runnable" data-ts.code="var%20table%20%3D%20ts.ui.get(&apos;%23table2&apos;)%3B%0Avar%20popup%20%3D%20ts.ui.Notification%3B%0Avar%20isodd%20%3D%20false%3B%0Atable.rows(%5B%5B1%5D%2C%20%5B2%5D%2C%20%5B3%5D%2C%20%5B4%5D%2C%20%5B5%5D%2C%20%5B6%5D%2C%20%5B7%5D%5D).cols(%5B%0A%09%7B%0A%09%09label%3A%20&apos;All%20numbers&apos;%2C%0A%09%09type%3A%20&apos;ts-number&apos;%2C%0A%09%09button%3A%20%7B%0A%09%09%09icon%3A%20&apos;ts-icon-addfilter&apos;%2C%0A%09%09%09info%3A%20&apos;Show%20odd%20rows&apos;%2C%0A%09%09%09onclick%3A%20function()%20%7B%0A%09%09%09%09isodd%20%3D%20!isodd%3B%0A%09%09%09%09this.icon%20%3D%20isodd%20%3F%20&apos;ts-icon-delete&apos;%20%3A%20&apos;ts-icon-addfilter&apos;%3B%0A%09%09%09%09this.info%20%3D%20isodd%20%3F%20&apos;Show%20all%20rows&apos;%20%3A%20&apos;Show%20odd%20rows&apos;%3B%0A%09%09%09%09table.cols()%5B0%5D.label%20%3D%20isodd%20%3F%20&apos;Odd%20numbers&apos;%20%3A%20&apos;All%20numbers&apos;%3B%0A%09%09%09%09var%20newRows%20%3D%20table.rows().map(function%20(row%2C%20i)%20%7B%0A%09%09%09%09%09row.visible%20%3D%20isodd%20%3F%20(i%20%25%202%20%3D%3D%3D%200)%20%3A%20true%3B%0A%09%09%09%09%09return%20row%3B%0A%09%09%09%09%7D)%3B%0A%09%09%09%09table.rows(newRows)%3B%0A%09%09%09%7D%0A%09%09%7D%0A%09%7D%0A%5D)%3B">
                                             <script type="runnable">
                                                 var table = ts.ui.get('#table2');
 								var popup = ts.ui.Notification;
@@ -150,9 +150,11 @@ mycol<span class="token punctuation">.</span>button<span class="token punctuatio
 												this.icon = isodd ? 'ts-icon-delete' : 'ts-icon-addfilter';
 												this.info = isodd ? 'Show all rows' : 'Show odd rows';
 												table.cols()[0].label = isodd ? 'Odd numbers' : 'All numbers';
-												table.rows().forEach(function(row, i) {
+												var newRows = table.rows().map(function (row, i) {
 													row.visible = isodd ? (i % 2 === 0) : true;
+													return row;
 												});
+												table.rows(newRows);
 											}
 										}
 									}
@@ -175,9 +177,11 @@ table<span class="token punctuation">.</span><span class="token function">rows<s
 				<span class="token keyword">this</span><span class="token punctuation">.</span>icon <span class="token operator">=</span> isodd <span class="token operator">?</span> <span class="token string">&apos;ts-icon-delete&apos;</span> <span class="token punctuation">:</span> <span class="token string">&apos;ts-icon-addfilter&apos;</span><span class="token punctuation">;</span>
 				<span class="token keyword">this</span><span class="token punctuation">.</span>info <span class="token operator">=</span> isodd <span class="token operator">?</span> <span class="token string">&apos;Show all rows&apos;</span> <span class="token punctuation">:</span> <span class="token string">&apos;Show odd rows&apos;</span><span class="token punctuation">;</span>
 				table<span class="token punctuation">.</span><span class="token function">cols<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>label <span class="token operator">=</span> isodd <span class="token operator">?</span> <span class="token string">&apos;Odd numbers&apos;</span> <span class="token punctuation">:</span> <span class="token string">&apos;All numbers&apos;</span><span class="token punctuation">;</span>
-				table<span class="token punctuation">.</span><span class="token function">rows<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">forEach<span class="token punctuation">(</span></span><span class="token keyword">function</span><span class="token punctuation">(</span>row<span class="token punctuation">,</span> i<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+				<span class="token keyword">var</span> newRows <span class="token operator">=</span> table<span class="token punctuation">.</span><span class="token function">rows<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">map<span class="token punctuation">(</span></span><span class="token keyword">function</span> <span class="token punctuation">(</span>row<span class="token punctuation">,</span> i<span class="token punctuation">)</span> <span class="token punctuation">{</span>
 					row<span class="token punctuation">.</span>visible <span class="token operator">=</span> isodd <span class="token operator">?</span> <span class="token punctuation">(</span>i <span class="token operator">%</span> <span class="token number">2</span> <span class="token operator">===</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">:</span> <span class="token keyword">true</span><span class="token punctuation">;</span>
+					<span class="token keyword">return</span> row<span class="token punctuation">;</span>
 				<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+				table<span class="token punctuation">.</span><span class="token function">rows<span class="token punctuation">(</span></span>newRows<span class="token punctuation">)</span><span class="token punctuation">;</span>
 			<span class="token punctuation">}</span>
 		<span class="token punctuation">}</span>
 	<span class="token punctuation">}</span>

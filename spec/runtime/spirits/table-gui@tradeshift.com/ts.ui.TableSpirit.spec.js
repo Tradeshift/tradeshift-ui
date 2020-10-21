@@ -290,6 +290,44 @@ describe('ts.ui.TableSpirit', function likethis() {
 			});
 		});
 
+		it('should support disabling of markdown via disableMarkdown table method', function(done) {
+			setup(function(spirit, dom) {
+				spirit.disableMarkdown();
+				spirit.rows([
+					['*Italic text*'],
+					['**Strong text**'],
+					['~~Strike text~~'],
+					['`monotype text`']
+				]);
+				sometime(function later() {
+					expect(spirit.element.innerHTML).not.toContain('</em>');
+					expect(spirit.element.innerHTML).not.toContain('</strong>');
+					expect(spirit.element.innerHTML).not.toContain('</del>');
+					expect(spirit.element.innerHTML).not.toContain('</code>');
+					done();
+				});
+			});
+		});
+
+		it('should support disabling of markdown via col property', function(done) {
+			setup(function(spirit, dom) {
+				spirit.cols([{ markdownFormatting: false }]);
+				spirit.rows([
+					['*Italic text*'],
+					['**Strong text**'],
+					['~~Strike text~~'],
+					['`monotype text`']
+				]);
+				sometime(function later() {
+					expect(spirit.element.innerHTML).not.toContain('</em>');
+					expect(spirit.element.innerHTML).not.toContain('</strong>');
+					expect(spirit.element.innerHTML).not.toContain('</del>');
+					expect(spirit.element.innerHTML).not.toContain('</code>');
+					done();
+				});
+			});
+		});
+
 		it('should support link', function(done) {
 			setup(function(spirit, dom) {
 				spirit.linkable();
@@ -338,6 +376,18 @@ describe('ts.ui.TableSpirit', function likethis() {
 				spirit.rows([['Please (visit)[Trade(s)hift](http://www.tradeshift.com)']]);
 				sometime(function later() {
 					expect(spirit.element.innerHTML).toContain('(visit)<a');
+					done();
+				});
+			});
+		});
+
+		it('should not render link with disabled markdown', function(done) {
+			setup(function(spirit, dom) {
+				spirit.linkable();
+				spirit.disableMarkdown();
+				spirit.rows([['Please visit [Tradeshift](http://www.tradeshift.com)']]);
+				sometime(function later() {
+					expect(spirit.element.innerHTML).not.toContain('Tradeshift</a>');
 					done();
 				});
 			});

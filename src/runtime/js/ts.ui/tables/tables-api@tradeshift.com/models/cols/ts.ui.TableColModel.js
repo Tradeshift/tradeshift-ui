@@ -172,6 +172,12 @@ ts.ui.TableColModel = (function using(chained) {
 		sort: null,
 
 		/**
+		 * Applies a markdown formatting to the cells in this column or not.
+		 * @type {boolean}
+		 */
+		markdownFormatting: true,
+
+		/**
 		 * Is (cell content) of type number?
 		 * @returns {boolean}
 		 */

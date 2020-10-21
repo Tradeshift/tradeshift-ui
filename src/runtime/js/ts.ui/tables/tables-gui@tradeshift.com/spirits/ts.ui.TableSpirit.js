@@ -1115,6 +1115,25 @@ ts.ui.TableSpirit = (function using(
 			this._model.linkable = false;
 		}),
 
+		// Markdown ................................................................
+
+		/**
+		 * The table supports markdown out of the box, but you can enable/disable it.
+		 * @param @optional {function} onlink
+		 * @returns {ts.ui.TableSpirit}
+		 */
+		enableMarkdown: chained(function() {
+			this._model.markdownFormatting = true;
+		}),
+
+		/**
+		 * Disables Markdown render in table.
+		 * @returns {ts.ui.TableSpirit}
+		 */
+		disableMarkdown: chained(function() {
+			this._model.markdownFormatting = false;
+		}),
+
 		// Collaboration ...........................................................
 
 		/**

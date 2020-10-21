@@ -106,6 +106,57 @@
 						<div data-ts="Table" id="table4"></div>
 					</li>
 				</ul>
+				<p>
+					You can disable the Markdown in the table by call the <code>disableMarkdown</code> method.
+					To enable it again you can call the <code>enableMarkdown</code> method.
+				</p>
+				<ul class="splitscreen">
+					<li>
+						<figure data-ts="DoxScript">
+							<script type="runnable">
+								ts.ui.get('#table5', function(table) {
+									table.disableMarkdown();
+									table.rows([
+										['*Italic text*'],
+										['**Strong text**'],
+										['~~Strike text~~'],
+										['`monotype text`']
+									]);
+								});
+							</script>
+						</figure>
+					</li>
+					<li>
+						<div data-ts="Table" id="table5"></div>
+					</li>
+				</ul>
+				<p>
+					You can disable the Markdown in specific column by column's property
+					<code>markdownFormatting</code>:
+				</p>
+				<ul class="splitscreen">
+					<li>
+						<figure data-ts="DoxScript">
+							<script type="runnable">
+								ts.ui.get('#table6', function(table) {
+									table.cols([
+										{label: 'Disabled markdown column', markdownFormatting: false},
+										{label: 'Not disabled markdown column'}
+									]);
+									table.rows([
+										['*Italic text*', '*Italic text*'],
+										['**Strong text**', '**Strong text**'],
+										['~~Strike text~~', '~~Strike text~~'],
+										['`monotype text`', '`monotype text`']
+									]);
+								});
+							</script>
+						</figure>
+					</li>
+					<li>
+						<div data-ts="Table" id="table6"></div>
+					</li>
+				</ul>
 			</section>
 		</article>
 	</body>

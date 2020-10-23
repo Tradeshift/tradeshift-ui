@@ -221,6 +221,12 @@ ts.ui.TableModel = (function using(RowCollection, Type, Model) {
 		linkable: false,
 
 		/**
+		 * The Table should render cell's content via Markdown?
+		 * @type {boolean}
+		 */
+		markdownFormatting: true,
+
+		/**
 		 * @type {boolean}
 		 */
 		editable: false,

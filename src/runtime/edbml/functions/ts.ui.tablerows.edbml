@@ -69,6 +69,10 @@
 				}
 				if(ts.ui.Model.is(cell)) {
 					out.html += cell.render();
+				} else if(col && !col.markdownFormatting || !table.markdownFormatting) {
+					<p>
+						out.html += edbml.safetext(cell.text);
+					</p>
 				} else {
 					out.html += Markdown.parse(cell.text, whitelist);
 				}

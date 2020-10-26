@@ -172,10 +172,16 @@ ts.ui.TableColModel = (function using(chained) {
 		sort: null,
 
 		/**
-		 * Applies a markdown formatting to the cells in this column or not.
+		 * Apply a markdown formatting to the cells in this column or not.
 		 * @type {boolean}
 		 */
 		markdownFormatting: true,
+
+		/**
+		 * Enable links in the column's cells via Markdown.
+		 * @type {boolean}
+		 */
+		linkable: false,
 
 		/**
 		 * Is (cell content) of type number?

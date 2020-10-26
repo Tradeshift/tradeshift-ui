@@ -83,20 +83,20 @@
 					least not just yet.
 				</p>
 				<p>
-					If the link should work more like a button, you can intecept the click action with the
-					<code>onlink</code> callback. In this case, you can use any string as the
-					<code>href</code>.
+					If you need to support links only in specific column, you can set the
+					<code>linkable</code> property to <code>true</code> in a column's config:
 				</p>
 				<ul class="splitscreen">
 					<li>
 						<figure data-ts="DoxScript">
 							<script type="runnable">
-								var popup = ts.ui.Notification;
 								ts.ui.get('#table4', table => {
-									table.linkable(function onlink(anystring) {
-										popup.success(anystring);
-									}).rows([
-										['Choose link [one](ONE) or [two](TWO) or [three](THREE).']
+									table.cols([
+										{label: 'Disabled link column'},
+										{label: 'Not disabled link column', linkable: true}
+									]);
+									table.rows([
+										['Please visit [Tradeshift](http://www.tradeshift.com)', 'Please visit [Tradeshift](http://www.tradeshift.com)']
 									]);
 								});
 							</script>
@@ -107,6 +107,30 @@
 					</li>
 				</ul>
 				<p>
+					If the link should work more like a button, you can intecept the click action with the
+					<code>onlink</code> callback. In this case, you can use any string as the
+					<code>href</code>.
+				</p>
+				<ul class="splitscreen">
+					<li>
+						<figure data-ts="DoxScript">
+							<script type="runnable">
+								var popup = ts.ui.Notification;
+								ts.ui.get('#table5', table => {
+									table.linkable(function onlink(anystring) {
+										popup.success(anystring);
+									}).rows([
+										['Choose link [one](ONE) or [two](TWO) or [three](THREE).']
+									]);
+								});
+							</script>
+						</figure>
+					</li>
+					<li>
+						<div data-ts="Table" id="table5"></div>
+					</li>
+				</ul>
+				<p>
 					You can disable the Markdown in the table by call the <code>disableMarkdown</code> method.
 					To enable it again you can call the <code>enableMarkdown</code> method.
 				</p>
@@ -114,7 +138,7 @@
 					<li>
 						<figure data-ts="DoxScript">
 							<script type="runnable">
-								ts.ui.get('#table5', function(table) {
+								ts.ui.get('#table6', function(table) {
 									table.disableMarkdown();
 									table.rows([
 										['*Italic text*'],
@@ -127,7 +151,7 @@
 						</figure>
 					</li>
 					<li>
-						<div data-ts="Table" id="table5"></div>
+						<div data-ts="Table" id="table6"></div>
 					</li>
 				</ul>
 				<p>
@@ -138,9 +162,9 @@
 					<li>
 						<figure data-ts="DoxScript">
 							<script type="runnable">
-								ts.ui.get('#table6', function(table) {
+								ts.ui.get('#table7', function(table) {
 									table.cols([
-										{label: 'Disabled markdown column', markdownFormatting: false},
+										{label: 'Disabled markdown column', markdownFormatting: false, linkable: true},
 										{label: 'Not disabled markdown column'}
 									]);
 									table.rows([
@@ -154,7 +178,7 @@
 						</figure>
 					</li>
 					<li>
-						<div data-ts="Table" id="table6"></div>
+						<div data-ts="Table" id="table7"></div>
 					</li>
 				</ul>
 			</section>

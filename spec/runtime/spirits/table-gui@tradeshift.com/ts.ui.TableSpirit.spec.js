@@ -339,6 +339,17 @@ describe('ts.ui.TableSpirit', function likethis() {
 			});
 		});
 
+		it('should support link in column config', function(done) {
+			setup(function(spirit, dom) {
+				spirit.cols([{ linkable: true }]);
+				spirit.rows([['Please visit [Tradeshift](http://www.tradeshift.com)']]);
+				sometime(function later() {
+					expect(spirit.element.innerHTML).toContain('Tradeshift</a>');
+					done();
+				});
+			});
+		});
+
 		it('should support link(old syntax)', function(done) {
 			setup(function(spirit, dom) {
 				spirit.linkable();
@@ -385,6 +396,17 @@ describe('ts.ui.TableSpirit', function likethis() {
 			setup(function(spirit, dom) {
 				spirit.linkable();
 				spirit.disableMarkdown();
+				spirit.rows([['Please visit [Tradeshift](http://www.tradeshift.com)']]);
+				sometime(function later() {
+					expect(spirit.element.innerHTML).not.toContain('Tradeshift</a>');
+					done();
+				});
+			});
+		});
+
+		it('should not render link with disabled markdown in column config', function(done) {
+			setup(function(spirit, dom) {
+				spirit.cols([{ markdownFormatting: false, linkable: true }]);
 				spirit.rows([['Please visit [Tradeshift](http://www.tradeshift.com)']]);
 				sometime(function later() {
 					expect(spirit.element.innerHTML).not.toContain('Tradeshift</a>');

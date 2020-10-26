@@ -57,6 +57,8 @@
 	
 	function renderCell(col, row, cell) {
 		var editable = iseditable(col, row, cell);
+		var markdownDisabled = col && !col.markdownFormatting || !table.markdownFormatting;
+		var markdownWhitelist = col && col.linkable ? whitelist.concat('a') : whitelist;
 		@class = getCellClass(col, row, cell, editable);
 		@id = table.$cellid(row.$index, cell.$index);
 		<td @id @class @note data-index="${cell.$index}">
@@ -69,12 +71,12 @@
 				}
 				if(ts.ui.Model.is(cell)) {
 					out.html += cell.render();
-				} else if(col && !col.markdownFormatting || !table.markdownFormatting) {
+				} else if(markdownDisabled) {
 					<p>
 						out.html += edbml.safetext(cell.text);
 					</p>
 				} else {
-					out.html += Markdown.parse(cell.text, whitelist);
+					out.html += Markdown.parse(cell.text, markdownWhitelist);
 				}
 			</div>
 		</td>

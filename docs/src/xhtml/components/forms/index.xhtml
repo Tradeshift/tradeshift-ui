@@ -86,7 +86,7 @@
 							<fieldset>
 								<label>
 									<span>Text</span>
-									<input type="text" required/>
+									<input type="text" />
 								</label>
 							</fieldset>
 						</form>
@@ -104,7 +104,7 @@
 							<fieldset>
 								<label>
 									<span>Tel</span>
-									<input type="tel" required/>
+									<input type="tel" />
 								</label>
 							</fieldset>
 						</form>
@@ -122,7 +122,7 @@
 							<fieldset>
 								<label>
 									<span>Email</span>
-									<input type="email" required/>
+									<input type="email" />
 								</label>
 							</fieldset>
 						</form>
@@ -166,6 +166,29 @@
 										value="2015-01-01"
 										min="2014-01-01"
 										max="2016-01-01"/>
+								</label>
+							</fieldset>
+						</form>
+					</script>
+				</figure>
+
+				<h3>
+					<elm>input</elm>
+					<att>required</att>
+				</h3>
+				<p>
+					The <elm>input</elm> with attribute <att>required</att> will add a red asterisk to the
+					first span in the <elm>label</elm>, so it is important to keep the markup structure as
+					presented in the example below. Should work with all types of inputs.
+				</p>
+				<figure data-ts="DoxMarkup">
+					<output />
+					<script type="text/html">
+						<form data-ts="Form">
+							<fieldset>
+								<label>
+									<span>Text</span>
+									<input type="text" required/>
 								</label>
 							</fieldset>
 						</form>

@@ -53,6 +53,11 @@
 			border-radius: @ts-radius;
 			&.ts-haslabel {
 				padding-top: @ts-unit-plus;
+
+				&.ts-required > span:first-child::after {
+					color: @ts-color-red-light;
+					content: ' *';
+				}
 			}
 			&.ts-customiconlabel {
 				.ts-field {

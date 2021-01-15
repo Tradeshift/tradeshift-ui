@@ -128,6 +128,9 @@ ts.ui.FakeDateInputSpirit = (function using(chained, tick, time) {
 			if (realspirit.element.placeholder !== this.element.placeholder) {
 				this.element.placeholder = realspirit.element.placeholder;
 			}
+			if (realspirit.element.disabled !== this.element.disabled) {
+				this.element.disabled = realspirit.element.disabled;
+			}
 		}
 	});
 })(gui.Combo.chained, ts.ui.FieldSpirit.TICK_SYNC, ts.ui.FieldSpirit.TICK_TIME);

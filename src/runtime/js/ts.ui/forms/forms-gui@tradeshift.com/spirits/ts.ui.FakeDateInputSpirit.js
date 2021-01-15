@@ -88,6 +88,7 @@ ts.ui.FakeDateInputSpirit = (function using(chained, tick, time) {
 					value: real.value,
 					min: real.min,
 					max: real.max,
+					deselectable: real.deselectable,
 					onselect: function(value) {
 						spirit._syncreal(value);
 						spirit._syncfake();

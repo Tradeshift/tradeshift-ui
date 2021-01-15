@@ -11,6 +11,14 @@ ts.ui.DateInputSpirit = (function(tick, time) {
 
 	return ts.ui.InputSpirit.extend({
 		/**
+		 * Deselectable. This may be set in the markup:
+		 * <input data-ts.deselectable="true" />
+		 * If not set, we fallback to default action.
+		 * @type {boolean}
+		 */
+		deselectable: false,
+
+		/**
 		 * Min date.
 		 * @type {string}
 		 */

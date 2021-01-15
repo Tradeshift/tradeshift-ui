@@ -60,7 +60,7 @@ describe('ts.ui.TimeSpirit', function likethis() {
 				code +
 				'" datetime="' +
 				(currentYear - 2) +
-				'-11-04 03:59:33"></time>');
+				'-01-01 00:00:00"></time>');
 		});
 	});
 });

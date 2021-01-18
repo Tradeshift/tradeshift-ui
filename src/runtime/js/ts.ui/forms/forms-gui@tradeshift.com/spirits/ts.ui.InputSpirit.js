@@ -9,6 +9,26 @@ ts.ui.InputSpirit = (function using(chained, Type, Client) {
 	return ts.ui.FieldSpirit.extend(
 		{
 			/**
+			 * React replaces element.value setter with a custom setter which also maintains the tracker.
+			 * In order to avoid also updating the tracker's value we should use prototype's value setter.
+			 * @param {Element} element
+			 * @param {string} value
+			 */
+			_setprotovalue: function(element, value) {
+				var valueDescriptor = Object.getOwnPropertyDescriptor(element, 'value');
+				// if the element doesn't have a **own property** it means that it relies on the prototype's property.
+				// ergo no framework did redefine the value property.
+				if (!valueDescriptor) {
+					element.value = value;
+					return;
+				}
+
+				var prototype = Object.getPrototypeOf(element);
+				var prototypeValueSetter = Object.getOwnPropertyDescriptor(prototype, 'value').set;
+				prototypeValueSetter.call(element, value);
+			},
+
+			/**
 			 * Shortcut `this.element.value` with an automated
 			 * management of special classname for empty fields.
 			 * Also fixes the (browser-inherrent) dysfunction
@@ -29,7 +49,8 @@ ts.ui.InputSpirit = (function using(chained, Type, Client) {
 					if (foc && foc === elm) {
 						idx = elm.value.slice(0, elm.selectionStart).length;
 					}
-					elm.value = this._snapshot = value;
+					this._snapshot = value;
+					this._setprotovalue(elm, value);
 					if (idx > -1 && elm.type !== 'date') {
 						// can't select in date inputs
 						elm.setSelectionRange(idx, idx);

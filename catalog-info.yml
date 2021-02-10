@@ -1,0 +1,23 @@
+
+# catalog-info.yml
+# This file contains metadata for backstage
+# Read more about available fields and annotations:
+# https://github.com/tradeshift/backstage
+#
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: tradeshift-ui
+  description: |
+    Tradeshift UI is a framework-agnostic JavaScript library to help Tradeshift App developers to create cohesive user experiences and to provide reusable UI components.
+  annotations:
+    github.com/project-slug: Tradeshift/tradeshift-ui # GitHub project name
+    sonarqube.org/project-key: tradeshift-ui # Name of the project in SonarQube
+  tags:
+    - js
+    - nodejs
+    - npm
+spec:
+  type: library
+  owner: tradeshiftui
+  lifecycle: production

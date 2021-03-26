@@ -19,5 +19,5 @@ metadata:
     - npm
 spec:
   type: library
-  owner: tradeshiftui
+  owner: partner-enablement-and-apps
   lifecycle: production

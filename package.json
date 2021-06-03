@@ -114,7 +114,7 @@
     "octonode": "^0.9.4",
     "postcss-clean": "^1.0.2",
     "prettier": "1.16.4",
-    "release-it": "7.6.1",
+    "release-it": "^14.7.0",
     "s3": "^4.4.0",
     "semver": "^5.4.1",
     "simple-git": "^1.85.0"

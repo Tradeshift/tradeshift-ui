@@ -5,7 +5,6 @@ const bsshooter = require('./tasks/shooter.js');
 const cheerio = require('cheerio');
 const path = require('path');
 const fs = require('fs');
-const S = require('string');
 
 var stackconf = {
 	username: process.env.BROWSERSTACK_USERNAME,
@@ -366,7 +365,7 @@ module.exports = function(grunt) {
 					var tags = grunt.template.process('<%=' + tagset + '%>');
 					var menu = grunt.file.readJSON('menu.json');
 					var svgs = grunt.file.read('src/svg/icons.svg');
-					var json = JSON.stringify(menu, 0, 0);
+					var json = JSON.stringify(menu, null, 0);
 					tags = tags.replace(/,/g, '\n		');
 					return publisher.publish(
 						content
@@ -471,7 +470,7 @@ module.exports = function(grunt) {
 		function processFile(abspath, filename) {
 			var pageIndex;
 
-			if (S(filename).endsWith('.html')) {
+			if (/\.html$/.exec(filename)) {
 				pageIndex = processHTMLFile(abspath, filename);
 			}
 			return pageIndex;

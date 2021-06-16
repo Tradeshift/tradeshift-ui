@@ -1,0 +1,32 @@
+name: Test & release
+
+on:
+  pull_request:
+  push:
+    branches:
+      - master
+
+jobs:
+  validate:
+    name: Build and test
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: ⬇️ Checkout repo
+        uses: actions/checkout@v2
+
+      - name: ⎔ Setup node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 14
+
+      - name: 📥 Download deps
+        uses: bahmutov/npm-install@v1
+        with:
+          useLockFile: true
+
+      - name: ▶️ Run tests
+        run: npm test
+        env:
+          BROWSERSTACK_USERNAME: ${{ secrets.BROWSERSTACK_USER }}
+          BROWSERSTACK_KEY: ${{ secrets.BROWSERSTACK_KEY }}

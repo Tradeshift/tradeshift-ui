@@ -10,7 +10,7 @@ jobs:
   validate:
     name: Build and test
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 30
     steps:
       - name: ⬇️ Checkout repo
         uses: actions/checkout@v2
@@ -21,7 +21,7 @@ jobs:
           node-version: 14
 
       - name: 📥 Download deps
-        uses: bahmutov/npm-install@v1
+        uses: tradeshift/npm-install@v1
         with:
           useLockFile: true
 

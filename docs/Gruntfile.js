@@ -5,7 +5,6 @@ const bsshooter = require('./tasks/shooter.js');
 const cheerio = require('cheerio');
 const path = require('path');
 const fs = require('fs');
-const S = require('string');
 
 var stackconf = {
 	username: process.env.BROWSERSTACK_USERNAME,
@@ -468,10 +467,13 @@ module.exports = function(grunt) {
 			});
 			return pagesIndex;
 		}
+		function isHTMLFile(filename) {
+			return filename.substring(filename.length - 5, filename.length) === '.html';
+		}
 		function processFile(abspath, filename) {
 			var pageIndex;
 
-			if (S(filename).endsWith('.html')) {
+			if (isHTMLFile(filename)) {
 				pageIndex = processHTMLFile(abspath, filename);
 			}
 			return pageIndex;
@@ -488,7 +490,6 @@ module.exports = function(grunt) {
 			if (!(raw.includes('robots') && raw.includes('noindex'))) {
 				var content = ignoreHTML(raw);
 
-				// var title = require('string')(raw).between('<title>', '</title>').s;
 				var title;
 				var left = '<title>';
 				var right = '</title>';
@@ -502,13 +503,11 @@ module.exports = function(grunt) {
 					title = raw.slice(startPos + left.length, endPos);
 				}
 
-				// var href = require('string')(abspath).chompLeft(prefix).s;
 				var href = abspath;
 				if (abspath.indexOf(prefix) === 0) {
 					href = abspath.slice(prefix.length);
 				}
 
-				// content = require('string')(content).trim().stripTags().stripPunctuation().s;
 				content = content
 					.trim()
 					.replace(RegExp('</?[^<>]*>', 'gi'), '')

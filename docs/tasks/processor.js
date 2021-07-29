@@ -166,7 +166,7 @@ function highlite($) {
 				type = script.attr('type') || 'text/plain';
 				lang = klass.split('-')[1];
 				gram = prism.languages[lang];
-				code = unindent(script.text()).replace(/scrxpt/g, 'script');
+				code = unindent(script.html()).replace(/scrxpt/g, 'script');
 				setup($, figure, script, klass, type, lang, gram, code);
 				code = klass === 'language-javascript' ? compile(code).code : code;
 				figure.attr('data-ts.code', encodeURIComponent(code));
@@ -176,7 +176,7 @@ function highlite($) {
 	$('[data-ts=DoxApi]').each(function(i, table) {
 		script = $(table).find('script');
 		if (script) {
-			code = unindent(script.text());
+			code = unindent(script.html());
 			$(table).attr('data-ts.code', encodeURIComponent(code));
 			script.remove();
 		}
@@ -341,6 +341,11 @@ function includetags($, source) {
 				var pre = preparsers(include, $);
 				var post = postparsers(include, $);
 				html = fetchinclude(file, hash, pre, post);
+				if (href === 'tabs.xhtml') {
+					// if it is a "tabs.xhtml" we need to append it to <head>
+					// because it contains a list of "<link prefetch>"
+					include.appendTo('head');
+				}
 			} else {
 				console.log('Human error: "' + file + '" not found!!!');
 				console.log(badinclude(file));

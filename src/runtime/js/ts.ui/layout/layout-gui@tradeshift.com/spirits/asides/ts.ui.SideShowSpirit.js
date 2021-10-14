@@ -121,6 +121,20 @@ ts.ui.SideShowSpirit = (function using(
 		}),
 
 		/**
+		 * Tooltip SideShow
+		 * @param {string} text
+		 * @return {ts.ui.AsideSpirit|string}
+		 */
+		tooltip: chained(function(text) {
+			var header = this._head();
+			if (arguments.length) {
+				header.tooltip(String(text));
+			} else {
+				return header.tooltip();
+			}
+		}),
+
+		/**
 		 * Get or set the titlebar search model.
 		 * @param {Object|ts.ui.SearchModel} search
 		 * @returns {ts.ui.SearchModel|ts.ui.SideShowSpirit}

@@ -289,6 +289,35 @@
 									<li>The new Aside will float the top of the z-index</li>
 								</ul>
 							</section>
+
+							<h3>Tooltip on aside header</h3>
+							<section>
+								<p>
+									A tooltip can be added to the aside header with the
+									<att>data-ts.tooltip</att> attribute. Set the value equal to the text to be
+									displayed in the tooltip.
+								</p>
+								<figure data-ts="DoxMarkup">
+									<script type="text/html">
+										<aside data-ts="Aside"
+											id="aside-with-tooltip"
+											data-ts.title="Aside Title with tooltip"
+											data-ts.tooltip="My Tooltip">
+											<div data-ts="Panel">
+												<p>Aside content.</p>
+											</div>
+										</aside>
+									</script>
+								</figure>
+								<p>
+									Run the script below to open the Aside with tooltip.
+								</p>
+								<figure data-ts="DoxScript">
+									<script type="runnable">
+										ts.ui.get('#aside-with-tooltip').open();
+									</script>
+								</figure>
+							</section>
 						</article>
 					</div>
 				</div>
@@ -411,6 +440,17 @@
 						</button>
 					</li>
 				</menu>
+			</div>
+		</aside>
+
+		<aside
+			data-ts="Aside"
+			id="aside-with-tooltip"
+			data-ts.title="Aside Title with tooltip"
+			data-ts.tooltip="My Tooltip"
+		>
+			<div data-ts="Panel">
+				<p>Aside content.</p>
 			</div>
 		</aside>
 	</body>

@@ -20,6 +20,13 @@ ts.ui.TooltipSpirit = (function using(Client, CSSPlugin) {
 		left: 0,
 
 		/**
+		 * If tooltip position should be based on
+		 * parent element(true) or the whole page(false).
+		 * @type {boolean}
+		 */
+		offset: false,
+
+		/**
 		 * The adjustment of top.
 		 * For exampe 10 or -5
 		 * @type {number}
@@ -45,8 +52,15 @@ ts.ui.TooltipSpirit = (function using(Client, CSSPlugin) {
 		onevent: function(e) {
 			this.super.onevent(e);
 			if (e.type === 'mousemove') {
-				var x = e.pageX + parseInt(this.left);
-				var y = e.pageY + parseInt(this.top);
+				var x = parseInt(this.left);
+				var y = parseInt(this.top);
+				if (this.offset) {
+					x += e.offsetX;
+					y += e.offsetY;
+				} else {
+					x += e.pageX;
+					y += e.pageY;
+				}
 				this._pseudoStyle(x, y);
 			}
 		},

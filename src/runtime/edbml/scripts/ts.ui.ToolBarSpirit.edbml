@@ -22,7 +22,8 @@
 		toolbar.tabs,
 		toolbar.checkbox,
 		toolbar.$allactions(),
-		toolbar.pager	
+		toolbar.pager,
+		toolbar.tooltip
 	);
 	rendercenter(id, toolbar.pager);
 	if(toolbar.search && toolbar.search.buttons.length) {
@@ -31,7 +32,7 @@
 		rendernormalbuttons(id, toolbar.$allbuttons());
 	}
 	
-	function renderleft(title, icon, burger, back, forward, status, search, tabs, checkbox, actions, pager) {
+	function renderleft(title, icon, burger, back, forward, status, search, tabs, checkbox, actions, pager, tooltip) {
 		var hasnavi = back || forward;
 		var hastabs = !!tabs.getLength();
 		var hasactions = !!actions.length;
@@ -59,7 +60,7 @@
 						rendercheckbox(checkbox);
 					}
 					if(title || status) {
-						renderlabels(title, status, search, hasactions);
+						renderlabels(title, status, search, hasactions, tooltip);
 					}
 					actions.forEach(renderbutton);
 				}
@@ -204,12 +205,16 @@
 	}
 
 	// title (big text) or status message (with markdown)
-	function renderlabels(title, status, search, hasactions) {
+	function renderlabels(title, status, search, hasactions, tooltip) {
 		if(!search || !using(search)) {
 			if(title) {
 				@class = klass('ts-toolbar-title', null, !hasactions);
 				<li id="${id}-title" @class>
-					<label>${title}</label>
+					if(tooltip) {
+						<label data-ts="Tooltip" data-ts.title="${tooltip}" data-ts.offset="true">${title}</label>
+					} else {
+						<label>${title}</label>
+					}
 				</li>
 			} else {
 				@class = klass('ts-toolbar-status', null, !hasactions);

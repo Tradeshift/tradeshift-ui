@@ -83,6 +83,19 @@ ts.ui.HeaderBarModel = (function using(ToolBarModel, SearchModel, chained) {
 		},
 
 		/**
+		 * Tooltip headerBarModel
+		 * @type {string}
+		 */
+		tooltip: {
+			getter: function() {
+				return this.headerbar.tooltip;
+			},
+			setter: function(tooltip) {
+				this.headerbar.tooltip = tooltip;
+			}
+		},
+
+		/**
 		 * The buttons.
 		 * @type {ts.ui.ButtonCollection}
 		 */

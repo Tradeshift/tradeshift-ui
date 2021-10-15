@@ -294,6 +294,27 @@ ts.ui.ToolBarSpirit = (function using(
 			),
 
 			/**
+			 * Set or get toolbar tooltip with content from the parameter text.
+			 * @param @optional {string|null} title
+			 * @returns {string|ts.ui.ToolBarSpirit}
+			 */
+			tooltip: confirmed('(string|null)')(
+				chained(function(tooltip_text) {
+					var model = this.model();
+					if (arguments.length) {
+						tooltip_text = tooltip_text || '';
+						if (tooltip_text.trim().indexOf('{') !== 0) {
+							model.tooltip = tooltip_text;
+							this.event.add('click');
+							this.$hascontent();
+						}
+					} else {
+						return model.tooltip;
+					}
+				})
+			),
+
+			/**
 			 * Get or set the search (getter will *create* the search).
 			 * @param @optional {object|ts.ui.SearchModel} opt_json
 			 * @returns {ts.ui.SearchModel|ts.ui.ToolBarSpirit}

@@ -30,6 +30,12 @@ ts.ui.AsideModel = (function using(chained) {
 		title: null,
 
 		/**
+		 * Aside tooltip.
+		 * @type {String}
+		 */
+		tooltip: null,
+
+		/**
 		 * Aside Note.
 		 * @type {String}
 		 */

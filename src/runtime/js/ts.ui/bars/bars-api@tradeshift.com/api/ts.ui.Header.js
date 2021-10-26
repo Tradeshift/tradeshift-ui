@@ -177,6 +177,18 @@ ts.ui.Header = (function using(chained) {
 			}
 		}),
 
+		/** Set or get header tooltip with content from the parameter text.
+		 * @param {string} [string]
+		 * @returns {this|string}
+		 */
+		tooltip: chained(function(text) {
+			if (arguments.length) {
+				bar().tooltip(text);
+			} else {
+				return bar().tooltip();
+			}
+		}),
+
 		/**
 		 * @TODO ts.ui.Header.localize
 		 */

@@ -4,6 +4,7 @@
 
 	var id = (this.$instanceid + header.$instanceid);
 	var color = header.color;
+	var tooltip = header.tooltip;
 
 	<ul class="ts-headerbar-bars">
 		headerbar(header.headerbar);
@@ -13,7 +14,7 @@
 
 	function headerbar(model) {
 		<li data-ts="ToolBar" class="ts-headerbar-headerbar ${color}" id="${id}-headerbar" +
-			data-ts.model="?{model}" data-ts.visible="${header.$showHeaderBar(model)}"></li>
+			data-ts.model="?{model}" data-ts.tooltip="${tooltip}" data-ts.visible="${header.$showHeaderBar(model)}"></li>
 	}
 
 	function centerbar(model) {

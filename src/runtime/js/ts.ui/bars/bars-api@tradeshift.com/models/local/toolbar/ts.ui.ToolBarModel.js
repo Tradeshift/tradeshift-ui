@@ -52,6 +52,12 @@ ts.ui.ToolBarModel = (function using(chained, ButtonModel, CheckBoxModel) {
 		title: null,
 
 		/**
+		 * Show tooltip.
+		 * @type {string}
+		 */
+		tooltip: null,
+
+		/**
 		 * Toolbar icon.
 		 * @type {string}
 		 */

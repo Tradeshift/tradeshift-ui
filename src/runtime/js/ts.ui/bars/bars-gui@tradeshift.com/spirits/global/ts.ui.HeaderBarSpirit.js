@@ -78,6 +78,20 @@ ts.ui.HeaderBarSpirit = (function using(chained) {
 			}),
 
 			/**
+			 * Set or get header bar tooltip with content from the parameter text.
+			 * @param {string} text
+			 * @return {ts.ui.AsideSpirit|string}
+			 */
+			tooltip: chained(function(text) {
+				var model = this.model();
+				if (arguments.length) {
+					model.tooltip = text;
+				} else {
+					return model.tooltip;
+				}
+			}),
+
+			/**
 			 * Get or set the icon image.
 			 * @param {string} [string]
 			 * @returns {this|string}

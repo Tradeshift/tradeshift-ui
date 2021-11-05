@@ -44,6 +44,13 @@
 					src: src
 				};
 			}
+			function gettag(data, type) {
+				return {
+					item: 'Tag',
+					data,
+					type
+				};
+			}
 		</script>
 	</head>
 	<body class="nosticky">
@@ -63,6 +70,7 @@
 					<li><a href="#image">Image</a></li>
 					<li><a href="#switch">Switch</a></li>
 					<li><a href="#userimage">UserImage</a></li>
+					<li><a href="#tag">Tag</a></li>
 				</ul>
 			</section>
 
@@ -473,6 +481,66 @@
 									"name": "value",
 									"type": "string|number",
 									"desc": "Used when sorting the column."
+								}
+							]
+						}
+					</script>
+				</div>
+			</section>
+
+			<section id="tag">
+				<h3>Tag</h3>
+				<p>
+					This function returns the JSON to generate a Tag
+				</p>
+				<figure data-ts="DoxScript">
+					<script type="text/plain">
+						function getTag(data, type) {
+							return {
+								item: 'Tag',
+								data,
+								type
+							};
+						}
+					</script>
+				</figure>
+				<ul class="splitscreen">
+					<li>
+						<figure data-ts="DoxScript">
+							<script type="runnable">
+								ts.ui.get('#table6', table => {
+									table.cols(['One', 'Two']);
+									table.rows([
+										['A', gettag('Active', 'ts-success')]
+									]);
+								});
+							</script>
+						</figure>
+					</li>
+					<li>
+						<div data-ts="Table" id="table6"></div>
+					</li>
+				</ul>
+				<p>Here are the properties of the Tag.</p>
+				<div data-ts="DoxApi">
+					<script type="application/json">
+						{
+							"name": "ts.ui.TagModel",
+							"properties": [
+								{
+									"name": "id",
+									"type": "string",
+									"desc": "Id"
+								},
+								{
+									"name": "data",
+									"type": "string",
+									"desc": "Value of the tag"
+								},
+								{
+									"name": "type",
+									"type": "string",
+									"desc": "The CSS classname."
 								}
 							]
 						}

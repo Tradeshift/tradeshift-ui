@@ -1,7 +1,8 @@
 <!DOCTYPE edbml>
 <script>
 	<?param name="tag" type="ts.ui.TagModel"?>
-	@id = 'tag' + tag.$instanceid;
-	
-	<figure data-ts="Tag" @id></figure>
+	@id = tag.id || 'tag' + tag.$instanceid;
+	$att['data-ts.type'] = tag.type || null;
+	$att['data-ts.data'] = tag.data || null;
+	<figure data-ts="Tag" @data-ts.type @data-ts.data @id></figure>
 </script>

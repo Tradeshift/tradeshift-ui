@@ -16,7 +16,7 @@ module.exports = {
 					return;
 				}
 				var cdnUrl = options.urls.pop();
-				var reqOpts = url.parse(cdnUrl);
+				var reqOpts = url.parse(cdnUrl); // eslint-disable-line node/no-deprecated-api
 				reqOpts.method = 'HEAD';
 				var req = http.request(reqOpts, function(res) {
 					if (res.statusCode < 399) {

@@ -11,7 +11,7 @@ const touchfriendly = postcss.plugin('postcss-ts-touch-friendly', (options = {})
 		let numRules = 0;
 		root.walkRules(decl => {
 			++numRules;
-			let newSelectors = [];
+			const newSelectors = [];
 			decl.selector.split(',').forEach(selector => {
 				++numSelectors;
 				if (selector.indexOf(':hover') !== -1) {

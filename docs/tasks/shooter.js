@@ -297,6 +297,7 @@ class Out {
 /**
  * File system stuff.
  */
+// eslint-disable-next-line no-redeclare
 class File {
 	/**
 	 * Don't use spaces in filename.

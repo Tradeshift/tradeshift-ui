@@ -47,7 +47,7 @@ gui.Combo = {
 					result,
 					that = this;
 				argv = arguments.length >= 1 ? slice.call(arguments, 0) : [];
-				result = void 0;
+				result = undefined;
 				callback = function() {
 					result = base.apply(that, argv);
 					return result;

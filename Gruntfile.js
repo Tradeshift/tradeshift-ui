@@ -1,4 +1,3 @@
-/* global process */
 const path = require('path');
 const { Locale } = require('@tradeshift/g11n-langneg');
 
@@ -452,20 +451,10 @@ module.exports = function(grunt) {
 			}
 		},
 
-		asciify: {
-			banner: {
-				text: 'Tradeshift UI',
-				options: {
-					font: 'graffiti',
-					log: true
-				}
-			}
-		},
-
 		// serve, watch, generate concurrently
 		concurrent: {
 			docs: ['connect', 'watch', 'exec:docs_grunt'],
-			nodocs: ['connect', 'watch', 'asciify:banner'],
+			nodocs: ['connect', 'watch'],
 			// Build for CDN
 			cdn_generate_js: {
 				tasks: generateJsConcurrent('cdn')
@@ -534,7 +523,7 @@ module.exports = function(grunt) {
 	}
 
 	function compileAndMinifyLess(target = 'cdn') {
-		let out = [
+		const out = [
 			'exec:compile_less_to_css' // less -> css
 		];
 		if (target === 'cdn') {
@@ -549,7 +538,7 @@ module.exports = function(grunt) {
 	}
 
 	function build(target = 'cdn') {
-		let out = [
+		const out = [
 			`clean:${target}`, // remove files
 			'browserify', // transpiles commonjs-based dependencies into files readable by browsers
 			'concat:locales', // bundle locale files (synchronously BEFORE moment.js)
@@ -572,7 +561,7 @@ module.exports = function(grunt) {
 	}
 
 	function sizeReport(target = 'cdn') {
-		let out = [];
+		const out = [];
 		if (target === 'cdn') {
 			out.push('size_report:cdn_gzip_vs_normal');
 			out.push(`size_report:cdn_loaded`);
@@ -722,8 +711,7 @@ module.exports = function(grunt) {
 	function getlocalesprocessor(codes) {
 		return (src, file) => {
 			const code = file.match(/ts-lang-(.*)\.js/)[1];
-			let locale;
-
+			let locale = '';
 			try {
 				locale = Locale.parseStrict(code);
 			} catch (e) {

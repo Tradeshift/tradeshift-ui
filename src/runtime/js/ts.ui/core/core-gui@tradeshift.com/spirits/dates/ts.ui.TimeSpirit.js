@@ -79,9 +79,13 @@ ts.ui.TimeSpirit = (function using(moment, chained) {
 		_update: function() {
 			var newcode = this.element.lang;
 			var oldcode = moment.locale();
-			newcode ? moment.locale(nynorsk(newcode)) : void 0;
+			if (newcode) {
+				moment.locale(nynorsk(newcode));
+			}
 			this._setText();
-			newcode ? moment.locale(oldcode) : void 0;
+			if (newcode) {
+				moment.locale(oldcode);
+			}
 		},
 
 		/**

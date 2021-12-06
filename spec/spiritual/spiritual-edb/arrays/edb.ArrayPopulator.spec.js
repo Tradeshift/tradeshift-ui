@@ -24,10 +24,9 @@ describe('edb.ArrayPopulator', function likethis() {
 	});
 
 	it('should fail on bad input', function() {
-		var persons; // eslint-disable-line no-unused-vars
 		var fail = false;
 		try {
-			persons = new PersonCollection([false]);
+			var persons = new PersonCollection([false]); // eslint-disable-line no-unused-vars
 		} catch (typeerror) {
 			fail = true;
 		}

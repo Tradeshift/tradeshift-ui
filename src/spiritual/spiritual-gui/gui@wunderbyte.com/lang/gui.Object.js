@@ -228,9 +228,7 @@ gui.Object = {
 	nonmethods: function(object) {
 		var result = [];
 		for (var def in object) {
-			if (this._isaccessor(object, def)) {
-				void 0;
-			} else {
+			if (!this._isaccessor(object, def)) {
 				var o = object[def];
 				if (!gui.Type.isFunction(o)) {
 					result.push(def);

@@ -103,7 +103,9 @@ ts.ui.SwitchSpirit = (function using(tick, time) {
 		 */
 		_createswitch: function() {
 			var html = ts.ui.switchonly.edbml();
-			this._switch() ? this._switch().dom.remove() : void 0;
+			if (this._switch()) {
+				this._switch().dom.remove();
+			}
 			return ts.ui.get(this.dom.after(this.dom.parseToNode(html)));
 		},
 

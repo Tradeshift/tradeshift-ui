@@ -296,15 +296,14 @@
 			if (!types[type]) {
 				types[type] = true;
 				var that = this;
-				var id = null; // eslint-disable-line no-unused-vars
 				var doit = function() {
 					delete types[type];
 					that._doit(tick);
 				};
 				if (!time) {
-					id = setImmediate(doit);
+					setImmediate(doit);
 				} else if (time > 0) {
-					id = setTimeout(doit, time);
+					setTimeout(doit, time);
 				} else {
 					doit();
 				}

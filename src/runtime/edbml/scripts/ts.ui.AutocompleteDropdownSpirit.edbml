@@ -18,7 +18,7 @@
 			(autocomplete.filteredAutocompleteList || []).forEach(function(item) {
 				var json = JSON.stringify(item);
 				<li onclick="#{spirit._onselect(item)}" data-item="${json}">
-					out.html += printLabel(item, filter); 
+					out.html += edbml.safetext(printLabel(item, filter));
 				</li>
 			});
 		</menu>

@@ -10,6 +10,13 @@ module.exports = function(grunt) {
 	// load grunt tasks
 	require('load-grunt-tasks')(grunt);
 
+	// import edbml tasks
+	require('load-grunt-config')(grunt, {
+		jitGrunt: {
+			customTasksDir: 'edbml/tasks'
+		}
+	});
+
 	// default file encoding
 	grunt.file.defaultEncoding = 'utf8';
 

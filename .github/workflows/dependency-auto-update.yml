@@ -1,0 +1,16 @@
+# .github/workflows/dependency-auto-update.yml
+name: Dependency tree auto-update
+on:
+  schedule:
+    - cron:  '0 11 * * 1,4' # Frequency of your preference, this one runs Mondays and Thursdays at 11am
+  workflow_dispatch: # Allow running manually
+jobs:
+  update:
+    uses: tradeshift/actions-workflow-npm/.github/workflows/dependency-tree-update.yml@v1 # Reference to the shared workflow
+    secrets:
+      gpg-key: ${{ secrets.TRADESHIFTCI_GPG_KEY }} # The client key to use for commit author and signing
+      github-token: ${{ secrets.GH_TOKEN }} # Token used to checkout code and create PR. Using a personal access token to have workflows run on the created PR.
+      npm-token: ${{ secrets.NPM_TOKEN }} # Token used to authenticate to the private GitHub npm registry
+    with:
+      path: . # Optional paramater in case your application is not at the root of your, otherwise it defaults to "."
+      runs-on: ubuntu-latest # Optional paramater to define where to run the workflow, otherwise it defaults to ubuntu-latest. More information at https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idruns-on

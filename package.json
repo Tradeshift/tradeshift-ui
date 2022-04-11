@@ -116,7 +116,7 @@
     "release-it": "^14.11.8",
     "s3": "^4.4.0",
     "semver": "^5.7.1",
-    "simple-git": "^1.132.0"
+    "simple-git": "^3.6.0"
   },
   "keywords": [
     "tradeshift",

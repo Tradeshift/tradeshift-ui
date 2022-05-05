@@ -73,7 +73,7 @@
   "devDependencies": {
     "@babel/core": "^7.16.0",
     "@babel/eslint-parser": "^7.16.3",
-    "@tradeshift/g11n-langneg": "^1.2.3",
+    "@tradeshift/g11n-langneg": "1.2.3",
     "alce": "^1.2.0",
     "ali-oss": "^6.16.0",
     "autoprefixer": "^10.4.7",

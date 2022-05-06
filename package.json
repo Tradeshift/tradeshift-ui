@@ -38,6 +38,7 @@
     "test": "npm run eslint & grunt jasmine & wait && npm run browserstack",
     "http": "static spec/jasmine -H '{\"Cache-Control\": \"no-cache, must-revalidate\"}' -a 0.0.0.0",
     "****** NODE *****": "",
+    "preinstall": "npx npm-force-resolutions",
     "postinstall": "cd docs && npm ci",
     "gh-pages": "grunt dist && node tasks/gh-pages.js",
     "package-dist": "node tasks/package-dist.js"
@@ -113,7 +114,7 @@
     "octonode": "^0.9.4",
     "postcss-clean": "^1.2.2",
     "prettier": "1.16.4",
-    "release-it": "^14.11.8",
+    "release-it": "^14.14.3",
     "s3": "^4.4.0",
     "semver": "^5.7.1",
     "simple-git": "^3.7.1"

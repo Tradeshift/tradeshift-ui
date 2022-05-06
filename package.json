@@ -138,5 +138,8 @@
   "repository": "github:Tradeshift/tradeshift-ui.git",
   "publishConfig": {
     "access": "public"
+  },
+  "resolutions": {
+    "async": "^2.6.4"
   }
 }

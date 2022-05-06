@@ -142,6 +142,7 @@
   },
   "resolutions": {
     "async": "^2.6.4",
-    "underscore": "^1.13.3"
+    "underscore": "^1.13.3",
+    "minimist": "^1.2.6"
   }
 }

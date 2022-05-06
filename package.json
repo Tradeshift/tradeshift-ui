@@ -143,6 +143,8 @@
   "resolutions": {
     "async": "^2.6.4",
     "underscore": "^1.13.3",
-    "minimist": "^1.2.6"
+    "minimist": "^1.2.6",
+    "mime": "^1.4.1",
+    "aws-sdk": "^2.814.0"
   }
 }

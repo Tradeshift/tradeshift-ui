@@ -117,7 +117,8 @@
     "release-it": "^14.14.3",
     "s3": "^4.4.0",
     "semver": "^5.7.1",
-    "simple-git": "^3.7.1"
+    "simple-git": "^3.7.1",
+    "underscore": "^1.13.3"
   },
   "keywords": [
     "tradeshift",
@@ -140,6 +141,7 @@
     "access": "public"
   },
   "resolutions": {
-    "async": "^2.6.4"
+    "async": "^2.6.4",
+    "underscore": "^1.13.3"
   }
 }

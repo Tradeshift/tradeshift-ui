@@ -7,11 +7,11 @@
     <link rel="ts-app-icon" href="/v12/dist/assets/icon.svg">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
-    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.6.0.min.js"></script>
+    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.8.2.min.js"></script>
     <script src="/v12/dist/assets/dox.min.js"></script>
     <script src="/v12/dist/assets/mark.min.js"></script>
     <script src="/v12/dist/assets/jquery-2.2.4.min.js"></script>
-    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.6.0.min.css">
+    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.8.2.min.css">
     <link rel="stylesheet" href="/v12/dist/assets/dox.css">
     <meta name="robots" content="noindex">
     <link rel="prefetch" title="HTML" href="index.html">
@@ -22,8 +22,6 @@
     <link rel="prefetch" title="Gallery" href="redesign.html">
     <link rel="prefetch" title="Angular Test" href="test-1.html" class="hidden">
     <link rel="prefetch" title="JQuery Test" href="test-2.html" class="hidden">
-    <script src="/v12/dist/assets/angular-1.3.6.min.js"></script>
-    <script src="test-1.js"></script>
     <script>
         ts.dox.tabs()
     </script>
@@ -39,7 +37,7 @@
                         <section class="desc">
                             <p>
                                 Testing the proxy elements created by <code>&lt;select&gt;</code> and
-                                <code>&lt;input type=&quot;date&quot;&gt;</code>.
+                                <code>&lt;input type="date"&gt;</code>.
                             </p>
                         </section>
                         <section ng-app="app" ng-controller="TestController">
@@ -62,7 +60,7 @@
                                             <fieldset>
                                                 <label>
                                                     <span>Select multiple</span>
-                                                    <select multiple="true" ng-model="selectedColors" ng-options="c.name+&apos; (&apos;+c.shade+&apos;)&apos; for c in colors">
+                                                    <select multiple="true" ng-model="selectedColors" ng-options="c.name+' ('+c.shade+')' for c in colors">
                                                     </select>
                                                 </label>
                                             </fieldset>
@@ -89,7 +87,7 @@
                                 <fieldset>
                                     <label>
                                         <span>Select multiple</span>
-                                        <select multiple id="outsideselectmultiple"></select>
+                                        <select multiple="" id="outsideselectmultiple"></select>
                                         <button>Cool, apply changes!</button>
                                     </label>
                                 </fieldset>
@@ -102,11 +100,11 @@
                             </form>
                         </section>
                         <div data-ts="Note" class="sticky">
-                            <p>If you find a bug or need a feature&#x2026;</p>
+                            <p>If you find a bug or need a feature…</p>
                             <menu data-ts="Buttons">
                                 <li>
                                     <a data-ts="Button" target="_blank" href="https://github.com/Tradeshift/tradeshift-ui/issues/new" title="Submit new issue">
-                                        <span>Create GitHub Issue&#x2026;</span>
+                                        <span>Create GitHub Issue…</span>
                                     </a>
                                 </li>
                             </menu>
@@ -116,7 +114,9 @@
             </div>
         </div>
     </div>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-127106947-1"></script>
+    <script src="/v12/dist/assets/angular-1.3.6.min.js"></script>
+    <script src="test-1.js"></script>
+    <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-127106947-1"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
 

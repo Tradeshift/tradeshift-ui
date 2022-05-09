@@ -7,11 +7,11 @@
     <link rel="ts-app-icon" href="/v12/dist/assets/icon.svg">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
-    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.6.0.min.js"></script>
+    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.8.2.min.js"></script>
     <script src="/v12/dist/assets/dox.min.js"></script>
     <script src="/v12/dist/assets/mark.min.js"></script>
     <script src="/v12/dist/assets/jquery-2.2.4.min.js"></script>
-    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.6.0.min.css">
+    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.8.2.min.css">
     <link rel="stylesheet" href="/v12/dist/assets/dox.css">
     <meta name="robots" content="noindex">
     <link rel="prefetch" title="Table" href="index.html">
@@ -59,7 +59,7 @@
                             <div class="splitscreen-container">
                                 <ul class="splitscreen">
                                     <li>
-                                        <figure data-ts="DoxScript" class="runnable" data-ts.code="%24.getJSON(&apos;assets%2Frowdata.json&apos;%2C%20function(json)%20%7B%0A%09ts.ui.get(&apos;%23table&apos;%2C%20function(table)%20%7B%0A%09%09table.selectable()%3B%0A%09%09table.cols(%5B%0A%09%09%09%7Blabel%3A%20&apos;ID&apos;%2C%20minwidth%3A%20300%7D%2C%0A%09%09%09%7Blabel%3A%20&apos;Name&apos;%2Cminwidth%3A%20300%2C%20wrap%3A%20true%7D%2C%0A%09%09%09%7Blabel%3A%20&apos;Price&apos;%2C%20minwidth%3A%20300%7D%0A%09%09%5D).rows(json).max(10)%3B%0A%09%7D)%0A%7D)%3B">
+                                        <figure data-ts="DoxScript" class="runnable" data-ts.code="%24.getJSON('assets%2Frowdata.json'%2C%20function(json)%20%7B%0A%09ts.ui.get('%23table'%2C%20function(table)%20%7B%0A%09%09table.selectable()%3B%0A%09%09table.cols(%5B%0A%09%09%09%7Blabel%3A%20'ID'%2C%20minwidth%3A%20300%7D%2C%0A%09%09%09%7Blabel%3A%20'Name'%2Cminwidth%3A%20300%2C%20wrap%3A%20true%7D%2C%0A%09%09%09%7Blabel%3A%20'Price'%2C%20minwidth%3A%20300%7D%0A%09%09%5D).rows(json).max(10)%3B%0A%09%7D)%0A%7D)%3B">
                                             <script type="runnable">
                                                 $.getJSON('assets/rowdata.json', function(json) {
 									ts.ui.get('#table', table => {
@@ -74,16 +74,17 @@
 							</script>
                                             <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                                             <div data-ts="Panel">
-                                                <pre class="prism language-javascript"><code>$<span class="token punctuation">.</span><span class="token function">getJSON<span class="token punctuation">(</span></span><span class="token string">&apos;assets/rowdata.json&apos;</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span>json<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-	ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#table&apos;</span><span class="token punctuation">,</span> table <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+                                                <pre class="prism language-javascript"><code>$<span class="token punctuation">.</span><span class="token function">getJSON<span class="token punctuation">(</span></span><span class="token string">'assets/rowdata.json'</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span>json<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">'#table'</span><span class="token punctuation">,</span> table <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
 		table<span class="token punctuation">.</span><span class="token function">selectable<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 		table<span class="token punctuation">.</span><span class="token function">cols<span class="token punctuation">(</span></span><span class="token punctuation">[</span>
-			<span class="token punctuation">{</span>label<span class="token punctuation">:</span> <span class="token string">&apos;ID&apos;</span><span class="token punctuation">,</span> minwidth<span class="token punctuation">:</span> <span class="token number">300</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
-			<span class="token punctuation">{</span>label<span class="token punctuation">:</span> <span class="token string">&apos;Name&apos;</span><span class="token punctuation">,</span>minwidth<span class="token punctuation">:</span> <span class="token number">300</span><span class="token punctuation">,</span> wrap<span class="token punctuation">:</span> <span class="token keyword">true</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
-			<span class="token punctuation">{</span>label<span class="token punctuation">:</span> <span class="token string">&apos;Price&apos;</span><span class="token punctuation">,</span> minwidth<span class="token punctuation">:</span> <span class="token number">300</span><span class="token punctuation">}</span>
+			<span class="token punctuation">{</span>label<span class="token punctuation">:</span> <span class="token string">'ID'</span><span class="token punctuation">,</span> minwidth<span class="token punctuation">:</span> <span class="token number">300</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+			<span class="token punctuation">{</span>label<span class="token punctuation">:</span> <span class="token string">'Name'</span><span class="token punctuation">,</span>minwidth<span class="token punctuation">:</span> <span class="token number">300</span><span class="token punctuation">,</span> wrap<span class="token punctuation">:</span> <span class="token keyword">true</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+			<span class="token punctuation">{</span>label<span class="token punctuation">:</span> <span class="token string">'Price'</span><span class="token punctuation">,</span> minwidth<span class="token punctuation">:</span> <span class="token number">300</span><span class="token punctuation">}</span>
 		<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">rows<span class="token punctuation">(</span></span>json<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">max<span class="token punctuation">(</span></span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 	<span class="token punctuation">}</span><span class="token punctuation">)</span>
-<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea>
+                                            </div>
                                         </figure>
                                     </li>
                                     <li>
@@ -97,7 +98,7 @@
             </div>
         </div>
     </div>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-127106947-1"></script>
+    <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-127106947-1"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
 

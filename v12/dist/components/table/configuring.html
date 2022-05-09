@@ -7,11 +7,11 @@
     <link rel="ts-app-icon" href="/v12/dist/assets/icon.svg">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
-    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.6.0.min.js"></script>
+    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.8.2.min.js"></script>
     <script src="/v12/dist/assets/dox.min.js"></script>
     <script src="/v12/dist/assets/mark.min.js"></script>
     <script src="/v12/dist/assets/jquery-2.2.4.min.js"></script>
-    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.6.0.min.css">
+    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.8.2.min.css">
     <link rel="stylesheet" href="/v12/dist/assets/dox.css">
     <link rel="prefetch" title="Table" href="index.html">
     <link rel="prefetch" title="Build" href="building.html">
@@ -53,7 +53,7 @@
                             <div class="splitscreen-container">
                                 <ul class="splitscreen">
                                     <li>
-                                        <figure data-ts="DoxScript" class="runnable" data-ts.code="var%20popup%20%3D%20ts.ui.Notification%3B%0Ats.ui.get(&apos;%23table1&apos;%2C%20function(table)%20%7B%0A%09table.configbutton(function%20onclick()%20%7B%0A%09%09popup.success(&apos;Go%20configure!&apos;)%3B%0A%09%7D).cols(%5B&apos;A&apos;%2C%20&apos;B&apos;%2C%20&apos;C&apos;%2C%20&apos;D&apos;%5D).rows(%5B%0A%09%09%5B1%2C%204%2C%207%2C%2010%5D%2C%0A%09%09%5B2%2C%205%2C%208%2C%2011%5D%2C%0A%09%09%5B3%2C%206%2C%209%2C%2012%5D%0A%09%5D)%3B%0A%7D)%3B">
+                                        <figure data-ts="DoxScript" class="runnable" data-ts.code="var%20popup%20%3D%20ts.ui.Notification%3B%0Ats.ui.get('%23table1'%2C%20function(table)%20%7B%0A%09table.configbutton(function%20onclick()%20%7B%0A%09%09popup.success('Go%20configure!')%3B%0A%09%7D).cols(%5B'A'%2C%20'B'%2C%20'C'%2C%20'D'%5D).rows(%5B%0A%09%09%5B1%2C%204%2C%207%2C%2010%5D%2C%0A%09%09%5B2%2C%205%2C%208%2C%2011%5D%2C%0A%09%09%5B3%2C%206%2C%209%2C%2012%5D%0A%09%5D)%3B%0A%7D)%3B">
                                             <script type="runnable">
                                                 var popup = ts.ui.Notification;
 								ts.ui.get('#table1', table => {
@@ -69,15 +69,16 @@
                                             <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                                             <div data-ts="Panel">
                                                 <pre class="prism language-javascript"><code><span class="token keyword">var</span> popup <span class="token operator">=</span> ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Notification<span class="token punctuation">;</span>
-ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#table1&apos;</span><span class="token punctuation">,</span> table <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">'#table1'</span><span class="token punctuation">,</span> table <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
 	table<span class="token punctuation">.</span><span class="token function">configbutton<span class="token punctuation">(</span></span><span class="token keyword">function</span> <span class="token function">onclick<span class="token punctuation">(</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-		popup<span class="token punctuation">.</span><span class="token function">success<span class="token punctuation">(</span></span><span class="token string">&apos;Go configure!&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-	<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">cols<span class="token punctuation">(</span></span><span class="token punctuation">[</span><span class="token string">&apos;A&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;B&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;C&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;D&apos;</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">rows<span class="token punctuation">(</span></span><span class="token punctuation">[</span>
+		popup<span class="token punctuation">.</span><span class="token function">success<span class="token punctuation">(</span></span><span class="token string">'Go configure!'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">cols<span class="token punctuation">(</span></span><span class="token punctuation">[</span><span class="token string">'A'</span><span class="token punctuation">,</span> <span class="token string">'B'</span><span class="token punctuation">,</span> <span class="token string">'C'</span><span class="token punctuation">,</span> <span class="token string">'D'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">rows<span class="token punctuation">(</span></span><span class="token punctuation">[</span>
 		<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">7</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
 		<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">,</span> <span class="token number">11</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
 		<span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">,</span> <span class="token number">9</span><span class="token punctuation">,</span> <span class="token number">12</span><span class="token punctuation">]</span>
 	<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea>
+                                            </div>
                                         </figure>
                                     </li>
                                     <li>
@@ -91,7 +92,7 @@ ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</s
                                 <code>ColModel</code> supports a <code>visible</code> property that can be used to hide
                                 columns.
                             </p>
-                            <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.get(&apos;%23table1&apos;%2C%20function(table)%20%7B%0A%09var%20cols%20%3D%20table.cols()%3B%0A%09(function%20hide(index)%20%7B%0A%09%09cols%5Bindex%5D.visible%20%3D%20false%3B%0A%09%09if(index)%20%7B%0A%09%09%09setTimeout(function%20next()%20%7B%0A%09%09%09%09hide(--index)%3B%0A%09%09%09%7D%2C%201000)%3B%0A%09%09%7D%0A%09%7D(3))%3B%0A%7D)%3B">
+                            <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.get('%23table1'%2C%20function(table)%20%7B%0A%09var%20cols%20%3D%20table.cols()%3B%0A%09(function%20hide(index)%20%7B%0A%09%09cols%5Bindex%5D.visible%20%3D%20false%3B%0A%09%09if(index)%20%7B%0A%09%09%09setTimeout(function%20next()%20%7B%0A%09%09%09%09hide(--index)%3B%0A%09%09%09%7D%2C%201000)%3B%0A%09%09%7D%0A%09%7D(3))%3B%0A%7D)%3B">
                                 <script type="runnable">
                                     ts.ui.get('#table1', table => {
 							var cols = table.cols();
@@ -107,7 +108,7 @@ ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</s
 					</script>
                                 <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                                 <div data-ts="Panel">
-                                    <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#table1&apos;</span><span class="token punctuation">,</span> table <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+                                    <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">'#table1'</span><span class="token punctuation">,</span> table <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
 	<span class="token keyword">var</span> cols <span class="token operator">=</span> table<span class="token punctuation">.</span><span class="token function">cols<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 	<span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token function">hide<span class="token punctuation">(</span></span>index<span class="token punctuation">)</span> <span class="token punctuation">{</span>
 		cols<span class="token punctuation">[</span>index<span class="token punctuation">]</span><span class="token punctuation">.</span>visible <span class="token operator">=</span> <span class="token keyword">false</span><span class="token punctuation">;</span>
@@ -117,9 +118,10 @@ ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</s
 			<span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token number">1000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 		<span class="token punctuation">}</span>
 	<span class="token punctuation">}</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea>
+                                </div>
                             </figure>
-                            <p>Here&apos;s a summary of these things.</p>
+                            <p>Here's a summary of these things.</p>
                             <div data-ts="DoxApi" data-ts.code="%7B%0A%09%22name%22%3A%20%22ts.ui.TableSpirit%22%2C%0A%09%22methods%22%3A%20%5B%0A%09%09%7B%0A%09%09%09%22name%22%3A%20%22configbutton%22%2C%0A%09%09%09%22args%22%3A%20%5B%22(function)%22%5D%2C%0A%09%09%09%22desc%22%3A%20%22Make%20the%20Table%20configurable%20with%20a%20callback%20for%20that%20button%20in%20the%20statusbar.%22%0A%09%09%7D%0A%09%5D%0A%7D">
                             </div>
                             <div data-ts="DoxApi" data-ts.code="%7B%0A%09%22name%22%3A%20%22ts.ui.TableColModel%22%2C%0A%09%22properties%22%3A%20%5B%0A%09%09%7B%0A%09%09%09%22name%22%3A%20%22visible%22%2C%0A%09%09%09%22type%22%3A%20%22boolean%22%2C%0A%09%09%09%22desc%22%3A%20%22The%20columns%20is%20visible%3F%22%0A%09%09%7D%0A%09%5D%2C%0A%09%22methods%22%3A%20%5B%0A%09%09%7B%0A%09%09%09%22name%22%3A%20%22hide%22%2C%0A%09%09%09%22desc%22%3A%20%22Hide%20the%20column.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09%22name%22%3A%20%22show%22%2C%0A%09%09%09%22desc%22%3A%20%22Show%20the%20column.%22%0A%09%09%7D%0A%09%5D%0A%7D">
@@ -130,7 +132,7 @@ ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</s
             </div>
         </div>
     </div>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-127106947-1"></script>
+    <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-127106947-1"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
 

@@ -7,11 +7,11 @@
     <link rel="ts-app-icon" href="/v12/dist/assets/icon.svg">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
-    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.6.0.min.js"></script>
+    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.8.2.min.js"></script>
     <script src="/v12/dist/assets/dox.min.js"></script>
     <script src="/v12/dist/assets/mark.min.js"></script>
     <script src="/v12/dist/assets/jquery-2.2.4.min.js"></script>
-    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.6.0.min.css">
+    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.8.2.min.css">
     <link rel="stylesheet" href="/v12/dist/assets/dox.css">
     <link rel="prefetch" title="Tag" href="tag.html">
     <link rel="prefetch" title="Tags" href="tags.html">
@@ -46,7 +46,7 @@
                         <section>
                             <h3><span>Colors</span></h3>
                             <p>
-                                If your label is especially dangerous, we&apos;d recommend using the
+                                If your label is especially dangerous, we'd recommend using the
                                 <code>ts-danger</code> <code>data-ts.type</code>.
                             </p>
                             <figure data-ts="DoxMarkup" data-ts.code="%3Cfigure%0A%09data-ts%3D%22Tag%22%0A%09data-ts.type%3D%22ts-danger%22%0A%09data-ts.data%3D%22ts-danger%22%3E%0A%3C%2Ffigure%3E">
@@ -57,9 +57,9 @@
                                 <ul data-ts="Panels">
                                     <li data-ts="Panel" data-ts.label="Markup" data-ts.selected="true">
                                         <pre class="prism language-markup"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>figure</span>
-	<span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Tag<span class="token punctuation">&quot;</span></span>
-	<span class="token attr-name">data-ts</span>.<span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>ts-danger<span class="token punctuation">&quot;</span></span>
-	<span class="token attr-name">data-ts</span>.<span class="token attr-name">data</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>ts-danger<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+	<span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>Tag<span class="token punctuation">"</span></span>
+	<span class="token attr-name">data-ts</span>.<span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>ts-danger<span class="token punctuation">"</span></span>
+	<span class="token attr-name">data-ts</span>.<span class="token attr-name">data</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>ts-danger<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>figure</span><span class="token punctuation">&gt;</span></span></code></pre>
                                     </li>
                                     <li data-ts="Panel" data-ts.label="Render" data-ts.selected="false">
@@ -70,7 +70,7 @@
                                     </li>
                                 </ul>
                             </figure>
-                            <figure data-ts="DoxMarkup" data-ts.code="%3Cscript%3E%0A%09const%20data%20%3D%20ts.ui.encode(%0A%09%09%5B%0A%09%09%09%5Bnull%2C%20&apos;ts-danger&apos;%5D%0A%09%09%5D%0A%09)%3B%0A%3C%2Fscript%3E%0A%3Cfigure%0A%09data-ts%3D%22Tag%22%0A%09data-ts.type%3D%22ts-danger%22%0A%09data-ts.data%3D%22%255B%255Bnull%252C%2522ts-danger%2522%255D%255D%22%3E%0A%3C%2Ffigure%3E">
+                            <figure data-ts="DoxMarkup" data-ts.code="%3Cscript%3E%0A%09const%20data%20%3D%20ts.ui.encode(%0A%09%09%5B%0A%09%09%09%5Bnull%2C%20'ts-danger'%5D%0A%09%09%5D%0A%09)%3B%0A%3C%2Fscript%3E%0A%3Cfigure%0A%09data-ts%3D%22Tag%22%0A%09data-ts.type%3D%22ts-danger%22%0A%09data-ts.data%3D%22%255B%255Bnull%252C%2522ts-danger%2522%255D%255D%22%3E%0A%3C%2Ffigure%3E">
                                 <script type="text/html">
                                     <scrxpt>
                                         const data = ts.ui.encode(
@@ -87,14 +87,14 @@
                                         <pre class="prism language-markup"><code><span class="token script"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">&gt;</span></span>
 	<span class="token keyword">const</span> data <span class="token operator">=</span> ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token function">encode<span class="token punctuation">(</span></span>
 		<span class="token punctuation">[</span>
-			<span class="token punctuation">[</span><span class="token keyword">null</span><span class="token punctuation">,</span> <span class="token string">&apos;ts-danger&apos;</span><span class="token punctuation">]</span>
+			<span class="token punctuation">[</span><span class="token keyword">null</span><span class="token punctuation">,</span> <span class="token string">'ts-danger'</span><span class="token punctuation">]</span>
 		<span class="token punctuation">]</span>
 	<span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>figure</span>
-	<span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Tag<span class="token punctuation">&quot;</span></span>
-	<span class="token attr-name">data-ts</span>.<span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>ts-danger<span class="token punctuation">&quot;</span></span>
-	<span class="token attr-name">data-ts</span>.<span class="token attr-name">data</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>%5B%5Bnull%2C%22ts-danger%22%5D%5D<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+	<span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>Tag<span class="token punctuation">"</span></span>
+	<span class="token attr-name">data-ts</span>.<span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>ts-danger<span class="token punctuation">"</span></span>
+	<span class="token attr-name">data-ts</span>.<span class="token attr-name">data</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>%5B%5Bnull%2C%22ts-danger%22%5D%5D<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>figure</span><span class="token punctuation">&gt;</span></span></code></pre>
                                     </li>
                                     <li data-ts="Panel" data-ts.label="Render" data-ts.selected="false">
@@ -117,9 +117,9 @@
                                 <ul data-ts="Panels">
                                     <li data-ts="Panel" data-ts.label="Markup" data-ts.selected="true">
                                         <pre class="prism language-markup"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>figure</span>
-	<span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Tag<span class="token punctuation">&quot;</span></span>
-	<span class="token attr-name">data-ts</span>.<span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>ts-warning<span class="token punctuation">&quot;</span></span>
-	<span class="token attr-name">data-ts</span>.<span class="token attr-name">data</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>ts-warning<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+	<span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>Tag<span class="token punctuation">"</span></span>
+	<span class="token attr-name">data-ts</span>.<span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>ts-warning<span class="token punctuation">"</span></span>
+	<span class="token attr-name">data-ts</span>.<span class="token attr-name">data</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>ts-warning<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>figure</span><span class="token punctuation">&gt;</span></span></code></pre>
                                     </li>
                                     <li data-ts="Panel" data-ts.label="Render" data-ts.selected="false">
@@ -130,7 +130,7 @@
                                     </li>
                                 </ul>
                             </figure>
-                            <figure data-ts="DoxMarkup" data-ts.code="%3Cscript%3E%0A%09const%20data%20%3D%20ts.ui.encode(%0A%09%09%5B%0A%09%09%09%5Bnull%2C%20&apos;ts-warning&apos;%5D%0A%09%09%5D%0A%09)%3B%0A%3C%2Fscript%3E%0A%3Cfigure%0A%09data-ts%3D%22Tag%22%0A%09data-ts.type%3D%22ts-warning%22%0A%09data-ts.data%3D%22%255B%255Bnull%252C%2522ts-warning%2522%255D%255D%22%3E%0A%3C%2Ffigure%3E">
+                            <figure data-ts="DoxMarkup" data-ts.code="%3Cscript%3E%0A%09const%20data%20%3D%20ts.ui.encode(%0A%09%09%5B%0A%09%09%09%5Bnull%2C%20'ts-warning'%5D%0A%09%09%5D%0A%09)%3B%0A%3C%2Fscript%3E%0A%3Cfigure%0A%09data-ts%3D%22Tag%22%0A%09data-ts.type%3D%22ts-warning%22%0A%09data-ts.data%3D%22%255B%255Bnull%252C%2522ts-warning%2522%255D%255D%22%3E%0A%3C%2Ffigure%3E">
                                 <script type="text/html">
                                     <scrxpt>
                                         const data = ts.ui.encode(
@@ -147,14 +147,14 @@
                                         <pre class="prism language-markup"><code><span class="token script"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">&gt;</span></span>
 	<span class="token keyword">const</span> data <span class="token operator">=</span> ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token function">encode<span class="token punctuation">(</span></span>
 		<span class="token punctuation">[</span>
-			<span class="token punctuation">[</span><span class="token keyword">null</span><span class="token punctuation">,</span> <span class="token string">&apos;ts-warning&apos;</span><span class="token punctuation">]</span>
+			<span class="token punctuation">[</span><span class="token keyword">null</span><span class="token punctuation">,</span> <span class="token string">'ts-warning'</span><span class="token punctuation">]</span>
 		<span class="token punctuation">]</span>
 	<span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>figure</span>
-	<span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Tag<span class="token punctuation">&quot;</span></span>
-	<span class="token attr-name">data-ts</span>.<span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>ts-warning<span class="token punctuation">&quot;</span></span>
-	<span class="token attr-name">data-ts</span>.<span class="token attr-name">data</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>%5B%5Bnull%2C%22ts-warning%22%5D%5D<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+	<span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>Tag<span class="token punctuation">"</span></span>
+	<span class="token attr-name">data-ts</span>.<span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>ts-warning<span class="token punctuation">"</span></span>
+	<span class="token attr-name">data-ts</span>.<span class="token attr-name">data</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>%5B%5Bnull%2C%22ts-warning%22%5D%5D<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>figure</span><span class="token punctuation">&gt;</span></span></code></pre>
                                     </li>
                                     <li data-ts="Panel" data-ts.label="Render" data-ts.selected="false">
@@ -177,9 +177,9 @@
                                 <ul data-ts="Panels">
                                     <li data-ts="Panel" data-ts.label="Markup" data-ts.selected="true">
                                         <pre class="prism language-markup"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>figure</span>
-	<span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Tag<span class="token punctuation">&quot;</span></span>
-	<span class="token attr-name">data-ts</span>.<span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>ts-success<span class="token punctuation">&quot;</span></span>
-	<span class="token attr-name">data-ts</span>.<span class="token attr-name">data</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>ts-success<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+	<span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>Tag<span class="token punctuation">"</span></span>
+	<span class="token attr-name">data-ts</span>.<span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>ts-success<span class="token punctuation">"</span></span>
+	<span class="token attr-name">data-ts</span>.<span class="token attr-name">data</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>ts-success<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>figure</span><span class="token punctuation">&gt;</span></span></code></pre>
                                     </li>
                                     <li data-ts="Panel" data-ts.label="Render" data-ts.selected="false">
@@ -190,7 +190,7 @@
                                     </li>
                                 </ul>
                             </figure>
-                            <figure data-ts="DoxMarkup" data-ts.code="%3Cscript%3E%0A%09const%20data%20%3D%20ts.ui.encode(%0A%09%09%5B%0A%09%09%09%5Bnull%2C%20&apos;ts-success&apos;%5D%0A%09%09%5D%0A%09)%3B%0A%3C%2Fscript%3E%0A%3Cfigure%0A%09data-ts%3D%22Tag%22%0A%09data-ts.type%3D%22ts-success%22%0A%09data-ts.data%3D%22%255B%255Bnull%252C%2522ts-success%2522%255D%255D%22%3E%0A%3C%2Ffigure%3E">
+                            <figure data-ts="DoxMarkup" data-ts.code="%3Cscript%3E%0A%09const%20data%20%3D%20ts.ui.encode(%0A%09%09%5B%0A%09%09%09%5Bnull%2C%20'ts-success'%5D%0A%09%09%5D%0A%09)%3B%0A%3C%2Fscript%3E%0A%3Cfigure%0A%09data-ts%3D%22Tag%22%0A%09data-ts.type%3D%22ts-success%22%0A%09data-ts.data%3D%22%255B%255Bnull%252C%2522ts-success%2522%255D%255D%22%3E%0A%3C%2Ffigure%3E">
                                 <script type="text/html">
                                     <scrxpt>
                                         const data = ts.ui.encode(
@@ -207,14 +207,14 @@
                                         <pre class="prism language-markup"><code><span class="token script"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">&gt;</span></span>
 	<span class="token keyword">const</span> data <span class="token operator">=</span> ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token function">encode<span class="token punctuation">(</span></span>
 		<span class="token punctuation">[</span>
-			<span class="token punctuation">[</span><span class="token keyword">null</span><span class="token punctuation">,</span> <span class="token string">&apos;ts-success&apos;</span><span class="token punctuation">]</span>
+			<span class="token punctuation">[</span><span class="token keyword">null</span><span class="token punctuation">,</span> <span class="token string">'ts-success'</span><span class="token punctuation">]</span>
 		<span class="token punctuation">]</span>
 	<span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>figure</span>
-	<span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Tag<span class="token punctuation">&quot;</span></span>
-	<span class="token attr-name">data-ts</span>.<span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>ts-success<span class="token punctuation">&quot;</span></span>
-	<span class="token attr-name">data-ts</span>.<span class="token attr-name">data</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>%5B%5Bnull%2C%22ts-success%22%5D%5D<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+	<span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>Tag<span class="token punctuation">"</span></span>
+	<span class="token attr-name">data-ts</span>.<span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>ts-success<span class="token punctuation">"</span></span>
+	<span class="token attr-name">data-ts</span>.<span class="token attr-name">data</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>%5B%5Bnull%2C%22ts-success%22%5D%5D<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>figure</span><span class="token punctuation">&gt;</span></span></code></pre>
                                     </li>
                                     <li data-ts="Panel" data-ts.label="Render" data-ts.selected="false">
@@ -226,7 +226,7 @@
                                 </ul>
                             </figure>
                             <p>
-                                It wouldn&apos;t be a Tradeshift UI Component, if there wasn&apos;t a
+                                It wouldn't be a Tradeshift UI Component, if there wasn't a
                                 <code>ts-blue</code> <code>data-ts.type</code>!
                             </p>
                             <figure data-ts="DoxMarkup" data-ts.code="%3Cfigure%0A%09data-ts%3D%22Tag%22%0A%09data-ts.type%3D%22ts-blue%22%0A%09data-ts.data%3D%22ts-blue%22%3E%0A%3C%2Ffigure%3E">
@@ -237,9 +237,9 @@
                                 <ul data-ts="Panels">
                                     <li data-ts="Panel" data-ts.label="Markup" data-ts.selected="true">
                                         <pre class="prism language-markup"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>figure</span>
-	<span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Tag<span class="token punctuation">&quot;</span></span>
-	<span class="token attr-name">data-ts</span>.<span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>ts-blue<span class="token punctuation">&quot;</span></span>
-	<span class="token attr-name">data-ts</span>.<span class="token attr-name">data</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>ts-blue<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+	<span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>Tag<span class="token punctuation">"</span></span>
+	<span class="token attr-name">data-ts</span>.<span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>ts-blue<span class="token punctuation">"</span></span>
+	<span class="token attr-name">data-ts</span>.<span class="token attr-name">data</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>ts-blue<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>figure</span><span class="token punctuation">&gt;</span></span></code></pre>
                                     </li>
                                     <li data-ts="Panel" data-ts.label="Render" data-ts.selected="false">
@@ -250,7 +250,7 @@
                                     </li>
                                 </ul>
                             </figure>
-                            <figure data-ts="DoxMarkup" data-ts.code="%3Cscript%3E%0A%09const%20data%20%3D%20ts.ui.encode(%0A%09%09%5B%0A%09%09%09%5Bnull%2C%20&apos;ts-blue&apos;%5D%0A%09%09%5D%0A%09)%3B%0A%3C%2Fscript%3E%0A%3Cfigure%0A%09data-ts%3D%22Tag%22%0A%09data-ts.type%3D%22ts-blue%22%0A%09data-ts.data%3D%22%255B%255Bnull%252C%2522ts-blue%2522%255D%255D%22%3E%0A%3C%2Ffigure%3E">
+                            <figure data-ts="DoxMarkup" data-ts.code="%3Cscript%3E%0A%09const%20data%20%3D%20ts.ui.encode(%0A%09%09%5B%0A%09%09%09%5Bnull%2C%20'ts-blue'%5D%0A%09%09%5D%0A%09)%3B%0A%3C%2Fscript%3E%0A%3Cfigure%0A%09data-ts%3D%22Tag%22%0A%09data-ts.type%3D%22ts-blue%22%0A%09data-ts.data%3D%22%255B%255Bnull%252C%2522ts-blue%2522%255D%255D%22%3E%0A%3C%2Ffigure%3E">
                                 <script type="text/html">
                                     <scrxpt>
                                         const data = ts.ui.encode(
@@ -267,14 +267,14 @@
                                         <pre class="prism language-markup"><code><span class="token script"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">&gt;</span></span>
 	<span class="token keyword">const</span> data <span class="token operator">=</span> ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token function">encode<span class="token punctuation">(</span></span>
 		<span class="token punctuation">[</span>
-			<span class="token punctuation">[</span><span class="token keyword">null</span><span class="token punctuation">,</span> <span class="token string">&apos;ts-blue&apos;</span><span class="token punctuation">]</span>
+			<span class="token punctuation">[</span><span class="token keyword">null</span><span class="token punctuation">,</span> <span class="token string">'ts-blue'</span><span class="token punctuation">]</span>
 		<span class="token punctuation">]</span>
 	<span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>figure</span>
-	<span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Tag<span class="token punctuation">&quot;</span></span>
-	<span class="token attr-name">data-ts</span>.<span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>ts-blue<span class="token punctuation">&quot;</span></span>
-	<span class="token attr-name">data-ts</span>.<span class="token attr-name">data</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>%5B%5Bnull%2C%22ts-blue%22%5D%5D<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+	<span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>Tag<span class="token punctuation">"</span></span>
+	<span class="token attr-name">data-ts</span>.<span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>ts-blue<span class="token punctuation">"</span></span>
+	<span class="token attr-name">data-ts</span>.<span class="token attr-name">data</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>%5B%5Bnull%2C%22ts-blue%22%5D%5D<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>figure</span><span class="token punctuation">&gt;</span></span></code></pre>
                                     </li>
                                     <li data-ts="Panel" data-ts.label="Render" data-ts.selected="false">
@@ -287,11 +287,11 @@
                             </figure>
                         </section>
                         <div data-ts="Note" class="sticky">
-                            <p>If you find a bug or need a feature&#x2026;</p>
+                            <p>If you find a bug or need a feature…</p>
                             <menu data-ts="Buttons">
                                 <li>
                                     <a data-ts="Button" target="_blank" href="https://github.com/Tradeshift/tradeshift-ui/issues/new" title="Submit new issue">
-                                        <span>Create GitHub Issue&#x2026;</span>
+                                        <span>Create GitHub Issue…</span>
                                     </a>
                                 </li>
                             </menu>
@@ -301,7 +301,7 @@
             </div>
         </div>
     </div>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-127106947-1"></script>
+    <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-127106947-1"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
 

@@ -145,7 +145,7 @@
     "underscore": "^1.13.3",
     "minimist": "^1.2.6",
     "mime": "^1.4.1",
-    "aws-sdk": "^2.814.0",
+    "aws-sdk": "2.1130.0",
     "shelljs": "^0.8.5",
     "nth-check": "^2.0.1"
   }

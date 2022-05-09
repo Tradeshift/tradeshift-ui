@@ -38,6 +38,7 @@
     "test": "npm run eslint & grunt jasmine & wait && npm run browserstack",
     "http": "static spec/jasmine -H '{\"Cache-Control\": \"no-cache, must-revalidate\"}' -a 0.0.0.0",
     "****** NODE *****": "",
+    "preinstall": "npx npm-force-resolutions",
     "postinstall": "cd docs && npm ci",
     "gh-pages": "grunt dist && node tasks/gh-pages.js",
     "package-dist": "node tasks/package-dist.js"
@@ -88,7 +89,7 @@
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^5.2.0",
     "eslint-plugin-standard": "^5.0.0",
-    "grunt": "^1.4.1",
+    "grunt": "^1.5.2",
     "grunt-browserify": "^6.0.0",
     "grunt-concurrent": "^3.0.0",
     "grunt-contrib-clean": "^2.0.0",
@@ -110,10 +111,11 @@
     "lint-staged": "^12.1.2",
     "load-grunt-tasks": "^5.1.0",
     "npm-run-all": "^4.1.1",
-    "octonode": "^0.9.4",
+    "octonode": "^0.10.2",
+    "postcss": "^7.0.39",
     "postcss-clean": "^1.2.2",
     "prettier": "1.16.4",
-    "release-it": "^14.11.8",
+    "release-it": "^14.14.3",
     "s3": "^4.4.0",
     "semver": "^5.7.1",
     "simple-git": "^3.7.1"
@@ -137,5 +139,16 @@
   "repository": "github:Tradeshift/tradeshift-ui.git",
   "publishConfig": {
     "access": "public"
+  },
+  "resolutions": {
+    "async": "^2.6.4",
+    "underscore": "^1.13.3",
+    "minimist": "^1.2.6",
+    "mime": "^1.4.1",
+    "aws-sdk": "2.1130.0",
+    "shelljs": "^0.8.5",
+    "nth-check": "^2.0.1",
+    "postcss": "^7.0.36",
+    "ansi-regex": "^5.0.1"
   }
 }

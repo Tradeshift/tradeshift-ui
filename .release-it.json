@@ -16,6 +16,9 @@
 		"preRelease": false,
 		"tokenRef": "GH_ACCESS_TOK"
 	},
+	"git": {
+		"requireUpstream": false
+	},
 	"npm": {
 		"publish": true,
 		"publishPath": "dist/npm"

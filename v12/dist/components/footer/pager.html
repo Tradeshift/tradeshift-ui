@@ -7,11 +7,11 @@
     <link rel="ts-app-icon" href="/v12/dist/assets/icon.svg">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
-    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.6.0.min.js"></script>
+    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.8.2.min.js"></script>
     <script src="/v12/dist/assets/dox.min.js"></script>
     <script src="/v12/dist/assets/mark.min.js"></script>
     <script src="/v12/dist/assets/jquery-2.2.4.min.js"></script>
-    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.6.0.min.css">
+    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.8.2.min.css">
     <link rel="stylesheet" href="/v12/dist/assets/dox.css">
     <link rel="prefetch" title="Footer" href="index.html">
     <link rel="prefetch" title="Buttons" href="buttons.html">
@@ -36,7 +36,7 @@
                             <p>
                                 The Footer features a
                                 <a date-ts="Button" href="/#components/pager/">Pager</a>. The <code>pager</code> method
-                                both sets and gets the Pager. If you omit the argument, you&quot;ll get the current Pager
+                                both sets and gets the Pager. If you omit the argument, you"ll get the current Pager
                                 (jQuery style). You can pass <code>null</code> to the method to destroy the Pager once you
                                 are done with it.
                             </p>
@@ -58,7 +58,8 @@
 	onselect<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span>index<span class="token punctuation">)</span> <span class="token punctuation">{</span>
 		console<span class="token punctuation">.</span><span class="token function">log<span class="token punctuation">(</span></span>index<span class="token punctuation">)</span><span class="token punctuation">;</span>
 	<span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea>
+                                </div>
                             </figure>
                             <p>
                                 If you need to update the index later on, for example to support history navigation, it is
@@ -67,22 +68,23 @@
                                 Pager. You can just call the same method without arguments.
                             </p>
                             <p>
-                                <figure data-ts="DoxScript" data-ts.code="ts.ui.Footer.pager().page%20%3D%2023%3B">
-                                    <input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
-                                    <div data-ts="Panel">
-                                        <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Footer<span class="token punctuation">.</span><span class="token function">pager<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">.</span>page <span class="token operator">=</span> <span class="token number">23</span><span class="token punctuation">;</span></code></pre>
-                                    </div>
-                                </figure>
                             </p>
+                            <figure data-ts="DoxScript" data-ts.code="ts.ui.Footer.pager().page%20%3D%2023%3B">
+                                <input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
+                                <div data-ts="Panel">
+                                    <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Footer<span class="token punctuation">.</span><span class="token function">pager<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">.</span>page <span class="token operator">=</span> <span class="token number">23</span><span class="token punctuation">;</span></code></pre>
+                                </div>
+                            </figure>
+                            <p></p>
                         </section>
                         <div data-ts="DoxApi" data-ts.code="%7B%0A%09%22name%22%3A%20%22ts.ui.PagerModel%22%2C%0A%09%22properties%22%3A%20%5B%0A%09%09%7B%0A%09%09%09%22name%22%3A%20%22pages%22%2C%0A%09%09%09%22type%22%3A%20%22number%22%2C%0A%09%09%09%22desc%22%3A%20%22The%20total%20amount%20of%20pages.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09%22name%22%3A%20%22page%22%2C%0A%09%09%09%22type%22%3A%20%22number%22%2C%0A%09%09%09%22desc%22%3A%20%22The%20current%20page%20index%2C%20zero%20based.%22%0A%09%09%7D%0A%09%5D%2C%0A%09%22methods%22%3A%20%5B%0A%09%09%7B%0A%09%09%09%22name%22%3A%20%22onselect%22%2C%0A%09%09%09%22args%22%3A%20%22number%22%2C%0A%09%09%09%22desc%22%3A%20%22Called%20whenever%20a%20page%20is%20selected%3B%20and%20with%20the%20new%20index%20as%20argument.%22%0A%09%09%7D%0A%09%5D%0A%7D">
                         </div>
                         <div data-ts="Note" class="sticky">
-                            <p>If you find a bug or need a feature&#x2026;</p>
+                            <p>If you find a bug or need a feature…</p>
                             <menu data-ts="Buttons">
                                 <li>
                                     <a data-ts="Button" target="_blank" href="https://github.com/Tradeshift/tradeshift-ui/issues/new" title="Submit new issue">
-                                        <span>Create GitHub Issue&#x2026;</span>
+                                        <span>Create GitHub Issue…</span>
                                     </a>
                                 </li>
                             </menu>
@@ -92,7 +94,7 @@
             </div>
         </div>
     </div>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-127106947-1"></script>
+    <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-127106947-1"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
 
@@ -103,8 +105,5 @@
         gtag("config", "UA-127106947-1");
     </script>
 </body>
-<html lang="en-us" class="ts-docs" spellcheck="false">
-
-</html>
 
 </html>

@@ -7,20 +7,15 @@
     <link rel="ts-app-icon" href="/v12/dist/assets/icon.svg">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
-    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.6.0.min.js"></script>
+    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.8.2.min.js"></script>
     <script src="/v12/dist/assets/dox.min.js"></script>
     <script src="/v12/dist/assets/mark.min.js"></script>
     <script src="/v12/dist/assets/jquery-2.2.4.min.js"></script>
-    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.6.0.min.css">
+    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.8.2.min.css">
     <link rel="stylesheet" href="/v12/dist/assets/dox.css">
     <link rel="prefetch" title="CompanyCard" href="companycard.html">
     <link rel="prefetch" title="UserCard" href="usercard.html">
     <link rel="prefetch" title="Extras" href="extras.html" class="hidden">
-    <style>
-        figure .output {
-            text-align: center;
-        }
-    </style>
     <script>
         ts.dox.tabs()
     </script>
@@ -42,7 +37,7 @@
                             <p>
                                 The properties are all optional but you should at least include the name.
                             </p>
-                            <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.UserCard(%7B%0A%09id%3A%20&apos;6bf17754-f9de-4e31-aa31-bd3ff765b9c2&apos;%2C%0A%09data%3A%20%7B%0A%09%09name%3A%20&apos;Wired%20Earp&apos;%2C%0A%09%09image%3A%20&apos;assets%2Fwiredearp.png&apos;%2C%0A%09%09title%3A%20&apos;EDB%20Programmer&apos;%2C%0A%09%09role%3A%20&apos;Gentleman%20Spy&apos;%2C%0A%09%09email%3A%20&apos;jmo%40tradeshift.com&apos;%2C%0A%09%09company%3A%20&apos;Tradeshift&apos;%2C%0A%09%09companyUrl%3A%20&apos;http%3A%2F%2Ftradeshift.com%2F&apos;%0A%09%7D%0A%7D).open()%3B">
+                            <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.UserCard(%7B%0A%09id%3A%20'6bf17754-f9de-4e31-aa31-bd3ff765b9c2'%2C%0A%09data%3A%20%7B%0A%09%09name%3A%20'Wired%20Earp'%2C%0A%09%09image%3A%20'assets%2Fwiredearp.png'%2C%0A%09%09title%3A%20'EDB%20Programmer'%2C%0A%09%09role%3A%20'Gentleman%20Spy'%2C%0A%09%09email%3A%20'jmo%40tradeshift.com'%2C%0A%09%09company%3A%20'Tradeshift'%2C%0A%09%09companyUrl%3A%20'http%3A%2F%2Ftradeshift.com%2F'%0A%09%7D%0A%7D).open()%3B">
                                 <script type="runnable">
                                     ts.ui.UserCard({
 							id: '6bf17754-f9de-4e31-aa31-bd3ff765b9c2',
@@ -60,17 +55,18 @@
                                 <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                                 <div data-ts="Panel">
                                     <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token function">UserCard<span class="token punctuation">(</span></span><span class="token punctuation">{</span>
-	id<span class="token punctuation">:</span> <span class="token string">&apos;6bf17754-f9de-4e31-aa31-bd3ff765b9c2&apos;</span><span class="token punctuation">,</span>
+	id<span class="token punctuation">:</span> <span class="token string">'6bf17754-f9de-4e31-aa31-bd3ff765b9c2'</span><span class="token punctuation">,</span>
 	data<span class="token punctuation">:</span> <span class="token punctuation">{</span>
-		name<span class="token punctuation">:</span> <span class="token string">&apos;Wired Earp&apos;</span><span class="token punctuation">,</span>
-		image<span class="token punctuation">:</span> <span class="token string">&apos;assets/wiredearp.png&apos;</span><span class="token punctuation">,</span>
-		title<span class="token punctuation">:</span> <span class="token string">&apos;EDB Programmer&apos;</span><span class="token punctuation">,</span>
-		role<span class="token punctuation">:</span> <span class="token string">&apos;Gentleman Spy&apos;</span><span class="token punctuation">,</span>
-		email<span class="token punctuation">:</span> <span class="token string">&apos;jmo@tradeshift.com&apos;</span><span class="token punctuation">,</span>
-		company<span class="token punctuation">:</span> <span class="token string">&apos;Tradeshift&apos;</span><span class="token punctuation">,</span>
-		companyUrl<span class="token punctuation">:</span> <span class="token string">&apos;http://tradeshift.com/&apos;</span>
+		name<span class="token punctuation">:</span> <span class="token string">'Wired Earp'</span><span class="token punctuation">,</span>
+		image<span class="token punctuation">:</span> <span class="token string">'assets/wiredearp.png'</span><span class="token punctuation">,</span>
+		title<span class="token punctuation">:</span> <span class="token string">'EDB Programmer'</span><span class="token punctuation">,</span>
+		role<span class="token punctuation">:</span> <span class="token string">'Gentleman Spy'</span><span class="token punctuation">,</span>
+		email<span class="token punctuation">:</span> <span class="token string">'jmo@tradeshift.com'</span><span class="token punctuation">,</span>
+		company<span class="token punctuation">:</span> <span class="token string">'Tradeshift'</span><span class="token punctuation">,</span>
+		companyUrl<span class="token punctuation">:</span> <span class="token string">'http://tradeshift.com/'</span>
 	<span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">open<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">open<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea>
+                                </div>
                             </figure>
                         </section>
                         <!--
@@ -136,7 +132,12 @@
             </div>
         </div>
     </div>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-127106947-1"></script>
+    <style>
+        figure .output {
+            text-align: center;
+        }
+    </style>
+    <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-127106947-1"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
 

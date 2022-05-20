@@ -7,21 +7,12 @@
     <link rel="ts-app-icon" href="/v12/dist/assets/icon.svg">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
-    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.6.0.min.js"></script>
+    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.8.2.min.js"></script>
     <script src="/v12/dist/assets/dox.min.js"></script>
     <script src="/v12/dist/assets/mark.min.js"></script>
     <script src="/v12/dist/assets/jquery-2.2.4.min.js"></script>
-    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.6.0.min.css">
+    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.8.2.min.css">
     <link rel="stylesheet" href="/v12/dist/assets/dox.css">
-    <link rel="prefetch" title="Header" href="index.html">
-    <link rel="prefetch" title="Tabs" href="tabs.html">
-    <link rel="prefetch" title="Buttons" href="buttons.html">
-    <link rel="prefetch" title="Search" href="search.html">
-    <link rel="prefetch" title="Navigation" href="navigation.html">
-    <link rel="prefetch" title="Settings &amp; Support" href="settings.html">
-    <script>
-        ts.dox.tabs()
-    </script>
 </head>
 
 <body>
@@ -36,7 +27,7 @@
                                 <em>settings</em> and <em>support</em>. The buttons appear when you pass a callback to the
                                 dedicated methods.
                             </p>
-                            <figure data-ts="DoxScript" class="attention runnable" data-ts.code="ts.ui.Header%0A%09.settingsbutton(function%20onclick()%20%7B%0A%09%09ts.ui.Notification.success(&apos;Settings&apos;)%3B%0A%09%7D)%0A%09.supportbutton(function%20onclick()%20%7B%0A%09%09ts.ui.Notification.success(&apos;Support&apos;)%3B%0A%09%7D)%3B">
+                            <figure data-ts="DoxScript" class="attention runnable" data-ts.code="ts.ui.Header%0A%09.settingsbutton(function%20onclick()%20%7B%0A%09%09ts.ui.Notification.success('Settings')%3B%0A%09%7D)%0A%09.supportbutton(function%20onclick()%20%7B%0A%09%09ts.ui.Notification.success('Support')%3B%0A%09%7D)%3B">
                                 <script type="runnable">
                                     ts.ui.Header
 							.settingsbutton(function onclick() {
@@ -50,11 +41,12 @@
                                 <div data-ts="Panel">
                                     <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Header
 	<span class="token punctuation">.</span><span class="token function">settingsbutton<span class="token punctuation">(</span></span><span class="token keyword">function</span> <span class="token function">onclick<span class="token punctuation">(</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-		ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Notification<span class="token punctuation">.</span><span class="token function">success<span class="token punctuation">(</span></span><span class="token string">&apos;Settings&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Notification<span class="token punctuation">.</span><span class="token function">success<span class="token punctuation">(</span></span><span class="token string">'Settings'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 	<span class="token punctuation">}</span><span class="token punctuation">)</span>
 	<span class="token punctuation">.</span><span class="token function">supportbutton<span class="token punctuation">(</span></span><span class="token keyword">function</span> <span class="token function">onclick<span class="token punctuation">(</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-		ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Notification<span class="token punctuation">.</span><span class="token function">success<span class="token punctuation">(</span></span><span class="token string">&apos;Support&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-	<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
+		ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Notification<span class="token punctuation">.</span><span class="token function">success<span class="token punctuation">(</span></span><span class="token string">'Support'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea>
+                                </div>
                             </figure>
                             <p>You can make them go away by passing <code>null</code> instead.</p>
                             <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.Header%0A%09.settingsbutton(null)%0A%09.supportbutton(null)%3B">
@@ -67,20 +59,21 @@
                                 <div data-ts="Panel">
                                     <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Header
 	<span class="token punctuation">.</span><span class="token function">settingsbutton<span class="token punctuation">(</span></span><span class="token keyword">null</span><span class="token punctuation">)</span>
-	<span class="token punctuation">.</span><span class="token function">supportbutton<span class="token punctuation">(</span></span><span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
+	<span class="token punctuation">.</span><span class="token function">supportbutton<span class="token punctuation">(</span></span><span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea>
+                                </div>
                             </figure>
                         </section>
                         <section>
-                            <p>Here&apos; an overview of the Navigation methods.</p>
+                            <p>Here' an overview of the Navigation methods.</p>
                             <div data-ts="DoxApi" data-ts.code="%7B%0A%09%22name%22%3A%20%22ts.ui.Header%22%2C%0A%09%22methods%22%3A%20%5B%0A%09%09%7B%0A%09%09%09%22name%22%3A%20%22backbutton%22%2C%0A%09%09%09%22args%22%3A%20%22Function%7Cnull%22%2C%0A%09%09%09%22desc%22%3A%20%22Show%20the%20%60Back%60%20button%20with%20a%20callback.%20Pass%20%60null%60%20to%20hide%20the%20button%20again.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09%22name%22%3A%20%22forwardbutton%22%2C%0A%09%09%09%22args%22%3A%20%22Function%7Cnull%22%2C%0A%09%09%09%22desc%22%3A%20%22Show%20the%20%60Forward%60%20button%20with%20a%20callback.%20Pass%20%60null%60%20to%20hide%20the%20button.%22%0A%09%09%7D%0A%09%5D%0A%7D">
                             </div>
                         </section>
                         <div data-ts="Note" class="sticky">
-                            <p>If you find a bug or need a feature&#x2026;</p>
+                            <p>If you find a bug or need a feature…</p>
                             <menu data-ts="Buttons">
                                 <li>
                                     <a data-ts="Button" target="_blank" href="https://github.com/Tradeshift/tradeshift-ui/issues/new" title="Submit new issue">
-                                        <span>Create GitHub Issue&#x2026;</span>
+                                        <span>Create GitHub Issue…</span>
                                     </a>
                                 </li>
                             </menu>
@@ -90,7 +83,13 @@
             </div>
         </div>
     </div>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-127106947-1"></script>
+    <link rel="prefetch" title="Header" href="index.html">
+    <link rel="prefetch" title="Tabs" href="tabs.html">
+    <link rel="prefetch" title="Buttons" href="buttons.html">
+    <link rel="prefetch" title="Search" href="search.html">
+    <link rel="prefetch" title="Navigation" href="navigation.html">
+    <link rel="prefetch" title="Settings &amp; Support" href="settings.html">
+    <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-127106947-1"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
 
@@ -101,8 +100,5 @@
         gtag("config", "UA-127106947-1");
     </script>
 </body>
-<html lang="en-us" class="ts-docs" spellcheck="false">
-
-</html>
 
 </html>

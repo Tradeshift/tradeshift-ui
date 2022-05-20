@@ -7,11 +7,11 @@
     <link rel="ts-app-icon" href="/v12/dist/assets/icon.svg">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
-    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.6.0.min.js"></script>
+    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.8.2.min.js"></script>
     <script src="/v12/dist/assets/dox.min.js"></script>
     <script src="/v12/dist/assets/mark.min.js"></script>
     <script src="/v12/dist/assets/jquery-2.2.4.min.js"></script>
-    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.6.0.min.css">
+    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.8.2.min.css">
     <link rel="stylesheet" href="/v12/dist/assets/dox.css">
     <link rel="prefetch" title="Table" href="index.html">
     <link rel="prefetch" title="Build" href="building.html">
@@ -51,13 +51,13 @@
                         <section>
                             <p>
                                 The Table supports <code>buttons</code> and we will soon add some futher documentation.
-                                For now we will simply recommend that you don&apos;t use buttons unless the Table is
-                                <code>maximized</code>. This feature however also doesn&apos;t have any documentation &#x1F622;
+                                For now we will simply recommend that you don't use buttons unless the Table is
+                                <code>maximized</code>. This feature however also doesn't have any documentation 😢
                             </p>
                             <div class="splitscreen-container">
                                 <ul class="splitscreen">
                                     <li>
-                                        <figure data-ts="DoxScript" class="attention runnable" data-ts.code="var%20table%20%3D%20ts.ui.get(&apos;%23table1&apos;)%3B%0Atable.cols(%5B&apos;One&apos;%2C%20&apos;Two&apos;%2C%20&apos;Three&apos;%5D).rows(%5B%0A%09%5B&apos;A&apos;%2C%20&apos;B&apos;%2C%20&apos;C&apos;%5D%2C%0A%09%5B&apos;D&apos;%2C%20&apos;E&apos;%2C%20&apos;F&apos;%5D%2C%0A%09%5B&apos;G&apos;%2C%20&apos;H&apos;%2C%20&apos;I&apos;%5D%2C%0A%5D).buttons(%5B%0A%09%7B%20label%3A%20&apos;One&apos;%2C%20type%3A%20&apos;ts-primary&apos;%20%7D%2C%0A%09%7B%20label%3A%20&apos;Two&apos;%2C%20type%3A%20&apos;ts-secondary&apos;%20%7D%2C%0A%09%7B%20label%3A%20&apos;Three&apos;%2C%20onclick%3A%20function()%20%7B%0A%09%09console.log(&apos;The%20tertiary%20button%20was%20clicked!&apos;)%3B%0A%09%7D%7D%0A%5D)%3B">
+                                        <figure data-ts="DoxScript" class="attention runnable" data-ts.code="var%20table%20%3D%20ts.ui.get('%23table1')%3B%0Atable.cols(%5B'One'%2C%20'Two'%2C%20'Three'%5D).rows(%5B%0A%09%5B'A'%2C%20'B'%2C%20'C'%5D%2C%0A%09%5B'D'%2C%20'E'%2C%20'F'%5D%2C%0A%09%5B'G'%2C%20'H'%2C%20'I'%5D%2C%0A%5D).buttons(%5B%0A%09%7B%20label%3A%20'One'%2C%20type%3A%20'ts-primary'%20%7D%2C%0A%09%7B%20label%3A%20'Two'%2C%20type%3A%20'ts-secondary'%20%7D%2C%0A%09%7B%20label%3A%20'Three'%2C%20onclick%3A%20function()%20%7B%0A%09%09console.log('The%20tertiary%20button%20was%20clicked!')%3B%0A%09%7D%7D%0A%5D)%3B">
                                             <script type="runnable">
                                                 var table = ts.ui.get('#table1');
 								table.cols(['One', 'Two', 'Three']).rows([
@@ -74,18 +74,19 @@
 							</script>
                                             <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                                             <div data-ts="Panel">
-                                                <pre class="prism language-javascript"><code><span class="token keyword">var</span> table <span class="token operator">=</span> ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#table1&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-table<span class="token punctuation">.</span><span class="token function">cols<span class="token punctuation">(</span></span><span class="token punctuation">[</span><span class="token string">&apos;One&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;Two&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;Three&apos;</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">rows<span class="token punctuation">(</span></span><span class="token punctuation">[</span>
-	<span class="token punctuation">[</span><span class="token string">&apos;A&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;B&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;C&apos;</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
-	<span class="token punctuation">[</span><span class="token string">&apos;D&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;E&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;F&apos;</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
-	<span class="token punctuation">[</span><span class="token string">&apos;G&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;H&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;I&apos;</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+                                                <pre class="prism language-javascript"><code><span class="token keyword">var</span> table <span class="token operator">=</span> ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">'#table1'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+table<span class="token punctuation">.</span><span class="token function">cols<span class="token punctuation">(</span></span><span class="token punctuation">[</span><span class="token string">'One'</span><span class="token punctuation">,</span> <span class="token string">'Two'</span><span class="token punctuation">,</span> <span class="token string">'Three'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">rows<span class="token punctuation">(</span></span><span class="token punctuation">[</span>
+	<span class="token punctuation">[</span><span class="token string">'A'</span><span class="token punctuation">,</span> <span class="token string">'B'</span><span class="token punctuation">,</span> <span class="token string">'C'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+	<span class="token punctuation">[</span><span class="token string">'D'</span><span class="token punctuation">,</span> <span class="token string">'E'</span><span class="token punctuation">,</span> <span class="token string">'F'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+	<span class="token punctuation">[</span><span class="token string">'G'</span><span class="token punctuation">,</span> <span class="token string">'H'</span><span class="token punctuation">,</span> <span class="token string">'I'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
 <span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">buttons<span class="token punctuation">(</span></span><span class="token punctuation">[</span>
-	<span class="token punctuation">{</span> label<span class="token punctuation">:</span> <span class="token string">&apos;One&apos;</span><span class="token punctuation">,</span> type<span class="token punctuation">:</span> <span class="token string">&apos;ts-primary&apos;</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
-	<span class="token punctuation">{</span> label<span class="token punctuation">:</span> <span class="token string">&apos;Two&apos;</span><span class="token punctuation">,</span> type<span class="token punctuation">:</span> <span class="token string">&apos;ts-secondary&apos;</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
-	<span class="token punctuation">{</span> label<span class="token punctuation">:</span> <span class="token string">&apos;Three&apos;</span><span class="token punctuation">,</span> onclick<span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
-		console<span class="token punctuation">.</span><span class="token function">log<span class="token punctuation">(</span></span><span class="token string">&apos;The tertiary button was clicked!&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">{</span> label<span class="token punctuation">:</span> <span class="token string">'One'</span><span class="token punctuation">,</span> type<span class="token punctuation">:</span> <span class="token string">'ts-primary'</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+	<span class="token punctuation">{</span> label<span class="token punctuation">:</span> <span class="token string">'Two'</span><span class="token punctuation">,</span> type<span class="token punctuation">:</span> <span class="token string">'ts-secondary'</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+	<span class="token punctuation">{</span> label<span class="token punctuation">:</span> <span class="token string">'Three'</span><span class="token punctuation">,</span> onclick<span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+		console<span class="token punctuation">.</span><span class="token function">log<span class="token punctuation">(</span></span><span class="token string">'The tertiary button was clicked!'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 	<span class="token punctuation">}</span><span class="token punctuation">}</span>
-<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
+<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea>
+                                            </div>
                                         </figure>
                                     </li>
                                     <li>
@@ -95,7 +96,7 @@ table<span class="token punctuation">.</span><span class="token function">cols<s
                             </div>
                             <p>
                                 The <code>buttons</code> method both sets and gets the buttons. If you omit the argument,
-                                you&quot;ll get the current actions (jQuery style). You can use array methods like
+                                you"ll get the current actions (jQuery style). You can use array methods like
                                 <code>push</code>, <code>pop</code>, <code>shift</code>, <code>unshift</code>,
                                 <code>splice</code> and so on to manage buttons, just note that the buttons
                                 <code>length</code> is a readonly property.
@@ -112,7 +113,7 @@ table<span class="token punctuation">.</span><span class="token function">cols<s
             </div>
         </div>
     </div>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-127106947-1"></script>
+    <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-127106947-1"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
 

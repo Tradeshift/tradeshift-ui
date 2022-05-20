@@ -7,15 +7,21 @@
     <link rel="ts-app-icon" href="/v12/dist/assets/icon.svg">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
-    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.6.0.min.js"></script>
+    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.8.2.min.js"></script>
     <script src="/v12/dist/assets/dox.min.js"></script>
     <script src="/v12/dist/assets/mark.min.js"></script>
     <script src="/v12/dist/assets/jquery-2.2.4.min.js"></script>
-    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.6.0.min.css">
+    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.8.2.min.css">
     <link rel="stylesheet" href="/v12/dist/assets/dox.css">
     <link rel="prefetch" title="HTML" href="index.html">
     <link rel="prefetch" title="JS" href="js.html">
     <link rel="prefetch" title="Test" href="test-1.html" class="hidden">
+    <script>
+        ts.dox.tabs()
+    </script>
+</head>
+
+<body>
     <script>
         function toggle( /*...selectors*/ ) {
             Array.forEach(arguments, function(selector) {
@@ -25,12 +31,6 @@
             });
         }
     </script>
-    <script>
-        ts.dox.tabs()
-    </script>
-</head>
-
-<body>
     <div data-ts="App">
         <div data-ts="Main">
             <div data-ts="Content">
@@ -57,8 +57,8 @@
                                 </script>
                                 <ul data-ts="Panels">
                                     <li data-ts="Panel" data-ts.selected="true">
-                                        <pre class="prism language-markup"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>aside</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Aside<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
-	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Panel<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+                                        <pre class="prism language-markup"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>aside</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>Aside<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>Panel<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
 		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>Aside content.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>aside</span><span class="token punctuation">&gt;</span></span></code></pre>
@@ -66,7 +66,7 @@
                                 </ul>
                             </figure>
                             <p>
-                                You can create the <code class="attr-value">Aside</code> wherever you like, just make sure that it&apos;s
+                                You can create the <code class="attr-value">Aside</code> wherever you like, just make sure that it's
                                 positioned outside of the <code class="attr-value">Main</code> element when it opens. Perhaps you can
                                 simply place it in the <code class="el">body</code>.
                             </p>
@@ -83,10 +83,10 @@
                                 </script>
                                 <ul data-ts="Panels">
                                     <li data-ts="Panel" data-ts.selected="true">
-                                        <pre class="prism language-markup"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>App<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
-	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Main<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>...<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
-	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>aside</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Aside<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
-		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Panel<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+                                        <pre class="prism language-markup"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>App<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>Main<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>...<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>aside</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>Aside<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>Panel<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
 			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>Aside content.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
 		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>aside</span><span class="token punctuation">&gt;</span></span>
@@ -99,7 +99,7 @@
                         <section>
                             <p>
                                 The <code class="attr-pair"><span>data-ts.title</span></code> attribute configures the Aside with a
-                                <a data-ts="Button" onclick="toggle(&apos;#myaside&apos;);">nice header</a>.
+                                <a data-ts="Button" onclick="toggle('#myaside');">nice header</a>.
                             </p>
                             <figure data-ts="DoxMarkup" data-ts.code="%3Caside%20data-ts%3D%22Aside%22%20data-ts.title%3D%22Aside%20Header%22%3E%0A%09%3Cdiv%20data-ts%3D%22Panel%22%3E%0A%09%09%3Cp%3EAside%20content.%3C%2Fp%3E%0A%09%3C%2Fdiv%3E%0A%3C%2Faside%3E">
                                 <script type="text/html">
@@ -111,8 +111,8 @@
                                 </script>
                                 <ul data-ts="Panels">
                                     <li data-ts="Panel" data-ts.selected="true">
-                                        <pre class="prism language-markup"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>aside</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Aside<span class="token punctuation">&quot;</span></span> <span class="token attr-name">data-ts</span>.<span class="token attr-name">title</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Aside Header<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
-	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Panel<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+                                        <pre class="prism language-markup"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>aside</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>Aside<span class="token punctuation">"</span></span> <span class="token attr-name">data-ts</span>.<span class="token attr-name">title</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>Aside Header<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>Panel<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
 		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>Aside content.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>aside</span><span class="token punctuation">&gt;</span></span></code></pre>
@@ -124,7 +124,7 @@
                         <section>
                             <p>
                                 You can insert a footer in the Aside. Note that
-                                <a data-ts="Button" onclick="toggle(&apos;#myfooter&apos;);">the footer</a> will be fixed at
+                                <a data-ts="Button" onclick="toggle('#myfooter');">the footer</a> will be fixed at
                                 the bottom of the aside.
                             </p>
                             <figure data-ts="DoxMarkup" data-ts.code="%3Caside%20data-ts%3D%22Aside%22%20data-ts.title%3D%22Aside%20Footer%22%3E%0A%09%3Cdiv%20data-ts%3D%22Panel%22%3E%0A%09%09%3Cp%3EAside%20content.%3C%2Fp%3E%0A%09%3C%2Fdiv%3E%0A%09%3Cfooter%3E%0A%09%09%3Cp%3EAside%20footer.%3C%2Fp%3E%0A%09%3C%2Ffooter%3E%0A%3C%2Faside%3E">
@@ -140,8 +140,8 @@
                                 </script>
                                 <ul data-ts="Panels">
                                     <li data-ts="Panel" data-ts.selected="true">
-                                        <pre class="prism language-markup"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>aside</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Aside<span class="token punctuation">&quot;</span></span> <span class="token attr-name">data-ts</span>.<span class="token attr-name">title</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Aside Footer<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
-	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Panel<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+                                        <pre class="prism language-markup"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>aside</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>Aside<span class="token punctuation">"</span></span> <span class="token attr-name">data-ts</span>.<span class="token attr-name">title</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>Aside Footer<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>Panel<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
 		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>Aside content.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>footer</span><span class="token punctuation">&gt;</span></span>
@@ -165,33 +165,35 @@
                                 </script>
                                 <ul data-ts="Panels">
                                     <li data-ts="Panel" data-ts.selected="true">
-                                        <pre class="prism language-markup"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>aside</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Aside<span class="token punctuation">&quot;</span></span> <span class="token attr-name">data-ts</span>.<span class="token attr-name">open</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>false<span class="token punctuation">&quot;</span></span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>myaside<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
-	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Panel<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+                                        <pre class="prism language-markup"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>aside</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>Aside<span class="token punctuation">"</span></span> <span class="token attr-name">data-ts</span>.<span class="token attr-name">open</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>false<span class="token punctuation">"</span></span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>myaside<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>Panel<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
 		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>Aside content.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>aside</span><span class="token punctuation">&gt;</span></span></code></pre>
                                     </li>
                                 </ul>
                             </figure>
-                            <p>Let&apos;s try that with jQuery.</p>
-                            <figure data-ts="DoxScript" class="runnable" data-ts.code="%24(&apos;%23myaside&apos;).attr(&apos;data-ts.open&apos;%2C%20true)%3B">
+                            <p>Let's try that with jQuery.</p>
+                            <figure data-ts="DoxScript" class="runnable" data-ts.code="%24('%23myaside').attr('data-ts.open'%2C%20true)%3B">
                                 <script type="runnable">
                                     $('#myaside').attr('data-ts.open', true);
 									</script>
                                 <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                                 <div data-ts="Panel">
-                                    <pre class="prism language-javascript"><code>$<span class="token punctuation">(</span><span class="token string">&apos;#myaside&apos;</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">attr<span class="token punctuation">(</span></span><span class="token string">&apos;data-ts.open&apos;</span><span class="token punctuation">,</span> <span class="token keyword">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
+                                    <pre class="prism language-javascript"><code>$<span class="token punctuation">(</span><span class="token string">'#myaside'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">attr<span class="token punctuation">(</span></span><span class="token string">'data-ts.open'</span><span class="token punctuation">,</span> <span class="token keyword">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea>
+                                </div>
                             </figure>
                             <p>
                                 If you are doing that, you might as well open the Aside via the certified API.
                             </p>
-                            <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.get(&apos;%23myaside&apos;).open()%3B">
+                            <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.get('%23myaside').open()%3B">
                                 <script type="runnable">
                                     ts.ui.get('#myaside').open();
 									</script>
                                 <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                                 <div data-ts="Panel">
-                                    <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#myaside&apos;</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">open<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
+                                    <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">'#myaside'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">open<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea>
+                                </div>
                             </figure>
                         </section>
                         <h3><span>Adding some tabs</span></h3>
@@ -199,7 +201,7 @@
                             <p>
                                 If an <code class="attr-value">Aside</code> contains more than one <code class="attr-value">Panel</code>, we will
                                 automatically create a TabBar to switch between the panels like in
-                                <a data-ts="Button" onclick="ts.ui.get(&apos;#aside2&apos;).open()">this example</a>.
+                                <a data-ts="Button" onclick="ts.ui.get('#aside2').open()">this example</a>.
                             </p>
                             <figure data-ts="DoxMarkup" data-ts.code="%3Caside%20data-ts%3D%22Aside%22%3E%0A%09%3Cul%20data-ts%3D%22Panels%22%3E%0A%09%09%3Cli%20data-ts%3D%22Panel%22%20data-ts.label%3D%22Tab%201%22%3E%0A%09%09%09%3Cp%3EAside%20content.%3C%2Fp%3E%0A%09%09%3C%2Fli%3E%0A%09%09%3Cli%20data-ts%3D%22Panel%22%20data-ts.label%3D%22Tab%202%22%3E%0A%09%09%09%3Cp%3EAside%20content.%3C%2Fp%3E%0A%09%09%3C%2Fli%3E%0A%09%3C%2Ful%3E%0A%3C%2Faside%3E">
                                 <script type="text/html">
@@ -216,12 +218,12 @@
                                 </script>
                                 <ul data-ts="Panels">
                                     <li data-ts="Panel" data-ts.selected="true">
-                                        <pre class="prism language-markup"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>aside</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Aside<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
-	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ul</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Panels<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
-		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Panel<span class="token punctuation">&quot;</span></span> <span class="token attr-name">data-ts</span>.<span class="token attr-name">label</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Tab 1<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+                                        <pre class="prism language-markup"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>aside</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>Aside<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ul</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>Panels<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>Panel<span class="token punctuation">"</span></span> <span class="token attr-name">data-ts</span>.<span class="token attr-name">label</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>Tab 1<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
 			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>Aside content.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
 		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">&gt;</span></span>
-		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Panel<span class="token punctuation">&quot;</span></span> <span class="token attr-name">data-ts</span>.<span class="token attr-name">label</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Tab 2<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>Panel<span class="token punctuation">"</span></span> <span class="token attr-name">data-ts</span>.<span class="token attr-name">label</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>Tab 2<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
 			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>Aside content.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
 		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">&gt;</span></span>
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ul</span><span class="token punctuation">&gt;</span></span>
@@ -233,7 +235,7 @@
                                 The tabs can also be created programatically. In that case, the panel switching
                                 mechanism must be implemented manually somehow.
                             </p>
-                            <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.get(&apos;%23aside3&apos;%2C%20function(aside)%20%7B%0A%09aside.tabs(%5B%0A%09%09%7Blabel%3A%20&apos;Tab%201&apos;%2C%20onselect%3A%20function()%20%7B%0A%09%09%09console.log(&apos;Panel%20one&apos;)%3B%0A%09%09%7D%7D%2C%0A%09%09%7Blabel%3A%20&apos;Tab%202&apos;%2C%20onselect%3A%20function()%20%7B%0A%09%09%09console.log(&apos;Panel%20two&apos;)%3B%0A%09%09%7D%7D%0A%09%5D).open()%3B%0A%7D)%3B">
+                            <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.get('%23aside3'%2C%20function(aside)%20%7B%0A%09aside.tabs(%5B%0A%09%09%7Blabel%3A%20'Tab%201'%2C%20onselect%3A%20function()%20%7B%0A%09%09%09console.log('Panel%20one')%3B%0A%09%09%7D%7D%2C%0A%09%09%7Blabel%3A%20'Tab%202'%2C%20onselect%3A%20function()%20%7B%0A%09%09%09console.log('Panel%20two')%3B%0A%09%09%7D%7D%0A%09%5D).open()%3B%0A%7D)%3B">
                                 <script type="runnable">
                                     ts.ui.get('#aside3', aside => {
 											aside.tabs([
@@ -248,23 +250,24 @@
 									</script>
                                 <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                                 <div data-ts="Panel">
-                                    <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#aside3&apos;</span><span class="token punctuation">,</span> aside <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+                                    <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">'#aside3'</span><span class="token punctuation">,</span> aside <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
 	aside<span class="token punctuation">.</span><span class="token function">tabs<span class="token punctuation">(</span></span><span class="token punctuation">[</span>
-		<span class="token punctuation">{</span>label<span class="token punctuation">:</span> <span class="token string">&apos;Tab 1&apos;</span><span class="token punctuation">,</span> onselect<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-			console<span class="token punctuation">.</span><span class="token function">log<span class="token punctuation">(</span></span><span class="token string">&apos;Panel one&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token punctuation">{</span>label<span class="token punctuation">:</span> <span class="token string">'Tab 1'</span><span class="token punctuation">,</span> onselect<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+			console<span class="token punctuation">.</span><span class="token function">log<span class="token punctuation">(</span></span><span class="token string">'Panel one'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 		<span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
-		<span class="token punctuation">{</span>label<span class="token punctuation">:</span> <span class="token string">&apos;Tab 2&apos;</span><span class="token punctuation">,</span> onselect<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-			console<span class="token punctuation">.</span><span class="token function">log<span class="token punctuation">(</span></span><span class="token string">&apos;Panel two&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token punctuation">{</span>label<span class="token punctuation">:</span> <span class="token string">'Tab 2'</span><span class="token punctuation">,</span> onselect<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+			console<span class="token punctuation">.</span><span class="token function">log<span class="token punctuation">(</span></span><span class="token string">'Panel two'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 		<span class="token punctuation">}</span><span class="token punctuation">}</span>
 	<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">open<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea>
+                                </div>
                             </figure>
                             <p>
                                 You can also mix the two approaches to dynamically update tabs that were created
                                 with <code class="attr-pair"><span>Panel</span></code> elements. This will for example assign an
                                 <code>onselect</code> callback to the third tab.
                             </p>
-                            <figure data-ts="DoxScript" data-ts.code="ts.ui.get(&apos;%23myaside&apos;%2C%20function(aside)%20%7B%0A%09var%20tabs%20%3D%20aside.tabs()%3B%0A%09tabs%5B2%5D.onselect%20%3D%20function()%20%7B%0A%09%09console.log(&apos;selected&apos;)%3B%0A%09%7D%3B%0A%7D)%3B">
+                            <figure data-ts="DoxScript" data-ts.code="ts.ui.get('%23myaside'%2C%20function(aside)%20%7B%0A%09var%20tabs%20%3D%20aside.tabs()%3B%0A%09tabs%5B2%5D.onselect%20%3D%20function()%20%7B%0A%09%09console.log('selected')%3B%0A%09%7D%3B%0A%7D)%3B">
                                 <script type="text/html">
                                     ts.ui.get('#myaside', aside => {
                                     var tabs = aside.tabs();
@@ -275,10 +278,10 @@
                                 </script>
                                 <input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
                                 <div data-ts="Panel">
-                                    <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#myaside&apos;</span><span class="token punctuation">,</span> aside <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+                                    <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">'#myaside'</span><span class="token punctuation">,</span> aside <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
 	<span class="token keyword">var</span> tabs <span class="token operator">=</span> aside<span class="token punctuation">.</span><span class="token function">tabs<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 	tabs<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">.</span>onselect <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-		console<span class="token punctuation">.</span><span class="token function">log<span class="token punctuation">(</span></span><span class="token string">&apos;selected&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		console<span class="token punctuation">.</span><span class="token function">log<span class="token punctuation">(</span></span><span class="token string">'selected'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 	<span class="token punctuation">}</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
                                 </div>
@@ -286,7 +289,7 @@
                             <p>
                                 To remove all dynamically created tabs, you can simply clear the tab collection.
                             </p>
-                            <figure data-ts="DoxScript" data-ts.code="ts.ui.get(&apos;%23myaside&apos;%2C%20function(aside)%20%7B%0A%09aside.tabs().clear()%3B%0A%7D)%3B">
+                            <figure data-ts="DoxScript" data-ts.code="ts.ui.get('%23myaside'%2C%20function(aside)%20%7B%0A%09aside.tabs().clear()%3B%0A%7D)%3B">
                                 <script type="text/html">
                                     ts.ui.get('#myaside', aside => {
                                     aside.tabs().clear();
@@ -294,7 +297,7 @@
                                 </script>
                                 <input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
                                 <div data-ts="Panel">
-                                    <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#myaside&apos;</span><span class="token punctuation">,</span> aside <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+                                    <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">'#myaside'</span><span class="token punctuation">,</span> aside <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
 	aside<span class="token punctuation">.</span><span class="token function">tabs<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">clear<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
                                 </div>
@@ -303,7 +306,7 @@
                         <h3><span>Adding some buttons</span></h3>
                         <section>
                             <p>
-                                It&apos;s common for Asides to show a group of buttons, usually following a set of form
+                                It's common for Asides to show a group of buttons, usually following a set of form
                                 fields. To make sure that they always look the same, the certified way to add this
                                 group of buttons is via a
                                 <a data-ts="Button" href="/v12/dist/components/buttons/buttons.html">Buttons</a>
@@ -331,17 +334,17 @@
                                 </script>
                                 <ul data-ts="Panels">
                                     <li data-ts="Panel" data-ts.selected="true">
-                                        <pre class="prism language-markup"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>aside</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Aside<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
-	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Panel<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+                                        <pre class="prism language-markup"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>aside</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>Aside<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>Panel<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
 		... form fields here ...
-		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>menu</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Buttons<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>menu</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>Buttons<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
 			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span><span class="token punctuation">&gt;</span></span>
-				<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>ts-primary<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+				<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>ts-primary<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
 					<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">&gt;</span></span>Submit Changes<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span>
 				<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">&gt;</span></span>
 			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">&gt;</span></span>
 			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span><span class="token punctuation">&gt;</span></span>
-				<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>ts-secondary<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+				<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>ts-secondary<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
 					<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">&gt;</span></span>Cancel Everything<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span>
 				<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">&gt;</span></span>
 			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">&gt;</span></span>
@@ -365,8 +368,8 @@
                                 </script>
                                 <ul data-ts="Panels">
                                     <li data-ts="Panel" data-ts.selected="true">
-                                        <pre class="prism language-markup"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>aside</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Aside<span class="token punctuation">&quot;</span></span> <span class="token attr-name">data-ts</span>.<span class="token attr-name">busy</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Busy message!<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
-	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Panel<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+                                        <pre class="prism language-markup"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>aside</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>Aside<span class="token punctuation">"</span></span> <span class="token attr-name">data-ts</span>.<span class="token attr-name">busy</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>Busy message!<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>Panel<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
 		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>Aside content.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>aside</span><span class="token punctuation">&gt;</span></span></code></pre>
@@ -375,8 +378,8 @@
                             </figure>
                         </section>
                         <section>
-                            <p>Let&apos;s try that with jQuery.</p>
-                            <figure data-ts="DoxScript" class="runnable" data-ts.code="var%20aside%20%3D%20%24(%22%23myaside%22)%3B%0Aaside.attr(&apos;data-ts.busy&apos;%2C%20&apos;Loading&apos;)%3B%0Aaside.attr(&apos;data-ts.open&apos;%2C%20true)%3B%0AsetTimeout(function()%20%7B%0A%09aside.attr(&apos;data-ts.busy&apos;%2C%20&apos;&apos;)%3B%0A%09setTimeout(function()%20%7B%0A%09%09aside.attr(&apos;data-ts.open&apos;%2C%20false)%3B%0A%09%7D%2C%20500)%3B%0A%7D%2C%201500)%3B">
+                            <p>Let's try that with jQuery.</p>
+                            <figure data-ts="DoxScript" class="runnable" data-ts.code="var%20aside%20%3D%20%24(%22%23myaside%22)%3B%0Aaside.attr('data-ts.busy'%2C%20'Loading')%3B%0Aaside.attr('data-ts.open'%2C%20true)%3B%0AsetTimeout(function()%20%7B%0A%09aside.attr('data-ts.busy'%2C%20'')%3B%0A%09setTimeout(function()%20%7B%0A%09%09aside.attr('data-ts.open'%2C%20false)%3B%0A%09%7D%2C%20500)%3B%0A%7D%2C%201500)%3B">
                                 <script type="runnable">
                                     var aside = $("#myaside");
 										aside.attr('data-ts.busy', 'Loading');
@@ -390,15 +393,16 @@
 									</script>
                                 <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                                 <div data-ts="Panel">
-                                    <pre class="prism language-javascript"><code><span class="token keyword">var</span> aside <span class="token operator">=</span> $<span class="token punctuation">(</span><span class="token string">&quot;#myaside&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-aside<span class="token punctuation">.</span><span class="token function">attr<span class="token punctuation">(</span></span><span class="token string">&apos;data-ts.busy&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;Loading&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-aside<span class="token punctuation">.</span><span class="token function">attr<span class="token punctuation">(</span></span><span class="token string">&apos;data-ts.open&apos;</span><span class="token punctuation">,</span> <span class="token keyword">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                                    <pre class="prism language-javascript"><code><span class="token keyword">var</span> aside <span class="token operator">=</span> $<span class="token punctuation">(</span><span class="token string">"#myaside"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+aside<span class="token punctuation">.</span><span class="token function">attr<span class="token punctuation">(</span></span><span class="token string">'data-ts.busy'</span><span class="token punctuation">,</span> <span class="token string">'Loading'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+aside<span class="token punctuation">.</span><span class="token function">attr<span class="token punctuation">(</span></span><span class="token string">'data-ts.open'</span><span class="token punctuation">,</span> <span class="token keyword">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token function">setTimeout<span class="token punctuation">(</span></span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-	aside<span class="token punctuation">.</span><span class="token function">attr<span class="token punctuation">(</span></span><span class="token string">&apos;data-ts.busy&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	aside<span class="token punctuation">.</span><span class="token function">attr<span class="token punctuation">(</span></span><span class="token string">'data-ts.busy'</span><span class="token punctuation">,</span> <span class="token string">''</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 	<span class="token function">setTimeout<span class="token punctuation">(</span></span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-		aside<span class="token punctuation">.</span><span class="token function">attr<span class="token punctuation">(</span></span><span class="token string">&apos;data-ts.open&apos;</span><span class="token punctuation">,</span> <span class="token keyword">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		aside<span class="token punctuation">.</span><span class="token function">attr<span class="token punctuation">(</span></span><span class="token string">'data-ts.open'</span><span class="token punctuation">,</span> <span class="token keyword">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 	<span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token number">500</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token number">1500</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
+<span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token number">1500</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea>
+                                </div>
                             </figure>
                         </section>
                         <h3><span>Tracking the state</span></h3>
@@ -412,7 +416,7 @@ aside<span class="token punctuation">.</span><span class="token function">attr<s
                                 <a data-ts="Button" href="/v12/dist/components/asides/js.html">event listeners</a>
                                 if you like.
                             </p>
-                            <figure data-ts="DoxMarkup" data-ts.code="%3Caside%20data-ts%3D%22Aside%22%0A%09ts.onopen%3D%22console.log(&apos;Will%20open&apos;)%22%0A%09ts.onopened%3D%22console.log(&apos;Did%20open&apos;)%22%0A%09ts.onclose%3D%22console.log(&apos;Will%20close&apos;)%22%0A%09ts.onclosed%3D%22console.log(&apos;Did%20close&apos;)%22%3E%0A%09%3Cdiv%20data-ts%3D%22Panel%22%3E%0A%09%09%3Cp%3EAside%20content.%3C%2Fp%3E%0A%09%3C%2Fdiv%3E%0A%3C%2Faside%3E">
+                            <figure data-ts="DoxMarkup" data-ts.code="%3Caside%20data-ts%3D%22Aside%22%0A%09ts.onopen%3D%22console.log('Will%20open')%22%0A%09ts.onopened%3D%22console.log('Did%20open')%22%0A%09ts.onclose%3D%22console.log('Will%20close')%22%0A%09ts.onclosed%3D%22console.log('Did%20close')%22%3E%0A%09%3Cdiv%20data-ts%3D%22Panel%22%3E%0A%09%09%3Cp%3EAside%20content.%3C%2Fp%3E%0A%09%3C%2Fdiv%3E%0A%3C%2Faside%3E">
                                 <script type="text/html">
                                     <aside data-ts="Aside" ts.onopen="console.log('Will open')" ts.onopened="console.log('Did open')" ts.onclose="console.log('Will close')" ts.onclosed="console.log('Did close')">
                                         <div data-ts="Panel">
@@ -422,12 +426,12 @@ aside<span class="token punctuation">.</span><span class="token function">attr<s
                                 </script>
                                 <ul data-ts="Panels">
                                     <li data-ts="Panel" data-ts.selected="true">
-                                        <pre class="prism language-markup"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>aside</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Aside<span class="token punctuation">&quot;</span></span>
-	<span class="token attr-name">ts</span>.<span class="token attr-name">onopen</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>console.log(&apos;Will open&apos;)<span class="token punctuation">&quot;</span></span>
-	<span class="token attr-name">ts</span>.<span class="token attr-name">onopened</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>console.log(&apos;Did open&apos;)<span class="token punctuation">&quot;</span></span>
-	<span class="token attr-name">ts</span>.<span class="token attr-name">onclose</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>console.log(&apos;Will close&apos;)<span class="token punctuation">&quot;</span></span>
-	<span class="token attr-name">ts</span>.<span class="token attr-name">onclosed</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>console.log(&apos;Did close&apos;)<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
-	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Panel<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+                                        <pre class="prism language-markup"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>aside</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>Aside<span class="token punctuation">"</span></span>
+	<span class="token attr-name">ts</span>.<span class="token attr-name">onopen</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>console.log('Will open')<span class="token punctuation">"</span></span>
+	<span class="token attr-name">ts</span>.<span class="token attr-name">onopened</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>console.log('Did open')<span class="token punctuation">"</span></span>
+	<span class="token attr-name">ts</span>.<span class="token attr-name">onclose</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>console.log('Will close')<span class="token punctuation">"</span></span>
+	<span class="token attr-name">ts</span>.<span class="token attr-name">onclosed</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>console.log('Did close')<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>Panel<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
 		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>Aside content.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>aside</span><span class="token punctuation">&gt;</span></span></code></pre>
@@ -439,12 +443,70 @@ aside<span class="token punctuation">.</span><span class="token function">attr<s
                         <section>
                             <p>
                                 Asides will automatically stack themselves whenever
-                                <a data-ts="Button" onclick="toggle(&apos;#one&apos;)">new asides open</a>.
+                                <a data-ts="Button" onclick="toggle('#one')">new asides open</a>.
                             </p>
                             <ul>
                                 <li>The old Asides will slide elegantly to the right</li>
                                 <li>The new Aside will float the top of the z-index</li>
                             </ul>
+                        </section>
+                        <h3><span>Tooltip on aside header</span></h3>
+                        <section>
+                            <p>
+                                A tooltip can be added to the aside header with the
+                                <code class="attr-pair"><span>data-ts.tooltip</span></code> attribute. Set the value equal to the text to be
+                                displayed in the tooltip.
+                            </p>
+                            <figure data-ts="DoxMarkup" data-ts.code="%3Caside%20data-ts%3D%22Aside%22%0A%09id%3D%22aside-with-tooltip%22%0A%09data-ts.title%3D%22Aside%20Title%20with%20tooltip%22%0A%09data-ts.tooltip%3D%22My%20Tooltip%22%3E%0A%09%3Cdiv%20data-ts%3D%22Panel%22%3E%0A%09%09%3Cp%3EAside%20content.%3C%2Fp%3E%0A%09%3C%2Fdiv%3E%0A%3C%2Faside%3E">
+                                <script type="text/html">
+                                    <aside data-ts="Aside" id="aside-with-tooltip" data-ts.title="Aside Title with tooltip" data-ts.tooltip="My Tooltip">
+                                        <div data-ts="Panel">
+                                            <p>Aside content.</p>
+                                        </div>
+                                    </aside>
+                                </script>
+                                <ul data-ts="Panels">
+                                    <li data-ts="Panel" data-ts.selected="true">
+                                        <pre class="prism language-markup"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>aside</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>Aside<span class="token punctuation">"</span></span>
+	<span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>aside-with-tooltip<span class="token punctuation">"</span></span>
+	<span class="token attr-name">data-ts</span>.<span class="token attr-name">title</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>Aside Title with tooltip<span class="token punctuation">"</span></span>
+	<span class="token attr-name">data-ts</span>.<span class="token attr-name">tooltip</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>My Tooltip<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>Panel<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>Aside content.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>aside</span><span class="token punctuation">&gt;</span></span></code></pre>
+                                    </li>
+                                </ul>
+                            </figure>
+                            <p>
+                                The tooltip can also be toggled via the API. Provide a string as the first
+                                parameter to the function tooltip in order to change the contents of the tooltip.
+                            </p>
+                            <figure data-ts="DoxScript" data-ts.code="ts.ui.get('%23myAside'%2C%20function(aside)%20%7B%0A%09aside.tooltip('tooltip')%3B%0A%7D)%3B">
+                                <script type="text/js">
+                                    ts.ui.get('#myAside', function(aside) {
+											aside.tooltip('tooltip');
+										});
+									</script>
+                                <input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
+                                <div data-ts="Panel">
+                                    <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">'#myAside'</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span>aside<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	aside<span class="token punctuation">.</span><span class="token function">tooltip<span class="token punctuation">(</span></span><span class="token string">'tooltip'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+                                </div>
+                            </figure>
+                            <p>
+                                Run the script below to open the Aside with tooltip.
+                            </p>
+                            <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.get('%23aside-with-tooltip').open()%3B">
+                                <script type="runnable">
+                                    ts.ui.get('#aside-with-tooltip').open();
+									</script>
+                                <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                                <div data-ts="Panel">
+                                    <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">'#aside-with-tooltip'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">open<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea>
+                                </div>
+                            </figure>
                         </section>
                     </article>
                 </div>
@@ -455,7 +517,7 @@ aside<span class="token punctuation">.</span><span class="token function">attr<s
     <aside data-ts="Aside" id="myaside" data-ts.title="Aside Title">
         <div data-ts="Panel">
             <p>
-                Bacon ipsum dolor sit p&#xF6;lsesnack, jerky pork belly short loin sausage andouille kevin
+                Bacon ipsum dolor sit pölsesnack, jerky pork belly short loin sausage andouille kevin
                 capicola ham hamburger doner. Shank prosciutto flank kevin ribeye short ribs swine ham
                 pork porchetta spare ribs kielbasa beef ribs. Prosciutto pancetta shank boudin. Corned
                 beef shoulder capicola, turducken prosciutto pork belly sirloin shankle brisket chuck
@@ -473,7 +535,7 @@ aside<span class="token punctuation">.</span><span class="token function">attr<s
     <aside data-ts="Aside" id="myfooter" data-ts.title="Aside with footer">
         <div data-ts="Panel">
             <p>
-                Bacon ipsum dolor sit p&#xF6;lsesnack, jerky pork belly short loin sausage andouille kevin
+                Bacon ipsum dolor sit pölsesnack, jerky pork belly short loin sausage andouille kevin
                 capicola ham hamburger doner. Shank prosciutto flank kevin ribeye short ribs swine ham
                 pork porchetta spare ribs kielbasa beef ribs. Prosciutto pancetta shank boudin. Corned
                 beef shoulder capicola, turducken prosciutto pork belly sirloin shankle brisket chuck
@@ -495,7 +557,7 @@ aside<span class="token punctuation">.</span><span class="token function">attr<s
         <ul data-ts="Panels">
             <li data-ts="Panel" data-ts.label="tab 1">
                 <p>
-                    Bacon ipsum dolor sit p&#xF6;lsesnack, jerky pork belly short loin sausage andouille kevin
+                    Bacon ipsum dolor sit pölsesnack, jerky pork belly short loin sausage andouille kevin
                     capicola ham hamburger doner. Shank prosciutto flank kevin ribeye short ribs swine ham
                     pork porchetta spare ribs kielbasa beef ribs. Prosciutto pancetta shank boudin. Corned
                     beef shoulder capicola, turducken prosciutto pork belly sirloin shankle brisket chuck
@@ -533,7 +595,7 @@ aside<span class="token punctuation">.</span><span class="token function">attr<s
         <div data-ts="Panel">
             <menu data-ts="Buttons">
                 <li>
-                    <button data-ts="Button" onclick="toggle(&apos;#two&apos;)" class="ts-tertiary">
+                    <button data-ts="Button" onclick="toggle('#two')" class="ts-tertiary">
                         <span>Open next aside</span>
                     </button>
                 </li>
@@ -544,7 +606,7 @@ aside<span class="token punctuation">.</span><span class="token function">attr<s
         <div data-ts="Panel">
             <menu data-ts="Buttons">
                 <li>
-                    <button data-ts="Button" onclick="toggle(&apos;#three&apos;)" class="ts-tertiary">
+                    <button data-ts="Button" onclick="toggle('#three')" class="ts-tertiary">
                         <span>Open next aside</span>
                     </button>
                 </li>
@@ -555,14 +617,19 @@ aside<span class="token punctuation">.</span><span class="token function">attr<s
         <div data-ts="Panel">
             <menu data-ts="Buttons">
                 <li>
-                    <button data-ts="Button" onclick="toggle(&apos;#one&apos;, &apos;#two&apos;, &apos;#three&apos;)" class="ts-primary">
+                    <button data-ts="Button" onclick="toggle('#one', '#two', '#three')" class="ts-primary">
                         <span>Thanks, now close them</span>
                     </button>
                 </li>
             </menu>
         </div>
     </aside>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-127106947-1"></script>
+    <aside data-ts="Aside" id="aside-with-tooltip" data-ts.title="Aside Title with tooltip" data-ts.tooltip="My Tooltip">
+        <div data-ts="Panel">
+            <p>Aside content.</p>
+        </div>
+    </aside>
+    <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-127106947-1"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
 

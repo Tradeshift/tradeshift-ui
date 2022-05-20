@@ -7,11 +7,11 @@
     <link rel="ts-app-icon" href="/v12/dist/assets/icon.svg">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
-    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.6.0.min.js"></script>
+    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.8.2.min.js"></script>
     <script src="/v12/dist/assets/dox.min.js"></script>
     <script src="/v12/dist/assets/mark.min.js"></script>
     <script src="/v12/dist/assets/jquery-2.2.4.min.js"></script>
-    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.6.0.min.css">
+    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.8.2.min.css">
     <link rel="stylesheet" href="/v12/dist/assets/dox.css">
     <link rel="prefetch" title="HTML" href="index.html">
     <link rel="prefetch" title="Disabled / Readonly" href="disabled.html">
@@ -22,6 +22,12 @@
     <link rel="prefetch" title="Angular Test" href="test-1.html" class="hidden">
     <link rel="prefetch" title="JQuery Test" href="test-2.html" class="hidden">
     <script>
+        ts.dox.tabs()
+    </script>
+</head>
+
+<body>
+    <script>
         document.addEventListener('change', function(e) {
             var section = document.querySelector('#bgcolor');
             if (e.target.name && e.target.value.includes('ts-bg')) {
@@ -29,12 +35,6 @@
             }
         });
     </script>
-    <script>
-        ts.dox.tabs()
-    </script>
-</head>
-
-<body>
     <div data-ts="App">
         <div data-ts="Main" data-ts.label="One">
             <div data-ts="Content">
@@ -92,9 +92,9 @@
                                         <fieldset>
                                             <label>
                                                 <span>Select multiple</span>
-                                                <select multiple>
-                                                    <option value="a" selected>One</option>
-                                                    <option value="b" selected>Two</option>
+                                                <select multiple="">
+                                                    <option value="a" selected="">One</option>
+                                                    <option value="b" selected="">Two</option>
                                                     <option value="c">Three</option>
                                                     <option value="d">Four</option>
                                                     <option value="e">Five</option>
@@ -111,7 +111,7 @@
                                         <fieldset>
                                             <span>Radios</span>
                                             <label>
-                                                <input type="radio" name="radio" checked>
+                                                <input type="radio" name="radio" checked="">
                                                 <span>Option One</span>
                                             </label>
                                             <label>
@@ -126,8 +126,8 @@
                                                 <span>I agree</span>
                                             </label>
                                             <label>
-                                                <input type="checkbox" checked>
-                                                <span>I don&apos;t agree</span>
+                                                <input type="checkbox" checked="">
+                                                <span>I don't agree</span>
                                             </label>
                                         </fieldset>
                                         <fieldset>
@@ -137,8 +137,8 @@
                                                 <input type="checkbox">
                                             </label>
                                             <label>
-                                                <span>I don&apos;t agree</span>
-                                                <input type="checkbox" checked>
+                                                <span>I don't agree</span>
+                                                <input type="checkbox" checked="">
                                             </label>
                                         </fieldset>
                                     </form>
@@ -150,31 +150,31 @@
                                         <fieldset>
                                             <label>
                                                 <span>Text</span>
-                                                <input type="text" value="Text" disabled>
+                                                <input type="text" value="Text" disabled="">
                                             </label>
                                         </fieldset>
                                         <fieldset>
                                             <label>
                                                 <span>Text with custom icon</span>
-                                                <input type="text" value="Text" disabled data-ts.icon="ts-icon-send">
+                                                <input type="text" value="Text" disabled="" data-ts.icon="ts-icon-send">
                                             </label>
                                         </fieldset>
                                         <fieldset>
                                             <label>
                                                 <span>Text with no icon</span>
-                                                <input type="text" value="Text" disabled data-ts.icon="">
+                                                <input type="text" value="Text" disabled="" data-ts.icon="">
                                             </label>
                                         </fieldset>
                                         <fieldset>
                                             <label>
                                                 <span>Textarea</span>
-                                                <textarea disabled>Textarea</textarea>
+                                                <textarea disabled="">Textarea</textarea>
                                             </label>
                                         </fieldset>
                                         <fieldset>
                                             <label>
                                                 <span>Select</span>
-                                                <select disabled>
+                                                <select disabled="">
                                                     <option value="a">One</option>
                                                     <option value="b">Two</option>
                                                     <option value="c">Three</option>
@@ -184,7 +184,7 @@
                                         <fieldset>
                                             <label>
                                                 <span>Select with placeholder</span>
-                                                <select disabled placeholder="Please select something">
+                                                <select disabled="" placeholder="Please select something">
                                                     <option></option>
                                                     <option value="a">One</option>
                                                     <option value="b">Two</option>
@@ -195,9 +195,9 @@
                                         <fieldset>
                                             <label>
                                                 <span>Select multiple</span>
-                                                <select multiple disabled>
-                                                    <option value="a" selected>One</option>
-                                                    <option value="b" selected>Two</option>
+                                                <select multiple="" disabled="">
+                                                    <option value="a" selected="">One</option>
+                                                    <option value="b" selected="">Two</option>
                                                     <option value="c">Three</option>
                                                     <option value="d">Four</option>
                                                     <option value="e">Five</option>
@@ -208,40 +208,40 @@
                                         <fieldset>
                                             <label>
                                                 <span>Date</span>
-                                                <input type="date" disabled value="2016-12-24">
+                                                <input type="date" disabled="" value="2016-12-24">
                                             </label>
                                         </fieldset>
                                         <fieldset>
                                             <span>Radios</span>
                                             <label>
-                                                <input type="radio" name="radio" checked disabled>
+                                                <input type="radio" name="radio" checked="" disabled="">
                                                 <span>Option One</span>
                                             </label>
                                             <label>
-                                                <input type="radio" name="radio" disabled>
+                                                <input type="radio" name="radio" disabled="">
                                                 <span>Option Two</span>
                                             </label>
                                         </fieldset>
                                         <fieldset>
                                             <span>Checkbox</span>
                                             <label>
-                                                <input type="checkbox" disabled>
+                                                <input type="checkbox" disabled="">
                                                 <span>I agree</span>
                                             </label>
                                             <label>
-                                                <input type="checkbox" checked disabled>
-                                                <span>I don&apos;t agree</span>
+                                                <input type="checkbox" checked="" disabled="">
+                                                <span>I don't agree</span>
                                             </label>
                                         </fieldset>
                                         <fieldset>
                                             <span>Switch</span>
                                             <label>
                                                 <span>I agree</span>
-                                                <input type="checkbox" disabled>
+                                                <input type="checkbox" disabled="">
                                             </label>
                                             <label>
-                                                <span>I don&apos;t agree</span>
-                                                <input type="checkbox" checked disabled>
+                                                <span>I don't agree</span>
+                                                <input type="checkbox" checked="" disabled="">
                                             </label>
                                         </fieldset>
                                     </form>
@@ -259,31 +259,31 @@
                                         <fieldset>
                                             <label>
                                                 <span>Text</span>
-                                                <input type="text" value="Text" readonly>
+                                                <input type="text" value="Text" readonly="">
                                             </label>
                                         </fieldset>
                                         <fieldset>
                                             <label>
                                                 <span>Text with custom icon</span>
-                                                <input type="text" value="Text" readonly data-ts.icon="ts-icon-dispute">
+                                                <input type="text" value="Text" readonly="" data-ts.icon="ts-icon-dispute">
                                             </label>
                                         </fieldset>
                                         <fieldset>
                                             <label>
                                                 <span>Text with no icon</span>
-                                                <input type="text" value="Text" readonly data-ts.icon="">
+                                                <input type="text" value="Text" readonly="" data-ts.icon="">
                                             </label>
                                         </fieldset>
                                         <fieldset>
                                             <label>
                                                 <span>Textarea</span>
-                                                <textarea readonly>Textarea</textarea>
+                                                <textarea readonly="">Textarea</textarea>
                                             </label>
                                         </fieldset>
                                         <fieldset>
                                             <label>
                                                 <span>Select</span>
-                                                <select readonly>
+                                                <select readonly="">
                                                     <option value="a">One</option>
                                                     <option value="b">Two</option>
                                                     <option value="c">Three</option>
@@ -293,7 +293,7 @@
                                         <fieldset>
                                             <label>
                                                 <span>Select with placeholder</span>
-                                                <select readonly placeholder="Please select something">
+                                                <select readonly="" placeholder="Please select something">
                                                     <option></option>
                                                     <option value="a">One</option>
                                                     <option value="b">Two</option>
@@ -304,9 +304,9 @@
                                         <fieldset>
                                             <label>
                                                 <span>Select multiple</span>
-                                                <select multiple readonly>
-                                                    <option value="a" selected>One</option>
-                                                    <option value="b" selected>Two</option>
+                                                <select multiple="" readonly="">
+                                                    <option value="a" selected="">One</option>
+                                                    <option value="b" selected="">Two</option>
                                                     <option value="c">Three</option>
                                                     <option value="d">Four</option>
                                                     <option value="e">Five</option>
@@ -317,7 +317,7 @@
                                         <fieldset>
                                             <label>
                                                 <span>Date</span>
-                                                <input type="date" readonly value="2016-12-24">
+                                                <input type="date" readonly="" value="2016-12-24">
                                             </label>
                                         </fieldset>
                                     </form>
@@ -336,7 +336,7 @@
                                         <fieldset>
                                             <label>
                                                 <span>Text</span>
-                                                <input type="text" value="The lock icon is now hidden" readonly class="ts-nolock">
+                                                <input type="text" value="The lock icon is now hidden" readonly="" class="ts-nolock">
                                             </label>
                                         </fieldset>
                                     </form>
@@ -378,7 +378,7 @@
                                                 <span>Select Multi</span>
                                                 <select>
                                                     <option value="a">One</option>
-                                                    <option value="b" selected>Two</option>
+                                                    <option value="b" selected="">Two</option>
                                                     <option value="c">Three</option>
                                                 </select>
                                             </label>
@@ -386,8 +386,8 @@
                                         <fieldset class="ts-multi">
                                             <label>
                                                 <span>Multiselect multi</span>
-                                                <select multiple>
-                                                    <option value="a" selected>One</option>
+                                                <select multiple="">
+                                                    <option value="a" selected="">One</option>
                                                     <option value="b">Two</option>
                                                     <option value="c">Three</option>
                                                     <option value="d">Four</option>
@@ -397,9 +397,9 @@
                                             </label>
                                             <label>
                                                 <span>Multiselect multi</span>
-                                                <select multiple>
-                                                    <option value="a" selected>One</option>
-                                                    <option value="b" selected>Two</option>
+                                                <select multiple="">
+                                                    <option value="a" selected="">One</option>
+                                                    <option value="b" selected="">Two</option>
                                                     <option value="c">Three</option>
                                                     <option value="d">Four</option>
                                                     <option value="e">Five</option>
@@ -438,7 +438,7 @@
                                         <fieldset>
                                             <label>
                                                 <span>Disabled info</span>
-                                                <input type="text" value="What is this?" disabled>
+                                                <input type="text" value="What is this?" disabled="">
                                             </label>
                                             <dl class="ts-info">
                                                 <dt>Text</dt>
@@ -453,8 +453,8 @@
                                 <article>
                                     <p>Check out the Form in that Aside.</p>
                                     <p>
-                                        <button data-ts="Button" class="ts-primary" onclick="ts.ui.get(&apos;myaside&apos;).open()">
-                                            <span>Open the Aside&#x2026;</span>
+                                        <button data-ts="Button" class="ts-primary" onclick="ts.ui.get('myaside').open()">
+                                            <span>Open the Aside…</span>
                                         </button>
                                     </p>
                                 </article>
@@ -552,9 +552,9 @@
                 <fieldset>
                     <label>
                         <span>Select multiple</span>
-                        <select multiple>
-                            <option value="a" selected>One</option>
-                            <option value="b" selected>Two</option>
+                        <select multiple="">
+                            <option value="a" selected="">One</option>
+                            <option value="b" selected="">Two</option>
                             <option value="c">Three</option>
                             <option value="d">Four</option>
                             <option value="e">Five</option>
@@ -571,7 +571,7 @@
                 <fieldset>
                     <span>Radios</span>
                     <label>
-                        <input type="radio" name="radio" checked>
+                        <input type="radio" name="radio" checked="">
                         <span>Option One</span>
                     </label>
                     <label>
@@ -586,8 +586,8 @@
                         <span>I agree</span>
                     </label>
                     <label>
-                        <input type="checkbox" checked>
-                        <span>I don&apos;t agree</span>
+                        <input type="checkbox" checked="">
+                        <span>I don't agree</span>
                     </label>
                 </fieldset>
                 <fieldset>
@@ -597,14 +597,14 @@
                         <input type="checkbox">
                     </label>
                     <label>
-                        <span>I don&apos;t agree</span>
-                        <input type="checkbox" checked>
+                        <span>I don't agree</span>
+                        <input type="checkbox" checked="">
                     </label>
                 </fieldset>
             </form>
         </div>
     </aside>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-127106947-1"></script>
+    <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-127106947-1"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
 

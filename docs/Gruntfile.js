@@ -130,7 +130,7 @@ module.exports = function(grunt) {
 						cwd: 'src/js/',
 						dest: 'dist/assets/',
 						src: [
-							'angular-1.3.6.min.js',
+							'angular-1.8.8-xlts.min.js',
 							'jquery-2.2.4.min.js',
 							'template.js',
 							'lunr.min.js',

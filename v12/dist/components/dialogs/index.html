@@ -7,11 +7,11 @@
     <link rel="ts-app-icon" href="/v12/dist/assets/icon.svg">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
-    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.6.0.min.js"></script>
+    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.8.2.min.js"></script>
     <script src="/v12/dist/assets/dox.min.js"></script>
     <script src="/v12/dist/assets/mark.min.js"></script>
     <script src="/v12/dist/assets/jquery-2.2.4.min.js"></script>
-    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.6.0.min.css">
+    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.8.2.min.css">
     <link rel="stylesheet" href="/v12/dist/assets/dox.css">
 </head>
 
@@ -30,7 +30,7 @@
                         </section>
                         <section>
                             <p>You can launch a Dialog with methods to handle OK and Cancel.</p>
-                            <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.Dialog.confirm(&apos;Will%20you%20try%3F&apos;%2C%20%7B%0A%09onaccept%3A%20function()%20%7B%0A%09%09ts.ui.Notification.success(&apos;Good%20luck&apos;)%3B%0A%09%7D%2C%0A%09oncancel%3A%20function()%20%7B%0A%09%09ts.ui.Notification.success(&apos;Come%20back%20later&apos;)%3B%0A%09%7D%0A%7D)%3B">
+                            <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.Dialog.confirm('Will%20you%20try%3F'%2C%20%7B%0A%09onaccept%3A%20function()%20%7B%0A%09%09ts.ui.Notification.success('Good%20luck')%3B%0A%09%7D%2C%0A%09oncancel%3A%20function()%20%7B%0A%09%09ts.ui.Notification.success('Come%20back%20later')%3B%0A%09%7D%0A%7D)%3B">
                                 <script type="runnable">
                                     ts.ui.Dialog.confirm('Will you try?', {
 							onaccept: function() {
@@ -43,20 +43,21 @@
 					</script>
                                 <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                                 <div data-ts="Panel">
-                                    <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Dialog<span class="token punctuation">.</span><span class="token function">confirm<span class="token punctuation">(</span></span><span class="token string">&apos;Will you try?&apos;</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+                                    <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Dialog<span class="token punctuation">.</span><span class="token function">confirm<span class="token punctuation">(</span></span><span class="token string">'Will you try?'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
 	onaccept<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-		ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Notification<span class="token punctuation">.</span><span class="token function">success<span class="token punctuation">(</span></span><span class="token string">&apos;Good luck&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Notification<span class="token punctuation">.</span><span class="token function">success<span class="token punctuation">(</span></span><span class="token string">'Good luck'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 	<span class="token punctuation">}</span><span class="token punctuation">,</span>
 	oncancel<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-		ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Notification<span class="token punctuation">.</span><span class="token function">success<span class="token punctuation">(</span></span><span class="token string">&apos;Come back later&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Notification<span class="token punctuation">.</span><span class="token function">success<span class="token punctuation">(</span></span><span class="token string">'Come back later'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 	<span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea>
+                                </div>
                             </figure>
                             <p>
                                 You are encouraged to specify the text of the OK button. The button should attempt to
                                 indicate what happens when you press it.
                             </p>
-                            <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.Dialog.confirm(&apos;Show%20the%20Notification%3F&apos;%2C%20&apos;Show%20It&apos;%2C%20%7B%0A%09onaccept%3A%20function()%20%7B%0A%09%09ts.ui.Notification.success(&apos;Good%20choice&apos;)%3B%0A%09%7D%2C%0A%7D)%3B">
+                            <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.Dialog.confirm('Show%20the%20Notification%3F'%2C%20'Show%20It'%2C%20%7B%0A%09onaccept%3A%20function()%20%7B%0A%09%09ts.ui.Notification.success('Good%20choice')%3B%0A%09%7D%2C%0A%7D)%3B">
                                 <script type="runnable">
                                     ts.ui.Dialog.confirm('Show the Notification?', 'Show It', {
 							onaccept: function() {
@@ -66,11 +67,12 @@
 					</script>
                                 <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                                 <div data-ts="Panel">
-                                    <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Dialog<span class="token punctuation">.</span><span class="token function">confirm<span class="token punctuation">(</span></span><span class="token string">&apos;Show the Notification?&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;Show It&apos;</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+                                    <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Dialog<span class="token punctuation">.</span><span class="token function">confirm<span class="token punctuation">(</span></span><span class="token string">'Show the Notification?'</span><span class="token punctuation">,</span> <span class="token string">'Show It'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
 	onaccept<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-		ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Notification<span class="token punctuation">.</span><span class="token function">success<span class="token punctuation">(</span></span><span class="token string">&apos;Good choice&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Notification<span class="token punctuation">.</span><span class="token function">success<span class="token punctuation">(</span></span><span class="token string">'Good choice'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 	<span class="token punctuation">}</span><span class="token punctuation">,</span>
-<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea>
+                                </div>
                             </figure>
                             <p>You can add a third string argument to specify the Cancel text.</p>
                         </section>
@@ -81,7 +83,7 @@
                                 <code>accept</code> or <code>cancel</code> button primary. You can also tweak the default
                                 focus.
                             </p>
-                            <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.Dialog.confirm(&apos;Sign%20up%20for%20Tradeshift%3F&apos;%2C%20&apos;Join%20Now&apos;%2C%20%7B%0A%09primary%3A%20&apos;accept&apos;%2C%0A%09focused%3A%20&apos;accept&apos;%0A%7D)%3B">
+                            <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.Dialog.confirm('Sign%20up%20for%20Tradeshift%3F'%2C%20'Join%20Now'%2C%20%7B%0A%09primary%3A%20'accept'%2C%0A%09focused%3A%20'accept'%0A%7D)%3B">
                                 <script type="runnable">
                                     ts.ui.Dialog.confirm('Sign up for Tradeshift?', 'Join Now', {
 							primary: 'accept',
@@ -90,15 +92,16 @@
 					</script>
                                 <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                                 <div data-ts="Panel">
-                                    <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Dialog<span class="token punctuation">.</span><span class="token function">confirm<span class="token punctuation">(</span></span><span class="token string">&apos;Sign up for Tradeshift?&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;Join Now&apos;</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
-	primary<span class="token punctuation">:</span> <span class="token string">&apos;accept&apos;</span><span class="token punctuation">,</span>
-	focused<span class="token punctuation">:</span> <span class="token string">&apos;accept&apos;</span>
-<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
+                                    <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Dialog<span class="token punctuation">.</span><span class="token function">confirm<span class="token punctuation">(</span></span><span class="token string">'Sign up for Tradeshift?'</span><span class="token punctuation">,</span> <span class="token string">'Join Now'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+	primary<span class="token punctuation">:</span> <span class="token string">'accept'</span><span class="token punctuation">,</span>
+	focused<span class="token punctuation">:</span> <span class="token string">'accept'</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea>
+                                </div>
                             </figure>
                             <p>
                                 You can change the label of both the primary and secondary buttons.
                             </p>
-                            <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.Dialog.confirm(&apos;Sign%20up%20for%20Tradeshift%3F&apos;%2C%20&apos;Join%20Now&apos;%2C%20&apos;Not%20Now&apos;%2C%20%7B%0A%09primary%3A%20&apos;accept&apos;%2C%0A%09focused%3A%20&apos;accept&apos;%0A%7D)%3B">
+                            <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.Dialog.confirm('Sign%20up%20for%20Tradeshift%3F'%2C%20'Join%20Now'%2C%20'Not%20Now'%2C%20%7B%0A%09primary%3A%20'accept'%2C%0A%09focused%3A%20'accept'%0A%7D)%3B">
                                 <script type="runnable">
                                     ts.ui.Dialog.confirm('Sign up for Tradeshift?', 'Join Now', 'Not Now', {
 							primary: 'accept',
@@ -107,15 +110,16 @@
 					</script>
                                 <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                                 <div data-ts="Panel">
-                                    <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Dialog<span class="token punctuation">.</span><span class="token function">confirm<span class="token punctuation">(</span></span><span class="token string">&apos;Sign up for Tradeshift?&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;Join Now&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;Not Now&apos;</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
-	primary<span class="token punctuation">:</span> <span class="token string">&apos;accept&apos;</span><span class="token punctuation">,</span>
-	focused<span class="token punctuation">:</span> <span class="token string">&apos;accept&apos;</span>
-<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
+                                    <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Dialog<span class="token punctuation">.</span><span class="token function">confirm<span class="token punctuation">(</span></span><span class="token string">'Sign up for Tradeshift?'</span><span class="token punctuation">,</span> <span class="token string">'Join Now'</span><span class="token punctuation">,</span> <span class="token string">'Not Now'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+	primary<span class="token punctuation">:</span> <span class="token string">'accept'</span><span class="token punctuation">,</span>
+	focused<span class="token punctuation">:</span> <span class="token string">'accept'</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea>
+                                </div>
                             </figure>
                             <p>
                                 If you need more buttons for different actions then you can add the `actions` option
                             </p>
-                            <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.Dialog.danger(&apos;Are%20you%20sure%20you%20want%20to%20delete%20the%20document%3F&apos;%2C%20&apos;Delete%20document&apos;%2C%20%7B%0A%09primary%3A%20&apos;accept&apos;%2C%0A%09actions%3A%20%5B%0A%09%09%7B%0A%09%09%09label%20%3A%20&apos;Archive%20Document&apos;%2C%0A%09%09%09onclick%3A%20function()%7B%0A%09%09%09%09ts.ui.Notification.info(&apos;You%20archive%20the%20document.&apos;)%3B%0A%09%09%09%7D%0A%09%09%7D%0A%09%5D%0A%7D)%3B">
+                            <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.Dialog.danger('Are%20you%20sure%20you%20want%20to%20delete%20the%20document%3F'%2C%20'Delete%20document'%2C%20%7B%0A%09primary%3A%20'accept'%2C%0A%09actions%3A%20%5B%0A%09%09%7B%0A%09%09%09label%20%3A%20'Archive%20Document'%2C%0A%09%09%09onclick%3A%20function()%7B%0A%09%09%09%09ts.ui.Notification.info('You%20archive%20the%20document.')%3B%0A%09%09%09%7D%0A%09%09%7D%0A%09%5D%0A%7D)%3B">
                                 <script type="runnable">
                                     ts.ui.Dialog.danger('Are you sure you want to delete the document?', 'Delete document', {
 							primary: 'accept',
@@ -131,17 +135,18 @@
 					</script>
                                 <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                                 <div data-ts="Panel">
-                                    <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Dialog<span class="token punctuation">.</span><span class="token function">danger<span class="token punctuation">(</span></span><span class="token string">&apos;Are you sure you want to delete the document?&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;Delete document&apos;</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
-	primary<span class="token punctuation">:</span> <span class="token string">&apos;accept&apos;</span><span class="token punctuation">,</span>
+                                    <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Dialog<span class="token punctuation">.</span><span class="token function">danger<span class="token punctuation">(</span></span><span class="token string">'Are you sure you want to delete the document?'</span><span class="token punctuation">,</span> <span class="token string">'Delete document'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+	primary<span class="token punctuation">:</span> <span class="token string">'accept'</span><span class="token punctuation">,</span>
 	actions<span class="token punctuation">:</span> <span class="token punctuation">[</span>
 		<span class="token punctuation">{</span>
-			label <span class="token punctuation">:</span> <span class="token string">&apos;Archive Document&apos;</span><span class="token punctuation">,</span>
+			label <span class="token punctuation">:</span> <span class="token string">'Archive Document'</span><span class="token punctuation">,</span>
 			onclick<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-				ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Notification<span class="token punctuation">.</span><span class="token function">info<span class="token punctuation">(</span></span><span class="token string">&apos;You archive the document.&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+				ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Notification<span class="token punctuation">.</span><span class="token function">info<span class="token punctuation">(</span></span><span class="token string">'You archive the document.'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 			<span class="token punctuation">}</span>
 		<span class="token punctuation">}</span>
 	<span class="token punctuation">]</span>
-<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea>
+                                </div>
                             </figure>
                         </section>
                         <section>
@@ -149,7 +154,7 @@
                             <p>
                                 You can launch special dialogs to confirm choices of more dire consequence.
                             </p>
-                            <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.Dialog.warning(&apos;This%20will%20delete%20the%20thing.&apos;%2C%20&apos;Delete%20It&apos;%2C%20%7B%0A%09onaccept%3A%20function()%20%7B%0A%09%09ts.ui.Dialog.danger(%0A%09%09%09&apos;Are%20you%20absolutely%20sure%20you%20want%20to%20&apos;%20%2B%0A%09%09%09&apos;*permanently*%20delete%20the%20whole%20thing%3F&apos;%2C%0A%09%09%09&apos;Delete%20It&apos;%0A%09%09)%3B%0A%09%7D%0A%7D)%3B">
+                            <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.Dialog.warning('This%20will%20delete%20the%20thing.'%2C%20'Delete%20It'%2C%20%7B%0A%09onaccept%3A%20function()%20%7B%0A%09%09ts.ui.Dialog.danger(%0A%09%09%09'Are%20you%20absolutely%20sure%20you%20want%20to%20'%20%2B%0A%09%09%09'*permanently*%20delete%20the%20whole%20thing%3F'%2C%0A%09%09%09'Delete%20It'%0A%09%09)%3B%0A%09%7D%0A%7D)%3B">
                                 <script type="runnable">
                                     ts.ui.Dialog.warning('This will delete the thing.', 'Delete It', {
 							onaccept: function() {
@@ -163,15 +168,16 @@
 					</script>
                                 <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                                 <div data-ts="Panel">
-                                    <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Dialog<span class="token punctuation">.</span><span class="token function">warning<span class="token punctuation">(</span></span><span class="token string">&apos;This will delete the thing.&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;Delete It&apos;</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+                                    <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Dialog<span class="token punctuation">.</span><span class="token function">warning<span class="token punctuation">(</span></span><span class="token string">'This will delete the thing.'</span><span class="token punctuation">,</span> <span class="token string">'Delete It'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
 	onaccept<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
 		ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Dialog<span class="token punctuation">.</span><span class="token function">danger<span class="token punctuation">(</span></span>
-			<span class="token string">&apos;Are you absolutely sure you want to &apos;</span> <span class="token operator">+</span>
-			<span class="token string">&apos;*permanently* delete the whole thing?&apos;</span><span class="token punctuation">,</span>
-			<span class="token string">&apos;Delete It&apos;</span>
+			<span class="token string">'Are you absolutely sure you want to '</span> <span class="token operator">+</span>
+			<span class="token string">'*permanently* delete the whole thing?'</span><span class="token punctuation">,</span>
+			<span class="token string">'Delete It'</span>
 		<span class="token punctuation">)</span><span class="token punctuation">;</span>
 	<span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea>
+                                </div>
                             </figure>
                         </section>
                         <section>
@@ -182,7 +188,7 @@
                                 stick to the stock icons whenever possible so that the user can easily recognize the
                                 dialog type.
                             </p>
-                            <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.Dialog.confirm(&apos;Proceed%20to%20Checkout%3F&apos;%2C%20&apos;Check%20Out&apos;%2C%20%7B%0A%09icon%3A%20&apos;ts-icon-cart&apos;%2C%0A%09primary%3A%20&apos;accept&apos;%2C%0A%09focused%3A%20&apos;accept&apos;%0A%7D)%3B">
+                            <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.Dialog.confirm('Proceed%20to%20Checkout%3F'%2C%20'Check%20Out'%2C%20%7B%0A%09icon%3A%20'ts-icon-cart'%2C%0A%09primary%3A%20'accept'%2C%0A%09focused%3A%20'accept'%0A%7D)%3B">
                                 <script type="runnable">
                                     ts.ui.Dialog.confirm('Proceed to Checkout?', 'Check Out', {
 							icon: 'ts-icon-cart',
@@ -192,19 +198,20 @@
 					</script>
                                 <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                                 <div data-ts="Panel">
-                                    <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Dialog<span class="token punctuation">.</span><span class="token function">confirm<span class="token punctuation">(</span></span><span class="token string">&apos;Proceed to Checkout?&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;Check Out&apos;</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
-	icon<span class="token punctuation">:</span> <span class="token string">&apos;ts-icon-cart&apos;</span><span class="token punctuation">,</span>
-	primary<span class="token punctuation">:</span> <span class="token string">&apos;accept&apos;</span><span class="token punctuation">,</span>
-	focused<span class="token punctuation">:</span> <span class="token string">&apos;accept&apos;</span>
-<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
+                                    <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Dialog<span class="token punctuation">.</span><span class="token function">confirm<span class="token punctuation">(</span></span><span class="token string">'Proceed to Checkout?'</span><span class="token punctuation">,</span> <span class="token string">'Check Out'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+	icon<span class="token punctuation">:</span> <span class="token string">'ts-icon-cart'</span><span class="token punctuation">,</span>
+	primary<span class="token punctuation">:</span> <span class="token string">'accept'</span><span class="token punctuation">,</span>
+	focused<span class="token punctuation">:</span> <span class="token string">'accept'</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea>
+                                </div>
                             </figure>
                         </section>
                         <div data-ts="Note" class="sticky">
-                            <p>If you find a bug or need a feature&#x2026;</p>
+                            <p>If you find a bug or need a feature…</p>
                             <menu data-ts="Buttons">
                                 <li>
                                     <a data-ts="Button" target="_blank" href="https://github.com/Tradeshift/tradeshift-ui/issues/new" title="Submit new issue">
-                                        <span>Create GitHub Issue&#x2026;</span>
+                                        <span>Create GitHub Issue…</span>
                                     </a>
                                 </li>
                             </menu>
@@ -214,7 +221,7 @@
             </div>
         </div>
     </div>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-127106947-1"></script>
+    <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-127106947-1"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
 

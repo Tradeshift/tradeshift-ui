@@ -7,11 +7,11 @@
     <link rel="ts-app-icon" href="/v12/dist/assets/icon.svg">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
-    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.6.0.min.js"></script>
+    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.8.2.min.js"></script>
     <script src="/v12/dist/assets/dox.min.js"></script>
     <script src="/v12/dist/assets/mark.min.js"></script>
     <script src="/v12/dist/assets/jquery-2.2.4.min.js"></script>
-    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.6.0.min.css">
+    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.8.2.min.css">
     <link rel="stylesheet" href="/v12/dist/assets/dox.css">
     <link rel="prefetch" title="Table" href="index.html">
     <link rel="prefetch" title="Build" href="building.html">
@@ -62,7 +62,7 @@
                             <div class="splitscreen-container">
                                 <ul class="splitscreen">
                                     <li>
-                                        <figure data-ts="DoxScript" class="runnable" data-ts.code="var%20popup%20%3D%20ts.ui.Notification%3B%0Ats.ui.get(&apos;%23example8&apos;%2C%20function(table)%20%7B%0A%09table.rows(%5B%0A%09%09%5B&apos;A&apos;%2C%20&apos;D&apos;%2C%20&apos;G&apos;%5D%2C%0A%09%09%5B&apos;B&apos;%2C%20&apos;E&apos;%2C%20&apos;H&apos;%5D%2C%0A%09%09%5B&apos;C&apos;%2C%20&apos;F&apos;%2C%20&apos;I&apos;%5D%0A%09%5D)%3B%0A%09table.clickable(function(rowindex%2C%20cellindex)%20%7B%0A%09%09popup.success(&apos;Row%20&apos;%20%2B%20rowindex%20%2B%20&apos;%2C%20Cell%20&apos;%20%2B%20cellindex)%3B%0A%09%7D)%3B%0A%7D)%3B">
+                                        <figure data-ts="DoxScript" class="runnable" data-ts.code="var%20popup%20%3D%20ts.ui.Notification%3B%0Ats.ui.get('%23example8'%2C%20function(table)%20%7B%0A%09table.rows(%5B%0A%09%09%5B'A'%2C%20'D'%2C%20'G'%5D%2C%0A%09%09%5B'B'%2C%20'E'%2C%20'H'%5D%2C%0A%09%09%5B'C'%2C%20'F'%2C%20'I'%5D%0A%09%5D)%3B%0A%09table.clickable(function(rowindex%2C%20cellindex)%20%7B%0A%09%09popup.success('Row%20'%20%2B%20rowindex%20%2B%20'%2C%20Cell%20'%20%2B%20cellindex)%3B%0A%09%7D)%3B%0A%7D)%3B">
                                             <script type="runnable">
                                                 var popup = ts.ui.Notification;
 								ts.ui.get('#example8', table => {
@@ -79,16 +79,17 @@
                                             <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                                             <div data-ts="Panel">
                                                 <pre class="prism language-javascript"><code><span class="token keyword">var</span> popup <span class="token operator">=</span> ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Notification<span class="token punctuation">;</span>
-ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#example8&apos;</span><span class="token punctuation">,</span> table <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">'#example8'</span><span class="token punctuation">,</span> table <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
 	table<span class="token punctuation">.</span><span class="token function">rows<span class="token punctuation">(</span></span><span class="token punctuation">[</span>
-		<span class="token punctuation">[</span><span class="token string">&apos;A&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;D&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;G&apos;</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
-		<span class="token punctuation">[</span><span class="token string">&apos;B&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;E&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;H&apos;</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
-		<span class="token punctuation">[</span><span class="token string">&apos;C&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;F&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;I&apos;</span><span class="token punctuation">]</span>
+		<span class="token punctuation">[</span><span class="token string">'A'</span><span class="token punctuation">,</span> <span class="token string">'D'</span><span class="token punctuation">,</span> <span class="token string">'G'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+		<span class="token punctuation">[</span><span class="token string">'B'</span><span class="token punctuation">,</span> <span class="token string">'E'</span><span class="token punctuation">,</span> <span class="token string">'H'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+		<span class="token punctuation">[</span><span class="token string">'C'</span><span class="token punctuation">,</span> <span class="token string">'F'</span><span class="token punctuation">,</span> <span class="token string">'I'</span><span class="token punctuation">]</span>
 	<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 	table<span class="token punctuation">.</span><span class="token function">clickable<span class="token punctuation">(</span></span><span class="token keyword">function</span><span class="token punctuation">(</span>rowindex<span class="token punctuation">,</span> cellindex<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-		popup<span class="token punctuation">.</span><span class="token function">success<span class="token punctuation">(</span></span><span class="token string">&apos;Row &apos;</span> <span class="token operator">+</span> rowindex <span class="token operator">+</span> <span class="token string">&apos;, Cell &apos;</span> <span class="token operator">+</span> cellindex<span class="token punctuation">)</span><span class="token punctuation">;</span>
+		popup<span class="token punctuation">.</span><span class="token function">success<span class="token punctuation">(</span></span><span class="token string">'Row '</span> <span class="token operator">+</span> rowindex <span class="token operator">+</span> <span class="token string">', Cell '</span> <span class="token operator">+</span> cellindex<span class="token punctuation">)</span><span class="token punctuation">;</span>
 	<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea>
+                                            </div>
                                         </figure>
                                     </li>
                                     <li>
@@ -102,7 +103,7 @@ ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</s
             </div>
         </div>
     </div>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-127106947-1"></script>
+    <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-127106947-1"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
 

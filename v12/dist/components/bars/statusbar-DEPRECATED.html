@@ -7,35 +7,35 @@
     <link rel="ts-app-icon" href="/v12/dist/assets/icon.svg">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
-    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.6.0.min.js"></script>
+    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.8.2.min.js"></script>
     <script src="/v12/dist/assets/dox.min.js"></script>
     <script src="/v12/dist/assets/mark.min.js"></script>
     <script src="/v12/dist/assets/jquery-2.2.4.min.js"></script>
-    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.6.0.min.css">
+    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.8.2.min.css">
     <link rel="stylesheet" href="/v12/dist/assets/dox.css">
     <link rel="prefetch" title="TopBar" href="topbar.html">
     <link rel="prefetch" title="TabBar" href="tabbar.html">
     <link rel="prefetch" title="ToolBar" href="toolbar.html">
-    <script>
-        function goto(index) {
-            var tabs = ts.ui.Main.tabbar().tabs();
-            tabs.selectedIndex = index;
-        }
-    </script>
     <script>
         ts.dox.tabs()
     </script>
 </head>
 
 <body>
+    <script>
+        function goto(index) {
+            var tabs = ts.ui.Main.tabbar().tabs();
+            tabs.selectedIndex = index;
+        }
+    </script>
     <div data-ts="Panel" data-ts.label="Main StatusBar" data-ts.onselect="ts.ui.StatusBar.show()">
         <article>
-            <h1><span>Main StatusBar is deprecated &#x1F61E;</span></h1>
+            <h1><span>Main StatusBar is deprecated 😞</span></h1>
             <section class="desc">
                 <p>
                     This component is deprecated in favor of the
                     <a data-ts="Button" href="/v12/dist/components/footer/">Footer</a>. In a future release, the
-                    TopBar and TabBar and ToolBar will be collected in the equivalent &quot;Header&quot;. You can
+                    TopBar and TabBar and ToolBar will be collected in the equivalent "Header". You can
                     still use the StatusBar as an
                     <a data-ts="Button" href="javascript:goto(1)">inline</a> component
                 </p>
@@ -43,13 +43,13 @@
             <section class="desc">
                 <p>
                     Although the StatusBar can display status messages and features a
-                    <a href="#pager">Pager</a>, it&apos;s perfectly alright to use it just to show some
+                    <a href="#pager">Pager</a>, it's perfectly alright to use it just to show some
                     <a href="#buttons">buttons</a>.
                 </p>
             </section>
             <section>
                 <p>You can show a status message with basic Markdown support.</p>
-                <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.StatusBar.message(%0A%09&apos;The%20status%20message%20supports%20**bold**%20and%20*italic*%20text.&apos;%0A)%3B">
+                <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.StatusBar.message(%0A%09'The%20status%20message%20supports%20**bold**%20and%20*italic*%20text.'%0A)%3B">
                     <script type="runnable">
                         ts.ui.StatusBar.message(
 								'The status message supports **bold** and *italic* text.'
@@ -58,14 +58,15 @@
                     <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                     <div data-ts="Panel">
                         <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>StatusBar<span class="token punctuation">.</span><span class="token function">message<span class="token punctuation">(</span></span>
-	<span class="token string">&apos;The status message supports **bold** and *italic* text.&apos;</span>
-<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
+	<span class="token string">'The status message supports **bold** and *italic* text.'</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea>
+                    </div>
                 </figure>
                 <p>
                     If you call <code>linkable()</code>, you can also some links in the message. Beware of
                     phishing!
                 </p>
-                <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.StatusBar.linkable().message(%0A%09&apos;Please%20visit%20%5BTradeshift%5D(http%3A%2F%2Fwww.tradeshift.com)&apos;%0A)%3B">
+                <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.StatusBar.linkable().message(%0A%09'Please%20visit%20%5BTradeshift%5D(http%3A%2F%2Fwww.tradeshift.com)'%0A)%3B">
                     <script type="runnable">
                         ts.ui.StatusBar.linkable().message(
 								'Please visit [Tradeshift](http://www.tradeshift.com)'
@@ -74,13 +75,14 @@
                     <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                     <div data-ts="Panel">
                         <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>StatusBar<span class="token punctuation">.</span><span class="token function">linkable<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">message<span class="token punctuation">(</span></span>
-	<span class="token string">&apos;Please visit [Tradeshift](http://www.tradeshift.com)&apos;</span>
-<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
+	<span class="token string">'Please visit [Tradeshift](http://www.tradeshift.com)'</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea>
+                    </div>
                 </figure>
                 <p>
                     You can pass a callback function to be invoked whenever a link is clicked.
                 </p>
-                <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.StatusBar.linkable(function%20onclick(url)%20%7B%0A%09ts.ui.Notification.success(url)%3B%0A%09this.message(&apos;Thanks!&apos;)%3B%0A%7D).message(&apos;Please%20%5Bclick%20the%20link%5D(The%20URL%20can%20be%20any%20string)&apos;)%3B">
+                <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.StatusBar.linkable(function%20onclick(url)%20%7B%0A%09ts.ui.Notification.success(url)%3B%0A%09this.message('Thanks!')%3B%0A%7D).message('Please%20%5Bclick%20the%20link%5D(The%20URL%20can%20be%20any%20string)')%3B">
                     <script type="runnable">
                         ts.ui.StatusBar.linkable(function onclick(url) {
 								ts.ui.Notification.success(url);
@@ -91,17 +93,18 @@
                     <div data-ts="Panel">
                         <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>StatusBar<span class="token punctuation">.</span><span class="token function">linkable<span class="token punctuation">(</span></span><span class="token keyword">function</span> <span class="token function">onclick<span class="token punctuation">(</span></span>url<span class="token punctuation">)</span> <span class="token punctuation">{</span>
 	ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Notification<span class="token punctuation">.</span><span class="token function">success<span class="token punctuation">(</span></span>url<span class="token punctuation">)</span><span class="token punctuation">;</span>
-	<span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">message<span class="token punctuation">(</span></span><span class="token string">&apos;Thanks!&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">message<span class="token punctuation">(</span></span><span class="token string">&apos;Please [click the link](The URL can be any string)&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
+	<span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">message<span class="token punctuation">(</span></span><span class="token string">'Thanks!'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">message<span class="token punctuation">(</span></span><span class="token string">'Please [click the link](The URL can be any string)'</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea>
+                    </div>
                 </figure>
             </section>
             <h2 id="buttons"><span>StatusBar.buttons</span></h2>
             <section>
                 <p>
                     Add buttons to the StatusBar with the <code>buttons</code> method. This both sets and gets.
-                    If you omit the argument, you&quot;ll get the current buttons (jQuery style).
+                    If you omit the argument, you"ll get the current buttons (jQuery style).
                 </p>
-                <figure data-ts="DoxScript" class="attention runnable" data-ts.code="ts.ui.StatusBar.buttons(%5B%0A%09%7Blabel%20%3A%20&apos;Primary&apos;%2C%20type%20%3A%20&apos;ts-primary&apos;%7D%2C%0A%09%7Blabel%20%3A%20&apos;Secondary&apos;%2C%20type%20%3A%20&apos;ts-secondary&apos;%7D%2C%0A%09%7Blabel%20%3A%20&apos;Tertiary%20One&apos;%7D%2C%0A%09%7Blabel%20%3A%20&apos;Tertiary%20Two&apos;%7D%0A%5D)%3B">
+                <figure data-ts="DoxScript" class="attention runnable" data-ts.code="ts.ui.StatusBar.buttons(%5B%0A%09%7Blabel%20%3A%20'Primary'%2C%20type%20%3A%20'ts-primary'%7D%2C%0A%09%7Blabel%20%3A%20'Secondary'%2C%20type%20%3A%20'ts-secondary'%7D%2C%0A%09%7Blabel%20%3A%20'Tertiary%20One'%7D%2C%0A%09%7Blabel%20%3A%20'Tertiary%20Two'%7D%0A%5D)%3B">
                     <script type="runnable">
                         ts.ui.StatusBar.buttons([
 							{label : 'Primary', type : 'ts-primary'},
@@ -113,11 +116,12 @@
                     <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                     <div data-ts="Panel">
                         <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>StatusBar<span class="token punctuation">.</span><span class="token function">buttons<span class="token punctuation">(</span></span><span class="token punctuation">[</span>
-	<span class="token punctuation">{</span>label <span class="token punctuation">:</span> <span class="token string">&apos;Primary&apos;</span><span class="token punctuation">,</span> type <span class="token punctuation">:</span> <span class="token string">&apos;ts-primary&apos;</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
-	<span class="token punctuation">{</span>label <span class="token punctuation">:</span> <span class="token string">&apos;Secondary&apos;</span><span class="token punctuation">,</span> type <span class="token punctuation">:</span> <span class="token string">&apos;ts-secondary&apos;</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
-	<span class="token punctuation">{</span>label <span class="token punctuation">:</span> <span class="token string">&apos;Tertiary One&apos;</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
-	<span class="token punctuation">{</span>label <span class="token punctuation">:</span> <span class="token string">&apos;Tertiary Two&apos;</span><span class="token punctuation">}</span>
-<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
+	<span class="token punctuation">{</span>label <span class="token punctuation">:</span> <span class="token string">'Primary'</span><span class="token punctuation">,</span> type <span class="token punctuation">:</span> <span class="token string">'ts-primary'</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+	<span class="token punctuation">{</span>label <span class="token punctuation">:</span> <span class="token string">'Secondary'</span><span class="token punctuation">,</span> type <span class="token punctuation">:</span> <span class="token string">'ts-secondary'</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+	<span class="token punctuation">{</span>label <span class="token punctuation">:</span> <span class="token string">'Tertiary One'</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+	<span class="token punctuation">{</span>label <span class="token punctuation">:</span> <span class="token string">'Tertiary Two'</span><span class="token punctuation">}</span>
+<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea>
+                    </div>
                 </figure>
                 <p>
                     You can use array methods like <code>push</code>, <code>pop</code>, <code>shift</code>,
@@ -133,20 +137,21 @@
                         The StatusBar will automatically sort all buttons from primary to tertiary.
                     </li>
                     <li>
-                        If there&quot;s more than one tertiary button, these will be pushed to an Aside.
+                        If there"s more than one tertiary button, these will be pushed to an Aside.
                     </li>
                     <li>
                         In the mobile breakpoint, all the buttons will be pushed to an Aside.
                     </li>
                 </ul>
                 <p>
-                    Buttons won&quot;t actually do anything unless you define the
+                    Buttons won"t actually do anything unless you define the
                     <code>onclick</code> method.
                 </p>
                 <p>
-                    <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.StatusBar.buttons().splice(0%2C%201%2C%20%7B%0A%09label%20%3A%20&apos;Click%20me!&apos;%2C%0A%09type%20%3A%20&apos;ts-primary&apos;%2C%0A%09onclick%3A%20function()%20%7B%0A%09%09this.label%20%3D%20&apos;Thanks&apos;%3B%0A%09%7D%0A%7D)%3B">
-                        <script type="runnable">
-                            ts.ui.StatusBar.buttons().splice(0, 1, {
+                </p>
+                <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.StatusBar.buttons().splice(0%2C%201%2C%20%7B%0A%09label%20%3A%20'Click%20me!'%2C%0A%09type%20%3A%20'ts-primary'%2C%0A%09onclick%3A%20function()%20%7B%0A%09%09this.label%20%3D%20'Thanks'%3B%0A%09%7D%0A%7D)%3B">
+                    <script type="runnable">
+                        ts.ui.StatusBar.buttons().splice(0, 1, {
 								label : 'Click me!',
 								type : 'ts-primary',
 								onclick: function() {
@@ -154,17 +159,18 @@
 								}
 							});
 						</script>
-                        <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
-                        <div data-ts="Panel">
-                            <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>StatusBar<span class="token punctuation">.</span><span class="token function">buttons<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">splice<span class="token punctuation">(</span></span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
-	label <span class="token punctuation">:</span> <span class="token string">&apos;Click me!&apos;</span><span class="token punctuation">,</span>
-	type <span class="token punctuation">:</span> <span class="token string">&apos;ts-primary&apos;</span><span class="token punctuation">,</span>
+                    <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                    <div data-ts="Panel">
+                        <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>StatusBar<span class="token punctuation">.</span><span class="token function">buttons<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">splice<span class="token punctuation">(</span></span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+	label <span class="token punctuation">:</span> <span class="token string">'Click me!'</span><span class="token punctuation">,</span>
+	type <span class="token punctuation">:</span> <span class="token string">'ts-primary'</span><span class="token punctuation">,</span>
 	onclick<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-		<span class="token keyword">this</span><span class="token punctuation">.</span>label <span class="token operator">=</span> <span class="token string">&apos;Thanks&apos;</span><span class="token punctuation">;</span>
+		<span class="token keyword">this</span><span class="token punctuation">.</span>label <span class="token operator">=</span> <span class="token string">'Thanks'</span><span class="token punctuation">;</span>
 	<span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
-                    </figure>
-                </p>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea>
+                    </div>
+                </figure>
+                <p></p>
                 <p>
                     Fortunately, you can always change what happens when a button gets clicked.
                 </p>
@@ -180,20 +186,21 @@
                     <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                     <div data-ts="Panel">
                         <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>StatusBar<span class="token punctuation">.</span><span class="token function">buttons<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">forEach<span class="token punctuation">(</span></span><span class="token keyword">function</span><span class="token punctuation">(</span>button<span class="token punctuation">,</span> index<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-	button<span class="token punctuation">.</span>label <span class="token operator">=</span> <span class="token string">&quot;Button &quot;</span> <span class="token operator">+</span> <span class="token punctuation">(</span>index <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	button<span class="token punctuation">.</span>label <span class="token operator">=</span> <span class="token string">"Button "</span> <span class="token operator">+</span> <span class="token punctuation">(</span>index <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 	button<span class="token punctuation">.</span>onclick <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
 		ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Notification<span class="token punctuation">.</span><span class="token function">success<span class="token punctuation">(</span></span><span class="token keyword">this</span><span class="token punctuation">.</span>label<span class="token punctuation">)</span><span class="token punctuation">;</span>
 	<span class="token punctuation">}</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea>
+                    </div>
                 </figure>
                 <h3>Query buttons</h3>
                 <p>
                     You can locate buttons by index in the
-                    <code>buttons</code> collection. But since this isn&quot;t likely to match the order in which
-                    they appear on screen, it&quot;s easier to give the buttons an <code>id</code> and find them
+                    <code>buttons</code> collection. But since this isn"t likely to match the order in which
+                    they appear on screen, it"s easier to give the buttons an <code>id</code> and find them
                     using <code>buttons.get()</code>.
                 </p>
-                <figure data-ts="DoxScript" class="runnable" data-ts.code="var%20buttons%20%3D%20ts.ui.StatusBar.buttons()%3B%0Abuttons.push(%7B%20id%3A%20&apos;example-button&apos;%20%7D)%3B%0Avar%20button%20%3D%20buttons.get(&apos;example-button&apos;)%3B%0Abutton.label%20%3D%20&apos;My%20Button&apos;%3B%0Abutton.type%20%3D%20&apos;ts-secondary&apos;%3B">
+                <figure data-ts="DoxScript" class="runnable" data-ts.code="var%20buttons%20%3D%20ts.ui.StatusBar.buttons()%3B%0Abuttons.push(%7B%20id%3A%20'example-button'%20%7D)%3B%0Avar%20button%20%3D%20buttons.get('example-button')%3B%0Abutton.label%20%3D%20'My%20Button'%3B%0Abutton.type%20%3D%20'ts-secondary'%3B">
                     <script type="runnable">
                         var buttons = ts.ui.StatusBar.buttons();
 						buttons.push({ id: 'example-button' });
@@ -204,10 +211,11 @@
                     <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                     <div data-ts="Panel">
                         <pre class="prism language-javascript"><code><span class="token keyword">var</span> buttons <span class="token operator">=</span> ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>StatusBar<span class="token punctuation">.</span><span class="token function">buttons<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-buttons<span class="token punctuation">.</span><span class="token function">push<span class="token punctuation">(</span></span><span class="token punctuation">{</span> id<span class="token punctuation">:</span> <span class="token string">&apos;example-button&apos;</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token keyword">var</span> button <span class="token operator">=</span> buttons<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;example-button&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-button<span class="token punctuation">.</span>label <span class="token operator">=</span> <span class="token string">&apos;My Button&apos;</span><span class="token punctuation">;</span>
-button<span class="token punctuation">.</span>type <span class="token operator">=</span> <span class="token string">&apos;ts-secondary&apos;</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
+buttons<span class="token punctuation">.</span><span class="token function">push<span class="token punctuation">(</span></span><span class="token punctuation">{</span> id<span class="token punctuation">:</span> <span class="token string">'example-button'</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> button <span class="token operator">=</span> buttons<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">'example-button'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+button<span class="token punctuation">.</span>label <span class="token operator">=</span> <span class="token string">'My Button'</span><span class="token punctuation">;</span>
+button<span class="token punctuation">.</span>type <span class="token operator">=</span> <span class="token string">'ts-secondary'</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea>
+                    </div>
                 </figure>
                 <!--
 					<h3>Icon buttons</h3>
@@ -239,7 +247,8 @@ button<span class="token punctuation">.</span>type <span class="token operator">
 	<span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
 		button<span class="token punctuation">.</span><span class="token function">show<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 	<span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea>
+                    </div>
                 </figure>
                 <h3>Disable buttons</h3>
                 <p>
@@ -264,7 +273,8 @@ button<span class="token punctuation">.</span>type <span class="token operator">
 	<span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
 		button<span class="token punctuation">.</span><span class="token function">disable<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 	<span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea>
+                    </div>
                 </figure>
                 <h3>Busy buttons</h3>
                 <p>
@@ -285,10 +295,11 @@ button<span class="token punctuation">.</span>type <span class="token operator">
 button<span class="token punctuation">.</span><span class="token function">busy<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token function">setTimeout<span class="token punctuation">(</span></span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
 	button<span class="token punctuation">.</span><span class="token function">done<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token number">1000</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
+<span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token number">1000</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea>
+                    </div>
                 </figure>
                 <p>The <code>busy</code> method supports an optional status message.</p>
-                <figure data-ts="DoxScript" class="runnable" data-ts.code="var%20button%20%3D%20ts.ui.StatusBar.buttons()%5B0%5D%3B%0Abutton.busy(&apos;Making%20progress&apos;)%3B%0AsetTimeout(function()%20%7B%0A%09button.done()%3B%0A%7D%2C%201000)%3B">
+                <figure data-ts="DoxScript" class="runnable" data-ts.code="var%20button%20%3D%20ts.ui.StatusBar.buttons()%5B0%5D%3B%0Abutton.busy('Making%20progress')%3B%0AsetTimeout(function()%20%7B%0A%09button.done()%3B%0A%7D%2C%201000)%3B">
                     <script type="runnable">
                         var button = ts.ui.StatusBar.buttons()[0];
 						button.busy('Making progress');
@@ -299,16 +310,17 @@ button<span class="token punctuation">.</span><span class="token function">busy<
                     <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                     <div data-ts="Panel">
                         <pre class="prism language-javascript"><code><span class="token keyword">var</span> button <span class="token operator">=</span> ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>StatusBar<span class="token punctuation">.</span><span class="token function">buttons<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-button<span class="token punctuation">.</span><span class="token function">busy<span class="token punctuation">(</span></span><span class="token string">&apos;Making progress&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+button<span class="token punctuation">.</span><span class="token function">busy<span class="token punctuation">(</span></span><span class="token string">'Making progress'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token function">setTimeout<span class="token punctuation">(</span></span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
 	button<span class="token punctuation">.</span><span class="token function">done<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token number">1000</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
+<span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token number">1000</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea>
+                    </div>
                 </figure>
                 <h3>Button groups</h3>
                 <p>
                     You can also <em>group buttons in arrays</em> to create button groups that look like this:
                 </p>
-                <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.StatusBar.buttons(%5B%0A%09%7B%20label%3A%20&apos;Normal&apos;%7D%2C%0A%09%7B%20label%3A%20&apos;Normal&apos;%7D%2C%0A%09%5B%0A%09%09%7B%20label%3A%20&apos;Accept&apos;%2C%20type%3A%20&apos;ts-primary&apos;%20%7D%2C%0A%09%09%7B%20label%3A%20&apos;Reject&apos;%2C%20type%3A%20&apos;ts-danger&apos;%20%7D%0A%09%5D%0A%5D)%3B">
+                <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.StatusBar.buttons(%5B%0A%09%7B%20label%3A%20'Normal'%7D%2C%0A%09%7B%20label%3A%20'Normal'%7D%2C%0A%09%5B%0A%09%09%7B%20label%3A%20'Accept'%2C%20type%3A%20'ts-primary'%20%7D%2C%0A%09%09%7B%20label%3A%20'Reject'%2C%20type%3A%20'ts-danger'%20%7D%0A%09%5D%0A%5D)%3B">
                     <script type="runnable">
                         ts.ui.StatusBar.buttons([
 							{ label: 'Normal'},
@@ -322,18 +334,19 @@ button<span class="token punctuation">.</span><span class="token function">busy<
                     <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                     <div data-ts="Panel">
                         <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>StatusBar<span class="token punctuation">.</span><span class="token function">buttons<span class="token punctuation">(</span></span><span class="token punctuation">[</span>
-	<span class="token punctuation">{</span> label<span class="token punctuation">:</span> <span class="token string">&apos;Normal&apos;</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
-	<span class="token punctuation">{</span> label<span class="token punctuation">:</span> <span class="token string">&apos;Normal&apos;</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+	<span class="token punctuation">{</span> label<span class="token punctuation">:</span> <span class="token string">'Normal'</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+	<span class="token punctuation">{</span> label<span class="token punctuation">:</span> <span class="token string">'Normal'</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
 	<span class="token punctuation">[</span>
-		<span class="token punctuation">{</span> label<span class="token punctuation">:</span> <span class="token string">&apos;Accept&apos;</span><span class="token punctuation">,</span> type<span class="token punctuation">:</span> <span class="token string">&apos;ts-primary&apos;</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
-		<span class="token punctuation">{</span> label<span class="token punctuation">:</span> <span class="token string">&apos;Reject&apos;</span><span class="token punctuation">,</span> type<span class="token punctuation">:</span> <span class="token string">&apos;ts-danger&apos;</span> <span class="token punctuation">}</span>
+		<span class="token punctuation">{</span> label<span class="token punctuation">:</span> <span class="token string">'Accept'</span><span class="token punctuation">,</span> type<span class="token punctuation">:</span> <span class="token string">'ts-primary'</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+		<span class="token punctuation">{</span> label<span class="token punctuation">:</span> <span class="token string">'Reject'</span><span class="token punctuation">,</span> type<span class="token punctuation">:</span> <span class="token string">'ts-danger'</span> <span class="token punctuation">}</span>
 	<span class="token punctuation">]</span>
-<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
+<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea>
+                    </div>
                 </figure>
                 <p>
                     You can of course also create grouped buttons with icons instead of text.
                 </p>
-                <figure data-ts="DoxScript" class="runnable" data-ts.code="var%20group%20%3D%20ts.ui.StatusBar.buttons()%5B2%5D%3B%0Agroup.push(%7B%0A%09icon%3A%20&apos;ts-icon-other&apos;%2C%0A%09type%3A%20&apos;ts-secondary&apos;%0A%7D)%3B">
+                <figure data-ts="DoxScript" class="runnable" data-ts.code="var%20group%20%3D%20ts.ui.StatusBar.buttons()%5B2%5D%3B%0Agroup.push(%7B%0A%09icon%3A%20'ts-icon-other'%2C%0A%09type%3A%20'ts-secondary'%0A%7D)%3B">
                     <script type="runnable">
                         var group = ts.ui.StatusBar.buttons()[2];
 						group.push({
@@ -345,14 +358,15 @@ button<span class="token punctuation">.</span><span class="token function">busy<
                     <div data-ts="Panel">
                         <pre class="prism language-javascript"><code><span class="token keyword">var</span> group <span class="token operator">=</span> ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>StatusBar<span class="token punctuation">.</span><span class="token function">buttons<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
 group<span class="token punctuation">.</span><span class="token function">push<span class="token punctuation">(</span></span><span class="token punctuation">{</span>
-	icon<span class="token punctuation">:</span> <span class="token string">&apos;ts-icon-other&apos;</span><span class="token punctuation">,</span>
-	type<span class="token punctuation">:</span> <span class="token string">&apos;ts-secondary&apos;</span>
-<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
+	icon<span class="token punctuation">:</span> <span class="token string">'ts-icon-other'</span><span class="token punctuation">,</span>
+	type<span class="token punctuation">:</span> <span class="token string">'ts-secondary'</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea>
+                    </div>
                 </figure>
             </section>
             <section>
                 <p>
-                    Here&quot;s a summary of the <code>buttons</code> collection and <code>button</code> model.
+                    Here"s a summary of the <code>buttons</code> collection and <code>button</code> model.
                 </p>
                 <div data-ts="DoxApi" data-ts.code="%7B%0A%09%22name%22%3A%20%22ts.ui.ButtonCollection%22%2C%0A%09%22methods%22%3A%20%5B%0A%09%09%7B%0A%09%09%09%22name%22%3A%20%22push%22%2C%0A%09%09%09%22args%22%3A%20%22o1%2C%20o2%2C%20...%22%2C%0A%09%09%09%22desc%22%3A%20%22Add%20button(s)%20to%20the%20end%20of%20the%20collection.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09%22name%22%3A%20%22unshift%22%2C%0A%09%09%09%22args%22%3A%20%22o1%2C%20o2%2C%20...%22%2C%0A%09%09%09%22desc%22%3A%20%22Add%20button(s)%20to%20the%20front%20of%20the%20collection.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09%22name%22%3A%20%22pop%22%2C%0A%09%09%09%22desc%22%3A%20%22Remove%20and%20return%20the%20last%20button.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09%22name%22%3A%20%22shift%22%2C%0A%09%09%09%22desc%22%3A%20%22Remove%20and%20return%20the%20first%20button.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09%22name%22%3A%20%22splice%22%2C%0A%09%09%09%22args%22%3A%20%22i%2C%20d%2C%20o1%2C%20o2%2C%20...%22%2C%0A%09%09%09%22desc%22%3A%20%22Insert%20button(s)%20at%20%60i%60%2C%20optionally%20deleting%20%60d%60%20amount%20of%20buttons.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09%22name%22%3A%20%22get%22%2C%0A%09%09%09%22args%22%3A%20%22string%7Cnumber%22%2C%0A%09%09%09%22desc%22%3A%20%22Get%20button%20by%20%60id%60%20or%20numeric%20index.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09%22name%22%3A%20%22clear%22%2C%0A%09%09%09%22desc%22%3A%20%22Remove%20all%20buttons.%22%0A%09%09%7D%0A%09%5D%0A%7D">
                 </div>
@@ -380,7 +394,8 @@ group<span class="token punctuation">.</span><span class="token function">push<s
 	onselect<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span>page<span class="token punctuation">)</span> <span class="token punctuation">{</span>
 		console<span class="token punctuation">.</span><span class="token function">log<span class="token punctuation">(</span></span>page<span class="token punctuation">)</span><span class="token punctuation">;</span>
 	<span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea>
+                    </div>
                 </figure>
                 <p>
                     To make room for the Pager, and to make it look nice center-aligned, any potential
@@ -393,7 +408,7 @@ group<span class="token punctuation">.</span><span class="token function">push<s
                     <i class="ts-icon-todo"></i>
                     <p>
                         TODO: Explain how the statusbar behaves in mobile view. Also, we might need to split
-                        long status messages into two lines when the window is resizing. For now, we&apos;ll just
+                        long status messages into two lines when the window is resizing. For now, we'll just
                         pretend that all users have desktop-sized screens.
                     </p>
                 </div>
@@ -413,7 +428,7 @@ group<span class="token punctuation">.</span><span class="token function">push<s
             </section>
             <section>
                 <p>
-                    Assign <code class="attr-pair"><span>data-ts</span>=&quot;<span>StatusBar</span>&quot;</code> to a <code class="el">footer</code> or <code class="el">menu</code> to
+                    Assign <code class="attr-pair"><span>data-ts</span>="<span>StatusBar</span>"</code> to a <code class="el">footer</code> or <code class="el">menu</code> to
                     initialize it as a StatusBar. Another attribute <code class="attr-pair"><span>data-ts.message</span></code> displays the
                     message.
                 </p>
@@ -423,20 +438,20 @@ group<span class="token punctuation">.</span><span class="token function">push<s
                     </script>
                     <ul data-ts="Panels">
                         <li data-ts="Panel" data-ts.selected="true">
-                            <pre class="prism language-markup"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>footer</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>StatusBar<span class="token punctuation">&quot;</span></span> <span class="token attr-name">data-ts</span>.<span class="token attr-name">message</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>This is my StatusBar<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>footer</span><span class="token punctuation">&gt;</span></span></code></pre>
+                            <pre class="prism language-markup"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>footer</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>StatusBar<span class="token punctuation">"</span></span> <span class="token attr-name">data-ts</span>.<span class="token attr-name">message</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>This is my StatusBar<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>footer</span><span class="token punctuation">&gt;</span></span></code></pre>
                         </li>
                     </ul>
                 </figure>
                 <p>
-                    The StatusBar has no default outline, so we&apos;ve fitted ours with a dropshadow. In your
+                    The StatusBar has no default outline, so we've fitted ours with a dropshadow. In your
                     app, any such outlining should be done under consideration of the neighboring elements.
                 </p>
                 <menu data-ts="StatusBar" id="mystatusbar" data-ts.message="This is my StatusBar" class="dox-dropshadow"></menu>
                 <p>
                     You can get a hold of the component using a CSS selector and call any of the methods
-                    we&apos;ve seen applicable to the Main ToolBar. Notice what happens when we add content.
+                    we've seen applicable to the Main ToolBar. Notice what happens when we add content.
                 </p>
-                <figure data-ts="DoxScript" class="attention runnable" data-ts.code="ts.ui.get(&apos;%23mystatusbar&apos;%2C%20function(statusbar)%20%7B%0A%09statusbar.buttons(%5B%0A%09%09%7Blabel%3A%20&apos;One&apos;%2C%20type%3A%20&apos;ts-primary&apos;%7D%2C%0A%09%09%7Blabel%3A%20&apos;Two&apos;%2C%20type%3A%20&apos;ts-secondary&apos;%7D%2C%0A%09%09%7Blabel%3A%20&apos;Three&apos;%7D%0A%09%5D).pager(%7B%0A%09%09pages%3A%2023%0A%09%7D).message(&apos;The%20layout%20has%20changed!&apos;)%3B%0A%7D)%3B">
+                <figure data-ts="DoxScript" class="attention runnable" data-ts.code="ts.ui.get('%23mystatusbar'%2C%20function(statusbar)%20%7B%0A%09statusbar.buttons(%5B%0A%09%09%7Blabel%3A%20'One'%2C%20type%3A%20'ts-primary'%7D%2C%0A%09%09%7Blabel%3A%20'Two'%2C%20type%3A%20'ts-secondary'%7D%2C%0A%09%09%7Blabel%3A%20'Three'%7D%0A%09%5D).pager(%7B%0A%09%09pages%3A%2023%0A%09%7D).message('The%20layout%20has%20changed!')%3B%0A%7D)%3B">
                     <script type="runnable">
                         ts.ui.get('#mystatusbar', statusbar => {
 								statusbar.buttons([
@@ -450,15 +465,16 @@ group<span class="token punctuation">.</span><span class="token function">push<s
 						</script>
                     <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                     <div data-ts="Panel">
-                        <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#mystatusbar&apos;</span><span class="token punctuation">,</span> statusbar <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+                        <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">'#mystatusbar'</span><span class="token punctuation">,</span> statusbar <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
 	statusbar<span class="token punctuation">.</span><span class="token function">buttons<span class="token punctuation">(</span></span><span class="token punctuation">[</span>
-		<span class="token punctuation">{</span>label<span class="token punctuation">:</span> <span class="token string">&apos;One&apos;</span><span class="token punctuation">,</span> type<span class="token punctuation">:</span> <span class="token string">&apos;ts-primary&apos;</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
-		<span class="token punctuation">{</span>label<span class="token punctuation">:</span> <span class="token string">&apos;Two&apos;</span><span class="token punctuation">,</span> type<span class="token punctuation">:</span> <span class="token string">&apos;ts-secondary&apos;</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
-		<span class="token punctuation">{</span>label<span class="token punctuation">:</span> <span class="token string">&apos;Three&apos;</span><span class="token punctuation">}</span>
+		<span class="token punctuation">{</span>label<span class="token punctuation">:</span> <span class="token string">'One'</span><span class="token punctuation">,</span> type<span class="token punctuation">:</span> <span class="token string">'ts-primary'</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+		<span class="token punctuation">{</span>label<span class="token punctuation">:</span> <span class="token string">'Two'</span><span class="token punctuation">,</span> type<span class="token punctuation">:</span> <span class="token string">'ts-secondary'</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+		<span class="token punctuation">{</span>label<span class="token punctuation">:</span> <span class="token string">'Three'</span><span class="token punctuation">}</span>
 	<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">pager<span class="token punctuation">(</span></span><span class="token punctuation">{</span>
 		pages<span class="token punctuation">:</span> <span class="token number">23</span>
-	<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">message<span class="token punctuation">(</span></span><span class="token string">&apos;The layout has changed!&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
+	<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">message<span class="token punctuation">(</span></span><span class="token string">'The layout has changed!'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea>
+                    </div>
                 </figure>
                 <p>
                     Because there is limited horizontal space available, the StatusBar has snapped into a
@@ -466,7 +482,7 @@ group<span class="token punctuation">.</span><span class="token function">push<s
                     enable, but you can in any case intercept this change with the
                     <code>onlayout</code> callback.
                 </p>
-                <figure data-ts="DoxScript" class="runnable" data-ts.code="var%20statusbar%20%3D%20ts.ui.get(&apos;%23mystatusbar&apos;)%3B%0Astatusbar.onlayout%20%3D%20function()%20%7B%0A%09this.message(&apos;The%20layout%20has%20changed%20again!!!&apos;)%3B%0A%7D%3B%0Astatusbar.pager(null)%3B%20%2F%2F%20just%20to%20show%20that%20it%20works...">
+                <figure data-ts="DoxScript" class="runnable" data-ts.code="var%20statusbar%20%3D%20ts.ui.get('%23mystatusbar')%3B%0Astatusbar.onlayout%20%3D%20function()%20%7B%0A%09this.message('The%20layout%20has%20changed%20again!!!')%3B%0A%7D%3B%0Astatusbar.pager(null)%3B%20%2F%2F%20just%20to%20show%20that%20it%20works...">
                     <script type="runnable">
                         var statusbar = ts.ui.get('#mystatusbar');
 							statusbar.onlayout = function() {
@@ -476,17 +492,18 @@ group<span class="token punctuation">.</span><span class="token function">push<s
 						</script>
                     <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                     <div data-ts="Panel">
-                        <pre class="prism language-javascript"><code><span class="token keyword">var</span> statusbar <span class="token operator">=</span> ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#mystatusbar&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                        <pre class="prism language-javascript"><code><span class="token keyword">var</span> statusbar <span class="token operator">=</span> ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">'#mystatusbar'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 statusbar<span class="token punctuation">.</span>onlayout <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-	<span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">message<span class="token punctuation">(</span></span><span class="token string">&apos;The layout has changed again!!!&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">message<span class="token punctuation">(</span></span><span class="token string">'The layout has changed again!!!'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
-statusbar<span class="token punctuation">.</span><span class="token function">pager<span class="token punctuation">(</span></span><span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// just to show that it works...</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
+statusbar<span class="token punctuation">.</span><span class="token function">pager<span class="token punctuation">(</span></span><span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// just to show that it works...</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea>
+                    </div>
                 </figure>
                 <p>This is a work in progress.</p>
             </section>
         </article>
     </div>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-127106947-1"></script>
+    <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-127106947-1"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
 

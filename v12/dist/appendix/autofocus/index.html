@@ -7,11 +7,11 @@
     <link rel="ts-app-icon" href="/v12/dist/assets/icon.svg">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
-    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.6.0.min.js"></script>
+    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.8.2.min.js"></script>
     <script src="/v12/dist/assets/dox.min.js"></script>
     <script src="/v12/dist/assets/mark.min.js"></script>
     <script src="/v12/dist/assets/jquery-2.2.4.min.js"></script>
-    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.6.0.min.css">
+    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.8.2.min.css">
     <link rel="stylesheet" href="/v12/dist/assets/dox.css">
     <script src="index.js"></script>
     <style>
@@ -39,8 +39,8 @@
                         <h1><span>Automagic focus</span></h1>
                         <section class="desc">
                             <p>
-                                On this page, we&apos;ve added a
-                                <strong tabindex="0" autofocus>yellow outline</strong> to the focused element.
+                                On this page, we've added a
+                                <strong tabindex="0" autofocus="">yellow outline</strong> to the focused element.
                             </p>
                         </section>
                         <section>
@@ -57,19 +57,19 @@
 					</div>
 					-->
                             <p>
-                                In Notifications and Asides, we&apos;ll always attempt to focus something even if we can&apos;t find
+                                In Notifications and Asides, we'll always attempt to focus something even if we can't find
                                 any element with the
                                 <code class="attr-pair"><span>autofocus</span></code> attribute. Click the buttons to see.
                             </p>
                             <menu data-ts="Buttons" class="ts-t-t">
                                 <li>
                                     <button data-ts="Button" class="ts-secondary" onclick="notification()">
-                                        <span>Open the Notification&#x2026;</span>
+                                        <span>Open the Notification…</span>
                                     </button>
                                 </li>
                                 <li>
-                                    <button data-ts="Button" class="ts-secondary" onclick="toggle(&apos;#one&apos;)">
-                                        <span>Open the Aside&#x2026;</span>
+                                    <button data-ts="Button" class="ts-secondary" onclick="toggle('#one')">
+                                        <span>Open the Aside…</span>
                                     </button>
                                 </li>
                             </menu>
@@ -79,11 +79,11 @@
                             </div>
                         </section>
                         <div data-ts="Note" class="sticky">
-                            <p>If you find a bug or need a feature&#x2026;</p>
+                            <p>If you find a bug or need a feature…</p>
                             <menu data-ts="Buttons">
                                 <li>
                                     <a data-ts="Button" target="_blank" href="https://github.com/Tradeshift/tradeshift-ui/issues/new" title="Submit new issue">
-                                        <span>Create GitHub Issue&#x2026;</span>
+                                        <span>Create GitHub Issue…</span>
                                     </a>
                                 </li>
                             </menu>
@@ -103,7 +103,7 @@
         <div data-ts="Panel">
             <menu data-ts="Buttons">
                 <li>
-                    <button data-ts="Button" onclick="toggle(&apos;#two&apos;)" class="ts-primary">
+                    <button data-ts="Button" onclick="toggle('#two')" class="ts-primary">
                         <span>Open next aside</span>
                     </button>
                 </li>
@@ -114,7 +114,7 @@
         <div data-ts="Panel">
             <menu data-ts="Buttons">
                 <li>
-                    <button data-ts="Button" onclick="toggle(&apos;#three&apos;)" class="ts-primary">
+                    <button data-ts="Button" onclick="toggle('#three')" class="ts-primary">
                         <span>Open next aside</span>
                     </button>
                 </li>
@@ -125,7 +125,7 @@
         <div data-ts="Panel">
             <menu data-ts="Buttons">
                 <li>
-                    <button data-ts="Button" onclick="toggle(&apos;#one&apos;, &apos;#two&apos;, &apos;#three&apos;)" class="ts-primary">
+                    <button data-ts="Button" onclick="toggle('#one', '#two', '#three')" class="ts-primary">
                         <span>Thanks, now close them</span>
                     </button>
                 </li>
@@ -139,7 +139,7 @@
             </div>
         </div>
     </aside>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-127106947-1"></script>
+    <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-127106947-1"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
 

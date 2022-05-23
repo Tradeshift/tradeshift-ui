@@ -7,11 +7,11 @@
     <link rel="ts-app-icon" href="/v12/dist/assets/icon.svg">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
-    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.6.0.min.js"></script>
+    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.8.2.min.js"></script>
     <script src="/v12/dist/assets/dox.min.js"></script>
     <script src="/v12/dist/assets/mark.min.js"></script>
     <script src="/v12/dist/assets/jquery-2.2.4.min.js"></script>
-    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.6.0.min.css">
+    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.8.2.min.css">
     <link rel="stylesheet" href="/v12/dist/assets/dox.css">
     <link rel="prefetch" title="Table" href="index.html">
     <link rel="prefetch" title="Build" href="building.html">
@@ -57,7 +57,7 @@
                             <div class="splitscreen-container">
                                 <ul class="splitscreen">
                                     <li>
-                                        <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.get(&apos;%23table1&apos;%2C%20function(table)%20%7B%0A%09table.rows(%5B%0A%09%09%5B&apos;*Italic%20text*&apos;%5D%2C%0A%09%09%5B&apos;**Strong%20text**&apos;%5D%2C%0A%09%09%5B&apos;~~Strike%20text~~&apos;%5D%2C%0A%09%09%5B&apos;%60monotype%20text%60&apos;%5D%0A%09%5D)%3B%0A%7D)%3B">
+                                        <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.get('%23table1'%2C%20function(table)%20%7B%0A%09table.rows(%5B%0A%09%09%5B'*Italic%20text*'%5D%2C%0A%09%09%5B'**Strong%20text**'%5D%2C%0A%09%09%5B'~~Strike%20text~~'%5D%2C%0A%09%09%5B'%60monotype%20text%60'%5D%0A%09%5D)%3B%0A%7D)%3B">
                                             <script type="runnable">
                                                 ts.ui.get('#table1', table => {
 									table.rows([
@@ -70,14 +70,15 @@
 							</script>
                                             <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                                             <div data-ts="Panel">
-                                                <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#table1&apos;</span><span class="token punctuation">,</span> table <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+                                                <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">'#table1'</span><span class="token punctuation">,</span> table <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
 	table<span class="token punctuation">.</span><span class="token function">rows<span class="token punctuation">(</span></span><span class="token punctuation">[</span>
-		<span class="token punctuation">[</span><span class="token string">&apos;*Italic text*&apos;</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
-		<span class="token punctuation">[</span><span class="token string">&apos;**Strong text**&apos;</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
-		<span class="token punctuation">[</span><span class="token string">&apos;~~Strike text~~&apos;</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
-		<span class="token punctuation">[</span><span class="token string">&apos;`monotype text`&apos;</span><span class="token punctuation">]</span>
+		<span class="token punctuation">[</span><span class="token string">'*Italic text*'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+		<span class="token punctuation">[</span><span class="token string">'**Strong text**'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+		<span class="token punctuation">[</span><span class="token string">'~~Strike text~~'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+		<span class="token punctuation">[</span><span class="token string">'`monotype text`'</span><span class="token punctuation">]</span>
 	<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea>
+                                            </div>
                                         </figure>
                                     </li>
                                     <li>
@@ -92,7 +93,7 @@
                             <div class="splitscreen-container">
                                 <ul class="splitscreen">
                                     <li>
-                                        <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.get(&apos;%23table2&apos;%2C%20function(table)%20%7B%0A%09table.rows(%5B%0A%09%09%5B&apos;Para%201%5Cn%5Cn%5CPara%202%5Cn%5CnPara%203&apos;%5D%2C%0A%09%09%5B&apos;*%20Item%201%5Cn*%20Item%202%5Cn*%20Item%203&apos;%5D%0A%09%5D)%3B%0A%7D)%3B">
+                                        <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.get('%23table2'%2C%20function(table)%20%7B%0A%09table.rows(%5B%0A%09%09%5B'Para%201%5Cn%5Cn%5CPara%202%5Cn%5CnPara%203'%5D%2C%0A%09%09%5B'*%20Item%201%5Cn*%20Item%202%5Cn*%20Item%203'%5D%0A%09%5D)%3B%0A%7D)%3B">
                                             <script type="runnable">
                                                 ts.ui.get('#table2', table => {
 									table.rows([
@@ -103,12 +104,13 @@
 							</script>
                                             <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                                             <div data-ts="Panel">
-                                                <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#table2&apos;</span><span class="token punctuation">,</span> table <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+                                                <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">'#table2'</span><span class="token punctuation">,</span> table <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
 	table<span class="token punctuation">.</span><span class="token function">rows<span class="token punctuation">(</span></span><span class="token punctuation">[</span>
-		<span class="token punctuation">[</span><span class="token string">&apos;Para 1\n\n\Para 2\n\nPara 3&apos;</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
-		<span class="token punctuation">[</span><span class="token string">&apos;* Item 1\n* Item 2\n* Item 3&apos;</span><span class="token punctuation">]</span>
+		<span class="token punctuation">[</span><span class="token string">'Para 1\n\n\Para 2\n\nPara 3'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+		<span class="token punctuation">[</span><span class="token string">'* Item 1\n* Item 2\n* Item 3'</span><span class="token punctuation">]</span>
 	<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea>
+                                            </div>
                                         </figure>
                                     </li>
                                     <li>
@@ -117,14 +119,14 @@
                                 </ul>
                             </div>
                             <p>
-                                To support links, you&apos;ll first need to call the
+                                To support links, you'll first need to call the
                                 <code>linkable</code> method, just to remind yourself that you may now become exposed to
                                 phishing attacks.
                             </p>
                             <div class="splitscreen-container">
                                 <ul class="splitscreen">
                                     <li>
-                                        <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.get(&apos;%23table3&apos;%2C%20function(table)%20%7B%0A%09table.linkable()%3B%0A%09table.rows(%5B%0A%09%09%5B&apos;Please%20visit%20%5BTradeshift%5D(http%3A%2F%2Fwww.tradeshift.com)&apos;%5D%0A%09%5D)%3B%0A%7D)%3B">
+                                        <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.get('%23table3'%2C%20function(table)%20%7B%0A%09table.linkable()%3B%0A%09table.rows(%5B%0A%09%09%5B'Please%20visit%20%5BTradeshift%5D(http%3A%2F%2Fwww.tradeshift.com)'%5D%0A%09%5D)%3B%0A%7D)%3B">
                                             <script type="runnable">
                                                 ts.ui.get('#table3', table => {
 									table.linkable();
@@ -135,12 +137,13 @@
 							</script>
                                             <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                                             <div data-ts="Panel">
-                                                <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#table3&apos;</span><span class="token punctuation">,</span> table <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+                                                <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">'#table3'</span><span class="token punctuation">,</span> table <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
 	table<span class="token punctuation">.</span><span class="token function">linkable<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 	table<span class="token punctuation">.</span><span class="token function">rows<span class="token punctuation">(</span></span><span class="token punctuation">[</span>
-		<span class="token punctuation">[</span><span class="token string">&apos;Please visit [Tradeshift](http://www.tradeshift.com)&apos;</span><span class="token punctuation">]</span>
+		<span class="token punctuation">[</span><span class="token string">'Please visit [Tradeshift](http://www.tradeshift.com)'</span><span class="token punctuation">]</span>
 	<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea>
+                                            </div>
                                         </figure>
                                     </li>
                                     <li>
@@ -155,12 +158,12 @@
                             </p>
                             <p>
                                 If you need to support links only in specific column, you can set the
-                                <code>linkable</code> property to <code>true</code> in a column&apos;s config:
+                                <code>linkable</code> property to <code>true</code> in a column's config:
                             </p>
                             <div class="splitscreen-container">
                                 <ul class="splitscreen">
                                     <li>
-                                        <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.get(&apos;%23table4&apos;%2C%20function(table)%20%7B%0A%09table.cols(%5B%0A%09%09%7Blabel%3A%20&apos;Disabled%20link%20column&apos;%7D%2C%0A%09%09%7Blabel%3A%20&apos;Not%20disabled%20link%20column&apos;%2C%20linkable%3A%20true%7D%0A%09%5D)%3B%0A%09table.rows(%5B%0A%09%09%5B&apos;Please%20visit%20%5BTradeshift%5D(http%3A%2F%2Fwww.tradeshift.com)&apos;%2C%20&apos;Please%20visit%20%5BTradeshift%5D(http%3A%2F%2Fwww.tradeshift.com)&apos;%5D%0A%09%5D)%3B%0A%7D)%3B">
+                                        <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.get('%23table4'%2C%20function(table)%20%7B%0A%09table.cols(%5B%0A%09%09%7Blabel%3A%20'Disabled%20link%20column'%7D%2C%0A%09%09%7Blabel%3A%20'Not%20disabled%20link%20column'%2C%20linkable%3A%20true%7D%0A%09%5D)%3B%0A%09table.rows(%5B%0A%09%09%5B'Please%20visit%20%5BTradeshift%5D(http%3A%2F%2Fwww.tradeshift.com)'%2C%20'Please%20visit%20%5BTradeshift%5D(http%3A%2F%2Fwww.tradeshift.com)'%5D%0A%09%5D)%3B%0A%7D)%3B">
                                             <script type="runnable">
                                                 ts.ui.get('#table4', table => {
 									table.cols([
@@ -174,15 +177,16 @@
 							</script>
                                             <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                                             <div data-ts="Panel">
-                                                <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#table4&apos;</span><span class="token punctuation">,</span> table <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+                                                <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">'#table4'</span><span class="token punctuation">,</span> table <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
 	table<span class="token punctuation">.</span><span class="token function">cols<span class="token punctuation">(</span></span><span class="token punctuation">[</span>
-		<span class="token punctuation">{</span>label<span class="token punctuation">:</span> <span class="token string">&apos;Disabled link column&apos;</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
-		<span class="token punctuation">{</span>label<span class="token punctuation">:</span> <span class="token string">&apos;Not disabled link column&apos;</span><span class="token punctuation">,</span> linkable<span class="token punctuation">:</span> <span class="token keyword">true</span><span class="token punctuation">}</span>
+		<span class="token punctuation">{</span>label<span class="token punctuation">:</span> <span class="token string">'Disabled link column'</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+		<span class="token punctuation">{</span>label<span class="token punctuation">:</span> <span class="token string">'Not disabled link column'</span><span class="token punctuation">,</span> linkable<span class="token punctuation">:</span> <span class="token keyword">true</span><span class="token punctuation">}</span>
 	<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 	table<span class="token punctuation">.</span><span class="token function">rows<span class="token punctuation">(</span></span><span class="token punctuation">[</span>
-		<span class="token punctuation">[</span><span class="token string">&apos;Please visit [Tradeshift](http://www.tradeshift.com)&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;Please visit [Tradeshift](http://www.tradeshift.com)&apos;</span><span class="token punctuation">]</span>
+		<span class="token punctuation">[</span><span class="token string">'Please visit [Tradeshift](http://www.tradeshift.com)'</span><span class="token punctuation">,</span> <span class="token string">'Please visit [Tradeshift](http://www.tradeshift.com)'</span><span class="token punctuation">]</span>
 	<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea>
+                                            </div>
                                         </figure>
                                     </li>
                                     <li>
@@ -198,7 +202,7 @@
                             <div class="splitscreen-container">
                                 <ul class="splitscreen">
                                     <li>
-                                        <figure data-ts="DoxScript" class="runnable" data-ts.code="var%20popup%20%3D%20ts.ui.Notification%3B%0Ats.ui.get(&apos;%23table5&apos;%2C%20function(table)%20%7B%0A%09table.linkable(function%20onlink(anystring)%20%7B%0A%09%09popup.success(anystring)%3B%0A%09%7D).rows(%5B%0A%09%09%5B&apos;Choose%20link%20%5Bone%5D(ONE)%20or%20%5Btwo%5D(TWO)%20or%20%5Bthree%5D(THREE).&apos;%5D%0A%09%5D)%3B%0A%7D)%3B">
+                                        <figure data-ts="DoxScript" class="runnable" data-ts.code="var%20popup%20%3D%20ts.ui.Notification%3B%0Ats.ui.get('%23table5'%2C%20function(table)%20%7B%0A%09table.linkable(function%20onlink(anystring)%20%7B%0A%09%09popup.success(anystring)%3B%0A%09%7D).rows(%5B%0A%09%09%5B'Choose%20link%20%5Bone%5D(ONE)%20or%20%5Btwo%5D(TWO)%20or%20%5Bthree%5D(THREE).'%5D%0A%09%5D)%3B%0A%7D)%3B">
                                             <script type="runnable">
                                                 var popup = ts.ui.Notification;
 								ts.ui.get('#table5', table => {
@@ -212,13 +216,14 @@
                                             <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                                             <div data-ts="Panel">
                                                 <pre class="prism language-javascript"><code><span class="token keyword">var</span> popup <span class="token operator">=</span> ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Notification<span class="token punctuation">;</span>
-ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#table5&apos;</span><span class="token punctuation">,</span> table <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">'#table5'</span><span class="token punctuation">,</span> table <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
 	table<span class="token punctuation">.</span><span class="token function">linkable<span class="token punctuation">(</span></span><span class="token keyword">function</span> <span class="token function">onlink<span class="token punctuation">(</span></span>anystring<span class="token punctuation">)</span> <span class="token punctuation">{</span>
 		popup<span class="token punctuation">.</span><span class="token function">success<span class="token punctuation">(</span></span>anystring<span class="token punctuation">)</span><span class="token punctuation">;</span>
 	<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">rows<span class="token punctuation">(</span></span><span class="token punctuation">[</span>
-		<span class="token punctuation">[</span><span class="token string">&apos;Choose link [one](ONE) or [two](TWO) or [three](THREE).&apos;</span><span class="token punctuation">]</span>
+		<span class="token punctuation">[</span><span class="token string">'Choose link [one](ONE) or [two](TWO) or [three](THREE).'</span><span class="token punctuation">]</span>
 	<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea>
+                                            </div>
                                         </figure>
                                     </li>
                                     <li>
@@ -233,7 +238,7 @@ ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</s
                             <div class="splitscreen-container">
                                 <ul class="splitscreen">
                                     <li>
-                                        <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.get(&apos;%23table6&apos;%2C%20function(table)%20%7B%0A%09table.disableMarkdown()%3B%0A%09table.rows(%5B%0A%09%09%5B&apos;*Italic%20text*&apos;%5D%2C%0A%09%09%5B&apos;**Strong%20text**&apos;%5D%2C%0A%09%09%5B&apos;~~Strike%20text~~&apos;%5D%2C%0A%09%09%5B&apos;%60monotype%20text%60&apos;%5D%0A%09%5D)%3B%0A%7D)%3B">
+                                        <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.get('%23table6'%2C%20function(table)%20%7B%0A%09table.disableMarkdown()%3B%0A%09table.rows(%5B%0A%09%09%5B'*Italic%20text*'%5D%2C%0A%09%09%5B'**Strong%20text**'%5D%2C%0A%09%09%5B'~~Strike%20text~~'%5D%2C%0A%09%09%5B'%60monotype%20text%60'%5D%0A%09%5D)%3B%0A%7D)%3B">
                                             <script type="runnable">
                                                 ts.ui.get('#table6', function(table) {
 									table.disableMarkdown();
@@ -247,15 +252,16 @@ ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</s
 							</script>
                                             <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                                             <div data-ts="Panel">
-                                                <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#table6&apos;</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span>table<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                                                <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">'#table6'</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span>table<span class="token punctuation">)</span> <span class="token punctuation">{</span>
 	table<span class="token punctuation">.</span><span class="token function">disableMarkdown<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 	table<span class="token punctuation">.</span><span class="token function">rows<span class="token punctuation">(</span></span><span class="token punctuation">[</span>
-		<span class="token punctuation">[</span><span class="token string">&apos;*Italic text*&apos;</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
-		<span class="token punctuation">[</span><span class="token string">&apos;**Strong text**&apos;</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
-		<span class="token punctuation">[</span><span class="token string">&apos;~~Strike text~~&apos;</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
-		<span class="token punctuation">[</span><span class="token string">&apos;`monotype text`&apos;</span><span class="token punctuation">]</span>
+		<span class="token punctuation">[</span><span class="token string">'*Italic text*'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+		<span class="token punctuation">[</span><span class="token string">'**Strong text**'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+		<span class="token punctuation">[</span><span class="token string">'~~Strike text~~'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+		<span class="token punctuation">[</span><span class="token string">'`monotype text`'</span><span class="token punctuation">]</span>
 	<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea>
+                                            </div>
                                         </figure>
                                     </li>
                                     <li>
@@ -264,13 +270,13 @@ ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</s
                                 </ul>
                             </div>
                             <p>
-                                You can disable the Markdown in specific column by column&apos;s property
+                                You can disable the Markdown in specific column by column's property
                                 <code>markdownFormatting</code>:
                             </p>
                             <div class="splitscreen-container">
                                 <ul class="splitscreen">
                                     <li>
-                                        <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.get(&apos;%23table7&apos;%2C%20function(table)%20%7B%0A%09table.cols(%5B%0A%09%09%7Blabel%3A%20&apos;Disabled%20markdown%20column&apos;%2C%20markdownFormatting%3A%20false%2C%20linkable%3A%20true%7D%2C%0A%09%09%7Blabel%3A%20&apos;Not%20disabled%20markdown%20column&apos;%7D%0A%09%5D)%3B%0A%09table.rows(%5B%0A%09%09%5B&apos;*Italic%20text*&apos;%2C%20&apos;*Italic%20text*&apos;%5D%2C%0A%09%09%5B&apos;**Strong%20text**&apos;%2C%20&apos;**Strong%20text**&apos;%5D%2C%0A%09%09%5B&apos;~~Strike%20text~~&apos;%2C%20&apos;~~Strike%20text~~&apos;%5D%2C%0A%09%09%5B&apos;%60monotype%20text%60&apos;%2C%20&apos;%60monotype%20text%60&apos;%5D%0A%09%5D)%3B%0A%7D)%3B">
+                                        <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.get('%23table7'%2C%20function(table)%20%7B%0A%09table.cols(%5B%0A%09%09%7Blabel%3A%20'Disabled%20markdown%20column'%2C%20markdownFormatting%3A%20false%2C%20linkable%3A%20true%7D%2C%0A%09%09%7Blabel%3A%20'Not%20disabled%20markdown%20column'%7D%0A%09%5D)%3B%0A%09table.rows(%5B%0A%09%09%5B'*Italic%20text*'%2C%20'*Italic%20text*'%5D%2C%0A%09%09%5B'**Strong%20text**'%2C%20'**Strong%20text**'%5D%2C%0A%09%09%5B'~~Strike%20text~~'%2C%20'~~Strike%20text~~'%5D%2C%0A%09%09%5B'%60monotype%20text%60'%2C%20'%60monotype%20text%60'%5D%0A%09%5D)%3B%0A%7D)%3B">
                                             <script type="runnable">
                                                 ts.ui.get('#table7', function(table) {
 									table.cols([
@@ -287,18 +293,19 @@ ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</s
 							</script>
                                             <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                                             <div data-ts="Panel">
-                                                <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#table7&apos;</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span>table<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                                                <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">'#table7'</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span>table<span class="token punctuation">)</span> <span class="token punctuation">{</span>
 	table<span class="token punctuation">.</span><span class="token function">cols<span class="token punctuation">(</span></span><span class="token punctuation">[</span>
-		<span class="token punctuation">{</span>label<span class="token punctuation">:</span> <span class="token string">&apos;Disabled markdown column&apos;</span><span class="token punctuation">,</span> markdownFormatting<span class="token punctuation">:</span> <span class="token keyword">false</span><span class="token punctuation">,</span> linkable<span class="token punctuation">:</span> <span class="token keyword">true</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
-		<span class="token punctuation">{</span>label<span class="token punctuation">:</span> <span class="token string">&apos;Not disabled markdown column&apos;</span><span class="token punctuation">}</span>
+		<span class="token punctuation">{</span>label<span class="token punctuation">:</span> <span class="token string">'Disabled markdown column'</span><span class="token punctuation">,</span> markdownFormatting<span class="token punctuation">:</span> <span class="token keyword">false</span><span class="token punctuation">,</span> linkable<span class="token punctuation">:</span> <span class="token keyword">true</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+		<span class="token punctuation">{</span>label<span class="token punctuation">:</span> <span class="token string">'Not disabled markdown column'</span><span class="token punctuation">}</span>
 	<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 	table<span class="token punctuation">.</span><span class="token function">rows<span class="token punctuation">(</span></span><span class="token punctuation">[</span>
-		<span class="token punctuation">[</span><span class="token string">&apos;*Italic text*&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;*Italic text*&apos;</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
-		<span class="token punctuation">[</span><span class="token string">&apos;**Strong text**&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;**Strong text**&apos;</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
-		<span class="token punctuation">[</span><span class="token string">&apos;~~Strike text~~&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;~~Strike text~~&apos;</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
-		<span class="token punctuation">[</span><span class="token string">&apos;`monotype text`&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;`monotype text`&apos;</span><span class="token punctuation">]</span>
+		<span class="token punctuation">[</span><span class="token string">'*Italic text*'</span><span class="token punctuation">,</span> <span class="token string">'*Italic text*'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+		<span class="token punctuation">[</span><span class="token string">'**Strong text**'</span><span class="token punctuation">,</span> <span class="token string">'**Strong text**'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+		<span class="token punctuation">[</span><span class="token string">'~~Strike text~~'</span><span class="token punctuation">,</span> <span class="token string">'~~Strike text~~'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+		<span class="token punctuation">[</span><span class="token string">'`monotype text`'</span><span class="token punctuation">,</span> <span class="token string">'`monotype text`'</span><span class="token punctuation">]</span>
 	<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea>
+                                            </div>
                                         </figure>
                                     </li>
                                     <li>
@@ -312,7 +319,7 @@ ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</s
             </div>
         </div>
     </div>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-127106947-1"></script>
+    <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-127106947-1"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
 

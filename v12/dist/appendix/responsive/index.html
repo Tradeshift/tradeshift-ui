@@ -7,11 +7,11 @@
     <link rel="ts-app-icon" href="/v12/dist/assets/icon.svg">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
-    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.6.0.min.js"></script>
+    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.8.2.min.js"></script>
     <script src="/v12/dist/assets/dox.min.js"></script>
     <script src="/v12/dist/assets/mark.min.js"></script>
     <script src="/v12/dist/assets/jquery-2.2.4.min.js"></script>
-    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.6.0.min.css">
+    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.8.2.min.css">
     <link rel="stylesheet" href="/v12/dist/assets/dox.css">
     <meta name="robots" content="noindex">
     <style>
@@ -30,7 +30,7 @@
                         <h1><span>Responsive Design</span></h1>
                         <section class="desc">
                             <p>
-                                Here&apos;s the list of classnames that can be used to toggle display based on breakpoint;
+                                Here's the list of classnames that can be used to toggle display based on breakpoint;
                                 they work on all elements.
                             </p>
                         </section>
@@ -100,11 +100,11 @@
                                 <code>html</code> element. You can use a function such as this to lookup the current
                                 breakpoint (CSS classname).
                             </p>
-                            <figure data-ts="DoxScript" data-ts.code="function%20breakpoint()%20%7B%0A%09return%20%5B&apos;ts-mobile-only&apos;%2C%20&apos;ts-tablet-only&apos;%2C%20&apos;ts-desktop-only&apos;%5D.find(function(c)%20%7B%0A%20%20%20%20%20%20%20%20return%20document.documentElement.classList.contains(c)%3B%0A%20%20%20%20%7D%0A%09)%3B%0A%7D">
+                            <figure data-ts="DoxScript" data-ts.code="function%20breakpoint()%20%7B%0A%09return%20%5B'ts-mobile-only'%2C%20'ts-tablet-only'%2C%20'ts-desktop-only'%5D.find(function(c)%20%7B%0A%20%20%20%20%20%20%20%20return%20document.documentElement.classList.contains(c)%3B%0A%20%20%20%20%7D%0A%09)%3B%0A%7D">
                                 <input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
                                 <div data-ts="Panel">
                                     <pre class="prism language-javascript"><code><span class="token keyword">function</span> <span class="token function">breakpoint<span class="token punctuation">(</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-	<span class="token keyword">return</span> <span class="token punctuation">[</span><span class="token string">&apos;ts-mobile-only&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;ts-tablet-only&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;ts-desktop-only&apos;</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">find<span class="token punctuation">(</span></span>c <span class="token operator">=</span><span class="token operator">&gt;</span>
+	<span class="token keyword">return</span> <span class="token punctuation">[</span><span class="token string">'ts-mobile-only'</span><span class="token punctuation">,</span> <span class="token string">'ts-tablet-only'</span><span class="token punctuation">,</span> <span class="token string">'ts-desktop-only'</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">find<span class="token punctuation">(</span></span>c <span class="token operator">=</span><span class="token operator">&gt;</span>
 		document<span class="token punctuation">.</span>documentElement<span class="token punctuation">.</span>classList<span class="token punctuation">.</span><span class="token function">contains<span class="token punctuation">(</span></span>c<span class="token punctuation">)</span>
 	<span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span></code></pre>
@@ -117,21 +117,21 @@
                                 You can setup an event listener for <code>ts-breakpoint</code> to get notified whenever
                                 the breakpoint changes. Again, the current breakpoint is determined via CSS classes.
                             </p>
-                            <figure data-ts="DoxScript" data-ts.code="document.addEventListener(&apos;ts-breakpoint&apos;%2C%20function()%20%7B%0A%09console.log(breakpoint())%3B%20%2F%2F%20see%20above%0A%7D)%3B">
+                            <figure data-ts="DoxScript" data-ts.code="document.addEventListener('ts-breakpoint'%2C%20function()%20%7B%0A%09console.log(breakpoint())%3B%20%2F%2F%20see%20above%0A%7D)%3B">
                                 <input type="hidden" value="%7B%22show%22%3Afalse%2C%22outs%22%3Afalse%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
                                 <div data-ts="Panel">
-                                    <pre class="prism language-javascript"><code>document<span class="token punctuation">.</span><span class="token function">addEventListener<span class="token punctuation">(</span></span><span class="token string">&apos;ts-breakpoint&apos;</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                                    <pre class="prism language-javascript"><code>document<span class="token punctuation">.</span><span class="token function">addEventListener<span class="token punctuation">(</span></span><span class="token string">'ts-breakpoint'</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
 	console<span class="token punctuation">.</span><span class="token function">log<span class="token punctuation">(</span></span><span class="token function">breakpoint<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// see above
 </span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
                                 </div>
                             </figure>
                         </section>
                         <div data-ts="Note" class="sticky">
-                            <p>If you find a bug or need a feature&#x2026;</p>
+                            <p>If you find a bug or need a feature…</p>
                             <menu data-ts="Buttons">
                                 <li>
                                     <a data-ts="Button" target="_blank" href="https://github.com/Tradeshift/tradeshift-ui/issues/new" title="Submit new issue">
-                                        <span>Create GitHub Issue&#x2026;</span>
+                                        <span>Create GitHub Issue…</span>
                                     </a>
                                 </li>
                             </menu>
@@ -141,7 +141,7 @@
             </div>
         </div>
     </div>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-127106947-1"></script>
+    <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-127106947-1"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
 

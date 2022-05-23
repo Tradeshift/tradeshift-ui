@@ -7,11 +7,11 @@
     <link rel="ts-app-icon" href="/v12/dist/assets/icon.svg">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
-    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.6.0.min.js"></script>
+    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.8.2.min.js"></script>
     <script src="/v12/dist/assets/dox.min.js"></script>
     <script src="/v12/dist/assets/mark.min.js"></script>
     <script src="/v12/dist/assets/jquery-2.2.4.min.js"></script>
-    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.6.0.min.css">
+    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.8.2.min.css">
     <link rel="stylesheet" href="/v12/dist/assets/dox.css">
 </head>
 
@@ -25,7 +25,7 @@
                         <section class="desc">
                             <p>
                                 Calendar widget that appears in Aside. Used in Forms for an implementation of &lt;input
-                                type=&quot;date&quot;&gt; elements.
+                                type="date"&gt; elements.
                             </p>
                         </section>
                         <section>
@@ -34,7 +34,7 @@
                                 <code>onselect</code> method to get notified whenever the user picks a date. Note that you
                                 must manually <code>open</code> and <code>close</code> the DatePicker.
                             </p>
-                            <figure data-ts="DoxScript" class="runnable" data-ts.code="var%20datePicker%20%3D%20ts.ui.DatePicker(%7B%0A%09title%3A%20%22Your%20Birthday%22%2C%0A%09value%3A%20&apos;1973-03-26&apos;%2C%0A%09onselect%3A%20function(newval%2C%20oldval)%20%7B%0A%09%09ts.ui.Notification.success(this.value)%3B%0A%09%09this.close()%3B%0A%09%7D%2C%0A%09onclosed%3A%20function()%20%7B%0A%09%09this.dispose()%3B%0A%09%7D%0A%7D)%3B%0AdatePicker.open()%3B">
+                            <figure data-ts="DoxScript" class="runnable" data-ts.code="var%20datePicker%20%3D%20ts.ui.DatePicker(%7B%0A%09title%3A%20%22Your%20Birthday%22%2C%0A%09value%3A%20'1973-03-26'%2C%0A%09onselect%3A%20function(newval%2C%20oldval)%20%7B%0A%09%09ts.ui.Notification.success(this.value)%3B%0A%09%09this.close()%3B%0A%09%7D%2C%0A%09onclosed%3A%20function()%20%7B%0A%09%09this.dispose()%3B%0A%09%7D%0A%7D)%3B%0AdatePicker.open()%3B">
                                 <script type="runnable">
                                     var datePicker = ts.ui.DatePicker({
 							title: "Your Birthday",
@@ -52,8 +52,8 @@
                                 <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                                 <div data-ts="Panel">
                                     <pre class="prism language-javascript"><code><span class="token keyword">var</span> datePicker <span class="token operator">=</span> ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token function">DatePicker<span class="token punctuation">(</span></span><span class="token punctuation">{</span>
-	title<span class="token punctuation">:</span> <span class="token string">&quot;Your Birthday&quot;</span><span class="token punctuation">,</span>
-	value<span class="token punctuation">:</span> <span class="token string">&apos;1973-03-26&apos;</span><span class="token punctuation">,</span>
+	title<span class="token punctuation">:</span> <span class="token string">"Your Birthday"</span><span class="token punctuation">,</span>
+	value<span class="token punctuation">:</span> <span class="token string">'1973-03-26'</span><span class="token punctuation">,</span>
 	onselect<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span>newval<span class="token punctuation">,</span> oldval<span class="token punctuation">)</span> <span class="token punctuation">{</span>
 		ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Notification<span class="token punctuation">.</span><span class="token function">success<span class="token punctuation">(</span></span><span class="token keyword">this</span><span class="token punctuation">.</span>value<span class="token punctuation">)</span><span class="token punctuation">;</span>
 		<span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">close<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -62,10 +62,11 @@
 		<span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">dispose<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 	<span class="token punctuation">}</span>
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-datePicker<span class="token punctuation">.</span><span class="token function">open<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
+datePicker<span class="token punctuation">.</span><span class="token function">open<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea>
+                                </div>
                             </figure>
                             <p>You can specify a <code>min</code> and <code>max</code> value.</p>
-                            <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.DatePicker(%7B%0A%09title%3A%20%22Your%20Birthday%22%2C%0A%09value%3A%20&apos;1984-05-23&apos;%2C%0A%09min%3A%20&apos;1984-01-01&apos;%2C%0A%09max%3A%20&apos;1985-12-24&apos;%2C%0A%09onselect%3A%20function()%20%7B%0A%09%09this.close()%3B%0A%09%7D%2C%0A%09onclosed%3A%20function()%20%7B%0A%09%09this.dispose()%3B%0A%09%7D%0A%7D).open()%3B">
+                            <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.DatePicker(%7B%0A%09title%3A%20%22Your%20Birthday%22%2C%0A%09value%3A%20'1984-05-23'%2C%0A%09min%3A%20'1984-01-01'%2C%0A%09max%3A%20'1985-12-24'%2C%0A%09onselect%3A%20function()%20%7B%0A%09%09this.close()%3B%0A%09%7D%2C%0A%09onclosed%3A%20function()%20%7B%0A%09%09this.dispose()%3B%0A%09%7D%0A%7D).open()%3B">
                                 <script type="runnable">
                                     ts.ui.DatePicker({
 							title: "Your Birthday",
@@ -83,23 +84,24 @@ datePicker<span class="token punctuation">.</span><span class="token function">o
                                 <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                                 <div data-ts="Panel">
                                     <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token function">DatePicker<span class="token punctuation">(</span></span><span class="token punctuation">{</span>
-	title<span class="token punctuation">:</span> <span class="token string">&quot;Your Birthday&quot;</span><span class="token punctuation">,</span>
-	value<span class="token punctuation">:</span> <span class="token string">&apos;1984-05-23&apos;</span><span class="token punctuation">,</span>
-	min<span class="token punctuation">:</span> <span class="token string">&apos;1984-01-01&apos;</span><span class="token punctuation">,</span>
-	max<span class="token punctuation">:</span> <span class="token string">&apos;1985-12-24&apos;</span><span class="token punctuation">,</span>
+	title<span class="token punctuation">:</span> <span class="token string">"Your Birthday"</span><span class="token punctuation">,</span>
+	value<span class="token punctuation">:</span> <span class="token string">'1984-05-23'</span><span class="token punctuation">,</span>
+	min<span class="token punctuation">:</span> <span class="token string">'1984-01-01'</span><span class="token punctuation">,</span>
+	max<span class="token punctuation">:</span> <span class="token string">'1985-12-24'</span><span class="token punctuation">,</span>
 	onselect<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
 		<span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">close<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 	<span class="token punctuation">}</span><span class="token punctuation">,</span>
 	onclosed<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
 		<span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">dispose<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 	<span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">open<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">open<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea>
+                                </div>
                             </figure>
                             <p>
                                 You can also use the <code>onrendercell</code> callback to manually adjust which cells are
                                 selectable, as well add in additional classes per cell for styling purposes.
                             </p>
-                            <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.DatePicker(%7B%0A%09title%3A%20%22Manually%20Set%20Clickable%20Dates%22%2C%0A%09value%3A%20&apos;1984-05-23&apos;%2C%0A%09min%3A%20&apos;1984-01-01&apos;%2C%0A%09max%3A%20&apos;1985-12-24&apos;%2C%0A%09onrendercell%3A%20function(cell)%7B%0A%09%09var%20jsDate%20%3D%20new%20Date(cell.year%2C%20cell.month%2C%20cell.day)%3B%0A%09%09var%20isWeekday%20%3D%20!%5B0%2C6%5D.includes(jsDate.getDay())%3B%0A%0A%09%09%09cell.selectable%20%3D%20isWeekday%3B%0A%09%09%09cell.className%20%3D%20(isWeekday%20%3F%20&apos;weekday&apos;%20%3A%20&apos;weekend&apos;)%3B%0A%09%09%7D%2C%0A%09%09onselect%3A%20function()%20%7B%0A%09%09%09ts.ui.Notification.success(this.value)%3B%0A%09%09%09this.close()%3B%0A%09%09%7D%2C%0A%09%09onclosed%3A%20function()%20%7B%0A%09%09%09this.dispose()%3B%0A%09%09%7D%0A%09%7D).open()%3B">
+                            <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.DatePicker(%7B%0A%09title%3A%20%22Manually%20Set%20Clickable%20Dates%22%2C%0A%09value%3A%20'1984-05-23'%2C%0A%09min%3A%20'1984-01-01'%2C%0A%09max%3A%20'1985-12-24'%2C%0A%09onrendercell%3A%20function(cell)%7B%0A%09%09var%20jsDate%20%3D%20new%20Date(cell.year%2C%20cell.month%2C%20cell.day)%3B%0A%09%09var%20isWeekday%20%3D%20!%5B0%2C6%5D.includes(jsDate.getDay())%3B%0A%0A%09%09%09cell.selectable%20%3D%20isWeekday%3B%0A%09%09%09cell.className%20%3D%20(isWeekday%20%3F%20'weekday'%20%3A%20'weekend')%3B%0A%09%09%7D%2C%0A%09%09onselect%3A%20function()%20%7B%0A%09%09%09ts.ui.Notification.success(this.value)%3B%0A%09%09%09this.close()%3B%0A%09%09%7D%2C%0A%09%09onclosed%3A%20function()%20%7B%0A%09%09%09this.dispose()%3B%0A%09%09%7D%0A%09%7D).open()%3B">
                                 <script type="runnable">
                                     ts.ui.DatePicker({
 							title: "Manually Set Clickable Dates",
@@ -124,15 +126,15 @@ datePicker<span class="token punctuation">.</span><span class="token function">o
                                 <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                                 <div data-ts="Panel">
                                     <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token function">DatePicker<span class="token punctuation">(</span></span><span class="token punctuation">{</span>
-	title<span class="token punctuation">:</span> <span class="token string">&quot;Manually Set Clickable Dates&quot;</span><span class="token punctuation">,</span>
-	value<span class="token punctuation">:</span> <span class="token string">&apos;1984-05-23&apos;</span><span class="token punctuation">,</span>
-	min<span class="token punctuation">:</span> <span class="token string">&apos;1984-01-01&apos;</span><span class="token punctuation">,</span>
-	max<span class="token punctuation">:</span> <span class="token string">&apos;1985-12-24&apos;</span><span class="token punctuation">,</span>
+	title<span class="token punctuation">:</span> <span class="token string">"Manually Set Clickable Dates"</span><span class="token punctuation">,</span>
+	value<span class="token punctuation">:</span> <span class="token string">'1984-05-23'</span><span class="token punctuation">,</span>
+	min<span class="token punctuation">:</span> <span class="token string">'1984-01-01'</span><span class="token punctuation">,</span>
+	max<span class="token punctuation">:</span> <span class="token string">'1985-12-24'</span><span class="token punctuation">,</span>
 	onrendercell<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span>cell<span class="token punctuation">)</span><span class="token punctuation">{</span>
 		<span class="token keyword">var</span> jsDate <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span>cell<span class="token punctuation">.</span>year<span class="token punctuation">,</span> cell<span class="token punctuation">.</span>month<span class="token punctuation">,</span> cell<span class="token punctuation">.</span>day<span class="token punctuation">)</span><span class="token punctuation">;</span>
 		<span class="token keyword">var</span> isWeekday <span class="token operator">=</span> <span class="token operator">!</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">6</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">includes<span class="token punctuation">(</span></span>jsDate<span class="token punctuation">.</span><span class="token function">getDay<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 			cell<span class="token punctuation">.</span>selectable <span class="token operator">=</span> isWeekday<span class="token punctuation">;</span>
-			cell<span class="token punctuation">.</span>className <span class="token operator">=</span> <span class="token punctuation">(</span>isWeekday <span class="token operator">?</span> <span class="token string">&apos;weekday&apos;</span> <span class="token punctuation">:</span> <span class="token string">&apos;weekend&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+			cell<span class="token punctuation">.</span>className <span class="token operator">=</span> <span class="token punctuation">(</span>isWeekday <span class="token operator">?</span> <span class="token string">'weekday'</span> <span class="token punctuation">:</span> <span class="token string">'weekend'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 		<span class="token punctuation">}</span><span class="token punctuation">,</span>
 		onselect<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
 			ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Notification<span class="token punctuation">.</span><span class="token function">success<span class="token punctuation">(</span></span><span class="token keyword">this</span><span class="token punctuation">.</span>value<span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -141,10 +143,11 @@ datePicker<span class="token punctuation">.</span><span class="token function">o
 		onclosed<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
 			<span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">dispose<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 		<span class="token punctuation">}</span>
-	<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">open<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
+	<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">open<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea>
+                                </div>
                             </figure>
                             <p>Here is an example DatePicker where a value is NOT set ahead of time.</p>
-                            <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.DatePicker(%7B%0A%09title%3A%20%22Date%20Range%20with%20no%20starting%20value%22%2C%0A%09value%3A%20null%2C%0A%09min%3A%20&apos;2019-01-01&apos;%2C%0A%09max%3A%20&apos;2019-03-31&apos;%2C%0A%09onselect%3A%20function()%20%7B%0A%09%09ts.ui.Notification.success(this.value)%3B%0A%09%09this.close()%3B%0A%09%7D%2C%0A%09onclosed%3A%20function()%20%7B%0A%09%09this.dispose()%3B%0A%09%7D%0A%7D).open()%3B">
+                            <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.DatePicker(%7B%0A%09title%3A%20%22Date%20Range%20with%20no%20starting%20value%22%2C%0A%09value%3A%20null%2C%0A%09min%3A%20'2019-01-01'%2C%0A%09max%3A%20'2019-03-31'%2C%0A%09onselect%3A%20function()%20%7B%0A%09%09ts.ui.Notification.success(this.value)%3B%0A%09%09this.close()%3B%0A%09%7D%2C%0A%09onclosed%3A%20function()%20%7B%0A%09%09this.dispose()%3B%0A%09%7D%0A%7D).open()%3B">
                                 <script type="runnable">
                                     ts.ui.DatePicker({
 							title: "Date Range with no starting value",
@@ -163,10 +166,10 @@ datePicker<span class="token punctuation">.</span><span class="token function">o
                                 <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                                 <div data-ts="Panel">
                                     <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token function">DatePicker<span class="token punctuation">(</span></span><span class="token punctuation">{</span>
-	title<span class="token punctuation">:</span> <span class="token string">&quot;Date Range with no starting value&quot;</span><span class="token punctuation">,</span>
+	title<span class="token punctuation">:</span> <span class="token string">"Date Range with no starting value"</span><span class="token punctuation">,</span>
 	value<span class="token punctuation">:</span> <span class="token keyword">null</span><span class="token punctuation">,</span>
-	min<span class="token punctuation">:</span> <span class="token string">&apos;2019-01-01&apos;</span><span class="token punctuation">,</span>
-	max<span class="token punctuation">:</span> <span class="token string">&apos;2019-03-31&apos;</span><span class="token punctuation">,</span>
+	min<span class="token punctuation">:</span> <span class="token string">'2019-01-01'</span><span class="token punctuation">,</span>
+	max<span class="token punctuation">:</span> <span class="token string">'2019-03-31'</span><span class="token punctuation">,</span>
 	onselect<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
 		ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Notification<span class="token punctuation">.</span><span class="token function">success<span class="token punctuation">(</span></span><span class="token keyword">this</span><span class="token punctuation">.</span>value<span class="token punctuation">)</span><span class="token punctuation">;</span>
 		<span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">close<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -174,10 +177,11 @@ datePicker<span class="token punctuation">.</span><span class="token function">o
 	onclosed<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
 		<span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">dispose<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 	<span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">open<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">open<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea>
+                                </div>
                             </figure>
                             <p>You can set and change a note for the datepicker.</p>
-                            <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.DatePicker(%7B%0A%09title%3A%20&apos;The%20note%20is%20under%20the%20header&apos;%2C%0A%09value%3A%20&apos;2019-01-01&apos;%2C%0A%09note%3A%20&apos;Have%20a%20nice%20day&apos;%2C%0A%09onselect%3A%20function()%20%7B%0A%09%09this.close()%3B%0A%09%7D%2C%0A%09onclosed%3A%20function()%20%7B%0A%09%09this.dispose()%3B%0A%09%7D%0A%7D).open()%3B">
+                            <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.DatePicker(%7B%0A%09title%3A%20'The%20note%20is%20under%20the%20header'%2C%0A%09value%3A%20'2019-01-01'%2C%0A%09note%3A%20'Have%20a%20nice%20day'%2C%0A%09onselect%3A%20function()%20%7B%0A%09%09this.close()%3B%0A%09%7D%2C%0A%09onclosed%3A%20function()%20%7B%0A%09%09this.dispose()%3B%0A%09%7D%0A%7D).open()%3B">
                                 <script type="runnable">
                                     ts.ui.DatePicker({
 							title: 'The note is under the header',
@@ -194,19 +198,20 @@ datePicker<span class="token punctuation">.</span><span class="token function">o
                                 <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                                 <div data-ts="Panel">
                                     <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token function">DatePicker<span class="token punctuation">(</span></span><span class="token punctuation">{</span>
-	title<span class="token punctuation">:</span> <span class="token string">&apos;The note is under the header&apos;</span><span class="token punctuation">,</span>
-	value<span class="token punctuation">:</span> <span class="token string">&apos;2019-01-01&apos;</span><span class="token punctuation">,</span>
-	note<span class="token punctuation">:</span> <span class="token string">&apos;Have a nice day&apos;</span><span class="token punctuation">,</span>
+	title<span class="token punctuation">:</span> <span class="token string">'The note is under the header'</span><span class="token punctuation">,</span>
+	value<span class="token punctuation">:</span> <span class="token string">'2019-01-01'</span><span class="token punctuation">,</span>
+	note<span class="token punctuation">:</span> <span class="token string">'Have a nice day'</span><span class="token punctuation">,</span>
 	onselect<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
 		<span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">close<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 	<span class="token punctuation">}</span><span class="token punctuation">,</span>
 	onclosed<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
 		<span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">dispose<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 	<span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">open<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">open<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea>
+                                </div>
                             </figure>
                             <p>You can also make a deselect datepicker.</p>
-                            <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.DatePicker(%7B%0A%09title%3A%20&apos;Deselect%20the%20date&apos;%2C%0A%09value%3A%20&apos;2019-01-01&apos;%2C%0A%09deselectable%3A%20true%2C%0A%09onselect%3A%20function()%20%7B%0A%09%09ts.ui.Notification.success(&apos;You%20deselected%20the%20date&apos;)%3B%0A%09%09this.close()%3B%0A%09%7D%2C%0A%09onclosed%3A%20function()%20%7B%0A%09%09this.dispose()%3B%0A%09%7D%0A%7D).open()%3B">
+                            <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.DatePicker(%7B%0A%09title%3A%20'Deselect%20the%20date'%2C%0A%09value%3A%20'2019-01-01'%2C%0A%09deselectable%3A%20true%2C%0A%09onselect%3A%20function()%20%7B%0A%09%09ts.ui.Notification.success('You%20deselected%20the%20date')%3B%0A%09%09this.close()%3B%0A%09%7D%2C%0A%09onclosed%3A%20function()%20%7B%0A%09%09this.dispose()%3B%0A%09%7D%0A%7D).open()%3B">
                                 <script type="runnable">
                                     ts.ui.DatePicker({
 							title: 'Deselect the date',
@@ -224,17 +229,18 @@ datePicker<span class="token punctuation">.</span><span class="token function">o
                                 <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                                 <div data-ts="Panel">
                                     <pre class="prism language-javascript"><code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token function">DatePicker<span class="token punctuation">(</span></span><span class="token punctuation">{</span>
-	title<span class="token punctuation">:</span> <span class="token string">&apos;Deselect the date&apos;</span><span class="token punctuation">,</span>
-	value<span class="token punctuation">:</span> <span class="token string">&apos;2019-01-01&apos;</span><span class="token punctuation">,</span>
+	title<span class="token punctuation">:</span> <span class="token string">'Deselect the date'</span><span class="token punctuation">,</span>
+	value<span class="token punctuation">:</span> <span class="token string">'2019-01-01'</span><span class="token punctuation">,</span>
 	deselectable<span class="token punctuation">:</span> <span class="token keyword">true</span><span class="token punctuation">,</span>
 	onselect<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-		ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Notification<span class="token punctuation">.</span><span class="token function">success<span class="token punctuation">(</span></span><span class="token string">&apos;You deselected the date&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Notification<span class="token punctuation">.</span><span class="token function">success<span class="token punctuation">(</span></span><span class="token string">'You deselected the date'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 		<span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">close<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 	<span class="token punctuation">}</span><span class="token punctuation">,</span>
 	onclosed<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
 		<span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">dispose<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 	<span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">open<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea></div>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">open<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><textarea data-ts="TextArea" class="editcode"></textarea>
+                                </div>
                             </figure>
                             <p>
                                 The object argument configures a <code>ts.ui.DatePickerModel</code> as outlined below.
@@ -243,11 +249,11 @@ datePicker<span class="token punctuation">.</span><span class="token function">o
                             </div>
                         </section>
                         <div data-ts="Note" class="sticky">
-                            <p>If you find a bug or need a feature&#x2026;</p>
+                            <p>If you find a bug or need a feature…</p>
                             <menu data-ts="Buttons">
                                 <li>
                                     <a data-ts="Button" target="_blank" href="https://github.com/Tradeshift/tradeshift-ui/issues/new" title="Submit new issue">
-                                        <span>Create GitHub Issue&#x2026;</span>
+                                        <span>Create GitHub Issue…</span>
                                     </a>
                                 </li>
                             </menu>
@@ -257,7 +263,7 @@ datePicker<span class="token punctuation">.</span><span class="token function">o
             </div>
         </div>
     </div>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-127106947-1"></script>
+    <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-127106947-1"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
 

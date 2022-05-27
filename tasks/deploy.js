@@ -23,7 +23,7 @@ class S3Deployer {
 	constructor() {
 		this.BUCKET = 'tsresources';
 		this.BASE_PATH = 'prod/client';
-		this.LOCAL_DIR = path.join(path.dirname(fs.realpathSync(__filename)), '../public');
+		this.LOCAL_DIR = path.join(path.dirname(fs.realpathSync(__filename)), '../dist/cdn');
 
 		this.client = new S3({
 			accessKeyId: process.env.AWS_ACCESS_KEY_ID,
@@ -47,7 +47,7 @@ class S3Deployer {
 			const mimeType = lookupType(file) || 'application/octet-stream';
 			const params = {
 				Bucket: this.BUCKET,
-				Key: `${this.BASE_PATH}${relativeName}`,
+				Key: `${this.BASE_PATH}/${relativeName}`,
 				ACL: 'public-read',
 				ContentType: mimeType,
 				Body: fileData,

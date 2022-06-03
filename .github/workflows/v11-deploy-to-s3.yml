@@ -28,6 +28,9 @@ jobs:
       - name: ▶️ Build
         run: npm run build
 
+      - name: ▶️ Build
+        run: npm run package-dist
+
       - name: ▶️ Deploy to s3
         run: npm run deploy-s3
         env:

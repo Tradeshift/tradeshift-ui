@@ -1,3 +1,3 @@
-@sampi @zdlm @tynandebold
+@Tradeshift/TradeshiftUI
 
 Fixes issue #

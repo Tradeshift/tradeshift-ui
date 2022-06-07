@@ -1,0 +1,38 @@
+name: Deploy to S3
+
+on: workflow_dispatch
+
+jobs:
+  deploy:
+    name: Build and deploy to s3
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: ⬇️ Checkout repo
+        uses: actions/checkout@v2
+        with:
+          ref: v11
+
+      - name: ⎔ Setup node
+        uses: actions/setup-node@v2
+        with:
+          node-version: 8
+          cache: 'npm'
+
+      - name: 🐗  Install grunt-cli
+        run: npm install -g grunt-cli
+
+      - name: 📥  Download deps
+        run: npm ci
+
+      - name: ▶️ Build
+        run: npm run build
+
+      - name: ▶️ Build
+        run: npm run package-dist
+
+      - name: ▶️ Deploy to s3
+        run: npm run deploy-s3
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.S3_CHROME_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.S3_CHROME_SECRET_ACCESS_KEY }}

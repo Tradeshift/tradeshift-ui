@@ -1,0 +1,32 @@
+name: Test & release
+
+on:
+  pull_request:
+  push:
+    branches:
+      - master
+      - v11
+
+jobs:
+  validate:
+    name: Build and test
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: ⬇️ Checkout repo
+        uses: actions/checkout@v2
+
+      - name: ⎔ Setup node
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ github.ref == 'refs/heads/v11' && 8 || 14 }}
+          cache: 'npm'
+
+      - name: 📥 Download deps
+        run: npm ci
+
+      - name: ▶️ Run tests
+        run: npm test
+        env:
+          BROWSERSTACK_USERNAME: ${{ secrets.BROWSERSTACK_USER }}
+          BROWSERSTACK_KEY: ${{ secrets.BROWSERSTACK_KEY }}

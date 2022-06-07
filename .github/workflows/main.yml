@@ -4,7 +4,6 @@ on:
   pull_request:
   push:
     branches:
-      - master
       - v11
 
 jobs:
@@ -19,7 +18,7 @@ jobs:
       - name: ⎔ Setup node
         uses: actions/setup-node@v2
         with:
-          node-version: ${{ github.ref == 'refs/heads/v11' && 8 || 14 }}
+          node-version: 8
           cache: 'npm'
 
       - name: 📥 Download deps

@@ -28,7 +28,7 @@ jobs:
       - name: ▶️ Build
         run: npm run build
 
-      - name: ▶️ Build
+      - name: 🎁 Create NPM package files
         run: npm run package-dist
 
       - name: ▶️ Deploy to s3

@@ -74,7 +74,7 @@ ts.ui.ImageSpirit = (function using(fontcss, UNIT_DOUBLE) {
 		if (regExp.test(name)) {
 			return regExp.exec(name)[1].toUpperCase();
 		}
-		var names = name.split(/\s+/);
+		var names = name.toString().split(/\s+/);
 		var first = names.shift();
 		var last = names.pop() || '';
 		return (first[0] + (last[0] || '')).toUpperCase();

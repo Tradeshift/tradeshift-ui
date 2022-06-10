@@ -43,7 +43,25 @@ Our docs site is hosted by GitHub Pages at http://ui.tradeshift.com.
 
 ## Release & Deployment
 
-Make sure you are logged in to `npm` and you have the following environment variables set:
+Make sure you are logged in to `npm` (run `npm login`).
+
+Manual release:
+
+* `npm version ${increment || 'patch'}` # Bump the version (in `package.json` and `package-lock.json`), commit that, and create a git tag. Examples: `npm version 11.3.9`, `npm version patch`, [see docs](https://docs.npmjs.com/cli/v6/commands/npm-version).
+* `grunt dist` if you have installed grunt-cli globally (`npm install -g grunt-cli`), otherwise run `npm run build` (runs `grunt dist` using Grunt from `node_modules`) # Generate distributable files
+* `npm run package-dist` # creates a package.json for the npm dist package. Must be run after updating the version and before publishing to NPM.
+* `git push {remote branch}` # Push the newly created commit
+* `git push origin {the new tag just created}`
+* When the release has been merged into the main branch, navigate to the tag on Github and create a release from it _(could be pre-release)_
+* Deploy those files to S3 (no overwrites) running the Github action workflow "Deploy to S3" _in the v11 branch_ (if it is a v11 release)
+* `npm publish dist/npm --tag {next}` _(tag: next for v11)_ # Push the package to registry. Note the following:
+  * You may have configured `@tradeshift:registry https://npm.pkg.github.com/` (run `npm config list` to check, `npm config delete @tradeshift:registry` to reset registry to default (registry.npmjs.org), `npm config set @tradeshift:registry https://npm.pkg.github.com/` to add it back). The package must be released to https://npm.pkg.github.com/, but if you want it to show up at https://www.npmjs.com/package/@tradeshift/tradeshift-ui, you must also publish using default/no config entry for `@tradeshift:registry`.
+  
+  * If the tagging goes wrong and a v11 release is marked as `latest` in npm (`npm show @tradeshift/tradeshift-ui` to check), run `npm dist-tag add @tradeshift/tradeshift-ui@{LATEST_TS-UI_RELEASE} latest` (again, be aware of `@tradeshift:registry` config).
+
+Alternatively, releasing can be started using one of the following commands (but release-it needs to be fixed):
+
+Make sure you have the following environment variables set:
 
 ```sh
 export AWS_ACCESS_KEY_ID=[Your AWS access key id]
@@ -51,7 +69,6 @@ export AWS_SECRET_ACCESS_KEY=[Your AWS secret access key]
 export GH_ACCESS_TOK=[Your GitHub personal access token]
 ```
 
-Releasing can be started using one of the following commands:
 
 ```sh
 # Let's say the current version is v10.0.0

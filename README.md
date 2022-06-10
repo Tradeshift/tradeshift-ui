@@ -65,6 +65,7 @@ Make sure you have the following environment variables set:
 ```sh
 export AWS_ACCESS_KEY_ID=[Your AWS access key id]
 export AWS_SECRET_ACCESS_KEY=[Your AWS secret access key]
+export GH_ACCESS_TOK=[Your GitHub personal access token]
 ```
 
 

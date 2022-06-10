@@ -41,6 +41,8 @@ Our docs site is hosted by GitHub Pages at https://ui.tradeshift.com.
 
 ## Release & Deployment
 
+Make sure you are logged in to `npm` (run `npm login`).
+
 Manual release:
 
 * `npm version ${increment || 'patch'}` # Bump the version (in `package.json` and `package-lock.json`), commit that, and create a git tag. Examples: `npm version 12.8.4`, `npm version patch`, [see docs](https://docs.npmjs.com/cli/v8/commands/npm-version).
@@ -58,13 +60,14 @@ Manual release:
 
 Alternatively, releasing can be started using one of the following commands (but release-it needs to be fixed):
 
+Make sure you have the following environment variables set:
+
 ```sh
 export AWS_ACCESS_KEY_ID=[Your AWS access key id]
 export AWS_SECRET_ACCESS_KEY=[Your AWS secret access key]
 export GH_ACCESS_TOK=[Your GitHub personal access token]
 ```
 
-Releasing can be started using one of the following commands:
 
 ```sh
 # Let's say the current version is v10.0.0

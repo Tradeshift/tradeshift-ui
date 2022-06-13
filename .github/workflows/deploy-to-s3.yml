@@ -17,9 +17,6 @@ jobs:
           node-version: 14
           cache: 'npm'
 
-      - name: 🐗  Install grunt-cli
-        run: npm install -g grunt-cli
-
       - name: 📥  Download deps
         run: npm ci
 

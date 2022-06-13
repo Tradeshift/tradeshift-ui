@@ -15,9 +15,11 @@ If you'd like to submit a feature request or report a bug, go to our [issues pag
 1. Clone this repository
 1. Install [NodeJS](https://nodejs.org/), either LTS or current.
 1. Install the Grunt Command Line Utility globally.
-   - `npm install -g grunt-cli`
+    - `npm install -g grunt-cli`
+1. Use the configured version of node
+    - `nvm use`
 1. Install the dependencies of this project.
-   - `npm install`
+    - `npm install`
 
 ## Usage (Local Development)
 
@@ -30,6 +32,10 @@ If you'd like to submit a feature request or report a bug, go to our [issues pag
 
 1. Run `grunt dev` (instead of just `grunt`) and the documentantion website will open up on [`http://localhost:10114/`](http://localhost:10114/)
 1. Whenever you modify the source files, the script will rebuild the documentation so you're always using the latest version.
+
+### Maintaining the v11 branch
+
+Check out the `v11` branch and create pull requests on that branch. Releasing: see [v11 instructions](/Tradeshift/tradeshift-ui/tree/v11#release--deployment).
 
 ## Git Hooks
 

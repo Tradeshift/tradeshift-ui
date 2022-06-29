@@ -33,8 +33,6 @@
   },
   "resolutions": {
     "async": "^2.6.4",
-    "underscore": "^1.13.3",
-    "nth-check": "^2.0.1",
     "debug": "^2.6.9"
   }
 }

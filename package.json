@@ -118,11 +118,11 @@
     "postcss": "^7.0.39",
     "postcss-clean": "^1.2.2",
     "prettier": "1.16.4",
-    "release-it": "^14.14.3",
+    "release-it": "^15.1.1",
     "semver": "^5.7.1",
-    "simple-git": "^1.132.0",
+    "simple-git": "^3.10.0",
     "sweet.js": "^0.7.8",
-    "uglify-js": "^3.15.1"
+    "uglify-js": "^3.16.1"
   },
   "keywords": [
     "tradeshift",
@@ -147,10 +147,7 @@
   "resolutions": {
     "async": "^2.6.4",
     "underscore": "^1.13.3",
-    "minimist": "^1.2.6",
     "mime": "^1.4.1",
-    "aws-sdk": "2.1130.0",
-    "shelljs": "^0.8.5",
     "nth-check": "^2.0.1",
     "postcss": "^7.0.36",
     "ansi-regex": "^5.0.1"

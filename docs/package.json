@@ -23,18 +23,16 @@
     "grunt-contrib-uglify": "^3.0.1",
     "grunt-contrib-watch": "^1.0.0",
     "grunt-exec": "^3.0.0",
-    "grunt-spiritual-build-tmpfix": "0.1.19",
-    "grunt-spiritual-edbml-tmpfix": "^0.3.1",
     "image-diff": "^1.6.3",
+    "jit-grunt": "^0.10.0",
     "js-beautify": "^1.14.0",
     "less": "^3.13.1",
+    "load-grunt-config": "^4.0.1",
     "load-grunt-tasks": "^3.5.0",
     "selenium-webdriver": "^3.3.0"
   },
   "resolutions": {
     "async": "^2.6.4",
-    "underscore": "^1.13.3",
-    "nth-check": "^2.0.1",
     "debug": "^2.6.9"
   }
 }

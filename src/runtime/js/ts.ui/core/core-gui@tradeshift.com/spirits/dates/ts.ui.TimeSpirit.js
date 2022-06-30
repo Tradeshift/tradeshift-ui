@@ -71,8 +71,10 @@ ts.ui.TimeSpirit = (function using(moment, chained) {
 		_update: function() {
 			var newcode = this.element.lang;
 			var oldcode = moment.locale();
+			// eslint-disable-next-line no-void
 			newcode ? moment.locale(nynorsk(newcode)) : void 0;
 			this._setText();
+			// eslint-disable-next-line no-void
 			newcode ? moment.locale(oldcode) : void 0;
 		},
 

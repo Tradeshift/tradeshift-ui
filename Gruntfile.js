@@ -1,4 +1,3 @@
-/* global process */
 const path = require('path');
 
 /**
@@ -9,6 +8,13 @@ module.exports = function(grunt) {
 	'use strict';
 	// load grunt tasks
 	require('load-grunt-tasks')(grunt);
+
+	// import edbml tasks
+	require('load-grunt-config')(grunt, {
+		jitGrunt: {
+			customTasksDir: 'edbml/tasks'
+		}
+	});
 
 	// default file encoding
 	grunt.file.defaultEncoding = 'utf8';
@@ -514,7 +520,7 @@ module.exports = function(grunt) {
 	}
 
 	function compileAndMinifyLess(target = 'cdn') {
-		let out = [
+		const out = [
 			'exec:compile_less_to_css' // less -> css
 		];
 		if (target === 'cdn') {
@@ -529,7 +535,7 @@ module.exports = function(grunt) {
 	}
 
 	function build(target = 'cdn') {
-		let out = [
+		const out = [
 			`clean:${target}`, // remove files
 			'concat:locales', // bundle locale files (synchronously BEFORE moment.js)
 			'concat:moment', // compile moment.js (synchronously AFTER locales!)
@@ -550,7 +556,7 @@ module.exports = function(grunt) {
 	}
 
 	function sizeReport(target = 'cdn') {
-		let out = [];
+		const out = [];
 		if (target === 'cdn') {
 			out.push('size_report:cdn_gzip_vs_normal');
 			out.push(`size_report:cdn_loaded`);

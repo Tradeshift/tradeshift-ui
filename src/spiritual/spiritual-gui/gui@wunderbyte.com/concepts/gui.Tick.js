@@ -304,6 +304,7 @@
 				if (!time) {
 					id = setImmediate(doit);
 				} else if (time > 0) {
+					// eslint-disable-next-line no-unused-vars
 					id = setTimeout(doit, time);
 				} else {
 					doit();

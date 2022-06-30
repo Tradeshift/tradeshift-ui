@@ -47,6 +47,7 @@ gui.Combo = {
 					result,
 					that = this;
 				argv = arguments.length >= 1 ? slice.call(arguments, 0) : [];
+				// eslint-disable-next-line no-void
 				result = void 0;
 				callback = function() {
 					result = base.apply(that, argv);

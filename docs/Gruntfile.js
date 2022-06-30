@@ -32,6 +32,13 @@ module.exports = function(grunt) {
 	// autoload everything that looks like Grunt tasks
 	require('load-grunt-tasks')(grunt);
 
+	// import edbml tasks
+	require('load-grunt-config')(grunt, {
+		jitGrunt: {
+			customTasksDir: '../edbml/tasks'
+		}
+	});
+
 	// read config and apply local overrides (gitignored!)
 	var config = require('./tasks/config')
 		.init(grunt)

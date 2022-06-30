@@ -27,6 +27,7 @@ describe('edb.ArrayPopulator', function likethis() {
 		var persons; // eslint-disable-line no-unused-vars
 		var fail = false;
 		try {
+			// eslint-disable-next-line no-unused-vars
 			persons = new PersonCollection([false]);
 		} catch (typeerror) {
 			fail = true;

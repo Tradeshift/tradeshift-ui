@@ -193,8 +193,8 @@ const succ = function() {
  * @returns {boolean} true on success, false on failure
  */
 const checkReport = function(report) {
-	let out = [];
-	let errOut = [];
+	const out = [];
+	const errOut = [];
 
 	if (!report.length) {
 		console.log('No report received, probably because the build has been terminated...');

@@ -229,6 +229,7 @@ gui.Object = {
 		var result = [];
 		for (var def in object) {
 			if (this._isaccessor(object, def)) {
+				// eslint-disable-next-line no-void
 				void 0;
 			} else {
 				var o = object[def];

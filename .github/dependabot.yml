@@ -1,8 +1,19 @@
 # https://help.github.com/github/administering-a-repository/configuration-options-for-dependency-updates
 version: 2
 updates:
-  - package-ecosystem: "npm"
-    directory: "/"
-    rebase-strategy: "auto"
+  - package-ecosystem: npm
+    directory: /
+    rebase-strategy: auto
     schedule:
-      interval: "weekly"
+      interval: weekly
+  - package-ecosystem: npm
+    directory: /docs
+    schedule:
+      interval: daily
+    registries:
+      - npm-tradeshift
+registries:
+  npm-tradeshift:
+    type: npm-registry
+    url: https://npm.pkg.github.com
+    token: ${{secrets.NPM_READ_TOKEN}}

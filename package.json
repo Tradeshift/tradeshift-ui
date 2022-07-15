@@ -115,7 +115,7 @@
     "mime-types": "^2.1.35",
     "npm-run-all": "^4.1.1",
     "octonode": "^0.10.2",
-    "postcss": "^7.0.39",
+    "postcss": "^8.4.14",
     "postcss-clean": "^1.2.2",
     "prettier": "1.16.4",
     "release-it": "^15.1.1",

@@ -1,6 +1,6 @@
 {
   "name": "@tradeshift/tradeshift-ui",
-  "version": "12.8.2",
+  "version": "12.8.3",
   "description": "The Tradeshift UI Library & Framework",
   "homepage": "https://ui.tradeshift.com/",
   "bugs": {
@@ -151,6 +151,7 @@
     "nth-check": "^2.0.1",
     "postcss": "^7.0.36",
     "ansi-regex": "^5.0.1",
-    "parse-path": "^5.0.0"
+    "parse-path": "^5.0.0",
+    "parse-url": "^8.1.0"
   }
 }

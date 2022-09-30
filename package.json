@@ -78,7 +78,7 @@
     "acorn": "^8.7.0",
     "alce": "^1.2.0",
     "ali-oss": "^6.16.0",
-    "autoprefixer": "^7.1.4",
+    "autoprefixer": "^9.8.8",
     "aws-sdk": "^2.1141.0",
     "browserstack-runner": "^0.9.4",
     "chalk": "^1.1.3",

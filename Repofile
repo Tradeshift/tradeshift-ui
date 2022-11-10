@@ -1,6 +1,13 @@
 {
     "description": "The Tradeshift UI Library & Framework",
-    "topics": ["JavaScript", "UI"],
-    "extraProtectedBranches": ["v11"],
-    "maintainers": ["Partner Enablement and Apps"]
+    "topics": [
+        "JavaScript",
+        "UI"
+    ],
+    "extraProtectedBranches": [
+        "v11"
+    ],
+    "maintainers": [
+        "partner-enablement-and-apps"
+    ]
 }

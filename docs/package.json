@@ -29,7 +29,7 @@
     "less": "^3.13.1",
     "load-grunt-config": "^4.0.1",
     "load-grunt-tasks": "^3.5.0",
-    "selenium-webdriver": "^3.3.0"
+    "selenium-webdriver": "^4.7.0"
   },
   "resolutions": {
     "async": "^2.6.4",

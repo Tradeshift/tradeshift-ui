@@ -19,7 +19,7 @@ jobs:
       - name: ⎔ Setup node
         uses: actions/setup-node@v2
         with:
-          node-version: ${{ github.ref == 'refs/heads/v11' && 8 || 14 }}
+          node-version: ${{ github.ref == 'refs/heads/v11' && 8 || 18 }}
           cache: 'npm'
 
       - name: 📥 Download deps

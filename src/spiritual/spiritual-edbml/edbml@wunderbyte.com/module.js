@@ -93,7 +93,7 @@ gui.module('edbml@wunderbyte.com', {
 		 */
 		if (!window.event) {
 			try {
-				window.event = null;
+				window.event = undefined;
 			} catch (ieexception) {}
 		}
 	}

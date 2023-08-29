@@ -7,11 +7,11 @@
     <link rel="ts-app-icon" href="/v12/dist/assets/icon.svg">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
-    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.8.2.min.js"></script>
+    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.9.0.min.js"></script>
     <script src="/v12/dist/assets/dox.min.js"></script>
     <script src="/v12/dist/assets/mark.min.js"></script>
     <script src="/v12/dist/assets/jquery-2.2.4.min.js"></script>
-    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.8.2.min.css">
+    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.9.0.min.css">
     <link rel="stylesheet" href="/v12/dist/assets/dox.css">
 </head>
 
@@ -36,19 +36,6 @@
                                 background).
                             </p>
                             <figure data-ts="DoxMarkup" data-ts.code="%3Cdiv%20data-ts%3D%22Search%22%20id%3D%22mysearch%22%20class%3D%22ts-inset%22%3E%3C%2Fdiv%3E">
-                                <script type="text/html">
-                                    <div data-ts="Search" id="mysearch" class="ts-inset"></div>
-                                </script>
-                                <ul data-ts="Panels">
-                                    <li data-ts="Panel" data-ts.label="Render" data-ts.selected="true">
-                                        <div class="output">
-                                            <div data-ts="Search" id="mysearch" class="ts-inset"></div>
-                                        </div>
-                                    </li>
-                                    <li data-ts="Panel" data-ts.label="Markup" data-ts.selected="false">
-                                        <pre class="prism language-markup"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>Search<span class="token punctuation">"</span></span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>mysearch<span class="token punctuation">"</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>ts-inset<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span></code></pre>
-                                    </li>
-                                </ul>
                             </figure>
                             <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.get('%23mysearch'%2C%20function(search)%20%7B%0A%09search.value%20%3D%20'Press%20ENTER%20here'%3B%0A%09search.info%20%3D%20'Search%20amongst%20all%20the%20things'%3B%0A%09search.onsearch%20%3D%20function(value)%20%7B%0A%09%09ts.ui.Notification.success(value%20%7C%7C%20'Search%20cleared')%3B%0A%09%7D%0A%7D)%3B">
                                 <script type="runnable">

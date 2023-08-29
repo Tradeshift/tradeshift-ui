@@ -7,11 +7,11 @@
     <link rel="ts-app-icon" href="/v12/dist/assets/icon.svg">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
-    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.8.2.min.js"></script>
+    <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.9.0.min.js"></script>
     <script src="/v12/dist/assets/dox.min.js"></script>
     <script src="/v12/dist/assets/mark.min.js"></script>
     <script src="/v12/dist/assets/jquery-2.2.4.min.js"></script>
-    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.8.2.min.css">
+    <link rel="stylesheet" href="//d5wfroyti11sa.cloudfront.net/prod/client/ts-12.9.0.min.css">
     <link rel="stylesheet" href="/v12/dist/assets/dox.css">
     <script>
         function toggle( /*...selectors*/ ) {
@@ -140,72 +140,12 @@
                                 with the content.
                             </p>
                             <figure data-ts="DoxMarkup" data-ts.code="%3Cdiv%20data-ts%3D%22Note%22%3E%0A%09%3Ci%20class%3D%22ts-icon-heart%22%3E%3C%2Fi%3E%0A%09%3Cp%3EYou%20love%20the%20Note!%3C%2Fp%3E%0A%3C%2Fdiv%3E">
-                                <script type="text/html">
-                                    <div data-ts="Note">
-                                        <i class="ts-icon-heart"></i>
-                                        <p>You love the Note!</p>
-                                    </div>
-                                </script>
-                                <ul data-ts="Panels">
-                                    <li data-ts="Panel" data-ts.label="Render" data-ts.selected="true">
-                                        <div class="output">
-                                            <div data-ts="Note">
-                                                <i class="ts-icon-heart"></i>
-                                                <p>You love the Note!</p>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li data-ts="Panel" data-ts.label="Markup" data-ts.selected="false">
-                                        <pre class="prism language-markup"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>Note<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
-	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>i</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>ts-icon-heart<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>i</span><span class="token punctuation">&gt;</span></span>
-	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>You love the Note!<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span></code></pre>
-                                    </li>
-                                </ul>
                             </figure>
                             <p>Note without icon using simple HTML:</p>
                             <figure data-ts="DoxMarkup" data-ts.code="%3Cdiv%20data-ts%3D%22Note%22%3E%0A%09%3Cp%3EThis%20is%20the%20iconless%20Note!%3C%2Fp%3E%0A%3C%2Fdiv%3E">
-                                <script type="text/html">
-                                    <div data-ts="Note">
-                                        <p>This is the iconless Note!</p>
-                                    </div>
-                                </script>
-                                <ul data-ts="Panels">
-                                    <li data-ts="Panel" data-ts.label="Render" data-ts.selected="true">
-                                        <div class="output">
-                                            <div data-ts="Note">
-                                                <p>This is the iconless Note!</p>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li data-ts="Panel" data-ts.label="Markup" data-ts.selected="false">
-                                        <pre class="prism language-markup"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>Note<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
-	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>This is the iconless Note!<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span></code></pre>
-                                    </li>
-                                </ul>
                             </figure>
                             <p>Inline Note with closeable function</p>
                             <figure data-ts="DoxMarkup" data-ts.code="%3Cdiv%20data-ts%3D%22Note%22%20data-ts.closeable%3D%22true%22%3E%0A%09%3Cp%3EThis%20is%20the%20closeable%20inline%20Note!%3C%2Fp%3E%0A%3C%2Fdiv%3E">
-                                <script type="text/html">
-                                    <div data-ts="Note" data-ts.closeable="true">
-                                        <p>This is the closeable inline Note!</p>
-                                    </div>
-                                </script>
-                                <ul data-ts="Panels">
-                                    <li data-ts="Panel" data-ts.label="Render" data-ts.selected="true">
-                                        <div class="output">
-                                            <div data-ts="Note" data-ts.closeable="true">
-                                                <p>This is the closeable inline Note!</p>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li data-ts="Panel" data-ts.label="Markup" data-ts.selected="false">
-                                        <pre class="prism language-markup"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>Note<span class="token punctuation">"</span></span> <span class="token attr-name">data-ts</span>.<span class="token attr-name">closeable</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>true<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
-	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>This is the closeable inline Note!<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span></code></pre>
-                                    </li>
-                                </ul>
                             </figure>
                             <p>
                                 The Note will wrap to multiple lines if there's a lot of content inside.

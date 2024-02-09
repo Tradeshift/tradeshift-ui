@@ -47,26 +47,32 @@ Our docs site is hosted by GitHub Pages at https://ui.tradeshift.com.
 
 ## Release & Deployment
 
-Make sure you are logged in to `npm` (run `npm login`).
+### Manual Release:
 
-Manual release:
+1. **Check out a feature branch**. Name it anything. The `master` branch is protected from being pushed to directly, and your code will get released to S3 but not to git/GitHub/npm.
+2. **`npm version ${increment || 'patch'}`**; Bumps the version in `package.json` and `package-lock.json`, and creates a commit and a tag for you. Examples: `npm version 12.8.4`, `npm version patch`, [see docs](https://docs.npmjs.com/cli/v8/commands/npm-version).
+3. **`nvm use`** (use the specified node and npm version)
+4. **`npm i`**
+5. **`npm run build`**
+6. **`npm run package-dist`**. That creates a `package.json` for the npm dist package.
+7. **`git push origin {branch}`**; pushes the newly created commit. Don't use a fork.
+8. **`git push origin {the new tag just created}`**. Example: `git push origin v12.8.4`. Run `git tag` to list tags and find the one just created.
+9. **Merge** the branch into the main branch, wait for the build to succeed. Then navigate to the tag on Github and create a release from it _(could be pre-release)_
+10. **Deploy** the files to S3 (no overwrites) running the Github action workflow "Deploy to S3". By default it will use the main branch. If you are releasing a `v11` release, you need to select that.
+11. Make sure you are logged in to npm (run **`npm login`**).
+12. **Use the right package registry**: You may have configured `@tradeshift:registry https://npm.pkg.github.com/` (run `npm config list` to check, `npm config delete @tradeshift:registry` to reset registry to default (registry.npmjs.org), `npm config set @tradeshift:registry https://npm.pkg.github.com/` to add it back). The package must be released to https://npm.pkg.github.com/, but if you want it to show up at https://www.npmjs.com/package/@tradeshift/tradeshift-ui, you must also publish using default/no config entry for `@tradeshift:registry`.
+13. Go to the dist dir: **`cd dist/npm`**. In there, run **`npm publish --tag {tag_name}`**. The tag name must be `next` for `v11` releases, `latest` or not specified for latest release. This pushes the package to registry. **Note the following**:
+  If the tagging goes wrong and a v11 release is marked as `latest` in npm (`npm show @tradeshift/tradeshift-ui` to check), run `npm dist-tag add @tradeshift/tradeshift-ui@{LATEST_TS-UI_RELEASE} latest` (again, be aware of `@tradeshift:registry` config).
 
-* `npm version ${increment || 'patch'}` # Bump the version (in `package.json` and `package-lock.json`), commit that, and create a git tag. Examples: `npm version 12.8.4`, `npm version patch`, [see docs](https://docs.npmjs.com/cli/v8/commands/npm-version).
-* `grunt dist` if you have installed grunt-cli globally (`npm install -g grunt-cli`), otherwise run `npm run build` (runs `grunt dist` using Grunt from `node_modules`) # Generate distributable files
-* `npm run package-dist` # creates a package.json for the npm dist package. Must be run after updating the version and before publishing to NPM.
-* `git push {remote branch}` # Push the newly created commit
-* `git push origin {the new tag just created}`
-* When the release has been merged into the main branch, navigate to the tag on Github and create a release from it _(could be pre-release)_
-* Deploy those files to S3 (no overwrites) running the Github action workflow "Deploy to S3" _in the v11 branch_ (if it is a v11 release)
-* `npm publish dist/npm --tag {next}` _(tag: next for v11, latest or ommitted for latest major version)_ # Push the package to registry. Note the following:
+### Automatic Release
 
-  * You may have configured `@tradeshift:registry https://npm.pkg.github.com/` (run `npm config list` to check, `npm config delete @tradeshift:registry` to reset registry to default (registry.npmjs.org), `npm config set @tradeshift:registry https://npm.pkg.github.com/` to add it back). The package must be released to https://npm.pkg.github.com/, but if you want it to show up at https://www.npmjs.com/package/@tradeshift/tradeshift-ui, you must also publish using default/no config entry for `@tradeshift:registry`.
-
-  * If the tagging goes wrong and a v11 release is marked as `latest` in npm (`npm show @tradeshift/tradeshift-ui` to check), run `npm dist-tag add @tradeshift/tradeshift-ui@{LATEST_TS-UI_RELEASE} latest` (again, be aware of `@tradeshift:registry` config).
+**- Currently not working -**
 
 Alternatively, releasing can be started using one of the following commands (but release-it needs to be fixed):
 
-Make sure you have the following environment variables set:
+1. Create a new branch. It will not work on the main branch.
+
+2. Make sure you have the following environment variables set:
 
 ```sh
 export AWS_ACCESS_KEY_ID=[Your AWS access key id]
@@ -74,6 +80,7 @@ export AWS_SECRET_ACCESS_KEY=[Your AWS secret access key]
 export GH_ACCESS_TOK=[Your GitHub personal access token]
 ```
 
+3. Run one of the following commands:
 
 ```sh
 # Let's say the current version is v10.0.0
@@ -129,8 +136,6 @@ Any of these commands will essentially do the following steps:
 - `git push` # Push the newly created commit and tag to GitHub
 - Release to GitHub _(could be pre-release)_ # Mark the tag as a GitHub Release
 - `npm publish` _(tag is latest or next)_ # Push the package to registry.npmjs.org
-
-Make sure to not do this on the `master` branch because it is protected from being pushed to directly and your code will get released to S3 but not to git/GitHub/npm.
 
 ## Updating the docs
 

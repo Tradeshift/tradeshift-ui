@@ -29,7 +29,7 @@
     "selenium-webdriver": "^3.3.0"
   },
   "overrides": {
-    "async": "^2.6.4",
+    "async": "^3.0.0",
     "debug": "^2.6.9"
   }
 }

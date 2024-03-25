@@ -145,7 +145,7 @@
     "access": "public"
   },
   "overrides": {
-    "async": "^2.6.4",
+    "async": "^3.0.0",
     "underscore": "^1.13.3",
     "mime": "^1.4.1",
     "nth-check": "^2.0.1",

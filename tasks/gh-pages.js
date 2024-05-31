@@ -36,7 +36,7 @@ const verhead = ver => `gh-pages-update/v${ver}`;
 			repo.pr(
 				{
 					title: message(vers),
-					body: '@zdlm @esmailpour-hosein',
+					body: '@Tradeshift/tradeshiftui',
 					base: 'gh-pages',
 					head: verhead(vers)
 				},

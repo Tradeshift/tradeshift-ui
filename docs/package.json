@@ -26,7 +26,7 @@
     "less": "^4.2.0",
     "load-grunt-config": "^4.0.1",
     "load-grunt-tasks": "^3.5.0",
-    "selenium-webdriver": "^3.3.0"
+    "selenium-webdriver": "^4.8.2"
   },
   "overrides": {
     "async": "^2.6.4",

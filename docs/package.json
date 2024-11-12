@@ -20,7 +20,7 @@
     "grunt-contrib-uglify": "^3.0.1",
     "grunt-contrib-watch": "^1.0.0",
     "grunt-exec": "^3.0.0",
-    "image-diff": "^1.6.3",
+    "image-diff": "^2.0.0",
     "jit-grunt": "^0.10.0",
     "js-beautify": "^1.14.0",
     "less": "^4.2.0",

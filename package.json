@@ -92,7 +92,7 @@
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^5.2.0",
     "eslint-plugin-standard": "^5.0.0",
-    "grunt": "^1.5.2",
+    "grunt": "^1.6.1",
     "grunt-browserify": "^6.0.0",
     "grunt-concurrent": "^3.0.0",
     "grunt-contrib-clean": "^2.0.1",

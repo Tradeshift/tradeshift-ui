@@ -121,7 +121,7 @@
     "release-it": "^15.1.1",
     "semver": "^5.7.1",
     "simple-git": "^3.10.0",
-    "sweet.js": "^0.7.8",
+    "sweet.js": "^3.0.15",
     "uglify-js": "^3.16.1"
   },
   "keywords": [

@@ -23,7 +23,7 @@
     "image-diff": "^1.6.3",
     "jit-grunt": "^0.10.0",
     "js-beautify": "^1.14.0",
-    "less": "^4.2.0",
+    "less": "^4.2.1",
     "load-grunt-config": "^4.0.1",
     "load-grunt-tasks": "^5.1.0",
     "selenium-webdriver": "^4.27.0"

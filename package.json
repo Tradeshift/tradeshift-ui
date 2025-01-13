@@ -117,7 +117,7 @@
     "octonode": "^0.10.2",
     "postcss": "^8.4.21",
     "postcss-clean": "^1.2.2",
-    "prettier": "1.19.1",
+    "prettier": "3.4.2",
     "release-it": "^18.1.1",
     "semver": "^7.6.3",
     "simple-git": "^3.27.0",

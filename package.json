@@ -15,7 +15,7 @@
   ],
   "license": "SEE LICENSE IN LICENSE.md",
   "engines": {
-    "node": ">=8.0.0"
+    "node": ">=8.17.0"
   },
   "scripts": {
     "****** LINT *****": "",

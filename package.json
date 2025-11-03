@@ -152,6 +152,6 @@
     "postcss": "^8.4.21",
     "ansi-regex": "^5.0.1",
     "parse-path": "^5.0.0",
-    "parse-url": "^8.1.0"
+    "parse-url": "^10.0.0"
   }
 }

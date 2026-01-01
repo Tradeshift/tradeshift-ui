@@ -77,7 +77,7 @@
     "@tradeshift/g11n-langneg": "^1.2.3",
     "acorn": "^8.7.0",
     "alce": "^1.2.0",
-    "ali-oss": "^6.22.0",
+    "ali-oss": "^6.23.0",
     "autoprefixer": "^10.4.23",
     "aws-sdk": "^2.1693.0",
     "browserstack-runner": "^0.9.4",

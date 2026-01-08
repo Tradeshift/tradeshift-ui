@@ -72,8 +72,8 @@
     "ie 11"
   ],
   "devDependencies": {
-    "@babel/core": "^7.16.0",
-    "@babel/eslint-parser": "^7.16.3",
+    "@babel/core": "^7.26.0",
+    "@babel/eslint-parser": "^7.25.9",
     "@tradeshift/g11n-langneg": "^1.2.3",
     "acorn": "^8.14.0",
     "alce": "^1.2.0",

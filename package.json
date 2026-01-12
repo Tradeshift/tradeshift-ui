@@ -118,7 +118,7 @@
     "postcss": "^8.4.21",
     "postcss-clean": "^1.2.2",
     "prettier": "1.19.1",
-    "release-it": "^18.1.1",
+    "release-it": "^19.2.3",
     "semver": "^7.6.3",
     "simple-git": "^3.27.0",
     "sweet.js": "^0.7.8",

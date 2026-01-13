@@ -74,7 +74,7 @@
   "devDependencies": {
     "@babel/core": "^7.28.6",
     "@babel/eslint-parser": "^7.28.6",
-    "@tradeshift/g11n-langneg": "^1.2.3",
+    "@tradeshift/g11n-langneg": "^1.3.2",
     "acorn": "^8.14.0",
     "alce": "^1.2.0",
     "ali-oss": "^6.23.0",

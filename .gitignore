@@ -82,4 +82,4 @@ jspm_packages
 /docs/src/less/ts-runtime.less
 
 # Latest Browserstack browsers
-browserstack.browsers.json
+# browserstack.browsers.json

@@ -149,6 +149,7 @@ const fail = function() {
 	);
 	console.log('                               ░  ░ ░      ░  ░   ░        ░        ░  ░ ░');
 	console.log('');
+	console.log(config);
 };
 
 /**
@@ -201,9 +202,7 @@ const checkReport = function(report) {
 
 	if (!report.length) {
 		console.log('No report received, probably because the build has been terminated...');
-		console.log(
-			'Check the tests runs! https://travis-ci.org/Tradeshift/tradeshift-ui/pull_requests'
-		);
+		console.log('Check the tests runs! https://github.com/Tradeshift/tradeshift-ui/actions');
 		fail();
 		return false;
 	}

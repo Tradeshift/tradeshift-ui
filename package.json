@@ -146,7 +146,7 @@
   },
   "overrides": {
     "async": "^2.6.4",
-    "underscore": "^1.13.3",
+    "underscore": "^1.13.7",
     "mime": "^1.6.0",
     "nth-check": "^2.0.1",
     "postcss": "^8.4.21",

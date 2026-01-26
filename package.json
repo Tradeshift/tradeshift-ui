@@ -75,7 +75,7 @@
     "@babel/core": "^7.28.6",
     "@babel/eslint-parser": "^7.28.6",
     "@tradeshift/g11n-langneg": "^1.2.3",
-    "acorn": "^8.14.0",
+    "acorn": "^8.15.0",
     "alce": "^1.2.0",
     "ali-oss": "^6.23.0",
     "autoprefixer": "^10.4.23",

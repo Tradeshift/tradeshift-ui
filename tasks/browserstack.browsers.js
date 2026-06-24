@@ -60,18 +60,26 @@ try {
 				(a, b) => parseFloat(a) - parseFloat(b)
 			);
 
-			const latestVersion = sortedVersions[sortedVersions.length - 1];
-			const previousVersion = sortedVersions[sortedVersions.length - 2];
+			// Test the two most recent settled versions, skipping the newest release:
+			// brand-new browser/OS builds provision slowly and behave inconsistently on
+			// BrowserStack. Browsers with fewer than three versions are kept as-is.
+			const stableVersions =
+				sortedVersions.length > 2 ? sortedVersions.slice(0, -1) : sortedVersions;
+			const latestVersion = stableVersions[stableVersions.length - 1];
+			const previousVersion = stableVersions[stableVersions.length - 2];
 
 			// Build a complete browser object from the API data for a given version.
 			// - browser is lowercased: the v4 Worker API expects lowercase names
 			//   (the original string approach sent "chrome", not "Chrome")
-			// - os + os_version come from the API entry: prefer Windows for
-			//   multi-OS browsers; Safari appears only on OS X so the fallback
-			//   to entries[0] covers it automatically
+			// - os + os_version come from the API entry, pinned to Windows 10 when
+			//   available for a stable image; multi-OS browsers fall back to any
+			//   Windows entry, and Safari (OS X only) falls back to the first entry
 			const makeEntry = ver => {
 				const entries = tmpBrowsers[browser][ver];
-				const entry = entries.find(e => e.os === 'Windows') || entries[0];
+				const entry =
+					entries.find(e => e.os === 'Windows' && e.os_version === '10') ||
+					entries.find(e => e.os === 'Windows') ||
+					entries[0];
 				return {
 					browser: browser,
 					browser_version: entry.browser_version,

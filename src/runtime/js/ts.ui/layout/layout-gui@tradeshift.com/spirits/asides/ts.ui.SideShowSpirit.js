@@ -201,6 +201,12 @@ ts.ui.SideShowSpirit = (function using(
 		 * Required by the {DoorManPlugin}.
 		 */
 		$onopen: function() {
+			// Re-evaluate RTL state before showing: onconfigure() may have run before
+			// the locale detection set dir="rtl" on <html>, leaving a stale LTR
+			// translate3d(100%) transform. Without this call the browser paints the
+			// aside briefly in the wrong position (right side) before the animation
+			// corrects it.
+			this._position(100);
 			this.dom.show();
 			this._slideopen(true).then(
 				function done() {
@@ -372,10 +378,15 @@ ts.ui.SideShowSpirit = (function using(
 
 		/**
 		 * Update position.
+		 * In LTR, ts-sidebar-first is on the left → negate to slide off left.
+		 * In RTL, ts-sidebar-first is on the right → keep positive to slide off right.
+		 * The XOR ensures each case slides away from its visible side.
 		 * @param {number} pct
 		 */
 		_position: function(pct) {
-			if (this.element.className.indexOf('ts-sidebar-first') > 0) {
+			var isFirst = this.element.className.indexOf('ts-sidebar-first') > 0;
+			var isRTL = document.documentElement.getAttribute('dir') === 'rtl';
+			if (isFirst !== isRTL) {
 				pct = -pct;
 			}
 			this.css.set('-beta-transform', 'translate3d(' + pct + '%,0,0)');

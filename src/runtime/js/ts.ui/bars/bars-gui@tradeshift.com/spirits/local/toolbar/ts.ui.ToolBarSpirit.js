@@ -675,6 +675,7 @@ ts.ui.ToolBarSpirit = (function using(
 			/**
 			 * When fixed to top or bottom, the Toolbar covers the MAIN scrollbar.
 			 * Let's offset it some pixels to the left so that it looks OK again.
+			 * In RTL the scrollbar is on the left side, so offset that side instead.
 			 * @param {gui.CSSPlugin} css
 			 */
 			_looknormal: function(css) {
@@ -684,7 +685,15 @@ ts.ui.ToolBarSpirit = (function using(
 						return css.contains(klass);
 					})
 				) {
-					css.right = mobile ? Client.scrollBarSize : '';
+					var isRTL = document.documentElement.getAttribute('dir') === 'rtl';
+					var size = mobile ? Client.scrollBarSize : '';
+					if (isRTL) {
+						css.left = size;
+						css.right = '';
+					} else {
+						css.right = size;
+						css.left = '';
+					}
 				}
 			},
 
@@ -837,6 +846,9 @@ ts.ui.ToolBarSpirit = (function using(
 
 			/**
 			 * Move selected tab marker.
+			 * In RTL the indicator is CSS-anchored to right:0 (via ts-rtl.less), so a
+			 * positive translateX would push it further right off-screen. We instead
+			 * compute the offset from the right edge: -(containerWidth - offsetLeft - tabWidth).
 			 * @param {ts.ui.Spirit} source
 			 * @param {ts.ui.Spirit} target
 			 */
@@ -845,7 +857,13 @@ ts.ui.ToolBarSpirit = (function using(
 				if (source) {
 					if (target) {
 						source.dom.show();
-						source.sprite.x = target.box.localX;
+						var isRTL = document.documentElement.getAttribute('dir') === 'rtl';
+						if (isRTL) {
+							var containerWidth = source.element.parentElement.offsetWidth;
+							source.sprite.x = -(containerWidth - target.box.localX - target.box.width);
+						} else {
+							source.sprite.x = target.box.localX;
+						}
 						source.sprite.xscale = target.box.width / 100;
 						/*
 						if (!source.css.contains(smooth)) {

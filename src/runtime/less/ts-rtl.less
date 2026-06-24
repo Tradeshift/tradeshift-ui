@@ -1,0 +1,1271 @@
+// =============================================================================
+// RTL (Right-to-Left) support — Arabic and other RTL languages
+// Activate by setting dir="rtl" on the <html> element.
+// All overrides are scoped to html[dir='rtl'] to guarantee zero impact on LTR.
+// =============================================================================
+
+@import 'ts-variables.less';
+@import 'ts-variables-new.less';
+
+// Button-group layout offsets (mirror of ts-buttons.less locals)
+@rtl-offset: @ts-unit-double + @ts-unit-half;
+
+// Dialog centering offset (mirrors @local-variable-dialog-minus in ts-dialogs.less)
+@rtl-dialog-width: @ts-width-aside + (@ts-unit-double * 2) - @ts-unit;
+@rtl-dialog-minus: 1 - (@rtl-dialog-width * 0.5);
+
+html[dir='rtl'] {
+	// =========================================================================
+	// Body / Base
+	// =========================================================================
+
+	body {
+		// Arabic fonts render significantly better with a dedicated font stack
+		font-family: @ts-fontstack-arabic, @ts-fontstack;
+	}
+
+	// =========================================================================
+	// Typography — ts-typo.less
+	// =========================================================================
+
+	ul:not([class]),
+	ol:not([class]) {
+		text-align: right;
+		ul,
+		ol {
+			padding-left: 0;
+			padding-right: 16px;
+		}
+	}
+	ul:not([class]) {
+		li {
+			padding-left: 0;
+			padding-right: 16px;
+			&:before {
+				left: auto;
+				right: 1px;
+			}
+		}
+	}
+	ol:not([class]) {
+		padding-left: 0;
+		padding-right: 16px;
+	}
+
+	// =========================================================================
+	// Buttons — ts-buttons.less
+	// =========================================================================
+
+	.ts-button {
+		margin-right: 0;
+		margin-left: @ts-unit-quarter;
+
+		// Action variant text offset
+		&.ts-action > span {
+			padding-left: 0;
+			padding-right: @ts-unit-quarter * 1.5;
+		}
+	}
+	// Links and menu buttons keep no side-margin
+	a.ts-button,
+	menu .ts-button {
+		margin-left: 0;
+	}
+
+	// Loading bar: reverse stripe animation direction in RTL
+	.ts-button.ts-is-loading:after {
+		animation-direction: reverse;
+	}
+
+	// Joined single-row button group — flip border-radius
+	.ts-toolbar .ts-join .ts-button {
+		&:first-child {
+			&,
+			&:after {
+				border-radius: 0 @ts-unit @ts-unit 0;
+			}
+		}
+		&:last-child {
+			&,
+			&:after {
+				border-radius: @ts-unit 0 0 @ts-unit;
+			}
+		}
+		+ .ts-button:after {
+			border-left: none;
+			border-right: 1px solid @ts-color-white;
+		}
+		+ .ts-button.ts-tertiary:after {
+			border-right: none;
+		}
+	}
+
+	// Absolute-positioned button group layouts (.ts-buttons)
+	.ts-buttons {
+		// ts-t-t: two full-width text buttons
+		&.ts-t-t {
+			li:nth-child(1) {
+				left: 50%;
+				right: 0;
+				border-right: none;
+				border-left: @ts-unit-quarter solid transparent;
+				.ts-button {
+					width: 100%;
+				}
+			}
+			li:nth-child(2) {
+				left: 0;
+				right: 50%;
+				border-left: none;
+				border-right: @ts-unit-quarter solid transparent;
+				.ts-button {
+					width: 100%;
+				}
+			}
+			&.ts-join {
+				li:nth-child(1) {
+					border-left: none;
+					.ts-button {
+						&,
+						&:before,
+						&:after {
+							border-top-right-radius: @ts-unit;
+							border-bottom-right-radius: @ts-unit;
+							border-top-left-radius: 0;
+							border-bottom-left-radius: 0;
+						}
+						&.ts-tertiary,
+						&.ts-secondary {
+							border-left: none;
+							border-right: 1px solid @new-bordercolor;
+						}
+					}
+				}
+				li:nth-child(2) {
+					border-right: none;
+					.ts-button {
+						&,
+						&:before,
+						&:after {
+							border-top-left-radius: @ts-unit;
+							border-bottom-left-radius: @ts-unit;
+							border-top-right-radius: 0;
+							border-bottom-right-radius: 0;
+						}
+						&.ts-tertiary,
+						&.ts-secondary {
+							border-right: none;
+							border-left: 1px solid @new-bordercolor;
+						}
+					}
+				}
+			}
+		}
+
+		// ts-i-t: icon on start (right in RTL), text fills the rest
+		&.ts-i-t {
+			li:nth-child(1) {
+				right: 0;
+				left: auto;
+				width: @ts-unit-double;
+				.ts-button span {
+					display: none;
+				}
+				.ts-button i {
+					display: inline-block;
+				}
+			}
+			li:nth-child(2) {
+				right: @rtl-offset;
+				left: 0;
+				.ts-button i {
+					display: none;
+				}
+				.ts-button {
+					width: 100%;
+				}
+			}
+			&.ts-join {
+				li:nth-child(1) {
+					.ts-button {
+						&,
+						&:before,
+						&:after {
+							border-top-right-radius: @ts-unit;
+							border-bottom-right-radius: @ts-unit;
+							border-top-left-radius: 0;
+							border-bottom-left-radius: 0;
+						}
+					}
+				}
+				li:nth-child(2) {
+					right: @ts-unit-double;
+					.ts-button {
+						&,
+						&:before,
+						&:after {
+							border-top-left-radius: @ts-unit;
+							border-bottom-left-radius: @ts-unit;
+							border-top-right-radius: 0;
+							border-bottom-right-radius: 0;
+						}
+						&.ts-tertiary,
+						&.ts-secondary {
+							border-right: 1px solid @new-bordercolor;
+							border-left: none;
+						}
+					}
+				}
+			}
+		}
+
+		// ts-t-i: text on start (right in RTL), icon on end (left in RTL)
+		&.ts-t-i {
+			li:nth-child(1) {
+				right: 0;
+				left: @rtl-offset;
+				.ts-button i {
+					display: none;
+				}
+				.ts-button {
+					width: 100%;
+				}
+			}
+			li:nth-child(2) {
+				right: auto;
+				left: 0;
+				width: @ts-unit-double;
+				.ts-button span {
+					display: none;
+				}
+				.ts-button i {
+					display: inline-block;
+				}
+			}
+			&.ts-join {
+				li:nth-child(1) {
+					right: 0;
+					left: @ts-unit-double;
+					.ts-button {
+						&,
+						&:before,
+						&:after {
+							border-top-right-radius: @ts-unit;
+							border-bottom-right-radius: @ts-unit;
+							border-top-left-radius: 0;
+							border-bottom-left-radius: 0;
+						}
+						&.ts-tertiary,
+						&.ts-secondary {
+							border-left: 1px solid @new-bordercolor;
+							border-right: none;
+						}
+					}
+				}
+				li:nth-child(2) {
+					.ts-button {
+						&,
+						&:before,
+						&:after {
+							border-top-left-radius: @ts-unit;
+							border-bottom-left-radius: @ts-unit;
+							border-top-right-radius: 0;
+							border-bottom-right-radius: 0;
+						}
+					}
+				}
+			}
+		}
+
+		// ts-i-i-t: two leading icons + text
+		&.ts-i-i-t {
+			li:nth-child(1) {
+				right: 0;
+				left: auto;
+				width: @ts-unit-double;
+			}
+			li:nth-child(2) {
+				right: @rtl-offset;
+				left: auto;
+				width: @ts-unit-double;
+			}
+			li:nth-child(3) {
+				right: @rtl-offset * 2;
+				left: 0;
+				.ts-button {
+					width: 100%;
+				}
+				.ts-button i {
+					display: none;
+				}
+			}
+		}
+
+		// ts-i-t-i: icon + text + icon
+		&.ts-i-t-i {
+			li:nth-child(1) {
+				right: 0;
+				left: auto;
+				width: @ts-unit-double;
+			}
+			li:nth-child(2) {
+				right: @rtl-offset;
+				left: @rtl-offset;
+				.ts-button {
+					width: 100%;
+				}
+				.ts-button i {
+					display: none;
+				}
+			}
+			li:nth-child(3) {
+				right: auto;
+				left: 0;
+				width: @ts-unit-double;
+			}
+		}
+
+		// ts-t-i-i: text + two trailing icons
+		&.ts-t-i-i {
+			li:nth-child(1) {
+				right: 0;
+				left: @rtl-offset * 2;
+				.ts-button {
+					width: 100%;
+				}
+				.ts-button i {
+					display: none;
+				}
+			}
+			li:nth-child(2) {
+				right: auto;
+				left: @rtl-offset;
+				width: @ts-unit-double;
+			}
+			li:nth-child(3) {
+				right: auto;
+				left: 0;
+				width: @ts-unit-double;
+			}
+		}
+	}
+
+	// Micro button-group RTL overrides
+	.ts-micro {
+		&.ts-i-t li:nth-child(2) {
+			right: @rtl-offset - @ts-unit;
+			left: 0;
+		}
+		&.ts-t-i li:nth-child(1) {
+			right: 0;
+			left: @rtl-offset - @ts-unit;
+		}
+		&.ts-t-i li:nth-child(2) {
+			right: auto;
+			left: 0;
+			width: @ts-unit;
+		}
+		&.ts-i-i-t li:nth-child(2) {
+			right: @rtl-offset - @ts-unit;
+		}
+		&.ts-i-i-t li:nth-child(3) {
+			right: (@rtl-offset - @ts-unit) * 2;
+			left: 0;
+		}
+		&.ts-i-t-i li:nth-child(2) {
+			right: @rtl-offset - @ts-unit;
+			left: @rtl-offset - @ts-unit;
+		}
+		&.ts-i-t-i li:nth-child(3) {
+			right: auto;
+			left: 0;
+			width: @ts-unit;
+		}
+		&.ts-t-i-i li:nth-child(1) {
+			right: 0;
+			left: (@rtl-offset - @ts-unit) * 2;
+		}
+		&.ts-t-i-i li:nth-child(2) {
+			right: auto;
+			left: @rtl-offset - @ts-unit;
+			width: @ts-unit;
+		}
+		&.ts-t-i-i li:nth-child(3) {
+			right: auto;
+			left: 0;
+			width: @ts-unit;
+		}
+	}
+
+	// =========================================================================
+	// Forms — ts-forms.less
+	// =========================================================================
+
+	.ts-form {
+		text-align: right;
+
+		// Option fieldset padding is symmetric — no change needed
+		// Field headers (span:first-child) use left/right both set — symmetric
+
+		// Errors / info message indentation
+		.ts-errors,
+		.ts-info {
+			margin-left: 0;
+			margin-right: @ts-unit-half;
+			> dt,
+			> dd {
+				padding-left: 0;
+				padding-right: (@ts-unit - 1px);
+			}
+			> dt:before {
+				left: auto;
+				right: 0;
+			}
+			> dd:before {
+				left: auto;
+				right: 3px;
+			}
+		}
+
+		// Custom radio/checkbox icon
+		.ts-field.ts-option {
+			+ span {
+				padding-left: 0;
+				padding-right: 26px;
+			}
+			+ span:before {
+				left: auto;
+				right: -@ts-unit-quarter;
+			}
+		}
+
+		// Fake select/date dropdown arrow
+		.ts-fakelabel:not(.ts-disabled):not(.ts-readonly):before {
+			right: auto;
+			left: @ts-unit-half;
+		}
+
+		// Switch label layout
+		label.ts-switchlabel {
+			text-align: left;
+			padding-right: 0;
+			padding-left: @ts-unit-quarter;
+			> span {
+				text-align: right;
+				float: right;
+			}
+		}
+
+		// Switch toggle track/thumb
+		.ts-field.ts-switchbox {
+			right: auto;
+			left: 0;
+			+ .ts-switcher {
+				> i {
+					left: auto;
+					right: 0;
+					margin-left: 0;
+					margin-right: 0;
+					&:first-child:before {
+						left: auto;
+						right: -0.5px;
+					}
+				}
+				&.ts-checked > i {
+					left: auto;
+					right: 100%;
+					margin-left: 0;
+					margin-right: -@ts-unit;
+				}
+				&.ts-engine-webkit {
+					> i.ts-icon-cancel:before {
+						left: auto;
+						right: -0.25px;
+					}
+					> i.ts-icon-checked:before {
+						left: auto;
+						right: 0;
+					}
+				}
+				&.ts-engine-gecko {
+					> i.ts-icon-cancel:before {
+						left: auto;
+						right: 0;
+					}
+					> i.ts-icon-checked:before {
+						left: auto;
+						right: 0.5px;
+					}
+				}
+			}
+		}
+
+		// Disabled/readonly lock icon
+		label {
+			&.ts-readonly,
+			&.ts-disabled {
+				&:not(.ts-option):not(.ts-switchlabel):after {
+					right: auto;
+					left: @ts-unit-half;
+				}
+			}
+		}
+
+		// Custom icon label — icon position flip
+		label.ts-customiconlabel:not(.ts-option):not(.ts-switchlabel):after {
+			right: auto;
+			left: @ts-unit-half;
+		}
+		// Custom icon label — field must reserve space on the LEFT (where icon now sits)
+		label.ts-customiconlabel .ts-field {
+			padding-right: @ts-unit-half;
+			padding-left: 1.25 * @ts-unit;
+		}
+
+		// Fake select/date: arrow is now on the LEFT — field must clear it on the left
+		.ts-select + .ts-text,
+		.ts-dateinput + .ts-text {
+			padding-right: @ts-unit-half;
+			padding-left: @ts-unit-plus;
+		}
+
+		// Readonly/disabled: lock icon is now on the LEFT — input must clear it on the left
+		label.ts-readonly,
+		label.ts-disabled {
+			> input,
+			> textarea {
+				&,
+				&[disabled],
+				&[readonly] {
+					padding-right: @ts-unit-half;
+					padding-left: @ts-unit-plus;
+				}
+			}
+		}
+
+		// Multi-field layout
+		.ts-fieldset.ts-multi {
+			> label {
+				padding-right: 0;
+				padding-left: @ts-unit-quarter;
+				span {
+					right: auto;
+					left: @ts-unit-quarter;
+				}
+				+ label {
+					padding-left: 0;
+					padding-right: @ts-unit-quarter;
+					span {
+						left: auto;
+						right: @ts-unit-quarter;
+					}
+				}
+				&:last-child {
+					padding-left: @ts-unit-half;
+					padding-right: 0;
+					span {
+						left: @ts-unit-half;
+						right: auto;
+					}
+				}
+			}
+		}
+
+		// Autocomplete list — return/arrow icon
+		.ts-autocomplete-list > li:after {
+			right: auto;
+			left: @ts-unit-half;
+		}
+
+		// Preview mode
+		&.ts-preview {
+			.ts-field.ts-text,
+			.ts-field.ts-select {
+				padding-left: 0;
+				padding-right: 0;
+			}
+		}
+	}
+
+	// =========================================================================
+	// Menus — ts-menus.less
+	// =========================================================================
+
+	.ts-menu > li > button,
+	.ts-menu > li > a {
+		&:not(.ts-object) {
+			text-align: right;
+			// Reserve space for icon on the right (start side in RTL)
+			> span,
+			> sub {
+				padding-right: 0;
+				padding-left: @ts-unit-plus;
+			}
+			// Default icon goes to the right (start)
+			> img,
+			> i {
+				left: auto;
+				right: @ts-unit-half;
+				&:only-child {
+					left: 0;
+					right: 0;
+				}
+			}
+			> img {
+				left: auto;
+				right: @ts-unit-half;
+			}
+			// Trailing icon (end side) goes to the left
+			> span + i,
+			> sub + i {
+				right: auto;
+				left: @ts-unit-half;
+			}
+			// Text with leading icon — padding flipped
+			> i ~ span,
+			> i ~ sub {
+				padding-left: 0;
+				padding-right: @ts-unit-plus;
+			}
+			> img ~ span,
+			> img ~ sub {
+				padding-left: 0;
+				padding-right: @ts-unit-double + @ts-unit-half;
+			}
+		}
+	}
+
+	// =========================================================================
+	// Toolbar — ts-toolbar.less
+	// =========================================================================
+
+	// Swap left/right anchor of toolbar menus
+	.ts-toolbar-menu {
+		&.ts-left {
+			left: auto;
+			right: 0;
+		}
+		&.ts-right {
+			right: auto;
+			left: 0;
+			// Edge item in the right menu (now on the left): edge padding flips
+			.ts-toolbar-item:last-child {
+				padding-right: 0;
+				padding-left: @ts-unit-half;
+			}
+		}
+		// First item padding: was left-side padding on .ts-left, becomes right-side
+		&.ts-left > li.ts-toolbar-icon {
+			padding-right: @ts-unit-half;
+			padding-left: @ts-unit-half;
+		}
+		// Gap between adjacent left and right menus — padding side flips
+		&.ts-left ~ .ts-right li:first-child {
+			padding-left: 0;
+			padding-right: @ts-unit-quarter;
+		}
+	}
+
+	// Title start-side padding
+	.ts-toolbar-title,
+	.ts-toolbar-status {
+		&:first-child {
+			padding-left: 0;
+			padding-right: @ts-unit;
+		}
+	}
+	.ts-toolbar-status:not(:first-child) {
+		padding-right: 0 !important;
+	}
+	.ts-toolbar-status:first-child {
+		padding-left: 0;
+		padding-right: @ts-unit-plus;
+	}
+
+	// Tabs — float to the right (start in RTL)
+	.ts-toolbar-tabs {
+		float: right;
+
+		// Sliding indicator starts from the right edge
+		.ts-tab-indicator {
+			left: auto;
+			right: 0;
+		}
+
+		// Tab separator: was border-right, now border-left
+		.ts-button {
+			border-right: none;
+			border-left: 1px solid transparent;
+		}
+
+		// Icon-to-label gap inside tab
+		.ts-tab-icon {
+			padding-right: 0;
+			padding-left: 3px;
+		}
+
+		// Counter badge is now on the LEFT — button must clear it on the left
+		.ts-tab.ts-counter .ts-button {
+			padding-right: 0;
+			padding-left: @ts-unit-double;
+		}
+
+		// Counter badge position
+		.ts-button em {
+			right: auto;
+			left: @ts-unit-half;
+		}
+
+		// Tab-close button: close bg is on the left — button needs left clearance
+		.ts-tab.ts-tab-close .ts-button {
+			padding-right: 0;
+			padding-left: @ts-unit * 2.5;
+			.ts-close-bg {
+				right: auto;
+				left: @ts-unit-half;
+			}
+		}
+
+		// Selected tab: close icon nudge direction flips
+		.ts-tab.ts-selected .ts-button i {
+			margin-left: 0;
+			margin-right: @ts-unit-quarter;
+		}
+	}
+
+	// Micro toolbar — tabs padding
+	.ts-toolbar.ts-micro .ts-toolbar-tabs {
+		padding-left: 0;
+		padding-right: @ts-unit-half;
+	}
+	.ts-toolbar.ts-micro .ts-tab-close .ts-button .ts-close-bg {
+		right: auto;
+		left: 0;
+	}
+	// Micro toolbar: counter and tab-close button padding
+	.ts-toolbar.ts-micro {
+		.ts-counter .ts-button,
+		.ts-tab-close .ts-button {
+			padding-right: 0;
+			padding-left: @ts-unit-double;
+		}
+	}
+
+	// First/last action item in micro/macro toolbar
+	.ts-toolbar {
+		&.ts-micro,
+		&.ts-macro {
+			.ts-toolbar-item.ts-action:first-child {
+				padding-left: 0;
+				padding-right: @ts-unit;
+			}
+		}
+	}
+
+	// Sidebar-aware toolbar position breakpoints
+	.ts-tablet {
+		&.ts-has-sidebar-first {
+			.ts-toolbar-first,
+			.ts-toolbar-last {
+				left: 0;
+				right: @ts-width-aside;
+			}
+		}
+		&.ts-has-sidebar-last {
+			.ts-toolbar-first,
+			.ts-toolbar-last {
+				right: 0;
+				left: @ts-width-aside;
+			}
+		}
+	}
+
+	// =========================================================================
+	// TopBar — ts-topbar.less
+	// =========================================================================
+
+	// Navigation item adjacent to title — padding on right (start) side
+	.ts-topbar .ts-toolbar-item + .ts-toolbar-title {
+		padding-left: 0;
+		padding-right: @ts-unit-quarter;
+	}
+
+	// Dropdown arrow icon for mobile tabs — flip to left side
+	.ts-topbar .ts-mixin-icon-content-rtl,
+	.ts-mobile-only .ts-topbar-tabs .ts-mixin-icon-content-rtl {
+		right: auto;
+		left: 0;
+	}
+
+	// Mobile tab list text alignment
+	.ts-mobile-only .ts-topbar-tabs {
+		text-align: right;
+	}
+
+	// =========================================================================
+	// Layout — ts-layout.less
+	// =========================================================================
+
+	// Sidebar borders: flip so borders face the content area
+	.ts-sidebar {
+		&.ts-sidebar-first:after {
+			right: auto;
+			left: 0;
+		}
+		&.ts-sidebar-last:after {
+			left: auto;
+			right: 0;
+		}
+	}
+
+	// Sideshow separator border — sideshow is on the right in RTL flex row
+	.ts-sideshow:after {
+		right: 0;
+		left: auto;
+	}
+
+	// =========================================================================
+	// Asides — ts-asides.less / ts-sidebars.less
+	// =========================================================================
+
+	// Aside slides in from the LEFT in RTL
+	.ts-aside {
+		right: auto;
+		left: 0;
+		.ts-note {
+			padding-left: 0;
+			padding-right: @ts-unit;
+		}
+	}
+
+	// Aside opening/closing shadow border flips to the right
+	.ts-sidebar > .ts-aside {
+		&.ts-opening,
+		&.ts-closing {
+			&:after {
+				left: auto;
+				right: 0;
+			}
+		}
+	}
+
+	// =========================================================================
+	// Tables — ts-tables.less
+	// =========================================================================
+
+	.ts-table {
+		// Cell text direction
+		td,
+		th {
+			text-align: right;
+			// In RTL, first column is rightmost — remove right border instead
+			&:first-child {
+				border-right: none;
+				border-left: 1px solid @ts-color-gray-lighter;
+			}
+			&:last-child {
+				border-left: none;
+				border-right: 1px solid @ts-color-gray-lighter;
+			}
+		}
+
+		// Numeric columns: always LTR so digits read left-to-right
+		td.ts-number,
+		th.ts-number {
+			text-align: left;
+			direction: ltr;
+		}
+
+		// Column header sort button
+		.ts-table-cols {
+			.ts-button-sort {
+				text-align: right;
+				padding-right: @ts-unit-half;
+				padding-left: 0;
+				i {
+					left: 0;
+					right: auto;
+				}
+			}
+			.ts-default {
+				float: right;
+			}
+			.ts-search,
+			.ts-default {
+				+ .ts-button-sort {
+					padding-right: @ts-unit-double;
+					padding-left: 0;
+				}
+			}
+			.ts-selected .ts-button-sort {
+				padding-right: @ts-unit-double !important;
+				padding-left: 0 !important;
+			}
+			// Wrapping extra gutter cell
+			th:last-child fieldset:after {
+				left: auto;
+				right: 100%;
+			}
+		}
+
+		// Row input cursor alignment
+		.ts-table-rows {
+			.ts-table-input {
+				padding-left: 0;
+				padding-right: @ts-unit-half;
+			}
+		}
+
+		// Scrollable gutter — now on the RIGHT in RTL
+		.ts-table-gutter {
+			left: auto;
+			right: 0;
+			border-right: none;
+			border-left: 1px solid @ts-color-gray-lighter;
+		}
+
+		// Column menu — now anchored to the RIGHT
+		.ts-table-menu {
+			left: auto;
+			right: 0;
+			border-right: none;
+			border-left: 1px solid @ts-color-gray-light;
+			&.ts-open {
+				border-left: none;
+				.ts-table-choices-close {
+					text-align: left;
+					padding-left: 0;
+					padding-right: 0;
+				}
+			}
+		}
+
+		// Number cell inline editor (keep LTR)
+		td + td.ts-number .ts-table-input {
+			text-align: left;
+			direction: ltr;
+			padding-left: @ts-unit-half;
+			padding-right: 0;
+		}
+
+		// Inter-cell gutter correction (3px padding on non-number adjacent cells)
+		td + td:not(.ts-number) .ts-table-cell {
+			padding-right: 0;
+			padding-left: 3px;
+		}
+	}
+
+	// WebKit gutter icon nudge
+	.ts-engine-webkit .ts-table .ts-table-gutter {
+		.ts-table-checkbox i,
+		.ts-table-hilt i {
+			margin-left: 0;
+			margin-right: -1px;
+		}
+	}
+
+	// =========================================================================
+	// Cards — ts-cards.less
+	// =========================================================================
+
+	.ts-card.ts-default,
+	.ts-companycard.ts-details {
+		.ts-card-connection {
+			// Flip l/r padding: icon is now on the right
+			padding: @ts-unit-half (@ts-unit-double - 1px) (@ts-unit-half - 1px) (@ts-unit * 4);
+		}
+		.ts-card-connection-icon {
+			left: auto;
+			right: 0;
+		}
+	}
+
+	.ts-companycard-details li {
+		padding-left: 0;
+		padding-right: @ts-unit;
+		+ li {
+			margin-right: 0;
+			margin-left: (@ts-unit * 4);
+		}
+		.ts-icon {
+			left: auto;
+			right: 0;
+		}
+	}
+
+	// Company branding badge — bottom-left corner in RTL
+	.ts-companycard-branding {
+		right: auto;
+		left: -1px;
+	}
+
+	// Compact user card
+	.ts-usercard.ts-compact {
+		.ts-usercard-name {
+			padding-left: @ts-unit-half;
+			padding-right: 0;
+		}
+		&.ts-reverse .ts-usercard-name {
+			text-align: left;
+			padding-left: 0;
+			padding-right: @ts-unit-half;
+		}
+	}
+
+	// =========================================================================
+	// Notes — ts-notes.less (inside ts-cards.less)
+	// =========================================================================
+
+	.ts-note {
+		text-align: right;
+		> i {
+			left: auto;
+			right: @ts-unit-half;
+		}
+		> i ~ p {
+			padding-left: 0;
+			padding-right: @ts-unit-plus;
+		}
+		.ts-note-buttons {
+			right: auto;
+			left: @ts-unit-quarter;
+		}
+		.ts-note-close {
+			right: auto;
+			left: 0;
+		}
+		&.ts-has-close p {
+			padding-right: 0;
+			padding-left: @ts-unit-plus;
+		}
+	}
+
+	// =========================================================================
+	// Pager — ts-pagers.less
+	// =========================================================================
+
+	.ts-pager menu {
+		// Flip rounded corners on first/last page buttons
+		li:first-child button {
+			border-radius: 0 @ts-unit-double @ts-unit-double 0;
+		}
+		li:last-child button {
+			border-radius: @ts-unit-double 0 0 @ts-unit-double;
+		}
+		li:only-child button {
+			border-radius: @ts-unit-double;
+		}
+
+		// Mirror directional navigation arrows and correct pixel nudges.
+		// After scaleX(-1) the visual arrow flips, so the optical nudge also reverses.
+		button {
+			&.ts-pager-prev svg {
+				transform: scaleX(-1);
+				left: -1px;
+			}
+			&.ts-pager-next svg {
+				transform: scaleX(-1);
+				left: -2px;
+			}
+			&.ts-pager-first svg {
+				transform: scaleX(-1);
+				left: -2px;
+			}
+			&.ts-pager-last svg {
+				transform: scaleX(-1);
+				left: 1px;
+			}
+		}
+		li:first-child button.ts-pager-prev svg {
+			left: -3px;
+		}
+	}
+
+	// "Less" ellipsis nudge: was pushing to the left, now pushes to the right
+	.ts-pager .ts-less span:before {
+		margin-left: 0;
+		margin-right: -13px;
+	}
+
+	// =========================================================================
+	// Search — ts-search.less
+	// =========================================================================
+
+	.ts-search {
+		// Magnifier icon: move to the right side (start in RTL)
+		.ts-input {
+			left: auto;
+			right: 0;
+			background-position: right @ts-unit-half top @ts-unit-half;
+		}
+		// Clear button: move to the left side (end in RTL)
+		.ts-button-clear {
+			right: auto;
+			left: 0;
+		}
+	}
+
+	// Expanded/active search input
+	.ts-flex .ts-search .ts-input,
+	.ts-search:not(.ts-empty) .ts-input,
+	.ts-search .ts-input:focus,
+	.ts-search.ts-expanded .ts-input {
+		padding-right: @ts-unit-double; // room for icon on the right
+		padding-left: @ts-unit-half;
+		~ .ts-button-sort {
+			padding-left: 0;
+			padding-right: @ts-unit-double;
+		}
+	}
+
+	// Micro search active state
+	.ts-micro .ts-search .ts-input:focus,
+	.ts-micro :not(.ts-empty) .ts-input {
+		padding-right: @ts-unit + @ts-unit-quarter;
+		padding-left: 0;
+	}
+
+	// =========================================================================
+	// Tags — ts-tags.less
+	// =========================================================================
+
+	@tag-padding: @ts-unit-half;
+	@tag-margin: @ts-unit-half;
+	@tag-spacing: @ts-unit-quarter;
+
+	.ts-tag {
+		// Outer margin: was right/bottom, now left/bottom
+		margin: 0 0 @tag-margin @tag-margin;
+		&:last-child {
+			margin-left: 0;
+		}
+		// Inner start padding
+		dl:first-child {
+			padding-left: 0;
+			padding-right: @tag-padding;
+		}
+		// Inner end margin
+		dl:last-child {
+			margin-right: 0;
+			margin-left: @tag-margin;
+		}
+		// Separator between key-value groups
+		dl + dl,
+		dl > div + div {
+			padding-left: 0;
+			padding-right: @tag-spacing;
+		}
+		// Key (dt) separator spacing: comma/colon sits on the LEFT in RTL
+		dt {
+			padding-right: 0;
+			padding-left: @tag-spacing;
+			// Last dt: no separator — clear the padding we just added
+			&:only-child,
+			& + dt:last-child,
+			& + dt + dt:last-child,
+			& + dt + dt + dt:last-child,
+			& + dt + dt + dt + dt:last-child,
+			& + dt + dt + dt + dt + dt:last-child {
+				padding-left: 0;
+			}
+		}
+		// Value (dd) separator spacing: comma sits on the LEFT in RTL
+		dd {
+			padding-right: 0;
+			padding-left: @tag-spacing;
+			&:last-of-type {
+				padding-left: 0;
+			}
+		}
+	}
+
+	// =========================================================================
+	// Modals — ts-modals.less
+	// =========================================================================
+
+	// =========================================================================
+	// Dialogs — ts-dialogs.less
+	// =========================================================================
+
+	// Base dialog centering (left:50% + margin-left: -half-width) is symmetric —
+	// no change needed for the standard case.
+	//
+	// iframe-hosted: LTR shifts the dialog LEFT by @ts-unit-plus to compensate for
+	// the left sidebar. In RTL the sidebar is on the RIGHT so we shift RIGHT instead:
+	// margin-left = @rtl-dialog-minus + @ts-unit-plus  (undoes the LTR subtraction)
+	.ts-iframe-hosted {
+		&.ts-tablet {
+			.ts-dialog {
+				margin-left: @rtl-dialog-minus + @ts-unit-plus;
+			}
+		}
+	}
+
+	// Centered content box: flip the translate so it doesn't overshoot
+	.ts-modal > .ts-panels > .ts-panel,
+	.ts-modal > .ts-panel {
+		> .ts-main,
+		> .ts-box {
+			left: auto;
+			right: 50%;
+			transform: translate(50%, -50%);
+		}
+	}
+
+	// =========================================================================
+	// Header / Footer — ts-header-footer.less
+	// =========================================================================
+
+	// Badge dot on comment icon: flip to opposite side
+	.ts-toolbar.ts-spirit[data-ts\.badge='true'] {
+		.ts-icon-comment::after {
+			right: auto;
+			left: -2px;
+			animation-name: ts-rtl-bounceRight, pulseBlue;
+		}
+		.ts-icon-comment + span::before {
+			left: auto;
+			right: -10px;
+			animation-name: ts-rtl-bounceRight;
+		}
+	}
+
+	// =========================================================================
+	// Calendars — ts-calendars.less
+	// =========================================================================
+
+	// Calendar day names / number cells: right-to-left column order via dir
+	.ts-calendar table {
+		direction: rtl;
+	}
+	// Navigation transports arrow buttons: mirror icons
+	.ts-calendar .ts-calendar-transports i {
+		transform: scaleX(-1);
+	}
+}
+
+// =============================================================================
+// Keyframe animation for RTL badge bounce (mirrors bounceLeft from ts-header-footer)
+// Defined outside html[dir='rtl'] so it's always registered in the stylesheet
+// =============================================================================
+
+@keyframes ts-rtl-bounceRight {
+	0% {
+		transform: translateX(-100%);
+	}
+	23% {
+		transform: translateX(0);
+	}
+	54% {
+		transform: translateX(-7px);
+	}
+	77% {
+		transform: translateX(0);
+	}
+	92% {
+		transform: translateX(-2px);
+	}
+	100% {
+		transform: translateX(0);
+	}
+}

@@ -70,15 +70,19 @@ try {
 
 			// Build a complete browser object from the API data for a given version.
 			// - browser is lowercased: the v4 Worker API expects lowercase names
-			//   (the original string approach sent "chrome", not "Chrome")
-			// - os + os_version come from the API entry, pinned to Windows 10 when
-			//   available for a stable image; multi-OS browsers fall back to any
-			//   Windows entry, and Safari (OS X only) falls back to the first entry
+			// - os + os_version: prefer Windows 10 (most widely-tested image on
+			//   BrowserStack); fall back to Windows 11; skip deprecated Windows
+			//   versions (7, XP, Vista, 8) which BrowserStack no longer provisions
+			//   reliably; Safari (OS X only) falls back to the first non-deprecated
+			//   entry so it gets a current macOS image
+			const DEPRECATED_WINDOWS = new Set(['7', 'XP', 'Vista', '8']);
 			const makeEntry = ver => {
 				const entries = tmpBrowsers[browser][ver];
 				const entry =
 					entries.find(e => e.os === 'Windows' && e.os_version === '10') ||
-					entries.find(e => e.os === 'Windows') ||
+					entries.find(e => e.os === 'Windows' && e.os_version === '11') ||
+					entries.find(e => e.os === 'Windows' && !DEPRECATED_WINDOWS.has(e.os_version)) ||
+					entries.find(e => !DEPRECATED_WINDOWS.has(e.os_version)) ||
 					entries[0];
 				return {
 					browser: browser,
@@ -95,6 +99,13 @@ try {
 		});
 
 		console.log(JSON.stringify(browsers, null, 2));
+
+		process.stderr.write('[browserstack.browsers] Generated ' + browsers.length + ' browser(s):\n');
+		browsers.forEach(b => {
+			process.stderr.write(
+				'  ' + b.browser + ' ' + b.browser_version + ' on ' + b.os + ' ' + b.os_version + '\n'
+			);
+		});
 	});
 } catch (e) {
 	console.error(e);

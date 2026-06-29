@@ -264,7 +264,10 @@ browserStackRunner.run(config, function(err, report) {
 	brst();
 	runr();
 
-	if (err) {
+	if (err && err.name !== 'TestsFailedError') {
+		// Hard infrastructure failure (tunnel down, API unreachable, bad config).
+		// TestsFailedError is the runner counting browser timeouts as failures —
+		// those are checked via the report below, not treated as a build error.
 		console.log('Something went wrong with BrowserStack!');
 		console.log('Error:' + err);
 		process.exit(2);

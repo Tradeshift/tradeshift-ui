@@ -86,7 +86,7 @@
     "eslint": "^9.18.0",
     "eslint-config-prettier": "^10.0.1",
     "eslint-plugin-jasmine": "^4.2.2",
-    "grunt": "^1.6.1",
+    "grunt": "^1.6.2",
     "grunt-browserify": "^6.0.0",
     "grunt-concurrent": "^3.0.0",
     "grunt-contrib-clean": "^2.0.1",

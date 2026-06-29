@@ -21,7 +21,7 @@
     "****** LINT *****": "",
     "prelint": "run-p -n prettier prettier-less prettier-json prettier-xhtml",
     "lint": "npm run eslint",
-    "eslint": "eslint --cache --config ./.eslintrc.json .",
+    "eslint": "eslint --cache .",
     "prettier": "prettier --write \"**/*.js\"",
     "prettier-less": "prettier --write \"**/*.less\"",
     "prettier-json": "prettier --write \"**/*.json\"",
@@ -51,7 +51,7 @@
   "lint-staged": {
     "*.js": [
       "prettier --write",
-      "eslint --config ./.eslintrc.json",
+      "eslint",
       "git add"
     ],
     "*.json": [
@@ -85,13 +85,7 @@
     "cheerio": "^0.22.0",
     "eslint": "^9.18.0",
     "eslint-config-prettier": "^10.0.1",
-    "eslint-config-standard": "^16.0.3",
-    "eslint-config-tradeshift": "^7.1.0",
-    "eslint-plugin-import": "^2.25.3",
     "eslint-plugin-jasmine": "^4.2.2",
-    "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-promise": "^5.2.0",
-    "eslint-plugin-standard": "^5.0.0",
     "grunt": "^1.6.1",
     "grunt-browserify": "^6.0.0",
     "grunt-concurrent": "^3.0.0",

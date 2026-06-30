@@ -39,7 +39,7 @@
     "test": "npm run eslint & grunt jasmine & wait && npm run browserstack",
     "http": "static spec/jasmine -H '{\"Cache-Control\": \"no-cache, must-revalidate\"}' -a 0.0.0.0",
     "****** NODE *****": "",
-    "postinstall": "cd docs && npm ci",
+    "postinstall": "node tasks/patch-browserstack-client.js && cd docs && npm ci",
     "gh-pages": "grunt dist && node tasks/gh-pages.js",
     "package-dist": "node tasks/package-dist.js"
   },

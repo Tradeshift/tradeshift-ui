@@ -16,8 +16,15 @@ gui.debug = true;
 window.sometime = function(later, thisp) {
 	setTimeout(function() {
 		later.call(thisp);
-	}, 500);
+	}, window.sometime.delay);
 };
+
+/*
+ * BrowserStack VMs render notably slower than a local browser, and the specs
+ * assert exactly once after this delay — so wait longer over there. (The
+ * runner identifies itself by adding _worker_key to the test page URL.)
+ */
+window.sometime.delay = window.location.search.indexOf('_worker_key') > -1 ? 1500 : 500;
 
 window.helper = {
 	/**

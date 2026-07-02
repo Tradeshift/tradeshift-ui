@@ -1,20 +1,18 @@
 /**
- * Patch the `browserstack` API client (a dependency of browserstack-runner).
+ * Patch the `browserstack` API client (a browserstack-runner dependency).
  *
- * browserstack/lib/client.js crashes the whole process when a non-200 API
- * response arrives without a content-type header:
+ * browserstack/lib/client.js crashes the process on malformed API responses,
+ * turning transient BrowserStack hiccups into hard build failures:
  *
- *     if ( res.headers[ "content-type" ].indexOf( "json" ) !== -1 ) {
+ * 1. Non-200 response with no content-type header: `res.headers["content-type"]`
+ *    is undefined, so `.indexOf` throws. Happens during worker teardown, AFTER
+ *    tests have passed — turning a green run red.
+ * 2. JSON content-type but an HTML body (API error / maintenance page):
+ *    `JSON.parse` throws, in both the 200 and non-200 branches.
  *
- * `res.headers["content-type"]` is undefined on such responses, so `.indexOf`
- * throws. This happens during worker teardown (terminateWorker), AFTER tests
- * have already passed — turning a green run red. We null-guard the header so
- * the client falls through to using the raw response as the error message.
- *
- * This is the only browserstack crash not already prevented by
- * tasks/browserstack.browsers.js (which emits complete browser objects to
- * avoid the configParser/cli crash paths). Runs on postinstall so it survives
- * fresh `npm ci` installs in CI.
+ * We null-guard the header and wrap both JSON.parse calls so a bad response
+ * becomes a normal error callback (which the runner tolerates) instead of
+ * killing the process. Runs on postinstall to survive fresh `npm ci` in CI.
  */
 'use strict';
 
@@ -23,23 +21,45 @@ const path = require('path');
 
 const clientPath = path.join(__dirname, '../node_modules/browserstack/lib/client.js');
 
-const ORIGINAL = 'if ( res.headers[ "content-type" ].indexOf( "json" ) !== -1 ) {';
-const PATCHED =
-	'if ( res.headers[ "content-type" ] && res.headers[ "content-type" ].indexOf( "json" ) !== -1 ) {';
+const PATCHES = [
+	{
+		name: 'null-guard content-type header',
+		original: 'if ( res.headers[ "content-type" ].indexOf( "json" ) !== -1 ) {',
+		patched:
+			'if ( res.headers[ "content-type" ] && res.headers[ "content-type" ].indexOf( "json" ) !== -1 ) {'
+	},
+	{
+		name: 'tolerate non-JSON body on error responses',
+		original: 'response = JSON.parse( response );',
+		patched:
+			'try { response = JSON.parse( response ); } catch ( e ) { response = { message: response }; }'
+	},
+	{
+		name: 'tolerate non-JSON body on success responses',
+		original: 'fn( null, JSON.parse( response ) );',
+		patched:
+			'var parsed; try { parsed = JSON.parse( response ); } catch ( e ) { return fn( new Error( "BrowserStack API returned non-JSON response: " + String( response ).slice( 0, 200 ) ) ); } fn( null, parsed );'
+	}
+];
 
 if (!fs.existsSync(clientPath)) {
 	console.log('[patch-browserstack-client] browserstack/client.js not found, skipping.');
 } else {
-	const src = fs.readFileSync(clientPath, 'utf8');
-	if (src.includes(PATCHED)) {
-		console.log('[patch-browserstack-client] already patched, skipping.');
-	} else if (!src.includes(ORIGINAL)) {
-		console.log(
-			'[patch-browserstack-client] expected code not found — browserstack version may have ' +
-				'changed. Re-check the patch against node_modules/browserstack/lib/client.js.'
-		);
-	} else {
-		fs.writeFileSync(clientPath, src.replace(ORIGINAL, PATCHED), 'utf8');
-		console.log('[patch-browserstack-client] patched.');
-	}
+	let src = fs.readFileSync(clientPath, 'utf8');
+	PATCHES.forEach(function(patch) {
+		if (src.includes(patch.patched)) {
+			console.log('[patch-browserstack-client] already patched: ' + patch.name);
+		} else if (src.includes(patch.original)) {
+			src = src.replace(patch.original, patch.patched);
+			console.log('[patch-browserstack-client] patched: ' + patch.name);
+		} else {
+			console.log(
+				'[patch-browserstack-client] expected code not found for "' +
+					patch.name +
+					'" — browserstack version may have changed. Re-check the patch against ' +
+					'node_modules/browserstack/lib/client.js.'
+			);
+		}
+	});
+	fs.writeFileSync(clientPath, src, 'utf8');
 }

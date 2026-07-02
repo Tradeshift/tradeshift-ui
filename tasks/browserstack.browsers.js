@@ -5,20 +5,16 @@ const browserStackCredentials = {
 	password: process.env.BROWSERSTACK_KEY
 };
 
-// Only these browsers are supported by the BrowserStack Worker API v4 for
-// JavaScript Testing and were in the original browserstack.json. The
-// JavaScript Testing getBrowsers() API can return additional browsers (new
-// additions, regional variants, etc.) that the Worker API rejects — the
-// explicit allowlist prevents those 2 extra entries from slipping through
-// and causing "Validation Failed - `browser` invalid" errors.
-const ALLOWED_BROWSERS = new Set(['chrome', 'firefox', 'safari', 'edge', 'ie']);
+// getBrowsers() can return browsers the Worker API v4 rejects (beta additions,
+// regional variants). This allowlist keeps them out, avoiding
+// "Validation Failed - `browser` invalid" errors.
+const ALLOWED_BROWSERS = new Set(['chrome', 'firefox', 'safari', 'edge']);
 
-// Output complete browser objects (not strings) so configParser.populateOsAndOsVersion
-// hits its early-return path at line 51 ("if browserObject.os && browserObject.os_version")
-// and never enters the filteredBrowsers lookup. That lookup uses strict browser === browser
-// equality (not case-insensitive like setBrowserVersion does), and returns undefined when
-// entries are missing or casing mismatches — crashing at configParser.js:71 or cli.js:400.
-// Providing os + os_version upfront avoids all of that entirely.
+// Emit full browser objects (not strings) so configParser.populateOsAndOsVersion
+// takes its early return (line 51: "if browserObject.os && browserObject.os_version")
+// and skips the filteredBrowsers lookup. That lookup uses strict, case-sensitive
+// browser === browser equality and returns undefined on any mismatch, crashing at
+// configParser.js:71 or cli.js:400. Supplying os + os_version upfront avoids all of it.
 
 try {
 	const bsClient = bs.createClient(browserStackCredentials);
@@ -61,21 +57,19 @@ try {
 				(a, b) => parseFloat(a) - parseFloat(b)
 			);
 
-			// Test the two most recent settled versions, skipping the newest release:
-			// brand-new browser/OS builds provision slowly and behave inconsistently on
-			// BrowserStack. Browsers with fewer than three versions are kept as-is.
+			// Use the two latest settled versions, skipping the newest release: brand-new
+			// browser/OS builds provision slowly and are flaky on BrowserStack.
+			// Browsers with fewer than three versions are left as-is.
 			const stableVersions =
 				sortedVersions.length > 2 ? sortedVersions.slice(0, -1) : sortedVersions;
 			const latestVersion = stableVersions[stableVersions.length - 1];
 			const previousVersion = stableVersions[stableVersions.length - 2];
 
-			// Build a complete browser object from the API data for a given version.
-			// - browser is lowercased: the v4 Worker API expects lowercase names
-			// - os + os_version: prefer Windows 10 (most widely-tested image on
-			//   BrowserStack); fall back to Windows 11; skip deprecated Windows
-			//   versions (7, XP, Vista, 8) which BrowserStack no longer provisions
-			//   reliably; Safari (OS X only) falls back to the first non-deprecated
-			//   entry so it gets a current macOS image
+			// Build a full browser object from the API data for one version:
+			// - browser is lowercased — the v4 Worker API requires lowercase names.
+			// - os/os_version: prefer Windows 10, then 11, then any non-deprecated
+			//   Windows (7, XP, Vista, 8 are no longer reliably provisioned).
+			//   Safari is OS X only, so it falls through to the first non-deprecated entry.
 			const DEPRECATED_WINDOWS = new Set(['7', 'XP', 'Vista', '8']);
 			const makeEntry = ver => {
 				const entries = tmpBrowsers[browser][ver];

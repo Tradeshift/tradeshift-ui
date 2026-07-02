@@ -6,6 +6,18 @@ const browsers = require('../browserstack.browsers.json');
 config.browsers = browsers;
 
 /**
+ * The runner's own display-name builder, so report entries can be matched
+ * back to the browsers we asked for. Internal lib path, hence the guard —
+ * if it moves in a future version we fall back to comparing counts only.
+ */
+let browserString = null;
+try {
+	browserString = require('browserstack-runner/lib/utils').browserString;
+} catch (e) {
+	console.log('Could not load browserstack-runner/lib/utils, missing-browser check degraded.');
+}
+
+/**
  * FigletJS ASCII ART
  * Font: Bloddy
  * Text: "Tradeshift UI"
@@ -190,6 +202,24 @@ const succ = function() {
 };
 
 /**
+ * A worker that times out (or dies) never posts results, so it is simply
+ * absent from the report — without this check such a run would pass as
+ * long as the browsers that DID respond were green.
+ * @param report BrowserStack report
+ * @returns {Array<string>} display names of browsers missing from the report
+ */
+const findMissingBrowsers = function(report) {
+	const reported = report.map(res => res.browser);
+	if (browserString) {
+		return config.browsers.map(b => browserString(b)).filter(b => !reported.includes(b));
+	}
+	if (reported.length < config.browsers.length) {
+		return [config.browsers.length - reported.length + ' browser(s) (names unavailable)'];
+	}
+	return [];
+};
+
+/**
  * Check the report and pretty-print to the console
  * @see https://github.com/browserstack/browserstack-runner#usage-as-a-module
  * @param report BrowserStack report
@@ -198,11 +228,12 @@ const succ = function() {
 const checkReport = function(report) {
 	const out = [];
 	const errOut = [];
+	const missing = findMissingBrowsers(report);
 
-	if (!report.length) {
+	if (!report.length && !missing.length) {
 		console.log('No report received, probably because the build has been terminated...');
 		console.log(
-			'Check the tests runs! https://travis-ci.org/Tradeshift/tradeshift-ui/pull_requests'
+			'Check the test runs! https://automate.browserstack.com/ and the GitHub Actions log.'
 		);
 		fail();
 		return false;
@@ -248,6 +279,13 @@ const checkReport = function(report) {
 		}
 	});
 
+	missing.forEach(function(browser) {
+		errOut.push('');
+		errOut.push('Browser: ' + chalk.red.bold(browser));
+		errOut.push(chalk.white.bgRed.bold('No results reported — worker timed out or died!'));
+		out.push(chalk.white.bgRed.bold('Missing from report: ' + browser));
+	});
+
 	out.forEach(line => console.log(line));
 	if (!errOut.length) {
 		succ();
@@ -273,7 +311,8 @@ browserStackRunner.run(config, function(err, report) {
 		process.exit(2);
 	}
 
-	if (checkReport(report)) {
+	// on worker-timeout the runner reports `{}` instead of an array
+	if (checkReport(Array.isArray(report) ? report : [])) {
 		process.exit(0);
 	} else {
 		process.exit(1);

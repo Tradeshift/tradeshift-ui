@@ -1,7 +1,7 @@
 {
 	"test_framework": "jasmine2",
 	"test_path": "spec/jasmine/index.html",
-	"timeout": 180,
+	"timeout": 300,
 	"browsers": [
 		"chrome_previous",
 		"chrome_latest",

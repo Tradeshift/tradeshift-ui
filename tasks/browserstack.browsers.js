@@ -60,18 +60,30 @@ try {
 				(a, b) => parseFloat(a) - parseFloat(b)
 			);
 
-			const latestVersion = sortedVersions[sortedVersions.length - 1];
-			const previousVersion = sortedVersions[sortedVersions.length - 2];
+			// Test the two most recent settled versions, skipping the newest release:
+			// brand-new browser/OS builds provision slowly and behave inconsistently on
+			// BrowserStack. Browsers with fewer than three versions are kept as-is.
+			const stableVersions =
+				sortedVersions.length > 2 ? sortedVersions.slice(0, -1) : sortedVersions;
+			const latestVersion = stableVersions[stableVersions.length - 1];
+			const previousVersion = stableVersions[stableVersions.length - 2];
 
 			// Build a complete browser object from the API data for a given version.
 			// - browser is lowercased: the v4 Worker API expects lowercase names
-			//   (the original string approach sent "chrome", not "Chrome")
-			// - os + os_version come from the API entry: prefer Windows for
-			//   multi-OS browsers; Safari appears only on OS X so the fallback
-			//   to entries[0] covers it automatically
+			// - os + os_version: prefer Windows 10 (most widely-tested image on
+			//   BrowserStack); fall back to Windows 11; skip deprecated Windows
+			//   versions (7, XP, Vista, 8) which BrowserStack no longer provisions
+			//   reliably; Safari (OS X only) falls back to the first non-deprecated
+			//   entry so it gets a current macOS image
+			const DEPRECATED_WINDOWS = new Set(['7', 'XP', 'Vista', '8']);
 			const makeEntry = ver => {
 				const entries = tmpBrowsers[browser][ver];
-				const entry = entries.find(e => e.os === 'Windows') || entries[0];
+				const entry =
+					entries.find(e => e.os === 'Windows' && e.os_version === '10') ||
+					entries.find(e => e.os === 'Windows' && e.os_version === '11') ||
+					entries.find(e => e.os === 'Windows' && !DEPRECATED_WINDOWS.has(e.os_version)) ||
+					entries.find(e => !DEPRECATED_WINDOWS.has(e.os_version)) ||
+					entries[0];
 				return {
 					browser: browser,
 					browser_version: entry.browser_version,
@@ -87,6 +99,13 @@ try {
 		});
 
 		console.log(JSON.stringify(browsers, null, 2));
+
+		process.stderr.write('[browserstack.browsers] Generated ' + browsers.length + ' browser(s):\n');
+		browsers.forEach(b => {
+			process.stderr.write(
+				'  ' + b.browser + ' ' + b.browser_version + ' on ' + b.os + ' ' + b.os_version + '\n'
+			);
+		});
 	});
 } catch (e) {
 	console.error(e);

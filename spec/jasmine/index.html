@@ -2,19 +2,24 @@
 <html lang="zh-CN">
 	<head>
 		<meta charset="UTF-8"/>
-		<title>Jasmine Spec Runner v2.6.4</title>
-		
-		<link rel="shortcut icon" type="image/png" href="jasmine-2.6.4/jasmine_favicon.png"/>
-		<link rel="stylesheet" href="jasmine-2.6.4/jasmine.css"/>
-		
+		<title>Jasmine Spec Runner</title>
+
+		<link rel="shortcut icon" type="image/png" href="jasmine/jasmine_favicon.png"/>
+		<link rel="stylesheet" href="jasmine/jasmine.css"/>
+
 		<link rel="stylesheet" href="specs.css"/>
 		<link rel="stylesheet" href="ts.css"/>
-		
+
 		<script src="ts.js"></script>
-		
-		<script src="jasmine-2.6.4/jasmine.js"></script>
-		<script src="jasmine-2.6.4/jasmine-html.js"></script>
-		<script src="jasmine-2.6.4/boot.js"></script>
+
+		<script src="jasmine/jasmine.js"></script>
+		<script src="jasmine/jasmine-html.js"></script>
+		<script src="jasmine/boot0.js"></script>
+		<!-- Keep specs sequential: the suite isn't isolated yet and Jasmine 3+ randomizes order by default. -->
+		<script>
+			jasmine.getEnv().configure({ random: false });
+		</script>
+		<script src="jasmine/boot1.js"></script>
 	</head>
 	<body>
 		<main data-ts="Main"></main>

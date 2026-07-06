@@ -7,6 +7,7 @@ spec/jasmine/specs.js
 spec/jasmine/ts-lang-en.js
 spec/jasmine/ts.css
 spec/jasmine/ts.js
+spec/jasmine/jasmine/
 
 # Local (dev) screenshots
 docs/screenshots/local/
@@ -40,6 +41,7 @@ Thumbs.db
 
 # Logs
 logs
+log/
 *.log
 npm-debug.log*
 
@@ -81,5 +83,8 @@ jspm_packages
 /docs/index.html
 /docs/src/less/ts-runtime.less
 
-# Latest Browserstack browsers
-browserstack.browsers.json
+# Playwright
+test-results/
+playwright-report/
+blob-report/
+/playwright/.cache/

@@ -2,10 +2,10 @@ describe('ts.ui.SwitchSpirit', function likethis() {
 	it('should (eventually) channel via ts-attribute', function(done) {
 		var spirit,
 			dom = helper.createTestDom();
-		dom.innerHTML = '<select data-ts="Select"/>';
+		dom.innerHTML = '<input type="checkbox" data-ts="Switch">';
 		sometime(function later() {
-			spirit = ts.ui.get(dom.querySelector('select'));
-			expect(spirit.constructor).toBe(ts.ui.SelectSpirit);
+			spirit = ts.ui.get(dom.querySelector('input'));
+			expect(spirit.constructor).toBe(ts.ui.SwitchSpirit);
 			done();
 		});
 	});

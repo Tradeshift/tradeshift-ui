@@ -1,8 +1,15 @@
 describe('ts.ui.companycard.edbml', function likethis() {
-	var card = {
-		id: '6bf17754-f9de-4e31-aa31-bd3ff765b9c2',
-		data: {}
-	};
+	// Fresh card per test: the "should contain X" tests add fields, so without a
+	// reset the "should not contain X" tests only pass because they happen to run
+	// first. Rebuilding here makes them order-independent.
+	var card;
+
+	beforeEach(function() {
+		card = {
+			id: '6bf17754-f9de-4e31-aa31-bd3ff765b9c2',
+			data: {}
+		};
+	});
 
 	function gethtml(cardItem, contentonly) {
 		return ts.ui.companycard.edbml(new ts.ui.CompanyCardModel(cardItem), contentonly);

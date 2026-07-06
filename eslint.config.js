@@ -35,6 +35,13 @@ module.exports = [
 			'**/dist/**',
 			'**/node_modules/**',
 			'**/public/**',
+			// Playwright's generated output — HTML report (bundled trace-viewer
+			// assets), per-test artifacts, and CI shard-merge blobs. Build
+			// output, not source (already git-ignored, but ESLint's flat-config
+			// ignores don't read .gitignore).
+			'**/playwright-report/**',
+			'**/test-results/**',
+			'**/blob-report/**',
 			'src/third-party/**',
 			'**/temp/**',
 			'**/*-*.*.*.js',

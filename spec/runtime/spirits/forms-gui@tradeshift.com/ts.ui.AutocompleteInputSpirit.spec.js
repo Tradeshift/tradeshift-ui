@@ -23,56 +23,45 @@ describe('ts.ui.AutocompleteInputSpirit', function likethis() {
 		});
 	});
 
-	/**
-	 * @TODO finish these tests
-	 */
+	describe('ts.ui.AutocompleteDropdownSpirit', function likethis() {
+		var DATA = [
+			{ key: 0, value: 'zero' },
+			{ key: 1, value: 'one' },
+			{ key: 2, value: 'two' }
+		];
 
-	// describe('> ts.ui.AutocompleteDropdownSpirit', function likethis() {
-	// 	beforeEach(function dothis(done) {
-	// 		sometime(function later() {
-	// 			var autocomplete = ts.ui.get('#myautocomplete');
-	// 			autocomplete.data([
-	// 				{
-	// 					key: 0,
-	// 					value: 'zero'
-	// 				},
-	// 				{
-	// 					key: 1,
-	// 					value: 'one'
-	// 				},
-	// 				{
-	// 					key: 2,
-	// 					value: 'two'
-	// 				}
-	// 			]);
-	// 			done();
-	// 		});
-	// 	});
-	//
-	//
-	// 	it('should open the results when the field has focus', function(done) {
-	// 		console.log('should open the results when the field has focus');
-	// 		sometime(function later() {
-	// 			console.log('focusing');
-	// 			dom.querySelector('#myautocomplete').focus();
-	// 			sometime(function later() {
-	// 				var resultsList = dom.querySelector('.ts-autocomplete-list');
-	// 				expect(resultsList).not.toBeNull();
-	// 				expect(resultsList.childElementCount > 0).toBeTruthy();
-	// 				done();
-	// 			});
-	// 		});
-	// 	});
-	//
-	// 	it('should have the results item on top', function(done) {
-	// 		console.log('should have the results item on top');
-	// 		dom.querySelector('#myautocomplete').focus();
-	// 		sometime(function later() {
-	// 			var resultsItem =
-	// 				dom.querySelector('.ts-autocomplete-list .ts-autocomplete-results');
-	// 			expect(resultsItem.innerHTML).toBe('3 matches');
-	// 			done();
-	// 		});
-	// 	});
-	// });
+		beforeEach(function dothis(done) {
+			sometime(function later() {
+				var autocomplete = ts.ui.get(dom.querySelector('#myautocomplete'));
+				autocomplete.data(DATA);
+				// Without an onfilter, the dropdown filters to an empty list and
+				// nothing renders — so match every item while the field is empty.
+				autocomplete.onfilter(function(value) {
+					return DATA.filter(function(item) {
+						return item.value.indexOf(value) > -1;
+					});
+				});
+				done();
+			});
+		});
+
+		it('should open the results when the field has focus', function(done) {
+			dom.querySelector('#myautocomplete').focus();
+			sometime(function later() {
+				var resultsList = dom.querySelector('.ts-autocomplete-list');
+				expect(resultsList).not.toBeNull();
+				expect(resultsList.childElementCount > 0).toBe(true);
+				done();
+			});
+		});
+
+		it('should show the number of matches', function(done) {
+			dom.querySelector('#myautocomplete').focus();
+			sometime(function later() {
+				var resultsItem = dom.querySelector('.ts-autocomplete-list .ts-autocomplete-results');
+				expect(resultsItem.innerHTML).toBe('3 matches');
+				done();
+			});
+		});
+	});
 });

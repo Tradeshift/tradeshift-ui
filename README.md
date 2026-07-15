@@ -160,26 +160,43 @@ From here, you should create a PR against `gh-pages` to update the docs site and
 
 ## Running tests
 
-Make sure you have a BrowserStack Automate account and have the following environment variables set:
+Tests run locally in real browsers via [Playwright](https://playwright.dev) — no external accounts or credentials required.
+
+First-time setup (downloads the browser binaries, a few hundred MB):
 
 ```sh
-export BROWSERSTACK_USERNAME=[Your BrowserStack username]
-export BROWSERSTACK_KEY=[Your BrowserStack key]
+npm install
+npx playwright install
 ```
 
-Then feel free to start running the tests as such:
+Then run the full suite:
 
 `npm test`
 
-This command will run all the Jasmine tests for all UI Components through BrowserStack.
+This lints, builds the Jasmine specs, and runs them across three browser engines that together cover our supported browsers:
 
-We're currently testing on the following browsers:
+- **Chromium** — Google Chrome & Microsoft Edge
+- **Firefox** — Mozilla Firefox
+- **WebKit** — Apple Safari
 
-- Google Chrome (latest, previous)
-- Mozilla Firefox (latest, previous)
-- Apple Safari (latest, previous)
-- Microsoft Edge (latest, previous)
-- IE11
+For faster iteration you can build once and re-run just the browser tests, or target a single engine:
+
+```sh
+npx grunt jasmine                     # build spec/jasmine/ (needed before test:browsers)
+npm run test:browsers                 # all engines
+npx playwright test --project=webkit  # a single engine (chromium | firefox | webkit)
+npx playwright test --ui              # interactive UI mode
+```
+
+### Code coverage
+
+Collect JavaScript code coverage of the library while the Jasmine suite runs (Chromium only, via V8 coverage):
+
+```sh
+npm run test:coverage
+```
+
+This builds the specs, runs the suite once in Chromium with coverage collection, and writes a report to `./coverage` (open `coverage/index.html`; raw V8 data is also saved to `coverage/v8-raw.json`). Coverage is measured on the built bundle `spec/jasmine/ts.js`; since that build emits no source maps, numbers are reported against the bundle rather than individual `src/` files.
 
 ## Contribute
 

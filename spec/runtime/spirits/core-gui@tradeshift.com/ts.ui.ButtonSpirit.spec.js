@@ -1,5 +1,5 @@
 describe('ts.ui.ButtonSpirit', function likethis() {
-	var MARKUP = ['<button data-ts="Button">', '	<span>Label</span>', '</buttton>'].join('\n');
+	var MARKUP = ['<button data-ts="Button">', '	<span>Label</span>', '</button>'].join('\n');
 
 	function setup(action, html) {
 		var spirit,
@@ -33,11 +33,12 @@ describe('ts.ui.ButtonSpirit', function likethis() {
 		}, html);
 	});
 
-	it('should contain ts-loading-message', function(done) {
-		var html = '<button data-ts="Button" busy="leo"><span>Label</span></buttton>';
+	it('should show a loading message when busy', function(done) {
 		setup(function(spirit) {
-			expect(spirit.element.innerHTML).toContain('ts-loading-message');
+			spirit.busy('message');
+			expect(spirit.element.className).toContain('ts-loading-message');
+			expect(spirit.text()).toBe('message');
 			done();
-		}, html);
+		});
 	});
 });

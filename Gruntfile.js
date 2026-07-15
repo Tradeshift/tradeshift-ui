@@ -53,7 +53,10 @@ module.exports = function(grunt) {
 	);
 
 	// build for jasmine tests
-	grunt.registerTask('jasmine', [].concat(build('jasmine'), ['concat:jasmine', 'copy:jasmine']));
+	grunt.registerTask(
+		'jasmine',
+		[].concat(build('jasmine'), ['concat:jasmine', 'copy:jasmine', 'copy:jasminecore'])
+	);
 
 	// never called directly, release-it will do that for us
 	grunt.registerTask('release-deploy', ['concurrent:check_cdn_while_dist', 'exec:s3_upload']);
@@ -102,6 +105,20 @@ module.exports = function(grunt) {
 				expand: true,
 				src: ['dist/ts.js', 'dist/ts.css'],
 				dest: 'spec/jasmine/'
+			},
+			// copy the Jasmine 5 browser runtime into the spec runner folder
+			jasminecore: {
+				expand: true,
+				cwd: 'node_modules/jasmine-core/lib/jasmine-core/',
+				src: [
+					'jasmine.js',
+					'jasmine-html.js',
+					'boot0.js',
+					'boot1.js',
+					'jasmine.css',
+					'jasmine_favicon.png'
+				],
+				dest: 'spec/jasmine/jasmine/'
 			},
 			css_cdn: {
 				files: [

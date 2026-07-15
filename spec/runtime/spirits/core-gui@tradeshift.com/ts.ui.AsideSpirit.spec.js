@@ -32,6 +32,21 @@ describe('ts.ui.AsideSpirit', function likethis() {
 		});
 	});
 
+	it('should show the modal cover when opened', function(done) {
+		var dom = helper.createTestDom();
+		dom.innerHTML = MARKUP;
+		sometime(function later() {
+			var spirit = ts.ui.get(dom.querySelector('aside'));
+			spirit.open();
+			sometime(function opened() {
+				var cover = ts.ui.get('#ts-asidecover');
+				expect(cover.css.contains('ts-visible')).toBe(true);
+				spirit.dom.remove();
+				done();
+			}, 500);
+		});
+	});
+
 	/*
 	 * TODO: Test that Asides can also close, but now like this
 	 *

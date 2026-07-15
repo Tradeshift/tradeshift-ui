@@ -187,73 +187,69 @@ describe('Channeling and exorcising spirits', function likethis() {
 		});
 	});
 
-	if (!gui.Client.isExplorer9 && !gui.Client.isExplorer10) {
-		it('should (eventually) possess on outerHTML', function(done) {
-			var sandbox = this.sandbox;
-			var container = document.createElement('div');
-			var elm = getSpiritElm();
-			container.appendChild(elm);
-			sandbox.appendChild(container);
-			elm.outerHTML = '<div></div>';
-			sometime(function later() {
-				container.outerHTML = '<div><div class="gui-spirit"></div></div>';
-				sometime(function muchlater() {
-					expect(hasSpirit(sandbox.firstChild.firstChild)).toBe(true);
-					done();
-				});
-			});
-		});
-
-		it('should (eventually) exorcize on outerHTML', function(done) {
-			var container = document.createElement('div');
-			var elm = getSpiritElm();
-			container.appendChild(elm);
-			this.sandbox.appendChild(container);
-			sometime(function later() {
-				expect(hasSpirit(elm)).toBe(true);
-				elm.outerHTML = '<div></div>';
-				sometime(function muchlater() {
-					expect(hasSpirit(elm)).toBe(false);
-					done();
-				});
-			});
-		});
-
-		it('should support (an optional) callback in gui.get', function(done) {
-			var button = document.createElement('button');
-			var counter = 0;
-			button.setAttribute('data-ts', 'Button');
-			ts.ui.get(button, function(spirit) {
-				counter += 1;
-			});
-			ts.ui.get(button, function(spirit) {
-				counter += 1;
-			});
-			ts.ui.get(button, function(spirit) {
-				counter += 1;
-			});
-			setTimeout(function() {
-				document.body.appendChild(button);
-				expect(counter).toBe(3);
-				document.body.removeChild(button);
+	it('should (eventually) possess on outerHTML', function(done) {
+		var sandbox = this.sandbox;
+		var container = document.createElement('div');
+		var elm = getSpiritElm();
+		container.appendChild(elm);
+		sandbox.appendChild(container);
+		elm.outerHTML = '<div></div>';
+		sometime(function later() {
+			container.outerHTML = '<div><div class="gui-spirit"></div></div>';
+			sometime(function muchlater() {
+				expect(hasSpirit(sandbox.firstChild.firstChild)).toBe(true);
 				done();
-			}, 1000);
-		});
-	}
-
-	if (!gui.Client.isExplorer) {
-		it('should (eventually) exorcize on textContent', function(done) {
-			var elm = getSpiritElm();
-			var box = this.sandbox;
-			box.appendChild(elm);
-			sometime(function later() {
-				expect(hasSpirit(elm)).toBe(true);
-				box.textContent = '';
-				sometime(function muchlater() {
-					expect(hasSpirit(elm)).toBe(false);
-					done();
-				});
 			});
 		});
-	}
+	});
+
+	it('should (eventually) exorcize on outerHTML', function(done) {
+		var container = document.createElement('div');
+		var elm = getSpiritElm();
+		container.appendChild(elm);
+		this.sandbox.appendChild(container);
+		sometime(function later() {
+			expect(hasSpirit(elm)).toBe(true);
+			elm.outerHTML = '<div></div>';
+			sometime(function muchlater() {
+				expect(hasSpirit(elm)).toBe(false);
+				done();
+			});
+		});
+	});
+
+	it('should support (an optional) callback in gui.get', function(done) {
+		var button = document.createElement('button');
+		var counter = 0;
+		button.setAttribute('data-ts', 'Button');
+		ts.ui.get(button, function(spirit) {
+			counter += 1;
+		});
+		ts.ui.get(button, function(spirit) {
+			counter += 1;
+		});
+		ts.ui.get(button, function(spirit) {
+			counter += 1;
+		});
+		setTimeout(function() {
+			document.body.appendChild(button);
+			expect(counter).toBe(3);
+			document.body.removeChild(button);
+			done();
+		}, 1000);
+	});
+
+	it('should (eventually) exorcize on textContent', function(done) {
+		var elm = getSpiritElm();
+		var box = this.sandbox;
+		box.appendChild(elm);
+		sometime(function later() {
+			expect(hasSpirit(elm)).toBe(true);
+			box.textContent = '';
+			sometime(function muchlater() {
+				expect(hasSpirit(elm)).toBe(false);
+				done();
+			});
+		});
+	});
 });

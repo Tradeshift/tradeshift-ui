@@ -25,8 +25,21 @@ jobs:
       - name: 📥 Download deps
         run: npm ci
 
+      - name: 🎭 Install Playwright browsers
+        run: npx playwright install --with-deps
+
+      # Lint + build + run the suite on all local engines. Video/screenshots/
+      # traces are captured on failure (see playwright.config.js) and uploaded
+      # below. Blocking: a test failure fails the build.
       - name: ▶️ Run tests
         run: npm test
-        env:
-          BROWSERSTACK_USERNAME: ${{ secrets.BROWSERSTACK_USER }}
-          BROWSERSTACK_KEY: ${{ secrets.BROWSERSTACK_KEY }}
+
+      - name: ⬆️ Upload Playwright artifacts (video/screenshots/trace)
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-artifacts
+          path: |
+            test-results/
+            playwright-report/
+          retention-days: 7

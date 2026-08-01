@@ -74,7 +74,7 @@
     "@babel/eslint-parser": "^7.28.6",
     "@playwright/test": "^1.61.1",
     "@tradeshift/g11n-langneg": "^1.2.3",
-    "acorn": "^8.17.0",
+    "acorn": "^8.18.0",
     "alce": "^1.2.0",
     "ali-oss": "^6.23.0",
     "autoprefixer": "^10.4.23",

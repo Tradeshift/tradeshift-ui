@@ -115,7 +115,7 @@
     "release-it": "^21.1.0",
     "semver": "^7.8.5",
     "simple-git": "^4.0.2",
-    "sweet.js": "^0.7.8",
+    "sweet.js": "^3.0.15",
     "uglify-js": "^3.19.3"
   },
   "keywords": [

@@ -114,7 +114,7 @@
     "prettier": "1.19.1",
     "release-it": "^21.0.2",
     "semver": "^7.8.5",
-    "simple-git": "^3.36.0",
+    "simple-git": "^4.0.2",
     "sweet.js": "^0.7.8",
     "uglify-js": "^3.19.3"
   },

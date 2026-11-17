@@ -70,7 +70,7 @@
     "Last 1 version"
   ],
   "devDependencies": {
-    "@babel/core": "^7.28.6",
+    "@babel/core": "^7.29.0",
     "@babel/eslint-parser": "^7.28.6",
     "@playwright/test": "^1.61.1",
     "@tradeshift/g11n-langneg": "^1.2.3",

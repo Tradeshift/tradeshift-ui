@@ -1,0 +1,633 @@
+// RTL (Right-to-Left) overrides for Arabic and other RTL languages
+// Applied when [dir="rtl"] is set on <html> or any ancestor element.
+// ....................................................................
+
+@import 'ts-variables.less';
+
+// Redefine dialog-local variables so they're accessible here
+@rtl-dialog-width: @ts-width-aside + (@ts-unit-double * 2) - @ts-unit;
+@rtl-dialog-minus: 1 - @rtl-dialog-width * 0.5;
+
+// ....................................................................
+
+// Layout ......................................................................
+
+[dir='rtl'] {
+	// Main flex row already flows correctly; sidebar border decorations need to swap sides
+	.ts-sidebar {
+		&.ts-sidebar-first {
+			&:after {
+				right: auto;
+				left: 0;
+			}
+		}
+		&.ts-sidebar-last {
+			&:after {
+				left: auto;
+				right: 0;
+			}
+		}
+	}
+
+	// Sideshow border: swap side
+	.ts-sideshow {
+		&:after {
+			left: auto;
+			right: 0;
+		}
+	}
+
+	// Toolbar-first / toolbar-last sidebar offsets
+	.ts-tablet {
+		&.ts-has-sidebar-first {
+			.ts-toolbar-first,
+			.ts-toolbar-last {
+				left: 0;
+				right: @ts-width-aside;
+			}
+		}
+		&.ts-has-sidebar-last {
+			.ts-toolbar-first,
+			.ts-toolbar-last {
+				right: 0;
+				left: @ts-width-aside;
+			}
+		}
+	}
+}
+
+// Aside .......................................................................
+
+[dir='rtl'] {
+	.ts-aside {
+		// Asides slide in from the left by default (position: right auto);
+		// in RTL they should slide from the right (position: left auto)
+		left: 0;
+		right: auto;
+		box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+	}
+
+	.ts-sidebar > .ts-aside {
+		&.ts-opening,
+		&.ts-closing {
+			&:after {
+				left: auto;
+				right: 0;
+			}
+		}
+	}
+}
+
+// Topbar ......................................................................
+
+[dir='rtl'] {
+	.ts-topbar {
+		// Navigation buttons on the right in RTL
+		.ts-toolbar-item {
+			+ .ts-toolbar-title {
+				padding-left: 0;
+				padding-right: @ts-unit-quarter;
+			}
+		}
+		.ts-mixin-icon-content(@content: '7') {
+			right: auto;
+			left: 0;
+		}
+	}
+
+	// Mobile topbar tabs: text-align flips
+	.ts-mobile-only {
+		.ts-topbar-tabs {
+			text-align: right;
+		}
+	}
+}
+
+// Toolbar .....................................................................
+
+[dir='rtl'] {
+	.ts-toolbar-menu {
+		&.ts-left {
+			left: auto;
+			right: 0;
+		}
+		&.ts-right {
+			right: auto;
+			left: 0;
+			.ts-toolbar-item {
+				&:last-child {
+					padding-right: 0;
+					padding-left: @ts-unit-half;
+				}
+			}
+		}
+		&.ts-left ~ .ts-right {
+			li:first-child {
+				padding-left: 0;
+				padding-right: @ts-unit-quarter;
+			}
+		}
+	}
+
+	// Tab indicator slides from the right
+	.ts-toolbar-tabs {
+		float: right;
+		.ts-tab-indicator {
+			right: 0;
+			left: auto;
+		}
+		.ts-button {
+			em {
+				right: auto;
+				left: @ts-unit-half;
+			}
+		}
+		.ts-tab {
+			&.ts-tab-close {
+				.ts-button {
+					.ts-close-bg {
+						right: auto;
+						left: @ts-unit-half;
+					}
+				}
+			}
+		}
+	}
+
+	// Toolbar title padding
+	.ts-toolbar-title,
+	.ts-toolbar-status {
+		&:first-child {
+			padding-left: 0;
+			padding-right: @ts-unit;
+		}
+	}
+	.ts-toolbar-status {
+		&:first-child {
+			padding-left: 0;
+			padding-right: @ts-unit-plus;
+		}
+	}
+
+	// Micro toolbar
+	.ts-toolbar.ts-micro {
+		.ts-toolbar-tabs {
+			padding-left: 0;
+			padding-right: @ts-unit-half;
+		}
+	}
+
+	// Button groups in toolbar: flip radius
+	.ts-toolbar .ts-join .ts-button {
+		&:first-child {
+			&,
+			&:after {
+				border-radius: 0 @ts-unit @ts-unit 0;
+			}
+		}
+		&:last-child {
+			&,
+			&:after {
+				border-radius: @ts-unit 0 0 @ts-unit;
+			}
+		}
+		+ .ts-button {
+			&:after {
+				border-left: none;
+				border-right: 1px solid @ts-color-white;
+			}
+			&.ts-tertiary {
+				&:after {
+					border-right: none;
+				}
+			}
+		}
+	}
+}
+
+// Buttons .....................................................................
+
+[dir='rtl'] {
+	.ts-button {
+		margin-right: 0;
+		margin-left: @ts-unit-quarter;
+	}
+
+	a.ts-button,
+	menu .ts-button {
+		margin-left: 0;
+	}
+
+	// Button action label padding
+	.ts-button.ts-action {
+		> span {
+			padding-left: 0;
+			padding-right: @ts-unit-quarter * 1.5;
+		}
+	}
+}
+
+// Forms .......................................................................
+
+[dir='rtl'] {
+	.ts-form {
+		text-align: right;
+
+		&.ts-fieldset,
+		.ts-fieldset {
+			> label {
+				&.ts-haslabel {
+					&.ts-required > span:first-child::after {
+						content: ' *';
+					}
+				}
+				&.ts-customiconlabel {
+					.ts-field {
+						padding-right: @ts-unit-half;
+						padding-left: 1.25 * @ts-unit;
+					}
+				}
+				&.ts-right {
+					text-align: left;
+					.ts-field {
+						text-align: left;
+						padding-left: @ts-unit-half;
+						padding-right: 0;
+					}
+				}
+			}
+		}
+
+		.ts-field {
+			&.ts-text,
+			&.ts-date {
+				padding-left: @ts-unit-half;
+				padding-right: @ts-unit-half;
+			}
+			&.ts-textarea {
+				padding-left: @ts-unit-half;
+				padding-right: 0;
+			}
+			&.ts-option {
+				+ span {
+					padding-left: 0;
+					padding-right: 26px;
+				}
+				+ span:before {
+					left: auto;
+					right: -@ts-unit-quarter;
+				}
+			}
+		}
+
+		// Fake select / date dropdown arrow: flip to left side
+		.ts-fakelabel {
+			&:not(.ts-disabled):not(.ts-readonly) {
+				&:before {
+					right: auto;
+					left: @ts-unit-half;
+				}
+			}
+		}
+
+		// Autocomplete list: anchored to left edge (now the trailing edge)
+		.ts-autocomplete-list {
+			> li {
+				&:after {
+					right: auto;
+					left: @ts-unit-half;
+				}
+			}
+		}
+
+		// Errors / info icon on the right (leading edge in RTL)
+		.ts-errors,
+		.ts-info {
+			margin-left: 0;
+			margin-right: @ts-unit-half;
+			> dt,
+			> dd {
+				padding-left: 0;
+				padding-right: @ts-unit;
+			}
+			> dt:before {
+				left: auto;
+				right: 0;
+			}
+			> dd:before {
+				left: auto;
+				right: 3px;
+			}
+		}
+
+		// Lock icon on disabled/readonly fields
+		label {
+			&.ts-readonly,
+			&.ts-disabled {
+				> input,
+				> textarea {
+					&,
+					&[disabled],
+					&[readonly] {
+						padding-right: @ts-unit-half;
+						padding-left: @ts-unit-plus;
+					}
+				}
+				&:not(.ts-option):not(.ts-switchlabel) {
+					&:after {
+						right: auto;
+						left: @ts-unit-half;
+					}
+				}
+			}
+		}
+
+		// Custom icon label
+		label.ts-customiconlabel:not(.ts-option):not(.ts-switchlabel) {
+			&:after {
+				right: auto;
+				left: @ts-unit-half;
+			}
+		}
+
+		// Switch label
+		label.ts-switchlabel {
+			text-align: left;
+			padding-right: 0;
+			padding-left: @ts-unit-quarter;
+			> span {
+				text-align: right;
+				float: right;
+			}
+		}
+
+		.ts-field.ts-switchbox {
+			right: auto;
+			left: 0;
+			+ .ts-switcher {
+				> i {
+					&:first-child:before {
+						left: auto;
+						right: -0.5px;
+					}
+				}
+				&.ts-engine-webkit {
+					> i.ts-icon-cancel:before {
+						left: auto;
+						right: -0.25px;
+					}
+					> i.ts-icon-checked:before {
+						left: auto;
+						right: 0;
+					}
+				}
+				&.ts-engine-gecko {
+					> i.ts-icon-cancel:before {
+						left: auto;
+						right: 0;
+					}
+					> i.ts-icon-checked:before {
+						left: auto;
+						right: 0.5px;
+					}
+				}
+			}
+		}
+
+		// Multi-field: swap padding direction
+		.ts-fieldset.ts-multi {
+			> label {
+				padding-right: 0;
+				padding-left: @ts-unit-quarter;
+				span {
+					left: auto;
+					right: @ts-unit-quarter;
+				}
+				+ label {
+					padding-left: 0;
+					padding-right: @ts-unit-quarter;
+					span {
+						right: auto;
+						left: @ts-unit-quarter;
+					}
+				}
+				&:last-child {
+					padding-left: @ts-unit-half;
+					span {
+						right: auto;
+						left: @ts-unit-half;
+					}
+				}
+			}
+		}
+
+		// Preview mode: remove hardcoded padding sides
+		&.ts-preview {
+			.ts-field.ts-text,
+			.ts-field.ts-select {
+				padding-left: 0;
+				padding-right: 0;
+			}
+		}
+	}
+
+	// Field header (label above input)
+	.local-mixin-field-header() {
+		left: @ts-unit-half;
+		right: @ts-unit-half;
+	}
+
+	// Radio focus outline pseudo-element
+	.ts-form:not(.ts-nofx):not(.ts-preview) {
+		.ts-fieldset.ts-radio {
+			&:not(.ts-disabled):not(.ts-readonly) {
+				&:before {
+					left: @ts-unit-half;
+					right: @ts-unit-half;
+				}
+			}
+		}
+	}
+
+	// Select / date hidden input padding
+	.ts-form .ts-select + .ts-text,
+	.ts-form .ts-dateinput + .ts-text {
+		padding-right: @ts-unit-half;
+		padding-left: @ts-unit-plus;
+	}
+}
+
+// Menus .......................................................................
+
+[dir='rtl'] {
+	.ts-menu {
+		> li {
+			> button,
+			> a {
+				&:not(.ts-object) {
+					text-align: right;
+					> span,
+					> sub {
+						padding-right: 0;
+						padding-left: @ts-unit-plus;
+					}
+					> img,
+					> i {
+						left: auto;
+						right: @ts-unit-half;
+					}
+					// icon on the right (trailing edge becomes leading in RTL)
+					& > span + i,
+					& > sub + i {
+						left: @ts-unit-half;
+						right: auto;
+					}
+				}
+			}
+		}
+	}
+}
+
+// Tables ......................................................................
+
+[dir='rtl'] {
+	.ts-table {
+		td,
+		th {
+			text-align: right;
+			&:first-child {
+				border-left: 1px solid @ts-color-gray-lighter;
+				border-right: none;
+			}
+			&:last-child {
+				border-right: 1px solid @ts-color-gray-lighter;
+				border-left: none;
+			}
+		}
+	}
+}
+
+// Notes .......................................................................
+
+[dir='rtl'] {
+	.ts-note {
+		text-align: right;
+		> i {
+			left: auto;
+			right: @ts-unit-half;
+		}
+		> i ~ p {
+			padding-left: 0;
+			padding-right: @ts-unit-plus;
+		}
+		.ts-note-buttons {
+			right: auto;
+			left: @ts-unit-quarter;
+		}
+		.ts-note-close {
+			right: auto;
+			left: 0;
+		}
+		&.ts-has-close p {
+			padding-right: 0;
+			padding-left: @ts-unit-plus;
+		}
+	}
+}
+
+// Cards .......................................................................
+
+[dir='rtl'] {
+	.ts-card.ts-default,
+	.ts-companycard.ts-details {
+		.ts-card-connection {
+			padding: @ts-unit-half (@ts-unit-double - 1px) (@ts-unit-half - 1px) (@ts-unit * 4);
+		}
+		.ts-card-connection-icon {
+			left: auto;
+			right: 0;
+		}
+	}
+
+	.ts-companycard-details {
+		li {
+			padding-left: 0;
+			padding-right: @ts-unit;
+		}
+	}
+}
+
+// Dialogs .....................................................................
+
+[dir='rtl'] {
+	.ts-dialog {
+		left: auto;
+		right: 50%;
+		margin-left: 0;
+		margin-right: @rtl-dialog-minus;
+
+		.ts-dialog-body {
+			> dt,
+			> dd {
+				text-align: right;
+			}
+		}
+	}
+
+	.ts-mobile-only {
+		.ts-dialog {
+			right: 50%;
+			margin-right: 0 - 40%;
+			margin-left: 0;
+			left: auto;
+		}
+	}
+
+	.ts-iframe-hosted {
+		&.ts-tablet {
+			.ts-dialog {
+				margin-right: @rtl-dialog-minus - @ts-unit-plus;
+				margin-left: 0;
+			}
+		}
+	}
+}
+
+// Calendars ...................................................................
+
+[dir='rtl'] {
+	.ts-calendar {
+		table {
+			direction: rtl;
+		}
+		.ts-calendar-transports {
+			i {
+				// Swap prev/next arrow directions
+				&.ts-icon-arrowleft {
+					transform: scaleX(-1);
+				}
+				&.ts-icon-arrowright {
+					transform: scaleX(-1);
+				}
+			}
+		}
+	}
+}
+
+// Icon mirroring ..............................................................
+// Directional icons that should flip horizontally in RTL layouts.
+// Non-directional icons (clock, trash, search, etc.) are intentionally excluded.
+
+[dir='rtl'] {
+	.ts-icon-arrowleft:before,
+	.ts-icon-arrowright:before,
+	.ts-icon-triangleleft:before,
+	.ts-icon-triangleright:before,
+	.ts-icon-back:before,
+	.ts-icon-forward:before,
+	.ts-icon-next:before,
+	.ts-icon-proceed:before {
+		display: inline-block;
+		transform: scaleX(-1);
+	}
+}

@@ -1,0 +1,77 @@
+name: Release
+
+on: workflow_dispatch
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    name: Publish package, tag, and create GitHub Release
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: ⬇️ Checkout repo
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: ⎔ Setup node
+        uses: actions/setup-node@v6
+        with:
+          node-version: 18
+          cache: 'npm'
+
+      - name: 📥 Download deps
+        run: npm ci
+
+      - name: 🔖 Read version from package.json
+        id: pkg
+        run: echo "version=$(node -p "require('./package.json').version")" >> "$GITHUB_OUTPUT"
+
+      - name: 🛑 Fail early if this version was already released
+        run: |
+          if git rev-parse "refs/tags/v${{ steps.pkg.outputs.version }}" >/dev/null 2>&1; then
+            echo "::error::Tag v${{ steps.pkg.outputs.version }} already exists — bump the version in package.json first."
+            exit 1
+          fi
+
+      - name: 🏗️ Build
+        run: npm run build
+
+      - name: 📦 Package npm dist
+        run: npm run package-dist -- latest
+
+      - name: 🔐 Configure GitHub Packages auth
+        run: |
+          echo "@tradeshift:registry=https://npm.pkg.github.com/" >> ~/.npmrc
+          echo "//npm.pkg.github.com/:_authToken=${GH_PACKAGE_UPLOAD_TOKEN}" >> ~/.npmrc
+        env:
+          GH_PACKAGE_UPLOAD_TOKEN: ${{ secrets.GH_PACKAGE_UPLOAD_TOKEN }}
+
+      - name: 🚀 Publish to GitHub Packages
+        working-directory: dist/npm
+        run: npm publish --tag latest
+
+      - name: 🏷️ Tag and push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git tag -a "v${{ steps.pkg.outputs.version }}" -m "Tradeshift UI v${{ steps.pkg.outputs.version }}"
+          git push origin "v${{ steps.pkg.outputs.version }}"
+
+      - name: 📝 Create GitHub Release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          VERSION: ${{ steps.pkg.outputs.version }}
+        run: |
+          PREV_TAG=$(git describe --tags --abbrev=0 "v${VERSION}^" 2>/dev/null || true)
+          RANGE="v${VERSION}"
+          if [ -n "$PREV_TAG" ]; then
+            RANGE="${PREV_TAG}..v${VERSION}"
+          fi
+          {
+            echo "### Commits"
+            git log --no-merges --pretty=format:'* %s (%h)' "$RANGE"
+          } > /tmp/release-notes.md
+          gh release create "v${VERSION}" --title "v${VERSION}" --notes-file /tmp/release-notes.md
